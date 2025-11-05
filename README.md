@@ -23,6 +23,9 @@ ef-frontend-v1/
 │   └── robots.txt
 ├── i18n/                         # 国际化文件
 ├── custom/                       # 自定义文件，用于存放不被Nuxt自动识别的文件
+├── shared/                       # 共享工具目录
+│   └── utils/                    # 工具函数
+├── .gitignore                    # Git 忽略文件配置
 ├── nuxt.config.ts                # Nuxt 配置文件
 ├── tsconfig.json                 # TypeScript 配置文件
 └── package.json                  # 项目依赖配置
