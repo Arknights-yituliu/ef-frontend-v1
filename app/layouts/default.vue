@@ -1,4 +1,5 @@
 <template>
+  <InitialLoader :is-loading="isInitialLoading"/>
   <div class="layout-container">
     <header class="app-header">
       <!-- 装饰背景 -->
@@ -102,8 +103,20 @@
 </template>
 
 <script lang="ts" setup>
-// 布局组件 - 主题初始化在 useTheme composable 中处理
+// 初始动画加载器
+// 是否加载中
+const isInitialLoading = ref(true);
 
+// 延迟隐藏加载器（2秒加载阶段 + 1秒揭幕阶段 = 约3秒）
+onMounted(() => {
+  const timer = setTimeout(() => {
+    isInitialLoading.value = false;
+  }, 3000);
+
+  return () => clearTimeout(timer);
+});
+
+// 布局组件 - 主题初始化在 useTheme composable 中处理
 const isDrawerOpen = ref(false)
 
 const toggleDrawer = () => {

@@ -57,8 +57,15 @@
   --wave-bg-color-3: rgba(171, 184, 195, 1);    /* #abb8c3ff */
   
   /* Logo 颜色变量 */
-  --logo-color: var(--color-text-primary); /* 浅色主题默认：黑色 */
-  --logo-color-expanded: var(--color-text-primary); /* 浅色主题展开：黑色 */
+  --logo-color: var(--theme-text-primary);
+  --logo-color-expanded: var(--theme-text-primary);
+  
+  /* 加载器变量 - 浅色主题 */
+  --theme-loader-bg: var(--theme-bg-tertiary);
+  --theme-progress-bg: var(--theme-text-secondary);
+  --theme-progress-color: var(--theme-text-primary);
+  --theme-hexagon-fill: var(--theme-text-primary);
+  --theme-hexagon-stroke: var(--theme-text-primary);
   
   /* 间距系统 */
   --spacing-xs: 0.5rem;
@@ -125,6 +132,13 @@
   /* Logo 颜色变量 - 深色主题：黄色 */
   --logo-color: var(--color-brand-yellow);
   --logo-color-expanded: var(--color-brand-yellow);
+  
+  /* 加载器变量 - 深色主题 */
+  --theme-loader-bg: var(--color-dark);
+  --theme-progress-bg: var(--theme-decorative-overlay-medium);
+  --theme-progress-color: var(--theme-accent-color);
+  --theme-hexagon-fill: var(--theme-bg-secondary);
+  --theme-hexagon-stroke: var(--theme-accent-color);
 }
 
 /* ============================================
