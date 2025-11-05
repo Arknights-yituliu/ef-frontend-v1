@@ -1,0 +1,382 @@
+/* 明日方舟：终末地 - 全局样式文件 */
+
+/* ============================================
+   CSS变量定义
+   ============================================ */
+:root {
+  /* 颜色系统 */
+  --color-brand-yellow: #fffa00;
+  --color-yellow-hover: #efe701;
+  --color-yellow-active: #eeea00;
+  --color-yellow-pressed: #e6de01;
+  
+  --color-dark: #191919;
+  --color-dark-gray: #1f1f1f;
+  --color-medium-gray: #383838;
+  --color-light-gray: #484848;
+  
+  --color-white: #ffffff;
+  --color-light-bg: #fafafa;
+  --color-gray-bg: #e5e5e5;
+  --color-gray-border: #e6e6e6;
+  --color-gray-light: #f2f2f2;
+  
+  --color-text-primary: #191919;
+  --color-text-secondary: #888;
+  --color-text-tertiary: #999;
+  --color-text-light: #ccc;
+  --color-text-disabled: #666;
+  
+  --color-shadow: rgba(0, 0, 0, 0.25);
+  --color-shadow-strong: rgba(0, 0, 0, 0.3);
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  
+  /* 主题变量 - 浅色主题（默认） */
+  --theme-bg-primary: var(--color-light-bg);
+  --theme-bg-secondary: var(--color-white);
+  --theme-bg-tertiary: var(--color-gray-light);
+  --theme-text-primary: var(--color-text-primary);
+  --theme-text-secondary: var(--color-text-secondary);
+  --theme-text-tertiary: var(--color-text-tertiary);
+  --theme-border: var(--color-gray-border);
+  --theme-border-active: var(--color-text-primary);
+  --theme-accent-color: var(--color-text-primary);
+  --theme-accent-hover: var(--color-text-secondary);
+  --theme-decorative-overlay: rgba(0, 0, 0, 0.1);
+  --theme-decorative-overlay-strong: rgba(0, 0, 0, 0.2);
+  --theme-decorative-overlay-light: rgba(0, 0, 0, 0.05);
+  --theme-decorative-overlay-medium: rgba(0, 0, 0, 0.08);
+  --theme-shadow-accent: rgba(0, 0, 0, 0.15);
+  --theme-shadow-accent-strong: rgba(0, 0, 0, 0.2);
+  --theme-shadow-accent-hover: rgba(0, 0, 0, 0.25);
+  
+  /* Logo 颜色变量 */
+  --logo-color: var(--color-text-primary); /* 浅色主题默认：黑色 */
+  --logo-color-expanded: var(--color-text-primary); /* 浅色主题展开：黑色 */
+  
+  /* 间距系统 */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.625rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem;
+  --spacing-2xl: 3.25rem;
+  --spacing-3xl: 3.75rem;
+  --spacing-4xl: 5rem;
+  --spacing-5xl: 9.8125rem;
+  
+  /* 圆角系统 */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 2.625rem;
+  --radius-xl: 3.125rem;
+  --radius-full: 50%;
+  
+  /* 字体大小系统 */
+  --font-size-xs: 1rem;
+  --font-size-sm: 1.125rem;
+  --font-size-base: 1.25rem;
+  --font-size-md: 1.5rem;
+  --font-size-lg: 1.75rem;
+  --font-size-xl: 2.25rem;
+  --font-size-2xl: 2.625rem;
+  --font-size-3xl: 3rem;
+  --font-size-4xl: 3.625rem;
+  --font-size-5xl: 4.5rem;
+  
+  /* 过渡时间 */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.6s cubic-bezier(1, 0, 0.7, 1);
+}
+
+/* 深色主题 */
+[data-theme="dark"] {
+  --theme-bg-primary: var(--color-dark);
+  --theme-bg-secondary: var(--color-dark-gray);
+  --theme-bg-tertiary: var(--color-medium-gray);
+  --theme-text-primary: var(--color-white);
+  --theme-text-secondary: var(--color-text-light);
+  --theme-text-tertiary: var(--color-text-secondary);
+  --theme-border: var(--color-medium-gray);
+  --theme-border-active: var(--color-brand-yellow);
+  --theme-accent-color: var(--color-brand-yellow);
+  --theme-accent-hover: var(--color-yellow-hover);
+  --theme-decorative-overlay: rgba(255, 250, 0, 0.1);
+  --theme-decorative-overlay-strong: rgba(255, 250, 0, 0.15);
+  --theme-decorative-overlay-light: rgba(255, 250, 0, 0.05);
+  --theme-decorative-overlay-medium: rgba(255, 250, 0, 0.08);
+  --theme-shadow-accent: rgba(255, 250, 0, 0.2);
+  --theme-shadow-accent-strong: rgba(255, 250, 0, 0.3);
+  --theme-shadow-accent-hover: rgba(255, 250, 0, 0.4);
+  
+  /* Logo 颜色变量 - 深色主题：黄色 */
+  --logo-color: var(--color-brand-yellow);
+  --logo-color-expanded: var(--color-brand-yellow);
+}
+
+/* ============================================
+   基础样式重置
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+  overflow-x: hidden;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   斜条纹图案 - 可复用工具类
+   ============================================ */
+.stripe-pattern {
+  background-image: linear-gradient(
+    -45deg,
+    transparent,
+    transparent 13.9512529279%,
+    black 0,
+    black 36.0487470721%,
+    transparent 0,
+    transparent 63.9512529279%,
+    black 0,
+    black 86.0487470721%,
+    transparent 0,
+    transparent
+  );
+  background-size: 0.5rem 0.5rem;
+  background-repeat: repeat;
+}
+
+.stripe-pattern-alt {
+  background-image: linear-gradient(
+    -45deg,
+    transparent,
+    transparent 18.3707517568%,
+    black 0,
+    black 31.6292482432%,
+    transparent 0,
+    transparent 68.3707517568%,
+    black 0,
+    black 81.6292482432%,
+    transparent 0,
+    transparent
+  );
+  background-size: 0.75rem 0.75rem;
+  background-repeat: repeat;
+}
+
+.stripe-pattern-large {
+  background-image: linear-gradient(
+    -45deg,
+    transparent,
+    transparent 16.1610023423%,
+    black 0,
+    black 33.8389976577%,
+    transparent 0,
+    transparent 66.1610023423%,
+    black 0,
+    black 83.8389976577%,
+    transparent 0,
+    transparent
+  );
+  background-size: 0.5rem 0.5rem;
+  background-repeat: repeat;
+}
+
+/* ============================================
+   动画定义
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes flashing {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  11% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  21% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.5;
+  }
+  41% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   工具类
+   ============================================ */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-light {
+  color: var(--color-text-light);
+}
+
+.bg-yellow {
+  background-color: var(--color-brand-yellow);
+}
+
+.bg-dark {
+  background-color: var(--theme-bg-tertiary);
+}
+
+.bg-light {
+  background-color: var(--color-light-bg);
+}
+
+.shadow-sm {
+  filter: drop-shadow(0 0 0.25rem var(--color-shadow));
+}
+
+.shadow-md {
+  box-shadow: 0 0 0.75rem var(--color-shadow);
+}
+
+.shadow-lg {
+  box-shadow: 0 0 2rem var(--color-shadow-strong);
+}
+
+/* ============================================
+   响应式工具类
+   ============================================ */
+@media (orientation: portrait) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (orientation: landscape) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   页面过渡动画
+   ============================================ */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity var(--transition-base);
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* ============================================
+   滚动条样式
+   ============================================ */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-text-secondary);
+  border-radius: var(--radius-sm);
+  opacity: 0.6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-text-secondary);
+  opacity: 0.8;
+}
+
+/* ============================================
+   焦点样式
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--theme-accent-color);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   选择文本样式
+   ============================================ */
+::selection {
+  background-color: var(--theme-accent-color);
+  color: var(--theme-text-primary);
+}
+
