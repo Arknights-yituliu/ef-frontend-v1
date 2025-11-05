@@ -1,0 +1,261 @@
+[
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/e3cb1251-6871-4c7c-9902-b39a83f407df",
+    "name": "小刻食堂",
+    "tags": [
+      "全天蹲饼",
+      "资讯整合",
+      "实时推送",
+      "工具整合"
+    ],
+    "description": "小刻食堂致力于在鹰角发饼前线了解新鲜消息，捕获第一手新鲜蜜饼。",
+    "official_links": [
+      "官网"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/8adf21c6-38a0-4ca5-8f7e-7b0062f4915e",
+    "name": "明日方舟一图流",
+    "tags": [
+      "刷图推荐",
+      "材料价值",
+      "商店性价比",
+      "礼包性价比",
+      "攒抽计算",
+      "box分析",
+      "大数据统计"
+    ],
+    "description": "明日方舟材料价值计算、性价比计算，以及攒抽计算等其它小工具。",
+    "official_links": [
+      "主页",
+      "明日方舟一图流-攒抽计算器"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/9b7381ef-1f93-4a43-8135-83d52a5cfb84",
+    "name": "峯驰物流",
+    "tags": [
+      "全天蹲饼",
+      "实时推送",
+      "聊天群推送"
+    ],
+    "description": "基于 NoneBot 的明日方舟通用资讯订阅插件",
+    "official_links": [
+      "官方文档",
+      "GitHub 仓库",
+      "禁言蹲饼群"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/020ba768-333b-4429-9ed0-ab92b98db9cc",
+    "name": "明日方舟BWIKI",
+    "tags": [
+      "数据查询",
+      "攻略整合"
+    ],
+    "description": "由哔哩哔哩（BiliBili）提供平台，使用魔改版MediaWiki搭建的明日方舟数据查询网站",
+    "official_links": [
+      "明日方舟BWIKI"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/fc35e3c4-7bad-4a2a-b56e-f2900a010811",
+    "name": "tomimi.dev",
+    "tags": [
+      "肉鸽",
+      "集成战略"
+    ],
+    "description": "集成战略小帮手",
+    "official_links": [
+      "官网.cyou",
+      "官网.dev"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/5228270d-cc51-4672-9ff9-9c4573b5de5c",
+    "name": "企鹅物流数据统计",
+    "tags": [
+      "掉率统计"
+    ],
+    "description": "企鹅物流数据统计是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。",
+    "official_links": [
+      "企鹅物流数据统计 CN镜像",
+      "企鹅物流数据统计 Global镜像"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/cf1cef02-60e7-4e89-a57c-a965aedf498d",
+    "name": "明日方舟工具箱",
+    "tags": [
+      "公招计算",
+      "材料计算",
+      "刷图规划",
+      "基建一览"
+    ],
+    "description": "支持全服的综合性工具箱，具有公招计算、养成材料计算、刷图规划、基建技能一览等功能。",
+    "official_links": [
+      "官网",
+      "备用",
+      "GitHub"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/31a913e7-45fc-4949-b28b-09eca520cf20",
+    "name": "PRTS.Map",
+    "tags": [
+      "地图",
+      "部署规划"
+    ],
+    "description": "查看关卡配置、地图、出怪顺序、热力图统计等数据，针对性规划作战的非盈利资讯站点",
+    "official_links": [
+      "主站"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/c84de82f-b16d-4257-a099-4045343decf2",
+    "name": "明日方舟剧情文本阅读器",
+    "tags": [
+      "剧情阅读",
+      "字数统计",
+      "干员资料",
+      "多语支持"
+    ],
+    "description": "明日方舟剧情文本阅读器 (ASTR) 是致力于提供沉浸式阅读体验的网站，提供了如双语阅读、搜索、字词统计等独特功能。",
+    "official_links": [
+      "官方网站",
+      "Cloudflare Pages"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/8aa0efab-8f15-4650-ac8e-b707cea3becc",
+    "name": "明日方舟DPS计算器",
+    "tags": [
+      "DPS计算",
+      "专精收益计算",
+      "模组收益计算"
+    ],
+    "description": "DPS计算、专精/模组收益计算",
+    "official_links": [
+      "DPS计算器"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/ab4e5f1f-5115-4f6c-8a87-02948325cad6",
+    "name": "罗德岛助理",
+    "tags": [
+      "寻访记录",
+      "蹲饼推送",
+      "识图公招",
+      "桌面小组件",
+      "专精提醒",
+      "森空岛数据"
+    ],
+    "description": "寻访记录、蹲饼推送、识图公招、桌面小组件、专精提醒、森空岛数据",
+    "official_links": [
+      "AppStore - 罗德岛助理"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/4e935096-f334-437a-91f0-48621a67d570",
+    "name": "寻访记录分析",
+    "tags": [
+      "抽卡记录分析"
+    ],
+    "description": "抽卡记录分析",
+    "official_links": [
+      "抽卡记录分析"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/a25fb9ba-5de7-41a9-8cdd-12756a5ac0c9",
+    "name": "PRTS.WIKI",
+    "tags": [
+      "WIKI"
+    ],
+    "description": "明日方舟WIKI资料站，本网站是由《明日方舟》游戏爱好者，使用免费开源的 MediaWiki 程序制作。",
+    "official_links": [
+      "PRTS.WIKI"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/d1dbb7d1-b14a-405e-85a7-967ee28daa52",
+    "name": "阿米娅BOT",
+    "tags": [
+      "数据查询",
+      "每日签到",
+      "模拟抽卡",
+      "互动游戏",
+      "森空岛"
+    ],
+    "description": "基于AmiyaBot框架的明日方舟QQ机器人",
+    "official_links": [
+      "官网",
+      "仓库地址",
+      "官方机器人Demo"
+    ]
+  },
+  {
+    "image_url": "https://cdn.ceobecanteen.top/images/tool-avatar/609b738f-3367-4b9b-a700-04815d4e375d",
+    "name": "明日方舟少人WIKI",
+    "tags": [
+      "攻略",
+      "少人",
+      "纪录",
+      "记录"
+    ],
+    "description": "明日方舟少人WIKI旨在收录明日方舟各种自限流派的极限少人打法，为玩家提供关卡少人攻略的最新进度。我们鼓励玩家提交自己的作战纪录，分享攻略视频，一起享受明日方舟的魅力。",
+    "official_links": [
+      "明日方舟少人WIKI"
+    ]
+  },
+  {
+    "image_url": "https://ark.yituliu.cn/image/website/bilibili.webp",
+    "name": "Bilibili游戏中心",
+    "tags": [
+      "新闻动态",
+      "攻略合集"
+    ],
+    "description": "哔哩哔哩游戏中心明日方舟专区",
+    "official_links": [
+      "明日方舟-攻略区"
+    ]
+  },
+  {
+    "image_url": "https://maa.plus/docs/images/maa-logo_512x512.png",
+    "name": "MaaAssistantArknights",
+    "tags": [
+      "图像识别",
+      "自动刷图",
+      "一键长草"
+    ],
+    "description": "《明日方舟》小助手，自动刷图、智能基建换班，全日常一键长草",
+    "official_links": [
+      "官网"
+    ]
+  },
+  {
+    "image_url": "https://mirrorchyan.com/favicon.ico",
+    "name": "Mirror酱",
+    "tags": [
+      "开源分发平台",
+      "高速下载"
+    ],
+    "description": "Mirror酱是一个第三方应用分发平台，让开源应用的更新更简单。用户付费使用，收益与开发者共享。此外，Mirror酱本身也是开源的。",
+    "official_links": [
+      "官网"
+    ]
+  },
+  {
+    "image_url": "https://ark.yituliu.cn/image/website/mower.webp",
+    "name": "Arknights-Mower",
+    "tags": [
+      "动态换班",
+      "支持跑单操作",
+      "支持调用MAA"
+    ],
+    "description": "动态换班",
+    "official_links": [
+      "项目地址"
+    ]
+  }
+]

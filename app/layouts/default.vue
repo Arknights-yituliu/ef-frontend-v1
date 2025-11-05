@@ -1,5 +1,5 @@
 <template>
-  <InitialLoader :is-loading="isInitialLoading"/>
+  <AnnimationInitialLoader :is-loading="isInitialLoading"/>
   <div class="layout-container">
     <header class="app-header">
       <!-- 装饰背景 -->
@@ -54,9 +54,9 @@
 
       <!-- 控制按钮区域 -->
       <div class="header-controls">
-        <ThemeToggle/>
+        <LayoutThemeToggle/>
         <div class="control-divider"></div>
-        <LanguageToggle/>
+        <LayoutLanguageToggle/>
       </div>
     </header>
     <!-- 抽屉遮罩层 -->
@@ -66,7 +66,7 @@
         @click="closeDrawer"
     ></div>
     <div class="layout-content">
-      <Sidebar :is-drawer-open="isDrawerOpen" @close-drawer="closeDrawer"/>
+      <LayoutSidebar :is-drawer-open="isDrawerOpen" @close-drawer="closeDrawer"/>
       <main class="main-content">
         <!-- 沙漠波纹曲线背景 -->
         <svg id="svg" class="desert-bg" viewBox="0 0 1440 700"
@@ -98,7 +98,7 @@
         </div>
       </main>
     </div>
-    <Footer/>
+    <LayoutFooter/>
   </div>
 </template>
 
@@ -314,18 +314,17 @@ onUnmounted(() => {
 
 /* 沙漠波纹曲线背景 */
 .desert-bg {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 150vw;
-  height: 150vh;
   min-width: 1800px;
-  min-height: 1200px;
+  min-height: 1400px;
   pointer-events: none;
   z-index: 0;
   opacity: 0.2;
   transition: opacity var(--transition-base), stroke var(--transition-base);
+  object-fit: contain;
 }
 
 /* 沙漠波纹路径颜色 - 支持主题切换 */
