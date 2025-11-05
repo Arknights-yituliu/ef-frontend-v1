@@ -13,6 +13,7 @@ const stage = ref<'loading' | 'reveal' | 'complete'>('loading');
 
 // 加载阶段相关
 const logoRef = ref<SVGSVGElement | null>(null);
+const logoPaths = ref<Array<SVGPathElement | SVGEllipseElement | SVGCircleElement>>([]);
 const progressCircleRef = ref<SVGCircleElement | null>(null);
 const loadingPhaseRef = ref<HTMLDivElement | null>(null);
 
@@ -24,47 +25,35 @@ const revealTimeline = ref<gsap.core.Timeline | null>(null);
 const row = 15;
 const line = 15;
 
-// Logo 3D旋转动画（使用2D变换模拟3D效果）
+// Logo 线条逐步绘制动画
 const animateLogo = () => {
-  if (!logoRef.value) return;
+  if (!logoRef.value || logoPaths.value.length === 0) return;
 
-  // 创建随机旋转动画（搞笑风格）
-  const randomRotation = () => {
-    // 使用2D旋转和缩放来模拟3D效果
-    const rotation = (Math.random() - 0.5) * 360;
-    const scaleX = 0.8 + Math.random() * 0.4; // 0.8-1.2
-    const scaleY = 0.8 + Math.random() * 0.4;
-    const skewX = (Math.random() - 0.5) * 20; // -10到10度
-    const skewY = (Math.random() - 0.5) * 20;
-    return {rotation, scaleX, scaleY, skewX, skewY};
-  };
-
-  // 连续随机旋转动画
-  const rotate = () => {
-    const transform = randomRotation();
-    gsap.to(logoRef.value, {
-      rotation: transform.rotation,
-      scaleX: transform.scaleX,
-      scaleY: transform.scaleY,
-      skewX: transform.skewX,
-      skewY: transform.skewY,
-      duration: 0.8 + Math.random() * 0.4,
-      ease: 'elastic.out(1, 0.5)',
-      onComplete: rotate,
+  // 为每个路径设置初始状态（完全隐藏）
+  logoPaths.value.forEach((path) => {
+    const length = path.getTotalLength();
+    gsap.set(path, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
+      opacity: 1,
     });
-  };
-
-  // 开始动画
-  gsap.set(logoRef.value, {
-    rotation: 0,
-    scaleX: 1,
-    scaleY: 1,
-    skewX: 0,
-    skewY: 0,
-    transformOrigin: 'center center',
   });
 
-  rotate();
+  // 创建时间线，逐个绘制路径
+  const drawTimeline = gsap.timeline();
+
+  logoPaths.value.forEach((path, index) => {
+    const length = path.getTotalLength();
+    drawTimeline.to(
+      path,
+      {
+        strokeDashoffset: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+      },
+      index * 0.1, // 每个路径间隔0.1秒开始
+    );
+  });
 };
 
 // 环形进度条动画（2秒）
@@ -78,9 +67,11 @@ const animateProgress = () => {
   // 创建时间线，同时动画进度条和透明度
   const progressTimeline = gsap.timeline({
     onComplete: () => {
-      // 停止logo旋转动画
-      if (logoRef.value) {
-        gsap.killTweensOf(logoRef.value);
+      // 停止logo绘制动画
+      if (logoPaths.value.length > 0) {
+        logoPaths.value.forEach((path) => {
+          gsap.killTweensOf(path);
+        });
       }
       // 立即切换到揭幕阶段（移除加载阶段）并恢复动画播放
       stage.value = 'reveal';
@@ -181,6 +172,28 @@ const prepareRevealAnimation = () => {
       }, '<0.15');
 };
 
+// 收集logo中的所有路径元素
+const collectLogoPaths = () => {
+  if (!logoRef.value) return;
+  
+  logoPaths.value = [];
+  // 收集所有 path 元素
+  const paths = logoRef.value.querySelectorAll('path');
+  paths.forEach((path) => {
+    logoPaths.value.push(path);
+  });
+  // 收集所有 ellipse 元素
+  const ellipses = logoRef.value.querySelectorAll('ellipse');
+  ellipses.forEach((ellipse) => {
+    logoPaths.value.push(ellipse);
+  });
+  // 收集所有 circle 元素
+  const circles = logoRef.value.querySelectorAll('circle');
+  circles.forEach((circle) => {
+    logoPaths.value.push(circle);
+  });
+};
+
 // 初始化所有阶段（同时准备加载和揭幕阶段）
 const initAllPhases = () => {
   nextTick(() => {
@@ -189,6 +202,8 @@ const initAllPhases = () => {
 
     // 2. 延迟一小段时间确保DOM已渲染，然后准备揭幕动画（暂停）
     setTimeout(() => {
+      // 收集logo路径
+      collectLogoPaths();
       prepareRevealAnimation();
 
       // 3. 开始加载阶段的动画
@@ -240,11 +255,16 @@ const showRevealPhase = computed(() => props.isLoading && (stage.value === 'reve
           >
             <g>
               <path
+                  class="logo-path"
                   d="M14.4413 32.252L32.1293 32.252L32.1293 28.908L25.6613 28.908L25.6613 0L22.5813 0C20.8213 1.012 18.7533 1.76 15.8933 2.288L15.8933 4.84L21.6573 4.84L21.6573 28.908L14.4413 28.908L14.4413 32.252Z"
-                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
             </g>
             <ellipse
+                class="logo-path"
                 cx="22.978261089520018"
                 cy="24.629596248131953"
                 rx="23.408917522625487"
@@ -253,8 +273,17 @@ const showRevealPhase = computed(() => props.isLoading && (stage.value === 'reve
                 stroke-width="2"
                 transform="rotate(-19.614696980142693 -0.43065643310546875 20.211997985839844)"
             />
-            <circle cx="37.06934356689453" cy="15.711997985839844" fill="currentColor" r="3.5"/>
+            <circle
+                class="logo-path"
+                cx="37.06934356689453"
+                cy="15.711997985839844"
+                r="3.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+            />
             <ellipse
+                class="logo-path"
                 cx="37.51921338448104"
                 cy="13.823112653989034"
                 rx="7.999996847005453"
@@ -264,34 +293,78 @@ const showRevealPhase = computed(() => props.isLoading && (stage.value === 'reve
                 transform="rotate(12.416193091380716 29.519216537475586 12.439682006835938)"
             />
             <path
+                class="logo-path"
                 d="M8.56934 8.712L6.7411 8.04025L6.06934 6.212L5.39759 8.04025L3.56934 8.712L5.39759 9.38375L6.06934 11.212L6.7411 9.38375L8.56934 8.712Z"
-                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
             />
             <path
+                class="logo-path"
                 d="M41.5693 25.712L39.7411 25.0402L39.0693 23.212L38.3976 25.0402L36.5693 25.712L38.3976 26.3837L39.0693 28.212L39.7411 26.3837L41.5693 25.712Z"
-                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
             />
           </svg>
           <!-- 环形进度条 -->
-          <svg class="progress-ring" viewBox="0 0 200 200">
-            <circle
-                class="progress-bg"
-                cx="100"
-                cy="100"
-                fill="none"
-                r="80"
-                stroke-width="3"
-            />
-            <circle
-                ref="progressCircleRef"
-                class="progress-circle"
-                cx="100"
-                cy="100"
-                fill="none"
-                r="80"
-                stroke-width="3"
-            />
-          </svg>
+          <div class="progress-ring-container">
+            <div class="progress-ring-pattern"></div>
+            <svg class="progress-ring" viewBox="0 0 200 200">
+              <defs>
+                <filter id="progress-glow">
+                  <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+                  <feOffset dx="0" dy="0" result="offsetblur"/>
+                  <feComponentTransfer>
+                    <feFuncA type="linear" slope="0.5"/>
+                  </feComponentTransfer>
+                  <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <!-- 外圈装饰 -->
+              <circle
+                  class="progress-outer"
+                  cx="100"
+                  cy="100"
+                  fill="none"
+                  r="85"
+                  stroke-width="2"
+              />
+              <!-- 背景圆环 -->
+              <circle
+                  class="progress-bg"
+                  cx="100"
+                  cy="100"
+                  fill="none"
+                  r="80"
+                  stroke-width="4"
+              />
+              <!-- 进度圆环 -->
+              <circle
+                  ref="progressCircleRef"
+                  class="progress-circle"
+                  cx="100"
+                  cy="100"
+                  fill="none"
+                  r="80"
+                  stroke-width="4"
+              />
+              <!-- 内圈装饰 -->
+              <circle
+                  class="progress-inner"
+                  cx="100"
+                  cy="100"
+                  fill="none"
+                  r="75"
+                  stroke-width="1"
+              />
+            </svg>
+          </div>
         </div>
       </div>
 
@@ -352,33 +425,98 @@ const showRevealPhase = computed(() => props.isLoading && (stage.value === 'reve
   height: auto;
   color: var(--logo-color);
   transition: color var(--transition-base);
-  transform-style: preserve-3d;
-  perspective: 1000px;
   z-index: 2;
 }
 
-.progress-ring {
+.logo-path {
+  fill: none;
+  opacity: 1;
+  stroke-dasharray: 0;
+  stroke-dashoffset: 0;
+}
+
+/* 进度条容器 */
+.progress-ring-container {
   position: absolute;
-  width: 12rem;
-  height: 12rem;
+  width: 14rem;
+  height: 14rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
 }
 
+/* 斜条纹背景装饰 */
+.progress-ring-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    -45deg,
+    transparent,
+    transparent 13.9512529279%,
+    var(--theme-progress-color) 0,
+    var(--theme-progress-color) 36.0487470721%,
+    transparent 0,
+    transparent 63.9512529279%,
+    var(--theme-progress-color) 0,
+    var(--theme-progress-color) 86.0487470721%,
+    transparent 0,
+    transparent
+  );
+  background-size: 0.5rem 0.5rem;
+  background-repeat: repeat;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.progress-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* 浅色主题：使用灰色阴影 */
+.progress-ring {
+  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.15));
+}
+
+/* 深色主题：使用黄色阴影 */
+[data-theme="dark"] .progress-ring {
+  filter: drop-shadow(0 0 0.5rem rgba(255, 250, 0, 0.3));
+}
+
+.progress-outer {
+  stroke: var(--theme-progress-color);
+  opacity: 0.2;
+  transition: stroke var(--transition-base), opacity var(--transition-base);
+}
+
 .progress-bg {
   stroke: var(--theme-progress-bg);
-  opacity: 0.3;
-  transition: stroke var(--transition-base);
+  opacity: 0.25;
+  transition: stroke var(--transition-base), opacity var(--transition-base);
 }
 
 .progress-circle {
   stroke: var(--theme-progress-color);
   stroke-linecap: round;
+  stroke-linejoin: round;
   transform: rotate(-90deg);
   transform-origin: center;
+  filter: url(#progress-glow);
   transition: stroke var(--transition-base);
+}
+
+.progress-inner {
+  stroke: var(--theme-progress-color);
+  opacity: 0.15;
+  transition: stroke var(--transition-base), opacity var(--transition-base);
 }
 
 /* 揭幕阶段 */
