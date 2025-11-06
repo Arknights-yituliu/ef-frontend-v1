@@ -22,7 +22,7 @@
 const {t} = useI18n()
 
 // 画布尺寸
-const CANVAS_WIDTH = 600;
+const CANVAS_WIDTH = 1000;
 const CANVAS_HEIGHT = 200;
 
 // 动画设置
@@ -200,9 +200,14 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  text: t('layout.siteName'),
+  text: undefined,
   className: '',
   color: undefined
+});
+
+// 计算实际使用的文本，如果未提供则使用默认的 siteName
+const displayText = computed(() => {
+  return props.text ?? t('layout.siteName');
 });
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
@@ -229,7 +234,7 @@ const initParticleCanvas = () => {
     particleCanvasRef.value = new ParticleCanvas(canvasRef.value);
     
     const color = props.color || (typeof window !== 'undefined' ? getCSSVariableColor('--theme-accent-color') : '#000000');
-    particleCanvasRef.value.generateTextParticles(props.text, color);
+    particleCanvasRef.value.generateTextParticles(displayText.value, color);
     particleCanvasRef.value.animate();
     isLoaded.value = true;
   }
@@ -246,7 +251,7 @@ onUnmounted(() => {
 });
 
 // 监听text和color变化
-watch([() => props.text, () => props.color], () => {
+watch([displayText, () => props.color], () => {
   initParticleCanvas();
 }, { flush: 'post' });
 

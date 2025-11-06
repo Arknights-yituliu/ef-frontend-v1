@@ -1,5 +1,9 @@
 {
   "menu": {
+    "materialProfit": "Material Profit",
+    "shopValue": "Shop Value",
+    "packageValue": "Package Value",
+    "itemValueTable": "Item Value Table",
     "others": "Others",
     "friendLinks": "Friend Links"
   },
@@ -24,6 +28,20 @@
     }
   },
   "page": {
+    "materialProfit": {
+      "shopValue": {
+        "title": "Shop Value",
+        "description": "This page displays cost-effectiveness analysis of various items in the shop to help players make better purchasing decisions."
+      },
+      "packageValue": {
+        "title": "Package Value",
+        "description": "This page displays cost-effectiveness analysis of various packages in the game to help players evaluate package purchase value."
+      },
+      "itemValueTable": {
+        "title": "Item Value Table",
+        "description": "This page displays a value assessment table for various items in the game to help players understand the relative value of items."
+      }
+    },
     "others": {
       "friendLinks": {
         "friendLinks": "Friend Links",

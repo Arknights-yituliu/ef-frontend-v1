@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    ssr: false, // 启用SSG渲染
     app: {
         head: {
             title: '终末地一图流', link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},],

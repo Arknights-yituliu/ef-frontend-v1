@@ -1,7 +1,7 @@
 <template>
   <nav :class="{ 'drawer-open': isDrawerOpen }" class="sidebar">
     <!-- Logo 区域 -->
-    <div class="sidebar-logo">
+    <div class="sidebar-logo" @click="navigateToHome">
       <div class="logo-wrapper">
         <svg class="logo-svg" fill="none" height="32.25199890136719"
              viewBox="0 0 46.20566463470459 32.25199890136719" width="46.20566463470459"
@@ -175,10 +175,18 @@ const emit = defineEmits<{
 }>()
 
 const route = useRoute()
+const router = useRouter()
 
 // 获取路由配置
 const appConfig = useAppConfig()
 const menuItems = appConfig.menu.routes
+
+// 点击 Logo 跳转到首页
+const navigateToHome = () => {
+  if (route.path !== '/') {
+    router.push('/')
+  }
+}
 
 const expandedItems = ref<number[]>([0]) // 默认展开第一个菜单
 const activePrimary = computed(() => {
@@ -609,6 +617,12 @@ onUnmounted(() => {
   background-color: var(--theme-bg-tertiary);
   border-bottom: 2px solid var(--theme-accent-color);
   text-align: center;
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+}
+
+.sidebar-logo:hover {
+  background-color: var(--theme-bg-secondary);
 }
 
 .sidebar-logo::before {

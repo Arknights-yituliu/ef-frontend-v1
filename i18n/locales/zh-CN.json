@@ -1,5 +1,9 @@
 {
   "menu": {
+    "materialProfit": "材料收益",
+    "shopValue": "商店性价比",
+    "packageValue": "礼包性价比",
+    "itemValueTable": "物品价值表",
     "others": "其它",
     "friendLinks": "友情链接"
   },
@@ -24,6 +28,20 @@
     }
   },
   "page": {
+    "materialProfit": {
+      "shopValue": {
+        "title": "商店性价比",
+        "description": "本页面用于展示商店中各种商品的性价比分析，帮助玩家做出更明智的购买决策。"
+      },
+      "packageValue": {
+        "title": "礼包性价比",
+        "description": "本页面用于展示游戏中各种礼包的性价比分析，帮助玩家评估礼包的购买价值。"
+      },
+      "itemValueTable": {
+        "title": "物品价值表",
+        "description": "本页面用于展示游戏中各种物品的价值评估表，帮助玩家了解物品的相对价值。"
+      }
+    },
     "others": {
       "friendLinks": {
         "friendLinks": "友情链接",

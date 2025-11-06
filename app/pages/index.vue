@@ -1,6 +1,8 @@
 <template>
   <div class="home-page">
-    <h1 class="page-title">终末地一图流</h1>
+    <div class="page-title">
+      <TextParticleWord />
+    </div>
     <p class="page-description">
       欢迎来到终末地一图流数据展示网站
     </p>
@@ -23,10 +25,10 @@ definePageMeta({
 }
 
 .page-title {
-  font-size: var(--font-size-5xl);
-  color: var(--theme-text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 2rem;
-  font-weight: 700;
 }
 
 .page-description {
