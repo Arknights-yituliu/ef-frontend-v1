@@ -36,7 +36,11 @@
           </path>
         </svg>
       </div>
-      <div class="logo-text">终末地一图流</div>
+      <!-- 中文的长度不用换行，加个样式进行防抖 -->
+      <div :style="{ whiteSpace : currentLocale === 'zh-CN' ? 'nowrap' : 'normal' }" class="logo-text">{{
+          $t('common.siteName')
+        }}
+      </div>
       <div class="logo-divider"></div>
     </div>
 
@@ -181,6 +185,13 @@ const activePrimary = computed(() => {
   return menuItems.findIndex(item =>
       item.children.some(child => child.routePath === route.path)
   )
+})
+
+// 国际化检测
+const {locale} = useI18n()
+
+const currentLocale = computed(() => {
+  return locale.value
 })
 
 // 菜单项 ref 存储
@@ -592,9 +603,12 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
   position: relative;
   background-color: var(--theme-bg-tertiary);
   border-bottom: 2px solid var(--theme-accent-color);
+  text-align: center;
 }
 
 .sidebar-logo::before {
@@ -628,7 +642,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 0.5rem;
   position: relative;
-  transform: scale(1.3) translateY(40%);
+  transform: scale(1.3) translateY(8%);
   z-index: 1;
   transition: all var(--transition-base);
 }
@@ -654,14 +668,13 @@ onUnmounted(() => {
   opacity: 0;
   width: 0;
   overflow: hidden;
-  white-space: nowrap;
   transition: all var(--transition-base);
 }
 
 /* 展开状态下的logo */
 .sidebar:hover .sidebar-logo,
 .sidebar.drawer-open .sidebar-logo {
-  height: 7.5rem;
+  height: auto;
 }
 
 .sidebar:hover .sidebar-logo .logo-wrapper,
@@ -779,7 +792,7 @@ onUnmounted(() => {
 }
 
 .primary-item {
-  height: 4.5rem;
+  min-height: 4.5rem;
   padding: 0;
   display: flex;
   align-items: center;

@@ -1,12 +1,6 @@
 {
   "menu": {
-    "primary1": "Character Data",
-    "primary2": "Equipment System",
     "primary3": "Others",
-    "secondary1_1": "Character List",
-    "secondary1_2": "Character Detail",
-    "secondary2_1": "Equipment List",
-    "secondary2_2": "Equipment Detail",
     "secondary3_1": "Friend Links"
   },
   "common": {
@@ -20,13 +14,10 @@
     "error": "Error",
     "retry": "Retry",
     "noData": "No data available",
-    "siteName": "Arknights EndField Yituliu"
+    "siteName": "EndField Yituliu",
+    "particleLoading": "Loading particle animation..."
   },
   "page": {
-    "roleList": "Character List Page",
-    "roleDetail": "Character Detail Page",
-    "equipmentList": "Equipment List Page",
-    "equipmentDetail": "Equipment Detail Page",
     "friendLinks": "Friend Links",
     "friendLinksDescription": "Here are some excellent tools and resource websites related to Arknights"
   },

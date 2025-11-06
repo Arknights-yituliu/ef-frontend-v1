@@ -1,12 +1,6 @@
 {
   "menu": {
-    "primary1": "角色数据",
-    "primary2": "装备系统",
     "primary3": "其它",
-    "secondary1_1": "角色列表",
-    "secondary1_2": "角色详情",
-    "secondary2_1": "装备列表",
-    "secondary2_2": "装备详情",
     "secondary3_1": "友情链接"
   },
   "common": {
@@ -20,13 +14,10 @@
     "error": "错误",
     "retry": "重试",
     "noData": "暂无数据",
-    "siteName": "终末地一图流"
+    "siteName": "终末地一图流",
+    "particleLoading": "正在加载粒子动画..."
   },
   "page": {
-    "roleList": "角色列表页面",
-    "roleDetail": "角色详情页面",
-    "equipmentList": "装备列表页面",
-    "equipmentDetail": "装备详情页面",
     "friendLinks": "友情链接",
     "friendLinksDescription": "以下是一些与明日方舟相关的优秀工具和资源网站"
   },
