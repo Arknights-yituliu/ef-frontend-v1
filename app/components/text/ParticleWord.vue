@@ -22,8 +22,8 @@
 const {t} = useI18n()
 
 // 画布尺寸
-const CANVAS_WIDTH = 1000;
-const CANVAS_HEIGHT = 200;
+const CANVAS_WIDTH = 800;
+const CANVAS_HEIGHT = 120;
 
 // 动画设置
 const ANIMATE_TIME = 30;
@@ -281,6 +281,8 @@ onUnmounted(() => {
 
 <style scoped>
 .particle-word-container {
+  transform: scale(1.1);
+  margin: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
