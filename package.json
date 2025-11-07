@@ -13,6 +13,7 @@
     "@mdi/font": "^7.4.47",
     "@nuxt/content": "^3.8.0",
     "@nuxtjs/i18n": "^10.2.0",
+    "@types/node": "^24.10.0",
     "better-sqlite3": "^12.4.1",
     "gsap": "^3.13.0",
     "nuxt": "^4.2.0",
@@ -20,7 +21,6 @@
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
-    "@types/node": "^24.10.0",
     "vite-plugin-vuetify": "^2.1.2",
     "vuetify": "^3.10.9"
   },

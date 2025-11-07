@@ -154,9 +154,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--theme-bg-primary);
   color: var(--theme-text-primary);
