@@ -36,6 +36,19 @@ content/
 
 ## Complete Process for Adding New Documentation
 
+### Step 0: Manage Documentation Route Prefixes (if needed)
+
+If your new document lives under a different top-level path (e.g. `/tutorials`), update the shared configuration in `app/app.config.ts` so every middleware can recognize it as part of the documentation portal.
+
+```ts
+export default defineAppConfig({
+  // ...other config
+  docsRoutePrefixes: ['/introduction', '/tutorials']
+})
+```
+
+Add additional prefixes to the `docsRoutePrefixes` array as required. Existing documentation under `/introduction` is already configured.
+
 ### Step 1: Create Markdown File
 
 Create new `.md` files under the category folder in the `content/` directory. Use the suffix `-zh` for Chinese and `-en` for English to keep the two language versions together.

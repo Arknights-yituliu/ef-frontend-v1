@@ -36,6 +36,19 @@ content/
 
 ## 添加新文档的完整流程
 
+### 步骤 0: 管理文档路由前缀（如需）
+
+如果新文档位于不同的一级路径（例如 `/tutorials`），需要在 `app/app.config.ts` 中更新共享配置，以便中间件能够将其识别为文档门户的一部分。
+
+```ts
+export default defineAppConfig({
+  // ... 其他配置
+  docsRoutePrefixes: ['/introduction', '/tutorials']
+})
+```
+
+根据需要在 `docsRoutePrefixes` 数组中新增前缀。已有的 `/introduction` 文档路径已经默认配置。
+
 ### 步骤 1: 创建 Markdown 文件
 
 在 `content/` 目录下对应分类文件夹中创建新的 `.md` 文件，通过 `-zh` 和 `-en` 后缀区分中文和英文版本，便于成对维护。
