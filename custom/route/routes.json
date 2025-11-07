@@ -2,44 +2,69 @@
   {
     "i18nKey": "materialProfit",
     "nameKey": "menu.materialProfit",
-    "iconPath": "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z",
-    "iconViewBox": "0 0 24 24",
+    "vuetifyIcon": "mdi-chart-bar",
     "children": [
       {
         "i18nKey": "shopValue",
         "nameKey": "menu.shopValue",
         "routePath": "/material-profit/shop-value",
-        "iconPath": "M7 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM1 2v2h2l3.6 7.59-1.35 2.45c-.15.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z",
-        "iconViewBox": "0 0 24 24"
+        "vuetifyIcon": "mdi-store"
       },
       {
         "i18nKey": "packageValue",
         "nameKey": "menu.packageValue",
         "routePath": "/material-profit/package-value",
-        "iconPath": "M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z",
-        "iconViewBox": "0 0 24 24"
+        "vuetifyIcon": "mdi-gift"
       },
       {
         "i18nKey": "itemValueTable",
         "nameKey": "menu.itemValueTable",
         "routePath": "/material-profit/item-value-table",
-        "iconPath": "M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z",
-        "iconViewBox": "0 0 24 24"
+        "vuetifyIcon": "mdi-table"
       }
     ]
   },
   {
     "i18nKey": "others",
     "nameKey": "menu.others",
-    "iconPath": "M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z",
-    "iconViewBox": "0 0 24 24",
+    "vuetifyIcon": "mdi-dots-horizontal",
     "children": [
+      {
+        "i18nKey": "test",
+        "nameKey": "menu.test",
+        "routePath": "/others/test",
+        "vuetifyIcon": "mdi-flask"
+      },
       {
         "i18nKey": "friendLinks",
         "nameKey": "menu.friendLinks",
         "routePath": "/others/friend-links",
-        "iconPath": "M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z",
-        "iconViewBox": "0 0 24 24"
+        "vuetifyIcon": "mdi-link"
+      }
+    ]
+  },
+  {
+    "i18nKey": "introduction",
+    "nameKey": "menu.introduction",
+    "vuetifyIcon": "mdi-book-open-variant",
+    "children": [
+      {
+        "i18nKey": "projectStructure",
+        "nameKey": "menu.projectStructure",
+        "routePath": "/introduction/project-structure",
+        "vuetifyIcon": "mdi-file-tree"
+      },
+      {
+        "i18nKey": "routeSetting",
+        "nameKey": "menu.routeSetting",
+        "routePath": "/introduction/route-setting",
+        "vuetifyIcon": "mdi-routes"
+      },
+      {
+        "i18nKey": "commonQuestions",
+        "nameKey": "menu.commonQuestions",
+        "routePath": "/introduction/common-questions",
+        "vuetifyIcon": "mdi-help-circle"
       }
     ]
   }

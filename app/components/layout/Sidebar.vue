@@ -80,9 +80,17 @@
         >
 
           <!-- 一级菜单图标 -->
-          <svg
-              :viewBox="primaryItem.iconViewBox || '0 0 24 24'"
+          <v-icon
+              v-if="primaryItem.vuetifyIcon"
               class="primary-icon"
+              size="24"
+          >
+            {{ primaryItem.vuetifyIcon }}
+          </v-icon>
+          <svg
+              v-else
+              class="primary-icon"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -116,7 +124,7 @@
         <!-- 二级菜单 -->
         <transition name="slide-down">
           <div
-              v-show="expandedItems.includes(primaryIndex)"
+              v-show="expandedItems.includes(primaryIndex) && (isSidebarExpanded || isDrawerOpen)"
               class="secondary-items"
           >
             <NuxtLink
@@ -131,11 +139,19 @@
                 @mouseleave="handleSecondaryLeave(secondaryItem.routePath)"
             >
               <!-- 二级菜单图标 -->
-              <svg
-                  v-if="secondaryItem.iconPath"
+              <v-icon
+                  v-if="secondaryItem.vuetifyIcon"
                   :ref="el => setSecondaryIconRef(el, secondaryItem.routePath)"
-                  :viewBox="secondaryItem.iconViewBox || '0 0 24 24'"
                   class="secondary-icon"
+                  size="20"
+              >
+                {{ secondaryItem.vuetifyIcon }}
+              </v-icon>
+              <svg
+                  v-else-if="secondaryItem.iconPath"
+                  :ref="el => setSecondaryIconRef(el, secondaryItem.routePath)"
+                  class="secondary-icon"
+                  viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -174,12 +190,29 @@ const emit = defineEmits<{
   'close-drawer': []
 }>()
 
+// 菜单项类型
+interface SecondaryMenuItem {
+  i18nKey: string
+  nameKey: string
+  routePath: string
+  iconPath?: string
+  vuetifyIcon?: string
+}
+
+interface PrimaryMenuItem {
+  i18nKey: string
+  nameKey: string
+  iconPath?: string
+  vuetifyIcon?: string
+  children: SecondaryMenuItem[]
+}
+
 const route = useRoute()
 const router = useRouter()
 
 // 获取路由配置
 const appConfig = useAppConfig()
-const menuItems = appConfig.menu.routes
+const menuItems = appConfig.menu.routes as PrimaryMenuItem[]
 
 // 点击 Logo 跳转到首页
 const navigateToHome = () => {
@@ -188,7 +221,8 @@ const navigateToHome = () => {
   }
 }
 
-const expandedItems = ref<number[]>([0]) // 默认展开第一个菜单
+// 默认展开所有菜单
+const expandedItems = ref<number[]>(menuItems.map((_, index) => index))
 const activePrimary = computed(() => {
   return menuItems.findIndex(item =>
       item.children.some(child => child.routePath === route.path)
@@ -205,12 +239,11 @@ const currentLocale = computed(() => {
 // 菜单项 ref 存储
 const primaryItemRefs = ref<Map<number, HTMLElement>>(new Map())
 const secondaryItemRefs = ref<Map<string, HTMLElement>>(new Map())
-const secondaryIconRefs = ref<Map<string, SVGSVGElement>>(new Map())
+const secondaryIconRefs = ref<Map<string, HTMLElement | SVGSVGElement>>(new Map())
 const menuContainerRef = ref<HTMLElement | null>(null)
 
-// SVG 绘制动画相关的 ref
-const activeAnimationPaths = ref<Map<string, SVGPathElement[]>>(new Map())
-const activeAnimations = ref<Map<string, gsap.core.Timeline>>(new Map())
+// 旋转动画相关的 ref
+const activeRotateAnimations = ref<Map<string, gsap.core.Tween>>(new Map())
 
 // 高亮区域位置和高度
 const primaryHighlightTop = ref(0)
@@ -349,105 +382,55 @@ const isActiveRoute = (path: string) => {
   return route.path === path
 }
 
-// 收集图标中的所有路径元素
-const collectIconPaths = (iconRef: SVGSVGElement): SVGPathElement[] => {
-  if (!iconRef) return []
-  const paths: SVGPathElement[] = []
-  const pathElements = iconRef.querySelectorAll('.secondary-icon-path')
-  pathElements.forEach((path) => {
-    paths.push(path as SVGPathElement)
-  })
-  return paths
-}
-
-// 绘制二级菜单图标动画（参考 InitialLoader 的 logo 绘制逻辑）
-const animateSecondaryIcon = (path: string) => {
+// 旋转二级菜单图标动画（顺时针旋转一圈）
+const rotateSecondaryIcon = (path: string) => {
   const iconRef = secondaryIconRefs.value.get(path)
   if (!iconRef) return
 
-  // 收集路径元素
-  const iconPaths = collectIconPaths(iconRef)
-  if (iconPaths.length === 0) return
-
   // 清理之前的动画
-  const existingAnimation = activeAnimations.value.get(path)
+  const existingAnimation = activeRotateAnimations.value.get(path)
   if (existingAnimation) {
     existingAnimation.kill()
   }
 
-  // 过滤出有效的路径（长度大于0）
-  const validPaths = iconPaths.filter((pathEl) => {
-    const length = pathEl.getTotalLength()
-    return length > 0
+  // 获取实际的 DOM 元素（v-icon 组件需要获取其根元素）
+  const iconElement = getDOMElement(iconRef) || iconRef
+  if (!iconElement) return
+
+  // 先重置到 0 度，然后旋转到 360 度
+  gsap.set(iconElement, {
+    rotation: 0,
+    transformOrigin: 'center center',
   })
 
-  if (validPaths.length === 0) return
-
-  // 为每个路径设置初始状态（完全隐藏）
-  validPaths.forEach((pathEl) => {
-    gsap.set(pathEl, {
-      stroke: 'none',
-      opacity: 1,
-      strokeWidth: 1,
-      fill: 'none',
-    })
-  })
-
-  // 创建时间线，逐个绘制路径
-  const drawTimeline = gsap.timeline()
-  validPaths.forEach((pathEl, index) => {
-    const length = pathEl.getTotalLength()
-    drawTimeline.to(
-        pathEl,
-        {
-          strokeDasharray: length,
-          strokeDashoffset: length * 1.5,
-          stroke: 'currentColor',
-          duration: 1,
-          ease: 'power2.in',
-        },
-        index * 0.1, // 每个路径间隔0.1秒开始
-    )
-  })
-
-  validPaths.forEach((pathEl, index) => {
-    drawTimeline.to(
-        pathEl,
-        {
-          strokeDashoffset: 0,
-          stroke: 'currentColor',
-          duration: 1.5,
-          ease: 'power2.in',
-        },
-        index * 0.1, // 每个路径间隔0.1秒开始
-    )
+  // 创建旋转动画（顺时针旋转 360 度）
+  const rotateAnimation = gsap.to(iconElement, {
+    rotation: 360,
+    duration: 0.6,
+    ease: 'power2.out',
   })
 
   // 保存动画引用
-  activeAnimations.value.set(path, drawTimeline)
-  activeAnimationPaths.value.set(path, validPaths)
+  activeRotateAnimations.value.set(path, rotateAnimation)
 }
 
-// 重置二级菜单图标（移除动画效果）
+// 重置二级菜单图标（移除旋转动画效果）
 const resetSecondaryIcon = (path: string) => {
-  const existingAnimation = activeAnimations.value.get(path)
+  const existingAnimation = activeRotateAnimations.value.get(path)
   if (existingAnimation) {
     existingAnimation.kill()
-    activeAnimations.value.delete(path)
+    activeRotateAnimations.value.delete(path)
   }
 
-  const iconPaths = activeAnimationPaths.value.get(path)
-  if (iconPaths) {
-    iconPaths.forEach((pathEl) => {
-      gsap.set(pathEl, {
-        strokeDasharray: 0,
-        strokeDashoffset: 0,
-        opacity: 1,
-        fill: 'currentColor',
-        stroke: 'none',
-      })
+  const iconRef = secondaryIconRefs.value.get(path)
+  if (!iconRef) return
+
+  const iconElement = getDOMElement(iconRef) || iconRef
+  if (iconElement) {
+    // 重置旋转角度
+    gsap.set(iconElement, {
+      rotation: 0,
     })
-    activeAnimationPaths.value.delete(path)
   }
 }
 
@@ -455,7 +438,7 @@ const resetSecondaryIcon = (path: string) => {
 const handleSecondaryHover = (path: string, event: MouseEvent) => {
   // 只有侧边栏展开时才执行动画
   if (isSidebarExpanded.value || props.isDrawerOpen) {
-    animateSecondaryIcon(path)
+    rotateSecondaryIcon(path)
   }
 }
 
@@ -492,16 +475,18 @@ watch(() => props.isDrawerOpen, (newValue) => {
   setTimeout(() => {
     updatePrimaryHighlight()
     updateSecondaryHighlight()
-  }, 100)
+  }, 400)
 })
 
 // 监听窗口大小变化和滚动（用于响应式）
 const handleResize = () => {
   setTimeout(() => {
     checkSidebarExpanded()
+  }, 400)
+  setTimeout(() => {
     updatePrimaryHighlight()
     updateSecondaryHighlight()
-  }, 400)
+  }, 800)
 }
 
 let scrollFrame: number | null = null
@@ -534,19 +519,25 @@ const checkSidebarExpanded = () => {
 }
 
 const handleMouseEnter = () => {
+  // 等待展开动画
   setTimeout(() => {
     checkSidebarExpanded()
+  }, 400)
+  setTimeout(() => {
     updatePrimaryHighlight()
     updateSecondaryHighlight()
-  }, 400) // 等待展开动画
+  }, 800)
 }
 
 const handleMouseLeave = () => {
+  // 等待收起动画
   setTimeout(() => {
     checkSidebarExpanded()
+  }, 400)
+  setTimeout(() => {
     updatePrimaryHighlight()
     updateSecondaryHighlight()
-  }, 400) // 等待收起动画
+  }, 800)
 }
 
 onMounted(() => {
@@ -556,8 +547,10 @@ onMounted(() => {
     checkSidebarExpanded()
   }
 
-  updatePrimaryHighlight()
-  updateSecondaryHighlight()
+  setTimeout(() => {
+    updatePrimaryHighlight()
+    updateSecondaryHighlight()
+  }, 400)
 
   window.addEventListener('resize', handleResize)
 
@@ -948,17 +941,7 @@ onUnmounted(() => {
   overflow: hidden;
   background-color: var(--theme-bg-tertiary);
   position: relative;
-  opacity: 0;
-  max-height: 0;
-  transition: all var(--transition-base);
-  /* 折叠状态下通过opacity和max-height隐藏，但保留v-show的控制 */
-}
-
-/* 展开时显示二级菜单（仅当侧边栏hover展开且菜单项已点击展开时） */
-.sidebar:hover .secondary-items,
-.sidebar.drawer-open .secondary-items {
-  opacity: 1;
-  max-height: 20rem;
+  /* 过渡效果由 Vue transition 类控制 */
 }
 
 .secondary-items::before {
@@ -1034,14 +1017,16 @@ onUnmounted(() => {
   width: 1.25rem;
   height: 1.25rem;
   color: var(--theme-text-secondary);
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast);
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .secondary-icon-path {
   fill: currentColor;
   stroke: none;
-  transition: all var(--transition-fast);
 }
 
 .secondary-item:hover .secondary-icon,
@@ -1086,23 +1071,23 @@ onUnmounted(() => {
   opacity: 0.3;
 }
 
-/* 展开/折叠动画 - 保留用于点击展开/折叠 */
+/* 展开/折叠动画 - 用于点击展开/折叠 */
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition: all var(--transition-base);
+  transition: max-height var(--transition-base), opacity var(--transition-base);
   overflow: hidden;
 }
 
 .slide-down-enter-from,
 .slide-down-leave-to {
-  max-height: 0;
-  opacity: 0;
+  max-height: 0 !important;
+  opacity: 0 !important;
 }
 
 .slide-down-enter-to,
 .slide-down-leave-from {
-  max-height: 20rem;
-  opacity: 1;
+  max-height: 20rem !important;
+  opacity: 1 !important;
 }
 
 
@@ -1133,11 +1118,6 @@ onUnmounted(() => {
   .sidebar:hover {
     width: 17.5rem !important;
     max-width: 80vw;
-  }
-
-  /* 抽屉模式下应用所有hover样式 */
-  .sidebar.drawer-open .sidebar-logo {
-    height: 7.5rem;
   }
 
   .sidebar.drawer-open .sidebar-logo .logo-wrapper {

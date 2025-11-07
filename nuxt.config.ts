@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify, {transformAssetUrls} from 'vite-plugin-vuetify'
+import path from 'path';
 
 export default defineNuxtConfig({
     ssr: false, // 启用SSG渲染
@@ -11,12 +12,43 @@ export default defineNuxtConfig({
 
     compatibilityDate: '2025-11-05', devtools: {enabled: true}, css: ['~/assets/css/global.css'],
 
-    modules: ['@nuxtjs/i18n', (_options, nuxt) => {
+    modules: ['@nuxtjs/i18n', '@nuxt/content', (_options, nuxt) => {
         nuxt.hooks.hook('vite:extendConfig', (config) => {
             // @ts-expect-error
             config.plugins.push(vuetify({autoImport: true}))
         })
     }],
+
+    content: {
+        build: {
+            markdown: {
+                toc: {
+                    depth: 3,
+                    searchDepth: 3,
+                },
+                highlight: {
+                    theme: {
+                        default: 'github-light',
+                        dark: 'github-dark',
+                    },
+                    langs: ['json', 'js', 'ts', 'html', 'css', 'vue', 'shell', 'bash', 'md', 'mdc', 'yaml'],
+                },
+            },
+        },
+        renderer: {
+            anchorLinks: {
+                h1: true,
+                h2: true,
+                h3: true,
+                h4: true,
+            },
+        },
+        watch: {
+            enabled: true,
+            port: 4000,
+            showURL: true,
+        } as { enabled: boolean } & Record<string, unknown>,
+    },
 
     i18n: {
         locales: [{
@@ -34,5 +66,9 @@ export default defineNuxtConfig({
                 transformAssetUrls,
             },
         },
+    },
+    alias: {
+        // 根目录别名
+        '@': path.resolve(__dirname)
     },
 })

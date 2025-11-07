@@ -14,5 +14,14 @@
     {
       "path": "./.nuxt/tsconfig.node.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "incremental": true, // 增量编译，提升编译速度
+    "types": ["node"],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  }
 }

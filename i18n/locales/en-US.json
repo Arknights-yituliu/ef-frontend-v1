@@ -1,11 +1,16 @@
 {
   "menu": {
+    "introduction": "Introduction",
+    "projectStructure": "Project Structure",
+    "routeSetting": "Route Setting",
+    "commonQuestions": "Common Questions",
     "materialProfit": "Material Profit",
     "shopValue": "Shop Value",
     "packageValue": "Package Value",
     "itemValueTable": "Item Value Table",
     "others": "Others",
-    "friendLinks": "Friend Links"
+    "friendLinks": "Friend Links",
+    "test": "Test"
   },
   "common": {
     "language": "Language",
@@ -43,6 +48,10 @@
       }
     },
     "others": {
+      "test": {
+        "title": "Vuetify Component Test",
+        "description": "This page showcases various Vuetify components used within the project."
+      },
       "friendLinks": {
         "friendLinks": "Friend Links",
         "friendLinksDescription": "Here are some excellent tools and resource websites related to Arknights"
@@ -59,6 +68,27 @@
     "developmentGroup": "development group",
     "copyrightText5": ".",
     "beian": "豫ICP备2024043594号-1"
+  },
+  "docs": {
+    "siteTitle": "Endfield Yituliu Docs",
+    "documentation": "Documentation",
+    "tableOfContents": "Table of Contents",
+    "noTableOfContents": "No table of contents",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "toggleSidebar": "Toggle Sidebar",
+    "toggleToc": "Toggle TOC",
+    "notFound": "Document Not Found",
+    "notFoundDescription": "Sorry, the document you are looking for does not exist or has been removed.",
+    "sections": {
+      "introduction": "Introduction"
+    },
+    "items": {
+      "projectStructure": "Project Structure",
+      "routeSetting": "Route Setting",
+      "docsSetting": "Writing Docs",
+      "commonQuestions": "Common Questions"
+    }
   }
 }
 

@@ -1,11 +1,16 @@
 {
   "menu": {
+    "introduction": "开发指南",
+    "projectStructure": "项目结构",
+    "routeSetting": "路由设置",
+    "commonQuestions": "常见问题",
     "materialProfit": "材料收益",
     "shopValue": "商店性价比",
     "packageValue": "礼包性价比",
     "itemValueTable": "物品价值表",
     "others": "其它",
-    "friendLinks": "友情链接"
+    "friendLinks": "友情链接",
+    "test": "测试"
   },
   "common": {
     "language": "语言",
@@ -43,6 +48,10 @@
       }
     },
     "others": {
+      "test": {
+        "title": "Vuetify 组件测试",
+        "description": "此页面展示项目中使用的各类 Vuetify 组件示例。"
+      },
       "friendLinks": {
         "friendLinks": "友情链接",
         "friendLinksDescription": "以下是一些与明日方舟相关的优秀工具和资源网站"
@@ -59,6 +68,27 @@
     "developmentGroup": "开发群",
     "copyrightText5": "一叙。",
     "beian": "豫ICP备2024043594号-1"
+  },
+  "docs": {
+    "siteTitle": "终末地一图流文档站",
+    "documentation": "文档",
+    "tableOfContents": "目录",
+    "noTableOfContents": "暂无目录",
+    "expand": "展开",
+    "collapse": "折叠",
+    "toggleSidebar": "切换侧边栏",
+    "toggleToc": "切换目录",
+    "notFound": "文档未找到",
+    "notFoundDescription": "抱歉，您访问的文档不存在或已被移除。",
+    "sections": {
+      "introduction": "开发指南"
+    },
+    "items": {
+      "projectStructure": "项目结构",
+      "routeSetting": "路由设置",
+      "docsSetting": "文档编写",
+      "commonQuestions": "常见问题"
+    }
   }
 }
 

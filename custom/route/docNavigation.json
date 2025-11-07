@@ -1,0 +1,24 @@
+[
+  {
+    "titleKey": "docs.sections.introduction",
+    "items": [
+      {
+        "titleKey": "docs.items.projectStructure",
+        "path": "/introduction/project-structure"
+      },
+      {
+        "titleKey": "docs.items.routeSetting",
+        "path": "/introduction/route-setting"
+      },
+      {
+        "titleKey": "docs.items.docsSetting",
+        "path": "/introduction/docs-setting"
+      },
+      {
+        "titleKey": "docs.items.commonQuestions",
+        "path": "/introduction/common-questions"
+      }
+    ]
+  }
+]
+
