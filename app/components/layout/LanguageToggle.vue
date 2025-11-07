@@ -66,7 +66,7 @@ const availableLocales = computed(() => {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 0 0.25rem var(--color-shadow);
+  box-shadow: 0 0 0.25rem var(--theme-shadow-base);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

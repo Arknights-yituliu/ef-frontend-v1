@@ -4,69 +4,48 @@
    CSS变量定义
    ============================================ */
 :root {
-  /* 颜色系统 */
-  --color-brand-yellow: #fffa00;
-  --color-yellow-hover: #efe701;
-  --color-yellow-active: #eeea00;
-  --color-yellow-pressed: #e6de01;
-  
-  --color-dark: #191919;
-  --color-dark-gray: #1f1f1f;
-  --color-medium-gray: #383838;
-  --color-light-gray: #484848;
-  
-  --color-white: #ffffff;
-  --color-light-bg: #fafafa;
-  --color-gray-bg: #e5e5e5;
-  --color-gray-border: #e6e6e6;
-  --color-gray-light: #f2f2f2;
-  
-  --color-text-primary: #191919;
-  --color-text-secondary: #888;
-  --color-text-tertiary: #999;
-  --color-text-light: #ccc;
-  --color-text-disabled: #666;
-  
-  --color-shadow: rgba(0, 0, 0, 0.25);
-  --color-shadow-strong: rgba(0, 0, 0, 0.3);
-  --color-overlay: rgba(0, 0, 0, 0.5);
-  
   /* 主题变量 - 浅色主题（默认） */
-  --theme-bg-primary: var(--color-light-bg);
-  --theme-bg-secondary: var(--color-white);
-  --theme-bg-tertiary: var(--color-gray-light);
-  --theme-text-primary: var(--color-text-primary);
-  --theme-text-secondary: var(--color-text-secondary);
-  --theme-text-tertiary: var(--color-text-tertiary);
-  --theme-border: var(--color-gray-border);
-  --theme-border-active: var(--color-text-primary);
-  --theme-accent-color: var(--color-text-primary);
-  --theme-accent-hover: var(--color-text-secondary);
+  --theme-bg-primary: #fafafa;
+  --theme-bg-secondary: #ffffff;
+  --theme-bg-tertiary: #f2f2f2;
+  --theme-text-primary: #191919;
+  --theme-text-secondary: #888888;
+  --theme-text-tertiary: #999999;
+  --theme-text-light: #cccccc;
+  --theme-text-disabled: #666666;
+  --theme-border: #e6e6e6;
+  --theme-border-active: #191919;
+  --theme-accent-color: #0e0e0e;
+  --theme-accent-hover: #efefef;
+  --theme-accent-contrast: #191919;
   --theme-decorative-overlay: rgba(0, 0, 0, 0.1);
   --theme-decorative-overlay-strong: rgba(0, 0, 0, 0.2);
   --theme-decorative-overlay-light: rgba(0, 0, 0, 0.05);
   --theme-decorative-overlay-medium: rgba(0, 0, 0, 0.08);
+  --theme-shadow-base: rgba(0, 0, 0, 0.25);
+  --theme-shadow-strong: rgba(0, 0, 0, 0.3);
   --theme-shadow-accent: rgba(0, 0, 0, 0.15);
   --theme-shadow-accent-strong: rgba(0, 0, 0, 0.2);
   --theme-shadow-accent-hover: rgba(0, 0, 0, 0.25);
-  
+  --theme-overlay: rgba(0, 0, 0, 0.5);
+
   /* 沙漠波纹背景颜色变量 - 浅色主题 */
   --wave-bg-color-0: rgba(171, 184, 195, 0.27); /* #abb8c344 */
   --wave-bg-color-1: rgba(171, 184, 195, 0.4);  /* #abb8c366 */
   --wave-bg-color-2: rgba(171, 184, 195, 0.53); /* #abb8c388 */
   --wave-bg-color-3: rgba(171, 184, 195, 1);    /* #abb8c3ff */
-  
+
   /* Logo 颜色变量 */
-  --logo-color: var(--theme-text-primary);
-  --logo-color-expanded: var(--theme-text-primary);
-  
+  --logo-color: #191919;
+  --logo-color-expanded: #191919;
+
   /* 加载器变量 - 浅色主题 */
-  --theme-loader-bg: var(--theme-bg-tertiary);
-  --theme-progress-bg: var(--theme-text-secondary);
-  --theme-progress-color: var(--theme-text-primary);
-  --theme-hexagon-fill: var(--theme-text-primary);
-  --theme-hexagon-stroke: var(--theme-text-primary);
-  
+  --theme-loader-bg: #f2f2f2;
+  --theme-progress-bg: #888888;
+  --theme-progress-color: #191919;
+  --theme-hexagon-fill: #191919;
+  --theme-hexagon-stroke: #191919;
+
   /* 间距系统 */
   --spacing-xs: 0.5rem;
   --spacing-sm: 0.625rem;
@@ -77,14 +56,14 @@
   --spacing-3xl: 3.75rem;
   --spacing-4xl: 5rem;
   --spacing-5xl: 9.8125rem;
-  
+
   /* 圆角系统 */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 2.625rem;
   --radius-xl: 3.125rem;
   --radius-full: 50%;
-  
+
   /* 字体大小系统 */
   --font-size-xs: 1rem;
   --font-size-sm: 1.125rem;
@@ -96,7 +75,7 @@
   --font-size-3xl: 3rem;
   --font-size-4xl: 3.625rem;
   --font-size-5xl: 4.5rem;
-  
+
   /* 过渡时间 */
   --transition-fast: 0.2s ease;
   --transition-base: 0.3s ease;
@@ -105,16 +84,19 @@
 
 /* 深色主题 */
 [data-theme="dark"] {
-  --theme-bg-primary: var(--color-dark);
-  --theme-bg-secondary: var(--color-dark-gray);
-  --theme-bg-tertiary: var(--color-medium-gray);
-  --theme-text-primary: var(--color-white);
-  --theme-text-secondary: var(--color-text-light);
-  --theme-text-tertiary: var(--color-text-secondary);
-  --theme-border: var(--color-medium-gray);
-  --theme-border-active: var(--color-brand-yellow);
-  --theme-accent-color: var(--color-brand-yellow);
-  --theme-accent-hover: var(--color-yellow-hover);
+  --theme-bg-primary: #191919;
+  --theme-bg-secondary: #1f1f1f;
+  --theme-bg-tertiary: #383838;
+  --theme-text-primary: #ffffff;
+  --theme-text-secondary: #cccccc;
+  --theme-text-tertiary: #888888;
+  --theme-text-light: #cccccc;
+  --theme-text-disabled: #666666;
+  --theme-border: #383838;
+  --theme-border-active: #fffa00;
+  --theme-accent-color: #fffa00;
+  --theme-accent-hover: #efe701;
+  --theme-accent-contrast: #191919;
   --theme-decorative-overlay: rgba(255, 250, 0, 0.1);
   --theme-decorative-overlay-strong: rgba(255, 250, 0, 0.15);
   --theme-decorative-overlay-light: rgba(255, 250, 0, 0.05);
@@ -130,11 +112,11 @@
   --wave-bg-color-3: rgba(255, 250, 0, 0.5);   /* 浅黄色，高透明度 */
   
   /* Logo 颜色变量 - 深色主题：黄色 */
-  --logo-color: var(--color-brand-yellow);
-  --logo-color-expanded: var(--color-brand-yellow);
+  --logo-color: #fffa00;
+  --logo-color-expanded: #fffa00;
   
   /* 加载器变量 - 深色主题 */
-  --theme-loader-bg: var(--color-dark);
+  --theme-loader-bg: #191919;
   --theme-progress-bg: var(--theme-decorative-overlay-medium);
   --theme-progress-color: var(--theme-accent-color);
   --theme-hexagon-fill: var(--theme-bg-secondary);
@@ -301,19 +283,19 @@ html {
    工具类
    ============================================ */
 .text-primary {
-  color: var(--color-text-primary);
+  color: var(--theme-text-primary);
 }
 
 .text-secondary {
-  color: var(--color-text-secondary);
+  color: var(--theme-text-secondary);
 }
 
 .text-light {
-  color: var(--color-text-light);
+  color: var(--theme-text-light);
 }
 
 .bg-yellow {
-  background-color: var(--color-brand-yellow);
+  background-color: var(--theme-accent-color);
 }
 
 .bg-dark {
@@ -321,19 +303,19 @@ html {
 }
 
 .bg-light {
-  background-color: var(--color-light-bg);
+  background-color: var(--theme-bg-primary);
 }
 
 .shadow-sm {
-  filter: drop-shadow(0 0 0.25rem var(--color-shadow));
+  filter: drop-shadow(0 0 0.25rem var(--theme-shadow-base));
 }
 
 .shadow-md {
-  box-shadow: 0 0 0.75rem var(--color-shadow);
+  box-shadow: 0 0 0.75rem var(--theme-shadow-base);
 }
 
 .shadow-lg {
-  box-shadow: 0 0 2rem var(--color-shadow-strong);
+  box-shadow: 0 0 2rem var(--theme-shadow-strong);
 }
 
 /* ============================================
@@ -393,13 +375,5 @@ html {
 :focus-visible {
   outline: 2px solid var(--theme-accent-color);
   outline-offset: 2px;
-}
-
-/* ============================================
-   选择文本样式
-   ============================================ */
-::selection {
-  background-color: var(--theme-accent-color);
-  color: var(--theme-text-primary);
 }
 

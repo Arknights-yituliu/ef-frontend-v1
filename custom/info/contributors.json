@@ -1,0 +1,62 @@
+{
+  "contributors": [
+    {
+      "name": "山桜",
+      "link": "https://github.com/yamasakura",
+      "english": {
+        "position": "Site Manager",
+        "tags": [
+          "Backend",
+          "Frontend"
+        ]
+      },
+      "chinese": {
+        "position": "站长",
+        "tags": [
+          "后端",
+          "前端"
+        ]
+      }
+    },
+    {
+      "name": "Zirunwang",
+      "link": "https://space.bilibili.com/10057492",
+      "english": {
+        "position": "Creator",
+        "tags": [
+          "Algorithm",
+          "UI",
+          "Frontend"
+        ]
+      },
+      "chinese": {
+        "position": "创建者",
+        "tags": [
+          "算法",
+          "UI",
+          "前端"
+        ]
+      }
+    },
+    {
+      "name": "MilkWind",
+      "link": "https://github.com/MilkWind",
+      "english": {
+        "position": "Creator",
+        "tags": [
+          "Frontend",
+          "UI",
+          "Backend"
+        ]
+      },
+      "chinese": {
+        "position": "创建者",
+        "tags": [
+          "前端",
+          "UI",
+          "后端"
+        ]
+      }
+    }
+  ]
+}

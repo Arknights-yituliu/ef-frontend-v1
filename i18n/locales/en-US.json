@@ -34,6 +34,12 @@
     }
   },
   "page": {
+    "home": {
+      "welcome": "Welcome to the Endfield Yituliu data showcase site.",
+      "hint": "Choose a topic from the menu on the left to get started.",
+      "contributorsTitle": "Contributors & Collaborators",
+      "contributorsDescription": "These amazing creators help design, build, and maintain the project together."
+    },
     "materialProfit": {
       "shopValue": {
         "title": "Shop Value",

@@ -34,6 +34,12 @@
     }
   },
   "page": {
+    "home": {
+      "welcome": "欢迎来到终末地一图流数据展示站点。",
+      "hint": "请从左侧菜单选择要查看的内容。",
+      "contributorsTitle": "贡献者 / 参与者",
+      "contributorsDescription": "感谢所有一起设计、开发与维护项目的伙伴。"
+    },
     "materialProfit": {
       "shopValue": {
         "title": "商店性价比",

@@ -466,11 +466,13 @@ clip-path: polygon(0 20%, 100% 50%, 0 80%, 0 80%);
 
 ```css
 :root {
-  /* 颜色 */
-  --color-brand-yellow: #fffa00;
-  --color-dark: #191919;
-  --color-light: #fafafa;
-  --color-gray: #e6e6e6;
+  /* 主题变量 */
+  --theme-bg-primary: #fafafa;
+  --theme-bg-secondary: #ffffff;
+  --theme-border: #e6e6e6;
+  --theme-text-primary: #191919;
+  --theme-text-secondary: #888888;
+  --theme-accent-color: #fffa00;
   
   /* 字体 */
   --font-sans-regular: SansRegular;
@@ -569,27 +571,27 @@ clip-path: polygon(0 20%, 100% 50%, 0 80%, 0 80%);
 .sidebar-primary-item {
   height: 4.5rem;
   padding: 0 1.5rem;
-  background-color: var(--color-light-bg);
+  background-color: var(--theme-bg-primary);
   border-left: 0.75rem solid transparent;
   transition: all var(--transition-fast);
 }
 
 /* 激活状态 */
 .sidebar-primary-item.active {
-  background-color: var(--color-gray-border);
-  border-left-color: var(--color-brand-yellow);
+  background-color: var(--theme-border);
+  border-left-color: var(--theme-accent-color);
 }
 
 /* 二级菜单项 */
 .sidebar-secondary-item {
   height: 3.5rem;
   padding-left: 3rem;
-  background-color: var(--color-gray-light);
+  background-color: var(--theme-bg-tertiary);
 }
 
 .sidebar-secondary-item.active {
-  background-color: var(--color-gray-border);
-  border-left: 0.5rem solid var(--color-brand-yellow);
+  background-color: var(--theme-border);
+  border-left: 0.5rem solid var(--theme-accent-color);
 }
 ```
 
@@ -603,7 +605,7 @@ clip-path: polygon(0 20%, 100% 50%, 0 80%, 0 80%);
 
 #### 内容区域布局
 - **内边距**: `2.5rem` / `3.75rem` (PC端) / `1.5rem` (移动端)
-- **背景色**: `var(--color-light-bg)` (浅色主题) / `var(--color-dark)` (深色主题)
+- **背景色**: `var(--theme-bg-primary)`（会根据主题在浅色和深色模式之间切换）
 - **滚动**: 内容超出时垂直滚动
 
 #### 页面标注规范

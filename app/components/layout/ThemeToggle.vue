@@ -59,7 +59,7 @@ const { theme, toggleTheme } = useTheme()
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 0.5rem var(--color-shadow);
+  box-shadow: 0 0 0.5rem var(--theme-shadow-base);
 }
 
 .theme-toggle::before {

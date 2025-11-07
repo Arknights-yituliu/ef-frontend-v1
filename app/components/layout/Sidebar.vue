@@ -1101,7 +1101,7 @@ onUnmounted(() => {
     max-width: 80vw; /* 限制最大宽度，避免在小屏幕上过宽 */
     transform: translateX(-100%);
     z-index: 160;
-    box-shadow: 2px 0 1rem var(--color-shadow-strong);
+    box-shadow: 2px 0 1rem var(--theme-shadow-strong);
     /* 禁用hover展开效果 */
     pointer-events: none;
     /* 确保默认状态下不占据布局空间 */
