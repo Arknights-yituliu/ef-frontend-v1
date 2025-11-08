@@ -33,10 +33,6 @@ const localizedInfo = computed<LocalizedInfo>(() => {
 const resolvedAvatar = computed(() => {
   const source = props.contributor.avatarImg
 
-  if (!source) {
-    return getFallbackAvatar()
-  }
-
   if (/^https?:\/\//i.test(source)) {
     return source
   }
@@ -51,7 +47,6 @@ const resolvedAvatar = computed(() => {
     }
   }
 
-  return getFallbackAvatar()
 })
 
 const tags = computed(() => localizedInfo.value.tags ?? [])
@@ -169,13 +164,6 @@ onBeforeUnmount(() => {
   }
 })
 
-function getFallbackAvatar(): string {
-  const fallbackEntry = Object.entries(contributorAssets).find(([key]) =>
-    key.endsWith('anon.jpg')
-  )
-
-  return fallbackEntry?.[1] ?? ''
-}
 </script>
 
 <template>
