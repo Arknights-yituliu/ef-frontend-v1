@@ -598,7 +598,7 @@ onUnmounted(() => {
 .sidebar {
   background-color: var(--theme-bg-secondary);
   border-right: 2px solid var(--theme-accent-color);
-  overflow-y: scroll;
+  overflow-y: auto  ;
   overflow-x: hidden;
   z-index: 100;
   box-sizing: border-box;
