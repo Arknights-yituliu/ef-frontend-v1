@@ -79,10 +79,10 @@ yarn preview
 
 ### 开发指南
 
-- [项目结构说明](/introduction/project-structure) - 了解项目的技术栈和目录结构
-- [路由设置指南](/introduction/route-setting) - 学习如何配置和管理路由
-- [文档编写指南](/introduction/docs-setting) - 学习如何为项目编写新的文档
-- [常见问题解答](/introduction/common-questions) - 解决开发过程中的常见问题
+- [项目结构说明](./content/introduction/project-structure-zh.md) - 了解项目的技术栈和目录结构
+- [路由设置指南](./content/introduction/route-setting-zh.md) - 学习如何配置和管理路由
+- [文档编写指南](./content/introduction/docs-setting-zh.md) - 学习如何为项目编写新的文档
+- [常见问题解答](./content/introduction/common-questions-zh.md) - 解决开发过程中的常见问题
 
 ### 系统说明
 
