@@ -262,7 +262,6 @@ onBeforeUnmount(() => {
 
 .card__tilt.is-hovered {
   transition: transform 80ms ease-out;
-  filter: drop-shadow(0 1.25rem 2.75rem var(--theme-shadow-accent-hover));
 }
 
 .card__inner {
