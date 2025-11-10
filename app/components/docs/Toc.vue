@@ -327,11 +327,11 @@ watch(() => props.isOpen, (open) => {
 
 /* 右侧装饰条 */
 .toc-right-decoration {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   width: 0.25rem;
-  height: 100%;
+  height: 100vh;
   background-color: var(--theme-accent-color);
   opacity: 0.6;
   box-shadow: 0 0 0.5rem var(--theme-accent-color);
