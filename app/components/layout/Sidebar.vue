@@ -84,6 +84,7 @@
           <v-icon
               v-if="primaryItem.vuetifyIcon"
               class="primary-icon"
+              :class="{ 'docs-icon': primaryItem.isDocs }"
               size="24"
           >
             {{ primaryItem.vuetifyIcon }}
@@ -91,6 +92,7 @@
           <svg
               v-else
               class="primary-icon"
+              :class="{ 'docs-icon': primaryItem.isDocs }"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
           >
@@ -100,6 +102,15 @@
                 stroke="none"
             />
           </svg>
+
+          <!-- isDocs 标识图标 -->
+          <v-icon
+              v-if="primaryItem.isDocs"
+              class="docs-indicator-icon"
+              size="18"
+          >
+            mdi-book
+          </v-icon>
 
           <!-- 菜单项内容 -->
           <span class="primary-text">{{ $t(`menu.${primaryItem.i18nKey}`) }}</span>
@@ -205,6 +216,7 @@ interface PrimaryMenuItem {
   nameKey: string
   iconPath?: string
   vuetifyIcon?: string
+  isDocs?: boolean
   children: SecondaryMenuItem[]
 }
 
@@ -222,8 +234,13 @@ const navigateToHome = () => {
   }
 }
 
-// 默认展开所有菜单
-const expandedItems = ref<number[]>(menuItems.map((_, index) => index))
+// 默认展开所有菜单，但排除 isDocs 为 true 的菜单
+const expandedItems = ref<number[]>(
+  menuItems
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => !item.isDocs)
+    .map(({ index }) => index)
+)
 const activePrimary = computed(() => {
   return menuItems.findIndex(item =>
       item.children.some(child => child.routePath === route.path)
@@ -902,6 +919,39 @@ onUnmounted(() => {
   color: var(--theme-text-primary);
 }
 
+/* isDocs 图标样式 */
+.primary-icon.docs-icon {
+  opacity: 0.5;
+}
+
+/* isDocs 标识图标 */
+.docs-indicator-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--theme-text-secondary);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+/* 展开状态下显示书本图标（在主图标旁边） */
+.sidebar:hover .docs-indicator-icon,
+.sidebar.drawer-open .docs-indicator-icon {
+  position: static;
+  opacity: 0.4;
+  transform: scale(1);
+  margin-left: 0.5rem;
+  top: auto;
+  left: auto;
+}
+
+.primary-item:hover .docs-indicator-icon,
+.primary-item.active .docs-indicator-icon {
+  opacity: 0.5;
+}
+
 .primary-text {
   font-size: var(--font-size-sm);
   color: var(--theme-text-primary);
@@ -1177,6 +1227,15 @@ onUnmounted(() => {
     opacity: 1 !important;
     width: auto !important;
     margin-left: 0.5rem;
+  }
+
+  .sidebar.drawer-open .docs-indicator-icon {
+    position: static;
+    opacity: 0.4 !important;
+    transform: scale(1) !important;
+    margin-left: 0.5rem;
+    top: auto;
+    left: auto;
   }
 
   .sidebar.drawer-open .secondary-items {

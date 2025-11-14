@@ -53,6 +53,7 @@
     "i18nKey": "introduction",
     "nameKey": "menu.introduction",
     "vuetifyIcon": "mdi-book-open-variant",
+    "isDocs": true,
     "children": [
       {
         "i18nKey": "projectStructure",
@@ -90,6 +91,7 @@
     "i18nKey": "operations",
     "nameKey": "menu.operations",
     "vuetifyIcon": "mdi-cog",
+    "isDocs": true,
     "children": [
       {
         "i18nKey": "infrastructureLayoutGuide",
