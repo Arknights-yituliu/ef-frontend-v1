@@ -1,16 +1,16 @@
 <template>
-  <div class="particle-word-container" :class="className">
+  <div :class="className" class="particle-word-container">
     <div class="particle-word-wrapper">
       <canvas
-        ref="canvasRef"
-        :width="CANVAS_WIDTH"
-        :height="CANVAS_HEIGHT"
-        class="particle-canvas"
+          ref="canvasRef"
+          :height="CANVAS_HEIGHT"
+          :width="CANVAS_WIDTH"
+          class="particle-canvas"
       />
       <div
-        v-if="!isLoaded"
-        class="particle-loading"
-        :style="{ color: textColor }"
+          v-if="!isLoaded"
+          :style="{ color: textColor }"
+          class="particle-loading"
       >
         {{ $t('component.particleWord.loading') }}
       </div>
@@ -18,12 +18,12 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const {t} = useI18n()
 
 // 画布尺寸
-const CANVAS_WIDTH = 800;
-const CANVAS_HEIGHT = 120;
+const CANVAS_WIDTH = 1100;
+const CANVAS_HEIGHT = 170;
 
 // 动画设置
 const ANIMATE_TIME = 30;
@@ -118,8 +118,12 @@ class ParticleCanvas {
   setupMouseEvents() {
     this.canvas.addEventListener('mousemove', (e) => {
       const rect = this.canvas.getBoundingClientRect();
-      this.mouseX = e.clientX - rect.left;
-      this.mouseY = e.clientY - rect.top;
+      // 计算缩放比例：画布实际像素尺寸 / 显示尺寸
+      const scaleX = CANVAS_WIDTH / rect.width;
+      const scaleY = CANVAS_HEIGHT / rect.height;
+      // 将鼠标坐标按比例缩放到画布的实际像素坐标
+      this.mouseX = (e.clientX - rect.left) * scaleX;
+      this.mouseY = (e.clientY - rect.top) * scaleY;
     });
 
     this.canvas.addEventListener('mouseleave', () => {
@@ -136,7 +140,7 @@ class ParticleCanvas {
     tempCanvas.height = CANVAS_HEIGHT;
 
     // 设置文本属性
-    tempCtx.font = 'bold 100px Arial, sans-serif';
+    tempCtx.font = 'bold 150px Arial, sans-serif';
     tempCtx.textAlign = 'center';
     tempCtx.textBaseline = 'middle';
 
@@ -171,7 +175,7 @@ class ParticleCanvas {
 
     // 创建粒子实例
     this.particles = particles.map(
-      particle => new Particle(particle.x, particle.y, ANIMATE_TIME, particle.color)
+        particle => new Particle(particle.x, particle.y, ANIMATE_TIME, particle.color)
     );
   }
 
@@ -232,7 +236,7 @@ const initParticleCanvas = () => {
       particleCanvasRef.value.destroy();
     }
     particleCanvasRef.value = new ParticleCanvas(canvasRef.value);
-    
+
     const color = props.color || (typeof window !== 'undefined' ? getCSSVariableColor('--theme-accent-color') : '#000000');
     particleCanvasRef.value.generateTextParticles(displayText.value, color);
     particleCanvasRef.value.animate();
@@ -253,7 +257,7 @@ onUnmounted(() => {
 // 监听text和color变化
 watch([displayText, () => props.color], () => {
   initParticleCanvas();
-}, { flush: 'post' });
+}, {flush: 'post'});
 
 // 监听主题变化（通过监听data-theme属性变化）
 let themeObserver: MutationObserver | null = null;
@@ -263,7 +267,7 @@ onMounted(() => {
     themeObserver = new MutationObserver(() => {
       initParticleCanvas();
     });
-    
+
     themeObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['data-theme']
@@ -281,7 +285,6 @@ onUnmounted(() => {
 
 <style scoped>
 .particle-word-container {
-  transform: scale(1.1);
   margin: 1rem;
   display: flex;
   justify-content: center;
