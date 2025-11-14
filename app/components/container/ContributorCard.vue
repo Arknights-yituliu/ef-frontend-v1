@@ -79,7 +79,7 @@ function handleMouseMove(event: MouseEvent) {
   const relativeX = event.clientX - left
   const relativeY = event.clientY - top
 
-  targetPercentX = clamp(relativeX / width - 0.5, -0.5, 0.5)
+  targetPercentX = clamp(relativeX / width - 0.35, -0.5, 0.5)
   targetPercentY = clamp(relativeY / height - 0.5, -0.5, 0.5)
 
   requestTransformUpdate()
