@@ -5,7 +5,7 @@
       <div class="pack-card-part-left">
         <img
           v-if="props.imageUrl && !imageError"
-          :src="props.imageUrl"
+          :src="resolvePictureUrl(props.imageUrl, packImageAssets) ?? ''"
           :alt="packDisplayName"
           class="pack-image"
           loading="lazy"
@@ -97,10 +97,17 @@
 <script setup lang="ts">
 import itemInfo from '@/custom/core/itemInfo';
 import type { PackData } from '@/shared/types/pack';
+import { resolvePictureUrl } from '@/shared/utils/urlUtil';
+
+const packImageAssets = import.meta.glob('~/assets/endfield/packs/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>;
 
 const props = defineProps<PackData>();
 
-const { locale, t } = useI18n();
+const { locale } = useI18n();
 const imageError = ref(false);
 const isExpanded = ref(false);
 
