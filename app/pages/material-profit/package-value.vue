@@ -64,16 +64,7 @@ definePageMeta({
 }
 
 @media (max-width: 520px) {
-  .package-value-page {
-    padding: 1rem 0;
-  }
-
-  .page-title {
-    font-size: var(--font-size-xl);
-  }
-
   .packs-container {
-    transform: scale(0.8);
     gap: var(--spacing-md);
   }
 }

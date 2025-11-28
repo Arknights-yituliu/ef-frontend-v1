@@ -576,6 +576,14 @@ const handleMouseLeave = () => {
   }, 800)
 }
 
+// 处理页面可见性变化
+const handleVisibilityChange = () => {
+  // 当用户重新进入标签页时（页面变为可见）
+  if (document.visibilityState === 'visible') {
+    handleMouseLeave()
+  }
+}
+
 onMounted(() => {
   // 初始化检查侧边栏展开状态
   sidebarElement = document.querySelector('.sidebar') as HTMLElement
@@ -589,6 +597,7 @@ onMounted(() => {
   }, 400)
 
   window.addEventListener('resize', handleResize)
+  document.addEventListener('visibilitychange', handleVisibilityChange)
 
   // 监听 sidebar 的滚动
   if (sidebarElement) {
@@ -602,6 +611,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
 
   if (sidebarElement) {
     sidebarElement.removeEventListener('scroll', handleScroll)

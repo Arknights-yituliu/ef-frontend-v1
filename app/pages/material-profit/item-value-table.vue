@@ -49,14 +49,4 @@ definePageMeta({
     font-size: var(--font-size-2xl);
   }
 }
-
-@media (max-width: 480px) {
-  .item-value-table-page {
-    padding: 1rem 0;
-  }
-
-  .page-title {
-    font-size: var(--font-size-xl);
-  }
-}
 </style>
