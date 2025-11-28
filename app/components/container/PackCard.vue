@@ -4,20 +4,21 @@
       <!-- 左侧：图片区域 -->
       <div class="pack-card-part-left">
         <img
-          v-if="props.imageUrl && !imageError"
-          :src="resolvePictureUrl(props.imageUrl, packImageAssets) ?? ''"
+          v-show="packData.imageUrl&& !imageError"
+          :src="packData.imageUrl"
           :alt="packDisplayName"
           class="pack-image"
           loading="lazy"
-          @error="handleImageError"
+          @error="(e) => handleImageError()"
+
         />
-        <div class="image-placeholder" v-else>
+        <div class="image-placeholder" v-show="imageError">
           <span class="placeholder-icon">📦</span>
         </div>
 
         <!-- 价格角标 -->
         <div class="pack-corner">
-          <span class="price-text">￥{{ props.price }}</span>
+          <span class="price-text">￥{{ packData.price }}</span>
         </div>
 
         <!-- 标题（底部覆盖） -->
@@ -28,63 +29,82 @@
       <div class="pack-info">
         <!-- 左侧：价值信息 -->
         <div class="pack-info-text">
-          <div class="value-stone">
-            {{ $t('component.packCard.equivalent') }}{{ stoneEquivalent.toFixed(1)
-            }}{{ $t('component.packCard.stone') }}
-            <br />
-            ￥{{ pricePerStone.toFixed(1) }}/{{ $t('component.packCard.stone') }}
-          </div>
-          <div class="value-pull" v-if="totalPulls > 0">
-            {{ $t('component.packCard.total') }}{{ totalPulls.toFixed(1)
-            }}{{ $t('component.packCard.pull') }}
-            <br />
-            ￥{{ pricePerPull.toFixed(1) }}/{{ $t('component.packCard.pull') }}
-          </div>
+          <span
+            v-if="packData.valueMetrics.stoneEquivalent > 0"
+            class="value-stone"
+          >
+            {{ $t('component.packCard.equivalent') }}{{ numberFloor(packData.valueMetrics.stoneEquivalent,2) }}{{ $t("component.packCard.stone") }}
+          </span>
+          <span
+            v-if="packData.valueMetrics.pricePerStone > 0"
+            class="value-stone"
+          >
+            ￥{{ packData.price }}/{{ $t("component.packCard.stone") }}
+          </span>
+          <span style="height: 8px;" v-if="packData.valueMetrics.stoneEquivalent > 0 || packData.valueMetrics.pricePerStone > 0"></span>
+          <span
+            v-if="packData.valueMetrics.totalPulls > 0"
+            class="value-pull"
+          >
+            {{ $t('component.packCard.total') }}{{ numberFloor(packData.valueMetrics.totalPulls,2) }}{{ $t("component.packCard.pull") }}
+          </span>
+          <span
+            v-if="packData.valueMetrics.pricePerPull > 0"
+            class="value-pull"
+          >
+            ￥{{ numberFloor(packData.valueMetrics.pricePerPull,2) }}/{{ $t("component.packCard.pull") }}
+          </span>
         </div>
 
         <!-- 右侧：对比条 -->
         <div class="pack-chart-line">
-          <div class="pack-chart-line-item" v-for="(bar, index) in comparisonBars" :key="index">
-            <span class="pack-chart-line-label">{{ bar.barLabel }}</span>
+          <div
+            v-for="(bar, index) in visibleComparisonBars"
+            :key="index"
+            class="pack-chart-line-item"
+            :style="{ display: bar.display === false ? 'none' : 'flex' }"
+          >
+            <span class="pack-chart-line-label">{{ barLabel(bar) }}</span>
             <div
               class="pack-line-bar"
               :style="{
-                width: `${bar.percentage * 80}px`,
+                width: `${bar.widthPx}px`,
+                maxWidth: '100%'
               }"
             >
-              <span>{{ (bar.percentage * 100).toFixed(0) }}%</span>
+              <span>{{ numberFloor(bar.percentage*100,2) }}%</span>
             </div>
           </div>
         </div>
 
-        <!-- 倒计时（右下角） -->
-        <!-- <div class="pack-info-countdown" v-if="props.countdownDays > 0">
-          {{ countdownText }}
-        </div> -->
+<!--        &lt;!&ndash; 倒计时（右下角） &ndash;&gt;-->
+<!--        <div class="pack-info-countdown" v-if="packData.countdownDays > 0">-->
+<!--          {{ countdownText }}-->
+<!--        </div>-->
       </div>
     </div>
 
     <!-- 展开的内容表格 - 藏在卡片背后 -->
-    <div class="pack-contents-table" :class="{ expanded: isExpanded }">
+    <div class="pack-contents-table" :class="{ 'expanded': isExpanded }">
       <div class="pack-contents-header">
         <h3>{{ $t('component.packCard.contents') }}</h3>
       </div>
       <table class="contents-table">
         <thead>
-          <tr>
-            <th>{{ $t('component.packCard.itemName') }}</th>
-            <th>{{ $t('component.packCard.quantity') }}</th>
-            <th>{{ $t('component.packCard.totalValue') }}</th>
-            <th>{{ $t('component.packCard.percentage') }}</th>
-          </tr>
+        <tr>
+          <th>{{ $t('component.packCard.itemName') }}</th>
+          <th>{{ $t('component.packCard.quantity') }}</th>
+          <th>{{ $t('component.packCard.totalValue') }}</th>
+          <th>{{ $t('component.packCard.percentage') }}</th>
+        </tr>
         </thead>
         <tbody>
-          <tr v-for="(content, index) in props.contents" :key="index">
-            <td>{{ getItemName(content.itemId) }}</td>
-            <td>{{ content.quantity }}</td>
-            <td>{{ getItemBundleValue(content).toFixed(2) }}</td>
-            <td>{{ (getItemBundleValuePercentage(content) * 100).toFixed(2) }}%</td>
-          </tr>
+        <tr v-for="(content, index) in packData.contents" :key="index">
+          <td>{{ content.name }}</td>
+          <td>{{ content.quantity }}</td>
+          <td>{{ numberFloor(content.totalValue) }}</td>
+          <td>{{ numberFloor(content.percentage) }}</td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -92,125 +112,55 @@
 </template>
 
 <script setup lang="ts">
-import itemInfo from '@/custom/core/itemInfo';
-import type { PackData } from '@/shared/types/pack';
-import { resolvePictureUrl } from '@/shared/utils/urlUtil';
+import type { PackData } from '@/shared/types/pack'
+import {numberFloor, numberRound} from "#shared/utils/numberUtil";
 
-const packImageAssets = import.meta.glob('~/assets/endfield/packs/*', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-}) as Record<string, string>;
+const props = defineProps<{
+  packData: PackData
+}>()
 
-const props = defineProps<PackData>();
+console.log(props.packData)
 
-const { locale } = useI18n();
-const imageError = ref(false);
-const isExpanded = ref(false);
+const { locale, t } = useI18n()
+const imageError = ref(false)
+const isExpanded = ref(false)
 
 const packDisplayName = computed(() => {
-  return locale.value === 'en-US' ? props.packDisplayNameEN : props.packDisplayNameZH;
-});
+  return locale.value === 'en-US'
+    ? props.packData.packDisplayNameEN
+    : props.packData.packDisplayNameZH
+})
 
-// const countdownText = computed(() => {
-//   return t('component.packCard.daysLeft', { days: props.countdownDays });
-// });
+const countdownText = computed(() => {
+  // return t('component.packCard.daysLeft', { days: props.packData.countdownDays })
+})
 
-// const visibleComparisonBars = computed(() => {
-//   return props.comparisonBars;
-// });
+// 图片加载失败的处理函数
+const handleImgError = (e: Event) => {
+  const img = e.target as HTMLImageElement;
+  // 替换为保底图片（防止保底图片也失败导致循环触发，可加判断）
 
-// const barLabel = (bar: (typeof props.comparisonBars)[0]) => {
-//   return locale.value === 'en-US' ? bar.labelEN : bar.labelZH;
-// };
+    img.src = "https://cos.yituliu.cn/endfield/pack-image/198%E5%85%83%E6%BA%90%E7%9F%B3.png";
+    // 可选：替换后移除error事件，避免保底图片失败时重复触发
+    // img.removeEventListener('error', handleImgError);
+
+};
+
+const visibleComparisonBars = computed(() => {
+  return props.packData.comparisonBars
+})
+
+const barLabel = (bar: typeof props.packData.comparisonBars[0]) => {
+  return locale.value === 'en-US' ? bar.labelEN : bar.labelZH
+}
 
 const handleImageError = () => {
-  imageError.value = true;
-};
+  imageError.value = true
+}
 
 const toggleExpanded = () => {
-  isExpanded.value = !isExpanded.value;
-};
-
-function getItemName(itemId: string): string {
-  return itemInfo[itemId]?.name ?? itemId;
+  isExpanded.value = !isExpanded.value
 }
-
-function getItemValue(itemId: string): number {
-  return itemInfo[itemId]?.value ?? 0;
-}
-
-function getItemPulls(itemId: string): number {
-  return itemInfo[itemId]?.pulls ?? 0;
-}
-
-function getItemBundleValue({ itemId, quantity }: PackContent) {
-  return getItemValue(itemId) * quantity;
-}
-
-function getItemBundlePulls({ itemId, quantity }: PackContent) {
-  return getItemPulls(itemId) * quantity;
-}
-
-function getItemBundleValuePercentage(packContent: PackContent) {
-  return getItemBundleValue(packContent) / props.price / pack648SanityCostEffectiveness;
-}
-
-const totalValue = computed(() => {
-  let totalValue = 0;
-  for (const content of props.contents) {
-    totalValue += getItemBundleValue(content);
-  }
-  return totalValue;
-});
-
-const totalPulls = computed(() => {
-  let totalPulls = 0;
-  for (const content of props.contents) {
-    totalPulls += getItemBundlePulls(content);
-  }
-  return totalPulls;
-});
-
-const stoneEquivalent = computed(() => {
-  return totalValue.value / 40;
-});
-
-const pricePerStone = computed(() => {
-  return props.price / stoneEquivalent.value;
-});
-
-const pricePerPull = computed(() => {
-  return props.price / totalPulls.value;
-});
-
-const pack648SanityCostEffectiveness =
-  getItemBundleValue({ itemId: '衍质源石', quantity: 350 }) / 648;
-const pack648PullCostEffectiveness =
-  getItemBundlePulls({ itemId: '衍质源石', quantity: 350 }) / 648;
-
-const sanityEfficiency = computed(
-  () => totalValue.value / props.price / pack648SanityCostEffectiveness,
-);
-
-const pullsEfficiency = computed(
-  () => totalPulls.value / props.price / pack648PullCostEffectiveness,
-);
-
-const comparisonBars = computed(() => [
-  {
-    barLabel: '全物品',
-    percentage: sanityEfficiency.value,
-  },
-  {
-    barLabel: '仅抽卡',
-    percentage: pullsEfficiency.value,
-  },
-  {
-    barLabel: '648源石',
-    percentage: 1.0,
-  },
-]);
 </script>
 
 <style scoped>
@@ -225,9 +175,7 @@ const comparisonBars = computed(() => [
   width: 100%;
   position: relative;
   z-index: 10;
-  transition:
-    transform var(--transition-base),
-    filter var(--transition-base);
+  transition: transform var(--transition-base), filter var(--transition-base);
   cursor: pointer;
 }
 
@@ -243,9 +191,7 @@ const comparisonBars = computed(() => [
   position: relative;
   z-index: 11;
   box-shadow: 0 0 0.75rem var(--theme-shadow-base);
-  transition:
-    box-shadow var(--transition-base),
-    transform var(--transition-base);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 
 .pack-image {
@@ -313,10 +259,7 @@ const comparisonBars = computed(() => [
   box-shadow: 0 0 0.5rem var(--theme-shadow-accent);
   border-radius: var(--radius-sm);
   border: 1px solid var(--theme-glass-border);
-  transition:
-    transform var(--transition-base),
-    box-shadow var(--transition-base),
-    background var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
 }
 
 .pack-corner::before {
@@ -371,9 +314,7 @@ const comparisonBars = computed(() => [
   line-height: 1.2;
   border-top: 1px solid var(--theme-decorative-overlay);
   box-shadow: 0 -2px 8px var(--theme-glass-shadow);
-  transition:
-    background var(--transition-base),
-    color var(--transition-base);
+  transition: background var(--transition-base), color var(--transition-base);
 }
 
 /* 右侧信息区域 */
@@ -388,10 +329,7 @@ const comparisonBars = computed(() => [
   position: relative;
   z-index: 10;
   border: 1px solid var(--theme-border);
-  transition:
-    box-shadow var(--transition-base),
-    transform var(--transition-base),
-    border-color var(--transition-base);
+  transition: box-shadow var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
   overflow: hidden;
 }
 
@@ -429,13 +367,18 @@ const comparisonBars = computed(() => [
   margin-left: 6px;
   margin-right: 6px;
   width: 92px;
+  position: relative;
   z-index: 1;
-  gap: 12px;
+  gap: 4px;
+}
 
+.pack-info-text span {
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1;
   text-align: center;
   transition: all var(--transition-fast);
+  letter-spacing: 0.02em;
+  position: relative;
   white-space: nowrap;
 }
 
@@ -522,12 +465,9 @@ const comparisonBars = computed(() => [
   min-width: 40px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+
   box-shadow: 0 0 0.25rem var(--theme-shadow-accent);
-  transition:
-    background-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
   position: relative;
   overflow: hidden;
 }
@@ -573,13 +513,15 @@ const comparisonBars = computed(() => [
   position: absolute;
   right: 0;
   font-size: 12px;
-  background: linear-gradient(135deg, transparent 0%, var(--theme-decorative-overlay-light) 100%);
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    var(--theme-decorative-overlay-light) 100%
+  );
   backdrop-filter: blur(4px);
   border-top: 1px solid var(--theme-border);
   border-left: 1px solid var(--theme-border);
-  transition:
-    color var(--transition-fast),
-    background var(--transition-fast);
+  transition: color var(--transition-fast), background var(--transition-fast);
   z-index: 2;
 }
 

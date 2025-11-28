@@ -3,234 +3,256 @@
     "packDisplayNameZH": "宏愿兵装组合包",
     "packDisplayNameEN": "宏愿兵装组合包",
     "price": 6,
-    "imageUrl": "~/assets/endfield/packs/宏愿兵装组合包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/宏愿兵装组合包.png",
     "contents": [
       {
-        "itemId": "宏愿",
-        "itemName": "宏愿",
+        "id": "宏愿",
+        "name": "宏愿",
         "quantity": 1
       },
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 6
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "全面人才组合包",
     "packDisplayNameEN": "全面人才组合包",
     "price": 128,
-    "imageUrl": "~/assets/endfield/packs/全面人才组合包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/全面人才组合包.png",
     "contents": [
       {
-        "itemId": "特许寻访凭证",
-        "itemName": "特许寻访凭证",
+        "id": "特许寻访凭证",
+        "name": "特许寻访凭证",
         "quantity": 10
       },
       {
-        "itemId": "武库配额",
-        "itemName": "武库配额",
+        "id": "武库配额",
+        "name": "武库配额",
         "quantity": 2000
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "人事支援组合包",
     "packDisplayNameEN": "人事支援组合包",
     "price": 98,
-    "imageUrl": "~/assets/endfield/packs/人事支援组合包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/人事支援组合包.png",
     "contents": [
       {
-        "itemId": "基础寻访凭证",
-        "itemName": "基础寻访凭证",
+        "id": "基础寻访凭证",
+        "name": "基础寻访凭证",
         "quantity": 10
       },
       {
-        "itemId": "折金票",
-        "itemName": "折金票",
+        "id": "折金票",
+        "name": "折金票",
         "quantity": 100000
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "协议源流组合包",
     "packDisplayNameEN": "协议源流组合包",
     "price": 198,
-    "imageUrl": "~/assets/endfield/packs/协议源流组合包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/协议源流组合包.png",
     "contents": [
       {
-        "itemId": "特许寻访凭证",
-        "itemName": "特许寻访凭证",
+        "id": "特许寻访凭证",
+        "name": "特许寻访凭证",
         "quantity": 10
       },
       {
-        "itemId": "武库配额",
-        "itemName": "武库配额",
+        "id": "武库配额",
+        "name": "武库配额",
         "quantity": 2000
       },
       {
-        "itemId": "存续的痕迹",
-        "itemName": "存续的痕迹",
+        "id": "存续的痕迹",
+        "name": "存续的痕迹",
         "quantity": 10
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "行火寻访组合包",
     "packDisplayNameEN": "行火寻访组合包",
     "price": 98,
-    "imageUrl": "~/assets/endfield/packs/行火寻访组合包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/行火寻访组合包.png",
     "contents": [
       {
-        "itemId": "行火留烬十连凭证",
-        "itemName": "行火留烬十连凭证",
+        "id": "行火留烬十连凭证",
+        "name": "行火留烬十连凭证",
         "quantity": 1
       },
       {
-        "itemId": "折金票",
-        "itemName": "折金票",
+        "id": "折金票",
+        "name": "折金票",
         "quantity": 80000
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "每月素材组合包",
     "packDisplayNameEN": "每月素材组合包",
     "price": 98,
-    "imageUrl": "~/assets/endfield/packs/每月素材组合包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/每月素材组合包.png",
     "contents": [
       {
-        "itemId": "折金票",
-        "itemName": "折金票",
+        "id": "折金票",
+        "name": "折金票",
         "quantity": 100000
       },
       {
-        "itemId": "高级认知载体",
-        "itemName": "高级认知载体",
+        "id": "高级认知载体",
+        "name": "高级认知载体",
         "quantity": 10
       },
       {
-        "itemId": "武器检查套组",
-        "itemName": "武器检查套组",
+        "id": "武器检查套组",
+        "name": "武器检查套组",
         "quantity": 25
       },
       {
-        "itemId": "协议圆盘组",
-        "itemName": "协议圆盘组",
+        "id": "协议圆盘组",
+        "name": "协议圆盘组",
         "quantity": 20
       },
       {
-        "itemId": "重型强固模具",
-        "itemName": "重型强固模具",
+        "id": "重型强固模具",
+        "name": "重型强固模具",
         "quantity": 20
       },
       {
-        "itemId": "协议棱柱组",
-        "itemName": "协议棱柱组",
+        "id": "协议棱柱组",
+        "name": "协议棱柱组",
         "quantity": 50
       },
       {
-        "itemId": "高阶培养自选箱I",
-        "itemName": "高阶培养自选箱I",
+        "id": "高阶培养自选箱I",
+        "name": "高阶培养自选箱I",
         "quantity": 20
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "每周素材组合包",
     "packDisplayNameEN": "每周素材组合包",
     "price": 30,
-    "imageUrl": "~/assets/endfield/packs/每周素材组合包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/每周素材组合包.png",
     "contents": [
       {
-        "itemId": "折金票",
-        "itemName": "折金票",
+        "id": "折金票",
+        "name": "折金票",
         "quantity": 30000
       },
       {
-        "itemId": "初级认知载体",
-        "itemName": "初级认知载体",
+        "id": "初级认知载体",
+        "name": "初级认知载体",
         "quantity": 120
       },
       {
-        "itemId": "武器检查装置",
-        "itemName": "武器检查装置",
+        "id": "武器检查装置",
+        "name": "武器检查装置",
         "quantity": 240
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "特惠武库配额包",
     "packDisplayNameEN": "特惠武库配额包",
     "price": 88,
-    "imageUrl": "~/assets/endfield/packs/特惠武库配额包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/特惠武库配额包.png",
     "contents": [
       {
-        "itemId": "武库配额",
-        "itemName": "武库配额",
+        "id": "武库配额",
+        "name": "武库配额",
         "quantity": 2000
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "优惠武库配额包",
     "packDisplayNameEN": "优惠武库配额包",
     "price": 108,
-    "imageUrl": "~/assets/endfield/packs/优惠武库配额包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/优惠武库配额包.png",
     "contents": [
       {
-        "itemId": "武库配额",
-        "itemName": "武库配额",
+        "id": "武库配额",
+        "name": "武库配额",
         "quantity": 2000
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "标准武库配额包",
     "packDisplayNameEN": "标准武库配额包",
     "price": 128,
-    "imageUrl": "~/assets/endfield/packs/标准武库配额包.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/标准武库配额包.png",
     "contents": [
       {
-        "itemId": "武库配额",
-        "itemName": "武库配额",
+        "id": "武库配额",
+        "name": "武库配额",
         "quantity": 2000
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "月卡",
     "packDisplayNameEN": "月卡",
     "price": 30,
-    "imageUrl": "~/assets/endfield/packs/月卡.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/月卡.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 12
       },
       {
-        "itemId": "嵌晶玉",
-        "itemName": "嵌晶玉",
+        "id": "嵌晶玉",
+        "name": "嵌晶玉",
         "quantity": 6000
       },
       {
-        "itemId": "应急理智加强剂",
-        "itemName": "应急理智加强剂",
+        "id": "应急理智加强剂",
+        "name": "应急理智加强剂",
         "quantity": 30
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "6元双倍源石",
     "packDisplayNameEN": "6元双倍源石",
     "price": 6,
-    "imageUrl": "~/assets/endfield/packs/6元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/6元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 6
       }
     ]
@@ -239,143 +261,165 @@
     "packDisplayNameZH": "30元双倍源石",
     "packDisplayNameEN": "30元双倍源石",
     "price": 30,
-    "imageUrl": "~/assets/endfield/packs/30元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/30元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 24
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "98元双倍源石",
     "packDisplayNameEN": "98元双倍源石",
     "price": 98,
-    "imageUrl": "~/assets/endfield/packs/98元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/98元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 84
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "198元双倍源石",
     "packDisplayNameEN": "198元双倍源石",
     "price": 198,
-    "imageUrl": "~/assets/endfield/packs/198元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/198元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 170
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "328元双倍源石",
     "packDisplayNameEN": "328元双倍源石",
     "price": 328,
-    "imageUrl": "~/assets/endfield/packs/328元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/328元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 282
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "648元双倍源石",
     "packDisplayNameEN": "648元双倍源石",
     "price": 648,
-    "imageUrl": "~/assets/endfield/packs/648元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/648元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 560
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "6元源石",
     "packDisplayNameEN": "6元源石",
     "price": 6,
-    "imageUrl": "~/assets/endfield/packs/6元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/6元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 3
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "30元源石",
     "packDisplayNameEN": "30元源石",
     "price": 30,
-    "imageUrl": "~/assets/endfield/packs/30元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/30元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 15
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "98元源石",
     "packDisplayNameEN": "98元源石",
     "price": 98,
-    "imageUrl": "~/assets/endfield/packs/98元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/98元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 50
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "198元源石",
     "packDisplayNameEN": "198元源石",
     "price": 198,
-    "imageUrl": "~/assets/endfield/packs/198元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/198元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 102
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "328元源石",
     "packDisplayNameEN": "328元源石",
     "price": 328,
-    "imageUrl": "~/assets/endfield/packs/328元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/328元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 171
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   },
   {
     "packDisplayNameZH": "648元源石",
     "packDisplayNameEN": "648元源石",
     "price": 648,
-    "imageUrl": "~/assets/endfield/packs/648元源石.png",
+    "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/648元源石.png",
     "contents": [
       {
-        "itemId": "衍质源石",
-        "itemName": "衍质源石",
+        "id": "衍质源石",
+        "name": "衍质源石",
         "quantity": 350
       }
-    ]
+    ],
+    "start": 1764311388000,
+    "end": 1764311388000
   }
 ]
