@@ -595,4 +595,183 @@ const toggleExpanded = () => {
 .contents-table tbody tr:hover {
   background-color: var(--theme-bg-tertiary);
 }
+
+/* 屏幕宽度小于520px时采用纵向布局，合并为一张卡片 */
+@media (max-width: 520px) {
+  /* 将 container 作为统一的卡片容器 */
+  .pack-card-container {
+    width: 100%;
+    max-width: 100%;
+    background-color: var(--theme-bg-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 0.75rem var(--theme-shadow-base);
+    border: 1px solid var(--theme-border);
+    padding: var(--spacing-sm);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .pack-card-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      -45deg,
+      transparent,
+      transparent 13.9512529279%,
+      var(--theme-decorative-overlay-light) 0,
+      var(--theme-decorative-overlay-light) 36.0487470721%,
+      transparent 0,
+      transparent 63.9512529279%,
+      var(--theme-decorative-overlay-light) 0,
+      var(--theme-decorative-overlay-light) 86.0487470721%,
+      transparent 0,
+      transparent
+    );
+    background-size: 0.5rem 0.5rem;
+    background-repeat: repeat;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* 将 wrapper 作为内容区域 */
+  .pack-card-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pack-card-wrapper:hover {
+   transform: none;
+  }
+
+  /* 图片区域 */
+  .pack-card-part-left {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
+    align-self: stretch;
+    position: relative;
+    border-radius: var(--radius-sm);
+    box-shadow: none;
+    z-index: 1;
+  }
+
+  .pack-image,
+  .image-placeholder {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 150 / 110;
+    border-radius: var(--radius-sm);
+  }
+
+  .pack-display-name {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 4px 8px;
+    height: 24px;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  }
+
+  /* 信息区域 */
+  .pack-info {
+    width: 100%;
+    margin-left: 0;
+    margin-top: var(--spacing-sm);
+    height: auto;
+    min-height: 100px;
+    flex-direction: column;
+    padding: var(--spacing-sm) 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pack-info::before {
+    display: none;
+  }
+
+  .pack-info-text {
+    width: 100%;
+    min-width: auto;
+    margin: 0;
+    margin-bottom: var(--spacing-sm);
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: auto;
+  }
+
+  .pack-chart-line {
+    width: 100%;
+    flex: 1;
+    padding: var(--spacing-sm) 0;
+    background: transparent;
+    position: relative;
+  }
+
+  /* 恢复渐变分割线 */
+  .pack-chart-line::before {
+    display: block;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      var(--theme-decorative-overlay-light) 20%,
+      var(--theme-accent-color) 50%,
+      var(--theme-decorative-overlay-light) 80%,
+      transparent 100%
+    );
+  }
+
+  .pack-line-bar {
+    max-width: calc(100% - 80px);
+  }
+
+  /* 表格区域 */
+  .pack-contents-table {
+    width: calc(100% + var(--spacing-sm) * 2);
+    margin: var(--spacing-sm) calc(-1 * var(--spacing-sm)) 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid var(--theme-border);
+    position: relative;
+    z-index: 1;
+  }
+
+  .pack-contents-table.expanded {
+    margin-top: var(--spacing-sm);
+  }
+
+  .pack-contents-header {
+    border-bottom: 1px solid var(--theme-border);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--theme-decorative-overlay-light) 50%,
+      transparent 100%
+    );
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
 </style>
