@@ -3,7 +3,7 @@
     "packDisplayNameZH": "宏愿兵装组合包",
     "packDisplayNameEN": "宏愿兵装组合包",
     "price": 6,
-    "imageUrl": "/images/礼包图片/宏愿兵装组合包.png",
+    "imageUrl": "~/assets/endfield/packs/宏愿兵装组合包.png",
     "contents": [
       {
         "itemId": "宏愿",
@@ -21,7 +21,7 @@
     "packDisplayNameZH": "全面人才组合包",
     "packDisplayNameEN": "全面人才组合包",
     "price": 128,
-    "imageUrl": "/images/礼包图片/全面人才组合包.png",
+    "imageUrl": "~/assets/endfield/packs/全面人才组合包.png",
     "contents": [
       {
         "itemId": "特许寻访凭证",
@@ -39,7 +39,7 @@
     "packDisplayNameZH": "人事支援组合包",
     "packDisplayNameEN": "人事支援组合包",
     "price": 98,
-    "imageUrl": "/images/礼包图片/人事支援组合包.png",
+    "imageUrl": "~/assets/endfield/packs/人事支援组合包.png",
     "contents": [
       {
         "itemId": "基础寻访凭证",
@@ -57,7 +57,7 @@
     "packDisplayNameZH": "协议源流组合包",
     "packDisplayNameEN": "协议源流组合包",
     "price": 198,
-    "imageUrl": "/images/礼包图片/协议源流组合包.png",
+    "imageUrl": "~/assets/endfield/packs/协议源流组合包.png",
     "contents": [
       {
         "itemId": "特许寻访凭证",
@@ -80,7 +80,7 @@
     "packDisplayNameZH": "行火寻访组合包",
     "packDisplayNameEN": "行火寻访组合包",
     "price": 98,
-    "imageUrl": "/images/礼包图片/行火寻访组合包.png",
+    "imageUrl": "~/assets/endfield/packs/行火寻访组合包.png",
     "contents": [
       {
         "itemId": "行火留烬十连凭证",
@@ -98,7 +98,7 @@
     "packDisplayNameZH": "每月素材组合包",
     "packDisplayNameEN": "每月素材组合包",
     "price": 98,
-    "imageUrl": "/images/礼包图片/每月素材组合包.png",
+    "imageUrl": "~/assets/endfield/packs/每月素材组合包.png",
     "contents": [
       {
         "itemId": "折金票",
@@ -141,7 +141,7 @@
     "packDisplayNameZH": "每周素材组合包",
     "packDisplayNameEN": "每周素材组合包",
     "price": 30,
-    "imageUrl": "/images/礼包图片/每周素材组合包.png",
+    "imageUrl": "~/assets/endfield/packs/每周素材组合包.png",
     "contents": [
       {
         "itemId": "折金票",
@@ -164,7 +164,7 @@
     "packDisplayNameZH": "特惠武库配额包",
     "packDisplayNameEN": "特惠武库配额包",
     "price": 88,
-    "imageUrl": "/images/礼包图片/特惠武库配额包.png",
+    "imageUrl": "~/assets/endfield/packs/特惠武库配额包.png",
     "contents": [
       {
         "itemId": "武库配额",
@@ -177,7 +177,7 @@
     "packDisplayNameZH": "优惠武库配额包",
     "packDisplayNameEN": "优惠武库配额包",
     "price": 108,
-    "imageUrl": "/images/礼包图片/优惠武库配额包.png",
+    "imageUrl": "~/assets/endfield/packs/优惠武库配额包.png",
     "contents": [
       {
         "itemId": "武库配额",
@@ -190,7 +190,7 @@
     "packDisplayNameZH": "标准武库配额包",
     "packDisplayNameEN": "标准武库配额包",
     "price": 128,
-    "imageUrl": "/images/礼包图片/标准武库配额包.png",
+    "imageUrl": "~/assets/endfield/packs/标准武库配额包.png",
     "contents": [
       {
         "itemId": "武库配额",
@@ -203,7 +203,7 @@
     "packDisplayNameZH": "月卡",
     "packDisplayNameEN": "月卡",
     "price": 30,
-    "imageUrl": "/images/礼包图片/月卡.png",
+    "imageUrl": "~/assets/endfield/packs/月卡.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -226,7 +226,7 @@
     "packDisplayNameZH": "6元双倍源石",
     "packDisplayNameEN": "6元双倍源石",
     "price": 6,
-    "imageUrl": "/images/礼包图片/6元源石.png",
+    "imageUrl": "~/assets/endfield/packs/6元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -239,7 +239,7 @@
     "packDisplayNameZH": "30元双倍源石",
     "packDisplayNameEN": "30元双倍源石",
     "price": 30,
-    "imageUrl": "/images/礼包图片/30元源石.png",
+    "imageUrl": "~/assets/endfield/packs/30元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -252,7 +252,7 @@
     "packDisplayNameZH": "98元双倍源石",
     "packDisplayNameEN": "98元双倍源石",
     "price": 98,
-    "imageUrl": "/images/礼包图片/98元源石.png",
+    "imageUrl": "~/assets/endfield/packs/98元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -265,7 +265,7 @@
     "packDisplayNameZH": "198元双倍源石",
     "packDisplayNameEN": "198元双倍源石",
     "price": 198,
-    "imageUrl": "/images/礼包图片/198元源石.png",
+    "imageUrl": "~/assets/endfield/packs/198元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -278,7 +278,7 @@
     "packDisplayNameZH": "328元双倍源石",
     "packDisplayNameEN": "328元双倍源石",
     "price": 328,
-    "imageUrl": "/images/礼包图片/328元源石.png",
+    "imageUrl": "~/assets/endfield/packs/328元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -291,7 +291,7 @@
     "packDisplayNameZH": "648元双倍源石",
     "packDisplayNameEN": "648元双倍源石",
     "price": 648,
-    "imageUrl": "/images/礼包图片/648元源石.png",
+    "imageUrl": "~/assets/endfield/packs/648元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -304,7 +304,7 @@
     "packDisplayNameZH": "6元源石礼包",
     "packDisplayNameEN": "6元源石礼包",
     "price": 6,
-    "imageUrl": "/images/礼包图片/6元源石.png",
+    "imageUrl": "~/assets/endfield/packs/6元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -317,7 +317,7 @@
     "packDisplayNameZH": "30元源石礼包",
     "packDisplayNameEN": "30元源石礼包",
     "price": 30,
-    "imageUrl": "/images/礼包图片/30元源石.png",
+    "imageUrl": "~/assets/endfield/packs/30元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -330,7 +330,7 @@
     "packDisplayNameZH": "98元源石礼包",
     "packDisplayNameEN": "98元源石礼包",
     "price": 98,
-    "imageUrl": "/images/礼包图片/98元源石.png",
+    "imageUrl": "~/assets/endfield/packs/98元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -343,7 +343,7 @@
     "packDisplayNameZH": "198元源石礼包",
     "packDisplayNameEN": "198元源石礼包",
     "price": 198,
-    "imageUrl": "/images/礼包图片/198元源石.png",
+    "imageUrl": "~/assets/endfield/packs/198元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -356,7 +356,7 @@
     "packDisplayNameZH": "328元源石礼包",
     "packDisplayNameEN": "328元源石礼包",
     "price": 328,
-    "imageUrl": "/images/礼包图片/328元源石.png",
+    "imageUrl": "~/assets/endfield/packs/328元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -369,7 +369,7 @@
     "packDisplayNameZH": "648元源石礼包",
     "packDisplayNameEN": "648元源石礼包",
     "price": 648,
-    "imageUrl": "/images/礼包图片/648元源石.png",
+    "imageUrl": "~/assets/endfield/packs/648元源石.png",
     "contents": [
       {
         "itemId": "衍质源石",

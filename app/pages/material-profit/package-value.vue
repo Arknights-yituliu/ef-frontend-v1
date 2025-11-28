@@ -4,8 +4,8 @@
     <p class="page-description">{{ $t('page.materialProfit.packageValue.description') }}</p>
 
     <!-- 礼包卡片列表 -->
-    <div class="packs-container" v-if="packsData.length > 0">
-      <ContainerPackCard v-for="(pack, index) in packsData" :key="index" v-bind="pack" />
+    <div class="packs-container" v-if="packs.length > 0">
+      <ContainerPackCard v-for="(pack, index) in packs" :key="index" v-bind="pack" />
     </div>
 
     <div class="no-data" v-else>
@@ -15,15 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import packsDataJson from '@/custom/core/packs.json';
-import type { PackData } from '@/shared/types/pack';
+import packs from '@/custom/core/packs.json';
 
 definePageMeta({
   layout: 'default',
 });
-
-// 从 JSON 文件加载礼包数据
-const packsData = ref<PackData[]>(packsDataJson as PackData[]);
 </script>
 
 <style scoped>
