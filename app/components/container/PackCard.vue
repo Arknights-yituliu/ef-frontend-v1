@@ -28,21 +28,18 @@
       <div class="pack-info">
         <!-- 左侧：价值信息 -->
         <div class="pack-info-text">
-          <span v-if="stoneEquivalent > 0" class="value-stone">
+          <div class="value-stone">
             {{ $t('component.packCard.equivalent') }}{{ stoneEquivalent.toFixed(1)
             }}{{ $t('component.packCard.stone') }}
-          </span>
-          <span v-if="pricePerStone > 0" class="value-stone">
+            <br />
             ￥{{ pricePerStone.toFixed(1) }}/{{ $t('component.packCard.stone') }}
-          </span>
-          <span style="height: 8px" v-if="stoneEquivalent > 0 || pricePerStone > 0"></span>
-          <span v-if="totalPulls > 0" class="value-pull">
+          </div>
+          <div class="value-pull" v-if="totalPulls > 0">
             {{ $t('component.packCard.total') }}{{ totalPulls.toFixed(1)
             }}{{ $t('component.packCard.pull') }}
-          </span>
-          <span v-if="pricePerPull > 0" class="value-pull">
+            <br />
             ￥{{ pricePerPull.toFixed(1) }}/{{ $t('component.packCard.pull') }}
-          </span>
+          </div>
         </div>
 
         <!-- 右侧：对比条 -->
@@ -432,18 +429,13 @@ const comparisonBars = computed(() => [
   margin-left: 6px;
   margin-right: 6px;
   width: 92px;
-  position: relative;
   z-index: 1;
-  gap: 4px;
-}
+  gap: 12px;
 
-.pack-info-text span {
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.3;
   text-align: center;
   transition: all var(--transition-fast);
-  letter-spacing: 0.02em;
-  position: relative;
   white-space: nowrap;
 }
 
