@@ -55,7 +55,9 @@
       "itemName": "物品名称",
       "quantity": "数量",
       "totalValue": "总价值",
-      "percentage": "占比"
+      "percentage": "占比",
+      "stone": "石",
+      "pull": "抽"
     }
   },
   "page": {

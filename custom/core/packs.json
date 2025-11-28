@@ -1,72 +1,20 @@
 [
   {
-    "packDisplayNameZH": "庆典中坚寻访组合包",
-    "packDisplayNameEN": "Anniversary Core Gacha Pack",
-    "price": "￥68",
+    "packDisplayNameZH": "?",
+    "packDisplayNameEN": "?",
+    "price": 1919810,
     "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
-    "valueMetrics": {
-      "stoneEquivalent": 111.0,
-      "pricePerStone": 0.57,
-      "totalPulls": 15.0,
-      "pricePerPull": 4.53,
-      "units": {
-        "stone": {
-          "zh": "石",
-          "en": "stone"
-        },
-        "pull": {
-          "zh": "抽",
-          "en": "pull"
-        }
-      }
-    },
-    "comparisonBars": [
-      {
-        "labelZH": "大月卡",
-        "labelEN": "Monthly Pass",
-        "percentage": "157%",
-        "widthPx": 125.6
-      },
-      {
-        "labelZH": "648源石",
-        "labelEN": "648 Originium",
-        "percentage": "100%",
-        "widthPx": 80
-      },
-      {
-        "labelZH": "仅抽卡",
-        "labelEN": "Gacha Only",
-        "percentage": "0%",
-        "widthPx": 0,
-        "display": false
-      },
-      {
-        "labelZH": "全物品",
-        "labelEN": "All Items",
-        "percentage": "0%",
-        "widthPx": 0,
-        "display": true
-      }
-    ],
-    "countdownDays": 3,
-    "countdownZH": "剩余 {} 天",
-    "countdownEN": "{} days left",
     "contents": [
       {
-        "name": "十连中坚寻访凭证",
-        "quantity": 1,
-        "totalValue": 0.0,
-        "percentage": "0.0%",
-        "iconClass": "bg-classic_gacha_10"
+        "itemId": "?",
+        "itemName": "?",
+        "quantity": 114514
       },
       {
-        "name": "中坚寻访凭证",
-        "quantity": 5,
-        "totalValue": 0.0,
-        "percentage": "0.0%",
-        "iconClass": "bg-classic_gacha"
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 114514
       }
     ]
   }
 ]
-
