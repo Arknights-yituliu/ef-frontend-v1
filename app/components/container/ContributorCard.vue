@@ -31,22 +31,7 @@ const localizedInfo = computed<LocalizedInfo>(() => {
 })
 
 const resolvedAvatar = computed(() => {
-  const source = props.contributor.avatarImg
-
-  if (/^https?:\/\//i.test(source)) {
-    return source
-  }
-
-  const targetFileName = source.split('/').pop()
-
-  if (targetFileName) {
-    const matchedEntry = Object.entries(contributorAssets).find(([key]) => key.endsWith(targetFileName))
-
-    if (matchedEntry) {
-      return matchedEntry[1]
-    }
-  }
-
+  return resolvePictureUrl(props.contributor.avatarImg, contributorAssets)
 })
 
 const tags = computed(() => localizedInfo.value.tags ?? [])
