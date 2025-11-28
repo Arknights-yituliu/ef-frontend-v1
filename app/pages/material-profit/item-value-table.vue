@@ -2,27 +2,21 @@
   <div class="item-value-table-page">
     <h1 class="page-title">{{ $t('page.materialProfit.itemValueTable.title') }}</h1>
     <p class="page-description">{{ $t('page.materialProfit.itemValueTable.description') }}</p>
-    <v-container>
-      <v-row>
-        <v-col cols="12">
-          <v-alert
-            border="start"
-            color="primary"
-            variant="tonal"
-            class="item-value-table-alert"
-          >
-            {{ $t('common.noData') }}
-          </v-alert>
-        </v-col>
-      </v-row>
-    </v-container>
+    <div class="d-flex flex-column ga-5">
+      <div class="d-flex ga-5 align-center" v-for="item in itemInfo">
+        <div class="">{{ item.name }}</div>
+        <div>{{ item.value.toFixed(4) }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import itemInfo from '@/custom/core/itemInfo';
+
 definePageMeta({
-  layout: 'default'
-})
+  layout: 'default',
+});
 </script>
 
 <style scoped>
@@ -44,8 +38,9 @@ definePageMeta({
   line-height: 1.5;
 }
 
-.item-value-table-alert {
-  margin-top: 1rem;
+.item-icon {
+  height: 4rem;
+  width: 4rem;
 }
 
 /* 响应式设计 */
@@ -65,4 +60,3 @@ definePageMeta({
   }
 }
 </style>
-

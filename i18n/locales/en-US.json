@@ -55,7 +55,9 @@
       "itemName": "Item Name",
       "quantity": "Quantity",
       "totalValue": "Total Value",
-      "percentage": "Percentage"
+      "percentage": "Percentage",
+      "stone": "stone",
+      "pull": "pull"
     }
   },
   "page": {
