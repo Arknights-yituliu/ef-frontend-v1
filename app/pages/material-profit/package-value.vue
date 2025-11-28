@@ -47,6 +47,7 @@ const packsData = ref<PackData[]>(packsDataJson as PackData[]);
 
 .packs-container {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-xl);
   margin-top: var(--spacing-xl);
 }

@@ -1,19 +1,224 @@
 [
   {
-    "packDisplayNameZH": "?",
-    "packDisplayNameEN": "?",
-    "price": 1919810,
+    "packDisplayNameZH": "宏愿兵装组合包",
+    "packDisplayNameEN": "宏愿兵装组合包",
+    "price": 6,
     "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
     "contents": [
       {
-        "itemId": "?",
-        "itemName": "?",
-        "quantity": 114514
+        "itemId": "宏愿",
+        "itemName": "宏愿",
+        "quantity": 1
       },
       {
         "itemId": "衍质源石",
         "itemName": "衍质源石",
-        "quantity": 114514
+        "quantity": 6
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "全面人才组合包",
+    "packDisplayNameEN": "全面人才组合包",
+    "price": 128,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "特许寻访凭证",
+        "itemName": "特许寻访凭证",
+        "quantity": 10
+      },
+      {
+        "itemId": "武库配额",
+        "itemName": "武库配额",
+        "quantity": 2000
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "人事支援组合包",
+    "packDisplayNameEN": "人事支援组合包",
+    "price": 98,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "基础寻访凭证",
+        "itemName": "基础寻访凭证",
+        "quantity": 10
+      },
+      {
+        "itemId": "折金票",
+        "itemName": "折金票",
+        "quantity": 100000
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "协议源流组合包",
+    "packDisplayNameEN": "协议源流组合包",
+    "price": 198,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "特许寻访凭证",
+        "itemName": "特许寻访凭证",
+        "quantity": 10
+      },
+      {
+        "itemId": "武库配额",
+        "itemName": "武库配额",
+        "quantity": 2000
+      },
+      {
+        "itemId": "存续的痕迹",
+        "itemName": "存续的痕迹（T5干员技能专精材料，相当于原神中的皇冠）",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "行火寻访组合包",
+    "packDisplayNameEN": "行火寻访组合包",
+    "price": 98,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "行火留烬十连凭证",
+        "itemName": "行火留烬十连凭证（熔火灼痕卡池可用）",
+        "quantity": 1
+      },
+      {
+        "itemId": "折金票",
+        "itemName": "折金票",
+        "quantity": 80000
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "每月素材组合包",
+    "packDisplayNameEN": "每月素材组合包",
+    "price": 98,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "折金票",
+        "itemName": "折金票",
+        "quantity": 100000
+      },
+      {
+        "itemId": "高级认知载体",
+        "itemName": "高级认知载体",
+        "quantity": 10
+      },
+      {
+        "itemId": "武器检查套组",
+        "itemName": "武器检查套组",
+        "quantity": 25
+      },
+      {
+        "itemId": "协议圆盘组",
+        "itemName": "协议圆盘组",
+        "quantity": 20
+      },
+      {
+        "itemId": "重型强固模具",
+        "itemName": "重型强固模具",
+        "quantity": 20
+      },
+      {
+        "itemId": "协议棱柱组",
+        "itemName": "协议棱柱组",
+        "quantity": 50
+      },
+      {
+        "itemId": "高阶培养自选箱I",
+        "itemName": "高阶培养自选箱I",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "每周素材组合包",
+    "packDisplayNameEN": "每周素材组合包",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "折金票",
+        "itemName": "折金票",
+        "quantity": 30000
+      },
+      {
+        "itemId": "初级认知载体",
+        "itemName": "初级认知载体",
+        "quantity": 120
+      },
+      {
+        "itemId": "武器检查装置",
+        "itemName": "武器检查装置",
+        "quantity": 240
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "特惠武库配额包",
+    "packDisplayNameEN": "特惠武库配额包",
+    "price": 88,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "武库配额",
+        "itemName": "武库配额",
+        "quantity": 2000
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "优惠武库配额包",
+    "packDisplayNameEN": "优惠武库配额包",
+    "price": 108,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "武库配额",
+        "itemName": "武库配额",
+        "quantity": 2000
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "标准武库配额包",
+    "packDisplayNameEN": "标准武库配额包",
+    "price": 128,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "武库配额",
+        "itemName": "武库配额",
+        "quantity": 2000
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "月卡",
+    "packDisplayNameEN": "月卡",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 12
+      },
+      {
+        "itemId": "嵌晶玉",
+        "itemName": "嵌晶玉",
+        "quantity": 6000
+      },
+      {
+        "itemId": "应急理智加强剂",
+        "itemName": "应急理智加强剂",
+        "quantity": 30
       }
     ]
   }
