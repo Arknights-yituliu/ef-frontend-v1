@@ -16,6 +16,8 @@
 
 <script setup lang="ts">
 import packs from '@/custom/core/packs.json';
+import type { PackData } from '@/shared/types/pack';
+packs as PackData[];
 
 definePageMeta({
   layout: 'default',
