@@ -52,8 +52,7 @@
             <div
               class="pack-line-bar"
               :style="{
-                width: `${bar.percentage * 50}px`,
-                maxWidth: '100%',
+                width: `${bar.percentage * 80}px`,
               }"
             >
               <span>{{ (bar.percentage * 100).toFixed(0) }}%</span>
@@ -524,7 +523,7 @@ const comparisonBars = computed(() => [
   min-width: 40px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   box-shadow: 0 0 0.25rem var(--theme-shadow-accent);
   transition:
     background-color var(--transition-fast),

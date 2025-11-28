@@ -3,7 +3,7 @@
     "packDisplayNameZH": "宏愿兵装组合包",
     "packDisplayNameEN": "宏愿兵装组合包",
     "price": 6,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/宏愿兵装组合包.png",
     "contents": [
       {
         "itemId": "宏愿",
@@ -21,7 +21,7 @@
     "packDisplayNameZH": "全面人才组合包",
     "packDisplayNameEN": "全面人才组合包",
     "price": 128,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/全面人才组合包.png",
     "contents": [
       {
         "itemId": "特许寻访凭证",
@@ -39,7 +39,7 @@
     "packDisplayNameZH": "人事支援组合包",
     "packDisplayNameEN": "人事支援组合包",
     "price": 98,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/人事支援组合包.png",
     "contents": [
       {
         "itemId": "基础寻访凭证",
@@ -57,7 +57,7 @@
     "packDisplayNameZH": "协议源流组合包",
     "packDisplayNameEN": "协议源流组合包",
     "price": 198,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/协议源流组合包.png",
     "contents": [
       {
         "itemId": "特许寻访凭证",
@@ -71,7 +71,7 @@
       },
       {
         "itemId": "存续的痕迹",
-        "itemName": "存续的痕迹（T5干员技能专精材料，相当于原神中的皇冠）",
+        "itemName": "存续的痕迹",
         "quantity": 10
       }
     ]
@@ -80,11 +80,11 @@
     "packDisplayNameZH": "行火寻访组合包",
     "packDisplayNameEN": "行火寻访组合包",
     "price": 98,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/行火寻访组合包.png",
     "contents": [
       {
         "itemId": "行火留烬十连凭证",
-        "itemName": "行火留烬十连凭证（熔火灼痕卡池可用）",
+        "itemName": "行火留烬十连凭证",
         "quantity": 1
       },
       {
@@ -98,7 +98,7 @@
     "packDisplayNameZH": "每月素材组合包",
     "packDisplayNameEN": "每月素材组合包",
     "price": 98,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/每月素材组合包.png",
     "contents": [
       {
         "itemId": "折金票",
@@ -141,7 +141,7 @@
     "packDisplayNameZH": "每周素材组合包",
     "packDisplayNameEN": "每周素材组合包",
     "price": 30,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/每周素材组合包.png",
     "contents": [
       {
         "itemId": "折金票",
@@ -164,7 +164,7 @@
     "packDisplayNameZH": "特惠武库配额包",
     "packDisplayNameEN": "特惠武库配额包",
     "price": 88,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/特惠武库配额包.png",
     "contents": [
       {
         "itemId": "武库配额",
@@ -177,7 +177,7 @@
     "packDisplayNameZH": "优惠武库配额包",
     "packDisplayNameEN": "优惠武库配额包",
     "price": 108,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/优惠武库配额包.png",
     "contents": [
       {
         "itemId": "武库配额",
@@ -190,7 +190,7 @@
     "packDisplayNameZH": "标准武库配额包",
     "packDisplayNameEN": "标准武库配额包",
     "price": 128,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/标准武库配额包.png",
     "contents": [
       {
         "itemId": "武库配额",
@@ -203,7 +203,7 @@
     "packDisplayNameZH": "月卡",
     "packDisplayNameEN": "月卡",
     "price": 30,
-    "imageUrl": "https://cos.yituliu.cn/image/2047745694621000.png",
+    "imageUrl": "/images/礼包图片/月卡.png",
     "contents": [
       {
         "itemId": "衍质源石",
@@ -219,6 +219,162 @@
         "itemId": "应急理智加强剂",
         "itemName": "应急理智加强剂",
         "quantity": 30
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "6元双倍源石",
+    "packDisplayNameEN": "6元双倍源石",
+    "price": 6,
+    "imageUrl": "/images/礼包图片/6元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 6
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "30元双倍源石",
+    "packDisplayNameEN": "30元双倍源石",
+    "price": 30,
+    "imageUrl": "/images/礼包图片/30元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 24
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "98元双倍源石",
+    "packDisplayNameEN": "98元双倍源石",
+    "price": 98,
+    "imageUrl": "/images/礼包图片/98元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 84
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "198元双倍源石",
+    "packDisplayNameEN": "198元双倍源石",
+    "price": 198,
+    "imageUrl": "/images/礼包图片/198元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 170
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "328元双倍源石",
+    "packDisplayNameEN": "328元双倍源石",
+    "price": 328,
+    "imageUrl": "/images/礼包图片/328元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 282
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "648元双倍源石",
+    "packDisplayNameEN": "648元双倍源石",
+    "price": 648,
+    "imageUrl": "/images/礼包图片/648元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 350
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "6元源石礼包",
+    "packDisplayNameEN": "6元源石礼包",
+    "price": 6,
+    "imageUrl": "/images/礼包图片/6元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 3
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "30元源石礼包",
+    "packDisplayNameEN": "30元源石礼包",
+    "price": 30,
+    "imageUrl": "/images/礼包图片/30元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 15
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "98元源石礼包",
+    "packDisplayNameEN": "98元源石礼包",
+    "price": 98,
+    "imageUrl": "/images/礼包图片/98元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "198元源石礼包",
+    "packDisplayNameEN": "198元源石礼包",
+    "price": 198,
+    "imageUrl": "/images/礼包图片/198元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 102
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "328元源石礼包",
+    "packDisplayNameEN": "328元源石礼包",
+    "price": 328,
+    "imageUrl": "/images/礼包图片/328元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 171
+      }
+    ]
+  },
+  {
+    "packDisplayNameZH": "648元源石礼包",
+    "packDisplayNameEN": "648元源石礼包",
+    "price": 648,
+    "imageUrl": "/images/礼包图片/648元源石.png",
+    "contents": [
+      {
+        "itemId": "衍质源石",
+        "itemName": "衍质源石",
+        "quantity": 350
       }
     ]
   }
