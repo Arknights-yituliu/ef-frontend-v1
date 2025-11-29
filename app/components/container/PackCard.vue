@@ -5,24 +5,24 @@
       <div class="pack-card-part-left">
         <img
           v-show="packData.imageUrl&& !imageError"
-          :src="packData.imageUrl"
           :alt="packDisplayName"
+          :src="packData.imageUrl"
           class="pack-image"
           loading="lazy"
           @error="(e) => handleImageError()"
 
         />
-        <div class="image-placeholder" v-show="imageError">
+        <div v-show="imageError" class="image-placeholder">
           <span class="placeholder-icon">📦</span>
         </div>
 
         <!-- 价格角标 -->
-        <div class="pack-corner">
-          <span class="price-text">￥{{ packData.price }}</span>
-        </div>
+        <!--        <div class="pack-corner">-->
+        <!--          <span class="price-text">￥{{ packData.price }}</span>-->
+        <!--        </div>-->
 
         <!-- 标题（底部覆盖） -->
-        <span class="pack-display-name">{{ packDisplayName }}</span>
+        <!--        <span class="pack-display-name">{{ packDisplayName }}</span>-->
       </div>
 
       <!-- 右侧：信息区域 -->
@@ -33,7 +33,11 @@
             v-if="packData.valueMetrics.stoneEquivalent > 0"
             class="value-stone"
           >
-            {{ $t('component.packCard.equivalent') }}{{ numberFloor(packData.valueMetrics.stoneEquivalent,2) }}{{ $t("component.packCard.stone") }}
+            {{
+              $t('component.packCard.equivalent')
+            }}{{
+              numberFloor(packData.valueMetrics.stoneEquivalent, 2)
+            }}{{ $t("component.packCard.stone") }}
           </span>
           <span
             v-if="packData.valueMetrics.pricePerStone > 0"
@@ -41,18 +45,23 @@
           >
             ￥{{ packData.price }}/{{ $t("component.packCard.stone") }}
           </span>
-          <span style="height: 8px;" v-if="packData.valueMetrics.stoneEquivalent > 0 || packData.valueMetrics.pricePerStone > 0"></span>
+          <span v-if="packData.valueMetrics.stoneEquivalent > 0 || packData.valueMetrics.pricePerStone > 0"
+                style="height: 8px;"></span>
           <span
             v-if="packData.valueMetrics.totalPulls > 0"
             class="value-pull"
           >
-            {{ $t('component.packCard.total') }}{{ numberFloor(packData.valueMetrics.totalPulls,2) }}{{ $t("component.packCard.pull") }}
+            {{ $t('component.packCard.total') }}{{
+              numberFloor(packData.valueMetrics.totalPulls, 2)
+            }}{{ $t("component.packCard.pull") }}
           </span>
           <span
             v-if="packData.valueMetrics.pricePerPull > 0"
             class="value-pull"
           >
-            ￥{{ numberFloor(packData.valueMetrics.pricePerPull,2) }}/{{ $t("component.packCard.pull") }}
+            ￥{{
+              numberFloor(packData.valueMetrics.pricePerPull, 2)
+            }}/{{ $t("component.packCard.pull") }}
           </span>
         </div>
 
@@ -61,31 +70,31 @@
           <div
             v-for="(bar, index) in visibleComparisonBars"
             :key="index"
-            class="pack-chart-line-item"
             :style="{ display: bar.display === false ? 'none' : 'flex' }"
+            class="pack-chart-line-item"
           >
             <span class="pack-chart-line-label">{{ barLabel(bar) }}</span>
             <div
-              class="pack-line-bar"
               :style="{
                 width: `${bar.widthPx}px`,
                 maxWidth: '100%'
               }"
+              class="pack-line-bar"
             >
-              <span>{{ numberFloor(bar.percentage*100,2) }}%</span>
+              <span>{{ numberFloor(bar.percentage * 100, 2) }}%</span>
             </div>
           </div>
         </div>
 
-<!--        &lt;!&ndash; 倒计时（右下角） &ndash;&gt;-->
-<!--        <div class="pack-info-countdown" v-if="packData.countdownDays > 0">-->
-<!--          {{ countdownText }}-->
-<!--        </div>-->
+        <!--        &lt;!&ndash; 倒计时（右下角） &ndash;&gt;-->
+        <!--        <div class="pack-info-countdown" v-if="packData.countdownDays > 0">-->
+        <!--          {{ countdownText }}-->
+        <!--        </div>-->
       </div>
     </div>
 
     <!-- 展开的内容表格 - 藏在卡片背后 -->
-    <div class="pack-contents-table" :class="{ 'expanded': isExpanded }">
+    <div :class="{ 'expanded': isExpanded }" class="pack-contents-table">
       <div class="pack-contents-header">
         <h3>{{ $t('component.packCard.contents') }}</h3>
       </div>
@@ -111,9 +120,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import type { PackData } from '@/shared/types/pack'
-import {numberFloor, numberRound} from "#shared/utils/numberUtil";
+<script lang="ts" setup>
+import type {PackData} from '@/shared/types/pack'
+import {numberFloor} from "#shared/utils/numberUtil";
 
 const props = defineProps<{
   packData: PackData
@@ -121,7 +130,7 @@ const props = defineProps<{
 
 console.log(props.packData)
 
-const { locale, t } = useI18n()
+const {locale, t} = useI18n()
 const imageError = ref(false)
 const isExpanded = ref(false)
 
@@ -140,9 +149,9 @@ const handleImgError = (e: Event) => {
   const img = e.target as HTMLImageElement;
   // 替换为保底图片（防止保底图片也失败导致循环触发，可加判断）
 
-    img.src = "https://cos.yituliu.cn/endfield/pack-image/198%E5%85%83%E6%BA%90%E7%9F%B3.png";
-    // 可选：替换后移除error事件，避免保底图片失败时重复触发
-    // img.removeEventListener('error', handleImgError);
+  img.src = "https://cos.yituliu.cn/endfield/pack-image/198%E5%85%83%E6%BA%90%E7%9F%B3.png";
+  // 可选：替换后移除error事件，避免保底图片失败时重复触发
+  // img.removeEventListener('error', handleImgError);
 
 };
 
@@ -166,7 +175,6 @@ const toggleExpanded = () => {
 <style scoped>
 .pack-card-container {
   position: relative;
-  width: 500px;
   margin-bottom: var(--spacing-md);
 }
 
@@ -195,16 +203,15 @@ const toggleExpanded = () => {
 }
 
 .pack-image {
+  width: 230px;
   height: 110px;
-  width: 150px;
-  object-fit: cover;
   display: block;
   transition: transform var(--transition-base);
 }
 
 .image-placeholder {
   height: 110px;
-  width: 150px;
+  width: 230px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -320,7 +327,7 @@ const toggleExpanded = () => {
 /* 右侧信息区域 */
 .pack-info {
   background-color: var(--theme-bg-secondary);
-  border-radius: var(--radius-md);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
   box-shadow: 0 0 0.75rem var(--theme-shadow-base);
   display: flex;
   height: 100px;
@@ -649,7 +656,7 @@ const toggleExpanded = () => {
   }
 
   .pack-card-wrapper:hover {
-   transform: none;
+    transform: none;
   }
 
   /* 图片区域 */
@@ -710,9 +717,9 @@ const toggleExpanded = () => {
   .pack-info-text {
     width: 100%;
     min-width: auto;
-    margin: 0;
-    margin-bottom: var(--spacing-sm);
+    margin: 0 0 var(--spacing-sm);
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     height: auto;
   }
