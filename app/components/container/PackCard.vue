@@ -35,25 +35,24 @@
           >
             {{
               $t('component.packCard.equivalent')
-            }}{{
+            }} {{
               numberFloor(packData.valueMetrics.stoneEquivalent, 2)
-            }}{{ $t("component.packCard.stone") }}
+            }} {{ $t("component.packCard.stone") }}
           </span>
           <span
             v-if="packData.valueMetrics.pricePerStone > 0"
             class="value-stone"
           >
-            ￥{{ packData.price }}/{{ $t("component.packCard.stone") }}
+            ￥{{ packData.price }} / {{ $t("component.packCard.stone") }}
           </span>
-          <span v-if="packData.valueMetrics.stoneEquivalent > 0 || packData.valueMetrics.pricePerStone > 0"
-                style="height: 8px;"></span>
+          <span class="value-separate" v-if="packData.valueMetrics.stoneEquivalent > 0 || packData.valueMetrics.pricePerStone > 0"/>
           <span
             v-if="packData.valueMetrics.totalPulls > 0"
             class="value-pull"
           >
-            {{ $t('component.packCard.total') }}{{
+            {{ $t('component.packCard.total') }} {{
               numberFloor(packData.valueMetrics.totalPulls, 2)
-            }}{{ $t("component.packCard.pull") }}
+            }} {{ $t("component.packCard.pull") }}
           </span>
           <span
             v-if="packData.valueMetrics.pricePerPull > 0"
@@ -61,7 +60,7 @@
           >
             ￥{{
               numberFloor(packData.valueMetrics.pricePerPull, 2)
-            }}/{{ $t("component.packCard.pull") }}
+            }} / {{ $t("component.packCard.pull") }}
           </span>
         </div>
 
@@ -117,6 +116,11 @@
         </tbody>
       </table>
     </div>
+
+    <!-- 描述 -->
+    <div v-if="packDescription" class="pack-description">
+      {{ packDescription }}
+    </div>
   </div>
 </template>
 
@@ -138,6 +142,13 @@ const packDisplayName = computed(() => {
   return locale.value === 'en-US'
     ? props.packData.packDisplayNameEN
     : props.packData.packDisplayNameZH
+})
+
+const packDescription = computed(() => {
+  const desc = locale.value === 'en-US'
+    ? props.packData.descriptionEN
+    : props.packData.descriptionZH
+  return desc && desc.trim() ? desc : null
 })
 
 const countdownText = computed(() => {
@@ -369,11 +380,11 @@ const toggleExpanded = () => {
   display: flex;
   flex-direction: column;
   font-size: 16px;
+  width: 150px;
   height: 100%;
   justify-content: center;
   margin-left: 6px;
   margin-right: 6px;
-  width: 92px;
   position: relative;
   z-index: 1;
   gap: 4px;
@@ -386,12 +397,16 @@ const toggleExpanded = () => {
   transition: all var(--transition-fast);
   letter-spacing: 0.02em;
   position: relative;
-  white-space: nowrap;
 }
 
 /* 源石相关数值*/
 .value-stone {
   color: var(--theme-accent-color);
+}
+
+.value-separate{
+  width: 2px;
+  background-color: var(--theme-decorative-overlay-light);
 }
 
 /* 抽数相关数值 */
@@ -407,11 +422,11 @@ const toggleExpanded = () => {
   overflow: hidden;
   white-space: nowrap;
   width: 240px;
-  align-content: flex-start;
+  align-content: start;
   color: var(--theme-text-primary);
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 4px 0;
+  padding: 4px 10px;
   position: relative;
   z-index: 1;
   background: linear-gradient(
@@ -503,7 +518,6 @@ const toggleExpanded = () => {
 }
 
 .pack-line-bar span {
-  white-space: nowrap;
   position: relative;
   z-index: 1;
   font-weight: 700;
@@ -601,6 +615,21 @@ const toggleExpanded = () => {
 
 .contents-table tbody tr:hover {
   background-color: var(--theme-bg-tertiary);
+}
+
+/* 描述区域 */
+.pack-description {
+  width: 100%;
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  color: var(--theme-text-primary);
+  font-style: italic;
+  line-height: 1.5;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* 采用纵向布局，合并为一张卡片 */
@@ -727,7 +756,7 @@ const toggleExpanded = () => {
   .pack-chart-line {
     width: 100%;
     flex: 1;
-    padding: var(--spacing-sm) 0;
+    padding: var(--spacing-sm);
     background: transparent;
     position: relative;
   }
@@ -779,6 +808,12 @@ const toggleExpanded = () => {
       transparent 100%
     );
     padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .pack-description {
+    width: 100%;
+    margin-top: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
 }
 </style>

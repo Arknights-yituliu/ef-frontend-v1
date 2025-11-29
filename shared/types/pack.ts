@@ -28,6 +28,8 @@ export interface PackContent {
 export interface PackData {
   packDisplayNameZH: string
   packDisplayNameEN: string
+  descriptionZH?: string
+  descriptionEN?: string
   price: number
   imageUrl: string
   valueMetrics: PackValueMetrics
@@ -41,6 +43,8 @@ export interface PackData {
 export interface PackDataDTO {
   packDisplayNameZH: string
   packDisplayNameEN: string
+  descriptionZH?: string
+  descriptionEN?: string
   price: number
   imageUrl: string
   contents: PackContent[]

@@ -2,6 +2,8 @@
   {
     "packDisplayNameZH": "宏愿兵装组合包",
     "packDisplayNameEN": "宏愿兵装组合包",
+    "descriptionZH": "示例描述",
+    "descriptionEN": "description example",
     "price": 6,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/宏愿兵装组合包.png",
     "contents": [
@@ -22,6 +24,8 @@
   {
     "packDisplayNameZH": "全面人才组合包",
     "packDisplayNameEN": "全面人才组合包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 128,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/全面人才组合包.png",
     "contents": [
@@ -42,6 +46,8 @@
   {
     "packDisplayNameZH": "人事支援组合包",
     "packDisplayNameEN": "人事支援组合包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/人事支援组合包.png",
     "contents": [
@@ -62,6 +68,8 @@
   {
     "packDisplayNameZH": "协议源流组合包",
     "packDisplayNameEN": "协议源流组合包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 198,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/协议源流组合包.png",
     "contents": [
@@ -87,6 +95,8 @@
   {
     "packDisplayNameZH": "行火寻访组合包",
     "packDisplayNameEN": "行火寻访组合包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/行火寻访组合包.png",
     "contents": [
@@ -107,6 +117,8 @@
   {
     "packDisplayNameZH": "每月素材组合包",
     "packDisplayNameEN": "每月素材组合包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/每月素材组合包.png",
     "contents": [
@@ -152,6 +164,8 @@
   {
     "packDisplayNameZH": "每周素材组合包",
     "packDisplayNameEN": "每周素材组合包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/每周素材组合包.png",
     "contents": [
@@ -177,6 +191,8 @@
   {
     "packDisplayNameZH": "特惠武库配额包",
     "packDisplayNameEN": "特惠武库配额包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 88,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/特惠武库配额包.png",
     "contents": [
@@ -192,6 +208,8 @@
   {
     "packDisplayNameZH": "优惠武库配额包",
     "packDisplayNameEN": "优惠武库配额包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 108,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/优惠武库配额包.png",
     "contents": [
@@ -207,6 +225,8 @@
   {
     "packDisplayNameZH": "标准武库配额包",
     "packDisplayNameEN": "标准武库配额包",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 128,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/标准武库配额包.png",
     "contents": [
@@ -222,6 +242,8 @@
   {
     "packDisplayNameZH": "月卡",
     "packDisplayNameEN": "月卡",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/月卡.png",
     "contents": [
@@ -247,6 +269,8 @@
   {
     "packDisplayNameZH": "6元双倍源石",
     "packDisplayNameEN": "6元双倍源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 6,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/6元源石.png",
     "contents": [
@@ -260,6 +284,8 @@
   {
     "packDisplayNameZH": "30元双倍源石",
     "packDisplayNameEN": "30元双倍源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/30元源石.png",
     "contents": [
@@ -275,6 +301,8 @@
   {
     "packDisplayNameZH": "98元双倍源石",
     "packDisplayNameEN": "98元双倍源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/98元源石.png",
     "contents": [
@@ -290,6 +318,8 @@
   {
     "packDisplayNameZH": "198元双倍源石",
     "packDisplayNameEN": "198元双倍源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 198,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/198元源石.png",
     "contents": [
@@ -305,6 +335,8 @@
   {
     "packDisplayNameZH": "328元双倍源石",
     "packDisplayNameEN": "328元双倍源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 328,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/328元源石.png",
     "contents": [
@@ -320,6 +352,8 @@
   {
     "packDisplayNameZH": "648元双倍源石",
     "packDisplayNameEN": "648元双倍源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 648,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/648元源石.png",
     "contents": [
@@ -335,6 +369,8 @@
   {
     "packDisplayNameZH": "6元源石",
     "packDisplayNameEN": "6元源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 6,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/6元源石.png",
     "contents": [
@@ -350,6 +386,8 @@
   {
     "packDisplayNameZH": "30元源石",
     "packDisplayNameEN": "30元源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/30元源石.png",
     "contents": [
@@ -365,6 +403,8 @@
   {
     "packDisplayNameZH": "98元源石",
     "packDisplayNameEN": "98元源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/98元源石.png",
     "contents": [
@@ -380,6 +420,8 @@
   {
     "packDisplayNameZH": "198元源石",
     "packDisplayNameEN": "198元源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 198,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/198元源石.png",
     "contents": [
@@ -395,6 +437,8 @@
   {
     "packDisplayNameZH": "328元源石",
     "packDisplayNameEN": "328元源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 328,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/328元源石.png",
     "contents": [
@@ -410,6 +454,8 @@
   {
     "packDisplayNameZH": "648元源石",
     "packDisplayNameEN": "648元源石",
+    "descriptionZH": "",
+    "descriptionEN": "",
     "price": 648,
     "imageUrl": "https://cos.yituliu.cn/endfield/pack-image/648元源石.png",
     "contents": [
