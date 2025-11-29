@@ -603,8 +603,8 @@ const toggleExpanded = () => {
   background-color: var(--theme-bg-tertiary);
 }
 
-/* 屏幕宽度小于520px时采用纵向布局，合并为一张卡片 */
-@media (max-width: 520px) {
+/* 采用纵向布局，合并为一张卡片 */
+@media (max-width: 610px) {
   /* 将 container 作为统一的卡片容器 */
   .pack-card-container {
     width: 100%;
