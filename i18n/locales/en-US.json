@@ -33,6 +33,25 @@
     "siteName": "EndField Yituliu"
   },
   "component": {
+    "home": {
+      "checkAccess": {
+        "comprehensiveTestQualificationCheck": "Comprehensive test qualification check",
+        "checkAccessOnEndfieldOfficialSite": "Check access on endfield official site"
+      },
+      "penguinStatistics": {
+        "penguin": "penguin",
+        "penguinStatistics": "penguin-statistics",
+        "penguinStatisticsDescription": "Penguin Statistics is the Department of Data Analysis of Penguin Logistics (not really). We devote ourselves to item drop analysis.\nPenguin Statistics' current dataset is maintained through a combination of player manual reports, screenshot recognitions, and other uploads via public APIs. The Penguin Statistics team performs various types of automatic, scheduled, and manual maintenance to ensure the dataset's accuracy.",
+        "itemDropRates": "Item Drop Rates",
+        "itemDropRatesDoc": "Where should I farm rocks?”",
+        "stageDropRates": "Stage Drop Rates",
+        "stageDropRatesDoc": "What are the drop rates of this stage?",
+        "dropReports": "Drop Reports",
+        "dropReportsDoc": "I wanna report drops",
+        "farmingPlanner": "Farming Planner",
+        "farmingPlannerDoc": "Please gimme some farming advice"
+      }
+    },
     "particleWord": {
       "loading": "Loading particle animation..."
     },

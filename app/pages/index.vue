@@ -30,7 +30,7 @@
       <HomeCheckAccess></HomeCheckAccess>
        <HomeContribute></HomeContribute>
       <HomeYiTuLiu></HomeYiTuLiu>
-      <HomePenguinStats></HomePenguinStats>
+      <HomePenguinStatistics></HomePenguinStatistics>
     </div>
     <!--    <p class="page-description">-->
     <!--      {{ t('page.home.welcome') }}-->

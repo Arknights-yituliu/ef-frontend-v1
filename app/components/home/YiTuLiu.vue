@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const openNewPage = (url:string)=>{
+  window.open(url)
+}
 
 </script>
 
@@ -27,6 +30,13 @@
       <p class="p-li"><b>专精减半计算器：</b>提供减半类专精技能的计算</p>
       <p class="p-li"><b>干员精二价值表：</b>可在使用直升道具与专精道具时对每个干员材料消耗进行参考
       </p>
+
+      <v-btn prepend-icon="mdi-github"
+             color="primary"
+             text="前往明日方舟一图流"
+             @click="openNewPage('https://ark.yituliu.cn/')"
+             append-icon="mdi-open-in-new">
+      </v-btn>
     </v-card-text>
   </v-card>
 </template>

@@ -132,7 +132,7 @@ const props = defineProps<{
   packData: PackData
 }>()
 
-console.log(props.packData)
+// console.log(props.packData)
 
 const {locale, t} = useI18n()
 const imageError = ref(false)

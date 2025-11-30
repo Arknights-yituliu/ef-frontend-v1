@@ -36,7 +36,7 @@ function numberFloor(number:number, decimalPlaces:number=2) {
         throw new Error('第一个参数必须是有效的数字');
     }
 
-    console.log()
+
     if (!Number.isInteger(decimalPlaces) || decimalPlaces < 0) {
         throw new Error('第二个参数必须是非负整数');
     }

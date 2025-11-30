@@ -145,7 +145,7 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
     });
   }
 
-  console.log("处理后的礼包数据:", formatPacks);
+  // console.log("处理后的礼包数据:", formatPacks);
   displayPacksData.value = formatPacks;
 };
 

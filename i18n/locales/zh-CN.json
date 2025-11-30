@@ -33,6 +33,26 @@
     "siteName": "终末地一图流"
   },
   "component": {
+    "home": {
+        "checkAccess": {
+          "comprehensiveTestQualificationCheck":"全面测试资格查询",
+          "checkAccessOnEndfieldOfficialSite":"前往终末地官网查询资格"
+        },
+      "penguinStatistics": {
+        "penguin":"企鹅物流",
+        "penguinStatistics":"企鹅物流数据统计",
+        "penguinStatisticsDescription":"企鹅物流数据统计（Penguin Statistics）是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。",
+        "itemDropRates": "材料掉率",
+        "itemDropRatesDoc": "我该去哪刷石头？",
+        "stageDropRates": "作战掉率",
+        "stageDropRatesDoc": "这图掉率如何？",
+        "dropReports": "掉落汇报",
+        "dropReportsDoc": "我要汇报掉落",
+        "farmingPlanner": "刷图规划",
+        "farmingPlannerDoc": "请给我刷图建议"
+
+      }
+    },
     "particleWord": {
       "loading": "正在加载粒子动画..."
     },

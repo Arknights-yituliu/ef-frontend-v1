@@ -11,7 +11,7 @@ const openNewPage = (url:string)=>{
     <v-card-title>
       <div class="home-navigation-card-title">
         <img src="~/assets/icon/endfield-icon.png" alt="" class="home-navigation-card-title-icon" />
-        <b > 全面测试资格查询</b>
+        <b>{{ $t('component.home.checkAccess.comprehensiveTestQualificationCheck') }}</b>
       </div>
     </v-card-title>
     <v-card-text>
@@ -20,7 +20,7 @@ const openNewPage = (url:string)=>{
         <v-card-text>
           <div >
             <span>
-              前往终末地官网查询资格
+             {{$t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite')}}
             </span>
             <v-icon icon="mdi-open-in-new"></v-icon>
           </div>

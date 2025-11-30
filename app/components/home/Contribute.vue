@@ -27,10 +27,9 @@
 
 
       <v-btn prepend-icon="mdi-github"
+             color="primary"
              text="前往前端仓库"
-             class="contribute-btn"
              append-icon="mdi-open-in-new">
-
       </v-btn>
 
 
@@ -41,9 +40,7 @@
 <style scoped>
 
 
-.contribute-btn {
-  margin: var(--spacing-md) 0;
-}
+
 
 
 
