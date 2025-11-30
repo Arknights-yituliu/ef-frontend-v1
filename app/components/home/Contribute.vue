@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-
 const groupNumber = '696486169'
 const snackbar = ref(false)
 
@@ -21,10 +19,11 @@ const copyGroupNumber = async () => {
         <img alt="" src="">
         <b>{{ $t('component.home.contribute.title') }}</b>
         <div class="flex-1"/>
-        <v-btn append-icon="mdi-open-in-new"
+        <v-btn :text="$t('component.home.contribute.goToFrontendRepo')"
+               append-icon="mdi-open-in-new"
                color="primary"
                prepend-icon="mdi-github"
-               :text="$t('component.home.contribute.goToFrontendRepo')">
+               @click="()=>openNewPage('https://github.com/Arknights-yituliu/ef-frontend-v1')">
         </v-btn>
       </div>
     </v-card-title>
@@ -33,9 +32,9 @@ const copyGroupNumber = async () => {
         {{ $t('component.home.contribute.description') }}
         <span
           class="group-number"
-          @click="copyGroupNumber"
           role="button"
           tabindex="0"
+          @click="copyGroupNumber"
           @keydown.enter="copyGroupNumber"
           @keydown.space.prevent="copyGroupNumber"
         >
@@ -48,17 +47,20 @@ const copyGroupNumber = async () => {
       </p>
 
       <p class="p-li">
-        <a href="https://nuxt.com.cn/" target="_blank" rel="noopener noreferrer" class="simple-link">
+        <a class="simple-link" href="https://nuxt.com.cn/" rel="noopener noreferrer"
+           target="_blank">
           <b>Nuxt 4.x</b> - {{ $t('component.home.contribute.nuxtDescription') }}
         </a>
       </p>
       <p class="p-li">
-        <a href="https://cn.vuejs.org/" target="_blank" rel="noopener noreferrer" class="simple-link">
+        <a class="simple-link" href="https://cn.vuejs.org/" rel="noopener noreferrer"
+           target="_blank">
           <b>Vue 3.x</b> - {{ $t('component.home.contribute.vueDescription') }}
         </a>
       </p>
       <p class="p-li">
-        <a href="https://vuetifyjs.com/zh-Hans/" target="_blank" rel="noopener noreferrer" class="simple-link">
+        <a class="simple-link" href="https://vuetifyjs.com/zh-Hans/" rel="noopener noreferrer"
+           target="_blank">
           <b>Vuetify 3.x</b> - {{ $t('component.home.contribute.vuetifyDescription') }}
         </a>
       </p>

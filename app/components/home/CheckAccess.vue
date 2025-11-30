@@ -1,8 +1,4 @@
-<script setup lang="ts">
-
-const openNewPage = (url:string)=>{
-  window.open(url)
-}
+<script lang="ts" setup>
 
 </script>
 
@@ -10,18 +6,19 @@ const openNewPage = (url:string)=>{
   <v-card class="home-navigation-card">
     <v-card-title>
       <div class="home-navigation-card-title">
-        <img src="~/assets/icon/endfield-icon.png" alt="" class="home-navigation-card-title-icon" />
+        <img alt="" class="home-navigation-card-title-icon" src="~/assets/icon/endfield-icon.png"/>
         <b>{{ $t('component.home.checkAccess.comprehensiveTestQualificationCheck') }}</b>
         <div class="flex-1"/>
       </div>
     </v-card-title>
     <v-card-text>
-      <img src="https://cos.yituliu.cn/endfield/other/test-kv.jpg" alt="" class="test-kv">
-      <v-card class="check-access-btn"  hover @click="openNewPage('https://endfield.hypergryph.com/checkAccess')">
+      <img alt="" class="test-kv" src="https://cos.yituliu.cn/endfield/other/test-kv.jpg">
+      <v-card class="check-access-btn" hover
+              @click="()=>openNewPage('https://endfield.hypergryph.com/checkAccess')">
         <v-card-text>
-          <div >
+          <div>
             <span>
-             {{$t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite')}}
+             {{ $t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite') }}
             </span>
             <v-icon icon="mdi-open-in-new"></v-icon>
           </div>

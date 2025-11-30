@@ -1,20 +1,5 @@
 <script lang="ts" setup>
-const openNewPage = (url: string) => {
-  window.open(url)
-}
 
-const toItemDropRates = () => {
-  window.open('https://penguin-stats.cn/result/item')
-}
-const toStageDropRates = () => {
-  window.open('https://penguin-stats.cn/result/stage')
-}
-const toDropReports = () => {
-  window.open('https://penguin-stats.cn/report/stage')
-}
-const toFarmingPlanner = () => {
-  window.open('https://penguin-stats.cn/planner')
-}
 </script>
 
 <template>
@@ -37,7 +22,7 @@ const toFarmingPlanner = () => {
       {{ $t('component.home.penguinStatistics.penguinStatisticsDescription') }}
       <!--      企鹅物流数据统计（Penguin Statistics）是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。-->
       <div class="penguin-statistics-function-group">
-        <v-card class="penguin-statistics-function" hover @click="toItemDropRates">
+        <v-card class="penguin-statistics-function" hover @click="()=>openNewPage('https://penguin-stats.cn/report/item')">
           <v-card-text>
             <v-icon icon="mdi-treasure-chest" size="42"></v-icon>
             <h2>{{ $t('component.home.penguinStatistics.itemDropRates') }}</h2>
@@ -45,21 +30,21 @@ const toFarmingPlanner = () => {
           </v-card-text>
         </v-card>
 
-        <v-card class="penguin-statistics-function" hover @click="toStageDropRates">
+        <v-card class="penguin-statistics-function" hover @click="()=>openNewPage('https://penguin-stats.cn/report/stage')">
           <v-card-text>
             <v-icon icon="mdi-cube" size="42"></v-icon>
             <h2>{{ $t('component.home.penguinStatistics.stageDropRates') }}</h2>
             <span>{{ $t('component.home.penguinStatistics.stageDropRatesDoc') }}</span>
           </v-card-text>
         </v-card>
-        <v-card class="penguin-statistics-function" hover @click="toDropReports">
+        <v-card class="penguin-statistics-function" hover @click="()=>openNewPage('https://penguin-stats.cn/report/stage')">
           <v-card-text>
             <v-icon icon="mdi-upload" size="42"></v-icon>
             <h2>{{ $t('component.home.penguinStatistics.dropReports') }}</h2>
             <span>{{ $t('component.home.penguinStatistics.dropReportsDoc') }}</span>
           </v-card-text>
         </v-card>
-        <v-card class="penguin-statistics-function" hover @click="toFarmingPlanner">
+        <v-card class="penguin-statistics-function" hover @click="()=>openNewPage('https://penguin-stats.cn/planner')">
           <v-card-text>
             <v-icon icon="mdi-directions-fork" size="42"></v-icon>
             <h2>{{ $t('component.home.penguinStatistics.farmingPlanner') }}</h2>

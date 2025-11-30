@@ -30,3 +30,10 @@ export const resolvePictureUrl = (
   return undefined
 }
 
+/**
+ * 在新窗口中打开 URL
+ * @param url 要打开的 URL 地址
+ */
+export const openNewPage = (url: string): void => {
+  window.open(url)
+}

@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-const openNewPage = (url: string) => {
-  window.open(url)
-}
 
 </script>
 
