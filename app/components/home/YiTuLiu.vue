@@ -14,7 +14,7 @@ const openNewPage = (url: string) => {
         <div class="flex-1"/>
         <v-btn append-icon="mdi-open-in-new"
                color="primary"
-               prepend-icon="mdi-github"
+               prepend-icon="mdi-web"
                :text="$t('component.home.yiTuLiu.goToYiTuLiu')"
                @click="openNewPage('https://ark.yituliu.cn/')">
         </v-btn>

@@ -28,7 +28,7 @@ const toFarmingPlanner = () => {
         <v-btn :text="$t('component.home.penguinStatistics.penguinStatistics')"
                append-icon="mdi-open-in-new"
                color="primary"
-               prepend-icon="mdi-github"
+               prepend-icon="mdi-web"
                @click="openNewPage('https://penguin-stats.cn/')">
         </v-btn>
       </div>
