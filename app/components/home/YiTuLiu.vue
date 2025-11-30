@@ -1,46 +1,64 @@
-<script setup lang="ts">
-const openNewPage = (url:string)=>{
+<script lang="ts" setup>
+const openNewPage = (url: string) => {
   window.open(url)
 }
 
 </script>
 
 <template>
-  <v-card class="home-navigation-card" elevation="6">
+  <v-card class="home-navigation-card">
     <v-card-title>
       <div class="home-navigation-card-title">
-        <img src="~/assets/icon/yituliu-icon.png" alt="" class="home-navigation-card-title-icon" />
-        <b > 明日方舟一图流</b>
+        <img alt="" class="home-navigation-card-title-icon" src="~/assets/icon/yituliu-icon.png"/>
+        <b>{{ $t('component.home.yiTuLiu.title') }}</b>
+        <div class="flex-1"/>
+        <v-btn append-icon="mdi-open-in-new"
+               color="primary"
+               prepend-icon="mdi-github"
+               :text="$t('component.home.yiTuLiu.goToYiTuLiu')"
+               @click="openNewPage('https://ark.yituliu.cn/')">
+        </v-btn>
       </div>
 
     </v-card-title>
     <v-card-text>
-      明日方舟一图流旨在为各位博士提供各种游戏内资源性价比攻略，提供了包括但不限于刷图推荐、商店性价比、攒抽计算器以及很多小工具。
+      {{ $t('component.home.yiTuLiu.description') }}
       <p class="p-title">
-        材料规划：
+        {{ $t('component.home.yiTuLiu.materialPlanning') }}
       </p>
-      <p class="p-li"><b>精英材料刷取推荐：</b>精英材料刷取地点参考</p>
-      <p class="p-li"><b>商店性价比：</b>商店兑换优先级参考</p>
-      <p class="p-li"><b>干员精二价值表：</b>可在使用直升道具与专精道具时对每个干员材料消耗进行参考</p>
+      <p class="p-li">
+        <a href="https://ark.yituliu.cn/" class="simple-link">
+          <b>{{ $t('component.home.yiTuLiu.eliteMaterialRecommendation') }}：</b>{{ $t('component.home.yiTuLiu.eliteMaterialRecommendationDoc') }}
+        </a>
+      </p>
+      <p class="p-li">
+        <a href="https://ark.yituliu.cn/material/store" class="simple-link">
+          <b>{{ $t('component.home.yiTuLiu.shopValue') }}：</b>{{ $t('component.home.yiTuLiu.shopValueDoc') }}
+        </a>
+      </p>
+      <p class="p-li">
+        <a href="https://ark.yituliu.cn/material/elite" class="simple-link">
+          <b>{{ $t('component.home.yiTuLiu.operatorE2ValueTable') }}：</b>{{ $t('component.home.yiTuLiu.operatorE2ValueTableDoc') }}
+        </a>
+      </p>
       <p class="p-title">
-        实用小工具：
+        {{ $t('component.home.yiTuLiu.practicalTools') }}
       </p>
-      <p class="p-li"><b>攒抽计算器：</b>抽卡策略规划</p>
-      <p class="p-li"><b>排班生成器：</b>提供帕拉斯的基建协议可视化编辑器</p>
-      <p class="p-li"><b>专精减半计算器：</b>提供减半类专精技能的计算</p>
-      <p class="p-li"><b>干员精二价值表：</b>可在使用直升道具与专精道具时对每个干员材料消耗进行参考
+      <p class="p-li">
+        <a href="https://ark.yituliu.cn/tools/gachaCalc" class="simple-link">
+          <b>{{ $t('component.home.yiTuLiu.savePullCalculator') }}：</b>{{ $t('component.home.yiTuLiu.savePullCalculatorDoc') }}
+        </a>
       </p>
-
-      <v-btn prepend-icon="mdi-github"
-             color="primary"
-             text="前往明日方舟一图流"
-             @click="openNewPage('https://ark.yituliu.cn/')"
-             append-icon="mdi-open-in-new">
-      </v-btn>
+      <p class="p-li">
+        <a href="https://ark.yituliu.cn/tools/scheduleV2" class="simple-link">
+          <b>{{ $t('component.home.yiTuLiu.scheduleGenerator') }}：</b>{{ $t('component.home.yiTuLiu.scheduleGeneratorDoc') }}
+        </a>
+      </p>
+      <p class="p-li">
+        <a href="https://ark.yituliu.cn/tools/specializationTimeCalculate" class="simple-link">
+          <b>{{ $t('component.home.yiTuLiu.specializationHalfCalculator') }}：</b>{{ $t('component.home.yiTuLiu.specializationHalfCalculatorDoc') }}
+        </a>
+      </p>
     </v-card-text>
   </v-card>
 </template>
-
-<style scoped>
-
-</style>

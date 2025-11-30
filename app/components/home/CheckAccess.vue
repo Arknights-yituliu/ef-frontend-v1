@@ -7,11 +7,12 @@ const openNewPage = (url:string)=>{
 </script>
 
 <template>
-  <v-card class="home-navigation-card" elevation="6" >
+  <v-card class="home-navigation-card">
     <v-card-title>
       <div class="home-navigation-card-title">
         <img src="~/assets/icon/endfield-icon.png" alt="" class="home-navigation-card-title-icon" />
         <b>{{ $t('component.home.checkAccess.comprehensiveTestQualificationCheck') }}</b>
+        <div class="flex-1"/>
       </div>
     </v-card-title>
     <v-card-text>

@@ -26,7 +26,8 @@
     "loading": "加载中...",
     "error": "错误",
     "retry": "重试",
-    "noData": "暂无数据"
+    "noData": "暂无数据",
+    "close": "关闭"
   },
   "layout": {
     "theme": "主题",
@@ -51,6 +52,36 @@
         "farmingPlanner": "刷图规划",
         "farmingPlannerDoc": "请给我刷图建议"
 
+      },
+      "yiTuLiu": {
+        "title": "明日方舟一图流",
+        "goToYiTuLiu": "前往明日方舟一图流",
+        "description": "明日方舟一图流旨在为各位博士提供各种游戏内资源性价比攻略，提供了包括但不限于刷图推荐、商店性价比、攒抽计算器以及很多小工具。",
+        "materialPlanning": "材料规划：",
+        "eliteMaterialRecommendation": "精英材料刷取推荐",
+        "eliteMaterialRecommendationDoc": "精英材料刷取地点参考",
+        "shopValue": "商店性价比",
+        "shopValueDoc": "商店兑换优先级参考",
+        "operatorE2ValueTable": "干员精二价值表",
+        "operatorE2ValueTableDoc": "可在使用直升道具与专精道具时对每个干员材料消耗进行参考",
+        "practicalTools": "实用小工具：",
+        "savePullCalculator": "攒抽计算器",
+        "savePullCalculatorDoc": "抽卡策略规划",
+        "scheduleGenerator": "排班生成器",
+        "scheduleGeneratorDoc": "提供帕拉斯的基建协议可视化编辑器",
+        "specializationHalfCalculator": "专精减半计算器",
+        "specializationHalfCalculatorDoc": "提供减半类专精技能的计算"
+      },
+      "contribute": {
+        "title": "参与开发",
+        "goToFrontendRepo": "前往前端仓库",
+        "description": "如果您愿意对终末地一图流提供帮助，并对以下多项或单项技术有了解，请加入我们的开发群",
+        "descriptionSuffix": "。",
+        "copySuccess": "复制成功",
+        "coreTechnologiesTitle": "前端项目基于以下核心技术构建：",
+        "nuxtDescription": "基于 Vue.js 的全栈框架",
+        "vueDescription": "渐进式 JavaScript 框架",
+        "vuetifyDescription": "Vue 的 Material Design 组件库"
       }
     },
     "particleWord": {
