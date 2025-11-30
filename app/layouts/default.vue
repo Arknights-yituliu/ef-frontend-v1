@@ -519,7 +519,7 @@ onUnmounted(() => {
 
   .main-content {
     margin-left: 0 !important;
-    padding: 1.5rem;
+    padding: 0.3rem !important;
     width: 100%;
     flex: 1;
   }

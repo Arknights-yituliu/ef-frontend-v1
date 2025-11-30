@@ -1,0 +1,15 @@
+:root{
+  /* 字体大小系统 */
+  --font-size-xs: 1rem;
+  --font-size-sm: 1.125rem;
+  --font-size-base: 1.25rem;
+  --font-size-md: 1.5rem;
+  --font-size-lg: 1.75rem;
+  --font-size-xl: 2.25rem;
+  --font-size-2xl: 2.625rem;
+  --font-size-3xl: 3rem;
+  --font-size-4xl: 3.625rem;
+  --font-size-5xl: 4.5rem;
+
+
+}
