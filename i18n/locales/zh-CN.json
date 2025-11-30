@@ -75,7 +75,7 @@
       "contribute": {
         "title": "参与开发",
         "goToFrontendRepo": "前往前端仓库",
-        "description": "如果您愿意对终末地一图流提供帮助，并对以下多项或单项技术有了解，请加入我们的开发群",
+        "description": "如果您愿意对终末地一图流提供帮助，并对以下多项或单项技术有了解，欢迎加入我们的开发群",
         "descriptionSuffix": "。",
         "copySuccess": "复制成功",
         "coreTechnologiesTitle": "前端项目基于以下核心技术构建：",
