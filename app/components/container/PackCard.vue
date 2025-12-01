@@ -4,13 +4,12 @@
       <!-- 左侧：图片区域 -->
       <div class="pack-card-part-left">
         <img
-          v-show="packData.imageUrl&& !imageError"
+          v-show="packData.imageUrl && !imageError"
           :alt="packDisplayName"
           :src="packData.imageUrl"
           class="pack-image"
           loading="lazy"
           @error="(e) => handleImageError()"
-
         />
         <div v-show="imageError" class="image-placeholder">
           <span class="placeholder-icon">📦</span>
@@ -29,38 +28,28 @@
       <div class="pack-info">
         <!-- 左侧：价值信息 -->
         <div class="pack-info-text">
-          <span
-            v-if="packData.valueMetrics.stoneEquivalent > 0"
-            class="value-stone"
-          >
-            {{
-              $t('component.packCard.equivalent')
-            }} {{
-              numberFloor(packData.valueMetrics.stoneEquivalent, 2)
-            }} {{ $t("component.packCard.stone") }}
+          <span v-if="packData.valueMetrics.stoneEquivalent > 0" class="value-stone">
+            {{ $t('component.packCard.equivalent') }}
+            {{ numberFloor(packData.valueMetrics.stoneEquivalent, 2) }}
+            {{ $t('component.packCard.stone') }}
+          </span>
+          <span v-if="packData.valueMetrics.pricePerStone > 0" class="value-stone">
+            ￥{{ packData.price }} / {{ $t('component.packCard.stone') }}
           </span>
           <span
-            v-if="packData.valueMetrics.pricePerStone > 0"
-            class="value-stone"
-          >
-            ￥{{ packData.price }} / {{ $t("component.packCard.stone") }}
+            class="value-separate"
+            v-if="
+              packData.valueMetrics.stoneEquivalent > 0 || packData.valueMetrics.pricePerStone > 0
+            "
+          ></span>
+          <span v-if="packData.valueMetrics.totalPulls > 0" class="value-pull">
+            {{ $t('component.packCard.total') }}
+            {{ numberFloor(packData.valueMetrics.totalPulls, 2) }}
+            {{ $t('component.packCard.pull') }}
           </span>
-          <span class="value-separate" v-if="packData.valueMetrics.stoneEquivalent > 0 || packData.valueMetrics.pricePerStone > 0"/>
-          <span
-            v-if="packData.valueMetrics.totalPulls > 0"
-            class="value-pull"
-          >
-            {{ $t('component.packCard.total') }} {{
-              numberFloor(packData.valueMetrics.totalPulls, 2)
-            }} {{ $t("component.packCard.pull") }}
-          </span>
-          <span
-            v-if="packData.valueMetrics.pricePerPull > 0"
-            class="value-pull"
-          >
-            ￥{{
-              numberFloor(packData.valueMetrics.pricePerPull, 2)
-            }} / {{ $t("component.packCard.pull") }}
+          <span v-if="packData.valueMetrics.pricePerPull > 0" class="value-pull">
+            ￥{{ numberFloor(packData.valueMetrics.pricePerPull, 2) }} /
+            {{ $t('component.packCard.pull') }}
           </span>
         </div>
 
@@ -76,7 +65,7 @@
             <div
               :style="{
                 width: `${bar.widthPx}px`,
-                maxWidth: '100%'
+                maxWidth: '100%',
               }"
               class="pack-line-bar"
             >
@@ -93,26 +82,26 @@
     </div>
 
     <!-- 展开的内容表格 - 藏在卡片背后 -->
-    <div :class="{ 'expanded': isExpanded }" class="pack-contents-table">
+    <div :class="{ expanded: isExpanded }" class="pack-contents-table">
       <div class="pack-contents-header">
         <h3>{{ $t('component.packCard.contents') }}</h3>
       </div>
       <table class="contents-table">
         <thead>
-        <tr>
-          <th>{{ $t('component.packCard.itemName') }}</th>
-          <th>{{ $t('component.packCard.quantity') }}</th>
-          <th>{{ $t('component.packCard.totalValue') }}</th>
-          <th>{{ $t('component.packCard.percentage') }}</th>
-        </tr>
+          <tr>
+            <th>{{ $t('component.packCard.itemName') }}</th>
+            <th>{{ $t('component.packCard.quantity') }}</th>
+            <th>{{ $t('component.packCard.totalValue') }}</th>
+            <th>{{ $t('component.packCard.percentage') }}</th>
+          </tr>
         </thead>
         <tbody>
-        <tr v-for="(content, index) in packData.contents" :key="index">
-          <td>{{ content.name }}</td>
-          <td>{{ content.quantity }}</td>
-          <td>{{ numberFloor(content.totalValue) }}</td>
-          <td>{{ numberFloor(content.percentage) }}</td>
-        </tr>
+          <tr v-for="(content, index) in packData.contents" :key="index">
+            <td>{{ content.itemName }}</td>
+            <td>{{ content.quantity }}</td>
+            <td>{{ numberFloor(content.totalValue) }}</td>
+            <td>{{ numberFloor(content.percentage) }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -125,62 +114,48 @@
 </template>
 
 <script lang="ts" setup>
-import type {PackData} from '@/shared/types/pack'
-import {numberFloor} from "#shared/utils/numberUtil";
+import type { PackData } from '@/shared/types/pack';
+import { numberFloor } from '#shared/utils/numberUtil';
 
 const props = defineProps<{
-  packData: PackData
-}>()
+  packData: PackData;
+}>();
 
-// console.log(props.packData)
-
-const {locale, t} = useI18n()
-const imageError = ref(false)
-const isExpanded = ref(false)
+const { locale, t } = useI18n();
+const imageError = ref(false);
+const isExpanded = ref(false);
 
 const packDisplayName = computed(() => {
   return locale.value === 'en-US'
     ? props.packData.packDisplayNameEN
-    : props.packData.packDisplayNameZH
-})
+    : props.packData.packDisplayNameZH;
+});
 
 const packDescription = computed(() => {
-  const desc = locale.value === 'en-US'
-    ? props.packData.descriptionEN
-    : props.packData.descriptionZH
-  return desc && desc.trim() ? desc : null
-})
+  const desc =
+    locale.value === 'en-US' ? props.packData.descriptionEN : props.packData.descriptionZH;
+  return desc && desc.trim() ? desc : null;
+});
 
-const countdownText = computed(() => {
-  // return t('component.packCard.daysLeft', { days: props.packData.countdownDays })
-})
-
-// 图片加载失败的处理函数
-const handleImgError = (e: Event) => {
-  const img = e.target as HTMLImageElement;
-  // 替换为保底图片（防止保底图片也失败导致循环触发，可加判断）
-
-  img.src = "https://cos.yituliu.cn/endfield/pack-image/198%E5%85%83%E6%BA%90%E7%9F%B3.png";
-  // 可选：替换后移除error事件，避免保底图片失败时重复触发
-  // img.removeEventListener('error', handleImgError);
-
-};
+const countdownText = computed(() =>
+  t('component.packCard.daysLeft', { days: props.packData.countdownDays }),
+);
 
 const visibleComparisonBars = computed(() => {
-  return props.packData.comparisonBars
-})
+  return props.packData.comparisonBars;
+});
 
-const barLabel = (bar: typeof props.packData.comparisonBars[0]) => {
-  return locale.value === 'en-US' ? bar.labelEN : bar.labelZH
-}
+const barLabel = (bar: (typeof props.packData.comparisonBars)[0]) => {
+  return locale.value === 'en-US' ? bar.labelEN : bar.labelZH;
+};
 
 const handleImageError = () => {
-  imageError.value = true
-}
+  imageError.value = true;
+};
 
 const toggleExpanded = () => {
-  isExpanded.value = !isExpanded.value
-}
+  isExpanded.value = !isExpanded.value;
+};
 </script>
 
 <style scoped>
@@ -194,7 +169,9 @@ const toggleExpanded = () => {
   width: 100%;
   position: relative;
   z-index: 10;
-  transition: transform var(--transition-base), filter var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    filter var(--transition-base);
   cursor: pointer;
 }
 
@@ -210,7 +187,9 @@ const toggleExpanded = () => {
   position: relative;
   z-index: 11;
   box-shadow: 0 0 0.75rem var(--theme-shadow-base);
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 .pack-image {
@@ -277,7 +256,10 @@ const toggleExpanded = () => {
   box-shadow: 0 0 0.5rem var(--theme-shadow-accent);
   border-radius: var(--radius-sm);
   border: 1px solid var(--theme-glass-border);
-  transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
 }
 
 .pack-corner::before {
@@ -332,7 +314,9 @@ const toggleExpanded = () => {
   line-height: 1.2;
   border-top: 1px solid var(--theme-decorative-overlay);
   box-shadow: 0 -2px 8px var(--theme-glass-shadow);
-  transition: background var(--transition-base), color var(--transition-base);
+  transition:
+    background var(--transition-base),
+    color var(--transition-base);
 }
 
 /* 右侧信息区域 */
@@ -347,7 +331,10 @@ const toggleExpanded = () => {
   position: relative;
   z-index: 10;
   border: 1px solid var(--theme-border);
-  transition: box-shadow var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base),
+    border-color var(--transition-base);
   overflow: hidden;
 }
 
@@ -404,7 +391,7 @@ const toggleExpanded = () => {
   color: var(--theme-accent-color);
 }
 
-.value-separate{
+.value-separate {
   width: 2px;
   background-color: var(--theme-decorative-overlay-light);
 }
@@ -489,7 +476,10 @@ const toggleExpanded = () => {
   align-items: center;
 
   box-shadow: 0 0 0.25rem var(--theme-shadow-accent);
-  transition: background-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
   position: relative;
   overflow: hidden;
 }
@@ -534,15 +524,13 @@ const toggleExpanded = () => {
   position: absolute;
   right: 0;
   font-size: 12px;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    var(--theme-decorative-overlay-light) 100%
-  );
+  background: linear-gradient(135deg, transparent 0%, var(--theme-decorative-overlay-light) 100%);
   backdrop-filter: blur(4px);
   border-top: 1px solid var(--theme-border);
   border-left: 1px solid var(--theme-border);
-  transition: color var(--transition-fast), background var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
   z-index: 2;
 }
 

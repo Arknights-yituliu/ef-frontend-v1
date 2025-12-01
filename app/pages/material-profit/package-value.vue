@@ -5,7 +5,7 @@
 
     <!-- 礼包卡片列表 -->
     <div class="packs-container" v-if="displayPacksData.length > 0">
-      <ContainerPackCard v-for="(pack, index) in displayPacksData" :key="index"   :pack-data="pack" />
+      <ContainerPackCard v-for="(pack, index) in displayPacksData" :key="index" :pack-data="pack" />
     </div>
 
     <div class="no-data" v-else>
@@ -15,21 +15,20 @@
 </template>
 
 <script setup lang="ts">
-import packsDataJson from '@/custom/core/packs.json';
-import type {ComparisonBar, PackData, PackDataDTO, PackValueMetrics} from '@/shared/types/pack';
-import itemInfoTable from '@/custom/core/itemInfo';
-import {gachaItemMap} from "@/custom/core/gachaItem";
-import {onMounted} from "vue";
-
+import { gachaItemMap } from '@/custom/core/gachaItem';
+import { itemInfo } from '@/custom/core/itemInfo';
+import { packs } from '@/custom/core/packs';
+import type { ComparisonBar, PackData, PackDataDTO, PackValueMetrics } from '@/shared/types/pack';
+import { onMounted } from 'vue';
 
 // 全局数据引用
-const packsData = ref<PackDataDTO[]>(packsDataJson as PackDataDTO[]);
+const packsData = ref<PackDataDTO[]>(packs);
 const displayPacksData = ref<PackData[]>([]);
 
 // 抽卡性价比基准       1衍质源石->75嵌晶玉->0.15抽
-const pricePerPullBenchmark = 648 / (350 * 75 / 500);
+const pricePerPullBenchmark = 648 / ((350 * 75) / 500);
 // 综合性价比基准
-const pricePerStoneBenchmark = 648 / 350
+const pricePerStoneBenchmark = 648 / 350;
 
 // ====================== 工具函数 ======================
 /**
@@ -38,13 +37,12 @@ const pricePerStoneBenchmark = 648 / 350
  * @returns 物品信息 | undefined
  */
 const getItemInfo = (itemKey: string): ItemInfo | undefined => {
-  const info = itemInfoTable[itemKey];
+  const info = itemInfo[itemKey];
   if (!info) {
     console.warn(`物品 "${itemKey}" 未在物品信息表中找到`);
   }
   return info;
 };
-
 
 /**
  * 计算礼包价值指标并生成对比数据
@@ -62,9 +60,9 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
     // 一次遍历完成：物品价值统计 + 抽卡数统计 + 单个物品价值计算
     for (const item of contents) {
       // 优先用id匹配，兼容name字段
-      const itemKey = item.id || item.name;
+      const itemKey = item.itemId || item.itemName;
       if (!itemKey) {
-        console.warn("物品缺少ID/名称");
+        console.warn('物品缺少ID/名称');
         continue;
       }
 
@@ -89,7 +87,7 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
 
     // ====================== 礼包核心价值指标计算 ======================
     // 等价源石数：总物品价值 / 源石价值系数
-    const stoneEquivalent:number = totalValue / 40;
+    const stoneEquivalent: number = totalValue / 40;
     // 每源石价格（处理0值避免Infinity）
     const pricePerStone = stoneEquivalent > 0 ? price / stoneEquivalent : 0;
     // 每抽价格（处理0抽避免Infinity）
@@ -106,22 +104,22 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
     const comparisonBars: ComparisonBar[] = [
       // 基准：648元源石档
       {
-        labelZH: "648源石",
-        labelEN: "648 Originium",
+        labelZH: '648源石',
+        labelEN: '648 Originium',
         percentage: 1,
         widthPx: 100,
       },
       // 仅抽卡性价比对比
       {
-        labelZH: "仅抽卡",
-        labelEN: "Gacha Only",
+        labelZH: '仅抽卡',
+        labelEN: 'Gacha Only',
         percentage: totalPulls > 0 ? pricePerPullBenchmark / pricePerPull : 0,
         widthPx: totalPulls > 0 ? 100 * (pricePerPullBenchmark / pricePerPull) : 0,
       },
       // 全物品性价比对比
       {
-        labelZH: "全物品",
-        labelEN: "All Items",
+        labelZH: '全物品',
+        labelEN: 'All Items',
         percentage: stoneEquivalent > 0 ? pricePerStoneBenchmark / pricePerStone : 0,
         widthPx: stoneEquivalent > 0 ? 100 * (pricePerStoneBenchmark / pricePerStone) : 0,
       },
@@ -132,7 +130,7 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
 
     // 计算单个物品价值占比（总价值为0时设为0）
     if (totalValue > 0) {
-      contents.forEach(item => {
+      contents.forEach((item) => {
         item.percentage = (item.totalValue || 0) / totalValue;
       });
     }
@@ -149,10 +147,9 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
   displayPacksData.value = formatPacks;
 };
 
-
-onMounted(()=>{
-  calculatePackValueMetrics(packsData.value)
-})
+onMounted(() => {
+  calculatePackValueMetrics(packsData.value);
+});
 
 definePageMeta({
   layout: 'default',
