@@ -125,7 +125,7 @@
         "description": "本页面用于展示商店中各种商品的性价比分析，帮助玩家做出更明智的购买决策。",
         "itemName": "物品名称",
         "quantityPerGroup": "每组数量",
-        "originalPrice": "原价",
+        "currentPrice": "现价",
         "totalValue": "总价值",
         "costPerformance": "性价比"
       },

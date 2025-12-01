@@ -1,15 +1,17 @@
+export interface ShopItem {
+  itemId: string;
+  itemName?: string;
+  quantityPerGroup: number; // 每组数量
+  stockGroups?: number; // 库存组数
+  originalPrice?: number; // 原价
+  discount?: number; // 折扣
+  currentPrice: number; // 现价
+}
+
 export interface Shop {
   shopId: string;
   shopName: string;
-  shopItems: {
-    itemId: string;
-    itemName?: string;
-    quantityPerGroup: number; // 每组数量
-    stockGroups?: number; // 库存组数
-    originalPrice?: number; // 原价
-    discount?: number; // 折扣
-    currentPrice: number; // 现价
-  }[];
+  shopItems: ShopItem[];
 }
 
 export const shops: Shop[] = [

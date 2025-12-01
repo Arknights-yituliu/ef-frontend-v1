@@ -15,7 +15,7 @@
               {{ $t('page.materialProfit.shopValue.quantityPerGroup') }}
             </th>
             <th>
-              {{ $t('page.materialProfit.shopValue.originalPrice') }}
+              {{ $t('page.materialProfit.shopValue.currentPrice') }}
             </th>
             <th>
               {{ $t('page.materialProfit.shopValue.totalValue') }}
@@ -27,9 +27,9 @@
         </thead>
         <tbody>
           <tr v-for="item in shop.shopItems" :key="item.itemId">
-            <td>{{ item.itemName || item.itemId }}</td>
+            <td>{{ getItemName(item.itemId) }}</td>
             <td>{{ item.quantityPerGroup }}</td>
-            <td>{{ item.originalPrice }}</td>
+            <td>{{ item.currentPrice }}</td>
             <td>{{ getTotalValue(item).toFixed(2) }}</td>
             <td>{{ getCostPerformance(item).toFixed(2) }}</td>
           </tr>
@@ -40,19 +40,16 @@
 </template>
 
 <script setup lang="ts">
+import type { ShopItem } from '@/custom/core/shops';
 import { shops } from '@/custom/core/shops';
-import { itemInfo } from '@/custom/core/itemInfo';
-
-type ShopItem = (typeof shops)[number]['shopItems'][number];
+import { getItemName, getItemValue } from '@/shared/utils/gameData/item';
 
 function getTotalValue(shopItem: ShopItem): number {
-  const itemValue = itemInfo[shopItem.itemId]?.value ?? 0;
-  return itemValue * shopItem.quantityPerGroup;
+  return getItemValue(shopItem.itemId) * shopItem.quantityPerGroup;
 }
 
 function getCostPerformance(item: ShopItem): number {
-  const totalValue = getTotalValue(item);
-  return totalValue / item.currentPrice;
+  return getTotalValue(item) / item.currentPrice;
 }
 
 definePageMeta({
