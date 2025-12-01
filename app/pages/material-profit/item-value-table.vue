@@ -2,19 +2,31 @@
   <div class="item-value-table-page">
     <h1 class="page-title">{{ $t('page.materialProfit.itemValueTable.title') }}</h1>
     <p class="page-description">{{ $t('page.materialProfit.itemValueTable.description') }}</p>
-    <div class="d-flex flex-column ga-5">
+    <v-table>
+      <thead>
+        <tr>
+          <th>{{ $t('page.materialProfit.itemValueTable.itemName') }}</th>
+          <th>{{ $t('page.materialProfit.itemValueTable.itemValue') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in itemInfo" :key="item.itemId">
+          <td>{{ item.itemName || item.itemId }}</td>
+          <td>{{ item.value.toFixed(4) }}</td>
+        </tr>
+      </tbody>
+    </v-table>
+    <!-- <div class="d-flex flex-column ga-5">
       <div class="d-flex ga-5 align-center" v-for="item in itemInfo">
-        <div class="">{{ item.name }}</div>
+        <div class="">{{ item.itemName }}</div>
         <div>{{ item.value.toFixed(4) }}</div>
       </div>
-    </div>
+    </div> -->
   </div>
-
-
 </template>
 
 <script setup lang="ts">
-import itemInfo from '@/custom/core/itemInfo';
+import { itemInfo } from '@/custom/core/itemInfo';
 
 definePageMeta({
   layout: 'default',

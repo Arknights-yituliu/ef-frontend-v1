@@ -1,10 +1,7 @@
 export interface ItemInfo {
-  id: string;
-  name: string;
+  itemId: string;
+  itemName: string;
   value: number;
-  pulls?: number;
 }
 
-export interface ItemInfoMap {
-  [key: string]: ItemInfo;
-}
+export type ItemInfoMap = Record<string, ItemInfo>;

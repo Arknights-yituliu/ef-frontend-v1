@@ -35,14 +35,14 @@
   },
   "component": {
     "home": {
-        "checkAccess": {
-          "comprehensiveTestQualificationCheck":"全面测试资格查询",
-          "checkAccessOnEndfieldOfficialSite":"前往终末地官网查询资格"
-        },
+      "checkAccess": {
+        "comprehensiveTestQualificationCheck": "全面测试资格查询",
+        "checkAccessOnEndfieldOfficialSite": "前往终末地官网查询资格"
+      },
       "penguinStatistics": {
-        "penguin":"企鹅物流",
-        "penguinStatistics":"企鹅物流数据统计",
-        "penguinStatisticsDescription":"企鹅物流数据统计（Penguin Statistics）是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。",
+        "penguin": "企鹅物流",
+        "penguinStatistics": "企鹅物流数据统计",
+        "penguinStatisticsDescription": "企鹅物流数据统计（Penguin Statistics）是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。",
         "itemDropRates": "材料掉率",
         "itemDropRatesDoc": "我该去哪刷石头？",
         "stageDropRates": "作战掉率",
@@ -51,7 +51,6 @@
         "dropReportsDoc": "我要汇报掉落",
         "farmingPlanner": "刷图规划",
         "farmingPlannerDoc": "请给我刷图建议"
-
       },
       "yiTuLiu": {
         "title": "明日方舟一图流",
@@ -123,7 +122,12 @@
     "materialProfit": {
       "shopValue": {
         "title": "商店性价比",
-        "description": "本页面用于展示商店中各种商品的性价比分析，帮助玩家做出更明智的购买决策。"
+        "description": "本页面用于展示商店中各种商品的性价比分析，帮助玩家做出更明智的购买决策。",
+        "itemName": "物品名称",
+        "quantityPerGroup": "每组数量",
+        "originalPrice": "原价",
+        "totalValue": "总价值",
+        "costPerformance": "性价比"
       },
       "packageValue": {
         "title": "礼包性价比",
@@ -131,7 +135,9 @@
       },
       "itemValueTable": {
         "title": "物品价值表",
-        "description": "本页面用于展示游戏中各种物品的价值评估表，帮助玩家了解物品的相对价值。"
+        "description": "本页面用于展示游戏中各种物品的价值评估表，帮助玩家了解物品的相对价值。",
+        "itemName": "物品名称",
+        "itemValue": "价值"
       }
     },
     "others": {
@@ -184,4 +190,3 @@
     "noResults": "未找到相关文档"
   }
 }
-

@@ -122,7 +122,12 @@
     "materialProfit": {
       "shopValue": {
         "title": "Shop Value",
-        "description": "This page displays cost-effectiveness analysis of various items in the shop to help players make better purchasing decisions."
+        "description": "This page displays cost-effectiveness analysis of various items in the shop to help players make better purchasing decisions.",
+        "itemName": "Item Name",
+        "quantityPerGroup": "Quantity per Group",
+        "originalPrice": "Original Price",
+        "totalValue": "Total Value",
+        "costPerformance": "Cost Performance"
       },
       "packageValue": {
         "title": "Package Value",
@@ -130,7 +135,9 @@
       },
       "itemValueTable": {
         "title": "Item Value Table",
-        "description": "This page displays a value assessment table for various items in the game to help players understand the relative value of items."
+        "description": "This page displays a value assessment table for various items in the game to help players understand the relative value of items.",
+        "itemName": "Item Name",
+        "itemValue": "Item Value"
       }
     },
     "others": {
@@ -183,4 +190,3 @@
     "noResults": "No documents found"
   }
 }
-
