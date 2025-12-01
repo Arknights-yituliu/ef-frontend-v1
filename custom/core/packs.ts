@@ -454,7 +454,7 @@ export const packs: PackDataDTO[] = [
     packDisplayNameEN: '源石配给',
     descriptionZH: '价格为源石折算',
     descriptionEN: '价格为源石折算',
-    price: (29 / 350) * 648,
+    price: Math.round((29 / 350) * 648 * 10) / 10,
     imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/源石配给.png',
     contents: [
       { itemId: '应急理智加强剂', itemName: '应急理智加强剂', quantity: 1 },

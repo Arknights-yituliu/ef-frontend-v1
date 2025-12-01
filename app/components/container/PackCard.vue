@@ -537,7 +537,7 @@ const toggleExpanded = () => {
 /* 展开的内容表格 */
 .pack-contents-table {
   display: block;
-  width: 560px;
+  width: 620px;
   height: 0;
   margin: -15px 0 0 6px;
   overflow: hidden;
