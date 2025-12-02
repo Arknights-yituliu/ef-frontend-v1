@@ -372,6 +372,10 @@ definePageMeta({
   .filter-radio-group {
     width: 100%;
   }
+
+  .packs-container{
+    justify-content: center;
+  }
 }
 
 @media (max-width: 520px) {
