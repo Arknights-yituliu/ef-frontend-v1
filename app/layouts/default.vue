@@ -105,6 +105,20 @@
       </div>
     </div>
     <LayoutFooter/>
+    
+    <!-- 回到顶部按钮 -->
+    <v-fade-transition>
+      <v-btn
+          v-show="showBackToTop"
+          class="back-to-top-btn"
+          :color="theme === 'light' ? 'grey-lighten-3' : 'grey-darken-4'"
+          icon="mdi-arrow-up"
+          size="large"
+          variant="flat"
+          rounded="circle"
+          @click="scrollToTop"
+      />
+    </v-fade-transition>
   </div>
 </template>
 
@@ -115,6 +129,7 @@ const appConfig = useAppConfig()
 const initialLoaderConfig = appConfig.initialLoader ?? {}
 const menuItems = appConfig.menu.routes
 const {t} = useI18n()
+const {theme} = useTheme()
 
 // 初始动画加载器
 const isInitialLoading = ref(initialLoaderConfig.enabled !== false)
@@ -166,6 +181,21 @@ const closeDrawer = () => {
 // 监听窗口大小变化，自动关闭抽屉
 let resizeHandler: (() => void) | null = null
 
+// 回到顶部功能
+const showBackToTop = ref(false)
+const scrollThreshold = 300 // 滚动超过300px时显示按钮
+
+const handleScroll = () => {
+  showBackToTop.value = window.scrollY > scrollThreshold
+}
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+
 onMounted(() => {
   resizeHandler = () => {
     if (window.innerWidth > 768 && isDrawerOpen.value) {
@@ -173,12 +203,14 @@ onMounted(() => {
     }
   }
   window.addEventListener('resize', resizeHandler)
+  window.addEventListener('scroll', handleScroll)
 })
 
 onUnmounted(() => {
   if (resizeHandler) {
     window.removeEventListener('resize', resizeHandler)
   }
+  window.removeEventListener('scroll', handleScroll)
   // 清理body样式
   document.body.style.overflow = ''
 })
@@ -547,6 +579,29 @@ onUnmounted(() => {
   .main-content {
     margin-left: 0;
     padding: 1.5rem;
+  }
+}
+
+/* 回到顶部按钮 */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  box-shadow: 0 4px 12px var(--theme-shadow-accent-strong);
+  transition: all var(--transition-base);
+}
+
+.back-to-top-btn:hover {
+  box-shadow: 0 6px 16px var(--theme-shadow-accent-strong);
+  transform: translateY(-2px);
+}
+
+/* 小屏幕适配 */
+@media (max-width: 768px) {
+  .back-to-top-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
   }
 }
 
