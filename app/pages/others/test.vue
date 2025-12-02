@@ -178,10 +178,6 @@ definePageMeta({
 }
 
 @media (max-width: 480px) {
-  .others-test-page {
-    padding: 1rem 0;
-  }
-
   .page-title {
     font-size: var(--font-size-xl);
   }
