@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <h1 class="page-title">{{ $t('page.materialProfit.packageValue.title') }}</h1>
-<!--    <p class="page-description">{{ $t('page.materialProfit.packageValue.description') }}</p>-->
+    <!--    <p class="page-description">{{ $t('page.materialProfit.packageValue.description') }}</p>-->
 
     <!-- 筛选区 -->
     <div class="filter-container">
@@ -355,14 +355,11 @@ definePageMeta({
   color: var(--theme-text-secondary);
 }
 
-/* 响应式设计 */
 @media (max-width: 768px) {
   .page-title {
     font-size: var(--font-size-2xl);
   }
-}
 
-@media (max-width: 768px) {
   .filter-container {
     flex-direction: column;
     align-items: stretch;

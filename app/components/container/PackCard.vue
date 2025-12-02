@@ -612,7 +612,7 @@ const toggleExpanded = () => {
 }
 
 /* 采用纵向布局，合并为一张卡片 */
-@media (max-width: 610px) {
+@media (max-width: 650px) {
   /* 将 container 作为统一的卡片容器 */
   .pack-card-container {
     width: 100%;
