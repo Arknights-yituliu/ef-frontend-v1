@@ -4,8 +4,6 @@
 .nuxt
 .nitro
 .cache
-.cursor
-.vscode
 dist
 
 # Node dependencies
@@ -19,6 +17,8 @@ logs
 .DS_Store
 .fleet
 .idea
+.cursor
+.vscode
 
 # Local env files
 .env
