@@ -1,40 +1,32 @@
 <template>
-  <div class="shop-value-page">
+  <div class="page-container">
     <h1 class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</h1>
-    <p class="page-description">{{ $t('page.materialProfit.shopValue.description') }}</p>
+<!--    <p class="page-description">{{ $t('page.materialProfit.shopValue.description') }}</p>-->
 
-    <div v-for="shop in shops" :key="shop.shopId">
-      <h2>{{ shop.shopName }}</h2>
-      <v-table :hover="true">
-        <thead>
-          <tr>
-            <th>
-              {{ $t('page.materialProfit.shopValue.itemName') }}
-            </th>
-            <th>
-              {{ $t('page.materialProfit.shopValue.quantityPerGroup') }}
-            </th>
-            <th>
-              {{ $t('page.materialProfit.shopValue.currentPrice') }}
-            </th>
-            <th>
-              {{ $t('page.materialProfit.shopValue.totalValue') }}
-            </th>
-            <th>
-              {{ $t('page.materialProfit.shopValue.costPerformance') }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in shop.shopItems" :key="item.itemId">
-            <td>{{ getItemName(item.itemId) }}</td>
-            <td>{{ item.quantityPerGroup }}</td>
-            <td>{{ item.currentPrice }}</td>
-            <td>{{ getTotalValue(item).toFixed(2) }}</td>
-            <td>{{ getCostPerformance(item).toFixed(2) }}</td>
-          </tr>
-        </tbody>
-      </v-table>
+    <div v-for="shop in shops" :key="shop.shopId" class="shop-section">
+      <h2 class="shop-sub-title">{{ shop.shopName }}</h2>
+      <v-data-table
+        :headers="headers"
+        :items="getTableItems(shop.shopItems)"
+        :hover="true"
+        class="shop-table"
+      >
+        <template #item.itemName="{ item }">
+          {{ item.itemName }}
+        </template>
+        <template #item.quantityPerGroup="{ item }">
+          {{ item.quantityPerGroup }}
+        </template>
+        <template #item.currentPrice="{ item }">
+          {{ item.currentPrice }}
+        </template>
+        <template #item.totalValue="{ item }">
+          {{ item.totalValue.toFixed(2) }}
+        </template>
+        <template #item.costPerformance="{ item }">
+          {{ item.costPerformance.toFixed(2) }}
+        </template>
+      </v-data-table>
     </div>
   </div>
 </template>
@@ -43,6 +35,47 @@
 import type { ShopItem } from '@/custom/core/shops';
 import { shops } from '@/custom/core/shops';
 import { getItemName, getItemValue } from '@/shared/utils/gameData/item';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
+interface TableItem {
+  itemId: string;
+  itemName: string;
+  quantityPerGroup: number;
+  currentPrice: number;
+  totalValue: number;
+  costPerformance: number;
+}
+
+const headers = computed(() => [
+  {
+    title: t('page.materialProfit.shopValue.itemName'),
+    key: 'itemName',
+    sortable: true,
+  },
+  {
+    title: t('page.materialProfit.shopValue.quantityPerGroup'),
+    key: 'quantityPerGroup',
+    sortable: true,
+  },
+  {
+    title: t('page.materialProfit.shopValue.currentPrice'),
+    key: 'currentPrice',
+    sortable: true,
+  },
+  {
+    title: t('page.materialProfit.shopValue.totalValue'),
+    key: 'totalValue',
+    sortable: true,
+  },
+  {
+    title: t('page.materialProfit.shopValue.costPerformance'),
+    key: 'costPerformance',
+    sortable: true,
+  },
+]);
 
 function getTotalValue(shopItem: ShopItem): number {
   return getItemValue(shopItem.itemId) * shopItem.quantityPerGroup;
@@ -52,16 +85,23 @@ function getCostPerformance(item: ShopItem): number {
   return getTotalValue(item) / item.currentPrice;
 }
 
+function getTableItems(shopItems: ShopItem[]): TableItem[] {
+  return shopItems.map((item) => ({
+    itemId: item.itemId,
+    itemName: getItemName(item.itemId),
+    quantityPerGroup: item.quantityPerGroup,
+    currentPrice: item.currentPrice,
+    totalValue: getTotalValue(item),
+    costPerformance: getCostPerformance(item),
+  }));
+}
+
 definePageMeta({
   layout: 'default',
 });
 </script>
 
 <style scoped>
-.shop-value-page {
-  padding: 2rem 0;
-}
-
 .page-title {
   font-size: var(--font-size-3xl);
   color: var(--theme-text-primary);
@@ -76,10 +116,29 @@ definePageMeta({
   line-height: 1.5;
 }
 
+.shop-section {
+  margin-bottom: 2.5rem;
+}
+
+.shop-sub-title {
+  font-size: var(--font-size-lg);
+  color: var(--theme-text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.shop-table {
+  margin-bottom: 2rem;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .page-title {
     font-size: var(--font-size-2xl);
+  }
+
+  .shop-title {
+    font-size: var(--font-size-xl);
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="friend-links-page">
+  <div class="page-container">
     <h1 class="page-title">{{ $t('page.others.friendLinks.friendLinks') }}</h1>
     <p class="page-description">{{ $t('page.others.friendLinks.friendLinksDescription') }}</p>
 
@@ -140,20 +140,20 @@ const { data, pending, error, refresh } = await useFetch<ApiResponse>(apiUrl, {
 // 获取本地化字符串值
 const getLocalizedValue = (localized: LocalizedValue | undefined): string | undefined => {
   if (!localized) return undefined
-  
+
   // 将 locale 从 'zh-CN' 转换为 'zh_CN'，'en-US' 转换为 'en_US'
   const localeKey = locale.value === 'zh-CN' ? 'zh_CN' : 'en_US'
-  
+
   return localized[localeKey as keyof LocalizedValue] as string
 }
 
 // 获取本地化数组值
 const getLocalizedArray = (localized: LocalizedArray | undefined): string[] => {
   if (!localized) return []
-  
+
   // 将 locale 从 'zh-CN' 转换为 'zh_CN'，'en-US' 转换为 'en_US'
   const localeKey = locale.value === 'zh-CN' ? 'zh_CN' : 'en_US'
-  
+
   return localized[localeKey as keyof LocalizedArray] as string[] || []
 }
 
@@ -162,7 +162,7 @@ const getFilteredLinks = (links: LinkItem[]): LinkItem[] => {
   // 优先显示主要链接，然后是其他链接
   const primaryLinks = links.filter(link => link.primary)
   const otherLinks = links.filter(link => !link.primary)
-  
+
   // 可以在这里添加区域过滤逻辑，但为了简单起见，显示所有链接
   return [...primaryLinks, ...otherLinks]
 }
@@ -176,10 +176,6 @@ const handleImageError = (event: Event) => {
 </script>
 
 <style scoped>
-.friend-links-page {
-  padding: 2rem 0;
-}
-
 .page-title {
   font-size: var(--font-size-3xl);
   color: var(--theme-text-primary);

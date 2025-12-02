@@ -131,13 +131,23 @@
       },
       "packageValue": {
         "title": "Package Value",
-        "description": "This page displays cost-effectiveness analysis of various packages in the game to help players evaluate package purchase value."
+        "description": "This page displays cost-effectiveness analysis of various packages in the game to help players evaluate package purchase value.",
+        "searchPlaceholder": "Search package name...",
+        "sortBy": "Sort By",
+        "sortPrice": "Price",
+        "sortGachaOnly": "Gacha Only",
+        "sortAllItems": "All Items",
+        "sortAsc": "Ascending",
+        "sortDesc": "Descending"
       },
       "itemValueTable": {
         "title": "Item Value Table",
         "description": "This page displays a value assessment table for various items in the game to help players understand the relative value of items.",
         "itemName": "Item Name",
-        "itemValue": "Item Value"
+        "itemValue": "Item Value",
+        "searchPlaceholder": "Search item name...",
+        "sortAsc": "Ascending",
+        "sortDesc": "Descending"
       }
     },
     "others": {

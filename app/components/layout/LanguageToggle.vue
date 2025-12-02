@@ -3,42 +3,71 @@
     <button
       v-for="locale in availableLocales"
       :key="locale.code"
-      class="language-btn"
       :class="{ active: currentLocale === locale.code }"
-      @click="setLocale(locale.code)"
+      class="language-btn"
+      @click="handleLocaleChange(locale.code)"
     >
       <div class="btn-bg"></div>
       <div class="btn-left-border"></div>
       <span class="btn-text">{{ locale.label }}</span>
-      <svg 
-        v-if="currentLocale === locale.code" 
-        class="btn-check-icon" 
-        viewBox="0 0 12 12" 
+      <svg
+        v-if="currentLocale === locale.code"
+        class="btn-check-icon"
+        viewBox="0 0 12 12"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path 
-          d="M2 6 L5 9 L10 2" 
-          stroke="currentColor" 
-          stroke-width="2" 
-          fill="none" 
+        <path
+          d="M2 6 L5 9 L10 2"
+          fill="none"
+          stroke="currentColor"
           stroke-linecap="round"
           stroke-linejoin="round"
+          stroke-width="2"
         />
       </svg>
     </button>
   </div>
 </template>
 
-<script setup lang="ts">
-const { locale, setLocale } = useI18n()
+<script lang="ts" setup>
+import {useLocale} from 'vuetify'
+
+const {locale, setLocale} = useI18n()
+const {current} = useLocale()
 
 const currentLocale = computed(() => locale.value)
 
 const availableLocales = computed(() => {
   return [
-    { code: 'zh-CN' as const, label: '中' },
-    { code: 'en-US' as const, label: 'EN' }
+    {code: 'zh-CN' as const, label: '中'},
+    {code: 'en-US' as const, label: 'EN'}
   ]
+})
+
+// 将项目的语言代码映射到 Vuetify 的语言代码
+const getVuetifyLocale = (localeCode: string): 'en' | 'zhHans' => {
+  switch (localeCode) {
+    case 'zh-CN':
+      return 'zhHans'
+    case 'en-US':
+      return 'en'
+    default:
+      return 'zhHans'
+  }
+}
+
+// 处理语言切换
+const handleLocaleChange = async (newLocale: 'zh-CN' | 'en-US') => {
+  // 更新项目的 i18n 语言
+  await setLocale(newLocale)
+  // 同步更新 Vuetify 的语言设置
+  // 参考：https://vuetifyjs.com/en/features/internationalization
+  current.value = getVuetifyLocale(newLocale)
+}
+
+// 组件挂载时，确保 Vuetify 语言与当前 i18n 语言同步
+onMounted(() => {
+  current.value = getVuetifyLocale(locale.value)
 })
 </script>
 

@@ -175,11 +175,6 @@ const toggleExpanded = () => {
   cursor: pointer;
 }
 
-.pack-card-wrapper:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.02);
-}
-
 /* 左侧图片区域 */
 .pack-card-part-left {
   border-radius: var(--radius-md);
@@ -601,10 +596,6 @@ const toggleExpanded = () => {
   border-bottom: none;
 }
 
-.contents-table tbody tr:hover {
-  background-color: var(--theme-bg-tertiary);
-}
-
 /* 描述区域 */
 .pack-description {
   width: 100%;
@@ -670,10 +661,6 @@ const toggleExpanded = () => {
     padding: 0;
     position: relative;
     z-index: 1;
-  }
-
-  .pack-card-wrapper:hover {
-    transform: none;
   }
 
   /* 图片区域 */

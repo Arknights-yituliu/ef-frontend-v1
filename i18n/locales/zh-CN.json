@@ -131,13 +131,23 @@
       },
       "packageValue": {
         "title": "礼包性价比",
-        "description": "本页面用于展示游戏中各种礼包的性价比分析，帮助玩家评估礼包的购买价值。"
+        "description": "本页面用于展示游戏中各种礼包的性价比分析，帮助玩家评估礼包的购买价值。",
+        "searchPlaceholder": "搜索礼包名称...",
+        "sortBy": "排序方式",
+        "sortPrice": "价格",
+        "sortGachaOnly": "仅抽卡",
+        "sortAllItems": "全物品",
+        "sortAsc": "升序",
+        "sortDesc": "降序"
       },
       "itemValueTable": {
         "title": "物品价值表",
         "description": "本页面用于展示游戏中各种物品的价值评估表，帮助玩家了解物品的相对价值。",
         "itemName": "物品名称",
-        "itemValue": "价值"
+        "itemValue": "价值",
+        "searchPlaceholder": "搜索物品名称...",
+        "sortAsc": "升序",
+        "sortDesc": "降序"
       }
     },
     "others": {

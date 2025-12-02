@@ -1,8 +1,8 @@
 <template>
-  <div class="contributors-page">
+  <div class="page-container">
     <h1 class="page-title">{{ t('page.contributors.title') }}</h1>
     <p class="page-description">{{ t('page.contributors.description') }}</p>
-    
+
     <div class="contributors__cards" v-if="contributors.length">
       <ContainerContributorCard
         v-for="contributor in contributors"
@@ -42,13 +42,6 @@ const contributors = computed<Contributor[]>(() => contributorsData.contributors
 </script>
 
 <style scoped>
-.contributors-page {
-  padding: 2rem 0 4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
 .page-title {
   font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
   color: var(--theme-text-primary);
