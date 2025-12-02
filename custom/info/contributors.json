@@ -27,16 +27,16 @@
         "position": "Mastermind",
         "tags": [
           "Algorithm",
-          "UI",
-          "Frontend"
+          "Frontend",
+          "Testing"
         ]
       },
       "chinese": {
         "position": "幕后黑手",
         "tags": [
           "算法",
-          "UI",
-          "前端"
+          "前端",
+          "测试"
         ]
       }
     },
