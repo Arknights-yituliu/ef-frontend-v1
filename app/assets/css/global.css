@@ -1,4 +1,5 @@
 /* 明日方舟：终末地 - 全局样式文件 */
+@import "atomicStyles.css";
 
 /* ============================================
    CSS变量定义
@@ -53,41 +54,6 @@
   --theme-progress-color: #191919;
   --theme-hexagon-fill: #191919;
   --theme-hexagon-stroke: #191919;
-
-  /* 间距系统 */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.625rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2.5rem;
-  --spacing-2xl: 3.25rem;
-  --spacing-3xl: 3.75rem;
-  --spacing-4xl: 5rem;
-  --spacing-5xl: 9.8125rem;
-
-  /* 圆角系统 */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 2.625rem;
-  --radius-xl: 3.125rem;
-  --radius-full: 50%;
-
-  /* 字体大小系统 */
-  --font-size-xs: 1rem;
-  --font-size-sm: 1.125rem;
-  --font-size-base: 1.25rem;
-  --font-size-md: 1.5rem;
-  --font-size-lg: 1.75rem;
-  --font-size-xl: 2.25rem;
-  --font-size-2xl: 2.625rem;
-  --font-size-3xl: 3rem;
-  --font-size-4xl: 3.625rem;
-  --font-size-5xl: 4.5rem;
-
-  /* 过渡时间 */
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.3s ease;
-  --transition-slow: 0.6s cubic-bezier(1, 0, 0.7, 1);
 }
 
 /* 深色主题 */

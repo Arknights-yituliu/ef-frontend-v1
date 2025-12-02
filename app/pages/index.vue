@@ -43,7 +43,6 @@
 
 <script setup lang="ts">
 import '~/assets/css/homePage.css'
-import {computed} from 'vue'
 
 definePageMeta({
   layout: 'default'
