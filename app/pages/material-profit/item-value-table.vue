@@ -136,7 +136,6 @@ const toggleSortOrder = () => {
 .filter-search {
   flex: 0 0 auto;
   min-width: 200px;
-  max-width: 300px;
 }
 
 .sort-order-btn {
@@ -280,39 +279,13 @@ const toggleSortOrder = () => {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .page-title {
-    font-size: var(--font-size-2xl);
-  }
-
-  .item-icon-placeholder {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
-
-  .icon-text {
-    font-size: var(--font-size-lg);
-  }
-
-  .item-info-bubble {
-    min-width: 100px;
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-
-  .item-label {
-    font-size: 0.875rem;
-  }
-
-  .item-value {
-    font-size: var(--font-size-sm);
-  }
-
   .filter-container {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .filter-search {
-    max-width: 100%;
+  .items-container {
+    justify-content: center;
   }
 }
 </style>

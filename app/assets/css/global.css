@@ -278,7 +278,12 @@ html {
   .page-container {
     padding: 3rem 0;
   }
+
+  .page-title {
+    text-align: center;
+  }
 }
+
 
 /* ============================================
    工具类
