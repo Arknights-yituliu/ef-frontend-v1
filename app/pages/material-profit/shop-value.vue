@@ -9,6 +9,7 @@
         :headers="headers"
         :items="getTableItems(shop.shopItems)"
         :hover="true"
+        :items-per-page="25"
         class="shop-table"
       >
         <template #item.itemName="{ item }">
