@@ -60,6 +60,25 @@
           "后端"
         ]
       }
+    },
+    {
+      "name": "Bio-Hazard",
+      "avatarImg": "~/assets/avatar/contributors/Bio-Hazard.jpg",
+      "link": "https://github.com/BiologyHazard",
+      "english": {
+        "position": "Developer",
+        "tags": [
+          "Frontend",
+          "Algorithm"
+        ]
+      },
+      "chinese": {
+        "position": "开发者",
+        "tags": [
+          "前端",
+          "算法"
+        ]
+      }
     }
   ]
 }
