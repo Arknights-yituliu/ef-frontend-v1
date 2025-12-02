@@ -13,30 +13,33 @@
         hide-details
         variant="outlined"
       />
-      <span class="sort-label">{{ $t('page.materialProfit.packageValue.sortBy') }}:</span>
-      <v-radio-group
-        v-model="sortField"
-        class="filter-radio-group"
-        density="compact"
-        hide-details
-        inline
-      >
-        <v-radio
-          :label="$t('page.materialProfit.packageValue.sortPrice')"
+      <div class="filter-sort">
+        <span class="sort-label">{{ $t('page.materialProfit.packageValue.sortBy') }}:</span>
+        <v-radio-group
+          v-model="sortField"
+          class="filter-radio-group"
           density="compact"
-          value="price"
-        />
-        <v-radio
-          :label="$t('page.materialProfit.packageValue.sortGachaOnly')"
-          density="compact"
-          value="gachaOnly"
-        />
-        <v-radio
-          :label="$t('page.materialProfit.packageValue.sortAllItems')"
-          density="compact"
-          value="allItems"
-        />
-      </v-radio-group>
+          hide-details
+          inline
+        >
+          <v-radio
+            :label="$t('page.materialProfit.packageValue.sortPrice')"
+            density="compact"
+            value="price"
+          />
+          <v-radio
+            :label="$t('page.materialProfit.packageValue.sortGachaOnly')"
+            density="compact"
+            value="gachaOnly"
+          />
+          <v-radio
+            :label="$t('page.materialProfit.packageValue.sortAllItems')"
+            density="compact"
+            value="allItems"
+          />
+        </v-radio-group>
+      </div>
+
       <v-btn
         :title="sortOrder === 'asc' ? $t('page.materialProfit.packageValue.sortAsc') : $t('page.materialProfit.packageValue.sortDesc')"
         class="sort-order-btn"
@@ -326,6 +329,12 @@ definePageMeta({
   max-width: 300px;
 }
 
+.filter-sort {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .sort-label {
   font-size: var(--font-size-base);
   color: var(--theme-text-primary);
@@ -373,7 +382,7 @@ definePageMeta({
     width: 100%;
   }
 
-  .packs-container{
+  .packs-container {
     justify-content: center;
   }
 }
@@ -381,6 +390,17 @@ definePageMeta({
 @media (max-width: 520px) {
   .packs-container {
     gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 320px) {
+  .filter-sort {
+    flex-direction: column;
+  }
+
+  .filter-radio-group {
+    display: flex;
+    justify-content: center;
   }
 }
 </style>
