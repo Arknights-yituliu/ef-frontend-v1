@@ -29,7 +29,12 @@
     </div>
 
     <!-- 物品卡片列表 -->
-    <div v-if="filteredAndSortedItems.length > 0" class="items-container">
+    <TransitionGroup
+      v-if="filteredAndSortedItems.length > 0"
+      name="list"
+      tag="div"
+      class="items-container"
+    >
       <div v-for="item in filteredAndSortedItems" :key="item.itemId" class="item-card">
         <!-- 左侧圆形图标 -->
         <div class="item-icon-wrapper">
@@ -46,7 +51,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </TransitionGroup>
 
     <div v-else class="no-data">
       <p>{{ $t('common.noData') }}</p>
@@ -147,6 +152,7 @@ const toggleSortOrder = () => {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-md);
+  position: relative;
 }
 
 .item-card {

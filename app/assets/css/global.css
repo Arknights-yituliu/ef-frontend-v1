@@ -39,10 +39,14 @@
   --theme-glass-shadow: rgba(0, 0, 0, 0.1);
 
   /* 沙漠波纹背景颜色变量 - 浅色主题 */
-  --wave-bg-color-0: rgba(171, 184, 195, 0.27); /* #abb8c344 */
-  --wave-bg-color-1: rgba(171, 184, 195, 0.4); /* #abb8c366 */
-  --wave-bg-color-2: rgba(171, 184, 195, 0.53); /* #abb8c388 */
-  --wave-bg-color-3: rgba(171, 184, 195, 1); /* #abb8c3ff */
+  --wave-bg-color-0: rgba(171, 184, 195, 0.27);
+  /* #abb8c344 */
+  --wave-bg-color-1: rgba(171, 184, 195, 0.4);
+  /* #abb8c366 */
+  --wave-bg-color-2: rgba(171, 184, 195, 0.53);
+  /* #abb8c388 */
+  --wave-bg-color-3: rgba(171, 184, 195, 1);
+  /* #abb8c3ff */
 
   /* Logo 颜色变量 */
   --logo-color: #191919;
@@ -88,10 +92,14 @@
   --theme-glass-shadow: rgba(0, 0, 0, 0.3);
 
   /* 沙漠波纹背景颜色变量 - 深色主题：黄色 */
-  --wave-bg-color-0: rgba(255, 250, 0, 0.15); /* 浅黄色，低透明度 */
-  --wave-bg-color-1: rgba(255, 250, 0, 0.25); /* 浅黄色，中等透明度 */
-  --wave-bg-color-2: rgba(255, 250, 0, 0.35); /* 浅黄色，较高透明度 */
-  --wave-bg-color-3: rgba(255, 250, 0, 0.5); /* 浅黄色，高透明度 */
+  --wave-bg-color-0: rgba(255, 250, 0, 0.15);
+  /* 浅黄色，低透明度 */
+  --wave-bg-color-1: rgba(255, 250, 0, 0.25);
+  /* 浅黄色，中等透明度 */
+  --wave-bg-color-2: rgba(255, 250, 0, 0.35);
+  /* 浅黄色，较高透明度 */
+  --wave-bg-color-3: rgba(255, 250, 0, 0.5);
+  /* 浅黄色，高透明度 */
 
   /* Logo 颜色变量 - 深色主题：黄色 */
   --logo-color: #fffa00;
@@ -140,55 +148,49 @@ html {
    斜条纹图案 - 可复用工具类
    ============================================ */
 .stripe-pattern {
-  background-image: linear-gradient(
-    -45deg,
-    transparent,
-    transparent 13.9512529279%,
-    black 0,
-    black 36.0487470721%,
-    transparent 0,
-    transparent 63.9512529279%,
-    black 0,
-    black 86.0487470721%,
-    transparent 0,
-    transparent
-  );
+  background-image: linear-gradient(-45deg,
+      transparent,
+      transparent 13.9512529279%,
+      black 0,
+      black 36.0487470721%,
+      transparent 0,
+      transparent 63.9512529279%,
+      black 0,
+      black 86.0487470721%,
+      transparent 0,
+      transparent);
   background-size: 0.5rem 0.5rem;
   background-repeat: repeat;
 }
 
 .stripe-pattern-alt {
-  background-image: linear-gradient(
-    -45deg,
-    transparent,
-    transparent 18.3707517568%,
-    black 0,
-    black 31.6292482432%,
-    transparent 0,
-    transparent 68.3707517568%,
-    black 0,
-    black 81.6292482432%,
-    transparent 0,
-    transparent
-  );
+  background-image: linear-gradient(-45deg,
+      transparent,
+      transparent 18.3707517568%,
+      black 0,
+      black 31.6292482432%,
+      transparent 0,
+      transparent 68.3707517568%,
+      black 0,
+      black 81.6292482432%,
+      transparent 0,
+      transparent);
   background-size: 0.75rem 0.75rem;
   background-repeat: repeat;
 }
 
 .stripe-pattern-large {
-  background-image: linear-gradient(
-    -45deg,
-    transparent,
-    transparent 16.1610023423%,
-    black 0,
-    black 33.8389976577%,
-    transparent 0,
-    transparent 66.1610023423%,
-    black 0,
-    black 83.8389976577%,
-    transparent 0,
-    transparent
-  );
+  background-image: linear-gradient(-45deg,
+      transparent,
+      transparent 16.1610023423%,
+      black 0,
+      black 33.8389976577%,
+      transparent 0,
+      transparent 66.1610023423%,
+      black 0,
+      black 83.8389976577%,
+      transparent 0,
+      transparent);
   background-size: 0.5rem 0.5rem;
   background-repeat: repeat;
 }
@@ -201,6 +203,7 @@ html {
     opacity: 0;
     transform: translateY(2rem);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -212,6 +215,7 @@ html {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -222,24 +226,31 @@ html {
   0% {
     opacity: 0;
   }
+
   10% {
     opacity: 0.5;
   }
+
   11% {
     opacity: 0;
   }
+
   20% {
     opacity: 0.5;
   }
+
   21% {
     opacity: 0;
   }
+
   40% {
     opacity: 0.5;
   }
+
   41% {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -250,6 +261,7 @@ html {
     opacity: 0;
     transform: translateX(-2rem);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -261,6 +273,7 @@ html {
     opacity: 0;
     transform: translateX(2rem);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -295,12 +308,15 @@ html {
 
 /* 隐藏滚动条 */
 .hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* ============================================
@@ -329,6 +345,30 @@ html {
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
+}
+
+/* ============================================
+   列表过渡动画（TransitionGroup）
+   ============================================ */
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.9);
+}
+
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+}
+
+/* 确保离开的元素脱离文档流，以便移动动画能正确计算 */
+.list-leave-active {
+  position: absolute;
 }
 
 /* ============================================

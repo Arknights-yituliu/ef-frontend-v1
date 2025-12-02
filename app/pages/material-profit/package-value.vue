@@ -56,10 +56,18 @@
     </div>
 
     <!-- 礼包卡片列表 -->
-    <div v-if="filteredAndSortedPacksData.length > 0" class="packs-container">
-      <ContainerPackCard v-for="(pack, index) in filteredAndSortedPacksData" :key="index"
-                         :pack-data="pack"/>
-    </div>
+    <TransitionGroup
+      v-if="filteredAndSortedPacksData.length > 0"
+      name="list"
+      tag="div"
+      class="packs-container"
+    >
+      <ContainerPackCard
+        v-for="pack in filteredAndSortedPacksData"
+        :key="`${pack.packDisplayNameZH}-${pack.packDisplayNameEN}`"
+        :pack-data="pack"
+      />
+    </TransitionGroup>
 
     <div v-else class="no-data">
       <p>{{ $t('common.noData') }}</p>
@@ -356,6 +364,7 @@ definePageMeta({
   flex-wrap: wrap;
   gap: var(--spacing-xl);
   margin-top: var(--spacing-xl);
+  position: relative;
 }
 
 .no-data {
