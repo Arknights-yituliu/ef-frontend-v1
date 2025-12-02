@@ -4,7 +4,7 @@
 <!--    <p class="page-description">{{ $t('page.materialProfit.shopValue.description') }}</p>-->
 
     <div v-for="shop in shops" :key="shop.shopId" class="shop-section">
-      <h2 class="shop-sub-title">{{ shop.shopName }}</h2>
+      <h2 class="shop-title">{{ shop.shopName }}</h2>
       <v-data-table
         :headers="headers"
         :items="getTableItems(shop.shopItems)"
@@ -121,7 +121,7 @@ definePageMeta({
   margin-bottom: 2.5rem;
 }
 
-.shop-sub-title {
+.shop-title {
   font-size: var(--font-size-lg);
   color: var(--theme-text-primary);
   margin-bottom: 0.5rem;
