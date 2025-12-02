@@ -7,15 +7,15 @@
       "english": {
         "position": "Site Manager",
         "tags": [
-          "Backend",
-          "Frontend"
+          "Frontend",
+          "Backend"
         ]
       },
       "chinese": {
         "position": "站长",
         "tags": [
-          "后端",
-          "前端"
+          "前端",
+          "后端"
         ]
       }
     },
@@ -66,17 +66,17 @@
       "avatarImg": "~/assets/avatar/contributors/Bio-Hazard.jpg",
       "link": "https://github.com/BiologyHazard",
       "english": {
-        "position": "Developer",
+        "position": "Core Algorithm Researcher",
         "tags": [
-          "Frontend",
-          "Algorithm"
+          "Algorithm",
+          "Frontend"
         ]
       },
       "chinese": {
-        "position": "开发者",
+        "position": "核心算法研发",
         "tags": [
-          "前端",
-          "算法"
+          "算法",
+          "前端"
         ]
       }
     }
