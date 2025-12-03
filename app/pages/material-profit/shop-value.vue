@@ -25,7 +25,7 @@
           {{ item.totalValue.toFixed(2) }}
         </template>
         <template #item.costPerformance="{ item }">
-          {{ item.costPerformance.toFixed(2) }}
+          {{ item.costPerformance.toFixed(4) }}
         </template>
       </v-data-table>
     </div>
