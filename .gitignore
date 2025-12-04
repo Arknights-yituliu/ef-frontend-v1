@@ -17,10 +17,14 @@ logs
 .DS_Store
 .fleet
 .idea
-.cursor
 .vscode
 
 # Local env files
 .env
 .env.*
 !.env.example
+
+# AI IDE files
+.cursor
+.claude
+.iflow
