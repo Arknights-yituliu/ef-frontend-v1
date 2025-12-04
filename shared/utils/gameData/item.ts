@@ -13,3 +13,11 @@ export function getItemValue(itemId: string): number {
 export function getItemPulls(itemId: string): number {
   return gachaItemMap[itemId]?.pulls ?? 0;
 }
+
+export function getItemIconUrl(itemId: string): string | undefined {
+  return itemInfo[itemId]?.iconUrl ?? undefined;
+}
+
+export function getItemRarity(itemId: string): number | undefined {
+  return itemInfo[itemId]?.rarity ?? undefined;
+}
