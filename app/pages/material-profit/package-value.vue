@@ -41,16 +41,20 @@
       </div>
 
       <v-btn
-        :title="sortOrder === 'asc' ? $t('page.materialProfit.packageValue.sortAsc') : $t('page.materialProfit.packageValue.sortDesc')"
+        :title="
+          sortOrder === 'asc'
+            ? $t('page.materialProfit.packageValue.sortAsc')
+            : $t('page.materialProfit.packageValue.sortDesc')
+        "
         class="sort-order-btn"
         density="compact"
         size="large"
         variant="outlined"
         @click="toggleSortOrder"
       >
-        <span v-if="sortOrder === 'asc'">↑ {{
-            $t('page.materialProfit.packageValue.sortAsc')
-          }}</span>
+        <span v-if="sortOrder === 'asc'"
+          >↑ {{ $t('page.materialProfit.packageValue.sortAsc') }}</span
+        >
         <span v-else>↓ {{ $t('page.materialProfit.packageValue.sortDesc') }}</span>
       </v-btn>
     </div>
@@ -76,17 +80,16 @@
 </template>
 
 <script lang="ts" setup>
-import {gachaItemMap} from '@/custom/core/gachaItem';
-import {itemInfo} from '@/custom/core/itemInfo';
-import {packs} from '@/custom/core/packs';
+import { packs } from '@/custom/core/packs';
 import type {
   ComparisonBar,
   PackContent,
   PackData,
   PackDataDTO,
-  PackValueMetrics
+  PackValueMetrics,
 } from '@/shared/types/pack';
-import {onMounted, watch} from 'vue';
+import { getItemPulls, getItemValue } from '@/shared/utils/gameData/item';
+import { onMounted, watch } from 'vue';
 
 // 全局数据引用
 const packsData = ref<PackDataDTO[]>(packs);
@@ -103,20 +106,6 @@ const pricePerPullBenchmark = 648 / ((350 * 75) / 500);
 // 综合性价比基准
 const pricePerStoneBenchmark = 648 / 350;
 
-// ====================== 工具函数 ======================
-/**
- * 获取物品信息（兼容id/name字段），不存在时打印警告
- * @param itemKey 物品ID或名称
- * @returns 物品信息 | undefined
- */
-const getItemInfo = (itemKey: string): ItemInfo | undefined => {
-  const info = itemInfo[itemKey];
-  if (!info) {
-    console.warn(`物品 "${itemKey}" 未在物品信息表中找到`);
-  }
-  return info;
-};
-
 /**
  * 计算礼包价值指标并生成对比数据
  * @param packDataList 原始礼包数据列表
@@ -126,7 +115,7 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
   const formatPacks: PackData[] = [];
 
   for (const pack of packDataList) {
-    const {price, contents} = pack;
+    const { price, contents } = pack;
     let totalValue = 0; // 礼包内物品总价值
     let totalPulls = 0; // 礼包内抽卡总数
 
@@ -134,35 +123,17 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
     const processedContents: PackContent[] = [];
 
     // 一次遍历完成：物品价值统计 + 抽卡数统计 + 单个物品价值计算
-    for (const item of contents) {
-      // 优先用id匹配，兼容name字段
-      const itemKey = item.itemId || item.itemName;
-      if (!itemKey) {
-        console.warn('物品缺少ID/名称');
-        continue;
-      }
-
-      const itemInfoData = getItemInfo(itemKey);
+    for (const packItem of contents) {
       let itemTotalValue = 0;
       let itemPercentage = 0;
-
-      if (itemInfoData) {
-        // 计算单个物品总价值
-        itemTotalValue = itemInfoData.value * item.quantity;
-        totalValue += itemTotalValue;
-
-        // 累加抽卡数（如果是抽卡相关物品）
-        const gachaInfo = gachaItemMap[itemKey];
-        if (gachaInfo) {
-          totalPulls += gachaInfo.pulls * item.quantity;
-        }
-      }
+      totalValue += getItemValue(packItem.itemId) * packItem.quantity;
+      totalPulls += getItemPulls(packItem.itemId) * packItem.quantity;
 
       // 创建 PackContent 对象
       processedContents.push({
-        itemId: item.itemId,
-        itemName: item.itemName || item.itemId,
-        quantity: item.quantity,
+        itemId: packItem.itemId,
+        itemName: packItem.itemName || packItem.itemId,
+        quantity: packItem.quantity,
         totalValue: itemTotalValue,
         percentage: itemPercentage,
         iconClass: '', // 如果需要可以后续添加

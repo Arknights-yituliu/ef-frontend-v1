@@ -14,40 +14,44 @@
         variant="outlined"
       />
       <v-btn
-        :title="sortOrder === 'asc' ? $t('page.materialProfit.itemValueTable.sortAsc') : $t('page.materialProfit.itemValueTable.sortDesc')"
+        :title="
+          sortOrder === 'asc'
+            ? $t('page.materialProfit.itemValueTable.sortAsc')
+            : $t('page.materialProfit.itemValueTable.sortDesc')
+        "
         class="sort-order-btn"
         density="compact"
         size="large"
         variant="outlined"
         @click="toggleSortOrder"
       >
-        <span v-if="sortOrder === 'asc'">↑ {{
-            $t('page.materialProfit.itemValueTable.sortAsc')
-          }}</span>
+        <span v-if="sortOrder === 'asc'"
+          >↑ {{ $t('page.materialProfit.itemValueTable.sortAsc') }}</span
+        >
         <span v-else>↓ {{ $t('page.materialProfit.itemValueTable.sortDesc') }}</span>
       </v-btn>
     </div>
 
     <!-- 物品卡片列表 -->
     <TransitionGroup
-      v-if="filteredAndSortedItems.length > 0"
+      v-if="filteredAndSortedItemIdList.length > 0"
       name="list"
       tag="div"
       class="items-container"
     >
-      <div v-for="item in filteredAndSortedItems" :key="item.itemId" class="item-card">
+      <div v-for="itemId in filteredAndSortedItemIdList" :key="itemId" class="item-card">
         <!-- 左侧圆形图标 -->
         <div class="item-icon-wrapper">
           <div class="item-icon-placeholder">
-            <span class="icon-text">{{ item.itemName?.charAt(0) || '?' }}</span>
+            <span class="icon-text">{{ getItemName(itemId)?.charAt(0) || '?' }}</span>
           </div>
         </div>
         <!-- 右侧信息标签 -->
         <div class="item-info-bubble">
-          <div style="width: 34px;"/>
+          <div style="width: 34px"></div>
           <div class="item-info-content flex-1">
-            <div class="item-label">{{ item.itemName || item.itemId }}</div>
-            <div class="item-value">{{ item.value.toFixed(3) }}</div>
+            <div class="item-label">{{ getItemName(itemId) }}</div>
+            <div class="item-value">{{ getItemValue(itemId).toFixed(3) }}</div>
           </div>
         </div>
       </div>
@@ -60,17 +64,12 @@
 </template>
 
 <script lang="ts" setup>
-import {itemInfo} from '@/custom/core/itemInfo';
-import {computed, ref} from 'vue';
-import type {ItemInfo} from '@/shared/types/itemInfo';
+import { itemInfo } from '@/custom/core/itemInfo';
+import { getItemName, getItemValue } from '@/shared/utils/gameData/item';
+import { computed, ref } from 'vue';
 
 definePageMeta({
   layout: 'default',
-});
-
-// 原始数据
-const allItems = computed(() => {
-  return Object.values(itemInfo);
 });
 
 // 筛选和排序状态
@@ -78,25 +77,26 @@ const searchQuery = ref('');
 const sortOrder = ref<'asc' | 'desc'>('asc');
 
 // 筛选和排序后的数据
-const filteredAndSortedItems = computed(() => {
-  let result = [...allItems.value];
+const filteredAndSortedItemIdList = computed(() => {
+  let result = Object.keys(itemInfo);
 
   // 1. 搜索筛选
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.trim().toLowerCase();
-    result = result.filter((item: ItemInfo) => {
-      const name = (item.itemName || item.itemId || '').toLowerCase();
-      const id = (item.itemId || '').toLowerCase();
-      return name.includes(query) || id.includes(query);
+    result = result.filter((id) => {
+      const name = getItemName(id).toLowerCase();
+      return name.includes(query) || id.toLowerCase().includes(query);
     });
   }
 
   // 2. 排序（按价值）
-  result.sort((a: ItemInfo, b: ItemInfo) => {
+  result.sort((a, b) => {
+    const valA = getItemValue(a);
+    const valB = getItemValue(b);
     if (sortOrder.value === 'asc') {
-      return a.value - b.value;
+      return valA - valB;
     } else {
-      return b.value - a.value;
+      return valB - valA;
     }
   });
 
