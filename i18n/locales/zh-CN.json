@@ -146,6 +146,9 @@
         "itemName": "物品名称",
         "itemValue": "价值",
         "searchPlaceholder": "搜索物品名称...",
+        "sortBy": "排序方式",
+        "sortValue": "价值",
+        "sortRarity": "稀有度",
         "sortAsc": "升序",
         "sortDesc": "降序"
       }

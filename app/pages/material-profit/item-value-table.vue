@@ -13,6 +13,27 @@
         hide-details
         variant="outlined"
       />
+      <div class="filter-sort">
+        <span class="sort-label">{{ $t('page.materialProfit.itemValueTable.sortBy') }}:</span>
+        <v-radio-group
+          v-model="sortField"
+          class="filter-radio-group"
+          density="compact"
+          hide-details
+          inline
+        >
+          <v-radio
+            :label="$t('page.materialProfit.itemValueTable.sortValue')"
+            density="compact"
+            value="value"
+          />
+          <v-radio
+            :label="$t('page.materialProfit.itemValueTable.sortRarity')"
+            density="compact"
+            value="rarity"
+          />
+        </v-radio-group>
+      </div>
       <v-btn
         :title="
           sortOrder === 'asc'
@@ -83,7 +104,7 @@ import {
   getItemValue,
 } from '@/shared/utils/gameData/item';
 import {resolvePictureUrl} from '@/shared/utils/urlUtil';
-import {computed, ref} from 'vue';
+import {computed, ref, watch} from 'vue';
 
 const assets = import.meta.glob('@/assets/images/items/**', {
   eager: true,
@@ -96,6 +117,7 @@ definePageMeta({
 
 // 筛选和排序状态
 const searchQuery = ref('');
+const sortField = ref<'value' | 'rarity'>('value');
 const sortOrder = ref<'asc' | 'desc'>('asc');
 
 // 筛选和排序后的数据
@@ -111,14 +133,29 @@ const filteredAndSortedItemIdList = computed(() => {
     });
   }
 
-  // 2. 排序（按价值）
+  // 2. 排序（按价值或稀有度）
   result.sort((a, b) => {
-    const valA = getItemValue(a);
-    const valB = getItemValue(b);
+    let valueA: number;
+    let valueB: number;
+
+    switch (sortField.value) {
+      case 'value':
+        valueA = getItemValue(a);
+        valueB = getItemValue(b);
+        break;
+      case 'rarity':
+        valueA = itemInfo[a]?.rarity ?? 0;
+        valueB = itemInfo[b]?.rarity ?? 0;
+        break;
+      default:
+        valueA = getItemValue(a);
+        valueB = getItemValue(b);
+    }
+
     if (sortOrder.value === 'asc') {
-      return valA - valB;
+      return valueA - valueB;
     } else {
-      return valB - valA;
+      return valueB - valueA;
     }
   });
 
@@ -131,6 +168,12 @@ const filteredAndSortedItemIdList = computed(() => {
 const toggleSortOrder = () => {
   sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
 };
+
+// 监听搜索和排序变化
+watch([searchQuery, sortField, sortOrder], () => {
+  // 重新计算排序
+  filteredAndSortedItemIdList.value;
+});
 </script>
 
 <style scoped>
@@ -163,6 +206,23 @@ const toggleSortOrder = () => {
 .filter-search {
   flex: 0 0 auto;
   min-width: 200px;
+}
+
+.filter-sort {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sort-label {
+  font-size: var(--font-size-base);
+  color: var(--theme-text-primary);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.filter-radio-group {
+  flex: 0 0 auto;
 }
 
 .sort-order-btn {

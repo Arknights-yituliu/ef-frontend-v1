@@ -146,6 +146,9 @@
         "itemName": "Item Name",
         "itemValue": "Item Value",
         "searchPlaceholder": "Search item name...",
+        "sortBy": "Sort By",
+        "sortValue": "Value",
+        "sortRarity": "Rarity",
         "sortAsc": "Ascending",
         "sortDesc": "Descending"
       }
