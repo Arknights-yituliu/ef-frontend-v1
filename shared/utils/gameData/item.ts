@@ -31,10 +31,13 @@ export function getItemRarity(itemId: string): number | undefined {
   return itemInfo[itemId]?.rarity ?? undefined;
 }
 
-export function getItemTierColor(itemId: string): string {
+export function getItemTierColor(itemId: string, opacity: number = 1): string {
   const rarity = getItemRarity(itemId);
   if (rarity && tierColorMap[rarity]) {
-    return tierColorMap[rarity];
+    if (opacity === 1) {
+      return tierColorMap[rarity];
+    }
+    return hexToRGBA(tierColorMap[rarity], opacity);
   }
-  return 'transparent'; // Default to transparent if rarity is undefined or not found
+  return 'transparent';
 }

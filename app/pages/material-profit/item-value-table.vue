@@ -26,7 +26,7 @@
         @click="toggleSortOrder"
       >
         <span v-if="sortOrder === 'asc'"
-          >↑ {{ $t('page.materialProfit.itemValueTable.sortAsc') }}</span
+        >↑ {{ $t('page.materialProfit.itemValueTable.sortAsc') }}</span
         >
         <span v-else>↓ {{ $t('page.materialProfit.itemValueTable.sortDesc') }}</span>
       </v-btn>
@@ -35,24 +35,25 @@
     <!-- 物品卡片列表 -->
     <TransitionGroup
       v-if="filteredAndSortedItemIdList.length > 0"
+      class="items-container"
       name="list"
       tag="div"
-      class="items-container"
     >
       <div v-for="itemId in filteredAndSortedItemIdList" :key="itemId" class="item-card">
         <!-- 左侧圆形图标 -->
         <div class="item-icon-wrapper">
           <div class="item-icon-placeholder">
             <img
-              :src="resolvePictureUrl(getItemIconUrl(itemId) ?? '', assets)"
               :alt="getItemName(itemId)"
+              :src="resolvePictureUrl(getItemIconUrl(itemId) ?? '', assets)"
               class="item-icon-img"
             />
             <div
-              class="item-tier-bar"
               :style="{
-                backgroundColor: getItemTierColor(itemId),
+                borderBottom: `3px solid ${getItemTierColor(itemId)}`,
+                backgroundImage: `linear-gradient(180deg, transparent 0%, ${getItemTierColor(itemId,0.4)} 100%)`
               }"
+              class="item-tier-bar"
             ></div>
           </div>
         </div>
@@ -74,15 +75,15 @@
 </template>
 
 <script lang="ts" setup>
-import { itemInfo } from '@/custom/core/itemInfo';
+import {itemInfo} from '@/custom/core/itemInfo';
 import {
   getItemIconUrl,
   getItemName,
   getItemTierColor,
   getItemValue,
 } from '@/shared/utils/gameData/item';
-import { resolvePictureUrl } from '@/shared/utils/urlUtil';
-import { computed, ref } from 'vue';
+import {resolvePictureUrl} from '@/shared/utils/urlUtil';
+import {computed, ref} from 'vue';
 
 const assets = import.meta.glob('@/assets/images/items/**', {
   eager: true,
@@ -236,9 +237,7 @@ const toggleSortOrder = () => {
 
 .item-tier-bar {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 4%;
+  inset: 0;
 }
 
 /* 右侧信息标签 */
