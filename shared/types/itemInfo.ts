@@ -1,6 +1,7 @@
 export interface ItemInfo {
   itemId: string;
   itemName: string;
+  iconUrl: string;
   value: number;
 }
 
