@@ -43,7 +43,17 @@
         <!-- 左侧圆形图标 -->
         <div class="item-icon-wrapper">
           <div class="item-icon-placeholder">
-            <span class="icon-text">{{ getItemName(itemId)?.charAt(0) || '?' }}</span>
+            <img
+              :src="resolvePictureUrl(getItemIconUrl(itemId) ?? '', assets)"
+              :alt="getItemName(itemId)"
+              class="item-icon-img"
+            />
+            <div
+              class="item-tier-bar"
+              :style="{
+                backgroundColor: getItemTierColor(itemId),
+              }"
+            ></div>
           </div>
         </div>
         <!-- 右侧信息标签 -->
@@ -65,8 +75,19 @@
 
 <script lang="ts" setup>
 import { itemInfo } from '@/custom/core/itemInfo';
-import { getItemName, getItemValue } from '@/shared/utils/gameData/item';
+import {
+  getItemIconUrl,
+  getItemName,
+  getItemTierColor,
+  getItemValue,
+} from '@/shared/utils/gameData/item';
+import { resolvePictureUrl } from '@/shared/utils/urlUtil';
 import { computed, ref } from 'vue';
+
+const assets = import.meta.glob('@/assets/images/items/**', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>;
 
 definePageMeta({
   layout: 'default',
@@ -172,7 +193,7 @@ const toggleSortOrder = () => {
 .item-icon-placeholder {
   width: 6rem;
   height: 6rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   background: linear-gradient(135deg, var(--theme-bg-tertiary) 0%, var(--theme-bg-secondary) 100%);
   display: flex;
   align-items: center;
@@ -206,12 +227,18 @@ const toggleSortOrder = () => {
   pointer-events: none;
 }
 
-.icon-text {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  color: var(--theme-text-primary);
-  position: relative;
-  z-index: 1;
+.item-icon-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-tier-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4%;
 }
 
 /* 右侧信息标签 */

@@ -144,9 +144,9 @@ export const itemValueMap: ItemValueMap = {
   },
 
   // 武器基质
-  基质: {
-    itemId: '基质',
-    itemName: '基质',
+  无暇基质: {
+    itemId: '无暇基质',
+    itemName: '无暇基质',
     value: 80 / 4, // 估测每次作战掉落 4 个
   },
 
