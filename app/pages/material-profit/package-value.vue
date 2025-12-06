@@ -160,7 +160,7 @@ const calculatePackValueMetrics = (packDataList: PackDataDTO[]) => {
       // 基准：648元源石档
       {
         labelZH: '648源石',
-        labelEN: '648 Originium',
+        labelEN: '648 Pack',
         percentage: 1,
         widthPx: 100,
       },

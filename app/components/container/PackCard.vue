@@ -9,7 +9,7 @@
           :src="packData.imageUrl"
           class="pack-image"
           loading="lazy"
-          @error="(e) => handleImageError()"
+          @error="handleImageError"
         />
         <div v-show="imageError" class="image-placeholder">
           <span class="placeholder-icon">📦</span>
@@ -30,7 +30,7 @@
         <div class="pack-info-text">
           <span v-if="packData.valueMetrics.stoneEquivalent > 0" class="value-stone">
             {{ $t('component.packCard.equivalent') }}
-            {{ numberFloor(packData.valueMetrics.stoneEquivalent, 2) }}
+            {{ numberRound(packData.valueMetrics.stoneEquivalent, 1) }}
             {{ $t('component.packCard.stone') }}
           </span>
           <span v-if="packData.valueMetrics.pricePerStone > 0" class="value-stone">
@@ -44,11 +44,11 @@
           ></span>
           <span v-if="packData.valueMetrics.totalPulls > 0" class="value-pull">
             {{ $t('component.packCard.total') }}
-            {{ numberFloor(packData.valueMetrics.totalPulls, 2) }}
-            {{ $t('component.packCard.pull') }}
+            {{ numberRound(packData.valueMetrics.totalPulls, 1) }}
+            {{ $t('component.packCard.pulls') }}
           </span>
           <span v-if="packData.valueMetrics.pricePerPull > 0" class="value-pull">
-            ￥{{ numberFloor(packData.valueMetrics.pricePerPull, 2) }} /
+            ￥{{ numberRound(packData.valueMetrics.pricePerPull, 2) }} /
             {{ $t('component.packCard.pull') }}
           </span>
         </div>
@@ -69,7 +69,7 @@
               }"
               class="pack-line-bar"
             >
-              <span>{{ numberFloor(bar.percentage * 100, 2) }}%</span>
+              <span>{{ numberRound(bar.percentage * 100, 0) }}%</span>
             </div>
           </div>
         </div>
@@ -137,9 +137,9 @@ const packDescription = computed(() => {
   return desc && desc.trim() ? desc : null;
 });
 
-const countdownText = computed(() =>
-  t('component.packCard.daysLeft', { days: props.packData.countdownDays }),
-);
+// const countdownText = computed(() =>
+//   t('component.packCard.daysLeft', { days: props.packData.countdownDays }),
+// );
 
 const visibleComparisonBars = computed(() => {
   return props.packData.comparisonBars;
@@ -362,7 +362,7 @@ const toggleExpanded = () => {
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  width: 150px;
+  width: 128px;
   height: 100%;
   justify-content: center;
   margin-left: 6px;
@@ -377,7 +377,6 @@ const toggleExpanded = () => {
   line-height: 1;
   text-align: center;
   transition: all var(--transition-fast);
-  letter-spacing: 0.02em;
   position: relative;
 }
 
@@ -407,8 +406,7 @@ const toggleExpanded = () => {
   align-content: start;
   color: var(--theme-text-primary);
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 4px 10px;
+  justify-content: space-evenly;
   position: relative;
   z-index: 1;
   background: linear-gradient(
@@ -731,7 +729,6 @@ const toggleExpanded = () => {
   .pack-chart-line {
     width: 100%;
     flex: 1;
-    padding: var(--spacing-sm);
     background: transparent;
     position: relative;
   }

@@ -106,8 +106,9 @@
       "quantity": "Quantity",
       "totalValue": "Total Value",
       "percentage": "Percentage",
-      "stone": "stone",
-      "pull": "pull"
+      "stone": "originite",
+      "pull": "pull",
+      "pulls": "pulls"
     }
   },
   "page": {

@@ -107,7 +107,8 @@
       "totalValue": "总价值",
       "percentage": "占比",
       "stone": "石",
-      "pull": "抽"
+      "pull": "抽",
+      "pulls": "抽"
     }
   },
   "page": {
