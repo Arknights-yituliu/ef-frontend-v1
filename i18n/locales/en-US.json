@@ -26,13 +26,63 @@
     "loading": "Loading...",
     "error": "Error",
     "retry": "Retry",
-    "noData": "No data available"
+    "noData": "No data available",
+    "close": "Close"
   },
   "layout": {
     "theme": "Theme",
     "siteName": "EndField Yituliu"
   },
   "component": {
+    "home": {
+      "checkAccess": {
+        "comprehensiveTestQualificationCheck": "Comprehensive test qualification check",
+        "checkAccessOnEndfieldOfficialSite": "Check access on endfield official site"
+      },
+      "penguinStatistics": {
+        "penguin": "penguin",
+        "penguinStatistics": "penguin-statistics",
+        "penguinStatisticsDescription": "Penguin Statistics is the Department of Data Analysis of Penguin Logistics (not really). We devote ourselves to item drop analysis.\nPenguin Statistics' current dataset is maintained through a combination of player manual reports, screenshot recognitions, and other uploads via public APIs. The Penguin Statistics team performs various types of automatic, scheduled, and manual maintenance to ensure the dataset's accuracy.",
+        "itemDropRates": "Item Drop Rates",
+        "itemDropRatesDoc": "Where should I farm rocks?",
+        "stageDropRates": "Stage Drop Rates",
+        "stageDropRatesDoc": "What are the drop rates of this stage?",
+        "dropReports": "Drop Reports",
+        "dropReportsDoc": "I wanna report drops",
+        "farmingPlanner": "Farming Planner",
+        "farmingPlannerDoc": "Please gimme some farming advice"
+      },
+      "yiTuLiu": {
+        "title": "Arknights Yituliu",
+        "goToYiTuLiu": "Go to Arknights Yituliu",
+        "description": "Arknights Yituliu aims to provide various in-game resource cost-effectiveness guides for doctors, including but not limited to farming recommendations, shop value, pull saving calculator, and many small tools.",
+        "materialPlanning": "Material Planning:",
+        "eliteMaterialRecommendation": "Elite Material Farming Recommendation",
+        "eliteMaterialRecommendationDoc": "Reference for elite material farming locations",
+        "shopValue": "Shop Value",
+        "shopValueDoc": "Reference for shop exchange priority",
+        "operatorE2ValueTable": "Operator E2 Value Table",
+        "operatorE2ValueTableDoc": "Reference for each operator's material consumption when using promotion items and specialization items",
+        "practicalTools": "Practical Tools:",
+        "savePullCalculator": "Pull Saving Calculator",
+        "savePullCalculatorDoc": "Gacha strategy planning",
+        "scheduleGenerator": "Schedule Generator",
+        "scheduleGeneratorDoc": "Provides a visual editor for MAA's infrastructure protocol",
+        "specializationHalfCalculator": "Specialization Half Calculator",
+        "specializationHalfCalculatorDoc": "Provides calculations for half-cost specialization skills"
+      },
+      "contribute": {
+        "title": "Contribute",
+        "goToFrontendRepo": "Go to Frontend Repository",
+        "description": "If you are willing to contribute to Endfield Yituliu and possess knowledge of one or more of the following technologies, we welcome you to join our development group",
+        "descriptionSuffix": ".",
+        "copySuccess": "Copied successfully",
+        "coreTechnologiesTitle": "The frontend project is built on the following core technologies:",
+        "nuxtDescription": "Full-stack framework based on Vue.js",
+        "vueDescription": "Progressive JavaScript framework",
+        "vuetifyDescription": "Material Design component library for Vue"
+      }
+    },
     "particleWord": {
       "loading": "Loading particle animation..."
     },
@@ -56,8 +106,9 @@
       "quantity": "Quantity",
       "totalValue": "Total Value",
       "percentage": "Percentage",
-      "stone": "stone",
-      "pull": "pull"
+      "stone": "originite",
+      "pull": "pull",
+      "pulls": "pulls"
     }
   },
   "page": {
@@ -72,15 +123,35 @@
     "materialProfit": {
       "shopValue": {
         "title": "Shop Value",
-        "description": "This page displays cost-effectiveness analysis of various items in the shop to help players make better purchasing decisions."
+        "description": "This page displays cost-effectiveness analysis of various items in the shop to help players make better purchasing decisions.",
+        "itemName": "Item Name",
+        "quantityPerGroup": "Quantity per Group",
+        "currentPrice": "Current Price",
+        "totalValue": "Total Value",
+        "costPerformance": "Cost Performance"
       },
       "packageValue": {
         "title": "Package Value",
-        "description": "This page displays cost-effectiveness analysis of various packages in the game to help players evaluate package purchase value."
+        "description": "This page displays cost-effectiveness analysis of various packages in the game to help players evaluate package purchase value.",
+        "searchPlaceholder": "Search package name...",
+        "sortBy": "Sort By",
+        "sortPrice": "Price",
+        "sortGachaOnly": "Gacha Only",
+        "sortAllItems": "All Items",
+        "sortAsc": "Ascending",
+        "sortDesc": "Descending"
       },
       "itemValueTable": {
         "title": "Item Value Table",
-        "description": "This page displays a value assessment table for various items in the game to help players understand the relative value of items."
+        "description": "This page displays a value assessment table for various items in the game to help players understand the relative value of items.",
+        "itemName": "Item Name",
+        "itemValue": "Item Value",
+        "searchPlaceholder": "Search item name...",
+        "sortBy": "Sort By",
+        "sortValue": "Value",
+        "sortRarity": "Rarity",
+        "sortAsc": "Ascending",
+        "sortDesc": "Descending"
       }
     },
     "others": {
@@ -133,4 +204,3 @@
     "noResults": "No documents found"
   }
 }
-

@@ -75,6 +75,7 @@ ef-frontend-v1/
 ├── custom/                       # Custom files directory
 │   └── route/                    # Custom configuration of routes directory
 ├── shared/                       # Shared utilities directory
+├── agent.md                      # AI Agent Development Guide (Reference for AI code generation)
 ├── nuxt.config.ts                # Nuxt configuration file
 ├── tsconfig.json                 # TypeScript configuration file
 └── package.json                  # Project dependencies configuration
@@ -265,6 +266,22 @@ Stores utility functions and utility classes that can be shared in multiple plac
 - **`shared/utils/`** - Utility functions directory
   - E.g., `colorUtil.ts`, `domUtil.ts`
   - This directory is auto-recognized by Nuxt and can be used directly in pages and components without manual import
+
+---
+
+### Project Root Directory Files
+
+#### `agent.md` - AI Agent Development Guide
+
+A knowledge document specifically for AI reference during code generation, containing:
+
+- Complete workflow and steps for creating new pages
+- Detailed guide for creating new documentation pages
+- Internationalization update methods and locations
+- Project important conventions and best practices
+- Frequently asked questions and answers
+
+This document helps AI quickly understand project structure, development conventions, and workflows, ensuring generated code aligns with project standards.
 
 ---
 

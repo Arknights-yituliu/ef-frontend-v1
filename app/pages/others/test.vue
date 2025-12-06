@@ -1,5 +1,5 @@
 <template>
-  <div class="others-test-page">
+  <div class="page-container">
     <h1 class="page-title">{{ $t('page.others.test.title') }}</h1>
     <p class="page-description">{{ $t('page.others.test.description') }}</p>
 
@@ -157,10 +157,6 @@ definePageMeta({
 </script>
 
 <style scoped>
-.others-test-page {
-  padding: 2rem 0;
-}
-
 .page-title {
   font-size: var(--font-size-3xl);
   color: var(--theme-text-primary);
@@ -182,10 +178,6 @@ definePageMeta({
 }
 
 @media (max-width: 480px) {
-  .others-test-page {
-    padding: 1rem 0;
-  }
-
   .page-title {
     font-size: var(--font-size-xl);
   }

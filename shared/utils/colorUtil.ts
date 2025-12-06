@@ -6,13 +6,32 @@
 export const hexToRGB = (hex: string): number[] => {
   // 移除 # 符号（如果存在）
   const cleanHex = hex.replace('#', '');
-  
+
   // 解析RGB值
   const r = parseInt(cleanHex.substring(0, 2), 16);
   const g = parseInt(cleanHex.substring(2, 4), 16);
   const b = parseInt(cleanHex.substring(4, 6), 16);
-  
+
   return [r, g, b];
+};
+
+/**
+ * 将十六进制颜色转换为RGBA格式
+ * @param hex 十六进制颜色值，如 '#000000' 或 '000000'
+ * @param opacity 透明度值，范围 0-1，默认为 1
+ * @returns RGBA颜色值，如 'rgba(0, 0, 0, 1)'
+ */
+export const hexToRGBA = (hex: string, opacity: number = 1): string => {
+  // 移除 # 符号（如果存在）
+  const cleanHex = hex.replace('#', '');
+
+  // 解析RGB值
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+
+  // 返回RGBA格式
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 };
 
 /**
@@ -22,16 +41,16 @@ export const hexToRGB = (hex: string): number[] => {
  */
 export const getCSSVariableColor = (cssVar: string): string => {
   if (typeof window === 'undefined') return '#000000';
-  
+
   const value = getComputedStyle(document.documentElement)
     .getPropertyValue(cssVar)
     .trim();
-  
+
   // 如果已经是十六进制格式，直接返回
   if (value.startsWith('#')) {
     return value;
   }
-  
+
   // 如果是var()格式，递归解析
   if (value.startsWith('var(')) {
     const match = value.match(/var\(([^)]+)\)/);
@@ -40,7 +59,7 @@ export const getCSSVariableColor = (cssVar: string): string => {
       return getCSSVariableColor(innerVar);
     }
   }
-  
+
   // 如果是rgb/rgba格式，转换为hex
   if (value.startsWith('rgb')) {
     const matches = value.match(/\d+/g);
@@ -54,7 +73,6 @@ export const getCSSVariableColor = (cssVar: string): string => {
       }).join('')}`;
     }
   }
-  
+
   return value || '#000000';
 };
-

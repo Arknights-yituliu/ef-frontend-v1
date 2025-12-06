@@ -1,181 +1,326 @@
-const itemInfo: ItemInfoMap = {
+import type { ItemInfoMap } from '@/shared/types/itemInfo';
+
+export const itemInfo: ItemInfoMap = {
   衍质源石: {
-    id: '衍质源石',
-    name: '衍质源石',
-    value: 40,
-    pulls: 75 / 500,
+    itemId: '衍质源石',
+    itemName: '衍质源石',
+    iconUrl: '~/assets/images/items/衍质源石.png',
+    rarity: 6,
   },
   嵌晶玉: {
-    id: '嵌晶玉',
-    name: '嵌晶玉',
-    value: 40 / 75,
-    pulls: 1 / 500,
-  },
-  折金票: {
-    id: '折金票',
-    name: '折金票',
-    value: 0.002352941,
-  },
-  干员作战记录经验: {
-    id: '干员作战记录经验',
-    name: '干员作战记录经验',
-    value: 0.000470588,
-  },
-  初级作战记录: {
-    id: '初级作战记录',
-    name: '初级作战记录',
-    value: 0.094117647,
-  },
-  中级作战记录: {
-    id: '中级作战记录',
-    name: '中级作战记录',
-    value: 0.470588235,
-  },
-  高级作战记录: {
-    id: '高级作战记录',
-    name: '高级作战记录',
-    value: 4.705882353,
-  },
-  干员认知载体经验: {
-    id: '干员认知载体经验',
-    name: '干员认知载体经验',
-    value: 0.001176471,
-  },
-  初级认知载体: {
-    id: '初级认知载体',
-    name: '初级认知载体',
-    value: 1.176470588,
-  },
-  高级认知载体: {
-    id: '高级认知载体',
-    name: '高级认知载体',
-    value: 11.76470588,
-  },
-  协议圆盘: {
-    id: '协议圆盘',
-    name: '协议圆盘',
-    value: 2.352941176,
-  },
-  协议圆盘组: {
-    id: '协议圆盘组',
-    name: '协议圆盘组',
-    value: 5.714285714,
-  },
-  武器经验: {
-    id: '武器经验',
-    name: '武器经验',
-    value: 0.000470588,
-  },
-  武器检查单元: {
-    id: '武器检查单元',
-    name: '武器检查单元',
-    value: 0.094117647,
-  },
-  武器检查装置: {
-    id: '武器检查装置',
-    name: '武器检查装置',
-    value: 0.470588235,
-  },
-  武器检查套组: {
-    id: '武器检查套组',
-    name: '武器检查套组',
-    value: 4.705882353,
-  },
-  强固模具: {
-    id: '强固模具',
-    name: '强固模具',
-    value: 2.352941176,
-  },
-  重型强固模具: {
-    id: '重型强固模具',
-    name: '重型强固模具',
-    value: 5.714285714,
-  },
-  协议棱柱: {
-    id: '协议棱柱',
-    name: '协议棱柱',
-    value: 0.941176471,
-  },
-  协议棱柱组: {
-    id: '协议棱柱组',
-    name: '协议棱柱组',
-    value: 4.705882353,
-  },
-  超距辉映管: {
-    id: '超距辉映管',
-    name: '超距辉映管',
-    value: 80 / 6.5,
-  },
-  D96钢样品四: {
-    id: 'D96钢样品四',
-    name: 'D96钢样品四',
-    value: 80 / 6.5,
-  },
-  快子遴捡晶格: {
-    id: '快子遴捡晶格',
-    name: '快子遴捡晶格',
-    value: 80 / 6.5,
-  },
-  象限拟合液: {
-    id: '象限拟合液',
-    name: '象限拟合液',
-    value: 80 / 6.5,
-  },
-  三相纳米片: {
-    id: '三相纳米片',
-    name: '三相纳米片',
-    value: 80 / 6.5,
-  },
-  基质: {
-    id: '基质',
-    name: '基质',
-    value: 20,
-  },
-  基础寻访凭证: {
-    id: '基础寻访凭证',
-    name: '基础寻访凭证',
-    value: 800 / 3,
-    pulls: 1,
-  },
-  特许寻访凭证: {
-    id: '特许寻访凭证',
-    name: '特许寻访凭证',
-    value: 800 / 3,
-    pulls: 1,
-  },
-  行火留烬寻访凭证: {
-    id: '行火留烬寻访凭证',
-    name: '行火留烬寻访凭证',
-    value: 800 / 3,
-    pulls: 10,
-  },
-  行火留烬十连凭证: {
-    id: '行火留烬十连凭证',
-    name: '行火留烬十连凭证',
-    value: 8000 / 3,
-    pulls: 10,
-  },
-  存续的痕迹: {
-    id: '存续的痕迹',
-    name: '存续的痕迹',
-    value: 800 / 3,
+    itemId: '嵌晶玉',
+    itemName: '嵌晶玉',
+    iconUrl: '~/assets/images/items/嵌晶玉.png',
+    rarity: 6,
   },
   武库配额: {
-    id: '武库配额',
-    name: '武库配额',
-    value: 112 / 81,
-    pulls: 0,
+    itemId: '武库配额',
+    itemName: '武库配额',
+    iconUrl: '~/assets/images/items/武库配额.png',
+    rarity: 6,
   },
-  高阶培养自选箱I: {
-    id: '高阶培养自选箱I',
-    name: '高阶培养自选箱I',
-    value: 165 / 6.5,
+
+  // 养成材料
+  折金票: {
+    itemId: '折金票',
+    itemName: '折金票',
+    iconUrl: '~/assets/images/items/折金票.png',
+    rarity: 4,
   },
+  干员作战记录经验: {
+    itemId: '干员作战记录经验',
+    itemName: '干员作战记录经验',
+    iconUrl: '~/assets/images/items/干员作战记录经验.png',
+    rarity: undefined,
+  },
+  初级作战记录: {
+    itemId: '初级作战记录',
+    itemName: '初级作战记录',
+    iconUrl: '~/assets/images/items/初级作战记录.png',
+    rarity: 1,
+  },
+  中级作战记录: {
+    itemId: '中级作战记录',
+    itemName: '中级作战记录',
+    iconUrl: '~/assets/images/items/中级作战记录.png',
+    rarity: 2,
+  },
+  高级作战记录: {
+    itemId: '高级作战记录',
+    itemName: '高级作战记录',
+    iconUrl: '~/assets/images/items/高级作战记录.png',
+    rarity: 3,
+  },
+  干员认知载体经验: {
+    itemId: '干员认知载体经验',
+    itemName: '干员认知载体经验',
+    iconUrl: '~/assets/images/items/干员认知载体经验.png',
+    rarity: undefined,
+  },
+  初级认知载体: {
+    itemId: '初级认知载体',
+    itemName: '初级认知载体',
+    iconUrl: '~/assets/images/items/初级认知载体.png',
+    rarity: 4,
+  },
+  高级认知载体: {
+    itemId: '高级认知载体',
+    itemName: '高级认知载体',
+    iconUrl: '~/assets/images/items/高级认知载体.png',
+    rarity: 5,
+  },
+  协议圆盘: {
+    itemId: '协议圆盘',
+    itemName: '协议圆盘',
+    iconUrl: '~/assets/images/items/协议圆盘.png',
+    rarity: 3,
+  },
+  协议圆盘组: {
+    itemId: '协议圆盘组',
+    itemName: '协议圆盘组',
+    iconUrl: '~/assets/images/items/协议圆盘组.png',
+    rarity: 4,
+  },
+  武器经验: {
+    itemId: '武器经验',
+    itemName: '武器经验',
+    iconUrl: '~/assets/images/items/武器经验.png',
+    rarity: undefined,
+  },
+  武器检查单元: {
+    itemId: '武器检查单元',
+    itemName: '武器检查单元',
+    iconUrl: '~/assets/images/items/武器检查单元.png',
+    rarity: 2,
+  },
+  武器检查装置: {
+    itemId: '武器检查装置',
+    itemName: '武器检查装置',
+    iconUrl: '~/assets/images/items/武器检查装置.png',
+    rarity: 3,
+  },
+  武器检查套组: {
+    itemId: '武器检查套组',
+    itemName: '武器检查套组',
+    iconUrl: '~/assets/images/items/武器检查套组.png',
+    rarity: 4,
+  },
+  强固模具: {
+    itemId: '强固模具',
+    itemName: '强固模具',
+    iconUrl: '~/assets/images/items/强固模具.png',
+    rarity: 3,
+  },
+  重型强固模具: {
+    itemId: '重型强固模具',
+    itemName: '重型强固模具',
+    iconUrl: '~/assets/images/items/重型强固模具.png',
+    rarity: 4,
+  },
+  协议棱柱: {
+    itemId: '协议棱柱',
+    itemName: '协议棱柱',
+    iconUrl: '~/assets/images/items/协议棱柱.png',
+    rarity: 3,
+  },
+  协议棱柱组: {
+    itemId: '协议棱柱组',
+    itemName: '协议棱柱组',
+    iconUrl: '~/assets/images/items/协议棱柱组.png',
+    rarity: 4,
+  },
+
+  // 高阶培养素材
+  超距辉映管: {
+    itemId: '超距辉映管',
+    itemName: '超距辉映管',
+    iconUrl: '~/assets/images/items/超距辉映管.png',
+    rarity: 5,
+  },
+  D96钢样品四: {
+    itemId: 'D96钢样品四',
+    itemName: 'D96钢样品四',
+    iconUrl: '~/assets/images/items/D96钢样品四.png',
+    rarity: 5,
+  },
+  快子遴捡晶格: {
+    itemId: '快子遴捡晶格',
+    itemName: '快子遴捡晶格',
+    iconUrl: '~/assets/images/items/快子遴捡晶格.png',
+    rarity: 5,
+  },
+  象限拟合液: {
+    itemId: '象限拟合液',
+    itemName: '象限拟合液',
+    iconUrl: '~/assets/images/items/象限拟合液.png',
+    rarity: 5,
+  },
+  三相纳米片: {
+    itemId: '三相纳米片',
+    itemName: '三相纳米片',
+    iconUrl: '~/assets/images/items/三相纳米片.png',
+    rarity: 5,
+  },
+
+  // 存续的痕迹
+  存续的痕迹: {
+    itemId: '存续的痕迹',
+    itemName: '存续的痕迹',
+    iconUrl: '~/assets/images/items/存续的痕迹.png',
+    rarity: 5,
+  },
+
+  // 武器基质
+  稳定基质: {
+    itemId: '稳定基质',
+    itemName: '稳定基质',
+    iconUrl: '~/assets/images/items/稳定基质.png',
+    rarity: 2,
+  },
+  净态基质: {
+    itemId: '净态基质',
+    itemName: '净态基质',
+    iconUrl: '~/assets/images/items/净态基质.png',
+    rarity: 3,
+  },
+  高纯基质: {
+    itemId: '高纯基质',
+    itemName: '高纯基质',
+    iconUrl: '~/assets/images/items/高纯基质.png',
+    rarity: 4,
+  },
+  无瑕基质: {
+    itemId: '无瑕基质',
+    itemName: '无瑕基质',
+    iconUrl: '~/assets/images/items/无瑕基质.png',
+    rarity: 5,
+  },
+
+  // 功能道具
+  基础航天建材: {
+    itemId: '基础航天建材',
+    itemName: '基础航天建材',
+    iconUrl: '~/assets/images/items/基础航天建材.png',
+    rarity: 3,
+  },
+  高级航天建材: {
+    itemId: '高级航天建材',
+    itemName: '高级航天建材',
+    iconUrl: '~/assets/images/items/高级航天建材.png',
+    rarity: 4,
+  },
+  基础工业点数: {
+    itemId: '基础工业点数',
+    itemName: '基础工业点数',
+    iconUrl: '~/assets/images/items/基础工业点数.png',
+    rarity: 4,
+  },
+  武陵工业点数: {
+    itemId: '武陵工业点数',
+    itemName: '武陵工业点数',
+    iconUrl: '~/assets/images/items/武陵工业点数.png',
+    rarity: 4,
+  },
+  谷地调度券: {
+    itemId: '谷地调度券',
+    itemName: '谷地调度券',
+    iconUrl: '~/assets/images/items/谷地调度券.png',
+    rarity: 5,
+  },
+  武陵调度券: {
+    itemId: '武陵调度券',
+    itemName: '武陵调度券',
+    iconUrl: '~/assets/images/items/武陵调度券.png',
+    rarity: 5,
+  },
+  基础拓展核心: {
+    itemId: '基础拓展核心',
+    itemName: '基础拓展核心',
+    iconUrl: '~/assets/images/items/基础拓展核心.png',
+    rarity: 5,
+  },
+  扩容演算芯片: {
+    itemId: '扩容演算芯片',
+    itemName: '扩容演算芯片',
+    iconUrl: '~/assets/images/items/扩容演算芯片.png',
+    rarity: 5,
+  },
+
+  // 寻访凭证
+  基础寻访凭证: {
+    itemId: '基础寻访凭证',
+    itemName: '基础寻访凭证',
+    iconUrl: '~/assets/images/items/基础寻访凭证.png',
+    rarity: 6,
+  },
+  特许寻访凭证: {
+    itemId: '特许寻访凭证',
+    itemName: '特许寻访凭证',
+    iconUrl: '~/assets/images/items/特许寻访凭证.png',
+    rarity: 6,
+  },
+  行火留烬寻访凭证: {
+    itemId: '行火留烬寻访凭证',
+    itemName: '行火留烬寻访凭证',
+    iconUrl: '~/assets/images/items/行火留烬寻访凭证.png',
+    rarity: 6,
+  },
+  行火留烬十连凭证: {
+    itemId: '行火留烬十连凭证',
+    itemName: '行火留烬十连凭证',
+    iconUrl: '~/assets/images/items/行火留烬十连凭证.png',
+    rarity: 6,
+  },
+
+  // 理智物品
   应急理智加强剂: {
-    id: '应急理智加强剂',
-    name: '应急理智加强剂',
-    value: 40,
+    itemId: '应急理智加强剂',
+    itemName: '应急理智加强剂',
+    iconUrl: '~/assets/images/items/应急理智加强剂.png',
+    rarity: 4,
+  },
+  海盐冰淇淋: {
+    itemId: '海盐冰淇淋',
+    itemName: '海盐冰淇淋',
+    iconUrl: '~/assets/images/items/海盐冰淇淋.png',
+    rarity: 5,
+  },
+  草莓可丽饼: {
+    itemId: '草莓可丽饼',
+    itemName: '草莓可丽饼',
+    iconUrl: '~/assets/images/items/草莓可丽饼.png',
+    rarity: 5,
+  },
+  栗花蜜: {
+    itemId: '栗花蜜',
+    itemName: '栗花蜜',
+    iconUrl: '~/assets/images/items/栗花蜜.png',
+    rarity: 5,
+  },
+
+  // 物资箱
+  高阶培养自选箱I: {
+    itemId: '高阶培养自选箱I',
+    itemName: '高阶培养自选箱I',
+    iconUrl: '~/assets/images/items/高阶培养自选箱I.png',
+    rarity: 5,
+  },
+  多用经验自选箱: {
+    itemId: '多用经验自选箱',
+    itemName: '多用经验自选箱',
+    iconUrl: '~/assets/images/items/多用经验自选箱.png',
+    rarity: 5,
+  },
+  多用进阶自选箱: {
+    itemId: '多用进阶自选箱',
+    itemName: '多用进阶自选箱',
+    iconUrl: '~/assets/images/items/多用进阶自选箱.png',
+    rarity: 5,
+  },
+  技能提升自选箱: {
+    itemId: '技能提升自选箱',
+    itemName: '技能提升自选箱',
+    iconUrl: '~/assets/images/items/技能提升自选箱.png',
+    rarity: 5,
   },
 };
-
-export default itemInfo;

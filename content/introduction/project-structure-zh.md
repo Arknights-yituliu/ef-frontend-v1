@@ -79,6 +79,7 @@ ef-frontend-v1/
 ├── custom/                       # 自定义文件目录
 │   └── route/                    # 自定义路由配置目录
 ├── shared/                       # 共享工具目录
+├── agent.md                      # AI Agent 开发指南（专为 AI 生成代码时参考）
 ├── nuxt.config.ts                # Nuxt 配置文件
 ├── tsconfig.json                 # TypeScript 配置文件
 └── package.json                  # 项目依赖配置
@@ -269,6 +270,22 @@ i18n/
 - **`shared/utils/`** - 工具函数目录
   - 例如：`colorUtil.ts`、`domUtil.ts`
   - 该目录会被Nuxt自动识别，可在无需手动导入的情况下在pages和components目录下直接使用
+
+---
+
+### 项目根目录文件
+
+#### `agent.md` - AI Agent 开发指南
+
+专为 AI 生成代码时参考的知识文档，包含：
+
+- 新建页面的完整流程和步骤
+- 新建文档页面的详细指南
+- 国际化更新方法和位置
+- 项目重要约定和最佳实践
+- 常见问题解答
+
+该文档帮助 AI 快速了解项目结构、开发规范和流程，确保生成的代码符合项目约定。
 
 ---
 

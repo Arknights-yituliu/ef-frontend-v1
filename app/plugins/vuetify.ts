@@ -3,12 +3,17 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
+// 导入Vuetify语言包（用于切换时更新）
+import { en, zhHans } from 'vuetify/locale'
 
 export default defineNuxtPlugin((app) => {
     const vuetify = createVuetify({
-        theme: {
-            defaultTheme: 'light',
-            themes: {
+        locale: {
+            locale: 'zhHans', fallback: 'en', messages: {
+                en, zhHans
+            }
+        }, theme: {
+            defaultTheme: 'light', themes: {
                 light: {
                     colors: {
                         // 使用 global.css 中定义的浅色主题颜色
@@ -27,8 +32,7 @@ export default defineNuxtPlugin((app) => {
                         'on-info': '#ffffff',
                         'on-success': '#ffffff',
                     },
-                },
-                dark: {
+                }, dark: {
                     colors: {
                         // 使用 global.css 中定义的深色主题颜色
                         primary: '#fffa00', // 深色主题强调色
@@ -50,5 +54,6 @@ export default defineNuxtPlugin((app) => {
             },
         },
     })
+
     app.vueApp.use(vuetify)
 })

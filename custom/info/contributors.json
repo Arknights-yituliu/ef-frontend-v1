@@ -7,15 +7,15 @@
       "english": {
         "position": "Site Manager",
         "tags": [
-          "Backend",
-          "Frontend"
+          "Frontend",
+          "Backend"
         ]
       },
       "chinese": {
         "position": "站长",
         "tags": [
-          "后端",
-          "前端"
+          "前端",
+          "后端"
         ]
       }
     },
@@ -24,19 +24,19 @@
       "avatarImg": "~/assets/avatar/contributors/Zirunwang.jpg",
       "link": "https://space.bilibili.com/10057492",
       "english": {
-        "position": "Creator",
+        "position": "Mastermind",
         "tags": [
           "Algorithm",
-          "UI",
-          "Frontend"
+          "Frontend",
+          "Testing"
         ]
       },
       "chinese": {
-        "position": "创建者",
+        "position": "幕后黑手",
         "tags": [
           "算法",
-          "UI",
-          "前端"
+          "前端",
+          "测试"
         ]
       }
     },
@@ -58,6 +58,25 @@
           "前端",
           "UI",
           "后端"
+        ]
+      }
+    },
+    {
+      "name": "Bio-Hazard",
+      "avatarImg": "~/assets/avatar/contributors/Bio-Hazard.jpg",
+      "link": "https://github.com/BiologyHazard",
+      "english": {
+        "position": "Core Algorithm Researcher",
+        "tags": [
+          "Algorithm",
+          "Frontend"
+        ]
+      },
+      "chinese": {
+        "position": "核心算法研发",
+        "tags": [
+          "算法",
+          "前端"
         ]
       }
     }

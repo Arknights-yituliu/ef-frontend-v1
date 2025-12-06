@@ -1,10 +1,9 @@
 export interface ItemInfo {
-  id: string;
-  name: string;
-  value: number;
-  pulls?: number;
+  itemId: string;
+  itemName: string;
+  iconUrl: string;
+  /** 稀有度，从 1 到 6，有可能是 undefined */
+  rarity: number | undefined;
 }
 
-export interface ItemInfoMap {
-  [key: string]: ItemInfo;
-}
+export type ItemInfoMap = Record<string, ItemInfo>;
