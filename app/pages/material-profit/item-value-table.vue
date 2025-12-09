@@ -106,7 +106,7 @@ import {
 import { resolvePictureUrl } from '@/shared/utils/urlUtil';
 import { computed, ref, watch } from 'vue';
 
-const assets = import.meta.glob('~/assets/images/items/**', {
+const assets = import.meta.glob('~/assets/endfield/items/**', {
   eager: true,
   import: 'default',
 }) as Record<string, string>;
