@@ -25,6 +25,19 @@
     ]
   },
   {
+    "i18nKey": "tools",
+    "nameKey": "menu.tools",
+    "vuetifyIcon": "mdi-toolbox",
+    "children": [
+      {
+        "i18nKey": "essenceCalculator",
+        "nameKey": "menu.essenceCalculator",
+        "routePath": "/tools/essence-calculator",
+        "vuetifyIcon": "mdi-calculator"
+      }
+    ]
+  },
+  {
     "i18nKey": "others",
     "nameKey": "menu.others",
     "vuetifyIcon": "mdi-dots-horizontal",
@@ -36,18 +49,18 @@
         "vuetifyIcon": "mdi-flask"
       },
       {
-      "i18nKey": "friendLinks",
-      "nameKey": "menu.friendLinks",
-      "routePath": "/others/friend-links",
-      "vuetifyIcon": "mdi-link"
-    },
-    {
-      "i18nKey": "contributors",
-      "nameKey": "menu.contributors",
-      "routePath": "/others/contributors",
-      "vuetifyIcon": "mdi-account-heart"
-    }
-  ]
+        "i18nKey": "friendLinks",
+        "nameKey": "menu.friendLinks",
+        "routePath": "/others/friend-links",
+        "vuetifyIcon": "mdi-link"
+      },
+      {
+        "i18nKey": "contributors",
+        "nameKey": "menu.contributors",
+        "routePath": "/others/contributors",
+        "vuetifyIcon": "mdi-account-heart"
+      }
+    ]
   },
   {
     "i18nKey": "introduction",
@@ -102,4 +115,3 @@
     ]
   }
 ]
-
