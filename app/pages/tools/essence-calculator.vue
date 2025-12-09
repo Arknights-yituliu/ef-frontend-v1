@@ -4,6 +4,8 @@
     <v-expansion-panel value="需求设定">
       <v-expansion-panel-title>需求设定</v-expansion-panel-title>
       <v-expansion-panel-text>
+        <p>在此设定想要刷取的武器基质，顺序不会影响结果。</p>
+        <p>点击“+”按钮添加新的基质条目。</p>
         <v-container max-width="1280">
           <v-row v-for="(stat, index) in requiredEssenceStats" :key="index" align="center">
             <v-col cols="12" md="3">
@@ -76,14 +78,14 @@
                 <v-icon>mdi-plus</v-icon>
                 <v-menu activator="parent">
                   <v-list density="comfortable">
-                    <v-list-subheader>空白</v-list-subheader>
+                    <v-list-subheader>自定义</v-list-subheader>
                     <v-list-item @click="insertStat(requiredEssenceStats.length)">
-                      <v-list-item-title>空白</v-list-item-title>
+                      <v-list-item-title>自定义</v-list-item-title>
                     </v-list-item>
                     <v-divider></v-divider>
                     <v-list-subheader>武器预设</v-list-subheader>
                     <v-list-item
-                      v-for="{ weaponType, weapons } in groupedWeaponPresets"
+                      v-for="weaponType in weaponTypes"
                       :key="weaponType"
                       append-icon="mdi-menu-right"
                     >
@@ -95,14 +97,23 @@
                         :open-on-focus="false"
                         :open-delay="100"
                       >
-                        <v-list density="comfortable">
-                          <v-list-item
-                            v-for="preset in weapons"
-                            :key="preset.weaponId"
-                            @click="addStatFromPreset(preset.stats)"
-                          >
-                            <v-list-item-title>{{ preset.weaponName }}</v-list-item-title>
-                          </v-list-item>
+                        <v-list density="compact">
+                          <template v-for="(rarity, index) in rarityLevels" :key="rarity">
+                            <v-divider v-if="index > 0" class="my-1"></v-divider>
+                            <v-list-subheader>
+                              <span :style="{ color: tierColorMap[rarity] }">{{ rarity }}★</span>
+                            </v-list-subheader>
+                            <v-list-item
+                              v-for="preset in Object.values(weaponPresets).filter(
+                                (weapon) =>
+                                  weapon.weaponType === weaponType && weapon.rarity === rarity,
+                              )"
+                              :key="preset.weaponId"
+                              @click="addStatFromPreset(preset.stats)"
+                            >
+                              <v-list-item-title>{{ preset.weaponName }}</v-list-item-title>
+                            </v-list-item>
+                          </template>
                         </v-list>
                       </v-menu>
                     </v-list-item>
@@ -119,18 +130,50 @@
       <v-expansion-panel-title>输出</v-expansion-panel-title>
       <v-expansion-panel-text>
         <template v-if="bestChoice && bestChoice.matchedCount > 0">
-          <p>
-            建议刷取<strong>{{ bestChoice.battleName }}</strong
-            >，
-          </p>
-          <p>选择基础属性：{{ bestChoice.selectedAttribute.join('、') }}，</p>
-          <p v-if="bestChoice.selectedSecondary">
-            选择附加属性：{{ bestChoice.selectedSecondary }}，
-          </p>
-          <p v-if="bestChoice.selectedSkill">选择技能属性：{{ bestChoice.selectedSkill }}，</p>
-          <p>可以刷到 {{ bestChoice.matchedCount }} 个需求的基质。</p>
+          <v-alert type="success" variant="tonal" class="mb-4" title="最佳策略建议" border="start">
+            <p class="mt-2">
+              建议刷取 <strong>{{ bestChoice.battleName }}</strong
+              >，此方案可以满足您 <strong>{{ bestChoice.matchedCount }}</strong> 个需求。
+            </p>
+          </v-alert>
+
+          <v-card variant="outlined">
+            <v-card-title>刻写方案</v-card-title>
+            <v-divider></v-divider>
+            <v-list-item>
+              <v-list-item-title class="font-weight-bold mb-1">选择基础属性</v-list-item-title>
+              <div>
+                <v-chip
+                  v-for="attr in bestChoice.selectedAttribute"
+                  :key="attr"
+                  class="ma-1"
+                  color="primary"
+                  label
+                  size="small"
+                >
+                  {{ attr }}
+                </v-chip>
+              </div>
+            </v-list-item>
+            <v-list-item v-if="bestChoice.selectedSecondary">
+              <v-list-item-title class="font-weight-bold mb-1">选择附加属性</v-list-item-title>
+              <v-chip class="ma-1" color="teal" label size="small">
+                {{ bestChoice.selectedSecondary }}
+              </v-chip>
+            </v-list-item>
+            <v-list-item v-if="bestChoice.selectedSkill">
+              <v-list-item-title class="font-weight-bold mb-1">选择技能属性</v-list-item-title>
+              <v-chip class="ma-1" color="blue" label size="small">
+                {{ bestChoice.selectedSkill }}
+              </v-chip>
+            </v-list-item>
+          </v-card>
         </template>
-        <template v-else>请至少添加一个需求。</template>
+        <template v-else>
+          <v-alert type="info" variant="tonal" border="start">
+            请在上方“需求设定”中至少添加一个有效的基质需求。
+          </v-alert>
+        </template>
       </v-expansion-panel-text>
     </v-expansion-panel>
 
@@ -153,11 +196,12 @@
 <script setup lang="ts">
 import { combinations } from '@/shared/utils/combinatoricUtil';
 import { ref, computed } from 'vue';
+import { tierColorMap } from '@/shared/utils/gameData/item';
 
 interface EssenceStat {
-  attribute: string;
-  secondary: string;
-  skill: string;
+  attribute: string | null;
+  secondary: string | null;
+  skill: string | null;
 }
 
 interface EnergyAlluvium {
@@ -299,60 +343,88 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
 };
 
 const emptyStat: EssenceStat = {
-  attribute: '',
-  secondary: '',
-  skill: '',
+  attribute: null,
+  secondary: null,
+  skill: null,
 };
-
-/** 需求的基质属性 */
-const requiredEssenceStats = ref<EssenceStat[]>([{ ...emptyStat }]);
 
 /** 武器类型 */
 const weaponTypes = ['单手剑', '双手剑', '长柄武器', '手铳', '施术单元'];
 
+/** 武器稀有度 */
+const rarityLevels = [3, 4, 5, 6];
+
 /** 武器预设 */
 const weaponPresets: Record<string, WeaponPreset> = {
-  白夜新星: {
-    weaponId: '白夜新星',
-    weaponName: '白夜新星',
+  塔尔11: {
+    weaponId: '塔尔11',
+    weaponName: '塔尔11',
     weaponType: '单手剑',
-    rarity: 6,
-    stats: { attribute: '智识提升', secondary: '源石技艺提升', skill: '附术' },
+    rarity: 3,
+    stats: { attribute: '主能力提升', secondary: null, skill: '强攻' },
   },
-  显赫声名: {
-    weaponId: '显赫声名',
-    weaponName: '显赫声名',
+  应急手段: {
+    weaponId: '应急手段',
+    weaponName: '应急手段',
     weaponType: '单手剑',
-    rarity: 6,
-    stats: { attribute: '敏捷提升', secondary: '物理伤害提升', skill: '残暴' },
+    rarity: 4,
+    stats: { attribute: '敏捷提升', secondary: '物理伤害提升', skill: '压制' },
   },
-  热熔切割器: {
-    weaponId: '热熔切割器',
-    weaponName: '热熔切割器',
+  浪潮: {
+    weaponId: '浪潮',
+    weaponName: '浪潮',
     weaponType: '单手剑',
-    rarity: 6,
-    stats: { attribute: '意志提升', secondary: '攻击提升', skill: '流转' },
+    rarity: 4,
+    stats: { attribute: '智识提升', secondary: '攻击提升', skill: '追袭' },
   },
-  扶摇: {
-    weaponId: '扶摇',
-    weaponName: '扶摇',
+  钢铁余音: {
+    weaponId: '钢铁余音',
+    weaponName: '钢铁余音',
     weaponType: '单手剑',
-    rarity: 6,
-    stats: { attribute: '敏捷提升', secondary: '暴击率提升', skill: '夜幕' },
+    rarity: 5,
+    stats: { attribute: '敏捷提升', secondary: '物理伤害提升', skill: '巧技' },
   },
-  黯色火炬: {
-    weaponId: '黯色火炬',
-    weaponName: '黯色火炬',
+  坚城铸造者: {
+    weaponId: '坚城铸造者',
+    weaponName: '坚城铸造者',
     weaponType: '单手剑',
-    rarity: 6,
-    stats: { attribute: '主能力提升', secondary: '灼热伤害提升', skill: '附术' },
+    rarity: 5,
+    stats: { attribute: '智识提升', secondary: '法术伤害提升', skill: '昂扬' },
   },
-  熔铸火焰: {
-    weaponId: '熔铸火焰',
-    weaponName: '熔铸火焰',
+  '逐鳞3.0': {
+    weaponId: '逐鳞3.0',
+    weaponName: '逐鳞3.0',
+    weaponType: '单手剑',
+    rarity: 5,
+    stats: { attribute: '力量提升', secondary: '终结技效率提升', skill: '压制' },
+  },
+  十二问: {
+    weaponId: '十二问',
+    weaponName: '十二问',
+    weaponType: '单手剑',
+    rarity: 5,
+    stats: { attribute: '敏捷提升', secondary: '攻击提升', skill: '附术' },
+  },
+  'O.B.J.轻芒': {
+    weaponId: 'O.B.J.轻芒',
+    weaponName: 'O.B.J.轻芒',
+    weaponType: '单手剑',
+    rarity: 5,
+    stats: { attribute: '敏捷提升', secondary: '攻击提升', skill: '流转' },
+  },
+  仰止: {
+    weaponId: '仰止',
+    weaponName: '仰止',
+    weaponType: '单手剑',
+    rarity: 5,
+    stats: { attribute: '敏捷提升', secondary: '物理伤害提升', skill: '夜幕' },
+  },
+  宏愿: {
+    weaponId: '宏愿',
+    weaponName: '宏愿',
     weaponType: '单手剑',
     rarity: 6,
-    stats: { attribute: '智识提升', secondary: '攻击提升', skill: '夜幕' },
+    stats: { attribute: '敏捷提升', secondary: '攻击提升', skill: '附术' },
   },
   不知归: {
     weaponId: '不知归',
@@ -361,12 +433,96 @@ const weaponPresets: Record<string, WeaponPreset> = {
     rarity: 6,
     stats: { attribute: '意志提升', secondary: '攻击提升', skill: '流转' },
   },
-  宏愿: {
-    weaponId: '宏愿',
-    weaponName: '宏愿',
+  熔铸火焰: {
+    weaponId: '熔铸火焰',
+    weaponName: '熔铸火焰',
     weaponType: '单手剑',
     rarity: 6,
-    stats: { attribute: '敏捷提升', secondary: '攻击提升', skill: '附术' },
+    stats: { attribute: '智识提升', secondary: '攻击提升', skill: '夜幕' },
+  },
+  黯色火炬: {
+    weaponId: '黯色火炬',
+    weaponName: '黯色火炬',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: { attribute: '主能力提升', secondary: '灼热伤害提升', skill: '附术' },
+  },
+  扶摇: {
+    weaponId: '扶摇',
+    weaponName: '扶摇',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: { attribute: '敏捷提升', secondary: '暴击率提升', skill: '夜幕' },
+  },
+  热熔切割器: {
+    weaponId: '热熔切割器',
+    weaponName: '热熔切割器',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: { attribute: '意志提升', secondary: '攻击提升', skill: '流转' },
+  },
+  显赫声名: {
+    weaponId: '显赫声名',
+    weaponName: '显赫声名',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: { attribute: '敏捷提升', secondary: '物理伤害提升', skill: '残暴' },
+  },
+  白夜新星: {
+    weaponId: '白夜新星',
+    weaponName: '白夜新星',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: { attribute: '智识提升', secondary: '源石技艺提升', skill: '附术' },
+  },
+  达尔霍夫7: {
+    weaponId: '达尔霍夫7',
+    weaponName: '达尔霍夫7',
+    weaponType: '双手剑',
+    rarity: 3,
+    stats: { attribute: '主能力提升', secondary: null, skill: '强攻' },
+  },
+  工业零点一: {
+    weaponId: '工业零点一',
+    weaponName: '工业零点一',
+    weaponType: '双手剑',
+    rarity: 4,
+    stats: { attribute: '力量提升', secondary: '攻击提升', skill: '压制' },
+  },
+  淬火者: {
+    weaponId: '淬火者',
+    weaponName: '淬火者',
+    weaponType: '双手剑',
+    rarity: 4,
+    stats: { attribute: '意志提升', secondary: '生命提升', skill: '粉碎' },
+  },
+  探骊: {
+    weaponId: '探骊',
+    weaponName: '探骊',
+    weaponType: '双手剑',
+    rarity: 5,
+    stats: { attribute: '力量提升', secondary: '终结技效率提升', skill: '迸发' },
+  },
+  古渠: {
+    weaponId: '古渠',
+    weaponName: '古渠',
+    weaponType: '双手剑',
+    rarity: 5,
+    stats: { attribute: '力量提升', secondary: '源石技艺提升', skill: '残暴' },
+  },
+  终点之声: {
+    weaponId: '终点之声',
+    weaponName: '终点之声',
+    weaponType: '双手剑',
+    rarity: 5,
+    stats: { attribute: '力量提升', secondary: '生命提升', skill: '医疗' },
+  },
+  'O.B.J.重荷': {
+    weaponId: 'O.B.J.重荷',
+    weaponName: 'O.B.J.重荷',
+    weaponType: '双手剑',
+    rarity: 5,
+    stats: { attribute: '力量提升', secondary: '生命提升', skill: '效益' },
   },
   大雷斑: {
     weaponId: '大雷斑',
@@ -403,6 +559,48 @@ const weaponPresets: Record<string, WeaponPreset> = {
     rarity: 6,
     stats: { attribute: '力量提升', secondary: '攻击提升', skill: '粉碎' },
   },
+  奥佩罗77: {
+    weaponId: '奥佩罗77',
+    weaponName: '奥佩罗77',
+    weaponType: '长柄武器',
+    rarity: 3,
+    stats: { attribute: '主能力提升', secondary: null, skill: '强攻' },
+  },
+  寻路者道标: {
+    weaponId: '寻路者道标',
+    weaponName: '寻路者道标',
+    weaponType: '长柄武器',
+    rarity: 4,
+    stats: { attribute: '敏捷提升', secondary: '攻击提升', skill: '昂扬' },
+  },
+  天使杀手: {
+    weaponId: '天使杀手',
+    weaponName: '天使杀手',
+    weaponType: '长柄武器',
+    rarity: 4,
+    stats: { attribute: '意志提升', secondary: '法术伤害提升', skill: '压制' },
+  },
+  嵌合正义: {
+    weaponId: '嵌合正义',
+    weaponName: '嵌合正义',
+    weaponType: '长柄武器',
+    rarity: 5,
+    stats: { attribute: '力量提升', secondary: '终结技效率提升', skill: '残暴' },
+  },
+  'O.B.J.尖峰': {
+    weaponId: 'O.B.J.尖峰',
+    weaponName: 'O.B.J.尖峰',
+    weaponType: '长柄武器',
+    rarity: 5,
+    stats: { attribute: '意志提升', secondary: '物理伤害提升', skill: '附术' },
+  },
+  向心之引: {
+    weaponId: '向心之引',
+    weaponName: '向心之引',
+    weaponType: '长柄武器',
+    rarity: 5,
+    stats: { attribute: '意志提升', secondary: '电磁伤害提升', skill: '压制' },
+  },
   负山: {
     weaponId: '负山',
     weaponName: '负山',
@@ -417,12 +615,54 @@ const weaponPresets: Record<string, WeaponPreset> = {
     rarity: 6,
     stats: { attribute: '敏捷提升', secondary: '物理伤害提升', skill: '巧技' },
   },
-  JET: {
-    weaponId: 'JET',
-    weaponName: 'JET',
+  'J.E.T.': {
+    weaponId: 'J.E.T.',
+    weaponName: 'J.E.T.',
     weaponType: '长柄武器',
     rarity: 6,
     stats: { attribute: '意志提升', secondary: '攻击提升', skill: '压制' },
+  },
+  佩科5: {
+    weaponId: '佩科5',
+    weaponName: '佩科5',
+    weaponType: '手铳',
+    rarity: 3,
+    stats: { attribute: '主能力提升', secondary: null, skill: '强攻' },
+  },
+  呼啸守卫: {
+    weaponId: '呼啸守卫',
+    weaponName: '呼啸守卫',
+    weaponType: '手铳',
+    rarity: 4,
+    stats: { attribute: '智识提升', secondary: '攻击提升', skill: '压制' },
+  },
+  长路: {
+    weaponId: '长路',
+    weaponName: '长路',
+    weaponType: '手铳',
+    rarity: 4,
+    stats: { attribute: '力量提升', secondary: '法术伤害提升', skill: '追袭' },
+  },
+  '作品：众生': {
+    weaponId: '作品：众生',
+    weaponName: '作品：众生',
+    weaponType: '手铳',
+    rarity: 5,
+    stats: { attribute: '敏捷提升', secondary: '法术伤害提升', skill: '附术' },
+  },
+  'O.B.J.迅极': {
+    weaponId: 'O.B.J.迅极',
+    weaponName: 'O.B.J.迅极',
+    weaponType: '手铳',
+    rarity: 5,
+    stats: { attribute: '敏捷提升', secondary: '终结技效率提升', skill: '迸发' },
+  },
+  理性告别: {
+    weaponId: '理性告别',
+    weaponName: '理性告别',
+    weaponType: '手铳',
+    rarity: 5,
+    stats: { attribute: '力量提升', secondary: '灼热伤害提升', skill: '追袭' },
   },
   艺术暴君: {
     weaponId: '艺术暴君',
@@ -451,6 +691,62 @@ const weaponPresets: Record<string, WeaponPreset> = {
     weaponType: '手铳',
     rarity: 6,
     stats: { attribute: '力量提升', secondary: '攻击提升', skill: '附术' },
+  },
+  吉米尼12: {
+    weaponId: '吉米尼12',
+    weaponName: '吉米尼12',
+    weaponType: '施术单元',
+    rarity: 3,
+    stats: { attribute: '主能力提升', secondary: null, skill: '强攻' },
+  },
+  全自动骇新星: {
+    weaponId: '全自动骇新星',
+    weaponName: '全自动骇新星',
+    weaponType: '施术单元',
+    rarity: 4,
+    stats: { attribute: '智识提升', secondary: '法术伤害提升', skill: '昂扬' },
+  },
+  荧光雷羽: {
+    weaponId: '荧光雷羽',
+    weaponName: '荧光雷羽',
+    weaponType: '施术单元',
+    rarity: 4,
+    stats: { attribute: '意志提升', secondary: '攻击提升', skill: '压制' },
+  },
+  悼亡诗: {
+    weaponId: '悼亡诗',
+    weaponName: '悼亡诗',
+    weaponType: '施术单元',
+    rarity: 5,
+    stats: { attribute: '智识提升', secondary: '攻击提升', skill: '夜幕' },
+  },
+  莫奈何: {
+    weaponId: '莫奈何',
+    weaponName: '莫奈何',
+    weaponType: '施术单元',
+    rarity: 5,
+    stats: { attribute: '意志提升', secondary: '终结技效率提升', skill: '昂扬' },
+  },
+  迷失荒野: {
+    weaponId: '迷失荒野',
+    weaponName: '迷失荒野',
+    weaponType: '施术单元',
+    rarity: 5,
+    stats: { attribute: '智识提升', secondary: '电磁伤害提升', skill: '附术' },
+  },
+  布道自由: {
+    weaponId: '布道自由',
+    weaponName: '布道自由',
+    weaponType: '施术单元',
+    rarity: 5,
+    stats: { attribute: '意志提升', secondary: '治疗效率提升', skill: '医疗' },
+  },
+  'O.B.J.术识': {
+    weaponId: 'O.B.J.术识',
+    weaponName: 'O.B.J.术识',
+    weaponType: '施术单元',
+    rarity: 5,
+    stats: { attribute: '智识提升', secondary: '源石技艺提升', skill: '追袭' },
   },
   使命必达: {
     weaponId: '使命必达',
@@ -496,16 +792,8 @@ const weaponPresets: Record<string, WeaponPreset> = {
   },
 };
 
-const groupedWeaponPresets = computed(() => {
-  const groups = new Map<string, WeaponPreset[]>(weaponTypes.map((type) => [type, []]));
-  for (const preset of Object.values(weaponPresets)) {
-    groups.get(preset.weaponType)?.push(preset);
-  }
-  return weaponTypes.map((weaponType) => ({
-    weaponType: weaponType,
-    weapons: groups.get(weaponType) ?? [],
-  }));
-});
+/** 需求的基质属性 */
+const requiredEssenceStats = ref<EssenceStat[]>([{ ...weaponPresets.熔铸火焰!.stats }]);
 
 function addStatFromPreset(stats: EssenceStat) {
   requiredEssenceStats.value.push({ ...stats });
@@ -538,8 +826,11 @@ function moveDown(index: number) {
 const battleChoices = computed(() => {
   const validEssenceStats = requiredEssenceStats.value.filter(
     ({ attribute, secondary, skill }) =>
+      attribute &&
       allAttributeStats.includes(attribute) &&
+      secondary &&
       allSecondaryStats.includes(secondary) &&
+      skill &&
       allSkillStats.includes(skill),
   );
 
@@ -553,8 +844,11 @@ const battleChoices = computed(() => {
         let matchedCount = 0;
         for (const stat of validEssenceStats) {
           if (
+            stat.attribute &&
             selectedAttribute.includes(stat.attribute) &&
+            stat.secondary &&
             selectedSecondary === stat.secondary &&
+            stat.skill &&
             skillStats.includes(stat.skill)
           ) {
             matchedCount++;
@@ -576,8 +870,11 @@ const battleChoices = computed(() => {
         let matchedCount = 0;
         for (const stat of validEssenceStats) {
           if (
+            stat.attribute &&
             selectedAttribute.includes(stat.attribute) &&
+            stat.secondary &&
             secondaryStats.includes(stat.secondary) &&
+            stat.skill &&
             selectedSkill === stat.skill
           ) {
             matchedCount++;
