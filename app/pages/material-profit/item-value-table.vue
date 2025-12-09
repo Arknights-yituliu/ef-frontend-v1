@@ -70,11 +70,21 @@
               class="item-icon-img"
             />
             <div
+              class="item-gradient-overlay"
               :style="{
-                borderBottom: `3px solid ${getItemTierColor(itemId)}`,
-                backgroundImage: `linear-gradient(180deg, transparent 0%, ${getItemTierColor(itemId, 0.4)} 100%)`,
+                background: `linear-gradient(
+                  to bottom,
+                  transparent 0%,
+                  transparent 70%,
+                  color-mix(in srgb, ${getItemTierColor(itemId)} 30%, transparent) 100%
+                )`,
               }"
+            ></div>
+            <div
               class="item-tier-bar"
+              :style="{
+                backgroundColor: getItemTierColor(itemId),
+              }"
             ></div>
           </div>
         </div>
@@ -290,14 +300,25 @@ watch([searchQuery, sortField, sortOrder], () => {
 
 .item-icon-img {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 125%;
+  height: 125%;
   object-fit: cover;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -55%);
+}
+
+.item-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .item-tier-bar {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4%;
 }
 
 /* 右侧信息标签 */
