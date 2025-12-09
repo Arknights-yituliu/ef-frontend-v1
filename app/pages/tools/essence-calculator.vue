@@ -151,7 +151,7 @@
 </template>
 
 <script setup lang="ts">
-import { combinations } from '@/shared/utils/CombinatoricUtil';
+import { combinations } from '@/shared/utils/combinatoricUtil';
 import { ref, computed } from 'vue';
 
 interface EssenceStat {
