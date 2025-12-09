@@ -47,7 +47,7 @@
         @click="toggleSortOrder"
       >
         <span v-if="sortOrder === 'asc'"
-        >↑ {{ $t('page.materialProfit.itemValueTable.sortAsc') }}</span
+          >↑ {{ $t('page.materialProfit.itemValueTable.sortAsc') }}</span
         >
         <span v-else>↓ {{ $t('page.materialProfit.itemValueTable.sortDesc') }}</span>
       </v-btn>
@@ -72,7 +72,7 @@
             <div
               :style="{
                 borderBottom: `3px solid ${getItemTierColor(itemId)}`,
-                backgroundImage: `linear-gradient(180deg, transparent 0%, ${getItemTierColor(itemId,0.4)} 100%)`
+                backgroundImage: `linear-gradient(180deg, transparent 0%, ${getItemTierColor(itemId, 0.4)} 100%)`,
               }"
               class="item-tier-bar"
             ></div>
@@ -96,17 +96,17 @@
 </template>
 
 <script lang="ts" setup>
-import {itemInfo} from '@/custom/core/itemInfo';
+import { itemInfo } from '@/custom/core/itemInfo';
 import {
   getItemIconUrl,
   getItemName,
   getItemTierColor,
   getItemValue,
 } from '@/shared/utils/gameData/item';
-import {resolvePictureUrl} from '@/shared/utils/urlUtil';
-import {computed, ref, watch} from 'vue';
+import { resolvePictureUrl } from '@/shared/utils/urlUtil';
+import { computed, ref, watch } from 'vue';
 
-const assets = import.meta.glob('@/assets/images/items/**', {
+const assets = import.meta.glob('~/assets/images/items/**', {
   eager: true,
   import: 'default',
 }) as Record<string, string>;
