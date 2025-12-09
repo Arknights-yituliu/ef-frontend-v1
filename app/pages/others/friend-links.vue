@@ -16,18 +16,14 @@
     </div>
 
     <!-- 友情链接列表 -->
-    <div v-else-if="data?.data && data.data.length > 0" class="links-grid">
-      <ContainerSpotlightCard
-        v-for="link in data.data"
-        :key="link.id"
-        class="friend-link-card"
-      >
+    <div v-else class="links-grid">
+      <ContainerSpotlightCard v-for="link in friendLinks" :key="link.id" class="friend-link-card">
         <div class="card-content">
           <!-- 图标和标题 -->
           <div class="card-header">
             <img
               v-if="link.icon_url"
-              :src="link.icon_url"
+              :src="resolvePictureUrl(link.icon_url, assets)"
               :alt="getLocalizedValue(link.localized_name)"
               class="link-icon"
               @error="handleImageError"
@@ -80,18 +76,15 @@
         </div>
       </ContainerSpotlightCard>
     </div>
-
-    <!-- 空状态 -->
-    <div v-else class="empty-container">
-      <p class="empty-text">{{ $t('common.noData') }}</p>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { resolvePictureUrl } from '@/shared/utils/urlUtil';
+
 definePageMeta({
-  layout: 'default'
-})
+  layout: 'default',
+});
 
 interface LocalizedValue {
   zh_CN: string;
@@ -126,53 +119,103 @@ interface ApiResponse {
   data: FriendLink[];
 }
 
-const { locale } = useI18n()
+const { locale } = useI18n();
 
 // API URL
-const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list'
+const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list';
+
+/** 自定义的友情链接 */
+const extraFriendLinks: FriendLink[] = [
+  {
+    id: 'Endaxis',
+    localized_name: {
+      zh_CN: 'Endaxis',
+      en_US: 'Endaxis',
+    },
+    localized_description: {
+      zh_CN:
+        'Endaxis 是一个专为《明日方舟：终末地》设计的可视化排轴工具。可以通过拖拽技能、建立连线关系来规划战术流程。',
+      en_US:
+        'Endaxis is a visual skill rotation planner designed for Arknights: Endfield. You can plan tactical processes by dragging skills and establishing connections.',
+    },
+    localized_slogan: {
+      zh_CN: 'Endaxis - 《明日方舟：终末地》排轴工具',
+      en_US: 'Endaxis - Visual Skill Rotation Planner for Arknights: Endfield',
+    },
+    localized_tags: {
+      zh_CN: ['排轴工具'],
+      en_US: ['Skill Rotation Planner'],
+    },
+    icon_url: '~/assets/images/friend-links/endaxis-icon.png',
+    links: [
+      {
+        primary: true,
+        regionality: 'global',
+        localized_name: {
+          zh_CN: '主页',
+          en_US: 'Home',
+        },
+        url: 'https://www.lieyuan.top/Endaxis/',
+      },
+    ],
+  },
+];
+
+const assets = import.meta.glob('~/assets/images/friend-links/**', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>;
 
 // 获取数据
 const { data, pending, error, refresh } = await useFetch<ApiResponse>(apiUrl, {
   server: false, // 只在客户端获取，避免 SSR 问题
-  key: 'friend-links'
-})
+  key: 'friend-links',
+});
+
+// 合并自定义友情链接
+const friendLinks = computed(() => {
+  if (data.value && data.value.data) {
+    return [...extraFriendLinks, ...data.value.data];
+  }
+  return extraFriendLinks;
+});
 
 // 获取本地化字符串值
 const getLocalizedValue = (localized: LocalizedValue | undefined): string | undefined => {
-  if (!localized) return undefined
+  if (!localized) return undefined;
 
   // 将 locale 从 'zh-CN' 转换为 'zh_CN'，'en-US' 转换为 'en_US'
-  const localeKey = locale.value === 'zh-CN' ? 'zh_CN' : 'en_US'
+  const localeKey = locale.value === 'zh-CN' ? 'zh_CN' : 'en_US';
 
-  return localized[localeKey as keyof LocalizedValue] as string
-}
+  return localized[localeKey as keyof LocalizedValue] as string;
+};
 
 // 获取本地化数组值
 const getLocalizedArray = (localized: LocalizedArray | undefined): string[] => {
-  if (!localized) return []
+  if (!localized) return [];
 
   // 将 locale 从 'zh-CN' 转换为 'zh_CN'，'en-US' 转换为 'en_US'
-  const localeKey = locale.value === 'zh-CN' ? 'zh_CN' : 'en_US'
+  const localeKey = locale.value === 'zh-CN' ? 'zh_CN' : 'en_US';
 
-  return localized[localeKey as keyof LocalizedArray] as string[] || []
-}
+  return (localized[localeKey as keyof LocalizedArray] as string[]) || [];
+};
 
 // 过滤链接（根据区域性和主要链接）
 const getFilteredLinks = (links: LinkItem[]): LinkItem[] => {
   // 优先显示主要链接，然后是其他链接
-  const primaryLinks = links.filter(link => link.primary)
-  const otherLinks = links.filter(link => !link.primary)
+  const primaryLinks = links.filter((link) => link.primary);
+  const otherLinks = links.filter((link) => !link.primary);
 
   // 可以在这里添加区域过滤逻辑，但为了简单起见，显示所有链接
-  return [...primaryLinks, ...otherLinks]
-}
+  return [...primaryLinks, ...otherLinks];
+};
 
 // 处理图片加载错误
 const handleImageError = (event: Event) => {
-  const img = event.target as HTMLImageElement
+  const img = event.target as HTMLImageElement;
   // 可以设置一个默认图标
-  img.style.display = 'none'
-}
+  img.style.display = 'none';
+};
 </script>
 
 <style scoped>
@@ -191,8 +234,7 @@ const handleImageError = (event: Event) => {
 }
 
 .loading-container,
-.error-container,
-.empty-container {
+.error-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -218,8 +260,7 @@ const handleImageError = (event: Event) => {
 }
 
 .loading-text,
-.error-text,
-.empty-text {
+.error-text {
   font-size: var(--font-size-md);
   color: var(--theme-text-secondary);
 }
@@ -480,4 +521,3 @@ const handleImageError = (event: Event) => {
   }
 }
 </style>
-
