@@ -76,10 +76,10 @@
             <v-col cols="12" md="3">
               <v-btn icon="mdi-plus" color="primary" variant="text">
                 <v-icon>mdi-plus</v-icon>
-                <v-menu activator="parent">
+                <v-menu activator="parent" v-model="menu" :close-on-content-click="false">
                   <v-list density="comfortable">
                     <v-list-subheader>自定义</v-list-subheader>
-                    <v-list-item @click="insertStat(requiredEssenceStats.length)">
+                    <v-list-item @click="addStatFromPreset({ ...emptyStat })">
                       <v-list-item-title>自定义</v-list-item-title>
                     </v-list-item>
                     <v-divider></v-divider>
@@ -88,6 +88,7 @@
                       v-for="weaponType in weaponTypes"
                       :key="weaponType"
                       append-icon="mdi-menu-right"
+                      link
                     >
                       <v-list-item-title>{{ weaponType }}</v-list-item-title>
                       <v-menu
@@ -104,14 +105,16 @@
                               <span :style="{ color: tierColorMap[rarity] }">{{ rarity }}★</span>
                             </v-list-subheader>
                             <v-list-item
-                              v-for="preset in Object.values(weaponPresets).filter(
+                              v-for="{ weaponId, weaponName, stats } in Object.values(
+                                weapons,
+                              ).filter(
                                 (weapon) =>
                                   weapon.weaponType === weaponType && weapon.rarity === rarity,
                               )"
-                              :key="preset.weaponId"
-                              @click="addStatFromPreset(preset.stats)"
+                              :key="weaponId"
+                              @click="addStatFromPreset(stats)"
                             >
-                              <v-list-item-title>{{ preset.weaponName }}</v-list-item-title>
+                              <v-list-item-title>{{ weaponName }}</v-list-item-title>
                             </v-list-item>
                           </template>
                         </v-list>
@@ -355,7 +358,7 @@ const weaponTypes = ['单手剑', '双手剑', '长柄武器', '手铳', '施术
 const rarityLevels = [3, 4, 5, 6];
 
 /** 武器预设 */
-const weaponPresets: Record<string, WeaponPreset> = {
+const weapons: Record<string, WeaponPreset> = {
   塔尔11: {
     weaponId: '塔尔11',
     weaponName: '塔尔11',
@@ -792,19 +795,18 @@ const weaponPresets: Record<string, WeaponPreset> = {
   },
 };
 
+const menu = ref(false);
+
 /** 需求的基质属性 */
-const requiredEssenceStats = ref<EssenceStat[]>([{ ...weaponPresets.熔铸火焰!.stats }]);
+const requiredEssenceStats = ref<EssenceStat[]>([{ ...weapons.熔铸火焰!.stats }]);
 
 function addStatFromPreset(stats: EssenceStat) {
   requiredEssenceStats.value.push({ ...stats });
+  menu.value = false;
 }
 
 function removeStat(index: number) {
   requiredEssenceStats.value.splice(index, 1);
-}
-
-function insertStat(index: number) {
-  requiredEssenceStats.value.splice(index, 0, { ...emptyStat });
 }
 
 function moveUp(index: number) {
