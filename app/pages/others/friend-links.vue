@@ -159,6 +159,70 @@ const extraFriendLinks: FriendLink[] = [
       },
     ],
   },
+  {
+    id: '终末地地图站',
+    localized_name: {
+      zh_CN: '终末地地图站',
+      en_US: 'Open Endfield Map',
+    },
+    localized_description: {
+      zh_CN:
+        '明日方舟：终末地地图集。查看所有地区与副本内的物品与收集品点位详情，并参与构建更完善的游戏内收集体验。',
+      en_US:
+        'Arknights: Endfield map collection. View details of item and collectible locations in all regions and stages, and contribute to building a more complete in-game collection experience.',
+    },
+    localized_slogan: {
+      zh_CN: '帮你找到任何你需要的物品与路线。',
+      en_US: 'Helping you find any items and routes you need.',
+    },
+    localized_tags: {
+      zh_CN: ['全收集', '查漏补缺', '路径规划'],
+      en_US: ['Completionist', 'Find Missing Items', 'Route Planning'],
+    },
+    icon_url: '~/assets/images/friend-links/opendfieldmap.webp',
+    links: [
+      {
+        primary: true,
+        regionality: 'global',
+        localized_name: {
+          zh_CN: '前往地图',
+          en_US: 'Go to Map',
+        },
+        url: 'https://opendfieldmap.cn/',
+      },
+    ],
+  },
+  {
+    id: 'MaaEnd',
+    localized_name: {
+      zh_CN: 'MaaEnd',
+      en_US: 'MaaEnd',
+    },
+    localized_description: {
+      zh_CN: '给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案',
+      en_US: '给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案',
+    },
+    localized_slogan: {
+      zh_CN: '给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案',
+      en_US: '给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案',
+    },
+    localized_tags: {
+      zh_CN: ['给我文案'],
+      en_US: ['给我文案'],
+    },
+    icon_url: '~/assets/images/friend-links/MaaEnd.ico',
+    links: [
+      {
+        primary: true,
+        regionality: 'global',
+        localized_name: {
+          zh_CN: '主页',
+          en_US: 'Home',
+        },
+        url: 'https://opendfieldmap.cn/',
+      },
+    ],
+  },
 ];
 
 const assets = import.meta.glob('~/assets/images/friend-links/**', {
@@ -321,7 +385,6 @@ const handleImageError = (event: Event) => {
   height: 3.5rem;
   border-radius: var(--radius-md);
   object-fit: cover;
-  border: 1px solid var(--theme-border);
   flex-shrink: 0;
 }
 
