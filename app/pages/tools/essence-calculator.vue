@@ -1,18 +1,20 @@
 <template>
-  <h1>基质计算器</h1>
+  <h1>{{ t('page.tools.essenceCalculator.title') }}</h1>
   <v-expansion-panels multiple :model-value="['需求设定', '输出']">
     <v-expansion-panel value="需求设定">
-      <v-expansion-panel-title>需求设定</v-expansion-panel-title>
+      <v-expansion-panel-title>{{
+        t('page.tools.essenceCalculator.demandSet')
+      }}</v-expansion-panel-title>
       <v-expansion-panel-text>
-        <p>在此设定想要刷取的武器基质，顺序不会影响结果。</p>
-        <p>点击“+”按钮添加新的基质条目。</p>
+        <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
+        <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
         <v-container max-width="1280">
           <v-row v-for="(stat, index) in requiredEssenceStats" :key="index" align="center">
             <v-col cols="12" md="3">
               <v-select
                 v-model="stat.attribute"
                 :items="allAttributeStats"
-                label="基础属性"
+                :label="t('page.tools.essenceCalculator.attributeStats')"
                 density="comfortable"
                 hide-details
                 variant="outlined"
@@ -24,7 +26,7 @@
               <v-select
                 v-model="stat.secondary"
                 :items="allSecondaryStats"
-                label="附加属性"
+                :label="t('page.tools.essenceCalculator.secondaryStats')"
                 density="comfortable"
                 hide-details
                 variant="outlined"
@@ -36,7 +38,7 @@
               <v-select
                 v-model="stat.skill"
                 :items="allSkillStats"
-                label="技能属性"
+                :label="t('page.tools.essenceCalculator.skillStats')"
                 density="comfortable"
                 hide-details
                 variant="outlined"
@@ -78,12 +80,18 @@
                 <v-icon>mdi-plus</v-icon>
                 <v-menu activator="parent" v-model="menu" :close-on-content-click="false">
                   <v-list density="comfortable">
-                    <v-list-subheader>自定义</v-list-subheader>
+                    <v-list-subheader>{{
+                      t('page.tools.essenceCalculator.custom')
+                    }}</v-list-subheader>
                     <v-list-item @click="addStatFromPreset({ ...emptyStat })">
-                      <v-list-item-title>自定义</v-list-item-title>
+                      <v-list-item-title>{{
+                        t('page.tools.essenceCalculator.custom')
+                      }}</v-list-item-title>
                     </v-list-item>
                     <v-divider></v-divider>
-                    <v-list-subheader>武器预设</v-list-subheader>
+                    <v-list-subheader>{{
+                      t('page.tools.essenceCalculator.weaponPreset')
+                    }}</v-list-subheader>
                     <v-list-item
                       v-for="weaponType in weaponTypes"
                       :key="weaponType"
@@ -130,21 +138,35 @@
     </v-expansion-panel>
 
     <v-expansion-panel value="输出">
-      <v-expansion-panel-title>输出</v-expansion-panel-title>
+      <v-expansion-panel-title>{{
+        t('page.tools.essenceCalculator.output')
+      }}</v-expansion-panel-title>
       <v-expansion-panel-text>
         <template v-if="bestChoice && bestChoice.matchedCount > 0">
-          <v-alert type="success" variant="tonal" class="mb-4" title="最佳策略建议" border="start">
-            <p class="mt-2">
-              建议刷取 <strong>{{ bestChoice.battleName }}</strong
-              >，此方案可以满足您 <strong>{{ bestChoice.matchedCount }}</strong> 个需求。
-            </p>
+          <v-alert
+            type="success"
+            variant="tonal"
+            class="mb-4"
+            :title="t('page.tools.essenceCalculator.bestStrategy')"
+            border="start"
+          >
+            <i18n-t keypath="page.tools.essenceCalculator.suggestion" tag="p" class="mt-2">
+              <template #battleName>
+                <strong>{{ bestChoice.battleName }}</strong>
+              </template>
+              <template #count>
+                <strong>{{ bestChoice.matchedCount }}</strong>
+              </template>
+            </i18n-t>
           </v-alert>
 
           <v-card variant="outlined">
-            <v-card-title>刻写方案</v-card-title>
+            <v-card-title>{{ t('page.tools.essenceCalculator.preEngraveStats') }}</v-card-title>
             <v-divider></v-divider>
             <v-list-item>
-              <v-list-item-title class="font-weight-bold mb-1">选择基础属性</v-list-item-title>
+              <v-list-item-title class="font-weight-bold mb-1">{{
+                t('page.tools.essenceCalculator.selectAttributeStats')
+              }}</v-list-item-title>
               <div>
                 <v-chip
                   v-for="attr in bestChoice.selectedAttribute"
@@ -159,13 +181,17 @@
               </div>
             </v-list-item>
             <v-list-item v-if="bestChoice.selectedSecondary">
-              <v-list-item-title class="font-weight-bold mb-1">选择附加属性</v-list-item-title>
+              <v-list-item-title class="font-weight-bold mb-1">{{
+                t('page.tools.essenceCalculator.selectSecondaryAttribute')
+              }}</v-list-item-title>
               <v-chip class="ma-1" color="teal" label size="small">
                 {{ bestChoice.selectedSecondary }}
               </v-chip>
             </v-list-item>
             <v-list-item v-if="bestChoice.selectedSkill">
-              <v-list-item-title class="font-weight-bold mb-1">选择技能属性</v-list-item-title>
+              <v-list-item-title class="font-weight-bold mb-1">{{
+                t('page.tools.essenceCalculator.selectSkillAttribute')
+              }}</v-list-item-title>
               <v-chip class="ma-1" color="blue" label size="small">
                 {{ bestChoice.selectedSkill }}
               </v-chip>
@@ -174,21 +200,25 @@
         </template>
         <template v-else>
           <v-alert type="info" variant="tonal" border="start">
-            请在上方“需求设定”中至少添加一个有效的基质需求。
+            {{ t('page.tools.essenceCalculator.noValidDemand') }}
           </v-alert>
         </template>
       </v-expansion-panel-text>
     </v-expansion-panel>
 
     <v-expansion-panel>
-      <v-expansion-panel-title>调试输入</v-expansion-panel-title>
+      <v-expansion-panel-title>{{
+        t('page.tools.essenceCalculator.debugInput')
+      }}</v-expansion-panel-title>
       <v-expansion-panel-text>
         <pre>{{ requiredEssenceStats }}</pre>
       </v-expansion-panel-text>
     </v-expansion-panel>
 
     <v-expansion-panel>
-      <v-expansion-panel-title>调试输出</v-expansion-panel-title>
+      <v-expansion-panel-title>{{
+        t('page.tools.essenceCalculator.debugOutput')
+      }}</v-expansion-panel-title>
       <v-expansion-panel-text>
         <pre>{{ JSON.stringify(battleChoices, null, 2) }}</pre>
       </v-expansion-panel-text>
@@ -199,7 +229,10 @@
 <script setup lang="ts">
 import { combinations } from '@/shared/utils/combinatoricUtil';
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { tierColorMap } from '@/shared/utils/gameData/item';
+
+const { t } = useI18n();
 
 interface EssenceStat {
   attribute: string | null;

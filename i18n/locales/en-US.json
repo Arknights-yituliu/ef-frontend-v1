@@ -156,6 +156,29 @@
         "sortDesc": "Descending"
       }
     },
+    "tools": {
+      "essenceCalculator": {
+        "title": "Essence Calculator",
+        "demandSet": "Demand Set",
+        "demandSetDescription1": "Set the desired weapon essence to farm here; the order does not affect the result.",
+        "demandSetDescription2": "Click the '+' button to add a new essence entry.",
+        "attributeStats": "Attribute Stats",
+        "secondaryStats": "Secondary Stats",
+        "skillStats": "Skill Stats",
+        "custom": "Custom",
+        "weaponPreset": "Weapon Preset",
+        "output": "Output",
+        "bestStrategy": "Best Strategy Suggestion",
+        "suggestion": "It is recommended to farm {battleName}, this plan can meet {count} of your needs.",
+        "preEngraveStats": "Pre-Engrave Stats",
+        "selectAttributeStats": "Select Basic Attribute",
+        "selectSecondaryAttribute": "Select Secondary Attribute",
+        "selectSkillAttribute": "Select Skill Attribute",
+        "noValidDemand": "Please add at least one valid essence demand in the 'Demand Set' above.",
+        "debugInput": "Debug Input",
+        "debugOutput": "Debug Output"
+      }
+    },
     "others": {
       "test": {
         "title": "Vuetify Component Test",
