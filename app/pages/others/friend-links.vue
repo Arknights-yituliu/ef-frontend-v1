@@ -199,18 +199,56 @@ const extraFriendLinks: FriendLink[] = [
       en_US: 'MaaEnd',
     },
     localized_description: {
-      zh_CN: '给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案',
-      en_US: '给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案',
+      zh_CN: '高精度自动化助手，专为「明日方舟：终末地」重度作战和最大化效率而设计。',
+      en_US:
+        'High-precision automation assistant. Designed for heavy-duty operations and maximum efficiency in Arknights: Endfield.',
     },
     localized_slogan: {
-      zh_CN: '给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案',
-      en_US: '给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案给我文案',
+      zh_CN: 'MAA - 终\n终末地小助手',
+      en_US: 'MAA - End\nEndfield Assistant',
     },
     localized_tags: {
-      zh_CN: ['给我文案'],
-      en_US: ['给我文案'],
+      zh_CN: ['MAA', '自动化'],
+      en_US: ['MAA', 'Automation'],
     },
     icon_url: '~/assets/images/friend-links/MaaEnd.ico',
+    links: [
+      {
+        primary: true,
+        regionality: 'global',
+        localized_name: {
+          zh_CN: '官网',
+          en_US: 'Official Website',
+        },
+        url: 'https://maaend.com/',
+      },
+    ],
+  },
+  {
+    id: '终末地一图流',
+    localized_name: {
+      zh_CN: '终末地一图流',
+      en_US: 'Endfield In One',
+    },
+    localized_description: {
+      zh_CN: '终末地物品价值、商店与礼包性价比、攒抽计算器，以及更多实用工具。',
+      en_US:
+        'Item values, shop and package cost performance, gacha calculator, and more practical tools for Endfield.',
+    },
+    localized_slogan: {
+      zh_CN: '终末地收益相关的数据都在这里',
+      en_US: 'All data related to Endfield rewards and returns are here',
+    },
+    localized_tags: {
+      zh_CN: ['物品价值表', '商店性价比', '礼包性价比', '攒抽计算器'],
+      en_US: [
+        'Item Value Table',
+        'Shop Cost Performance',
+        'Package Cost Performance',
+        'Gacha Calculator',
+      ],
+    },
+    icon_url: '~/assets/images/friend-links/明日方舟终末地一图流LOGO.png',
     links: [
       {
         primary: true,
@@ -219,7 +257,7 @@ const extraFriendLinks: FriendLink[] = [
           zh_CN: '主页',
           en_US: 'Home',
         },
-        url: 'https://opendfieldmap.cn/',
+        url: 'https://ef.yituliu.cn/',
       },
     ],
   },
@@ -402,6 +440,7 @@ const handleImageError = (event: Event) => {
   line-height: 1.6;
   margin: 0;
   flex: 1;
+  white-space: pre-wrap;
 }
 
 .link-slogan {
@@ -413,6 +452,7 @@ const handleImageError = (event: Event) => {
   padding: 0.5rem 0;
   border-top: 1px solid var(--theme-border);
   border-bottom: 1px solid var(--theme-border);
+  white-space: pre-wrap;
 }
 
 .link-tags {
