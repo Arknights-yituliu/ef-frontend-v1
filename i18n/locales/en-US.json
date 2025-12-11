@@ -38,7 +38,7 @@
   "component": {
     "home": {
       "checkAccess": {
-        "comprehensiveTestQualificationCheck": "Comprehensive test qualification check",
+        "betaTestIICheckAccess": "Beta Test II Check Access",
         "checkAccessOnEndfieldOfficialSite": "Check access on endfield official site"
       },
       "penguinStatistics": {

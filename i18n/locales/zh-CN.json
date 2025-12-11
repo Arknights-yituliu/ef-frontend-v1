@@ -38,7 +38,7 @@
   "component": {
     "home": {
       "checkAccess": {
-        "comprehensiveTestQualificationCheck": "全面测试资格查询",
+        "betaTestIICheckAccess": "全面测试资格查询",
         "checkAccessOnEndfieldOfficialSite": "前往终末地官网查询资格"
       },
       "penguinStatistics": {
