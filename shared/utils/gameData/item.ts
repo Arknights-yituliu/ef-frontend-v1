@@ -35,7 +35,7 @@ export function getItemRarity(itemId: string): number | undefined {
 
 export function getItemTierColor(itemId: string): ColorInstance {
   const rarity = getItemRarity(itemId);
-  if (rarity && tierColorMap.has(rarity)) {
+  if (rarity !== undefined && tierColorMap.has(rarity)) {
     return tierColorMap.get(rarity)!;
   }
   return Color('transparent'); // Default to transparent if rarity is undefined or not found

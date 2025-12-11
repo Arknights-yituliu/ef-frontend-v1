@@ -110,7 +110,9 @@
                           <template v-for="(rarity, index) in rarityLevels" :key="rarity">
                             <v-divider v-if="index > 0" class="my-1"></v-divider>
                             <v-list-subheader>
-                              <span :style="{ color: tierColorMap[rarity] }">{{ rarity }}★</span>
+                              <span :style="{ color: tierColorMap.get(rarity)?.string() }"
+                                >{{ rarity }}★</span
+                              >
                             </v-list-subheader>
                             <v-list-item
                               v-for="{ weaponId, weaponName, stats } in Object.values(
