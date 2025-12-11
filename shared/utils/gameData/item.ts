@@ -1,14 +1,15 @@
 import { gachaItemMap } from '@/custom/core/gachaItem';
 import { itemInfo } from '@/custom/core/itemInfo';
 import { itemValueMap } from '@/custom/core/itemValue';
+import { hexToRGBA } from '@/shared/utils/colorUtil';
 
 export const tierColorMap: Record<number, string> = {
-  1: '#9b9a9a',
-  2: '#abcd41',
-  3: '#26bafb',
-  4: '#9451f8',
-  5: '#ffba03',
-  6: '#ff7000',
+  1: '#9b9b9b',
+  2: '#abce42',
+  3: '#26bbfd',
+  4: '#9452fa',
+  5: '#ffbb03',
+  6: '#ff7100',
 };
 
 export function getItemName(itemId: string): string {
