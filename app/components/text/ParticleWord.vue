@@ -1,17 +1,13 @@
 <template>
-  <div :class="className" class="particle-word-container">
+  <div class="particle-word-container">
     <div class="particle-word-wrapper">
       <canvas
-          ref="canvasRef"
-          :height="CANVAS_HEIGHT"
-          :width="CANVAS_WIDTH"
-          class="particle-canvas"
+        ref="canvasRef"
+        :height="CANVAS_HEIGHT"
+        :width="CANVAS_WIDTH"
+        class="particle-canvas"
       />
-      <div
-          v-if="!isLoaded"
-          :style="{ color: textColor }"
-          class="particle-loading"
-      >
+      <div v-if="!isLoaded" class="particle-loading">
         {{ $t('component.particleWord.loading') }}
       </div>
     </div>
@@ -19,7 +15,9 @@
 </template>
 
 <script lang="ts" setup>
-const {t} = useI18n()
+import Color from 'color';
+import type { ColorInstance } from 'color';
+const { t } = useI18n();
 
 // 画布尺寸
 const CANVAS_WIDTH = 800;
@@ -34,7 +32,7 @@ const INTENSITY = 0.95; // 排斥/吸引强度
 interface ParticleData {
   x: number;
   y: number;
-  color: number[];
+  color: ColorInstance;
 }
 
 class Particle {
@@ -48,23 +46,24 @@ class Particle {
   vy: number = 0;
   time: number;
   r: number;
-  color: number[];
+  color: ColorInstance;
   opacity: number;
 
-  constructor(totalX: number, totalY: number, time: number, color: number[]) {
+  constructor(totalX: number, totalY: number, time: number, color: ColorInstance) {
     this.x = Math.random() * CANVAS_WIDTH;
     this.y = Math.random() * CANVAS_HEIGHT;
     this.totalX = totalX;
     this.totalY = totalY;
     this.time = time;
     this.r = 1.2;
-    this.color = [...color];
+    this.color = color;
     this.opacity = 0;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
-    ctx.fillStyle = `rgba(${this.color.join(',')}, ${this.opacity})`;
-    ctx.strokeStyle = `rgba(${this.color.join(',')}, ${this.opacity})`;
+    const colorString = this.color.alpha(this.opacity).string();
+    ctx.fillStyle = colorString;
+    ctx.strokeStyle = colorString;
     ctx.fillRect(this.x, this.y, this.r * 2, this.r * 2);
   }
 
@@ -132,7 +131,7 @@ class ParticleCanvas {
     });
   }
 
-  generateTextParticles(text: string, color: string = '#000000') {
+  generateTextParticles(text: string, color: ColorInstance = Color('#000000')) {
     // 创建临时画布用于文本渲染
     const tempCanvas = document.createElement('canvas');
     const tempCtx = tempCanvas.getContext('2d')!;
@@ -153,9 +152,6 @@ class ParticleCanvas {
 
     const particles: ParticleData[] = [];
 
-    // 将颜色转换为RGB数组
-    const rgbColor = hexToRGB(color);
-
     // 采样像素（每3个像素采样一次以提高性能）
     for (let y = 0; y < CANVAS_HEIGHT; y += 3) {
       for (let x = 0; x < CANVAS_WIDTH; x += 3) {
@@ -167,7 +163,7 @@ class ParticleCanvas {
           particles.push({
             x,
             y,
-            color: [...rgbColor]
+            color: color,
           });
         }
       }
@@ -175,14 +171,14 @@ class ParticleCanvas {
 
     // 创建粒子实例
     this.particles = particles.map(
-        particle => new Particle(particle.x, particle.y, ANIMATE_TIME, particle.color)
+      (particle) => new Particle(particle.x, particle.y, ANIMATE_TIME, particle.color),
     );
   }
 
   animate() {
     this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    this.particles.forEach(particle => {
+    this.particles.forEach((particle) => {
       particle.update(this.mouseX, this.mouseY);
       particle.draw(this.ctx);
     });
@@ -198,37 +194,14 @@ class ParticleCanvas {
 }
 
 interface Props {
-  text?: string;
-  className?: string;
-  color?: string;
+  text: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  text: undefined,
-  className: '',
-  color: undefined
-});
-
-// 计算实际使用的文本，如果未提供则使用默认的 siteName
-const displayText = computed(() => {
-  return props.text ?? t('layout.siteName');
-});
+const props = defineProps<Props>();
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const particleCanvasRef = ref<ParticleCanvas | null>(null);
 const isLoaded = ref(false);
-
-// 获取主题颜色
-const textColor = computed(() => {
-  if (props.color) {
-    return props.color;
-  }
-  // 从CSS变量获取主题颜色
-  if (typeof window !== 'undefined') {
-    return getCSSVariableColor('--theme-accent-color');
-  }
-  return '#000000';
-});
 
 const initParticleCanvas = () => {
   if (canvasRef.value) {
@@ -237,8 +210,9 @@ const initParticleCanvas = () => {
     }
     particleCanvasRef.value = new ParticleCanvas(canvasRef.value);
 
-    const color = props.color || (typeof window !== 'undefined' ? getCSSVariableColor('--theme-accent-color') : '#000000');
-    particleCanvasRef.value.generateTextParticles(displayText.value, color);
+    const color = Color(getComputedStyle(canvasRef.value).color);
+
+    particleCanvasRef.value.generateTextParticles(props.text, color);
     particleCanvasRef.value.animate();
     isLoaded.value = true;
   }
@@ -254,10 +228,14 @@ onUnmounted(() => {
   }
 });
 
-// 监听text和color变化
-watch([displayText, () => props.color], () => {
-  initParticleCanvas();
-}, {flush: 'post'});
+// 监听 props 变化
+watch(
+  props,
+  () => {
+    initParticleCanvas();
+  },
+  { flush: 'post' },
+);
 
 // 监听主题变化（通过监听data-theme属性变化）
 let themeObserver: MutationObserver | null = null;
@@ -270,7 +248,7 @@ onMounted(() => {
 
     themeObserver.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-theme']
+      attributeFilter: ['data-theme'],
     });
   }
 });
@@ -311,4 +289,3 @@ onUnmounted(() => {
   justify-content: center;
 }
 </style>
-

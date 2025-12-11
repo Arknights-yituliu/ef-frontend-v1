@@ -76,14 +76,14 @@
                   to bottom,
                   transparent 0%,
                   transparent 70%,
-                  color-mix(in srgb, ${getItemTierColor(itemId)} 30%, transparent) 100%
+                  ${getItemTierColor(itemId).alpha(0.3).string()} 100%
                 )`,
               }"
             ></div>
             <div
               class="item-tier-bar"
               :style="{
-                backgroundColor: getItemTierColor(itemId),
+                backgroundColor: getItemTierColor(itemId).string(),
               }"
             ></div>
           </div>
