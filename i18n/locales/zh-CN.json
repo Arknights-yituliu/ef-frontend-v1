@@ -14,6 +14,7 @@
     "itemValueTable": "物品价值表",
     "tools": "一图流工具箱",
     "essenceCalculator": "基质计算器",
+    "gachaCalculator": "攒抽计算器",
     "others": "其它",
     "friendLinks": "友情链接",
     "test": "测试",
@@ -177,6 +178,10 @@
         "noValidDemand": "请在上方“需求设定”中至少添加一个有效的基质需求。",
         "debugInput": "调试输入",
         "debugOutput": "调试输出"
+      },
+      "gachaCalculator": {
+        "title": "攒抽计算器",
+        "underDevelopment": "锐意开发中……"
       }
     },
     "others": {

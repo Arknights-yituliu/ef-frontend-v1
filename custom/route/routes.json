@@ -33,7 +33,13 @@
         "i18nKey": "essenceCalculator",
         "nameKey": "menu.essenceCalculator",
         "routePath": "/tools/essence-calculator",
-        "vuetifyIcon": "mdi-calculator"
+        "vuetifyIcon": "mdi-pokeball"
+      },
+      {
+        "i18nKey": "gachaCalculator",
+        "nameKey": "menu.gachaCalculator",
+        "routePath": "/tools/gacha-calculator",
+        "vuetifyIcon": "mdi-wallet"
       }
     ]
   },

@@ -177,6 +177,10 @@
         "noValidDemand": "Please add at least one valid essence demand in the 'Demand Set' above.",
         "debugInput": "Debug Input",
         "debugOutput": "Debug Output"
+      },
+      "gachaCalculator": {
+        "title": "Gacha Calculator",
+        "underDevelopment": "Under development..."
       }
     },
     "others": {
