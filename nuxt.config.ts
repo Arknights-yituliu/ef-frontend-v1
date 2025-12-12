@@ -60,24 +60,18 @@ export default defineNuxtConfig({
      * 注册 Nuxt 模块，扩展应用功能
      * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#modules
      */
-    modules: [
-        // @nuxtjs/i18n - 国际化模块，提供多语言支持
-        // 参考：https://nuxt.com/modules/i18n
-        '@nuxtjs/i18n',
-        
-        // @nuxt/content - 内容管理模块，用于处理 Markdown 等文件
-        // 参考：https://content.nuxt.com/docs/getting-started/configuration
-        '@nuxt/content',
-        
-        // Vuetify 插件配置（自定义模块函数）
-        // 通过 Vite 钩子注册 Vuetify 插件，启用自动导入功能
-        (_options, nuxt) => {
-            nuxt.hooks.hook('vite:extendConfig', (config) => {
-                // @ts-expect-error
-                config.plugins.push(vuetify({autoImport: true}))
-            })
-        }
-    ],
+    modules: [// @nuxtjs/i18n - 国际化模块，提供多语言支持
+    // 参考：https://nuxt.com/modules/i18n
+    '@nuxtjs/i18n', // @nuxt/content - 内容管理模块，用于处理 Markdown 等文件
+    // 参考：https://content.nuxt.com/docs/getting-started/configuration
+    '@nuxt/content', // Vuetify 插件配置（自定义模块函数）
+    // 通过 Vite 钩子注册 Vuetify 插件，启用自动导入功能
+    (_options, nuxt) => {
+        nuxt.hooks.hook('vite:extendConfig', (config) => {
+            // @ts-expect-error
+            config.plugins.push(vuetify({autoImport: true}))
+        })
+    }, '@nuxtjs/seo'],
 
     /**
      * Nuxt Content 配置
