@@ -73,7 +73,9 @@ export default defineNuxtConfig({
         // @ts-expect-error
         config.plugins.push(vuetify({autoImport: true}))
       })
-    }, '@nuxtjs/seo'],
+    },
+    // Seo 模块配置
+    '@nuxtjs/seo'],
 
   /**
    * Nuxt Content 配置
