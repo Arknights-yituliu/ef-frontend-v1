@@ -89,7 +89,7 @@ import type {
   PackValueMetrics,
 } from '@/shared/types/pack';
 import { getItemPulls, getItemValue } from '@/shared/utils/gameData/item';
-import { onMounted, watch } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 
 // 全局数据引用
 const packsData = ref<PackDataDTO[]>(packs);
@@ -277,6 +277,25 @@ onMounted(() => {
 definePageMeta({
   layout: 'default',
 });
+
+// SEO 配置
+const { t } = useI18n()
+const siteName = computed(() => t('layout.siteName'))
+const pageTitle = computed(() => `${t('page.materialProfit.packageValue.title')} - ${siteName.value}`)
+const pageDescription = computed(() => t('page.materialProfit.packageValue.description'))
+
+useSeoMeta({
+  title: () => pageTitle.value,
+  description: () => pageDescription.value,
+  ogTitle: () => pageTitle.value,
+  ogDescription: () => pageDescription.value,
+  ogType: 'website',
+  twitterCard: 'summary',
+})
+
+useHead({
+  title: () => pageTitle.value
+})
 </script>
 
 <style scoped>

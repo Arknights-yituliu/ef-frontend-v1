@@ -39,6 +39,24 @@ type Contributor = {
 }
 
 const contributors = computed<Contributor[]>(() => contributorsData.contributors ?? [])
+
+// SEO 配置
+const siteName = computed(() => t('layout.siteName'))
+const pageTitle = computed(() => `${t('page.contributors.title')} - ${siteName.value}`)
+const pageDescription = computed(() => t('page.contributors.description'))
+
+useSeoMeta({
+  title: () => pageTitle.value,
+  description: () => pageDescription.value,
+  ogTitle: () => pageTitle.value,
+  ogDescription: () => pageDescription.value,
+  ogType: 'website',
+  twitterCard: 'summary',
+})
+
+useHead({
+  title: () => pageTitle.value
+})
 </script>
 
 <style scoped>

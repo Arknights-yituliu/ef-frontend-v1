@@ -27,7 +27,7 @@ const props = defineProps<{
 }>()
 
 const route = useRoute()
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 
 // 从布局中注入设置标题的方法
 const setDocHeadings = inject<(headings: Array<{ id: string; text: string; depth: number }>) => void>('setDocHeadings')
@@ -47,6 +47,7 @@ const { data: page, refresh } = await useAsyncData<PageData | null>(
     // content/ 下的实际文件路径形如 introduction/route-setting-zh或introduction/route-setting-en
     const contentPath = `${route.path}-${locale.value.substring(0, 2)}`
 
+    // @ts-expect-error - queryCollection 的类型定义不支持动态字符串，但运行时可以正常工作
     return (queryCollection(props.collectionName) as any)
       .path(contentPath)
       .first()
@@ -99,6 +100,31 @@ watch(page, () => {
   if (page.value) {
     extractHeadings()
   }
+})
+
+// SEO 配置
+const siteName = computed(() => t('layout.siteName'))
+const pageTitle = computed(() => {
+  if (page.value?.title) {
+    return `${page.value.title} - ${siteName.value}`
+  }
+  return siteName.value
+})
+const pageDescription = computed(() => {
+  return page.value?.description || t('docs.siteTitle')
+})
+
+useSeoMeta({
+  title: () => pageTitle.value,
+  description: () => pageDescription.value,
+  ogTitle: () => pageTitle.value,
+  ogDescription: () => pageDescription.value,
+  ogType: 'article',
+  twitterCard: 'summary',
+})
+
+useHead({
+  title: () => pageTitle.value
 })
 </script>
 

@@ -119,7 +119,7 @@ interface ApiResponse {
   data: FriendLink[];
 }
 
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 
 // API URL
 const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list';
@@ -318,6 +318,24 @@ const handleImageError = (event: Event) => {
   // 可以设置一个默认图标
   img.style.display = 'none';
 };
+
+// SEO 配置
+const siteName = computed(() => t('layout.siteName'))
+const pageTitle = computed(() => `${t('page.others.friendLinks.friendLinks')} - ${siteName.value}`)
+const pageDescription = computed(() => t('page.others.friendLinks.friendLinksDescription'))
+
+useSeoMeta({
+  title: () => pageTitle.value,
+  description: () => pageDescription.value,
+  ogTitle: () => pageTitle.value,
+  ogDescription: () => pageDescription.value,
+  ogType: 'website',
+  twitterCard: 'summary',
+})
+
+useHead({
+  title: () => pageTitle.value
+})
 </script>
 
 <style scoped>
