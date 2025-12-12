@@ -15,8 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import ContainerContributorCard from '@/app/components/container/ContributorCard.vue'
 import contributorsData from '@/custom/info/contributors.json'
 
 definePageMeta({

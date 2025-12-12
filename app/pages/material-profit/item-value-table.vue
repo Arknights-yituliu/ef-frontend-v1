@@ -107,14 +107,6 @@
 
 <script lang="ts" setup>
 import { itemInfo } from '@/custom/core/itemInfo';
-import {
-  getItemIconUrl,
-  getItemName,
-  getItemTierColor,
-  getItemValue,
-} from '@/shared/utils/gameData/item';
-import { resolvePictureUrl } from '@/shared/utils/urlUtil';
-import { computed, ref, watch } from 'vue';
 
 const assets = import.meta.glob('~/assets/images/items/**', {
   eager: true,

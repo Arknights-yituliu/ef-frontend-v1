@@ -36,6 +36,27 @@ export default defineNuxtConfig({
   },
 
   /**
+   * 自动导入配置 (imports)
+   * 配置 Nuxt 的自动导入功能，允许指定需要自动导入的目录，无需在代码中显式使用 import 语句
+   * Nuxt 会自动扫描这些目录中的文件，并将其导出的函数、变量等自动导入到组件、页面和组合式函数中
+   * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#imports
+   */
+  imports: {
+    /**
+     * 自动导入目录列表 (dirs)
+     * 指定需要自动导入的自定义目录路径数组
+     * - 路径可以是相对于项目根目录的路径
+     * - 可以使用路径别名，如 `~~/`（指向 rootDir）或 `#shared`（指向 shared 目录）
+     * - 默认情况下，Nuxt 会自动导入 `~/composables` 和 `~/utils` 目录中的内容
+     * - 此配置会额外添加需要自动导入的目录，不会覆盖默认目录
+     * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#dirs
+     */
+    dirs: [
+      '~~/shared/utils/gameData', // gameData 目录下的工具函数自动导入
+    ],
+  },
+
+  /**
    * 兼容性日期 (compatibilityDate)
    * 指定 Nuxt 的兼容性日期，用于确定使用哪些 API 和特性
    * 格式：YYYY-MM-DD
@@ -263,7 +284,26 @@ export default defineNuxtConfig({
     '@': path.resolve(__dirname)
   },
 
+  /**
+   * Robots.txt 配置 (robots)
+   * 配置搜索引擎爬虫的访问规则，生成或控制网站的 robots.txt 文件
+   * @nuxtjs/seo 模块提供的功能，用于 SEO 优化
+   * 
+   * robots.txt 文件告诉搜索引擎爬虫哪些页面可以抓取，哪些页面不应该被抓取
+   * 这对于控制搜索引擎索引、保护敏感页面、优化爬虫效率等非常重要
+   * 
+   * 参考：
+   * - Nuxt SEO 模块：https://nuxtseo.com/docs/nuxt-seo
+   * - robots.txt 规范：https://www.robotstxt.org/
+   */
   robots: {
+    /**
+     * 禁止访问的路径列表 (disallow)
+     * 指定不允许搜索引擎爬虫访问的路径数组
+     * - 路径可以是字符串或正则表达式
+     * - 支持通配符和路径模式匹配
+     * - 这些路径将被添加到 robots.txt 的 Disallow 规则中
+     */
     disallow: ['/others/test']
   }
 })

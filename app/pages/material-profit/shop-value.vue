@@ -35,9 +35,6 @@
 <script setup lang="ts">
 import type { ShopItem } from '@/custom/core/shops';
 import { shops } from '@/custom/core/shops';
-import { getItemName, getItemValue } from '@/shared/utils/gameData/item';
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 

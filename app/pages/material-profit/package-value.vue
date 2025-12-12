@@ -81,15 +81,6 @@
 
 <script lang="ts" setup>
 import { packs } from '@/custom/core/packs';
-import type {
-  ComparisonBar,
-  PackContent,
-  PackData,
-  PackDataDTO,
-  PackValueMetrics,
-} from '@/shared/types/pack';
-import { getItemPulls, getItemValue } from '@/shared/utils/gameData/item';
-import { computed, onMounted, watch } from 'vue';
 
 // 全局数据引用
 const packsData = ref<PackDataDTO[]>(packs);

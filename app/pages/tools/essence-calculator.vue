@@ -229,11 +229,6 @@
 </template>
 
 <script setup lang="ts">
-import { combinations } from '@/shared/utils/combinatoricUtil';
-import { ref, computed } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { tierColorMap } from '@/shared/utils/gameData/item';
-
 const { t } = useI18n();
 
 interface EssenceStat {

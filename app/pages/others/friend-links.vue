@@ -80,8 +80,6 @@
 </template>
 
 <script setup lang="ts">
-import { resolvePictureUrl } from '@/shared/utils/urlUtil';
-
 definePageMeta({
   layout: 'default',
 });
