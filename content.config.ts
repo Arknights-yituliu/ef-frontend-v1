@@ -1,4 +1,5 @@
 // https://nuxt-content.zhcndoc.com/docs/collections/define#defining-collections
+// https://nuxtseo.com/docs/sitemap/guides/content
 import {defineCollection, defineContentConfig} from '@nuxt/content'
 import {asSitemapCollection} from '@nuxtjs/sitemap/content'
 
