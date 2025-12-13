@@ -24,14 +24,19 @@ export default defineNuxtConfig({
      * 设置默认的 HTML <head> 标签内容，包括 title、meta、link、script 等
      * 这些配置会应用到所有页面，也可以在页面中通过 useHead() 覆盖
      * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#app-head
+     *
+     * titleTemplate 参考：https://nuxtseo.com/learn-seo/nuxt/mastering-meta/titles
+     * 注意：
+     * 默认的 titleTemplate 是 '%s | [sitename]'，其中 [sitename] 的优先级为 site.name > package.json 中的 name 字段
+     * 这里覆写为 '%s'，表示仅使用页面的标题作为最终标题，不在后面默认追加站点名称
      */
     head: {
       title: '终末地一图流',
+      titleTemplate: '%s',
       link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},],
       meta: [{
-        name: 'description',
-        content: '根据《明日方舟：终末地》建造的数据解析平台，致力于以数据的视角解读游戏内容，构建友好理性的社区。'
-      },],
+        name: 'description', content: '根据《明日方舟：终末地》建造的数据解析平台，致力于以数据的视角解读游戏内容，构建友好理性的社区。'
+      }],
     },
   },
 
@@ -51,8 +56,7 @@ export default defineNuxtConfig({
      * - 此配置会额外添加需要自动导入的目录，不会覆盖默认目录
      * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#dirs
      */
-    dirs: [
-      '~~/shared/utils/gameData', // gameData 目录下的工具函数自动导入
+    dirs: ['~~/shared/utils/gameData', // gameData 目录下的工具函数自动导入
     ],
   },
 
@@ -95,8 +99,7 @@ export default defineNuxtConfig({
         // @ts-expect-error
         config.plugins.push(vuetify({autoImport: true}))
       })
-    },
-    // Seo 模块配置
+    }, // Seo 模块配置
     '@nuxtjs/seo'],
 
   /**
@@ -288,10 +291,10 @@ export default defineNuxtConfig({
    * Robots.txt 配置 (robots)
    * 配置搜索引擎爬虫的访问规则，生成或控制网站的 robots.txt 文件
    * @nuxtjs/seo 模块提供的功能，用于 SEO 优化
-   * 
+   *
    * robots.txt 文件告诉搜索引擎爬虫哪些页面可以抓取，哪些页面不应该被抓取
    * 这对于控制搜索引擎索引、保护敏感页面、优化爬虫效率等非常重要
-   * 
+   *
    * 参考：
    * - Nuxt SEO 模块：https://nuxtseo.com/docs/nuxt-seo
    * - robots.txt 规范：https://www.robotstxt.org/
