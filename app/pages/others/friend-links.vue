@@ -246,7 +246,7 @@ const extraFriendLinks: FriendLink[] = [
         'Gacha Calculator',
       ],
     },
-    icon_url: '~/assets/images/friend-links/明日方舟终末地一图流LOGO.png',
+    icon_url: '~/assets/images/friend-links/明日方舟终末地一图流LOGO.webp',
     links: [
       {
         primary: true,
@@ -318,9 +318,9 @@ const handleImageError = (event: Event) => {
 };
 
 // SEO 配置
-const siteName = computed(() => t('layout.siteName'))
-const pageTitle = computed(() => `${t('page.others.friendLinks.friendLinks')} - ${siteName.value}`)
-const pageDescription = computed(() => t('page.others.friendLinks.friendLinksDescription'))
+const siteName = computed(() => t('layout.siteName'));
+const pageTitle = computed(() => `${t('page.others.friendLinks.friendLinks')} - ${siteName.value}`);
+const pageDescription = computed(() => t('page.others.friendLinks.friendLinksDescription'));
 
 useSeoMeta({
   title: () => pageTitle.value,
@@ -329,11 +329,11 @@ useSeoMeta({
   ogDescription: () => pageDescription.value,
   ogType: 'website',
   twitterCard: 'summary',
-})
+});
 
 useHead({
-  title: () => pageTitle.value
-})
+  title: () => pageTitle.value,
+});
 </script>
 
 <style scoped>
