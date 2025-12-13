@@ -58,6 +58,10 @@
   --theme-progress-color: #191919;
   --theme-hexagon-fill: #191919;
   --theme-hexagon-stroke: #191919;
+
+  /* 侧边栏滚动条变量 - 浅色主题 */
+  --sidebar-scrollbar-thumb: rgba(0, 0, 0, 0.5);
+  --sidebar-scrollbar-thumb-hover: rgba(0, 0, 0, 0.7);
 }
 
 /* 深色主题 */
@@ -111,6 +115,10 @@
   --theme-progress-color: var(--theme-accent-color);
   --theme-hexagon-fill: var(--theme-bg-secondary);
   --theme-hexagon-stroke: var(--theme-accent-color);
+
+  /* 侧边栏滚动条变量 - 深色主题 */
+  --sidebar-scrollbar-thumb: rgba(255, 250, 0, 0.5);
+  --sidebar-scrollbar-thumb-hover: rgba(255, 250, 0, 0.7);
 }
 
 /* ============================================
@@ -126,26 +134,55 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family:
-    'HarmonyOS Sans SC',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    'Roboto',
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'HarmonyOS Sans SC',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  'Roboto',
+  'Helvetica Neue',
+  Arial,
+  sans-serif;
   background-color: var(--theme-bg-primary);
   color: var(--theme-text-primary);
   overflow-x: hidden;
-  transition:
-    background-color var(--transition-base),
-    color var(--transition-base);
+  transition: background-color var(--transition-base),
+  color var(--transition-base);
 }
 
 html {
   overflow: scroll;
   overflow-x: hidden;
+}
+
+/* 滚动条样式重置 - 侧边栏和html共用 */
+.v-navigation-drawer__content,
+html {
+  /* Firefox 滚动条样式 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-scrollbar-thumb) transparent;
+}
+
+.v-navigation-drawer__content::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.v-navigation-drawer__content::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.v-navigation-drawer__content::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb {
+  background: var(--sidebar-scrollbar-thumb);
+  border-radius: 0;
+  transition: background-color var(--transition-base);
+}
+
+.v-navigation-drawer__content::-webkit-scrollbar-thumb:hover,
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--sidebar-scrollbar-thumb-hover);
 }
 
 /* ============================================
@@ -383,6 +420,13 @@ html {
 /* ============================================
    滚动条样式
    ============================================ */
+/* 全局滚动条样式 */
+* {
+  /* Firefox 滚动条样式 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-text-secondary) var(--theme-bg-tertiary);
+}
+
 ::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
@@ -396,6 +440,7 @@ html {
   background: var(--theme-text-secondary);
   border-radius: var(--radius-sm);
   opacity: 0.6;
+  transition: opacity var(--transition-base);
 }
 
 ::-webkit-scrollbar-thumb:hover {

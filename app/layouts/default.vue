@@ -1,4 +1,9 @@
 <template>
+<!--  <AnnimationInitialLoader-->
+<!--    :is-loading="isInitialLoading"-->
+<!--    :loading-duration="loadingDuration"-->
+<!--    @complete="handleInitialLoaderComplete"-->
+<!--  />-->
   <LayoutDesertBackground />
   <v-app :theme="theme">
     <v-navigation-drawer class="navigation-drawer" v-model="drawer" :width="280">
@@ -6,9 +11,27 @@
     </v-navigation-drawer>
 
     <v-app-bar class="app-bar" :elevation="0">
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <!-- 扫描线 SVG 动画 -->
+      <svg class="header-scanline" preserveAspectRatio="none" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="scanline-gradient-default" x1="0%" x2="0%" y1="0%" y2="100%">
+            <stop offset="0%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
+            <stop offset="50%" style="stop-color: var(--theme-accent-color); stop-opacity: 0.3" />
+            <stop offset="100%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
+          </linearGradient>
+        </defs>
+        <rect
+          class="scanline-rect"
+          fill="url(#scanline-gradient-default)"
+          height="2"
+          width="100"
+          x="0"
+          y="0"
+        />
+      </svg>
+
+      <v-app-bar-nav-icon @click="()=>drawer = !drawer"></v-app-bar-nav-icon>
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
-      <div class="header-decoration"></div>
       <div class="header-controls">
         <LayoutThemeToggle />
         <div class="control-divider"></div>
@@ -47,8 +70,19 @@ const { t } = useI18n();
 const { theme } = useTheme();
 const siteName = t('layout.siteName');
 
+// 初始动画加载器
+const initialLoaderConfig = appConfig.initialLoader ?? {};
+const isInitialLoading = ref(initialLoaderConfig.enabled !== false);
+const loadingDuration =
+  typeof initialLoaderConfig.loadingDuration === 'number'
+    ? initialLoaderConfig.loadingDuration
+    : 3000;
+const handleInitialLoaderComplete = () => {
+  isInitialLoading.value = false;
+};
+
 /** 边栏是否展开 */
-const drawer = ref(null);
+const drawer = ref(true);
 
 // 根据当前路由查找对应的页面名称
 const pageTitle = computed(() => {
@@ -98,7 +132,9 @@ onUnmounted(() => {
 }
 
 .app-bar {
+  position: relative;
   border-bottom: 2px solid var(--theme-accent-color);
+  overflow: hidden;
 }
 
 /* 小屏幕上隐藏标题 */
@@ -106,14 +142,6 @@ onUnmounted(() => {
   .app-bar-title {
     opacity: 0;
   }
-}
-
-/* 左侧装饰条 */
-.header-decoration {
-  width: 0.375rem;
-  height: 100%;
-  background-color: var(--theme-accent-color);
-  box-shadow: 0 0 0.5rem var(--theme-accent-color);
 }
 
 .header-controls {
@@ -156,5 +184,44 @@ onUnmounted(() => {
 .back-to-top-btn:hover {
   box-shadow: 0 6px 16px var(--theme-shadow-accent-strong);
   transform: translateY(-2px);
+}
+
+/* SVG 扫描线动画 */
+.header-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.scanline-rect {
+  animation: scanlineMove 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes scanlineMove {
+  0% {
+    y: -2;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    y: 100;
+    opacity: 0;
+  }
+}
+
+/* Vuetify样式覆盖 */
+:deep(.v-application) {
+  background-color: transparent;
 }
 </style>
