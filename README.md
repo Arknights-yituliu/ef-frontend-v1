@@ -10,37 +10,84 @@ ef-frontend-v1/
 │   ├── app.vue                   # 应用根组件
 │   ├── app.config.ts             # 应用配置文件，相当于项目配置共享中心
 │   ├── assets/                   # 静态资源目录
-│   │   └── css/
-│   │       └── global.css        # 全局样式文件
+│   │   ├── avatar/               # 头像图片目录
+│   │   │   └── contributors/     # 贡献者头像
+│   │   ├── css/                  # CSS 样式文件
+│   │   │   ├── atomicStyles.css  # 原子化 CSS 样式
+│   │   │   ├── global.css        # 全局样式文件
+│   │   │   └── homePage.css      # 首页特定样式
+│   │   └── icon/                 # 图标文件
 │   ├── components/               # 组件目录
+│   │   ├── annimation/           # 动画组件
+│   │   ├── container/            # 容器组件
+│   │   ├── docs/                 # 文档相关组件
+│   │   ├── home/                 # 首页组件
+│   │   ├── layout/               # 布局组件
+│   │   └── text/                 # 文本相关组件
 │   ├── composables/              # 组合式函数目录
+│   │   ├── useDocsSearch.ts      # 文档搜索组合式函数
+│   │   └── useTheme.ts           # 主题管理组合式函数
 │   ├── layouts/                  # 布局目录
+│   │   ├── default.vue           # 默认布局
+│   │   └── docs.vue              # 文档布局
 │   ├── middleware/               # 路由中间件目录
+│   │   └── docs-portal.global.ts # 文档门户全局中间件
 │   ├── pages/                    # 页面目录
+│   │   ├── index.vue             # 首页
+│   │   ├── introduction/         # 介绍文档页面
+│   │   ├── material-profit/      # 材料收益页面
+│   │   ├── operations/           # 行动文档页面
+│   │   ├── others/               # 其他页面
+│   │   └── tools/                # 工具页面
 │   └── plugins/                  # 插件目录
+│       └── vuetify.ts            # Vuetify 插件配置
 ├── content/                      # 文档内容目录，按分类存放中英文后缀 .md 文件
 │   └── introduction/
 │       ├── project-structure-zh.md
 │       ├── project-structure-en.md
 │       └── ...
 ├── public/                       # 公共静态资源目录
-│   ├── favicon.ico
-│   ├── images/
-│   └── robots.txt
+│   ├── favicon.ico               # 网站图标
+│   ├── images/                   # 公共图片目录
+│   ├── sitemap.xml               # 网站地图文件
+│   └── _robots.txt               # Robots.txt 文件
 ├── i18n/                         # 国际化文件目录（由 @nuxtjs/i18n 识别）
 │   └── locales/
-│       ├── zh-CN.json
-│       └── en-US.json
+│       ├── zh-CN.json            # 中文（简体）翻译文件
+│       └── en-US.json            # 英文（美国）翻译文件
 ├── custom/                       # 自定义文件，用于存放不被 Nuxt 自动识别的配置
+│   ├── core/                     # 游戏核心数据文件
+│   │   ├── gachaItem.ts          # 抽卡物品数据
+│   │   ├── itemInfo.ts           # 物品信息数据
+│   │   ├── itemValue.ts          # 物品价值数据
+│   │   ├── packs.ts              # 礼包数据
+│   │   └── shops.ts              # 商店数据
+│   ├── info/                     # 项目信息文件
+│   │   └── contributors.json     # 贡献者信息
 │   └── route/                    # 自定义路由与文档导航配置目录
-│       ├── docNavigation.json
-│       └── routes.json
+│       ├── docNavigation.json    # 文档导航配置
+│       └── routes.json           # 侧边栏菜单路由配置
 ├── shared/                       # 共享工具目录
-│   └── utils/                    # 工具函数
-│       ├── colorUtil.ts
-│       └── domUtil.ts
+│   ├── types/                    # TypeScript 类型定义（Nuxt 自动识别）
+│   │   ├── gachaItem.ts          # 抽卡物品类型
+│   │   ├── itemInfo.ts           # 物品信息类型
+│   │   ├── itemValue.ts          # 物品价值类型
+│   │   └── pack.ts               # 礼包类型
+│   └── utils/                    # 工具函数（Nuxt 自动识别）
+│       ├── combinatoricUtil.ts   # 组合数学工具函数
+│       ├── domUtil.ts            # DOM 操作工具
+│       ├── gameData/             # 游戏数据工具
+│       │   └── item.ts           # 物品数据工具
+│       ├── numberUtil.ts         # 数字工具函数
+│       └── urlUtil.ts            # URL 工具函数
 ├── agent.md                      # AI Agent 开发指南（专为 AI 生成代码时参考）
+├── Design.md                     # 网站设计风格文档
+├── LICENSE                       # 项目许可证文件
 ├── .gitignore                    # Git 忽略文件配置
+├── .editorconfig                 # 编辑器配置文件
+├── .prettierrc.json              # Prettier 代码格式化配置
+├── eslint.config.ts              # ESLint 配置文件
+├── content.config.ts             # Nuxt Content 模块配置
 ├── nuxt.config.ts                # Nuxt 配置文件
 ├── tsconfig.json                 # TypeScript 配置文件
 └── package.json                  # 项目依赖配置

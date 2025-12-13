@@ -75,11 +75,27 @@ ef-frontend-v1/
 ├── content/                      # 内容目录（@nuxt/content 自动识别）
 │   └── introduction/             # 怎么开发这个项目
 ├── public/                       # 公共静态资源目录（Nuxt 自动识别）
+│   ├── favicon.ico               # 网站图标
+│   ├── images/                   # 公共图片目录
+│   ├── sitemap.xml               # 网站地图文件
+│   └── _robots.txt               # Robots.txt 文件
 ├── i18n/                         # 国际化文件目录（@nuxtjs/i18n 自动识别）
+│   └── locales/
+│       ├── zh-CN.json            # 中文（简体）翻译文件
+│       └── en-US.json            # 英文（美国）翻译文件
 ├── custom/                       # 自定义文件目录
 │   └── route/                    # 自定义路由配置目录
+│       ├── docNavigation.json    # 文档导航配置
+│       └── routes.json           # 侧边栏菜单路由配置
 ├── shared/                       # 共享工具目录
 ├── agent.md                      # AI Agent 开发指南（专为 AI 生成代码时参考）
+├── Design.md                     # 网站设计风格文档
+├── LICENSE                       # 项目许可证文件
+├── .gitignore                    # Git 忽略文件配置
+├── .editorconfig                 # 编辑器配置文件
+├── .prettierrc.json              # Prettier 代码格式化配置
+├── eslint.config.ts              # ESLint 配置文件
+├── content.config.ts             # Nuxt Content 模块配置
 ├── nuxt.config.ts                # Nuxt 配置文件
 ├── tsconfig.json                 # TypeScript 配置文件
 └── package.json                  # 项目依赖配置
@@ -253,6 +269,14 @@ i18n/
 
 用于存放不被 Nuxt 自动识别的自定义文件。
 
+- **`custom/core/`** - 游戏核心数据文件目录
+  - 存放游戏相关的数据文件，如物品信息、物品价值、商店数据、抽卡物品、礼包信息等
+  - 文件：`gachaItem.ts`、`itemInfo.ts`、`itemValue.ts`、`packs.ts`、`shops.ts`
+
+- **`custom/info/`** - 项目信息文件目录
+  - 存放项目相关信息文件
+  - 文件：`contributors.json` - 包含贡献者信息，包括头像、链接、职位和标签
+
 - **`custom/route/routes.json`** - 自定义路由配置文件
   - 用于配置侧边栏菜单的路由信息
   - 支持一级和二级路由嵌套
@@ -265,11 +289,17 @@ i18n/
 
 #### `shared/` - 共享工具目录
 
-存放可在多个地方共享使用的工具函数和工具类。
+存放可在多个地方共享使用的工具函数、工具类和 TypeScript 类型定义。
+
+- **`shared/types/`** - TypeScript 类型定义目录
+  - 存放 TypeScript 类型定义和接口
+  - 该目录会被 Nuxt 自动识别
+  - 文件：`gachaItem.ts`、`itemInfo.ts`、`itemValue.ts`、`pack.ts`
 
 - **`shared/utils/`** - 工具函数目录
-  - 例如：`colorUtil.ts`、`domUtil.ts`
-  - 该目录会被Nuxt自动识别，可在无需手动导入的情况下在pages和components目录下直接使用
+  - 存放常用操作的工具函数
+  - 该目录会被 Nuxt 自动识别，可在无需手动导入的情况下在 pages 和 components 目录下直接使用
+  - 文件：`combinatoricUtil.ts`、`domUtil.ts`、`gameData/item.ts`、`numberUtil.ts`、`urlUtil.ts`
 
 ---
 
@@ -286,6 +316,37 @@ i18n/
 - 常见问题解答
 
 该文档帮助 AI 快速了解项目结构、开发规范和流程，确保生成的代码符合项目约定。
+
+#### `Design.md` - 网站设计风格文档
+
+包含网站的设计风格指南和规范说明。
+
+#### `LICENSE` - 项目许可证文件
+
+包含项目的许可证信息。
+
+#### 配置文件
+
+- **`.editorconfig`** - 编辑器配置文件
+  - 定义不同编辑器的编码风格设置（缩进、字符集等）
+
+- **`.prettierrc.json`** - Prettier 代码格式化配置
+  - 配置项目的代码格式化规则
+
+- **`eslint.config.ts`** - ESLint 配置文件
+  - 配置 JavaScript/TypeScript 代码检查规则
+
+- **`content.config.ts`** - Nuxt Content 模块配置
+  - 配置 `@nuxt/content` 模块，定义内容集合和来源
+
+- **`nuxt.config.ts`** - Nuxt 配置文件
+  - Nuxt 框架的主配置文件，包括模块、构建设置等
+
+- **`tsconfig.json`** - TypeScript 配置文件
+  - 配置 TypeScript 编译器选项和项目设置
+
+- **`package.json`** - 项目依赖配置
+  - 定义项目依赖、脚本和元数据
 
 ---
 

@@ -71,11 +71,27 @@ ef-frontend-v1/
 ├── content/                      # Content directory (auto-recognized by @nuxt/content)
 │   └── introduction/             # Introductions for how to develop this project
 ├── public/                       # Public static resources directory (auto-recognized by Nuxt)
+│   ├── favicon.ico               # Website favicon
+│   ├── images/                   # Public images directory
+│   ├── sitemap.xml               # Sitemap file
+│   └── _robots.txt               # Robots.txt file
 ├── i18n/                         # Internationalization files directory (auto-recognized by @nuxtjs/i18n)
+│   └── locales/
+│       ├── zh-CN.json            # Chinese (Simplified) translation file
+│       └── en-US.json            # English (Simplified) translation file
 ├── custom/                       # Custom files directory
 │   └── route/                    # Custom configuration of routes directory
+│       ├── docNavigation.json    # Document navigation configuration
+│       └── routes.json           # Sidebar menu routing configuration
 ├── shared/                       # Shared utilities directory
 ├── agent.md                      # AI Agent Development Guide (Reference for AI code generation)
+├── Design.md                     # Website design style documentation
+├── LICENSE                       # Project license file
+├── .gitignore                    # Git ignore file configuration
+├── .editorconfig                 # Editor configuration file
+├── .prettierrc.json              # Prettier code formatter configuration
+├── eslint.config.ts              # ESLint configuration file
+├── content.config.ts             # Nuxt Content module configuration
 ├── nuxt.config.ts                # Nuxt configuration file
 ├── tsconfig.json                 # TypeScript configuration file
 └── package.json                  # Project dependencies configuration
@@ -249,6 +265,14 @@ These directories are custom and **can be modified as needed**.
 
 Used to store custom files not automatically recognized by Nuxt.
 
+- **`custom/core/`** - Core game data files directory
+  - Stores game-related data files such as item information, item values, shop data, gacha items, and pack information
+  - Files: `gachaItem.ts`, `itemInfo.ts`, `itemValue.ts`, `packs.ts`, `shops.ts`
+
+- **`custom/info/`** - Project information files directory
+  - Stores project-related information files
+  - Files: `contributors.json` - Contains contributor information with avatars, links, positions, and tags
+
 - **`custom/route/routes.json`** - Custom route configuration file
   - Used to configure route information for the sidebar menu
   - Supports first and second-level route nesting
@@ -261,11 +285,17 @@ Used to store custom files not automatically recognized by Nuxt.
 
 #### `shared/` - Shared Utilities Directory
 
-Stores utility functions and utility classes that can be shared in multiple places.
+Stores utility functions, utility classes, and TypeScript type definitions that can be shared in multiple places.
+
+- **`shared/types/`** - TypeScript type definitions directory
+  - Stores TypeScript type definitions and interfaces
+  - This directory is auto-recognized by Nuxt
+  - Files: `gachaItem.ts`, `itemInfo.ts`, `itemValue.ts`, `pack.ts`
 
 - **`shared/utils/`** - Utility functions directory
-  - E.g., `colorUtil.ts`, `domUtil.ts`
+  - Stores utility functions for common operations
   - This directory is auto-recognized by Nuxt and can be used directly in pages and components without manual import
+  - Files: `combinatoricUtil.ts`, `domUtil.ts`, `gameData/item.ts`, `numberUtil.ts`, `urlUtil.ts`
 
 ---
 
@@ -282,6 +312,37 @@ A knowledge document specifically for AI reference during code generation, conta
 - Frequently asked questions and answers
 
 This document helps AI quickly understand project structure, development conventions, and workflows, ensuring generated code aligns with project standards.
+
+#### `Design.md` - Website Design Style Documentation
+
+Contains the website's design style guidelines and specifications.
+
+#### `LICENSE` - Project License File
+
+Contains the project's license information.
+
+#### Configuration Files
+
+- **`.editorconfig`** - Editor configuration file
+  - Defines coding style settings for different editors (indentation, charset, etc.)
+
+- **`.prettierrc.json`** - Prettier code formatter configuration
+  - Configures code formatting rules for the project
+
+- **`eslint.config.ts`** - ESLint configuration file
+  - Configures JavaScript/TypeScript linting rules
+
+- **`content.config.ts`** - Nuxt Content module configuration
+  - Configures the `@nuxt/content` module, defines content collections and sources
+
+- **`nuxt.config.ts`** - Nuxt configuration file
+  - Main configuration file for Nuxt framework, including modules, build settings, etc.
+
+- **`tsconfig.json`** - TypeScript configuration file
+  - Configures TypeScript compiler options and project settings
+
+- **`package.json`** - Project dependencies configuration
+  - Defines project dependencies, scripts, and metadata
 
 ---
 
@@ -316,7 +377,7 @@ The following directories are custom and **can be adjusted freely according to p
 2. **`shared/`** - Shared utilities directory
    - Can add new utility modules as needed
    - Can adjust directory structure
-   - Note that only `utils` and `types` directories under `shared` are auto-recognized; other custom directories still need manual import to be used in other components
+   - Note that only `utils` and `types` directories under `shared` are auto-recognized by Nuxt; other custom directories still need manual import to be used in other components
 
 ### 📝 Recommendations
 
