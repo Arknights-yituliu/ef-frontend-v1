@@ -2,11 +2,7 @@
   <nav class="sidebar">
     <!-- Logo 区域 -->
     <div class="logo-area" @click="navigateToHome">
-      <img
-        class="logo-img"
-        src="~/assets/images/friend-links/明日方舟终末地一图流LOGO.webp"
-        alt="Logo"
-      />
+      <img class="logo-img" src="" alt="Logo" />
       <div class="logo-text">{{ $t('layout.siteName') }}</div>
     </div>
 
