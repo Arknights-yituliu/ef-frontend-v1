@@ -198,24 +198,6 @@ watch([searchQuery, sortField, sortOrder], () => {
 </script>
 
 <style scoped>
-.item-value-table-page {
-  padding: 3rem 0;
-}
-
-.page-title {
-  font-size: var(--font-size-3xl);
-  color: var(--theme-text-primary);
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.page-description {
-  font-size: var(--font-size-md);
-  color: var(--theme-text-secondary);
-  margin-bottom: 2.5rem;
-  line-height: 1.5;
-}
-
 .filter-container {
   display: flex;
   align-items: center;

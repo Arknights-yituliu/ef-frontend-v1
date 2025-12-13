@@ -1,23 +1,23 @@
 <template>
-<!--  <AnnimationInitialLoader-->
-<!--    :is-loading="isInitialLoading"-->
-<!--    :loading-duration="loadingDuration"-->
-<!--    @complete="handleInitialLoaderComplete"-->
-<!--  />-->
-  <LayoutDesertBackground />
+  <!--  <AnnimationInitialLoader-->
+  <!--    :is-loading="isInitialLoading"-->
+  <!--    :loading-duration="loadingDuration"-->
+  <!--    @complete="handleInitialLoaderComplete"-->
+  <!--  />-->
+  <LayoutDesertBackground/>
   <v-app :theme="theme">
-    <v-navigation-drawer class="navigation-drawer" v-model="drawer" :width="280">
-      <LayoutSidebar />
+    <v-navigation-drawer v-model="drawer" :width="280" class="navigation-drawer">
+      <LayoutSidebar/>
     </v-navigation-drawer>
 
-    <v-app-bar class="app-bar" :elevation="0">
+    <v-app-bar :elevation="0" class="app-bar">
       <!-- 扫描线 SVG 动画 -->
       <svg class="header-scanline" preserveAspectRatio="none" viewBox="0 0 100 100">
         <defs>
           <linearGradient id="scanline-gradient-default" x1="0%" x2="0%" y1="0%" y2="100%">
-            <stop offset="0%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
-            <stop offset="50%" style="stop-color: var(--theme-accent-color); stop-opacity: 0.3" />
-            <stop offset="100%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
+            <stop offset="0%" style="stop-color: var(--theme-accent-color); stop-opacity: 0"/>
+            <stop offset="50%" style="stop-color: var(--theme-accent-color); stop-opacity: 0.3"/>
+            <stop offset="100%" style="stop-color: var(--theme-accent-color); stop-opacity: 0"/>
           </linearGradient>
         </defs>
         <rect
@@ -33,29 +33,29 @@
       <v-app-bar-nav-icon @click="()=>drawer = !drawer"></v-app-bar-nav-icon>
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
       <div class="header-controls">
-        <LayoutThemeToggle />
+        <LayoutThemeToggle/>
         <div class="control-divider"></div>
-        <LayoutLanguageToggle />
+        <LayoutLanguageToggle/>
       </div>
     </v-app-bar>
 
     <v-main>
       <div class="content-container">
-        <slot></slot>
+        <slot/>
       </div>
-      <LayoutFooter />
+      <LayoutFooter/>
     </v-main>
 
     <!-- 回到顶部按钮 -->
     <v-fade-transition>
       <v-btn
         v-show="showBackToTop"
-        class="back-to-top-btn"
         :color="theme === 'light' ? 'grey-lighten-3' : 'grey-darken-4'"
+        class="back-to-top-btn"
         icon="mdi-arrow-up"
+        rounded="circle"
         size="large"
         variant="flat"
-        rounded="circle"
         @click="scrollToTop"
       />
     </v-fade-transition>
@@ -66,8 +66,8 @@
 const route = useRoute();
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes;
-const { t } = useI18n();
-const { theme } = useTheme();
+const {t} = useI18n();
+const {theme} = useTheme();
 const siteName = t('layout.siteName');
 
 // 初始动画加载器
@@ -162,13 +162,6 @@ onUnmounted(() => {
     transparent 100%
   );
   opacity: 0.5;
-}
-
-.content-container {
-  max-width: 1600px;
-  min-width: 50%;
-  padding: 1rem;
-  margin: auto;
 }
 
 /* 回到顶部按钮 */

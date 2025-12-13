@@ -1,0 +1,119 @@
+/* ============================================
+   主题CSS变量定义
+   ============================================ */
+:root {
+  /* 主题变量 - 浅色主题（默认） */
+  --theme-bg-primary: #fafafa;
+  --theme-bg-secondary: #ffffff;
+  --theme-bg-tertiary: #f2f2f2;
+  --theme-text-primary: #191919;
+  --theme-text-secondary: #888888;
+  --theme-text-thirdary: #cccccc;
+  --theme-text-tertiary: #999999;
+  --theme-text-light: #cccccc;
+  --theme-text-disabled: #666666;
+  --theme-border: #e6e6e6;
+  --theme-border-active: #191919;
+  --theme-accent-color: #0e0e0e;
+  --theme-accent-hover: #efefef;
+  --theme-accent-contrast: #191919;
+  --theme-decorative-overlay: rgba(0, 0, 0, 0.1);
+  --theme-decorative-overlay-strong: rgba(0, 0, 0, 0.2);
+  --theme-decorative-overlay-light: rgba(0, 0, 0, 0.05);
+  --theme-decorative-overlay-medium: rgba(0, 0, 0, 0.08);
+  --theme-shadow-base: rgba(0, 0, 0, 0.25);
+  --theme-shadow-strong: rgba(0, 0, 0, 0.3);
+  --theme-shadow-accent: rgba(0, 0, 0, 0.15);
+  --theme-shadow-accent-strong: rgba(0, 0, 0, 0.2);
+  --theme-shadow-accent-hover: rgba(0, 0, 0, 0.25);
+  --theme-overlay: rgba(0, 0, 0, 0.5);
+
+  /* 毛玻璃效果变量 - 浅色主题 */
+  --theme-glass-bg: rgba(255, 255, 255, 0.7);
+  --theme-glass-bg-hover: rgba(255, 255, 255, 0.85);
+  --theme-glass-border: rgba(255, 255, 255, 0.3);
+  --theme-glass-text-shadow: rgba(255, 255, 255, 0.5);
+  --theme-glass-shadow: rgba(0, 0, 0, 0.1);
+
+  /* 沙漠波纹背景颜色变量 - 浅色主题 */
+  --wave-bg-color-0: rgba(171, 184, 195, 0.27);
+  /* #abb8c344 */
+  --wave-bg-color-1: rgba(171, 184, 195, 0.4);
+  /* #abb8c366 */
+  --wave-bg-color-2: rgba(171, 184, 195, 0.53);
+  /* #abb8c388 */
+  --wave-bg-color-3: rgba(171, 184, 195, 1);
+  /* #abb8c3ff */
+
+  /* Logo 颜色变量 */
+  --logo-color: #191919;
+  --logo-color-expanded: #191919;
+
+  /* 加载器变量 - 浅色主题 */
+  --theme-loader-bg: #f2f2f2;
+  --theme-progress-bg: #888888;
+  --theme-progress-color: #191919;
+  --theme-hexagon-fill: #191919;
+  --theme-hexagon-stroke: #191919;
+
+  /* 侧边栏滚动条变量 - 浅色主题 */
+  --sidebar-scrollbar-thumb: rgba(0, 0, 0, 0.5);
+  --sidebar-scrollbar-thumb-hover: rgba(0, 0, 0, 0.7);
+}
+
+/* 深色主题 */
+[data-theme='dark'] {
+  --theme-bg-primary: #191919;
+  --theme-bg-secondary: #1f1f1f;
+  --theme-bg-tertiary: #383838;
+  --theme-text-primary: #ffffff;
+  --theme-text-secondary: #cccccc;
+  --theme-text-thirdary: #333333;
+  --theme-text-tertiary: #888888;
+  --theme-text-light: #cccccc;
+  --theme-text-disabled: #666666;
+  --theme-border: #383838;
+  --theme-border-active: #fffa00;
+  --theme-accent-color: #fffa00;
+  --theme-accent-hover: #efe701;
+  --theme-accent-contrast: #191919;
+  --theme-decorative-overlay: rgba(255, 250, 0, 0.1);
+  --theme-decorative-overlay-strong: rgba(255, 250, 0, 0.15);
+  --theme-decorative-overlay-light: rgba(255, 250, 0, 0.05);
+  --theme-decorative-overlay-medium: rgba(255, 250, 0, 0.08);
+  --theme-shadow-accent: rgba(255, 250, 0, 0.2);
+  --theme-shadow-accent-strong: rgba(255, 250, 0, 0.3);
+  --theme-shadow-accent-hover: rgba(255, 250, 0, 0.4);
+
+  /* 毛玻璃效果变量 - 深色主题 */
+  --theme-glass-bg: rgba(25, 25, 25, 0.7);
+  --theme-glass-bg-hover: rgba(25, 25, 25, 0.85);
+  --theme-glass-border: rgba(255, 255, 255, 0.1);
+  --theme-glass-text-shadow: rgba(0, 0, 0, 0.5);
+  --theme-glass-shadow: rgba(0, 0, 0, 0.3);
+
+  /* 沙漠波纹背景颜色变量 - 深色主题：黄色 */
+  --wave-bg-color-0: rgba(255, 250, 0, 0.15);
+  /* 浅黄色，低透明度 */
+  --wave-bg-color-1: rgba(255, 250, 0, 0.25);
+  /* 浅黄色，中等透明度 */
+  --wave-bg-color-2: rgba(255, 250, 0, 0.35);
+  /* 浅黄色，较高透明度 */
+  --wave-bg-color-3: rgba(255, 250, 0, 0.5);
+  /* 浅黄色，高透明度 */
+
+  /* Logo 颜色变量 - 深色主题：黄色 */
+  --logo-color: #fffa00;
+  --logo-color-expanded: #fffa00;
+
+  /* 加载器变量 - 深色主题 */
+  --theme-loader-bg: #191919;
+  --theme-progress-bg: var(--theme-decorative-overlay-medium);
+  --theme-progress-color: var(--theme-accent-color);
+  --theme-hexagon-fill: var(--theme-bg-secondary);
+  --theme-hexagon-stroke: var(--theme-accent-color);
+
+  /* 侧边栏滚动条变量 - 深色主题 */
+  --sidebar-scrollbar-thumb: rgba(255, 250, 0, 0.5);
+  --sidebar-scrollbar-thumb-hover: rgba(255, 250, 0, 0.7);
+}

@@ -1,14 +1,14 @@
 <template>
   <div class="page-container">
     <h1 class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</h1>
-<!--    <p class="page-description">{{ $t('page.materialProfit.shopValue.description') }}</p>-->
+    <!--    <p class="page-description">{{ $t('page.materialProfit.shopValue.description') }}</p>-->
 
     <div v-for="shop in shops" :key="shop.shopId" class="shop-section">
-      <h2 class="shop-title">{{ shop.shopName }}</h2>
+      <h2 class="page-sub-title">{{ shop.shopName }}</h2>
       <v-data-table
         :headers="headers"
-        :items="getTableItems(shop.shopItems)"
         :hover="true"
+        :items="getTableItems(shop.shopItems)"
         :items-per-page="25"
         class="shop-table"
       >
@@ -32,11 +32,11 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import type { ShopItem } from '@/custom/core/shops';
-import { shops } from '@/custom/core/shops';
+<script lang="ts" setup>
+import type {ShopItem} from '@/custom/core/shops';
+import {shops} from '@/custom/core/shops';
 
-const { t } = useI18n();
+const {t} = useI18n();
 
 interface TableItem {
   itemId: string;
@@ -118,43 +118,11 @@ useHead({
 </script>
 
 <style scoped>
-.page-title {
-  font-size: var(--font-size-3xl);
-  color: var(--theme-text-primary);
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.page-description {
-  font-size: var(--font-size-md);
-  color: var(--theme-text-secondary);
-  margin-bottom: 2.5rem;
-  line-height: 1.5;
-}
-
 .shop-section {
   margin-bottom: 2.5rem;
 }
 
-.shop-title {
-  font-size: var(--font-size-lg);
-  color: var(--theme-text-primary);
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
 .shop-table {
   margin-bottom: 2rem;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .page-title {
-    font-size: var(--font-size-2xl);
-  }
-
-  .shop-title {
-    font-size: var(--font-size-xl);
-  }
 }
 </style>

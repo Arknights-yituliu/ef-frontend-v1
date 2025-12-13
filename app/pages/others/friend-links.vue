@@ -337,20 +337,6 @@ useHead({
 </script>
 
 <style scoped>
-.page-title {
-  font-size: var(--font-size-3xl);
-  color: var(--theme-text-primary);
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.page-description {
-  font-size: var(--font-size-md);
-  color: var(--theme-text-secondary);
-  margin-bottom: 2.5rem;
-  line-height: 1.5;
-}
-
 .loading-container,
 .error-container {
   display: flex;
@@ -610,19 +596,11 @@ useHead({
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-
-  .page-title {
-    font-size: var(--font-size-2xl);
-  }
 }
 
 @media (max-width: 480px) {
   .friend-links-page {
     padding: 1rem 0;
-  }
-
-  .page-title {
-    font-size: var(--font-size-xl);
   }
 
   .card-header {
