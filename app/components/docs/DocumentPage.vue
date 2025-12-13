@@ -9,7 +9,7 @@
 
       <!-- Document Content -->
       <div class="doc-body">
-        <ContentRenderer :value="page"/>
+        <ContentRenderer :value="page" />
       </div>
     </article>
 
@@ -23,21 +23,22 @@
 <script lang="ts" setup>
 // 定义组件属性
 const props = defineProps<{
-  collectionName: string
-}>()
+  collectionName: string;
+}>();
 
-const route = useRoute()
-const { locale, t } = useI18n()
+const route = useRoute();
+const { locale, t } = useI18n();
 
 // 从布局中注入设置标题的方法
-const setDocHeadings = inject<(headings: Array<{ id: string; text: string; depth: number }>) => void>('setDocHeadings')
+const setDocHeadings =
+  inject<(headings: Array<{ id: string; text: string; depth: number }>) => void>('setDocHeadings');
 
 // 定义页面数据类型
 interface PageData {
-  title?: string
-  description?: string
-  body?: any
-  [key: string]: any
+  title?: string;
+  description?: string;
+  body?: any;
+  [key: string]: any;
 }
 
 // 使用 queryCollection API 获取内容，监听语言变化
@@ -45,74 +46,73 @@ const { data: page, refresh } = await useAsyncData<PageData | null>(
   `${route.path}-${locale.value}-${props.collectionName}`,
   () => {
     // content/ 下的实际文件路径形如 introduction/route-setting-zh或introduction/route-setting-en
-    const contentPath = `${route.path}-${locale.value.substring(0, 2)}`
+    const contentPath = `${route.path}-${locale.value.substring(0, 2)}`;
 
     // @ts-expect-error - queryCollection 的类型定义不支持动态字符串，但运行时可以正常工作
-    return (queryCollection(props.collectionName) as any)
-      .path(contentPath)
-      .first()
+    return (queryCollection(props.collectionName) as any).path(contentPath).first();
   },
-  { default: () => null }
-)
+  { default: () => null },
+);
 
 // 监听语言变化，重新获取文档
 watch(locale, () => {
-  refresh()
-})
+  refresh();
+});
 
 // 提取文档标题的函数
 const extractHeadings = () => {
   nextTick(() => {
-    const headings: Array<{ id: string; text: string; depth: number }> = []
-    const headingElements = document.querySelectorAll('.doc-body h2, .doc-body h3, .doc-body h4')
+    const headings: Array<{ id: string; text: string; depth: number }> = [];
+    const headingElements = document.querySelectorAll('.doc-body h2, .doc-body h3, .doc-body h4');
 
     headingElements.forEach((el) => {
-      const tagName = el.tagName.toLowerCase()
-      const depth = parseInt(tagName.substring(1))
-      const text = el.textContent || ''
-      let id = el.id
+      const tagName = el.tagName.toLowerCase();
+      const depth = parseInt(tagName.substring(1));
+      const text = el.textContent || '';
+      let id = el.id;
 
       // 如果没有 id，生成一个
       if (!id) {
-        id = text.toLowerCase()
+        id = text
+          .toLowerCase()
           .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-')
-          .replace(/^-|-$/g, '')
-        el.id = id
+          .replace(/^-|-$/g, '');
+        el.id = id;
       }
 
-      headings.push({ id, text, depth })
-    })
+      headings.push({ id, text, depth });
+    });
 
     // 更新布局中的标题列表
     if (setDocHeadings) {
-      setDocHeadings(headings)
+      setDocHeadings(headings);
     }
-  })
-}
+  });
+};
 
 // 页面挂载时提取标题
 onMounted(() => {
-  extractHeadings()
-})
+  extractHeadings();
+});
 
 // 监听 page 数据变化，重新提取标题
 watch(page, () => {
   if (page.value) {
-    extractHeadings()
+    extractHeadings();
   }
-})
+});
 
 // SEO 配置
-const siteName = computed(() => t('layout.siteName'))
+const siteName = computed(() => t('layout.siteName'));
 const pageTitle = computed(() => {
   if (page.value?.title) {
-    return `${page.value.title} - ${siteName.value}`
+    return `${page.value.title} - ${siteName.value}`;
   }
-  return siteName.value
-})
+  return siteName.value;
+});
 const pageDescription = computed(() => {
-  return page.value?.description || t('docs.siteTitle')
-})
+  return page.value?.description || t('docs.siteTitle');
+});
 
 useSeoMeta({
   title: () => pageTitle.value,
@@ -121,11 +121,11 @@ useSeoMeta({
   ogDescription: () => pageDescription.value,
   ogType: 'article',
   twitterCard: 'summary',
-})
+});
 
 useHead({
-  title: () => pageTitle.value
-})
+  title: () => pageTitle.value,
+});
 </script>
 
 <style scoped>
@@ -284,7 +284,7 @@ useHead({
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius-sm);
   font-size: 0.9em;
-  font-family: 'Courier New', monospace;
+  font-family: 'Jetbrains Mono', 'Google Sans Code', 'Consolas', 'Courier New', monospace;
   border: 1px solid var(--theme-border);
 }
 
@@ -364,11 +364,11 @@ useHead({
   border: none;
   height: 2px;
   background: linear-gradient(
-      to right,
-      transparent,
-      var(--theme-accent-color) 20%,
-      var(--theme-accent-color) 80%,
-      transparent
+    to right,
+    transparent,
+    var(--theme-accent-color) 20%,
+    var(--theme-accent-color) 80%,
+    transparent
   );
   margin: 3rem 0;
   opacity: 0.5;
