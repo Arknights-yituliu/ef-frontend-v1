@@ -1,7 +1,8 @@
-import type { PackDataDTO } from '@/shared/types/pack';
+import type { Packs } from '@/shared/types/pack';
 
-export const packs: PackDataDTO[] = [
-  {
+export const packs: Packs = {
+  宏愿兵装组合包: {
+    packId: '宏愿兵装组合包',
     packDisplayNameZH: '宏愿兵装组合包',
     packDisplayNameEN: '宏愿兵装组合包',
     price: 6,
@@ -19,7 +20,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  全面人才组合包: {
+    packId: '全面人才组合包',
     packDisplayNameZH: '全面人才组合包',
     packDisplayNameEN: '全面人才组合包',
     price: 128,
@@ -37,7 +39,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  人事支援组合包: {
+    packId: '人事支援组合包',
     packDisplayNameZH: '人事支援组合包',
     packDisplayNameEN: '人事支援组合包',
     price: 98,
@@ -55,7 +58,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  协议源流组合包: {
+    packId: '协议源流组合包',
     packDisplayNameZH: '协议源流组合包',
     packDisplayNameEN: '协议源流组合包',
     price: 198,
@@ -78,7 +82,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  行火寻访组合包: {
+    packId: '行火寻访组合包',
     packDisplayNameZH: '行火寻访组合包',
     packDisplayNameEN: '行火寻访组合包',
     price: 98,
@@ -96,7 +101,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  每月素材组合包: {
+    packId: '每月素材组合包',
     packDisplayNameZH: '每月素材组合包',
     packDisplayNameEN: '每月素材组合包',
     price: 98,
@@ -139,7 +145,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  每周素材组合包: {
+    packId: '每周素材组合包',
     packDisplayNameZH: '每周素材组合包',
     packDisplayNameEN: '每周素材组合包',
     price: 30,
@@ -162,7 +169,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  特惠武库配额包: {
+    packId: '特惠武库配额包',
     packDisplayNameZH: '特惠武库配额包',
     packDisplayNameEN: '特惠武库配额包',
     price: 88,
@@ -175,7 +183,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  优惠武库配额包: {
+    packId: '优惠武库配额包',
     packDisplayNameZH: '优惠武库配额包',
     packDisplayNameEN: '优惠武库配额包',
     price: 108,
@@ -188,7 +197,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  标准武库配额包: {
+    packId: '标准武库配额包',
     packDisplayNameZH: '标准武库配额包',
     packDisplayNameEN: '标准武库配额包',
     price: 128,
@@ -201,7 +211,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  月卡: {
+    packId: '月卡',
     packDisplayNameZH: '月卡',
     packDisplayNameEN: '月卡',
     price: 30,
@@ -224,7 +235,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '6元双倍源石': {
+    packId: '6元双倍源石',
     packDisplayNameZH: '6元双倍源石',
     packDisplayNameEN: '6元双倍源石',
     price: 6,
@@ -237,7 +249,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '30元双倍源石': {
+    packId: '30元双倍源石',
     packDisplayNameZH: '30元双倍源石',
     packDisplayNameEN: '30元双倍源石',
     price: 30,
@@ -250,7 +263,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '98元双倍源石': {
+    packId: '98元双倍源石',
     packDisplayNameZH: '98元双倍源石',
     packDisplayNameEN: '98元双倍源石',
     price: 98,
@@ -263,7 +277,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '198元双倍源石': {
+    packId: '198元双倍源石',
     packDisplayNameZH: '198元双倍源石',
     packDisplayNameEN: '198元双倍源石',
     price: 198,
@@ -276,7 +291,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '328元双倍源石': {
+    packId: '328元双倍源石',
     packDisplayNameZH: '328元双倍源石',
     packDisplayNameEN: '328元双倍源石',
     price: 328,
@@ -289,7 +305,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '648元双倍源石': {
+    packId: '648元双倍源石',
     packDisplayNameZH: '648元双倍源石',
     packDisplayNameEN: '648元双倍源石',
     price: 648,
@@ -302,7 +319,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '6元源石': {
+    packId: '6元源石',
     packDisplayNameZH: '6元源石',
     packDisplayNameEN: '6元源石',
     price: 6,
@@ -315,7 +333,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '30元源石': {
+    packId: '30元源石',
     packDisplayNameZH: '30元源石',
     packDisplayNameEN: '30元源石',
     price: 30,
@@ -328,7 +347,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '98元源石': {
+    packId: '98元源石',
     packDisplayNameZH: '98元源石',
     packDisplayNameEN: '98元源石',
     price: 98,
@@ -341,7 +361,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '198元源石': {
+    packId: '198元源石',
     packDisplayNameZH: '198元源石',
     packDisplayNameEN: '198元源石',
     price: 198,
@@ -354,7 +375,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '328元源石': {
+    packId: '328元源石',
     packDisplayNameZH: '328元源石',
     packDisplayNameEN: '328元源石',
     price: 328,
@@ -367,7 +389,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  '648元源石': {
+    packId: '648元源石',
     packDisplayNameZH: '648元源石',
     packDisplayNameEN: '648元源石',
     price: 648,
@@ -380,7 +403,8 @@ export const packs: PackDataDTO[] = [
       },
     ],
   },
-  {
+  协议定制: {
+    packId: '协议定制',
     packDisplayNameZH: '协议定制',
     packDisplayNameEN: '协议定制',
     price: 68,
@@ -449,7 +473,8 @@ export const packs: PackDataDTO[] = [
       { itemId: '衍质源石', itemName: '衍质源石', quantity: 8 },
     ],
   },
-  {
+  源石配给: {
+    packId: '源石配给',
     packDisplayNameZH: '源石配给',
     packDisplayNameEN: '源石配给',
     descriptionZH: '价格为源石折算',
@@ -519,4 +544,4 @@ export const packs: PackDataDTO[] = [
       { itemId: '衍质源石', itemName: '衍质源石', quantity: 7 },
     ],
   },
-];
+};

@@ -101,16 +101,19 @@
       "pricePerPull": "Price per Pull",
       "perUnit": "/{unit}",
       "contents": "Contents",
-      "equivalent": "Equivalent",
+      "equivalent": "Equiv",
       "total": "Total",
       "daysLeft": "{days} days left",
       "itemName": "Item Name",
       "quantity": "Quantity",
       "totalValue": "Total Value",
       "percentage": "Percentage",
-      "stone": "originite",
+      "stone": "ori.",
       "pull": "pull",
-      "pulls": "pulls"
+      "pulls": "pulls",
+      "packSanityEfficiency": "All Items",
+      "packPullsEfficiency": "Gacha Only",
+      "648StoneEfficiency": "648 Pack"
     }
   },
   "page": {
@@ -137,6 +140,7 @@
         "description": "This page displays cost-effectiveness analysis of various packages in the game to help players evaluate package purchase value.",
         "searchPlaceholder": "Search package name...",
         "sortBy": "Sort By",
+        "sortDefault": "Default",
         "sortPrice": "Price",
         "sortGachaOnly": "Gacha Only",
         "sortAllItems": "All Items",
