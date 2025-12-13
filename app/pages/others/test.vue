@@ -9,7 +9,7 @@
           <v-card class="mb-4">
             <v-card-title>按钮组件</v-card-title>
             <v-card-text>
-              <div class="d-flex flex-wrap" style="gap: 0.5rem;">
+              <div class="d-flex flex-wrap" style="gap: 0.5rem">
                 <v-btn color="primary">Primary 按钮</v-btn>
                 <v-btn color="secondary">Secondary 按钮</v-btn>
                 <v-btn color="accent">Accent 按钮</v-btn>
@@ -101,16 +101,8 @@
           <v-card class="mb-4">
             <v-card-title>开关和选择器</v-card-title>
             <v-card-text>
-              <v-switch
-                label="启用选项"
-                color="primary"
-                class="mb-2"
-              />
-              <v-checkbox
-                label="复选框选项"
-                color="primary"
-                class="mb-2"
-              />
+              <v-switch label="启用选项" color="primary" class="mb-2" />
+              <v-checkbox label="复选框选项" color="primary" class="mb-2" />
               <v-radio-group color="primary">
                 <v-radio label="选项 1" value="1" />
                 <v-radio label="选项 2" value="2" />
@@ -124,16 +116,8 @@
           <v-card class="mb-4">
             <v-card-title>进度条和滑块</v-card-title>
             <v-card-text>
-              <v-progress-linear
-                color="primary"
-                model-value="45"
-                class="mb-4"
-              />
-              <v-progress-circular
-                color="accent"
-                model-value="70"
-                class="mb-4"
-              />
+              <v-progress-linear color="primary" model-value="45" class="mb-4" />
+              <v-progress-circular color="accent" model-value="70" class="mb-4" />
               <v-slider
                 label="滑块示例"
                 color="primary"
@@ -152,8 +136,8 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'default'
-})
+  layout: 'default',
+});
 </script>
 
 <style scoped>
@@ -183,4 +167,3 @@ definePageMeta({
   }
 }
 </style>
-

@@ -1,47 +1,44 @@
 <template>
-  <div 
-    class="docs-sidebar-wrapper"
-    :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
-  >
-    <aside 
+  <div class="docs-sidebar-wrapper" :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }">
+    <aside
       class="docs-sidebar hide-scrollbar"
       :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
     >
       <!-- 装饰背景 -->
       <div class="sidebar-bg-decorator"></div>
-      
+
       <!-- 左侧装饰条 -->
       <div class="sidebar-left-decoration"></div>
-      
+
       <!-- 侧边栏内容 -->
       <div class="sidebar-content">
         <div class="sidebar-header">
           <h2 class="sidebar-title">{{ $t('docs.documentation') }}</h2>
         </div>
-        
+
         <nav class="sidebar-nav" ref="sidebarNavRef">
           <div
             class="nav-highlight"
             :style="{
-              transform: `translateY(${highlightTop}px)` ,
-              height: `${highlightHeight}px` ,
-              opacity: highlightHeight > 0 ? 1 : 0
+              transform: `translateY(${highlightTop}px)`,
+              height: `${highlightHeight}px`,
+              opacity: highlightHeight > 0 ? 1 : 0,
             }"
           ></div>
-          <div 
-            v-for="(section, sectionIndex) in docNavigation" 
+          <div
+            v-for="(section, sectionIndex) in docNavigation"
             :key="sectionIndex"
             class="nav-section"
           >
             <h3 class="section-title">{{ $t(section.titleKey) }}</h3>
             <ul class="nav-list">
-              <li 
-                v-for="(item, itemIndex) in section.items" 
+              <li
+                v-for="(item, itemIndex) in section.items"
                 :key="itemIndex"
                 class="nav-item"
-                :ref="el => setLinkRef(el, item.path)"
+                :ref="(el) => setLinkRef(el, item.path)"
               >
-                <NuxtLink 
+                <NuxtLink
                   :to="item.path"
                   class="nav-link"
                   :class="{ 'is-active': isActivePath(item.path) }"
@@ -59,16 +56,16 @@
     </aside>
 
     <!-- 折叠按钮 -->
-    <button 
+    <button
       class="collapse-toggle"
       @click="toggleCollapse"
       :aria-label="isCollapsed ? $t('docs.expand') : $t('docs.collapse')"
     >
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path 
-          d="M15 18l-6-6 6-6" 
-          stroke="currentColor" 
-          stroke-width="2" 
+        <path
+          d="M15 18l-6-6 6-6"
+          stroke="currentColor"
+          stroke-width="2"
           fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -79,150 +76,160 @@
 </template>
 
 <script setup lang="ts">
-import type {ComponentPublicInstance} from 'vue'
-import docNavigationData from '@/custom/route/docNavigation.json'
+import type { ComponentPublicInstance } from 'vue';
+import docNavigationData from '@/custom/route/docNavigation.json';
 
-const route = useRoute()
-const { locale } = useI18n()
+const route = useRoute();
+const { locale } = useI18n();
 
 // 定义 props
 interface Props {
-  isOpen?: boolean
+  isOpen?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  isOpen: false
-})
+  isOpen: false,
+});
 
 // 定义 emits
 const emit = defineEmits<{
-  close: []
-}>()
+  close: [];
+}>();
 
 // 折叠状态
-const isCollapsed = ref(false)
-const sidebarNavRef = ref<HTMLElement | null>(null)
-const linkRefs = ref<Map<string, HTMLElement>>(new Map())
-const highlightTop = ref(0)
-const highlightHeight = ref(0)
+const isCollapsed = ref(false);
+const sidebarNavRef = ref<HTMLElement | null>(null);
+const linkRefs = ref<Map<string, HTMLElement>>(new Map());
+const highlightTop = ref(0);
+const highlightHeight = ref(0);
 
 // 延迟更新高亮的定时器
-let highlightUpdateTimer: ReturnType<typeof setTimeout> | null = null
+let highlightUpdateTimer: ReturnType<typeof setTimeout> | null = null;
 
 // 从 JSON 文件加载文档导航结构
-const docNavigation = computed(() => docNavigationData)
+const docNavigation = computed(() => docNavigationData);
 
 // 判断是否是当前激活路径
 const isActivePath = (path: string) => {
-  return route.path === path
-}
+  return route.path === path;
+};
 
 const getDOMElement = (el: Element | ComponentPublicInstance | null): HTMLElement | null => {
   if (!el) {
-    return null
+    return null;
   }
   if (el instanceof HTMLElement) {
-    return el
+    return el;
   }
   if ('$el' in el && el.$el instanceof HTMLElement) {
-    return el.$el
+    return el.$el;
   }
-  return null
-}
+  return null;
+};
 
 const setLinkRef = (el: Element | ComponentPublicInstance | null, path: string) => {
-  const element = getDOMElement(el)
+  const element = getDOMElement(el);
   if (!element) {
-    linkRefs.value.delete(path)
-    return
+    linkRefs.value.delete(path);
+    return;
   }
-  linkRefs.value.set(path, element)
-}
+  linkRefs.value.set(path, element);
+};
 
 const getRelativeTop = (element: HTMLElement, container: HTMLElement) => {
-  const elementRect = element.getBoundingClientRect()
-  const containerRect = container.getBoundingClientRect()
-  return elementRect.top - containerRect.top
-}
+  const elementRect = element.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  return elementRect.top - containerRect.top;
+};
 
 const updateHighlight = () => {
   nextTick(() => {
-    const activeEl = linkRefs.value.get(route.path)
-    const container = sidebarNavRef.value
+    const activeEl = linkRefs.value.get(route.path);
+    const container = sidebarNavRef.value;
 
     if (!activeEl || !container || isCollapsed.value) {
-      highlightHeight.value = 0
-      return
+      highlightHeight.value = 0;
+      return;
     }
 
-    highlightTop.value = getRelativeTop(activeEl, container)
-    highlightHeight.value = activeEl.offsetHeight
-  })
-}
+    highlightTop.value = getRelativeTop(activeEl, container);
+    highlightHeight.value = activeEl.offsetHeight;
+  });
+};
 
 // 延迟更新高亮
 const delayedUpdateHighlight = () => {
   if (highlightUpdateTimer) {
-    clearTimeout(highlightUpdateTimer)
+    clearTimeout(highlightUpdateTimer);
   }
   highlightUpdateTimer = setTimeout(() => {
-    updateHighlight()
-    highlightUpdateTimer = null
-  }, 400)
-}
+    updateHighlight();
+    highlightUpdateTimer = null;
+  }, 400);
+};
 
 // 切换折叠状态
 const toggleCollapse = () => {
-  isCollapsed.value = !isCollapsed.value
+  isCollapsed.value = !isCollapsed.value;
   if (isCollapsed.value) {
-    highlightHeight.value = 0
+    highlightHeight.value = 0;
   } else {
     // 折叠/展开后延迟更新高亮
-    delayedUpdateHighlight()
+    delayedUpdateHighlight();
   }
-}
+};
 
 // 处理链接点击（移动端关闭侧边栏）
 const handleLinkClick = () => {
   if (props.isOpen) {
-    emit('close')
+    emit('close');
   }
-}
+};
 
 const handleResize = () => {
   if (!isCollapsed.value) {
-    updateHighlight()
+    updateHighlight();
   }
-}
+};
 
-watch(() => route.path, () => {
-  updateHighlight()
-}, {immediate: true})
+watch(
+  () => route.path,
+  () => {
+    updateHighlight();
+  },
+  { immediate: true },
+);
 
-watch(() => props.isOpen, (open) => {
-  if (open) {
-    nextTick(() => {
-      updateHighlight()
-    })
-  }
-})
+watch(
+  () => props.isOpen,
+  (open) => {
+    if (open) {
+      nextTick(() => {
+        updateHighlight();
+      });
+    }
+  },
+);
 
 // 监听语言切换
-watch(() => locale.value, () => {
-  delayedUpdateHighlight()
-})
+watch(
+  () => locale.value,
+  () => {
+    delayedUpdateHighlight();
+  },
+);
 
 onMounted(() => {
-  updateHighlight()
-  window.addEventListener('resize', handleResize)
-})
+  updateHighlight();
+  window.addEventListener('resize', handleResize);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
+  window.removeEventListener('resize', handleResize);
   if (highlightUpdateTimer) {
-    clearTimeout(highlightUpdateTimer)
+    clearTimeout(highlightUpdateTimer);
   }
-})
+});
 </script>
 
 <style scoped>
@@ -380,7 +387,10 @@ onUnmounted(() => {
   border-left: 0.25rem solid var(--theme-accent-color);
   background: linear-gradient(90deg, var(--theme-decorative-overlay-light) 0%, transparent 90%);
   border-radius: var(--radius-sm);
-  transition: transform var(--transition-base), height var(--transition-base), opacity var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    height var(--transition-base),
+    opacity var(--transition-base);
   pointer-events: none;
   opacity: 0;
 }
@@ -392,7 +402,13 @@ onUnmounted(() => {
   top: 0.75rem;
   bottom: 0.75rem;
   width: 1px;
-  background: linear-gradient(to bottom, transparent, var(--theme-border) 25%, var(--theme-border) 75%, transparent);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--theme-border) 25%,
+    var(--theme-border) 75%,
+    transparent
+  );
   opacity: 0.35;
 }
 
@@ -479,15 +495,14 @@ onUnmounted(() => {
     transform: translateX(-100%);
     box-shadow: none;
   }
-  
+
   .docs-sidebar.is-open {
     transform: translateX(0);
     box-shadow: 0.5rem 0 2rem var(--theme-shadow-accent-strong);
   }
-  
+
   .collapse-toggle {
     display: none;
   }
 }
 </style>
-

@@ -1,154 +1,155 @@
 <script setup lang="ts">
 type LocalizedInfo = {
-  position: string
-  tags: string[]
-}
+  position: string;
+  tags: string[];
+};
 
 type Contributor = {
-  name: string
-  avatarImg: string
-  link?: string
-  english: LocalizedInfo
-  chinese: LocalizedInfo
-}
+  name: string;
+  avatarImg: string;
+  link?: string;
+  english: LocalizedInfo;
+  chinese: LocalizedInfo;
+};
 
 const contributorAssets = import.meta.glob('~/assets/avatar/contributors/*', {
   eager: true,
-  import: 'default'
-}) as Record<string, string>
+  import: 'default',
+}) as Record<string, string>;
 
 const props = defineProps<{
-  contributor: Contributor
-}>()
+  contributor: Contributor;
+}>();
 
-const {t, locale} = useI18n()
+const { t, locale } = useI18n();
 
 const localizedInfo = computed<LocalizedInfo>(() => {
   if (locale.value === 'en-US') {
-    return props.contributor.english
+    return props.contributor.english;
   }
-  return props.contributor.chinese
-})
+  return props.contributor.chinese;
+});
 
 const resolvedAvatar = computed(() => {
-  return resolvePictureUrl(props.contributor.avatarImg, contributorAssets)
-})
+  return resolvePictureUrl(props.contributor.avatarImg, contributorAssets);
+});
 
-const tags = computed(() => localizedInfo.value.tags ?? [])
+const tags = computed(() => localizedInfo.value.tags ?? []);
 
-const cardElement = ref<HTMLElement | null>(null)
-const tiltWrapper = ref<HTMLElement | null>(null)
-const innerElement = ref<HTMLElement | null>(null)
-const mediaElement = ref<HTMLElement | null>(null)
+const cardElement = ref<HTMLElement | null>(null);
+const tiltWrapper = ref<HTMLElement | null>(null);
+const innerElement = ref<HTMLElement | null>(null);
+const mediaElement = ref<HTMLElement | null>(null);
 
-let cardRect: DOMRect | null = null
-let animationFrameId: number | null = null
-let targetPercentX = 0
-let targetPercentY = 0
+let cardRect: DOMRect | null = null;
+let animationFrameId: number | null = null;
+let targetPercentX = 0;
+let targetPercentY = 0;
 
 function handleMouseEnter() {
-  updateCardRect()
-  setHoverState(true)
+  updateCardRect();
+  setHoverState(true);
 }
 
 function handleMouseMove(event: MouseEvent) {
   if (!cardRect) {
-    updateCardRect()
+    updateCardRect();
   }
 
   if (!cardRect) {
-    return
+    return;
   }
 
-  const {left, top, width, height} = cardRect
-  const relativeX = event.clientX - left
-  const relativeY = event.clientY - top
+  const { left, top, width, height } = cardRect;
+  const relativeX = event.clientX - left;
+  const relativeY = event.clientY - top;
 
-  targetPercentX = clamp(relativeX / width - 0.35, -0.5, 0.5)
-  targetPercentY = clamp(relativeY / height - 0.5, -0.5, 0.5)
+  targetPercentX = clamp(relativeX / width - 0.35, -0.5, 0.5);
+  targetPercentY = clamp(relativeY / height - 0.5, -0.5, 0.5);
 
-  requestTransformUpdate()
+  requestTransformUpdate();
 }
 
 function handleMouseLeave() {
-  targetPercentX = 0
-  targetPercentY = 0
+  targetPercentX = 0;
+  targetPercentY = 0;
   requestTransformUpdate(() => {
-    setHoverState(false)
-  })
+    setHoverState(false);
+  });
 }
 
 function requestTransformUpdate(onComplete?: () => void) {
   if (animationFrameId != null) {
-    cancelAnimationFrame(animationFrameId)
+    cancelAnimationFrame(animationFrameId);
   }
 
   animationFrameId = requestAnimationFrame(() => {
-    applyTransform(targetPercentX, targetPercentY)
-    animationFrameId = null
+    applyTransform(targetPercentX, targetPercentY);
+    animationFrameId = null;
     if (onComplete) {
-      onComplete()
+      onComplete();
     }
-  })
+  });
 }
 
 function applyTransform(percentX: number, percentY: number) {
-  const rotateMax = 12
-  const offsetScale = 28
+  const rotateMax = 12;
+  const offsetScale = 28;
 
-  const rotateX = -percentY * rotateMax * 2
-  const rotateY = percentX * rotateMax * 2
-  const offsetX = percentX * offsetScale
-  const offsetY = percentY * offsetScale
+  const rotateX = -percentY * rotateMax * 2;
+  const rotateY = percentX * rotateMax * 2;
+  const offsetX = percentX * offsetScale;
+  const offsetY = percentY * offsetScale;
 
   if (tiltWrapper.value) {
-    tiltWrapper.value.style.transform = `translateZ(0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
-    tiltWrapper.value.style.transition = percentX === 0 && percentY === 0 ? 'transform var(--transition-base)' : 'transform 80ms ease-out'
+    tiltWrapper.value.style.transform = `translateZ(0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    tiltWrapper.value.style.transition =
+      percentX === 0 && percentY === 0
+        ? 'transform var(--transition-base)'
+        : 'transform 80ms ease-out';
   }
 
   if (mediaElement.value) {
-    mediaElement.value.style.transform = `translate3d(${offsetX * 0.6}px, ${offsetY * 0.6}px, 60px)`
+    mediaElement.value.style.transform = `translate3d(${offsetX * 0.6}px, ${offsetY * 0.6}px, 60px)`;
   }
 
   if (innerElement.value) {
-    innerElement.value.style.transform = `translate3d(${offsetX * 0.35}px, ${offsetY * 0.35}px, 35px)`
+    innerElement.value.style.transform = `translate3d(${offsetX * 0.35}px, ${offsetY * 0.35}px, 35px)`;
   }
-
 }
 
 function updateCardRect() {
   if (!cardElement.value) {
-    cardRect = null
-    return
+    cardRect = null;
+    return;
   }
 
-  cardRect = cardElement.value.getBoundingClientRect()
+  cardRect = cardElement.value.getBoundingClientRect();
 }
 
 function setHoverState(active: boolean) {
   if (tiltWrapper.value) {
-    tiltWrapper.value.classList.toggle('is-hovered', active)
+    tiltWrapper.value.classList.toggle('is-hovered', active);
   }
 }
 
 function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max)
+  return Math.min(Math.max(value, min), max);
 }
 
 onMounted(() => {
-  window.addEventListener('resize', updateCardRect)
-  window.addEventListener('scroll', updateCardRect, true)
-})
+  window.addEventListener('resize', updateCardRect);
+  window.addEventListener('scroll', updateCardRect, true);
+});
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateCardRect)
-  window.removeEventListener('scroll', updateCardRect, true)
+  window.removeEventListener('resize', updateCardRect);
+  window.removeEventListener('scroll', updateCardRect, true);
   if (animationFrameId != null) {
-    cancelAnimationFrame(animationFrameId)
-    animationFrameId = null
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
   }
-})
-
+});
 </script>
 
 <template>
@@ -168,7 +169,7 @@ onBeforeUnmount(() => {
             :src="resolvedAvatar"
             :alt="t('component.contributorCard.avatarAlt', { name: contributor.name })"
             loading="lazy"
-          >
+          />
         </div>
         <div class="card__content">
           <div class="card__meta">
@@ -195,11 +196,7 @@ onBeforeUnmount(() => {
               {{ t('component.contributorCard.tagsLabel') }}
             </span>
             <ul class="card__tags">
-              <li
-                v-for="tag in tags"
-                :key="`${contributor.name}-${tag}`"
-                class="card__tag"
-              >
+              <li v-for="tag in tags" :key="`${contributor.name}-${tag}`" class="card__tag">
                 {{ tag }}
               </li>
             </ul>
@@ -222,7 +219,9 @@ onBeforeUnmount(() => {
     color-mix(in srgb, var(--theme-bg-tertiary) 55%, transparent)
   );
   overflow: hidden;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
   isolation: isolate;
   perspective: 1200px;
 }
@@ -231,7 +230,11 @@ onBeforeUnmount(() => {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, var(--theme-decorative-overlay-medium), transparent 65%);
+  background: radial-gradient(
+    circle at 20% 20%,
+    var(--theme-decorative-overlay-medium),
+    transparent 65%
+  );
   pointer-events: none;
   mix-blend-mode: screen;
   opacity: 0.85;
@@ -329,7 +332,10 @@ onBeforeUnmount(() => {
   font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
-  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
 .card__profile-link:hover {

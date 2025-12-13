@@ -30,45 +30,45 @@
 </template>
 
 <script lang="ts" setup>
-import {useLocale} from 'vuetify'
+import { useLocale } from 'vuetify';
 
-const {locale, setLocale} = useI18n()
-const {current} = useLocale()
+const { locale, setLocale } = useI18n();
+const { current } = useLocale();
 
-const currentLocale = computed(() => locale.value)
+const currentLocale = computed(() => locale.value);
 
 const availableLocales = computed(() => {
   return [
-    {code: 'zh-CN' as const, label: '中'},
-    {code: 'en-US' as const, label: 'EN'}
-  ]
-})
+    { code: 'zh-CN' as const, label: '中' },
+    { code: 'en-US' as const, label: 'EN' },
+  ];
+});
 
 // 将项目的语言代码映射到 Vuetify 的语言代码
 const getVuetifyLocale = (localeCode: string): 'en' | 'zhHans' => {
   switch (localeCode) {
     case 'zh-CN':
-      return 'zhHans'
+      return 'zhHans';
     case 'en-US':
-      return 'en'
+      return 'en';
     default:
-      return 'zhHans'
+      return 'zhHans';
   }
-}
+};
 
 // 处理语言切换
 const handleLocaleChange = async (newLocale: 'zh-CN' | 'en-US') => {
   // 更新项目的 i18n 语言
-  await setLocale(newLocale)
+  await setLocale(newLocale);
   // 同步更新 Vuetify 的语言设置
   // 参考：https://vuetifyjs.com/en/features/internationalization
-  current.value = getVuetifyLocale(newLocale)
-}
+  current.value = getVuetifyLocale(newLocale);
+};
 
 // 组件挂载时，确保 Vuetify 语言与当前 i18n 语言同步
 onMounted(() => {
-  current.value = getVuetifyLocale(locale.value)
-})
+  current.value = getVuetifyLocale(locale.value);
+});
 </script>
 
 <style scoped>
@@ -223,7 +223,4 @@ onMounted(() => {
     transform: scale(1) rotate(0deg);
   }
 }
-
-
 </style>
-

@@ -15,33 +15,33 @@
 </template>
 
 <script setup lang="ts">
-import contributorsData from '@/custom/info/contributors.json'
+import contributorsData from '@/custom/info/contributors.json';
 
 definePageMeta({
-  layout: 'default'
-})
+  layout: 'default',
+});
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 type LocalizedInfo = {
-  position: string
-  tags: string[]
-}
+  position: string;
+  tags: string[];
+};
 
 type Contributor = {
-  name: string
-  avatarImg: string
-  link?: string
-  english: LocalizedInfo
-  chinese: LocalizedInfo
-}
+  name: string;
+  avatarImg: string;
+  link?: string;
+  english: LocalizedInfo;
+  chinese: LocalizedInfo;
+};
 
-const contributors = computed<Contributor[]>(() => contributorsData.contributors ?? [])
+const contributors = computed<Contributor[]>(() => contributorsData.contributors ?? []);
 
 // SEO 配置
-const siteName = computed(() => t('layout.siteName'))
-const pageTitle = computed(() => `${t('page.contributors.title')} - ${siteName.value}`)
-const pageDescription = computed(() => t('page.contributors.description'))
+const siteName = computed(() => t('layout.siteName'));
+const pageTitle = computed(() => `${t('page.contributors.title')} - ${siteName.value}`);
+const pageDescription = computed(() => t('page.contributors.description'));
 
 useSeoMeta({
   title: () => pageTitle.value,
@@ -50,11 +50,11 @@ useSeoMeta({
   ogDescription: () => pageDescription.value,
   ogType: 'website',
   twitterCard: 'summary',
-})
+});
 
 useHead({
-  title: () => pageTitle.value
-})
+  title: () => pageTitle.value,
+});
 </script>
 
 <style scoped>

@@ -18,190 +18,189 @@
       <svg class="header-scanline" preserveAspectRatio="none" viewBox="0 0 100 100">
         <defs>
           <linearGradient id="scanline-gradient-docs" x1="0%" x2="0%" y1="0%" y2="100%">
-            <stop offset="0%" style="stop-color: var(--theme-accent-color); stop-opacity: 0"/>
-            <stop offset="50%" style="stop-color: var(--theme-accent-color); stop-opacity: 0.3"/>
-            <stop offset="100%" style="stop-color: var(--theme-accent-color); stop-opacity: 0"/>
+            <stop offset="0%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
+            <stop offset="50%" style="stop-color: var(--theme-accent-color); stop-opacity: 0.3" />
+            <stop offset="100%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
           </linearGradient>
         </defs>
-        <rect class="scanline-rect" fill="url(#scanline-gradient-docs)" height="2" width="100" x="0" y="0"/>
+        <rect
+          class="scanline-rect"
+          fill="url(#scanline-gradient-docs)"
+          height="2"
+          width="100"
+          x="0"
+          y="0"
+        />
       </svg>
 
       <!-- 移动端菜单按钮（左侧） -->
       <button
-          :aria-label="$t('docs.toggleSidebar')"
-          :class="{ active: isSidebarOpen }"
-          class="mobile-menu-button mobile-menu-left"
-          @click="toggleSidebar"
+        :aria-label="$t('docs.toggleSidebar')"
+        :class="{ active: isSidebarOpen }"
+        class="mobile-menu-button mobile-menu-left"
+        @click="toggleSidebar"
       >
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+          <path
+            d="M3 6h18M3 12h18M3 18h18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"
+          />
         </svg>
       </button>
 
       <!-- 移动端菜单按钮（右侧） -->
       <button
-          :aria-label="$t('docs.toggleToc')"
-          :class="{ active: isTocOpen }"
-          class="mobile-menu-button mobile-menu-right"
-          @click="toggleToc"
+        :aria-label="$t('docs.toggleToc')"
+        :class="{ active: isTocOpen }"
+        class="mobile-menu-button mobile-menu-right"
+        @click="toggleToc"
       >
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 6h16M4 12h12M4 18h8" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+          <path
+            d="M4 6h16M4 12h12M4 18h8"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"
+          />
         </svg>
       </button>
 
       <!-- 控制按钮区域 -->
       <div class="header-controls">
         <!-- 搜索按钮 -->
-        <button
-          :aria-label="$t('docs.search')"
-          class="control-button"
-          @click="openSearchModal"
-        >
+        <button :aria-label="$t('docs.search')" class="control-button" @click="openSearchModal">
           <v-icon>mdi-magnify</v-icon>
         </button>
         <div class="control-divider"></div>
         <!-- 主题切换 -->
-        <LayoutThemeToggle/>
+        <LayoutThemeToggle />
         <div class="control-divider"></div>
         <!-- 语言切换 -->
-        <LayoutLanguageToggle/>
+        <LayoutLanguageToggle />
       </div>
     </header>
 
     <!-- 遮罩层 -->
-    <div
-        v-if="isSidebarOpen || isTocOpen"
-        class="overlay"
-        @click="closeAll"
-    ></div>
+    <div v-if="isSidebarOpen || isTocOpen" class="overlay" @click="closeAll"></div>
 
     <!-- 左侧文档目录 -->
-    <DocsSidebar
-        :is-open="isSidebarOpen"
-        @close="closeSidebar"
-    />
+    <DocsSidebar :is-open="isSidebarOpen" @close="closeSidebar" />
 
     <!-- 右侧文档TOC -->
-    <DocsToc
-        :headings="headings"
-        :is-open="isTocOpen"
-        @close="closeToc"
-    />
+    <DocsToc :headings="headings" :is-open="isTocOpen" @close="closeToc" />
 
     <!-- 主内容区域 -->
     <main :class="{ 'sidebar-collapsed': false, 'toc-collapsed': false }" class="docs-main">
       <div class="docs-content">
-        <slot/>
+        <slot />
       </div>
     </main>
 
     <!-- 底部页脚 -->
-    <LayoutFooter class="docs-footer"/>
-    
+    <LayoutFooter class="docs-footer" />
+
     <!-- 搜索弹窗 -->
-    <DocsSearchModal 
-      :is-open="isSearchModalOpen" 
-      @close="closeSearchModal"
-    />
+    <DocsSearchModal :is-open="isSearchModalOpen" @close="closeSearchModal" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import DocsSearchModal from '~/components/docs/SearchModal.vue'
+import DocsSearchModal from '~/components/docs/SearchModal.vue';
 
 // 侧边栏和TOC状态
-const isSidebarOpen = ref(false)
-const isTocOpen = ref(false)
+const isSidebarOpen = ref(false);
+const isTocOpen = ref(false);
 // 搜索弹窗状态
-const isSearchModalOpen = ref(false)
+const isSearchModalOpen = ref(false);
 
 // 文档标题列表（由页面组件传入）
-const headings = ref<Array<{ id: string; text: string; depth: number }>>([])
+const headings = ref<Array<{ id: string; text: string; depth: number }>>([]);
 
 // 提供给页面组件设置标题的方法
 const setHeadings = (newHeadings: Array<{ id: string; text: string; depth: number }>) => {
-  headings.value = newHeadings
-}
+  headings.value = newHeadings;
+};
 
 // 提供到页面组件
-provide('setDocHeadings', setHeadings)
+provide('setDocHeadings', setHeadings);
 
 // 切换侧边栏
 const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value
+  isSidebarOpen.value = !isSidebarOpen.value;
   if (isSidebarOpen.value) {
-    isTocOpen.value = false
-    isSearchModalOpen.value = false
-    document.body.style.overflow = 'hidden'
+    isTocOpen.value = false;
+    isSearchModalOpen.value = false;
+    document.body.style.overflow = 'hidden';
   } else {
-    document.body.style.overflow = ''
+    document.body.style.overflow = '';
   }
-}
+};
 
 // 切换TOC
 const toggleToc = () => {
-  isTocOpen.value = !isTocOpen.value
+  isTocOpen.value = !isTocOpen.value;
   if (isTocOpen.value) {
-    isSidebarOpen.value = false
-    isSearchModalOpen.value = false
-    document.body.style.overflow = 'hidden'
+    isSidebarOpen.value = false;
+    isSearchModalOpen.value = false;
+    document.body.style.overflow = 'hidden';
   } else {
-    document.body.style.overflow = ''
+    document.body.style.overflow = '';
   }
-}
+};
 
 // 关闭侧边栏
 const closeSidebar = () => {
-  isSidebarOpen.value = false
-  document.body.style.overflow = ''
-}
+  isSidebarOpen.value = false;
+  document.body.style.overflow = '';
+};
 
 // 关闭TOC
 const closeToc = () => {
-  isTocOpen.value = false
-  document.body.style.overflow = ''
-}
+  isTocOpen.value = false;
+  document.body.style.overflow = '';
+};
 
 // 关闭所有
 const closeAll = () => {
-  isSidebarOpen.value = false
-  isTocOpen.value = false
-  document.body.style.overflow = ''
-}
+  isSidebarOpen.value = false;
+  isTocOpen.value = false;
+  document.body.style.overflow = '';
+};
 
 // 打开搜索弹窗
 const openSearchModal = () => {
-  isSearchModalOpen.value = true
-  isSidebarOpen.value = false
-  isTocOpen.value = false
-  document.body.style.overflow = 'hidden'
-}
+  isSearchModalOpen.value = true;
+  isSidebarOpen.value = false;
+  isTocOpen.value = false;
+  document.body.style.overflow = 'hidden';
+};
 
 // 关闭搜索弹窗
 const closeSearchModal = () => {
-  isSearchModalOpen.value = false
-  document.body.style.overflow = ''
-}
+  isSearchModalOpen.value = false;
+  document.body.style.overflow = '';
+};
 
 // 监听窗口大小变化
-let resizeHandler: (() => void) | null = null
+let resizeHandler: (() => void) | null = null;
 
 onMounted(() => {
   resizeHandler = () => {
     if (window.innerWidth > 768) {
-      closeAll()
+      closeAll();
     }
-  }
-  window.addEventListener('resize', resizeHandler)
-})
+  };
+  window.addEventListener('resize', resizeHandler);
+});
 
 onUnmounted(() => {
   if (resizeHandler) {
-    window.removeEventListener('resize', resizeHandler)
+    window.removeEventListener('resize', resizeHandler);
   }
-  document.body.style.overflow = ''
-})
+  document.body.style.overflow = '';
+});
 </script>
 
 <style scoped>
@@ -252,11 +251,7 @@ onUnmounted(() => {
   transform: translateY(-50%);
   width: 1rem;
   height: 2.5rem;
-  background: linear-gradient(
-      180deg,
-      var(--theme-accent-color) 0%,
-      transparent 70%
-  );
+  background: linear-gradient(180deg, var(--theme-accent-color) 0%, transparent 70%);
   border-radius: 0.125rem;
   box-shadow: 0 0 0.5rem var(--theme-shadow-accent);
   opacity: 0.85;
@@ -275,11 +270,7 @@ onUnmounted(() => {
   width: 2.5rem;
   height: 0.25rem;
   margin-left: 0.75rem;
-  background: linear-gradient(
-      to right,
-      var(--theme-accent-color),
-      transparent
-  );
+  background: linear-gradient(to right, var(--theme-accent-color), transparent);
   border-radius: 0.125rem;
   opacity: 0.6;
 }
@@ -292,17 +283,17 @@ onUnmounted(() => {
   right: 0;
   bottom: 0;
   background-image: linear-gradient(
-      -45deg,
-      transparent,
-      transparent 13.9512529279%,
-      var(--theme-decorative-overlay-medium) 0,
-      var(--theme-decorative-overlay-medium) 36.0487470721%,
-      transparent 0,
-      transparent 63.9512529279%,
-      var(--theme-decorative-overlay-medium) 0,
-      var(--theme-decorative-overlay-medium) 86.0487470721%,
-      transparent 0,
-      transparent
+    -45deg,
+    transparent,
+    transparent 13.9512529279%,
+    var(--theme-decorative-overlay-medium) 0,
+    var(--theme-decorative-overlay-medium) 36.0487470721%,
+    transparent 0,
+    transparent 63.9512529279%,
+    var(--theme-decorative-overlay-medium) 0,
+    var(--theme-decorative-overlay-medium) 86.0487470721%,
+    transparent 0,
+    transparent
   );
   background-size: 0.5rem 0.5rem;
   opacity: 0.5;
@@ -329,17 +320,17 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   background-image: linear-gradient(
-      -45deg,
-      transparent,
-      transparent 13.9512529279%,
-      var(--theme-decorative-overlay-strong) 0,
-      var(--theme-decorative-overlay-strong) 36.0487470721%,
-      transparent 0,
-      transparent 63.9512529279%,
-      var(--theme-decorative-overlay-strong) 0,
-      var(--theme-decorative-overlay-strong) 86.0487470721%,
-      transparent 0,
-      transparent
+    -45deg,
+    transparent,
+    transparent 13.9512529279%,
+    var(--theme-decorative-overlay-strong) 0,
+    var(--theme-decorative-overlay-strong) 36.0487470721%,
+    transparent 0,
+    transparent 63.9512529279%,
+    var(--theme-decorative-overlay-strong) 0,
+    var(--theme-decorative-overlay-strong) 86.0487470721%,
+    transparent 0,
+    transparent
   );
   background-size: 0.5rem 0.5rem;
 }
@@ -453,11 +444,11 @@ onUnmounted(() => {
   width: 1px;
   height: 2rem;
   background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      var(--theme-accent-color) 20%,
-      var(--theme-accent-color) 80%,
-      transparent 100%
+    to bottom,
+    transparent 0%,
+    var(--theme-accent-color) 20%,
+    var(--theme-accent-color) 80%,
+    transparent 100%
   );
   opacity: 0.5;
 }
