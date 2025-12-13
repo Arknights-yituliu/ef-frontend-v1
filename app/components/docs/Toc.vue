@@ -1,24 +1,24 @@
 <template>
-  <div 
+  <div
     class="docs-toc-wrapper"
     :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
   >
-    <aside 
+    <aside
       class="docs-toc hide-scrollbar"
       :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
     >
       <!-- 装饰背景 -->
       <div class="toc-bg-decorator"></div>
-      
+
       <!-- 右侧装饰条 -->
       <div class="toc-right-decoration"></div>
-      
+
       <!-- TOC 内容 -->
       <div class="toc-content">
         <div class="toc-header">
           <h2 class="toc-title">{{ $t('docs.tableOfContents') }}</h2>
         </div>
-        
+
         <nav class="toc-nav" v-if="headings.length > 0" ref="tocNavRef">
           <div
             class="toc-highlight"
@@ -29,14 +29,14 @@
             }"
           ></div>
           <ul class="toc-list">
-            <li 
-              v-for="(heading, index) in headings" 
+            <li
+              v-for="(heading, index) in headings"
               :key="index"
               class="toc-item"
               :class="`toc-item-level-${heading.depth}`"
               :ref="el => setHeadingRef(el, heading.id)"
             >
-              <a 
+              <a
                 :href="`#${heading.id}`"
                 class="toc-link"
                 :class="{ 'is-active': activeHeading === heading.id }"
@@ -78,7 +78,7 @@
             </li>
           </ul>
         </nav>
-        
+
         <div v-else class="toc-empty">
           <p>{{ $t('docs.noTableOfContents') }}</p>
         </div>
@@ -86,16 +86,16 @@
     </aside>
 
     <!-- 折叠按钮 -->
-    <button 
+    <button
       class="collapse-toggle"
       @click="toggleCollapse"
       :aria-label="isCollapsed ? $t('docs.expand') : $t('docs.collapse')"
     >
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path 
-          d="M9 18l6-6-6-6" 
-          stroke="currentColor" 
-          stroke-width="2" 
+        <path
+          d="M9 18l6-6-6-6"
+          stroke="currentColor"
+          stroke-width="2"
           fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -233,7 +233,7 @@ const scrollToHeading = (id: string) => {
       behavior: 'smooth'
     })
     activeHeading.value = id
-    
+
     // 移动端关闭 TOC
     if (props.isOpen) {
       emit('close')
@@ -244,7 +244,7 @@ const scrollToHeading = (id: string) => {
 onMounted(() => {
   scrollHandler = () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop
-    
+
     // 找到当前滚动位置对应的标题
     for (let i = props.headings.length - 1; i >= 0; i--) {
       const heading = props.headings[i]
@@ -262,7 +262,7 @@ onMounted(() => {
       }
     }
   }
-  
+
   window.addEventListener('scroll', scrollHandler, { passive: true })
   updateHighlight()
   window.addEventListener('resize', updateHighlight)
@@ -317,7 +317,7 @@ watch(() => locale.value, () => {
   overflow-y: auto;
   background-color: var(--theme-bg-secondary);
   border-left: 2px solid var(--theme-border);
-  transition: all var(--transition-base);
+  transition: width var(--transition-base);
   z-index: 40;
 }
 
@@ -624,12 +624,12 @@ watch(() => locale.value, () => {
     transform: translateX(100%);
     box-shadow: none;
   }
-  
+
   .docs-toc.is-open {
     transform: translateX(0);
     box-shadow: -0.5rem 0 2rem var(--theme-shadow-accent-strong);
   }
-  
+
   .collapse-toggle {
     display: none;
   }

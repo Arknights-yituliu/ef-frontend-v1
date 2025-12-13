@@ -555,7 +555,6 @@ onUnmounted(() => {
   background-color: var(--theme-bg-tertiary);
   border-bottom: 2px solid var(--theme-accent-color);
   cursor: pointer;
-  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .logo-svg {
@@ -576,7 +575,6 @@ onUnmounted(() => {
   line-height: 1;
   text-transform: uppercase;
   text-shadow: 0 0 0.5rem var(--theme-shadow-accent-hover);
-  transition: all var(--transition-base);
 }
 
 /* 菜单容器 */
@@ -630,7 +628,6 @@ onUnmounted(() => {
 .primary-item {
   padding: 0 1.75rem;
   justify-content: space-between;
-  transition: all var(--transition-base);
 }
 
 .primary-item:hover {
@@ -646,7 +643,6 @@ onUnmounted(() => {
   width: 1.5rem;
   height: 1.5rem;
   color: var(--theme-text-secondary);
-  transition: all var(--transition-base);
 }
 
 .primary-item:hover .primary-icon,
@@ -667,7 +663,6 @@ onUnmounted(() => {
   opacity: 0;
   pointer-events: none;
   flex-shrink: 0;
-  transition: all var(--transition-base);
 }
 
 .docs-indicator-icon {
@@ -691,7 +686,6 @@ onUnmounted(() => {
   text-transform: uppercase;
   position: relative;
   margin-left: 0.5rem;
-  transition: all var(--transition-base);
 }
 
 .primary-item.active .primary-text {
@@ -703,7 +697,6 @@ onUnmounted(() => {
   width: 0.75rem;
   height: 0.75rem;
   color: var(--theme-text-secondary);
-  transition: all var(--transition-base);
 }
 
 .expand-icon.expanded {
@@ -714,7 +707,6 @@ onUnmounted(() => {
 .secondary-items {
   overflow: hidden;
   background-color: var(--theme-bg-tertiary);
-  transition: background-color var(--transition-base);
 }
 
 .secondary-item {
@@ -727,7 +719,6 @@ onUnmounted(() => {
   padding-right: 1rem;
   color: var(--theme-text-secondary);
   text-decoration: none;
-  transition: all var(--transition-base);
   font-size: var(--font-size-sm);
 }
 
@@ -748,7 +739,6 @@ onUnmounted(() => {
   width: 1.25rem;
   height: 1.25rem;
   color: var(--theme-text-secondary);
-  transition: color var(--transition-base);
 }
 
 .secondary-icon-path {
@@ -767,7 +757,6 @@ onUnmounted(() => {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 0.5rem;
-  transition: all var(--transition-base);
 }
 
 /* 底部装饰 */

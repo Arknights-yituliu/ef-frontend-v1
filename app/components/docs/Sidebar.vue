@@ -247,7 +247,7 @@ onUnmounted(() => {
   overflow-y: auto;
   background-color: var(--theme-bg-secondary);
   border-right: 2px solid var(--theme-border);
-  transition: all var(--transition-base);
+  transition: width var(--transition-base);
   z-index: 40;
 }
 

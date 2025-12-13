@@ -226,7 +226,6 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 0 2rem 0 3rem;
   z-index: 50;
-  transition: all var(--transition-base);
   overflow: hidden;
 }
 
