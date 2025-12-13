@@ -122,12 +122,6 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 660px) {
-  .main-content： {
-    padding: 0 !important;
-  }
-}
-
 html,
 body {
   margin: 0;

@@ -1,11 +1,8 @@
 <template>
-  <footer class="app-footer">
-    <!-- 装饰背景 -->
-    <div class="footer-bg-decorator"></div>
-    
+  <v-footer class="app-footer">
     <!-- 顶部装饰条 -->
     <div class="footer-top-decoration"></div>
-    
+
     <!-- 版权信息 -->
     <div class="footer-content">
       <div class="footer-title">{{ $t('footer.copyrightTitle') }}</div>
@@ -13,9 +10,9 @@
         <p>{{ $t('footer.copyrightText1') }}</p>
         <p>
           {{ $t('footer.copyrightText2') }}
-          <a 
-            href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" 
-            target="_blank" 
+          <a
+            href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh"
+            target="_blank"
             rel="noopener noreferrer"
             class="footer-link"
           >
@@ -37,70 +34,46 @@
         </p>
       </div>
     </div>
-    
+
     <!-- 备案信息 -->
     <div class="footer-beian">
-      <img 
+      <img
         src="/images/website-record.png"
-        alt="备案图标" 
+        alt="备案图标"
         class="beian-icon"
         @error="handleImageError"
       />
-      <a 
-        href="https://beian.miit.gov.cn/" 
-        target="_blank" 
+      <a
+        href="https://beian.miit.gov.cn/"
+        target="_blank"
         rel="noopener noreferrer"
         class="beian-link"
       >
         {{ $t('footer.beian') }}
       </a>
     </div>
-  </footer>
+  </v-footer>
 </template>
 
 <script setup lang="ts">
 const handleImageError = (event: Event) => {
   // 如果备案图标加载失败，隐藏图片元素
-  const target = event.target as HTMLImageElement
+  const target = event.target as HTMLImageElement;
   if (target) {
-    target.style.display = 'none'
+    target.style.display = 'none';
   }
-}
+};
 </script>
 
 <style scoped>
 .app-footer {
+  display: block;
   background-color: var(--theme-bg-secondary);
   border-top: 2px solid var(--theme-accent-color);
   padding: 2.5rem 2rem;
   position: relative;
   overflow: hidden;
   margin-top: auto;
-}
-
-/* 装饰背景 - 斜条纹 */
-.footer-bg-decorator {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(
-    -45deg,
-    transparent,
-    transparent 13.9512529279%,
-    var(--theme-decorative-overlay-medium) 0,
-    var(--theme-decorative-overlay-medium) 36.0487470721%,
-    transparent 0,
-    transparent 63.9512529279%,
-    var(--theme-decorative-overlay-medium) 0,
-    var(--theme-decorative-overlay-medium) 86.0487470721%,
-    transparent 0,
-    transparent
-  );
-  background-size: 0.5rem 0.5rem;
-  opacity: 0.5;
-  pointer-events: none;
 }
 
 /* 顶部装饰条 */
@@ -113,29 +86,6 @@ const handleImageError = (event: Event) => {
   background-color: var(--theme-accent-color);
   opacity: 0.8;
   box-shadow: 0 0 0.5rem var(--theme-accent-color);
-}
-
-.footer-top-decoration::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-    -45deg,
-    transparent,
-    transparent 13.9512529279%,
-    var(--theme-decorative-overlay-strong) 0,
-    var(--theme-decorative-overlay-strong) 36.0487470721%,
-    transparent 0,
-    transparent 63.9512529279%,
-    var(--theme-decorative-overlay-strong) 0,
-    var(--theme-decorative-overlay-strong) 86.0487470721%,
-    transparent 0,
-    transparent
-  );
-  background-size: 0.5rem 0.5rem;
 }
 
 /* 版权信息 */
@@ -237,4 +187,3 @@ const handleImageError = (event: Event) => {
   }
 }
 </style>
-
