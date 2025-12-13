@@ -22,9 +22,9 @@
         </p>
         <p>
           {{ $t('footer.copyrightText4') }}
-          <a
-            href="https://jq.qq.com/?_wv=1027&k=ZmORnr5F"
-            target="_blank"
+          <a 
+            href="https://qm.qq.com/cgi-bin/qm/qr?k=zuIC56a53O_-xpNk06eAJXrxjlJruD6f"
+            target="_blank" 
             rel="noopener noreferrer"
             class="footer-link"
           >
