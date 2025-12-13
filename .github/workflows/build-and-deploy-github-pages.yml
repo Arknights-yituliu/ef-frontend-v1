@@ -3,11 +3,13 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches:
-      - dev
+      - '*'
   workflow_dispatch:
 
 env:
   NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
+  ASSETS_REPO_OWNER: Arknights-yituliu
+  ASSETS_REPO_NAME: ef-yituliu-frontend-assets
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -55,6 +57,17 @@ jobs:
           else
             yarn install
           fi
+
+      - name: Checkout Assets Repository
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ env.ASSETS_REPO_OWNER }}/${{ env.ASSETS_REPO_NAME }}
+          path: ${{ runner.temp }}/${{ env.ASSETS_REPO_NAME }}
+
+      - name: Copy Assets to Project
+        run: |
+          cp -r ${{ runner.temp }}/${{ env.ASSETS_REPO_NAME }}/* .
+          rm -rf ${{ runner.temp }}/${{ env.ASSETS_REPO_NAME }}
 
       - name: Build Project
         run: yarn generate
