@@ -23,8 +23,8 @@
           <div class="card-header">
             <img
               v-if="link.icon_url"
-              :src="resolvePictureUrl(link.icon_url, assets)"
               :alt="getLocalizedValue(link.localized_name)"
+              :src="resolvePictureUrl(link.icon_url, assets)"
               class="link-icon"
               @error="handleImageError"
             />
@@ -53,23 +53,23 @@
             <a
               v-for="linkItem in getFilteredLinks(link.links)"
               :key="linkItem.url"
-              :href="linkItem.url"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="link-button"
               :class="{ primary: linkItem.primary }"
+              :href="linkItem.url"
+              class="link-button"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               {{ getLocalizedValue(linkItem.localized_name) }}
               <svg
                 class="external-icon"
-                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2"
+                viewBox="0 0 24 24"
               >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" x2="21" y1="14" y2="3"/>
               </svg>
             </a>
           </div>
@@ -79,7 +79,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 definePageMeta({
   layout: 'default',
 });
@@ -117,149 +117,15 @@ interface ApiResponse {
   data: FriendLink[];
 }
 
-const { locale, t } = useI18n();
+const {locale, t} = useI18n();
 
 // API URL
 const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list';
 
 /** 自定义的友情链接 */
-const extraFriendLinks: FriendLink[] = [
-  {
-    id: 'Endaxis',
-    localized_name: {
-      zh_CN: 'Endaxis',
-      en_US: 'Endaxis',
-    },
-    localized_description: {
-      zh_CN:
-        'Endaxis 是一个专为《明日方舟：终末地》设计的可视化排轴工具。可以通过拖拽技能、建立连线关系来规划战术流程。',
-      en_US:
-        'Endaxis is a visual skill rotation planner designed for Arknights: Endfield. You can plan tactical processes by dragging skills and establishing connections.',
-    },
-    localized_slogan: {
-      zh_CN: 'Endaxis - 《明日方舟：终末地》排轴工具',
-      en_US: 'Endaxis - Visual Skill Rotation Planner for Arknights: Endfield',
-    },
-    localized_tags: {
-      zh_CN: ['排轴工具'],
-      en_US: ['Skill Rotation Planner'],
-    },
-    icon_url: '~/assets/images/friend-links/endaxis-icon.png',
-    links: [
-      {
-        primary: true,
-        regionality: 'global',
-        localized_name: {
-          zh_CN: '主页',
-          en_US: 'Home',
-        },
-        url: 'https://www.lieyuan.top/Endaxis/',
-      },
-    ],
-  },
-  {
-    id: '终末地地图站',
-    localized_name: {
-      zh_CN: '终末地地图站',
-      en_US: 'Open Endfield Map',
-    },
-    localized_description: {
-      zh_CN:
-        '明日方舟：终末地地图集。查看所有地区与副本内的物品与收集品点位详情，并参与构建更完善的游戏内收集体验。',
-      en_US:
-        'Arknights: Endfield map collection. View details of item and collectible locations in all regions and stages, and contribute to building a more complete in-game collection experience.',
-    },
-    localized_slogan: {
-      zh_CN: '帮你找到任何你需要的物品与路线。',
-      en_US: 'Helping you find any items and routes you need.',
-    },
-    localized_tags: {
-      zh_CN: ['全收集', '查漏补缺', '路径规划'],
-      en_US: ['Completionist', 'Find Missing Items', 'Route Planning'],
-    },
-    icon_url: '~/assets/images/friend-links/opendfieldmap.webp',
-    links: [
-      {
-        primary: true,
-        regionality: 'global',
-        localized_name: {
-          zh_CN: '前往地图',
-          en_US: 'Go to Map',
-        },
-        url: 'https://opendfieldmap.cn/',
-      },
-    ],
-  },
-  {
-    id: 'MaaEnd',
-    localized_name: {
-      zh_CN: 'MaaEnd',
-      en_US: 'MaaEnd',
-    },
-    localized_description: {
-      zh_CN: '高精度自动化助手，专为「明日方舟：终末地」重度作战和最大化效率而设计。',
-      en_US:
-        'High-precision automation assistant. Designed for heavy-duty operations and maximum efficiency in Arknights: Endfield.',
-    },
-    localized_slogan: {
-      zh_CN: 'MAA - 终\n终末地小助手',
-      en_US: 'MAA - End\nEndfield Assistant',
-    },
-    localized_tags: {
-      zh_CN: ['MAA', '自动化'],
-      en_US: ['MAA', 'Automation'],
-    },
-    icon_url: '~/assets/images/friend-links/MaaEnd.ico',
-    links: [
-      {
-        primary: true,
-        regionality: 'global',
-        localized_name: {
-          zh_CN: '官网',
-          en_US: 'Official Website',
-        },
-        url: 'https://maaend.com/',
-      },
-    ],
-  },
-  {
-    id: '终末地一图流',
-    localized_name: {
-      zh_CN: '终末地一图流',
-      en_US: 'Endfield In One',
-    },
-    localized_description: {
-      zh_CN: '终末地物品价值、商店与礼包性价比、攒抽计算器，以及更多实用工具。',
-      en_US:
-        'Item values, shop and package cost performance, gacha calculator, and more practical tools for Endfield.',
-    },
-    localized_slogan: {
-      zh_CN: '终末地收益相关的数据都在这里',
-      en_US: 'All data related to Endfield rewards and returns are here',
-    },
-    localized_tags: {
-      zh_CN: ['物品价值表', '商店性价比', '礼包性价比', '攒抽计算器'],
-      en_US: [
-        'Item Value Table',
-        'Shop Cost Performance',
-        'Package Cost Performance',
-        'Gacha Calculator',
-      ],
-    },
-    icon_url: '~/assets/images/friend-links/明日方舟终末地一图流LOGO.webp',
-    links: [
-      {
-        primary: true,
-        regionality: 'global',
-        localized_name: {
-          zh_CN: '主页',
-          en_US: 'Home',
-        },
-        url: 'https://ef.yituliu.cn/',
-      },
-    ],
-  },
-];
+const extraFriendLinks = await import('@/custom/info/friendLinks.json') as {
+  default: FriendLink[]
+};
 
 const assets = import.meta.glob('~/assets/images/friend-links/**', {
   eager: true,
@@ -267,7 +133,7 @@ const assets = import.meta.glob('~/assets/images/friend-links/**', {
 }) as Record<string, string>;
 
 // 获取数据
-const { data, pending, error, refresh } = await useFetch<ApiResponse>(apiUrl, {
+const {data, pending, error, refresh} = await useFetch<ApiResponse>(apiUrl, {
   server: false, // 只在客户端获取，避免 SSR 问题
   key: 'friend-links',
 });
@@ -275,9 +141,9 @@ const { data, pending, error, refresh } = await useFetch<ApiResponse>(apiUrl, {
 // 合并自定义友情链接
 const friendLinks = computed(() => {
   if (data.value && data.value.data) {
-    return [...extraFriendLinks, ...data.value.data];
+    return [...extraFriendLinks.default, ...data.value.data];
   }
-  return extraFriendLinks;
+  return extraFriendLinks.default;
 });
 
 // 获取本地化字符串值

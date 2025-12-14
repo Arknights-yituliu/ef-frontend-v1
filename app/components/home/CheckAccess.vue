@@ -1,10 +1,10 @@
 <script lang="ts" setup></script>
 
 <template>
-  <v-card class="home-navigation-card">
+  <v-card class="card">
     <v-card-title>
-      <div class="home-navigation-card-title">
-        <img alt="" class="home-navigation-card-title-icon" src="~/assets/icon/endfield-icon.png" />
+      <div class="card-title">
+        <img alt="" class="card-title-icon" src="~/assets/icon/endfield-icon.png" />
         <b>{{ $t('component.home.checkAccess.betaTestIICheckAccess') }}</b>
         <div class="flex-1" />
       </div>

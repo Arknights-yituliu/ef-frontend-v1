@@ -21,11 +21,11 @@
       </v-carousel-item>
     </v-carousel>
 
-    <div class="home-navigation-card-group">
-      <HomeCheckAccess></HomeCheckAccess>
-      <HomeContribute></HomeContribute>
-      <HomeYiTuLiu></HomeYiTuLiu>
-      <HomePenguinStatistics></HomePenguinStatistics>
+    <div class="card-group">
+      <HomeCheckAccess/>
+      <HomeContribute/>
+      <HomeYiTuLiu/>
+      <HomePenguinStatistics/>
     </div>
 
     <!-- <p class="page-description">
@@ -60,7 +60,7 @@ const {t} = useI18n();
     margin: auto;
   }
 
-  .home-navigation-card-group {
+  .card-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -68,65 +68,13 @@ const {t} = useI18n();
     margin: auto;
   }
 
-
-  :deep(.home-navigation-card) {
-    width: calc(50% - 0.5rem);
-    margin: 0.5rem 0;
-  }
-
-  :deep(.home-navigation-card-title) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    font-size: var(--font-size-lg);
-  }
-
-  :deep(.home-navigation-card-title-icon) {
-    width: 28px;
-    height: 28px;
-    margin: 0 var(--spacing-sm) 0 0;
-  }
-
-  :deep(.p-title) {
-    font-size: var(--font-size-sm);
-    font-weight: bolder;
-    padding: var(--spacing-md) 0;
-  }
-
-  :deep(.p-li) {
-    padding: var(--spacing-xs) var(--spacing-md);
-  }
-
-  :deep(.p-li::before) {
-    content: "\2022";
-    margin-right: var(--spacing-xs);
-  }
-
-
   @media (max-width: 660px) {
     .index-carousel {
       max-width: 99%;
     }
 
-    .home-navigation-card-group {
+    .card-group {
       max-width: 100%;
-    }
-
-    :deep(.home-navigation-card) {
-      width: 99%;
-      margin: var(--spacing-sm) 0;
-      font-size: var(--font-size-xs);
-    }
-
-    :deep(.home-navigation-card-title ) {
-      font-size: var(--font-size-sm);
-    }
-
-    :deep(.home-navigation-card-title-icon) {
-      width: 28px;
-      height: 28px;
-      margin: 0 var(--spacing-sm) 0 0;
     }
   }
 }

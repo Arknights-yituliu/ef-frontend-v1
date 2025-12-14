@@ -3,10 +3,10 @@
 </script>
 
 <template>
-  <v-card class="home-navigation-card">
+  <v-card class="card">
     <v-card-title>
-      <div class="home-navigation-card-title">
-        <img alt="" class="home-navigation-card-title-icon" src="~/assets/icon/yituliu-icon.png"/>
+      <div class="card-title">
+        <img alt="" class="card-title-icon" src="~/assets/icon/yituliu-icon.png"/>
         <b>{{ $t('component.home.yiTuLiu.title') }}</b>
         <div class="flex-1"/>
         <v-btn append-icon="mdi-open-in-new"

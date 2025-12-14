@@ -320,3 +320,62 @@
   outline: 2px solid var(--theme-accent-color);
   outline-offset: 2px;
 }
+
+/* ============================================
+   卡片样式
+   ============================================ */
+.card {
+  width: calc(50% - 0.5rem);
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 660px) {
+  .card {
+    width: 99%;
+    margin: var(--spacing-sm) 0;
+    font-size: var(--font-size-xs);
+  }
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: var(--font-size-lg);
+}
+
+@media (max-width: 660px) {
+  .card-title {
+    font-size: var(--font-size-sm);
+  }
+}
+
+.card-title-icon {
+  width: 28px;
+  height: 28px;
+  margin: 0 var(--spacing-sm) 0 0;
+}
+
+@media (max-width: 660px) {
+  .card-title-icon {
+    width: 28px;
+    height: 28px;
+    margin: 0 var(--spacing-sm) 0 0;
+  }
+}
+
+.p-title {
+  font-size: var(--font-size-sm);
+  font-weight: bolder;
+  padding: var(--spacing-md) 0;
+}
+
+.p-li {
+  padding: var(--spacing-xs) var(--spacing-md);
+}
+
+.p-li::before {
+  content: "\2022";
+  margin-right: var(--spacing-xs);
+}

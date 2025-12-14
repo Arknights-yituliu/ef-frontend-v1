@@ -13,9 +13,9 @@ const copyGroupNumber = async () => {
 </script>
 
 <template>
-  <v-card class="home-navigation-card">
+  <v-card class="card">
     <v-card-title>
-      <div class="home-navigation-card-title">
+      <div class="card-title">
         <img alt="" src="">
         <b>{{ $t('component.home.contribute.title') }}</b>
         <div class="flex-1"/>

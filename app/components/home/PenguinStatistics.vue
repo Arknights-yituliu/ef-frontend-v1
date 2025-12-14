@@ -3,10 +3,10 @@
 </script>
 
 <template>
-  <v-card class="home-navigation-card">
+  <v-card class="card">
     <v-card-title>
-      <div class="home-navigation-card-title">
-        <img alt="" class="home-navigation-card-title-icon"
+      <div class="card-title">
+        <img alt="" class="card-title-icon"
              src="~/assets/icon/penguin_stats_logo.png"/>
         <b>{{ $t('component.home.penguinStatistics.penguinStatistics') }}</b>
         <div class="flex-1"/>
