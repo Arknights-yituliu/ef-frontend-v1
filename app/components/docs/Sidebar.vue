@@ -490,7 +490,7 @@ onUnmounted(() => {
 }
 
 /* 响应式 - 移动端 */
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .docs-sidebar {
     transform: translateX(-100%);
     box-shadow: none;

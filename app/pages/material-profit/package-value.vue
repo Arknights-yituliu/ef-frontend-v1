@@ -218,7 +218,7 @@ definePageMeta({
   color: var(--theme-text-secondary);
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .filter-container {
     flex-direction: column;
     align-items: stretch;
@@ -232,18 +232,6 @@ definePageMeta({
     width: 100%;
   }
 
-  .packs-container {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 520px) {
-  .packs-container {
-    gap: var(--spacing-md);
-  }
-}
-
-@media (max-width: 320px) {
   .filter-sort {
     flex-direction: column;
   }

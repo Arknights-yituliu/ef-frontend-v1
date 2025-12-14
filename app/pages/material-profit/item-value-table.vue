@@ -386,7 +386,7 @@ watch([searchQuery, sortField, sortOrder], () => {
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .filter-container {
     flex-direction: column;
     align-items: stretch;

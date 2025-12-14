@@ -497,7 +497,7 @@ onUnmounted(() => {
 }
 
 /* 响应式 - 移动端 */
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .docs-header {
     padding: 0 5rem;
   }

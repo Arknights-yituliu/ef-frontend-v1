@@ -73,27 +73,10 @@
 
 <style scoped>
 .penguin-statistics-function-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+  gap: var(--spacing-xs);
   text-align: center;
   margin: var(--spacing-xl) 0;
-}
-
-.penguin-statistics-function {
-  width: 24%;
-  margin: var(--spacing-xs) 0;
-}
-
-@media screen and (max-width: 1440px) {
-  .penguin-statistics-function {
-    width: 30%;
-  }
-}
-
-@media screen and (max-width: 1280px) {
-  .penguin-statistics-function {
-    width: 48%;
-  }
 }
 </style>

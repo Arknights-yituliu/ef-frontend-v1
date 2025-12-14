@@ -8,16 +8,10 @@
   font-weight: 700;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .page-title {
     font-size: var(--font-size-2xl);
     text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .page-title {
-    font-size: var(--font-size-xl);
   }
 }
 
@@ -28,16 +22,10 @@
   font-weight: 700;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .page-sub-title {
     font-size: var(--font-size-lg);
     text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .page-sub-title {
-    font-size: var(--font-size-md);
   }
 }
 
@@ -319,12 +307,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
   font-size: var(--font-size-lg);
-}
-
-@media (max-width: 660px) {
-  .card-title {
-    font-size: var(--font-size-sm);
-  }
 }
 
 .card-title-icon {

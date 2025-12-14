@@ -398,7 +398,7 @@ onBeforeUnmount(() => {
   font-size: 0.95rem;
 }
 
-@media (max-width: 385px) {
+/* @media screen and (max-width: 385px) {
   .card__inner {
     flex-direction: column;
     text-align: center;
@@ -425,5 +425,5 @@ onBeforeUnmount(() => {
   .card__tags {
     justify-content: center;
   }
-}
+} */
 </style>

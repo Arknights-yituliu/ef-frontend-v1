@@ -140,7 +140,7 @@ onUnmounted(() => {
 }
 
 /* 小屏幕上隐藏标题 */
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 600px) {
   .app-bar-title {
     opacity: 0;
   }
@@ -183,7 +183,8 @@ onUnmounted(() => {
   flex: 1; /* 使页面至少占满纵向空间 */
 }
 
-@media (max-width: 480px) {
+/* 小屏幕上减少页面内边距 */
+@media screen and (max-width: 600px) {
   .content-container {
     padding: 1rem;
   }

@@ -541,8 +541,8 @@ const getPackComparisonBars = (pack: PackData) => [
   background-color: var(--theme-bg-tertiary);
 }
 
-/* 采用纵向布局，合并为一张卡片 */
-@media (max-width: 768px) {
+/* 采用纵向布局 */
+@media screen and (max-width: 600px) {
   .pack-card-container {
     width: 100%;
     max-width: 100%;

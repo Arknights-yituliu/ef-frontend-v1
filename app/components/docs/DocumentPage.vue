@@ -392,7 +392,7 @@ useHead({
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .doc-header {
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;

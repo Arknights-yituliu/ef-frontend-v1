@@ -259,7 +259,7 @@ useHead({
 
 .links-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -456,15 +456,7 @@ useHead({
   opacity: 0.9;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .links-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .friend-links-page {
     padding: 1rem 0;
   }

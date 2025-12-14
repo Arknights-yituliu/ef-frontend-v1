@@ -64,8 +64,9 @@ const { t } = useI18n();
 
 .card-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
   gap: 1.5rem;
+  max-width: 1320px; /* 每行最多 2 个卡片 */
   margin: 3rem auto;
 }
 
