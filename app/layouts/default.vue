@@ -4,10 +4,10 @@
   <!--    :loading-duration="loadingDuration"-->
   <!--    @complete="handleInitialLoaderComplete"-->
   <!--  />-->
-  <LayoutDesertBackground/>
+  <LayoutDesertBackground />
   <v-app :theme="theme">
     <v-navigation-drawer v-model="drawer" :width="280" class="navigation-drawer">
-      <LayoutSidebar/>
+      <LayoutSidebar />
     </v-navigation-drawer>
 
     <v-app-bar :elevation="0" class="app-bar">
@@ -15,9 +15,9 @@
       <svg class="header-scanline" preserveAspectRatio="none" viewBox="0 0 100 100">
         <defs>
           <linearGradient id="scanline-gradient-default" x1="0%" x2="0%" y1="0%" y2="100%">
-            <stop offset="0%" style="stop-color: var(--theme-accent-color); stop-opacity: 0"/>
-            <stop offset="50%" style="stop-color: var(--theme-accent-color); stop-opacity: 0.3"/>
-            <stop offset="100%" style="stop-color: var(--theme-accent-color); stop-opacity: 0"/>
+            <stop offset="0%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
+            <stop offset="50%" style="stop-color: var(--theme-accent-color); stop-opacity: 0.3" />
+            <stop offset="100%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
           </linearGradient>
         </defs>
         <rect
@@ -30,20 +30,20 @@
         />
       </svg>
 
-      <v-app-bar-nav-icon @click="()=>drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="() => (drawer = !drawer)"></v-app-bar-nav-icon>
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
       <div class="header-controls">
-        <LayoutThemeToggle/>
+        <LayoutThemeToggle />
         <div class="control-divider"></div>
-        <LayoutLanguageToggle/>
+        <LayoutLanguageToggle />
       </div>
     </v-app-bar>
 
     <v-main>
       <div class="content-container">
-        <slot/>
+        <slot />
       </div>
-      <LayoutFooter/>
+      <LayoutFooter />
     </v-main>
 
     <!-- 回到顶部按钮 -->
@@ -66,8 +66,8 @@
 const route = useRoute();
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes;
-const {t} = useI18n();
-const {theme} = useTheme();
+const { t } = useI18n();
+const { theme } = useTheme();
 const siteName = t('layout.siteName');
 
 // 初始动画加载器

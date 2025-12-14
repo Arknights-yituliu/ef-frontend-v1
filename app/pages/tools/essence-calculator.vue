@@ -1,6 +1,6 @@
 <template>
   <h1 class="page-title">{{ t('page.tools.essenceCalculator.title') }}</h1>
-  <v-expansion-panels multiple :model-value="['需求设定', '输出']">
+  <v-expansion-panels :model-value="['需求设定', '输出']" multiple>
     <v-expansion-panel value="需求设定">
       <v-expansion-panel-title>{{
         t('page.tools.essenceCalculator.demandSet')
@@ -15,11 +15,11 @@
                 v-model="stat.attribute"
                 :items="allAttributeStats"
                 :label="t('page.tools.essenceCalculator.attributeStats')"
+                :list-props="{ density: 'comfortable' }"
+                :menu-props="{ maxHeight: 1024 }"
                 density="comfortable"
                 hide-details
                 variant="outlined"
-                :list-props="{ density: 'comfortable' }"
-                :menu-props="{ maxHeight: 1024 }"
               ></v-select>
             </v-col>
             <v-col cols="12" md="3">
@@ -27,11 +27,11 @@
                 v-model="stat.secondary"
                 :items="allSecondaryStats"
                 :label="t('page.tools.essenceCalculator.secondaryStats')"
+                :list-props="{ density: 'comfortable' }"
+                :menu-props="{ maxHeight: 1024 }"
                 density="comfortable"
                 hide-details
                 variant="outlined"
-                :list-props="{ density: 'comfortable' }"
-                :menu-props="{ maxHeight: 1024 }"
               ></v-select>
             </v-col>
             <v-col cols="12" md="3">
@@ -39,11 +39,11 @@
                 v-model="stat.skill"
                 :items="allSkillStats"
                 :label="t('page.tools.essenceCalculator.skillStats')"
+                :list-props="{ density: 'comfortable' }"
+                :menu-props="{ maxHeight: 1024 }"
                 density="comfortable"
                 hide-details
                 variant="outlined"
-                :list-props="{ density: 'comfortable' }"
-                :menu-props="{ maxHeight: 1024 }"
               ></v-select>
             </v-col>
             <v-col cols="12" md="3">
@@ -54,20 +54,20 @@
               @click="insertStat(index)"
             ></v-btn> -->
               <v-btn
+                :disabled="index === 0"
                 icon="mdi-chevron-up"
                 variant="text"
-                :disabled="index === 0"
                 @click="moveUp(index)"
               ></v-btn>
               <v-btn
+                :disabled="index === requiredEssenceStats.length - 1"
                 icon="mdi-chevron-down"
                 variant="text"
-                :disabled="index === requiredEssenceStats.length - 1"
                 @click="moveDown(index)"
               ></v-btn>
               <v-btn
-                icon="mdi-delete"
                 color="error"
+                icon="mdi-delete"
                 variant="text"
                 @click="removeStat(index)"
               ></v-btn>
@@ -76,9 +76,9 @@
           <v-row>
             <v-col cols="12" md="9"></v-col>
             <v-col cols="12" md="3">
-              <v-btn icon="mdi-plus" color="primary" variant="text">
+              <v-btn color="primary" icon="mdi-plus" variant="text">
                 <v-icon>mdi-plus</v-icon>
-                <v-menu activator="parent" v-model="menu" :close-on-content-click="false">
+                <v-menu v-model="menu" :close-on-content-click="false" activator="parent">
                   <v-list density="comfortable">
                     <v-list-subheader>{{
                       t('page.tools.essenceCalculator.custom')
@@ -100,11 +100,11 @@
                     >
                       <v-list-item-title>{{ weaponType }}</v-list-item-title>
                       <v-menu
-                        activator="parent"
-                        submenu
-                        open-on-hover
-                        :open-on-focus="false"
                         :open-delay="100"
+                        :open-on-focus="false"
+                        activator="parent"
+                        open-on-hover
+                        submenu
                       >
                         <v-list density="compact">
                           <template v-for="(rarity, index) in rarityLevels" :key="rarity">
@@ -146,13 +146,13 @@
       <v-expansion-panel-text>
         <template v-if="bestChoice && bestChoice.matchedCount > 0">
           <v-alert
-            type="success"
-            variant="tonal"
-            class="mb-4"
             :title="t('page.tools.essenceCalculator.bestStrategy')"
             border="start"
+            class="mb-4"
+            type="success"
+            variant="tonal"
           >
-            <i18n-t keypath="page.tools.essenceCalculator.suggestion" tag="p" class="mt-2">
+            <i18n-t class="mt-2" keypath="page.tools.essenceCalculator.suggestion" tag="p">
               <template #battleName>
                 <strong>{{ bestChoice.battleName }}</strong>
               </template>
@@ -201,7 +201,7 @@
           </v-card>
         </template>
         <template v-else>
-          <v-alert type="info" variant="tonal" border="start">
+          <v-alert border="start" type="info" variant="tonal">
             {{ t('page.tools.essenceCalculator.noValidDemand') }}
           </v-alert>
         </template>
@@ -228,7 +228,7 @@
   </v-expansion-panels>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const { t } = useI18n();
 
 interface EssenceStat {

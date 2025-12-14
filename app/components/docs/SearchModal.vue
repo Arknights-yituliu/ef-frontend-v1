@@ -6,7 +6,12 @@
         <h3>{{ $t('docs.search') }}</h3>
         <button class="search-modal-close" @click="closeModal">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+            <path
+              d="M18 6L6 18M6 6l12 12"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="2"
+            />
           </svg>
         </button>
       </div>
@@ -15,11 +20,11 @@
       <div class="search-input-container">
         <v-icon class="search-icon">mdi-magnify</v-icon>
         <input
-            ref="searchInput"
-            v-model="searchQuery"
-            :placeholder="$t('docs.searchPlaceholder')"
-            class="search-input"
-            @input="handleSearch"
+          ref="searchInput"
+          v-model="searchQuery"
+          :placeholder="$t('docs.searchPlaceholder')"
+          class="search-input"
+          @input="handleSearch"
         />
       </div>
 
@@ -33,14 +38,17 @@
         </div>
         <div v-else-if="searchResults.length > 0" class="search-results-list">
           <div
-              v-for="(result, index) in searchResults"
-              :key="index"
-              class="search-result-item"
-              @click="goToResult(result.item.id)"
+            v-for="(result, index) in searchResults"
+            :key="index"
+            class="search-result-item"
+            @click="goToResult(result.item.id)"
           >
             <h4 class="search-result-title">
-              <span v-if="result.item.titles && result.item.titles.length > 0" class="search-result-breadcrumb">
-                {{ result.item.titles.join(' › ') }} › 
+              <span
+                v-if="result.item.titles && result.item.titles.length > 0"
+                class="search-result-breadcrumb"
+              >
+                {{ result.item.titles.join(' › ') }} ›
               </span>
               <span class="search-result-title-text">{{ result.item.title }}</span>
             </h4>
@@ -59,106 +67,109 @@
 </template>
 
 <script lang="ts" setup>
-import {useDocsSearch} from '~/composables/useDocsSearch'
+import { useDocsSearch } from '~/composables/useDocsSearch';
 
 const props = defineProps<{
-  isOpen: boolean
-}>()
+  isOpen: boolean;
+}>();
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: 'close'): void;
+}>();
 
-const searchInput = ref<HTMLInputElement | null>(null)
-const searchQuery = ref('')
-const searchResults = ref<any[]>([])
-const isLoading = ref(false)
+const searchInput = ref<HTMLInputElement | null>(null);
+const searchQuery = ref('');
+const searchResults = ref<any[]>([]);
+const isLoading = ref(false);
 
-const {search} = useDocsSearch()
+const { search } = useDocsSearch();
 
 // 聚焦搜索输入框
-watch(() => props.isOpen, (newVal) => {
-  if (newVal && searchInput.value) {
-    setTimeout(() => {
-      searchInput.value?.focus()
-    }, 100)
-  }
-})
+watch(
+  () => props.isOpen,
+  (newVal) => {
+    if (newVal && searchInput.value) {
+      setTimeout(() => {
+        searchInput.value?.focus();
+      }, 100);
+    }
+  },
+);
 
 // 处理搜索
 const handleSearch = async () => {
   if (!searchQuery.value.trim()) {
-    searchResults.value = []
-    return
+    searchResults.value = [];
+    return;
   }
 
-  isLoading.value = true
+  isLoading.value = true;
   try {
-    const results = await search(searchQuery.value)
-    searchResults.value = results.slice(0, 10) // 限制显示前10个结果
+    const results = await search(searchQuery.value);
+    searchResults.value = results.slice(0, 10); // 限制显示前10个结果
   } catch (error) {
-    console.error('Search error:', error)
-    searchResults.value = []
+    console.error('Search error:', error);
+    searchResults.value = [];
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
-}
+};
 
 // 关闭模态框
 const closeModal = () => {
-  emit('close')
-  searchQuery.value = ''
-  searchResults.value = []
-}
+  emit('close');
+  searchQuery.value = '';
+  searchResults.value = [];
+};
 
 // 格式化路径显示（去除语言后缀和锚点）
 const formatPath = (id: string): string => {
   // id 格式类似: /introduction/docs-setting-zh#section-name
   // 显示为: /introduction/docs-setting
-  return id.split('#')[0].replace(/-(zh|en)$/, '')
-}
+  return id.split('#')[0].replace(/-(zh|en)$/, '');
+};
 
 // 截断内容显示
 const truncateContent = (content: string, maxLength: number): string => {
-  if (!content) return ''
-  if (content.length <= maxLength) return content
-  return content.substring(0, maxLength) + '...'
-}
+  if (!content) return '';
+  if (content.length <= maxLength) return content;
+  return content.substring(0, maxLength) + '...';
+};
 
 // 处理搜索结果的 id，转换为可导航的路径
 // id 格式: /introduction/docs-setting-zh#section-name
 // 需要去除语言后缀，保留锚点: /introduction/docs-setting#section-name
 const formatNavigationPath = (id: string): string => {
   // 分离路径和锚点
-  const [path, anchor] = id.split('#')
+  const [path, anchor] = id.split('#');
   // 去除语言后缀
-  const routePath = path.replace(/-(zh|en)$/, '')
+  const routePath = path.replace(/-(zh|en)$/, '');
   // 如果有锚点，添加回去
-  return anchor ? `${routePath}#${anchor}` : routePath
-}
+  return anchor ? `${routePath}#${anchor}` : routePath;
+};
 
 // 跳转到搜索结果
 const goToResult = (id: string) => {
-  closeModal()
+  closeModal();
   // 将 id 转换为可导航的路径（去除语言后缀，保留锚点）
-  const navigationPath = formatNavigationPath(id)
-  navigateTo(navigationPath)
-}
+  const navigationPath = formatNavigationPath(id);
+  navigateTo(navigationPath);
+};
 
 // 监听键盘事件
 const handleKeydown = (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
-    closeModal()
+    closeModal();
   }
-}
+};
 
 onMounted(() => {
-  document.addEventListener('keydown', handleKeydown)
-})
+  document.addEventListener('keydown', handleKeydown);
+});
 
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeydown)
-})
+  document.removeEventListener('keydown', handleKeydown);
+});
 </script>
 
 <style scoped>

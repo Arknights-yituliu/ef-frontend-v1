@@ -21,6 +21,10 @@
       {
         "titleKey": "docs.items.commonQuestions",
         "path": "/introduction/common-questions"
+      },
+      {
+        "titleKey": "docs.items.formatSpecification",
+        "path": "/introduction/format-specification"
       }
     ]
   },

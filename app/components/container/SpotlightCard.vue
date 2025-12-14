@@ -1,26 +1,26 @@
 <template>
   <div
-      ref="divRef"
-      :class="['spotlight-card', className]"
-      @blur="handleBlur"
-      @focus="handleFocus"
-      @mouseenter="handleMouseEnter"
-      @mouseleave="handleMouseLeave"
-      @mousemove="handleMouseMove"
+    ref="divRef"
+    :class="['spotlight-card', className]"
+    @blur="handleBlur"
+    @focus="handleFocus"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+    @mousemove="handleMouseMove"
   >
     <div
-        :style="{
+      :style="{
         opacity,
-        background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${computedSpotlightColor}, transparent 80%)`
+        background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${computedSpotlightColor}, transparent 80%)`,
       }"
-        class="spotlight-overlay"
+      class="spotlight-overlay"
     />
-    <slot/>
+    <slot />
   </div>
 </template>
 
 <script lang="ts" setup>
-import {computed, ref, useTemplateRef} from 'vue';
+import { computed, ref, useTemplateRef } from 'vue';
 
 interface Position {
   x: number;
@@ -33,11 +33,11 @@ interface SpotlightCardProps {
 }
 
 const props = defineProps<SpotlightCardProps>();
-const {theme} = useTheme();
+const { theme } = useTheme();
 
 const divRef = useTemplateRef<HTMLDivElement>('divRef');
 const isFocused = ref<boolean>(false);
-const position = ref<Position>({x: 0, y: 0});
+const position = ref<Position>({ x: 0, y: 0 });
 const opacity = ref<number>(0);
 
 // 计算主题化的 spotlight 颜色
@@ -48,15 +48,15 @@ const computedSpotlightColor = computed(() => {
 
   // 根据主题自动选择颜色
   return theme.value === 'dark'
-      ? 'rgba(255, 250, 0, 0.25)' // 深色主题使用品牌黄色
-      : 'rgba(124,124,124,0.25)'; // 浅色主题使用白色
+    ? 'rgba(255, 250, 0, 0.25)' // 深色主题使用品牌黄色
+    : 'rgba(124,124,124,0.25)'; // 浅色主题使用白色
 });
 
 const handleMouseMove = (e: MouseEvent) => {
   if (!divRef.value || isFocused.value) return;
 
   const rect = divRef.value.getBoundingClientRect();
-  position.value = {x: e.clientX - rect.left, y: e.clientY - rect.top};
+  position.value = { x: e.clientX - rect.left, y: e.clientY - rect.top };
 };
 
 const handleFocus = () => {
@@ -86,9 +86,10 @@ const handleMouseLeave = () => {
   overflow: hidden;
   padding: var(--spacing-xl);
   background-color: var(--theme-bg-secondary);
-  transition: background-color var(--transition-base),
-  border-color var(--transition-base),
-  box-shadow var(--transition-base);
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
   z-index: 1;
 }
 

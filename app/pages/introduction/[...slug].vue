@@ -5,8 +5,8 @@
 <script lang="ts" setup>
 // 使用 docs 布局
 definePageMeta({
-  layout: 'docs'
-})
+  layout: 'docs',
+});
 
-const collectionName = "introduction"
+const collectionName = 'introduction';
 </script>
