@@ -562,7 +562,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--theme-bg-secondary);
+  background-color: var(--sidebar-item-hover-bg);
   opacity: 0;
   transition: opacity var(--transition-base);
   z-index: 0;
@@ -591,7 +591,6 @@ onUnmounted(() => {
   text-shadow: 0 0 0.5rem var(--theme-shadow-accent-hover);
   z-index: 1;
 }
-
 
 /* 菜单容器 */
 .menu-container {
@@ -652,7 +651,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--sidebar-primary-item-hover-bg);
+  background-color: var(--sidebar-item-hover-bg);
   opacity: 0;
   transition: opacity var(--transition-base);
   z-index: 0;
@@ -762,7 +761,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--sidebar-secondary-item-hover-bg);
+  background-color: var(--sidebar-item-hover-bg);
   opacity: 0;
   transition: opacity var(--transition-base);
   z-index: 0;
