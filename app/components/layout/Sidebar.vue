@@ -542,6 +542,7 @@ onUnmounted(() => {
 
 /* Logo 区域 */
 .logo-area {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -550,27 +551,46 @@ onUnmounted(() => {
   background-color: var(--theme-bg-tertiary);
   border-bottom: 2px solid var(--theme-accent-color);
   cursor: pointer;
+  overflow: hidden;
+}
+
+.logo-area::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--theme-bg-secondary);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 0;
+}
+
+.logo-area:hover::before {
+  opacity: 1;
 }
 
 .logo-svg {
+  position: relative;
   width: 5rem;
   height: 5rem;
   color: var(--logo-color);
   transition: color var(--transition-base);
-}
-
-.logo-area:hover {
-  background-color: var(--theme-bg-secondary);
+  z-index: 1;
 }
 
 .logo-text {
+  position: relative;
   font-size: var(--font-size-md);
   color: var(--theme-text-primary);
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   text-shadow: 0 0 0.5rem var(--theme-shadow-accent-hover);
+  z-index: 1;
 }
+
 
 /* 菜单容器 */
 .menu-container {
@@ -613,22 +633,33 @@ onUnmounted(() => {
 }
 
 .primary-item {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   min-height: 4.5rem;
+  padding: 0 1.75rem;
   gap: 0.5rem;
   background-color: var(--theme-bg-secondary);
   cursor: pointer;
+  overflow: hidden;
 }
 
-.primary-item {
-  padding: 0 1.75rem;
-  justify-content: space-between;
+.primary-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--sidebar-primary-item-hover-bg);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 0;
 }
 
-.primary-item:hover {
-  background-color: var(--theme-bg-tertiary);
+.primary-item:hover::before {
+  opacity: 1;
 }
 
 .primary-item.active {
@@ -637,9 +668,11 @@ onUnmounted(() => {
 
 /* 一级菜单图标 */
 .primary-icon {
+  position: relative;
   width: 1.5rem;
   height: 1.5rem;
   color: var(--theme-text-secondary);
+  z-index: 1;
 }
 
 .primary-item:hover .primary-icon,
@@ -654,17 +687,15 @@ onUnmounted(() => {
 
 /* isDocs 标识图标 */
 .docs-indicator-icon {
+  position: relative;
   width: 1.125rem;
   height: 1.125rem;
   color: var(--theme-text-secondary);
-  opacity: 0;
+  opacity: 0.4;
   pointer-events: none;
   flex-shrink: 0;
-}
-
-.docs-indicator-icon {
-  opacity: 0.4;
   margin-left: 0.5rem;
+  z-index: 1;
 }
 
 .primary-item:hover .docs-indicator-icon,
@@ -673,6 +704,7 @@ onUnmounted(() => {
 }
 
 .primary-text {
+  position: relative;
   font-size: var(--font-size-sm);
   color: var(--theme-text-primary);
   font-weight: 500;
@@ -681,8 +713,8 @@ onUnmounted(() => {
   text-overflow: ellipsis;
   flex: 1;
   text-transform: uppercase;
-  position: relative;
   margin-left: 0.5rem;
+  z-index: 1;
 }
 
 .primary-item.active .primary-text {
@@ -691,9 +723,11 @@ onUnmounted(() => {
 }
 
 .expand-icon {
+  position: relative;
   width: 0.75rem;
   height: 0.75rem;
   color: var(--theme-text-secondary);
+  z-index: 1;
 }
 
 .expand-icon.expanded {
@@ -707,6 +741,7 @@ onUnmounted(() => {
 }
 
 .secondary-item {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -717,10 +752,27 @@ onUnmounted(() => {
   color: var(--theme-text-secondary);
   text-decoration: none;
   font-size: var(--font-size-sm);
+  overflow: hidden;
+}
+
+.secondary-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--sidebar-secondary-item-hover-bg);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 0;
+}
+
+.secondary-item:hover::before {
+  opacity: 1;
 }
 
 .secondary-item:hover {
-  background-color: var(--theme-bg-tertiary);
   color: var(--theme-text-primary);
 }
 
@@ -730,12 +782,14 @@ onUnmounted(() => {
 }
 
 .secondary-icon {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 1.25rem;
   height: 1.25rem;
   color: var(--theme-text-secondary);
+  z-index: 1;
 }
 
 .secondary-icon-path {
@@ -749,11 +803,13 @@ onUnmounted(() => {
 }
 
 .secondary-text {
+  position: relative;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 0.5rem;
+  z-index: 1;
 }
 
 /* 底部装饰 */

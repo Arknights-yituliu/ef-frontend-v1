@@ -59,6 +59,10 @@
   /* 侧边栏滚动条变量 - 浅色主题 */
   --sidebar-scrollbar-thumb: rgba(0, 0, 0, 0.5);
   --sidebar-scrollbar-thumb-hover: rgba(0, 0, 0, 0.7);
+
+  /* 侧边栏菜单项 hover 背景变量 - 浅色主题（更深一档） */
+  --sidebar-primary-item-hover-bg: #e6e6e6;
+  --sidebar-secondary-item-hover-bg: #e6e6e6;
 }
 
 /* 深色主题 */
@@ -116,4 +120,8 @@
   /* 侧边栏滚动条变量 - 深色主题 */
   --sidebar-scrollbar-thumb: rgba(255, 250, 0, 0.5);
   --sidebar-scrollbar-thumb-hover: rgba(255, 250, 0, 0.7);
+
+  /* 侧边栏菜单项 hover 背景变量 - 深色主题（更浅一档） */
+  --sidebar-primary-item-hover-bg: #4a4a4a;
+  --sidebar-secondary-item-hover-bg: #4a4a4a;
 }
