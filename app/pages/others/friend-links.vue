@@ -67,9 +67,9 @@
                 stroke-width="2"
                 viewBox="0 0 24 24"
               >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" x2="21" y1="14" y2="3"/>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" x2="21" y1="14" y2="3" />
               </svg>
             </a>
           </div>
@@ -117,14 +117,14 @@ interface ApiResponse {
   data: FriendLink[];
 }
 
-const {locale, t} = useI18n();
+const { locale, t } = useI18n();
 
 // API URL
 const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list';
 
 /** 自定义的友情链接 */
-const extraFriendLinks = await import('@/custom/info/friendLinks.json') as {
-  default: FriendLink[]
+const extraFriendLinks = (await import('@/custom/info/friendLinks.json')) as {
+  default: FriendLink[];
 };
 
 const assets = import.meta.glob('~/assets/images/friend-links/**', {
@@ -133,7 +133,7 @@ const assets = import.meta.glob('~/assets/images/friend-links/**', {
 }) as Record<string, string>;
 
 // 获取数据
-const {data, pending, error, refresh} = await useFetch<ApiResponse>(apiUrl, {
+const { data, pending, error, refresh } = await useFetch<ApiResponse>(apiUrl, {
   server: false, // 只在客户端获取，避免 SSR 问题
   key: 'friend-links',
 });

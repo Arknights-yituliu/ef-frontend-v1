@@ -5,13 +5,13 @@
       <div class="pack-card-part-left">
         <img
           v-if="props.imageUrl && !imageError"
-          :src="resolvePictureUrl(props.imageUrl, packImageAssets) ?? ''"
           :alt="packDisplayName"
+          :src="resolvePictureUrl(props.imageUrl, packImageAssets) ?? ''"
           class="pack-image"
           loading="lazy"
           @error="handleImageError"
         />
-        <div class="image-placeholder" v-else>
+        <div v-else class="image-placeholder">
           <span class="placeholder-icon">📦</span>
         </div>
 
@@ -34,7 +34,7 @@
             <br />
             ￥{{ getPackPricePerStone(props).toFixed(1) }} / {{ $t('component.packCard.stone') }}
           </div>
-          <div class="value-pull" v-if="getPackTotalPulls(props) > 0">
+          <div v-if="getPackTotalPulls(props) > 0" class="value-pull">
             {{ $t('component.packCard.total') }} {{ getPackTotalPulls(props).toFixed(1) }}
             {{ $t('component.packCard.pulls') }}
             <br />
@@ -45,16 +45,16 @@
         <!-- 右侧：对比条 -->
         <div class="pack-chart-line">
           <div
-            class="pack-chart-line-item"
             v-for="(bar, index) in getPackComparisonBars(props)"
             :key="index"
+            class="pack-chart-line-item"
           >
             <span class="pack-chart-line-label">{{ bar.barLabel }}</span>
             <div
-              class="pack-line-bar"
               :style="{
                 width: `${bar.percentage * 80}px`,
               }"
+              class="pack-line-bar"
             >
               <span>{{ (bar.percentage * 100).toFixed(0) }}%</span>
             </div>
@@ -69,7 +69,7 @@
     </div>
 
     <!-- 展开的内容表格 - 藏在卡片背后 -->
-    <div class="pack-contents-table" :class="{ expanded: isExpanded }">
+    <div :class="{ expanded: isExpanded }" class="pack-contents-table">
       <div class="pack-contents-header">
         <h3>{{ $t('component.packCard.contents') }}</h3>
       </div>
@@ -95,7 +95,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { PackData } from '@/shared/types/pack';
 import { getItemName } from '@/shared/utils/gameData/item';
 import {
@@ -109,7 +109,6 @@ import {
   getPackTotalPulls,
 } from '@/shared/utils/gameData/pack';
 import { resolvePictureUrl } from '@/shared/utils/urlUtil';
-import { get } from 'http';
 
 const packImageAssets = import.meta.glob('~/assets/endfield/packs/*', {
   eager: true,

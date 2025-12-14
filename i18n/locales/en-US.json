@@ -6,6 +6,7 @@
     "docsSetting": "Writing Docs",
     "contributorSetting": "Contributor Setting",
     "commonQuestions": "Common Questions",
+    "formatSpecification": "Format Specification Setup",
     "operations": "Operations Guide",
     "infrastructureLayoutGuide": "Infrastructure Layout Operation Guide",
     "materialProfit": "Material Profit",
@@ -231,6 +232,7 @@
       "docsSetting": "Writing Docs",
       "contributorSetting": "Contributor Setting",
       "commonQuestions": "Common Questions",
+      "formatSpecification": "Format Specification Setup",
       "infrastructureLayoutGuide": "Infrastructure Layout Operation Guide"
     },
     "search": "Search",

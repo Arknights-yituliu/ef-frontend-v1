@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 type LocalizedInfo = {
   position: string;
   tags: string[];
@@ -157,17 +157,17 @@ onBeforeUnmount(() => {
     ref="cardElement"
     class="contributor-card"
     @mouseenter="handleMouseEnter"
-    @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
+    @mousemove="handleMouseMove"
   >
     <div ref="tiltWrapper" class="card__tilt">
       <div ref="innerElement" class="card__inner">
         <div ref="mediaElement" class="card__media">
-          <span class="card__media-backdrop stripe-pattern" aria-hidden="true" />
+          <span aria-hidden="true" class="card__media-backdrop stripe-pattern" />
           <img
-            class="card__avatar"
-            :src="resolvedAvatar"
             :alt="t('component.contributorCard.avatarAlt', { name: contributor.name })"
+            :src="resolvedAvatar"
+            class="card__avatar"
             loading="lazy"
           />
         </div>
@@ -177,8 +177,8 @@ onBeforeUnmount(() => {
               v-if="contributor.link"
               :href="contributor.link"
               class="card__profile-link"
-              target="_blank"
               rel="noopener"
+              target="_blank"
             >
               <span>{{ t('component.contributorCard.profileLink') }}</span>
               <span aria-hidden="true" class="card__profile-icon">↗</span>
@@ -190,8 +190,8 @@ onBeforeUnmount(() => {
           <p class="card__position">
             {{ localizedInfo.position }}
           </p>
-          <div class="card__divider" aria-hidden="true" />
-          <div class="card__tags-wrap" v-if="tags.length">
+          <div aria-hidden="true" class="card__divider" />
+          <div v-if="tags.length" class="card__tags-wrap">
             <span class="card__tags-label">
               {{ t('component.contributorCard.tagsLabel') }}
             </span>

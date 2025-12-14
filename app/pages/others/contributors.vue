@@ -3,7 +3,7 @@
     <h1 class="page-title">{{ t('page.contributors.title') }}</h1>
     <p class="page-description">{{ t('page.contributors.description') }}</p>
 
-    <div class="contributors__cards" v-if="contributors.length">
+    <div v-if="contributors.length" class="contributors__cards">
       <ContainerContributorCard
         v-for="contributor in contributors"
         :key="contributor.name"
@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import contributorsData from '@/custom/info/contributors.json';
 
 definePageMeta({

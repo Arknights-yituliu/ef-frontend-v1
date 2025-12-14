@@ -118,10 +118,12 @@ definePageMeta({
 });
 
 // SEO 配置
-const { t } = useI18n()
-const siteName = computed(() => t('layout.siteName'))
-const pageTitle = computed(() => `${t('page.materialProfit.itemValueTable.title')} - ${siteName.value}`)
-const pageDescription = computed(() => t('page.materialProfit.itemValueTable.description'))
+const { t } = useI18n();
+const siteName = computed(() => t('layout.siteName'));
+const pageTitle = computed(
+  () => `${t('page.materialProfit.itemValueTable.title')} - ${siteName.value}`,
+);
+const pageDescription = computed(() => t('page.materialProfit.itemValueTable.description'));
 
 useSeoMeta({
   title: () => pageTitle.value,
@@ -130,11 +132,11 @@ useSeoMeta({
   ogDescription: () => pageDescription.value,
   ogType: 'website',
   twitterCard: 'summary',
-})
+});
 
 useHead({
-  title: () => pageTitle.value
-})
+  title: () => pageTitle.value,
+});
 
 // 筛选和排序状态
 const searchQuery = ref('');

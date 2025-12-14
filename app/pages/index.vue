@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
     <div class="page-title">
-      <TextParticleWord :text="t('layout.siteName')" class="particle-word"/>
+      <TextParticleWord :text="t('layout.siteName')" class="particle-word" />
     </div>
 
     <!-- 滚动横幅（我们把它用 v-if="false" 隐藏了） -->
@@ -22,10 +22,10 @@
     </v-carousel>
 
     <div class="card-group">
-      <HomeCheckAccess/>
-      <HomeContribute/>
-      <HomeYiTuLiu/>
-      <HomePenguinStatistics/>
+      <HomeCheckAccess />
+      <HomeContribute />
+      <HomeYiTuLiu />
+      <HomePenguinStatistics />
     </div>
 
     <!-- <p class="page-description">
@@ -45,7 +45,7 @@ definePageMeta({
 const colors = ['indigo', 'warning', 'pink darken-2', 'red lighten-1', 'deep-purple accent-4'];
 const slides = ['First', 'Second', 'Third', 'Fourth', 'Fifth'];
 
-const {t} = useI18n();
+const { t } = useI18n();
 </script>
 
 <style scoped>

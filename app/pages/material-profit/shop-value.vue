@@ -33,10 +33,10 @@
 </template>
 
 <script lang="ts" setup>
-import type {ShopItem} from '@/custom/core/shops';
-import {shops} from '@/custom/core/shops';
+import type { ShopItem } from '@/custom/core/shops';
+import { shops } from '@/custom/core/shops';
 
-const {t} = useI18n();
+const { t } = useI18n();
 
 interface TableItem {
   itemId: string;
@@ -99,9 +99,9 @@ definePageMeta({
 });
 
 // SEO 配置
-const siteName = computed(() => t('layout.siteName'))
-const pageTitle = computed(() => `${t('page.materialProfit.shopValue.title')} - ${siteName.value}`)
-const pageDescription = computed(() => t('page.materialProfit.shopValue.description'))
+const siteName = computed(() => t('layout.siteName'));
+const pageTitle = computed(() => `${t('page.materialProfit.shopValue.title')} - ${siteName.value}`);
+const pageDescription = computed(() => t('page.materialProfit.shopValue.description'));
 
 useSeoMeta({
   title: () => pageTitle.value,
@@ -110,11 +110,11 @@ useSeoMeta({
   ogDescription: () => pageDescription.value,
   ogType: 'website',
   twitterCard: 'summary',
-})
+});
 
 useHead({
-  title: () => pageTitle.value
-})
+  title: () => pageTitle.value,
+});
 </script>
 
 <style scoped>

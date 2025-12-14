@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="docs-toc-wrapper"
-    :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
-  >
+  <div class="docs-toc-wrapper" :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }">
     <aside
       class="docs-toc hide-scrollbar"
       :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
@@ -23,9 +20,9 @@
           <div
             class="toc-highlight"
             :style="{
-              transform: `translateY(${highlightTop}px)` ,
-              height: `${highlightHeight}px` ,
-              opacity: highlightHeight > 0 ? 1 : 0
+              transform: `translateY(${highlightTop}px)`,
+              height: `${highlightHeight}px`,
+              opacity: highlightHeight > 0 ? 1 : 0,
             }"
           ></div>
           <ul class="toc-list">
@@ -34,7 +31,7 @@
               :key="index"
               class="toc-item"
               :class="`toc-item-level-${heading.depth}`"
-              :ref="el => setHeadingRef(el, heading.id)"
+              :ref="(el) => setHeadingRef(el, heading.id)"
             >
               <a
                 :href="`#${heading.id}`"
@@ -44,10 +41,7 @@
               >
                 <svg
                   class="toc-marker"
-                  :class="[
-                    `depth-${heading.depth}`,
-                    { 'is-active': activeHeading === heading.id }
-                  ]"
+                  :class="[`depth-${heading.depth}`, { 'is-active': activeHeading === heading.id }]"
                   viewBox="0 0 32 32"
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
@@ -106,200 +100,210 @@
 </template>
 
 <script setup lang="ts">
-import type {ComponentPublicInstance} from 'vue'
-const { locale } = useI18n()
+import type { ComponentPublicInstance } from 'vue';
+const { locale } = useI18n();
 
 // 定义 props
 interface Props {
   headings?: Array<{
-    id: string
-    text: string
-    depth: number
-  }>
-  isOpen?: boolean
+    id: string;
+    text: string;
+    depth: number;
+  }>;
+  isOpen?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   headings: () => [],
-  isOpen: false
-})
+  isOpen: false,
+});
 
 // 定义 emits
 const emit = defineEmits<{
-  close: []
-}>()
+  close: [];
+}>();
 
 // 折叠状态
-const isCollapsed = ref(false)
+const isCollapsed = ref(false);
 
 // 当前激活的标题
-const activeHeading = ref<string>('')
-const tocNavRef = ref<HTMLElement | null>(null)
-const headingRefs = ref<Map<string, HTMLElement>>(new Map())
-const highlightTop = ref(0)
-const highlightHeight = ref(0)
+const activeHeading = ref<string>('');
+const tocNavRef = ref<HTMLElement | null>(null);
+const headingRefs = ref<Map<string, HTMLElement>>(new Map());
+const highlightTop = ref(0);
+const highlightHeight = ref(0);
 
 // 延迟更新高亮的定时器
-let highlightUpdateTimer: ReturnType<typeof setTimeout> | null = null
+let highlightUpdateTimer: ReturnType<typeof setTimeout> | null = null;
 
 // 监听滚动，更新激活的标题
-let scrollHandler: (() => void) | null = null
+let scrollHandler: (() => void) | null = null;
 
 const getDOMElement = (el: Element | ComponentPublicInstance | null): HTMLElement | null => {
   if (!el) {
-    return null
+    return null;
   }
   if (el instanceof HTMLElement) {
-    return el
+    return el;
   }
   if ('$el' in el && el.$el instanceof HTMLElement) {
-    return el.$el
+    return el.$el;
   }
-  return null
-}
+  return null;
+};
 
 const setHeadingRef = (el: Element | ComponentPublicInstance | null, id: string) => {
-  const element = getDOMElement(el)
+  const element = getDOMElement(el);
   if (!element) {
-    headingRefs.value.delete(id)
-    return
+    headingRefs.value.delete(id);
+    return;
   }
-  headingRefs.value.set(id, element)
-}
+  headingRefs.value.set(id, element);
+};
 
 const getRelativeTop = (element: HTMLElement, container: HTMLElement) => {
-  const elementRect = element.getBoundingClientRect()
-  const containerRect = container.getBoundingClientRect()
-  return elementRect.top - containerRect.top
-}
+  const elementRect = element.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  return elementRect.top - containerRect.top;
+};
 
 const resolveActiveHeading = () => {
   if (activeHeading.value) {
-    return activeHeading.value
+    return activeHeading.value;
   }
-  return props.headings[0]?.id || ''
-}
+  return props.headings[0]?.id || '';
+};
 
 const updateHighlight = () => {
   nextTick(() => {
-    const container = tocNavRef.value
+    const container = tocNavRef.value;
     if (!container || isCollapsed.value) {
-      highlightHeight.value = 0
-      return
+      highlightHeight.value = 0;
+      return;
     }
 
-    const targetId = resolveActiveHeading()
-    const activeEl = targetId ? headingRefs.value.get(targetId) : null
+    const targetId = resolveActiveHeading();
+    const activeEl = targetId ? headingRefs.value.get(targetId) : null;
 
     if (!activeEl) {
-      highlightHeight.value = 0
-      return
+      highlightHeight.value = 0;
+      return;
     }
 
-    highlightTop.value = getRelativeTop(activeEl, container)
-    highlightHeight.value = activeEl.offsetHeight
-  })
-}
+    highlightTop.value = getRelativeTop(activeEl, container);
+    highlightHeight.value = activeEl.offsetHeight;
+  });
+};
 
 // 延迟更新高亮
 const delayedUpdateHighlight = () => {
   if (highlightUpdateTimer) {
-    clearTimeout(highlightUpdateTimer)
+    clearTimeout(highlightUpdateTimer);
   }
   highlightUpdateTimer = setTimeout(() => {
-    updateHighlight()
-    highlightUpdateTimer = null
-  }, 400)
-}
+    updateHighlight();
+    highlightUpdateTimer = null;
+  }, 400);
+};
 
 // 切换折叠状态
 const toggleCollapse = () => {
-  isCollapsed.value = !isCollapsed.value
+  isCollapsed.value = !isCollapsed.value;
   if (isCollapsed.value) {
-    highlightHeight.value = 0
+    highlightHeight.value = 0;
   } else {
     // 折叠/展开后延迟更新高亮
-    delayedUpdateHighlight()
+    delayedUpdateHighlight();
   }
-}
+};
 
 // 滚动到指定标题
 const scrollToHeading = (id: string) => {
-  const element = document.getElementById(id)
+  const element = document.getElementById(id);
   if (element) {
-    const top = element.offsetTop - 80 // 减去顶部导航栏高度
+    const top = element.offsetTop - 80; // 减去顶部导航栏高度
     window.scrollTo({
       top,
-      behavior: 'smooth'
-    })
-    activeHeading.value = id
+      behavior: 'smooth',
+    });
+    activeHeading.value = id;
 
     // 移动端关闭 TOC
     if (props.isOpen) {
-      emit('close')
+      emit('close');
     }
   }
-}
+};
 
 onMounted(() => {
   scrollHandler = () => {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
     // 找到当前滚动位置对应的标题
     for (let i = props.headings.length - 1; i >= 0; i--) {
-      const heading = props.headings[i]
+      const heading = props.headings[i];
       if (!heading) {
-        continue
+        continue;
       }
-      const element = document.getElementById(heading.id)
+      const element = document.getElementById(heading.id);
       if (element) {
-        const elementTop = element.offsetTop - 100
+        const elementTop = element.offsetTop - 100;
         if (scrollTop >= elementTop) {
-          activeHeading.value = heading.id
-          updateHighlight()
-          break
+          activeHeading.value = heading.id;
+          updateHighlight();
+          break;
         }
       }
     }
-  }
+  };
 
-  window.addEventListener('scroll', scrollHandler, { passive: true })
-  updateHighlight()
-  window.addEventListener('resize', updateHighlight)
-})
+  window.addEventListener('scroll', scrollHandler, { passive: true });
+  updateHighlight();
+  window.addEventListener('resize', updateHighlight);
+});
 
 onUnmounted(() => {
   if (scrollHandler) {
-    window.removeEventListener('scroll', scrollHandler)
+    window.removeEventListener('scroll', scrollHandler);
   }
-  window.removeEventListener('resize', updateHighlight)
+  window.removeEventListener('resize', updateHighlight);
   if (highlightUpdateTimer) {
-    clearTimeout(highlightUpdateTimer)
+    clearTimeout(highlightUpdateTimer);
   }
-})
+});
 
 watch(activeHeading, () => {
-  updateHighlight()
-})
+  updateHighlight();
+});
 
-watch(() => props.headings, () => {
-  nextTick(() => {
-    updateHighlight()
-  })
-}, { deep: true })
-
-watch(() => props.isOpen, (open) => {
-  if (open) {
+watch(
+  () => props.headings,
+  () => {
     nextTick(() => {
-      updateHighlight()
-    })
-  }
-})
+      updateHighlight();
+    });
+  },
+  { deep: true },
+);
+
+watch(
+  () => props.isOpen,
+  (open) => {
+    if (open) {
+      nextTick(() => {
+        updateHighlight();
+      });
+    }
+  },
+);
 
 // 监听语言切换
-watch(() => locale.value, () => {
-  delayedUpdateHighlight()
-})
+watch(
+  () => locale.value,
+  () => {
+    delayedUpdateHighlight();
+  },
+);
 </script>
 
 <style scoped>
@@ -457,7 +461,9 @@ watch(() => locale.value, () => {
 .toc-highlight {
   position: absolute;
   left: 0.3rem;
-  transition: transform var(--transition-base), height var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    height var(--transition-base);
   opacity: 0;
   pointer-events: none;
 }
@@ -497,7 +503,13 @@ watch(() => locale.value, () => {
   bottom: 0.75rem;
   width: 1px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(to bottom, transparent, var(--theme-border) 30%, var(--theme-border) 70%, transparent);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--theme-border) 30%,
+    var(--theme-border) 70%,
+    transparent
+  );
   opacity: 0.25;
 }
 
@@ -540,7 +552,9 @@ watch(() => locale.value, () => {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
-  transition: transform var(--transition-fast), color var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    color var(--transition-fast);
   color: var(--theme-text-secondary);
 }
 
@@ -602,7 +616,8 @@ watch(() => locale.value, () => {
 }
 
 @keyframes markerPulse {
-  0%, 100% {
+  0%,
+  100% {
     filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.25));
   }
   50% {
@@ -635,4 +650,3 @@ watch(() => locale.value, () => {
   }
 }
 </style>
-

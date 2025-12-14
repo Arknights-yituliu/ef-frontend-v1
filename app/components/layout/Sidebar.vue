@@ -10,7 +10,7 @@
         width="46.20566463470459"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect fill="rgba(249, 249, 249, 1)" height="0" width="0" x="0" y="0"/>
+        <rect fill="rgba(249, 249, 249, 1)" height="0" width="0" x="0" y="0" />
         <g>
           <path
             d="M14.4413 32.252L32.1293 32.252L32.1293 28.908L25.6613 28.908L25.6613 0L22.5813 0C20.8213 1.012 18.7533 1.76 15.8933 2.288L15.8933 4.84L21.6573 4.84L21.6573 28.908L14.4413 28.908L14.4413 32.252Z"
@@ -26,12 +26,7 @@
           stroke-width="2"
           transform="rotate(-19.614696980142693 -0.43065643310546875 20.211997985839844)"
         />
-        <circle
-          cx="37.06934356689453"
-          cy="15.711997985839844"
-          fill="currentColor"
-          r="3.5"
-        />
+        <circle cx="37.06934356689453" cy="15.711997985839844" fill="currentColor" r="3.5" />
         <ellipse
           cx="37.51921338448104"
           cy="13.823112653989034"
@@ -86,7 +81,7 @@
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path :d="primaryItem.iconPath" fill="currentColor" stroke="none"/>
+            <path :d="primaryItem.iconPath" fill="currentColor" stroke="none" />
           </svg>
 
           <!-- isDocs 标识图标 -->
@@ -190,7 +185,7 @@
 </template>
 
 <script lang="ts" setup>
-import {gsap} from 'gsap';
+import { gsap } from 'gsap';
 
 // 菜单项类型
 interface SecondaryMenuItem {
@@ -227,9 +222,9 @@ const navigateToHome = () => {
 // 默认展开所有菜单，但排除 isDocs 为 true 的菜单
 const expandedItems = ref<number[]>(
   menuItems
-    .map((item, index) => ({item, index}))
-    .filter(({item}) => !item.isDocs)
-    .map(({index}) => index),
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => !item.isDocs)
+    .map(({ index }) => index),
 );
 const activePrimary = computed(() => {
   return menuItems.findIndex((item) =>
@@ -465,7 +460,7 @@ watch(
       updateSecondaryHighlight();
     }, 400);
   },
-  {immediate: true},
+  { immediate: true },
 );
 
 // 监听路由变化和菜单展开状态变化
@@ -477,7 +472,7 @@ watch(
       updateSecondaryHighlight();
     }, 100);
   },
-  {deep: true},
+  { deep: true },
 );
 
 watch(isSecondaryHighlightHidden, (hidden) => {
@@ -590,9 +585,10 @@ onUnmounted(() => {
   width: 0.75rem;
   background-color: var(--theme-accent-color);
   box-shadow: 0 0 0.75rem var(--theme-accent-color);
-  transition: transform var(--transition-base),
-  height var(--transition-base),
-  opacity var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    height var(--transition-base),
+    opacity var(--transition-base);
   pointer-events: none;
 }
 
@@ -604,9 +600,10 @@ onUnmounted(() => {
   width: 0.5rem;
   background-color: var(--theme-accent-color);
   box-shadow: 0 0 0.5rem var(--theme-accent-color);
-  transition: transform var(--transition-base),
-  height var(--transition-base),
-  opacity var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    height var(--transition-base),
+    opacity var(--transition-base);
   pointer-events: none;
 }
 
@@ -781,8 +778,9 @@ onUnmounted(() => {
 /* 展开/折叠动画 - 用于点击展开/折叠 */
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition: max-height var(--transition-fast),
-  opacity var(--transition-base);
+  transition:
+    max-height var(--transition-fast),
+    opacity var(--transition-base);
   overflow: hidden;
 }
 

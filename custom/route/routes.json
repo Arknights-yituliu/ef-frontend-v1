@@ -103,6 +103,12 @@
         "nameKey": "menu.commonQuestions",
         "routePath": "/introduction/common-questions",
         "vuetifyIcon": "mdi-help-circle"
+      },
+      {
+        "i18nKey": "formatSpecification",
+        "nameKey": "menu.formatSpecification",
+        "routePath": "/introduction/format-specification",
+        "vuetifyIcon": "mdi-code-braces"
       }
     ]
   },
