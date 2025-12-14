@@ -543,18 +543,17 @@ const getPackComparisonBars = (pack: PackData) => [
 
 /* 采用纵向布局，合并为一张卡片 */
 @media (max-width: 768px) {
-  /* 将 container 作为统一的卡片容器 */
   .pack-card-container {
     width: 100%;
     max-width: 100%;
   }
 
-  /* 将 wrapper 作为内容区域 */
   .pack-card-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    width: 100%;
   }
 
   /* 图片区域 */
@@ -571,16 +570,8 @@ const getPackComparisonBars = (pack: PackData) => [
 
   /* 信息区域 */
   .pack-info {
-    flex-direction: row;
     width: 100%;
     margin-left: 0;
-  }
-
-  .pack-chart-line {
-    width: 100%;
-    flex: 1;
-    background: transparent;
-    position: relative;
   }
 }
 </style>

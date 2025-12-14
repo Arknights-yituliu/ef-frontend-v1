@@ -210,7 +210,6 @@ onBeforeUnmount(() => {
 <style scoped>
 .contributor-card {
   position: relative;
-  flex: 1 1 420px;
   border-radius: var(--radius-md);
   border: 1px solid var(--theme-border);
   background: linear-gradient(
@@ -354,13 +353,11 @@ onBeforeUnmount(() => {
   font-size: clamp(1.375rem, 1.5vw + 0.75rem, 1.75rem);
   font-weight: 700;
   color: var(--theme-text-primary);
-  letter-spacing: 0.04em;
 }
 
 .card__position {
   font-size: 1rem;
   color: var(--theme-text-secondary);
-  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -380,7 +377,6 @@ onBeforeUnmount(() => {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--theme-text-secondary);
-  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -400,7 +396,6 @@ onBeforeUnmount(() => {
   background: var(--theme-bg-secondary);
   color: var(--theme-text-primary);
   font-size: 0.95rem;
-  letter-spacing: 0.08em;
 }
 
 @media (max-width: 385px) {

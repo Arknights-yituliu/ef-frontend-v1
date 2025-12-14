@@ -74,10 +74,9 @@ useHead({
 }
 
 .contributors__cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   gap: var(--spacing-lg);
-  justify-content: flex-start;
   align-items: stretch;
 }
 
@@ -86,11 +85,5 @@ useHead({
   font-size: var(--font-size-base);
   margin-top: var(--spacing-lg);
   text-align: left;
-}
-
-@media (max-width: 768px) {
-  .contributors__cards {
-    gap: var(--spacing-md);
-  }
 }
 </style>
