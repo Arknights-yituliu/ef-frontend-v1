@@ -4,33 +4,29 @@
   <v-card class="card">
     <v-card-title>
       <div class="card-title">
-        <img alt="" class="card-title-icon" src="~/assets/icon/endfield-icon.png" />
+        <icon-endfield-icon class="card-title-icon" />
         <b>{{ $t('component.home.checkAccess.betaTestIICheckAccess') }}</b>
-        <div class="flex-1" />
+        <div class="flex-1"></div>
       </div>
     </v-card-title>
     <v-card-text>
       <img alt="" class="test-kv" src="https://cos.yituliu.cn/endfield/other/test-kv.jpg" />
-      <v-card
+      <v-btn
         class="check-access-btn"
-        hover
         @click="() => openNewPage('https://endfield.hypergryph.com/checkAccess')"
       >
-        <v-card-text>
-          <div>
-            <span>
-              {{ $t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite') }}
-            </span>
-            <v-icon icon="mdi-open-in-new"></v-icon>
-          </div>
-        </v-card-text>
-      </v-card>
+        <span>
+          {{ $t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite') }}
+        </span>
+        <v-icon icon="mdi-open-in-new"></v-icon>
+      </v-btn>
     </v-card-text>
   </v-card>
 </template>
 
 <style scoped>
 .check-access-btn {
+  display: block;
   text-align: center;
   margin: var(--spacing-md) auto;
   width: 90%;
