@@ -13,9 +13,6 @@ ef-frontend-v1/
 │   │   ├── avatar/               # 头像图片目录
 │   │   │   └── contributors/     # 贡献者头像
 │   │   ├── css/                  # CSS 样式文件
-│   │   │   ├── atomicStyles.css  # 原子化 CSS 样式
-│   │   │   ├── global.css        # 全局样式文件
-│   │   │   └── homePage.css      # 首页特定样式
 │   │   └── icon/                 # 图标文件
 │   ├── components/               # 组件目录
 │   │   ├── annimation/           # 动画组件
@@ -127,6 +124,7 @@ yarn preview
 
 ### 开发指南
 
+- [格式化规范](./content/introduction/format-specification-zh.md) - 了解项目的代码格式化规范
 - [项目结构说明](./content/introduction/project-structure-zh.md) - 了解项目的技术栈和目录结构
 - [路由设置指南](./content/introduction/route-setting-zh.md) - 学习如何配置和管理路由
 - [文档编写指南](./content/introduction/docs-setting-zh.md) - 学习如何为项目编写新的文档
