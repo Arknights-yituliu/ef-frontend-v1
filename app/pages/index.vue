@@ -42,8 +42,6 @@ definePageMeta({
   layout: 'default',
 });
 
-import '~/assets/css/home.css'
-
 const colors = ['indigo', 'warning', 'pink darken-2', 'red lighten-1', 'deep-purple accent-4'];
 const slides = ['First', 'Second', 'Third', 'Fourth', 'Fifth'];
 
@@ -71,12 +69,12 @@ const {t} = useI18n();
   }
 
 
-  .home-navigation-card {
+  :deep(.home-navigation-card) {
     width: calc(50% - 0.5rem);
     margin: 0.5rem 0;
   }
 
-  .home-navigation-card-title {
+  :deep(.home-navigation-card-title) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,30 +82,29 @@ const {t} = useI18n();
     font-size: var(--font-size-lg);
   }
 
-  .home-navigation-card-title-icon {
+  :deep(.home-navigation-card-title-icon) {
     width: 28px;
     height: 28px;
     margin: 0 var(--spacing-sm) 0 0;
   }
 
-  .p-title {
+  :deep(.p-title) {
     font-size: var(--font-size-sm);
     font-weight: bolder;
     padding: var(--spacing-md) 0;
   }
 
-  .p-li {
+  :deep(.p-li) {
     padding: var(--spacing-xs) var(--spacing-md);
   }
 
-  .p-li::before {
+  :deep(.p-li::before) {
     content: "\2022";
     margin-right: var(--spacing-xs);
   }
 
 
   @media (max-width: 660px) {
-
     .index-carousel {
       max-width: 99%;
     }
@@ -116,17 +113,17 @@ const {t} = useI18n();
       max-width: 100%;
     }
 
-    .home-navigation-card {
+    :deep(.home-navigation-card) {
       width: 99%;
       margin: var(--spacing-sm) 0;
       font-size: var(--font-size-xs);
     }
 
-    .home-navigation-card-title {
+    :deep(.home-navigation-card-title ) {
       font-size: var(--font-size-sm);
     }
 
-    .home-navigation-card-title-icon {
+    :deep(.home-navigation-card-title-icon) {
       width: 28px;
       height: 28px;
       margin: 0 var(--spacing-sm) 0 0;
