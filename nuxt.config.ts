@@ -1,7 +1,7 @@
 // Nuxt 配置文件
 // 参考文档：https://nuxt.com/docs/4.x/api/nuxt-config
 // SEO 文档：https://nuxtseo.com/docs/nuxt-seo/guides/using-the-modules
-import vuetify, {transformAssetUrls} from 'vite-plugin-vuetify'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 import path from 'path';
 
 export default defineNuxtConfig({
@@ -33,10 +33,19 @@ export default defineNuxtConfig({
     head: {
       title: '终末地一图流',
       titleTemplate: '%s',
-      link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},],
-      meta: [{
-        name: 'description', content: '根据《明日方舟：终末地》建造的数据解析平台，致力于以数据的视角解读游戏内容，构建友好理性的社区。'
-      }],
+      link: [
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+      ],
+      meta: [
+        {
+          name: 'description',
+          content:
+            '根据《明日方舟：终末地》建造的数据解析平台，致力于以数据的视角解读游戏内容，构建友好理性的社区。',
+        },
+      ],
     },
   },
 
@@ -56,7 +65,8 @@ export default defineNuxtConfig({
      * - 此配置会额外添加需要自动导入的目录，不会覆盖默认目录
      * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#dirs
      */
-    dirs: ['~~/shared/utils/gameData', // gameData 目录下的工具函数自动导入
+    dirs: [
+      '~~/shared/utils/gameData', // gameData 目录下的工具函数自动导入
     ],
   },
 
@@ -73,7 +83,7 @@ export default defineNuxtConfig({
    * 启用 Nuxt DevTools，提供开发时的调试和分析功能
    * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#devtools
    */
-  devtools: {enabled: true},
+  devtools: { enabled: true },
 
   /**
    * 全局 CSS 文件
@@ -88,7 +98,8 @@ export default defineNuxtConfig({
    * 注册 Nuxt 模块，扩展应用功能
    * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#modules
    */
-  modules: [// @nuxtjs/i18n - 国际化模块，提供多语言支持
+  modules: [
+    // @nuxtjs/i18n - 国际化模块，提供多语言支持
     // 参考：https://nuxt.com/modules/i18n
     '@nuxtjs/i18n', // @nuxt/content - 内容管理模块，用于处理 Markdown 等文件
     // 参考：https://content.nuxt.com/docs/getting-started/configuration
@@ -97,10 +108,11 @@ export default defineNuxtConfig({
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
-        config.plugins.push(vuetify({autoImport: true}))
-      })
+        config.plugins.push(vuetify({ autoImport: true }));
+      });
     }, // Seo 模块配置
-    '@nuxtjs/seo'],
+    '@nuxtjs/seo',
+  ],
 
   /**
    * Nuxt Content 配置
@@ -114,18 +126,21 @@ export default defineNuxtConfig({
           // 目录深度：生成到 h3 级别的标题
           depth: 3, // 搜索深度：在目录中搜索到 h3 级别
           searchDepth: 3,
-        }, /**
+        },
+        /**
          * 代码高亮配置
          * 配置代码块的语法高亮主题和支持的语言
          */
         highlight: {
           theme: {
-            default: 'github-light', dark: 'github-dark',
+            default: 'github-light',
+            dark: 'github-dark',
           }, // 支持的语言列表
           langs: ['json', 'js', 'ts', 'html', 'css', 'vue', 'shell', 'bash', 'md', 'mdc', 'yaml'],
         },
       },
-    }, /**
+    },
+    /**
      * 渲染器配置 (renderer)
      * 控制内容渲染的行为
      */
@@ -135,16 +150,19 @@ export default defineNuxtConfig({
        * 为标题自动生成锚点链接，方便跳转
        */
       anchorLinks: {
-        h1: true, h2: true, h3: true,
+        h1: true,
+        h2: true,
+        h3: true,
       },
-    }, /**
+    },
+    /**
      * 监听配置 (watch)
      * 配置内容文件的监听选项（开发模式）
      */
     watch: {
-      enabled: true,    // 启用文件监听
-      port: 4000,       // 监听端口
-      showURL: true,    // 显示监听 URL
+      enabled: true, // 启用文件监听
+      port: 4000, // 监听端口
+      showURL: true, // 显示监听 URL
     } as { enabled: boolean } & Record<string, unknown>,
   },
 
@@ -158,13 +176,18 @@ export default defineNuxtConfig({
      * 语言列表 (locales)
      * 定义应用支持的所有语言
      */
-    locales: [{
-      code: 'zh-CN',      // 语言代码
-      label: '中文',      // 显示标签
-      file: 'zh-CN.json'  // 语言文件路径（相对于 langDir）
-    }, {
-      code: 'en-US', label: 'English', file: 'en-US.json'
-    }],
+    locales: [
+      {
+        code: 'zh-CN', // 语言代码
+        label: '中文', // 显示标签
+        file: 'zh-CN.json', // 语言文件路径（相对于 langDir）
+      },
+      {
+        code: 'en-US',
+        label: 'English',
+        file: 'en-US.json',
+      },
+    ],
 
     /**
      * 语言文件目录 (langDir)
@@ -190,10 +213,10 @@ export default defineNuxtConfig({
      * 配置是否自动检测用户浏览器的语言偏好
      */
     detectBrowserLanguage: {
-      useCookie: true,              // 使用 Cookie 存储用户语言偏好
+      useCookie: true, // 使用 Cookie 存储用户语言偏好
       cookieKey: 'i18n_redirected', // Cookie 键名
-      redirectOn: 'root'            // 在根路径时进行重定向
-    }
+      redirectOn: 'root', // 在根路径时进行重定向
+    },
   },
 
   /**
@@ -229,7 +252,8 @@ export default defineNuxtConfig({
          */
         transformAssetUrls,
       },
-    }, /**
+    },
+    /**
      * 构建配置 (build)
      * 配置 Vite 构建过程的选项
      */
@@ -284,7 +308,7 @@ export default defineNuxtConfig({
      * '@' 别名指向项目根目录
      * 使用示例：import utils from '@/shared/utils/helper'
      */
-    '@': path.resolve(__dirname)
+    '@': path.resolve(__dirname),
   },
 
   /**
@@ -307,6 +331,6 @@ export default defineNuxtConfig({
      * - 支持通配符和路径模式匹配
      * - 这些路径将被添加到 robots.txt 的 Disallow 规则中
      */
-    disallow: ['/others/test']
-  }
-})
+    disallow: ['/others/test'],
+  },
+});

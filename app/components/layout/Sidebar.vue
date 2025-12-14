@@ -1,5 +1,5 @@
 <template>
-  <nav class="sidebar">
+  <div class="sidebar">
     <!-- Logo 区域 -->
     <div class="logo-area" @click="navigateToHome">
       <svg
@@ -68,16 +68,16 @@
           <!-- 一级菜单图标 -->
           <v-icon
             v-if="primaryItem.vuetifyIcon"
-            :class="{ 'docs-icon': primaryItem.isDocs }"
             class="primary-icon"
+            :class="{ 'docs-icon': primaryItem.isDocs }"
             size="24"
           >
             {{ primaryItem.vuetifyIcon }}
           </v-icon>
           <svg
             v-else
-            :class="{ 'docs-icon': primaryItem.isDocs }"
             class="primary-icon"
+            :class="{ 'docs-icon': primaryItem.isDocs }"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -181,7 +181,7 @@
     <div class="sidebar-footer">
       <div class="footer-decorator"></div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -547,7 +547,8 @@ onUnmounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
+  gap: 1rem;
   background-color: var(--theme-bg-tertiary);
   border-bottom: 2px solid var(--theme-accent-color);
   cursor: pointer;
@@ -629,7 +630,6 @@ onUnmounted(() => {
 
 .menu-group {
   border-bottom: 1px solid var(--theme-border);
-  transition: border-color var(--transition-base);
 }
 
 .primary-item {
