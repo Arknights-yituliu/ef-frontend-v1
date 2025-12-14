@@ -40,10 +40,12 @@
     </v-app-bar>
 
     <v-main>
-      <div class="content-container">
-        <slot />
+      <div class="main-wrapper">
+        <div class="content-container">
+          <slot />
+        </div>
+        <LayoutFooter class="footer" />
       </div>
-      <LayoutFooter />
     </v-main>
 
     <!-- 回到顶部按钮 -->
@@ -162,6 +164,34 @@ onUnmounted(() => {
     transparent 100%
   );
   opacity: 0.5;
+}
+
+/* 包一个容器，使页面至少占满纵向空间 */
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* 增加页面内边距，限制页面宽度 */
+.content-container {
+  width: 100%;
+  max-width: 1600px;
+  min-width: 50%; /** 最大 1600px，但是如果屏幕太大了，至少也要占满一半宽度 */
+  padding: 2rem;
+  margin: auto;
+  flex: 1; /* 使页面至少占满纵向空间 */
+}
+
+@media (max-width: 480px) {
+  .content-container {
+    padding: 1rem;
+  }
+}
+
+/* footer 不可以 flex-grow */
+.footer {
+  flex: 0;
 }
 
 /* 回到顶部按钮 */

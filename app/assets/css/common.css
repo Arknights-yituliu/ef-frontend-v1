@@ -1,19 +1,6 @@
 /* ============================================
    页面布局
    ============================================ */
-.content-container {
-  min-width: 50%;
-  min-height: 90vh;
-  padding: 2rem;
-  margin: auto;
-}
-
-@media (max-width: 480px) {
-  .content-container {
-    padding: 1rem;
-  }
-}
-
 .page-title {
   font-size: var(--font-size-3xl);
   color: var(--theme-text-primary);
