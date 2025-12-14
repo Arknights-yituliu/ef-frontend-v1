@@ -58,6 +58,9 @@ const getVuetifyLocale = (localeCode: string): 'en' | 'zhHans' => {
 
 // 处理语言切换
 const handleLocaleChange = async (newLocale: 'zh-CN' | 'en-US') => {
+  // 切换根html元素的lang属性
+  document.documentElement.setAttribute('lang', newLocale);
+
   // 更新项目的 i18n 语言
   await setLocale(newLocale);
   // 同步更新 Vuetify 的语言设置
