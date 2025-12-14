@@ -1,98 +1,165 @@
+# Workflow 名称，在 GitHub Actions 界面中显示
 name: Build and Deploy to GitHub Pages
 
+# 触发条件配置
 on:
   push:
+    # 当代码推送到任何分支时触发
     branches:
       - '*'
+  # 允许手动触发此 workflow
   workflow_dispatch:
 
+# 环境变量配置（所有 job 共享）
 env:
+  # Nuxt 应用的基础 URL，设置为仓库名称路径（用于 GitHub Pages 子路径部署）
   NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
+  # 资源仓库的所有者名称
   ASSETS_REPO_OWNER: Arknights-yituliu
+  # 资源仓库的名称
   ASSETS_REPO_NAME: ef-yituliu-frontend-assets
 
+# 并发控制配置
 concurrency:
+  # 并发组名称：同一个 workflow 和同一个分支的多个运行实例会被分组
+  # 这样同一个分支的多个提交不会同时运行，避免冲突
   group: ${{ github.workflow }}-${{ github.ref }}
+  # 如果新的运行开始，自动取消正在进行的运行（同一组的）
   cancel-in-progress: true
 
+# 定义所有要执行的 jobs
 jobs:
+  # 构建 job：负责构建项目
   build:
+    # 运行在最新版本的 Ubuntu 虚拟机上
     runs-on: ubuntu-latest
 
+    # 权限配置：定义此 job 需要的 GitHub 权限
     permissions:
+      # 只需要读取仓库内容的权限
       contents: read
 
+    # 构建步骤列表
     steps:
+      # 步骤 1: 检出源代码
+      # 将仓库代码克隆到 runner 的工作目录
       - name: Checkout Repository
         uses: actions/checkout@v5
 
+      # 步骤 2: 设置 Node.js 环境
+      # 安装指定版本的 Node.js 并配置 yarn 缓存
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
+          # 使用 Node.js 24 版本
           node-version: '24'
+          # 启用 yarn 依赖缓存，加速后续安装
           cache: 'yarn'
 
+      # 步骤 3: 缓存 node_modules 目录
+      # 如果 yarn.lock 未改变，可以复用已安装的依赖，大幅提升构建速度
       - name: Cache node_modules
         uses: actions/cache@v4
         with:
+          # 要缓存的目录路径
           path: node_modules
+          # 缓存键：基于操作系统和 yarn.lock 文件的哈希值
+          # yarn.lock 改变时缓存失效，需要重新安装
           key: ${{ runner.os }}-node_modules-${{ hashFiles('yarn.lock') }}
+          # 恢复键：如果精确匹配失败，尝试匹配部分键（回退策略）
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
+      # 步骤 4: 缓存 Nuxt/Vite 构建缓存
+      # 缓存 Nuxt 和 Vite 的构建产物，加速增量构建
       - name: Cache Vite/Nuxt build cache
         uses: actions/cache@v4
         with:
+          # 要缓存的目录列表
           path: |
-            .nuxt
-            node_modules/.cache
+            .nuxt          # Nuxt 的构建缓存目录
+            node_modules/.cache  # Vite 的缓存目录
+          # 缓存键：基于操作系统和 yarn.lock 的哈希值
           key: ${{ runner.os }}-nuxt-cache-${{ hashFiles('yarn.lock') }}
+          # 恢复键：回退策略
           restore-keys: |
             ${{ runner.os }}-nuxt-cache-
 
+      # 步骤 5: 安装项目依赖
+      # 使用 yarn 安装 npm 依赖包
       - name: Install Dependencies
         run: |
+          # 如果存在 yarn.lock 文件，使用 --frozen-lockfile 确保版本一致
+          # 否则执行普通安装（会更新 lockfile）
           if [ -f yarn.lock ]; then
             yarn install --frozen-lockfile
           else
             yarn install
           fi
 
+      # 步骤 6: 检出资源仓库
+      # 从独立的资源仓库拉取静态资源（图片、字体等）
       - name: Checkout Assets Repository
         uses: actions/checkout@v5
         with:
+          # 指定要检出的仓库（使用环境变量）
           repository: ${{ env.ASSETS_REPO_OWNER }}/${{ env.ASSETS_REPO_NAME }}
+          # 将资源仓库克隆到临时目录，避免覆盖主仓库代码
           path: .tmp-assets
 
+      # 步骤 7: 复制资源到项目
+      # 将资源仓库中的文件复制到主项目目录中
       - name: Copy Assets to Project
         run: |
+          # 递归复制所有资源文件到当前目录
           cp -r .tmp-assets/* .
+          # 清理临时目录
           rm -rf .tmp-assets
 
+      # 步骤 8: 构建项目
+      # 执行 Nuxt 的静态生成命令，生成 dist 目录
       - name: Build Project
         run: yarn generate
 
+      # 步骤 9: 上传构建产物
+      # 将构建好的 dist 目录上传为 artifact，供 deploy job 使用
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v4
         with:
+          # 要上传的目录路径（构建输出目录）
           path: dist
 
+  # 部署 job：负责将构建产物部署到 GitHub Pages
   deploy:
+    # 依赖关系：必须先完成 build job 才能执行此 job
     needs: build
+    # 运行在最新版本的 Ubuntu 虚拟机上
     runs-on: ubuntu-latest
 
+    # 权限配置：部署到 GitHub Pages 需要的权限
     permissions:
+      # 需要写入 Pages 的权限（发布内容）
       pages: write
+      # 需要 id-token 权限（用于 OIDC 认证）
       id-token: write
 
+    # 环境配置：指定部署环境
     environment:
+      # 环境名称：GitHub Pages 环境
       name: github-pages
+      # 部署后的页面 URL（从部署步骤的输出中获取）
       url: ${{ steps.deployment.outputs.page_url }}
 
+    # 部署步骤列表
     steps:
+      # 步骤 1: 配置 Pages
+      # 准备 GitHub Pages 部署环境，设置必要的配置
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      # 步骤 2: 部署到 GitHub Pages
+      # 将 build job 上传的 artifact 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
+        # 设置步骤 ID，用于在其他地方引用此步骤的输出
         id: deployment
         uses: actions/deploy-pages@v4

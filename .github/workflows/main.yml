@@ -1,43 +1,78 @@
+# Workflow 名称，在 GitHub Actions 界面中显示
 name: build & publish
 
+# 触发条件配置
 on:
   push:
+    # 当代码推送到 main 分支时触发
     branches: [ "main" ]
 
+# 定义所有要执行的 jobs
 jobs:
+  # 构建和发布 job：构建项目并部署到腾讯云 COS
   build:
+    # 运行在最新版本的 Ubuntu 虚拟机上
     runs-on: ubuntu-latest
 
+    # 条件判断：只有提交信息中包含 'build' 关键字时才执行此 job
+    # 这样可以避免每次提交都触发构建，需要手动在提交信息中添加 'build' 才会触发
     if: contains(github.event.head_commit.message, 'build')
 
+    # 构建和部署步骤列表
     steps:
+      # 步骤 1: 检出源代码
+      # 将仓库代码克隆到 runner 的工作目录
       - uses: actions/checkout@v3
 
+      # 步骤 2: 设置 Node.js 环境
+      # 安装并配置指定版本的 Node.js
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
+          # 使用 Node.js 24.0.0 版本
           node-version: 24.0.0
 
 
+      # 步骤 3: 构建项目
+      # 安装依赖并执行构建命令
       - name: Build
         run: |
+          # 安装项目依赖
           npm install
+          # 执行 Nuxt 的静态生成命令，生成 dist 目录
           npm run generate
 
+      # 步骤 4: 上传到腾讯云 COS（对象存储）
+      # 将构建好的静态文件上传到腾讯云对象存储服务
       - name: Upload COS
         uses: zkqiang/tencent-cos-action@v0.1.0
         with:
+          # COS CLI 命令参数：
+          # delete -r -f / : 删除 COS 存储桶根目录下的所有文件（-r 递归，-f 强制）
+          # upload -r ./dist/ / : 递归上传本地 dist 目录到 COS 根目录
+          # 使用 && 连接两个命令，先删除再上传，确保内容同步
           args: delete -r -f / && upload -r ./dist/ /
+          # 腾讯云 API 密钥 ID（从 GitHub Secrets 中读取）
           secret_id: ${{ secrets.COS_SECRET_ID }}
+          # 腾讯云 API 密钥 Key（从 GitHub Secrets 中读取）
           secret_key: ${{ secrets.COS_SECRET_KEY }}
+          # 目标存储桶名称（从 GitHub Secrets 中读取，生产环境存储桶）
           bucket: ${{ secrets.COS_WEB_BUCKET_PROD }}
+          # 存储桶所在区域：南京（ap-nanjing）
           region: ap-nanjing
+        # 设置超时时间：3 分钟内必须完成，避免卡死
         timeout-minutes: 3
 
+      # 步骤 5: 刷新腾讯云 CDN 缓存
+      # 清除 CDN 缓存，确保用户访问到最新内容
       - name: Refresh Tencent Cloud CDN Purge Cache
         uses: keithnull/tencent-cloud-cdn-purge-cache@v1.0
         env:
+          # 腾讯云 API 密钥 ID（从 GitHub Secrets 中读取）
           SECRET_ID: ${{ secrets.COS_SECRET_ID}}
+          # 腾讯云 API 密钥 Key（从 GitHub Secrets 中读取）
           SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
+          # 要刷新缓存的 URL 路径（网站根路径）
           PATHS: "https://ef.yituliu.cn/"
+          # 刷新类型：flush 表示刷新（清除缓存并重新回源获取），可选参数
           FLUSH_TYPE: "flush" # optional
