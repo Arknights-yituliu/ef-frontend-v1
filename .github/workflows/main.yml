@@ -98,6 +98,15 @@ jobs:
       # 下载 build job 上传的 dist artifact
       - name: Download Artifacts
         uses: actions/download-artifact@v7
+        with:
+          name: dist
+          path: dist
+
+      # 调试步骤：列出当前目录和 dist 目录内容，确保文件存在
+      - name: Debug List Files
+        run: |
+          ls -la .
+          ls -la ./dist
 
       # 步骤 2: 上传到腾讯云 COS（对象存储）
       # 将静态文件同步到腾讯云 COS
