@@ -1,23 +1,18 @@
-# Workflow 名称，在 GitHub Actions 界面中显示
 name: Build and Deploy to GitHub Pages
 
 # 触发条件配置
 on:
+  # 当代码推送到任何分支时触发
   push:
-    # 当代码推送到任何分支时触发
     branches:
       - '*'
-  # 允许手动触发此 workflow
+  # 允许手动触发工作流
   workflow_dispatch:
 
 # 环境变量配置（所有 job 共享）
 env:
   # Nuxt 应用的基础 URL，设置为仓库名称路径（用于 GitHub Pages 子路径部署）
   NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
-  # 资源仓库的所有者名称
-  ASSETS_REPO_OWNER: Arknights-yituliu
-  # 资源仓库的名称
-  ASSETS_REPO_NAME: ef-yituliu-frontend-assets
 
 # 并发控制配置
 concurrency:
@@ -29,7 +24,7 @@ concurrency:
 
 # 定义所有要执行的 jobs
 jobs:
-  # 构建 job：负责构建项目
+  # 构建 job：构建项目并生成静态文件
   build:
     # 运行在最新版本的 Ubuntu 虚拟机上
     runs-on: ubuntu-latest
@@ -70,7 +65,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
-      # 步骤 4: 缓存 Nuxt/Vite 构建缓存
+      # 步骤 4: 缓存 Nuxt / Vite 构建缓存
       # 缓存 Nuxt 和 Vite 的构建产物，加速增量构建
       - name: Cache Vite/Nuxt build cache
         uses: actions/cache@v4
