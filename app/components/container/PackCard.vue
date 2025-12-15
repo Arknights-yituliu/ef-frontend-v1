@@ -68,6 +68,10 @@
       </div>
     </div>
 
+    <p v-if="packDescription && !isExpanded" class="pack-description">
+      <em>{{ packDescription }}</em>
+    </p>
+
     <!-- 展开的内容表格 - 藏在卡片背后 -->
     <div :class="{ expanded: isExpanded }" class="pack-contents-table">
       <div class="pack-contents-header">
@@ -117,6 +121,10 @@ const isExpanded = ref(false);
 
 const packDisplayName = computed(() => {
   return locale.value === 'en-US' ? props.packDisplayNameEN : props.packDisplayNameZH;
+});
+
+const packDescription = computed(() => {
+  return locale.value === 'en-US' ? props.descriptionEN : props.descriptionZH;
 });
 
 // const countdownText = computed(() => {
@@ -457,6 +465,13 @@ const getPackComparisonBars = (pack: PackData) => [
   border-top: 1px solid var(--theme-border);
   border-left: 1px solid var(--theme-border);
   z-index: 2;
+}
+
+.pack-description {
+  width: 100%;
+  padding-left: 12px;
+  font-size: var(--font-size-xs);
+  color: var(--theme-text-secondary);
 }
 
 /* 展开的内容表格 */
