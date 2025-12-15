@@ -23,6 +23,7 @@
   <div class="card-group">
     <HomeCheckAccess />
     <HomeContribute />
+    <HomeFactorioLab v-if="false" /><!-- 暂时隐藏终末地产线计算器卡片 -->
     <HomeYiTuLiu />
     <HomePenguinStatistics />
   </div>

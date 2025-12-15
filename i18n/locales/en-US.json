@@ -85,6 +85,11 @@
         "nuxtDescription": "Full-stack framework based on Vue.js",
         "vueDescription": "Progressive JavaScript framework",
         "vuetifyDescription": "Material Design component library for Vue"
+      },
+      "factorioLab": {
+        "factorioLab": "Factorio Lab",
+        "goToFactorioLab": "Go to Factorio Lab",
+        "description": "Factorio Lab is a comprehensive production planning tool for the game Factorio. It helps players design and optimize their factory layouts, manage resources, and improve production efficiency."
       }
     },
     "particleWord": {

@@ -16,7 +16,11 @@ const copyGroupNumber = async () => {
   <v-card class="card">
     <v-card-title>
       <div class="card-title">
-        <img alt="" src="" />
+        <img
+          alt="终末地一图流 LOGO"
+          class="card-title-icon"
+          src="https://ef.yituliu.cn/favicon-32x32.png"
+        />
         <b>{{ $t('component.home.contribute.title') }}</b>
         <div class="flex-1" />
         <v-btn

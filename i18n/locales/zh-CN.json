@@ -85,6 +85,11 @@
         "nuxtDescription": "基于 Vue.js 的全栈框架",
         "vueDescription": "渐进式 JavaScript 框架",
         "vuetifyDescription": "Vue 的 Material Design 组件库"
+      },
+      "factorioLab": {
+        "factorioLab": "终末地产线计算器",
+        "goToFactorioLab": "前往产线计算器",
+        "description": "产线计算器是终末地的一款综合生产规划工具。它帮助玩家设计和优化工厂布局，管理资源，提高生产效率。"
       }
     },
     "particleWord": {

@@ -127,5 +127,36 @@
         "url": "https://ef.yituliu.cn/"
       }
     ]
+  },
+  {
+    "id": "产线计算器",
+    "localized_name": {
+      "zh_CN": "产线计算器",
+      "en_US": "Factorio Lab"
+    },
+    "localized_description": {
+      "zh_CN": "终末地产线计算器",
+      "en_US": "Endfield Factorio Lab"
+    },
+    "localized_slogan": {
+      "zh_CN": "终末地产线计算器",
+      "en_US": "Endfield Factorio Lab"
+    },
+    "localized_tags": {
+      "zh_CN": ["产线计算器"],
+      "en_US": ["Factorio Lab"]
+    },
+    "icon_url": "https://factory.ef.yituliu.cn/android-chrome-192x192.png",
+    "links": [
+      {
+        "primary": true,
+        "regionality": "global",
+        "localized_name": {
+          "zh_CN": "主页",
+          "en_US": "Home"
+        },
+        "url": "https://factory.ef.yituliu.cn/"
+      }
+    ]
   }
 ]
