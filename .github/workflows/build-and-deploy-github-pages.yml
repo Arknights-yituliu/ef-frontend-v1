@@ -77,8 +77,8 @@ jobs:
         with:
           # 要缓存的目录列表
           path: |
-            .nuxt          # Nuxt 的构建缓存目录
-            node_modules/.cache  # Vite 的缓存目录
+            .nuxt
+            node_modules/.cache
           # 缓存键：基于操作系统和 yarn.lock 的哈希值
           key: ${{ runner.os }}-nuxt-cache-${{ hashFiles('yarn.lock') }}
           # 恢复键：回退策略
@@ -97,31 +97,12 @@ jobs:
             yarn install
           fi
 
-      # 步骤 6: 检出资源仓库
-      # 从独立的资源仓库拉取静态资源（图片、字体等）
-      - name: Checkout Assets Repository
-        uses: actions/checkout@v5
-        with:
-          # 指定要检出的仓库（使用环境变量）
-          repository: ${{ env.ASSETS_REPO_OWNER }}/${{ env.ASSETS_REPO_NAME }}
-          # 将资源仓库克隆到临时目录，避免覆盖主仓库代码
-          path: .tmp-assets
-
-      # 步骤 7: 复制资源到项目
-      # 将资源仓库中的文件复制到主项目目录中
-      - name: Copy Assets to Project
-        run: |
-          # 递归复制所有资源文件到当前目录
-          cp -r .tmp-assets/* .
-          # 清理临时目录
-          rm -rf .tmp-assets
-
-      # 步骤 8: 构建项目
+      # 步骤 6: 构建项目
       # 执行 Nuxt 的静态生成命令，生成 dist 目录
       - name: Build Project
         run: yarn generate
 
-      # 步骤 9: 上传构建产物
+      # 步骤 7: 上传构建产物
       # 将构建好的 dist 目录上传为 artifact，供 deploy job 使用
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v4

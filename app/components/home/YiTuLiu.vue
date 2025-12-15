@@ -4,7 +4,11 @@
   <v-card class="card">
     <v-card-title>
       <div class="card-title">
-        <img alt="" class="card-title-icon" src="~/assets/icon/yituliu-icon.png" />
+        <img
+          alt="明日方舟一图流 LOGO"
+          class="card-title-icon"
+          src="https://cos.yituliu.cn/endfield/icons/yituliu-icon.png"
+        />
         <b>{{ $t('component.home.yiTuLiu.title') }}</b>
         <div class="flex-1" />
         <v-btn

@@ -6,7 +6,7 @@
         <img
           v-if="props.imageUrl && !imageError"
           :alt="packDisplayName"
-          :src="resolvePictureUrl(props.imageUrl, packImageAssets) ?? ''"
+          :src="props.imageUrl"
           class="pack-image"
           loading="lazy"
           @error="handleImageError"
@@ -108,13 +108,6 @@ import {
   getPackStoneEquivalent,
   getPackTotalPulls,
 } from '@/shared/utils/gameData/pack';
-import { resolvePictureUrl } from '@/shared/utils/urlUtil';
-
-const packImageAssets = import.meta.glob('~/assets/endfield/packs/*', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-}) as Record<string, string>;
 
 const props = defineProps<PackData>();
 

@@ -12,11 +12,6 @@ type Contributor = {
   chinese: LocalizedInfo;
 };
 
-const contributorAssets = import.meta.glob('~/assets/avatar/contributors/*', {
-  eager: true,
-  import: 'default',
-}) as Record<string, string>;
-
 const props = defineProps<{
   contributor: Contributor;
 }>();
@@ -28,10 +23,6 @@ const localizedInfo = computed<LocalizedInfo>(() => {
     return props.contributor.english;
   }
   return props.contributor.chinese;
-});
-
-const resolvedAvatar = computed(() => {
-  return resolvePictureUrl(props.contributor.avatarImg, contributorAssets);
 });
 
 const tags = computed(() => localizedInfo.value.tags ?? []);
@@ -166,7 +157,7 @@ onBeforeUnmount(() => {
           <span aria-hidden="true" class="card__media-backdrop stripe-pattern" />
           <img
             :alt="t('component.contributorCard.avatarAlt', { name: contributor.name })"
-            :src="resolvedAvatar"
+            :src="props.contributor.avatarImg"
             class="card__avatar"
             loading="lazy"
           />

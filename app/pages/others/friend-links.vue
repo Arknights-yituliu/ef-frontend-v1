@@ -24,7 +24,7 @@
             <img
               v-if="link.icon_url"
               :alt="getLocalizedValue(link.localized_name)"
-              :src="resolvePictureUrl(link.icon_url, assets)"
+              :src="link.icon_url"
               class="link-icon"
               @error="handleImageError"
             />
@@ -126,11 +126,6 @@ const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/
 const extraFriendLinks = (await import('@/custom/info/friendLinks.json')) as {
   default: FriendLink[];
 };
-
-const assets = import.meta.glob('~/assets/images/friend-links/**', {
-  eager: true,
-  import: 'default',
-}) as Record<string, string>;
 
 // 获取数据
 const { data, pending, error, refresh } = await useFetch<ApiResponse>(apiUrl, {
