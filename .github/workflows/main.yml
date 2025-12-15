@@ -21,6 +21,9 @@ jobs:
       # 只需要读取仓库内容的权限
       contents: read
 
+    outputs:
+      artifact-id: ${{ steps.upload-artifacts.outputs.artifact-id }}
+
     # 构建步骤列表
     steps:
       # 步骤 1: 检出源代码
@@ -107,7 +110,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           # 通过 artifact ID 下载指定的构建产物
-          artifact-ids: ${{ needs.build.steps.upload-artifacts.outputs.artifact-id }}
+          artifact-ids: ${{ needs.build.outputs.artifact-id }}
           # 下载到 dist 目录
           path: dist
 
@@ -151,8 +154,8 @@ jobs:
         run: |
           # 显示 COSCLI 版本信息
           ./coscli --version
-          # 同步本地 dist/browser 目录到 COS 存储桶
-          ./coscli sync ./dist/browser cos://${{ secrets.COS_WEB_BUCKET_PROD }}/ \
+          # 同步本地 dist 目录到 COS 存储桶
+          ./coscli sync ./dist cos://${{ secrets.COS_WEB_BUCKET_PROD }}/ \
             --recursive \
             --delete \
             --force \
