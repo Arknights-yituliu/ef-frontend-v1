@@ -81,7 +81,7 @@ jobs:
       # 步骤 7: 上传构建产物
       # 将构建生成的 dist 目录上传为 artifact，供 deploy job 使用
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           path: dist
           name: dist
@@ -97,7 +97,7 @@ jobs:
       # 步骤 1: 下载构建产物
       # 下载 build job 上传的 dist artifact
       - name: Download Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v7
 
       # 步骤 2: 上传到腾讯云 COS（对象存储）
       # 将静态文件同步到腾讯云 COS
@@ -116,8 +116,8 @@ jobs:
           bucket: ${{ secrets.COS_WEB_BUCKET_PROD }}
           # 存储桶所在区域：南京
           region: ap-nanjing
-        # 设置超时时间：3 分钟
-        timeout-minutes: 3
+        # 设置超时时间：10 分钟
+        timeout-minutes: 10
 
       # 步骤 3: 刷新腾讯云 ef.yituliu.cn 的 CDN 缓存
       # 清除 CDN 缓存，确保用户访问到最新内容
