@@ -132,19 +132,19 @@
     "id": "产线计算器",
     "localized_name": {
       "zh_CN": "产线计算器",
-      "en_US": "Factorio Lab"
+      "en_US": "Endfield Calculator"
     },
     "localized_description": {
-      "zh_CN": "终末地产线计算器",
-      "en_US": "Endfield Factorio Lab"
+      "zh_CN": "一款功能丰富的终末地工厂生产计算器。根据您的目标确定所需的资源和机器配置。",
+      "en_US": "A feature-rich factory production calculator for ArknightsEndfield. Determine resource and machine requirements for your desired objectives."
     },
     "localized_slogan": {
       "zh_CN": "终末地产线计算器",
-      "en_US": "Endfield Factorio Lab"
+      "en_US": "Endfield Calculator"
     },
     "localized_tags": {
       "zh_CN": ["产线计算器"],
-      "en_US": ["Factorio Lab"]
+      "en_US": ["Endfield Calculator"]
     },
     "icon_url": "https://factory.ef.yituliu.cn/android-chrome-192x192.png",
     "links": [
