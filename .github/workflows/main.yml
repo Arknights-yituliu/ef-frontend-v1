@@ -175,6 +175,8 @@ jobs:
       # 安装 Python，用于运行腾讯云 CLI 工具
       - name: Setup Python
         uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
 
       # 步骤 7: 安装腾讯云 CLI
       # 使用 pip 安装腾讯云命令行工具
