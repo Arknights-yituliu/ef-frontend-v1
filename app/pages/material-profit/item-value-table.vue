@@ -64,11 +64,7 @@
         <!-- 左侧圆形图标 -->
         <div class="item-icon-wrapper">
           <div class="item-icon-placeholder">
-            <img
-              :alt="getItemName(itemId)"
-              :src="resolvePictureUrl(getItemIconUrl(itemId) ?? '', assets)"
-              class="item-icon-img"
-            />
+            <img :alt="getItemName(itemId)" :src="getItemIconUrl(itemId)" class="item-icon-img" />
             <div
               class="item-gradient-overlay"
               :style="{
@@ -107,11 +103,6 @@
 
 <script lang="ts" setup>
 import { itemInfo } from '@/custom/core/itemInfo';
-
-const assets = import.meta.glob('~/assets/images/items/**', {
-  eager: true,
-  import: 'default',
-}) as Record<string, string>;
 
 definePageMeta({
   layout: 'default',

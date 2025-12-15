@@ -6,7 +6,7 @@ export const packs: Packs = {
     packDisplayNameZH: '宏愿兵装组合包',
     packDisplayNameEN: '宏愿兵装组合包',
     price: 6,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/宏愿兵装组合包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/宏愿兵装组合包.webp',
     contents: [
       {
         itemId: '宏愿',
@@ -25,7 +25,7 @@ export const packs: Packs = {
     packDisplayNameZH: '全面人才组合包',
     packDisplayNameEN: '全面人才组合包',
     price: 128,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/全面人才组合包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/全面人才组合包.webp',
     contents: [
       {
         itemId: '特许寻访凭证',
@@ -44,7 +44,7 @@ export const packs: Packs = {
     packDisplayNameZH: '人事支援组合包',
     packDisplayNameEN: '人事支援组合包',
     price: 98,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/人事支援组合包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/人事支援组合包.webp',
     contents: [
       {
         itemId: '基础寻访凭证',
@@ -63,7 +63,7 @@ export const packs: Packs = {
     packDisplayNameZH: '协议源流组合包',
     packDisplayNameEN: '协议源流组合包',
     price: 198,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/协议源流组合包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/协议源流组合包.webp',
     contents: [
       {
         itemId: '特许寻访凭证',
@@ -87,7 +87,7 @@ export const packs: Packs = {
     packDisplayNameZH: '行火寻访组合包',
     packDisplayNameEN: '行火寻访组合包',
     price: 98,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/行火寻访组合包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/行火寻访组合包.webp',
     contents: [
       {
         itemId: '行火留烬十连凭证',
@@ -106,7 +106,7 @@ export const packs: Packs = {
     packDisplayNameZH: '每月素材组合包',
     packDisplayNameEN: '每月素材组合包',
     price: 98,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/每月素材组合包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/每月素材组合包.webp',
     contents: [
       {
         itemId: '折金票',
@@ -150,7 +150,7 @@ export const packs: Packs = {
     packDisplayNameZH: '每周素材组合包',
     packDisplayNameEN: '每周素材组合包',
     price: 30,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/每周素材组合包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/每周素材组合包.webp',
     contents: [
       {
         itemId: '折金票',
@@ -174,7 +174,7 @@ export const packs: Packs = {
     packDisplayNameZH: '特惠武库配额包',
     packDisplayNameEN: '特惠武库配额包',
     price: 88,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/特惠武库配额包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/特惠武库配额包.webp',
     contents: [
       {
         itemId: '武库配额',
@@ -188,7 +188,7 @@ export const packs: Packs = {
     packDisplayNameZH: '优惠武库配额包',
     packDisplayNameEN: '优惠武库配额包',
     price: 108,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/优惠武库配额包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/优惠武库配额包.webp',
     contents: [
       {
         itemId: '武库配额',
@@ -202,7 +202,7 @@ export const packs: Packs = {
     packDisplayNameZH: '标准武库配额包',
     packDisplayNameEN: '标准武库配额包',
     price: 128,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/标准武库配额包.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/标准武库配额包.webp',
     contents: [
       {
         itemId: '武库配额',
@@ -216,7 +216,7 @@ export const packs: Packs = {
     packDisplayNameZH: '月卡',
     packDisplayNameEN: '月卡',
     price: 30,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/月卡.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/月卡.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -240,7 +240,7 @@ export const packs: Packs = {
     packDisplayNameZH: '6元双倍源石',
     packDisplayNameEN: '6元双倍源石',
     price: 6,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/6元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/6元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -254,7 +254,7 @@ export const packs: Packs = {
     packDisplayNameZH: '30元双倍源石',
     packDisplayNameEN: '30元双倍源石',
     price: 30,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/30元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/30元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -268,7 +268,7 @@ export const packs: Packs = {
     packDisplayNameZH: '98元双倍源石',
     packDisplayNameEN: '98元双倍源石',
     price: 98,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/98元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/98元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -282,7 +282,7 @@ export const packs: Packs = {
     packDisplayNameZH: '198元双倍源石',
     packDisplayNameEN: '198元双倍源石',
     price: 198,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/198元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/198元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -296,7 +296,7 @@ export const packs: Packs = {
     packDisplayNameZH: '328元双倍源石',
     packDisplayNameEN: '328元双倍源石',
     price: 328,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/328元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/328元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -310,7 +310,7 @@ export const packs: Packs = {
     packDisplayNameZH: '648元双倍源石',
     packDisplayNameEN: '648元双倍源石',
     price: 648,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/648元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/648元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -324,7 +324,7 @@ export const packs: Packs = {
     packDisplayNameZH: '6元源石',
     packDisplayNameEN: '6元源石',
     price: 6,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/6元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/6元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -338,7 +338,7 @@ export const packs: Packs = {
     packDisplayNameZH: '30元源石',
     packDisplayNameEN: '30元源石',
     price: 30,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/30元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/30元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -352,7 +352,7 @@ export const packs: Packs = {
     packDisplayNameZH: '98元源石',
     packDisplayNameEN: '98元源石',
     price: 98,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/98元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/98元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -366,7 +366,7 @@ export const packs: Packs = {
     packDisplayNameZH: '198元源石',
     packDisplayNameEN: '198元源石',
     price: 198,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/198元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/198元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -380,7 +380,7 @@ export const packs: Packs = {
     packDisplayNameZH: '328元源石',
     packDisplayNameEN: '328元源石',
     price: 328,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/328元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/328元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -394,7 +394,7 @@ export const packs: Packs = {
     packDisplayNameZH: '648元源石',
     packDisplayNameEN: '648元源石',
     price: 648,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/648元源石.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/648元源石.webp',
     contents: [
       {
         itemId: '衍质源石',
@@ -408,7 +408,7 @@ export const packs: Packs = {
     packDisplayNameZH: '协议定制',
     packDisplayNameEN: '协议定制',
     price: 68,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/协议定制.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/协议定制.webp',
     contents: [
       { itemId: '衍质源石', itemName: '衍质源石', quantity: 20 },
       { itemId: '海盐冰淇淋', itemName: '海盐冰淇淋', quantity: 1 },
@@ -480,7 +480,7 @@ export const packs: Packs = {
     descriptionZH: '价格为源石折算',
     descriptionEN: '价格为源石折算',
     price: Math.round((29 / 350) * 648 * 10) / 10,
-    imageUrl: 'https://cos.yituliu.cn/endfield/pack-image/源石配给.png',
+    imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/源石配给.webp',
     contents: [
       { itemId: '应急理智加强剂', itemName: '应急理智加强剂', quantity: 1 },
       { itemId: '中级作战记录', itemName: '中级作战记录', quantity: 30 },

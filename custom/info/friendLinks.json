@@ -17,7 +17,7 @@
       "zh_CN": ["排轴工具"],
       "en_US": ["Skill Rotation Planner"]
     },
-    "icon_url": "~/assets/images/friend-links/endaxis-icon.png",
+    "icon_url": "https://cos.yituliu.cn/endfield/icons/endaxis-icon.png",
     "links": [
       {
         "primary": true,
@@ -48,7 +48,7 @@
       "zh_CN": ["全收集", "查漏补缺", "路径规划"],
       "en_US": ["Completionist", "Find Missing Items", "Route Planning"]
     },
-    "icon_url": "~/assets/images/friend-links/opendfieldmap.webp",
+    "icon_url": "https://cos.yituliu.cn/endfield/icons/opendfieldmap.webp",
     "links": [
       {
         "primary": true,
@@ -79,7 +79,7 @@
       "zh_CN": ["MAA", "自动化"],
       "en_US": ["MAA", "Automation"]
     },
-    "icon_url": "~/assets/images/friend-links/MaaEnd.ico",
+    "icon_url": "https://maaend.com/favicon.ico",
     "links": [
       {
         "primary": true,
@@ -108,9 +108,14 @@
     },
     "localized_tags": {
       "zh_CN": ["物品价值表", "商店性价比", "礼包性价比", "攒抽计算器"],
-      "en_US": ["Item Value Table", "Shop Cost Performance", "Package Cost Performance", "Gacha Calculator"]
+      "en_US": [
+        "Item Value Table",
+        "Shop Cost Performance",
+        "Package Cost Performance",
+        "Gacha Calculator"
+      ]
     },
-    "icon_url": "~/assets/images/friend-links/明日方舟终末地一图流LOGO.webp",
+    "icon_url": "https://cos.yituliu.cn/endfield/icons/明日方舟终末地一图流LOGO.webp",
     "links": [
       {
         "primary": true,

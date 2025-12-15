@@ -2,7 +2,7 @@
   "contributors": [
     {
       "name": "山桜",
-      "avatarImg": "~/assets/avatar/contributors/Ema.jpg",
+      "avatarImg": "https://cos.yituliu.cn/endfield/contributors/Ema.jpg",
       "link": "https://github.com/yamasakura",
       "english": {
         "position": "Site Manager",
@@ -21,7 +21,7 @@
     },
     {
       "name": "Zirunwang",
-      "avatarImg": "~/assets/avatar/contributors/Zirunwang.jpg",
+      "avatarImg": "https://cos.yituliu.cn/endfield/contributors/Zirunwang.jpg",
       "link": "https://space.bilibili.com/10057492",
       "english": {
         "position": "Mastermind",
@@ -42,7 +42,7 @@
     },
     {
       "name": "MilkWind",
-      "avatarImg": "~/assets/avatar/contributors/MilkWind.jpg",
+      "avatarImg": "https://cos.yituliu.cn/endfield/contributors/MilkWind.jpg",
       "link": "https://github.com/MilkWind",
       "english": {
         "position": "Creator",
@@ -63,7 +63,7 @@
     },
     {
       "name": "Bio-Hazard",
-      "avatarImg": "~/assets/avatar/contributors/Bio-Hazard.jpg",
+      "avatarImg": "https://cos.yituliu.cn/endfield/contributors/Bio-Hazard.jpg",
       "link": "https://github.com/BiologyHazard",
       "english": {
         "position": "Core Algorithm Researcher",
