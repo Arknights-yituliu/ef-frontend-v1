@@ -79,7 +79,7 @@
       "zh_CN": ["MAA", "自动化"],
       "en_US": ["MAA", "Automation"]
     },
-    "icon_url": "~/assets/images/friend-links/MaaEnd.ico",
+    "icon_url": "https://maaend.com/favicon.ico",
     "links": [
       {
         "primary": true,
@@ -108,7 +108,12 @@
     },
     "localized_tags": {
       "zh_CN": ["物品价值表", "商店性价比", "礼包性价比", "攒抽计算器"],
-      "en_US": ["Item Value Table", "Shop Cost Performance", "Package Cost Performance", "Gacha Calculator"]
+      "en_US": [
+        "Item Value Table",
+        "Shop Cost Performance",
+        "Package Cost Performance",
+        "Gacha Calculator"
+      ]
     },
     "icon_url": "~/assets/images/friend-links/明日方舟终末地一图流LOGO.webp",
     "links": [
