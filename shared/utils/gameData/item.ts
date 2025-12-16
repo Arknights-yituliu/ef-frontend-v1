@@ -1,12 +1,8 @@
 import { gachaItemMap } from '@/custom/core/gachaItem';
-import rawItemTableSimplified from '@/custom/core/itemTableSimplified.json';
+import { itemInfo } from '@/custom/core/itemInfo';
 import { itemValueMap } from '@/custom/core/itemValue';
-import type { ItemTableSimplified, LocalizedText } from '@/shared/types/itemTableSimplified';
 import type { ColorInstance } from 'color';
 import Color from 'color';
-import { useI18n } from 'vue-i18n';
-
-const itemTableSimplified: ItemTableSimplified = rawItemTableSimplified;
 
 export const tierColorMap: Map<number, ColorInstance> = new Map([
   [1, Color('#9b9b9b')],
@@ -17,11 +13,8 @@ export const tierColorMap: Map<number, ColorInstance> = new Map([
   [6, Color('#ff7100')],
 ]);
 
-export function getItemName(itemId: string, locale?: keyof LocalizedText): string {
-  if (locale === undefined) {
-    locale = useI18n().locale.value as keyof LocalizedText;
-  }
-  return itemTableSimplified[itemId]?.name[locale] ?? itemId;
+export function getItemName(itemId: string): string {
+  return itemInfo[itemId]?.itemName ?? itemId;
 }
 
 export function getItemValue(itemId: string): number {
@@ -33,15 +26,11 @@ export function getItemPulls(itemId: string): number {
 }
 
 export function getItemIconUrl(itemId: string): string | undefined {
-  const iconId = itemTableSimplified[itemId]?.iconId;
-  if (iconId === undefined) {
-    return undefined;
-  }
-  return `https://cos.yituliu.cn/endfield/unpack-images/items/${iconId}.webp`;
+  return itemInfo[itemId]?.iconUrl ?? undefined;
 }
 
 export function getItemRarity(itemId: string): number | undefined {
-  return itemTableSimplified[itemId]?.rarity ?? undefined;
+  return itemInfo[itemId]?.rarity ?? undefined;
 }
 
 export function getItemTierColor(itemId: string): ColorInstance {

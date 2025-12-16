@@ -1,25 +1,25 @@
 import type { ItemValueMap } from '@/shared/types/itemValue';
 
 export const itemValueMap: ItemValueMap = {
-  item_originium_recharge: {
-    itemId: 'item_originium_recharge',
+  衍质源石: {
+    itemId: '衍质源石',
     itemName: '衍质源石',
     value: 40, // 衍质源石的价值根据每日前 2 次源石兑换理智来计算
   },
-  item_diamond: {
-    itemId: 'item_diamond',
+  嵌晶玉: {
+    itemId: '嵌晶玉',
     itemName: '嵌晶玉',
     value: 40 / 75,
   },
-  item_gachabyproducts_weapongold: {
-    itemId: 'item_gachabyproducts_weapongold',
+  武库配额: {
+    itemId: '武库配额',
     itemName: '武库配额',
     value: 112 / 81, // 武库配额的价值根据 非首充 648 元源石礼包 与 128 元武库配额礼包 性价比相同来计算
   },
 
   // 养成材料
-  item_gold: {
-    itemId: 'item_gold',
+  折金票: {
+    itemId: '折金票',
     itemName: '折金票',
     value: 80 / 34000,
   },
@@ -28,18 +28,18 @@ export const itemValueMap: ItemValueMap = {
     itemName: '干员作战记录经验',
     value: 80 / 170000,
   },
-  item_expcard_stage1_low: {
-    itemId: 'item_expcard_stage1_low',
+  初级作战记录: {
+    itemId: '初级作战记录',
     itemName: '初级作战记录',
     value: (80 / 170000) * 200,
   },
-  item_expcard_stage1_mid: {
-    itemId: 'item_expcard_stage1_mid',
+  中级作战记录: {
+    itemId: '中级作战记录',
     itemName: '中级作战记录',
     value: (80 / 170000) * 1000,
   },
-  item_expcard_stage1_high: {
-    itemId: 'item_expcard_stage1_high',
+  高级作战记录: {
+    itemId: '高级作战记录',
     itemName: '高级作战记录',
     value: (80 / 170000) * 10000,
   },
@@ -48,23 +48,23 @@ export const itemValueMap: ItemValueMap = {
     itemName: '干员认知载体经验',
     value: 80 / 68000,
   },
-  item_expcard_stage2_low: {
-    itemId: 'item_expcard_stage2_low',
+  初级认知载体: {
+    itemId: '初级认知载体',
     itemName: '初级认知载体',
     value: (80 / 68000) * 1000,
   },
-  item_expcard_stage2_high: {
-    itemId: 'item_expcard_stage2_high',
+  高级认知载体: {
+    itemId: '高级认知载体',
     itemName: '高级认知载体',
     value: (80 / 68000) * 10000,
   },
-  item_char_break_stage_1_2: {
-    itemId: 'item_char_break_stage_1_2',
+  协议圆盘: {
+    itemId: '协议圆盘',
     itemName: '协议圆盘',
     value: 80 / 34,
   },
-  item_char_break_stage_3_4: {
-    itemId: 'item_char_break_stage_3_4',
+  协议圆盘组: {
+    itemId: '协议圆盘组',
     itemName: '协议圆盘组',
     value: 80 / 14,
   },
@@ -73,123 +73,123 @@ export const itemValueMap: ItemValueMap = {
     itemName: '武器经验',
     value: 80 / 170000,
   },
-  item_weapon_expcard_low: {
-    itemId: 'item_weapon_expcard_low',
+  武器检查单元: {
+    itemId: '武器检查单元',
     itemName: '武器检查单元',
     value: (80 / 170000) * 200,
   },
-  item_weapon_expcard_mid: {
-    itemId: 'item_weapon_expcard_mid',
+  武器检查装置: {
+    itemId: '武器检查装置',
     itemName: '武器检查装置',
     value: (80 / 170000) * 1000,
   },
-  item_weapon_expcard_high: {
-    itemId: 'item_weapon_expcard_high',
+  武器检查套组: {
+    itemId: '武器检查套组',
     itemName: '武器检查套组',
     value: (80 / 170000) * 10000,
   },
-  item_weapon_break_low: {
-    itemId: 'item_weapon_break_low',
+  强固模具: {
+    itemId: '强固模具',
     itemName: '强固模具',
     value: 80 / 34,
   },
-  item_weapon_break_high: {
-    itemId: 'item_weapon_break_high',
+  重型强固模具: {
+    itemId: '重型强固模具',
     itemName: '重型强固模具',
     value: 80 / 14,
   },
-  item_char_skill_level_1_6: {
-    itemId: 'item_char_skill_level_1_6',
+  协议棱柱: {
+    itemId: '协议棱柱',
     itemName: '协议棱柱',
     value: 80 / 85,
   },
-  item_char_skill_level_7_12: {
-    itemId: 'item_char_skill_level_7_12',
+  协议棱柱组: {
+    itemId: '协议棱柱组',
     itemName: '协议棱柱组',
     value: 80 / 17,
   },
 
   // 高阶培养素材
-  item_char_skill_specialize_1: {
-    itemId: 'item_char_skill_specialize_1',
+  超距辉映管: {
+    itemId: '超距辉映管',
     itemName: '超距辉映管',
     value: 80 / 6.5, // 估测每次作战掉落 6.5 个
   },
-  item_char_skill_specialize_2: {
-    itemId: 'item_char_skill_specialize_2',
+  D96钢样品四: {
+    itemId: 'D96钢样品四',
     itemName: 'D96钢样品四',
     value: 80 / 6.5,
   },
-  item_char_skill_specialize_3: {
-    itemId: 'item_char_skill_specialize_3',
+  快子遴捡晶格: {
+    itemId: '快子遴捡晶格',
     itemName: '快子遴捡晶格',
     value: 80 / 6.5,
   },
-  item_char_skill_specialize_4: {
-    itemId: 'item_char_skill_specialize_4',
+  象限拟合液: {
+    itemId: '象限拟合液',
     itemName: '象限拟合液',
     value: 80 / 6.5,
   },
-  item_char_skill_specialize_5: {
-    itemId: 'item_char_skill_specialize_5',
+  三相纳米片: {
+    itemId: '三相纳米片',
     itemName: '三相纳米片',
     value: 80 / 6.5,
   },
 
   // 存续的痕迹
-  item_char_skill_crown: {
-    itemId: 'item_char_skill_crown',
+  存续的痕迹: {
+    itemId: '存续的痕迹',
     itemName: '存续的痕迹',
     value: 800 / 3, // 存续的痕迹的价值根据保障凭证购买存续的痕迹与购买特需寻访凭证的性价比相同来计算
   },
 
   // 武器基质
-  item_preset_gem_5: {
-    itemId: 'item_preset_gem_5',
-    itemName: '无瑕基质',
-    value: 80 / 3,
+  无暇基质: {
+    itemId: '无暇基质',
+    itemName: '无暇基质',
+    value: 80 / 4, // 估测每次作战掉落 4 个
   },
 
   // 寻访凭证
-  item_ticketgacha_standard_single: {
-    itemId: 'item_ticketgacha_standard_single',
+  基础寻访凭证: {
+    itemId: '基础寻访凭证',
     itemName: '基础寻访凭证',
     value: (40 / 75) * 500,
   },
-  item_ticketgacha_special_single: {
-    itemId: 'item_ticketgacha_special_single',
+  特许寻访凭证: {
+    itemId: '特许寻访凭证',
     itemName: '特许寻访凭证',
     value: (40 / 75) * 500,
   },
-  item_ticketgacha_special_single_lt_1_0_1: {
-    itemId: 'item_ticketgacha_special_single_lt_1_0_1',
+  行火留烬寻访凭证: {
+    itemId: '行火留烬寻访凭证',
     itemName: '行火留烬寻访凭证',
     value: (40 / 75) * 500,
   },
-  item_ticketgacha_special_ten_lt_1_0_1: {
-    itemId: 'item_ticketgacha_special_ten_lt_1_0_1',
+  行火留烬十连凭证: {
+    itemId: '行火留烬十连凭证',
     itemName: '行火留烬十连凭证',
     value: (40 / 75) * 500 * 10,
   },
 
   // 理智物品
-  item_ap_supply_nlt: {
-    itemId: 'item_ap_supply_nlt',
-    itemName: '理智回复液',
+  应急理智加强剂: {
+    itemId: '应急理智加强剂',
+    itemName: '应急理智加强剂',
     value: 40,
   },
-  item_char_ap_supply_laevat: {
-    itemId: 'item_char_ap_supply_laevat',
+  海盐冰淇淋: {
+    itemId: '海盐冰淇淋',
     itemName: '海盐冰淇淋',
     value: 40,
   },
-  item_char_ap_supply_yvonne: {
-    itemId: 'item_char_ap_supply_yvonne',
+  草莓可丽饼: {
+    itemId: '草莓可丽饼',
     itemName: '草莓可丽饼',
     value: 40,
   },
-  item_char_ap_supply_aglina: {
-    itemId: 'item_char_ap_supply_aglina',
+  栗花蜜: {
+    itemId: '栗花蜜',
     itemName: '栗花蜜',
     value: 40,
   },
