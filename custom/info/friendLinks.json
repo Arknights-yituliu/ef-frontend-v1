@@ -129,9 +129,9 @@
     ]
   },
   {
-    "id": "终末地量化计算器",
+    "id": "量化计算器",
     "localized_name": {
-      "zh_CN": "终末地量化计算器",
+      "zh_CN": "量化计算器",
       "en_US": "EndfieldLab"
     },
     "localized_description": {
