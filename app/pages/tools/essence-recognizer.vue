@@ -1,0 +1,115 @@
+<script setup lang="ts">
+import type { PackContent } from '@/shared/types/pack';
+import type { AllGachaResourceStatus, PieChartData } from '@/shared/types/gacha-calculator';
+import { allGachaResourceStatus } from '@/shared/types/gacha-calculator';
+const { t } = useI18n();
+import { ref, onMounted, watch } from 'vue';
+</script>
+
+<template>
+  <h1 class="page-title">基质识别妙妙小工具</h1>
+
+  <div class="essence-buttons">
+    <v-btn
+      class="essence-btn"
+      color="primary"
+      append-icon="mdi-open-in-new"
+      href="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/endfield-essence-recognizer-v0.2.1-windows.zip"
+      target="_blank"
+      rel="noopener"
+      >下载最新版（国内）</v-btn
+    >
+    <v-btn
+      class="essence-btn"
+      append-icon="mdi-open-in-new"
+      href="https://github.com/Logical-Byte/endfield-essence-recognizer/releases/latest"
+      target="_blank"
+      rel="noopener"
+      >下载最新版（GitHub）</v-btn
+    >
+    <v-btn
+      class="essence-btn"
+      append-icon="mdi-open-in-new"
+      href="https://github.com/Logical-Byte/endfield-essence-recognizer"
+      target="_blank"
+      rel="noopener"
+      >项目地址</v-btn
+    >
+  </div>
+
+  <section class="readme">
+    <h2>使用前阅读</h2>
+    <ul>
+      <li>
+        请使用<strong class="color-accent">管理员权限</strong
+        ><span class="color-secondary">（是 Windows 管理员，不是终末地管理员）</span
+        >运行本工具，否则无法捕获全局热键
+      </li>
+      <li>请在终末地的设置中将分辨率调整为 <strong class="color-accent">1920×1080 窗口</strong></li>
+      <li>
+        请按 <code>N</code> 键打开终末地<strong class="color-accent">贵重品库</strong
+        >并切换到<strong class="color-accent">武器基质</strong>页面
+      </li>
+      <li>在运行过程中，请确保终末地窗口<strong class="color-accent">置于前台</strong></li>
+    </ul>
+
+    <h2>功能介绍</h2>
+    <ul>
+      <li>按 <code>[</code> 键识别当前选中的基质是宝藏还是垃圾</li>
+      <li>按 <code>Alt+Delete</code> 退出程序</li>
+    </ul>
+
+    <p>
+      <strong class="color-accent">宝藏基质和垃圾基质：</strong
+      >如果这个基质和任何一把武器能对上<span class="color-secondary"
+        >（基质的所有属性与至少 1 件已实装武器的属性完全相同）</span
+      >，则是宝藏，否则是垃圾。
+    </p>
+  </section>
+</template>
+
+<style scoped>
+.essence-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.essence-btn {
+  min-width: 140px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block-start: calc(1rem + 1em);
+  margin-block-end: calc(0.5rem + 0.5em);
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+}
+
+.color-accent {
+  color: var(--theme-accent-color);
+}
+
+.color-secondary {
+  color: var(--theme-text-secondary);
+}
+
+code {
+  background-color: var(--theme-bg-secondary);
+  color: var(--theme-accent-color);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+}
+</style>
