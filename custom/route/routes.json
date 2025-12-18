@@ -30,16 +30,22 @@
     "vuetifyIcon": "mdi-toolbox",
     "children": [
       {
+        "i18nKey": "gachaCalculator",
+        "nameKey": "menu.gachaCalculator",
+        "routePath": "/tools/gacha-calculator",
+        "vuetifyIcon": "mdi-wallet"
+      },
+      {
         "i18nKey": "essenceCalculator",
         "nameKey": "menu.essenceCalculator",
         "routePath": "/tools/essence-calculator",
         "vuetifyIcon": "mdi-pokeball"
       },
       {
-        "i18nKey": "gachaCalculator",
-        "nameKey": "menu.gachaCalculator",
-        "routePath": "/tools/gacha-calculator",
-        "vuetifyIcon": "mdi-wallet"
+        "i18nKey": "essenceRecognizer",
+        "nameKey": "menu.essenceRecognizer",
+        "routePath": "/tools/essence-recognizer",
+        "vuetifyIcon": "mdi-chart-line"
       }
     ]
   },

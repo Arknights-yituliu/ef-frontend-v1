@@ -119,7 +119,7 @@
     "links": [
       {
         "primary": true,
-        "regionality": "global",
+        "regionality": "CHINA_MAINLAND",
         "localized_name": {
           "zh_CN": "主页",
           "en_US": "Home"
@@ -129,33 +129,42 @@
     ]
   },
   {
-    "id": "产线计算器",
+    "id": "量化计算器",
     "localized_name": {
-      "zh_CN": "产线计算器",
-      "en_US": "Endfield Calculator"
+      "zh_CN": "量化计算器",
+      "en_US": "EndfieldLab"
     },
     "localized_description": {
-      "zh_CN": "一款功能丰富的终末地工厂生产计算器。根据您的目标确定所需的资源和机器配置。",
-      "en_US": "A feature-rich factory production calculator for ArknightsEndfield. Determine resource and machine requirements for your desired objectives."
+      "zh_CN": "专为《明日方舟：终末地》打造的工业规划利器。输入目标，生成从资源到成品的最高效率全链条生产方案，让基地扩建精准高效。",
+      "en_US": "A powerful AIC planning tool for Arknights: Endfield. Input your goals to generate the most efficient full-chain production plans from resources to finished products, making base expansion precise and efficient."
     },
     "localized_slogan": {
-      "zh_CN": "终末地产线计算器",
-      "en_US": "Endfield Calculator"
+      "zh_CN": "数据统筹源“石”，效率抢占先机",
+      "en_US": "Data-driven resource management, efficiency gains ahead"
     },
     "localized_tags": {
-      "zh_CN": ["产线计算器"],
-      "en_US": ["Endfield Calculator"]
+      "zh_CN": ["集成工业", "产线规划"],
+      "en_US": ["AIC", "Production Line Planning"]
     },
     "icon_url": "https://factory.ef.yituliu.cn/android-chrome-192x192.png",
     "links": [
       {
         "primary": true,
-        "regionality": "global",
+        "regionality": "CHINA_MAINLAND",
         "localized_name": {
-          "zh_CN": "主页",
-          "en_US": "Home"
+          "zh_CN": "国内镜像",
+          "en_US": "CN Mirror"
         },
         "url": "https://factory.ef.yituliu.cn/"
+      },
+      {
+        "primary": false,
+        "regionality": "EXCEPT_CHINA_MAINLANDS",
+        "localized_name": {
+          "zh_CN": "国际镜像",
+          "en_US": "Global Mirror"
+        },
+        "url": "https://endfield-calc.github.io/"
       }
     ]
   }
