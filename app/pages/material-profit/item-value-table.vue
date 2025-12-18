@@ -139,9 +139,7 @@ const sortOrder = ref<'asc' | 'desc'>('asc');
 
 // 筛选和排序后的数据
 const filteredAndSortedItemIdList = computed(() => {
-  let result = Array.from(
-    new Set([...Object.keys(itemTableSimplified), ...Object.keys(itemValueMap)]),
-  );
+  let result = Object.keys(itemValueMap);
 
   // 1. 搜索筛选
   if (searchQuery.value.trim()) {

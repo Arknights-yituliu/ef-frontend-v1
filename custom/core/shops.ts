@@ -20,7 +20,7 @@ export const shops: Shop[] = [
     shopName: '保障配额交易',
     shopItems: [
       {
-        itemId: '行火留烬寻访凭证',
+        itemId: 'item_ticketgacha_special_single_lt_1_0_1',
         itemName: '行火留烬寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -29,7 +29,7 @@ export const shops: Shop[] = [
         currentPrice: 15,
       },
       {
-        itemId: '艾维文娜',
+        itemId: 'chr_0012_avywen',
         itemName: '艾维文娜',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -38,7 +38,7 @@ export const shops: Shop[] = [
         currentPrice: 200,
       },
       {
-        itemId: '存续的痕迹',
+        itemId: 'item_char_skill_crown',
         itemName: '存续的痕迹',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -47,7 +47,7 @@ export const shops: Shop[] = [
         currentPrice: 25,
       },
       {
-        itemId: '特许寻访凭证',
+        itemId: 'item_ticketgacha_special_single',
         itemName: '特许寻访凭证',
         quantityPerGroup: 1,
         stockGroups: Infinity,
@@ -56,7 +56,7 @@ export const shops: Shop[] = [
         currentPrice: 25,
       },
       {
-        itemId: '超距辉映管',
+        itemId: 'item_char_skill_specialize_1',
         itemName: '超距辉映管',
         quantityPerGroup: 1,
         stockGroups: Infinity,
@@ -65,7 +65,7 @@ export const shops: Shop[] = [
         currentPrice: 4,
       },
       {
-        itemId: 'D96钢样品四',
+        itemId: 'item_char_skill_specialize_2',
         itemName: 'D96钢样品四',
         quantityPerGroup: 1,
         stockGroups: Infinity,
@@ -74,7 +74,7 @@ export const shops: Shop[] = [
         currentPrice: 4,
       },
       {
-        itemId: '快子遴捡晶格',
+        itemId: 'item_char_skill_specialize_3',
         itemName: '快子遴捡晶格',
         quantityPerGroup: 1,
         stockGroups: Infinity,
@@ -83,7 +83,7 @@ export const shops: Shop[] = [
         currentPrice: 4,
       },
       {
-        itemId: '象限拟合液',
+        itemId: 'item_char_skill_specialize_4',
         itemName: '象限拟合液',
         quantityPerGroup: 1,
         stockGroups: Infinity,
@@ -92,7 +92,7 @@ export const shops: Shop[] = [
         currentPrice: 4,
       },
       {
-        itemId: '三相纳米片',
+        itemId: 'item_char_skill_specialize_5',
         itemName: '三相纳米片',
         quantityPerGroup: 1,
         stockGroups: Infinity,
@@ -101,7 +101,7 @@ export const shops: Shop[] = [
         currentPrice: 4,
       },
       {
-        itemId: '高级认知载体',
+        itemId: 'item_expcard_stage2_high',
         itemName: '高级认知载体',
         quantityPerGroup: 1,
         stockGroups: Infinity,
@@ -110,7 +110,7 @@ export const shops: Shop[] = [
         currentPrice: 4,
       },
       {
-        itemId: '武器检查套组',
+        itemId: 'item_weapon_expcard_high',
         itemName: '武器检查套组',
         quantityPerGroup: 2,
         stockGroups: Infinity,
@@ -119,7 +119,7 @@ export const shops: Shop[] = [
         currentPrice: 3,
       },
       {
-        itemId: '协议圆盘组',
+        itemId: 'item_char_break_stage_3_4',
         itemName: '协议圆盘组',
         quantityPerGroup: 2,
         stockGroups: Infinity,
@@ -128,7 +128,7 @@ export const shops: Shop[] = [
         currentPrice: 4,
       },
       {
-        itemId: '重型强固模具',
+        itemId: 'item_weapon_break_high',
         itemName: '重型强固模具',
         quantityPerGroup: 2,
         stockGroups: Infinity,
@@ -137,7 +137,7 @@ export const shops: Shop[] = [
         currentPrice: 4,
       },
       {
-        itemId: '协议棱柱组',
+        itemId: 'item_char_skill_level_7_12',
         itemName: '协议棱柱组',
         quantityPerGroup: 2,
         stockGroups: Infinity,
@@ -152,7 +152,7 @@ export const shops: Shop[] = [
     shopName: '集成配额交易',
     shopItems: [
       {
-        itemId: '高级认知载体',
+        itemId: 'item_expcard_stage2_high',
         itemName: '高级认知载体',
         quantityPerGroup: 5,
         stockGroups: 5,
@@ -161,7 +161,7 @@ export const shops: Shop[] = [
         currentPrice: 30,
       },
       {
-        itemId: '武器检查套组',
+        itemId: 'item_weapon_expcard_high',
         itemName: '武器检查套组',
         quantityPerGroup: 6,
         stockGroups: 8,
@@ -170,7 +170,7 @@ export const shops: Shop[] = [
         currentPrice: 15,
       },
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         itemName: '折金票',
         quantityPerGroup: 12000,
         stockGroups: 5,
@@ -179,7 +179,7 @@ export const shops: Shop[] = [
         currentPrice: 15,
       },
       {
-        itemId: '高级作战记录',
+        itemId: 'item_expcard_stage1_high',
         itemName: '高级作战记录',
         quantityPerGroup: 6,
         stockGroups: 5,
@@ -188,7 +188,7 @@ export const shops: Shop[] = [
         currentPrice: 15,
       },
       {
-        itemId: '高级认知载体',
+        itemId: 'item_expcard_stage2_high',
         itemName: '高级认知载体',
         quantityPerGroup: 5,
         stockGroups: Infinity,
@@ -197,7 +197,7 @@ export const shops: Shop[] = [
         currentPrice: 40,
       },
       {
-        itemId: '超距辉映管',
+        itemId: 'item_char_skill_specialize_1',
         itemName: '超距辉映管',
         quantityPerGroup: 5,
         stockGroups: Infinity,
@@ -206,7 +206,7 @@ export const shops: Shop[] = [
         currentPrice: 40,
       },
       {
-        itemId: 'D96钢样品四',
+        itemId: 'item_char_skill_specialize_2',
         itemName: 'D96钢样品四',
         quantityPerGroup: 5,
         stockGroups: Infinity,
@@ -215,7 +215,7 @@ export const shops: Shop[] = [
         currentPrice: 40,
       },
       {
-        itemId: '快子遴捡晶格',
+        itemId: 'item_char_skill_specialize_3',
         itemName: '快子遴捡晶格',
         quantityPerGroup: 5,
         stockGroups: Infinity,
@@ -224,7 +224,7 @@ export const shops: Shop[] = [
         currentPrice: 40,
       },
       {
-        itemId: '象限拟合液',
+        itemId: 'item_char_skill_specialize_4',
         itemName: '象限拟合液',
         quantityPerGroup: 5,
         stockGroups: Infinity,
@@ -233,7 +233,7 @@ export const shops: Shop[] = [
         currentPrice: 40,
       },
       {
-        itemId: '三相纳米片',
+        itemId: 'item_char_skill_specialize_5',
         itemName: '三相纳米片',
         quantityPerGroup: 5,
         stockGroups: Infinity,
@@ -242,7 +242,7 @@ export const shops: Shop[] = [
         currentPrice: 40,
       },
       {
-        itemId: '武器检查套组',
+        itemId: 'item_weapon_expcard_high',
         itemName: '武器检查套组',
         quantityPerGroup: 6,
         stockGroups: Infinity,
@@ -251,7 +251,7 @@ export const shops: Shop[] = [
         currentPrice: 20,
       },
       {
-        itemId: '协议棱柱组',
+        itemId: 'item_char_skill_level_7_12',
         itemName: '协议棱柱组',
         quantityPerGroup: 6,
         stockGroups: Infinity,
@@ -260,7 +260,7 @@ export const shops: Shop[] = [
         currentPrice: 20,
       },
       {
-        itemId: '协议圆盘组',
+        itemId: 'item_char_break_stage_3_4',
         itemName: '协议圆盘组',
         quantityPerGroup: 6,
         stockGroups: Infinity,
@@ -269,7 +269,7 @@ export const shops: Shop[] = [
         currentPrice: 24,
       },
       {
-        itemId: '重型强固模具',
+        itemId: 'item_weapon_break_high',
         itemName: '重型强固模具',
         quantityPerGroup: 6,
         stockGroups: Infinity,
@@ -278,7 +278,7 @@ export const shops: Shop[] = [
         currentPrice: 24,
       },
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         itemName: '折金票',
         quantityPerGroup: 12000,
         stockGroups: Infinity,
@@ -287,7 +287,7 @@ export const shops: Shop[] = [
         currentPrice: 20,
       },
       {
-        itemId: '高级作战记录',
+        itemId: 'item_expcard_stage1_high',
         itemName: '高级作战记录',
         quantityPerGroup: 6,
         stockGroups: Infinity,
@@ -296,7 +296,7 @@ export const shops: Shop[] = [
         currentPrice: 20,
       },
       {
-        itemId: '协议棱柱',
+        itemId: 'item_char_skill_level_1_6',
         itemName: '协议棱柱',
         quantityPerGroup: 30,
         stockGroups: Infinity,
@@ -305,7 +305,7 @@ export const shops: Shop[] = [
         currentPrice: 20,
       },
       {
-        itemId: '协议圆盘',
+        itemId: 'item_char_break_stage_1_2',
         itemName: '协议圆盘',
         quantityPerGroup: 8,
         stockGroups: Infinity,
@@ -314,7 +314,7 @@ export const shops: Shop[] = [
         currentPrice: 16,
       },
       {
-        itemId: '强固模具',
+        itemId: 'item_weapon_break_low',
         itemName: '强固模具',
         quantityPerGroup: 8,
         stockGroups: Infinity,
@@ -329,7 +329,7 @@ export const shops: Shop[] = [
     shopName: '信用交易所',
     shopItems: [
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         quantityPerGroup: 2000,
         stockGroups: 1,
         originalPrice: 140,
@@ -337,7 +337,7 @@ export const shops: Shop[] = [
         currentPrice: 140,
       },
       {
-        itemId: '初级作战记录',
+        itemId: 'item_expcard_stage1_low',
         quantityPerGroup: 30,
         stockGroups: 1,
         originalPrice: 90,
@@ -345,7 +345,7 @@ export const shops: Shop[] = [
         currentPrice: 90,
       },
       {
-        itemId: '中级作战记录',
+        itemId: 'item_expcard_stage1_mid',
         quantityPerGroup: 10,
         stockGroups: 1,
         originalPrice: 140,
@@ -353,7 +353,7 @@ export const shops: Shop[] = [
         currentPrice: 140,
       },
       {
-        itemId: '协议棱柱',
+        itemId: 'item_char_skill_level_1_6',
         quantityPerGroup: 4,
         stockGroups: 1,
         originalPrice: 120,
@@ -361,7 +361,7 @@ export const shops: Shop[] = [
         currentPrice: 120,
       },
       {
-        itemId: '强固模具',
+        itemId: 'item_weapon_break_low',
         quantityPerGroup: 2,
         stockGroups: 1,
         originalPrice: 140,
@@ -369,7 +369,7 @@ export const shops: Shop[] = [
         currentPrice: 140,
       },
       {
-        itemId: '嵌晶玉',
+        itemId: 'item_diamond',
         quantityPerGroup: 25,
         stockGroups: 1,
         originalPrice: 400,
@@ -377,7 +377,7 @@ export const shops: Shop[] = [
         currentPrice: 400,
       },
       {
-        itemId: '武器检查单元',
+        itemId: 'item_weapon_expcard_low',
         quantityPerGroup: 30,
         stockGroups: 1,
         originalPrice: 90,
@@ -385,7 +385,7 @@ export const shops: Shop[] = [
         currentPrice: 90,
       },
       {
-        itemId: '武器检查装置',
+        itemId: 'item_weapon_expcard_mid',
         quantityPerGroup: 10,
         stockGroups: 1,
         originalPrice: 140,
@@ -393,7 +393,7 @@ export const shops: Shop[] = [
         currentPrice: 140,
       },
       {
-        itemId: '武库配额',
+        itemId: 'item_gachabyproducts_weapongold',
         quantityPerGroup: 20,
         stockGroups: 1,
         originalPrice: 840,
@@ -401,7 +401,7 @@ export const shops: Shop[] = [
         currentPrice: 840,
       },
       {
-        itemId: '协议圆盘',
+        itemId: 'item_char_break_stage_1_2',
         quantityPerGroup: 2,
         stockGroups: 1,
         originalPrice: 140,
@@ -416,7 +416,7 @@ export const shops: Shop[] = [
     shopItems: [
       // 日用消耗
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -425,7 +425,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -434,7 +434,7 @@ export const shops: Shop[] = [
         currentPrice: 2000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -443,7 +443,7 @@ export const shops: Shop[] = [
         currentPrice: 4000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -452,7 +452,7 @@ export const shops: Shop[] = [
         currentPrice: 6000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -461,7 +461,7 @@ export const shops: Shop[] = [
         currentPrice: 8000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -470,7 +470,7 @@ export const shops: Shop[] = [
         currentPrice: 12000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -479,7 +479,7 @@ export const shops: Shop[] = [
         currentPrice: 20000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -488,7 +488,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -497,7 +497,7 @@ export const shops: Shop[] = [
         currentPrice: 50000,
       },
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         itemName: '折金票',
         quantityPerGroup: 2000,
         stockGroups: 5,
@@ -506,7 +506,7 @@ export const shops: Shop[] = [
         currentPrice: 100,
       },
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         itemName: '折金票',
         quantityPerGroup: 2000,
         stockGroups: 10,
@@ -515,7 +515,7 @@ export const shops: Shop[] = [
         currentPrice: 360,
       },
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         itemName: '折金票',
         quantityPerGroup: 2000,
         stockGroups: 5,
@@ -524,7 +524,7 @@ export const shops: Shop[] = [
         currentPrice: 600,
       },
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         itemName: '折金票',
         quantityPerGroup: 2000,
         stockGroups: 38,
@@ -533,7 +533,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '初级认知载体',
+        itemId: 'item_expcard_stage2_low',
         itemName: '初级认知载体',
         quantityPerGroup: 5,
         stockGroups: 4,
@@ -542,7 +542,7 @@ export const shops: Shop[] = [
         currentPrice: 1250,
       },
       {
-        itemId: '协议圆盘',
+        itemId: 'item_char_break_stage_1_2',
         itemName: '协议圆盘',
         quantityPerGroup: 5,
         stockGroups: 4,
@@ -551,7 +551,7 @@ export const shops: Shop[] = [
         currentPrice: 250,
       },
       {
-        itemId: '协议圆盘',
+        itemId: 'item_char_break_stage_1_2',
         itemName: '协议圆盘',
         quantityPerGroup: 5,
         stockGroups: 4,
@@ -560,7 +560,7 @@ export const shops: Shop[] = [
         currentPrice: 900,
       },
       {
-        itemId: '协议圆盘',
+        itemId: 'item_char_break_stage_1_2',
         itemName: '协议圆盘',
         quantityPerGroup: 5,
         stockGroups: 2,
@@ -569,7 +569,7 @@ export const shops: Shop[] = [
         currentPrice: 1500,
       },
       {
-        itemId: '协议圆盘',
+        itemId: 'item_char_break_stage_1_2',
         itemName: '协议圆盘',
         quantityPerGroup: 5,
         stockGroups: 6,
@@ -578,7 +578,7 @@ export const shops: Shop[] = [
         currentPrice: 2500,
       },
       {
-        itemId: '协议圆盘组',
+        itemId: 'item_char_break_stage_3_4',
         itemName: '协议圆盘组',
         quantityPerGroup: 2,
         stockGroups: 2,
@@ -587,7 +587,7 @@ export const shops: Shop[] = [
         currentPrice: 2500,
       },
       {
-        itemId: '强固模具',
+        itemId: 'item_weapon_break_low',
         itemName: '强固模具',
         quantityPerGroup: 5,
         stockGroups: 4,
@@ -596,7 +596,7 @@ export const shops: Shop[] = [
         currentPrice: 250,
       },
       {
-        itemId: '强固模具',
+        itemId: 'item_weapon_break_low',
         itemName: '强固模具',
         quantityPerGroup: 5,
         stockGroups: 4,
@@ -605,7 +605,7 @@ export const shops: Shop[] = [
         currentPrice: 900,
       },
       {
-        itemId: '强固模具',
+        itemId: 'item_weapon_break_low',
         itemName: '强固模具',
         quantityPerGroup: 5,
         stockGroups: 2,
@@ -614,7 +614,7 @@ export const shops: Shop[] = [
         currentPrice: 1500,
       },
       {
-        itemId: '强固模具',
+        itemId: 'item_weapon_break_low',
         itemName: '强固模具',
         quantityPerGroup: 5,
         stockGroups: 6,
@@ -623,7 +623,7 @@ export const shops: Shop[] = [
         currentPrice: 2500,
       },
       {
-        itemId: '重型强固模具',
+        itemId: 'item_weapon_break_high',
         itemName: '重型强固模具',
         quantityPerGroup: 2,
         stockGroups: 2,
@@ -632,7 +632,7 @@ export const shops: Shop[] = [
         currentPrice: 2500,
       },
       {
-        itemId: '协议棱柱',
+        itemId: 'item_char_skill_level_1_6',
         itemName: '协议棱柱',
         quantityPerGroup: 5,
         stockGroups: 3,
@@ -641,7 +641,7 @@ export const shops: Shop[] = [
         currentPrice: 100,
       },
       {
-        itemId: '协议棱柱',
+        itemId: 'item_char_skill_level_1_6',
         itemName: '协议棱柱',
         quantityPerGroup: 5,
         stockGroups: 8,
@@ -650,7 +650,7 @@ export const shops: Shop[] = [
         currentPrice: 360,
       },
       {
-        itemId: '协议棱柱',
+        itemId: 'item_char_skill_level_1_6',
         itemName: '协议棱柱',
         quantityPerGroup: 5,
         stockGroups: 5,
@@ -659,7 +659,7 @@ export const shops: Shop[] = [
         currentPrice: 600,
       },
       {
-        itemId: '协议棱柱',
+        itemId: 'item_char_skill_level_1_6',
         itemName: '协议棱柱',
         quantityPerGroup: 5,
         stockGroups: 28,
@@ -668,7 +668,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '协议棱柱组',
+        itemId: 'item_char_skill_level_7_12',
         itemName: '协议棱柱组',
         quantityPerGroup: 2,
         stockGroups: 5,
@@ -677,7 +677,7 @@ export const shops: Shop[] = [
         currentPrice: 2000,
       },
       {
-        itemId: '武器检查装置',
+        itemId: 'item_weapon_expcard_mid',
         itemName: '武器检查装置',
         quantityPerGroup: 10,
         stockGroups: 6,
@@ -686,7 +686,7 @@ export const shops: Shop[] = [
         currentPrice: 100,
       },
       {
-        itemId: '武器检查装置',
+        itemId: 'item_weapon_expcard_mid',
         itemName: '武器检查装置',
         quantityPerGroup: 10,
         stockGroups: 7,
@@ -695,7 +695,7 @@ export const shops: Shop[] = [
         currentPrice: 360,
       },
       {
-        itemId: '武器检查装置',
+        itemId: 'item_weapon_expcard_mid',
         itemName: '武器检查装置',
         quantityPerGroup: 10,
         stockGroups: 4,
@@ -704,7 +704,7 @@ export const shops: Shop[] = [
         currentPrice: 600,
       },
       {
-        itemId: '武器检查装置',
+        itemId: 'item_weapon_expcard_mid',
         itemName: '武器检查装置',
         quantityPerGroup: 10,
         stockGroups: 19,
@@ -713,7 +713,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '中级作战记录',
+        itemId: 'item_expcard_stage1_mid',
         itemName: '中级作战记录',
         quantityPerGroup: 10,
         stockGroups: 6,
@@ -722,7 +722,7 @@ export const shops: Shop[] = [
         currentPrice: 100,
       },
       {
-        itemId: '中级作战记录',
+        itemId: 'item_expcard_stage1_mid',
         itemName: '中级作战记录',
         quantityPerGroup: 10,
         stockGroups: 7,
@@ -731,7 +731,7 @@ export const shops: Shop[] = [
         currentPrice: 360,
       },
       {
-        itemId: '中级作战记录',
+        itemId: 'item_expcard_stage1_mid',
         itemName: '中级作战记录',
         quantityPerGroup: 10,
         stockGroups: 4,
@@ -740,7 +740,7 @@ export const shops: Shop[] = [
         currentPrice: 600,
       },
       {
-        itemId: '中级作战记录',
+        itemId: 'item_expcard_stage1_mid',
         itemName: '中级作战记录',
         quantityPerGroup: 10,
         stockGroups: 15,
@@ -749,7 +749,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '谷地刻写券',
+        itemId: 'item_gem_stable_energy_point_tundra',
         itemName: '谷地刻写券',
         quantityPerGroup: 1,
         stockGroups: 12,
@@ -758,7 +758,7 @@ export const shops: Shop[] = [
         currentPrice: 400000,
       },
       {
-        itemId: '谷地刻写券',
+        itemId: 'item_gem_stable_energy_point_tundra',
         itemName: '谷地刻写券',
         quantityPerGroup: 1,
         stockGroups: 24,
@@ -767,7 +767,7 @@ export const shops: Shop[] = [
         currentPrice: 800000,
       },
       {
-        itemId: '附术铁瓶',
+        itemId: 'item_bottled_insec2_2',
         itemName: '附术铁瓶',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -776,7 +776,7 @@ export const shops: Shop[] = [
         currentPrice: 100000,
       },
       {
-        itemId: '雅各布的遗产',
+        itemId: 'item_agrange_1_erhound_1_sp_1_1',
         itemName: '雅各布的遗产',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -785,7 +785,7 @@ export const shops: Shop[] = [
         currentPrice: 140000,
       },
       {
-        itemId: '手撕虫肉',
+        itemId: 'item_slimeml_1_erhound_1_agfly_1_1',
         itemName: '手撕虫肉',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -794,7 +794,7 @@ export const shops: Shop[] = [
         currentPrice: 140000,
       },
       {
-        itemId: '附术铁瓶',
+        itemId: 'item_bottled_insec2_2',
         itemName: '附术铁瓶',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -803,7 +803,7 @@ export const shops: Shop[] = [
         currentPrice: 200000,
       },
       {
-        itemId: '雅各布的遗产',
+        itemId: 'item_agrange_1_erhound_1_sp_1_1',
         itemName: '雅各布的遗产',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -812,7 +812,7 @@ export const shops: Shop[] = [
         currentPrice: 200000,
       },
       {
-        itemId: '手撕虫肉',
+        itemId: 'item_slimeml_1_erhound_1_agfly_1_1',
         itemName: '手撕虫肉',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -821,7 +821,7 @@ export const shops: Shop[] = [
         currentPrice: 200000,
       },
       {
-        itemId: '雾火之花',
+        itemId: 'item_erhound_1_agmelee_1_moss_1_1',
         itemName: '雾火之花',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -830,7 +830,7 @@ export const shops: Shop[] = [
         currentPrice: 24000,
       },
       {
-        itemId: '软骨饼干',
+        itemId: 'item_lbmob_1_lbshamman_1_sp_1_1',
         itemName: '软骨饼干',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -839,7 +839,7 @@ export const shops: Shop[] = [
         currentPrice: 24000,
       },
       {
-        itemId: '星融果冻',
+        itemId: 'item_agfly_1_agmelee_1_moss_2_1',
         itemName: '星融果冻',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -848,7 +848,7 @@ export const shops: Shop[] = [
         currentPrice: 60000,
       },
       {
-        itemId: '雾火之花',
+        itemId: 'item_erhound_1_agmelee_1_moss_1_1',
         itemName: '雾火之花',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -857,7 +857,7 @@ export const shops: Shop[] = [
         currentPrice: 120000,
       },
       {
-        itemId: '软骨饼干',
+        itemId: 'item_lbmob_1_lbshamman_1_sp_1_1',
         itemName: '软骨饼干',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -866,7 +866,7 @@ export const shops: Shop[] = [
         currentPrice: 120000,
       },
       {
-        itemId: '星融果冻',
+        itemId: 'item_agfly_1_agmelee_1_moss_2_1',
         itemName: '星融果冻',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -876,7 +876,7 @@ export const shops: Shop[] = [
       },
       // 工业货品
       {
-        itemId: '坚城铸造者',
+        itemId: 'wpn_sword_0007',
         itemName: '坚城铸造者',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -885,7 +885,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '探骊',
+        itemId: 'wpn_claym_0011',
         itemName: '探骊',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -894,7 +894,7 @@ export const shops: Shop[] = [
         currentPrice: 2000,
       },
       {
-        itemId: '作品：众生',
+        itemId: 'wpn_pistol_0006',
         itemName: '作品：众生',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -903,7 +903,7 @@ export const shops: Shop[] = [
         currentPrice: 4000,
       },
       {
-        itemId: '布道自由',
+        itemId: 'wpn_funnel_0012',
         itemName: '布道自由',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -912,7 +912,7 @@ export const shops: Shop[] = [
         currentPrice: 6000,
       },
       {
-        itemId: '终点之声',
+        itemId: 'wpn_claym_0012',
         itemName: '终点之声',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -921,7 +921,7 @@ export const shops: Shop[] = [
         currentPrice: 8000,
       },
       {
-        itemId: '向心之引',
+        itemId: 'wpn_lance_0006',
         itemName: '向心之引',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -930,7 +930,7 @@ export const shops: Shop[] = [
         currentPrice: 12000,
       },
       {
-        itemId: '莫奈何',
+        itemId: 'wpn_funnel_0007',
         itemName: '莫奈何',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -939,7 +939,7 @@ export const shops: Shop[] = [
         currentPrice: 20000,
       },
       {
-        itemId: '十二问',
+        itemId: 'wpn_sword_0018',
         itemName: '十二问',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -948,7 +948,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '仰止',
+        itemId: 'wpn_sword_0015',
         itemName: '仰止',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -957,7 +957,7 @@ export const shops: Shop[] = [
         currentPrice: 50000,
       },
       {
-        itemId: '新锐谷地罗盘',
+        itemId: 'item_tundra_detector_coin_3',
         itemName: '新锐谷地罗盘',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -966,7 +966,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '新锐谷地探物器',
+        itemId: 'item_tundra_detector_trchest_3',
         itemName: '新锐谷地探物器',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -975,7 +975,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '新锐谷地罗盘',
+        itemId: 'item_tundra_detector_coin_3',
         itemName: '新锐谷地罗盘',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -984,7 +984,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '新锐谷地探物器',
+        itemId: 'item_tundra_detector_trchest_3',
         itemName: '新锐谷地探物器',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -993,7 +993,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '新锐谷地罗盘',
+        itemId: 'item_tundra_detector_coin_3',
         itemName: '新锐谷地罗盘',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1002,7 +1002,7 @@ export const shops: Shop[] = [
         currentPrice: 20000,
       },
       {
-        itemId: '新锐谷地探物器',
+        itemId: 'item_tundra_detector_trchest_3',
         itemName: '新锐谷地探物器',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1011,7 +1011,7 @@ export const shops: Shop[] = [
         currentPrice: 20000,
       },
       {
-        itemId: '新锐谷地罗盘',
+        itemId: 'item_tundra_detector_coin_3',
         itemName: '新锐谷地罗盘',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -1020,7 +1020,7 @@ export const shops: Shop[] = [
         currentPrice: 50000,
       },
       {
-        itemId: '新锐谷地探物器',
+        itemId: 'item_tundra_detector_trchest_3',
         itemName: '新锐谷地探物器',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -1029,7 +1029,7 @@ export const shops: Shop[] = [
         currentPrice: 50000,
       },
       {
-        itemId: '新锐谷地罗盘',
+        itemId: 'item_tundra_detector_coin_3',
         itemName: '新锐谷地罗盘',
         quantityPerGroup: 1,
         stockGroups: 15,
@@ -1038,7 +1038,7 @@ export const shops: Shop[] = [
         currentPrice: 100000,
       },
       {
-        itemId: '新锐谷地探物器',
+        itemId: 'item_tundra_detector_trchest_3',
         itemName: '新锐谷地探物器',
         quantityPerGroup: 1,
         stockGroups: 15,
@@ -1048,7 +1048,7 @@ export const shops: Shop[] = [
       },
       // 人文物产
       {
-        itemId: '弧线2000模型',
+        itemId: 'item_spaceship_exhibits_tundra_2',
         itemName: '弧线2000模型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1057,7 +1057,7 @@ export const shops: Shop[] = [
         currentPrice: 16000000,
       },
       {
-        itemId: '冠军钻探器',
+        itemId: 'item_spaceship_exhibits_tundra_3',
         itemName: '冠军钻探器',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1066,7 +1066,7 @@ export const shops: Shop[] = [
         currentPrice: 16000000,
       },
       {
-        itemId: '生机盆景',
+        itemId: 'item_spaceship_exhibits_tundra_4',
         itemName: '生机盆景',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1075,7 +1075,7 @@ export const shops: Shop[] = [
         currentPrice: 16000000,
       },
       {
-        itemId: '醚质相机',
+        itemId: 'item_gift_tundra_1',
         itemName: '醚质相机',
         quantityPerGroup: 1,
         stockGroups: 2,
@@ -1084,7 +1084,7 @@ export const shops: Shop[] = [
         currentPrice: 300,
       },
       {
-        itemId: '星门锁',
+        itemId: 'item_gift_tundra_2',
         itemName: '星门锁',
         quantityPerGroup: 1,
         stockGroups: 2,
@@ -1093,7 +1093,7 @@ export const shops: Shop[] = [
         currentPrice: 300,
       },
       {
-        itemId: '冲浪大赛门票',
+        itemId: 'item_gift_tundra_3',
         itemName: '冲浪大赛门票',
         quantityPerGroup: 1,
         stockGroups: 2,
@@ -1102,7 +1102,7 @@ export const shops: Shop[] = [
         currentPrice: 300,
       },
       {
-        itemId: '耶尔什微风',
+        itemId: 'item_gift_tundra_4',
         itemName: '耶尔什微风',
         quantityPerGroup: 1,
         stockGroups: 2,
@@ -1111,7 +1111,7 @@ export const shops: Shop[] = [
         currentPrice: 300,
       },
       {
-        itemId: '浪潮海石',
+        itemId: 'item_gift_tundra_5',
         itemName: '浪潮海石',
         quantityPerGroup: 1,
         stockGroups: 2,
@@ -1120,8 +1120,8 @@ export const shops: Shop[] = [
         currentPrice: 300,
       },
       {
-        itemId: '赛梦珂披巾',
-        itemName: '赛梦珂披巾',
+        itemId: 'item_gift_tundra_6',
+        itemName: '塞梦珂披巾',
         quantityPerGroup: 1,
         stockGroups: 2,
         originalPrice: 30000,
@@ -1129,7 +1129,7 @@ export const shops: Shop[] = [
         currentPrice: 300,
       },
       {
-        itemId: '《前沿瞭望》',
+        itemId: 'item_gift_tundra_7',
         itemName: '《前沿瞭望》',
         quantityPerGroup: 1,
         stockGroups: 2,
@@ -1138,7 +1138,7 @@ export const shops: Shop[] = [
         currentPrice: 300,
       },
       {
-        itemId: '醚质相机',
+        itemId: 'item_gift_tundra_1',
         itemName: '醚质相机',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1147,7 +1147,7 @@ export const shops: Shop[] = [
         currentPrice: 6000,
       },
       {
-        itemId: '星门锁',
+        itemId: 'item_gift_tundra_2',
         itemName: '星门锁',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1156,7 +1156,7 @@ export const shops: Shop[] = [
         currentPrice: 6000,
       },
       {
-        itemId: '冲浪大赛门票',
+        itemId: 'item_gift_tundra_3',
         itemName: '冲浪大赛门票',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1165,7 +1165,7 @@ export const shops: Shop[] = [
         currentPrice: 6000,
       },
       {
-        itemId: '耶尔什微风',
+        itemId: 'item_gift_tundra_4',
         itemName: '耶尔什微风',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1174,7 +1174,7 @@ export const shops: Shop[] = [
         currentPrice: 6000,
       },
       {
-        itemId: '浪潮海石',
+        itemId: 'item_gift_tundra_5',
         itemName: '浪潮海石',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1192,7 +1192,7 @@ export const shops: Shop[] = [
         currentPrice: 6000,
       },
       {
-        itemId: '《前沿瞭望》',
+        itemId: 'item_gift_tundra_7',
         itemName: '《前沿瞭望》',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1201,7 +1201,7 @@ export const shops: Shop[] = [
         currentPrice: 6000,
       },
       {
-        itemId: '醚质相机',
+        itemId: 'item_gift_tundra_1',
         itemName: '醚质相机',
         quantityPerGroup: 1,
         stockGroups: 60,
@@ -1210,7 +1210,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '星门锁',
+        itemId: 'item_gift_tundra_2',
         itemName: '星门锁',
         quantityPerGroup: 1,
         stockGroups: 60,
@@ -1219,7 +1219,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '冲浪大赛门票',
+        itemId: 'item_gift_tundra_3',
         itemName: '冲浪大赛门票',
         quantityPerGroup: 1,
         stockGroups: 60,
@@ -1228,7 +1228,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '耶尔什微风',
+        itemId: 'item_gift_tundra_4',
         itemName: '耶尔什微风',
         quantityPerGroup: 1,
         stockGroups: 60,
@@ -1237,7 +1237,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '浪潮海石',
+        itemId: 'item_gift_tundra_5',
         itemName: '浪潮海石',
         quantityPerGroup: 1,
         stockGroups: 60,
@@ -1255,7 +1255,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '《前沿瞭望》',
+        itemId: 'item_gift_tundra_7',
         itemName: '《前沿瞭望》',
         quantityPerGroup: 1,
         stockGroups: 60,
@@ -1264,7 +1264,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '兰姆先生',
+        itemId: 'item_spaceship_exhibits_tundra_1',
         itemName: '兰姆先生',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1280,7 +1280,7 @@ export const shops: Shop[] = [
     shopItems: [
       // 日用消耗
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1289,7 +1289,7 @@ export const shops: Shop[] = [
         currentPrice: 4000,
       },
       {
-        itemId: '基础寻访凭证',
+        itemId: 'item_ticketgacha_standard_single',
         itemName: '基础寻访凭证',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1298,7 +1298,7 @@ export const shops: Shop[] = [
         currentPrice: 7500,
       },
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         itemName: '折金票',
         quantityPerGroup: 10000,
         stockGroups: 10,
@@ -1307,7 +1307,7 @@ export const shops: Shop[] = [
         currentPrice: 500,
       },
       {
-        itemId: '折金票',
+        itemId: 'item_gold',
         itemName: '折金票',
         quantityPerGroup: 10000,
         stockGroups: 10,
@@ -1316,7 +1316,7 @@ export const shops: Shop[] = [
         currentPrice: 1000,
       },
       {
-        itemId: '武陵刻写券',
+        itemId: 'item_gem_stable_energy_point_wuling',
         itemName: '武陵刻写券',
         quantityPerGroup: 1,
         stockGroups: 15,
@@ -1325,7 +1325,7 @@ export const shops: Shop[] = [
         currentPrice: 128000,
       },
       {
-        itemId: '武陵刻写券',
+        itemId: 'item_gem_stable_energy_point_wuling',
         itemName: '武陵刻写券',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1334,7 +1334,7 @@ export const shops: Shop[] = [
         currentPrice: 240000,
       },
       {
-        itemId: '正本补元汤剂',
+        itemId: 'item_corp3_grass1_1',
         itemName: '正本补元汤剂',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -1343,7 +1343,7 @@ export const shops: Shop[] = [
         currentPrice: 15000,
       },
       {
-        itemId: '锦素炒饭',
+        itemId: 'item_corp4_grass2_1',
         itemName: '锦素炒饭',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -1352,7 +1352,7 @@ export const shops: Shop[] = [
         currentPrice: 15000,
       },
       {
-        itemId: '正本补元汤剂',
+        itemId: 'item_corp3_grass1_1',
         itemName: '正本补元汤剂',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -1361,7 +1361,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '锦素炒饭',
+        itemId: 'item_corp4_grass2_1',
         itemName: '锦素炒饭',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -1371,7 +1371,7 @@ export const shops: Shop[] = [
       },
       // 工业货品
       {
-        itemId: '武陵精锻助剂',
+        itemId: 'item_equip_enhance_wuling',
         itemName: '武陵精锻助剂',
         quantityPerGroup: 1,
         stockGroups: 40,
@@ -1380,7 +1380,7 @@ export const shops: Shop[] = [
         currentPrice: 64000,
       },
       {
-        itemId: '武陵精锻助剂',
+        itemId: 'item_equip_enhance_wuling',
         itemName: '武陵精锻助剂',
         quantityPerGroup: 1,
         stockGroups: 20,
@@ -1389,7 +1389,7 @@ export const shops: Shop[] = [
         currentPrice: 120000,
       },
       {
-        itemId: '新锐武陵罗盘',
+        itemId: 'item_wuling_detector_coin_3',
         itemName: '新锐武陵罗盘',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1398,7 +1398,7 @@ export const shops: Shop[] = [
         currentPrice: 16000,
       },
       {
-        itemId: '新锐武陵探物器',
+        itemId: 'item_wuling_detector_trchest_3',
         itemName: '新锐武陵探物器',
         quantityPerGroup: 1,
         stockGroups: 10,
@@ -1407,7 +1407,7 @@ export const shops: Shop[] = [
         currentPrice: 16000,
       },
       {
-        itemId: '新锐武陵罗盘',
+        itemId: 'item_wuling_detector_coin_3',
         itemName: '新锐武陵罗盘',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -1416,7 +1416,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '新锐武陵探物器',
+        itemId: 'item_wuling_detector_trchest_3',
         itemName: '新锐武陵探物器',
         quantityPerGroup: 1,
         stockGroups: 5,
@@ -1425,7 +1425,7 @@ export const shops: Shop[] = [
         currentPrice: 30000,
       },
       {
-        itemId: '碾骨小雕像·壹型',
+        itemId: 'item_equip_t4_suit_attri01_edc_06',
         itemName: '碾骨小雕像·壹型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1434,7 +1434,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '动火用电力匣',
+        itemId: 'item_equip_t4_suit_fire_natr01_edc_03',
         itemName: '动火用电力匣',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1443,7 +1443,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '纾难识别牌',
+        itemId: 'item_equip_t4_parts_wuling01_edc_01',
         itemName: '纾难识别牌',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1452,7 +1452,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '纾难识别牌·壹型',
+        itemId: 'item_equip_t4_parts_wuling01_edc_02',
         itemName: '纾难识别牌·壹型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1461,7 +1461,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '纾难印章',
+        itemId: 'item_equip_t4_parts_wuling01_edc_03',
         itemName: '纾难印章',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1470,7 +1470,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '纾难印章·壹型',
+        itemId: 'item_equip_t4_parts_wuling01_edc_04',
         itemName: '纾难印章·壹型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1479,7 +1479,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '生物辅助接驳器·壹型',
+        itemId: 'item_equip_t4_suit_heal01_edc_05',
         itemName: '生物辅助接驳器·壹型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1488,7 +1488,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: 'M.I.警用刺刃·壹型',
+        itemId: 'item_equip_t4_suit_criti01_edc_05',
         itemName: 'M.I.警用刺刃·壹型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1497,7 +1497,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '50式应龙短刃',
+        itemId: 'item_equip_t4_suit_atk02_edc_04',
         itemName: '50式应龙短刃',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1506,7 +1506,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: '50式应龙短刃·壹型',
+        itemId: 'item_equip_t4_suit_atk02_edc_05',
         itemName: '50式应龙短刃·壹型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1515,7 +1515,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: 'M.I.警用罩衣·贰型',
+        itemId: 'item_equip_t4_suit_criti01_body_04',
         itemName: 'M.I.警用罩衣·贰型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1524,7 +1524,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: 'M.I.警用臂环',
+        itemId: 'item_equip_t4_suit_criti01_edc_01',
         itemName: 'M.I.警用臂环',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1533,7 +1533,7 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: 'M.I.警用瞄具',
+        itemId: 'item_equip_t4_suit_criti01_edc_02',
         itemName: 'M.I.警用瞄具',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1542,8 +1542,8 @@ export const shops: Shop[] = [
         currentPrice: 5000,
       },
       {
-        itemId: 'M.1.警用工具组',
-        itemName: 'M.1.警用工具组',
+        itemId: 'item_equip_t4_suit_criti01_edc_03',
+        itemName: 'M.I.警用工具组',
         quantityPerGroup: 1,
         stockGroups: 1,
         originalPrice: 5000,
@@ -1552,7 +1552,7 @@ export const shops: Shop[] = [
       },
       // 人文物产
       {
-        itemId: '天师桩模型',
+        itemId: 'item_spaceship_exhibits_jinlong_2',
         itemName: '天师桩模型',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1561,7 +1561,7 @@ export const shops: Shop[] = [
         currentPrice: 4000000,
       },
       {
-        itemId: '岳研茶盒',
+        itemId: 'item_gift_jinlong_1',
         itemName: '岳研茶盒',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1570,7 +1570,7 @@ export const shops: Shop[] = [
         currentPrice: 4800,
       },
       {
-        itemId: '应龙哑铃',
+        itemId: 'item_gift_jinlong_2',
         itemName: '应龙哑铃',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1579,7 +1579,7 @@ export const shops: Shop[] = [
         currentPrice: 4800,
       },
       {
-        itemId: '岳研茶盒',
+        itemId: 'item_gift_jinlong_1',
         itemName: '岳研茶盒',
         quantityPerGroup: 1,
         stockGroups: 1,
@@ -1588,7 +1588,7 @@ export const shops: Shop[] = [
         currentPrice: 9000,
       },
       {
-        itemId: '应龙哑铃',
+        itemId: 'item_gift_jinlong_2',
         itemName: '应龙哑铃',
         quantityPerGroup: 1,
         stockGroups: 1,

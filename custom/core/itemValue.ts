@@ -144,8 +144,8 @@ export const itemValueMap: ItemValueMap = {
   },
 
   // 武器基质
-  item_preset_gem_5: {
-    itemId: 'item_preset_gem_5',
+  item_gem_rarity_5: {
+    itemId: 'item_gem_rarity_5',
     itemName: '无瑕基质',
     value: 80 / 3,
   },
@@ -173,9 +173,9 @@ export const itemValueMap: ItemValueMap = {
   },
 
   // 理智物品
-  item_ap_supply_nlt: {
-    itemId: 'item_ap_supply_nlt',
-    itemName: '理智回复液',
+  item_ap_supply_lt_n: {
+    itemId: 'item_ap_supply_lt_n',
+    itemName: '应急理智加强剂',
     value: 40,
   },
   item_char_ap_supply_laevat: {
@@ -195,23 +195,23 @@ export const itemValueMap: ItemValueMap = {
   },
 
   // 物资箱
-  高阶培养自选箱I: {
-    itemId: '高阶培养自选箱I',
+  item_case_bp_selfselect_skillsp_1: {
+    itemId: '高阶培养自选箱Ⅰ',
     itemName: '高阶培养自选箱I',
     value: (80 / 6.5) * 2,
   },
-  多用经验自选箱: {
-    itemId: '多用经验自选箱',
+  item_case_bp_selfselect_exp: {
+    itemId: 'item_case_bp_selfselect_exp',
     itemName: '多用经验自选箱',
     value: 400 / 17,
   },
-  多用进阶自选箱: {
-    itemId: '多用进阶自选箱',
+  item_case_bp_selfselect_break: {
+    itemId: 'item_case_bp_selfselect_break',
     itemName: '多用进阶自选箱',
     value: 400 / 17,
   },
-  技能提升自选箱: {
-    itemId: '技能提升自选箱',
+  item_case_bp_selfselect_skill: {
+    itemId: 'item_case_bp_selfselect_skill',
     itemName: '技能提升自选箱',
     value: 400 / 17,
   },
