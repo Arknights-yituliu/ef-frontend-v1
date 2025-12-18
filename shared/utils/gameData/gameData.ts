@@ -1,11 +1,14 @@
 import type { TranslationKey } from '@/shared/types/common';
 import type { GemTable } from '@/shared/types/endfielddata/TableCfg/GemTable';
+import type { GemTagIdTable } from '@/shared/types/endfielddata/TableCfg/GemTagIdTable';
 import type { I18nTextTable } from '@/shared/types/endfielddata/TableCfg/I18nTextTable';
 import type { ItemTable } from '@/shared/types/endfielddata/TableCfg/ItemTable';
+import type { TextTable } from '@/shared/types/endfielddata/TableCfg/TextTable';
+import type { WeaponBasicTable } from '@/shared/types/endfielddata/TableCfg/WeaponBasicTable';
 import type { WorldEnergyPointGroupTable } from '@/shared/types/endfielddata/TableCfg/WorldEnergyPointGroupTable';
 import type { WorldEnergyPointTable } from '@/shared/types/endfielddata/TableCfg/WorldEnergyPointTable';
-import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 /** 获取指定语言的国际化文本表路径 */
 function getI18nTextTablePath(language: string) {
@@ -57,9 +60,15 @@ export function getLocalizedText({ id, text }: TranslationKey, locale?: string):
 }
 
 const gemTablePath = 'endfielddata/TableCfg/GemTable.json';
+const gemTagIdTablePath = 'endfielddata/TableCfg/GemTagIdTable.json';
 const itemTablePath = 'endfielddata/TableCfg/ItemTable.json';
 const skillPatchTablePath = 'endfielddata/TableCfg/SkillPatchTable.json';
+const textTablePath = 'endfielddata/TableCfg/TextTable.json';
 const weaponBasicTablePath = 'endfielddata/TableCfg/WeaponBasicTable.json';
+const wikiEntryDataReverseTablePath = 'endfielddata/TableCfg/WikiEntryDataReverseTable.json';
+const wikiEntryDataTablePath = 'endfielddata/TableCfg/WikiEntryDataTable.json';
+const wikiEntryTablePath = 'endfielddata/TableCfg/WikiEntryTable.json';
+const wikiGroupTablePath = 'endfielddata/TableCfg/WikiGroupTable.json';
 const worldEnergyPointGroupTablePath = 'endfielddata/TableCfg/WorldEnergyPointGroupTable.json';
 const worldEnergyPointTablePath = 'endfielddata/TableCfg/WorldEnergyPointTable.json';
 const i18nLanguages = ['CN', 'EN', 'JP', 'KR', 'MX', 'RU', 'TC'];
@@ -80,52 +89,23 @@ const localeToLanguageMap: Map<string, string> = new Map(
 // 一图流只使用中英双语
 const usedLanguages = ['CN', 'EN'];
 
-// TODO: 从 CDN 上 fetch 数据肯定得做错误处理
-// 并行加载所有需要的解包数据
-// const [
-//   gemTableData,
-//   itemTableData,
-//   skillPatchTableData,
-//   weaponBasicTableData,
-//   worldEnergyPointGroupTableData,
-//   worldEnergyPointTableData,
-//   ...i18nTextTablesData
-// ] = await Promise.all([
-//   fetch(getResourceUrl(gemTablePath)).then((res) => res.text()),
-//   fetch(getResourceUrl(itemTablePath)).then((res) => res.text()),
-//   fetch(getResourceUrl(skillPatchTablePath)).then((res) => res.text()),
-//   fetch(getResourceUrl(weaponBasicTablePath)).then((res) => res.text()),
-//   fetch(getResourceUrl(worldEnergyPointGroupTablePath)).then((res) => res.text()),
-//   fetch(getResourceUrl(worldEnergyPointTablePath)).then((res) => res.text()),
-//   ...usedLanguages.map((language) =>
-//     fetch(getResourceUrl(getI18nTextTablePath(language))).then((res) => res.text()),
-//   ),
-// ]);
-
-// 解析加载的数据
-// export const gemTable: GemTable = parseJSONWithBigInt(gemTableData);
-// export const itemTable: ItemTable = parseJSONWithBigInt(itemTableData);
-// export const skillPatchTable: any = parseJSONWithBigInt(skillPatchTableData);
-// export const weaponBasicTable: any = parseJSONWithBigInt(weaponBasicTableData);
-// export const worldEnergyPointGroupTable: WorldEnergyPointGroupTable = parseJSONWithBigInt(
-//   worldEnergyPointGroupTableData,
-// );
-// export const worldEnergyPointTable: WorldEnergyPointTable =
-//   parseJSONWithBigInt(worldEnergyPointTableData);
-// // 解析 i18nTable，这里不需要考虑大整数
-// export const i18nTextTables: Map<string, I18nTextTable> = new Map(
-//   usedLanguages.map((language, index) => [language, JSON.parse(i18nTextTablesData[index]!)]),
-// );
-
 export const gemTable = ref<GemTable>({});
+export const gemTagIdTable = ref<GemTagIdTable>({});
 export const itemTable = ref<ItemTable>({});
 export const skillPatchTable = ref<Record<string, any>>({});
-export const weaponBasicTable = ref<Record<string, any>>({});
+export const textTable = ref<TextTable>({});
+export const weaponBasicTable = ref<WeaponBasicTable>({});
+export const wikiEntryDataReverseTable = ref<WikiEntryDataReverseTable>({});
+export const wikiEntryDataTable = ref<WikiEntryDataTable>({});
+export const wikiEntryTable = ref<WikiEntryTable>({});
+export const wikiGroupTable = ref<WikiGroupTable>({});
 export const worldEnergyPointGroupTable = ref<WorldEnergyPointGroupTable>({});
 export const worldEnergyPointTable = ref<WorldEnergyPointTable>({});
 export const i18nTextTables = ref<Map<string, I18nTextTable>>(new Map());
 export const isLoaded = ref(false);
 
+// TODO: 从 CDN 上 fetch 数据肯定得做错误处理
+// 并行加载所有需要的解包数据
 export const initGameData = async () => {
   if (isLoaded.value) return;
 
@@ -137,6 +117,11 @@ export const initGameData = async () => {
       .then((text) => {
         gemTable.value = parseJSONWithBigInt(text);
       }),
+    fetch(getResourceUrl(gemTagIdTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        gemTagIdTable.value = parseJSONWithBigInt(text);
+      }),
     fetch(getResourceUrl(itemTablePath))
       .then((res) => res.text())
       .then((text) => {
@@ -147,10 +132,35 @@ export const initGameData = async () => {
       .then((text) => {
         skillPatchTable.value = parseJSONWithBigInt(text);
       }),
+    fetch(getResourceUrl(textTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        textTable.value = parseJSONWithBigInt(text);
+      }),
     fetch(getResourceUrl(weaponBasicTablePath))
       .then((res) => res.text())
       .then((text) => {
         weaponBasicTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(wikiEntryDataReverseTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        wikiEntryDataReverseTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(wikiEntryDataTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        wikiEntryDataTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(wikiEntryTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        wikiEntryTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(wikiGroupTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        wikiGroupTable.value = parseJSONWithBigInt(text);
       }),
     fetch(getResourceUrl(worldEnergyPointGroupTablePath))
       .then((res) => res.text())

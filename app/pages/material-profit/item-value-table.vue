@@ -63,26 +63,7 @@
       <div v-for="itemId in filteredAndSortedItemIdList" :key="itemId" class="item-card">
         <!-- 左侧物品图标 -->
         <div class="item-icon-wrapper">
-          <div class="item-icon-placeholder">
-            <img :alt="getItemName(itemId)" :src="getItemIconUrl(itemId)" class="item-icon-img" />
-            <div
-              class="item-gradient-overlay"
-              :style="{
-                background: `linear-gradient(
-                  to bottom,
-                  transparent 0%,
-                  transparent 70%,
-                  ${getItemTierColor(itemId).alpha(0.3).string()} 100%
-                )`,
-              }"
-            ></div>
-            <div
-              class="item-tier-bar"
-              :style="{
-                backgroundColor: getItemTierColor(itemId).string(),
-              }"
-            ></div>
-          </div>
+          <ContainerItemIcon :itemId="itemId" />
         </div>
         <!-- 右侧信息标签 -->
         <div class="item-info-bubble">
@@ -240,69 +221,14 @@ watch([searchQuery, sortField, sortOrder], () => {
   position: relative;
 }
 
-/* 左侧圆形图标 */
+/* 左侧物品图标 */
 .item-icon-wrapper {
+  width: 6rem;
+  height: 6rem;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
-}
-
-.item-icon-placeholder {
-  width: 6rem;
-  height: 6rem;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--theme-bg-tertiary) 0%, var(--theme-bg-secondary) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px var(--theme-shadow-base);
-  border: 2px solid var(--theme-border);
-  position: relative;
-  overflow: hidden;
-}
-
-.item-icon-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(
-    -45deg,
-    transparent,
-    transparent 13.9512529279%,
-    var(--theme-decorative-overlay-light) 0,
-    var(--theme-decorative-overlay-light) 36.0487470721%,
-    transparent 0,
-    transparent 63.9512529279%,
-    var(--theme-decorative-overlay-light) 0,
-    var(--theme-decorative-overlay-light) 86.0487470721%,
-    transparent 0,
-    transparent
-  );
-  background-size: 0.5rem 0.5rem;
-  background-repeat: repeat;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.item-icon-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.item-gradient-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.item-tier-bar {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 4%;
 }
 
 /* 右侧信息标签 */

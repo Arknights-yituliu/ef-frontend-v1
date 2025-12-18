@@ -1,4 +1,4 @@
-import { TranslationKey } from '@/shared/types/common';
+import type { TranslationKey } from '@/shared/types/common';
 
 interface Gem {
   gemTermId: string;
