@@ -207,7 +207,7 @@ definePageMeta({
 .packs-container {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-xl);
+  gap: clamp(20px, 6.66666666vw, 40px);
   margin-top: var(--spacing-xl);
   position: relative;
 }

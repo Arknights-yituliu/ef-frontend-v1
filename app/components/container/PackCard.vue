@@ -17,11 +17,13 @@
 
         <!-- 价格角标 -->
         <div class="pack-corner">
-          <span class="price-text">￥{{ props.price.toFixed(0) }}</span>
+          <div class="price-text">￥{{ props.price.toFixed(0) }}</div>
         </div>
 
         <!-- 标题（底部覆盖） -->
-        <div class="pack-display-name">{{ packDisplayName }}</div>
+        <div class="pack-display-name">
+          <span>{{ packDisplayName }}</span>
+        </div>
       </div>
 
       <!-- 右侧：信息区域 -->
@@ -49,10 +51,12 @@
             :key="index"
             class="pack-chart-line-item"
           >
-            <span class="pack-chart-line-label">{{ bar.barLabel }}</span>
+            <div class="pack-chart-line-label">
+              <span>{{ bar.barLabel }}</span>
+            </div>
             <div
               :style="{
-                width: `${bar.percentage * 80}px`,
+                width: `${bar.percentage * 5}em`,
               }"
               class="pack-line-bar"
             >
@@ -69,7 +73,9 @@
     </div>
 
     <p v-if="packDescription && !isExpanded" class="pack-description">
-      <em>{{ packDescription }}</em>
+      <span
+        ><em>{{ packDescription }}</em></span
+      >
     </p>
 
     <!-- 展开的内容表格 - 藏在卡片背后 -->
@@ -168,12 +174,17 @@ const getPackComparisonBars = (pack: PackData) => [
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: var(--spacing-md);
+  max-width: 100%;
+  margin-bottom: 0.75em;
+  /* 屏幕宽 375px -> 字体大小 12px
+     屏幕宽 600px -> 字体大小 16px */
+  font-size: clamp(10px, calc(5.33333333px + 1.77777777vw), 16px);
 }
 
 .pack-card-wrapper {
   display: flex;
   align-items: center;
+  max-width: 100%;
   z-index: 10;
   transition:
     transform var(--transition-base),
@@ -182,19 +193,20 @@ const getPackComparisonBars = (pack: PackData) => [
 }
 
 .pack-card-wrapper:hover {
-  transform: translateY(-2px);
+  transform: translateY(-0.125em);
   filter: brightness(1.02);
 }
 
 /* 左侧图片区域 */
 .pack-card-part-left {
-  height: 110px;
-  width: 180px;
-  border-radius: var(--radius-md);
+  height: 6.875em;
+  width: 11.25em;
+  flex-shrink: 2;
+  border-radius: 0.5em;
   overflow: hidden;
   position: relative;
   z-index: 11;
-  box-shadow: 0 0 0.75rem var(--theme-shadow-base);
+  box-shadow: 0 0 0.75em var(--theme-shadow-base);
 }
 
 .pack-image {
@@ -237,7 +249,7 @@ const getPackComparisonBars = (pack: PackData) => [
 }
 
 .placeholder-icon {
-  font-size: 3rem;
+  font-size: 3em;
   opacity: 0.5;
   z-index: 1;
 }
@@ -245,20 +257,18 @@ const getPackComparisonBars = (pack: PackData) => [
 /* 价格角标 */
 .pack-corner {
   background-color: var(--theme-glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(0.625em);
+  -webkit-backdrop-filter: blur(0.625em);
   position: absolute;
   text-align: center;
-  font-size: 14px;
-  left: -36px;
-  top: 6px;
+  left: -2.25em;
+  top: 0.375em;
   transform: rotate(-40deg);
-  width: 111px;
+  width: 6.9375em;
   z-index: 12;
-  padding: 4px 8px;
-  font-weight: 700;
-  box-shadow: 0 0 0.5rem var(--theme-shadow-accent);
-  border: 1px solid var(--theme-glass-border);
+  padding: 0.25em 0.5em;
+  box-shadow: 0 0 0.5em var(--theme-shadow-accent);
+  border: 0.0625em solid var(--theme-glass-border);
 }
 
 .pack-corner::before {
@@ -285,47 +295,49 @@ const getPackComparisonBars = (pack: PackData) => [
 }
 
 .price-text {
-  display: block;
+  font-size: 0.875em;
+  font-weight: 700;
   color: var(--theme-text-primary);
   position: relative;
   z-index: 1;
-  text-shadow: 0 1px 2px var(--theme-glass-text-shadow);
-  font-weight: 700;
+  text-shadow: 0 0.0625em 0.125em var(--theme-glass-text-shadow);
 }
 
 /* 标题（底部覆盖） */
 .pack-display-name {
   background-color: var(--theme-glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--theme-text-primary);
+  backdrop-filter: blur(0.625em);
+  -webkit-backdrop-filter: blur(0.625em);
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 24px;
+  height: 1.5em;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
   z-index: 13;
-  line-height: 1;
-  border-top: 1px solid var(--theme-decorative-overlay);
-  box-shadow: 0 -2px 8px var(--theme-glass-shadow);
+  border-top: 0.0625em solid var(--theme-decorative-overlay);
+  box-shadow: 0 -0.125em 0.5em var(--theme-glass-shadow);
+
+  span {
+    text-align: center;
+    color: var(--theme-text-primary);
+    font-size: 0.75em;
+    font-weight: 600;
+  }
 }
 
 /* 右侧信息区域 */
 .pack-info {
   position: relative;
   display: flex;
-  height: 100px;
-  margin-left: -4px;
+  height: 6.25em;
+  margin-left: -0.25em;
   background-color: var(--theme-bg-secondary);
-  border-radius: var(--radius-md);
-  box-shadow: 0 0 0.75rem var(--theme-shadow-base);
+  border-radius: 0.5em;
+  box-shadow: 0 0 0.75em var(--theme-shadow-base);
   z-index: 10;
-  border: 1px solid var(--theme-border);
+  border: 0.0625em solid var(--theme-border);
   overflow: hidden;
 }
 
@@ -357,16 +369,18 @@ const getPackComparisonBars = (pack: PackData) => [
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 128px;
+  width: 8em;
   height: 100%;
-  font-size: 16px;
   z-index: 1;
-  gap: 8px;
+  gap: 0.5em;
 
-  font-weight: 700;
-  line-height: 1.3;
-  text-align: center;
-  white-space: nowrap;
+  div {
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    white-space: nowrap;
+  }
 }
 
 /* 源石相关数值*/
@@ -386,7 +400,7 @@ const getPackComparisonBars = (pack: PackData) => [
   justify-content: space-evenly;
   align-items: flex-start;
   overflow: hidden;
-  width: 240px;
+  width: 15em;
   white-space: nowrap;
   color: var(--theme-text-primary);
   position: relative;
@@ -406,7 +420,7 @@ const getPackComparisonBars = (pack: PackData) => [
   left: 0;
   top: 0;
   bottom: 0;
-  width: 2px;
+  width: 0.125em;
   background: linear-gradient(
     180deg,
     transparent 0%,
@@ -424,34 +438,39 @@ const getPackComparisonBars = (pack: PackData) => [
 }
 
 .pack-chart-line-label {
-  width: 80px;
+  width: 5em;
   text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--theme-text-primary);
+
+  span {
+    font-size: 0.75em;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+  }
 }
 
 .pack-line-bar {
-  min-width: 40px;
-  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 2.5em;
+  height: 1.125em;
   background-color: var(--theme-accent-color);
   border-radius: 9999px;
-  color: var(--theme-text-thirdary);
-  font-size: 12px;
-  padding: 0 8px;
-  box-shadow: 0 0 0.25rem var(--theme-shadow-accent);
+  padding: 0 0.5em;
+  box-shadow: 0 0 0.25em var(--theme-shadow-accent);
   position: relative;
   overflow: hidden;
-}
 
-.pack-line-bar span {
-  white-space: nowrap;
-  z-index: 1;
-  font-weight: 700;
+  span {
+    white-space: nowrap;
+    color: var(--theme-text-thirdary);
+    font-size: 0.75em;
+    font-weight: 700;
+  }
 }
 
 /* 倒计时 */
-.pack-info-countdown {
+/* .pack-info-countdown {
   border-radius: var(--radius-sm);
   bottom: 0;
   color: var(--theme-text-secondary);
@@ -465,26 +484,30 @@ const getPackComparisonBars = (pack: PackData) => [
   border-top: 1px solid var(--theme-border);
   border-left: 1px solid var(--theme-border);
   z-index: 2;
-}
+} */
 
 .pack-description {
   width: 100%;
-  padding-left: 12px;
-  font-size: var(--font-size-xs);
-  color: var(--theme-text-secondary);
+  padding-left: 0.75em;
+
+  span {
+    color: var(--theme-text-secondary);
+    font-size: 1em;
+  }
 }
 
 /* 展开的内容表格 */
 .pack-contents-table {
   display: block;
-  width: 95%;
+  width: 32em;
+  max-width: 95%;
   height: 0;
-  margin-top: -12px;
+  margin-top: -0.75em;
   overflow: hidden;
   background-color: var(--theme-bg-secondary);
-  border-radius: var(--radius-md);
-  box-shadow: 0 0 0.75rem var(--theme-shadow-base);
-  border: 1px solid var(--theme-border);
+  border-radius: 0;
+  box-shadow: 0 0 0.75em var(--theme-shadow-base);
+  border: 0.0625em solid var(--theme-border);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
@@ -495,8 +518,8 @@ const getPackComparisonBars = (pack: PackData) => [
 }
 
 .pack-contents-header {
-  padding: var(--spacing-md);
-  border-bottom: 1px solid var(--theme-border);
+  padding: 1em;
+  border-bottom: 0.0625em solid var(--theme-border);
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -509,7 +532,7 @@ const getPackComparisonBars = (pack: PackData) => [
   font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--theme-text-primary);
-  margin-top: 8px;
+  margin-top: 0.5em;
 }
 
 .contents-table {
@@ -522,19 +545,19 @@ const getPackComparisonBars = (pack: PackData) => [
 }
 
 .contents-table th {
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 0 1em;
   text-align: left;
-  font-size: var(--font-size-xs);
+  font-size: 1em;
   font-weight: 600;
   color: var(--theme-text-primary);
-  border-bottom: 1px solid var(--theme-border);
+  border-bottom: 0.0625em solid var(--theme-border);
 }
 
 .contents-table td {
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-size: var(--font-size-xs);
+  padding: 0.625em 1em;
+  font-size: 1em;
   color: var(--theme-text-primary);
-  border-bottom: 1px solid var(--theme-border);
+  border-bottom: 0.0625em solid var(--theme-border);
 }
 
 .contents-table tbody tr:last-child td {
@@ -547,39 +570,5 @@ const getPackComparisonBars = (pack: PackData) => [
 
 .contents-table tbody tr:hover {
   background-color: var(--theme-bg-tertiary);
-}
-
-/* 采用纵向布局 */
-@media screen and (max-width: 600px) {
-  .pack-card-container {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .pack-card-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-  }
-
-  /* 图片区域 */
-  .pack-card-part-left {
-    width: 100%;
-    height: auto;
-  }
-
-  .pack-image,
-  .image-placeholder {
-    width: 100%;
-    height: auto;
-  }
-
-  /* 信息区域 */
-  .pack-info {
-    width: 100%;
-    margin-left: 0;
-  }
 }
 </style>
