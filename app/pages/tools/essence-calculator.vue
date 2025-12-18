@@ -195,16 +195,11 @@
 
 <script lang="ts" setup>
 import {
-  itemTable,
-  weaponBasicTable,
-  worldEnergyPointGroupTable,
   gemTable,
+  getLocalizedText,
+  worldEnergyPointGroupTable,
   worldEnergyPointTable,
 } from '@/shared/utils/gameData/gameData';
-import type { GemTable } from '@/shared/types/endfielddata/TableCfg/GemTable';
-import { getLocalizedText } from '@/shared/utils/gameData/gameData';
-import { getItemName } from '@/shared/utils/gameData/item';
-import { get } from 'http';
 
 const { t } = useI18n();
 
