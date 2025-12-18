@@ -61,7 +61,7 @@
       tag="div"
     >
       <div v-for="itemId in filteredAndSortedItemIdList" :key="itemId" class="item-card">
-        <!-- 左侧圆形图标 -->
+        <!-- 左侧物品图标 -->
         <div class="item-icon-wrapper">
           <div class="item-icon-placeholder">
             <img :alt="getItemName(itemId)" :src="getItemIconUrl(itemId)" class="item-icon-img" />
@@ -102,7 +102,10 @@
 </template>
 
 <script lang="ts" setup>
-import { itemInfo } from '@/custom/core/itemInfo';
+import rawItemTableSimplified from '@/custom/core/itemTableSimplified.json';
+import { itemValueMap } from '@/custom/core/itemValue';
+
+const itemTableSimplified: ItemTableSimplified = rawItemTableSimplified;
 
 definePageMeta({
   layout: 'default',
@@ -136,7 +139,7 @@ const sortOrder = ref<'asc' | 'desc'>('asc');
 
 // 筛选和排序后的数据
 const filteredAndSortedItemIdList = computed(() => {
-  let result = Object.keys(itemInfo);
+  let result = Object.keys(itemValueMap);
 
   // 1. 搜索筛选
   if (searchQuery.value.trim()) {
@@ -158,8 +161,8 @@ const filteredAndSortedItemIdList = computed(() => {
         valueB = getItemValue(b);
         break;
       case 'rarity':
-        valueA = itemInfo[a]?.rarity ?? 0;
-        valueB = itemInfo[b]?.rarity ?? 0;
+        valueA = itemTableSimplified[a]?.rarity ?? 0;
+        valueB = itemTableSimplified[b]?.rarity ?? 0;
         break;
       default:
         valueA = getItemValue(a);
@@ -286,12 +289,9 @@ watch([searchQuery, sortField, sortOrder], () => {
 
 .item-icon-img {
   position: absolute;
-  width: 125%;
-  height: 125%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -55%);
 }
 
 .item-gradient-overlay {

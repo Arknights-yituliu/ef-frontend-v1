@@ -34,10 +34,10 @@ export function getPackPricePerPull(pack: PackData) {
 }
 
 export const pack648SanityCostEffectiveness =
-  getItemBundleValue({ itemId: '衍质源石', quantity: 350 }) / 648;
+  getItemBundleValue({ itemId: 'item_originium_recharge', quantity: 350 }) / 648;
 
 export const pack648PullCostEffectiveness =
-  getItemBundlePulls({ itemId: '衍质源石', quantity: 350 }) / 648;
+  getItemBundlePulls({ itemId: 'item_originium_recharge', quantity: 350 }) / 648;
 
 export function getPackSanityEfficiency(pack: PackData) {
   return getPackTotalValue(pack) / pack.price / pack648SanityCostEffectiveness;
