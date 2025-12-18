@@ -14,10 +14,10 @@ export const tierColorMap: Map<number, ColorInstance> = new Map([
 ]);
 
 export function getItemName(itemId: string, locale?: string): string {
-  if (itemTable[itemId] === undefined) {
+  if (itemTable.value[itemId] === undefined) {
     return itemId;
   }
-  return getLocalizedText(itemTable[itemId].name, locale);
+  return getLocalizedText(itemTable.value[itemId].name, locale);
 }
 
 export function getItemValue(itemId: string): number {
@@ -29,7 +29,7 @@ export function getItemPulls(itemId: string): number {
 }
 
 export function getItemIconUrl(itemId: string): string | undefined {
-  const iconId = itemTable[itemId]?.iconId;
+  const iconId = itemTable.value[itemId]?.iconId;
   if (iconId === undefined) {
     return undefined;
   }
@@ -37,7 +37,7 @@ export function getItemIconUrl(itemId: string): string | undefined {
 }
 
 export function getItemRarity(itemId: string): number | undefined {
-  return itemTable[itemId]?.rarity ?? undefined;
+  return itemTable.value[itemId]?.rarity ?? undefined;
 }
 
 export function getItemTierColor(itemId: string): ColorInstance {

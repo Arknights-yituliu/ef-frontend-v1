@@ -102,10 +102,8 @@
 </template>
 
 <script lang="ts" setup>
-import rawItemTableSimplified from '@/custom/core/itemTableSimplified.json';
+import { getItemRarity } from '@/shared/utils/gameData/item';
 import { itemValueMap } from '@/custom/core/itemValue';
-
-const itemTableSimplified: ItemTableSimplified = rawItemTableSimplified;
 
 definePageMeta({
   layout: 'default',
@@ -161,8 +159,8 @@ const filteredAndSortedItemIdList = computed(() => {
         valueB = getItemValue(b);
         break;
       case 'rarity':
-        valueA = itemTableSimplified[a]?.rarity ?? 0;
-        valueB = itemTableSimplified[b]?.rarity ?? 0;
+        valueA = getItemRarity(a) ?? 0;
+        valueB = getItemRarity(b) ?? 0;
         break;
       default:
         valueA = getItemValue(a);

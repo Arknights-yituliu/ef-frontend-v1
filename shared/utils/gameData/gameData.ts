@@ -5,6 +5,7 @@ import type { ItemTable } from '@/shared/types/endfielddata/TableCfg/ItemTable';
 import type { WorldEnergyPointGroupTable } from '@/shared/types/endfielddata/TableCfg/WorldEnergyPointGroupTable';
 import type { WorldEnergyPointTable } from '@/shared/types/endfielddata/TableCfg/WorldEnergyPointTable';
 import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
 
 /** 获取指定语言的国际化文本表路径 */
 function getI18nTextTablePath(language: string) {
@@ -31,7 +32,7 @@ function parseJSONWithBigInt(text: string) {
  * 如果找不到翻译或翻译为空，返回原始文本
  */
 export function getTranslation({ id, text }: TranslationKey, language: string): string {
-  const translation = i18nTextTables.get(language)?.[String(id)];
+  const translation = i18nTextTables.value.get(language)?.[String(id)];
   if (translation !== undefined) {
     return translation.trim();
   } else {
@@ -81,37 +82,95 @@ const usedLanguages = ['CN', 'EN'];
 
 // TODO: 从 CDN 上 fetch 数据肯定得做错误处理
 // 并行加载所有需要的解包数据
-const [
-  gemTableData,
-  itemTableData,
-  skillPatchTableData,
-  weaponBasicTableData,
-  worldEnergyPointGroupTableData,
-  worldEnergyPointTableData,
-  ...i18nTextTablesData
-] = await Promise.all([
-  fetch(getResourceUrl(gemTablePath)).then((res) => res.text()),
-  fetch(getResourceUrl(itemTablePath)).then((res) => res.text()),
-  fetch(getResourceUrl(skillPatchTablePath)).then((res) => res.text()),
-  fetch(getResourceUrl(weaponBasicTablePath)).then((res) => res.text()),
-  fetch(getResourceUrl(worldEnergyPointGroupTablePath)).then((res) => res.text()),
-  fetch(getResourceUrl(worldEnergyPointTablePath)).then((res) => res.text()),
-  ...usedLanguages.map((language) =>
-    fetch(getResourceUrl(getI18nTextTablePath(language))).then((res) => res.text()),
-  ),
-]);
+// const [
+//   gemTableData,
+//   itemTableData,
+//   skillPatchTableData,
+//   weaponBasicTableData,
+//   worldEnergyPointGroupTableData,
+//   worldEnergyPointTableData,
+//   ...i18nTextTablesData
+// ] = await Promise.all([
+//   fetch(getResourceUrl(gemTablePath)).then((res) => res.text()),
+//   fetch(getResourceUrl(itemTablePath)).then((res) => res.text()),
+//   fetch(getResourceUrl(skillPatchTablePath)).then((res) => res.text()),
+//   fetch(getResourceUrl(weaponBasicTablePath)).then((res) => res.text()),
+//   fetch(getResourceUrl(worldEnergyPointGroupTablePath)).then((res) => res.text()),
+//   fetch(getResourceUrl(worldEnergyPointTablePath)).then((res) => res.text()),
+//   ...usedLanguages.map((language) =>
+//     fetch(getResourceUrl(getI18nTextTablePath(language))).then((res) => res.text()),
+//   ),
+// ]);
 
 // 解析加载的数据
-export const gemTable: GemTable = parseJSONWithBigInt(gemTableData);
-export const itemTable: ItemTable = parseJSONWithBigInt(itemTableData);
-export const skillPatchTable: any = parseJSONWithBigInt(skillPatchTableData);
-export const weaponBasicTable: any = parseJSONWithBigInt(weaponBasicTableData);
-export const worldEnergyPointGroupTable: WorldEnergyPointGroupTable = parseJSONWithBigInt(
-  worldEnergyPointGroupTableData,
-);
-export const worldEnergyPointTable: WorldEnergyPointTable =
-  parseJSONWithBigInt(worldEnergyPointTableData);
-// 解析 i18nTable，这里不需要考虑大整数
-export const i18nTextTables: Map<string, I18nTextTable> = new Map(
-  usedLanguages.map((language, index) => [language, JSON.parse(i18nTextTablesData[index]!)]),
-);
+// export const gemTable: GemTable = parseJSONWithBigInt(gemTableData);
+// export const itemTable: ItemTable = parseJSONWithBigInt(itemTableData);
+// export const skillPatchTable: any = parseJSONWithBigInt(skillPatchTableData);
+// export const weaponBasicTable: any = parseJSONWithBigInt(weaponBasicTableData);
+// export const worldEnergyPointGroupTable: WorldEnergyPointGroupTable = parseJSONWithBigInt(
+//   worldEnergyPointGroupTableData,
+// );
+// export const worldEnergyPointTable: WorldEnergyPointTable =
+//   parseJSONWithBigInt(worldEnergyPointTableData);
+// // 解析 i18nTable，这里不需要考虑大整数
+// export const i18nTextTables: Map<string, I18nTextTable> = new Map(
+//   usedLanguages.map((language, index) => [language, JSON.parse(i18nTextTablesData[index]!)]),
+// );
+
+export const gemTable = ref<GemTable>({});
+export const itemTable = ref<ItemTable>({});
+export const skillPatchTable = ref<Record<string, any>>({});
+export const weaponBasicTable = ref<Record<string, any>>({});
+export const worldEnergyPointGroupTable = ref<WorldEnergyPointGroupTable>({});
+export const worldEnergyPointTable = ref<WorldEnergyPointTable>({});
+export const i18nTextTables = ref<Map<string, I18nTextTable>>(new Map());
+export const isLoaded = ref(false);
+
+export const initGameData = async () => {
+  if (isLoaded.value) return;
+
+  console.log('Initializing game data...');
+
+  await Promise.all([
+    fetch(getResourceUrl(gemTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        gemTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(itemTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        itemTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(skillPatchTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        skillPatchTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(weaponBasicTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        weaponBasicTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(worldEnergyPointGroupTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        worldEnergyPointGroupTable.value = parseJSONWithBigInt(text);
+      }),
+    fetch(getResourceUrl(worldEnergyPointTablePath))
+      .then((res) => res.text())
+      .then((text) => {
+        worldEnergyPointTable.value = parseJSONWithBigInt(text);
+      }),
+    ...usedLanguages.map((language) =>
+      fetch(getResourceUrl(getI18nTextTablePath(language)))
+        .then((res) => res.text())
+        .then((text) => {
+          const table = JSON.parse(text);
+          i18nTextTables.value.set(language, table);
+        }),
+    ),
+  ]);
+
+  isLoaded.value = true;
+};

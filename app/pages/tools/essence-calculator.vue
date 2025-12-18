@@ -203,13 +203,13 @@ import {
 
 const { t } = useI18n();
 
-const allAttributeStats = Object.values(gemTable)
+const allAttributeStats = Object.values(gemTable.value)
   .filter((gem) => gem.termType === 0)
   .map((gem) => gem.gemTermId);
-const allSecondaryStats = Object.values(gemTable)
+const allSecondaryStats = Object.values(gemTable.value)
   .filter((gem) => gem.termType === 1)
   .map((gem) => gem.gemTermId);
-const allSkillStats = Object.values(gemTable)
+const allSkillStats = Object.values(gemTable.value)
   .filter((gem) => gem.termType === 2)
   .map((gem) => gem.gemTermId);
 
@@ -237,7 +237,7 @@ const emptyStat: EssenceStat = {
 const requiredEssenceStats = ref<EssenceStat[]>([{ ...emptyStat }]);
 
 function getGemTagName(gemTermId: string): string {
-  const gem = gemTable[gemTermId];
+  const gem = gemTable.value[gemTermId];
   if (gem === undefined) {
     return gemTermId;
   }
@@ -246,12 +246,12 @@ function getGemTagName(gemTermId: string): string {
 
 function getGameName(gameGroupId: string): string {
   const worldLevel2GameMechanicsIdMap =
-    worldEnergyPointGroupTable[gameGroupId]!.worldLevel2GameMechanicsIdMap;
+    worldEnergyPointGroupTable.value[gameGroupId]!.worldLevel2GameMechanicsIdMap;
   const lastGameMechanicsId =
     worldLevel2GameMechanicsIdMap[
       Math.max(...Object.keys(worldLevel2GameMechanicsIdMap).map(Number))
     ]!;
-  const worldEnergyPoint = worldEnergyPointTable[lastGameMechanicsId]!;
+  const worldEnergyPoint = worldEnergyPointTable.value[lastGameMechanicsId]!;
   return getLocalizedText(worldEnergyPoint.gameName);
 }
 
@@ -292,7 +292,7 @@ const battleChoices = computed(() => {
 
   const result: BattleChoice[] = [];
   for (const { gameGroupId, primAttrTermIds, secAttrTermIds, skillTermIds } of Object.values(
-    worldEnergyPointGroupTable,
+    worldEnergyPointGroupTable.value,
   )) {
     for (const selectedAttribute of combinations(primAttrTermIds, 3)) {
       // 选择附加属性
