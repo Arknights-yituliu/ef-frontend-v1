@@ -65,7 +65,6 @@ const itemTablePath = 'endfielddata/TableCfg/ItemTable.json';
 const skillPatchTablePath = 'endfielddata/TableCfg/SkillPatchTable.json';
 const textTablePath = 'endfielddata/TableCfg/TextTable.json';
 const weaponBasicTablePath = 'endfielddata/TableCfg/WeaponBasicTable.json';
-const wikiEntryDataReverseTablePath = 'endfielddata/TableCfg/WikiEntryDataReverseTable.json';
 const wikiEntryDataTablePath = 'endfielddata/TableCfg/WikiEntryDataTable.json';
 const wikiEntryTablePath = 'endfielddata/TableCfg/WikiEntryTable.json';
 const wikiGroupTablePath = 'endfielddata/TableCfg/WikiGroupTable.json';
@@ -92,10 +91,9 @@ const usedLanguages = ['CN', 'EN'];
 export const gemTable = ref<GemTable>({});
 export const gemTagIdTable = ref<GemTagIdTable>({});
 export const itemTable = ref<ItemTable>({});
-export const skillPatchTable = ref<Record<string, any>>({});
+export const skillPatchTable = ref<SkillPatchTable>({});
 export const textTable = ref<TextTable>({});
 export const weaponBasicTable = ref<WeaponBasicTable>({});
-export const wikiEntryDataReverseTable = ref<WikiEntryDataReverseTable>({});
 export const wikiEntryDataTable = ref<WikiEntryDataTable>({});
 export const wikiEntryTable = ref<WikiEntryTable>({});
 export const wikiGroupTable = ref<WikiGroupTable>({});
@@ -141,11 +139,6 @@ export const initGameData = async () => {
       .then((res) => res.text())
       .then((text) => {
         weaponBasicTable.value = parseJSONWithBigInt(text);
-      }),
-    fetch(getResourceUrl(wikiEntryDataReverseTablePath))
-      .then((res) => res.text())
-      .then((text) => {
-        wikiEntryDataReverseTable.value = parseJSONWithBigInt(text);
       }),
     fetch(getResourceUrl(wikiEntryDataTablePath))
       .then((res) => res.text())
