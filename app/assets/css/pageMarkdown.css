@@ -176,6 +176,6 @@
 }
 
 /* 隐藏 nuxt-content 默认提供的文档标题 */
-.page-content h1 {
+.page-content :deep(h1) {
   display: none;
 }
