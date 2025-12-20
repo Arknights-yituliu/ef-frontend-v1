@@ -193,7 +193,19 @@
       },
       "gachaCalculator": {
         "title": "Gacha Calculator",
-        "underDevelopment": "Under development..."
+        "underDevelopment": "Under development...",
+        "total": "Total",
+        "pulls": "pulls",
+        "whaleAmount": "Whale",
+        "yuan": "yuan",
+        "existing": "Existing",
+        "daily": "Daily",
+        "potential": "Potential",
+        "whale": "Whale",
+        "activity": "Activity",
+        "other": "Other",
+        "pieChartName": "Gacha Resource Distribution",
+        "pieChartTooltip": "{seriesName} {name} : {value} pulls, ({percent}%)"
       }
     },
     "others": {

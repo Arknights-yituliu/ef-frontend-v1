@@ -193,7 +193,19 @@
       },
       "gachaCalculator": {
         "title": "攒抽计算器",
-        "underDevelopment": "锐意开发中……"
+        "underDevelopment": "锐意开发中……",
+        "total": "共计",
+        "pulls": "抽",
+        "whaleAmount": "氪金",
+        "yuan": "元",
+        "existing": "现有",
+        "daily": "日常",
+        "potential": "潜在",
+        "whale": "氪金",
+        "activity": "活动",
+        "other": "其他",
+        "pieChartName": "攒抽占比",
+        "pieChartTooltip": "{seriesName} {name} : {value}抽,占 ({percent}%)"
       }
     },
     "others": {

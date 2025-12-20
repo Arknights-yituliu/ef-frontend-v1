@@ -3,7 +3,7 @@ import type { PackContent } from '@/shared/types/pack';
 import type { AllGachaResourceStatus, PieChartData } from '@/shared/types/gacha-calculator';
 import { allGachaResourceStatus } from '@/shared/types/gacha-calculator';
 const { t } = useI18n();
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, computed, nextTick } from 'vue';
 
 let panel = ref<string[]>(['statisticalResult']);
 
@@ -28,13 +28,13 @@ function calculateDaysDifference(
 }
 
 //饼图的数据
-const pieChartData = ref<PieChartData[]>([
-  { value: 22, name: '现有' },
-  { value: 33, name: '潜在' },
-  { value: 44, name: '日常' },
-  { value: 22, name: '氪金' },
-  { value: 33, name: '活动' },
-  { value: 44, name: '其它' },
+const pieChartData = computed(() => [
+  { value: 22, name: t('page.tools.gachaCalculator.existing') },
+  { value: 33, name: t('page.tools.gachaCalculator.potential') },
+  { value: 44, name: t('page.tools.gachaCalculator.daily') },
+  { value: 22, name: t('page.tools.gachaCalculator.whale') },
+  { value: 33, name: t('page.tools.gachaCalculator.activity') },
+  { value: 44, name: t('page.tools.gachaCalculator.other') },
 ]);
 
 // pieChartData.value[0].value = 1;
@@ -44,13 +44,22 @@ let myChart: any;
 function setPieChart(data: PieChartData[]) {
   let option = {
     tooltip: {
-      formatter: '{a} {b} : {c}抽,占 ({d}%)',
+      formatter: (params: any) => {
+        // ECharts 饼图的 params 可能是单个对象或数组
+        const param = Array.isArray(params) ? params[0] : params;
+        return t('page.tools.gachaCalculator.pieChartTooltip', {
+          seriesName: param.seriesName || '',
+          name: param.name || '',
+          value: param.value || 0,
+          percent: param.percent || 0
+        });
+      },
       position: 'inner',
     },
 
     series: [
       {
-        name: '攒抽占比',
+        name: t('page.tools.gachaCalculator.pieChartName'),
         type: 'pie',
         radius: '70%',
         center: ['50%', '50%'],
@@ -94,7 +103,7 @@ watch(
         }
         // 检查是否已存在实例，避免重复创建
         myChart = echarts.init(pieElement);
-        setPieChart(pieChartData.value);
+        setPieChart(pieChartData.value as PieChartData[]);
       });
     }
   },
@@ -102,7 +111,7 @@ watch(
 
 onMounted(() => {
   myChart = echarts.init(document.getElementById('gacha-calculator-pie-chart'));
-  setPieChart(pieChartData.value);
+  setPieChart(pieChartData.value as PieChartData[]);
 });
 </script>
 
@@ -116,8 +125,8 @@ onMounted(() => {
         <v-expansion-panel value="statisticalResult">
           <v-expansion-panel-title>
             <div class="gacha-calculator-card-title">
-              {{ '共计' }}{{ allGachaResourceStatus.totalGachaResources }}{{ '抽，氪金'
-              }}{{ allGachaResourceStatus.whaleAmount }}{{ '元' }}
+              {{ t('page.tools.gachaCalculator.total') }}{{ allGachaResourceStatus.totalGachaResources }}{{ t('page.tools.gachaCalculator.pulls') }}，{{ t('page.tools.gachaCalculator.whaleAmount')
+              }}{{ allGachaResourceStatus.whaleAmount }}{{ t('page.tools.gachaCalculator.yuan') }}
             </div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
@@ -131,34 +140,34 @@ onMounted(() => {
                 <table class="gacha-calculator-resource-table">
                   <tbody>
                     <tr>
-                      <td>现有</td>
+                      <td>{{ t('page.tools.gachaCalculator.existing') }}</td>
                       <td>{{ allGachaResourceStatus.existing.totalGachaResources }}</td>
-                      <td>抽</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                     </tr>
                     <tr>
-                      <td>日常</td>
+                      <td>{{ t('page.tools.gachaCalculator.daily') }}</td>
                       <td>{{ allGachaResourceStatus.daily.totalGachaResources }}</td>
-                      <td>抽</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                     </tr>
                     <tr>
-                      <td>潜在</td>
+                      <td>{{ t('page.tools.gachaCalculator.potential') }}</td>
                       <td>{{ allGachaResourceStatus.potential.totalGachaResources }}</td>
-                      <td>抽</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                     </tr>
                     <tr>
-                      <td>氪金</td>
+                      <td>{{ t('page.tools.gachaCalculator.whale') }}</td>
                       <td>{{ allGachaResourceStatus.whale.totalGachaResources }}</td>
-                      <td>抽</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                     </tr>
                     <tr>
-                      <td>活动</td>
+                      <td>{{ t('page.tools.gachaCalculator.activity') }}</td>
                       <td>{{ allGachaResourceStatus.activity.totalGachaResources }}</td>
-                      <td>抽</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                     </tr>
                     <tr>
-                      <td>其他</td>
+                      <td>{{ t('page.tools.gachaCalculator.other') }}</td>
                       <td>{{ allGachaResourceStatus.other.totalGachaResources }}</td>
-                      <td>抽</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                     </tr>
                   </tbody>
                 </table>
