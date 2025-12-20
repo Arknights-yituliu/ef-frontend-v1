@@ -107,10 +107,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1 class="page-title">{{ t('page.tools.gachaCalculator.title') }}</h1>
+  <header class="page-title">{{ t('page.tools.gachaCalculator.title') }}</header>
   <p>{{ t('page.tools.gachaCalculator.underDevelopment') }}</p>
   {{ panel }}
-  <div class="gacha-calculator-container">
+  <section class="gacha-calculator-container">
     <div class="gacha-calculator-container-left">
       <v-expansion-panels v-model="panel" multiple>
         <v-expansion-panel value="statisticalResult">
@@ -127,7 +127,7 @@ onMounted(() => {
                 id="gacha-calculator-pie-chart"
                 ref="gacha-calculator-pie-chart"
               ></div>
-             
+
                 <table class="gacha-calculator-resource-table">
                   <tbody>
                     <tr>
@@ -162,14 +162,14 @@ onMounted(() => {
                     </tr>
                   </tbody>
                 </table>
-              
+
             </div>
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
     </div>
     <div class="gacha-calculator-container-right"></div>
-  </div>
+  </section>
 </template>
 
 <style scoped>
@@ -200,11 +200,11 @@ onMounted(() => {
 .gacha-calculator-pie-chart {
   width: 300px;
   height: 240px;
-  
+
 }
 
 .gacha-calculator-resource-table {
-  
+
    width: 200px;
    height: 200px;
    text-align: center;

@@ -41,9 +41,9 @@
 
     <v-main>
       <div class="main-wrapper">
-        <div class="content-container">
+        <main class="content-container">
           <slot />
-        </div>
+        </main>
         <LayoutFooter class="footer" />
       </div>
     </v-main>

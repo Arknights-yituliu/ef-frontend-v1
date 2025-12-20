@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <h1 class="page-title">{{ $t('page.others.friendLinks.friendLinks') }}</h1>
+    <header class="page-title">{{ $t('page.others.friendLinks.friendLinks') }}</header>
     <p class="page-description">{{ $t('page.others.friendLinks.friendLinksDescription') }}</p>
 
     <!-- 加载状态 -->
@@ -16,7 +16,7 @@
     </div>
 
     <!-- 友情链接列表 -->
-    <div v-else class="links-grid">
+    <section v-else class="links-grid">
       <ContainerSpotlightCard v-for="link in friendLinks" :key="link.id" class="friend-link-card">
         <div class="card-content">
           <!-- 图标和标题 -->
@@ -75,7 +75,7 @@
           </div>
         </div>
       </ContainerSpotlightCard>
-    </div>
+    </section>
   </div>
 </template>
 

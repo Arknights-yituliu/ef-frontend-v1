@@ -1,38 +1,33 @@
-<script setup lang="ts">
-import type { PackContent } from '@/shared/types/pack';
-import type { AllGachaResourceStatus, PieChartData } from '@/shared/types/gacha-calculator';
-import { allGachaResourceStatus } from '@/shared/types/gacha-calculator';
-const { t } = useI18n();
-import { ref, onMounted, watch } from 'vue';
+<script lang="ts" setup>
 </script>
 
 <template>
-  <h1 class="page-title">基质识别妙妙小工具</h1>
+  <header class="page-title">基质识别妙妙小工具</header>
 
   <div class="essence-buttons">
     <v-btn
+      append-icon="mdi-open-in-new"
       class="essence-btn"
       color="primary"
-      append-icon="mdi-open-in-new"
       href="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/endfield-essence-recognizer-v0.2.1-windows.zip"
-      target="_blank"
       rel="noopener"
+      target="_blank"
       >下载最新版（国内）</v-btn
     >
     <v-btn
-      class="essence-btn"
       append-icon="mdi-open-in-new"
+      class="essence-btn"
       href="https://github.com/Logical-Byte/endfield-essence-recognizer/releases/latest"
-      target="_blank"
       rel="noopener"
+      target="_blank"
       >下载最新版（GitHub）</v-btn
     >
     <v-btn
-      class="essence-btn"
       append-icon="mdi-open-in-new"
+      class="essence-btn"
       href="https://github.com/Logical-Byte/endfield-essence-recognizer"
-      target="_blank"
       rel="noopener"
+      target="_blank"
       >项目地址</v-btn
     >
   </div>

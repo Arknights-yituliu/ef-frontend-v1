@@ -1,5 +1,5 @@
 <template>
-  <div
+  <article
     ref="divRef"
     :class="['spotlight-card', className]"
     @blur="handleBlur"
@@ -16,7 +16,7 @@
       class="spotlight-overlay"
     />
     <slot />
-  </div>
+  </article>
 </template>
 
 <script lang="ts" setup>

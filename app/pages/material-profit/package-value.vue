@@ -1,10 +1,10 @@
 <template>
   <div class="page-container">
-    <h1 class="page-title">{{ $t('page.materialProfit.packageValue.title') }}</h1>
+    <header class="page-title">{{ $t('page.materialProfit.packageValue.title') }}</header>
     <!--    <p class="page-description">{{ $t('page.materialProfit.packageValue.description') }}</p>-->
 
     <!-- 筛选区 -->
-    <div class="filter-container">
+    <section class="filter-container">
       <v-text-field
         v-model="searchQuery"
         :placeholder="$t('page.materialProfit.packageValue.searchPlaceholder')"
@@ -62,7 +62,7 @@
         >
         <span v-else>↓ {{ $t('page.materialProfit.packageValue.sortDesc') }}</span>
       </v-btn>
-    </div>
+    </section>
 
     <!-- 礼包卡片列表 -->
     <TransitionGroup

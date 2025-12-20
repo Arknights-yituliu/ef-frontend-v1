@@ -15,7 +15,7 @@ const copyGroupNumber = async () => {
 <template>
   <v-card class="card">
     <v-card-title>
-      <div class="card-title">
+      <header class="card-title">
         <img
           alt="终末地一图流 LOGO"
           class="card-title-icon"
@@ -31,7 +31,7 @@ const copyGroupNumber = async () => {
           @click="() => openNewPage('https://github.com/Arknights-yituliu/ef-frontend-v1')"
         >
         </v-btn>
-      </div>
+      </header>
     </v-card-title>
     <v-card-text>
       <p>

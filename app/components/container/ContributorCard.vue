@@ -144,7 +144,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <article
+  <section
     ref="cardElement"
     class="contributor-card"
     @mouseenter="handleMouseEnter"
@@ -195,7 +195,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </div>
-  </article>
+  </section>
 </template>
 
 <style scoped>

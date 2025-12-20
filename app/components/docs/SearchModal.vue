@@ -2,7 +2,7 @@
   <div v-if="isOpen" class="search-modal-overlay" @click="closeModal">
     <div class="search-modal" @click.stop>
       <!-- 头部 -->
-      <div class="search-modal-header">
+      <header class="search-modal-header">
         <h3>{{ $t('docs.search') }}</h3>
         <button class="search-modal-close" @click="closeModal">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -14,7 +14,7 @@
             />
           </svg>
         </button>
-      </div>
+      </header>
 
       <!-- 搜索输入框 -->
       <div class="search-input-container">
@@ -36,8 +36,8 @@
         <div v-else-if="searchResults.length === 0 && searchQuery" class="search-no-results">
           {{ $t('docs.noResults') }}
         </div>
-        <div v-else-if="searchResults.length > 0" class="search-results-list">
-          <div
+        <section v-else-if="searchResults.length > 0" class="search-results-list">
+          <article
             v-for="(result, index) in searchResults"
             :key="index"
             class="search-result-item"
@@ -56,8 +56,8 @@
               {{ truncateContent(result.item.content, 150) }}
             </p>
             <div class="search-result-path">{{ formatPath(result.item.id) }}</div>
-          </div>
-        </div>
+          </article>
+        </section>
         <div v-else class="search-empty">
           {{ $t('docs.searchPlaceholder') }}
         </div>

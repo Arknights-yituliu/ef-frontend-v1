@@ -1,7 +1,7 @@
 <template>
   <div class="docs-layout">
     <!-- 顶部导航栏 -->
-    <header class="docs-header">
+    <nav class="docs-header">
       <!-- 装饰背景 -->
       <div class="header-bg-decorator"></div>
 
@@ -9,10 +9,10 @@
       <div class="header-left-decoration"></div>
 
       <!-- 文档站标题 -->
-      <div class="header-title">
+      <header class="header-title">
         <span class="title-emblem"></span>
         <span class="title-text">{{ $t('docs.siteTitle') }}</span>
-      </div>
+      </header>
 
       <!-- 扫描线 SVG 动画 -->
       <svg class="header-scanline" preserveAspectRatio="none" viewBox="0 0 100 100">
@@ -80,7 +80,7 @@
         <!-- 语言切换 -->
         <LayoutLanguageToggle />
       </div>
-    </header>
+    </nav>
 
     <!-- 遮罩层 -->
     <div v-if="isSidebarOpen || isTocOpen" class="overlay" @click="closeAll"></div>
@@ -92,11 +92,11 @@
     <DocsToc :headings="headings" :is-open="isTocOpen" @close="closeToc" />
 
     <!-- 主内容区域 -->
-    <main :class="{ 'sidebar-collapsed': false, 'toc-collapsed': false }" class="docs-main">
+    <div :class="{ 'sidebar-collapsed': false, 'toc-collapsed': false }" class="docs-main">
       <div class="docs-content">
         <slot />
       </div>
-    </main>
+    </div>
 
     <!-- 底部页脚 -->
     <LayoutFooter class="docs-footer" />

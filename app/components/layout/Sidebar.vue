@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <aside class="sidebar">
     <!-- Logo 区域 -->
     <div class="logo-area" @click="navigateToHome">
       <svg
@@ -49,7 +49,7 @@
     </div>
 
     <!-- 菜单容器（用于高亮区域的定位） -->
-    <div ref="menuContainerRef" class="menu-container hide-scrollbar">
+    <nav ref="menuContainerRef" class="menu-container hide-scrollbar">
       <!-- 菜单组 -->
       <div
         v-for="(primaryItem, primaryIndex) in menuItems"
@@ -175,13 +175,13 @@
         }"
         class="secondary-highlight"
       ></div>
-    </div>
+    </nav>
 
     <!-- 底部装饰 -->
     <div class="sidebar-footer">
       <div class="footer-decorator"></div>
     </div>
-  </div>
+  </aside>
 </template>
 
 <script lang="ts" setup>

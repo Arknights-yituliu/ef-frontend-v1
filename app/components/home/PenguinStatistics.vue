@@ -3,7 +3,7 @@
 <template>
   <v-card class="card">
     <v-card-title>
-      <div class="card-title">
+      <header class="card-title">
         <img
           alt="Penguin Statistics Logo"
           class="card-title-icon"
@@ -19,7 +19,7 @@
           @click="openNewPage('https://penguin-stats.cn/')"
         >
         </v-btn>
-      </div>
+      </header>
     </v-card-title>
     <v-card-text>
       {{ $t('component.home.penguinStatistics.penguinStatisticsDescription') }}

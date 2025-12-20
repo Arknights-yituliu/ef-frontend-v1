@@ -3,7 +3,7 @@
 <template>
   <v-card class="card">
     <v-card-title>
-      <div class="card-title">
+      <header class="card-title">
         <img
           alt="明日方舟一图流 LOGO"
           class="card-title-icon"
@@ -19,7 +19,7 @@
           @click="openNewPage('https://ark.yituliu.cn/')"
         >
         </v-btn>
-      </div>
+      </header>
     </v-card-title>
     <v-card-text>
       {{ $t('component.home.yiTuLiu.description') }}

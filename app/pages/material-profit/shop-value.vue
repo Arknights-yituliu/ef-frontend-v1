@@ -1,9 +1,9 @@
 <template>
   <div class="page-container">
-    <h1 class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</h1>
+    <header class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</header>
     <!--    <p class="page-description">{{ $t('page.materialProfit.shopValue.description') }}</p>-->
 
-    <div v-for="shop in shops" :key="shop.shopId" class="shop-section">
+    <section v-for="shop in shops" :key="shop.shopId" class="shop-section">
       <h2 class="page-sub-title">{{ shop.shopName }}</h2>
       <v-data-table
         :headers="headers"
@@ -28,7 +28,7 @@
           {{ item.costPerformance.toFixed(4) }}
         </template>
       </v-data-table>
-    </div>
+    </section>
   </div>
 </template>
 

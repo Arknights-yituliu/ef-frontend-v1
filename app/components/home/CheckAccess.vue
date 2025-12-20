@@ -3,11 +3,11 @@
 <template>
   <v-card class="card">
     <v-card-title>
-      <div class="card-title">
+      <header class="card-title">
         <icon-endfield-icon class="card-title-icon" />
         <b>{{ $t('component.home.checkAccess.betaTestIICheckAccess') }}</b>
         <div class="flex-1"></div>
-      </div>
+      </header>
     </v-card-title>
     <v-card-text>
       <img alt="" class="test-kv" src="https://cos.yituliu.cn/endfield/other/test-kv.jpg" />

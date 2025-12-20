@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <h1 class="page-title">{{ t('page.tools.essenceCalculator.title') }}</h1>
+    <header class="page-title">{{ t('page.tools.essenceCalculator.title') }}</header>
     <v-expansion-panels :model-value="['需求设定', '输出']" multiple>
       <v-expansion-panel value="需求设定">
         <v-expansion-panel-title>{{

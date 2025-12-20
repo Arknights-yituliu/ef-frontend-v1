@@ -1,15 +1,15 @@
 <template>
   <div class="page-container">
-    <h1 class="page-title">{{ t('page.contributors.title') }}</h1>
+    <header class="page-title">{{ t('page.contributors.title') }}</header>
     <p class="page-description">{{ t('page.contributors.description') }}</p>
 
-    <div v-if="contributors.length" class="contributors__cards">
+    <section v-if="contributors.length" class="contributors__cards">
       <ContainerContributorCard
         v-for="contributor in contributors"
         :key="contributor.name"
         :contributor="contributor"
       />
-    </div>
+    </section>
     <p v-else class="contributors__empty">{{ t('component.contributorCard.empty') }}</p>
   </div>
 </template>

@@ -8,9 +8,9 @@
       </header>
 
       <!-- Document Content -->
-      <div class="doc-body">
+      <main class="doc-body">
         <ContentRenderer :value="page" />
-      </div>
+      </main>
     </article>
 
     <div v-else class="doc-not-found">

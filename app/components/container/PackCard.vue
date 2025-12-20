@@ -1,5 +1,5 @@
 <template>
-  <div class="pack-card-container">
+  <article class="pack-card-container">
     <div class="pack-card-wrapper" @click="toggleExpanded">
       <!-- 左侧：图片区域 -->
       <div class="pack-card-part-left">
@@ -102,7 +102,7 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </article>
 </template>
 
 <script lang="ts" setup>
