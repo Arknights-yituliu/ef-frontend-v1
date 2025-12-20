@@ -1,13 +1,13 @@
 <template>
   <div class="doc-page">
     <article v-if="page" class="doc-article">
-      <!-- Document Title -->
+      <!-- 文档标题 -->
       <header class="doc-header">
         <h1 class="doc-title">{{ page.title }}</h1>
         <p v-if="page.description" class="doc-description">{{ page.description }}</p>
       </header>
 
-      <!-- Document Content -->
+      <!-- 文档内容 -->
       <main class="doc-body">
         <ContentRenderer :value="page" />
       </main>
@@ -137,7 +137,7 @@ useHead({
   color: var(--theme-text-primary);
 }
 
-/* Document header */
+/* 文档头 */
 .doc-header {
   margin-bottom: 3rem;
   padding-bottom: 2rem;
@@ -184,14 +184,19 @@ useHead({
   margin-top: 1rem;
 }
 
-/* Document body */
+/* 文档体 */
 .doc-body {
   font-size: var(--font-size-base);
   line-height: 1.8;
   color: var(--theme-text-primary);
 }
 
-/* Document content styles */
+/* 隐藏 nuxt-content 默认提供的文档标题 */
+.doc-body :deep(h1:first-of-type) {
+  display: none;
+}
+
+/* 文档内容样式 */
 .doc-body :deep(h2) {
   font-size: var(--font-size-2xl);
   font-weight: 700;
@@ -374,7 +379,7 @@ useHead({
   opacity: 0.5;
 }
 
-/* Document not found */
+/* 文档未找到 */
 .doc-not-found {
   text-align: center;
   padding: 5rem 2rem;
@@ -391,7 +396,6 @@ useHead({
   color: var(--theme-text-secondary);
 }
 
-/* Responsive */
 @media screen and (max-width: 600px) {
   .doc-header {
     margin-bottom: 2rem;

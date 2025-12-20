@@ -1,0 +1,181 @@
+/* ============================================
+   Markdown 内容样式
+   以文档形式渲染的常规页面可引入该文件样式，从而将文档风格样式转换为常规页面风格样式
+   ============================================ */
+/* 下载按钮 */
+.page-content :deep(.download-buttons) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.page-content :deep(.download-btn) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--theme-bg-tertiary);
+  color: var(--theme-text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all var(--transition-base);
+  box-shadow: 0 2px 4px var(--theme-shadow-accent);
+  position: relative;
+  padding-right: 2.5rem;
+  border: 1px solid var(--theme-border);
+}
+
+.page-content :deep(.download-btn::after) {
+  content: '↗';
+  position: absolute;
+  right: 1rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.page-content :deep(.download-btn:hover) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--theme-shadow-accent-strong);
+  background-color: var(--theme-border);
+}
+
+.page-content :deep(.download-btn.primary) {
+  background-color: var(--theme-accent-color);
+  color: var(--theme-text-thirdary);
+  border-color: var(--theme-accent-color);
+}
+
+.page-content :deep(h2) {
+  font-size: clamp(1.5rem, 2vw + 0.5rem, 1.75rem);
+  font-weight: 600;
+  color: var(--theme-text-primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.page-content :deep(h3) {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--theme-text-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.page-content :deep(h4) {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--theme-text-primary);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-content :deep(p) {
+  margin-bottom: 1rem;
+  color: var(--theme-text-primary);
+  line-height: 1.6;
+}
+
+.page-content :deep(ul),
+.page-content :deep(ol) {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.page-content :deep(li) {
+  margin-bottom: 0.5rem;
+  color: var(--theme-text-primary);
+  line-height: 1.6;
+}
+
+.page-content :deep(li strong) {
+  color: var(--theme-accent-color);
+  font-weight: 600;
+}
+
+.page-content :deep(li span) {
+  color: var(--theme-text-secondary);
+}
+
+.page-content :deep(a) {
+  color: var(--theme-accent-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast);
+}
+
+.page-content :deep(a):hover {
+  border-bottom-color: var(--theme-accent-color);
+}
+
+.page-content :deep(code) {
+  background-color: var(--theme-bg-secondary);
+  color: var(--theme-accent-color);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: 'Jetbrains Mono', 'Google Sans Code', 'Consolas', 'Courier New', monospace;
+}
+
+.page-content :deep(pre) {
+  background-color: var(--theme-bg-tertiary);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.page-content :deep(pre code) {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  color: var(--theme-text-primary);
+  font-size: var(--font-size-xs);
+  line-height: 1.6;
+}
+
+.page-content :deep(blockquote) {
+  border-left: 3px solid var(--theme-border);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: var(--theme-text-secondary);
+  font-style: italic;
+}
+
+.page-content :deep(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin: 1rem 0;
+}
+
+.page-content :deep(hr) {
+  border: none;
+  height: 1px;
+  background-color: var(--theme-border);
+  margin: 2rem 0;
+}
+
+/* 页面未找到 */
+.page-not-found {
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.page-not-found h1 {
+  font-size: var(--font-size-4xl);
+  color: var(--theme-text-primary);
+  margin-bottom: 1rem;
+}
+
+.page-not-found p {
+  font-size: var(--font-size-base);
+  color: var(--theme-text-secondary);
+}
+
+/* 隐藏 nuxt-content 默认提供的文档标题 */
+.page-content h1 {
+  display: none;
+}

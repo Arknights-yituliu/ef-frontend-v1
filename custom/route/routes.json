@@ -40,11 +40,18 @@
         "nameKey": "menu.essenceCalculator",
         "routePath": "/tools/essence-calculator",
         "vuetifyIcon": "mdi-pokeball"
-      },
+      }
+    ]
+  },
+  {
+    "i18nKey": "resources",
+    "nameKey": "menu.resources",
+    "vuetifyIcon": "mdi-download",
+    "children": [
       {
         "i18nKey": "essenceRecognizer",
         "nameKey": "menu.essenceRecognizer",
-        "routePath": "/tools/essence-recognizer",
+        "routePath": "/resources/essence-recognizer",
         "vuetifyIcon": "mdi-chart-line"
       }
     ]

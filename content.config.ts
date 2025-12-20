@@ -14,6 +14,10 @@ export default defineContentConfig({
     operations: defineCollection(asSitemapCollection({
       type: 'page',
       source: '**/*.md',
+    })),
+    resources: defineCollection(asSitemapCollection({
+      type: 'page',
+      source: '**/*.md',
     }))
   }
 })
