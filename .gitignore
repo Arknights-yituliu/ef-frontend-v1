@@ -31,3 +31,6 @@ logs
 IFLOW.md
 CLAUDE.md
 /public/tools/factoriolab
+
+# Plugins files
+.VSCodeCounter
