@@ -352,13 +352,13 @@ const runtimeConfig = useRuntimeConfig();
 
 // 从 runtimeConfig 获取 Wiki 相关数据表
 const wikiEntryDataTable = computed<WikiEntryDataTable>(
-  () => runtimeConfig.public.wikiEntryDataTable as unknown as WikiEntryDataTable,
+  () => JSON.parse(runtimeConfig.public.wikiEntryDataTable) as WikiEntryDataTable,
 );
 const wikiEntryTable = computed<WikiEntryTable>(
-  () => runtimeConfig.public.wikiEntryTable as unknown as WikiEntryTable,
+  () => JSON.parse(runtimeConfig.public.wikiEntryTable) as WikiEntryTable,
 );
 const wikiGroupTable = computed<WikiGroupTable>(
-  () => runtimeConfig.public.wikiGroupTable as unknown as WikiGroupTable,
+  () => JSON.parse(runtimeConfig.public.wikiGroupTable) as WikiGroupTable,
 );
 
 const allAttributeStats = computed(() =>

@@ -360,9 +360,9 @@ export default defineNuxtConfig({
      * 注意：不要在这里存储敏感信息（如 API 密钥、密码等）
      */
     public: {
-      wikiEntryDataTable: null,
-      wikiEntryTable: null,
-      wikiGroupTable: null,
+      wikiEntryDataTable: undefined,
+      wikiEntryTable: undefined,
+      wikiGroupTable: undefined,
     },
   },
 
@@ -401,24 +401,23 @@ export default defineNuxtConfig({
         const { wikiEntryDataTable, wikiEntryTable, wikiGroupTable } = await fetchWikiTables();
 
         // 赋值给runtimeConfig，运行时可访问
-        nitro.options.runtimeConfig.public.wikiEntryDataTable = wikiEntryDataTable;
-        nitro.options.runtimeConfig.public.wikiEntryTable = wikiEntryTable;
-        nitro.options.runtimeConfig.public.wikiGroupTable = wikiGroupTable;
+        nitro.options.runtimeConfig.public.wikiEntryDataTable = JSON.stringify(wikiEntryDataTable);
+        nitro.options.runtimeConfig.public.wikiEntryTable = JSON.stringify(wikiEntryTable);
+        nitro.options.runtimeConfig.public.wikiGroupTable = JSON.stringify(wikiGroupTable);
 
         console.log('✅ 打包数据拉取完成，已存入全局变量');
         // 简约打印获取到的值（超出长度的用省略号表示）
         console.log(
           'wikiEntryDataTable:',
-          JSON.stringify(nitro.options.runtimeConfig.public.wikiEntryDataTable).slice(0, 100) +
-            '...',
+          nitro.options.runtimeConfig.public.wikiEntryDataTable.slice(0, 100) + '...',
         );
         console.log(
           'wikiEntryTable:',
-          JSON.stringify(nitro.options.runtimeConfig.public.wikiEntryTable).slice(0, 100) + '...',
+          nitro.options.runtimeConfig.public.wikiEntryTable.slice(0, 100) + '...',
         );
         console.log(
           'wikiGroupTable:',
-          JSON.stringify(nitro.options.runtimeConfig.public.wikiGroupTable).slice(0, 100) + '...',
+          nitro.options.runtimeConfig.public.wikiGroupTable.slice(0, 100) + '...',
         );
       },
     },
