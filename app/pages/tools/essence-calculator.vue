@@ -121,7 +121,7 @@
               </div>
               <div class="weapon-grid">
                 <div
-                  v-for="[wikiEntryId, weaponId] in wikiEntryTable[groupId]!.list.map(
+                  v-for="[wikiEntryId, weaponId = ''] in wikiEntryTable[groupId]!.list.map(
                     (wikiEntryId: string) => [
                       wikiEntryId,
                       wikiEntryDataTable[wikiEntryId]!.refItemId,
@@ -339,15 +339,27 @@ import {
   gemTagIdTable,
   getLocalizedText,
   weaponBasicTable,
-  wikiEntryDataTable,
-  wikiEntryTable,
-  wikiGroupTable,
   worldEnergyPointGroupTable,
   worldEnergyPointTable,
   itemTable,
 } from '@/shared/utils/gameData/gameData';
-import { get } from 'http';
+import type { WikiEntryDataTable } from '@/shared/types/endfielddata/TableCfg/WikiEntryDataTable';
+import type { WikiEntryTable } from '@/shared/types/endfielddata/TableCfg/WikiEntryTable';
+import type { WikiGroupTable } from '@/shared/types/endfielddata/TableCfg/WikiGroupTable';
+
 const { t } = useI18n();
+const runtimeConfig = useRuntimeConfig();
+
+// 从 runtimeConfig 获取 Wiki 相关数据表
+const wikiEntryDataTable = computed<WikiEntryDataTable>(
+  () => runtimeConfig.public.wikiEntryDataTable as unknown as WikiEntryDataTable,
+);
+const wikiEntryTable = computed<WikiEntryTable>(
+  () => runtimeConfig.public.wikiEntryTable as unknown as WikiEntryTable,
+);
+const wikiGroupTable = computed<WikiGroupTable>(
+  () => runtimeConfig.public.wikiGroupTable as unknown as WikiGroupTable,
+);
 
 const allAttributeStats = computed(() =>
   Object.values(gemTable.value)

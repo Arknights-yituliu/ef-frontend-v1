@@ -144,21 +144,6 @@ export const initGameData = async () => {
       .then((text) => {
         weaponBasicTable.value = parseJSONWithBigInt(text);
       }),
-    fetch(getResourceUrl(wikiEntryDataTablePath))
-      .then((res) => res.text())
-      .then((text) => {
-        wikiEntryDataTable.value = parseJSONWithBigInt(text);
-      }),
-    fetch(getResourceUrl(wikiEntryTablePath))
-      .then((res) => res.text())
-      .then((text) => {
-        wikiEntryTable.value = parseJSONWithBigInt(text);
-      }),
-    fetch(getResourceUrl(wikiGroupTablePath))
-      .then((res) => res.text())
-      .then((text) => {
-        wikiGroupTable.value = parseJSONWithBigInt(text);
-      }),
     fetch(getResourceUrl(worldEnergyPointGroupTablePath))
       .then((res) => res.text())
       .then((text) => {
