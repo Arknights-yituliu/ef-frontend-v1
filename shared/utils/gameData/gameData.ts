@@ -7,6 +7,10 @@ import type { TextTable } from '@/shared/types/endfielddata/TableCfg/TextTable';
 import type { WeaponBasicTable } from '@/shared/types/endfielddata/TableCfg/WeaponBasicTable';
 import type { WorldEnergyPointGroupTable } from '@/shared/types/endfielddata/TableCfg/WorldEnergyPointGroupTable';
 import type { WorldEnergyPointTable } from '@/shared/types/endfielddata/TableCfg/WorldEnergyPointTable';
+import type { SkillPatchTable } from '@/shared/types/endfielddata/TableCfg/SkillPatchTable';
+import type { WikiEntryDataTable } from '@/shared/types/endfielddata/TableCfg/WikiEntryDataTable';
+import type { WikiEntryTable } from '@/shared/types/endfielddata/TableCfg/WikiEntryTable';
+import type { WikiGroupTable } from '@/shared/types/endfielddata/TableCfg/WikiGroupTable';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
