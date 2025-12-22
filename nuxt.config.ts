@@ -117,6 +117,7 @@ export default defineNuxtConfig({
     // 参考：https://content.nuxt.com/docs/getting-started/configuration
     '@nuxt/content', // Vuetify 插件配置（自定义模块函数）
     '@nuxt/eslint', // @nuxt/eslint - ESLint 集成，用于代码质量检查
+    '@nuxtjs/seo', // @nuxtjs/seo - SEO 模块，用于优化搜索引擎优化
     // 通过 Vite 钩子注册 Vuetify 插件，启用自动导入功能
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -124,13 +125,40 @@ export default defineNuxtConfig({
           config.plugins.push(vuetify({ autoImport: true }));
         }
       });
-    }, // Seo 模块配置
-    '@nuxtjs/seo',
+    },
   ],
 
+  /**
+   * PostCSS 配置
+   * PostCSS 是一个用 JavaScript 工具和插件转换 CSS 代码的工具
+   * 它允许你使用未来的 CSS 特性，并通过插件进行转换
+   * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#postcss
+   */
   postcss: {
+    /**
+     * PostCSS 插件配置 (plugins)
+     * 配置 PostCSS 使用的插件列表
+     */
     plugins: {
+      /**
+       * Autoprefixer 配置
+       * Autoprefixer 是一个 PostCSS 插件，用于自动添加浏览器厂商前缀（如 -webkit-, -moz-, -ms- 等）
+       * 它根据 Can I Use 数据库和指定的浏览器支持范围，自动为 CSS 属性添加必要的前缀
+       * 参考：https://github.com/postcss/autoprefixer
+       */
       autoprefixer: {
+        /**
+         * 浏览器列表覆盖 (overrideBrowserslist)
+         * 指定需要支持的浏览器版本范围，Autoprefixer 会根据此配置决定添加哪些厂商前缀
+         * 
+         * 配置说明：
+         * - 'last 2 versions': 支持每个浏览器的最后 2 个版本
+         * - '> 1% in CN': 支持在中国市场份额超过 1% 的浏览器
+         * - 'not IE 11': 明确排除 IE 11 浏览器
+         * 
+         * 这些配置会合并使用，最终支持的浏览器是满足所有条件的交集
+         * 参考：https://github.com/browserslist/browserslist#readme
+         */
         overrideBrowserslist: ['last 2 versions', '> 1% in CN', 'not IE 11'],
       },
     },
