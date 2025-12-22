@@ -5,10 +5,10 @@
       :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
     >
       <!-- 装饰背景 -->
-      <div class="sidebar-bg-decorator"></div>
+      <div class="sidebar-bg-decorator" />
 
       <!-- 左侧装饰条 -->
-      <div class="sidebar-left-decoration"></div>
+      <div class="sidebar-left-decoration" />
 
       <!-- 侧边栏内容 -->
       <div class="sidebar-content">
@@ -16,7 +16,7 @@
           <h2 class="sidebar-title">{{ $t('docs.documentation') }}</h2>
         </div>
 
-        <nav class="sidebar-nav" ref="sidebarNavRef">
+        <nav ref="sidebarNavRef" class="sidebar-nav">
           <div
             class="nav-highlight"
             :style="{
@@ -24,7 +24,7 @@
               height: `${highlightHeight}px`,
               opacity: highlightHeight > 0 ? 1 : 0,
             }"
-          ></div>
+          />
           <div
             v-for="(section, sectionIndex) in docNavigation"
             :key="sectionIndex"
@@ -35,8 +35,8 @@
               <li
                 v-for="(item, itemIndex) in section.items"
                 :key="itemIndex"
-                class="nav-item"
                 :ref="(el) => setLinkRef(el, item.path)"
+                class="nav-item"
               >
                 <NuxtLink
                   :to="item.path"
@@ -44,8 +44,8 @@
                   :class="{ 'is-active': isActivePath(item.path) }"
                   @click="handleLinkClick"
                 >
-                  <div class="link-bg"></div>
-                  <div class="link-left-border"></div>
+                  <div class="link-bg" />
+                  <div class="link-left-border" />
                   <span class="link-text">{{ $t(item.titleKey) }}</span>
                 </NuxtLink>
               </li>
@@ -58,8 +58,8 @@
     <!-- 折叠按钮 -->
     <button
       class="collapse-toggle"
-      @click="toggleCollapse"
       :aria-label="isCollapsed ? $t('docs.expand') : $t('docs.collapse')"
+      @click="toggleCollapse"
     >
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path

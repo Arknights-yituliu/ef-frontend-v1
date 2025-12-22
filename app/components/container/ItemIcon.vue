@@ -1,8 +1,8 @@
 <template>
   <div ref="itemIconPlaceholderRef" class="item-icon-placeholder">
     <img :alt="itemName" :src="getItemIconUrl(props.itemId)" class="item-icon-img" />
-    <div class="item-gradient-overlay"></div>
-    <div class="item-tier-bar"></div>
+    <div class="item-gradient-overlay" />
+    <div class="item-tier-bar" />
     <div v-if="props.showItemName" ref="itemNameRef" class="item-name">
       {{ itemName }}
     </div>
@@ -20,6 +20,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   showItemName: false,
+  itemName: '',
 });
 
 const itemIconPlaceholderRef = useTemplateRef<HTMLDivElement>('itemIconPlaceholderRef');

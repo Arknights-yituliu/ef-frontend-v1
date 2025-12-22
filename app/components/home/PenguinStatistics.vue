@@ -17,8 +17,7 @@
           color="primary"
           prepend-icon="mdi-web"
           @click="openNewPage('https://penguin-stats.cn/')"
-        >
-        </v-btn>
+        />
       </header>
     </v-card-title>
     <v-card-text>
@@ -31,7 +30,7 @@
           @click="() => openNewPage('https://penguin-stats.cn/report/item')"
         >
           <v-card-text>
-            <v-icon icon="mdi-treasure-chest" size="42"></v-icon>
+            <v-icon icon="mdi-treasure-chest" size="42" />
             <h2>{{ $t('component.home.penguinStatistics.itemDropRates') }}</h2>
             <span>{{ $t('component.home.penguinStatistics.itemDropRatesDoc') }}</span>
           </v-card-text>
@@ -43,7 +42,7 @@
           @click="() => openNewPage('https://penguin-stats.cn/report/stage')"
         >
           <v-card-text>
-            <v-icon icon="mdi-cube" size="42"></v-icon>
+            <v-icon icon="mdi-cube" size="42" />
             <h2>{{ $t('component.home.penguinStatistics.stageDropRates') }}</h2>
             <span>{{ $t('component.home.penguinStatistics.stageDropRatesDoc') }}</span>
           </v-card-text>
@@ -54,7 +53,7 @@
           @click="() => openNewPage('https://penguin-stats.cn/report/stage')"
         >
           <v-card-text>
-            <v-icon icon="mdi-upload" size="42"></v-icon>
+            <v-icon icon="mdi-upload" size="42" />
             <h2>{{ $t('component.home.penguinStatistics.dropReports') }}</h2>
             <span>{{ $t('component.home.penguinStatistics.dropReportsDoc') }}</span>
           </v-card-text>
@@ -65,7 +64,7 @@
           @click="() => openNewPage('https://penguin-stats.cn/planner')"
         >
           <v-card-text>
-            <v-icon icon="mdi-directions-fork" size="42"></v-icon>
+            <v-icon icon="mdi-directions-fork" size="42" />
             <h2>{{ $t('component.home.penguinStatistics.farmingPlanner') }}</h2>
             <span>{{ $t('component.home.penguinStatistics.farmingPlannerDoc') }}</span>
           </v-card-text>

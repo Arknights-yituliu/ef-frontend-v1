@@ -163,7 +163,7 @@
           opacity: primaryHighlightHeight > 0 ? 1 : 0,
         }"
         class="primary-highlight"
-      ></div>
+      />
 
       <!-- 二级菜单高亮区域 -->
       <div
@@ -174,12 +174,12 @@
           visibility: isSecondaryHighlightHidden ? 'hidden' : 'visible',
         }"
         class="secondary-highlight"
-      ></div>
+      />
     </nav>
 
     <!-- 底部装饰 -->
     <div class="sidebar-footer">
-      <div class="footer-decorator"></div>
+      <div class="footer-decorator" />
     </div>
   </aside>
 </template>

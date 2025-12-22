@@ -1,7 +1,7 @@
 <template>
   <v-footer class="app-footer">
     <!-- 顶部装饰条 -->
-    <div class="footer-top-decoration"></div>
+    <div class="footer-top-decoration" />
 
     <!-- 版权信息 -->
     <div class="footer-content">

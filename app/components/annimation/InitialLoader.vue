@@ -382,7 +382,7 @@ const showRevealPhase = computed(
           </svg>
           <!-- 环形进度条 -->
           <div class="progress-ring-container">
-            <div class="progress-ring-pattern"></div>
+            <div class="progress-ring-pattern" />
             <!-- 斜条纹背景装饰 -->
             <!-- 进度条 SVG 元素 -->
             <svg class="progress-ring" viewBox="0 0 200 200">

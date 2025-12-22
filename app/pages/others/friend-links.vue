@@ -5,7 +5,7 @@
 
     <!-- 加载状态 -->
     <div v-if="pending" class="loading-container">
-      <div class="loading-spinner"></div>
+      <div class="loading-spinner" />
       <p class="loading-text">{{ $t('common.loading') }}</p>
     </div>
 

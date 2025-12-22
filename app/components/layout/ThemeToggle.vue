@@ -1,6 +1,6 @@
 <template>
-  <button class="theme-toggle" @click="toggleTheme" :aria-label="$t('layout.theme')">
-    <div class="toggle-bg"></div>
+  <button class="theme-toggle" :aria-label="$t('layout.theme')" @click="toggleTheme">
+    <div class="toggle-bg" />
     <svg
       class="theme-icon"
       viewBox="0 0 24 24"
@@ -96,7 +96,7 @@
         <circle cx="17" cy="7" r="1" fill="currentColor" opacity="0.6" />
       </g>
     </svg>
-    <div class="toggle-glow"></div>
+    <div class="toggle-glow" />
   </button>
 </template>
 

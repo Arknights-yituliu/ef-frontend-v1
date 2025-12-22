@@ -17,8 +17,7 @@
           color="primary"
           prepend-icon="mdi-web"
           @click="openNewPage('https://factory.ef.yituliu.cn/')"
-        >
-        </v-btn>
+        />
       </header>
     </v-card-title>
     <v-card-text>

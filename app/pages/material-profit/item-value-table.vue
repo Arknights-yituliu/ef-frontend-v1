@@ -63,11 +63,11 @@
       <div v-for="itemId in filteredAndSortedItemIdList" :key="itemId" class="item-card">
         <!-- 左侧物品图标 -->
         <div class="item-icon-wrapper">
-          <ContainerItemIcon :itemId="itemId" />
+          <ContainerItemIcon :item-id="itemId" />
         </div>
         <!-- 右侧信息标签 -->
         <div class="item-info-bubble">
-          <div style="width: 34px"></div>
+          <div style="width: 34px" />
           <div class="item-info-content flex-1">
             <div class="item-label">{{ getItemName(itemId) }}</div>
             <div class="item-value">{{ getItemValue(itemId).toFixed(3) }}</div>
@@ -168,7 +168,7 @@ const toggleSortOrder = () => {
 // 监听搜索和排序变化
 watch([searchQuery, sortField, sortOrder], () => {
   // 重新计算排序
-  filteredAndSortedItemIdList.value;
+  // filteredAndSortedItemIdList.value;
 });
 </script>
 

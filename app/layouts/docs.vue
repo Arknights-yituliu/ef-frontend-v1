@@ -3,10 +3,10 @@
     <!-- 顶部导航栏 -->
     <nav class="docs-header">
       <!-- 装饰背景 -->
-      <div class="header-bg-decorator"></div>
+      <div class="header-bg-decorator" />
 
       <!-- 左侧装饰条 -->
-      <div class="header-left-decoration"></div>
+      <div class="header-left-decoration" />
 
       <!-- 文档站标题 -->
       <header class="header-title">
@@ -73,17 +73,17 @@
         <button :aria-label="$t('docs.search')" class="control-button" @click="openSearchModal">
           <v-icon>mdi-magnify</v-icon>
         </button>
-        <div class="control-divider"></div>
+        <div class="control-divider" />
         <!-- 主题切换 -->
         <LayoutThemeToggle />
-        <div class="control-divider"></div>
+        <div class="control-divider" />
         <!-- 语言切换 -->
         <LayoutLanguageToggle />
       </div>
     </nav>
 
     <!-- 遮罩层 -->
-    <div v-if="isSidebarOpen || isTocOpen" class="overlay" @click="closeAll"></div>
+    <div v-if="isSidebarOpen || isTocOpen" class="overlay" @click="closeAll" />
 
     <!-- 左侧文档目录 -->
     <DocsSidebar :is-open="isSidebarOpen" @close="closeSidebar" />

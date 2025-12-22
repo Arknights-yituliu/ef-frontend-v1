@@ -5,10 +5,10 @@
       :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
     >
       <!-- 装饰背景 -->
-      <div class="toc-bg-decorator"></div>
+      <div class="toc-bg-decorator" />
 
       <!-- 右侧装饰条 -->
-      <div class="toc-right-decoration"></div>
+      <div class="toc-right-decoration" />
 
       <!-- TOC 内容 -->
       <div class="toc-content">
@@ -16,7 +16,7 @@
           <h2 class="toc-title">{{ $t('docs.tableOfContents') }}</h2>
         </div>
 
-        <nav class="toc-nav" v-if="headings.length > 0" ref="tocNavRef">
+        <nav v-if="headings.length > 0" ref="tocNavRef" class="toc-nav">
           <div
             class="toc-highlight"
             :style="{
@@ -24,14 +24,14 @@
               height: `${highlightHeight}px`,
               opacity: highlightHeight > 0 ? 1 : 0,
             }"
-          ></div>
+          />
           <ul class="toc-list">
             <li
               v-for="(heading, index) in headings"
               :key="index"
+              :ref="(el) => setHeadingRef(el, heading.id)"
               class="toc-item"
               :class="`toc-item-level-${heading.depth}`"
-              :ref="(el) => setHeadingRef(el, heading.id)"
             >
               <a
                 :href="`#${heading.id}`"
@@ -82,8 +82,8 @@
     <!-- 折叠按钮 -->
     <button
       class="collapse-toggle"
-      @click="toggleCollapse"
       :aria-label="isCollapsed ? $t('docs.expand') : $t('docs.collapse')"
+      @click="toggleCollapse"
     >
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path

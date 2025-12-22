@@ -6,7 +6,7 @@
       <header class="card-title">
         <icon-endfield-icon class="card-title-icon" />
         <b>{{ $t('component.home.checkAccess.betaTestIICheckAccess') }}</b>
-        <div class="flex-1"></div>
+        <div class="flex-1" />
       </header>
     </v-card-title>
     <v-card-text>
@@ -18,7 +18,7 @@
         <span>
           {{ $t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite') }}
         </span>
-        <v-icon icon="mdi-open-in-new"></v-icon>
+        <v-icon icon="mdi-open-in-new" />
       </v-btn>
     </v-card-text>
   </v-card>

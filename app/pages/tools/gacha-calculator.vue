@@ -2,10 +2,10 @@
 import type { PackContent } from '@/shared/types/pack';
 import type { AllGachaResourceStatus, PieChartData } from '@/shared/types/gacha-calculator';
 import { allGachaResourceStatus } from '@/shared/types/gacha-calculator';
-const { t } = useI18n();
 import { ref, onMounted, watch, computed, nextTick } from 'vue';
+const { t } = useI18n();
 
-let panel = ref<string[]>(['statisticalResult']);
+const panel = ref<string[]>(['statisticalResult']);
 
 /**
  * 计算排期开始与结束日期的天数差
@@ -40,7 +40,7 @@ const pieChartData = computed(() => [
 let myChart: any;
 
 function setPieChart(data: PieChartData[]) {
-  let option = {
+  const option = {
     tooltip: {
       formatter: (params: any) => {
         // ECharts 饼图的 params 可能是单个对象或数组
@@ -114,71 +114,73 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="page-title">{{ t('page.tools.gachaCalculator.title') }}</header>
-  <p>{{ t('page.tools.gachaCalculator.underDevelopment') }}</p>
-  {{ panel }}
-  <section class="gacha-calculator-container">
-    <div class="gacha-calculator-container-left">
-      <v-expansion-panels v-model="panel" multiple>
-        <v-expansion-panel value="statisticalResult">
-          <v-expansion-panel-title>
-            <div class="gacha-calculator-card-title">
-              {{ t('page.tools.gachaCalculator.total')
-              }}{{ allGachaResourceStatus.totalGachaResources
-              }}{{ t('page.tools.gachaCalculator.pulls') }}，{{
-                t('page.tools.gachaCalculator.whaleAmount')
-              }}{{ allGachaResourceStatus.whaleAmount }}{{ t('page.tools.gachaCalculator.yuan') }}
-            </div>
-          </v-expansion-panel-title>
-          <v-expansion-panel-text>
-            <div class="gacha-calculator-statistical-result">
-              <div
-                class="gacha-calculator-pie-chart"
-                id="gacha-calculator-pie-chart"
-                ref="gacha-calculator-pie-chart"
-              ></div>
+  <div>
+    <header class="page-title">{{ t('page.tools.gachaCalculator.title') }}</header>
+    <p>{{ t('page.tools.gachaCalculator.underDevelopment') }}</p>
+    {{ panel }}
+    <section class="gacha-calculator-container">
+      <div class="gacha-calculator-container-left">
+        <v-expansion-panels v-model="panel" multiple>
+          <v-expansion-panel value="statisticalResult">
+            <v-expansion-panel-title>
+              <div class="gacha-calculator-card-title">
+                {{ t('page.tools.gachaCalculator.total')
+                }}{{ allGachaResourceStatus.totalGachaResources
+                }}{{ t('page.tools.gachaCalculator.pulls') }}，{{
+                  t('page.tools.gachaCalculator.whaleAmount')
+                }}{{ allGachaResourceStatus.whaleAmount }}{{ t('page.tools.gachaCalculator.yuan') }}
+              </div>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <div class="gacha-calculator-statistical-result">
+                <div
+                  id="gacha-calculator-pie-chart"
+                  ref="gacha-calculator-pie-chart"
+                  class="gacha-calculator-pie-chart"
+                />
 
-              <table class="gacha-calculator-resource-table">
-                <tbody>
-                  <tr>
-                    <td>{{ t('page.tools.gachaCalculator.existing') }}</td>
-                    <td>{{ allGachaResourceStatus.existing.totalGachaResources }}</td>
-                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                  </tr>
-                  <tr>
-                    <td>{{ t('page.tools.gachaCalculator.daily') }}</td>
-                    <td>{{ allGachaResourceStatus.daily.totalGachaResources }}</td>
-                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                  </tr>
-                  <tr>
-                    <td>{{ t('page.tools.gachaCalculator.potential') }}</td>
-                    <td>{{ allGachaResourceStatus.potential.totalGachaResources }}</td>
-                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                  </tr>
-                  <tr>
-                    <td>{{ t('page.tools.gachaCalculator.whale') }}</td>
-                    <td>{{ allGachaResourceStatus.whale.totalGachaResources }}</td>
-                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                  </tr>
-                  <tr>
-                    <td>{{ t('page.tools.gachaCalculator.activity') }}</td>
-                    <td>{{ allGachaResourceStatus.activity.totalGachaResources }}</td>
-                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                  </tr>
-                  <tr>
-                    <td>{{ t('page.tools.gachaCalculator.other') }}</td>
-                    <td>{{ allGachaResourceStatus.other.totalGachaResources }}</td>
-                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </div>
-    <div class="gacha-calculator-container-right"></div>
-  </section>
+                <table class="gacha-calculator-resource-table">
+                  <tbody>
+                    <tr>
+                      <td>{{ t('page.tools.gachaCalculator.existing') }}</td>
+                      <td>{{ allGachaResourceStatus.existing.totalGachaResources }}</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ t('page.tools.gachaCalculator.daily') }}</td>
+                      <td>{{ allGachaResourceStatus.daily.totalGachaResources }}</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ t('page.tools.gachaCalculator.potential') }}</td>
+                      <td>{{ allGachaResourceStatus.potential.totalGachaResources }}</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ t('page.tools.gachaCalculator.whale') }}</td>
+                      <td>{{ allGachaResourceStatus.whale.totalGachaResources }}</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ t('page.tools.gachaCalculator.activity') }}</td>
+                      <td>{{ allGachaResourceStatus.activity.totalGachaResources }}</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ t('page.tools.gachaCalculator.other') }}</td>
+                      <td>{{ allGachaResourceStatus.other.totalGachaResources }}</td>
+                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </div>
+      <div class="gacha-calculator-container-right" />
+    </section>
+  </div>
 </template>
 
 <style scoped>

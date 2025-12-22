@@ -1,39 +1,41 @@
 <template>
-  <div class="page-title">
-    <TextParticleWord :text="t('layout.siteName')" class="particle-word" />
+  <div>
+    <div class="page-title">
+      <TextParticleWord :text="t('layout.siteName')" class="particle-word" />
+    </div>
+
+    <!-- 滚动横幅（我们把它用 v-if="false" 隐藏了） -->
+    <v-carousel
+      v-if="false"
+      class="index-carousel"
+      cycle
+      hide-delimiter-background
+      show-arrows="hover"
+    >
+      <v-carousel-item v-for="(slide, i) in slides" :key="i">
+        <v-sheet :color="colors[i]" height="100%">
+          <div class="d-flex fill-height justify-center align-center">
+            <div class="text-h2">{{ slide }} Slide</div>
+          </div>
+        </v-sheet>
+      </v-carousel-item>
+    </v-carousel>
+
+    <div class="card-group">
+      <HomeCheckAccess />
+      <HomeContribute />
+      <HomeFactorioLab v-if="false" /><!-- 暂时隐藏终末地产线计算器卡片 -->
+      <HomeYiTuLiu />
+      <HomePenguinStatistics />
+    </div>
+
+    <p v-if="false" class="page-description">
+      {{ t('page.home.welcome') }}
+    </p>
+    <p v-if="false" class="page-hint">
+      {{ t('page.home.hint') }}
+    </p>
   </div>
-
-  <!-- 滚动横幅（我们把它用 v-if="false" 隐藏了） -->
-  <v-carousel
-    class="index-carousel"
-    v-if="false"
-    cycle
-    hide-delimiter-background
-    show-arrows="hover"
-  >
-    <v-carousel-item v-for="(slide, i) in slides" :key="i">
-      <v-sheet :color="colors[i]" height="100%">
-        <div class="d-flex fill-height justify-center align-center">
-          <div class="text-h2">{{ slide }} Slide</div>
-        </div>
-      </v-sheet>
-    </v-carousel-item>
-  </v-carousel>
-
-  <div class="card-group">
-    <HomeCheckAccess />
-    <HomeContribute />
-    <HomeFactorioLab v-if="false" /><!-- 暂时隐藏终末地产线计算器卡片 -->
-    <HomeYiTuLiu />
-    <HomePenguinStatistics />
-  </div>
-
-  <p class="page-description" v-if="false">
-    {{ t('page.home.welcome') }}
-  </p>
-  <p class="page-hint" v-if="false">
-    {{ t('page.home.hint') }}
-  </p>
 </template>
 
 <script lang="ts" setup>

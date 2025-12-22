@@ -1,17 +1,17 @@
 <template>
   <div class="language-toggle">
     <button
-      v-for="locale in availableLocales"
-      :key="locale.code"
-      :class="{ active: currentLocale === locale.code }"
+      v-for="localeItem in availableLocales"
+      :key="localeItem.code"
+      :class="{ active: currentLocale === localeItem.code }"
       class="language-btn"
-      @click="handleLocaleChange(locale.code)"
+      @click="handleLocaleChange(localeItem.code)"
     >
-      <div class="btn-bg"></div>
-      <div class="btn-left-border"></div>
-      <span class="btn-text">{{ locale.label }}</span>
+      <div class="btn-bg" />
+      <div class="btn-left-border" />
+      <span class="btn-text">{{ localeItem.label }}</span>
       <svg
-        v-if="currentLocale === locale.code"
+        v-if="currentLocale === localeItem.code"
         class="btn-check-icon"
         viewBox="0 0 12 12"
         xmlns="http://www.w3.org/2000/svg"

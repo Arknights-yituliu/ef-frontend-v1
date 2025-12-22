@@ -1,11 +1,11 @@
 <template>
-  <!--  <AnnimationInitialLoader-->
-  <!--    :is-loading="isInitialLoading"-->
-  <!--    :loading-duration="loadingDuration"-->
-  <!--    @complete="handleInitialLoaderComplete"-->
-  <!--  />-->
-  <LayoutDesertBackground />
   <v-app :theme="theme">
+    <LayoutDesertBackground />
+    <!--  <AnnimationInitialLoader-->
+    <!--    :is-loading="isInitialLoading"-->
+    <!--    :loading-duration="loadingDuration"-->
+    <!--    @complete="handleInitialLoaderComplete"-->
+    <!--  />-->
     <v-navigation-drawer v-model="drawer" :width="280" class="navigation-drawer">
       <LayoutSidebar />
     </v-navigation-drawer>
@@ -30,11 +30,11 @@
         />
       </svg>
 
-      <v-app-bar-nav-icon @click="() => (drawer = !drawer)"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="() => (drawer = !drawer)" />
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
       <div class="header-controls">
         <LayoutThemeToggle />
-        <div class="control-divider"></div>
+        <div class="control-divider" />
         <LayoutLanguageToggle />
       </div>
     </v-app-bar>

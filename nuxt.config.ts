@@ -120,8 +120,9 @@ export default defineNuxtConfig({
     // 通过 Vite 钩子注册 Vuetify 插件，启用自动导入功能
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error
-        config.plugins.push(vuetify({ autoImport: true }));
+        if (config.plugins) {
+          config.plugins.push(vuetify({ autoImport: true }));
+        }
       });
     }, // Seo 模块配置
     '@nuxtjs/seo',

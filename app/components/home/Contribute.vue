@@ -29,8 +29,7 @@ const copyGroupNumber = async () => {
           color="primary"
           prepend-icon="mdi-github"
           @click="() => openNewPage('https://github.com/Arknights-yituliu/ef-frontend-v1')"
-        >
-        </v-btn>
+        />
       </header>
     </v-card-title>
     <v-card-text>
@@ -87,7 +86,7 @@ const copyGroupNumber = async () => {
 
   <v-snackbar v-model="snackbar" :timeout="2000" color="success" location="bottom">
     {{ $t('component.home.contribute.copySuccess') }}
-    <template v-slot:actions>
+    <template #actions>
       <v-btn variant="text" @click="snackbar = false">
         {{ $t('common.close') }}
       </v-btn>

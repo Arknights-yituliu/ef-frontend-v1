@@ -3,7 +3,7 @@ export const useTheme = () => {
 
   const setTheme = (newTheme: 'light' | 'dark') => {
     theme.value = newTheme;
-    if (process.client) {
+    if (import.meta.client) {
       document.documentElement.setAttribute('data-theme', newTheme);
 
       // Nuxt Content 会以根元素是否存在 dark 类来确定主题
@@ -18,7 +18,7 @@ export const useTheme = () => {
   };
 
   const initTheme = () => {
-    if (process.client) {
+    if (import.meta.client) {
       const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -28,7 +28,7 @@ export const useTheme = () => {
   };
 
   // 在客户端初始化主题
-  if (process.client) {
+  if (import.meta.client) {
     initTheme();
   }
 

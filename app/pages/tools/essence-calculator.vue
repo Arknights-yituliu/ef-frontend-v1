@@ -9,9 +9,9 @@
         <v-expansion-panel-text>
           <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
           <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
-          <div class="mb-8"></div>
+          <div class="mb-8" />
           <v-row v-for="(stat, index) in requiredEssenceStats" :key="index" align="center">
-            <v-col cols="0" md="1"></v-col>
+            <v-col cols="0" md="1" />
             <v-col cols="12" md="2">
               <div>
                 <span class="font-weight-bold mr-4">#{{ index + 1 }}</span
@@ -34,7 +34,7 @@
                 density="comfortable"
                 hide-details
                 variant="outlined"
-              ></v-select>
+              />
             </v-col>
             <v-col cols="12" md="2">
               <v-select
@@ -52,7 +52,7 @@
                 density="comfortable"
                 hide-details
                 variant="outlined"
-              ></v-select>
+              />
             </v-col>
             <v-col cols="12" md="2">
               <v-select
@@ -70,7 +70,7 @@
                 density="comfortable"
                 hide-details
                 variant="outlined"
-              ></v-select>
+              />
             </v-col>
             <v-col cols="12" md="3">
               <v-btn
@@ -78,19 +78,14 @@
                 icon="mdi-chevron-up"
                 variant="text"
                 @click="moveUp(index)"
-              ></v-btn>
+              />
               <v-btn
                 :disabled="index === requiredEssenceStats.length - 1"
                 icon="mdi-chevron-down"
                 variant="text"
                 @click="moveDown(index)"
-              ></v-btn>
-              <v-btn
-                color="error"
-                icon="mdi-delete"
-                variant="text"
-                @click="removeStat(index)"
-              ></v-btn>
+              />
+              <v-btn color="error" icon="mdi-delete" variant="text" @click="removeStat(index)" />
             </v-col>
           </v-row>
           <div class="mt-8 mb-8">
@@ -150,7 +145,7 @@
                 <v-card-item class="bg-surface-variant py-3">
                   <template #prepend>
                     <v-avatar class="mr-2" color="primary" variant="tonal">
-                      <v-icon icon="mdi-map-marker"></v-icon>
+                      <v-icon icon="mdi-map-marker" />
                     </v-avatar>
                   </template>
                   <v-card-title class="text-h6 font-weight-bold">
@@ -171,7 +166,7 @@
                   </template>
                 </v-card-item>
 
-                <v-divider></v-divider>
+                <v-divider />
 
                 <v-card-text class="pt-4">
                   <v-alert
@@ -199,7 +194,7 @@
                     <!-- Left Column: Configuration -->
                     <v-col cols="12" md="5">
                       <div class="d-flex align-center mb-3">
-                        <v-icon class="mr-2" color="primary" icon="mdi-tune" size="small"></v-icon>
+                        <v-icon class="mr-2" color="primary" icon="mdi-tune" size="small" />
                         <span class="text-subtitle-1 font-weight-bold">{{
                           t('page.tools.essenceCalculator.preEngraveStats')
                         }}</span>
@@ -246,8 +241,8 @@
                       </div>
                     </v-col>
 
-                    <v-divider vertical class="hidden-sm-and-down"></v-divider>
-                    <v-divider class="hidden-md-and-up my-4"></v-divider>
+                    <v-divider vertical class="hidden-sm-and-down" />
+                    <v-divider class="hidden-md-and-up my-4" />
 
                     <!-- Right Column: Results -->
                     <v-col cols="12" md="7">
@@ -257,7 +252,7 @@
                           color="success"
                           icon="mdi-check-circle-outline"
                           size="small"
-                        ></v-icon>
+                        />
                         <span class="text-subtitle-1 font-weight-bold">{{
                           t('page.tools.essenceCalculator.output')
                         }}</span>
