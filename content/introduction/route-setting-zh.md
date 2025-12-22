@@ -100,6 +100,7 @@ app/pages/tutorial/getting-started.vue
 在 `i18n/locales/zh-CN.json` 和 `i18n/locales/en-US.json` 中添加翻译：
 
 **zh-CN.json:**
+
 ```json
 {
   "menu": {
@@ -109,6 +110,7 @@ app/pages/tutorial/getting-started.vue
 ```
 
 **en-US.json:**
+
 ```json
 {
   "menu": {
@@ -128,8 +130,8 @@ app/pages/tutorial/getting-started.vue
 ```vue
 <script setup lang="ts">
 definePageMeta({
-  layout: 'docs'  // 使用 docs 布局
-})
+  layout: 'docs', // 使用 docs 布局
+});
 </script>
 ```
 
@@ -154,11 +156,11 @@ definePageMeta({
 
 ```typescript
 // 使用 navigateTo
-await navigateTo('/introduction/project-structure')
+await navigateTo('/introduction/project-structure');
 
 // 使用 useRouter
-const router = useRouter()
-router.push('/introduction/project-structure')
+const router = useRouter();
+router.push('/introduction/project-structure');
 ```
 
 ---
@@ -171,8 +173,8 @@ router.push('/introduction/project-structure')
 
 ```typescript
 useHead({
-  title: '项目结构 - 终末地一图流'
-})
+  title: '项目结构 - 终末地一图流',
+});
 ```
 
 ### SEO 优化
@@ -183,10 +185,10 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: '了解项目的技术栈、目录结构以及各个文件和目录的作用'
-    }
-  ]
-})
+      content: '了解项目的技术栈、目录结构以及各个文件和目录的作用',
+    },
+  ],
+});
 ```
 
 ---
@@ -202,6 +204,7 @@ pages/introduction/[...slug].vue
 ```
 
 这个路由会匹配所有 `/introduction/` 下的路径，如：
+
 - `/introduction/project-structure`
 - `/introduction/route-setting`
 - `/introduction/common-questions`
@@ -209,8 +212,8 @@ pages/introduction/[...slug].vue
 ### 获取路由参数
 
 ```typescript
-const route = useRoute()
-const slug = route.params.slug  // 获取 slug 参数
+const route = useRoute();
+const slug = route.params.slug; // 获取 slug 参数
 ```
 
 ---
@@ -223,8 +226,8 @@ const slug = route.params.slug  // 获取 slug 参数
 
 ```typescript
 definePageMeta({
-  middleware: ['auth']  // 使用 auth 中间件
-})
+  middleware: ['auth'], // 使用 auth 中间件
+});
 ```
 
 ### 全局守卫
@@ -236,9 +239,9 @@ definePageMeta({
 export default defineNuxtRouteMiddleware((to, from) => {
   // 路由守卫逻辑
   if (!isAuthenticated()) {
-    return navigateTo('/login')
+    return navigateTo('/login');
   }
-})
+});
 ```
 
 ---
@@ -276,6 +279,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 ### Q: 为什么我的路由没有显示在菜单中？
 
 A: 请检查以下几点：
+
 1. 是否在 `routes.json` 中添加了配置
 2. 是否在 i18n 文件中添加了翻译
 3. 路由路径是否与 pages 文件匹配

@@ -27,6 +27,7 @@ Before starting development, it's recommended that you understand at least the f
 **Concept:** Nuxt is a full-stack framework based on Vue.js that provides server-side rendering (SSR), static site generation (SSG), routing, state management, module system, and more. It follows the "convention over configuration" philosophy and automatically handles many common configuration tasks.
 
 **Documentation:**
+
 - [Nuxt Official Documentation (English)](https://nuxt.com/docs)
 
 ### 2. Vue
@@ -34,6 +35,7 @@ Before starting development, it's recommended that you understand at least the f
 **Concept:** Vue is a progressive JavaScript framework for building user interfaces. It adopts component-based development and provides core features such as reactive data binding, directive system, and component system.
 
 **Documentation:**
+
 - [Vue Official Documentation (English)](https://vuejs.org/)
 
 ### 3. Vuetify
@@ -41,6 +43,7 @@ Before starting development, it's recommended that you understand at least the f
 **Concept:** Vuetify is a Material Design component library based on Vue that provides a large number of pre-built UI components following Google Material Design guidelines.
 
 **Documentation:**
+
 - [Vuetify Official Documentation (English)](https://vuetifyjs.com/en/)
 
 ### 4. TypeScript
@@ -48,6 +51,7 @@ Before starting development, it's recommended that you understand at least the f
 **Concept:** TypeScript is a superset of JavaScript that adds a static type system. It can detect errors during the development phase, provide better IDE support, and make code easier to maintain and refactor.
 
 **Documentation:**
+
 - [TypeScript Official Documentation (English)](https://www.typescriptlang.org/)
 
 ---
@@ -90,7 +94,7 @@ ef-frontend-v1/
 ├── .gitignore                    # Git ignore file configuration
 ├── .editorconfig                 # Editor configuration file
 ├── .prettierrc.json              # Prettier code formatter configuration
-├── eslint.config.ts              # ESLint configuration file
+├── eslint.config.mjs             # ESLint code linting configuration
 ├── content.config.ts             # Nuxt Content module configuration
 ├── nuxt.config.ts                # Nuxt configuration file
 ├── tsconfig.json                 # TypeScript configuration file
@@ -121,6 +125,7 @@ Nuxt automatically generates routes based on the file structure in the `pages/` 
 - `pages/index.vue` corresponds to root route `/`
 
 **Example:**
+
 ```
 pages/
 ├── index.vue                    # Route: /
@@ -138,6 +143,7 @@ Stores Vue components. Nuxt automatically imports these components without manua
 - Components are recommended to be organized by function, e.g., `layout/`, `text/`, `container/`, etc.
 
 **Example:**
+
 ```
 components/
 ├── layout/
@@ -162,11 +168,12 @@ Stores Vue 3 Composition API composables. Nuxt automatically imports these funct
 - Functions can use Nuxt's auto-import feature internally
 
 **Example:**
+
 ```typescript
 // composables/useTheme.ts
 export const useTheme = () => {
   // Theme-related logic
-}
+};
 ```
 
 #### `app/plugins/` - Plugins Directory
@@ -178,13 +185,14 @@ Stores Nuxt plugins used to execute code when the application starts.
 - File names are automatically registered as plugins
 
 **Example:**
+
 ```typescript
 // plugins/vuetify.ts
-import { createVuetify } from 'vuetify'
+import { createVuetify } from 'vuetify';
 
 export default defineNuxtPlugin((nuxtApp) => {
   // Vuetify configuration
-})
+});
 ```
 
 #### `app/middleware/` - Middleware Directory
@@ -202,6 +210,7 @@ Stores static resource files that need processing, such as CSS, images, fonts, e
 - Resources are processed by Vite, supporting optimization and compression
 
 **Example:**
+
 ```
 assets/
 └── css/
@@ -227,6 +236,7 @@ Stores Markdown content files. The `@nuxt/content` module automatically recogniz
 - Supports Markdown syntax and Front Matter
 
 **Example:**
+
 ```
 content/
 └── introduction/
@@ -248,6 +258,7 @@ Stores internationalization translation files. The `@nuxtjs/i18n` module automat
 - Use translations in components via `$t()` function
 
 **Example:**
+
 ```
 i18n/
 └── locales/
@@ -329,8 +340,9 @@ Contains the project's license information.
 - **`.prettierrc.json`** - Prettier code formatter configuration
   - Configures code formatting rules for the project
 
-- **`eslint.config.ts`** - ESLint configuration file
-  - Configures JavaScript/TypeScript linting rules
+- **`eslint.config.mjs`** - ESLint code linting configuration
+  - Configures ESLint rules for code quality and style checking
+  - Extends Nuxt's default ESLint configuration using `withNuxt`
 
 - **`content.config.ts`** - Nuxt Content module configuration
   - Configures the `@nuxt/content` module, defines content collections and sources
@@ -382,4 +394,3 @@ The following directories are custom and **can be adjusted freely according to p
 ### 📝 Recommendations
 
 - **Store custom files uniformly in the `custom/` directory** for easier management and maintenance
-

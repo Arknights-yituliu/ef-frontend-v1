@@ -10,7 +10,7 @@
 
       <!-- 文档站标题 -->
       <header class="header-title">
-        <span class="title-emblem"/>
+        <span class="title-emblem" />
         <span class="title-text">{{ $t('docs.siteTitle') }}</span>
       </header>
 

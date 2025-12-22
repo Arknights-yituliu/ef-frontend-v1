@@ -6,34 +6,32 @@
  */
 export const resolvePictureUrl = (
   source: string,
-  assets: Record<string, string>
+  assets: Record<string, string>,
 ): string | undefined => {
   // 如果是 HTTP/HTTPS URL，直接返回
   if (/^https?:\/\//i.test(source)) {
-    return source
+    return source;
   }
 
   // 从路径中提取文件名
-  const targetFileName = source.split('/').pop()
+  const targetFileName = source.split('/').pop();
 
   if (targetFileName) {
     // 在资源映射中查找匹配的文件
-    const matchedEntry = Object.entries(assets).find(([key]) =>
-      key.endsWith(targetFileName)
-    )
+    const matchedEntry = Object.entries(assets).find(([key]) => key.endsWith(targetFileName));
 
     if (matchedEntry) {
-      return matchedEntry[1]
+      return matchedEntry[1];
     }
   }
 
-  return undefined
-}
+  return undefined;
+};
 
 /**
  * 在新窗口中打开 URL
  * @param url 要打开的 URL 地址
  */
 export const openNewPage = (url: string): void => {
-  window.open(url)
-}
+  window.open(url);
+};

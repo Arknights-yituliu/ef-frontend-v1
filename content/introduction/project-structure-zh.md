@@ -27,6 +27,7 @@ description: 了解项目的技术栈、目录结构以及各个文件和目录�
 **概念：** Nuxt 是一个基于 Vue.js 的全栈框架，提供了服务端渲染（SSR）、静态站点生成（SSG）、路由、状态管理、模块系统等功能。它遵循"约定优于配置"的理念，自动处理了许多常见的配置任务。
 
 **官方文档：**
+
 - [Nuxt 官方文档（中文）](https://nuxt.com.cn/)
 - [Nuxt 官方文档（英文）](https://nuxt.com/docs)
 
@@ -35,6 +36,7 @@ description: 了解项目的技术栈、目录结构以及各个文件和目录�
 **概念：** Vue 是一个渐进式 JavaScript 框架，用于构建用户界面。它采用组件化开发模式，提供了响应式数据绑定、指令系统、组件系统等核心功能。
 
 **官方文档：**
+
 - [Vue 官方文档（中文）](https://cn.vuejs.org/)
 - [Vue 官方文档（英文）](https://vuejs.org/)
 
@@ -43,6 +45,7 @@ description: 了解项目的技术栈、目录结构以及各个文件和目录�
 **概念：** Vuetify 是基于 Vue 的 Material Design 组件库，提供了大量预构建的 UI 组件，遵循 Google Material Design 设计规范。
 
 **官方文档：**
+
 - [Vuetify 官方文档（中文）](https://vuetifyjs.com/zh-Hans/)
 - [Vuetify 官方文档（英文）](https://vuetifyjs.com/en/)
 
@@ -51,6 +54,7 @@ description: 了解项目的技术栈、目录结构以及各个文件和目录�
 **概念：** TypeScript 是 JavaScript 的超集，添加了静态类型系统。它可以在开发阶段发现错误，提供更好的 IDE 支持，使代码更易于维护和重构。
 
 **官方文档：**
+
 - [TypeScript 中文网](https://ts.nodejs.cn/)
 - [TypeScript 官方文档（英文）](https://www.typescriptlang.org/)
 
@@ -94,7 +98,7 @@ ef-frontend-v1/
 ├── .gitignore                    # Git 忽略文件配置
 ├── .editorconfig                 # 编辑器配置文件
 ├── .prettierrc.json              # Prettier 代码格式化配置
-├── eslint.config.ts              # ESLint 配置文件
+├── eslint.config.mjs             # ESLint 代码检查配置
 ├── content.config.ts             # Nuxt Content 模块配置
 ├── nuxt.config.ts                # Nuxt 配置文件
 ├── tsconfig.json                 # TypeScript 配置文件
@@ -125,6 +129,7 @@ Nuxt 会根据 `pages/` 目录下的文件结构自动生成路由。
 - `pages/index.vue` 对应根路由 `/`
 
 **示例：**
+
 ```
 pages/
 ├── index.vue                    # 路由: /
@@ -142,6 +147,7 @@ pages/
 - 组件建议按功能分类存放，例如：`layout/`、`text/`、`container/` 等
 
 **示例：**
+
 ```
 components/
 ├── layout/
@@ -166,11 +172,12 @@ components/
 - 函数内部可以使用 Nuxt 的自动导入功能
 
 **示例：**
+
 ```typescript
 // composables/useTheme.ts
 export const useTheme = () => {
   // 主题相关逻辑
-}
+};
 ```
 
 #### `app/plugins/` - 插件目录
@@ -182,13 +189,14 @@ export const useTheme = () => {
 - 文件名会自动注册为插件
 
 **示例：**
+
 ```typescript
 // plugins/vuetify.ts
-import { createVuetify } from 'vuetify'
+import { createVuetify } from 'vuetify';
 
 export default defineNuxtPlugin((nuxtApp) => {
   // Vuetify 配置
-})
+});
 ```
 
 #### `app/middleware/` - 中间件目录
@@ -206,6 +214,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 - 资源会被 Vite 处理，支持优化和压缩
 
 **示例：**
+
 ```
 assets/
 └── css/
@@ -231,6 +240,7 @@ assets/
 - 支持 Markdown 语法和 Front Matter
 
 **示例：**
+
 ```
 content/
 └── introduction/
@@ -252,6 +262,7 @@ content/
 - 可以通过 `$t()` 函数在组件中使用翻译
 
 **示例：**
+
 ```
 i18n/
 └── locales/
@@ -333,8 +344,9 @@ i18n/
 - **`.prettierrc.json`** - Prettier 代码格式化配置
   - 配置项目的代码格式化规则
 
-- **`eslint.config.ts`** - ESLint 配置文件
-  - 配置 JavaScript/TypeScript 代码检查规则
+- **`eslint.config.mjs`** - ESLint 代码检查配置
+  - 配置 ESLint 规则，用于代码质量和风格检查
+  - 使用 `withNuxt` 扩展 Nuxt 的默认 ESLint 配置
 
 - **`content.config.ts`** - Nuxt Content 模块配置
   - 配置 `@nuxt/content` 模块，定义内容集合和来源

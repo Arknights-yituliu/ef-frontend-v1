@@ -83,7 +83,7 @@ ef-frontend-v1/
 ├── .gitignore                    # Git 忽略文件配置
 ├── .editorconfig                 # 编辑器配置文件
 ├── .prettierrc.json              # Prettier 代码格式化配置
-├── eslint.config.ts              # ESLint 配置文件
+├── eslint.config.mjs             # ESLint 代码检查配置
 ├── content.config.ts             # Nuxt Content 模块配置
 ├── nuxt.config.ts                # Nuxt 配置文件
 ├── tsconfig.json                 # TypeScript 配置文件

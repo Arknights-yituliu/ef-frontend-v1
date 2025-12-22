@@ -1,9 +1,9 @@
 <template>
-  <div class="item-icon-placeholder" ref="itemIconPlaceholderRef">
+  <div ref="itemIconPlaceholderRef" class="item-icon-placeholder">
     <img :alt="itemName" :src="getItemIconUrl(props.itemId)" class="item-icon-img" />
     <div class="item-gradient-overlay"></div>
     <div class="item-tier-bar"></div>
-    <div class="item-name" ref="itemNameRef" v-if="props.showItemName">
+    <div v-if="props.showItemName" ref="itemNameRef" class="item-name">
       {{ itemName }}
     </div>
   </div>

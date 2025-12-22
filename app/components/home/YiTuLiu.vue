@@ -12,10 +12,10 @@
         <b>{{ $t('component.home.yiTuLiu.title') }}</b>
         <div class="flex-1" />
         <v-btn
+          :text="$t('component.home.yiTuLiu.goToYiTuLiu')"
           append-icon="mdi-open-in-new"
           color="primary"
           prepend-icon="mdi-web"
-          :text="$t('component.home.yiTuLiu.goToYiTuLiu')"
           @click="openNewPage('https://ark.yituliu.cn/')"
         >
         </v-btn>
@@ -27,19 +27,19 @@
         {{ $t('component.home.yiTuLiu.materialPlanning') }}
       </p>
       <p class="p-li">
-        <a href="https://ark.yituliu.cn/" class="simple-link">
+        <a class="simple-link" href="https://ark.yituliu.cn/">
           <b>{{ $t('component.home.yiTuLiu.eliteMaterialRecommendation') }}：</b
           >{{ $t('component.home.yiTuLiu.eliteMaterialRecommendationDoc') }}
         </a>
       </p>
       <p class="p-li">
-        <a href="https://ark.yituliu.cn/material/store" class="simple-link">
+        <a class="simple-link" href="https://ark.yituliu.cn/material/store">
           <b>{{ $t('component.home.yiTuLiu.shopValue') }}：</b
           >{{ $t('component.home.yiTuLiu.shopValueDoc') }}
         </a>
       </p>
       <p class="p-li">
-        <a href="https://ark.yituliu.cn/material/elite" class="simple-link">
+        <a class="simple-link" href="https://ark.yituliu.cn/material/elite">
           <b>{{ $t('component.home.yiTuLiu.operatorE2ValueTable') }}：</b
           >{{ $t('component.home.yiTuLiu.operatorE2ValueTableDoc') }}
         </a>
@@ -48,19 +48,19 @@
         {{ $t('component.home.yiTuLiu.practicalTools') }}
       </p>
       <p class="p-li">
-        <a href="https://ark.yituliu.cn/tools/gachaCalc" class="simple-link">
+        <a class="simple-link" href="https://ark.yituliu.cn/tools/gachaCalc">
           <b>{{ $t('component.home.yiTuLiu.savePullCalculator') }}：</b
           >{{ $t('component.home.yiTuLiu.savePullCalculatorDoc') }}
         </a>
       </p>
       <p class="p-li">
-        <a href="https://ark.yituliu.cn/tools/scheduleV2" class="simple-link">
+        <a class="simple-link" href="https://ark.yituliu.cn/tools/scheduleV2">
           <b>{{ $t('component.home.yiTuLiu.scheduleGenerator') }}：</b
           >{{ $t('component.home.yiTuLiu.scheduleGeneratorDoc') }}
         </a>
       </p>
       <p class="p-li">
-        <a href="https://ark.yituliu.cn/tools/specializationTimeCalculate" class="simple-link">
+        <a class="simple-link" href="https://ark.yituliu.cn/tools/specializationTimeCalculate">
           <b>{{ $t('component.home.yiTuLiu.specializationHalfCalculator') }}：</b
           >{{ $t('component.home.yiTuLiu.specializationHalfCalculatorDoc') }}
         </a>

@@ -1,7 +1,7 @@
 # AI 代码生成指南
 
 本文档为 AI 生成代码时需要了解的项目更新步骤，包括如何新建页面、文档页面以及国际化更新。
-*注意：本文档为AI Agent提供，开发者请前往文档站阅读开发者文档。*
+_注意：本文档为AI Agent提供，开发者请前往文档站阅读开发者文档。_
 
 ## 📋 目录
 
@@ -20,12 +20,14 @@
 在 `app/pages/` 目录下创建 Vue 文件，文件路径对应路由路径。
 
 **示例：**
+
 ```
 app/pages/new-feature/index.vue     → /new-feature
 app/pages/new-feature/detail.vue    → /new-feature/detail
 ```
 
 **页面文件模板：**
+
 ```vue
 <template>
   <div>
@@ -37,13 +39,13 @@ app/pages/new-feature/detail.vue    → /new-feature/detail
 <script setup lang="ts">
 // 使用默认布局
 definePageMeta({
-  layout: 'default'
-})
+  layout: 'default',
+});
 
 // 设置页面标题
 useHead({
-  title: '页面标题'
-})
+  title: '页面标题',
+});
 </script>
 ```
 
@@ -52,6 +54,7 @@ useHead({
 编辑 `custom/route/routes.json` 文件，添加新页面的路由配置。
 
 **配置示例：**
+
 ```json
 {
   "i18nKey": "newFeature",
@@ -62,6 +65,7 @@ useHead({
 ```
 
 **字段说明：**
+
 - `i18nKey`: 国际化标识符
 - `nameKey`: i18n 翻译键
 - `vuetifyIcon`: Vuetify 图标名称
@@ -72,6 +76,7 @@ useHead({
 在 `i18n/locales/` 目录下更新翻译文件。
 
 **zh-CN.json:**
+
 ```json
 {
   "menu": {
@@ -81,6 +86,7 @@ useHead({
 ```
 
 **en-US.json:**
+
 ```json
 {
   "menu": {
@@ -100,12 +106,14 @@ useHead({
 在 `content/` 目录下对应分类文件夹中创建新的 `.md` 文件，使用 `-zh` 和 `-en` 后缀区分语言版本。
 
 **示例：**
+
 ```
 content/introduction/new-doc-zh.md
 content/introduction/new-doc-en.md
 ```
 
 **文档模板：**
+
 ```markdown
 ---
 title: 文档标题
@@ -122,6 +130,7 @@ description: 文档简短描述
 编辑 `custom/route/docNavigation.json` 文件，添加新文档的导航项。
 
 **配置示例：**
+
 ```json
 {
   "titleKey": "docs.items.newDoc",
@@ -132,6 +141,7 @@ description: 文档简短描述
 #### 步骤 3: 添加国际化翻译
 
 **zh-CN.json:**
+
 ```json
 {
   "docs": {
@@ -143,6 +153,7 @@ description: 文档简短描述
 ```
 
 **en-US.json:**
+
 ```json
 {
   "docs": {
@@ -161,8 +172,8 @@ description: 文档简短描述
 
 ```ts
 export default defineAppConfig({
-  docsRoutePrefixes: ['/introduction', '/tutorials']
-})
+  docsRoutePrefixes: ['/introduction', '/tutorials'],
+});
 ```
 
 #### 步骤 2: 配置内容集合
@@ -179,9 +190,9 @@ export default defineContentConfig({
     tutorials: defineCollection({
       type: 'page',
       source: '**',
-    })
-  }
-})
+    }),
+  },
+});
 ```
 
 #### 步骤 3: 创建路由文件
@@ -195,10 +206,10 @@ export default defineContentConfig({
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'docs'
-})
+  layout: 'docs',
+});
 
-const collectionName = 'tutorials'
+const collectionName = 'tutorials';
 </script>
 ```
 
@@ -228,6 +239,7 @@ const collectionName = 'tutorials'
 ### 常见翻译键
 
 #### 菜单翻译
+
 ```json
 {
   "menu": {
@@ -238,6 +250,7 @@ const collectionName = 'tutorials'
 ```
 
 #### 文档翻译
+
 ```json
 {
   "docs": {
@@ -324,6 +337,7 @@ A: 在 `routes.json` 中使用 `children` 字段：
 ### Q: 为什么我的页面没有显示在菜单中？
 
 A: 请检查：
+
 1. 是否在 `routes.json` 中添加了配置
 2. 是否在 i18n 文件中添加了翻译
 3. 路由路径是否与 pages 文件匹配
@@ -334,8 +348,8 @@ A: 在页面中使用 `definePageMeta`：
 
 ```typescript
 definePageMeta({
-  layout: 'docs'  // 使用 docs 布局
-})
+  layout: 'docs', // 使用 docs 布局
+});
 ```
 
 ### Q: 如何设置页面标题？
@@ -344,8 +358,8 @@ A: 使用 `useHead`：
 
 ```typescript
 useHead({
-  title: '页面标题 - 终末地一图流'
-})
+  title: '页面标题 - 终末地一图流',
+});
 ```
 
 ---

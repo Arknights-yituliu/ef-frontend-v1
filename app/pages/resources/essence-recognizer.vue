@@ -76,5 +76,5 @@ useHead({
 </script>
 
 <style scoped>
-@import "../../assets/css/pageMarkdown.css";
+@import '../../assets/css/pageMarkdown.css';
 </style>

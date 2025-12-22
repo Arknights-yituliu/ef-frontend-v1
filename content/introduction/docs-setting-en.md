@@ -81,10 +81,10 @@ More content...
 
 **Front Matter Field Description:**
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `title` | ✅ | Document title, displayed at the top of the page |
-| `description` | ✅ | Document description, displayed below the title |
+| Field         | Required | Description                                      |
+| ------------- | -------- | ------------------------------------------------ |
+| `title`       | ✅       | Document title, displayed at the top of the page |
+| `description` | ✅       | Document description, displayed below the title  |
 
 #### Step 3: Update Documentation Navigation Configuration
 
@@ -179,8 +179,8 @@ If your new document lives under a different top-level path (e.g. `/tutorials`),
 ```ts
 export default defineAppConfig({
   // ...other config
-  docsRoutePrefixes: ['/introduction', '/tutorials']
-})
+  docsRoutePrefixes: ['/introduction', '/tutorials'],
+});
 ```
 
 Add additional prefixes to the `docsRoutePrefixes` array as required.
@@ -191,19 +191,19 @@ In `content.config.ts`, add a new collection definition for your top-level direc
 
 ```ts
 export default defineContentConfig({
-    collections: {
-        introduction: defineCollection({
-            // Specify content type
-            type: 'page',
-            // Load every file under the `content` directory
-            source: '**',
-        }),
-        [newCollectionName]: defineCollection({
-            type: 'page',
-            source: '**',
-        })
-    }
-})
+  collections: {
+    introduction: defineCollection({
+      // Specify content type
+      type: 'page',
+      // Load every file under the `content` directory
+      source: '**',
+    }),
+    [newCollectionName]: defineCollection({
+      type: 'page',
+      source: '**',
+    }),
+  },
+});
 ```
 
 #### Step 3: Create Route File for the New Directory
@@ -218,11 +218,11 @@ Create a new file at `app/pages/[new-top-level-directory]/[...slug].vue` with th
 <script lang="ts" setup>
 // Use docs layout
 definePageMeta({
-  layout: 'docs'
-})
+  layout: 'docs',
+});
 
 // Set the collection name to match the new directory
-const collectionName = '[newCollectionName]'
+const collectionName = '[newCollectionName]';
 </script>
 ```
 

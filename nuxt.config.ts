@@ -116,6 +116,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n', // @nuxt/content - 内容管理模块，用于处理 Markdown 等文件
     // 参考：https://content.nuxt.com/docs/getting-started/configuration
     '@nuxt/content', // Vuetify 插件配置（自定义模块函数）
+    '@nuxt/eslint', // @nuxt/eslint - ESLint 集成，用于代码质量检查
     // 通过 Vite 钩子注册 Vuetify 插件，启用自动导入功能
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -125,6 +126,14 @@ export default defineNuxtConfig({
     }, // Seo 模块配置
     '@nuxtjs/seo',
   ],
+
+  postcss: {
+    plugins: {
+      autoprefixer: {
+        overrideBrowserslist: ['last 2 versions', '> 1% in CN', 'not IE 11'],
+      },
+    },
+  },
 
   /**
    * Nuxt Content 配置

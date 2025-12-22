@@ -55,4 +55,3 @@ description: Download and usage instructions for the Essence Recognizer tool
 - Users must ensure that the use of this tool complies with relevant laws, regulations, and terms of service, and it is prohibited to use it for any illegal or infringing activities.
 - Users assume all risks, losses, or liabilities arising from the use of this tool.
 - Use of this tool implies agreement to all of the above.
-

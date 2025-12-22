@@ -7,16 +7,23 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:format": "eslint . --fix && prettier --write ."
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@nuxt/content": "^3.8.0",
+    "@nuxt/eslint": "1.12.1",
     "@nuxtjs/i18n": "^10.2.0",
     "@nuxtjs/seo": "3.3.0",
     "@types/node": "^24.10.0",
     "better-sqlite3": "^12.4.1",
     "color": "^5.0.3",
+    "eslint": "^9.0.0",
     "fuse.js": "^7.1.0",
     "gsap": "^3.13.0",
     "nuxt": "^4.2.0",
@@ -24,6 +31,7 @@
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.23",
     "vite-plugin-vuetify": "^2.1.2",
     "vuetify": "^3.10.9"
   },

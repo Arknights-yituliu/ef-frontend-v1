@@ -100,6 +100,7 @@ Add route configuration in `custom/route/routes.json`:
 Add translations in `i18n/locales/zh-CN.json` and `i18n/locales/en-US.json`:
 
 **zh-CN.json:**
+
 ```json
 {
   "menu": {
@@ -109,6 +110,7 @@ Add translations in `i18n/locales/zh-CN.json` and `i18n/locales/en-US.json`:
 ```
 
 **en-US.json:**
+
 ```json
 {
   "menu": {
@@ -128,8 +130,8 @@ Specify the layout in page files using `definePageMeta`:
 ```vue
 <script setup lang="ts">
 definePageMeta({
-  layout: 'docs'  // Use docs layout
-})
+  layout: 'docs', // Use docs layout
+});
 </script>
 ```
 
@@ -154,11 +156,11 @@ definePageMeta({
 
 ```typescript
 // Using navigateTo
-await navigateTo('/introduction/project-structure')
+await navigateTo('/introduction/project-structure');
 
 // Using useRouter
-const router = useRouter()
-router.push('/introduction/project-structure')
+const router = useRouter();
+router.push('/introduction/project-structure');
 ```
 
 ---
@@ -171,8 +173,8 @@ Use `useHead` to set page title:
 
 ```typescript
 useHead({
-  title: 'Project Structure - EndField Yituliu'
-})
+  title: 'Project Structure - EndField Yituliu',
+});
 ```
 
 ### SEO Optimization
@@ -183,10 +185,10 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Learn about the technical stack, directory structure, and file organization'
-    }
-  ]
-})
+      content: 'Learn about the technical stack, directory structure, and file organization',
+    },
+  ],
+});
 ```
 
 ---
@@ -202,6 +204,7 @@ pages/introduction/[...slug].vue
 ```
 
 This route matches all paths under `/introduction/`, such as:
+
 - `/introduction/project-structure`
 - `/introduction/route-setting`
 - `/introduction/common-questions`
@@ -209,8 +212,8 @@ This route matches all paths under `/introduction/`, such as:
 ### Getting Route Parameters
 
 ```typescript
-const route = useRoute()
-const slug = route.params.slug  // Get slug parameter
+const route = useRoute();
+const slug = route.params.slug; // Get slug parameter
 ```
 
 ---
@@ -223,8 +226,8 @@ Define middleware using `definePageMeta`:
 
 ```typescript
 definePageMeta({
-  middleware: ['auth']  // Use auth middleware
-})
+  middleware: ['auth'], // Use auth middleware
+});
 ```
 
 ### Global Guards
@@ -236,9 +239,9 @@ Create middleware files in the `app/middleware/` directory:
 export default defineNuxtRouteMiddleware((to, from) => {
   // Route guard logic
   if (!isAuthenticated()) {
-    return navigateTo('/login')
+    return navigateTo('/login');
   }
-})
+});
 ```
 
 ---
@@ -276,6 +279,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 ### Q: Why isn't my route showing in the menu?
 
 A: Please check the following:
+
 1. Have you added configuration in `routes.json`?
 2. Have you added translations in i18n files?
 3. Does the route path match the pages file?
@@ -309,4 +313,3 @@ A: External links are not recommended to be added to route configuration. Use re
 ## Summary
 
 This project's routing system combines Nuxt's file-based routing with custom route configuration, maintaining flexibility while providing unified menu management. When adding new routes, please follow the guidelines in this document to ensure complete and standardized route configuration.
-

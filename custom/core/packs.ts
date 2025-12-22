@@ -53,7 +53,11 @@ export const packs: Packs = {
     price: 98,
     imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/行火寻访组合包.webp',
     contents: [
-      { itemId: 'item_ticketgacha_special_ten_lt_1_0_1', itemName: '行火留烬十连凭证', quantity: 1 },
+      {
+        itemId: 'item_ticketgacha_special_ten_lt_1_0_1',
+        itemName: '行火留烬十连凭证',
+        quantity: 1,
+      },
       { itemId: 'item_gold', itemName: '折金票', quantity: 80000 },
     ],
   },
@@ -64,7 +68,11 @@ export const packs: Packs = {
     price: 98,
     imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/异彩寻访组合包.webp',
     contents: [
-      { itemId: 'item_ticketgacha_special_ten_lt_1_0_2', itemName: '异彩斑斓十连凭证', quantity: 1 },
+      {
+        itemId: 'item_ticketgacha_special_ten_lt_1_0_2',
+        itemName: '异彩斑斓十连凭证',
+        quantity: 1,
+      },
       { itemId: 'item_gold', itemName: '折金票', quantity: 80000 },
     ],
   },
@@ -75,7 +83,11 @@ export const packs: Packs = {
     price: 98,
     imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/信使寻访组合包.webp',
     contents: [
-      { itemId: 'item_ticketgacha_special_ten_lt_1_0_3', itemName: '灵动信使十连凭证', quantity: 1 },
+      {
+        itemId: 'item_ticketgacha_special_ten_lt_1_0_3',
+        itemName: '灵动信使十连凭证',
+        quantity: 1,
+      },
       { itemId: 'item_gold', itemName: '折金票', quantity: 80000 },
     ],
   },

@@ -81,10 +81,10 @@ description: 文档简短描述，用于 SEO 和预览
 
 **Front Matter 字段说明：**
 
-| 字段 | 必填 | 说明 |
-|------|------|------|
-| `title` | ✅ | 文档标题，显示在页面顶部 |
-| `description` | ✅ | 文档描述，显示在标题下方 |
+| 字段          | 必填 | 说明                     |
+| ------------- | ---- | ------------------------ |
+| `title`       | ✅   | 文档标题，显示在页面顶部 |
+| `description` | ✅   | 文档描述，显示在标题下方 |
 
 #### 步骤 3: 更新文档导航配置
 
@@ -179,8 +179,8 @@ description: 文档简短描述，用于 SEO 和预览
 ```ts
 export default defineAppConfig({
   // ... 其他配置
-  docsRoutePrefixes: ['/introduction', '/tutorials']
-})
+  docsRoutePrefixes: ['/introduction', '/tutorials'],
+});
 ```
 
 根据需要在 `docsRoutePrefixes` 数组中新增前缀。
@@ -191,19 +191,19 @@ export default defineAppConfig({
 
 ```ts
 export default defineContentConfig({
-    collections: {
-        introduction: defineCollection({
-            // 指定内容的类型
-            type: 'page',
-            // 加载`content`目录下的每个文件
-            source: '**',
-        }),
-        [新集合名称]: defineCollection({
-            type: 'page',
-            source: '**',
-        })
-    }
-})
+  collections: {
+    introduction: defineCollection({
+      // 指定内容的类型
+      type: 'page',
+      // 加载`content`目录下的每个文件
+      source: '**',
+    }),
+    [新集合名称]: defineCollection({
+      type: 'page',
+      source: '**',
+    }),
+  },
+});
 ```
 
 #### 步骤 3: 为新目录创建路由文件
@@ -218,11 +218,11 @@ export default defineContentConfig({
 <script lang="ts" setup>
 // 使用 docs 布局
 definePageMeta({
-  layout: 'docs'
-})
+  layout: 'docs',
+});
 
 // 设置集合名称以匹配新目录
-const collectionName = '[新集合名称]'
+const collectionName = '[新集合名称]';
 </script>
 ```
 
