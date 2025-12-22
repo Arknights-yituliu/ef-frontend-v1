@@ -32,5 +32,8 @@ IFLOW.md
 CLAUDE.md
 /public/tools/factoriolab
 
+#temp game data
+/app/assets/shanying
+
 # Plugins files
 .VSCodeCounter
