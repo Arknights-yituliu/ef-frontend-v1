@@ -1,11 +1,19 @@
-// 单模块抽卡统计
+
+
 export interface SingleModuleResourceStatus {
-  衍质源石: number;
-  嵌晶玉: number;
-  基础寻访凭证: number;
-  特许寻访凭证: number;
-  行火留烬寻访凭证: number;
-  行火留烬十连凭证: number;
+  /** 衍质源石 */
+  originiumRecharge: number;
+  /** 嵌晶玉数量 */
+  diamond: number;
+  /** 	基础寻访凭证 */
+  ticketgachaStandardSingle: number;
+  /** 特许寻访凭证 */
+  ticketgachaSpecialSingle: number;
+  /** 十连基础寻访凭证 */
+  ticketgachaStandardTen: number;
+  /** 十连特许寻访凭证 */
+  ticketgachaSpecialTen: number;
+  /** 抽卡资源总量（所有资源换算后的总抽数） */
   totalGachaResources: number;
 }
 
@@ -17,77 +25,77 @@ export interface AllGachaResourceStatus {
   potential: SingleModuleResourceStatus;
   whale: SingleModuleResourceStatus;
   other: SingleModuleResourceStatus;
-  衍质源石: number;
-  嵌晶玉: number;
-  基础寻访凭证: number;
-  特许寻访凭证: number;
-  行火留烬寻访凭证: number;
-  行火留烬十连凭证: number;
+  originiumRecharge: number;
+  diamond: number;
+  ticketgachaStandardSingle: number;
+  ticketgachaSpecialSingle: number;
+  ticketgachaStandardTen: number;
+  ticketgachaSpecialTen: number;
   totalGachaResources: number;
   whaleAmount: number;
 }
 
 export const allGachaResourceStatus: AllGachaResourceStatus = {
   existing: {
-    衍质源石: 0,
-    嵌晶玉: 0,
-    基础寻访凭证: 0,
-    特许寻访凭证: 0,
-    行火留烬寻访凭证: 0,
-    行火留烬十连凭证: 0,
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaStandardTen: 0,
+    ticketgachaSpecialTen: 0,
     totalGachaResources: 0,
   },
   daily: {
-    衍质源石: 0,
-    嵌晶玉: 0,
-    基础寻访凭证: 0,
-    特许寻访凭证: 0,
-    行火留烬寻访凭证: 0,
-    行火留烬十连凭证: 0,
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaStandardTen: 0,
+    ticketgachaSpecialTen: 0,
     totalGachaResources: 0,
   },
   activity: {
-    衍质源石: 0,
-    嵌晶玉: 0,
-    基础寻访凭证: 0,
-    特许寻访凭证: 0,
-    行火留烬寻访凭证: 0,
-    行火留烬十连凭证: 0,
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaStandardTen: 0,
+    ticketgachaSpecialTen: 0,
     totalGachaResources: 0,
   },
   potential: {
-    衍质源石: 0,
-    嵌晶玉: 0,
-    基础寻访凭证: 0,
-    特许寻访凭证: 0,
-    行火留烬寻访凭证: 0,
-    行火留烬十连凭证: 0,
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaStandardTen: 0,
+    ticketgachaSpecialTen: 0,
     totalGachaResources: 0,
   },
   whale: {
-    衍质源石: 0,
-    嵌晶玉: 0,
-    基础寻访凭证: 0,
-    特许寻访凭证: 0,
-    行火留烬寻访凭证: 0,
-    行火留烬十连凭证: 0,
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaStandardTen: 0,
+    ticketgachaSpecialTen: 0,
     totalGachaResources: 0,
   },
   other: {
-    衍质源石: 0,
-    嵌晶玉: 0,
-    基础寻访凭证: 0,
-    特许寻访凭证: 0,
-    行火留烬寻访凭证: 0,
-    行火留烬十连凭证: 0,
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaStandardTen: 0,
+    ticketgachaSpecialTen: 0,
     totalGachaResources: 0,
   },
-  衍质源石: 0,
-  嵌晶玉: 0,
-  基础寻访凭证: 0,
-  特许寻访凭证: 0,
-  行火留烬寻访凭证: 0,
-  行火留烬十连凭证: 0,
+  originiumRecharge: 0,
+  diamond: 0,
+  ticketgachaStandardSingle: 0,
+  ticketgachaSpecialSingle: 0,
+  ticketgachaStandardTen: 0,
+  ticketgachaSpecialTen: 0,
   totalGachaResources: 0,
   whaleAmount: 0,
 };

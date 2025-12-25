@@ -5,7 +5,7 @@ import { allGachaResourceStatus } from '@/shared/types/gacha-calculator';
 import { ref, onMounted, watch, computed, nextTick } from 'vue';
 const { t } = useI18n();
 
-const panel = ref<string[]>(['statisticalResult']);
+const panel = ref<string[]>(['statisticalResult','existing']);
 
 /**
  * 计算排期开始与结束日期的天数差
@@ -178,7 +178,25 @@ onMounted(() => {
           </v-expansion-panel>
         </v-expansion-panels>
       </div>
-      <div class="gacha-calculator-container-right" />
+      <div class="gacha-calculator-container-right">
+        <v-expansion-panels v-model="panel" multiple>
+          <v-expansion-panel value="existing">
+            <v-expansion-panel-title> </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <div class="gacha-calculator-existing-resource">
+                <div>
+                  <img
+                  class="gacha-calculator-gacha-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                    alt="existing"
+                  />
+                  <input v-model="allGachaResourceStatus.existing.originiumRecharge" />
+                </div>
+              </div>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </div>
     </section>
   </div>
 </template>
@@ -221,6 +239,11 @@ onMounted(() => {
   td {
     padding: 0.1rem 0.3rem;
   }
+}
+
+.gacha-calculator-gacha-item-icon{
+  width: 40px;
+  height: 40px;
 }
 
 @media screen and (max-width: 1080px) {
