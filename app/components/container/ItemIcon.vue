@@ -20,7 +20,6 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   showItemName: false,
-  itemName: '',
 });
 
 const itemIconPlaceholderRef = useTemplateRef<HTMLDivElement>('itemIconPlaceholderRef');
