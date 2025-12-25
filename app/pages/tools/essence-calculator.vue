@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <header class="page-title">{{ t('page.tools.essenceCalculator.title') }}</header>
-    <v-expansion-panels :model-value="['需求设定', '输出']" multiple>
+    <v-expansion-panels :model-value="['需求设定', '计算结果']" multiple>
       <v-expansion-panel value="需求设定">
         <v-expansion-panel-title>{{
           t('page.tools.essenceCalculator.demandSet')
@@ -134,7 +134,7 @@
         </v-expansion-panel-text>
       </v-expansion-panel>
 
-      <v-expansion-panel value="输出">
+      <v-expansion-panel value="计算结果">
         <v-expansion-panel-title>{{
           t('page.tools.essenceCalculator.output')
         }}</v-expansion-panel-title>
@@ -142,14 +142,9 @@
           <template v-if="bestChoices.length > 0">
             <div v-for="(choice, i) in bestChoices" :key="i" class="mb-6">
               <v-card class="result-card" elevation="2" rounded="lg">
-                <v-card-item class="bg-surface-variant py-3">
-                  <template #prepend>
-                    <v-avatar class="mr-2" color="primary" variant="tonal">
-                      <v-icon icon="mdi-map-marker" />
-                    </v-avatar>
-                  </template>
+                <v-card-item class="bg-info py-3">
                   <v-card-title class="text-h6 font-weight-bold">
-                    {{ getGameName(choice.gameGroupId) }}
+                    {{ t('page.tools.essenceCalculator.plan') }} {{ i + 1 }}
                   </v-card-title>
                   <template #append>
                     <v-chip
@@ -158,10 +153,12 @@
                       size="small"
                       variant="flat"
                     >
-                      {{ choice.matchedSelectedIndices.length }} 需求满足
+                      {{ choice.matchedSelectedIndices.length }}
+                      {{ t('page.tools.essenceCalculator.requirementsMet') }}
                     </v-chip>
-                    <v-chip class="font-weight-bold" color="info" size="small" variant="flat">
-                      {{ choice.matchedWeaponIds.length }} 武器匹配
+                    <v-chip class="font-weight-bold" color="success" size="small" variant="flat">
+                      {{ choice.matchedWeaponIds.length }}
+                      {{ t('page.tools.essenceCalculator.weaponsMatched') }}
                     </v-chip>
                   </template>
                 </v-card-item>
@@ -169,30 +166,22 @@
                 <v-divider />
 
                 <v-card-text class="pt-4">
-                  <v-alert
-                    class="mb-4 px-0"
-                    density="compact"
-                    icon="mdi-information-outline"
-                    variant="text"
-                  >
-                    <i18n-t keypath="page.tools.essenceCalculator.suggestion" tag="span">
-                      <template #battleName>
-                        <strong>{{ getGameName(choice.gameGroupId) }}</strong>
-                      </template>
-                      <template #matchedSelectedCount>
-                        <strong class="text-primary">{{
-                          choice.matchedSelectedIndices.length
-                        }}</strong>
-                      </template>
-                      <template #matchedAllCount>
-                        <strong class="text-primary">{{ choice.matchedWeaponIds.length }}</strong>
-                      </template>
-                    </i18n-t>
-                  </v-alert>
-
                   <v-row>
                     <!-- Left Column: Configuration -->
                     <v-col cols="12" md="5">
+                      <div class="d-flex align-center mb-3">
+                        <v-icon class="mr-2" color="primary" icon="mdi-map-marker" size="small" />
+                        <span class="text-subtitle-1 font-weight-bold">{{
+                          t('page.tools.essenceCalculator.farmLocation')
+                        }}</span>
+                      </div>
+
+                      <div class="pl-1 mb-6">
+                        <v-chip color="info" label variant="outlined">
+                          {{ getGameName(choice.gameGroupId) }}
+                        </v-chip>
+                      </div>
+
                       <div class="d-flex align-center mb-3">
                         <v-icon class="mr-2" color="primary" icon="mdi-tune" size="small" />
                         <span class="text-subtitle-1 font-weight-bold">{{
@@ -254,14 +243,19 @@
                           size="small"
                         />
                         <span class="text-subtitle-1 font-weight-bold">{{
-                          t('page.tools.essenceCalculator.output')
+                          t('page.tools.essenceCalculator.planDescription', {
+                            count: choice.matchedSelectedIndices.length,
+                            weaponCount: choice.matchedWeaponIds.length,
+                          })
                         }}</span>
                       </div>
 
                       <div class="pl-1">
                         <!-- Satisfied Requirements -->
                         <div class="mb-4">
-                          <div class="text-medium-emphasis mb-1">满足的需求</div>
+                          <div class="text-medium-emphasis mb-1">
+                            {{ t('page.tools.essenceCalculator.satisfiedRequirements') }}
+                          </div>
                           <div class="d-flex flex-wrap ga-2">
                             <v-chip
                               v-for="index in choice.matchedSelectedIndices"
@@ -279,7 +273,9 @@
 
                         <!-- Matched Weapons -->
                         <div>
-                          <div class="text-medium-emphasis mb-1">匹配的武器</div>
+                          <div class="text-medium-emphasis mb-1">
+                            {{ t('page.tools.essenceCalculator.matchedWeapons') }}
+                          </div>
                           <div class="d-flex flex-wrap ga-2">
                             <v-chip
                               v-for="weaponId in choice.matchedWeaponIds"
