@@ -95,6 +95,9 @@ ef-frontend-v1/
 ├── agent.md                      # AI Agent 开发指南（专为 AI 生成代码时参考）
 ├── Design.md                     # 网站设计风格文档
 ├── LICENSE                       # 项目许可证文件
+├── Dockerfile                    # Docker 镜像构建文件
+├── nginx.conf                    # Nginx 配置文件（用于 Docker 容器）
+├── .dockerignore                 # Docker 构建忽略文件配置
 ├── .gitignore                    # Git 忽略文件配置
 ├── .editorconfig                 # 编辑器配置文件
 ├── .prettierrc.json              # Prettier 代码格式化配置
@@ -335,6 +338,27 @@ i18n/
 #### `LICENSE` - 项目许可证文件
 
 包含项目的许可证信息。
+
+#### Docker 相关文件
+
+- **`Dockerfile`** - Docker 镜像构建文件
+  - 使用多阶段构建，减少最终镜像大小
+  - 构建阶段：使用 `node:20-alpine` 安装依赖并执行 SSG 构建
+  - 生产阶段：使用 `nginx:1.28-alpine-slim` 提供静态文件服务
+  - 包含构建产物验证，确保构建成功
+  - 构建命令：`docker build -t ef-frontend-v1 .`
+  - 运行命令：`docker run -d -p 80:80 ef-frontend-v1`
+
+- **`nginx.conf`** - Nginx 配置文件
+  - 用于 Docker 容器中的 Nginx 服务配置
+  - 配置了 gzip 压缩、静态资源缓存策略
+  - 支持 Vue Router/Nuxt 路由（所有路由返回 index.html）
+  - 包含健康检查端点 `/health`
+
+- **`.dockerignore`** - Docker 构建忽略文件配置
+  - 定义在 Docker 构建时忽略的文件和目录
+  - 排除 `node_modules`、构建输出、开发文件、环境文件等
+  - 减少构建上下文大小，加快构建速度
 
 #### 配置文件
 

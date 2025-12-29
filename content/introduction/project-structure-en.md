@@ -91,6 +91,9 @@ ef-frontend-v1/
 ├── agent.md                      # AI Agent Development Guide (Reference for AI code generation)
 ├── Design.md                     # Website design style documentation
 ├── LICENSE                       # Project license file
+├── Dockerfile                    # Docker image build file
+├── nginx.conf                    # Nginx configuration file (for Docker container)
+├── .dockerignore                 # Docker build ignore file configuration
 ├── .gitignore                    # Git ignore file configuration
 ├── .editorconfig                 # Editor configuration file
 ├── .prettierrc.json              # Prettier code formatter configuration
@@ -331,6 +334,27 @@ Contains the website's design style guidelines and specifications.
 #### `LICENSE` - Project License File
 
 Contains the project's license information.
+
+#### Docker-related Files
+
+- **`Dockerfile`** - Docker image build file
+  - Uses multi-stage build to reduce final image size
+  - Build stage: Uses `node:20-alpine` to install dependencies and perform SSG build
+  - Production stage: Uses `nginx:1.28-alpine-slim` to serve static files
+  - Includes build artifact validation to ensure successful build
+  - Build command: `docker build -t ef-frontend-v1 .`
+  - Run command: `docker run -d -p 80:80 ef-frontend-v1`
+
+- **`nginx.conf`** - Nginx configuration file
+  - Used for Nginx service configuration in Docker container
+  - Configures gzip compression and static resource caching strategy
+  - Supports Vue Router/Nuxt routing (all routes return index.html)
+  - Includes health check endpoint `/health`
+
+- **`.dockerignore`** - Docker build ignore file configuration
+  - Defines files and directories to ignore during Docker build
+  - Excludes `node_modules`, build outputs, development files, environment files, etc.
+  - Reduces build context size and speeds up build process
 
 #### Configuration Files
 

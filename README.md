@@ -80,6 +80,9 @@ ef-frontend-v1/
 ├── agent.md                      # AI Agent 开发指南（专为 AI 生成代码时参考）
 ├── Design.md                     # 网站设计风格文档
 ├── LICENSE                       # 项目许可证文件
+├── Dockerfile                    # Docker 镜像构建文件
+├── nginx.conf                    # Nginx 配置文件（用于 Docker 容器）
+├── .dockerignore                 # Docker 构建忽略文件配置
 ├── .gitignore                    # Git 忽略文件配置
 ├── .editorconfig                 # 编辑器配置文件
 ├── .prettierrc.json              # Prettier 代码格式化配置
@@ -119,6 +122,30 @@ yarn build
 ```bash
 yarn preview
 ```
+
+### Docker 部署
+
+使用 Docker 可以快速部署生产环境。
+
+#### 构建 Docker 镜像
+
+```bash
+docker build -t ef-frontend-v1 .
+```
+
+> 💡 **提示：** 如果构建时拉取 node 和 nginx 镜像失败，可以手动拉取：
+> ```bash
+> docker pull node:20-alpine
+> docker pull nginx:1.28-alpine-slim
+> ```
+
+#### 运行 Docker 容器
+
+```bash
+docker run -d -p 80:80 ef-frontend-v1
+```
+
+访问地址：`http://localhost:80`
 
 ## 📚 项目文档
 
