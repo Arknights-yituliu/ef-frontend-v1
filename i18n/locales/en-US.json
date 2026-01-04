@@ -88,10 +88,10 @@
         "vueDescription": "Progressive JavaScript framework",
         "vuetifyDescription": "Material Design component library for Vue"
       },
-      "factorioLab": {
-        "factorioLab": "Endfield Calculator",
-        "goToFactorioLab": "Go to Endfield Calculator",
-        "description": "A feature-rich factory production calculator for ArknightsEndfield. Determine resource and machine requirements for your desired objectives."
+      "endfieldLab": {
+        "endfieldLab": "Endfield Calculator",
+        "goToEndfieldLab": "Go to Endfield Calculator",
+        "description": "A powerful AIC planning tool for Arknights: Endfield. Input your goals to generate the most efficient full-chain production plans from resources to finished products, making base expansion precise and efficient."
       }
     },
     "particleWord": {

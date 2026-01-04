@@ -88,10 +88,10 @@
         "vueDescription": "渐进式 JavaScript 框架",
         "vuetifyDescription": "Vue 的 Material Design 组件库"
       },
-      "factorioLab": {
-        "factorioLab": "终末地产线计算器",
-        "goToFactorioLab": "前往产线计算器",
-        "description": "一款功能丰富的终末地工厂生产计算器。根据您的目标确定所需的资源和机器配置。"
+      "endfieldLab": {
+        "endfieldLab": "终末地产线计算器",
+        "goToEndfieldLab": "前往产线计算器",
+        "description": "专为《明日方舟：终末地》打造的工业规划利器。输入目标，生成从资源到成品的最高效率全链条生产方案，让基地扩建精准高效。"
       }
     },
     "particleWord": {
