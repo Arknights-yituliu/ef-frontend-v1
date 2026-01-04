@@ -6,8 +6,8 @@ export interface WikiGroupEntry {
   iconId: string;
 }
 
-export interface WikiCategory {
+export interface WikiGroup {
   list: WikiGroupEntry[];
 }
 
-export type WikiGroupTable = Record<string, WikiCategory>;
+export type WikiGroupTable = Record<string, WikiGroup>;

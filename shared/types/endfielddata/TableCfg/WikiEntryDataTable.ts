@@ -1,6 +1,6 @@
 import type { TranslationKey } from '@/shared/types/common';
 
-export interface WikiEntry {
+export interface WikiEntryData {
   desc: TranslationKey;
   groupId: string;
   id: string;
@@ -10,4 +10,4 @@ export interface WikiEntry {
   refMonsterTemplateId: string;
 }
 
-export type WikiEntryDataTable = Record<string, WikiEntry>;
+export type WikiEntryDataTable = Record<string, WikiEntryData>;
