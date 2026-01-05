@@ -10,7 +10,8 @@ let itemTableCollect = ref<ItemTableCollect[]>([])
 
 interface ItemTableCollect {
   id: string
-  name: string
+  nameCN: string
+  nameEN: string
 }
 
 // 自定义表头配置
@@ -21,12 +22,13 @@ const itemTableHeaders = [
 ]
 
 onMounted(() => {
-for(let itemId in itemTable.value){
+for(const itemId in itemTable.value){
   if(!itemTable.value[itemId]) continue;
   const item:Item = itemTable.value[itemId]
   itemTableCollect.value.push({
     id: itemId,
-    name: getLocalizedText(item.name || '', 'zh-CN'),
+    nameCN: getLocalizedText(item.name || '', 'zh-CN'),
+    nameEN: getLocalizedText(item.name || '', 'en-US'),
   })
 }
 })
@@ -39,15 +41,15 @@ const filteredItems = computed(() => {
     return itemTableCollect.value
   }
   const searchText = itemSearch.value.toLowerCase()
-  return itemTableCollect.value.filter(item => 
-    item.name.toLowerCase().includes(searchText)
+  return itemTableCollect.value.filter(item =>
+    item.nameCN.toLowerCase().includes(searchText)
   )
 })
 
 </script>
 
 <template>
-     
+
   <v-data-table :items="filteredItems" :headers="itemTableHeaders" >
       <template v-slot:top>
       <v-text-field
@@ -57,9 +59,10 @@ const filteredItems = computed(() => {
     </template>
      <template v-slot:item="{ item }">
       <tr class="text-no-wrap">
-        <td> <img :src="getItemIconUrl(item.id)" :alt="item.name" style=""></td>
+        <td> <img :src="getItemIconUrl(item.id)" :alt="item.nameCN" style=""></td>
         <td>{{ item.id }}</td>
-        <td>{{ item.name}}</td>
+        <td>{{ item.nameCN}}</td>
+        <td>{{ item.nameEN}}</td>
       </tr>
     </template>
   </v-data-table>
