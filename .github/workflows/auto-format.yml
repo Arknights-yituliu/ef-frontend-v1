@@ -1,0 +1,164 @@
+name: 自动格式化代码
+
+# 触发条件配置
+on:
+  # 当代码推送到任何分支时触发
+  push:
+    branches:
+      - '*'
+  # 允许手动触发工作流
+  workflow_dispatch:
+
+# 跳过条件：如果是格式化提交触发的，则跳过执行
+# 通过检查提交信息来判断是否是格式化提交
+
+# 环境变量配置
+env:
+  COMMIT_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+  COMMIT_NAME: "代码格式化小助手"
+
+# 并发控制配置
+concurrency:
+  # 并发组名称：同一个 workflow 和同一个分支的多个运行实例会被分组
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # 如果新的运行开始，自动取消正在进行的运行（同一组的）
+  cancel-in-progress: true
+
+# 定义所有要执行的 jobs
+jobs:
+  format-and-commit:
+    # 运行在最新版本的 Ubuntu 虚拟机上
+    runs-on: ubuntu-latest
+
+    # 权限配置：需要写入权限以提交代码
+    permissions:
+      contents: write
+      actions: read
+
+    # 构建步骤列表
+    steps:
+      # 步骤 1: 检查是否应该跳过（避免无限循环）
+      # 如果是由格式化提交触发的，则跳过执行
+      - name: Check if should skip
+        id: should-skip
+        run: |
+          # 如果是手动触发，不跳过
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "should_skip=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # 检查提交信息是否包含格式化标记
+          # 如果 head_commit 不存在，则默认为不跳过
+          if [ -z "${{ github.event.head_commit.message }}" ]; then
+            echo "should_skip=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          if echo "$COMMIT_MSG" | grep -q "style: 自动格式化"; then
+            echo "should_skip=true" >> $GITHUB_OUTPUT
+            echo "检测到格式化提交，跳过执行以避免无限循环"
+          else
+            echo "should_skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      # 步骤 2: 检出源代码
+      # 将仓库代码克隆到 runner 的工作目录
+      - name: Checkout Repository
+        if: steps.should-skip.outputs.should_skip != 'true'
+        uses: actions/checkout@v5
+        with:
+          # 使用完整历史记录，以便能够推送更改
+          fetch-depth: 0
+          # 设置 token 以便能够推送更改
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 步骤 3: 设置 Node.js 环境
+      # 安装指定版本的 Node.js 并配置 yarn 缓存
+      - name: Setup Node.js
+        if: steps.should-skip.outputs.should_skip != 'true'
+        uses: actions/setup-node@v6
+        with:
+          # 使用 Node.js 24 版本（与构建工作流保持一致）
+          node-version: '24'
+          # 启用 yarn 依赖缓存，加速后续安装
+          cache: 'yarn'
+
+      # 步骤 4: 缓存 node_modules 目录
+      # 如果 yarn.lock 未改变，可以复用已安装的依赖，大幅提升构建速度
+      - name: Cache node_modules
+        if: steps.should-skip.outputs.should_skip != 'true'
+        uses: actions/cache@v4
+        with:
+          # 要缓存的目录路径
+          path: node_modules
+          # 缓存键：基于操作系统和 yarn.lock 文件的哈希值
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('yarn.lock') }}
+          # 恢复键：如果精确匹配失败，尝试匹配部分键（回退策略）
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
+
+      # 步骤 5: 安装项目依赖
+      # 使用 yarn 安装 npm 依赖包
+      - name: Install Dependencies
+        if: steps.should-skip.outputs.should_skip != 'true'
+        run: |
+          # 如果存在 yarn.lock 文件，使用 --frozen-lockfile 确保版本一致
+          if [ -f yarn.lock ]; then
+            yarn install --frozen-lockfile
+          else
+            yarn install
+          fi
+
+      # 步骤 6: 运行代码格式化
+      # 执行 lint:format 命令，自动修复 ESLint 问题并格式化代码
+      - name: Run Format
+        if: steps.should-skip.outputs.should_skip != 'true'
+        run: yarn lint:format
+
+      # 步骤 7: 检查是否有更改
+      # 检查格式化后是否有文件被修改
+      - name: Check for Changes
+        if: steps.should-skip.outputs.should_skip != 'true'
+        id: check-changes
+        run: |
+          # 检查工作区是否有未暂存的更改
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "检测到代码格式化更改"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "没有检测到代码格式化更改"
+          fi
+
+      # 步骤 8: 配置 Git 并提交更改
+      # 如果有更改，则自动提交格式化后的代码
+      - name: Commit and Push Changes
+        if: steps.should-skip.outputs.should_skip != 'true' && steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          # 配置 Git 的邮箱/名称
+          git config --global user.email "${{ env.COMMIT_EMAIL }}"
+          git config --global user.name "${{ env.COMMIT_NAME }}"
+          
+          # 获取当前分支名称
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          
+          # 暂存所有更改
+          git add -A
+          
+          # 获取提交信息（如果是由 push 触发的，使用原始提交信息；否则使用默认信息）
+          if [ "${{ github.event_name }}" == "push" ]; then
+            # 获取触发此次工作流的提交信息
+            COMMIT_MSG="style: 自动格式化代码 (触发于: ${{ github.event.head_commit.message }})"
+          else
+            # 手动触发时使用默认信息
+            COMMIT_MSG="style: 自动格式化代码"
+          fi
+          
+          # 提交更改
+          git commit -m "$COMMIT_MSG" || exit 0
+          
+          # 推送到远程分支
+          git push origin "$BRANCH_NAME"
+
