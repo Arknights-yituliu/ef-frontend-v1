@@ -19,6 +19,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  itemName: undefined,
   showItemName: false,
 });
 
@@ -55,6 +56,7 @@ watch([props, itemNameRef, locale], () => {
   background: linear-gradient(135deg, var(--theme-bg-tertiary) 0%, var(--theme-bg-secondary) 100%);
   box-shadow: 0 2px 8px var(--theme-shadow-base);
   border: 2px solid var(--theme-border);
+  border-bottom-width: 0;
   position: relative;
   overflow: hidden;
 }

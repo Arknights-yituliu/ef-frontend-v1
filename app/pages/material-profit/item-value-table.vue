@@ -60,7 +60,12 @@
       name="list"
       tag="div"
     >
-      <div v-for="itemId in filteredAndSortedItemIdList" :key="itemId" class="item-card">
+      <div
+        v-for="itemId in filteredAndSortedItemIdList"
+        :key="itemId"
+        class="item-card"
+        @click="copyValueToClipboard(itemId)"
+      >
         <!-- 左侧物品图标 -->
         <div class="item-icon-wrapper">
           <ContainerItemIcon :item-id="itemId" />
@@ -79,6 +84,16 @@
     <div v-else class="no-data">
       <p>{{ $t('common.noData') }}</p>
     </div>
+
+    <!-- 复制成功提示 -->
+    <v-snackbar v-model="snackbarShow" color="surface" location="bottom" :timeout="2000">
+      {{ snackbarMessage }}
+      <template #actions>
+        <v-btn color="primary" variant="text" @click="snackbarShow = false">
+          {{ $t('common.close') }}
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -115,6 +130,10 @@ useHead({
 const searchQuery = ref('');
 const sortField = ref<'value' | 'rarity'>('value');
 const sortOrder = ref<'asc' | 'desc'>('asc');
+
+// Snackbar 状态
+const snackbarShow = ref(false);
+const snackbarMessage = ref('');
 
 // 筛选和排序后的数据
 const filteredAndSortedItemIdList = computed(() => {
@@ -159,11 +178,32 @@ const filteredAndSortedItemIdList = computed(() => {
 });
 
 /**
+ * 复制物品价值到剪贴板
+ */
+async function copyValueToClipboard(itemId: string) {
+  try {
+    const value = getItemValue(itemId);
+    const itemName = getItemName(itemId);
+
+    // 复制精确值到剪贴板
+    await navigator.clipboard.writeText(value.toString());
+
+    // 显示成功提示
+    snackbarMessage.value = `${t('common.copySuccess')} ${itemName}: ${value}`;
+    snackbarShow.value = true;
+  } catch (error) {
+    console.error('复制失败:', error);
+    snackbarMessage.value = t('common.copyFailed');
+    snackbarShow.value = true;
+  }
+}
+
+/**
  * 切换排序方向
  */
-const toggleSortOrder = () => {
+function toggleSortOrder() {
   sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
-};
+}
 
 // 监听搜索和排序变化
 watch([searchQuery, sortField, sortOrder], () => {
@@ -219,6 +259,16 @@ watch([searchQuery, sortField, sortOrder], () => {
   width: 260px;
   height: 96px;
   position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-2px);
+}
+
+.item-card:active {
+  transform: translateY(0);
 }
 
 /* 左侧物品图标 */

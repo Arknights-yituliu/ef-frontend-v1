@@ -33,7 +33,9 @@
     "error": "错误",
     "retry": "重试",
     "noData": "暂无数据",
-    "close": "关闭"
+    "close": "关闭",
+    "copySuccess": "已复制",
+    "copyFailed": "复制失败"
   },
   "layout": {
     "theme": "主题",
