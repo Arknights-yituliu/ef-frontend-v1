@@ -42,7 +42,7 @@ interface PageData {
 }
 
 // 删除route.path末尾可能存在的斜杠
-const path = route.path.replace(/\/$/, '')
+const path = route.path.replace(/\/$/, '');
 
 // 使用 queryCollection API 获取内容，监听语言变化
 const { data: page, refresh } = await useAsyncData<PageData | null>(
