@@ -10,9 +10,9 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint:format": "eslint . --fix && prettier --write ."
+    "format": "prettier --write \"**/*.{vue,ts,js,json}\"",
+    "format:check": "prettier --check \"**/*.{vue,ts,js,json}\"",
+    "lint:format": "eslint . --fix && prettier --write \"**/*.{vue,ts,js,json}\""
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
