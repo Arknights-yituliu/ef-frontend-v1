@@ -36,7 +36,7 @@ export default defineNuxtRouteMiddleware((to) => {
       if (item.routePath) {
         // 检查路径是否精确匹配或以其开头
         const isMatchingPath = path === item.routePath || path.startsWith(item.routePath + '/');
-        
+
         // 如果路径匹配，且（当前项有 isDocs 或父路由有 isDocs），则返回 true
         if (isMatchingPath && (item.isDocs || parentIsDocs)) {
           return true;
@@ -68,9 +68,8 @@ export default defineNuxtRouteMiddleware((to) => {
   if (currentPath !== '/' && currentPath.endsWith('/')) {
     // 删除末尾的斜杠
     const normalizedPath = currentPath.replace(/\/$/, '');
-    
+
     // 重定向到规范化后的路径
     return navigateTo(normalizedPath, { redirectCode: 301, replace: true });
   }
 });
-
