@@ -69,11 +69,8 @@ export default defineNuxtRouteMiddleware((to) => {
     // 删除末尾的斜杠
     const normalizedPath = currentPath.replace(/\/$/, '');
     
-    // 构建新的完整路径（保留查询参数和哈希）
-    const newPath = normalizedPath + (to.search || '') + (to.hash || '');
-    
     // 重定向到规范化后的路径
-    return navigateTo(newPath, { redirectCode: 301, replace: true });
+    return navigateTo(normalizedPath, { redirectCode: 301, replace: true });
   }
 });
 
