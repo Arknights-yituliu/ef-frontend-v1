@@ -256,6 +256,31 @@ const collectionName = '[新集合名称]';
 
 至此您的新的一级目录新增完毕，现在可以参照第一部分的步骤在新的一级目录下新增文档了。
 
+**关于 `isDocs` 配置：**
+
+- 如果父路由已经设置了 `isDocs: true`，子路由会自动继承文档路由的特性，通常不需要在子路由中再次设置。
+- 但是，如果某个二级路由需要单独标记为文档路由（例如，在非文档父路由下的某个子路由是文档页面），可以在该子路由中单独设置 `isDocs: true`。
+- 系统支持在二级路由中配置 `isDocs`，中间件会正确识别并应用文档路由的路径规范化规则。
+
+**示例：在非文档父路由下配置文档子路由**
+
+```json
+{
+  "i18nKey": "resources",
+  "nameKey": "menu.resources",
+  "vuetifyIcon": "mdi-download",
+  "children": [
+    {
+      "i18nKey": "essenceRecognizer",
+      "nameKey": "menu.essenceRecognizer",
+      "routePath": "/resources/essence-recognizer",
+      "vuetifyIcon": "mdi-chart-line",
+      "isDocs": true
+    }
+  ]
+}
+```
+
 ---
 
 ## 相关资源

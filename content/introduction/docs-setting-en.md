@@ -256,6 +256,31 @@ In the `custom/route/routes.json` file, add a new top-level documentation route 
 
 At this point, your new top-level directory is created. Now follow the steps in "Part 1" to add documents to your new top-level directory.
 
+**About `isDocs` Configuration:**
+
+- If the parent route already has `isDocs: true` set, child routes will automatically inherit the documentation route characteristics, and you typically don't need to set it again on child routes.
+- However, if a specific child route needs to be individually marked as a documentation route (e.g., a child route under a non-documentation parent route is a documentation page), you can set `isDocs: true` on that child route.
+- The system supports configuring `isDocs` on child routes, and the middleware will correctly identify and apply documentation route path normalization rules.
+
+**Example: Configuring a Documentation Child Route Under a Non-Documentation Parent Route**
+
+```json
+{
+  "i18nKey": "resources",
+  "nameKey": "menu.resources",
+  "vuetifyIcon": "mdi-download",
+  "children": [
+    {
+      "i18nKey": "essenceRecognizer",
+      "nameKey": "menu.essenceRecognizer",
+      "routePath": "/resources/essence-recognizer",
+      "vuetifyIcon": "mdi-chart-line",
+      "isDocs": true
+    }
+  ]
+}
+```
+
 ---
 
 ## Related Resources
