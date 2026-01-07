@@ -25,7 +25,6 @@ export interface AllGachaResource {
   other: SingleModuleResourceStatus;
 }
 
-
 export interface GachaResourceStatisticsResult {
   totalPulls: {
     existingResources: number;
@@ -35,18 +34,17 @@ export interface GachaResourceStatisticsResult {
     rechargeResources: number;
     otherResources: number;
     allResources: number;
-  },
-  rechargeAmount:number,
+  };
+  rechargeAmount: number;
   originiumRecharge: number;
   diamond: number;
   ticketgachaStandardSingle: number;
   ticketgachaSpecialSingle: number;
   ticketgachaStandardTen: number;
   ticketgachaSpecialTen: number;
-
 }
 
-export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult> ( {
+export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>({
   totalPulls: {
     existingResources: 0,
     dailyResources: 0,
@@ -54,15 +52,15 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult> 
     potentialResources: 0,
     rechargeResources: 0,
     otherResources: 0,
-    allResources: 0
+    allResources: 0,
   },
-  rechargeAmount:0,
+  rechargeAmount: 0,
   originiumRecharge: 0,
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
   ticketgachaStandardTen: 0,
-  ticketgachaSpecialTen: 0
+  ticketgachaSpecialTen: 0,
 });
 
 export const allGachaResource = ref<AllGachaResource>({
@@ -72,7 +70,7 @@ export const allGachaResource = ref<AllGachaResource>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0
+    ticketgachaSpecialTen: 0,
   },
   daily: {
     originiumRecharge: 0,
@@ -80,7 +78,7 @@ export const allGachaResource = ref<AllGachaResource>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0
+    ticketgachaSpecialTen: 0,
   },
   activity: {
     originiumRecharge: 0,
@@ -88,8 +86,7 @@ export const allGachaResource = ref<AllGachaResource>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0
-
+    ticketgachaSpecialTen: 0,
   },
   potential: {
     originiumRecharge: 0,
@@ -97,8 +94,7 @@ export const allGachaResource = ref<AllGachaResource>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0
-
+    ticketgachaSpecialTen: 0,
   },
   recharge: {
     originiumRecharge: 0,
@@ -106,8 +102,7 @@ export const allGachaResource = ref<AllGachaResource>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0
-
+    ticketgachaSpecialTen: 0,
   },
   other: {
     originiumRecharge: 0,
@@ -115,9 +110,8 @@ export const allGachaResource = ref<AllGachaResource>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0
-
-  }
+    ticketgachaSpecialTen: 0,
+  },
 });
 
 export interface PieChartData {

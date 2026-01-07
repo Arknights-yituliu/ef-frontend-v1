@@ -150,12 +150,12 @@ export default defineNuxtConfig({
         /**
          * 浏览器列表覆盖 (overrideBrowserslist)
          * 指定需要支持的浏览器版本范围，Autoprefixer 会根据此配置决定添加哪些厂商前缀
-         * 
+         *
          * 配置说明：
          * - 'last 2 versions': 支持每个浏览器的最后 2 个版本
          * - '> 1% in CN': 支持在中国市场份额超过 1% 的浏览器
          * - 'not IE 11': 明确排除 IE 11 浏览器
-         * 
+         *
          * 这些配置会合并使用，最终支持的浏览器是满足所有条件的交集
          * 参考：https://github.com/browserslist/browserslist#readme
          */
