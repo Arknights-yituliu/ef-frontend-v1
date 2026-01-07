@@ -31,15 +31,12 @@ interface PageData {
   [key: string]: any;
 }
 
-// 删除route.path末尾可能存在的斜杠
-const path = route.path.replace(/\/$/, '');
-
 // 使用 queryCollection API 获取内容，监听语言变化
 const { data: page, refresh } = await useAsyncData<PageData | null>(
-  `${path}-${locale.value}-resources`,
+  `${route.path}-${locale.value}-resources`,
   () => {
     // content/ 下的实际文件路径形如 resources/essence-recognizer-zh或resources/essence-recognizer-en
-    const contentPath = `${path}-${locale.value.substring(0, 2)}`;
+    const contentPath = `${route.path}-${locale.value.substring(0, 2)}`;
 
     // queryCollection 的类型定义不支持动态字符串，但运行时可以正常工作
     return (queryCollection('resources') as any).path(contentPath).first();
