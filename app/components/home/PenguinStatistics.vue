@@ -16,7 +16,8 @@
           append-icon="mdi-open-in-new"
           color="primary"
           prepend-icon="mdi-web"
-          @click="openNewPage('https://penguin-stats.cn/')"
+          href="https://penguin-stats.cn/"
+          target="_blank"
         />
       </header>
     </v-card-title>
@@ -27,7 +28,8 @@
         <v-card
           class="penguin-statistics-function"
           hover
-          @click="() => openNewPage('https://penguin-stats.cn/result/item')"
+          href="https://penguin-stats.cn/result/item"
+          target="_blank"
         >
           <v-card-text>
             <v-icon icon="mdi-treasure-chest" size="42" />
@@ -39,7 +41,8 @@
         <v-card
           class="penguin-statistics-function"
           hover
-          @click="() => openNewPage('https://penguin-stats.cn/result/stage')"
+          href="https://penguin-stats.cn/result/stage"
+          target="_blank"
         >
           <v-card-text>
             <v-icon icon="mdi-cube" size="42" />
@@ -50,7 +53,8 @@
         <v-card
           class="penguin-statistics-function"
           hover
-          @click="() => openNewPage('https://penguin-stats.cn/report/stage')"
+          href="https://penguin-stats.cn/report/stage"
+          target="_blank"
         >
           <v-card-text>
             <v-icon icon="mdi-upload" size="42" />
@@ -61,7 +65,8 @@
         <v-card
           class="penguin-statistics-function"
           hover
-          @click="() => openNewPage('https://penguin-stats.cn/planner')"
+          href="https://penguin-stats.cn/planner"
+          target="_blank"
         >
           <v-card-text>
             <v-icon icon="mdi-directions-fork" size="42" />

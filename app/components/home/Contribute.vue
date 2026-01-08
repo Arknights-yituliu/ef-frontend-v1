@@ -28,7 +28,8 @@ const copyGroupNumber = async () => {
           append-icon="mdi-open-in-new"
           color="primary"
           prepend-icon="mdi-github"
-          @click="() => openNewPage('https://github.com/Arknights-yituliu/ef-frontend-v1')"
+          href="https://github.com/Arknights-yituliu/ef-frontend-v1"
+          target="_blank"
         />
       </header>
     </v-card-title>

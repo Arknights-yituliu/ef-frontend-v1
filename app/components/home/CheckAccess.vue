@@ -13,7 +13,8 @@
       <img alt="" class="test-kv" src="https://cos.yituliu.cn/endfield/other/test-kv.jpg" />
       <v-btn
         class="check-access-btn"
-        @click="() => openNewPage('https://endfield.hypergryph.com/checkAccess')"
+        href="https://endfield.hypergryph.com/checkAccess"
+        target="_blank"
       >
         <span>
           {{ $t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite') }}
