@@ -60,7 +60,11 @@
         </a>
       </p>
       <p class="p-li">
-        <a class="simple-link" href="https://ark.yituliu.cn/tools/specializationTimeCalculate" target="_blank">
+        <a
+          class="simple-link"
+          href="https://ark.yituliu.cn/tools/specializationTimeCalculate"
+          target="_blank"
+        >
           <b>{{ $t('component.home.yiTuLiu.specializationHalfCalculator') }}：</b
           >{{ $t('component.home.yiTuLiu.specializationHalfCalculatorDoc') }}
         </a>
