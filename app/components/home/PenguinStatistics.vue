@@ -27,7 +27,7 @@
         <v-card
           class="penguin-statistics-function"
           hover
-          @click="() => openNewPage('https://penguin-stats.cn/report/item')"
+          @click="() => openNewPage('https://penguin-stats.cn/result/item')"
         >
           <v-card-text>
             <v-icon icon="mdi-treasure-chest" size="42" />
@@ -39,7 +39,7 @@
         <v-card
           class="penguin-statistics-function"
           hover
-          @click="() => openNewPage('https://penguin-stats.cn/report/stage')"
+          @click="() => openNewPage('https://penguin-stats.cn/result/stage')"
         >
           <v-card-text>
             <v-icon icon="mdi-cube" size="42" />
