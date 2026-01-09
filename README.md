@@ -95,6 +95,12 @@ ef-frontend-v1/
 
 ## 🚀 快速开始
 
+### 克隆项目
+
+```bash
+git clone --depth 1 --branch dev https://github.com/Arknights-yituliu/ef-frontend-v1.git
+```
+
 ### 安装依赖
 
 ```bash
