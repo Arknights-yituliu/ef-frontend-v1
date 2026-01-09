@@ -104,6 +104,7 @@ git clone --depth 1 --branch dev https://github.com/Arknights-yituliu/ef-fronten
 ### 安装依赖
 
 ```bash
+cd ef-frontend-v1
 yarn install
 ```
 
@@ -117,10 +118,10 @@ yarn dev
 
 ### 生产构建
 
-构建生产版本：
+构建生产版本（SSG）：
 
 ```bash
-yarn build
+yarn generate
 ```
 
 预览生产构建：
