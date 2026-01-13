@@ -1,5 +1,18 @@
 import { ref } from 'vue';
 
+export interface PieChartData {
+  value: number;
+  name: string;
+}
+
+export const itemIdDict = {
+  originiumRecharge:"originium_recharge",
+  diamond:"diamond",
+  ticketgachaStandardSingle:"ticketgacha_standard_single",
+  ticketgachaSpecialSingle:"ticketgacha_special_single",
+}
+
+
 export interface SingleModuleResourceStatus {
   /** 衍质源石 */
   originiumRecharge: number;
@@ -15,10 +28,45 @@ export interface SingleModuleResourceStatus {
   ticketgachaSpecialTen: number;
 }
 
+export interface Reward {
+  id: number;
+  name: {
+    en: string;
+    zh: string;
+  };
+  start:string,
+  end:string,
+  type:string,
+  module:string,
+  active:boolean,
+  content: {
+    /** 衍质源石 */
+    originiumRecharge: number;
+    /** 嵌晶玉数量 */
+    diamond: number;
+    /**  基础寻访凭证 */
+    ticketgachaStandardSingle: number;
+    /** 特许寻访凭证 */
+    ticketgachaSpecialSingle: number;
+    /** 十连基础寻访凭证 */
+    ticketgachaStandardTen: number;
+    /** 十连特许寻访凭证 */
+    ticketgachaSpecialTen: number;
+  }
+
+}
+
+export interface CurrentVersionRemainingTime {
+  day: number;
+  week: number;
+  month: number;
+}
+
 //全部抽卡资源统计
 export interface AllGachaResource {
   existing: SingleModuleResourceStatus;
   daily: SingleModuleResourceStatus;
+  task: SingleModuleResourceStatus;
   activity: SingleModuleResourceStatus;
   potential: SingleModuleResourceStatus;
   recharge: SingleModuleResourceStatus;
@@ -63,6 +111,8 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
   ticketgachaSpecialTen: 0,
 });
 
+
+
 export const allGachaResource = ref<AllGachaResource>({
   existing: {
     originiumRecharge: 0,
@@ -81,6 +131,14 @@ export const allGachaResource = ref<AllGachaResource>({
     ticketgachaSpecialTen: 0,
   },
   activity: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaStandardTen: 0,
+    ticketgachaSpecialTen: 0,
+  },
+  task: {
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
@@ -114,7 +172,4 @@ export const allGachaResource = ref<AllGachaResource>({
   },
 });
 
-export interface PieChartData {
-  value: number;
-  name: string;
-}
+
