@@ -6,12 +6,11 @@ export interface PieChartData {
 }
 
 export const itemIdDict = {
-  originiumRecharge:"originium_recharge",
-  diamond:"diamond",
-  ticketgachaStandardSingle:"ticketgacha_standard_single",
-  ticketgachaSpecialSingle:"ticketgacha_special_single",
-}
-
+  originiumRecharge: 'originium_recharge',
+  diamond: 'diamond',
+  ticketgachaStandardSingle: 'ticketgacha_standard_single',
+  ticketgachaSpecialSingle: 'ticketgacha_special_single',
+};
 
 export interface SingleModuleResourceStatus {
   /** 衍质源石 */
@@ -34,11 +33,11 @@ export interface Reward {
     en: string;
     zh: string;
   };
-  start:string,
-  end:string,
-  type:string,
-  module:string,
-  active:boolean,
+  start: string;
+  end: string;
+  type: string;
+  module: string;
+  active: boolean;
   content: {
     /** 衍质源石 */
     originiumRecharge: number;
@@ -52,8 +51,7 @@ export interface Reward {
     ticketgachaStandardTen: number;
     /** 十连特许寻访凭证 */
     ticketgachaSpecialTen: number;
-  }
-
+  };
 }
 
 export interface CurrentVersionRemainingTime {
@@ -110,8 +108,6 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
   ticketgachaStandardTen: 0,
   ticketgachaSpecialTen: 0,
 });
-
-
 
 export const allGachaResource = ref<AllGachaResource>({
   existing: {
@@ -171,5 +167,3 @@ export const allGachaResource = ref<AllGachaResource>({
     ticketgachaSpecialTen: 0,
   },
 });
-
-
