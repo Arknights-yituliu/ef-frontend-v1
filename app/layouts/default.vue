@@ -1,5 +1,5 @@
 <template>
-  <v-app :theme="theme">
+  <v-app>
     <LayoutDesertBackground />
     <!--  <AnnimationInitialLoader-->
     <!--    :is-loading="isInitialLoading"-->
@@ -33,8 +33,6 @@
       <v-app-bar-nav-icon @click="() => (drawer = !drawer)" />
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
       <div class="header-controls">
-        <LayoutThemeToggle />
-        <div class="control-divider" />
         <LayoutLanguageToggle />
       </div>
     </v-app-bar>
@@ -52,7 +50,7 @@
     <v-fade-transition>
       <v-btn
         v-show="showBackToTop"
-        :color="theme === 'light' ? 'grey-lighten-3' : 'grey-darken-4'"
+        color="grey-lighten-3"
         class="back-to-top-btn"
         icon="mdi-arrow-up"
         rounded="circle"
@@ -69,7 +67,6 @@ const route = useRoute();
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes;
 const { t } = useI18n();
-const { theme } = useTheme();
 const siteName = t('layout.siteName');
 
 // 初始动画加载器
