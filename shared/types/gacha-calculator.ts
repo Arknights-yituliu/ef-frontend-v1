@@ -5,12 +5,9 @@ export interface PieChartData {
   name: string;
 }
 
-export const itemIdDict = {
-  originiumRecharge: 'originium_recharge',
-  diamond: 'diamond',
-  ticketgachaStandardSingle: 'ticketgacha_standard_single',
-  ticketgachaSpecialSingle: 'ticketgacha_special_single',
-};
+export type ItemDict = Record<string,string>
+
+
 
 export interface SingleModuleResourceStatus {
   /** 衍质源石 */
@@ -66,7 +63,7 @@ export interface AllGachaResource {
   daily: SingleModuleResourceStatus;
   task: SingleModuleResourceStatus;
   activity: SingleModuleResourceStatus;
-  potential: SingleModuleResourceStatus;
+  permanent: SingleModuleResourceStatus;
   recharge: SingleModuleResourceStatus;
   other: SingleModuleResourceStatus;
 }
@@ -90,80 +87,4 @@ export interface GachaResourceStatisticsResult {
   ticketgachaSpecialTen: number;
 }
 
-export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>({
-  totalPulls: {
-    existingResources: 0,
-    dailyResources: 0,
-    activityResources: 0,
-    potentialResources: 0,
-    rechargeResources: 0,
-    otherResources: 0,
-    allResources: 0,
-  },
-  rechargeAmount: 0,
-  originiumRecharge: 0,
-  diamond: 0,
-  ticketgachaStandardSingle: 0,
-  ticketgachaSpecialSingle: 0,
-  ticketgachaStandardTen: 0,
-  ticketgachaSpecialTen: 0,
-});
 
-export const allGachaResource = ref<AllGachaResource>({
-  existing: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
-  },
-  daily: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
-  },
-  activity: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
-  },
-  task: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
-  },
-  potential: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
-  },
-  recharge: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
-  },
-  other: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
-  },
-});

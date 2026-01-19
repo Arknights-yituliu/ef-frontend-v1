@@ -1,27 +1,23 @@
 <script setup lang="ts">
-import type { PackContent } from '#shared/types/pack';
-import type {
-  AllGachaResource,
-  GachaResourceStatisticsResult,
-  CurrentVersionRemainingTime,
-  PieChartData,
-} from '@/shared/types/gacha-calculator';
+import type { CurrentVersionRemainingTime, PieChartData } from '@/shared/types/gacha-calculator';
+import { allGachaResource, gachaResourceStatisticsResult } from '@/custom/core/gacha-resource-statistics-result';
+import { numberRound } from '#shared/utils/numberUtil';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import {
-  allGachaResource,
-  gachaResourceStatisticsResult,
-  itemIdDict,
-} from '#shared/types/gacha-calculator';
-import { ref, onMounted, watch, computed, nextTick } from 'vue';
-import { beginnerCheckInTasks } from '@/custom/core/gacha-task-reward-table';
+  beginnerCheckInTask,
+  nodeReward,
+  endminTierTaskRewards,
+  endminTierUpReward
+} from '@/custom/core/gacha-reward-table';
 
 const { t } = useI18n();
 
 const leftPartPanel = ref<string[]>(['statisticalResult']);
-const rightPartPanel = ref<string[]>(['existing', 'daily', 'task']);
+const rightPartPanel = ref<string[]>(['existing', 'daily', 'task','permanent']);
 const currentVersionRemainingTime = ref<CurrentVersionRemainingTime>({
   day: 0,
   week: 0,
-  month: 0,
+  month: 0
 });
 
 /**
@@ -32,26 +28,101 @@ const currentVersionRemainingTime = ref<CurrentVersionRemainingTime>({
  */
 function calculateDaysDifference(
   startDate: Date | string | number,
-  endDate: Date | string | number,
-) {
+  endDate: Date | string | number
+): number {
   // 转换为时间戳
   const startTimestamp = typeof startDate === 'number' ? startDate : new Date(startDate).getTime();
   const endTimestamp = typeof endDate === 'number' ? endDate : new Date(endDate).getTime();
   // 计算天数差
-  const daysDifference = (endTimestamp - startTimestamp) / (1000 * 60 * 60 * 24);
-  return daysDifference;
+  return (endTimestamp - startTimestamp) / (1000 * 60 * 60 * 24);
 }
+
+const beginnerCheckInTaskRemainingDays = ref<number[]>([1, 14]);
+
+watch(() => beginnerCheckInTaskRemainingDays.value, (newVal, oldVal) => {
+  let result
+    = beginnerCheckInTaskRemainingDays.value[1]! - beginnerCheckInTaskRemainingDays.value[0]!;
+
+  if (beginnerCheckInTaskRemainingDays.value[0] < 11) {
+    result--;
+  }
+  if (beginnerCheckInTaskRemainingDays.value[0] < 3) {
+    result--;
+  }
+  beginnerCheckInTask.value.content.ticketgachaSpecialSingle = result;
+});
+
+const nodeRewardProgress = ref<number[]>([0, 12]);
+
+watch(() => nodeRewardProgress.value, (newVal, oldVal) => {
+  nodeReward.value.content.diamond =
+    (nodeRewardProgress.value[1]! - nodeRewardProgress.value[0]!) * 750;
+});
+
+const endminTierUpRewardsRange = ref<number[]>([1, 60]);
+
+watch(() => endminTierUpRewardsRange.value, (newVal, oldVal) => {
+  let result: number = 0;
+  for (let i = endminTierUpRewardsRange.value[0]!+1; i <= endminTierUpRewardsRange.value[1]!; i++) {
+    if (i === 45) {
+      result += 200;
+      continue;
+    }
+    if (i % 5 === 0) {
+      result += 100;
+      continue;
+    }
+    result += 50;
+    console.log('level: ',60,'result: ',result)
+  }
+
+  endminTierUpReward.value.content.diamond = result;
+});
+
+const dayReward = ref<Reward>(
+  {
+    id: 10001,
+    name: {
+      zh: `日常奖励X0天`,
+      en: ''
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '日常奖励',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaStandardTen: 0,
+      ticketgachaSpecialTen: 0
+    }
+  }
+);
+
+function createDaysReward(): void {
+  const remainingDays: number = calculateDaysDifference('2026/01/22', '2026-03-05');
+  dayReward.value.name = {
+    zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
+    en: ''
+  };
+  dayReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
+
+}
+
+createDaysReward();
 
 //饼图的数据
 const pieChartData = computed(() => [
   { value: 22, name: t('page.tools.gachaCalculator.existing') },
-  { value: 33, name: t('page.tools.gachaCalculator.potential') },
+  { value: 33, name: t('page.tools.gachaCalculator.permanent') },
   { value: 44, name: t('page.tools.gachaCalculator.daily') },
   { value: 22, name: t('page.tools.gachaCalculator.recharge') },
   { value: 33, name: t('page.tools.gachaCalculator.activity') },
-  { value: 44, name: t('page.tools.gachaCalculator.other') },
+  { value: 44, name: t('page.tools.gachaCalculator.other') }
 ]);
-
 // pieChartData.value[0].value = 1;
 
 let myChart: any;
@@ -66,10 +137,10 @@ function setPieChart(data: PieChartData[]) {
           seriesName: param.seriesName || '',
           name: param.name || '',
           value: param.value || 0,
-          percent: param.percent || 0,
+          percent: param.percent || 0
         });
       },
-      position: 'inner',
+      position: 'inner'
     },
 
     series: [
@@ -82,20 +153,20 @@ function setPieChart(data: PieChartData[]) {
         itemStyle: {},
         label: {
           show: true,
-          textStyle: { color: 'rgb(255,69,0)', fontSize: '12' },
+          textStyle: { color: 'rgb(255,69,0)', fontSize: '12' }
         },
         labelLine: {
           length: 4,
-          length2: 4,
+          length2: 4
         },
 
         emphasis: {
           shadowBlur: 10,
           shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)',
-        },
-      },
-    ],
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    ]
   };
 
   myChart.setOption(option);
@@ -110,7 +181,7 @@ watch(
       nextTick(() => {
         // 等待组件渲染完成, 确保元素存在
         const pieElement: HTMLElement | null = document.getElementById(
-          'gacha-calculator-pie-chart',
+          'gacha-calculator-pie-chart'
         );
         // 检查元素是否存在
         if (!pieElement) {
@@ -121,12 +192,13 @@ watch(
         setPieChart(pieChartData.value as PieChartData[]);
       });
     }
-  },
+  }
 );
 
 onMounted(() => {
   myChart = echarts.init(document.getElementById('gacha-calculator-pie-chart'));
   setPieChart(pieChartData.value as PieChartData[]);
+
   currentVersionRemainingTime.value.day = calculateDaysDifference('2026/01/22', '2026-03-05');
 });
 </script>
@@ -160,36 +232,36 @@ onMounted(() => {
 
                 <table class="gacha-calculator-resource-table">
                   <tbody>
-                    <tr>
-                      <td>{{ t('page.tools.gachaCalculator.existing') }}</td>
-                      <td>{{ gachaResourceStatisticsResult.totalPulls.existingResources }}</td>
-                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                    </tr>
-                    <tr>
-                      <td>{{ t('page.tools.gachaCalculator.daily') }}</td>
-                      <td>{{ gachaResourceStatisticsResult.totalPulls.dailyResources }}</td>
-                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                    </tr>
-                    <tr>
-                      <td>{{ t('page.tools.gachaCalculator.potential') }}</td>
-                      <td>{{ gachaResourceStatisticsResult.totalPulls.potentialResources }}</td>
-                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                    </tr>
-                    <tr>
-                      <td>{{ t('page.tools.gachaCalculator.recharge') }}</td>
-                      <td>{{ gachaResourceStatisticsResult.totalPulls.rechargeResources }}</td>
-                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                    </tr>
-                    <tr>
-                      <td>{{ t('page.tools.gachaCalculator.activity') }}</td>
-                      <td>{{ gachaResourceStatisticsResult.totalPulls.activityResources }}</td>
-                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                    </tr>
-                    <tr>
-                      <td>{{ t('page.tools.gachaCalculator.other') }}</td>
-                      <td>{{ gachaResourceStatisticsResult.totalPulls.otherResources }}</td>
-                      <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
-                    </tr>
+                  <tr>
+                    <td>{{ t('page.tools.gachaCalculator.existing') }}</td>
+                    <td>{{ gachaResourceStatisticsResult.totalPulls.existingResources }}</td>
+                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ t('page.tools.gachaCalculator.daily') }}</td>
+                    <td>{{ gachaResourceStatisticsResult.totalPulls.dailyResources }}</td>
+                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ t('page.tools.gachaCalculator.permanent') }}</td>
+                    <td>{{ gachaResourceStatisticsResult.totalPulls.potentialResources }}</td>
+                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ t('page.tools.gachaCalculator.recharge') }}</td>
+                    <td>{{ gachaResourceStatisticsResult.totalPulls.rechargeResources }}</td>
+                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ t('page.tools.gachaCalculator.activity') }}</td>
+                    <td>{{ gachaResourceStatisticsResult.totalPulls.activityResources }}</td>
+                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ t('page.tools.gachaCalculator.other') }}</td>
+                    <td>{{ gachaResourceStatisticsResult.totalPulls.otherResources }}</td>
+                    <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
@@ -197,9 +269,9 @@ onMounted(() => {
           </v-expansion-panel>
         </v-expansion-panels>
       </div>
-      <div>
-        {{ JSON.stringify(allGachaResource) }}
-      </div>
+      <!--      <div>-->
+      <!--        {{ JSON.stringify(allGachaResource) }}-->
+      <!--      </div>-->
       <div class="gacha-calculator-container-right">
         <v-expansion-panels v-model="rightPartPanel" multiple>
           <v-expansion-panel value="existing">
@@ -281,19 +353,22 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
-              <div class="gacha-calculator-resource-single">
-                <div class="gacha-calculator-resource-single-title">
-                  日常{{ numberRound(currentVersionRemainingTime.day, 0) }}天
-                </div>
-                <div class="gacha-calculator-resource-single-content">
-                  <img
-                    class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-                    alt="existing"
-                  />
-                  X {{ numberRound(currentVersionRemainingTime.day, 0) * 200 }}
-                </div>
-              </div>
+              <ContainerResourceSingle v-bind="dayReward">
+
+              </ContainerResourceSingle>
+              <!--              <div class="gacha-calculator-resource-single">-->
+              <!--                <div class="gacha-calculator-resource-single-title">-->
+              <!--                  日常{{ numberRound(currentVersionRemainingTime.day, 0) }}天-->
+              <!--                </div>-->
+              <!--                <div class="gacha-calculator-resource-single-content">-->
+              <!--                  <img-->
+              <!--                    class="gacha-calculator-gacha-item-icon"-->
+              <!--                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"-->
+              <!--                    alt="existing"-->
+              <!--                  />-->
+              <!--                  X {{ numberRound(currentVersionRemainingTime.day, 0) * 200 }}-->
+              <!--                </div>-->
+              <!--              </div>-->
             </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel value="task">
@@ -305,27 +380,87 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
-              <ContainerResourceCheckboxBtn
-                v-for="item in beginnerCheckInTasks"
+
+             <v-card >
+               <v-card-text>
+              <ContainerResourceSingle
+                v-bind="beginnerCheckInTask"
+                @click="beginnerCheckInTask.active = !beginnerCheckInTask.active"
+              />
+
+              <!--              <ContainerSingleBtn-->
+              <!--                v-for="item in beginnerCheckInTasks"-->
+              <!--                :key="item.id"-->
+              <!--                v-bind="item"-->
+              <!--                @click="item.active = !item.active"-->
+              <!--              />-->
+              <div style="height: 36px"></div>
+              <v-range-slider v-model="beginnerCheckInTaskRemainingDays"
+                              show-ticks="always"
+                              step="1"
+                              max="14"
+                              tick-size="4" thumb-label="always"
+                              hide-details="auto"
+                              strict
+                              class="v-range-slider">
+              </v-range-slider>
+              刻度在1表示第一日签到已完成，不再加入第一日
+               </v-card-text>
+             </v-card>
+              <v-divider style="margin: 1rem 0"></v-divider>
+
+
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+          <v-expansion-panel value="permanent">
+            <v-expansion-panel-title>
+              <div class="gacha-calculator-card-title">
+                常驻奖励 {{ gachaResourceStatisticsResult.totalPulls.dailyResources }}
+                {{ t('page.tools.gachaCalculator.pulls') }}
+              </div>
+            </v-expansion-panel-title>
+            <v-divider />
+            <v-expansion-panel-text>
+              <v-card >
+                <v-card-text>
+                  <ContainerResourceSingle
+                    v-bind="endminTierUpReward"
+                  /><div style="height: 36px"></div>
+                  <v-range-slider v-model="endminTierUpRewardsRange"
+                                  show-ticks="always"
+                                  step="1"
+                                  max="60"
+                                  min="1"
+                                  tick-size="4" thumb-label="always"
+                                  hide-details="auto"
+                                  class="v-range-slider">
+                  </v-range-slider>
+                </v-card-text>
+              </v-card>
+              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-card >
+                <v-card-text>
+                  <ContainerResourceSingle
+                    v-bind="nodeReward"
+                  /><div style="height: 36px"></div>
+                  <v-range-slider v-model="nodeRewardProgress"
+                                  show-ticks="always"
+                                  step="1"
+                                  max="12"
+                                  tick-size="4" thumb-label="always"
+                                  hide-details="auto"
+                                  class="v-range-slider">
+                  </v-range-slider>
+                  共计12节点，每节点750嵌晶玉
+                </v-card-text>
+              </v-card>
+              <v-divider style="margin: 1rem 0"></v-divider>
+              <ContainerResourceSingleBtn
+                v-for="item in endminTierTaskRewards"
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"
               />
-              <!--              <v-btn v-for="item in beginnerCheckInTasks" :key="item.id" class="gacha-calculator-resource-single-btn">-->
-              <!--              <div  class="gacha-calculator-resource-single">-->
-              <!--                <div class="gacha-calculator-resource-single-title">-->
-              <!--                  {{ item.name.zh }}-->
-              <!--                </div>-->
-              <!--                <div v-for="(reward,name) in item.content" v-show="reward>0" :key='`${item.id}-${name}`' class="gacha-calculator-resource-single-content" >-->
-              <!--                  <img-->
-              <!--                    class="gacha-calculator-gacha-item-icon"-->
-              <!--                    :src='getImageUrl(name)'-->
-              <!--                    alt="existing"-->
-              <!--                  >-->
-              <!--                  X {{reward }}-->
-              <!--                </div>-->
-              <!--              </div>-->
-              <!--              </v-btn>-->
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -343,13 +478,13 @@ onMounted(() => {
 }
 
 .gacha-calculator-container-left {
-  width: 48%;
-  margin: 1rem 0;
+  width: 600px;
+  margin: 1%;
 }
 
 .gacha-calculator-container-right {
-  width: 48%;
-  margin: 1rem 0;
+  width: 600px;
+  margin: 1%;
 }
 
 .gacha-calculator-card-title {
@@ -391,51 +526,21 @@ onMounted(() => {
   margin: 0 12px 0 0;
 }
 
-.gacha-calculator-resource-single-btn {
-  margin: 4px 0px;
-  width: 96%;
-  justify-content: start;
+
+@media screen and (max-width: 1280px) {
+
 }
 
-.gacha-calculator-resource-single {
-  width: 98%;
-  display: flex;
-  font-size: 1.25rem;
-  align-items: center;
-}
-.gacha-calculator-resource-single-title {
-  width: 200px;
-}
-.gacha-calculator-resource-single-content {
-  display: flex;
-  align-items: center;
-}
-
-@media screen and (max-width: 1080px) {
-  .gacha-calculator-container {
-    width: 100%;
-  }
-
-  .gacha-calculator-container-left {
-    width: 99%;
-  }
-
-  .gacha-calculator-container-right {
-    width: 99%;
-  }
-}
 
 @media screen and (max-width: 600px) {
-  .gacha-calculator-container {
-    width: 100%;
-  }
 
-  .gacha-calculator-container-left {
-    width: 99%;
-  }
+}
 
-  .gacha-calculator-container-right {
-    width: 99%;
+
+.v-range-slider {
+  .v-slider-thumb__label {
+    width: 100px;
   }
 }
+
 </style>
