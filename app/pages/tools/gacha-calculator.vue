@@ -1,19 +1,29 @@
 <script setup lang="ts">
 import type { CurrentVersionRemainingTime, PieChartData } from '@/shared/types/gacha-calculator';
-import { allGachaResource, gachaResourceStatisticsResult } from '@/custom/core/gacha-resource-statistics-result';
+import {
+  allGachaResource,
+  resourceStatisticsResult
+} from '@/custom/core/gacha/resource-statistics-result';
 import { numberRound } from '#shared/utils/numberUtil';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import {
-  beginnerCheckInTask,
+  beginnerSignInTask,
   nodeReward,
-  endminTierTaskRewards,
-  endminTierUpReward
-} from '@/custom/core/gacha-reward-table';
+  authorityLevelTaskRewards,
+  authorityLevelUpReward
+} from '@/custom/core/gacha/task-reward-table';
+
+import {
+  valleyIVRegionalDevelopmentReward,
+  valleyIVRegionalStockBillStore,
+  wulingRegionalDevelopmentReward,
+  wulingRegionalStockBillStore
+} from '@/custom/core/gacha/regional-development-reward-table';
 
 const { t } = useI18n();
 
 const leftPartPanel = ref<string[]>(['statisticalResult']);
-const rightPartPanel = ref<string[]>(['existing', 'daily', 'task','permanent']);
+const rightPartPanel = ref<string[]>(['existing', 'daily', 'task', 'permanent', 'regionalDevelopment']);
 const currentVersionRemainingTime = ref<CurrentVersionRemainingTime>({
   day: 0,
   week: 0,
@@ -43,13 +53,13 @@ watch(() => beginnerCheckInTaskRemainingDays.value, (newVal, oldVal) => {
   let result
     = beginnerCheckInTaskRemainingDays.value[1]! - beginnerCheckInTaskRemainingDays.value[0]!;
 
-  if (beginnerCheckInTaskRemainingDays.value[0] < 11) {
+  if (beginnerCheckInTaskRemainingDays.value?.[0] !== undefined && beginnerCheckInTaskRemainingDays.value[0] < 11) {
     result--;
   }
-  if (beginnerCheckInTaskRemainingDays.value[0] < 3) {
+  if (beginnerCheckInTaskRemainingDays.value?.[0] != undefined && beginnerCheckInTaskRemainingDays.value[0] < 3) {
     result--;
   }
-  beginnerCheckInTask.value.content.ticketgachaSpecialSingle = result;
+  beginnerSignInTask.value.content.ticketgachaSpecialSingle = result;
 });
 
 const nodeRewardProgress = ref<number[]>([0, 12]);
@@ -63,7 +73,7 @@ const endminTierUpRewardsRange = ref<number[]>([1, 60]);
 
 watch(() => endminTierUpRewardsRange.value, (newVal, oldVal) => {
   let result: number = 0;
-  for (let i = endminTierUpRewardsRange.value[0]!+1; i <= endminTierUpRewardsRange.value[1]!; i++) {
+  for (let i = endminTierUpRewardsRange.value[0]! + 1; i <= endminTierUpRewardsRange.value[1]!; i++) {
     if (i === 45) {
       result += 200;
       continue;
@@ -73,11 +83,56 @@ watch(() => endminTierUpRewardsRange.value, (newVal, oldVal) => {
       continue;
     }
     result += 50;
-    console.log('level: ',60,'result: ',result)
+    console.log('level: ', 60, 'result: ', result);
   }
 
-  endminTierUpReward.value.content.diamond = result;
+  authorityLevelUpReward.value.content.diamond = result;
 });
+
+const valleyIVRegionalRewardProgress = ref<number[]>([1, 12]);
+
+watch(() => valleyIVRegionalRewardProgress.value, (newVal, oldVal) => {
+  let diamond: number = 0;
+  let ticketgachaStandardSingle: number = 0;
+  for (let i = valleyIVRegionalRewardProgress.value[0]! + 1; i <= valleyIVRegionalRewardProgress.value[1]!; i++) {
+    if (i === 1) {
+      continue;
+    }
+    if (i < 10) {
+      diamond += 200;
+      ticketgachaStandardSingle++;
+      continue;
+    }
+    diamond += 200;
+    ticketgachaStandardSingle += 2;
+  }
+  valleyIVRegionalDevelopmentReward.value.content.diamond = diamond
+  valleyIVRegionalDevelopmentReward.value.content.ticketgachaStandardSingle = ticketgachaStandardSingle
+});
+
+const wulingRegionalRewardProgress = ref<number[]>([1, 6]);
+
+watch(() => wulingRegionalRewardProgress.value, (newVal, oldVal) => {
+  let diamond: number = 0;
+  let ticketgachaStandardSingle: number = 0;
+  for (let i = wulingRegionalRewardProgress.value[0]! + 1; i <= wulingRegionalRewardProgress.value[1]!; i++) {
+    if (i === 1) {
+      continue;
+    }
+    if (i < 10) {
+      diamond += 200;
+      ticketgachaStandardSingle++;
+      continue;
+    }
+    diamond += 200;
+    ticketgachaStandardSingle += 2;
+  }
+  wulingRegionalDevelopmentReward.value.content.diamond = diamond
+  wulingRegionalDevelopmentReward.value.content.ticketgachaStandardSingle = ticketgachaStandardSingle
+});
+
+
+
 
 const dayReward = ref<Reward>(
   {
@@ -215,10 +270,10 @@ onMounted(() => {
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
                 {{ t('page.tools.gachaCalculator.total') }}
-                {{ gachaResourceStatisticsResult.totalPulls.allResources }}
+                {{ resourceStatisticsResult.totalPulls.allResources }}
                 {{ t('page.tools.gachaCalculator.pulls') }}，
                 {{ t('page.tools.gachaCalculator.rechargeAmount') }}$
-                {{ gachaResourceStatisticsResult.rechargeAmount }}
+                {{ resourceStatisticsResult.rechargeAmount }}
                 {{ t('page.tools.gachaCalculator.yuan') }}
               </div>
             </v-expansion-panel-title>
@@ -234,32 +289,32 @@ onMounted(() => {
                   <tbody>
                   <tr>
                     <td>{{ t('page.tools.gachaCalculator.existing') }}</td>
-                    <td>{{ gachaResourceStatisticsResult.totalPulls.existingResources }}</td>
+                    <td>{{ resourceStatisticsResult.totalPulls.existingResources }}</td>
                     <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                   </tr>
                   <tr>
                     <td>{{ t('page.tools.gachaCalculator.daily') }}</td>
-                    <td>{{ gachaResourceStatisticsResult.totalPulls.dailyResources }}</td>
+                    <td>{{ resourceStatisticsResult.totalPulls.dailyResources }}</td>
                     <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                   </tr>
                   <tr>
                     <td>{{ t('page.tools.gachaCalculator.permanent') }}</td>
-                    <td>{{ gachaResourceStatisticsResult.totalPulls.potentialResources }}</td>
+                    <td>{{ resourceStatisticsResult.totalPulls.potentialResources }}</td>
                     <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                   </tr>
                   <tr>
                     <td>{{ t('page.tools.gachaCalculator.recharge') }}</td>
-                    <td>{{ gachaResourceStatisticsResult.totalPulls.rechargeResources }}</td>
+                    <td>{{ resourceStatisticsResult.totalPulls.rechargeResources }}</td>
                     <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                   </tr>
                   <tr>
                     <td>{{ t('page.tools.gachaCalculator.activity') }}</td>
-                    <td>{{ gachaResourceStatisticsResult.totalPulls.activityResources }}</td>
+                    <td>{{ resourceStatisticsResult.totalPulls.activityResources }}</td>
                     <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                   </tr>
                   <tr>
                     <td>{{ t('page.tools.gachaCalculator.other') }}</td>
-                    <td>{{ gachaResourceStatisticsResult.totalPulls.otherResources }}</td>
+                    <td>{{ resourceStatisticsResult.totalPulls.otherResources }}</td>
                     <td>{{ t('page.tools.gachaCalculator.pulls') }}</td>
                   </tr>
                   </tbody>
@@ -277,7 +332,7 @@ onMounted(() => {
           <v-expansion-panel value="existing">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
-                库存 {{ gachaResourceStatisticsResult.totalPulls.existingResources }}
+                库存 {{ resourceStatisticsResult.totalPulls.existingResources }}
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
@@ -347,15 +402,15 @@ onMounted(() => {
           <v-expansion-panel value="daily">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
-                日常积累 {{ gachaResourceStatisticsResult.totalPulls.dailyResources }}
+                日常积累 {{ resourceStatisticsResult.totalPulls.dailyResources }}
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
-              <ContainerResourceSingle v-bind="dayReward">
+              <GachaCalculatorResourceSingle v-bind="dayReward">
 
-              </ContainerResourceSingle>
+              </GachaCalculatorResourceSingle>
               <!--              <div class="gacha-calculator-resource-single">-->
               <!--                <div class="gacha-calculator-resource-single-title">-->
               <!--                  日常{{ numberRound(currentVersionRemainingTime.day, 0) }}天-->
@@ -374,58 +429,111 @@ onMounted(() => {
           <v-expansion-panel value="task">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
-                任务奖励 {{ gachaResourceStatisticsResult.totalPulls.dailyResources }}
+                任务奖励 {{ resourceStatisticsResult.totalPulls.dailyResources }}
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
 
-             <v-card >
-               <v-card-text>
-              <ContainerResourceSingle
-                v-bind="beginnerCheckInTask"
-                @click="beginnerCheckInTask.active = !beginnerCheckInTask.active"
+
+
+
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+          <v-expansion-panel value="regionalDevelopment">
+            <v-expansion-panel-title>
+              <div class="gacha-calculator-card-title">
+                地区建设奖励 {{ resourceStatisticsResult.totalPulls.dailyResources }}
+                {{ t('page.tools.gachaCalculator.pulls') }}
+              </div>
+            </v-expansion-panel-title>
+            <v-divider />
+            <v-expansion-panel-text>
+              <GachaCalculatorModuleTitle title="四号谷底地区建设"></GachaCalculatorModuleTitle>
+              <GachaCalculatorResourceSingleBtn
+                v-bind="valleyIVRegionalStockBillStore"
+                @click="valleyIVRegionalStockBillStore.active = !valleyIVRegionalStockBillStore.active"
               />
-
-              <!--              <ContainerSingleBtn-->
-              <!--                v-for="item in beginnerCheckInTasks"-->
-              <!--                :key="item.id"-->
-              <!--                v-bind="item"-->
-              <!--                @click="item.active = !item.active"-->
-              <!--              />-->
-              <div style="height: 36px"></div>
-              <v-range-slider v-model="beginnerCheckInTaskRemainingDays"
-                              show-ticks="always"
-                              step="1"
-                              max="14"
-                              tick-size="4" thumb-label="always"
-                              hide-details="auto"
-                              strict
-                              class="v-range-slider">
-              </v-range-slider>
-              刻度在1表示第一日签到已完成，不再加入第一日
-               </v-card-text>
-             </v-card>
               <v-divider style="margin: 1rem 0"></v-divider>
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle
+                    v-bind="valleyIVRegionalDevelopmentReward"
+                  />
+                  <div style="height: 36px"></div>
+                  <v-range-slider v-model="valleyIVRegionalRewardProgress"
+                                  show-ticks="always"
+                                  step="1"
+                                  max="12"
+                                  tick-size="4" thumb-label="always"
+                                  hide-details="auto"
+                                  class="v-range-slider">
+                  </v-range-slider>
+                  通过滑块调节当前地区建设等级
+                </v-card-text>
+              </v-card>
 
-
+              <GachaCalculatorModuleTitle title="武陵地区建设"></GachaCalculatorModuleTitle>
+              <GachaCalculatorResourceSingleBtn
+                v-bind="wulingRegionalStockBillStore"
+                @click="wulingRegionalStockBillStore.active = !wulingRegionalStockBillStore.active"
+              />
+              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle
+                    v-bind="wulingRegionalDevelopmentReward"
+                  />
+                  <div style="height: 36px"></div>
+                  <v-range-slider v-model="wulingRegionalRewardProgress"
+                                  show-ticks="always"
+                                  step="1"
+                                  max="6"
+                                  tick-size="4" thumb-label="always"
+                                  hide-details="auto"
+                                  class="v-range-slider">
+                  </v-range-slider>
+                  通过滑块调节当前地区建设等级
+                </v-card-text>
+              </v-card>
             </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel value="permanent">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
-                常驻奖励 {{ gachaResourceStatisticsResult.totalPulls.dailyResources }}
+                常驻奖励 {{ resourceStatisticsResult.totalPulls.dailyResources }}
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
-              <v-card >
+              <v-card>
                 <v-card-text>
-                  <ContainerResourceSingle
-                    v-bind="endminTierUpReward"
-                  /><div style="height: 36px"></div>
+                  <GachaCalculatorResourceSingle
+                    v-bind="beginnerSignInTask"
+                    @click="beginnerSignInTask.active = !beginnerSignInTask.active"
+                  />
+                  <div style="height: 36px"></div>
+                  <v-range-slider v-model="beginnerCheckInTaskRemainingDays"
+                                  show-ticks="always"
+                                  step="1"
+                                  max="14"
+                                  tick-size="4" thumb-label="always"
+                                  hide-details="auto"
+                                  strict
+                                  class="v-range-slider">
+                  </v-range-slider>
+                  刻度在1表示第一日签到已完成，不再加入第一日
+                </v-card-text>
+              </v-card>
+              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle
+                    v-bind="authorityLevelUpReward"
+                  />
+                  <div style="height: 36px"></div>
                   <v-range-slider v-model="endminTierUpRewardsRange"
                                   show-ticks="always"
                                   step="1"
@@ -438,11 +546,12 @@ onMounted(() => {
                 </v-card-text>
               </v-card>
               <v-divider style="margin: 1rem 0"></v-divider>
-              <v-card >
+              <v-card>
                 <v-card-text>
-                  <ContainerResourceSingle
+                  <GachaCalculatorResourceSingle
                     v-bind="nodeReward"
-                  /><div style="height: 36px"></div>
+                  />
+                  <div style="height: 36px"></div>
                   <v-range-slider v-model="nodeRewardProgress"
                                   show-ticks="always"
                                   step="1"
@@ -455,12 +564,14 @@ onMounted(() => {
                 </v-card-text>
               </v-card>
               <v-divider style="margin: 1rem 0"></v-divider>
-              <ContainerResourceSingleBtn
-                v-for="item in endminTierTaskRewards"
+              <GachaCalculatorModuleTitle title="权限等阶提升任务"></GachaCalculatorModuleTitle>
+              <GachaCalculatorResourceSingleBtn
+                v-for="item in authorityLevelTaskRewards"
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"
               />
+
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>

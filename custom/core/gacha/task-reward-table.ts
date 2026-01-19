@@ -9,7 +9,7 @@ export const itemIdDict: ItemDict = {
   ticketgachaSpecialSingle: 'ticketgacha_special_single'
 };
 
-const beginnerCheckInTask = ref<Reward>({
+const beginnerSignInTask = ref<Reward>({
   id: 11001,
   name: {
     zh: `新手签到奖励`,
@@ -58,7 +58,7 @@ const nodeReward = ref<Reward>(
   }
 );
 
-const endminTierTaskRewards = ref<Reward[]>([{
+const authorityLevelTaskRewards = ref<Reward[]>([{
   id: 11004,
   name: {
     zh: `权限等阶8奖励`,
@@ -160,7 +160,7 @@ const endminTierTaskRewards = ref<Reward[]>([{
   }
 ]);
 
-const endminTierUpReward = ref<Reward>( {
+const authorityLevelUpReward = ref<Reward>( {
   id: 11009,
   name: {
     zh: `权限等级提升奖励`,
@@ -181,8 +181,10 @@ const endminTierUpReward = ref<Reward>( {
   }
 });
 
+
+
 export {
-  beginnerCheckInTask, nodeReward,endminTierTaskRewards,endminTierUpReward
+  beginnerSignInTask, nodeReward,authorityLevelTaskRewards,authorityLevelUpReward
 };
 
 
