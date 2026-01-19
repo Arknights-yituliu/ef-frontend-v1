@@ -162,6 +162,14 @@
 import { computed, ref, onMounted } from 'vue';
 import data from '@/custom/core/gacha-analysis-example.json';
 
+// ========== 工具函数：安全解析时间戳 ==========
+function safeTimestamp(ts: string | number): number {
+  if (typeof ts === 'number') return ts;
+  const num = Number(ts);
+  if (!isNaN(num)) return num; // 处理 "1765115170980" 这类字符串
+  return new Date(ts).getTime(); // 处理 ISO 字符串如 "2025-01-01T12:00:00Z"
+}
+
 // ========== 数据结构定义 ==========
 interface GachaRecord {
   id: number;
@@ -169,7 +177,7 @@ interface GachaRecord {
   poolName: string;
   charName: string;
   rarity: number;
-  gachaTs: string; // ISO 时间戳字符串
+  gachaTs: string | number; // 允许数字或字符串
 }
 
 // ========== 响应式数据 ==========
@@ -180,7 +188,7 @@ const sixStarRecordsWithCount = ref<Array<{
   poolId: string;
   character: string;
   count: number;
-  timestamp: string;
+  timestamp: string | number; // 与 gachaTs 类型一致
 }>>([]);
 
 // ========== 卡池类型映射函数 ==========
@@ -188,7 +196,6 @@ function getPoolType(poolId: string): 'limited' | 'permanent' | 'weapon' {
   if (poolId.startsWith('special')) {
     return 'limited';
   }
-  // 👇【修复】增加对武器池的识别（根据常见命名）
   if (poolId.startsWith('weapon') || poolId.includes('weapon')) {
     return 'weapon';
   }
@@ -211,7 +218,6 @@ const poolColorMap: Record<string, string> = {
   '基础寻访': 'deep-purple',
   '启程寻访': 'cyan',
   '特许寻访': 'amber',
-  // 可根据实际 poolName 扩展
 };
 function getPoolColor(poolName: string): string {
   return poolColorMap[poolName] || 'grey';
@@ -220,7 +226,7 @@ function getPoolColor(poolName: string): string {
 // ========== 生命周期：加载并处理数据 ==========
 onMounted(async () => {
   try {
-    // 1. 解析并按时间排序
+    // 1. 解析原始数据，并按时间升序排序（早 → 晚），用于正确计算抽数
     const list: GachaRecord[] = data.data
       .map((item: any) => ({
         id: item.id,
@@ -230,7 +236,7 @@ onMounted(async () => {
         rarity: item.rarity,
         gachaTs: item.gachaTs,
       }))
-      .sort((a, b) => new Date(a.gachaTs).getTime() - new Date(b.gachaTs));
+      .sort((a, b) => safeTimestamp(a.gachaTs) - safeTimestamp(b.gachaTs)); // 必须升序！
 
     records.value = list;
 
@@ -256,15 +262,15 @@ onMounted(async () => {
       poolName: string;
       character: string;
       count: number;
-      timestamp: string;
+      timestamp: string | number;
     }> = [];
 
-    // 4. 遍历每个 poolId
+    // 4. 遍历每个 poolId，计算抽数
     for (const [poolId, allRecords] of Object.entries(poolAllRecords)) {
       const sixStars = poolSixStars[poolId] || [];
-      const poolName = allRecords[0]?.poolName || poolId; // 取第一条的 poolName
+      const poolName = allRecords[0]?.poolName || poolId;
 
-      // 构建局部索引映射
+      // 构建局部索引映射（基于升序列表）
       const localIdToIndex: Record<number, number> = {};
       allRecords.forEach((rec, idx) => {
         localIdToIndex[rec.id] = idx;
@@ -283,12 +289,12 @@ onMounted(async () => {
           poolName,
           character: six.charName,
           count,
-          timestamp: six.gachaTs,
+          timestamp: six.gachaTs, // 保留原始时间格式
         });
         lastSixLocalIndex = localIdx;
       }
 
-      // 【关键】插入“已垫”虚拟记录（如果末尾有未出6星的抽卡）
+      // 插入“已垫”虚拟记录（如果末尾有未出6星的抽卡）
       if (allRecords.length > 0) {
         const paddedCount = lastSixLocalIndex === -1
           ? allRecords.length
@@ -307,8 +313,8 @@ onMounted(async () => {
       }
     }
 
-    // 5. 全局按时间排序：从晚到早（最新记录在前）
-    result.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    // 5. 全局按时间降序排序：从晚到早（最新记录在前）
+    result.sort((a, b) => safeTimestamp(b.timestamp) - safeTimestamp(a.timestamp));
 
     sixStarRecordsWithCount.value = result;
     rollData.value = result.map(item => [
@@ -323,7 +329,8 @@ onMounted(async () => {
   }
 });
 
-// ========== 以下 computed 逻辑完全无需修改，保持原样 ==========
+// ========== 计算属性 ==========
+
 const totalPulls = computed(() => {
   return sixStarRecordsWithCount.value.reduce((sum, r) => sum + r.count, 0);
 });
@@ -386,13 +393,10 @@ const topCharacters = computed(() => {
     .slice(0, 3);
 });
 
-// sortedData：现在应反映 sixStarRecordsWithCount 的真实顺序（从晚到早）
-const sortedData = computed(() => {
-  // sixStarRecordsWithCount 已经是从晚到早，直接返回副本
-  return [...sixStarRecordsWithCount.value];
-});
+// sortedData：直接使用 sixStarRecordsWithCount（已是降序）
+const sortedData = computed(() => [...sixStarRecordsWithCount.value]);
 
-// consecutiveGroups：按 sortedData 顺序分组（即从晚到早）
+// consecutiveGroups：按 sortedData 顺序分组（从晚到早）
 const consecutiveGroups = computed(() => {
   const groups: Array<{ poolName: string; records: typeof sixStarRecordsWithCount.value }> = [];
   let currentGroup: { poolName: string; records: typeof sixStarRecordsWithCount.value } | null = null;
