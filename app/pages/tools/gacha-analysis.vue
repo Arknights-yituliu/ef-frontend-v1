@@ -206,6 +206,7 @@ interface GachaRecord {
 interface SixStarEntry {
   poolName: string;
   poolId: string;
+  seqId: string;
   character: string;
   count: number;
   timestamp: string | number;
@@ -284,7 +285,7 @@ onMounted(async () => {
       if (!poolAllRecords[record.poolId]) {
         poolAllRecords[record.poolId] = [];
       }
-      poolAllRecords[record.poolId].push(record);
+      poolAllRecords[record.poolId]!.push(record);
     }
 
     // 3. 提取6星
@@ -292,7 +293,7 @@ onMounted(async () => {
     const poolSixStars: Record<string, GachaRecord[]> = {};
     for (const rec of sixStarRecords) {
       if (!poolSixStars[rec.poolId]) poolSixStars[rec.poolId] = [];
-      poolSixStars[rec.poolId].push(rec);
+      poolSixStars[rec.poolId]!.push(rec);
     }
 
     const resultWithPadded: SixStarEntry[] = [];
@@ -340,11 +341,11 @@ onMounted(async () => {
           const lastRecord = allRecords[allRecords.length - 1];
           resultWithPadded.push({
             poolId,
-            poolName: lastRecord.poolName,
+            poolName: lastRecord!.poolName,
             character: '已垫',
             count: paddedCount,
-            timestamp: lastRecord.gachaTs,
-            seqId: lastRecord.seqId,
+            timestamp: lastRecord!.gachaTs,
+            seqId: lastRecord!.seqId,
           });
         }
       }
@@ -432,7 +433,7 @@ const poolDistribution = computed(() => {
     if (!map[r.poolName]) {
       map[r.poolName] = { count: 0, ratio: 0 };
     }
-    map[r.poolName].count += r.count;
+    map[r.poolName]!.count += r.count;
   }
 
   Object.values(map).forEach(item => {
