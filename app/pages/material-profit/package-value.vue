@@ -63,23 +63,14 @@
         <span v-else>↓ {{ $t('page.materialProfit.packageValue.sortDesc') }}</span>
       </v-btn>
     </section>
-<!-- 礼包卡片列表 -->
+    <!-- 礼包卡片列表 -->
     <ModuleHeader
       title="在售/即将开售的礼包"
       title-en="New Packs"
       :tips="['*在售/即将开售的限时礼包，常驻、半常驻礼包和源石请往下翻']"
-    ></ModuleHeader> 
-    <TransitionGroup
-      v-if="seasonalPacks.length > 0"
-      name="list"
-      tag="div"
-      class="packs-container"
-    >
-      <ContainerPackCard
-        v-for="packId in seasonalPacks"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
+    />
+    <TransitionGroup v-if="seasonalPacks.length > 0" name="list" tag="div" class="packs-container">
+      <ContainerPackCard v-for="packId in seasonalPacks" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
     <!-- <ModuleHeader
@@ -88,54 +79,24 @@
       :tips="[123]"
     ></ModuleHeader> -->
 
-
     <ModuleHeader
       title="常驻礼包"
       title-en="Permanent Packs"
       :tips="['*每月/每周礼包、新人礼包、源石']"
-    ></ModuleHeader>
-    <h2 style="margin: 15px;">新人礼包</h2>
-    <TransitionGroup
-      v-if="newbiePacks.length > 0"
-      name="list"
-      tag="div"
-      class="packs-container"
-    >
-      <ContainerPackCard
-        v-for="packId in newbiePacks"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
+    />
+    <h2 style="margin: 15px">新人礼包</h2>
+    <TransitionGroup v-if="newbiePacks.length > 0" name="list" tag="div" class="packs-container">
+      <ContainerPackCard v-for="packId in newbiePacks" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
-    <h2 style="margin: 15px;">每月/每周礼包</h2>
-    <TransitionGroup
-      v-if="periodicPacks.length > 0"
-      name="list"
-      tag="div"
-      class="packs-container"
-    >
-      <ContainerPackCard
-        v-for="packId in periodicPacks"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
-
+    <h2 style="margin: 15px">每月/每周礼包</h2>
+    <TransitionGroup v-if="periodicPacks.length > 0" name="list" tag="div" class="packs-container">
+      <ContainerPackCard v-for="packId in periodicPacks" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
-    <h2 style="margin: 15px;">源石/首充源石</h2>
-    <TransitionGroup
-      v-if="originium.length > 0"
-      name="list"
-      tag="div"
-      class="packs-container"
-    >
-      <ContainerPackCard
-        v-for="packId in originium"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
-
+    <h2 style="margin: 15px">源石/首充源石</h2>
+    <TransitionGroup v-if="originium.length > 0" name="list" tag="div" class="packs-container">
+      <ContainerPackCard v-for="packId in originium" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
     <!-- <ModuleHeader
@@ -166,7 +127,7 @@
 
 <script lang="ts" setup>
 import { packs } from '@/custom/core/packs';
-import ModuleHeader from '@/app/components/layout/ModuleHeader.vue'
+import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
 // 全局数据引用
 const defaultSorting: Map<string, number> = new Map(
   Object.keys(packs).map((packId, index) => [packId, index]),
@@ -182,12 +143,10 @@ const monthlyCard = ref<string[]>([]);
 const originium = ref<string[]>([]);
 const periodicPacks = ref<string[]>([]);
 
-
 // 筛选和排序状态
 const searchQuery = ref('');
 const sortField = ref<'default' | 'price' | 'gachaOnly' | 'allItems'>('default');
 const sortOrder = ref<'asc' | 'desc'>('asc');
-
 
 // ====================== 筛选和排序逻辑 ======================
 /**
@@ -249,14 +208,29 @@ const toggleSortOrder = () => {
 };
 
 const updateCategorylPacks = () => {
-  seasonalPacks.value = packsIdFilteredAndSorted.value.filter(packId => packId.includes('seasonal_giftpack') );
-  newbiePacks.value = packsIdFilteredAndSorted.value.filter(packId => packId.includes('newbie_giftpack') );
-  monthlyPacks.value = packsIdFilteredAndSorted.value.filter(packId => packId.includes('monthly_giftpack') );
-  weeklyPacks.value = packsIdFilteredAndSorted.value.filter(packId => packId.includes('weekly_giftpack') );
-  weaponsPacks.value = packsIdFilteredAndSorted.value.filter(packId => packId.includes('武库配额包') );
-  monthlyCard.value = packsIdFilteredAndSorted.value.filter(packId => packId.includes('月卡') );
-  originium.value = packsIdFilteredAndSorted.value.filter(packId => packId.includes('源石') );
-  periodicPacks.value = packsIdFilteredAndSorted.value.filter(packId =>     packId.includes('monthly_giftpack') || packId.includes('weekly_giftpack') || packId.includes('月卡') );
+  seasonalPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
+    packId.includes('seasonal_giftpack'),
+  );
+  newbiePacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
+    packId.includes('newbie_giftpack'),
+  );
+  monthlyPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
+    packId.includes('monthly_giftpack'),
+  );
+  weeklyPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
+    packId.includes('weekly_giftpack'),
+  );
+  weaponsPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
+    packId.includes('武库配额包'),
+  );
+  monthlyCard.value = packsIdFilteredAndSorted.value.filter((packId) => packId.includes('月卡'));
+  originium.value = packsIdFilteredAndSorted.value.filter((packId) => packId.includes('源石'));
+  periodicPacks.value = packsIdFilteredAndSorted.value.filter(
+    (packId) =>
+      packId.includes('monthly_giftpack') ||
+      packId.includes('weekly_giftpack') ||
+      packId.includes('月卡'),
+  );
 };
 
 // 监听搜索和排序变化
@@ -264,9 +238,13 @@ watch([searchQuery, sortField, sortOrder], () => {
   applyFilterAndSort();
 });
 
-watch(packsIdFilteredAndSorted, () => {
-  updateCategorylPacks();
-}, { immediate: true }); 
+watch(
+  packsIdFilteredAndSorted,
+  () => {
+    updateCategorylPacks();
+  },
+  { immediate: true },
+);
 
 definePageMeta({
   layout: 'default',
@@ -281,7 +259,7 @@ definePageMeta({
   align-items: center;
 }
 
-.module-header :deep(.module-title){
+.module-header :deep(.module-title) {
   height: 60px;
   position: relative;
 }
@@ -300,12 +278,11 @@ definePageMeta({
   margin-top: -8px;
   background-color: #959595;
   color: #ffffff;
-  border-left: 8px solid #FAFB34;
+  border-left: 8px solid #fafb34;
   font-size: 14px;
 }
 
-
-.module-header :deep(.module-tip){
+.module-header :deep(.module-tip) {
   padding: 0 12px;
   font-style: italic;
   color: #00a1d6;
