@@ -40,6 +40,12 @@
         "nameKey": "menu.essenceCalculator",
         "routePath": "/tools/essence-calculator",
         "vuetifyIcon": "mdi-pokeball"
+      },
+      {
+      "i18nKey": "gachaAnalysis",
+      "nameKey": "menu.gachaAnalysis",
+      "routePath": "/tools/gacha-analysis",
+      "vuetifyIcon": "mdi-chart-bar"
       }
     ]
   },
