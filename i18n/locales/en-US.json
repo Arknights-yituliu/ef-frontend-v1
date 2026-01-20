@@ -44,11 +44,26 @@
   },
   "component": {
     "home": {
+      "tags": {
+        "official": "Official",
+        "yituliu": "Yituliu",
+        "thirdparty": "Third Party",
+        "other": "Other"
+      },
       "checkAccess": {
         "betaTestIICheckAccess": "Beta Test II Check Access",
         "checkAccessOnEndfieldOfficialSite": "Check access on endfield official site"
       },
+      "chargeReward": {
+        "betaTestIIChargeRewardQuery": "Beta Test II Charge Reward Query"
+      },
       "cards": {
+        "chargeReward": {
+          "title": "Beta Test II Charge Reward Query",
+          "tag": "Official",
+          "linkText": "Check Reward",
+          "linkIcon": "mdi-open-in-new"
+        },
         "checkAccess": {
           "title": "Beta Test II Check Access",
           "tag": "Official",

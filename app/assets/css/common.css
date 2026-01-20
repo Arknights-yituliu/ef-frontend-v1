@@ -319,10 +319,14 @@
   width: 4px;
   background: linear-gradient(
     to bottom,
-    #00FFFF 0%,  /* Cyan (青色) */
-    #FF00FF 33%, /* Magenta (品红) */
-    #FFFF00 66%, /* Yellow (黄色) */
-    #000000 100% /* Key (黑色) */
+    #00FFFF 0%,
+    #00FFFF 25%,
+    #FF00FF 25%,
+    #FF00FF 50%,
+    #FFFF00 50%,
+    #FFFF00 75%,
+    #808080 75%,
+    #808080 100%
   );
   z-index: 1;
 }

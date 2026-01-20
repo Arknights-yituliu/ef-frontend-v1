@@ -44,11 +44,26 @@
   },
   "component": {
     "home": {
+      "tags": {
+        "official": "官方",
+        "yituliu": "一图流",
+        "thirdparty": "第三方",
+        "other": "其他"
+      },
       "checkAccess": {
         "betaTestIICheckAccess": "全面测试资格查询",
         "checkAccessOnEndfieldOfficialSite": "前往终末地官网查询资格"
       },
+      "chargeReward": {
+        "betaTestIIChargeRewardQuery": "全面测试充值返还查询"
+      },
       "cards": {
+        "chargeReward": {
+          "title": "全面测试充值返还查询",
+          "tag": "官方",
+          "linkText": "查询返还",
+          "linkIcon": "mdi-open-in-new"
+        },
         "checkAccess": {
           "title": "全面测试资格查询",
           "tag": "官方",
@@ -64,21 +79,21 @@
         },
         "yiTuLiu": {
           "title": "明日方舟一图流",
-          "tag": "社区",
+          "tag": "一图流",
           "linkText": "前往一图流",
           "linkIcon": "mdi-web",
           "description": "明日方舟一图流旨在为各位博士提供各种游戏内资源性价比攻略，提供了包括但不限于刷图推荐、商店性价比、攒抽计算器以及很多小工具。"
         },
         "penguinStatistics": {
           "title": "企鹅物流数据统计",
-          "tag": "统计",
+          "tag": "第三方",
           "linkText": "前往企鹅数据",
           "linkIcon": "mdi-web",
           "description": "企鹅物流数据统计（Penguin Statistics）是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。"
         },
         "contribute": {
           "title": "参与开发",
-          "tag": "开源",
+          "tag": "其他",
           "linkText": "前端仓库",
           "linkIcon": "mdi-github",
           "description": "如果您愿意对终末地一图流提供帮助，并对以下多项或单项技术有了解，欢迎加入我们的开发群 696486169。我们使用 Nuxt 4.x、Vue 3.x 和 Vuetify 3.x。"

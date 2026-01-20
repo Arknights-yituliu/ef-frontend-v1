@@ -19,6 +19,10 @@ definePageMeta({
 
 const { t } = useI18n();
 
+/**
+ * 过滤出可见的卡片
+ * 只有 visible 不为 false 的卡片才会被显示
+ */
 const visibleCards = computed(() => homeCards.filter(card => card.visible !== false));
 </script>
 
