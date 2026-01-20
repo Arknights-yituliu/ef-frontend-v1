@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-const LayoutCustomBackground = await resolveComponent('LayoutCustomBackground')
+const LayoutCustomBackground = await resolveComponent('LayoutCustomBackground');
 
 const route = useRoute();
 const appConfig = useAppConfig();

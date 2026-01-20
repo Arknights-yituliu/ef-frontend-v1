@@ -31,8 +31,12 @@
           target="_blank"
         >
           <v-icon icon="mdi-treasure-chest" size="32" />
-          <div class="function-title">{{ $t('component.home.penguinStatistics.itemDropRates') }}</div>
-          <div class="function-desc">{{ $t('component.home.penguinStatistics.itemDropRatesDoc') }}</div>
+          <div class="function-title">
+            {{ $t('component.home.penguinStatistics.itemDropRates') }}
+          </div>
+          <div class="function-desc">
+            {{ $t('component.home.penguinStatistics.itemDropRatesDoc') }}
+          </div>
         </a>
 
         <a
@@ -41,8 +45,12 @@
           target="_blank"
         >
           <v-icon icon="mdi-cube" size="32" />
-          <div class="function-title">{{ $t('component.home.penguinStatistics.stageDropRates') }}</div>
-          <div class="function-desc">{{ $t('component.home.penguinStatistics.stageDropRatesDoc') }}</div>
+          <div class="function-title">
+            {{ $t('component.home.penguinStatistics.stageDropRates') }}
+          </div>
+          <div class="function-desc">
+            {{ $t('component.home.penguinStatistics.stageDropRatesDoc') }}
+          </div>
         </a>
 
         <a
@@ -52,7 +60,9 @@
         >
           <v-icon icon="mdi-upload" size="32" />
           <div class="function-title">{{ $t('component.home.penguinStatistics.dropReports') }}</div>
-          <div class="function-desc">{{ $t('component.home.penguinStatistics.dropReportsDoc') }}</div>
+          <div class="function-desc">
+            {{ $t('component.home.penguinStatistics.dropReportsDoc') }}
+          </div>
         </a>
 
         <a
@@ -61,8 +71,12 @@
           target="_blank"
         >
           <v-icon icon="mdi-directions-fork" size="32" />
-          <div class="function-title">{{ $t('component.home.penguinStatistics.farmingPlanner') }}</div>
-          <div class="function-desc">{{ $t('component.home.penguinStatistics.farmingPlannerDoc') }}</div>
+          <div class="function-title">
+            {{ $t('component.home.penguinStatistics.farmingPlanner') }}
+          </div>
+          <div class="function-desc">
+            {{ $t('component.home.penguinStatistics.farmingPlannerDoc') }}
+          </div>
         </a>
       </div>
     </div>

@@ -2,7 +2,7 @@
   <div class="page-content">
     <h1 class="welcome-title">{{ t('page.home.welcome') }}</h1>
     <p class="page-description">{{ t('page.home.hint') }}</p>
-    
+
     <!-- 卡片组容器 -->
     <div class="card-group">
       <HomeCard v-for="card in visibleCards" :key="card.i18nKey" :card="card" />
@@ -19,7 +19,7 @@ definePageMeta({
 
 const { t } = useI18n();
 
-const visibleCards = computed(() => homeCards.filter(card => card.visible !== false));
+const visibleCards = computed(() => homeCards.filter((card) => card.visible !== false));
 </script>
 
 <style scoped>

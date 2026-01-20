@@ -51,21 +51,13 @@
     <!-- 菜单容器（用于高亮区域的定位） -->
     <nav ref="menuContainerRef" class="menu-container hide-scrollbar">
       <!-- 主页链接 -->
-      <NuxtLink
-        :class="{ active: route.path === '/' }"
-        to="/"
-        class="secondary-item home-link"
-      >
+      <NuxtLink :class="{ active: route.path === '/' }" to="/" class="secondary-item home-link">
         <v-icon class="secondary-icon" size="20">mdi-home</v-icon>
         <span class="secondary-text">{{ $t('menu.home') }}</span>
       </NuxtLink>
 
       <!-- 菜单组 -->
-      <div
-        v-for="(primaryItem, primaryIndex) in menuItems"
-        :key="primaryIndex"
-        class="menu-group"
-      >
+      <div v-for="(primaryItem, primaryIndex) in menuItems" :key="primaryIndex" class="menu-group">
         <!-- 小标题 -->
         <div class="section-header">
           <!-- isDocs 标识图标 -->
@@ -81,8 +73,7 @@
             v-for="(secondaryItem, secondaryIndex) in primaryItem.children"
             :key="secondaryIndex"
             :ref="
-              (el) =>
-                setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
+              (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
             "
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
             :to="secondaryItem.routePath"

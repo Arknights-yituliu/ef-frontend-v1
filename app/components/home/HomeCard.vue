@@ -17,7 +17,9 @@ const cardData = computed(() => {
     icon: props.card.icon,
     link: props.card.link,
     image: props.card.image,
-    description: props.card.descriptionKey ? t(`${baseKey}.${props.card.descriptionKey}`) : undefined,
+    description: props.card.descriptionKey
+      ? t(`${baseKey}.${props.card.descriptionKey}`)
+      : undefined,
   };
 });
 </script>
@@ -26,7 +28,12 @@ const cardData = computed(() => {
   <v-card class="home-card">
     <div class="home-card-header">
       <div class="home-card-title">
-        <img v-if="cardData.icon" :alt="cardData.title" :src="cardData.icon" class="home-card-title-icon" />
+        <img
+          v-if="cardData.icon"
+          :alt="cardData.title"
+          :src="cardData.icon"
+          class="home-card-title-icon"
+        />
         <b>{{ cardData.title }}</b>
         <span v-if="cardData.tag" class="home-card-tag">{{ cardData.tag }}</span>
       </div>
@@ -44,7 +51,12 @@ const cardData = computed(() => {
       </template>
     </div>
     <div class="home-card-content">
-      <img v-if="cardData.image" :alt="cardData.title" :src="cardData.image" class="home-card-image" />
+      <img
+        v-if="cardData.image"
+        :alt="cardData.title"
+        :src="cardData.image"
+        class="home-card-image"
+      />
       <p v-if="cardData.description" class="home-card-description">{{ cardData.description }}</p>
     </div>
   </v-card>

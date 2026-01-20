@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import CustomBackground from '~/components/layout/CustomBackground.vue'
+import CustomBackground from '~/components/layout/CustomBackground.vue';
 </script>
 
 <style scoped>
