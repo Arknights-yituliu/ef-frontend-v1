@@ -16,6 +16,8 @@ import {
 import {
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStore,
+  valleyIVCollectReward,
+  valleyIVCollectRewardTable,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStore
 } from '@/custom/core/gacha/regional-development-reward-table';
@@ -47,6 +49,88 @@ function calculateDaysDifference(
   return (endTimestamp - startTimestamp) / (1000 * 60 * 60 * 24);
 }
 
+
+/**
+ * 计算两个时间之间有多少个周二
+ * @param startDate 开始时间，可以是Date对象、字符串或时间戳
+ * @param endDate 结束时间，可以是Date对象、字符串或时间戳
+ * @returns 两个时间之间周二的数量
+ */
+function countTuesdaysBetween(startDate: Date | string | number, endDate: Date | string | number): number {
+  // 将输入转换为Date对象
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  // 确保开始时间不晚于结束时间
+  if (start > end) {
+    // [start, end] = [end, start];
+  }
+
+  // 设置时间为当天的0点，避免时间部分影响计算
+  start.setHours(0, 0, 0, 0);
+  end.setHours(0, 0, 0, 0);
+
+  // 获取星期几（0-6，0是周日）
+  const startDay = start.getDay();
+  const endDay = end.getDay();
+
+  // 计算开始日期到下一个周二的天数差
+  // 周二是2，所以计算：如果是周二，差0天；如果是周三，差6天；如果是周一，差1天，以此类推
+  const daysToFirstTuesday = (9 - startDay) % 7;
+
+  // 创建第一个周二的日期
+  const firstTuesday = new Date(start);
+  firstTuesday.setDate(start.getDate() + daysToFirstTuesday);
+
+  // 如果第一个周二在开始日期之后但开始日期本身就是周二，需要调整
+  if (firstTuesday > start && startDay === 2) {
+    firstTuesday.setDate(firstTuesday.getDate() - 7);
+  }
+
+  // 如果第一个周二已经超过结束日期，说明没有周二
+  if (firstTuesday > end) {
+    return 0;
+  }
+
+  // 计算最后一个周二的日期
+  const daysFromLastTuesday = (endDay - 2 + 7) % 7;
+  const lastTuesday = new Date(end);
+  lastTuesday.setDate(end.getDate() - daysFromLastTuesday);
+
+  // 计算两个周二之间的天数差
+  const daysBetween = Math.round((lastTuesday.getTime() - firstTuesday.getTime()) / (1000 * 60 * 60 * 24));
+
+  // 计算周二的数量
+  const tuesdayCount = Math.floor(daysBetween / 7) + 1;
+
+  return tuesdayCount;
+}
+
+function countTuesdaysBetweenV2(startDate: Date | string | number, endDate: Date | string | number): number {
+            // 将输入转换为Date对象
+  const start = new Date(startDate);
+  const end = new Date(endDate).getTime();
+
+  let startTimestamp = start.getTime()
+  let week = 0
+
+  if( start.getDay()<2){
+    week++;
+  }
+
+  const oneDayTimestamp = 1000 * 60 * 60 * 24;
+
+  for (let i = startTimestamp; i <= end; i++) {
+        const date = new Date(i);
+        if (date.getDay() === 2) {
+          week++;
+        }
+        i+=oneDayTimestamp;
+  }
+
+  return week;
+}
+
 const beginnerCheckInTaskRemainingDays = ref<number[]>([1, 14]);
 
 watch(() => beginnerCheckInTaskRemainingDays.value, (newVal, oldVal) => {
@@ -69,16 +153,16 @@ watch(() => nodeRewardProgress.value, (newVal, oldVal) => {
     (nodeRewardProgress.value[1]! - nodeRewardProgress.value[0]!) * 750;
 });
 
-const endminTierUpRewardsRange = ref<number[]>([1, 60]);
+const authorityLevelUpProgress = ref<number[]>([1, 60]);
 
-watch(() => endminTierUpRewardsRange.value, (newVal, oldVal) => {
+watch(() => authorityLevelUpProgress.value, (newVal, oldVal) => {
   let result: number = 0;
-  for (let i = endminTierUpRewardsRange.value[0]! + 1; i <= endminTierUpRewardsRange.value[1]!; i++) {
-    if (i === 45) {
+  for (let i = authorityLevelUpProgress.value[0]! ; i < authorityLevelUpProgress.value[1]!; i++) {
+    if (i === 44) {
       result += 200;
       continue;
     }
-    if (i % 5 === 0) {
+    if ((i+1) % 5 === 0) {
       result += 100;
       continue;
     }
@@ -94,7 +178,7 @@ const valleyIVRegionalRewardProgress = ref<number[]>([1, 12]);
 watch(() => valleyIVRegionalRewardProgress.value, (newVal, oldVal) => {
   let diamond: number = 0;
   let ticketgachaStandardSingle: number = 0;
-  for (let i = valleyIVRegionalRewardProgress.value[0]! + 1; i <= valleyIVRegionalRewardProgress.value[1]!; i++) {
+  for (let i = valleyIVRegionalRewardProgress.value[0]! ; i <= valleyIVRegionalRewardProgress.value[1]!; i++) {
     if (i === 1) {
       continue;
     }
@@ -110,15 +194,26 @@ watch(() => valleyIVRegionalRewardProgress.value, (newVal, oldVal) => {
   valleyIVRegionalDevelopmentReward.value.content.ticketgachaStandardSingle = ticketgachaStandardSingle
 });
 
+const valleyIVCollectRewardProgress = ref<number[]>([0, 18]);
+
+watch(() => valleyIVCollectRewardProgress.value, (newVal, oldVal) => {
+  let originiumRecharge: number = 0;
+  for (let i = valleyIVCollectRewardProgress.value[0]!+1 ; i < valleyIVCollectRewardProgress.value[1]!; i++) {
+    const stageReward = valleyIVCollectRewardTable[i]
+    if(stageReward!==undefined){
+      originiumRecharge+=stageReward.originiumRecharge;
+    }
+  }
+  valleyIVCollectReward.value.content.originiumRecharge = originiumRecharge
+});
+
 const wulingRegionalRewardProgress = ref<number[]>([1, 6]);
 
 watch(() => wulingRegionalRewardProgress.value, (newVal, oldVal) => {
   let diamond: number = 0;
   let ticketgachaStandardSingle: number = 0;
-  for (let i = wulingRegionalRewardProgress.value[0]! + 1; i <= wulingRegionalRewardProgress.value[1]!; i++) {
-    if (i === 1) {
-      continue;
-    }
+  for (let i = wulingRegionalRewardProgress.value[0]! ; i < wulingRegionalRewardProgress.value[1]!; i++) {
+
     if (i < 10) {
       diamond += 200;
       ticketgachaStandardSingle++;
@@ -132,11 +227,9 @@ watch(() => wulingRegionalRewardProgress.value, (newVal, oldVal) => {
 });
 
 
-
-
-const dayReward = ref<Reward>(
+const dayTaskReward = ref<Reward>(
   {
-    id: 10001,
+    id: 'day_task_reward',
     name: {
       zh: `日常奖励X0天`,
       en: ''
@@ -159,16 +252,52 @@ const dayReward = ref<Reward>(
 
 function createDaysReward(): void {
   const remainingDays: number = calculateDaysDifference('2026/01/22', '2026-03-05');
-  dayReward.value.name = {
+  dayTaskReward.value.name = {
     zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
     en: ''
   };
-  dayReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
+  dayTaskReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
 
 }
 
 createDaysReward();
 
+
+const weekTaskReward = ref<Reward>(
+  {
+    id: 'week_task_reward',
+    name: {
+      zh: `周常奖励X0周`,
+      en: ''
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '日常奖励',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaStandardTen: 0,
+      ticketgachaSpecialTen: 0
+    }
+  }
+);
+
+
+function createWeekTaskReward(): void {
+  const remainingWeek: number = countTuesdaysBetweenV2('2026/01/22', '2026-03-05');
+  weekTaskReward.value.name = {
+    zh: `周常奖励X${numberRound(remainingWeek, 0)}周`,
+    en: ''
+  };
+  weekTaskReward.value.content.diamond = numberRound(remainingWeek, 0) * 500;
+
+}
+
+ createWeekTaskReward()
 //饼图的数据
 const pieChartData = computed(() => [
   { value: 22, name: t('page.tools.gachaCalculator.existing') },
@@ -408,22 +537,11 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
-              <GachaCalculatorResourceSingle v-bind="dayReward">
-
+              <GachaCalculatorResourceSingle v-bind="dayTaskReward">
               </GachaCalculatorResourceSingle>
-              <!--              <div class="gacha-calculator-resource-single">-->
-              <!--                <div class="gacha-calculator-resource-single-title">-->
-              <!--                  日常{{ numberRound(currentVersionRemainingTime.day, 0) }}天-->
-              <!--                </div>-->
-              <!--                <div class="gacha-calculator-resource-single-content">-->
-              <!--                  <img-->
-              <!--                    class="gacha-calculator-gacha-item-icon"-->
-              <!--                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"-->
-              <!--                    alt="existing"-->
-              <!--                  />-->
-              <!--                  X {{ numberRound(currentVersionRemainingTime.day, 0) * 200 }}-->
-              <!--                </div>-->
-              <!--              </div>-->
+              <GachaCalculatorResourceSingle v-bind="weekTaskReward">
+              </GachaCalculatorResourceSingle>
+
             </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel value="task">
@@ -444,13 +562,13 @@ onMounted(() => {
           <v-expansion-panel value="regionalDevelopment">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
-                地区建设奖励 {{ resourceStatisticsResult.totalPulls.dailyResources }}
+                地区奖励 {{ resourceStatisticsResult.totalPulls.dailyResources }}
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
-              <GachaCalculatorModuleTitle title="四号谷底地区建设"></GachaCalculatorModuleTitle>
+              <GachaCalculatorModuleTitle title="四号谷底地区"></GachaCalculatorModuleTitle>
               <GachaCalculatorResourceSingleBtn
                 v-bind="valleyIVRegionalStockBillStore"
                 @click="valleyIVRegionalStockBillStore.active = !valleyIVRegionalStockBillStore.active"
@@ -466,6 +584,7 @@ onMounted(() => {
                                   show-ticks="always"
                                   step="1"
                                   max="12"
+                                  min="1"
                                   tick-size="4" thumb-label="always"
                                   hide-details="auto"
                                   class="v-range-slider">
@@ -474,7 +593,26 @@ onMounted(() => {
                 </v-card-text>
               </v-card>
 
-              <GachaCalculatorModuleTitle title="武陵地区建设"></GachaCalculatorModuleTitle>
+              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle
+                    v-bind="valleyIVCollectReward"
+                  />
+                  <div style="height: 36px"></div>
+                  <v-range-slider v-model="valleyIVCollectRewardProgress"
+                                  show-ticks="always"
+                                  step="1"
+                                  max="18"
+                                  tick-size="4" thumb-label="always"
+                                  hide-details="auto"
+                                  class="v-range-slider">
+                  </v-range-slider>
+                  通过滑块调节当前醚质收集阶段
+                </v-card-text>
+              </v-card>
+
+              <GachaCalculatorModuleTitle title="武陵地区"></GachaCalculatorModuleTitle>
               <GachaCalculatorResourceSingleBtn
                 v-bind="wulingRegionalStockBillStore"
                 @click="wulingRegionalStockBillStore.active = !wulingRegionalStockBillStore.active"
@@ -490,6 +628,7 @@ onMounted(() => {
                                   show-ticks="always"
                                   step="1"
                                   max="6"
+                                  min="1"
                                   tick-size="4" thumb-label="always"
                                   hide-details="auto"
                                   class="v-range-slider">
@@ -519,6 +658,7 @@ onMounted(() => {
                                   show-ticks="always"
                                   step="1"
                                   max="14"
+                                  min="1"
                                   tick-size="4" thumb-label="always"
                                   hide-details="auto"
                                   strict
@@ -534,7 +674,7 @@ onMounted(() => {
                     v-bind="authorityLevelUpReward"
                   />
                   <div style="height: 36px"></div>
-                  <v-range-slider v-model="endminTierUpRewardsRange"
+                  <v-range-slider v-model="authorityLevelUpProgress"
                                   show-ticks="always"
                                   step="1"
                                   max="60"

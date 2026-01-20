@@ -10,7 +10,7 @@ export const itemIdDict: ItemDict = {
 };
 
 const beginnerSignInTask = ref<Reward>({
-  id: 11001,
+  id: 'beginner_sign_in_task',
   name: {
     zh: `新手签到奖励`,
     en: ''
@@ -37,7 +37,7 @@ for (let i = 0; i <1; i++) {
 
 const nodeReward = ref<Reward>(
   {
-    id: 11002,
+    id: 'node_reward',
     name: {
       zh: `节点奖励`,
       en: ''
@@ -59,7 +59,7 @@ const nodeReward = ref<Reward>(
 );
 
 const authorityLevelTaskRewards = ref<Reward[]>([{
-  id: 11004,
+  id: 'authority_level_8_task_rewards',
   name: {
     zh: `权限等阶8奖励`,
     en: ''
@@ -79,7 +79,7 @@ const authorityLevelTaskRewards = ref<Reward[]>([{
   }
 },
   {
-    id: 11005,
+    id: 'authority_level_15_task_rewards',
     name: {
       zh: `权限等阶15奖励`,
       en: ''
@@ -99,7 +99,7 @@ const authorityLevelTaskRewards = ref<Reward[]>([{
     }
   },
   {
-    id: 11006,
+    id: 'authority_level_20_task_rewards',
     name: {
       zh: `权限等阶20奖励`,
       en: ''
@@ -119,7 +119,7 @@ const authorityLevelTaskRewards = ref<Reward[]>([{
     }
   },
   {
-    id: 11007,
+    id:'authority_level_30_task_rewards',
     name: {
       zh: `权限等阶30奖励`,
       en: ''
@@ -139,7 +139,7 @@ const authorityLevelTaskRewards = ref<Reward[]>([{
     }
   },
   {
-    id: 11008,
+    id: 'authority_level_45_task_rewards',
     name: {
       zh: `权限等阶45奖励`,
       en: ''
@@ -161,7 +161,7 @@ const authorityLevelTaskRewards = ref<Reward[]>([{
 ]);
 
 const authorityLevelUpReward = ref<Reward>( {
-  id: 11009,
+  id: 'authority_level_up_reward',
   name: {
     zh: `权限等级提升奖励`,
     en: ''

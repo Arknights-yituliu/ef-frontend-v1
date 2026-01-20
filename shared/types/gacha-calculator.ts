@@ -7,7 +7,11 @@ export interface PieChartData {
 
 export type ItemDict = Record<string,string>
 
-
+export interface CollectReward {
+  /** 衍质源石 */
+  originiumRecharge: number;
+  stage:number
+}
 
 export interface SingleModuleResourceStatus {
   /** 衍质源石 */
@@ -25,7 +29,7 @@ export interface SingleModuleResourceStatus {
 }
 
 export interface Reward {
-  id: number;
+  id: string;
   name: {
     en: string;
     zh: string;

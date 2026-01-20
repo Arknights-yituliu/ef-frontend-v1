@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import type {
   AllGachaResource,
   GachaResourceStatisticsResult
-} from 'shared/types/gacha-calculator';
+} from '#shared/types/gacha-calculator';
 
 export const resourceStatisticsResult = ref<GachaResourceStatisticsResult>({
   totalPulls: {
