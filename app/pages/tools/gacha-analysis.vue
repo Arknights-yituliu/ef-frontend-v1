@@ -13,15 +13,19 @@
           class="pool-card"
           :class="`pool-card--${type}`"
         >
-          <div class="pool-name">{{ getDisplayName(type) }}</div>
+          <div class="pool-card-name">{{ getDisplayName(type) }}</div>
           <div class="stats">
             <div class="stat-item">
               <span class="label">{{ $t('总抽数') }}:</span>
               <span class="value">{{ info.total }}</span>
             </div>
             <div class="stat-item">
-              <span class="label">{{ $t('平均抽数') }}:</span>
+              <span class="label">{{ $t('平均出货数') }}:</span>
               <span class="value">{{ info.average.toFixed(1) }}</span>
+            </div>
+            <div class="stat-item" v-if="type === 'limited' || type === 'weapon'">
+              <span class="label">{{ $t('不歪/六星') }}:</span>
+              <span class="value">{{ info.nonPityCount }} / {{ info.totalCount }}</span>
             </div>
           </div>
         </div>
@@ -258,9 +262,9 @@ onMounted(async () => {
         charName: item.charName,
         rarity: item.rarity,
         gachaTs: item.gachaTs,
-        seqId: item.seqId, // 👈 保留 seqId 用于排序和后续
+        seqId: item.seqId, 
       }))
-      .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId)); // ✅ 升序：旧 → 新
+      .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
     records.value = list;
 
@@ -358,6 +362,17 @@ onMounted(async () => {
   }
 });
 
+// 判断是否歪了（仅对真实六星有效，“已垫”不参与判断）
+function isOffPool(record: SixStarEntry): boolean {
+  if (record.character === '已垫') {
+    return false; 
+  }
+  const upChar = upCharMap.get(record.poolId);
+  if (!upChar) {
+    return false;
+  }
+  return record.character !== upChar;
+}
 // ========== 计算属性：全部基于 realSixStarRecords ==========
 
 const totalPulls = computed(() => {
@@ -365,43 +380,37 @@ const totalPulls = computed(() => {
 });
 
 const poolSummary = computed(() => {
-  // 1. 先统计每个卡池类型的「总抽数」（含已垫）
-  const totalPullsByType = {
-    limited: 0,
-    permanent: 0,
-    weapon: 0,
+  // 初始化三类卡池的统计结构
+  const summary = {
+    limited: { total: 0, average: 0, nonPityCount: 0, totalCount: 0 },
+    permanent: { total: 0, average: 0, nonPityCount: 0, totalCount: 0 },
+    weapon: { total: 0, average: 0, nonPityCount: 0, totalCount: 0 },
   };
+
+  // Step 1: 统计「总抽数」（来自 sixStarRecordsWithCount，含“已垫”）
   for (const record of sixStarRecordsWithCount.value) {
     const type = getPoolType(record.poolId);
-    totalPullsByType[type] += record.count;
+    summary[type].total += record.count;
   }
 
-  // 2. 再统计每个卡池类型的「真实六星次数」和「真实总抽数」（用于平均）
-  const realStats = {
-    limited: { total: 0, count: 0 },
-    permanent: { total: 0, count: 0 },
-    weapon: { total: 0, count: 0 },
-  };
+  // Step 2: 遍历「真实六星」，统计出货总数 + 不歪（UP）次数
   for (const record of realSixStarRecords.value) {
     const type = getPoolType(record.poolId);
-    realStats[type].total += record.count;
-    realStats[type].count += 1;
+    summary[type].totalCount += 1; // 每条都是一个六星出货
+
+    // 判断是否“不歪”：即角色 == 当前卡池 UP 角色
+    if (isOnBanner(record)) {
+      summary[type].nonPityCount += 1;
+    }
   }
 
-  return {
-    limited: {
-      total: totalPullsByType.limited, // ✅ 含“已垫”
-      average: realStats.limited.count > 0 ? realStats.limited.total / realStats.limited.count : 0,
-    },
-    permanent: {
-      total: totalPullsByType.permanent, // ✅ 含“已垫”
-      average: realStats.permanent.count > 0 ? realStats.permanent.total / realStats.permanent.count : 0,
-    },
-    weapon: {
-      total: totalPullsByType.weapon, // ✅ 含“已垫”
-      average: realStats.weapon.count > 0 ? realStats.weapon.total / realStats.weapon.count : 0,
-    },
-  };
+  // Step 3: 计算平均抽数（总抽数 / 出货次数），避免除零
+  for (const key of ['limited', 'permanent', 'weapon'] as const) {
+    const s = summary[key];
+    s.average = s.totalCount > 0 ? s.total / s.totalCount : 0;
+  }
+
+  return summary;
 });
 
 // 卡池分布
@@ -434,17 +443,7 @@ const topCharacters = computed(() => {
     .slice(0, 3);
 });
 
-// 判断是否歪了（仅对真实六星有效，“已垫”不参与判断）
-function isOffPool(record: SixStarEntry): boolean {
-  if (record.character === '已垫') {
-    return false; // “已垫”不歪，也不上色，后续可统一处理
-  }
-  const upChar = upCharMap.get(record.poolId);
-  if (!upChar) {
-    return false; // 未知卡池，默认不歪（或可设为 true，按需）
-  }
-  return record.character !== upChar;
-}
+
 
 // ========== UI 相关：基于 sixStarRecordsWithCount ==========
 
@@ -532,7 +531,6 @@ const filteredConsecutiveGroups = computed(() => {
   color: #1f2937;
 }
 
-/* 使用 CSS Grid 布局，响应式 */
 .pool-cards {
   display: grid;
   max-width: 900px;
@@ -552,7 +550,7 @@ const filteredConsecutiveGroups = computed(() => {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
-.pool-name {
+.pool-card-name {
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 12px;
@@ -622,41 +620,78 @@ const filteredConsecutiveGroups = computed(() => {
   overflow: visible; 
 }
 
+
 /* 基础样式 */
 .gacha-bar {
   height: 100%;
   border-radius: 4px;
   transition: all 0.3s ease;
   align-items: center;
-}
 
+}
 
 
 /* 低抽数 */
 .gacha-bar.gacha-lucky {
   background: #4ccdf5;
+  background: 
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15) 4px,
+      rgba(255, 255, 255, 0.05) 4px,
+      rgba(255, 255, 255, 0.05) 8px
+    ),
+    #4ccdf5;
+
 }
 
 /* 普通 */
 .gacha-bar.gacha-normal {
-  background: #93ffbc;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 102, 0.8), /* 更亮的黄色条纹 */
+      rgba(255, 255, 102, 0.8) 4px,
+      rgba(255, 255, 102, 0.4) 4px,
+      rgba(255, 255, 102, 0.4) 8px
+    ),
+    rgb(255, 241, 50); /* 较暗的基础黄色 */
 }
 
 /* 高抽数 */
 .gacha-bar.gacha-unlucky {
-  background: #f8a047;
+  background: linear-gradient(90deg, #ffffff00, #fb8238);
+  background: 
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15) 4px,
+      rgba(255, 255, 255, 0.05) 4px,
+      rgba(255, 255, 255, 0.05) 8px
+    ),
+    #fb8238;
 }
 
 .gacha-bar.gacha-on-banner {
-background: linear-gradient(
-  90deg,         
-  #4ccdf5,        
-  #79fff5,  
-  #93ffbc, 
-  #fdfa80,  
-  #fdc675,   
-  #fb8238  
-);}
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15), /* 白色极淡 - 条纹暗部 */
+      rgba(255, 255, 255, 0.15) 4px,
+      rgba(255, 255, 255, 0.05) 4px,
+      rgba(255, 255, 255, 0.05) 8px
+    ),
+    linear-gradient(
+      90deg,         
+      #4ccdf5,        
+      #79fff5,  
+      #93ffbc, 
+      #fdfa80,  
+      #fdc675,   
+      #fb8238  
+    );
+}
 
 
 
