@@ -54,12 +54,6 @@ const getTagColor = (tagType: CardTagType): string => {
     <div class="home-card-header">
       <img v-if="cardData.icon" :alt="cardData.title" :src="cardData.icon" class="home-card-logo" />
       <div class="home-card-title">
-        <img
-          v-if="cardData.icon"
-          :alt="cardData.title"
-          :src="cardData.icon"
-          class="home-card-title-icon"
-        />
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-card-tags">
           <span
