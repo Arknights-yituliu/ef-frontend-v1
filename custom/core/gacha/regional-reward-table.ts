@@ -17,8 +17,6 @@ const valleyIVRegionalStockBillStore = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 5,
     ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
   },
 });
 
@@ -38,8 +36,6 @@ const valleyIVRegionalDevelopmentReward = ref<Reward>({
     diamond: 2200,
     ticketgachaStandardSingle: 14,
     ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
   },
 });
 
@@ -134,8 +130,6 @@ const valleyIVCollectReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
   },
 });
 
@@ -155,8 +149,6 @@ const wulingRegionalStockBillStore = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 2,
     ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
   },
 });
 
@@ -176,10 +168,10 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
     diamond: 1000,
     ticketgachaStandardSingle: 5,
     ticketgachaSpecialSingle: 0,
-    ticketgachaStandardTen: 0,
-    ticketgachaSpecialTen: 0,
   },
 });
+
+
 
 export {
   valleyIVRegionalDevelopmentReward,

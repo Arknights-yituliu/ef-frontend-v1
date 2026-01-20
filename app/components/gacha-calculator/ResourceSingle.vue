@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { itemIdDict } from '@/custom/core/gacha/task-reward-table';
+import { itemIdDict } from '@/custom/core/gacha/permanent-reward-table';
 import type { Reward } from '#shared/types/gacha-calculator';
 const props = defineProps<Reward>();
 

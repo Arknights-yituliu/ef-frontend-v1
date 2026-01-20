@@ -32,7 +32,7 @@ function numberRound(number: number, decimalPlaces: number = 2) {
 function numberFloor(number: number, decimalPlaces: number = 2) {
   // 参数验证
   if (isNaN(number)) {
-    throw new Error('第一个参数必须是有效的数字');
+    throw new Error('第一个参数必须是有效的数字，传入参数：'+number);
   }
 
   if (!Number.isInteger(decimalPlaces) || decimalPlaces < 0) {

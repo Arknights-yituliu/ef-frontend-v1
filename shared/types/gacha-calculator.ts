@@ -5,15 +5,17 @@ export interface PieChartData {
   name: string;
 }
 
-export type ItemDict = Record<string,string>
+export type ItemDict = Record<string, string>
 
 export interface CollectReward {
   /** 衍质源石 */
   originiumRecharge: number;
-  stage:number
+  stage: number;
 }
 
-export interface SingleModuleResourceStatus {
+
+export interface ResourceStatisticsResultDetail {
+  name: string;
   /** 衍质源石 */
   originiumRecharge: number;
   /** 嵌晶玉数量 */
@@ -22,11 +24,26 @@ export interface SingleModuleResourceStatus {
   ticketgachaStandardSingle: number;
   /** 特许寻访凭证 */
   ticketgachaSpecialSingle: number;
-  /** 十连基础寻访凭证 */
-  ticketgachaStandardTen: number;
-  /** 十连特许寻访凭证 */
-  ticketgachaSpecialTen: number;
 }
+
+export type TotalPull = {
+  ticketgachaStandardSingle: number,
+  ticketgachaSpecialSingle: number
+}
+
+
+// export type ResourceStatisticsResultDetail =  Record<string,{
+//   name:string
+//   /** 衍质源石 */
+//   originiumRecharge: number;
+//   /** 嵌晶玉数量 */
+//   diamond: number;
+//   /**  基础寻访凭证 */
+//   ticketgachaStandardSingle: number;
+//   /** 特许寻访凭证 */
+//   ticketgachaSpecialSingle: number;
+// }>
+
 
 export interface Reward {
   id: string;
@@ -48,10 +65,6 @@ export interface Reward {
     ticketgachaStandardSingle: number;
     /** 特许寻访凭证 */
     ticketgachaSpecialSingle: number;
-    /** 十连基础寻访凭证 */
-    ticketgachaStandardTen: number;
-    /** 十连特许寻访凭证 */
-    ticketgachaSpecialTen: number;
   };
 }
 
@@ -61,34 +74,24 @@ export interface CurrentVersionRemainingTime {
   month: number;
 }
 
-//全部抽卡资源统计
-export interface AllGachaResource {
-  existing: SingleModuleResourceStatus;
-  daily: SingleModuleResourceStatus;
-  task: SingleModuleResourceStatus;
-  activity: SingleModuleResourceStatus;
-  permanent: SingleModuleResourceStatus;
-  recharge: SingleModuleResourceStatus;
-  other: SingleModuleResourceStatus;
-}
+
 
 export interface GachaResourceStatisticsResult {
   totalPulls: {
-    existingResources: number;
-    dailyResources: number;
-    activityResources: number;
-    potentialResources: number;
-    rechargeResources: number;
-    otherResources: number;
-    allResources: number;
+    existing: TotalPull;
+    dailyTask: TotalPull;
+    activity: TotalPull;
+    potential: TotalPull;
+    recharge: TotalPull;
+    permanent: TotalPull;
+    regional:TotalPull;
+    total:TotalPull;
   };
   rechargeAmount: number;
   originiumRecharge: number;
   diamond: number;
   ticketgachaStandardSingle: number;
   ticketgachaSpecialSingle: number;
-  ticketgachaStandardTen: number;
-  ticketgachaSpecialTen: number;
 }
 
 
