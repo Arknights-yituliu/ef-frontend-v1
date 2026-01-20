@@ -13,19 +13,29 @@
           class="pool-card"
           :class="`pool-card--${type}`"
         >
-          <div class="pool-card-name">{{ getDisplayName(type) }}</div>
+          <!-- 标题区域：精简结构，突出类型 -->
+          <div class="pool-card-header">
+            <span class="pool-card-name">{{ getDisplayName(type) }}</span>
+          </div>
+          
+          <!-- 核心数据：放大突出，作为视觉焦点 -->
+          <div class="pool-card-core">
+            <span class="total-gacha-count">{{ info.total }}</span>
+            <span class="core-label">{{ $t('抽') }}</span>
+          </div>
+          
           <div class="stats">
-            <div class="stat-item">
-              <span class="label">{{ $t('总抽数') }}:</span>
-              <span class="value">{{ info.total }}</span>
-            </div>
-            <div class="stat-item">
-              <span class="label">{{ $t('平均出货数') }}:</span>
-              <span class="value">{{ info.average.toFixed(1) }}</span>
+            <div class="stat-item" v-if="type !== 'limited' && type !== 'weapon'">
+              <span class="label">{{ $t('六星') }}：</span>
+              <span class="value">{{ info.totalCount }}</span>
             </div>
             <div class="stat-item" v-if="type === 'limited' || type === 'weapon'">
-              <span class="label">{{ $t('不歪/六星') }}:</span>
+              <span class="label">{{ $t('不歪/六星') }}：</span>
               <span class="value">{{ info.nonPityCount }} / {{ info.totalCount }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">{{ $t('平均出货数') }}：</span>
+              <span class="value">{{ info.average.toFixed(1) }}</span>
             </div>
           </div>
         </div>
@@ -533,65 +543,91 @@ const filteredConsecutiveGroups = computed(() => {
 
 .pool-cards {
   display: grid;
+  margin-top: 10px;
+  padding: 16px;
   max-width: 900px;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px; 
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
+
 .pool-card {
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+  padding: 16px 12px; 
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease; /* 统一过渡效果 */
+  background-color: rgba(255, 255, 255, 0.6); 
+  display: flex;
+  flex-direction: column;
+  height: 140px; 
 }
 
 .pool-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px); 
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09); 
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
+.pool-card-header {
+  margin-bottom: 8px;
+}
 .pool-card-name {
   font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-  text-align: center;
-}
-
-.stats {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.stat-item {
-  display: flex;
-  justify-content: space-between;
   font-size: 0.95rem;
-}
-
-.label {
-  color: #6b7280;
-}
-
-.value {
-  font-weight: 600;
   color: #1f2937;
 }
 
-/* 可选：为不同类型添加颜色区分（通过边框或背景） */
-.pool-card--limited {
-  border-top: 4px solid #ec4899; /* 粉红 - 限定 */
+.pool-card-core {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 12px;
 }
-.pool-card--permanent {
-  border-top: 4px solid #3b82f6; /* 蓝色 - 常驻 */
+.total-gacha-count {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
 }
-.pool-card--weapon {
-  border-top: 4px solid #8b5cf6; /* 紫色 - 武器 */
+.core-label {
+  font-size: 0.85rem;
+  color: #6b7280;
 }
 
-.custom-gacha-list {
+/* 辅助数据：精简排版，弱化次要信息 */
+.stats {
   display: flex;
   flex-direction: column;
+  gap: 6px; /* 缩小辅助数据间距 */
+  margin-top: auto; /* 推到底部，优化空间利用 */
+}
+.stat-item {
+  display: flex;
+  justify-content: space-between; /* 标签左，数值右，更清晰 */
+  font-size: 0.85rem; /* 缩小字号，突出核心 */
+  line-height: 1.2;
+}
+.label {
+  color: #6b7280;
+  font-weight: 400;
+}
+.value {
+  font-weight: 600;
+  color: #374151;
+}
+
+.pool-card--limited {
+  border-left: 5px solid rgb(255, 241, 50); 
+}
+.pool-card--permanent {
+  border-left: 5px solid #3b95f6;
+}
+.pool-card--weapon {
+  border-left: 5px solid #8b5cf6;
 }
 
 .custom-gacha-item {
@@ -643,7 +679,6 @@ const filteredConsecutiveGroups = computed(() => {
       rgba(255, 255, 255, 0.05) 8px
     ),
     #4ccdf5;
-
 }
 
 /* 普通 */
