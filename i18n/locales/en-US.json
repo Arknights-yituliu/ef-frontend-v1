@@ -1,5 +1,6 @@
 {
   "menu": {
+    "home": "Home",
     "introduction": "Introduction",
     "projectStructure": "Project Structure",
     "routeSetting": "Route Setting",
@@ -46,6 +47,42 @@
       "checkAccess": {
         "betaTestIICheckAccess": "Beta Test II Check Access",
         "checkAccessOnEndfieldOfficialSite": "Check access on endfield official site"
+      },
+      "cards": {
+        "checkAccess": {
+          "title": "Beta Test II Check Access",
+          "tag": "Official",
+          "linkText": "Check Access",
+          "linkIcon": "mdi-open-in-new"
+        },
+        "endfieldLab": {
+          "title": "Endfield Calculator",
+          "tag": "Lab",
+          "linkText": "Go to Calculator",
+          "linkIcon": "mdi-web",
+          "description": "A powerful AIC planning tool for Arknights: Endfield. Input your goals to generate most efficient full-chain production plans from resources to finished products, making base expansion precise and efficient."
+        },
+        "yiTuLiu": {
+          "title": "Arknights Yituliu",
+          "tag": "Community",
+          "linkText": "Go to Yituliu",
+          "linkIcon": "mdi-web",
+          "description": "Arknights Yituliu aims to provide various in-game resource cost-effectiveness guides for doctors, including but not limited to farming recommendations, shop value, pull saving calculator, and many small tools."
+        },
+        "penguinStatistics": {
+          "title": "Penguin Statistics",
+          "tag": "Stats",
+          "linkText": "Go to Penguin",
+          "linkIcon": "mdi-web",
+          "description": "Penguin Statistics is Department of Data Analysis of Penguin Logistics (not really). We devote ourselves to item drop analysis."
+        },
+        "contribute": {
+          "title": "Contribute",
+          "tag": "Open Source",
+          "linkText": "Frontend Repo",
+          "linkIcon": "mdi-github",
+          "description": "If you are willing to contribute to Endfield Yituliu and possess knowledge of one or more of following technologies, we welcome you to join our development group 696486169. We use Nuxt 4.x, Vue 3.x and Vuetify 3.x."
+        }
       },
       "penguinStatistics": {
         "penguin": "penguin",

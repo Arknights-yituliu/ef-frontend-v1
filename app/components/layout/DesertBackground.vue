@@ -1,5 +1,6 @@
 <template>
   <!-- 沙漠波纹曲线背景 -->
+  <!-- SVG背景图 - 可以在 docs/SVG_BACKGROUND_REPLACE.md 中查看替换说明 -->
   <svg id="svg" class="desert-bg" viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg">
     <path
       class="transition-all duration-300 ease-in-out delay-150 path-0 wave-path"

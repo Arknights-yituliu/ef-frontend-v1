@@ -1,31 +1,31 @@
 <script lang="ts" setup></script>
 
 <template>
-  <v-card class="card">
-    <v-card-title>
-      <header class="card-title">
+  <v-card class="home-card">
+    <div class="home-card-header">
+      <div class="home-card-title">
         <img
           alt="Endfield Lab Logo"
-          class="card-title-icon"
+          class="home-card-title-icon"
           src="https://factory.ef.yituliu.cn/favicon-32x32.png"
         />
         <b>{{ $t('component.home.endfieldLab.endfieldLab') }}</b>
-        <div class="flex-1" />
-        <v-btn
-          :text="$t('component.home.endfieldLab.goToEndfieldLab')"
-          append-icon="mdi-open-in-new"
-          color="primary"
-          prepend-icon="mdi-web"
-          href="https://factory.ef.yituliu.cn/"
-          target="_blank"
-        />
-      </header>
-    </v-card-title>
-    <v-card-text>
-      {{ $t('component.home.endfieldLab.description') }}
-      <v-responsive :aspect-ratio="16 / 9" class="mt-4">
+      </div>
+      <div class="flex-1" />
+      <v-btn
+        :text="$t('component.home.endfieldLab.goToEndfieldLab')"
+        append-icon="mdi-open-in-new"
+        color="primary"
+        prepend-icon="mdi-web"
+        size="small"
+        href="https://factory.ef.yituliu.cn/"
+        target="_blank"
+      />
+    </div>
+    <div class="home-card-content">
+      <p class="mb-3">{{ $t('component.home.endfieldLab.description') }}</p>
+      <div class="video-container">
         <iframe
-          class="w-100 h-100 rounded-lg"
           src="//player.bilibili.com/player.html?autoplay=false&isOutside=true&aid=115783980156084&bvid=BV1XNBYBkE8f&cid=34986264090&p=1"
           scrolling="no"
           border="0"
@@ -33,9 +33,25 @@
           framespacing="0"
           allowfullscreen="true"
         />
-      </v-responsive>
-    </v-card-text>
+      </div>
+    </div>
   </v-card>
 </template>
 
-<style scoped></style>
+<style scoped>
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
