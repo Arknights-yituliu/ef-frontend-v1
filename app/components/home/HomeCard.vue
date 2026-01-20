@@ -17,12 +17,18 @@ const cardData = computed(() => {
     return t(`component.home.tags.${tagType}`);
   };
   
+  const tags = props.card.tagTypes?.map(tagType => ({
+    text: getTagText(tagType),
+    color: getTagColor(tagType)
+  })) || [];
+  
+  // Get the first tag color as primary color for button decoration
+  const primaryTagColor = tags.length > 0 && tags[0] ? tags[0].color : '#9E9E9E';
+  
   return {
     title: t(`${baseKey}.title`),
-    tags: props.card.tagTypes?.map(tagType => ({
-      text: getTagText(tagType),
-      color: getTagColor(tagType)
-    })) || [],
+    tags,
+    primaryTagColor,
     icon: props.card.icon,
     link: props.card.link,
     image: props.card.image,
@@ -40,6 +46,8 @@ const getTagColor = (tagType: CardTagType): string => {
     case 'official':
       return '#FFC107'; // 黄色
     case 'yituliu':
+      return '#00BCD4'; // 青色
+    case 'yituliu3rd':
       return '#00BCD4'; // 青色
     case 'thirdparty':
       return '#F44336'; // 红色
@@ -68,6 +76,7 @@ const getTagColor = (tagType: CardTagType): string => {
       </div>
       <template v-if="cardData.link">
         <v-btn
+          class="home-card-link-btn"
           :href="cardData.link.href"
           prepend-icon="mdi-web"
           :text="t(`component.home.cards.${card.i18nKey}.${cardData.link.i18nKey}`)"
@@ -75,17 +84,21 @@ const getTagColor = (tagType: CardTagType): string => {
           color="primary"
           size="small"
           target="_blank"
+          :style="{ borderLeft: `3px solid ${cardData.primaryTagColor}` }"
         />
       </template>
     </div>
     <div class="home-card-content">
-      <img
-        v-if="cardData.image"
-        :alt="cardData.title"
-        :src="cardData.image"
-        class="home-card-image"
-      />
-      <p v-if="cardData.description" class="home-card-description">{{ cardData.description }}</p>
+      <div v-if="cardData.image" class="home-card-image-wrapper">
+        <img
+          :alt="cardData.title"
+          :src="cardData.image"
+          class="home-card-image"
+        />
+        <div v-if="cardData.description" class="home-card-overlay">
+          <p class="home-card-description">{{ cardData.description }}</p>
+        </div>
+      </div>
     </div>
   </v-card>
 </template>
@@ -105,7 +118,7 @@ const getTagColor = (tagType: CardTagType): string => {
   display: flex;
   align-items: center;
   gap: 16px;
-  min-height: 80px;
+  height: 72px;
   position: relative;
   overflow: hidden;
 }
@@ -130,7 +143,7 @@ const getTagColor = (tagType: CardTagType): string => {
 .home-card-title {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
   flex: 1;
   min-width: 0;
   overflow: hidden;
@@ -149,7 +162,7 @@ const getTagColor = (tagType: CardTagType): string => {
 /* 卡片标题：单行显示，超长时显示省略号 */
 .home-card-title b {
   color: white;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -175,25 +188,52 @@ const getTagColor = (tagType: CardTagType): string => {
 
 /* 卡片内容区域 */
 .home-card-content {
-  padding: 16px;
+  padding: 0;
   flex: 1;
+  overflow: hidden;
+}
+
+/* 图片包装容器 */
+.home-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 卡片图片 */
 .home-card-image {
   width: 100%;
+  height: auto;
   display: block;
-  border-radius: var(--radius-md);
-  object-fit: cover;
-  margin-bottom: var(--spacing-md);
+  object-fit: contain;
+}
+
+/* 灰色透明字纱覆盖层 */
+.home-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
+  padding: 20px 16px 16px 16px;
+  min-height: 100px;
 }
 
 /* 卡片描述文本 */
 .home-card-description {
-  color: var(--theme-text-secondary);
+  color: white;
   line-height: 1.6;
   margin: 0;
   font-size: var(--font-size-sm);
+}
+
+/* 卡片链接按钮 */
+.home-card-link-btn {
+  border-left: 3px solid transparent;
 }
 
 .home-card-custom :deep(*) {

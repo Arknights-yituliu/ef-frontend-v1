@@ -14,6 +14,8 @@ export enum CardTagType {
   Official = 'official',
   /** 一图流 - 青色 */
   YiTuLiu = 'yituliu',
+  /** 一图流托管 - 青色 */
+  YiTuLiu3rd = 'yituliu3rd',
   /** 第三方 - 红色 */
   ThirdParty = 'thirdparty',
   /** 其他 - 灰色 */
@@ -50,12 +52,13 @@ export interface CardData {
 export const homeCards: CardData[] = [
   {
     i18nKey: 'chargeReward',
-    icon: 'https://cos.yituliu.cn/endfield/other/test-kv.jpg',
+    icon: '/images/icon/hg.png',
     link: {
       i18nKey: 'linkText',
       href: 'https://endfield.hypergryph.com/chargeReward?source_from=yituliu',
     },
     image: '/images/充值返还查询.png',
+    descriptionKey: 'description',
     tagTypes: [CardTagType.Official],
   },
   {
@@ -66,6 +69,7 @@ export const homeCards: CardData[] = [
       href: 'https://endfield.hypergryph.com/checkAccess',
     },
     image: 'https://cos.yituliu.cn/endfield/other/test-kv.jpg',
+    descriptionKey: 'description',
     visible: false,
     tagTypes: [CardTagType.Official],
   },
@@ -76,8 +80,9 @@ export const homeCards: CardData[] = [
       i18nKey: 'linkText',
       href: 'https://factory.ef.yituliu.cn/',
     },
+    image: '/images/量化计算器.png',
     descriptionKey: 'description',
-    tagTypes: [CardTagType.YiTuLiu, CardTagType.Official],
+    tagTypes: [CardTagType.YiTuLiu3rd],
   },
   {
     i18nKey: 'yiTuLiu',
@@ -86,6 +91,7 @@ export const homeCards: CardData[] = [
       i18nKey: 'linkText',
       href: 'https://ark.yituliu.cn/',
     },
+    image: '/images/明日方舟一图流.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu],
   },
@@ -96,6 +102,7 @@ export const homeCards: CardData[] = [
       i18nKey: 'linkText',
       href: 'https://penguin-stats.cn/',
     },
+    image: '/images/企鹅物流数据统计.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
   },
@@ -106,6 +113,7 @@ export const homeCards: CardData[] = [
       i18nKey: 'linkText',
       href: 'https://github.com/Arknights-yituliu/ef-frontend-v1',
     },
+    image: 'https://cos.yituliu.cn/endfield/other/contribute-banner.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu, CardTagType.Other],
   },

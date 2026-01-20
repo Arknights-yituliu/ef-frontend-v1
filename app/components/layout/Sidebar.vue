@@ -59,7 +59,7 @@
       <!-- 菜单组 -->
       <div v-for="(primaryItem, primaryIndex) in menuItems" :key="primaryIndex" class="menu-group">
         <!-- 小标题 -->
-        <div class="section-header">
+        <div class="section-header" :style="{ color: getSectionColor(primaryItem.i18nKey) }">
           <!-- isDocs 标识图标 -->
           <v-icon v-if="primaryItem.isDocs" class="docs-indicator-icon" size="16">
             mdi-book
@@ -76,11 +76,14 @@
               (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
             "
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
+            :style="{ '--item-color': getSectionColor(primaryItem.i18nKey) }"
             :to="secondaryItem.routePath"
             class="secondary-item"
             @mouseenter="handleSecondaryHover(secondaryItem.routePath, $event)"
             @mouseleave="handleSecondaryLeave(secondaryItem.routePath)"
           >
+            <!-- 左侧装饰条 -->
+            <div class="item-decoration-bar" />
             <!-- 二级菜单图标 -->
             <v-icon
               v-if="secondaryItem.vuetifyIcon"
@@ -154,6 +157,22 @@ const router = useRouter();
 // 获取路由配置
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes as PrimaryMenuItem[];
+
+// 定义主题颜色映射
+const sectionColors = {
+  materialProfit: '#3B82F6', // 蓝色 - 材料收益
+  tools: '#8B5CF6', // 紫色 - 一图流工具箱
+  resources: '#F59E0B', // 黄色 - 资源下载
+  others: '#6B7280', // 灰色 - 其它（包括开发指南、功能操作指南）
+};
+
+// 获取section对应的颜色
+const getSectionColor = (i18nKey: string) => {
+  if (sectionColors[i18nKey as keyof typeof sectionColors]) {
+    return sectionColors[i18nKey as keyof typeof sectionColors];
+  }
+  return sectionColors.others; // 默认返回灰色
+};
 
 // 点击 Logo 跳转到首页
 const navigateToHome = () => {
@@ -477,6 +496,23 @@ onUnmounted(() => {
   text-decoration: none;
   font-size: var(--font-size-sm);
   overflow: hidden;
+}
+
+/* 左侧装饰条 */
+.item-decoration-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0.25rem;
+  background-color: var(--item-color);
+  transition: width var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* 激活状态时装饰条宽度加倍 */
+.secondary-item.active .item-decoration-bar {
+  width: 0.5rem;
+  box-shadow: 0 0 0.5rem var(--item-color);
 }
 
 .secondary-item::before {
