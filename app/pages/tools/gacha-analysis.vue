@@ -6,62 +6,62 @@
     <div class="gacha-overview mb-8">
       <h2 class="text-h5 mb-4">{{ $t('抽卡概览') }}</h2>
 
-    <div class="pool-cards">
-      <div
-        v-for="(info, type) in poolSummary"
-        :key="type"
-        class="pool-card"
-        :class="`pool-card--${type}`"
-      >
-        <div class="pool-name">{{ getDisplayName(type) }}</div>
-        <div class="stats">
-          <div class="stat-item">
-            <span class="label">{{ $t('总抽数') }}:</span>
-            <span class="value">{{ info.total }}</span>
-          </div>
-          <div class="stat-item">
-            <span class="label">{{ $t('平均抽数') }}:</span>
-            <span class="value">{{ info.average.toFixed(1) }}</span>
+      <div class="pool-cards">
+        <div
+          v-for="(info, type) in poolSummary"
+          :key="type"
+          class="pool-card"
+          :class="`pool-card--${type}`"
+        >
+          <div class="pool-name">{{ getDisplayName(type) }}</div>
+          <div class="stats">
+            <div class="stat-item">
+              <span class="label">{{ $t('总抽数') }}:</span>
+              <span class="value">{{ info.total }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">{{ $t('平均抽数') }}:</span>
+              <span class="value">{{ info.average.toFixed(1) }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 卡池分布 -->
-    <div class="mt-4">
-      <h3 class="text-subtitle-2 mb-2">{{ $t('卡池抽卡分布') }}</h3>
-      <div class="d-flex flex-wrap">
-        <v-chip
-          v-for="(item, pool) in poolDistribution"
-          :key="pool"
-          size="small"
-          :color="getPoolColor(pool)"
-          label
-          style="margin-right: 5px;"
-        >
-          {{ pool }}: {{ item.count }} ({{ Math.round(item.ratio * 100) }}%)
-        </v-chip>
+      <!-- 卡池分布 -->
+      <div class="mt-4">
+        <h3 class="text-subtitle-2 mb-2">{{ $t('卡池抽卡分布') }}</h3>
+        <div class="d-flex flex-wrap">
+          <v-chip
+            v-for="(item, pool) in poolDistribution"
+            :key="pool"
+            size="small"
+            :color="getPoolColor(pool)"
+            label
+            style="margin-right: 5px;"
+          >
+            {{ pool }}: {{ item.count }} ({{ Math.round(item.ratio * 100) }}%)
+          </v-chip>
+        </div>
       </div>
-    </div>
 
 
 
-    <!-- 角色频次 TOP 3 -->
-    <div class="mt-4">
-      <h3 class="text-subtitle-2 mb-2">{{ $t('角色抽取频次 TOP 3') }}</h3>
-      <div class="d-flex flex-wrap gap-2">
-        <v-chip
-          v-for="(char, index) in topCharacters"
-          :key="char.name"
-          size="small"
-          :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
-          label
-          style="margin-right: 5px;"
-        >
-          {{ char.name }} ×{{ char.times }}
-        </v-chip>
+      <!-- 角色频次 TOP 3 -->
+      <div class="mt-4">
+        <h3 class="text-subtitle-2 mb-2">{{ $t('角色抽取频次 TOP 3') }}</h3>
+        <div class="d-flex flex-wrap gap-2">
+          <v-chip
+            v-for="(char, index) in topCharacters"
+            :key="char.name"
+            size="small"
+            :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
+            label
+            style="margin-right: 5px;"
+          >
+            {{ char.name }} ×{{ char.times }}
+          </v-chip>
+        </div>
       </div>
-    </div>
     </div>
 
     <!-- 卡池选择器 -->
@@ -99,29 +99,36 @@
     <div v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
       <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
 
-      <v-list density="compact">
-        <v-list-item
+      <!-- 自定义列表容器 -->
+      <div class="custom-gacha-list">
+        <div
           v-for="(record, index) in segment.records"
           :key="`${idx}-${index}`"
-          class="mb-2"
+          class="custom-gacha-item mb-2"
+          :class="{ 'on-banner': isOnBanner(record) }"
         >
-          <v-list-item-title class="font-weight-bold" style="width: 100px;">
+          <!-- 角色名 -->
+          <div class="character-name font-weight-bold" style="width: 100px;">
             {{ record.character }}
-          </v-list-item-title>
+          </div>
 
-          <v-list-item-subtitle class="mr-4" style="width: 60px; text-align: right;">
-            {{ record.count }} 抽
-          </v-list-item-subtitle>
-
-          <!-- 自定义横向柱状图 -->
+          <!-- 横向条形图 -->
           <div class="gacha-bar-container">
             <div
               class="gacha-bar"
-              :style="{ width: `${getBarWidth(record.count)}%`, backgroundColor: getBarColor(record.count) }"
-            ></div>
+              :class="getBarType(record)"
+              :style="{ width: `${getBarWidth(record.count)}%` }"
+            >
+              <!-- 抽数 -->
+              <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px;">
+                {{ record.count }} 抽
+              </div>
+            </div>
+            <span v-if="isOffPool(record) && record.count > 60" class="off-label">超非</span>
+            <span v-if="record.character !== '已垫' && record.count <= 10"  class="lucky-label">超欧</span>
           </div>
-        </v-list-item>
-      </v-list>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -161,6 +168,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue';
 import data from '@/custom/core/gacha-analysis-example.json';
+import { gachaPools } from '@/custom/core/gacha-pool-info';
 
 // ========== 工具函数：安全解析时间戳 ==========
 function safeTimestamp(ts: string | number): number {
@@ -173,23 +181,27 @@ function safeTimestamp(ts: string | number): number {
 // ========== 数据结构定义 ==========
 interface GachaRecord {
   id: number;
+  seqId: string;
   poolId: string;
   poolName: string;
   charName: string;
   rarity: number;
-  gachaTs: string | number; // 允许数字或字符串
+  gachaTs: string | number;
 }
 
-// ========== 响应式数据 ==========
-const records = ref<GachaRecord[]>([]);
-const rollData = ref<Array<[string, string, string, number]>>([]); // [poolId, poolName, charName, rollCount]
-const sixStarRecordsWithCount = ref<Array<{
+interface SixStarEntry {
   poolName: string;
   poolId: string;
   character: string;
   count: number;
-  timestamp: string | number; // 与 gachaTs 类型一致
-}>>([]);
+  timestamp: string | number;
+}
+
+// ========== 响应式数据 ==========
+const records = ref<GachaRecord[]>([]);
+const rollData = ref<Array<[string, string, string, number]>>([]); // 含“已垫”，用于 UI 表格/导出
+const sixStarRecordsWithCount = ref<SixStarEntry[]>([]); // 含“已垫”，用于前端展示（时间线、分组）
+const realSixStarRecords = ref<SixStarEntry[]>([]);       // 仅真实六星，用于所有统计计算
 
 // ========== 卡池类型映射函数 ==========
 function getPoolType(poolId: string): 'limited' | 'permanent' | 'weapon' {
@@ -223,10 +235,21 @@ function getPoolColor(poolName: string): string {
   return poolColorMap[poolName] || 'grey';
 }
 
+// 构建 poolId -> upCharName 的映射
+const upCharMap = new Map<string, string>();
+gachaPools.forEach(pool => {
+  upCharMap.set(pool.poolId, pool.upCharName);
+});
+
+//比较seqid
+function parseSeqId(seqId: string): number {
+  const num = parseInt(seqId, 10);
+  return isNaN(num) ? 0 : num;
+}
 // ========== 生命周期：加载并处理数据 ==========
 onMounted(async () => {
   try {
-    // 1. 解析原始数据，并按时间升序排序（早 → 晚），用于正确计算抽数
+    // 1. 解析数据，并按 seqId 升序排序（旧 → 新），用于正确计算抽数
     const list: GachaRecord[] = data.data
       .map((item: any) => ({
         id: item.id,
@@ -235,12 +258,13 @@ onMounted(async () => {
         charName: item.charName,
         rarity: item.rarity,
         gachaTs: item.gachaTs,
+        seqId: item.seqId, // 👈 保留 seqId 用于排序和后续
       }))
-      .sort((a, b) => safeTimestamp(a.gachaTs) - safeTimestamp(b.gachaTs)); // 必须升序！
+      .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId)); // ✅ 升序：旧 → 新
 
     records.value = list;
 
-    // 2. 按 poolId 分组所有抽卡记录
+    // 2. 按 poolId 分组
     const poolAllRecords: Record<string, GachaRecord[]> = {};
     for (const record of list) {
       if (!poolAllRecords[record.poolId]) {
@@ -249,7 +273,7 @@ onMounted(async () => {
       poolAllRecords[record.poolId].push(record);
     }
 
-    // 3. 提取6星并按 poolId 分组
+    // 3. 提取6星
     const sixStarRecords = list.filter(r => r.rarity === 6);
     const poolSixStars: Record<string, GachaRecord[]> = {};
     for (const rec of sixStarRecords) {
@@ -257,44 +281,42 @@ onMounted(async () => {
       poolSixStars[rec.poolId].push(rec);
     }
 
-    const result: Array<{
-      poolId: string;
-      poolName: string;
-      character: string;
-      count: number;
-      timestamp: string | number;
-    }> = [];
+    const resultWithPadded: SixStarEntry[] = [];
+    const resultRealOnly: SixStarEntry[] = [];
 
-    // 4. 遍历每个 poolId，计算抽数
+    // 4. 处理每个卡池
     for (const [poolId, allRecords] of Object.entries(poolAllRecords)) {
       const sixStars = poolSixStars[poolId] || [];
       const poolName = allRecords[0]?.poolName || poolId;
 
-      // 构建局部索引映射（基于升序列表）
-      const localIdToIndex: Record<number, number> = {};
+      // 构建 seqId 到局部索引的映射（因为已按 seqId 升序排好）
+      const localIndexBySeqId: Record<string, number> = {};
       allRecords.forEach((rec, idx) => {
-        localIdToIndex[rec.id] = idx;
+        localIndexBySeqId[rec.seqId] = idx;
       });
 
       let lastSixLocalIndex = -1;
 
       // 处理真实6星
       for (const six of sixStars) {
-        const localIdx = localIdToIndex[six.id];
+        const localIdx = localIndexBySeqId[six.seqId];
         if (localIdx === undefined) continue;
 
         const count = lastSixLocalIndex === -1 ? localIdx + 1 : localIdx - lastSixLocalIndex;
-        result.push({
+        const entry = {
           poolId,
           poolName,
           character: six.charName,
           count,
-          timestamp: six.gachaTs, // 保留原始时间格式
-        });
+          timestamp: six.gachaTs,
+          seqId: six.seqId, // 👈 保留 seqId 用于最终排序
+        };
+        resultRealOnly.push(entry);
+        resultWithPadded.push(entry);
         lastSixLocalIndex = localIdx;
       }
 
-      // 插入“已垫”虚拟记录（如果末尾有未出6星的抽卡）
+      // 插入“已垫”记录
       if (allRecords.length > 0) {
         const paddedCount = lastSixLocalIndex === -1
           ? allRecords.length
@@ -302,22 +324,29 @@ onMounted(async () => {
 
         if (paddedCount > 0) {
           const lastRecord = allRecords[allRecords.length - 1];
-          result.push({
+          resultWithPadded.push({
             poolId,
             poolName: lastRecord.poolName,
             character: '已垫',
             count: paddedCount,
-            timestamp: lastRecord.gachaTs, // 使用最后一条抽卡的时间
+            timestamp: lastRecord.gachaTs,
+            seqId: lastRecord.seqId,
           });
         }
       }
     }
 
-    // 5. 全局按时间降序排序：从晚到早（最新记录在前）
-    result.sort((a, b) => safeTimestamp(b.timestamp) - safeTimestamp(a.timestamp));
+    // 5. 最终按 seqId 降序排序（最新在前）
+    const sortBySeqIdDesc = (a: { seqId: string }, b: { seqId: string }) =>
+      parseSeqId(b.seqId) - parseSeqId(a.seqId);
 
-    sixStarRecordsWithCount.value = result;
-    rollData.value = result.map(item => [
+    resultWithPadded.sort(sortBySeqIdDesc);
+    resultRealOnly.sort(sortBySeqIdDesc);
+
+    // 赋值
+    sixStarRecordsWithCount.value = resultWithPadded;
+    realSixStarRecords.value = resultRealOnly;
+    rollData.value = resultWithPadded.map(item => [
       item.poolId,
       item.poolName,
       item.character,
@@ -329,46 +358,58 @@ onMounted(async () => {
   }
 });
 
-// ========== 计算属性 ==========
+// ========== 计算属性：全部基于 realSixStarRecords ==========
 
 const totalPulls = computed(() => {
-  return sixStarRecordsWithCount.value.reduce((sum, r) => sum + r.count, 0);
+  return realSixStarRecords.value.reduce((sum, r) => sum + r.count, 0);
 });
 
 const poolSummary = computed(() => {
-  const summary = {
+  // 1. 先统计每个卡池类型的「总抽数」（含已垫）
+  const totalPullsByType = {
+    limited: 0,
+    permanent: 0,
+    weapon: 0,
+  };
+  for (const record of sixStarRecordsWithCount.value) {
+    const type = getPoolType(record.poolId);
+    totalPullsByType[type] += record.count;
+  }
+
+  // 2. 再统计每个卡池类型的「真实六星次数」和「真实总抽数」（用于平均）
+  const realStats = {
     limited: { total: 0, count: 0 },
     permanent: { total: 0, count: 0 },
     weapon: { total: 0, count: 0 },
   };
-
-  for (const record of sixStarRecordsWithCount.value) {
+  for (const record of realSixStarRecords.value) {
     const type = getPoolType(record.poolId);
-    summary[type].total += record.count;
-    summary[type].count += 1;
+    realStats[type].total += record.count;
+    realStats[type].count += 1;
   }
 
   return {
     limited: {
-      total: summary.limited.total,
-      average: summary.limited.count > 0 ? summary.limited.total / summary.limited.count : 0,
+      total: totalPullsByType.limited, // ✅ 含“已垫”
+      average: realStats.limited.count > 0 ? realStats.limited.total / realStats.limited.count : 0,
     },
     permanent: {
-      total: summary.permanent.total,
-      average: summary.permanent.count > 0 ? summary.permanent.total / summary.permanent.count : 0,
+      total: totalPullsByType.permanent, // ✅ 含“已垫”
+      average: realStats.permanent.count > 0 ? realStats.permanent.total / realStats.permanent.count : 0,
     },
     weapon: {
-      total: summary.weapon.total,
-      average: summary.weapon.count > 0 ? summary.weapon.total / summary.weapon.count : 0,
+      total: totalPullsByType.weapon, // ✅ 含“已垫”
+      average: realStats.weapon.count > 0 ? realStats.weapon.total / realStats.weapon.count : 0,
     },
   };
 });
 
+// 卡池分布
 const poolDistribution = computed(() => {
   const map: Record<string, { count: number; ratio: number }> = {};
   const total = totalPulls.value;
 
-  for (const r of sixStarRecordsWithCount.value) {
+  for (const r of realSixStarRecords.value) {
     if (!map[r.poolName]) {
       map[r.poolName] = { count: 0, ratio: 0 };
     }
@@ -384,7 +425,7 @@ const poolDistribution = computed(() => {
 
 const topCharacters = computed(() => {
   const freq: Record<string, number> = {};
-  for (const r of sixStarRecordsWithCount.value) {
+  for (const r of realSixStarRecords.value) {
     freq[r.character] = (freq[r.character] || 0) + 1;
   }
   return Object.entries(freq)
@@ -393,13 +434,25 @@ const topCharacters = computed(() => {
     .slice(0, 3);
 });
 
-// sortedData：直接使用 sixStarRecordsWithCount（已是降序）
+// 判断是否歪了（仅对真实六星有效，“已垫”不参与判断）
+function isOffPool(record: SixStarEntry): boolean {
+  if (record.character === '已垫') {
+    return false; // “已垫”不歪，也不上色，后续可统一处理
+  }
+  const upChar = upCharMap.get(record.poolId);
+  if (!upChar) {
+    return false; // 未知卡池，默认不歪（或可设为 true，按需）
+  }
+  return record.character !== upChar;
+}
+
+// ========== UI 相关：基于 sixStarRecordsWithCount ==========
+
 const sortedData = computed(() => [...sixStarRecordsWithCount.value]);
 
-// consecutiveGroups：按 sortedData 顺序分组（从晚到早）
 const consecutiveGroups = computed(() => {
-  const groups: Array<{ poolName: string; records: typeof sixStarRecordsWithCount.value }> = [];
-  let currentGroup: { poolName: string; records: typeof sixStarRecordsWithCount.value } | null = null;
+  const groups: Array<{ poolName: string; records: SixStarEntry[] }> = [];
+  let currentGroup: { poolName: string; records: SixStarEntry[] } | null = null;
 
   for (const record of sortedData.value) {
     if (!currentGroup || currentGroup.poolName !== record.poolName) {
@@ -411,19 +464,49 @@ const consecutiveGroups = computed(() => {
   return groups;
 });
 
-const maxCount = computed(() => {
-  return Math.max(...consecutiveGroups.value.flatMap(group => group.records.map(r => r.count)), 1);
-});
+
 
 const getBarWidth = (count: number) => {
-  return (count / maxCount.value) * 95;
+  return (count / 80) * 95;
 };
 
-const getBarColor = (count: number) => {
-  const hue = 200 - (count / maxCount.value) * 100;
-  return `hsl(${hue}, 70%, 65%)`;
-};
 
+// 返回用于样式的状态标识
+function getBarType(record: SixStarEntry): string {
+  // 特殊条目：已垫
+
+  const upChar = upCharMap.get(record.poolId);
+  const isOnBanner = !!upChar && record.character === upChar;
+  const isOffPool = !!upChar && record.character !== upChar;
+
+  if (isOnBanner) {
+    return 'gacha-on-banner'; 
+  }
+  if (record.count <= 10) {
+    return 'gacha-lucky'; 
+  }
+  if(record.count > 10 && record.count <= 50) {
+    return 'gacha-normal';
+  }
+  if(record.count > 50) {
+    return 'gacha-unlucky';
+  }
+  if (isOffPool) {
+    if (record.count > 70) {
+      return 'gacha-unlucky';
+    } else {
+      return 'gacha-normal';
+    }
+  }
+
+  // 兜底（比如没有 UP 信息）
+  return 'default';
+}
+
+function isOnBanner(record: SixStarEntry): boolean {
+  const upChar = upCharMap.get(record.poolId);
+  return !!upChar && record.character === upChar;
+}
 const selectedPool = ref<'limited' | 'permanent' | 'weapon'>('limited');
 const selectPool = (pool: 'limited' | 'permanent' | 'weapon') => {
   selectedPool.value = pool;
@@ -508,28 +591,95 @@ const filteredConsecutiveGroups = computed(() => {
   border-top: 4px solid #8b5cf6; /* 紫色 - 武器 */
 }
 
+.custom-gacha-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-gacha-item {
+  display: flex;
+  align-items: center;
+  /* 可选：加个内边距或背景让条目更清晰 */
+  padding: 8px 0;
+}
+
+.character-name,
+.pull-count {
+  /* 确保文字垂直居中、不换行 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .gacha-bar-container {
-  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 28px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  overflow: visible; 
 }
 
+/* 基础样式 */
 .gacha-bar {
-  height: 16px;
-  border-radius: 8px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  height: 100%;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  align-items: center;
 }
 
-.gacha-bar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+
+
+/* 低抽数 */
+.gacha-bar.gacha-lucky {
+  background: #4ccdf5;
 }
-.gacha-bar-text {
+
+/* 普通 */
+.gacha-bar.gacha-normal {
+  background: #93ffbc;
+}
+
+/* 高抽数 */
+.gacha-bar.gacha-unlucky {
+  background: #f8a047;
+}
+
+.gacha-bar.gacha-on-banner {
+background: linear-gradient(
+  90deg,         
+  #4ccdf5,        
+  #79fff5,  
+  #93ffbc, 
+  #fdfa80,  
+  #fdc675,   
+  #fb8238  
+);}
+
+
+
+.off-label {
+  margin-left: 8px;
+  height: 80%;
+  font-size: 12px;
+  font-weight: bold;
+  color: #e74c3c;
+  background: #f9d5d5;
+  padding: 2px 6px;
+  border-radius: 3px;
   white-space: nowrap;
 }
-.progress-text {
-  color: white;
-  font-size: 0.85rem;
+
+.lucky-label {
+  margin-left: 8px;
+  height: 80%;
+  color: black;
+  font-size: 12px;
   font-weight: bold;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  background: rgb(253, 250, 38);
+  padding: 2px 6px;
+  border-radius: 3px;
 }
 </style>
