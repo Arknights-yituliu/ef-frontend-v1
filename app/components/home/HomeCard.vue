@@ -11,20 +11,21 @@ const props = defineProps<Props>();
 
 const cardData = computed(() => {
   const baseKey = `component.home.cards.${props.card.i18nKey}`;
-  
+
   // Get localized text for each tag type
   const getTagText = (tagType: CardTagType): string => {
     return t(`component.home.tags.${tagType}`);
   };
-  
-  const tags = props.card.tagTypes?.map(tagType => ({
-    text: getTagText(tagType),
-    color: getTagColor(tagType)
-  })) || [];
-  
+
+  const tags =
+    props.card.tagTypes?.map((tagType) => ({
+      text: getTagText(tagType),
+      color: getTagColor(tagType),
+    })) || [];
+
   // Get the first tag color as primary color for button decoration
   const primaryTagColor = tags.length > 0 && tags[0] ? tags[0].color : '#9E9E9E';
-  
+
   return {
     title: t(`${baseKey}.title`),
     tags,
@@ -90,11 +91,7 @@ const getTagColor = (tagType: CardTagType): string => {
     </div>
     <div class="home-card-content">
       <div v-if="cardData.image" class="home-card-image-wrapper">
-        <img
-          :alt="cardData.title"
-          :src="cardData.image"
-          class="home-card-image"
-        />
+        <img :alt="cardData.title" :src="cardData.image" class="home-card-image" />
         <div v-if="cardData.description" class="home-card-overlay">
           <p class="home-card-description">{{ cardData.description }}</p>
         </div>
@@ -218,7 +215,12 @@ const getTagColor = (tagType: CardTagType): string => {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
   padding: 20px 16px 16px 16px;
   min-height: 100px;
 }

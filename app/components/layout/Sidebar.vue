@@ -506,7 +506,9 @@ onUnmounted(() => {
   bottom: 0;
   width: 0.25rem;
   background-color: var(--item-color);
-  transition: width var(--transition-base), box-shadow var(--transition-base);
+  transition:
+    width var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 /* 激活状态时装饰条宽度加倍 */
