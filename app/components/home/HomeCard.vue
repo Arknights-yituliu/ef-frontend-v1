@@ -26,7 +26,9 @@ const cardData = computed(() => {
     icon: props.card.icon,
     link: props.card.link,
     image: props.card.image,
-    description: props.card.descriptionKey ? t(`${baseKey}.${props.card.descriptionKey}`) : undefined,
+    description: props.card.descriptionKey
+      ? t(`${baseKey}.${props.card.descriptionKey}`)
+      : undefined,
   };
 });
 
@@ -52,6 +54,12 @@ const getTagColor = (tagType: CardTagType): string => {
     <div class="home-card-header">
       <img v-if="cardData.icon" :alt="cardData.title" :src="cardData.icon" class="home-card-logo" />
       <div class="home-card-title">
+        <img
+          v-if="cardData.icon"
+          :alt="cardData.title"
+          :src="cardData.icon"
+          class="home-card-title-icon"
+        />
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-card-tags">
           <span
@@ -77,7 +85,12 @@ const getTagColor = (tagType: CardTagType): string => {
       </template>
     </div>
     <div class="home-card-content">
-      <img v-if="cardData.image" :alt="cardData.title" :src="cardData.image" class="home-card-image" />
+      <img
+        v-if="cardData.image"
+        :alt="cardData.title"
+        :src="cardData.image"
+        class="home-card-image"
+      />
       <p v-if="cardData.description" class="home-card-description">{{ cardData.description }}</p>
     </div>
   </v-card>
