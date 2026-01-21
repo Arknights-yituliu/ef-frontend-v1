@@ -106,6 +106,12 @@
         "nameKey": "menu.infrastructureLayoutGuide",
         "routePath": "/operations/infrastructure-layout-guide",
         "vuetifyIcon": "mdi-view-grid"
+      },
+      {
+        "i18nKey": "how2getgachadurl",
+        "nameKey": "menu.how2getgachadurl",
+        "routePath": "/operations/how2get-gacha-url-en",
+        "vuetifyIcon": "mdi-link"
       }
     ]
   }
