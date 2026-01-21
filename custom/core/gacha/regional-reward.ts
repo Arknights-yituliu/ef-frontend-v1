@@ -1,8 +1,8 @@
 import type { CollectReward, Reward } from '#shared/types/gacha-calculator.ts';
 import { ref } from 'vue';
 
-const valleyIVRegionalStockBillStore = ref<Reward>({
-  id: 'valley_IV_regional_stock_bill_store',
+const valleyIVRegionalStockBillStoreReward = ref<Reward>({
+  id: 'valley_IV_regional_stock_bill_store_reward',
   name: {
     zh: `调度券商店`,
     en: '',
@@ -106,7 +106,7 @@ const valleyIVCollectRewardTable: CollectReward[] = [
   },
   {
     originiumRecharge: 3,
-    stage: 17,
+    stage: 17
   },
   {
     originiumRecharge: 3,
@@ -133,8 +133,27 @@ const valleyIVCollectReward = ref<Reward>({
   },
 });
 
-const wulingRegionalStockBillStore = ref<Reward>({
-  id: 'wuling_regional_stock_bill_store',
+export const valleyIVCrateReward = ref<Reward>({
+  id: 'valley_IV_crate_reward',
+  name: {
+    zh: `储藏箱奖励`,
+    en: ''
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '任务奖励',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 8640,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0
+  }
+});
+
+const wulingRegionalStockBillStoreReward = ref<Reward>({
+  id: 'wuling_regional_stock_bill_store_reward',
   name: {
     zh: `调度券商店`,
     en: '',
@@ -173,11 +192,51 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
 
 
 
+export const wulingCollectReward = ref<Reward>({
+  id: 'wuling_collect_reward',
+  name: {
+    zh: `醚质收集`,
+    en: '',
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '任务奖励',
+  active: true,
+  content: {
+    originiumRecharge: 20,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+});
+
+
+export const wulingCrateReward = ref<Reward>({
+  id: 'wuling_crate_reward',
+  name: {
+    zh: `储藏箱奖励`,
+    en: ''
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '任务奖励',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 5490,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0
+  }
+});
+
+
 export {
   valleyIVRegionalDevelopmentReward,
-  valleyIVRegionalStockBillStore,
+  valleyIVRegionalStockBillStoreReward,
   valleyIVCollectReward,
   valleyIVCollectRewardTable,
   wulingRegionalDevelopmentReward,
-  wulingRegionalStockBillStore,
+  wulingRegionalStockBillStoreReward,
 };

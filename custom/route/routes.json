@@ -85,50 +85,13 @@
         "nameKey": "menu.contributors",
         "routePath": "/others/contributors",
         "vuetifyIcon": "mdi-account-heart"
-      }
-    ]
-  },
-  {
-    "i18nKey": "introduction",
-    "nameKey": "menu.introduction",
-    "vuetifyIcon": "mdi-book-open-variant",
-    "isDocs": true,
-    "children": [
+      },
       {
         "i18nKey": "projectStructure",
         "nameKey": "menu.projectStructure",
         "routePath": "/introduction/project-structure",
-        "vuetifyIcon": "mdi-file-tree"
-      },
-      {
-        "i18nKey": "routeSetting",
-        "nameKey": "menu.routeSetting",
-        "routePath": "/introduction/route-setting",
-        "vuetifyIcon": "mdi-routes"
-      },
-      {
-        "i18nKey": "docsSetting",
-        "nameKey": "menu.docsSetting",
-        "routePath": "/introduction/docs-setting",
-        "vuetifyIcon": "mdi-file-document-edit"
-      },
-      {
-        "i18nKey": "contributorSetting",
-        "nameKey": "menu.contributorSetting",
-        "routePath": "/introduction/contributor-setting",
-        "vuetifyIcon": "mdi-account-group"
-      },
-      {
-        "i18nKey": "commonQuestions",
-        "nameKey": "menu.commonQuestions",
-        "routePath": "/introduction/common-questions",
-        "vuetifyIcon": "mdi-help-circle"
-      },
-      {
-        "i18nKey": "formatSpecification",
-        "nameKey": "menu.formatSpecification",
-        "routePath": "/introduction/format-specification",
-        "vuetifyIcon": "mdi-code-braces"
+        "vuetifyIcon": "mdi-file-tree",
+        "isDocs": true
       }
     ]
   },

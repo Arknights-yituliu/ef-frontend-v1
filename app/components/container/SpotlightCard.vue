@@ -33,23 +33,20 @@ interface SpotlightCardProps {
 }
 
 const props = defineProps<SpotlightCardProps>();
-const { theme } = useTheme();
 
 const divRef = useTemplateRef<HTMLDivElement>('divRef');
 const isFocused = ref<boolean>(false);
 const position = ref<Position>({ x: 0, y: 0 });
 const opacity = ref<number>(0);
 
-// 计算主题化的 spotlight 颜色
+// 计算主题化的 spotlight 颜色 - 使用统一的灰色主题
 const computedSpotlightColor = computed(() => {
   if (props.spotlightColor) {
     return props.spotlightColor;
   }
 
-  // 根据主题自动选择颜色
-  return theme.value === 'dark'
-    ? 'rgba(255, 250, 0, 0.25)' // 深色主题使用品牌黄色
-    : 'rgba(124,124,124,0.25)'; // 浅色主题使用白色
+  // 灰色主题使用深灰色
+  return 'rgba(44, 44, 44, 0.15)';
 });
 
 const handleMouseMove = (e: MouseEvent) => {

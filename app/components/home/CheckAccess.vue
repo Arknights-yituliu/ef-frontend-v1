@@ -1,42 +1,34 @@
 <script lang="ts" setup></script>
 
 <template>
-  <v-card class="card">
-    <v-card-title>
-      <header class="card-title">
-        <icon-endfield-icon class="card-title-icon" />
+  <v-card class="home-card">
+    <div class="home-card-header">
+      <div class="home-card-title">
+        <icon-endfield-icon class="home-card-title-icon" />
         <b>{{ $t('component.home.checkAccess.betaTestIICheckAccess') }}</b>
-        <div class="flex-1" />
-      </header>
-    </v-card-title>
-    <v-card-text>
-      <img alt="" class="test-kv" src="https://cos.yituliu.cn/endfield/other/test-kv.jpg" />
+      </div>
+      <div class="flex-1" />
       <v-btn
-        class="check-access-btn"
+        :text="$t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite')"
+        append-icon="mdi-open-in-new"
+        color="primary"
+        prepend-icon="mdi-open-in-new"
+        size="small"
         href="https://endfield.hypergryph.com/checkAccess"
         target="_blank"
-      >
-        <span>
-          {{ $t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite') }}
-        </span>
-        <v-icon icon="mdi-open-in-new" />
-      </v-btn>
-    </v-card-text>
+      />
+    </div>
+    <div class="home-card-content">
+      <img alt="" class="test-kv" src="https://cos.yituliu.cn/endfield/other/test-kv.jpg" />
+    </div>
   </v-card>
 </template>
 
 <style scoped>
-.check-access-btn {
-  display: block;
-  text-align: center;
-  margin: var(--spacing-md) auto;
-  width: 90%;
-  align-content: center;
-}
-
 .test-kv {
-  width: 90%;
+  width: 100%;
   display: block;
-  margin: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
 }
 </style>

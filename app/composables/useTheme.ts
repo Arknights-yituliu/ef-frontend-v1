@@ -1,29 +1,11 @@
 export const useTheme = () => {
-  const theme = useState<'light' | 'dark'>('theme', () => 'light');
-
-  const setTheme = (newTheme: 'light' | 'dark') => {
-    theme.value = newTheme;
-    if (import.meta.client) {
-      document.documentElement.setAttribute('data-theme', newTheme);
-
-      // Nuxt Content 会以根元素是否存在 dark 类来确定主题
-      document.documentElement.classList.toggle('dark', newTheme === 'dark');
-      localStorage.setItem('theme', newTheme);
-    }
-  };
-
-  const toggleTheme = () => {
-    const newTheme = theme.value === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-  };
+  // 统一使用灰色主题，不再支持暗色模式
+  const theme = useState<'light'>('theme', () => 'light');
 
   const initTheme = () => {
     if (import.meta.client) {
-      const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-      setTheme(initialTheme);
+      // 设置默认主题
+      document.documentElement.setAttribute('data-theme', 'light');
     }
   };
 
@@ -34,7 +16,5 @@ export const useTheme = () => {
 
   return {
     theme: readonly(theme),
-    setTheme,
-    toggleTheme,
   };
 };

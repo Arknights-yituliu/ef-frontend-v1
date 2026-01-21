@@ -70,7 +70,7 @@ const handleImageError = (event: Event) => {
   display: block;
   background-color: var(--theme-bg-secondary);
   border-top: 2px solid var(--theme-accent-color);
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 1rem;
   position: relative;
   overflow: hidden;
   margin-top: auto;
@@ -82,7 +82,7 @@ const handleImageError = (event: Event) => {
   top: 0;
   left: 0;
   right: 0;
-  height: 0.375rem;
+  height: 0.25rem;
   background-color: var(--theme-accent-color);
   opacity: 0.8;
   box-shadow: 0 0 0.5rem var(--theme-accent-color);
@@ -91,17 +91,17 @@ const handleImageError = (event: Event) => {
 /* 版权信息 */
 .footer-content {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   z-index: 1;
 }
 
 .footer-title {
-  font-size: var(--font-size-base);
+  font-size: 0.875rem;
   color: var(--theme-text-primary);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .footer-text {
@@ -110,10 +110,10 @@ const handleImageError = (event: Event) => {
 }
 
 .footer-text p {
-  font-size: var(--font-size-sm);
+  font-size: 0.8125rem;
   color: var(--theme-text-secondary);
-  line-height: 1.75;
-  margin-bottom: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
 }
 
 .footer-text p:last-child {
@@ -155,21 +155,21 @@ const handleImageError = (event: Event) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   position: relative;
   z-index: 1;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .beian-icon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
   object-fit: contain;
   filter: drop-shadow(0 0 0.25rem var(--theme-accent-color));
 }
 
 .beian-link {
-  font-size: var(--font-size-sm);
+  font-size: 0.8125rem;
   color: var(--theme-text-secondary);
   text-decoration: none;
   transition: all var(--transition-fast);
@@ -183,7 +183,7 @@ const handleImageError = (event: Event) => {
 
 @media (orientation: portrait) {
   .app-footer {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 }
 </style>

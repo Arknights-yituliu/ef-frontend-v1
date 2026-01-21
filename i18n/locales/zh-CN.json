@@ -1,7 +1,8 @@
 {
   "menu": {
+    "home": "主页",
     "introduction": "开发指南",
-    "projectStructure": "项目结构",
+    "projectStructure": "开发指南",
     "routeSetting": "路由设置",
     "docsSetting": "文档编写",
     "contributorSetting": "贡献者设置",
@@ -44,9 +45,108 @@
   },
   "component": {
     "home": {
+      "tags": {
+        "official": "官方",
+        "yituliu": "一图流",
+        "yituliu3rd": "一图流托管",
+        "thirdparty": "第三方",
+        "other": "其他"
+      },
       "checkAccess": {
         "betaTestIICheckAccess": "全面测试资格查询",
         "checkAccessOnEndfieldOfficialSite": "前往终末地官网查询资格"
+      },
+      "chargeReward": {
+        "betaTestIIChargeRewardQuery": "全面测试充值返还查询"
+      },
+      "buttons": {
+        "github": "GitHub 仓库",
+        "discord": "Discord 社区",
+        "copyContact": "复制联系邮箱",
+        "main": "访问",
+        "link": "新窗口",
+        "copyLink": "复制链接",
+        "website": "官网",
+        "news": "新闻公告",
+        "chargeReward":"充值返还查询",
+        "prepOrders":"预抽卡活动"
+      },
+      "cards": {
+        "officialWebsite": {
+          "title": "《明日方舟：终末地》官网",
+          "tag": "官方",
+          "description": "《明日方舟：终末地》官方网站，获取最新游戏资讯、公告和活动信息。"
+        },
+        "chargeReward": {
+          "title": "全面测试充值返还查询",
+          "tag": "官方",
+          "linkText": "查询返还",
+          "linkIcon": "mdi-open-in-new",
+          "description": "三测期间充值的玩家可根据充值金额获得返还奖励。请使用官网提供的查询工具查询您的充值返还情况。"
+        },
+        "prepOrders": {
+          "title": "预抽卡活动",
+          "tag": "官方",
+          "linkText": "参与预抽卡",
+          "linkIcon": "mdi-open-in-new",
+          "description": "参与预抽卡活动，提前体验游戏卡池系统，并在正式开服后获得对应的角色和物品奖励。"
+        },
+        "checkAccess": {
+          "title": "全面测试资格查询",
+          "tag": "官方",
+          "linkText": "查询资格",
+          "linkIcon": "mdi-open-in-new",
+          "description": "查询您是否获得《明日方舟：终末地》全面测试的参与资格。官方会分批发送测试资格，请留意官方通知。"
+        },
+        "endfieldLab": {
+          "title": "终末地量化计算器",
+          "tag": "一图流托管",
+          "linkText": "量化计算器",
+          "linkIcon": "mdi-web",
+          "description": "终末地工业的规划利器。输入目标即可生成从资源到成品的全链条生产方案，让基地扩建精准高效。"
+        },
+        "opendfieldmap": {
+          "title": "终末地大地图",
+          "tag": "第三方",
+          "linkText": "终末地大地图",
+          "linkIcon": "mdi-web",
+          "description": "查看所有地区与副本内的物品与收集品点位详情，并参与构建更完善的游戏内收集体验。"
+        },
+        "endfieldpuzzle": {
+          "title": "终末地拼图解谜工具",
+          "tag": "第三方",
+          "linkText": "拼图解谜工具",
+          "linkIcon": "mdi-web",
+          "description": "拼图解谜工具，机器人的好帮手！"
+        },
+        "endfieldprtschat": {
+          "title": "终末地剧情检索工具",
+          "tag": "第三方",
+          "linkText": "剧情检索",
+          "linkIcon": "mdi-web",
+          "description": "基于生成式AI的游戏剧情检索工具"
+        },
+        "yiTuLiu": {
+          "title": "明日方舟一图流",
+          "tag": "一图流",
+          "linkText": "前往一图流",
+          "linkIcon": "mdi-web",
+          "description": "明日方舟一图流提供了包括但不限于刷图推荐、商店性价比、攒抽计算器以及很多小工具。"
+        },
+        "penguinStatistics": {
+          "title": "企鹅物流数据统计",
+          "tag": "第三方",
+          "linkText": "企鹅物流数据统计",
+          "linkIcon": "mdi-web",
+          "description": "企鹅物流数据统计是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。"
+        },
+        "contribute": {
+          "title": "参与开发",
+          "tag": "其他",
+          "linkText": "前端仓库",
+          "linkIcon": "mdi-github",
+          "description": "如果您愿意对终末地一图流提供帮助，并对以下多项或单项技术有了解，欢迎加入我们的开发群 696486169。我们使用 Nuxt 4.x、Vue 3.x 和 Vuetify 3.x。"
+        }
       },
       "penguinStatistics": {
         "penguin": "企鹅物流",
@@ -216,7 +316,10 @@
         "activity": "活动",
         "other": "其他",
         "existing": "现有",
-        "dailyTask": "日常",
+        "daily": "日常",
+        "task": "任务",
+         "level": "等级",
+        "reward": "奖励",
         "potential": "潜在",
         "regional": "地区",
         "pieChartName": "攒抽占比",
@@ -261,7 +364,7 @@
       "operations": "功能操作指南"
     },
     "items": {
-      "projectStructure": "项目结构",
+      "projectStructure": "开发指南",
       "routeSetting": "路由设置",
       "docsSetting": "文档编写",
       "contributorSetting": "贡献者设置",

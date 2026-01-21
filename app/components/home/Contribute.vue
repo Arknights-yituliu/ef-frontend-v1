@@ -13,28 +13,29 @@ const copyGroupNumber = async () => {
 </script>
 
 <template>
-  <v-card class="card">
-    <v-card-title>
-      <header class="card-title">
+  <v-card class="home-card">
+    <div class="home-card-header">
+      <div class="home-card-title">
         <img
           alt="终末地一图流 LOGO"
-          class="card-title-icon"
+          class="home-card-title-icon"
           src="https://ef.yituliu.cn/favicon-32x32.png"
         />
         <b>{{ $t('component.home.contribute.title') }}</b>
-        <div class="flex-1" />
-        <v-btn
-          :text="$t('component.home.contribute.goToFrontendRepo')"
-          append-icon="mdi-open-in-new"
-          color="primary"
-          prepend-icon="mdi-github"
-          href="https://github.com/Arknights-yituliu/ef-frontend-v1"
-          target="_blank"
-        />
-      </header>
-    </v-card-title>
-    <v-card-text>
-      <p>
+      </div>
+      <div class="flex-1" />
+      <v-btn
+        :text="$t('component.home.contribute.goToFrontendRepo')"
+        append-icon="mdi-open-in-new"
+        color="primary"
+        prepend-icon="mdi-github"
+        size="small"
+        href="https://github.com/Arknights-yituliu/ef-frontend-v1"
+        target="_blank"
+      />
+    </div>
+    <div class="home-card-content">
+      <p class="mb-2">
         {{ $t('component.home.contribute.description') }}
         <span
           class="group-number"
@@ -82,7 +83,7 @@ const copyGroupNumber = async () => {
           <b>Vuetify 3.x</b> - {{ $t('component.home.contribute.vuetifyDescription') }}
         </a>
       </p>
-    </v-card-text>
+    </div>
   </v-card>
 
   <v-snackbar v-model="snackbar" :timeout="2000" color="success" location="bottom">
