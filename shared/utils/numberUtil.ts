@@ -29,7 +29,7 @@ function numberRound(number: number, decimalPlaces: number = 2) {
   return Math.round(number * multiplier) / multiplier;
 }
 
-function numberFloor(number: number, decimalPlaces: number = 2) {
+function numberFloor(number: any, decimalPlaces: number = 2) {
   // 参数验证
   if (isNaN(number)) {
     throw new Error('第一个参数必须是有效的数字，传入参数：'+number);
