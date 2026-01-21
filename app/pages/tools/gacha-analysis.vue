@@ -1,181 +1,228 @@
 <template>
-  <div class="gacha-analysis">
-    <h1>{{ $t('抽卡分析') }}</h1>
+  <div>
+    <div class="gacha-analysis">
+      <header class="page-title">抽卡分析</header>
 
-    <!-- 抽卡概览分析 -->
-    <div class="gacha-overview mb-8">
-      <h2 class="text-h5 mb-4">{{ $t('抽卡概览') }}</h2>
-
-      <div class="pool-cards">
-        <div
-          v-for="(info, type) in poolSummary"
-          :key="type"
-          class="pool-card"
-          :class="`pool-card--${type}`"
-        >
-          <!-- 标题区域：精简结构，突出类型 -->
-          <div class="pool-card-header">
-            <span class="pool-card-name">{{ getDisplayName(type) }}</span>
-          </div>
-          
-          <!-- 核心数据：放大突出，作为视觉焦点 -->
-          <div class="pool-card-core">
-            <span class="total-gacha-count">{{ info.total }}</span>
-            <span class="core-label">{{ $t('抽') }}</span>
-          </div>
-          
-          <div class="stats">
-            <div class="stat-item" v-if="type !== 'limited' && type !== 'weapon'">
-              <span class="label">{{ $t('六星') }}：</span>
-              <span class="value">{{ info.totalCount }}</span>
+      <!-- 抽卡概览分析 -->
+      <div class="gacha-overview mb-8">
+        <!-- 左侧用户名片区域 -->
+        <div class="gacha-overview-left">
+          <div class="user-card">
+            <!-- 用户头像 -->
+            <div class="user-avatar">
+              <img 
+                src="" 
+                alt="用户头像" 
+                class="avatar-img"
+              >
             </div>
-            <div class="stat-item" v-if="type === 'limited' || type === 'weapon'">
-              <span class="label">{{ $t('不歪/六星') }}：</span>
-              <span class="value">{{ info.nonPityCount }} / {{ info.totalCount }}</span>
+              
+            <!-- 用户基本信息 -->
+            <div class="user-info">
+              <h3 class="user-name">{{ 'username' }}</h3>
+              <p class="user-uid">UID: {{'10000000' }}</p>
+              
             </div>
-            <div class="stat-item">
-              <span class="label">{{ $t('平均出货数') }}：</span>
-              <span class="value">{{ info.average.toFixed(1) }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 卡池分布 -->
-      <div class="mt-4">
-        <h3 class="text-subtitle-2 mb-2">{{ $t('卡池抽卡分布') }}</h3>
-        <div class="d-flex flex-wrap">
-          <v-chip
-            v-for="(item, pool) in poolDistribution"
-            :key="pool"
-            size="small"
-            :color="getPoolColor(pool)"
-            label
-            style="margin-right: 5px;"
-          >
-            {{ pool }}: {{ item.count }} ({{ Math.round(item.ratio * 100) }}%)
-          </v-chip>
-        </div>
-      </div>
-
-
-
-      <!-- 角色频次 TOP 3 -->
-      <div class="mt-4">
-        <h3 class="text-subtitle-2 mb-2">{{ $t('角色抽取频次 TOP 3') }}</h3>
-        <div class="d-flex flex-wrap gap-2">
-          <v-chip
-            v-for="(char, index) in topCharacters"
-            :key="char.name"
-            size="small"
-            :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
-            label
-            style="margin-right: 5px;"
-          >
-            {{ char.name }} ×{{ char.times }}
-          </v-chip>
-        </div>
-      </div>
-    </div>
-
-    <!-- 卡池选择器 -->
-    <div class="mb-4 d-flex gap-2">
-      <v-btn
-        variant="tonal"
-        color="pink"
-        :class="{ 'text-white bg-pink-darken-2': selectedPool === 'limited' }"
-        @click="selectPool('limited')"
-        style="margin-right: 5px;"
-      >
-        {{ $t('限定池') }}
-      </v-btn>
-      <v-btn
-        variant="tonal"
-        color="blue"
-        :class="{ 'text-white bg-blue-darken-2': selectedPool === 'permanent' }"
-        @click="selectPool('permanent')"
-        style="margin-right: 5px;"
-      >
-        {{ $t('常驻池') }}
-      </v-btn>
-      <v-btn
-        variant="tonal"
-        color="purple"
-        :class="{ 'text-white bg-purple-darken-2': selectedPool === 'weapon' }"
-        @click="selectPool('weapon')"
-        style="margin-right: 5px;"
-      >
-        {{ $t('武器池') }}
-      </v-btn>
-    </div>
-
-    <!-- 按时间连续卡池分组展示 -->
-    <div v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
-      <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
-
-      <!-- 自定义列表容器 -->
-      <div class="custom-gacha-list">
-        <div
-          v-for="(record, index) in segment.records"
-          :key="`${idx}-${index}`"
-          class="custom-gacha-item mb-2"
-          :class="{ 'on-banner': isOnBanner(record) }"
-        >
-          <!-- 角色名 -->
-          <div class="character-name font-weight-bold" style="width: 100px;">
-            {{ record.character }}
-          </div>
-
-          <!-- 横向条形图 -->
-          <div class="gacha-bar-container">
-            <div
-              class="gacha-bar"
-              :class="getBarType(record)"
-              :style="{ width: `${getBarWidth(record.count)}%` }"
-            >
-              <!-- 抽数 -->
-              <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px;">
-                {{ record.count }} 抽
+              
+            <!-- 额外统计信息 -->
+            <div class="user-tags">
+              <div 
+                v-for="(tag, index) in gachaTags" 
+                :key="index"
+                class="gacha-tag"
+                :class="`gacha-tag--${tag.type}`"
+              >
+                {{ tag.name }}
+              </div>
+              <div v-if="gachaTags.length === 0" class="no-tags">
+                {{ $t('暂无特色抽卡记录') }}
               </div>
             </div>
-            <span v-if="isOffPool(record) && record.count > 60" class="off-label">超非</span>
-            <span v-if="record.character !== '已垫' && record.count <= 10"  class="lucky-label">超欧</span>
+          </div>
+        </div>
+
+        <!-- 右侧数据展示区域 -->
+        <div class="gacha-overview-right">
+          <div class="pool-cards">
+            <div
+              v-for="(info, type) in poolSummary"
+              :key="type"
+              class="pool-card"
+              :class="`pool-card--${type}`"
+            >
+              <!-- 标题区域：精简结构，突出类型 -->
+              <div class="pool-card-header">
+                <span class="pool-card-name">{{ getDisplayName(type) }}</span>
+              </div>
+              
+              <!-- 核心数据：放大突出，作为视觉焦点 -->
+              <div class="pool-card-core">
+                <span class="total-gacha-count">{{ info.total }}</span>
+                <span class="core-label">{{ $t('抽') }}</span>
+              </div>
+              
+              <div class="stats">
+                <div class="stat-item" v-if="type !== 'limited' && type !== 'weapon'">
+                  <span class="label">{{ $t('六星') }}：</span>
+                  <span class="value">{{ info.totalCount }}</span>
+                </div>
+                <div class="stat-item" v-if="type === 'limited' || type === 'weapon'">
+                  <span class="label">{{ $t('不歪/六星') }}：</span>
+                  <span class="value">{{ info.nonPityCount }} / {{ info.totalCount }}</span>
+                </div>
+                <div class="stat-item">
+                  <span class="label">{{ $t('平均出货数') }}：</span>
+                  <span class="value">{{ info.average.toFixed(1) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 卡池分布 -->
+          <div class="mt-4">
+            <h3 class="text-subtitle-2 mb-2">{{ $t('卡池抽卡分布') }}</h3>
+            <div class="d-flex flex-wrap">
+              <v-chip
+                v-for="(item, pool) in poolDistribution"
+                :key="pool"
+                size="small"
+                :color="getPoolColor(pool)"
+                label
+                style="margin-right: 5px;"
+              >
+                {{ pool }}: {{ item.count }} ({{ Math.round(item.ratio * 100) }}%)
+              </v-chip>
+            </div>
+          </div>
+          
+          <!-- 角色频次 TOP 3 -->
+          <div class="mt-4">
+            <h3 class="text-subtitle-2 mb-2">{{ $t('角色抽取频次 TOP 3') }}</h3>
+            <div class="d-flex flex-wrap gap-2">
+              <v-chip
+                v-for="(char, index) in topCharacters"
+                :key="char.name"
+                size="small"
+                :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
+                label
+                style="margin-right: 5px;"
+              >
+                {{ char.name }} ×{{ char.times }}
+              </v-chip>
+            </div>
           </div>
         </div>
       </div>
+
+
+
+        
+
+
+      <div class="gacha-dashboard">
+        <!-- 卡池选择器 -->
+        <div style="display: flex; width: 100%; justify-content: center;">
+          <div class="pool-selector">
+            <v-btn
+              class="pool-selector__btn"
+              :class="{ 'pool-selector__btn--active': selectedPool === 'limited' }"
+              @click="selectPool('limited')"
+              variant="flat" 
+              elevation="0" 
+            >
+              {{ $t('限定池') }}
+            </v-btn>
+            <v-btn
+              class="pool-selector__btn"
+              :class="{ 'pool-selector__btn--active': selectedPool === 'permanent' }"
+              @click="selectPool('permanent')"
+              variant="flat"
+              elevation="0"
+            >
+              {{ $t('常驻池') }}
+            </v-btn>
+            <v-btn
+              class="pool-selector__btn"
+              :class="{ 'pool-selector__btn--active': selectedPool === 'weapon' }"
+              @click="selectPool('weapon')"
+              variant="flat"
+              elevation="0"
+            >
+              {{ $t('武器池') }}
+            </v-btn>
+          </div>
+        </div>
+
+
+        <!-- 按时间连续卡池分组展示 -->
+        <div v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
+          <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
+
+          <!-- 自定义列表容器 -->
+          <div class="custom-gacha-list">
+            <div
+              v-for="(record, index) in segment.records"
+              :key="`${idx}-${index}`"
+              class="custom-gacha-item mb-2"
+              :class="{ 'on-banner': isOnBanner(record) }"
+            >
+              <!-- 角色名 -->
+              <div class="character-name font-weight-bold" style="width: 80px;">
+                {{ record.character }}
+              </div>
+
+              <!-- 横向条形图 -->
+              <div class="gacha-bar-container">
+                <div
+                  class="gacha-bar"
+                  :class="getBarType(record)"
+                  :style="{ width: `${getBarWidth(record.count)}%` }"
+                >
+                  <!-- 抽数 -->
+                  <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px;">
+                    {{ record.count }} 抽
+                  </div>
+                </div>
+                <span v-if="isOffPool(record) && record.count > 60" class="off-label">超非</span>
+                <span v-if="record.character !== '已垫' && record.count <= 10"  class="lucky-label">超欧</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
+        <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
+
+        <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <thead>
+            <tr style="background-color: #f5f5f5;">
+              <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">卡池ID</th>
+              <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">卡池名称</th>
+              <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">角色</th>
+              <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">抽数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(row, index) in rollData"
+              :key="index"
+              style="border-bottom: 1px solid #eee;"
+            >
+              <td style="padding: 10px;">{{ row[0] }}</td>
+              <td style="padding: 10px;">{{ row[1] }}</td>
+              <td style="padding: 10px; font-weight: bold;">{{ row[2] }}</td>
+              <td style="padding: 10px; text-align: center; color: #e74c3c; font-weight: bold;">{{ row[3] }}</td>
+            </tr>
+            <tr v-if="rollData.length === 0">
+              <td colspan="4" style="padding: 20px; text-align: center; color: #999;">
+                暂无6星记录
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-
-  <div style="margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
-    <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
-
-    <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <thead>
-        <tr style="background-color: #f5f5f5;">
-          <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">卡池ID</th>
-          <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">卡池名称</th>
-          <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">角色</th>
-          <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">抽数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="(row, index) in rollData"
-          :key="index"
-          style="border-bottom: 1px solid #eee;"
-        >
-          <td style="padding: 10px;">{{ row[0] }}</td>
-          <td style="padding: 10px;">{{ row[1] }}</td>
-          <td style="padding: 10px; font-weight: bold;">{{ row[2] }}</td>
-          <td style="padding: 10px; text-align: center; color: #e74c3c; font-weight: bold;">{{ row[3] }}</td>
-        </tr>
-        <tr v-if="rollData.length === 0">
-          <td colspan="4" style="padding: 20px; text-align: center; color: #999;">
-            暂无6星记录
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 
@@ -454,7 +501,112 @@ const topCharacters = computed(() => {
     .slice(0, 3);
 });
 
+// ========== 特色抽卡 Tag 计算逻辑 ==========
+interface GachaTag {
+  name: string;
+  type: 'lucky' | 'normal' | 'unlucky';
+}
 
+// 计算特色抽卡标签
+const gachaTags = computed(() => {
+  // 用 let 声明，允许后续修改
+  let tags: GachaTag[] = [];
+  const realSixStars = realSixStarRecords.value;
+  
+  // ========== 核心修改：使用 poolSummary 中已有的平均逻辑 ==========
+  // 1. 先获取所有卡池的总抽数和总出货数（复用 poolSummary 的计算结果）
+  const { limited, permanent, weapon } = poolSummary.value;
+  // 计算全卡池综合平均出货数（和 poolSummary 逻辑一致）
+  const totalAllPools = limited.total + permanent.total + weapon.total;
+  const totalAllCounts = limited.totalCount + permanent.totalCount + weapon.totalCount;
+  // 复用现有平均计算逻辑：总抽数 / 出货次数（避免除零）
+  const avgPulls = totalAllCounts > 0 ? totalAllPools / totalAllCounts : 0;
+
+  // 2. 添加平均出货数对应的等级标签（最前面展示）
+  if (avgPulls > 0) {
+    if (avgPulls <= 30) {
+      tags.push({ name: '至尊欧皇', type: 'lucky' });
+    } else if (avgPulls <= 40) {
+      tags.push({ name: '欧皇', type: 'lucky' });
+    } else if (avgPulls <= 60) {
+      tags.push({ name: '路过的欧洲人', type: 'lucky' });
+    } else if (avgPulls <= 76) {
+      tags.push({ name: '小非酋', type: 'unlucky' });
+    } else { // >75
+      tags.push({ name: '血统纯正的非酋', type: 'unlucky' });
+    }
+  }
+
+  // ========== 原有标签逻辑（保持不变，仅修复 const 报错） ==========
+  // 1. 统计十连内多金标签（十连双金/三金）
+  const sortedByTime = [...realSixStars].sort((a, b) => {
+    const tsA = safeTimestamp(a.timestamp);
+    const tsB = safeTimestamp(b.timestamp);
+    return tsA - tsB;
+  });
+
+  for (let i = 0; i < sortedByTime.length; i++) {
+    const current = sortedByTime[i];
+    let multiCount = 1; // 至少1个六星
+    let totalPullsInRange = current!.count;
+
+    // 检查后续的六星是否在当前六星的10抽范围内
+    for (let j = i + 1; j < sortedByTime.length; j++) {
+      const next = sortedByTime[j];
+      totalPullsInRange += next!.count;
+      
+      if (totalPullsInRange <= 10) {
+        multiCount++;
+      } else {
+        break;
+      }
+    }
+
+    // 添加对应标签（只添加一次，避免重复）
+    if (multiCount === 2 && !tags.some(t => t.name === '十连双金')) {
+      tags.push({ name: '十连双金', type: 'lucky' });
+    } else if (multiCount >= 3 && !tags.some(t => t.name === '十连三金')) {
+      tags.push({ name: '十连三金', type: 'lucky' });
+      // 有三金就移除已有的双金标签（修复 const 赋值问题）
+      const duplicateIndex = tags.findIndex(t => t.name === '十连双金');
+      if (duplicateIndex !== -1) {
+        tags.splice(duplicateIndex, 1);
+      }
+    }
+  }
+
+  // 2. 三连不歪（连续3次出UP角色）
+  let consecutiveOnBanner = 0;
+  for (const record of realSixStars) {
+    if (isOnBanner(record)) {
+      consecutiveOnBanner++;
+      if (consecutiveOnBanner >= 3 && !tags.some(t => t.name === '三连不歪')) {
+        tags.push({ name: '三连不歪', type: 'lucky' });
+        break; // 找到就停止，避免重复
+      }
+    } else {
+      consecutiveOnBanner = 0; // 歪了就重置计数
+    }
+  }
+
+  // 3. 单抽出金（1抽出六星）
+  if (realSixStars.some(r => r.count === 1) && !tags.some(t => t.name === '单抽出金')) {
+    tags.push({ name: '单抽出金', type: 'lucky' });
+  }
+
+  // 4. 八十连保底（超过80抽才出六星）
+  if (realSixStars.some(r => r.count >= 80) && !tags.some(t => t.name === '八十连保底')) {
+    tags.push({ name: '八十连保底', type: 'unlucky' });
+  }
+
+  // 5. 全勤不歪（所有限定池六星都没歪）
+  const limitedSixStars = realSixStars.filter(r => getPoolType(r.poolId) === 'limited');
+  if (limitedSixStars.length > 0 && limitedSixStars.every(isOnBanner) && !tags.some(t => t.name === '全勤不歪')) {
+    tags.push({ name: '全勤不歪', type: 'lucky' });
+  }
+
+  return tags;
+});
 
 // ========== UI 相关：基于 sixStarRecordsWithCount ==========
 
@@ -531,226 +683,5 @@ const filteredConsecutiveGroups = computed(() => {
 </script>
 
 <style scoped>
-.gacha-overview {
-  padding: 16px;
-}
-
-.section-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #1f2937;
-}
-
-.pool-cards {
-  display: grid;
-  margin-top: 10px;
-  padding: 16px;
-  max-width: 900px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px; 
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-
-.pool-card {
-  border-radius: 12px;
-  padding: 16px 12px; 
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
-  transition: all 0.2s ease; /* 统一过渡效果 */
-  background-color: rgba(255, 255, 255, 0.6); 
-  display: flex;
-  flex-direction: column;
-  height: 140px; 
-}
-
-.pool-card:hover {
-  transform: translateY(-1px); 
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09); 
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-.pool-card-header {
-  margin-bottom: 8px;
-}
-.pool-card-name {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #1f2937;
-}
-
-.pool-card-core {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-bottom: 12px;
-}
-.total-gacha-count {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #111827;
-  line-height: 1;
-}
-.core-label {
-  font-size: 0.85rem;
-  color: #6b7280;
-}
-
-/* 辅助数据：精简排版，弱化次要信息 */
-.stats {
-  display: flex;
-  flex-direction: column;
-  gap: 6px; /* 缩小辅助数据间距 */
-  margin-top: auto; /* 推到底部，优化空间利用 */
-}
-.stat-item {
-  display: flex;
-  justify-content: space-between; /* 标签左，数值右，更清晰 */
-  font-size: 0.85rem; /* 缩小字号，突出核心 */
-  line-height: 1.2;
-}
-.label {
-  color: #6b7280;
-  font-weight: 400;
-}
-.value {
-  font-weight: 600;
-  color: #374151;
-}
-
-.pool-card--limited {
-  border-left: 5px solid rgb(255, 241, 50); 
-}
-.pool-card--permanent {
-  border-left: 5px solid #3b95f6;
-}
-.pool-card--weapon {
-  border-left: 5px solid #8b5cf6;
-}
-
-.custom-gacha-item {
-  display: flex;
-  align-items: center;
-  /* 可选：加个内边距或背景让条目更清晰 */
-  padding: 8px 0;
-}
-
-.character-name,
-.pull-count {
-  /* 确保文字垂直居中、不换行 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.gacha-bar-container {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  height: 28px;
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-  overflow: visible; 
-}
-
-
-/* 基础样式 */
-.gacha-bar {
-  height: 100%;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  align-items: center;
-
-}
-
-
-/* 低抽数 */
-.gacha-bar.gacha-lucky {
-  background: #4ccdf5;
-  background: 
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.15) 4px,
-      rgba(255, 255, 255, 0.05) 4px,
-      rgba(255, 255, 255, 0.05) 8px
-    ),
-    #4ccdf5;
-}
-
-/* 普通 */
-.gacha-bar.gacha-normal {
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 102, 0.8), /* 更亮的黄色条纹 */
-      rgba(255, 255, 102, 0.8) 4px,
-      rgba(255, 255, 102, 0.4) 4px,
-      rgba(255, 255, 102, 0.4) 8px
-    ),
-    rgb(255, 241, 50); /* 较暗的基础黄色 */
-}
-
-/* 高抽数 */
-.gacha-bar.gacha-unlucky {
-  background: linear-gradient(90deg, #ffffff00, #fb8238);
-  background: 
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.15) 4px,
-      rgba(255, 255, 255, 0.05) 4px,
-      rgba(255, 255, 255, 0.05) 8px
-    ),
-    #fb8238;
-}
-
-.gacha-bar.gacha-on-banner {
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.15), /* 白色极淡 - 条纹暗部 */
-      rgba(255, 255, 255, 0.15) 4px,
-      rgba(255, 255, 255, 0.05) 4px,
-      rgba(255, 255, 255, 0.05) 8px
-    ),
-    linear-gradient(
-      90deg,         
-      #4ccdf5,        
-      #79fff5,  
-      #93ffbc, 
-      #fdfa80,  
-      #fdc675,   
-      #fb8238  
-    );
-}
-
-
-
-.off-label {
-  margin-left: 8px;
-  height: 80%;
-  font-size: 12px;
-  font-weight: bold;
-  color: #e74c3c;
-  background: #f9d5d5;
-  padding: 2px 6px;
-  border-radius: 3px;
-  white-space: nowrap;
-}
-
-.lucky-label {
-  margin-left: 8px;
-  height: 80%;
-  color: black;
-  font-size: 12px;
-  font-weight: bold;
-  background: rgb(253, 250, 38);
-  padding: 2px 6px;
-  border-radius: 3px;
-}
+@import "assets/css/gacha-analysis.css";
 </style>

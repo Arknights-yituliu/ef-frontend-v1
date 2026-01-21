@@ -1,0 +1,428 @@
+.gacha-overview {
+  padding: 16px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+
+.gacha-overview-left {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+/* 右侧数据区域 */
+.gacha-overview-right {
+  flex: 1;
+}
+
+/* 用户名片样式 */
+.user-card {
+    padding: 20px;
+    width: 320px;
+    height: 100%;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 用户头像 */
+.user-avatar {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 用户基本信息 */
+.user-info {
+  text-align: center;
+}
+
+.user-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.user-uid {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+}
+
+/* 抽卡标签容器 */
+.user-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+  justify-content: center;
+}
+
+/* 抽卡标签样式 */
+.gacha-tag {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+/* 不同类型标签的配色 */
+.gacha-tag--lucky {
+  /* 欧气标签：如十连三金、三连不歪 */
+  background: linear-gradient(135deg, #4ccdf5, #79fff5);
+}
+
+.gacha-tag--normal {
+  /* 普通标签 */
+  background: linear-gradient(135deg, #FFF132, #fdfa80);
+  color: #333;
+}
+
+.gacha-tag--unlucky {
+  /* 非酋标签：如八十连保底 */
+  background: linear-gradient(135deg, #fb8238, #fdc675);
+}
+
+.gacha-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 无标签时的提示样式 */
+.no-tags {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  padding: 4px 12px;
+}
+
+
+.stat-block {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+
+.pool-cards {
+  display: grid;
+  padding: 16px;
+  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px; 
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+
+.pool-card {
+  border-radius: 12px;
+  padding: 16px 12px; 
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease; /* 统一过渡效果 */
+  background-color: rgba(255, 255, 255, 0.6); 
+  display: flex;
+  flex-direction: column;
+  height: 140px; 
+}
+
+.pool-card:hover {
+  transform: translateY(-1px); 
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09); 
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.pool-card-header {
+  margin-bottom: 8px;
+}
+.pool-card-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.pool-card-core {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.total-gacha-count {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+}
+.core-label {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* 辅助数据：精简排版，弱化次要信息 */
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* 缩小辅助数据间距 */
+  margin-top: auto; /* 推到底部，优化空间利用 */
+}
+.stat-item {
+  display: flex;
+  justify-content: space-between; /* 标签左，数值右，更清晰 */
+  font-size: 0.85rem; /* 缩小字号，突出核心 */
+  line-height: 1.2;
+}
+.label {
+  color: #6b7280;
+  font-weight: 400;
+}
+.value {
+  font-weight: 600;
+  color: #374151;
+}
+
+.pool-card--limited {
+  border-left: 5px solid #FFF132; 
+}
+.pool-card--permanent {
+  border-left: 5px solid #3b95f6;
+}
+.pool-card--weapon {
+  border-left: 5px solid #8b5cf6;
+}
+
+.gacha-dashboard{
+  margin-top: 10px;
+  padding: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px; 
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.custom-gacha-list{
+    border-bottom: 2px solid #eee
+}
+.custom-gacha-item {
+  display: flex;
+  align-items: center;
+  /* 可选：加个内边距或背景让条目更清晰 */
+  padding: 8px 0;
+}
+
+.character-name,
+.pull-count {
+  /* 确保文字垂直居中、不换行 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pool-selector {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  max-width: 900px;
+  gap: 8px; /* 统一间距，替代内联margin */
+  margin-bottom: 16px; /* 替代mb-4，更精准 */
+  padding: 0 2px;
+}
+
+/* 按钮基础样式：苹果风格圆角+柔和质感 */
+.pool-selector__btn {
+  flex: 1; /* 按钮等分宽度，视觉更整齐 */
+  min-width: 100px; /* 保证最小宽度，避免文字挤压 */
+  padding: 8px 16px !important; /* 优化内边距，提升点击区域 */
+  border-radius: 12px !important; /* 苹果风格圆角 */
+  font-weight: 500 !important; /* 中等字重，突出文字 */
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important; /* 统一过渡动画 */
+  border: 1px solid transparent !important; /* 占位边框，避免选中时位移 */
+  background-color: rgba(255, 255, 255, 0.6) !important; /* 毛玻璃背景 */
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* 未选中态 - 不同类型按钮的文字颜色区分 */
+.pool-selector__btn:not(.pool-selector__btn--active):nth-child(1) {
+  color: #f9d120 !important; /* 限定池-玫红（苹果风格色调） */
+}
+.pool-selector__btn:not(.pool-selector__btn--active):nth-child(2) {
+  color: #1e88e5 !important; /* 常驻池-天蓝 */
+}
+.pool-selector__btn:not(.pool-selector__btn--active):nth-child(3) {
+  color: #8e24aa !important; /* 武器池-深紫 */
+}
+
+/* 选中态：突出视觉焦点 */
+.pool-selector__btn--active {
+  color: white !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+/* 选中态背景色（对应不同池类型） */
+.pool-selector__btn--active:nth-child(1) {
+  background-color: #FFF132 !important; /* 限定池-玫红 */
+  color: black !important;
+}
+.pool-selector__btn--active:nth-child(2) {
+  background-color: #1e88e5 !important; /* 常驻池-天蓝 */
+}
+.pool-selector__btn--active:nth-child(3) {
+  background-color: #8e24aa !important; /* 武器池-深紫 */
+}
+
+/* 悬停态：细腻的交互反馈 */
+.pool-selector__btn:hover:not(.pool-selector__btn--active) {
+  background-color: rgba(245, 245, 247, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-1px);
+}
+
+
+.gacha-bar-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 28px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  overflow: visible; 
+}
+
+
+/* 基础样式 */
+.gacha-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  align-items: center;
+
+}
+
+
+/* 低抽数 */
+.gacha-bar.gacha-lucky {
+  background: #4ccdf5;
+  background: 
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15) 4px,
+      rgba(255, 255, 255, 0.05) 4px,
+      rgba(255, 255, 255, 0.05) 8px
+    ),
+    #4ccdf5;
+}
+
+/* 普通 */
+.gacha-bar.gacha-normal {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 102, 0.8), /* 更亮的黄色条纹 */
+      rgba(255, 255, 102, 0.8) 4px,
+      rgba(255, 255, 102, 0.4) 4px,
+      rgba(255, 255, 102, 0.4) 8px
+    ),
+    #FFF132; /* 较暗的基础黄色 */
+}
+
+/* 高抽数 */
+.gacha-bar.gacha-unlucky {
+  background: linear-gradient(90deg, #ffffff00, #fb8238);
+  background: 
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15) 4px,
+      rgba(255, 255, 255, 0.05) 4px,
+      rgba(255, 255, 255, 0.05) 8px
+    ),
+    #fb8238;
+}
+
+.gacha-bar.gacha-on-banner {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15), /* 白色极淡 - 条纹暗部 */
+      rgba(255, 255, 255, 0.15) 4px,
+      rgba(255, 255, 255, 0.05) 4px,
+      rgba(255, 255, 255, 0.05) 8px
+    ),
+    linear-gradient(
+      90deg,         
+      #4ccdf5,        
+      #79fff5,  
+      #93ffbc, 
+      #fdfa80,  
+      #fdc675,   
+      #fb8238  
+    );
+}
+
+
+
+.off-label {
+  margin-left: 8px;
+  height: 80%;
+  font-size: 12px;
+  font-weight: bold;
+  color: #e74c3c;
+  background: #f9d5d5;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.lucky-label {
+  margin-left: 8px;
+  height: 80%;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  background: rgb(253, 250, 38);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
