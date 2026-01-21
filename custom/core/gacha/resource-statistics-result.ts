@@ -10,7 +10,7 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0
     },
-    dailyTask: {
+    daily: {
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0
     },
@@ -31,6 +31,10 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
       ticketgachaSpecialSingle: 0
     },
     regional: {
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0
+    },
+    level:{
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0
     },
