@@ -27,11 +27,12 @@ const cardData = computed(() => {
   // Get the first tag color as primary color for button decoration
   const primaryTagColor = tags.length > 0 && tags[0] ? tags[0].color : '#9E9E9E';
 
-  // 分类按钮
+  // 分类按钮，过滤掉 Blank 类型的按钮
   const buttons = props.card.buttons || [];
   const mainButtons = buttons.filter((btn) => btn.buttonType === ButtonType.Main);
   const linkButtons = buttons.filter((btn) => btn.buttonType === ButtonType.Link);
   const textButtons = buttons.filter((btn) => btn.buttonType === ButtonType.Text);
+  // Blank 类型的按钮不会显示
 
   return {
     title: t(`${baseKey}.title`),
@@ -333,6 +334,8 @@ const copyToClipboard = async (text: string, successMessage: string) => {
   );
   padding: 20px 16px 16px 16px;
   min-height: 100px;
+  display: flex;
+  align-items: flex-end;
 }
 
 /* 卡片描述文本 */

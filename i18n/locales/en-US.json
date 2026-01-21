@@ -57,7 +57,9 @@
         "copyContact": "Copy Contact Email",
         "main": "Visit",
         "link": "New Window",
-        "copyLink": "Copy Link"
+        "copyLink": "Copy Link",
+        "website": "Website",
+        "news": "News"
       },
       "checkAccess": {
         "betaTestIICheckAccess": "Beta Test II Check Access",
@@ -67,6 +69,11 @@
         "betaTestIIChargeRewardQuery": "Beta Test II Charge Reward Query"
       },
       "cards": {
+        "officialWebsite": {
+          "title": "Official Website",
+          "tag": "Official",
+          "description": "The official website of Arknights: Endfield. Get the latest game news, announcements, and event information."
+        },
         "chargeReward": {
           "title": "Beta Test II Charge Reward Query",
           "tag": "Official",

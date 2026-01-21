@@ -26,6 +26,8 @@ export enum ButtonType {
   Link = 'link',
   /** 文本按钮 - 用于复制文本，样式最轻 */
   Text = 'text',
+  /** 空白按钮 - 不显示该按钮 */
+  Blank = 'blank',
 }
 
 /**
@@ -140,10 +142,53 @@ export const homeFooterButtons: FooterButton[] = [
 
 export const homeCards: CardData[] = [
   {
+    i18nKey: 'officialWebsite',
+    icon: '/images/icon/hg.png',
+    image: '/images/endfieldofficial.png',
+    descriptionKey: 'description',
+    tagTypes: [CardTagType.Official],
+    buttons: [
+      {
+        i18nKey: 'buttons.website',
+        buttonType: ButtonType.Main,
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/',
+        target: true,
+        icon: 'mdi-web',
+        color: 'primary',
+      },
+      {
+        i18nKey: 'buttons.news',
+        buttonType: ButtonType.Blank,
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/news',
+        target: true,
+        icon: 'mdi-open-in-new',
+      },
+      {
+        i18nKey: 'buttons.chargeReward',
+        buttonType: ButtonType.Link,
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/chargeReward?source_from=yituliu',
+        target: true,
+        icon: 'mdi-open-in-new',
+      },
+      {
+        i18nKey: 'buttons.prepOrders',
+        buttonType: ButtonType.Link,
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/activity/final-prep-orders?source_from=yituliu',
+        target: true,
+        icon: 'mdi-open-in-new',
+      },
+    ],
+  },
+  {
     i18nKey: 'chargeReward',
     icon: '/images/icon/hg.png',
     image: '/images/充值返还查询.png',
     descriptionKey: 'description',
+    visible: false,
     tagTypes: [CardTagType.Official],
     buttons: [
       {
@@ -177,6 +222,7 @@ export const homeCards: CardData[] = [
     icon: '/images/icon/hg.png',
     image: '/images/充值返还查询.png',
     descriptionKey: 'description',
+    visible: false,
     tagTypes: [CardTagType.Official],
     buttons: [
       {

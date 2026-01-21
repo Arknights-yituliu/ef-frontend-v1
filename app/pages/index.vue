@@ -8,21 +8,6 @@
       <HomeCard v-for="card in visibleCards" :key="card.i18nKey" :card="card" />
     </div>
 
-    <!-- 按钮区域 -->
-    <div v-if="visibleButtons.length > 0" class="button-group">
-      <v-btn
-        v-for="button in visibleButtons"
-        :key="button.i18nKey"
-        :icon="button.icon || 'mdi-link'"
-        :text="t(`component.home.buttons.${button.i18nKey}`)"
-        color="primary"
-        size="large"
-        variant="tonal"
-        class="home-button"
-        @click="handleButtonClick(button)"
-      />
-    </div>
-
     <!-- 复制成功提示 -->
     <v-snackbar v-model="showSnackbar" :timeout="2000" color="success">
       {{ snackbarText }}
