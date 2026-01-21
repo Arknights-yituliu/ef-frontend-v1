@@ -40,7 +40,6 @@
 
     <!-- 分析页面 -->
     <div v-if="viewMode === 'analyze'" class="gacha-analysis">
-      <header class="page-title">抽卡分析</header>
       <div class="gacha-overview mb-8">
         <div class="gacha-overview-left">
           <div class="user-card">
@@ -420,14 +419,14 @@ async function submitAndVerify() {
   const url = inputUrl.value.trim();
 
   if (!uid || !url) {
-    collectError.value = '请填写 UID 和抽卡链接';
+    collectError.value = '请填写 UID 和查询链接';
     return;
   }
 
   try {
     new URL(url);
   } catch {
-    collectError.value = '抽卡链接格式不正确，请粘贴完整的网页地址';
+    collectError.value = '链接格式不正确，请粘贴完整的查询链接';
     return;
   }
 
