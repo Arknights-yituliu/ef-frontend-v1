@@ -62,6 +62,17 @@ export const homeCards: CardData[] = [
     tagTypes: [CardTagType.Official],
   },
   {
+    i18nKey: 'prepOrders',
+    icon: '/images/icon/hg.png',
+    link: {
+      i18nKey: 'linkText',
+      href: 'https://endfield.hypergryph.com/activity/final-prep-orders?source_from=yituliu',
+    },
+    image: '/images/充值返还查询.png',
+    descriptionKey: 'description',
+    tagTypes: [CardTagType.Official],
+  },
+  {
     i18nKey: 'checkAccess',
     icon: 'https://cos.yituliu.cn/endfield/other/test-kv.jpg',
     link: {
@@ -83,6 +94,39 @@ export const homeCards: CardData[] = [
     image: '/images/量化计算器.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu3rd],
+  },
+  {
+    i18nKey: 'opendfieldmap',
+    icon: 'https://factory.ef.yituliu.cn/favicon-32x32.png',
+    link: {
+      i18nKey: 'linkText',
+      href: 'https://opendfieldmap.cn/',
+    },
+    image: '/images/OEM.png',
+    descriptionKey: 'description',
+    tagTypes: [CardTagType.ThirdParty],
+  },
+    {
+    i18nKey: 'endfieldpuzzle',
+    icon: 'https://factory.ef.yituliu.cn/favicon-32x32.png',
+    link: {
+      i18nKey: 'linkText',
+      href: 'https://ak-endfield-puzzle.sihenzhang.com/',
+    },
+    image: '/images/endfieldpuzzle.png',
+    descriptionKey: 'description',
+    tagTypes: [CardTagType.ThirdParty],
+  },
+      {
+    i18nKey: 'endfieldprtschat',
+    icon: 'https://factory.ef.yituliu.cn/favicon-32x32.png',
+    link: {
+      i18nKey: 'linkText',
+      href: 'https://endfield.prts.chat/',
+    },
+    image: '/images/dev.png',
+    descriptionKey: 'description',
+    tagTypes: [CardTagType.ThirdParty],
   },
   {
     i18nKey: 'yiTuLiu',
@@ -113,7 +157,7 @@ export const homeCards: CardData[] = [
       i18nKey: 'linkText',
       href: 'https://github.com/Arknights-yituliu/ef-frontend-v1',
     },
-    image: 'https://cos.yituliu.cn/endfield/other/contribute-banner.jpg',
+    image: '/images/dev.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu, CardTagType.Other],
   },

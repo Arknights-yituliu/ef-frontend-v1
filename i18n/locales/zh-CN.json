@@ -2,7 +2,7 @@
   "menu": {
     "home": "主页",
     "introduction": "开发指南",
-    "projectStructure": "项目结构",
+    "projectStructure": "开发指南",
     "routeSetting": "路由设置",
     "docsSetting": "文档编写",
     "contributorSetting": "贡献者设置",
@@ -66,6 +66,13 @@
           "linkIcon": "mdi-open-in-new",
           "description": "三测期间充值的玩家可根据充值金额获得返还奖励。请使用官网提供的查询工具查询您的充值返还情况。"
         },
+        "prepOrders": {
+          "title": "预抽卡活动",
+          "tag": "官方",
+          "linkText": "参与预抽卡",
+          "linkIcon": "mdi-open-in-new",
+          "description": "参与预抽卡活动，提前体验游戏卡池系统，并在正式开服后获得对应的角色和物品奖励。"
+        },
         "checkAccess": {
           "title": "全面测试资格查询",
           "tag": "官方",
@@ -79,6 +86,27 @@
           "linkText": "量化计算器",
           "linkIcon": "mdi-web",
           "description": "终末地工业的规划利器。输入目标即可生成从资源到成品的全链条生产方案，让基地扩建精准高效。"
+        },
+        "opendfieldmap": {
+          "title": "终末地大地图",
+          "tag": "第三方",
+          "linkText": "终末地大地图",
+          "linkIcon": "mdi-web",
+          "description": "查看所有地区与副本内的物品与收集品点位详情，并参与构建更完善的游戏内收集体验。"
+        },
+        "endfieldpuzzle": {
+          "title": "终末地拼图解谜工具",
+          "tag": "第三方",
+          "linkText": "拼图解谜工具",
+          "linkIcon": "mdi-web",
+          "description": "拼图解谜工具，机器人的好帮手！"
+        },
+        "endfieldprtschat": {
+          "title": "终末地剧情检索工具",
+          "tag": "第三方",
+          "linkText": "剧情检索",
+          "linkIcon": "mdi-web",
+          "description": "基于生成式AI的游戏剧情检索工具"
         },
         "yiTuLiu": {
           "title": "明日方舟一图流",
@@ -310,7 +338,7 @@
       "operations": "功能操作指南"
     },
     "items": {
-      "projectStructure": "项目结构",
+      "projectStructure": "开发指南",
       "routeSetting": "路由设置",
       "docsSetting": "文档编写",
       "contributorSetting": "贡献者设置",
