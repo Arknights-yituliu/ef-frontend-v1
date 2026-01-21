@@ -40,13 +40,13 @@
 
 /* 用户头像 */
 .user-avatar {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .avatar-img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #f5f5f5;
@@ -66,7 +66,7 @@
 }
 
 .user-uid {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: #6b7280;
   margin: 0 0 8px 0;
 }
@@ -84,7 +84,7 @@
 /* 抽卡标签样式 */
 .gacha-tag {
   padding: 4px 12px;
-  border-radius: 16px;
+  border-radius: 5px;
   font-size: 0.85rem;
   font-weight: 600;
   color: #fff;
@@ -121,6 +121,32 @@
   padding: 4px 12px;
 }
 
+/* 总抽数/总六星数样式 */
+.user-stats-basic {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.user-stats-basic .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.user-stats-basic .stat-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.user-stats-basic .stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+}
 
 .stat-block {
   text-align: center;
@@ -425,4 +451,108 @@
   background: rgb(253, 250, 38);
   padding: 2px 6px;
   border-radius: 3px;
+}
+
+
+
+@media (max-width: 768px) {
+  .gacha-overview {
+    padding: 8px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .gacha-overview-left {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .user-card {
+    padding: 16px 12px;
+    gap: 12px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 380px; 
+  }
+
+  .avatar-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .user-name {
+    font-size: 1.1rem;
+  }
+
+  .user-stats-basic {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .pool-cards {
+    grid-template-columns: 1fr; 
+  }
+
+  .pool-card {
+    height: 150px;
+  }
+
+  /* 卡池分布/角色TOP3 优化 */
+  .d-flex.flex-wrap {
+    gap: 4px !important;
+  }
+
+  .v-chip {
+    font-size: 0.75rem !important;
+    padding: 4px 8px !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* 抽卡标签适配 */
+  .user-tags {
+    gap: 6px;
+  }
+
+  .gacha-tag {
+    padding: 3px 10px;
+    font-size: 0.8rem;
+  }
+
+  /* 按钮适配 */
+  .pool-selector {
+    width: 100%;
+    flex-direction: column; /* 移动端按钮竖排 */
+    gap: 6px;
+  }
+
+  .pool-selector__btn {
+    width: 100%;
+    min-width: unset;
+    padding: 6px 12px !important;
+  }
+
+  /* 进度条适配 */
+  .gacha-bar-container {
+    height: 24px;
+  }
+
+  .off-label, .lucky-label {
+    font-size: 10px;
+    padding: 1px 4px;
+    margin-left: 4px;
+  }
+}
+
+/* ========== 通用响应式优化 ========== */
+/* 防止内容溢出 */
+.gacha-overview-right {
+  min-width: 0; /* 解决flex子元素溢出问题 */
+}
+
+/* 文字溢出处理 */
+.pool-name, .character-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

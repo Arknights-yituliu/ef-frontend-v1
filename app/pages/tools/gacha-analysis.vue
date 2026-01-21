@@ -20,11 +20,21 @@
             <!-- 用户基本信息 -->
             <div class="user-info">
               <h3 class="user-name">{{ 'username' }}</h3>
-              <p class="user-uid">UID: {{'10000000' }}</p>
+              <p class="user-uid" >UID: {{'10000000' }}</p>
               
+              <!-- 新增：总抽数 + 总六星数 -->
+              <div class="user-stats-basic">
+                <div class="stat-item">
+                  <span class="stat-label">{{ $t('总抽数') }}：</span>
+                  <span class="stat-value">{{ totalAllPulls }}</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">{{ $t('总六星数') }}：</span>
+                  <span class="stat-value">{{ totalSixStarCount }}</span>
+                </div>
+              </div>
             </div>
               
-            <!-- 额外统计信息 -->
             <div class="user-tags">
               <div 
                 v-for="(tag, index) in gachaTags" 
@@ -432,7 +442,18 @@ function isOffPool(record: SixStarEntry): boolean {
   return record.character !== upChar;
 }
 // ========== 计算属性：全部基于 realSixStarRecords ==========
+// ========== 新增：总抽数/总六星数计算属性 ==========
+// 总抽数（所有卡池总抽数，含已垫）
+const totalAllPulls = computed(() => {
+  const { limited, permanent, weapon } = poolSummary.value;
+  return limited.total + permanent.total + weapon.total;
+});
 
+// 总六星数（仅真实六星，不含已垫）
+const totalSixStarCount = computed(() => {
+  const { limited, permanent, weapon } = poolSummary.value;
+  return limited.totalCount + permanent.totalCount + weapon.totalCount;
+});
 const totalPulls = computed(() => {
   return realSixStarRecords.value.reduce((sum, r) => sum + r.count, 0);
 });
