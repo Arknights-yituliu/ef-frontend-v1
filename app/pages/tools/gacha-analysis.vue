@@ -1,6 +1,36 @@
 <template>
   <div>
-    <div class="gacha-analysis">
+    <!-- Token收集面板（Token为空/错误时显示） -->
+    <div v-if="!isTokenValid" class="token-collector">
+      <div class="token-card">
+        <h2 class="token-title">{{ $t('请输入抽卡Token（工具暂未开放）') }}</h2>
+        <p class="token-desc">开发测试Token：<span class="test-token-text">ALTria123</span></p>
+        
+        <!-- Token输入框 -->
+        <input
+          v-model="inputToken"
+          type="text"
+          placeholder="请输入Token"
+          class="token-input"
+          :class="{ 'input-error': hasError }"
+        />
+        
+        <!-- 错误提示 -->
+        <div v-if="hasError" class="error-msg">Token错误，请输入正确的测试Token</div>
+        
+        <!-- 提交按钮 -->
+        <button
+          class="token-submit-btn"
+          @click="verifyToken"
+          :disabled="isLoading"
+        >
+          {{ isLoading ? '验证中...' : '提交并查看分析' }}
+        </button>
+      </div>
+    </div>
+
+
+    <div v-else class="gacha-analysis">
       <header class="page-title">抽卡分析</header>
 
       <!-- 抽卡概览分析 -->
@@ -19,10 +49,10 @@
               
             <!-- 用户基本信息 -->
             <div class="user-info">
-              <h3 class="user-name">{{ 'username' }}</h3>
-              <p class="user-uid" >UID: {{'10000000' }}</p>
-              
-              <!-- 新增：总抽数 + 总六星数 -->
+              <div >
+                <h3 class="user-name">{{ 'username' }}</h3>
+                <p class="user-uid">UID: {{ '暂无数据' }}</p>
+              </div>
               <div class="user-stats-basic">
                 <div class="stat-item">
                   <span class="stat-label">{{ $t('总抽数') }}：</span>
@@ -80,9 +110,13 @@
                   <span class="label">{{ $t('不歪/六星') }}：</span>
                   <span class="value">{{ info.nonPityCount }} / {{ info.totalCount }}</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" v-if="type !== 'limited'">
                   <span class="label">{{ $t('平均出货数') }}：</span>
                   <span class="value">{{ info.average.toFixed(1) }}</span>
+                </div>
+                <div class="stat-item" v-if="type === 'limited'">
+                  <span class="label">{{ $t('UP平均') }}：</span>
+                  <span class="value">{{ info.nonPityAverage.toFixed(1) }}</span>
                 </div>
               </div>
             </div>
@@ -163,45 +197,60 @@
           </div>
         </div>
 
+        <!-- 全局无数据提示（内联样式） -->
+        <div 
+          v-if="!filteredConsecutiveGroups || filteredConsecutiveGroups.length === 0" 
+          style="width: 100%; margin: 20px 0; text-align: center; padding: 48px 0;"
+        >
+          <div style="font-size: 1rem; color: #6b7280; font-weight: 500;">
+            {{ $t('暂无该卡池的抽卡数据') }}
+          </div>
+        </div>
 
         <!-- 按时间连续卡池分组展示 -->
-        <div v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
+        <div v-else v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
           <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
 
-          <!-- 自定义列表容器 -->
           <div class="custom-gacha-list">
-            <div
-              v-for="(record, index) in segment.records"
-              :key="`${idx}-${index}`"
-              class="custom-gacha-item mb-2"
-              :class="{ 'on-banner': isOnBanner(record) }"
+            <div 
+              v-if="!segment.records || segment.records.length === 0" 
+              style="width: 100%; background-color: #f9fafb; border-radius: 8px; margin: 8px 0; padding: 24px 0; text-align: center;"
             >
-              <!-- 角色名 -->
-              <div class="character-name font-weight-bold" style="width: 80px;">
-                {{ record.character }}
+              <div style="font-size: 0.9rem; color: #9ca3af;">
+                {{ $t('该卡池分组暂无抽卡记录') }}
               </div>
+            </div>
 
-              <!-- 横向条形图 -->
-              <div class="gacha-bar-container">
-                <div
-                  class="gacha-bar"
-                  :class="getBarType(record)"
-                  :style="{ width: `${getBarWidth(record.count)}%` }"
-                >
-                  <!-- 抽数 -->
-                  <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px;">
-                    {{ record.count }} 抽
-                  </div>
+            <div v-else>
+              <div
+                v-for="(record, index) in segment.records"
+                :key="`${idx}-${index}`"
+                class="custom-gacha-item mb-2"
+                :class="{ 'on-banner': isOnBanner(record) }"
+              >
+                <div class="character-name font-weight-bold" style="width: 80px;">
+                  {{ record.character }}
                 </div>
-                <span v-if="isOffPool(record) && record.count > 60" class="off-label">超非</span>
-                <span v-if="record.character !== '已垫' && record.count <= 10"  class="lucky-label">超欧</span>
+                <div class="gacha-bar-container">
+                  <div
+                    class="gacha-bar"
+                    :class="getBarType(record)"
+                    :style="{ width: `${getBarWidth(record.count)}%` }"
+                  >
+                    <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px;">
+                      {{ record.count }} 抽
+                    </div>
+                  </div>
+                  <span v-if="isOffPool(record) && record.count > 60" class="off-label">超非</span>
+                  <span v-if="record.character !== '已垫' && record.count <= 10"  class="lucky-label">超欧</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div style="margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
+      <div style=" display: none;margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
         <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
 
         <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -241,23 +290,79 @@ import { computed, ref, onMounted } from 'vue';
 import data from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 
+const TEST_TOKEN = 'ALTria123'; 
+const inputToken = ref(''); 
+const validToken = ref(''); 
+const isLoading = ref(false);
+const hasError = ref(false);
+
+// ===================== Token是否有效 =====================
+// 逻辑：validToken存在且等于测试Token → 有效（显示分析页）
+const isTokenValid = computed(() => {
+  return validToken.value === TEST_TOKEN;
+});
+
+
+const verifyToken = () => {
+  hasError.value = false;
+
+  // 1. 输入校验
+  if (!inputToken.value.trim()) {
+    hasError.value = true;
+    return;
+  }
+
+  // 2. 模拟加载
+  isLoading.value = true;
+
+  // 3. 开发阶段：仅验证是否等于测试Token
+  setTimeout(() => {
+    if (inputToken.value.trim() === TEST_TOKEN) {
+      validToken.value = inputToken.value.trim(); // 存入验证通过的Token
+      hasError.value = false;
+    } else {
+      hasError.value = true;
+      validToken.value = ''; // 清空无效Token
+    }
+    isLoading.value = false;
+  }, 500); // 模拟网络延迟
+};
+
+/**
+ * 重置Token（返回收集页面）
+ */
+const resetToken = () => {
+  validToken.value = '';
+  inputToken.value = '';
+};
+
+
+
 // ========== 工具函数：安全解析时间戳 ==========
 function safeTimestamp(ts: string | number): number {
   if (typeof ts === 'number') return ts;
   const num = Number(ts);
-  if (!isNaN(num)) return num; // 处理 "1765115170980" 这类字符串
-  return new Date(ts).getTime(); // 处理 ISO 字符串如 "2025-01-01T12:00:00Z"
+  if (!isNaN(num)) return num;
+  return new Date(ts).getTime();
 }
 
 // ========== 数据结构定义 ==========
 interface GachaRecord {
   id: number;
-  seqId: string;
+  endfieldUid: string;
+  uid: string;
   poolId: string;
   poolName: string;
+  charId: string;
   charName: string;
   rarity: number;
+  isFree: boolean;
+  isNew: boolean;
   gachaTs: string | number;
+  seqId: string;
+  lang: string;
+  poolType: string;
+  serverId: string;
 }
 
 interface SixStarEntry {
@@ -324,17 +429,27 @@ onMounted(async () => {
     // 1. 解析数据，并按 seqId 升序排序（旧 → 新），用于正确计算抽数
     const list: GachaRecord[] = data.data
       .map((item: any) => ({
+        // 原有字段
         id: item.id,
         poolId: item.poolId,
         poolName: item.poolName,
         charName: item.charName,
         rarity: item.rarity,
         gachaTs: item.gachaTs,
-        seqId: item.seqId, 
+        seqId: item.seqId,
+        // 补充缺失的字段（从原始数据中取值，无值则给默认值）
+        endfieldUid: item.endfieldUid || '',
+        uid: item.uid || '',
+        charId: item.charId || '',
+        isFree: item.isFree || false,
+        isNew: item.isNew || false,
+        lang: item.lang || 'zh-cn',
+        poolType: item.poolType || '',
+        serverId: item.serverId || ''
       }))
       .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-    records.value = list;
+    records.value = list; // 此时类型完全匹配，不会报错
 
     // 2. 按 poolId 分组
     const poolAllRecords: Record<string, GachaRecord[]> = {};
@@ -381,7 +496,7 @@ onMounted(async () => {
           character: six.charName,
           count,
           timestamp: six.gachaTs,
-          seqId: six.seqId, // 👈 保留 seqId 用于最终排序
+          seqId: six.seqId,
         };
         resultRealOnly.push(entry);
         resultWithPadded.push(entry);
@@ -460,16 +575,48 @@ const totalPulls = computed(() => {
 
 const poolSummary = computed(() => {
   // 初始化三类卡池的统计结构
+  // 新增 nonPityTotal（不歪角色的总抽数）、nonPityAverage（出不歪的平均抽数）
   const summary = {
-    limited: { total: 0, average: 0, nonPityCount: 0, totalCount: 0 },
-    permanent: { total: 0, average: 0, nonPityCount: 0, totalCount: 0 },
-    weapon: { total: 0, average: 0, nonPityCount: 0, totalCount: 0 },
+    limited: { 
+      total: 0,
+      average: 0, 
+      nonPityCount: 0, 
+      totalCount: 0, 
+      nonPityTotal: 0, 
+      nonPityAverage: 0 
+    },
+    permanent: { 
+      total: 0, 
+      average: 0, 
+      nonPityCount: 0, 
+      totalCount: 0, 
+      nonPityTotal: 0, 
+      nonPityAverage: 0 
+    },
+    weapon: { 
+      total: 0, 
+      average: 0, 
+      nonPityCount: 0, 
+      totalCount: 0, 
+      nonPityTotal: 0, 
+      nonPityAverage: 0 
+    },
   };
 
   // Step 1: 统计「总抽数」（来自 sixStarRecordsWithCount，含“已垫”）
+  // 同时统计「不歪角色的总抽数」
   for (const record of sixStarRecordsWithCount.value) {
     const type = getPoolType(record.poolId);
     summary[type].total += record.count;
+
+    // 仅对「真实六星记录」且「不歪」的情况，累加不歪总抽数
+    // 先找到对应的真实六星记录，匹配 seqId/poolId 确保数据对应
+    const realRecord = realSixStarRecords.value.find(
+      r => r.poolId === record.poolId && r.seqId === record.seqId
+    );
+    if (realRecord && isOnBanner(realRecord)) {
+      summary[type].nonPityTotal += record.count;
+    }
   }
 
   // Step 2: 遍历「真实六星」，统计出货总数 + 不歪（UP）次数
@@ -483,10 +630,13 @@ const poolSummary = computed(() => {
     }
   }
 
-  // Step 3: 计算平均抽数（总抽数 / 出货次数），避免除零
+  // Step 3: 计算平均抽数
   for (const key of ['limited', 'permanent', 'weapon'] as const) {
     const s = summary[key];
+    // 所有六星的平均抽数（总抽数 / 总出货次数）
     s.average = s.totalCount > 0 ? s.total / s.totalCount : 0;
+    // 出不歪的平均抽数（不歪总抽数 / 不歪次数），避免除零
+    s.nonPityAverage = s.nonPityCount > 0 ? s.total / s.nonPityCount : 0;
   }
 
   return summary;
