@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #eee;  border-radius: 16px; padding: 24px;">
     <!-- 数据收集 -->
     <div v-if="viewMode === 'collect'" class="collect-form">
       <header class="page-title">导入抽卡记录</header>

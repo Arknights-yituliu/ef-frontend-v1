@@ -10,6 +10,7 @@
     "formatSpecification": "Format Specification Setup",
     "operations": "Operations Guide",
     "infrastructureLayoutGuide": "Infrastructure Layout Operation Guide",
+    "how2getgachadurl": "How to get gacha data URL",
     "materialProfit": "Material Profit",
     "shopValue": "Shop Value",
     "packageValue": "Package Value",
@@ -335,7 +336,8 @@
       "contributorSetting": "Contributor Setting",
       "commonQuestions": "Common Questions",
       "formatSpecification": "Format Specification Setup",
-      "infrastructureLayoutGuide": "Infrastructure Layout Operation Guide"
+      "infrastructureLayoutGuide": "Infrastructure Layout Operation Guide",
+      "how2getgachadurl": "How to get gacha data URL"
     },
     "search": "Search",
     "searchPlaceholder": "Enter keywords to search documents...",

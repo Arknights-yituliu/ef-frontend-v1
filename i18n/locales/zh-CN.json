@@ -10,6 +10,7 @@
     "formatSpecification": "格式化规范设置",
     "operations": "功能操作指南",
     "infrastructureLayoutGuide": "基建排布操作指南",
+    "how2getgachadurl": "如何获取抽卡数据URL",
     "materialProfit": "材料收益",
     "shopValue": "商店性价比",
     "packageValue": "礼包性价比",
@@ -370,7 +371,8 @@
       "contributorSetting": "贡献者设置",
       "commonQuestions": "常见问题",
       "formatSpecification": "格式化规范设置",
-      "infrastructureLayoutGuide": "基建排布操作指南"
+      "infrastructureLayoutGuide": "基建排布操作指南",
+      "how2getgachadurl": "如何获取抽卡数据URL"
     },
     "search": "搜索",
     "searchPlaceholder": "输入关键词搜索文档...",
