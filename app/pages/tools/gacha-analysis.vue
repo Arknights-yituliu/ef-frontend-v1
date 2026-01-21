@@ -304,7 +304,7 @@ const poolColorMap: Record<string, string> = {
   '特许寻访': 'amber',
 };
 function getPoolColor(poolName: string): string {
-  return poolColorMap[poolName] || 'grey';
+  return poolColorMap[poolName] || 'amber darken-3';
 }
 
 // 构建 poolId -> upCharName 的映射
@@ -495,8 +495,7 @@ const poolSummary = computed(() => {
 // 卡池分布
 const poolDistribution = computed(() => {
   const map: Record<string, { count: number; ratio: number }> = {};
-  const total = totalPulls.value;
-
+  // 1. 先统计真实六星的抽数（原有逻辑）
   for (const r of realSixStarRecords.value) {
     if (!map[r.poolName]) {
       map[r.poolName] = { count: 0, ratio: 0 };
@@ -504,6 +503,18 @@ const poolDistribution = computed(() => {
     map[r.poolName]!.count += r.count;
   }
 
+  // 2. 新增：统计“已垫”的抽数
+  const paddedRecords = sixStarRecordsWithCount.value.filter(r => r.character === '已垫');
+  for (const r of paddedRecords) {
+    if (!map[r.poolName]) {
+      map[r.poolName] = { count: 0, ratio: 0 };
+    }
+    map[r.poolName]!.count += r.count;
+  }
+
+  // 3. 计算总抽数（包含已垫）和占比
+  const total = Object.values(map).reduce((sum, item) => sum + item.count, 0);
+  
   Object.values(map).forEach(item => {
     item.ratio = total > 0 ? item.count / total : 0;
   });
