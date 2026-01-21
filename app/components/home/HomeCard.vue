@@ -104,19 +104,25 @@ const copyToClipboard = async (text: string, successMessage: string) => {
           </span>
         </div>
       </div>
-      <template v-if="cardData.link">
+      <!-- 标题栏右侧小按钮 -->
+      <div class="home-card-header-actions">
         <v-btn
-          class="home-card-link-btn"
-          :href="cardData.link.href"
-          prepend-icon="mdi-web"
-          :text="t(`component.home.cards.${card.i18nKey}.${cardData.link.i18nKey}`)"
-          append-icon="mdi-open-in-new"
-          color="primary"
-          size="small"
-          target="_blank"
-          :style="{ borderLeft: `3px solid ${cardData.primaryTagColor}` }"
+          icon="mdi-close"
+          size="x-small"
+          color="error"
+          class="action-icon-btn"
+          variant="text"
+          density="comfortable"
         />
-      </template>
+        <v-btn
+          icon="mdi-heart-outline"
+          size="x-small"
+          color="warning"
+          class="action-icon-btn"
+          variant="text"
+          density="comfortable"
+        />
+      </div>
     </div>
     <div class="home-card-content">
       <div v-if="cardData.image" class="home-card-image-wrapper">
@@ -127,7 +133,13 @@ const copyToClipboard = async (text: string, successMessage: string) => {
       </div>
     </div>
     <!-- 卡片内按钮区域 -->
-    <div v-if="cardData.buttons && cardData.buttons.length > 0" class="home-card-buttons">
+    <div
+      v-if="
+        (cardData.buttons && cardData.buttons.length > 0) ||
+        cardData.link
+      "
+      class="home-card-buttons"
+    >
       <v-btn
         v-for="button in cardData.buttons"
         :key="button.i18nKey"
@@ -138,6 +150,19 @@ const copyToClipboard = async (text: string, successMessage: string) => {
         class="card-button"
         @click="handleCardButtonClick(button)"
       />
+      <template v-if="cardData.link">
+        <v-btn
+          :href="cardData.link.href"
+          prepend-icon="mdi-web"
+          :text="t(`component.home.cards.${card.i18nKey}.${cardData.link.i18nKey}`)"
+          append-icon="mdi-open-in-new"
+          color="primary"
+          size="small"
+          target="_blank"
+          class="card-button link-button"
+          :style="{ borderLeft: `3px solid ${cardData.primaryTagColor}` }"
+        />
+      </template>
     </div>
   </v-card>
 </template>
@@ -155,11 +180,32 @@ const copyToClipboard = async (text: string, successMessage: string) => {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 16px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 16px;
   height: 72px;
   position: relative;
   overflow: hidden;
+  justify-content: space-between;
+}
+
+/* 标题栏右侧小按钮容器 */
+.home-card-header-actions {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* 小图标按钮 */
+.action-icon-btn {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.action-icon-btn:hover {
+  opacity: 1;
 }
 
 .home-card-header::before {
@@ -275,28 +321,27 @@ const copyToClipboard = async (text: string, successMessage: string) => {
   font-size: var(--font-size-sm);
 }
 
-/* 卡片链接按钮 */
-.home-card-link-btn {
-  border-left: 3px solid transparent;
-}
-
 /* 卡片内按钮区域 - 背景与标题区相同 */
 .home-card-buttons {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
   background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
   min-height: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .card-button {
   min-width: 80px;
-  flex: 1;
-  max-width: 120px;
+  max-width: 180px;
   height: 36px;
   font-size: 0.875rem;
+}
+
+.link-button {
+  border-left: 3px solid transparent;
 }
 
 .home-card-custom :deep(*) {
