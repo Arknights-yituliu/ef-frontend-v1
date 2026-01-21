@@ -106,7 +106,7 @@ export const homeCards: CardData[] = [
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
   },
-    {
+  {
     i18nKey: 'endfieldpuzzle',
     icon: 'https://factory.ef.yituliu.cn/favicon-32x32.png',
     link: {
@@ -117,7 +117,7 @@ export const homeCards: CardData[] = [
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
   },
-      {
+  {
     i18nKey: 'endfieldprtschat',
     icon: 'https://factory.ef.yituliu.cn/favicon-32x32.png',
     link: {
