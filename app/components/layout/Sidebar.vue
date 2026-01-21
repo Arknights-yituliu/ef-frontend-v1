@@ -451,10 +451,10 @@ onUnmounted(() => {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 3rem;
+  min-height: 2rem;
   padding: 0 1rem;
   background-color: var(--theme-bg-secondary);
-  font-size: calc(var(--font-size-sm) * 0.666);
+  font-size: calc(var(--font-size-sm) * 0.8);
   font-weight: 600;
   color: var(--theme-text-secondary);
   text-transform: uppercase;

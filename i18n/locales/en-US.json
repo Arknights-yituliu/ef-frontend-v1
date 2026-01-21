@@ -51,6 +51,14 @@
         "thirdparty": "Third Party",
         "other": "Other"
       },
+      "buttons": {
+        "github": "GitHub Repository",
+        "discord": "Discord Community",
+        "copyContact": "Copy Contact Email",
+        "cardButton1": "Visit",
+        "cardButton2": "Copy Link",
+        "cardButton3": "New Window"
+      },
       "checkAccess": {
         "betaTestIICheckAccess": "Beta Test II Check Access",
         "checkAccessOnEndfieldOfficialSite": "Check access on endfield official site"

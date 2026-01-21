@@ -7,11 +7,31 @@
     <div class="card-group">
       <HomeCard v-for="card in visibleCards" :key="card.i18nKey" :card="card" />
     </div>
+
+    <!-- 按钮区域 -->
+    <div v-if="visibleButtons.length > 0" class="button-group">
+      <v-btn
+        v-for="button in visibleButtons"
+        :key="button.i18nKey"
+        :icon="button.icon || 'mdi-link'"
+        :text="t(`component.home.buttons.${button.i18nKey}`)"
+        color="primary"
+        size="large"
+        variant="tonal"
+        class="home-button"
+        @click="handleButtonClick(button)"
+      />
+    </div>
+
+    <!-- 复制成功提示 -->
+    <v-snackbar v-model="showSnackbar" :timeout="2000" color="success">
+      {{ snackbarText }}
+    </v-snackbar>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { homeCards } from '~/data/homeCards';
+import { homeFooterButtons, homeCards, type FooterButton, ButtonActionType } from '~/data/homeCards';
 
 definePageMeta({
   layout: 'default',
@@ -19,7 +39,46 @@ definePageMeta({
 
 const { t } = useI18n();
 
+const showSnackbar = ref(false);
+const snackbarText = ref('');
+
 const visibleCards = computed(() => homeCards.filter((card) => card.visible !== false));
+const visibleButtons = computed(() => homeFooterButtons.filter((button) => button.visible !== false));
+
+/**
+ * 处理按钮点击事件
+ */
+const handleButtonClick = (button: FooterButton) => {
+  if (button.action === ButtonActionType.Link) {
+    // 跳转链接
+    const target = button.target ? '_blank' : '_self';
+    window.open(button.actionData, target);
+  } else if (button.action === ButtonActionType.Copy) {
+    // 复制文本
+    copyToClipboard(button.actionData, button.copySuccessText || t('common.copySuccess'));
+  }
+};
+
+/**
+ * 复制文本到剪贴板
+ */
+const copyToClipboard = async (text: string, successMessage: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    showSnackbarMessage(successMessage);
+  } catch (error) {
+    console.error('复制失败:', error);
+    showSnackbarMessage(t('common.copyFailed'));
+  }
+};
+
+/**
+ * 显示提示消息
+ */
+const showSnackbarMessage = (message: string) => {
+  snackbarText.value = message;
+  showSnackbar.value = true;
+};
 </script>
 
 <style scoped>
@@ -54,5 +113,22 @@ const visibleCards = computed(() => homeCards.filter((card) => card.visible !== 
   max-width: 1320px;
   margin: 3rem auto 2rem;
   width: 100%;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 1320px;
+  margin: 2rem auto 3rem;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.home-button {
+  min-width: 160px;
+  height: 48px;
 }
 </style>

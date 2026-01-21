@@ -7,6 +7,54 @@ export interface CardLink {
 }
 
 /**
+ * 首页按钮动作类型
+ */
+export enum ButtonActionType {
+  /** 跳转链接 */
+  Link = 'link',
+  /** 复制文本 */
+  Copy = 'copy',
+}
+
+/**
+ * 首页卡片内按钮配置
+ */
+export interface CardButton {
+  /** 国际化键名，用于从 i18n 文件中获取按钮文本内容 */
+  i18nKey: string;
+  /** 按钮动作类型 */
+  action: ButtonActionType;
+  /** 动作参数 */
+  actionData: string;
+  /** 是否在新标签页打开（仅 link 类型有效），默认为 true */
+  target?: boolean;
+  /** 按钮图标 (Material Design Icons 图标名) */
+  icon?: string;
+  /** 按钮颜色 (可选) */
+  color?: string;
+}
+
+/**
+ * 首页底部按钮配置
+ */
+export interface FooterButton {
+  /** 国际化键名，用于从 i18n 文件中获取按钮文本内容 */
+  i18nKey: string;
+  /** 按钮动作类型 */
+  action: ButtonActionType;
+  /** 动作参数 */
+  actionData: string;
+  /** 是否在新标签页打开（仅 link 类型有效），默认为 true */
+  target?: boolean;
+  /** 按钮图标 (Material Design Icons 图标名) */
+  icon?: string;
+  /** 是否显示按钮，默认为 true */
+  visible?: boolean;
+  /** 复制成功后的提示文本（仅 copy 类型有效） */
+  copySuccessText?: string;
+}
+
+/**
  * 标签类型枚举
  */
 export enum CardTagType {
@@ -43,11 +91,43 @@ export interface CardData {
   visible?: boolean;
   /** 标签类型列表，决定标签颜色（支持多个标签） */
   tagTypes?: CardTagType[];
+  /** 卡片内按钮列表（可选） */
+  buttons?: CardButton[];
 }
 
 /**
  * 首页卡片列表
  */
+
+/**
+ * 首页底部按钮列表
+ */
+export const homeFooterButtons: FooterButton[] = [
+  {
+    i18nKey: 'buttons.github',
+    action: ButtonActionType.Link,
+    actionData: 'https://github.com/Arknights-yituliu/ef-frontend-v1',
+    target: true,
+    icon: 'mdi-github',
+    visible: true,
+  },
+  {
+    i18nKey: 'buttons.discord',
+    action: ButtonActionType.Link,
+    actionData: 'https://discord.gg/your-discord-link',
+    target: true,
+    icon: 'mdi-discord',
+    visible: true,
+  },
+  {
+    i18nKey: 'buttons.copyContact',
+    action: ButtonActionType.Copy,
+    actionData: 'contact@example.com',
+    icon: 'mdi-content-copy',
+    visible: true,
+    copySuccessText: '已复制联系邮箱',
+  },
+];
 
 export const homeCards: CardData[] = [
   {
@@ -60,6 +140,31 @@ export const homeCards: CardData[] = [
     image: '/images/充值返还查询.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.Official],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/chargeReward',
+        target: true,
+        icon: 'mdi-web',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://endfield.hypergryph.com/chargeReward',
+        icon: 'mdi-content-copy',
+        color: '#00BCD4',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/chargeReward',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#F44336',
+      },
+    ],
   },
   {
     i18nKey: 'prepOrders',
@@ -71,6 +176,31 @@ export const homeCards: CardData[] = [
     image: '/images/充值返还查询.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.Official],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/activity/prep-orders',
+        target: true,
+        icon: 'mdi-web',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://endfield.hypergryph.com/activity/prep-orders',
+        icon: 'mdi-content-copy',
+        color: '#00BCD4',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/activity/prep-orders',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#F44336',
+      },
+    ],
   },
   {
     i18nKey: 'checkAccess',
@@ -83,6 +213,31 @@ export const homeCards: CardData[] = [
     descriptionKey: 'description',
     visible: false,
     tagTypes: [CardTagType.Official],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/checkAccess',
+        target: true,
+        icon: 'mdi-web',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://endfield.hypergryph.com/checkAccess',
+        icon: 'mdi-content-copy',
+        color: '#00BCD4',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/checkAccess',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#F44336',
+      },
+    ],
   },
   {
     i18nKey: 'endfieldLab',
@@ -94,6 +249,31 @@ export const homeCards: CardData[] = [
     image: '/images/量化计算器.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu3rd],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://factory.ef.yituliu.cn/',
+        target: true,
+        icon: 'mdi-web',
+        color: '#00BCD4',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://factory.ef.yituliu.cn/',
+        icon: 'mdi-content-copy',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://factory.ef.yituliu.cn/',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#4CAF50',
+      },
+    ],
   },
   {
     i18nKey: 'opendfieldmap',
@@ -105,6 +285,31 @@ export const homeCards: CardData[] = [
     image: '/images/OEM.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://opendfieldmap.cn/',
+        target: true,
+        icon: 'mdi-web',
+        color: '#F44336',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://opendfieldmap.cn/',
+        icon: 'mdi-content-copy',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://opendfieldmap.cn/',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#00BCD4',
+      },
+    ],
   },
   {
     i18nKey: 'endfieldpuzzle',
@@ -116,6 +321,31 @@ export const homeCards: CardData[] = [
     image: '/images/endfieldpuzzle.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://ak-endfield-puzzle.sihenzhang.com/',
+        target: true,
+        icon: 'mdi-web',
+        color: '#F44336',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://ak-endfield-puzzle.sihenzhang.com/',
+        icon: 'mdi-content-copy',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://ak-endfield-puzzle.sihenzhang.com/',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#00BCD4',
+      },
+    ],
   },
   {
     i18nKey: 'endfieldprtschat',
@@ -127,6 +357,31 @@ export const homeCards: CardData[] = [
     image: '/images/dev.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.prts.chat/',
+        target: true,
+        icon: 'mdi-web',
+        color: '#F44336',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://endfield.prts.chat/',
+        icon: 'mdi-content-copy',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.prts.chat/',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#00BCD4',
+      },
+    ],
   },
   {
     i18nKey: 'yiTuLiu',
@@ -138,6 +393,31 @@ export const homeCards: CardData[] = [
     image: '/images/明日方舟一图流.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://ark.yituliu.cn/',
+        target: true,
+        icon: 'mdi-web',
+        color: '#00BCD4',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://ark.yituliu.cn/',
+        icon: 'mdi-content-copy',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://ark.yituliu.cn/',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#4CAF50',
+      },
+    ],
   },
   {
     i18nKey: 'penguinStatistics',
@@ -149,6 +429,31 @@ export const homeCards: CardData[] = [
     image: '/images/企鹅物流数据统计.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://penguin-stats.cn/',
+        target: true,
+        icon: 'mdi-web',
+        color: '#F44336',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://penguin-stats.cn/',
+        icon: 'mdi-content-copy',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://penguin-stats.cn/',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#00BCD4',
+      },
+    ],
   },
   {
     i18nKey: 'contribute',
@@ -160,5 +465,30 @@ export const homeCards: CardData[] = [
     image: '/images/dev.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu, CardTagType.Other],
+    buttons: [
+      {
+        i18nKey: 'buttons.cardButton1',
+        action: ButtonActionType.Link,
+        actionData: 'https://github.com/Arknights-yituliu/ef-frontend-v1',
+        target: true,
+        icon: 'mdi-github',
+        color: '#9E9E9E',
+      },
+      {
+        i18nKey: 'buttons.cardButton2',
+        action: ButtonActionType.Copy,
+        actionData: 'https://github.com/Arknights-yituliu/ef-frontend-v1',
+        icon: 'mdi-content-copy',
+        color: '#FFC107',
+      },
+      {
+        i18nKey: 'buttons.cardButton3',
+        action: ButtonActionType.Link,
+        actionData: 'https://github.com/Arknights-yituliu/ef-frontend-v1',
+        target: false,
+        icon: 'mdi-open-in-new',
+        color: '#00BCD4',
+      },
+    ],
   },
 ];

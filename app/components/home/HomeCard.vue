@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { CardData, CardTagType } from '~/data/homeCards';
+import type { CardData, CardTagType, CardButton } from '~/data/homeCards';
+import { ButtonActionType } from '~/data/homeCards';
 
 const { t } = useI18n();
 
@@ -36,6 +37,7 @@ const cardData = computed(() => {
     description: props.card.descriptionKey
       ? t(`${baseKey}.${props.card.descriptionKey}`)
       : undefined,
+    buttons: props.card.buttons || [],
   };
 });
 
@@ -54,6 +56,33 @@ const getTagColor = (tagType: CardTagType): string => {
       return '#F44336'; // 红色
     default:
       return '#9E9E9E'; // 灰色
+  }
+};
+
+/**
+ * 处理卡片内按钮点击事件
+ */
+const handleCardButtonClick = (button: CardButton) => {
+  if (button.action === ButtonActionType.Link) {
+    // 跳转链接
+    const target = button.target ? '_blank' : '_self';
+    window.open(button.actionData, target);
+  } else if (button.action === ButtonActionType.Copy) {
+    // 复制文本
+    copyToClipboard(button.actionData, t('common.copySuccess'));
+  }
+};
+
+/**
+ * 复制文本到剪贴板
+ */
+const copyToClipboard = async (text: string, successMessage: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    alert(successMessage);
+  } catch (error) {
+    console.error('复制失败:', error);
+    alert(t('common.copyFailed'));
   }
 };
 </script>
@@ -96,6 +125,19 @@ const getTagColor = (tagType: CardTagType): string => {
           <p class="home-card-description">{{ cardData.description }}</p>
         </div>
       </div>
+    </div>
+    <!-- 卡片内按钮区域 -->
+    <div v-if="cardData.buttons && cardData.buttons.length > 0" class="home-card-buttons">
+      <v-btn
+        v-for="button in cardData.buttons"
+        :key="button.i18nKey"
+        :text="t(`component.home.${button.i18nKey}`)"
+        :color="button.color || 'primary'"
+        size="small"
+        rounded="lg"
+        class="card-button"
+        @click="handleCardButtonClick(button)"
+      />
     </div>
   </v-card>
 </template>
@@ -236,6 +278,25 @@ const getTagColor = (tagType: CardTagType): string => {
 /* 卡片链接按钮 */
 .home-card-link-btn {
   border-left: 3px solid transparent;
+}
+
+/* 卡片内按钮区域 - 背景与标题区相同 */
+.home-card-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  min-height: 48px;
+}
+
+.card-button {
+  min-width: 80px;
+  flex: 1;
+  max-width: 120px;
+  height: 36px;
+  font-size: 0.875rem;
 }
 
 .home-card-custom :deep(*) {
