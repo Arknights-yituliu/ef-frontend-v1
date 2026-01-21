@@ -427,19 +427,20 @@ onUnmounted(() => {
   position: relative;
 }
 
-/* 二级菜单高亮区域 */
+/* 二级菜单高亮区域（用于显示激活的菜单项） */
 .secondary-highlight {
   position: absolute;
   left: 0;
   top: 0;
   width: 0.5rem;
-  background-color: var(--theme-accent-color);
-  box-shadow: 0 0 0.5rem var(--theme-accent-color);
+  background-color: transparent;
+  box-shadow: none;
   transition:
     transform var(--transition-base),
     height var(--transition-base),
     opacity var(--transition-base);
   pointer-events: none;
+  display: none;
 }
 
 .menu-group {
@@ -508,10 +509,11 @@ onUnmounted(() => {
   background-color: var(--item-color);
   transition:
     width var(--transition-base),
-    box-shadow var(--transition-base);
+    box-shadow var(--transition-base),
+    background-color var(--transition-base);
 }
 
-/* 激活状态时装饰条宽度加倍 */
+/* 激活状态时装饰条宽度加倍并加粗阴影 */
 .secondary-item.active .item-decoration-bar {
   width: 0.5rem;
   box-shadow: 0 0 0.5rem var(--item-color);
