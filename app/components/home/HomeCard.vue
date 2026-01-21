@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CardData, CardTagType, CardButton } from '~/data/homeCards';
-import { ButtonActionType } from '~/data/homeCards';
+import { ButtonActionType, ButtonType } from '~/data/homeCards';
 
 const { t } = useI18n();
 
@@ -27,17 +27,25 @@ const cardData = computed(() => {
   // Get the first tag color as primary color for button decoration
   const primaryTagColor = tags.length > 0 && tags[0] ? tags[0].color : '#9E9E9E';
 
+  // 分类按钮
+  const buttons = props.card.buttons || [];
+  const mainButtons = buttons.filter((btn) => btn.buttonType === ButtonType.Main);
+  const linkButtons = buttons.filter((btn) => btn.buttonType === ButtonType.Link);
+  const textButtons = buttons.filter((btn) => btn.buttonType === ButtonType.Text);
+
   return {
     title: t(`${baseKey}.title`),
     tags,
     primaryTagColor,
     icon: props.card.icon,
-    link: props.card.link,
     image: props.card.image,
     description: props.card.descriptionKey
       ? t(`${baseKey}.${props.card.descriptionKey}`)
       : undefined,
-    buttons: props.card.buttons || [],
+    buttons,
+    mainButtons,
+    linkButtons,
+    textButtons,
   };
 });
 
@@ -135,34 +143,48 @@ const copyToClipboard = async (text: string, successMessage: string) => {
     <!-- 卡片内按钮区域 -->
     <div
       v-if="
-        (cardData.buttons && cardData.buttons.length > 0) ||
-        cardData.link
+        (cardData.mainButtons && cardData.mainButtons.length > 0) ||
+        (cardData.linkButtons && cardData.linkButtons.length > 0) ||
+        (cardData.textButtons && cardData.textButtons.length > 0)
       "
       class="home-card-buttons"
     >
+      <!-- 链接按钮和文本按钮 - 统一使用文字按钮样式 -->
       <v-btn
-        v-for="button in cardData.buttons"
+        v-for="button in cardData.linkButtons"
+        :key="button.i18nKey"
+        :text="t(`component.home.${button.i18nKey}`)"
+        :color="cardData.primaryTagColor"
+        :prepend-icon="button.icon"
+        size="small"
+        variant="text"
+        class="card-button card-button-text"
+        @click="handleCardButtonClick(button)"
+      />
+      <v-btn
+        v-for="button in cardData.textButtons"
+        :key="button.i18nKey"
+        :text="t(`component.home.${button.i18nKey}`)"
+        :color="cardData.primaryTagColor"
+        :prepend-icon="button.icon"
+        size="small"
+        variant="text"
+        class="card-button card-button-text"
+        @click="handleCardButtonClick(button)"
+      />
+      <!-- 主按钮 - 永远置于最右侧 -->
+      <v-btn
+        v-for="button in cardData.mainButtons"
         :key="button.i18nKey"
         :text="t(`component.home.${button.i18nKey}`)"
         :color="button.color || 'primary'"
+        :prepend-icon="button.icon"
         size="small"
         rounded="lg"
         class="card-button"
+        :style="{ borderLeft: `3px solid ${cardData.primaryTagColor}` }"
         @click="handleCardButtonClick(button)"
       />
-      <template v-if="cardData.link">
-        <v-btn
-          :href="cardData.link.href"
-          prepend-icon="mdi-web"
-          :text="t(`component.home.cards.${card.i18nKey}.${cardData.link.i18nKey}`)"
-          append-icon="mdi-open-in-new"
-          color="primary"
-          size="small"
-          target="_blank"
-          class="card-button link-button"
-          :style="{ borderLeft: `3px solid ${cardData.primaryTagColor}` }"
-        />
-      </template>
     </div>
   </v-card>
 </template>
@@ -329,19 +351,31 @@ const copyToClipboard = async (text: string, successMessage: string) => {
   padding: 0.75rem 1rem;
   background-color: rgba(0, 0, 0, 0.8);
   min-height: 48px;
-  justify-content: center;
+  justify-content: flex-end;
   flex-wrap: wrap;
 }
 
+/* 主按钮 - 保持原样式 */
 .card-button {
   min-width: 80px;
   max-width: 180px;
   height: 36px;
   font-size: 0.875rem;
+  flex-shrink: 0;
+  border-left: 3px solid transparent;
 }
 
-.link-button {
-  border-left: 3px solid transparent;
+/* 文本按钮样式 - 用于链接按钮和文本按钮 */
+.card-button-text {
+  min-width: 60px;
+  max-width: 160px;
+  height: 32px;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+.card-button-text:hover {
+  opacity: 1;
 }
 
 .home-card-custom :deep(*) {

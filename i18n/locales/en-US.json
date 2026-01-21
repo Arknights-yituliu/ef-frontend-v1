@@ -55,9 +55,9 @@
         "github": "GitHub Repository",
         "discord": "Discord Community",
         "copyContact": "Copy Contact Email",
-        "cardButton1": "Visit",
-        "cardButton2": "Copy Link",
-        "cardButton3": "New Window"
+        "main": "Visit",
+        "link": "New Window",
+        "copyLink": "Copy Link"
       },
       "checkAccess": {
         "betaTestIICheckAccess": "Beta Test II Check Access",

@@ -63,9 +63,9 @@
         "github": "GitHub 仓库",
         "discord": "Discord 社区",
         "copyContact": "复制联系邮箱",
-        "cardButton1": "访问",
-        "cardButton2": "复制链接",
-        "cardButton3": "新窗口"
+        "main": "访问",
+        "link": "新窗口",
+        "copyLink": "复制链接"
       },
       "cards": {
         "chargeReward": {
