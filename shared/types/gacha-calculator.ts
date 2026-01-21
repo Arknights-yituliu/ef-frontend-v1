@@ -79,6 +79,14 @@ export interface GachaResourceStatisticsResult {
   ticketgachaSpecialSingle: number;
 }
 
-export type GachaCalculatorUserConfig = {
-  [key: string]: {[key: string]: number|boolean|number[]};
+export interface GachaCalculatorUserConfig  {
+  existingResource: {
+    [key: string]:number
+  },
+  resourceActive:{
+    [key:string]:boolean
+  },
+  slider:{
+    [key:string]:number[]
+  }
 }
