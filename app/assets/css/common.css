@@ -299,7 +299,89 @@
 }
 
 /* ============================================
-   卡片样式
+   首页统一样式卡片
+   ============================================ */
+.home-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-color: var(--theme-bg-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base);
+}
+
+.home-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(
+    to bottom,
+    #00FFFF 0%,
+    #00FFFF 25%,
+    #FF00FF 25%,
+    #FF00FF 50%,
+    #FFFF00 50%,
+    #FFFF00 75%,
+    #808080 75%,
+    #808080 100%
+  );
+  z-index: 1;
+}
+
+.home-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) calc(var(--spacing-md) + 4px);
+  border-bottom: 1px solid var(--theme-border-color);
+}
+
+.home-card-title {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--theme-text-primary);
+  gap: var(--spacing-sm);
+  flex: 1;
+  min-width: 0;
+}
+
+.home-card-title-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.home-card-content {
+  padding: var(--spacing-md);
+  padding-left: calc(var(--spacing-md) + 4px);
+  height: calc(100% - 60px);
+  overflow-y: auto;
+}
+
+/* 卡片悬停效果 */
+.home-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Vuetify v-card 覆盖样式 */
+.v-card.home-card .v-card-text {
+  padding: 0;
+  height: calc(100% - 60px);
+}
+
+.v-card.home-card .v-card__text {
+  padding: 0;
+  height: calc(100% - 60px);
+}
+
+/* ============================================
+   通用卡片样式（保持兼容）
    ============================================ */
 .card-title {
   display: flex;

@@ -74,9 +74,6 @@
           <v-icon>mdi-magnify</v-icon>
         </button>
         <div class="control-divider" />
-        <!-- 主题切换 -->
-        <LayoutThemeToggle />
-        <div class="control-divider" />
         <!-- 语言切换 -->
         <LayoutLanguageToggle />
       </div>

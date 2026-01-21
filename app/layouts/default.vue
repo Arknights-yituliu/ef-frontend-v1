@@ -1,17 +1,11 @@
 <template>
-  <v-app :theme="theme">
-    <LayoutDesertBackground />
-    <!--  <AnnimationInitialLoader-->
-    <!--    :is-loading="isInitialLoading"-->
-    <!--    :loading-duration="loadingDuration"-->
-    <!--    @complete="handleInitialLoaderComplete"-->
-    <!--  />-->
+  <v-app>
+    <LayoutCustomBackground />
     <v-navigation-drawer v-model="drawer" :width="280" class="navigation-drawer">
       <LayoutSidebar />
     </v-navigation-drawer>
 
     <v-app-bar :elevation="0" class="app-bar">
-      <!-- 扫描线 SVG 动画 -->
       <svg class="header-scanline" preserveAspectRatio="none" viewBox="0 0 100 100">
         <defs>
           <linearGradient id="scanline-gradient-default" x1="0%" x2="0%" y1="0%" y2="100%">
@@ -33,8 +27,6 @@
       <v-app-bar-nav-icon @click="() => (drawer = !drawer)" />
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
       <div class="header-controls">
-        <LayoutThemeToggle />
-        <div class="control-divider" />
         <LayoutLanguageToggle />
       </div>
     </v-app-bar>
@@ -48,11 +40,10 @@
       </div>
     </v-main>
 
-    <!-- 回到顶部按钮 -->
     <v-fade-transition>
       <v-btn
         v-show="showBackToTop"
-        :color="theme === 'light' ? 'grey-lighten-3' : 'grey-darken-4'"
+        color="grey-lighten-3"
         class="back-to-top-btn"
         icon="mdi-arrow-up"
         rounded="circle"
@@ -65,14 +56,14 @@
 </template>
 
 <script lang="ts" setup>
+const LayoutCustomBackground = await resolveComponent('LayoutCustomBackground');
+
 const route = useRoute();
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes;
 const { t } = useI18n();
-const { theme } = useTheme();
 const siteName = t('layout.siteName');
 
-// 初始动画加载器
 const initialLoaderConfig = appConfig.initialLoader ?? {};
 const isInitialLoading = ref(initialLoaderConfig.enabled !== false);
 const loadingDuration =
@@ -83,10 +74,8 @@ const handleInitialLoaderComplete = () => {
   isInitialLoading.value = false;
 };
 
-/** 边栏是否展开 */
 const drawer = ref(true);
 
-// 根据当前路由查找对应的页面名称
 const pageTitle = computed(() => {
   for (const primaryItem of menuItems) {
     for (const secondaryItem of primaryItem.children) {
@@ -95,18 +84,15 @@ const pageTitle = computed(() => {
       }
     }
   }
-  // 返回默认标题
   return siteName;
 });
 
-// 动态设置页面标题
 useHead(() => ({
   title: `${pageTitle.value} - ${siteName}`,
 }));
 
-// 回到顶部功能
 const showBackToTop = ref(false);
-const scrollThreshold = 300; // 滚动超过300px时显示按钮
+const scrollThreshold = 300;
 
 const handleScroll = () => {
   showBackToTop.value = window.scrollY > scrollThreshold;
@@ -139,7 +125,6 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-/* 小屏幕上隐藏标题 */
 @media screen and (max-width: 600px) {
   .app-bar-title {
     opacity: 0;
@@ -153,49 +138,31 @@ onUnmounted(() => {
   padding: 0 1.5rem;
 }
 
-.control-divider {
-  width: 1px;
-  height: 2rem;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    var(--theme-accent-color) 20%,
-    var(--theme-accent-color) 80%,
-    transparent 100%
-  );
-  opacity: 0.5;
-}
-
-/* 包一个容器，使页面至少占满纵向空间 */
 .main-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
 
-/* 增加页面内边距，限制页面宽度 */
 .content-container {
   width: 100%;
   max-width: 1600px;
-  min-width: 50%; /** 最大 1600px，但是如果屏幕太大了，至少也要占满一半宽度 */
+  min-width: 50%;
   padding: 2rem;
   margin: auto;
-  flex: 1; /* 使页面至少占满纵向空间 */
+  flex: 1;
 }
 
-/* 小屏幕上减少页面内边距 */
 @media screen and (max-width: 600px) {
   .content-container {
     padding: 1rem;
   }
 }
 
-/* footer 不可以 flex-grow */
 .footer {
   flex: 0;
 }
 
-/* 回到顶部按钮 */
 .back-to-top-btn {
   position: fixed;
   bottom: 2rem;
@@ -210,7 +177,6 @@ onUnmounted(() => {
   transform: translateY(-2px);
 }
 
-/* SVG 扫描线动画 */
 .header-scanline {
   position: absolute;
   top: 0;
@@ -244,8 +210,13 @@ onUnmounted(() => {
   }
 }
 
-/* Vuetify样式覆盖 */
 :deep(.v-application) {
-  background-color: transparent;
+  background-color: transparent !important;
+}
+</style>
+
+<style global>
+.v-application {
+  background-color: transparent !important;
 }
 </style>

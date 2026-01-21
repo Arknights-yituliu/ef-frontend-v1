@@ -1,28 +1,29 @@
 <script lang="ts" setup></script>
 
 <template>
-  <v-card class="card">
-    <v-card-title>
-      <header class="card-title">
+  <v-card class="home-card">
+    <div class="home-card-header">
+      <div class="home-card-title">
         <img
           alt="明日方舟一图流 LOGO"
-          class="card-title-icon"
+          class="home-card-title-icon"
           src="https://cos.yituliu.cn/endfield/icons/yituliu-icon.png"
         />
         <b>{{ $t('component.home.yiTuLiu.title') }}</b>
-        <div class="flex-1" />
-        <v-btn
-          :text="$t('component.home.yiTuLiu.goToYiTuLiu')"
-          append-icon="mdi-open-in-new"
-          color="primary"
-          href="https://ark.yituliu.cn/"
-          prepend-icon="mdi-web"
-          target="_blank"
-        />
-      </header>
-    </v-card-title>
-    <v-card-text>
-      {{ $t('component.home.yiTuLiu.description') }}
+      </div>
+      <div class="flex-1" />
+      <v-btn
+        :text="$t('component.home.yiTuLiu.goToYiTuLiu')"
+        append-icon="mdi-open-in-new"
+        color="primary"
+        prepend-icon="mdi-web"
+        size="small"
+        href="https://ark.yituliu.cn/"
+        target="_blank"
+      />
+    </div>
+    <div class="home-card-content">
+      <p class="mb-3">{{ $t('component.home.yiTuLiu.description') }}</p>
       <p class="p-title">
         {{ $t('component.home.yiTuLiu.materialPlanning') }}
       </p>
@@ -69,6 +70,6 @@
           >{{ $t('component.home.yiTuLiu.specializationHalfCalculatorDoc') }}
         </a>
       </p>
-    </v-card-text>
+    </div>
   </v-card>
 </template>
