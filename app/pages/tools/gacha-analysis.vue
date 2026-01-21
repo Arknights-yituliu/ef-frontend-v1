@@ -39,9 +39,8 @@
     </div>
 
     <!-- 分析页面 -->
-    <div v-else class="gacha-analysis">
+    <div v-if="viewMode === 'analyze'" class="gacha-analysis">
       <header class="page-title">抽卡分析</header>
-
       <div class="gacha-overview mb-8">
         <div class="gacha-overview-left">
           <div class="user-card">
@@ -55,8 +54,8 @@
               
             <div class="user-info">
               <div >
-                <h3 class="user-name">{{ 'username' }}</h3>
-                <p class="user-uid">UID: {{ '暂无数据' }}</p>
+                <h3 class="user-name">{{ '管理员' }}</h3>
+                <p class="user-uid">UID: {{ records[0]?.uid || '未知' }}</p>
               </div>
               <div class="user-stats-basic">
                 <div class="stat-item">
@@ -159,10 +158,6 @@
       </div>
 
 
-
-        
-
-
       <div class="gacha-dashboard">
         <div style="display: flex; width: 100%; justify-content: center;">
           <div class="pool-selector">
@@ -245,6 +240,18 @@
             </div>
           </div>
         </div>
+
+        <div class="action-buttons-container">
+          <div class="action-buttons">
+            <button @click="goToUpdate" class="btn update-btn">
+              更新抽卡数据
+            </button>
+            <button @click="confirmClearCache" class="btn clear-btn">
+              删除本地数据
+            </button>
+          </div>
+        </div>
+
       </div>
 
       <div style=" display: none;margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
@@ -293,16 +300,15 @@ const inputUid = ref('');
 const inputUrl = ref('');
 const isSubmitting = ref(false);
 const collectError = ref('');
+const records = ref<GachaRecord[]>([]);
+const rollData = ref<Array<[string, string, string, number]>>([]);
+const sixStarRecordsWithCount = ref<SixStarEntry[]>([]);
+const realSixStarRecords = ref<SixStarEntry[]>([]); 
 
-const fetchedRecords = ref<GachaRecord[]>([]);
+// const fetchedRecords = ref<GachaRecord[]>([]);
 
-function safeTimestamp(ts: string | number): number {
-  if (typeof ts === 'number') return ts;
-  const num = Number(ts);
-  if (!isNaN(num)) return num;
-  return new Date(ts).getTime();
-}
 
+//原始数据
 interface GachaRecord {
   id: number;
   endfieldUid: string;
@@ -330,10 +336,12 @@ interface SixStarEntry {
   timestamp: string | number;
 }
 
-const records = ref<GachaRecord[]>([]);
-const rollData = ref<Array<[string, string, string, number]>>([]);
-const sixStarRecordsWithCount = ref<SixStarEntry[]>([]);
-const realSixStarRecords = ref<SixStarEntry[]>([]); 
+function safeTimestamp(ts: string | number): number {
+  if (typeof ts === 'number') return ts;
+  const num = Number(ts);
+  if (!isNaN(num)) return num;
+  return new Date(ts).getTime();
+}
 
 function getPoolType(poolId: string): 'limited' | 'permanent' | 'weapon' {
   if (poolId.startsWith('special')) {
@@ -374,7 +382,39 @@ function parseSeqId(seqId: string): number {
   const num = parseInt(seqId, 10);
   return isNaN(num) ? 0 : num;
 }
+
 // ========== 提交并验证用户输入的 UID 和 URL ==========
+// ========== 缓存相关常量 ==========
+const CACHE_KEY = 'endfield_gacha_records_v1';
+const LAST_UID_KEY = 'endfield_last_uid';
+
+// ========== 从 localStorage 加载缓存记录 ==========
+function loadCachedRecords(uid: string): GachaRecord[] {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return [];
+
+    const cache = JSON.parse(raw) as { uid: string; records: GachaRecord[] };
+    return cache.uid === uid ? cache.records : [];
+  } catch (e) {
+    console.warn('缓存读取失败，清空旧数据', e);
+    localStorage.removeItem(CACHE_KEY);
+    return [];
+  }
+}
+
+// ========== 保存记录到 localStorage ==========
+function saveRecordsToCache(uid: string, records: GachaRecord[]) {
+  try {
+    const cache = { uid, records };
+    localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+    localStorage.setItem(LAST_UID_KEY, uid); // 同时保存 UID 用于恢复
+  } catch (e) {
+    console.error('缓存保存失败', e);
+  }
+}
+
+// ========== 提交并验证（含缓存合并）==========
 async function submitAndVerify() {
   const uid = inputUid.value.trim();
   const url = inputUrl.value.trim();
@@ -384,7 +424,6 @@ async function submitAndVerify() {
     return;
   }
 
-  // 简单校验 URL 是否为合法 HTTP(S) 链接
   try {
     new URL(url);
   } catch {
@@ -419,8 +458,8 @@ async function submitAndVerify() {
 
     const data = await listRes.json();
 
-    // Step 3: 转换并排序原始记录
-    const list: GachaRecord[] = (data.data || [])
+    // Step 3: 转换新数据
+    const newRecords: GachaRecord[] = (data.data || [])
       .map((item: any) => ({
         id: item.id,
         poolId: item.poolId,
@@ -440,14 +479,32 @@ async function submitAndVerify() {
       }))
       .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-    if (list.length === 0) {
+    if (newRecords.length === 0) {
       throw new Error('未找到任何抽卡记录，请确认链接有效且包含数据');
     }
 
-    records.value = list;
+    // ✅ Step 4: 加载缓存并合并（按 seqId 去重）
+    const cachedRecords = loadCachedRecords(uid);
 
-    processGachaData(list);
+    const recordMap = new Map<string, GachaRecord>();
+    // 先加缓存（旧数据）
+    for (const rec of cachedRecords) {
+      recordMap.set(rec.seqId, rec);
+    }
+    // 再加新数据（自动覆盖同 seqId，但通常不会冲突）
+    for (const rec of newRecords) {
+      recordMap.set(rec.seqId, rec);
+    }
 
+    const mergedRecords = Array.from(recordMap.values())
+      .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
+
+    // ✅ Step 5: 保存合并后的数据到缓存
+    saveRecordsToCache(uid, mergedRecords);
+
+    // ✅ Step 6: 更新响应式状态
+    records.value = mergedRecords;
+    processGachaData(mergedRecords);
     viewMode.value = 'analyze';
 
   } catch (err: any) {
@@ -867,6 +924,51 @@ const filteredConsecutiveGroups = computed(() => {
     segment => getPoolType(segment.records[0]?.poolId || '') === selectedPool.value
   );
 });
+
+
+//若本地有缓存则读取缓存，直接进入分析页面
+onMounted(() => {
+  const lastUid = localStorage.getItem(LAST_UID_KEY);
+  if (lastUid) {
+    const cached = loadCachedRecords(lastUid);
+    if (cached.length > 0) {
+      inputUid.value = lastUid;
+      records.value = cached;
+      processGachaData(cached);
+      viewMode.value = 'analyze';
+    }
+  }
+});
+
+// ========== 返回收集页 ==========
+function goToUpdate() {
+  viewMode.value = 'collect';
+  inputUid.value = '';
+  inputUrl.value = '';
+}
+
+// ========== 确认并清除缓存 ==========
+function confirmClearCache() {
+  if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？\n此操作不可恢复！（抽卡数据均保存在本地）')) {
+    try {
+      localStorage.removeItem('endfield_gacha_records_v1');
+      localStorage.removeItem('endfield_last_uid');
+      
+      // 清空当前响应式数据
+      records.value = [];
+      sixStarRecordsWithCount.value = [];
+      realSixStarRecords.value = [];
+      rollData.value = [];
+      
+      // 跳转回收集页
+      viewMode.value = 'collect';
+      alert('本地数据已清除');
+    } catch (e) {
+      console.error('清除缓存失败', e);
+      alert('清除失败，请手动清除浏览器数据');
+    }
+  }
+}
 </script>
 
 <style scoped>

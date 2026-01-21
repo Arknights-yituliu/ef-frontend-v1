@@ -7,14 +7,6 @@
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.page-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1d1d1f;
-  text-align: center;
-  margin-bottom: 32px;
-  letter-spacing: -0.5px;
-}
 
 /* 表单组容器 */
 .form-group {
@@ -448,6 +440,7 @@
 .gacha-dashboard{
   margin-top: 10px;
   padding: 16px;
+  max-width: 1500px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px; 
   border-radius: 16px;
@@ -769,4 +762,39 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.action-buttons-container{
+    display: flex;
+    justify-content: end;
+}
+.action-buttons {
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.update-btn {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.clear-btn {
+  background-color: #ff6b6b;
+  color: white;
 }
