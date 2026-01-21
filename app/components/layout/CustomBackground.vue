@@ -30,8 +30,25 @@ const { theme } = useTheme();
   height: 100%;
   display: block;
   object-fit: cover;
-  opacity: 0.4;
+  opacity: 0.3;
   transition: filter 0.3s ease;
+  /* 从左上(完全可见)到右下(完全透明)的渐变 */
+  -webkit-mask-image: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 
 /* Since the theme is always light now, we don't need dark mode inversion */

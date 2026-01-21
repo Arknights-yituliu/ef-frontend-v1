@@ -2,7 +2,7 @@
   "menu": {
     "home": "Home",
     "introduction": "Introduction",
-    "projectStructure": "Project Structure",
+    "projectStructure": "Development Guide",
     "routeSetting": "Route Setting",
     "docsSetting": "Writing Docs",
     "contributorSetting": "Contributor Setting",
@@ -63,6 +63,12 @@
           "title": "Beta Test II Charge Reward Query",
           "tag": "Official",
           "linkText": "Check Reward",
+          "linkIcon": "mdi-open-in-new"
+        },
+        "prepOrders": {
+          "title": "Pre-Gacha Event",
+          "tag": "Official",
+          "linkText": "Join Pre-Gacha",
           "linkIcon": "mdi-open-in-new"
         },
         "checkAccess": {
@@ -308,7 +314,7 @@
       "operations": "Operations Guide"
     },
     "items": {
-      "projectStructure": "Project Structure",
+      "projectStructure": "Development Guide",
       "routeSetting": "Route Setting",
       "docsSetting": "Writing Docs",
       "contributorSetting": "Contributor Setting",
