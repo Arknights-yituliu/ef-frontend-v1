@@ -1,44 +1,50 @@
 <template>
   <div>
-    <!-- Token收集面板（Token为空/错误时显示） -->
-    <div v-if="!isTokenValid" class="token-collector">
-      <div class="token-card">
-        <h2 class="token-title">{{ $t('请输入抽卡Token（工具暂未开放）') }}</h2>
-        <p class="token-desc">开发测试Token：<span class="test-token-text">ALTria123</span></p>
-        
-        <!-- Token输入框 -->
+    <!-- 数据收集 -->
+    <div v-if="viewMode === 'collect'" class="collect-form">
+      <header class="page-title">导入抽卡记录</header>
+
+      <div class="form-group">
+        <label>UID</label>
         <input
-          v-model="inputToken"
+          v-model="inputUid"
           type="text"
-          placeholder="请输入Token"
-          class="token-input"
-          :class="{ 'input-error': hasError }"
+          placeholder="请输入UID"
+          :disabled="isSubmitting"
         />
-        
-        <!-- 错误提示 -->
-        <div v-if="hasError" class="error-msg">Token错误，请输入正确的测试Token</div>
-        
-        <!-- 提交按钮 -->
-        <button
-          class="token-submit-btn"
-          @click="verifyToken"
-          :disabled="isLoading"
-        >
-          {{ isLoading ? '验证中...' : '提交并查看分析' }}
-        </button>
       </div>
+
+      <div class="form-group">
+        <label>查询链接</label>
+        <textarea
+          v-model="inputUrl"
+          placeholder="粘贴完整的URL"
+          rows="3"
+          :disabled="isSubmitting"
+        ></textarea>
+        <p class="help-text">
+          <a href="#">如何获取url</a>
+        </p>
+      </div>
+
+      <p v-if="collectError" class="error-text">{{ collectError }}</p>
+
+      <button
+        @click="submitAndVerify"
+        :disabled="isSubmitting"
+        class="submit-btn"
+      >
+        {{ isSubmitting ? '验证中...' : '开始分析' }}
+      </button>
     </div>
 
-
+    <!-- 分析页面 -->
     <div v-else class="gacha-analysis">
       <header class="page-title">抽卡分析</header>
 
-      <!-- 抽卡概览分析 -->
       <div class="gacha-overview mb-8">
-        <!-- 左侧用户名片区域 -->
         <div class="gacha-overview-left">
           <div class="user-card">
-            <!-- 用户头像 -->
             <div class="user-avatar">
               <img 
                 src="" 
@@ -47,7 +53,6 @@
               >
             </div>
               
-            <!-- 用户基本信息 -->
             <div class="user-info">
               <div >
                 <h3 class="user-name">{{ 'username' }}</h3>
@@ -81,7 +86,6 @@
           </div>
         </div>
 
-        <!-- 右侧数据展示区域 -->
         <div class="gacha-overview-right">
           <div class="pool-cards">
             <div
@@ -90,12 +94,10 @@
               class="pool-card"
               :class="`pool-card--${type}`"
             >
-              <!-- 标题区域：精简结构，突出类型 -->
               <div class="pool-card-header">
                 <span class="pool-card-name">{{ getDisplayName(type) }}</span>
               </div>
               
-              <!-- 核心数据：放大突出，作为视觉焦点 -->
               <div class="pool-card-core">
                 <span class="total-gacha-count">{{ info.total }}</span>
                 <span class="core-label">{{ $t('抽') }}</span>
@@ -122,7 +124,6 @@
             </div>
           </div>
           
-          <!-- 卡池分布 -->
           <div class="mt-4">
             <h3 class="text-subtitle-2 mb-2">{{ $t('卡池抽卡分布') }}</h3>
             <div class="d-flex flex-wrap">
@@ -139,7 +140,6 @@
             </div>
           </div>
           
-          <!-- 角色频次 TOP 3 -->
           <div class="mt-4">
             <h3 class="text-subtitle-2 mb-2">{{ $t('角色抽取频次 TOP 3') }}</h3>
             <div class="d-flex flex-wrap gap-2">
@@ -164,7 +164,6 @@
 
 
       <div class="gacha-dashboard">
-        <!-- 卡池选择器 -->
         <div style="display: flex; width: 100%; justify-content: center;">
           <div class="pool-selector">
             <v-btn
@@ -197,7 +196,6 @@
           </div>
         </div>
 
-        <!-- 全局无数据提示（内联样式） -->
         <div 
           v-if="!filteredConsecutiveGroups || filteredConsecutiveGroups.length === 0" 
           style="width: 100%; margin: 20px 0; text-align: center; padding: 48px 0;"
@@ -207,7 +205,6 @@
           </div>
         </div>
 
-        <!-- 按时间连续卡池分组展示 -->
         <div v-else v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
           <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
 
@@ -287,58 +284,18 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue';
-import data from '@/custom/core/gacha-analysis-example.json';
+// import data from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 
-const TEST_TOKEN = 'ALTria123'; 
-const inputToken = ref(''); 
-const validToken = ref(''); 
-const isLoading = ref(false);
-const hasError = ref(false);
+const viewMode = ref<'collect' | 'analyze'>('collect');
 
-// ===================== Token是否有效 =====================
-// 逻辑：validToken存在且等于测试Token → 有效（显示分析页）
-const isTokenValid = computed(() => {
-  return validToken.value === TEST_TOKEN;
-});
+const inputUid = ref('');
+const inputUrl = ref('');
+const isSubmitting = ref(false);
+const collectError = ref('');
 
+const fetchedRecords = ref<GachaRecord[]>([]);
 
-const verifyToken = () => {
-  hasError.value = false;
-
-  // 1. 输入校验
-  if (!inputToken.value.trim()) {
-    hasError.value = true;
-    return;
-  }
-
-  // 2. 模拟加载
-  isLoading.value = true;
-
-  // 3. 开发阶段：仅验证是否等于测试Token
-  setTimeout(() => {
-    if (inputToken.value.trim() === TEST_TOKEN) {
-      validToken.value = inputToken.value.trim(); // 存入验证通过的Token
-      hasError.value = false;
-    } else {
-      hasError.value = true;
-      validToken.value = ''; // 清空无效Token
-    }
-    isLoading.value = false;
-  }, 500); // 模拟网络延迟
-};
-
-/**
- * 重置Token（返回收集页面）
- */
-const resetToken = () => {
-  validToken.value = '';
-  inputToken.value = '';
-};
-
-
-
-// ========== 工具函数：安全解析时间戳 ==========
 function safeTimestamp(ts: string | number): number {
   if (typeof ts === 'number') return ts;
   const num = Number(ts);
@@ -346,7 +303,6 @@ function safeTimestamp(ts: string | number): number {
   return new Date(ts).getTime();
 }
 
-// ========== 数据结构定义 ==========
 interface GachaRecord {
   id: number;
   endfieldUid: string;
@@ -374,13 +330,11 @@ interface SixStarEntry {
   timestamp: string | number;
 }
 
-// ========== 响应式数据 ==========
 const records = ref<GachaRecord[]>([]);
-const rollData = ref<Array<[string, string, string, number]>>([]); // 含“已垫”，用于 UI 表格/导出
-const sixStarRecordsWithCount = ref<SixStarEntry[]>([]); // 含“已垫”，用于前端展示（时间线、分组）
-const realSixStarRecords = ref<SixStarEntry[]>([]);       // 仅真实六星，用于所有统计计算
+const rollData = ref<Array<[string, string, string, number]>>([]);
+const sixStarRecordsWithCount = ref<SixStarEntry[]>([]);
+const realSixStarRecords = ref<SixStarEntry[]>([]); 
 
-// ========== 卡池类型映射函数 ==========
 function getPoolType(poolId: string): 'limited' | 'permanent' | 'weapon' {
   if (poolId.startsWith('special')) {
     return 'limited';
@@ -391,7 +345,6 @@ function getPoolType(poolId: string): 'limited' | 'permanent' | 'weapon' {
   return 'permanent';
 }
 
-// ========== 显示名称映射 ==========
 const DISPLAY_NAMES: Record<'limited' | 'permanent' | 'weapon', string> = {
   limited: '限定',
   permanent: '常驻',
@@ -402,7 +355,6 @@ function getDisplayName(key: 'limited' | 'permanent' | 'weapon'): string {
   return DISPLAY_NAMES[key];
 }
 
-// ========== 卡池颜色映射（按 poolName）==========
 const poolColorMap: Record<string, string> = {
   '基础寻访': 'deep-purple',
   '启程寻访': 'cyan',
@@ -412,7 +364,6 @@ function getPoolColor(poolName: string): string {
   return poolColorMap[poolName] || 'amber darken-3';
 }
 
-// 构建 poolId -> upCharName 的映射
 const upCharMap = new Map<string, string>();
 gachaPools.forEach(pool => {
   upCharMap.set(pool.poolId, pool.upCharName);
@@ -423,13 +374,54 @@ function parseSeqId(seqId: string): number {
   const num = parseInt(seqId, 10);
   return isNaN(num) ? 0 : num;
 }
-// ========== 生命周期：加载并处理数据 ==========
-onMounted(async () => {
+// ========== 提交并验证用户输入的 UID 和 URL ==========
+async function submitAndVerify() {
+  const uid = inputUid.value.trim();
+  const url = inputUrl.value.trim();
+
+  if (!uid || !url) {
+    collectError.value = '请填写 UID 和抽卡链接';
+    return;
+  }
+
+  // 简单校验 URL 是否为合法 HTTP(S) 链接
   try {
-    // 1. 解析数据，并按 seqId 升序排序（旧 → 新），用于正确计算抽数
-    const list: GachaRecord[] = data.data
+    new URL(url);
+  } catch {
+    collectError.value = '抽卡链接格式不正确，请粘贴完整的网页地址';
+    return;
+  }
+
+  isSubmitting.value = true;
+  collectError.value = '';
+
+  try {
+    const BASE_URL = 'https://endfield.backend.yituliu.cn';
+
+    // Step 1: 上传记录
+    const uploadRes = await fetch(`${BASE_URL}/pool-record/character/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ uid, url }),
+    });
+
+    if (!uploadRes.ok) {
+      throw new Error(`上传失败（状态码 ${uploadRes.status}）`);
+    }
+
+    // Step 2: 查询记录
+    const listUrl = `${BASE_URL}/pool-record/character/list?uid=${encodeURIComponent(uid)}`;
+    const listRes = await fetch(listUrl, { method: 'GET' });
+
+    if (!listRes.ok) {
+      throw new Error(`查询失败（状态码 ${listRes.status}）`);
+    }
+
+    const data = await listRes.json();
+
+    // Step 3: 转换并排序原始记录
+    const list: GachaRecord[] = (data.data || [])
       .map((item: any) => ({
-        // 原有字段
         id: item.id,
         poolId: item.poolId,
         poolName: item.poolName,
@@ -437,113 +429,126 @@ onMounted(async () => {
         rarity: item.rarity,
         gachaTs: item.gachaTs,
         seqId: item.seqId,
-        // 补充缺失的字段（从原始数据中取值，无值则给默认值）
         endfieldUid: item.endfieldUid || '',
         uid: item.uid || '',
         charId: item.charId || '',
-        isFree: item.isFree || false,
-        isNew: item.isNew || false,
+        isFree: item.isFree ?? false,
+        isNew: item.isNew ?? false,
         lang: item.lang || 'zh-cn',
         poolType: item.poolType || '',
-        serverId: item.serverId || ''
+        serverId: item.serverId || '',
       }))
-      .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
+      .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-    records.value = list; // 此时类型完全匹配，不会报错
-
-    // 2. 按 poolId 分组
-    const poolAllRecords: Record<string, GachaRecord[]> = {};
-    for (const record of list) {
-      if (!poolAllRecords[record.poolId]) {
-        poolAllRecords[record.poolId] = [];
-      }
-      poolAllRecords[record.poolId]!.push(record);
+    if (list.length === 0) {
+      throw new Error('未找到任何抽卡记录，请确认链接有效且包含数据');
     }
 
-    // 3. 提取6星
-    const sixStarRecords = list.filter(r => r.rarity === 6);
-    const poolSixStars: Record<string, GachaRecord[]> = {};
-    for (const rec of sixStarRecords) {
-      if (!poolSixStars[rec.poolId]) poolSixStars[rec.poolId] = [];
-      poolSixStars[rec.poolId]!.push(rec);
-    }
+    records.value = list;
 
-    const resultWithPadded: SixStarEntry[] = [];
-    const resultRealOnly: SixStarEntry[] = [];
+    processGachaData(list);
 
-    // 4. 处理每个卡池
-    for (const [poolId, allRecords] of Object.entries(poolAllRecords)) {
-      const sixStars = poolSixStars[poolId] || [];
-      const poolName = allRecords[0]?.poolName || poolId;
+    viewMode.value = 'analyze';
 
-      // 构建 seqId 到局部索引的映射（因为已按 seqId 升序排好）
-      const localIndexBySeqId: Record<string, number> = {};
-      allRecords.forEach((rec, idx) => {
-        localIndexBySeqId[rec.seqId] = idx;
-      });
-
-      let lastSixLocalIndex = -1;
-
-      // 处理真实6星
-      for (const six of sixStars) {
-        const localIdx = localIndexBySeqId[six.seqId];
-        if (localIdx === undefined) continue;
-
-        const count = lastSixLocalIndex === -1 ? localIdx + 1 : localIdx - lastSixLocalIndex;
-        const entry = {
-          poolId,
-          poolName,
-          character: six.charName,
-          count,
-          timestamp: six.gachaTs,
-          seqId: six.seqId,
-        };
-        resultRealOnly.push(entry);
-        resultWithPadded.push(entry);
-        lastSixLocalIndex = localIdx;
-      }
-
-      // 插入“已垫”记录
-      if (allRecords.length > 0) {
-        const paddedCount = lastSixLocalIndex === -1
-          ? allRecords.length
-          : allRecords.length - 1 - lastSixLocalIndex;
-
-        if (paddedCount > 0) {
-          const lastRecord = allRecords[allRecords.length - 1];
-          resultWithPadded.push({
-            poolId,
-            poolName: lastRecord!.poolName,
-            character: '已垫',
-            count: paddedCount,
-            timestamp: lastRecord!.gachaTs,
-            seqId: lastRecord!.seqId,
-          });
-        }
-      }
-    }
-
-    // 5. 最终按 seqId 降序排序（最新在前）
-    const sortBySeqIdDesc = (a: { seqId: string }, b: { seqId: string }) =>
-      parseSeqId(b.seqId) - parseSeqId(a.seqId);
-
-    resultWithPadded.sort(sortBySeqIdDesc);
-    resultRealOnly.sort(sortBySeqIdDesc);
-
-    // 赋值
-    sixStarRecordsWithCount.value = resultWithPadded;
-    realSixStarRecords.value = resultRealOnly;
-    rollData.value = resultWithPadded.map(item => [
-      item.poolId,
-      item.poolName,
-      item.character,
-      item.count,
-    ]);
-
-  } catch (err) {
-    console.error('处理抽卡数据失败', err);
+  } catch (err: any) {
+    console.error('数据验证失败:', err);
+    collectError.value = err.message || '网络错误，请稍后重试';
+  } finally {
+    isSubmitting.value = false;
   }
-});
+}
+
+// ========== 处理抽卡数据：分组、统计、生成时间线 ==========
+function processGachaData(list: GachaRecord[]) {
+  // 1. 按 poolId 分组所有记录
+  const poolAllRecords: Record<string, GachaRecord[]> = {};
+  for (const record of list) {
+    if (!poolAllRecords[record.poolId]) {
+      poolAllRecords[record.poolId] = [];
+    }
+    poolAllRecords[record.poolId]!.push(record);
+  }
+
+  // 2. 提取所有六星记录，并按 poolId 分组
+  const sixStarRecords = list.filter(r => r.rarity === 6);
+  const poolSixStars: Record<string, GachaRecord[]> = {};
+  for (const rec of sixStarRecords) {
+    if (!poolSixStars[rec.poolId]) poolSixStars[rec.poolId] = [];
+    poolSixStars[rec.poolId]!.push(rec);
+  }
+
+  // 3. 构建结果数组
+  const resultWithPadded: SixStarEntry[] = []; // 含“已垫”
+  const resultRealOnly: SixStarEntry[] = [];   // 仅真实六星
+
+  for (const [poolId, allRecords] of Object.entries(poolAllRecords)) {
+    const sixStars = poolSixStars[poolId] || [];
+    const poolName = allRecords[0]?.poolName || poolId;
+
+    // 构建 seqId → 局部索引映射（因已按 seqId 升序排）
+    const localIndexBySeqId: Record<string, number> = {};
+    allRecords.forEach((rec, idx) => {
+      localIndexBySeqId[rec.seqId] = idx;
+    });
+
+    let lastSixLocalIndex = -1;
+
+    // 处理真实六星
+    for (const six of sixStars) {
+      const localIdx = localIndexBySeqId[six.seqId];
+      if (localIdx === undefined) continue;
+
+      const count = lastSixLocalIndex === -1 ? localIdx + 1 : localIdx - lastSixLocalIndex;
+      const entry = {
+        poolId,
+        poolName,
+        character: six.charName,
+        count,
+        timestamp: six.gachaTs,
+        seqId: six.seqId,
+      };
+      resultRealOnly.push(entry);
+      resultWithPadded.push(entry);
+      lastSixLocalIndex = localIdx;
+    }
+
+    // 插入“已垫”记录（如果最后有未出六星的抽数）
+    if (allRecords.length > 0) {
+      const paddedCount = lastSixLocalIndex === -1
+        ? allRecords.length
+        : allRecords.length - 1 - lastSixLocalIndex;
+
+      if (paddedCount > 0) {
+        const lastRecord = allRecords[allRecords.length - 1];
+        resultWithPadded.push({
+          poolId,
+          poolName: lastRecord!.poolName,
+          character: '已垫',
+          count: paddedCount,
+          timestamp: lastRecord!.gachaTs,
+          seqId: lastRecord!.seqId,
+        });
+      }
+    }
+  }
+
+  // 4. 按 seqId 降序排序（最新在前）
+  const sortBySeqIdDesc = (a: { seqId: string }, b: { seqId: string }) =>
+    parseSeqId(b.seqId) - parseSeqId(a.seqId);
+
+  resultWithPadded.sort(sortBySeqIdDesc);
+  resultRealOnly.sort(sortBySeqIdDesc);
+
+  // 5. 更新响应式数据（供 UI 使用）
+  sixStarRecordsWithCount.value = resultWithPadded;
+  realSixStarRecords.value = resultRealOnly;
+  rollData.value = resultWithPadded.map(item => [
+    item.poolId,
+    item.poolName,
+    item.character,
+    item.count,
+  ]);
+}
 
 // 判断是否歪了（仅对真实六星有效，“已垫”不参与判断）
 function isOffPool(record: SixStarEntry): boolean {
