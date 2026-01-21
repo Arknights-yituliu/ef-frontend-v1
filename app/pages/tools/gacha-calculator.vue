@@ -69,6 +69,14 @@ let pieChartData: PieChartData[] = [
   { value: 44, name: t('page.tools.gachaCalculator.pieChartName') }
 ];
 
+const existingResource = ref<ResourceStatisticsResultDetail>({
+  name: '库存',
+  originiumRecharge: 0,
+  diamond: 0,
+  ticketgachaStandardSingle: 0,
+  ticketgachaSpecialSingle: 0
+});
+
 const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   existingResource: {
     originiumRecharge: 0,
@@ -224,6 +232,12 @@ watch(authorityLevelTaskRewards,
     }
     gachaResourceStatistics();
   }, { deep: true });
+
+
+watch(existingResource, (newValue) => {
+
+  gachaResourceStatistics();
+}, { deep: true })
 
 const beginnerCheckInTaskProgress = ref<number[]>([1, 14]);
 
@@ -508,13 +522,7 @@ function createWeekTaskReward(): void {
 
 createWeekTaskReward();
 
-const existingResource = ref<ResourceStatisticsResultDetail>({
-  name: '库存',
-  originiumRecharge: 0,
-  diamond: 0,
-  ticketgachaStandardSingle: 0,
-  ticketgachaSpecialSingle: 0
-});
+
 const resourceStatisticsResultDetailList = ref<ResourceStatisticsResultDetail[]>([]);
 
 
@@ -524,10 +532,10 @@ const gachaResourceStatistics = (): void => {
   function _existingRewardStatistics(): void {
     const result: ResourceStatisticsResultDetail = {
       name: '库存',
-      originiumRecharge: existingResource.value.originiumRecharge,
-      diamond: existingResource.value.diamond,
-      ticketgachaStandardSingle: existingResource.value.ticketgachaStandardSingle,
-      ticketgachaSpecialSingle: existingResource.value.ticketgachaSpecialSingle
+      originiumRecharge: existingResource.value.originiumRecharge/1,
+      diamond: existingResource.value.diamond/1,
+      ticketgachaStandardSingle: existingResource.value.ticketgachaStandardSingle/1,
+      ticketgachaSpecialSingle: existingResource.value.ticketgachaSpecialSingle/1
     };
 
     list.push(result);
@@ -1101,8 +1109,8 @@ onMounted(() => {
                     v-model="valleyIVCrateRewardProgress"
                     step="1"
                     max="288"
-                    tick-size="4"
                     thumb-label="always"
+                    tick-size="4"
                     hide-details="auto"
                     class="v-range-slider"
                   >
