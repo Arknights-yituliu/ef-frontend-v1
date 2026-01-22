@@ -60,7 +60,7 @@
         "betaTestIIChargeRewardQuery": "全面测试充值返还查询"
       },
       "buttons": {
-        "github": "GitHub 仓库",
+        "github": "GitHub",
         "discord": "Discord 社区",
         "copyContact": "复制联系邮箱",
         "main": "访问",
@@ -69,9 +69,44 @@
         "website": "官网",
         "news": "新闻公告",
         "chargeReward":"充值返还查询",
-        "prepOrders":"预抽卡活动"
+        "prepOrders":"预抽卡活动",
+        "factory4Graduate": "谷地一键毕业",
+        "wulingGraduate": "武陵一键毕业",
+        "endfieldLab": "开始使用",
+        "devLog": "开发日志",
+        "openAllMap": "一键开全图",
+        "saveDelta": "点我拯救Delta机器人",
+        "searchEndfield": "检索终末地剧情",
+        "searchArknights": "检索方舟剧情",
+        "shopValue": "商店性价比",
+        "packageValue": "礼包性价比",
+        "itemValueTable": "物品价值表",
+        "gachaCalculator": "攒抽计算器",
+        "essenceCalculator": "基质计算器",
+        "gachaAnalysis": "抽卡分析",
+        "essenceRecognizer": "基质识别工具",
+        "returnofall": "RETURNOFALL",
+        "allfield": "ALLFIELD",
+        "endfieldgift": "ENDFIELDGIFT",
+        "endfield4pc": "ENDFIELD4PC",
+        "tdd202601": "TDD202601",
+        "arknightstd": "ARKNIGHTS-TD",
+        "hiddengem01": "HIDDEN-GEM-01",
+        "zmd202601": "ZMD202601",
+        "arknightstdd": "ARKNIGHTS-TDD",
+        "bilibili": "Bilibili",
+        "qq": "QQ",
+        "douyin": "抖音",
+        "skland": "森空岛",
+        "frontendRepo": "前端仓库",
+        "devGroup": "开发群"
       },
       "cards": {
+        "launchRedemptionCodes": {
+          "title": "开服兑换码",
+          "tag": "官方",
+          "description": "点击下方按钮复制兑换码，在游戏内兑换奖励。"
+        },
         "officialWebsite": {
           "title": "《明日方舟：终末地》官网",
           "tag": "官方",
@@ -82,7 +117,7 @@
           "tag": "官方",
           "linkText": "查询返还",
           "linkIcon": "mdi-open-in-new",
-          "description": "三测期间充值的玩家可根据充值金额获得返还奖励。请使用官网提供的查询工具查询您的充值返还情况。"
+          "description": "三测玩家可根据充值金额获得返还奖励，可查询您的充值返还情况。"
         },
         "prepOrders": {
           "title": "预抽卡活动",
@@ -103,7 +138,7 @@
           "tag": "一图流托管",
           "linkText": "量化计算器",
           "linkIcon": "mdi-web",
-          "description": "终末地工业的规划利器。输入目标即可生成从资源到成品的全链条生产方案，让基地扩建精准高效。"
+          "description": "工业系统规划利器。一键生成从资源到成品的全链条生产方案，让基地扩建精准高效。"
         },
         "opendfieldmap": {
           "title": "终末地大地图",
@@ -118,6 +153,27 @@
           "linkText": "拼图解谜工具",
           "linkIcon": "mdi-web",
           "description": "拼图解谜工具，机器人的好帮手！"
+        },
+        "endfieldMaterialProfit": {
+          "title": "终末地一图流-材料收益",
+          "tag": "一图流",
+          "linkText": "材料收益",
+          "linkIcon": "mdi-chart-bar",
+          "description": "提供商店性价比、礼包性价比和物品价值表，帮助玩家做出最优决策。"
+        },
+        "endfieldTools": {
+          "title": "终末地一图流-工具箱",
+          "tag": "一图流",
+          "linkText": "工具箱",
+          "linkIcon": "mdi-toolbox",
+          "description": "包含攒抽计算器、基质计算器和抽卡分析等实用工具。"
+        },
+        "endfieldResources": {
+          "title": "终末地一图流-资源下载",
+          "tag": "一图流",
+          "linkText": "资源下载",
+          "linkIcon": "mdi-download",
+          "description": "提供基质识别工具等资源下载。"
         },
         "endfieldprtschat": {
           "title": "终末地剧情检索工具",
@@ -139,6 +195,11 @@
           "linkText": "企鹅物流数据统计",
           "linkIcon": "mdi-web",
           "description": "企鹅物流数据统计是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。"
+        },
+        "followUs": {
+          "title": "关注我们",
+          "tag": "其他",
+          "description": "关注我们的社交媒体账号，获取最新动态和资讯。"
         },
         "contribute": {
           "title": "参与开发",
@@ -230,8 +291,8 @@
   },
   "page": {
     "home": {
-      "welcome": "欢迎来到终末地一图流数据展示站点。",
-      "hint": "请从左侧菜单选择要查看的内容。"
+      "welcome": "欢迎来到终末地一图流",
+      "hint": "请选择要查看的内容"
     },
     "contributors": {
       "title": "贡献者 / 参与者",

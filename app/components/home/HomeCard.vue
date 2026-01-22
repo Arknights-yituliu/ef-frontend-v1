@@ -113,8 +113,8 @@ const copyToClipboard = async (text: string, successMessage: string) => {
           </span>
         </div>
       </div>
-      <!-- 标题栏右侧小按钮 -->
-      <div class="home-card-header-actions">
+      <!-- 标题栏右侧小按钮 - 暂时注释 -->
+      <!-- <div class="home-card-header-actions">
         <v-btn
           icon="mdi-close"
           size="x-small"
@@ -131,7 +131,7 @@ const copyToClipboard = async (text: string, successMessage: string) => {
           variant="text"
           density="comfortable"
         />
-      </div>
+      </div> -->
     </div>
     <div class="home-card-content">
       <div v-if="cardData.image" class="home-card-image-wrapper">
@@ -150,12 +150,12 @@ const copyToClipboard = async (text: string, successMessage: string) => {
       "
       class="home-card-buttons"
     >
-      <!-- 链接按钮和文本按钮 - 统一使用文字按钮样式 -->
+      <!-- 链接按钮和文本按钮 - 统一使用文字按钮样式，黑色 -->
       <v-btn
         v-for="button in cardData.linkButtons"
         :key="button.i18nKey"
         :text="t(`component.home.${button.i18nKey}`)"
-        :color="cardData.primaryTagColor"
+        color="black"
         :prepend-icon="button.icon"
         size="small"
         variant="text"
@@ -166,7 +166,7 @@ const copyToClipboard = async (text: string, successMessage: string) => {
         v-for="button in cardData.textButtons"
         :key="button.i18nKey"
         :text="t(`component.home.${button.i18nKey}`)"
-        :color="cardData.primaryTagColor"
+        color="black"
         :prepend-icon="button.icon"
         size="small"
         variant="text"
@@ -181,7 +181,6 @@ const copyToClipboard = async (text: string, successMessage: string) => {
         :color="button.color || 'primary'"
         :prepend-icon="button.icon"
         size="small"
-        rounded="lg"
         class="card-button"
         :style="{ borderLeft: `3px solid ${cardData.primaryTagColor}` }"
         @click="handleCardButtonClick(button)"
@@ -346,22 +345,40 @@ const copyToClipboard = async (text: string, successMessage: string) => {
   font-size: var(--font-size-sm);
 }
 
-/* 卡片内按钮区域 - 背景与标题区相同 */
+/* 卡片内按钮区域 - 白灰色背景 */
 .home-card-buttons {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.375rem;
   padding: 0.75rem 1rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(245, 245, 245, 0.95);
   min-height: 48px;
   justify-content: flex-end;
   flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-card-buttons::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/svg/map-bg.svg');
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* 主按钮 - 保持原样式 */
 .card-button {
   min-width: 80px;
-  max-width: 180px;
+  max-width: 216px;
   height: 36px;
   font-size: 0.875rem;
   flex-shrink: 0;
@@ -374,7 +391,7 @@ const copyToClipboard = async (text: string, successMessage: string) => {
   max-width: 160px;
   height: 32px;
   font-size: 0.8125rem;
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .card-button-text:hover {

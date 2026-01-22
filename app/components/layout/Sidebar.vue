@@ -2,49 +2,7 @@
   <aside class="sidebar">
     <!-- Logo 区域 -->
     <div class="logo-area" @click="navigateToHome">
-      <svg
-        class="logo-svg"
-        fill="none"
-        height="32.25199890136719"
-        viewBox="0 0 46.20566463470459 32.25199890136719"
-        width="46.20566463470459"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect fill="rgba(249, 249, 249, 1)" height="0" width="0" x="0" y="0" />
-        <g>
-          <path
-            d="M14.4413 32.252L32.1293 32.252L32.1293 28.908L25.6613 28.908L25.6613 0L22.5813 0C20.8213 1.012 18.7533 1.76 15.8933 2.288L15.8933 4.84L21.6573 4.84L21.6573 28.908L14.4413 28.908L14.4413 32.252Z"
-            fill="currentColor"
-          />
-        </g>
-        <ellipse
-          cx="22.978261089520018"
-          cy="24.629596248131953"
-          rx="23.408917522625487"
-          ry="4.41759826229211"
-          stroke="currentColor"
-          stroke-width="2"
-          transform="rotate(-19.614696980142693 -0.43065643310546875 20.211997985839844)"
-        />
-        <circle cx="37.06934356689453" cy="15.711997985839844" fill="currentColor" r="3.5" />
-        <ellipse
-          cx="37.51921338448104"
-          cy="13.823112653989034"
-          rx="7.999996847005453"
-          ry="1.383430647153096"
-          stroke="currentColor"
-          stroke-width="1"
-          transform="rotate(12.416193091380716 29.519216537475586 12.439682006835938)"
-        />
-        <path
-          d="M8.56934 8.712L6.7411 8.04025L6.06934 6.212L5.39759 8.04025L3.56934 8.712L5.39759 9.38375L6.06934 11.212L6.7411 9.38375L8.56934 8.712Z"
-          fill="currentColor"
-        />
-        <path
-          d="M41.5693 25.712L39.7411 25.0402L39.0693 23.212L38.3976 25.0402L36.5693 25.712L38.3976 26.3837L39.0693 28.212L39.7411 26.3837L41.5693 25.712Z"
-          fill="currentColor"
-        />
-      </svg>
+      <img class="logo-img" src="/android-chrome-512x512.png" alt="Logo" />
       <div class="logo-text">{{ $t('layout.siteName') }}</div>
     </div>
 
@@ -59,7 +17,7 @@
       <!-- 菜单组 -->
       <div v-for="(primaryItem, primaryIndex) in menuItems" :key="primaryIndex" class="menu-group">
         <!-- 小标题 -->
-        <div class="section-header" :style="{ color: getSectionColor(primaryItem.i18nKey) }">
+        <div class="section-header">
           <!-- isDocs 标识图标 -->
           <v-icon v-if="primaryItem.isDocs" class="docs-indicator-icon" size="16">
             mdi-book
@@ -158,12 +116,20 @@ const router = useRouter();
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes as PrimaryMenuItem[];
 
-// 定义主题颜色映射
+// 定义 CMYK 四色
+const cmykColors = {
+  cyan: '#00FFFF',   // 青色 (Cyan)
+  magenta: '#FF00FF', // 洋红色 (Magenta)
+  yellow: '#FFFF00',  // 黄色 (Yellow)
+  key: '#000000',    // 黑色 (Key)
+};
+
+// 定义section到CMYK颜色的映射
 const sectionColors = {
-  materialProfit: '#3B82F6', // 蓝色 - 材料收益
-  tools: '#8B5CF6', // 紫色 - 一图流工具箱
-  resources: '#F59E0B', // 黄色 - 资源下载
-  others: '#6B7280', // 灰色 - 其它（包括开发指南、功能操作指南）
+  materialProfit: cmykColors.cyan,    // 青色 - 材料收益
+  tools: cmykColors.magenta,        // 洋红色 - 一图流工具箱
+  resources: cmykColors.yellow,        // 黄色 - 资源下载
+  others: cmykColors.key,             // 黑色 - 其它（包括开发指南、功能操作指南）
 };
 
 // 获取section对应的颜色
@@ -171,7 +137,7 @@ const getSectionColor = (i18nKey: string) => {
   if (sectionColors[i18nKey as keyof typeof sectionColors]) {
     return sectionColors[i18nKey as keyof typeof sectionColors];
   }
-  return sectionColors.others; // 默认返回灰色
+  return cmykColors.key; // 默认返回黑色
 };
 
 // 点击 Logo 跳转到首页
@@ -402,12 +368,12 @@ onUnmounted(() => {
   opacity: 1;
 }
 
-.logo-svg {
+.logo-img {
   position: relative;
   width: 5rem;
   height: 5rem;
-  color: var(--logo-color);
-  transition: color var(--transition-base);
+  object-fit: contain;
+  transition: transform var(--transition-base);
   z-index: 1;
 }
 
@@ -452,12 +418,12 @@ onUnmounted(() => {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 2rem;
+  min-height: 2.5rem;
   padding: 0 1rem;
-  background-color: var(--theme-bg-secondary);
+  background-color: rgba(0, 0, 0, 0.3);
   font-size: calc(var(--font-size-sm) * 0.8);
   font-weight: 600;
-  color: var(--theme-text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -513,9 +479,8 @@ onUnmounted(() => {
     background-color var(--transition-base);
 }
 
-/* 激活状态时装饰条宽度加倍并加粗阴影 */
+/* 激活状态时装饰条加粗阴影 */
 .secondary-item.active .item-decoration-bar {
-  width: 0.5rem;
   box-shadow: 0 0 0.5rem var(--item-color);
 }
 
@@ -588,10 +553,10 @@ onUnmounted(() => {
   background: linear-gradient(
     to right,
     transparent 0%,
-    var(--theme-accent-color) 20%,
-    var(--theme-accent-color) 80%,
+    rgba(128, 128, 128, 0.5) 20%,
+    rgba(128, 128, 128, 0.5) 80%,
     transparent 100%
   );
-  opacity: 0.3;
+  opacity: 0.5;
 }
 </style>

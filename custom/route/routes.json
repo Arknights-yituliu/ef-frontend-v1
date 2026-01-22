@@ -42,10 +42,10 @@
         "vuetifyIcon": "mdi-pokeball"
       },
       {
-      "i18nKey": "gachaAnalysis",
-      "nameKey": "menu.gachaAnalysis",
-      "routePath": "/tools/gacha-analysis",
-      "vuetifyIcon": "mdi-chart-bar"
+        "i18nKey": "gachaAnalysis",
+        "nameKey": "menu.gachaAnalysis",
+        "routePath": "/tools/gacha-analysis",
+        "vuetifyIcon": "mdi-chart-bar"
       }
     ]
   },
@@ -92,20 +92,6 @@
         "routePath": "/introduction/project-structure",
         "vuetifyIcon": "mdi-file-tree",
         "isDocs": true
-      }
-    ]
-  },
-  {
-    "i18nKey": "operations",
-    "nameKey": "menu.operations",
-    "vuetifyIcon": "mdi-cog",
-    "isDocs": true,
-    "children": [
-      {
-        "i18nKey": "infrastructureLayoutGuide",
-        "nameKey": "menu.infrastructureLayoutGuide",
-        "routePath": "/operations/infrastructure-layout-guide",
-        "vuetifyIcon": "mdi-view-grid"
       }
     ]
   }

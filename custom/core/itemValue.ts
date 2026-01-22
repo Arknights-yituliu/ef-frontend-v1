@@ -144,6 +144,11 @@ export const itemValueMap: ItemValueMap = {
   },
 
   // 武器基质
+  wpn_sword_0021: {
+    itemId: 'wpn_sword_0021',
+    itemName: '宏愿',
+    value: (112 / 81) * 2480, // 宏愿的价值等于 2480 武器配额
+  },
   item_gem_rarity_5: {
     itemId: 'item_gem_rarity_5',
     itemName: '无瑕基质',
@@ -169,6 +174,16 @@ export const itemValueMap: ItemValueMap = {
   item_ticketgacha_special_ten_lt_1_0_1: {
     itemId: 'item_ticketgacha_special_ten_lt_1_0_1',
     itemName: '行火留烬十连凭证',
+    value: (40 / 75) * 500 * 10,
+  },
+  item_ticketgacha_special_ten_lt_1_0_2: {
+    itemId: 'item_ticketgacha_special_ten_lt_1_0_2',
+    itemName: '异彩斑斓十连凭证',
+    value: (40 / 75) * 500 * 10,
+  },
+  item_ticketgacha_special_ten_lt_1_0_3: {
+    itemId: 'item_ticketgacha_special_ten_lt_1_0_3',
+    itemName: '灵动信使十连凭证',
     value: (40 / 75) * 500 * 10,
   },
 
