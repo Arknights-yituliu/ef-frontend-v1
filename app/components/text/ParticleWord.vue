@@ -139,7 +139,7 @@ class ParticleCanvas {
     tempCanvas.height = CANVAS_HEIGHT;
 
     // 设置文本属性
-    tempCtx.font = 'bold 100px Arial, sans-serif';
+    tempCtx.font = 'bold 72px Arial, sans-serif';
     tempCtx.textAlign = 'center';
     tempCtx.textBaseline = 'middle';
 
