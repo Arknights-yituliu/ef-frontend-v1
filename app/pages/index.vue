@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <h1 class="welcome-title">{{ t('page.home.welcome') }}</h1>
+    <TextParticleWord :text="t('page.home.welcome')"></TextParticleWord>
     <p class="page-description">{{ t('page.home.hint') }}</p>
 
     <!-- 卡片组容器 -->
