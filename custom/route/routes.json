@@ -94,5 +94,25 @@
         "isDocs": true
       }
     ]
+  },
+  {
+    "i18nKey": "operations",
+    "nameKey": "menu.operations",
+    "vuetifyIcon": "mdi-cog",
+    "isDocs": true,
+    "children": [
+      {
+        "i18nKey": "infrastructureLayoutGuide",
+        "nameKey": "menu.infrastructureLayoutGuide",
+        "routePath": "/operations/infrastructure-layout-guide",
+        "vuetifyIcon": "mdi-view-grid"
+      },
+      {
+        "i18nKey": "how2getgachadurl",
+        "nameKey": "menu.how2getgachadurl",
+        "routePath": "/operations/how2get-gacha-url-en",
+        "vuetifyIcon": "mdi-link"
+      }
+    ]
   }
 ]

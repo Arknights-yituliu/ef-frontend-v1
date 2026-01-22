@@ -1,0 +1,800 @@
+.collect-form {
+    max-width: 500px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 40px 24px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+
+/* 表单组容器 */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #86868b;
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background-color: #f5f5f7;
+  font-size: 16px;
+  color: #1d1d1f;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background-color: #f5f5f7;
+  font-size: 16px;
+  color: #1d1d1f;
+  box-sizing: border-box;
+  resize: none; /* 禁止拉伸 */
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0071e3; 
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+}
+
+.form-group input:disabled,
+.form-group textarea:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: #f8f8fa;
+}
+
+.help-text {
+  margin: 8px 0 0 2px;
+  font-size: 13px;
+  color: #0071e3;
+}
+
+.help-text a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative; 
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+
+.help-text a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0; 
+  height: 1px;
+  background-color: #0077ed;
+  transition: width 0.3s ease;
+}
+
+.help-text a:hover {
+  color: #0077ed;
+}
+
+.help-text a:hover::after {
+  width: 100%;
+}
+
+.error-text {
+  color: #ff3b30;
+  font-size: 14px;
+  text-align: center;
+  margin: -8px 0 20px 0;
+  min-height: 20px;
+}
+.submit-btn {
+  width: 100%;
+  padding: 14px 0;
+  background: linear-gradient(180deg, #0071e3 0%, #0066cc 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px; 
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.submit-btn:not(:disabled):hover {
+  background: linear-gradient(180deg, #0077ed 0%, #0066cc 100%);
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
+}
+
+.submit-btn:not(:disabled):hover::before {
+  opacity: 1;
+}
+
+.submit-btn:not(:disabled):active {
+  transform: translateY(0) scale(0.995);
+  box-shadow: 0 2px 6px rgba(0, 113, 227, 0.15);
+}
+
+.submit-btn:disabled {
+  background: #dcdce0;
+  color: #86868b;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.submit-btn:disabled::before {
+  opacity: 0;
+}
+
+@media (max-width: 480px) {
+  .collect-form {
+    padding: 32px 16px;
+  }
+  
+  .page-title {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+  
+  .submit-btn {
+    padding: 12px 0;
+    font-size: 15px;
+  }
+}
+
+/* 分析页面 */
+.gacha-overview {
+  padding: 16px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+
+.gacha-overview-left {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.8); 
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.gacha-overview-right {
+  flex: 1;
+}
+
+/* 用户名片样式 */
+.user-card {
+    padding: 20px;
+    width: 320px;
+
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.user-avatar {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  text-align: center;
+}
+
+.user-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.user-uid {
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+}
+
+.user-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+  justify-content: center;
+}
+
+.gacha-tag {
+  padding: 4px 12px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.gacha-tag--lucky {
+  background: linear-gradient(135deg, #4ccdf5, #79fff5);
+}
+
+.gacha-tag--normal {
+  background: linear-gradient(135deg, #FFF132, #fdfa80);
+  color: #333;
+}
+
+.gacha-tag--unlucky {
+  background: linear-gradient(135deg, #fb8238, #fdc675);
+}
+
+.gacha-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.no-tags {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  padding: 4px 12px;
+}
+
+.user-stats-basic {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.user-stats-basic .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.user-stats-basic .stat-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.user-stats-basic .stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.stat-block {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+
+.pool-cards {
+  display: grid;
+  padding: 16px;
+  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px; 
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+
+.pool-card {
+  border-radius: 12px;
+  padding: 16px 12px; 
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.6); 
+  display: flex;
+  flex-direction: column;
+  height: 140px; 
+}
+
+.pool-card:hover {
+  transform: translateY(-1px); 
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09); 
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.pool-card-header {
+  margin-bottom: 8px;
+}
+.pool-card-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.pool-card-core {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.total-gacha-count {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+}
+.core-label {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto; 
+}
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+.label {
+  color: #6b7280;
+  font-weight: 400;
+}
+.value {
+  font-weight: 600;
+  color: #374151;
+}
+
+.pool-card--limited {
+  border-left: 5px solid #FFF132; 
+}
+.pool-card--permanent {
+  border-left: 5px solid #3b95f6;
+}
+.pool-card--weapon {
+  border-left: 5px solid #8b5cf6;
+}
+
+.gacha-dashboard{
+  margin-top: 10px;
+  padding: 16px;
+  max-width: 1500px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px; 
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.custom-gacha-list{
+    border-bottom: 2px solid #eee
+}
+.custom-gacha-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.character-name,
+.pull-count {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pool-selector {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  max-width: 900px;
+  gap: 8px; 
+  margin-bottom: 16px; 
+  padding: 0 2px;
+}
+
+.pool-selector__btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 8px 16px !important;
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: rgba(255, 255, 255, 0.6) !important; 
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+
+}
+
+.pool-selector__btn:not(.pool-selector__btn--active):nth-child(1) {
+  color: #f9d120 !important; 
+}
+.pool-selector__btn:not(.pool-selector__btn--active):nth-child(2) {
+  color: #1e88e5 !important;
+}
+.pool-selector__btn:not(.pool-selector__btn--active):nth-child(3) {
+  color: #8e24aa !important;
+}
+
+.pool-selector__btn--active {
+  color: white !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+.pool-selector__btn--active:nth-child(1) {
+  background-color: #FFF132 !important; /* 限定池-金黄 */
+  color: black !important;
+}
+.pool-selector__btn--active:nth-child(2) {
+  background-color: #1e88e5 !important; /* 常驻池-天蓝 */
+}
+.pool-selector__btn--active:nth-child(3) {
+  background-color: #8e24aa !important; /* 武器池-深紫 */
+}
+
+.pool-selector__btn:hover:not(.pool-selector__btn--active) {
+  background-color: rgba(245, 245, 247, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-1px);
+}
+
+
+.gacha-bar-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 28px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  overflow: visible; 
+}
+
+
+.gacha-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden; 
+}
+
+.gacha-bar:hover {
+  transform: scaleX(1.02); 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+  border-radius: 6px;
+}
+
+
+.gacha-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gacha-bar:hover::after {
+  opacity: 1;
+}
+
+.gacha-bar.gacha-lucky {
+  background: 
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2) 4px,
+      rgba(255, 255, 255, 0.1) 4px,
+      rgba(255, 255, 255, 0.1) 8px
+    ),
+    #7ee1ff;
+}
+.gacha-bar.gacha-normal {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 102, 0.8),
+      rgba(255, 255, 102, 0.8) 4px,
+      rgba(255, 255, 102, 0.4) 4px,
+      rgba(255, 255, 102, 0.4) 8px
+    ),
+    #FFF132;
+}
+
+.gacha-bar.gacha-unlucky {
+  background: 
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15) 4px,
+      rgba(255, 255, 255, 0.05) 4px,
+      rgba(255, 255, 255, 0.05) 8px
+    ),
+    #fb8238;
+}
+
+.gacha-bar.gacha-unlucky:hover {
+  background: 
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2) 4px,
+      rgba(255, 255, 255, 0.1) 4px,
+      rgba(255, 255, 255, 0.1) 8px
+    ),
+    #f86a14;
+}
+
+.gacha-bar.gacha-on-banner {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2), 
+      rgba(255, 255, 255, 0.2) 4px,
+      rgba(255, 255, 255, 0.1) 4px,
+      rgba(255, 255, 255, 0.1) 8px
+    ),
+    linear-gradient(
+      90deg,
+      #3bc4e8,
+      #68f0e8,  
+      #82ffae, 
+      #fef060,  
+      #fdb852,   
+      #f75e00  
+    );
+}
+
+
+
+
+.off-label {
+  margin-left: 8px;
+  height: 80%;
+  font-size: 12px;
+  font-weight: bold;
+  color: #e74c3c;
+  background: #f9d5d5;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.lucky-label {
+  margin-left: 8px;
+  height: 80%;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  background: rgb(253, 250, 38);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+
+
+@media (max-width: 768px) {
+  .gacha-overview {
+    padding: 8px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .gacha-overview-left {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .user-card {
+    padding: 16px 12px;
+    display: flex;
+    gap: 12px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 380px; 
+  }
+
+  .avatar-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .user-name {
+    font-size: 1.1rem;
+  }
+
+  .user-stats-basic {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .pool-cards {
+    grid-template-columns: 1fr; 
+  }
+
+  .pool-card {
+    height: 150px;
+  }
+
+  /* 卡池分布/角色TOP3 优化 */
+  .d-flex.flex-wrap {
+    gap: 4px !important;
+  }
+
+  .v-chip {
+    font-size: 0.75rem !important;
+    padding: 4px 8px !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* 抽卡标签适配 */
+  .user-tags {
+    gap: 6px;
+  }
+
+  .gacha-tag {
+    padding: 3px 10px;
+    font-size: 0.8rem;
+  }
+
+  /* 按钮适配 */
+  .pool-selector {
+    width: 100%;
+    flex-direction: column; /* 移动端按钮竖排 */
+    gap: 6px;
+  }
+
+  .pool-selector__btn {
+    width: 100%;
+    min-width: unset;
+    padding: 6px 12px !important;
+  }
+
+  /* 进度条适配 */
+  .gacha-bar-container {
+    height: 24px;
+  }
+
+  .off-label, .lucky-label {
+    font-size: 10px;
+    padding: 1px 4px;
+    margin-left: 4px;
+  }
+}
+
+.gacha-overview-right {
+  min-width: 0;
+}
+
+.pool-name, .character-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.action-buttons-container{
+    display: flex;
+    justify-content: end;
+}
+.action-buttons {
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.update-btn {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.clear-btn {
+  background-color: #ff6b6b;
+  color: white;
+}
