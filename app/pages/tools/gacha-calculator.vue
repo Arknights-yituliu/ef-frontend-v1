@@ -45,11 +45,10 @@ const leftPartPanel = ref<string[]>(['statisticalResult']);
 const rightPartPanel = ref<string[]>([
   'existing',
   'daily',
-  'task',
+  'regionalDevelopment',
   'level',
   'activity',
-  'permanent',
-  'regionalDevelopment',
+  'task',
 ]);
 const currentVersionRemainingTime = ref<CurrentVersionRemainingTime>({
   day: 0,
@@ -226,6 +225,22 @@ watch(wulingRegionalStockBillStoreReward,
   }, { deep: true });
 
 watch(authorityLevelTaskRewards,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active);
+    }
+    gachaResourceStatistics();
+  }, { deep: true });
+
+watch(taskRewardTable,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active);
+    }
+    gachaResourceStatistics();
+  }, { deep: true });
+
+watch(etchSpaceSalvageReward,
   (newValue) => {
     for (const item of newValue) {
       saveUserConfig(item.id, item.active);
@@ -651,10 +666,12 @@ const gachaResourceStatistics = (): void => {
   function _addReward(result: ResourceStatisticsResultDetail, reward: Reward | Reward[]): void {
     if (Array.isArray(reward)) {
       for (let item of reward) {
-        result.originiumRecharge += item.content.originiumRecharge;
-        result.diamond += item.content.diamond;
-        result.ticketgachaStandardSingle += item.content.ticketgachaStandardSingle;
-        result.ticketgachaSpecialSingle += item.content.ticketgachaSpecialSingle;
+        if (item.active) {
+          result.originiumRecharge += item.content.originiumRecharge;
+          result.diamond += item.content.diamond;
+          result.ticketgachaStandardSingle += item.content.ticketgachaStandardSingle;
+          result.ticketgachaSpecialSingle += item.content.ticketgachaSpecialSingle;
+        }
       }
     } else {
       result.originiumRecharge += reward.content.originiumRecharge;
@@ -1002,47 +1019,6 @@ onMounted(() => {
               </GachaCalculatorResourceSingle>
             </v-expansion-panel-text>
           </v-expansion-panel>
-          <v-expansion-panel value="activity">
-            <v-expansion-panel-title>
-              <div class="gacha-calculator-card-title">
-                活动奖励 {{ gachaResourceStatisticsResult.totalPulls.dailyResources }}
-                {{ t('page.tools.gachaCalculator.pulls') }}
-              </div>
-            </v-expansion-panel-title>
-            <v-divider />
-            <v-expansion-panel-text>
-              <GachaCalculatorResourceSingleBtn
-                v-bind="preRegistrationMilestoneReward"
-                @click="
-                  preRegistrationMilestoneReward.active = !preRegistrationMilestoneReward.active
-                "
-              />
-              <v-divider style="margin: 1rem 0"></v-divider>
-              <v-card>
-                <v-card-text>
-                  <GachaCalculatorResourceSingle
-                    v-bind="beginnerSignInTaskReward"
-                    @click="beginnerSignInTaskReward.active = !beginnerSignInTaskReward.active"
-                  />
-                  <div style="height: 36px"></div>
-                  <v-range-slider
-                    v-model="beginnerCheckInTaskProgress"
-                    show-ticks="always"
-                    step="1"
-                    max="14"
-                    tick-size="4"
-                    thumb-label="always"
-                    hide-details="auto"
-                    strict
-                    class="v-range-slider"
-                  >
-                  </v-range-slider>
-                  刻度在1表示第一日签到已完成，不再加入第一日
-                </v-card-text>
-              </v-card>
-
-            </v-expansion-panel-text>
-          </v-expansion-panel>
           <v-expansion-panel value="regionalDevelopment">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
@@ -1274,6 +1250,48 @@ onMounted(() => {
             </v-expansion-panel-text>
           </v-expansion-panel>
 
+          <v-expansion-panel value="activity">
+            <v-expansion-panel-title>
+              <div class="gacha-calculator-card-title">
+                活动奖励 {{ gachaResourceStatisticsResult.totalPulls.dailyResources }}
+                {{ t('page.tools.gachaCalculator.pulls') }}
+              </div>
+            </v-expansion-panel-title>
+            <v-divider />
+            <v-expansion-panel-text>
+              <GachaCalculatorResourceSingleBtn
+                v-bind="preRegistrationMilestoneReward"
+                @click="
+                  preRegistrationMilestoneReward.active = !preRegistrationMilestoneReward.active
+                "
+              />
+              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle
+                    v-bind="beginnerSignInTaskReward"
+                    @click="beginnerSignInTaskReward.active = !beginnerSignInTaskReward.active"
+                  />
+                  <div style="height: 36px"></div>
+                  <v-range-slider
+                    v-model="beginnerCheckInTaskProgress"
+                    show-ticks="always"
+                    step="1"
+                    max="14"
+                    tick-size="4"
+                    thumb-label="always"
+                    hide-details="auto"
+                    strict
+                    class="v-range-slider"
+                  >
+                  </v-range-slider>
+                  刻度在1表示第一日签到已完成，不再加入第一日
+                </v-card-text>
+              </v-card>
+
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
           <v-expansion-panel value="task">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
@@ -1347,19 +1365,25 @@ onMounted(() => {
   flex-wrap: wrap;
   justify-content: space-between;
   max-width: 1280px;
+  min-height: calc(100vh - 200px);
+  position: relative;
 }
 
 .gacha-calculator-container-left {
-  width: 600px;
-  margin: 1%;
-  position: sticky;
-  top: 60px;
-  height: 800px;
+  width: 48%;
+  position: fixed;
+  top: 80px;
+  left: calc(50% - 640px);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 20px;
+  width: 614px;
+  z-index: 10;
 }
 
 .gacha-calculator-container-right {
-  width: 600px;
-  margin: 1%;
+  width: 48%;
+  margin-left: 52%;
 }
 
 .gacha-calculator-card-title {

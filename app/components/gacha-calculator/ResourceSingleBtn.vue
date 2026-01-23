@@ -17,7 +17,11 @@ function getImageUrl(itemId: string): string {
 </script>
 
 <template>
-  <v-btn class="gacha-calculator-resource-single-btn" :active="props.active">
+  <v-btn 
+    class="gacha-calculator-resource-single-btn" 
+    :class="{ 'btn-active': props.active }"
+    :active="props.active"
+  >
     <div class="gacha-calculator-resource-single">
       <div class="gacha-calculator-resource-single-title">
         {{ props.name.zh }}
@@ -44,6 +48,16 @@ function getImageUrl(itemId: string): string {
 .gacha-calculator-resource-single-btn {
   margin: 4px 0px;
   width: 100%;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.gacha-calculator-resource-single-btn.btn-active {
+  border-bottom: 3px solid #FFD700 !important;
+}
+
+.gacha-calculator-resource-single-btn:deep([aria-pressed="true"]) {
+  border-bottom: 3px solid #FFD700 !important;
 }
 
 .gacha-calculator-resource-single {
