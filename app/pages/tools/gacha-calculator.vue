@@ -867,6 +867,9 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <div class="gacha-calculator-statistical-result">
+                <div class="gacha-calculator-warning">
+                  攒抽计算器尚在测试中，目前可能bug较多，结果仅供参考，切勿轻信本站！
+                </div>
                 <div
                   id="gacha-calculator-pie-chart"
                   ref="gacha-calculator-pie-chart"
@@ -1434,5 +1437,16 @@ onMounted(() => {
   .v-slider-thumb__label {
     width: 100px;
   }
+}
+
+.gacha-calculator-warning {
+  background-color: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  color: #856404;
+  font-weight: 600;
+  text-align: center;
 }
 </style>
