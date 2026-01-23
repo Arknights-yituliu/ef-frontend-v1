@@ -290,7 +290,6 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue';
-// import data from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 
 const viewMode = ref<'collect' | 'analyze'>('collect');
@@ -414,7 +413,32 @@ function saveRecordsToCache(uid: string, records: GachaRecord[]) {
 }
 
 // ========== 提交并验证（含缓存合并）==========
+// 调试数据
+import debugGachaData from '@/custom/core/gacha-analysis-example.json';
+
+// 调试开关
+const USE_DEBUG_DATA = true;
+
 async function submitAndVerify() {
+  // ===== 调试数据逻辑 =====
+  if (USE_DEBUG_DATA) {
+    console.log('【调试模式】使用示例数据进行分析');
+    try {
+      const mergedRecords: GachaRecord[] = debugGachaData.data;
+      
+      saveRecordsToCache('debug_uid', mergedRecords); 
+      records.value = mergedRecords;
+      processGachaData(mergedRecords);
+      viewMode.value = 'analyze';
+      collectError.value = '';
+      return;
+    } catch (err: any) {
+      console.error('调试数据处理失败:', err);
+      collectError.value = '调试数据加载失败：' + err.message;
+      return;
+    }
+  }
+  // ===== 用户输入逻辑 =====
   const uid = inputUid.value.trim();
   const url = inputUrl.value.trim();
 
@@ -482,7 +506,7 @@ async function submitAndVerify() {
       throw new Error('未找到任何抽卡记录，请确认链接有效且包含数据');
     }
 
-    // ✅ Step 4: 加载缓存并合并（按 seqId 去重）
+    // Step 4: 加载缓存并合并（按 seqId 去重）
     const cachedRecords = loadCachedRecords(uid);
 
     const recordMap = new Map<string, GachaRecord>();
@@ -498,10 +522,10 @@ async function submitAndVerify() {
     const mergedRecords = Array.from(recordMap.values())
       .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-    // ✅ Step 5: 保存合并后的数据到缓存
+    // Step 5: 保存合并后的数据到缓存
     saveRecordsToCache(uid, mergedRecords);
 
-    // ✅ Step 6: 更新响应式状态
+    // Step 6: 更新响应式状态
     records.value = mergedRecords;
     processGachaData(mergedRecords);
     viewMode.value = 'analyze';
