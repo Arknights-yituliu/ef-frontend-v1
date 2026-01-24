@@ -199,7 +199,7 @@
           </div>
         </div>
 
-        <div v-for="(segment, idx) in filteredConsecutiveGroups" v-else :key="idx" class="mb-8">
+        <div v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
           <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
 
           <div class="custom-gacha-list">
@@ -208,33 +208,56 @@
               style="width: 100%; background-color: #f9fafb; border-radius: 8px; margin: 8px 0; padding: 24px 0; text-align: center;"
             >
               <div style="font-size: 0.9rem; color: #9ca3af;">
-                {{ $t('该卡池分组暂无抽卡记录') }}
+                {{  $t('该卡池分组暂无抽卡记录') }}
               </div>
             </div>
 
             <div v-else>
               <div
                 v-for="(record, index) in segment.records"
-                :key="`${idx}-${index}`"
+                :key="` $ {idx}- $ {index}`"
                 class="custom-gacha-item mb-2"
                 :class="{ 'on-banner': isOnBanner(record) }"
+                @click="toggleExpand(record.seqId)"
+                style="cursor: pointer;"
               >
                 <div class="character-name font-weight-bold" style="width: 80px;">
                   {{ record.character }}
                 </div>
-                <div class="gacha-bar-container">
-                  <div
-                    class="gacha-bar"
-                    :class="getBarType(record)"
-                    :style="{ width: `${getBarWidth(record.count)}%` }"
-                  >
-                    <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px;">
-                      {{ record.count }} 抽
+
+                <div class="gacha-drawer-container" style="flex: 1;">
+
+                  <div class="gacha-bar-container">
+                    <div
+                      class="gacha-bar"
+                      :class="getBarType(record)"
+                      :style="{ width: ` ${getBarWidth(record.count)}%` }"
+                    >
+                      <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px;">
+                        {{ record.count }} 抽
+                      </div>
+                    </div>
+                    <span v-if="isOffPool(record) && record.count > 60" class="off-label">超非</span>
+                    <span v-if="record.character !== '已垫' && record.count <= 10" class="lucky-label">超欧</span>
+                  </div>
+
+                  <div v-if="expandedSeqId === record.seqId && record.fiveStars && record.fiveStars.length > 0" class="mt-2 ml-4">
+                    <div style="font-size: 0.875rem; color: #555;">
+                      <span
+                        v-for="(char, i) in record.fiveStars"
+                        :key="i"
+                        class="mx-1"
+                        style="background-color: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px;"
+                      >
+                        {{ char }}
+                      </span>
                     </div>
                   </div>
-                  <span v-if="isOffPool(record) && record.count > 60" class="off-label">超非</span>
-                  <span v-if="record.character !== '已垫' && record.count <= 10"  class="lucky-label">超欧</span>
+                  
                 </div>
+
+
+
               </div>
             </div>
           </div>
@@ -956,7 +979,17 @@ const filteredConsecutiveGroups = computed(() => {
 });
 
 
-//若本地有缓存则读取缓存，直接进入分析页面
+const expandedSeqId = ref<string | null>(null);
+
+function toggleExpand(seqId: string) {
+  if (expandedSeqId.value === seqId) {
+    expandedSeqId.value = null; // 收起
+  } else {
+    expandedSeqId.value = seqId; // 展开
+  }
+}
+
+//启动时，若本地有缓存则读取缓存，直接进入分析页面
 onMounted(() => {
   const lastUid = localStorage.getItem(LAST_UID_KEY);
   if (lastUid) {
