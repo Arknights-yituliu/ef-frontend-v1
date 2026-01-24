@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <TextParticleWord :text="t('page.home.welcome')"></TextParticleWord>
+    <TextParticleWord :text="t('page.home.welcome')"/>
     <p class="page-description">{{ t('page.home.hint') }}</p>
 
     <!-- 卡片组容器 -->

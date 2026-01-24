@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <!-- Logo 区域 -->
     <div class="logo-area" @click="navigateToHome">
-      <img class="logo-img" src="/android-chrome-512x512.png" alt="Logo" />
+      <img class="logo-img" src="/android-chrome-512x512.png" alt="Logo" >
       <div class="logo-text">{{ $t('layout.siteName') }}</div>
     </div>
 
@@ -28,7 +28,7 @@
         <!-- 二级菜单 -->
         <div class="secondary-items">
           <NuxtLink
-            v-for="(secondaryItem, secondaryIndex) in primaryItem.children"
+            v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(item => !item.isHidden)"
             :key="secondaryIndex"
             :ref="
               (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)

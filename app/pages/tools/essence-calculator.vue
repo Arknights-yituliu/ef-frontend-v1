@@ -111,7 +111,7 @@
                   :src="getGroupIconUrl(iconId)"
                   :alt="getLocalizedText(groupName)"
                   class="group-icon"
-                />
+                >
                 <h3>{{ getLocalizedText(groupName) }}</h3>
               </div>
               <div class="weapon-grid">

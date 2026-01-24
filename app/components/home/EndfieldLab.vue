@@ -8,7 +8,7 @@
           alt="Endfield Lab Logo"
           class="home-card-title-icon"
           src="https://factory.ef.yituliu.cn/favicon-32x32.png"
-        />
+        >
         <b>{{ $t('component.home.endfieldLab.endfieldLab') }}</b>
       </div>
       <div class="flex-1" />

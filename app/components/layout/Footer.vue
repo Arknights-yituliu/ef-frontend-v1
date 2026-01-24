@@ -42,7 +42,7 @@
         alt="备案图标"
         class="beian-icon"
         @error="handleImageError"
-      />
+      >
       <a
         href="https://beian.miit.gov.cn/"
         target="_blank"

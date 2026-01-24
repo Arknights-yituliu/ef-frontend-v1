@@ -1,6 +1,6 @@
 <template>
   <div ref="itemIconPlaceholderRef" class="item-icon-placeholder">
-    <img :alt="itemName" :src="getItemIconUrl(props.itemId)" class="item-icon-img" />
+    <img :alt="itemName" :src="getItemIconUrl(props.itemId)" class="item-icon-img" >
     <div class="item-gradient-overlay" />
     <div class="item-tier-bar" />
     <div v-if="props.showItemName" ref="itemNameRef" class="item-name">
