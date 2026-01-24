@@ -25,9 +25,7 @@ body {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  background-color: var(--theme-bg-primary);
   color: var(--theme-text-primary);
-  overflow-x: hidden;
   transition:
     background-color var(--transition-base),
     color var(--transition-base);

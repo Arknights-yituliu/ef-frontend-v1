@@ -7,11 +7,6 @@
 <script setup>
 // Import the SVG file
 import mapBg from '~/assets/svg/map-bg.svg?url';
-
-// Import the theme composable
-import { useTheme } from '~/composables/useTheme';
-
-const { theme } = useTheme();
 </script>
 
 <style scoped>

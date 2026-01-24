@@ -1,0 +1,992 @@
+[
+  {
+    "id": "谷地重启",
+    "name": {
+      "zh": "谷地重启",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "重整旗鼓",
+    "name": {
+      "zh": "重整旗鼓",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "西行入谷",
+    "name": {
+      "zh": "西行入谷",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "庇护之所",
+    "name": {
+      "zh": "庇护之所",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "建立据点",
+    "name": {
+      "zh": "建立据点",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 3,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "踏破雾火",
+    "name": {
+      "zh": "踏破雾火",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 3,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "要塞决战",
+    "name": {
+      "zh": "要塞决战",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "开拓前路",
+    "name": {
+      "zh": "开拓前路",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 3,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "准备工作",
+    "name": {
+      "zh": "准备工作",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "修缮进展",
+    "name": {
+      "zh": "修缮进展",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "再次启程",
+    "name": {
+      "zh": "再次启程",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "穿越研究园",
+    "name": {
+      "zh": "穿越研究园",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "推开园门",
+    "name": {
+      "zh": "推开园门",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "园区穿行",
+    "name": {
+      "zh": "园区穿行",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "诡楼寻踪",
+    "name": {
+      "zh": "诡楼寻踪",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "山道下行",
+    "name": {
+      "zh": "山道下行",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "矿脉断章",
+    "name": {
+      "zh": "矿脉断章",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "踏足矿脉",
+    "name": {
+      "zh": "踏足矿脉",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "世代摇篮",
+    "name": {
+      "zh": "世代摇篮",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "临战修整",
+    "name": {
+      "zh": "临战修整",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "初入终局",
+    "name": {
+      "zh": "初入终局",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "酝酿反击",
+    "name": {
+      "zh": "酝酿反击",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "烙铁灼痕",
+    "name": {
+      "zh": "烙铁灼痕",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "驰援采石场",
+    "name": {
+      "zh": "驰援采石场",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "修复大型起重机",
+    "name": {
+      "zh": "修复大型起重机",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "深层管理区救援",
+    "name": {
+      "zh": "深层管理区救援",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "希望与代价·其一",
+    "name": {
+      "zh": "希望与代价·其一",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "无色印记·发现",
+    "name": {
+      "zh": "无色印记·发现",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "职责所在",
+    "name": {
+      "zh": "职责所在",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "爆破救援",
+    "name": {
+      "zh": "爆破救援",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "风雨欲来·矿脉源区",
+    "name": {
+      "zh": "风雨欲来·矿脉源区",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·重启地区物资调度·其一",
+    "name": {
+      "zh": "四号谷地·重启地区物资调度·其一",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "集成管家",
+    "name": {
+      "zh": "集成管家",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "据点建设·难民暂居处·其一",
+    "name": {
+      "zh": "据点建设·难民暂居处·其一",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "据点建设·难民暂居处·其二",
+    "name": {
+      "zh": "据点建设·难民暂居处·其二",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "仓储节点",
+    "name": {
+      "zh": "仓储节点",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "据点建设·基地前站·其一",
+    "name": {
+      "zh": "据点建设·基地前站·其一",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "据点建设·基地前站·其二",
+    "name": {
+      "zh": "据点建设·基地前站·其二",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "生产工业爆炸物",
+    "name": {
+      "zh": "生产工业爆炸物",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "帝江号升级维护·一",
+    "name": {
+      "zh": "帝江号升级维护·一",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "帝江号升级维护·二",
+    "name": {
+      "zh": "帝江号升级维护·二",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "据点防御建设",
+    "name": {
+      "zh": "据点防御建设",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "蚀像寻遗",
+    "name": {
+      "zh": "蚀像寻遗",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "稼穑不易",
+    "name": {
+      "zh": "稼穑不易",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 40,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "环带来客·其一",
+    "name": {
+      "zh": "环带来客·其一",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "紧急救助",
+    "name": {
+      "zh": "紧急救助",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "帮人帮到底",
+    "name": {
+      "zh": "帮人帮到底",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "再访基地",
+    "name": {
+      "zh": "再访基地",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "照常升起",
+    "name": {
+      "zh": "照常升起",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "风雨欲来·枢纽区",
+    "name": {
+      "zh": "风雨欲来·枢纽区",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "漏网之虫",
+    "name": {
+      "zh": "漏网之虫",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "消失的爱人",
+    "name": {
+      "zh": "消失的爱人",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "像差探索计划Ⅰ",
+    "name": {
+      "zh": "像差探索计划Ⅰ",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定2",
+    "name": {
+      "zh": "探索研发·协议稳定2",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容2",
+    "name": {
+      "zh": "探索研发·封装扩容2",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "任务奖励",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }
+]

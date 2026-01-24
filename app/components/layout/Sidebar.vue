@@ -2,14 +2,14 @@
   <aside class="sidebar">
     <!-- Logo 区域 -->
     <div class="logo-area" @click="navigateToHome">
-      <img class="logo-img" src="/android-chrome-512x512.png" alt="Logo" >
+      <img alt="Logo" class="logo-img" src="/android-chrome-512x512.png" >
       <div class="logo-text">{{ $t('layout.siteName') }}</div>
     </div>
 
     <!-- 菜单容器（用于高亮区域的定位） -->
     <nav ref="menuContainerRef" class="menu-container hide-scrollbar">
       <!-- 主页链接 -->
-      <NuxtLink :class="{ active: route.path === '/' }" to="/" class="secondary-item home-link">
+      <NuxtLink :class="{ active: route.path === '/' }" class="secondary-item home-link" to="/">
         <v-icon class="secondary-icon" size="20">mdi-home</v-icon>
         <span class="secondary-text">{{ $t('menu.home') }}</span>
       </NuxtLink>
@@ -34,7 +34,7 @@
               (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
             "
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
-            :style="{ '--item-color': getSectionColor(primaryItem.i18nKey) }"
+            :style="{ '--item-color': getSectionColor(primaryItem.i18nKey),'--current-active-color':currentActiveColor }"
             :to="secondaryItem.routePath"
             class="secondary-item"
             @mouseenter="handleSecondaryHover(secondaryItem.routePath, $event)"
@@ -76,6 +76,8 @@
           transform: `translateY(${secondaryHighlightTop}px)`,
           height: `${secondaryHighlightHeight}px`,
           opacity: secondaryHighlightHeight > 0 ? 1 : 0,
+          backgroundColor: currentActiveColor,
+          boxShadow: `0 0 0.75rem ${currentActiveColor}, 0 0 1.5rem ${currentActiveColor}66`,
         }"
         class="secondary-highlight"
       />
@@ -89,7 +91,7 @@
 </template>
 
 <script lang="ts" setup>
-import { gsap } from 'gsap';
+import {gsap} from 'gsap';
 
 // 菜单项类型
 interface SecondaryMenuItem {
@@ -98,6 +100,7 @@ interface SecondaryMenuItem {
   routePath: string;
   iconPath?: string;
   vuetifyIcon?: string;
+  isHidden?:boolean;
 }
 
 interface PrimaryMenuItem {
@@ -106,6 +109,7 @@ interface PrimaryMenuItem {
   iconPath?: string;
   vuetifyIcon?: string;
   isDocs?: boolean;
+  isHidden?:boolean;
   children: SecondaryMenuItem[];
 }
 
@@ -139,6 +143,21 @@ const getSectionColor = (i18nKey: string) => {
   }
   return cmykColors.key; // 默认返回黑色
 };
+
+// 获取当前激活项对应的颜色
+const currentActiveColor = computed(() => {
+  const activePath = route.path;
+  // 遍历菜单项找到对应的颜色
+  for (const primaryItem of menuItems) {
+    const secondaryItem = primaryItem.children.find(
+      (item) => item.routePath === activePath,
+    );
+    if (secondaryItem) {
+      return getSectionColor(primaryItem.i18nKey);
+    }
+  }
+  return cmykColors.key; // 默认返回黑色
+});
 
 // 点击 Logo 跳转到首页
 const navigateToHome = () => {
@@ -333,7 +352,6 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  background-color: var(--theme-bg-secondary);
 }
 
 /* Logo 区域 */
@@ -345,7 +363,6 @@ onUnmounted(() => {
   align-items: center;
   padding: 1rem 0;
   gap: 1rem;
-  background-color: var(--theme-bg-tertiary);
   border-bottom: 2px solid var(--theme-accent-color);
   cursor: pointer;
   overflow: hidden;
@@ -420,10 +437,10 @@ onUnmounted(() => {
   align-items: center;
   min-height: 2.5rem;
   padding: 0 1rem;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--theme-bg-tertiary);
   font-size: calc(var(--font-size-sm) * 0.8);
+  color:var(--theme-text-primary);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -447,7 +464,6 @@ onUnmounted(() => {
 
 .secondary-items {
   overflow: hidden;
-  background-color: var(--theme-bg-tertiary);
 }
 
 .secondary-item {
@@ -476,13 +492,24 @@ onUnmounted(() => {
   transition:
     width var(--transition-base),
     box-shadow var(--transition-base),
-    background-color var(--transition-base);
+    background-color var(--transition-base),
+    opacity var(--transition-base);
+  opacity: 0.6;
 }
 
-/* 激活状态时装饰条加粗阴影 */
-.secondary-item.active .item-decoration-bar {
-  box-shadow: 0 0 0.5rem var(--item-color);
+/* 左侧发光条（激活时显示） */
+.secondary-item.active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--current-active-color) 0%,
+    transparent 100%
+  );
+  opacity: 0.1;
 }
+
 
 .secondary-item::before {
   content: '';
@@ -506,8 +533,11 @@ onUnmounted(() => {
 }
 
 .secondary-item.active {
-  background-color: var(--theme-bg-tertiary);
   color: var(--theme-text-primary);
+  font-weight: 600;
+  box-shadow:
+    inset 0 0 0.5rem rgba(0, 255, 255, 0.1),
+    inset 1px 0 0 rgba(0, 255, 255, 0.2);
 }
 
 .secondary-icon {

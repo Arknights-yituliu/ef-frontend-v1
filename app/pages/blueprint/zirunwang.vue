@@ -73,7 +73,7 @@
               </div>
               
               <!-- 轮播图 -->
-              <v-divider class="my-4"></v-divider>
+              <v-divider class="my-4"/>
               <div class="carousel-section">
                 <div class="section-header">图片展示</div>
                 <v-carousel
