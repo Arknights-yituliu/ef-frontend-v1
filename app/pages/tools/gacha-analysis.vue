@@ -253,7 +253,7 @@
 
       </div>
 
-      <div style=" display: none;margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
+      <div style=" margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
         <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
 
         <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -290,7 +290,6 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue';
-// import data from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 
 const viewMode = ref<'collect' | 'analyze'>('collect');
@@ -333,6 +332,7 @@ interface SixStarEntry {
   character: string;
   count: number;
   timestamp: string | number;
+  fiveStars?: string[];
 }
 
 function safeTimestamp(ts: string | number): number {
@@ -407,14 +407,39 @@ function saveRecordsToCache(uid: string, records: GachaRecord[]) {
   try {
     const cache = { uid, records };
     localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
-    localStorage.setItem(LAST_UID_KEY, uid); // 同时保存 UID 用于恢复
+    localStorage.setItem(LAST_UID_KEY, uid);
   } catch (e) {
     console.error('缓存保存失败', e);
   }
 }
 
 // ========== 提交并验证（含缓存合并）==========
+// 调试数据
+import debugGachaData from '@/custom/core/gacha-analysis-example.json';
+
+// 调试开关
+const USE_DEBUG_DATA = true;
+
 async function submitAndVerify() {
+  // ===== 调试数据逻辑 =====
+  if (USE_DEBUG_DATA) {
+    console.log('【调试模式】使用示例数据进行分析');
+    try {
+      const mergedRecords: GachaRecord[] = debugGachaData.data;
+      
+      saveRecordsToCache('debug_uid', mergedRecords); 
+      records.value = mergedRecords;
+      processGachaData(mergedRecords);
+      viewMode.value = 'analyze';
+      collectError.value = '';
+      return;
+    } catch (err: any) {
+      console.error('调试数据处理失败:', err);
+      collectError.value = '调试数据加载失败：' + err.message;
+      return;
+    }
+  }
+  // ===== 用户输入逻辑 =====
   const uid = inputUid.value.trim();
   const url = inputUrl.value.trim();
 
@@ -482,7 +507,7 @@ async function submitAndVerify() {
       throw new Error('未找到任何抽卡记录，请确认链接有效且包含数据');
     }
 
-    // ✅ Step 4: 加载缓存并合并（按 seqId 去重）
+    // Step 4: 加载缓存并合并（按 seqId 去重）
     const cachedRecords = loadCachedRecords(uid);
 
     const recordMap = new Map<string, GachaRecord>();
@@ -498,10 +523,10 @@ async function submitAndVerify() {
     const mergedRecords = Array.from(recordMap.values())
       .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-    // ✅ Step 5: 保存合并后的数据到缓存
+    // Step 5: 保存合并后的数据到缓存
     saveRecordsToCache(uid, mergedRecords);
 
-    // ✅ Step 6: 更新响应式状态
+    // Step 6: 更新响应式状态
     records.value = mergedRecords;
     processGachaData(mergedRecords);
     viewMode.value = 'analyze';
@@ -516,89 +541,95 @@ async function submitAndVerify() {
 
 // ========== 处理抽卡数据：分组、统计、生成时间线 ==========
 function processGachaData(list: GachaRecord[]) {
-  // 1. 按 poolId 分组所有记录
-  const poolAllRecords: Record<string, GachaRecord[]> = {};
-  for (const record of list) {
-    if (!poolAllRecords[record.poolId]) {
-      poolAllRecords[record.poolId] = [];
+  // 1. 确保全局按 seqId 升序（你已有，但再强调一次）
+  const sortedRecords = [...list].sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
+
+  // 2. 为每个 poolId 维护状态
+  interface PoolState {
+    pullsSinceLastSix: number;
+    fiveStars: string[];
+  }
+
+  const poolState: Record<string, PoolState> = {};
+  const resultRealOnly: SixStarEntry[] = [];
+  const resultWithPadded: SixStarEntry[] = [];
+
+  // 3. 遍历每一条记录（全局时序）
+  for (const record of sortedRecords) {
+    const { poolId, poolName, rarity, charName, seqId, gachaTs } = record;
+
+    // 初始化池子状态
+    if (!poolState[poolId]) {
+      poolState[poolId] = {
+        pullsSinceLastSix: 0,
+        fiveStars: [],
+      };
     }
-    poolAllRecords[record.poolId]!.push(record);
-  }
 
-  // 2. 提取所有六星记录，并按 poolId 分组
-  const sixStarRecords = list.filter(r => r.rarity === 6);
-  const poolSixStars: Record<string, GachaRecord[]> = {};
-  for (const rec of sixStarRecords) {
-    if (!poolSixStars[rec.poolId]) poolSixStars[rec.poolId] = [];
-    poolSixStars[rec.poolId]!.push(rec);
-  }
+    const state = poolState[poolId];
+    state.pullsSinceLastSix += 1;
 
-  // 3. 构建结果数组
-  const resultWithPadded: SixStarEntry[] = []; // 含“已垫”
-  const resultRealOnly: SixStarEntry[] = [];   // 仅真实六星
-
-  for (const [poolId, allRecords] of Object.entries(poolAllRecords)) {
-    const sixStars = poolSixStars[poolId] || [];
-    const poolName = allRecords[0]?.poolName || poolId;
-
-    // 构建 seqId → 局部索引映射（因已按 seqId 升序排）
-    const localIndexBySeqId: Record<string, number> = {};
-    allRecords.forEach((rec, idx) => {
-      localIndexBySeqId[rec.seqId] = idx;
-    });
-
-    let lastSixLocalIndex = -1;
-
-    // 处理真实六星
-    for (const six of sixStars) {
-      const localIdx = localIndexBySeqId[six.seqId];
-      if (localIdx === undefined) continue;
-
-      const count = lastSixLocalIndex === -1 ? localIdx + 1 : localIdx - lastSixLocalIndex;
-      const entry = {
+    if (rarity === 6) {
+      // 🌟 出六星
+      const entry: SixStarEntry = {
         poolId,
         poolName,
-        character: six.charName,
-        count,
-        timestamp: six.gachaTs,
-        seqId: six.seqId,
+        seqId,
+        character: charName,
+        count: state.pullsSinceLastSix,
+        timestamp: gachaTs,
+        fiveStars: [...state.fiveStars],
       };
+
       resultRealOnly.push(entry);
       resultWithPadded.push(entry);
-      lastSixLocalIndex = localIdx;
+
+      // 重置状态
+      state.pullsSinceLastSix = 0;
+      state.fiveStars = [];
+    } else if (rarity === 5) {
+      // ⭐ 记录五星（仅在未出六星期间）
+      state.fiveStars.push(charName);
     }
+  }
 
-    // 插入“已垫”记录（如果最后有未出六星的抽数）
-    if (allRecords.length > 0) {
-      const paddedCount = lastSixLocalIndex === -1
-        ? allRecords.length
-        : allRecords.length - 1 - lastSixLocalIndex;
+  // 4. 补充“已垫”记录（对每个池子当前未出六星的部分）
+  for (const [poolId, state] of Object.entries(poolState)) {
+    if (state.pullsSinceLastSix > 0) {
+      // 找到该池子最后一抽的记录（用于 seqId 和 timestamp）
+      const lastRecord = sortedRecords
+        .filter(r => r.poolId === poolId)
+        .at(-1);
 
-      if (paddedCount > 0) {
-        const lastRecord = allRecords[allRecords.length - 1];
+      if (lastRecord) {
         resultWithPadded.push({
           poolId,
-          poolName: lastRecord!.poolName,
+          poolName: lastRecord.poolName,
           character: '已垫',
-          count: paddedCount,
-          timestamp: lastRecord!.gachaTs,
-          seqId: lastRecord!.seqId,
+          count: state.pullsSinceLastSix,
+          timestamp: lastRecord.gachaTs,
+          seqId: lastRecord.seqId,
+          fiveStars: [...state.fiveStars],
         });
       }
     }
   }
 
-  // 4. 按 seqId 降序排序（最新在前）
-  const sortBySeqIdDesc = (a: { seqId: string }, b: { seqId: string }) =>
-    parseSeqId(b.seqId) - parseSeqId(a.seqId);
+  // 5. 排序：按 seqId 降序，“已垫”同 seqId 时靠后
+  const sortBySeqIdDesc = (a: SixStarEntry, b: SixStarEntry) => {
+    const aSeq = parseSeqId(a.seqId);
+    const bSeq = parseSeqId(b.seqId);
+    if (aSeq !== bSeq) return bSeq - aSeq;
+    if (a.character === '已垫' && b.character !== '已垫') return 1;
+    if (b.character === '已垫' && a.character !== '已垫') return -1;
+    return 0;
+  };
 
-  resultWithPadded.sort(sortBySeqIdDesc);
-  resultRealOnly.sort(sortBySeqIdDesc);
+  sixStarRecordsWithCount.value = resultWithPadded.sort(sortBySeqIdDesc);
+  realSixStarRecords.value = resultRealOnly.sort(sortBySeqIdDesc);
 
-  // 5. 更新响应式数据（供 UI 使用）
-  sixStarRecordsWithCount.value = resultWithPadded;
-  realSixStarRecords.value = resultRealOnly;
-  rollData.value = resultWithPadded.map(item => [
+  // 6. 更新 rollData（保持兼容）
+  rollData.value = sixStarRecordsWithCount.value.map(item => [
     item.poolId,
     item.poolName,
     item.character,
