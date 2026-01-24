@@ -449,21 +449,9 @@
   backdrop-filter: blur(20px);
 }
 
-.custom-gacha-list{
-    border-bottom: 2px solid #eee
-}
-.custom-gacha-item {
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
-}
 
-.character-name,
-.pull-count {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
+
 
 .pool-selector {
   display: flex;
@@ -522,20 +510,48 @@
   transform: translateY(-1px);
 }
 
-
-.gacha-bar-container {
+.custom-gacha-item {
   display: flex;
   align-items: center;
+  padding: 8px 0;
+}
+
+.character-name,
+.pull-count {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gacha-drawer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 垂直居中对齐内容（可选） */
   flex: 1;
+  min-height: 28px; /* 至少和进度条一样高 */
+}
+
+.gacha-bar-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
   height: 28px;
   border-radius: 4px;
-  overflow: hidden;
   position: relative;
   overflow: visible; 
 }
 
+.gacha-drawer-container .mt-2 {
+  margin-top: 4px !important; 
+}
+
+
+.custom-gacha-list{
+    border-bottom: 2px solid #eee
+}
 
 .gacha-bar {
+  display: flex;
   height: 100%;
   border-radius: 4px;
   transition: all 0.3s ease;

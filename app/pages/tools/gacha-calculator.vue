@@ -541,6 +541,13 @@ createWeekTaskReward();
 
 const resourceStatisticsResultDetailList = ref<ResourceStatisticsResultDetail[]>([]);
 
+const totalResourceStatisticsResultDetail = ref({
+  name: '全部资源',
+  originiumRecharge: 0,
+  diamond: 0,
+  ticketgachaStandardSingle: 0,
+  ticketgachaSpecialSingle: 0
+})
 
 const gachaResourceStatistics = (): void => {
   const list: ResourceStatisticsResultDetail[] = [];
@@ -659,6 +666,8 @@ const gachaResourceStatistics = (): void => {
       result.ticketgachaStandardSingle += item.ticketgachaStandardSingle;
       result.ticketgachaSpecialSingle += item.ticketgachaSpecialSingle;
     }
+
+    totalResourceStatisticsResultDetail.value = result
 
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.total = _getPull(result);
@@ -891,8 +900,56 @@ onMounted(() => {
                   ref="gacha-calculator-pie-chart"
                   class="gacha-calculator-pie-chart"
                 />
+                <table class="gacha-calculator-total-resource-table">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <img
+                        class="gacha-calculator-gacha-item-icon"
+                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                        alt="existing"
+                      >
+                    </td>
+                    <td style="width: 20%">
+                      {{totalResourceStatisticsResultDetail.originiumRecharge}}
+                      ({{ numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15)
+                      }})
+                    </td>
+                    <td>
+                      <img
+                        class="gacha-calculator-gacha-item-icon"
+                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                        alt="existing"
+                      >
+                    </td>
+                    <td style="width: 20%">
+                      {{totalResourceStatisticsResultDetail.diamond}}({{ numberFloor(totalResourceStatisticsResultDetail.diamond/ 500)
+                      }})
+                    </td>
+                    <td>
+                      <img
+                        class="gacha-calculator-gacha-item-icon"
+                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                        alt="existing"
+                      >
+                    </td>
+                    <td>
+                      {{totalResourceStatisticsResultDetail.ticketgachaStandardSingle}}
+                    </td>
+                    <td>
+                      <img
+                        class="gacha-calculator-gacha-item-icon"
+                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                        alt="existing"
+                      >
+                    </td>
+                    <td>
+                      {{totalResourceStatisticsResultDetail.ticketgachaSpecialSingle}}
+                    </td>
+                  </tr>
+                  </tbody>
 
-
+                </table>
               </div>
             </v-expansion-panel-text>
           </v-expansion-panel>
@@ -1398,6 +1455,12 @@ onMounted(() => {
 
 .gacha-calculator-statistical-result {
   display: block;
+}
+
+.gacha-calculator-total-resource-table{
+  td:nth-child(odd){
+    padding: 0 0 0 12px;
+  }
 }
 
 .gacha-calculator-pie-chart {
