@@ -440,7 +440,7 @@ watch(wulingCrateRewardProgress,
 
 
 //世界探索登记奖励进度
-const worldLevelRewardProgress = ref<number[]>([1,7]);
+const worldLevelRewardProgress = ref<number[]>([3,7]);
 
 //世界探索登记奖励进度
 watch(worldLevelRewardProgress,
@@ -1205,7 +1205,7 @@ onMounted(() => {
                     show-ticks="always"
                     step="1"
                     max="7"
-                    min="1"
+                    min="3"
                     tick-size="4"
                     thumb-label="always"
                     hide-details="auto"
