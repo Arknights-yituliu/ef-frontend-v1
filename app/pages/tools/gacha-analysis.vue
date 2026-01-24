@@ -1,5 +1,7 @@
 <template>
+
   <div style="background-color: #eee;  border-radius: 16px; padding: 24px;">
+    <h2>锐意开发中···</h2>
     <!-- 数据收集 -->
     <div v-if="viewMode === 'collect'" class="collect-form">
       <header class="page-title">导入抽卡记录</header>
@@ -44,13 +46,13 @@
         <div class="gacha-overview-left">
           <div class="user-card">
             <div class="user-avatar">
-              <img 
-                src="" 
-                alt="用户头像" 
+              <img
+                src=""
+                alt="用户头像"
                 class="avatar-img"
               >
             </div>
-              
+
             <div class="user-info">
               <div >
                 <h3 class="user-name">{{ '管理员' }}</h3>
@@ -67,10 +69,10 @@
                 </div>
               </div>
             </div>
-              
+
             <div class="user-tags">
-              <div 
-                v-for="(tag, index) in gachaTags" 
+              <div
+                v-for="(tag, index) in gachaTags"
                 :key="index"
                 class="gacha-tag"
                 :class="`gacha-tag--${tag.type}`"
@@ -95,12 +97,12 @@
               <div class="pool-card-header">
                 <span class="pool-card-name">{{ getDisplayName(type) }}</span>
               </div>
-              
+
               <div class="pool-card-core">
                 <span class="total-gacha-count">{{ info.total }}</span>
                 <span class="core-label">{{ $t('抽') }}</span>
               </div>
-              
+
               <div class="stats">
                 <div v-if="type !== 'limited' && type !== 'weapon'" class="stat-item">
                   <span class="label">{{ $t('六星') }}：</span>
@@ -121,7 +123,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="mt-4">
             <h3 class="text-subtitle-2 mb-2">{{ $t('卡池抽卡分布') }}</h3>
             <div class="d-flex flex-wrap">
@@ -137,7 +139,7 @@
               </v-chip>
             </div>
           </div>
-          
+
           <div class="mt-4">
             <h3 class="text-subtitle-2 mb-2">{{ $t('角色抽取频次 TOP 3') }}</h3>
             <div class="d-flex flex-wrap gap-2">
@@ -164,8 +166,8 @@
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'limited' }"
               variant="flat"
-              elevation="0" 
-              @click="selectPool('limited')" 
+              elevation="0"
+              @click="selectPool('limited')"
             >
               {{ $t('限定池') }}
             </v-btn>
@@ -190,8 +192,8 @@
           </div>
         </div>
 
-        <div 
-          v-if="!filteredConsecutiveGroups || filteredConsecutiveGroups.length === 0" 
+        <div
+          v-if="!filteredConsecutiveGroups || filteredConsecutiveGroups.length === 0"
           style="width: 100%; margin: 20px 0; text-align: center; padding: 48px 0;"
         >
           <div style="font-size: 1rem; color: #6b7280; font-weight: 500;">
@@ -203,8 +205,8 @@
           <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
 
           <div class="custom-gacha-list">
-            <div 
-              v-if="!segment.records || segment.records.length === 0" 
+            <div
+              v-if="!segment.records || segment.records.length === 0"
               style="width: 100%; background-color: #f9fafb; border-radius: 8px; margin: 8px 0; padding: 24px 0; text-align: center;"
             >
               <div style="font-size: 0.9rem; color: #9ca3af;">
@@ -328,7 +330,7 @@ const collectError = ref('');
 const records = ref<GachaRecord[]>([]);
 const rollData = ref<Array<[string, string, string, number]>>([]);
 const sixStarRecordsWithCount = ref<SixStarEntry[]>([]);
-const realSixStarRecords = ref<SixStarEntry[]>([]); 
+const realSixStarRecords = ref<SixStarEntry[]>([]);
 
 // const fetchedRecords = ref<GachaRecord[]>([]);
 
@@ -449,8 +451,8 @@ async function submitAndVerify() {
     console.log('【调试模式】使用示例数据进行分析');
     try {
       const mergedRecords: GachaRecord[] = debugGachaData.data;
-      
-      saveRecordsToCache('debug_uid', mergedRecords); 
+
+      saveRecordsToCache('debug_uid', mergedRecords);
       records.value = mergedRecords;
       processGachaData(mergedRecords);
       viewMode.value = 'analyze';
@@ -663,7 +665,7 @@ function processGachaData(list: GachaRecord[]) {
 // 判断是否歪了（仅对真实六星有效，“已垫”不参与判断）
 function isOffPool(record: SixStarEntry): boolean {
   if (record.character === '已垫') {
-    return false; 
+    return false;
   }
   const upChar = upCharMap.get(record.poolId);
   if (!upChar) {
@@ -692,29 +694,29 @@ const poolSummary = computed(() => {
   // 初始化三类卡池的统计结构
   // 新增 nonPityTotal（不歪角色的总抽数）、nonPityAverage（出不歪的平均抽数）
   const summary = {
-    limited: { 
+    limited: {
       total: 0,
-      average: 0, 
-      nonPityCount: 0, 
-      totalCount: 0, 
-      nonPityTotal: 0, 
-      nonPityAverage: 0 
+      average: 0,
+      nonPityCount: 0,
+      totalCount: 0,
+      nonPityTotal: 0,
+      nonPityAverage: 0
     },
-    permanent: { 
-      total: 0, 
-      average: 0, 
-      nonPityCount: 0, 
-      totalCount: 0, 
-      nonPityTotal: 0, 
-      nonPityAverage: 0 
+    permanent: {
+      total: 0,
+      average: 0,
+      nonPityCount: 0,
+      totalCount: 0,
+      nonPityTotal: 0,
+      nonPityAverage: 0
     },
-    weapon: { 
-      total: 0, 
-      average: 0, 
-      nonPityCount: 0, 
-      totalCount: 0, 
-      nonPityTotal: 0, 
-      nonPityAverage: 0 
+    weapon: {
+      total: 0,
+      average: 0,
+      nonPityCount: 0,
+      totalCount: 0,
+      nonPityTotal: 0,
+      nonPityAverage: 0
     },
   };
 
@@ -779,7 +781,7 @@ const poolDistribution = computed(() => {
 
   // 3. 计算总抽数（包含已垫）和占比
   const total = Object.values(map).reduce((sum, item) => sum + item.count, 0);
-  
+
   Object.values(map).forEach(item => {
     item.ratio = total > 0 ? item.count / total : 0;
   });
@@ -809,7 +811,7 @@ const gachaTags = computed(() => {
   // 用 let 声明，允许后续修改
   const tags: GachaTag[] = [];
   const realSixStars = realSixStarRecords.value;
-  
+
   // ========== 核心修改：使用 poolSummary 中已有的平均逻辑 ==========
   // 1. 先获取所有卡池的总抽数和总出货数（复用 poolSummary 的计算结果）
   const { limited, permanent, weapon } = poolSummary.value;
@@ -851,7 +853,7 @@ const gachaTags = computed(() => {
     for (let j = i + 1; j < sortedByTime.length; j++) {
       const next = sortedByTime[j];
       totalPullsInRange += next!.count;
-      
+
       if (totalPullsInRange <= 10) {
         multiCount++;
       } else {
@@ -939,10 +941,10 @@ function getBarType(record: SixStarEntry): string {
   const isOffPool = !!upChar && record.character !== upChar;
 
   if (isOnBanner) {
-    return 'gacha-on-banner'; 
+    return 'gacha-on-banner';
   }
   if (record.count <= 10) {
-    return 'gacha-lucky'; 
+    return 'gacha-lucky';
   }
   if(record.count > 10 && record.count <= 50) {
     return 'gacha-normal';
@@ -1016,13 +1018,13 @@ function confirmClearCache() {
     try {
       localStorage.removeItem('endfield_gacha_records_v1');
       localStorage.removeItem('endfield_last_uid');
-      
+
       // 清空当前响应式数据
       records.value = [];
       sixStarRecordsWithCount.value = [];
       realSixStarRecords.value = [];
       rollData.value = [];
-      
+
       // 跳转回收集页
       viewMode.value = 'collect';
       alert('本地数据已清除');

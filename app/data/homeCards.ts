@@ -360,7 +360,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'endfieldMaterialProfit',
     icon: 'https://ef.yituliu.cn/favicon-32x32.png',
-    image: '/images/量化计算器.png',
+    image: '/images/ytl-packs.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu],
     buttons: [
@@ -393,7 +393,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'endfieldTools',
     icon: 'https://ef.yituliu.cn/favicon-32x32.png',
-    image: '/images/量化计算器.png',
+    image: '/images/ytl-gachacal.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu],
     buttons: [
@@ -426,7 +426,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'endfieldResources',
     icon: 'https://ef.yituliu.cn/favicon-32x32.png',
-    image: '/images/量化计算器.png',
+    image: '/images/ytl-gem.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu],
     buttons: [
@@ -476,7 +476,7 @@ export const homeCards: CardData[] = [
   },
   {
     i18nKey: 'opendfieldmap',
-    icon: 'https://factory.ef.yituliu.cn/favicon-32x32.png',
+    icon: '/images/icon/oem.webp',
     image: '/images/OEM.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],

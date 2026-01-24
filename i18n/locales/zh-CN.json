@@ -141,13 +141,6 @@
           "linkIcon": "mdi-web",
           "description": "工业系统规划利器。一键生成从资源到成品的全链条生产方案，让基地扩建精准高效。"
         },
-        "opendfieldmap": {
-          "title": "终末地大地图",
-          "tag": "第三方",
-          "linkText": "终末地大地图",
-          "linkIcon": "mdi-web",
-          "description": "查看所有地区与副本内的物品与收集品点位详情，并参与构建更完善的游戏内收集体验。"
-        },
         "endfieldpuzzle": {
           "title": "终末地拼图解谜工具",
           "tag": "第三方",
@@ -175,6 +168,11 @@
           "linkText": "资源下载",
           "linkIcon": "mdi-download",
           "description": "提供基质识别工具等资源下载。"
+        },
+        "opendfieldmap": {
+          "title": "终末地地图集",
+          "tag": "第三方",
+          "description": "查看所有地区与副本内的物品与收集品点位详情，并参与构建更完善的游戏内收集体验。"
         },
         "endfieldprtschat": {
           "title": "终末地剧情检索工具",

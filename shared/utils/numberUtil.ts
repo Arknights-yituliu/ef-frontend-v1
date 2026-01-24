@@ -32,11 +32,13 @@ function numberRound(number: number, decimalPlaces: number = 2) {
 function numberFloor(number: any, decimalPlaces: number = 2) {
   // 参数验证
   if (isNaN(number)) {
-    throw new Error('第一个参数必须是有效的数字，传入参数：'+number);
+    console.log('第一个参数必须是有效的数字，传入参数：'+number)
+    // throw new Error('第一个参数必须是有效的数字，传入参数：'+number);
   }
 
   if (!Number.isInteger(decimalPlaces) || decimalPlaces < 0) {
-    throw new Error('第二个参数必须是非负整数');
+    console.log('第二个参数必须是非负整数')
+    // throw new Error('第二个参数必须是非负整数');
   }
 
   // 处理特殊情况：小数位数为0时，直接使用Math.floor

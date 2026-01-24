@@ -162,7 +162,7 @@ export const worldLevelReward = ref<Reward>({
   content: {
     originiumRecharge: 0,
     diamond: 0,
-    ticketgachaStandardSingle: 18,
+    ticketgachaStandardSingle: 12,
     ticketgachaSpecialSingle: 0
   }
 });
