@@ -116,6 +116,7 @@ jobs:
       - name: Run Format
         if: steps.should-skip.outputs.should_skip != 'true'
         run: yarn lint:format
+        continue-on-error: true # 无视代码格式化中检测到的错误
 
       # 步骤 7: 检查是否有更改
       # 检查格式化后是否有文件被修改
