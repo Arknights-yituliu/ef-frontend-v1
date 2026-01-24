@@ -99,6 +99,7 @@
         "qq": "QQ",
         "douyin": "抖音",
         "skland": "森空岛",
+        "ioMirror": "io镜像",
         "frontendRepo": "前端仓库",
         "devGroup": "开发群"
       },
@@ -106,7 +107,7 @@
         "launchRedemptionCodes": {
           "title": "开服兑换码",
           "tag": "官方",
-          "description": "点击下方按钮复制兑换码，在游戏内兑换奖励。"
+          "description": "于\"设置-平台与账户-礼包兑换\"处兑换"
         },
         "officialWebsite": {
           "title": "《明日方舟：终末地》官网",
@@ -180,6 +181,11 @@
           "linkText": "剧情检索",
           "linkIcon": "mdi-web",
           "description": "基于生成式AI的游戏剧情检索工具"
+        },
+        "endAxis": {
+          "title": "EndAxis",
+          "tag": "第三方",
+          "description": "可视化排轴工具。可以通过拖拽技能、建立连线关系来规划战术流程"
         },
         "yiTuLiu": {
           "title": "明日方舟一图流",

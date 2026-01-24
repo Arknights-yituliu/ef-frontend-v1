@@ -92,6 +92,7 @@
         "qq": "QQ",
         "douyin": "Douyin",
         "skland": "Skland",
+        "ioMirror": "io Mirror",
         "frontendRepo": "Frontend Repo",
         "devGroup": "Dev Group"
       },
@@ -106,7 +107,7 @@
         "launchRedemptionCodes": {
           "title": "Launch Redemption Codes",
           "tag": "Official",
-          "description": "Click the buttons below to copy launch redemption codes and redeem them in-game."
+          "description": "Redeem at \"Settings - Platform & Account - Gift Code Redemption\""
         },
         "officialWebsite": {
           "title": "Official Website",
@@ -180,6 +181,11 @@
           "linkText": "Story Search",
           "linkIcon": "mdi-web",
           "description": "AI-powered game story search tool"
+        },
+        "endAxis": {
+          "title": "EndAxis",
+          "tag": "Third Party",
+          "description": "Visual timeline planning tool. Drag skills, create connections, and plan tactical flows"
         },
         "yiTuLiu": {
           "title": "Arknights Yituliu",
