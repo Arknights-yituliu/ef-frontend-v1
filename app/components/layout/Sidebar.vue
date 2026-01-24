@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <!-- Logo 区域 -->
     <div class="logo-area" @click="navigateToHome">
-      <img class="logo-img" src="/android-chrome-512x512.png" alt="Logo" />
+      <img class="logo-img" src="/android-chrome-512x512.png" alt="Logo" >
       <div class="logo-text">{{ $t('layout.siteName') }}</div>
     </div>
 

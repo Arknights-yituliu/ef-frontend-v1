@@ -99,7 +99,7 @@ const copyToClipboard = async (text: string, successMessage: string) => {
 <template>
   <v-card class="home-card">
     <div class="home-card-header">
-      <img v-if="cardData.icon" :alt="cardData.title" :src="cardData.icon" class="home-card-logo" />
+      <img v-if="cardData.icon" :alt="cardData.title" :src="cardData.icon" class="home-card-logo" >
       <div class="home-card-title">
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-card-tags">
@@ -135,7 +135,7 @@ const copyToClipboard = async (text: string, successMessage: string) => {
     </div>
     <div class="home-card-content">
       <div v-if="cardData.image" class="home-card-image-wrapper">
-        <img :alt="cardData.title" :src="cardData.image" class="home-card-image" />
+        <img :alt="cardData.title" :src="cardData.image" class="home-card-image" >
         <div v-if="cardData.description" class="home-card-overlay">
           <p class="home-card-description">{{ cardData.description }}</p>
         </div>

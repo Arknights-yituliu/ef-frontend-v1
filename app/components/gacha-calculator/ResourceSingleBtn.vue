@@ -32,7 +32,7 @@ function getImageUrl(itemId: string): string {
         :key="`${props.id}-${name}`"
         class="gacha-calculator-resource-single-content"
       >
-        <img class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" alt="existing" />
+        <img class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" alt="existing" >
         X {{ reward }}
       </div>
     </div>

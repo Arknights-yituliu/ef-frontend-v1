@@ -11,7 +11,7 @@
           type="text"
           placeholder="请输入UID"
           :disabled="isSubmitting"
-        />
+        >
       </div>
 
       <div class="form-group">
@@ -21,7 +21,7 @@
           placeholder="粘贴完整的URL"
           rows="3"
           :disabled="isSubmitting"
-        ></textarea>
+        />
         <p class="help-text">
           <a href="#">如何获取url</a>
         </p>
@@ -30,9 +30,9 @@
       <p v-if="collectError" class="error-text">{{ collectError }}</p>
 
       <button
-        @click="submitAndVerify"
         :disabled="isSubmitting"
         class="submit-btn"
+        @click="submitAndVerify"
       >
         {{ isSubmitting ? '验证中...' : '开始分析' }}
       </button>
@@ -102,19 +102,19 @@
               </div>
               
               <div class="stats">
-                <div class="stat-item" v-if="type !== 'limited' && type !== 'weapon'">
+                <div v-if="type !== 'limited' && type !== 'weapon'" class="stat-item">
                   <span class="label">{{ $t('六星') }}：</span>
                   <span class="value">{{ info.totalCount }}</span>
                 </div>
-                <div class="stat-item" v-if="type === 'limited' || type === 'weapon'">
+                <div v-if="type === 'limited' || type === 'weapon'" class="stat-item">
                   <span class="label">{{ $t('不歪/六星') }}：</span>
                   <span class="value">{{ info.nonPityCount }} / {{ info.totalCount }}</span>
                 </div>
-                <div class="stat-item" v-if="type !== 'limited'">
+                <div v-if="type !== 'limited'" class="stat-item">
                   <span class="label">{{ $t('平均出货数') }}：</span>
                   <span class="value">{{ info.average.toFixed(1) }}</span>
                 </div>
-                <div class="stat-item" v-if="type === 'limited'">
+                <div v-if="type === 'limited'" class="stat-item">
                   <span class="label">{{ $t('UP平均') }}：</span>
                   <span class="value">{{ info.nonPityAverage.toFixed(1) }}</span>
                 </div>
@@ -163,27 +163,27 @@
             <v-btn
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'limited' }"
-              @click="selectPool('limited')"
-              variant="flat" 
+              variant="flat"
               elevation="0" 
+              @click="selectPool('limited')" 
             >
               {{ $t('限定池') }}
             </v-btn>
             <v-btn
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'permanent' }"
-              @click="selectPool('permanent')"
               variant="flat"
               elevation="0"
+              @click="selectPool('permanent')"
             >
               {{ $t('常驻池') }}
             </v-btn>
             <v-btn
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'weapon' }"
-              @click="selectPool('weapon')"
               variant="flat"
               elevation="0"
+              @click="selectPool('weapon')"
             >
               {{ $t('武器池') }}
             </v-btn>
@@ -199,7 +199,7 @@
           </div>
         </div>
 
-        <div v-else v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
+        <div v-for="(segment, idx) in filteredConsecutiveGroups" v-else :key="idx" class="mb-8">
           <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
 
           <div class="custom-gacha-list">
@@ -242,10 +242,10 @@
 
         <div class="action-buttons-container">
           <div class="action-buttons">
-            <button @click="goToUpdate" class="btn update-btn">
+            <button class="btn update-btn" @click="goToUpdate">
               更新抽卡数据
             </button>
-            <button @click="confirmClearCache" class="btn clear-btn">
+            <button class="btn clear-btn" @click="confirmClearCache">
               删除本地数据
             </button>
           </div>
@@ -753,7 +753,7 @@ interface GachaTag {
 // 计算特色抽卡标签
 const gachaTags = computed(() => {
   // 用 let 声明，允许后续修改
-  let tags: GachaTag[] = [];
+  const tags: GachaTag[] = [];
   const realSixStars = realSixStarRecords.value;
   
   // ========== 核心修改：使用 poolSummary 中已有的平均逻辑 ==========

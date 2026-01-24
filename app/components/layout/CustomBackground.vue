@@ -1,6 +1,6 @@
 <template>
   <div class="custom-bg">
-    <img :src="mapBg" class="bg-image" alt="Map Background" />
+    <img :src="mapBg" class="bg-image" alt="Map Background" >
   </div>
 </template>
 

@@ -20,7 +20,7 @@ const copyGroupNumber = async () => {
           alt="终末地一图流 LOGO"
           class="home-card-title-icon"
           src="https://ef.yituliu.cn/favicon-32x32.png"
-        />
+        >
         <b>{{ $t('component.home.contribute.title') }}</b>
       </div>
       <div class="flex-1" />
