@@ -28,7 +28,7 @@
         <!-- 二级菜单 -->
         <div class="secondary-items">
           <NuxtLink
-            v-for="(secondaryItem, secondaryIndex) in primaryItem.children"
+            v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(item => !item.isHidden)"
             :key="secondaryIndex"
             :ref="
               (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
