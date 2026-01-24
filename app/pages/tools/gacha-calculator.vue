@@ -1374,7 +1374,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: 1280px;
+  max-width: 1280px;
 
 }
 
