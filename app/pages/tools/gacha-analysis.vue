@@ -220,8 +220,8 @@
                 :key="` $ {idx}- $ {index}`"
                 class="custom-gacha-item mb-2"
                 :class="{ 'on-banner': isOnBanner(record) }"
-                @click="toggleExpand(record.seqId)"
                 style="cursor: pointer;"
+                @click="toggleExpand(record.seqId)"
               >
                 <div class="character-name font-weight-bold" style="width: 80px;">
                   {{ record.character }}
