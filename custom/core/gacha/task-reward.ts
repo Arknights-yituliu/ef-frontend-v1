@@ -1,10 +1,35 @@
 import TaskTable from './task-table.json'
+import TaskTable2 from './task-table2.json'
 import FactoryManualTable from './factory-manual-table.json'
 import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
-export const taskRewardTable = ref<Reward[]>(TaskTable as Reward[])
+
+
+
+const taskRewardTable = ref<Reward[]>([])
+const taskNameMap = new Map<string, string>()
+for(const reward of TaskTable2) {
+   taskRewardTable.value.push(reward)
+  taskNameMap.set(reward.name.zh, reward.name.zh)
+}
+
+for(const reward of TaskTable) {
+  if(taskNameMap.has(reward.name.zh)){
+    continue
+  }
+  if(reward.content.originiumRecharge===0){
+    continue
+  }
+  taskRewardTable.value.push(reward)
+  taskNameMap.set(reward.name.zh, reward.name.zh)
+}
+
+export { taskRewardTable }
+
+// export const taskRewardTable1 = ref<Reward[]>(TaskTable as Reward[])
 
 export const factoryManualRewardTable:Reward[] = FactoryManualTable as Reward[]
+
 
 
 let factoryManualCountReward = 0
@@ -32,6 +57,9 @@ export const factoryManualReward = ref<Reward>({
     ticketgachaSpecialSingle: 0
   }
 });
+
+
+
 
 
 export const defenseConstructionReward  = ref<Reward>({

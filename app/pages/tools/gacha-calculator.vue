@@ -868,7 +868,7 @@ onMounted(() => {
             <v-expansion-panel-text>
               <div class="gacha-calculator-statistical-result">
                 <div class="gacha-calculator-warning">
-                  攒抽计算器尚在测试中，目前可能bug较多，结果仅供参考，切勿轻信本站！
+                  攒抽计算器尚在测试与更新中，目前可能bug较多，资源不全，结果仅供参考，切勿轻信本站！
                 </div>
                 <div
                   id="gacha-calculator-pie-chart"
