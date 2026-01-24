@@ -112,7 +112,7 @@
         "officialWebsite": {
           "title": "《明日方舟：终末地》官网",
           "tag": "官方",
-          "description": "《明日方舟：终末地》官方网站，获取最新游戏资讯、公告和活动信息。"
+          "description": "《明日方舟：终末地》官方网站，获取最新游戏资讯、公告和活动信息"
         },
         "chargeReward": {
           "title": "全面测试充值返还查询",
@@ -140,40 +140,40 @@
           "tag": "一图流托管",
           "linkText": "量化计算器",
           "linkIcon": "mdi-web",
-          "description": "工业系统规划利器。一键生成从资源到成品的全链条生产方案，让基地扩建精准高效。"
+          "description": "工业系统规划利器。一键生成从资源到成品的全链条生产方案，让基地扩建精准高效"
         },
         "endfieldpuzzle": {
           "title": "终末地拼图解谜工具",
           "tag": "第三方",
           "linkText": "拼图解谜工具",
           "linkIcon": "mdi-web",
-          "description": "拼图解谜工具，机器人的好帮手！"
+          "description": "拼图解谜工具，机器人的好帮手"
         },
         "endfieldMaterialProfit": {
           "title": "终末地一图流-材料收益",
           "tag": "一图流",
           "linkText": "材料收益",
           "linkIcon": "mdi-chart-bar",
-          "description": "提供商店性价比、礼包性价比和物品价值表，帮助玩家做出最优决策。"
+          "description": "提供商店性价比、礼包性价比和物品价值表，帮助玩家做出最优决策"
         },
         "endfieldTools": {
           "title": "终末地一图流-工具箱",
           "tag": "一图流",
           "linkText": "工具箱",
           "linkIcon": "mdi-toolbox",
-          "description": "包含攒抽计算器、基质计算器和抽卡分析等实用工具。"
+          "description": "包含攒抽计算器、基质计算器和抽卡分析等实用工具"
         },
         "endfieldResources": {
           "title": "终末地一图流-资源下载",
           "tag": "一图流",
           "linkText": "资源下载",
           "linkIcon": "mdi-download",
-          "description": "提供基质识别工具等资源下载。"
+          "description": "提供基质识别工具等资源下载"
         },
         "opendfieldmap": {
           "title": "终末地地图集",
           "tag": "第三方",
-          "description": "查看所有地区与副本内的物品与收集品点位详情，并参与构建更完善的游戏内收集体验。"
+          "description": "查看所有地区与副本内的物品与收集品点位详情，并参与构建更完善的游戏内收集体验"
         },
         "endfieldprtschat": {
           "title": "终末地剧情检索工具",
@@ -192,26 +192,26 @@
           "tag": "一图流",
           "linkText": "前往一图流",
           "linkIcon": "mdi-web",
-          "description": "明日方舟一图流提供了包括但不限于刷图推荐、商店性价比、攒抽计算器以及很多小工具。"
+          "description": "明日方舟一图流提供了包括但不限于刷图推荐、商店性价比、攒抽计算器以及很多小工具"
         },
         "penguinStatistics": {
           "title": "企鹅物流数据统计",
           "tag": "第三方",
           "linkText": "企鹅物流数据统计",
           "linkIcon": "mdi-web",
-          "description": "企鹅物流数据统计是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。"
+          "description": "企鹅物流数据统计是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计"
         },
         "followUs": {
           "title": "关注我们",
           "tag": "其他",
-          "description": "关注我们的社交媒体账号，获取最新动态和资讯。"
+          "description": "关注我们的社交媒体账号，获取最新动态和资讯"
         },
         "contribute": {
           "title": "参与开发",
           "tag": "其他",
           "linkText": "前端仓库",
           "linkIcon": "mdi-github",
-          "description": "如果您愿意对终末地一图流提供帮助，并对以下多项或单项技术有了解，欢迎加入我们的开发群 696486169。我们使用 Nuxt 4.x、Vue 3.x 和 Vuetify 3.x。"
+          "description": "如果您愿意对终末地一图流提供帮助，并对以下多项或单项技术有了解，欢迎加入我们的开发群 696486169"
         }
       },
       "penguinStatistics": {

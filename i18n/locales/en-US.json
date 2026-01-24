@@ -112,7 +112,7 @@
         "officialWebsite": {
           "title": "Official Website",
           "tag": "Official",
-          "description": "The official website of Arknights: Endfield. Get the latest game news, announcements, and event information."
+          "description": "The official website of Arknights: Endfield. Get the latest game news, announcements, and event information"
         },
         "chargeReward": {
           "title": "Beta Test II Charge Reward Query",
@@ -140,40 +140,40 @@
           "tag": "Yituliu Hosted",
           "linkText": "Calculator",
           "linkIcon": "mdi-web",
-          "description": "A powerful AIC planning tool for Arknights: Endfield. Input your goals to generate most efficient full-chain production plans from resources to finished products, making base expansion precise and efficient."
+          "description": "A powerful AIC planning tool for Arknights: Endfield. Input your goals to generate most efficient full-chain production plans from resources to finished products, making base expansion precise and efficient"
         },
         "endfieldpuzzle": {
           "title": "Endfield Puzzle Tool",
           "tag": "Third Party",
           "linkText": "Puzzle Tool",
           "linkIcon": "mdi-web",
-          "description": "Puzzle solving tool, a great helper for robots!"
+          "description": "Puzzle solving tool, a great helper for robots"
         },
         "endfieldMaterialProfit": {
           "title": "Endfield Yituliu - Material Profit",
           "tag": "Yituliu",
           "linkText": "Material Profit",
           "linkIcon": "mdi-chart-bar",
-          "description": "Provides shop value, package value and item value table to help players make optimal decisions."
+          "description": "Provides shop value, package value and item value table to help players make optimal decisions"
         },
         "endfieldTools": {
           "title": "Endfield Yituliu - Toolbox",
           "tag": "Yituliu",
           "linkText": "Toolbox",
           "linkIcon": "mdi-toolbox",
-          "description": "Includes practical tools like gacha calculator, essence calculator and gacha analysis."
+          "description": "Includes practical tools like gacha calculator, essence calculator and gacha analysis"
         },
         "endfieldResources": {
           "title": "Endfield Yituliu - Resource Download",
           "tag": "Yituliu",
           "linkText": "Resource Download",
           "linkIcon": "mdi-download",
-          "description": "Provides essence recognizer and other resource downloads."
+          "description": "Provides essence recognizer and other resource downloads"
         },
         "opendfieldmap": {
           "title": "Endfield Map Atlas",
           "tag": "Third Party",
-          "description": "View details of item and collectible locations in all regions and instances, and participate in building a more comprehensive in-game collection experience."
+          "description": "View details of item and collectible locations in all regions and instances, and participate in building a more comprehensive in-game collection experience"
         },
         "endfieldprtschat": {
           "title": "Endfield Story Search",
@@ -192,26 +192,26 @@
           "tag": "Community",
           "linkText": "Go to Yituliu",
           "linkIcon": "mdi-web",
-          "description": "Arknights Yituliu aims to provide various in-game resource cost-effectiveness guides for doctors, including but not limited to farming recommendations, shop value, pull saving calculator, and many small tools."
+          "description": "Arknights Yituliu aims to provide various in-game resource cost-effectiveness guides for doctors, including but not limited to farming recommendations, shop value, pull saving calculator, and many small tools"
         },
         "penguinStatistics": {
           "title": "Penguin Statistics",
           "tag": "Stats",
           "linkText": "Go to Penguin",
           "linkIcon": "mdi-web",
-          "description": "Penguin Statistics is Department of Data Analysis of Penguin Logistics (not really). We devote ourselves to item drop analysis."
+          "description": "Penguin Statistics is Department of Data Analysis of Penguin Logistics (not really). We devote ourselves to item drop analysis"
         },
         "followUs": {
           "title": "Follow Us",
           "tag": "Other",
-          "description": "Follow our social media accounts for the latest updates and news."
+          "description": "Follow our social media accounts for the latest updates and news"
         },
         "contribute": {
           "title": "Contribute",
           "tag": "Open Source",
           "linkText": "Frontend Repo",
           "linkIcon": "mdi-github",
-          "description": "If you are willing to contribute to Endfield Yituliu and possess knowledge of one or more of following technologies, we welcome you to join our development group 696486169. We use Nuxt 4.x, Vue 3.x and Vuetify 3.x."
+          "description": "If you are willing to contribute to Endfield Yituliu and possess knowledge of one or more of following technologies, we welcome you to join our development QQ group 696486169"
         }
       },
       "penguinStatistics": {
