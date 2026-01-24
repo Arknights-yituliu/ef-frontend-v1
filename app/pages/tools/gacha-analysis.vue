@@ -292,6 +292,10 @@
 import { computed, ref, onMounted } from 'vue';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 
+// ========== 提交并验证（含缓存合并）==========
+// 调试数据
+import debugGachaData from '@/custom/core/gacha-analysis-example.json';
+
 const viewMode = ref<'collect' | 'analyze'>('collect');
 
 const inputUid = ref('');
@@ -412,10 +416,6 @@ function saveRecordsToCache(uid: string, records: GachaRecord[]) {
     console.error('缓存保存失败', e);
   }
 }
-
-// ========== 提交并验证（含缓存合并）==========
-// 调试数据
-import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 
 // 调试开关
 const USE_DEBUG_DATA = true;
