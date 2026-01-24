@@ -1,4 +1,4 @@
-import { nextTick } from 'vue';
+import {nextTick} from 'vue';
 
 /**
  * 计算字体大小以适应容器宽度
@@ -29,9 +29,7 @@ export function updateText(
     if (elementWidth > containerWidth) {
       const newFontSize = Math.max((maxFontSize * containerWidth) / elementWidth, minFontSize);
       element.style.fontSize = `${newFontSize}px`;
-      console.log(
-        `Adjusting ${element.textContent} font size from ${maxFontSize}px to ${newFontSize}px because element.scrollWidth (${elementWidth}px) > containerWidth (${containerWidth}px)`,
-      );
+      console.log(`Adjusting ${element.textContent} font size from ${maxFontSize}px to ${newFontSize}px because element.scrollWidth (${elementWidth}px) > containerWidth (${containerWidth}px)`);
     } else {
       console.log(`${element.textContent}: font size ${maxFontSize}`);
     }
