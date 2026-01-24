@@ -2896,11 +2896,6 @@
     "@vue/compiler-ssr" "3.5.22"
     "@vue/shared" "3.5.22"
 
-"@vue/shared@^3.5.0", "@vue/shared@^3.5.18", "@vue/shared@^3.5.22", "@vue/shared@3.5.26":
-  version "3.5.26"
-  resolved "https://registry.npmmirror.com/@vue/shared/-/shared-3.5.26.tgz"
-  integrity sha512-7Z6/y3uFI5PRoKeorTOSXKcDj0MSasfNNltcslbFrPpcw6aXRUALq4IfJlaTRspiWIUOEZbrpM+iQGmCOiWe4A==
-
 "@vue/shared@3.5.22":
   version "3.5.22"
   resolved "https://registry.npmmirror.com/@vue/shared/-/shared-3.5.22.tgz"
@@ -3989,12 +3984,7 @@ engine.io-parser@~5.2.1:
   resolved "https://registry.npmmirror.com/engine.io-parser/-/engine.io-parser-5.2.3.tgz"
   integrity sha512-HqD3yTBfnBxIrbnM1DoD6Pcq8NECnh8d4As1Qgh0z5Gg3jRRIqijury0CL3ghu/edArpUYiYqQiDUQBIs4np3Q==
 
-entities@^4.2.0:
-  version "4.5.0"
-  resolved "https://registry.npmmirror.com/entities/-/entities-4.5.0.tgz"
-  integrity sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==
-
-entities@^4.5.0:
+entities@^4.2.0, entities@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmmirror.com/entities/-/entities-4.5.0.tgz"
   integrity sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==
@@ -4984,6 +4974,11 @@ hookable@^5.5.3:
   version "5.5.3"
   resolved "https://registry.npmmirror.com/hookable/-/hookable-5.5.3.tgz"
   integrity sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==
+
+hookable@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npmmirror.com/hookable/-/hookable-6.0.1.tgz#be950f1b8ef38af24d4354657e9e3590d2a5b5e6"
+  integrity sha512-uKGyY8BuzN/a5gvzvA+3FVWo0+wUjgtfSdnmjtrOVwQCZPHpHDH2WRO3VZSOeluYrHoDCiXFffZXs8Dj1ULWtw==
 
 html-entities@^2.6.0:
   version "2.6.0"
@@ -8343,15 +8338,15 @@ ts-api-utils@^2.1.0:
   resolved "https://registry.npmmirror.com/ts-api-utils/-/ts-api-utils-2.1.0.tgz"
   integrity sha512-CUgTZL1irw8u29bzrOD/nH85jqyc74D6SshFgujOIA7osm2Rz7dYH77agkx7H4FBNxDq7Cjf+IjaX/8zwFW+ZQ==
 
-tslib@^2.4.0:
-  version "2.8.1"
-  resolved "https://registry.npmmirror.com/tslib/-/tslib-2.8.1.tgz"
-  integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
-
 tslib@2.3.0:
   version "2.3.0"
   resolved "https://registry.npmmirror.com/tslib/-/tslib-2.3.0.tgz"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
+tslib@^2.4.0:
+  version "2.8.1"
+  resolved "https://registry.npmmirror.com/tslib/-/tslib-2.8.1.tgz"
+  integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
 
 tunnel-agent@^0.6.0:
   version "0.6.0"
@@ -8421,19 +8416,19 @@ unenv@^2.0.0-rc.22, unenv@^2.0.0-rc.23:
   dependencies:
     pathe "^2.0.3"
 
-unhead@^2.0.7, unhead@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npmmirror.com/unhead/-/unhead-2.1.2.tgz"
-  integrity sha512-vSihrxyb+zsEUfEbraZBCjdE0p/WSoc2NGDrpwwSNAwuPxhYK1nH3eegf02IENLpn1sUhL8IoO84JWmRQ6tILA==
-  dependencies:
-    hookable "^6.0.1"
-
 unhead@2.0.19:
   version "2.0.19"
   resolved "https://registry.npmmirror.com/unhead/-/unhead-2.0.19.tgz"
   integrity sha512-gEEjkV11Aj+rBnY6wnRfsFtF2RxKOLaPN4i+Gx3UhBxnszvV6ApSNZbGk7WKyy/lErQ6ekPN63qdFL7sa1leow==
   dependencies:
     hookable "^5.5.3"
+
+unhead@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmmirror.com/unhead/-/unhead-2.1.2.tgz"
+  integrity sha512-vSihrxyb+zsEUfEbraZBCjdE0p/WSoc2NGDrpwwSNAwuPxhYK1nH3eegf02IENLpn1sUhL8IoO84JWmRQ6tILA==
+  dependencies:
+    hookable "^6.0.1"
 
 unicode-emoji-modifier-base@^1.0.0:
   version "1.0.0"
@@ -8868,13 +8863,12 @@ vue-devtools-stub@^0.1.0:
   resolved "https://registry.npmmirror.com/vue-devtools-stub/-/vue-devtools-stub-0.1.0.tgz"
   integrity sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==
 
-vue-eslint-parser@^10.2.0:
 vue-echarts@^8.0.1:
   version "8.0.1"
   resolved "https://registry.npmmirror.com/vue-echarts/-/vue-echarts-8.0.1.tgz"
   integrity sha512-23rJTFLu1OUEGRWjJGmdGt8fP+8+ja1gVgzMYPIPaHWpXegcO1viIAaeu2H4QHESlVeHzUAHIxKXGrwjsyXAaA==
 
-vue-eslint-parser@^10.0.0, vue-eslint-parser@^10.2.0:
+vue-eslint-parser@^10.2.0:
   version "10.2.0"
   resolved "https://registry.npmmirror.com/vue-eslint-parser/-/vue-eslint-parser-10.2.0.tgz"
   integrity sha512-CydUvFOQKD928UzZhTp4pr2vWz1L+H99t7Pkln2QSPdvmURT0MoC4wUccfCnuEaihNsu9aYYyk+bep8rlfkUXw==
@@ -8912,7 +8906,6 @@ vue-router@^4.6.3:
     "@vue/devtools-api" "^6.6.4"
 
 vue@^3.5.14, vue@^3.5.22:
-"vue@^2.7.0 || ^3.2.25", vue@^3, vue@^3.0.0, vue@^3.2.25, vue@^3.3.0, vue@^3.3.4, vue@^3.5.0, vue@^3.5.14, vue@^3.5.22, vue@>=3.5.18, vue@3.5.22:
   version "3.5.22"
   resolved "https://registry.npmmirror.com/vue/-/vue-3.5.22.tgz"
   integrity sha512-toaZjQ3a/G/mYaLSbV+QsQhIdMo9x5rrqIpYRObsJ6T/J+RyCSFwN2LHNVH9v8uIcljDNa3QzPVdv3Y6b9hAJQ==

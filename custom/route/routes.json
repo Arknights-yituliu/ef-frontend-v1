@@ -42,10 +42,10 @@
         "vuetifyIcon": "mdi-pokeball"
       },
       {
-      "i18nKey": "gachaAnalysis",
-      "nameKey": "menu.gachaAnalysis",
-      "routePath": "/tools/gacha-analysis",
-      "vuetifyIcon": "mdi-chart-bar"
+        "i18nKey": "gachaAnalysis",
+        "nameKey": "menu.gachaAnalysis",
+        "routePath": "/tools/gacha-analysis",
+        "vuetifyIcon": "mdi-chart-bar"
       }
     ]
   },
@@ -72,7 +72,8 @@
         "i18nKey": "test",
         "nameKey": "menu.test",
         "routePath": "/others/test",
-        "vuetifyIcon": "mdi-flask"
+        "vuetifyIcon": "mdi-flask",
+        "isHidden": true
       },
       {
         "i18nKey": "friendLinks",

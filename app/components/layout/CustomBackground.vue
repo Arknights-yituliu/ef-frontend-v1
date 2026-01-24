@@ -1,17 +1,12 @@
 <template>
   <div class="custom-bg">
-    <img :src="mapBg" class="bg-image" alt="Map Background" />
+    <img :src="mapBg" class="bg-image" alt="Map Background" >
   </div>
 </template>
 
 <script setup>
 // Import the SVG file
 import mapBg from '~/assets/svg/map-bg.svg?url';
-
-// Import the theme composable
-import { useTheme } from '~/composables/useTheme';
-
-const { theme } = useTheme();
 </script>
 
 <style scoped>
@@ -32,6 +27,11 @@ const { theme } = useTheme();
   object-fit: cover;
   opacity: 0.3;
   transition: filter 0.3s ease;
+  /* 颜色混合算法：将 SVG 转换为浅灰色背景 */
+  /* 1. grayscale(100%) - 将图像完全转换为灰度 */
+  /* 2. brightness(200%) - 提高亮度使灰色变浅 */
+  /* 3. contrast(50%) - 降低对比度使颜色更柔和 */
+  filter: grayscale(100%) brightness(200%) contrast(100%);
   /* 从左上(完全可见)到右下(完全透明)的渐变 */
   -webkit-mask-image: linear-gradient(
     to top left,

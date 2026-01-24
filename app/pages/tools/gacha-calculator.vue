@@ -45,11 +45,10 @@ const leftPartPanel = ref<string[]>(['statisticalResult']);
 const rightPartPanel = ref<string[]>([
   'existing',
   'daily',
-  'task',
+  'regionalDevelopment',
   'level',
   'activity',
-  'permanent',
-  'regionalDevelopment',
+  'task',
 ]);
 const currentVersionRemainingTime = ref<CurrentVersionRemainingTime>({
   day: 0,
@@ -192,7 +191,7 @@ function countTuesdaysBetweenV2(
   const start = new Date(startDate);
   const end = new Date(endDate).getTime();
 
-  let startTimestamp = start.getTime();
+  const startTimestamp = start.getTime();
   let week = 0;
 
   if (start.getDay() < 2) {
@@ -226,6 +225,22 @@ watch(wulingRegionalStockBillStoreReward,
   }, { deep: true });
 
 watch(authorityLevelTaskRewards,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active);
+    }
+    gachaResourceStatistics();
+  }, { deep: true });
+
+watch(taskRewardTable,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active);
+    }
+    gachaResourceStatistics();
+  }, { deep: true });
+
+watch(etchSpaceSalvageReward,
   (newValue) => {
     for (const item of newValue) {
       saveUserConfig(item.id, item.active);
@@ -650,11 +665,13 @@ const gachaResourceStatistics = (): void => {
 
   function _addReward(result: ResourceStatisticsResultDetail, reward: Reward | Reward[]): void {
     if (Array.isArray(reward)) {
-      for (let item of reward) {
-        result.originiumRecharge += item.content.originiumRecharge;
-        result.diamond += item.content.diamond;
-        result.ticketgachaStandardSingle += item.content.ticketgachaStandardSingle;
-        result.ticketgachaSpecialSingle += item.content.ticketgachaSpecialSingle;
+      for (const item of reward) {
+        if (item.active) {
+          result.originiumRecharge += item.content.originiumRecharge;
+          result.diamond += item.content.diamond;
+          result.ticketgachaStandardSingle += item.content.ticketgachaStandardSingle;
+          result.ticketgachaSpecialSingle += item.content.ticketgachaSpecialSingle;
+        }
       }
     } else {
       result.originiumRecharge += reward.content.originiumRecharge;
@@ -850,6 +867,9 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <div class="gacha-calculator-statistical-result">
+                <div class="gacha-calculator-warning">
+                  攒抽计算器尚在测试中，目前可能bug较多，结果仅供参考，切勿轻信本站！
+                </div>
                 <div
                   id="gacha-calculator-pie-chart"
                   ref="gacha-calculator-pie-chart"
@@ -865,28 +885,28 @@ onMounted(() => {
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                   </tr>
                   </thead>
@@ -910,7 +930,7 @@ onMounted(() => {
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-        <div style="width: 100%; height: 20px"></div>
+        <div style="width: 100%; height: 20px"/>
       </div>
       <!--      <div>-->
       <!--        {{ JSON.stringify(allGachaResource) }}-->
@@ -931,7 +951,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.originiumRecharge"
                     hide-details="auto"
@@ -946,7 +966,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.diamond"
                     hide-details="auto"
@@ -961,7 +981,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.ticketgachaStandardSingle"
                     hide-details="auto"
@@ -976,7 +996,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.ticketgachaSpecialSingle"
                     hide-details="auto"
@@ -996,51 +1016,8 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
-              <GachaCalculatorResourceSingle v-bind="dailyReward">
-              </GachaCalculatorResourceSingle>
-              <GachaCalculatorResourceSingle v-bind="weekTaskReward">
-              </GachaCalculatorResourceSingle>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-          <v-expansion-panel value="activity">
-            <v-expansion-panel-title>
-              <div class="gacha-calculator-card-title">
-                活动奖励 {{ gachaResourceStatisticsResult.totalPulls.dailyResources }}
-                {{ t('page.tools.gachaCalculator.pulls') }}
-              </div>
-            </v-expansion-panel-title>
-            <v-divider />
-            <v-expansion-panel-text>
-              <GachaCalculatorResourceSingleBtn
-                v-bind="preRegistrationMilestoneReward"
-                @click="
-                  preRegistrationMilestoneReward.active = !preRegistrationMilestoneReward.active
-                "
-              />
-              <v-divider style="margin: 1rem 0"></v-divider>
-              <v-card>
-                <v-card-text>
-                  <GachaCalculatorResourceSingle
-                    v-bind="beginnerSignInTaskReward"
-                    @click="beginnerSignInTaskReward.active = !beginnerSignInTaskReward.active"
-                  />
-                  <div style="height: 36px"></div>
-                  <v-range-slider
-                    v-model="beginnerCheckInTaskProgress"
-                    show-ticks="always"
-                    step="1"
-                    max="14"
-                    tick-size="4"
-                    thumb-label="always"
-                    hide-details="auto"
-                    strict
-                    class="v-range-slider"
-                  >
-                  </v-range-slider>
-                  刻度在1表示第一日签到已完成，不再加入第一日
-                </v-card-text>
-              </v-card>
-
+              <GachaCalculatorResourceSingle v-bind="dailyReward"/>
+              <GachaCalculatorResourceSingle v-bind="weekTaskReward"/>
             </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel value="regionalDevelopment">
@@ -1052,18 +1029,18 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-divider />
             <v-expansion-panel-text>
-              <GachaCalculatorModuleTitle title="四号谷底地区"></GachaCalculatorModuleTitle>
+              <GachaCalculatorModuleTitle title="四号谷底地区"/>
               <GachaCalculatorResourceSingleBtn
                 v-bind="valleyIVRegionalStockBillStoreReward"
                 @click="
                   valleyIVRegionalStockBillStoreReward.active = !valleyIVRegionalStockBillStoreReward.active
                 "
               />
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="valleyIVRegionalDevelopmentReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-range-slider
                     v-model="valleyIVRegionalDevelopmentRewardProgress"
                     show-ticks="always"
@@ -1074,17 +1051,16 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-range-slider>
+                  />
                   通过滑块调节当前地区建设等级
                 </v-card-text>
               </v-card>
 
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="valleyIVCollectReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-range-slider
                     v-model="valleyIVCollectRewardProgress"
                     show-ticks="always"
@@ -1094,17 +1070,16 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-range-slider>
+                  />
                   通过滑块调节当前醚质收集阶段
                 </v-card-text>
               </v-card>
 
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="valleyIVCrateReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-slider
                     v-model="valleyIVCrateRewardProgress"
                     step="1"
@@ -1113,24 +1088,23 @@ onMounted(() => {
                     tick-size="4"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-slider>
+                  />
                   宝箱按平均一个30嵌晶玉的较低期望计算
                 </v-card-text>
               </v-card>
 
 
 
-              <GachaCalculatorModuleTitle title="武陵地区"></GachaCalculatorModuleTitle>
+              <GachaCalculatorModuleTitle title="武陵地区"/>
               <GachaCalculatorResourceSingleBtn
                 v-bind="wulingRegionalStockBillStoreReward"
                 @click="wulingRegionalStockBillStoreReward.active = !wulingRegionalStockBillStoreReward.active"
               />
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="wulingRegionalDevelopmentReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-range-slider
                     v-model="wulingRegionalRewardProgress"
                     show-ticks="always"
@@ -1141,17 +1115,16 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-range-slider>
+                  />
                   通过滑块调节当前地区建设等级
                 </v-card-text>
               </v-card>
 
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="wulingCollectReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-range-slider
                     v-model="wulingCollectRewardProgress"
                     show-ticks="always"
@@ -1161,17 +1134,16 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-range-slider>
+                  />
                   通过滑块调节当前醚质收集阶段
                 </v-card-text>
               </v-card>
 
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="wulingCrateReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-slider
                     v-model="wulingCrateRewardProgress"
                     step="1"
@@ -1180,8 +1152,7 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-slider>
+                  />
                   宝箱按平均一个30嵌晶玉的较低期望计算
                 </v-card-text>
               </v-card>
@@ -1200,7 +1171,7 @@ onMounted(() => {
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-range-slider
                     v-model="authorityLevelUpProgress"
                     show-ticks="always"
@@ -1211,25 +1182,24 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-range-slider>
+                  />
                 </v-card-text>
               </v-card>
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
 
-              <GachaCalculatorModuleTitle title="权限等阶提升任务"></GachaCalculatorModuleTitle>
+              <GachaCalculatorModuleTitle title="权限等阶提升任务"/>
               <GachaCalculatorResourceSingleBtn
                 v-for="item in authorityLevelTaskRewards"
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"
               />
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
 
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="worldLevelReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-range-slider
                     v-model="worldLevelRewardProgress"
                     show-ticks="always"
@@ -1240,15 +1210,14 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-range-slider>
+                  />
                 </v-card-text>
               </v-card>
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="nodeReward" />
-                  <div style="height: 36px"></div>
+                  <div style="height: 36px"/>
                   <v-range-slider
                     v-model="nodeRewardProgress"
                     show-ticks="always"
@@ -1258,8 +1227,7 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-range-slider>
+                  />
                   共计12节点，每节点750嵌晶玉
                 </v-card-text>
               </v-card>
@@ -1269,8 +1237,48 @@ onMounted(() => {
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"
-              >
-              </GachaCalculatorResourceSingleBtn>
+              />
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
+          <v-expansion-panel value="activity">
+            <v-expansion-panel-title>
+              <div class="gacha-calculator-card-title">
+                活动奖励 {{ gachaResourceStatisticsResult.totalPulls.dailyResources }}
+                {{ t('page.tools.gachaCalculator.pulls') }}
+              </div>
+            </v-expansion-panel-title>
+            <v-divider />
+            <v-expansion-panel-text>
+              <GachaCalculatorResourceSingleBtn
+                v-bind="preRegistrationMilestoneReward"
+                @click="
+                  preRegistrationMilestoneReward.active = !preRegistrationMilestoneReward.active
+                "
+              />
+              <v-divider style="margin: 1rem 0"/>
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle
+                    v-bind="beginnerSignInTaskReward"
+                    @click="beginnerSignInTaskReward.active = !beginnerSignInTaskReward.active"
+                  />
+                  <div style="height: 36px"/>
+                  <v-range-slider
+                    v-model="beginnerCheckInTaskProgress"
+                    show-ticks="always"
+                    step="1"
+                    max="14"
+                    tick-size="4"
+                    thumb-label="always"
+                    hide-details="auto"
+                    strict
+                    class="v-range-slider"
+                  />
+                  刻度在1表示第一日签到已完成，不再加入第一日
+                </v-card-text>
+              </v-card>
+
             </v-expansion-panel-text>
           </v-expansion-panel>
 
@@ -1288,14 +1296,11 @@ onMounted(() => {
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"
-              >
-              </GachaCalculatorResourceSingleBtn>
-              <v-divider style="margin: 1rem 0"></v-divider>
+              />
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
-              <GachaCalculatorResourceSingle v-bind="factoryManualReward">
-
-              </GachaCalculatorResourceSingle>
+              <GachaCalculatorResourceSingle v-bind="factoryManualReward"/>
                   <v-slider
                     v-model="factoryManualRewardProgress"
                     step="5"
@@ -1305,18 +1310,15 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-slider>
+                  />
                   因手册奖励过于零散，只能通过滑块大致计算
                 </v-card-text>
               </v-card>
 
-              <v-divider style="margin: 1rem 0"></v-divider>
+              <v-divider style="margin: 1rem 0"/>
               <v-card>
                 <v-card-text>
-                  <GachaCalculatorResourceSingle v-bind="defenseConstructionReward">
-
-                  </GachaCalculatorResourceSingle>
+                  <GachaCalculatorResourceSingle v-bind="defenseConstructionReward"/>
                   <v-slider
                     v-model="defenseConstructionRewardProgress"
                     step="40"
@@ -1326,8 +1328,7 @@ onMounted(() => {
                     thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
-                  >
-                  </v-slider>
+                  />
                   据点防御任务每次40嵌晶玉
                 </v-card-text>
               </v-card>
@@ -1347,19 +1348,25 @@ onMounted(() => {
   flex-wrap: wrap;
   justify-content: space-between;
   max-width: 1280px;
+  min-height: calc(100vh - 200px);
+  position: relative;
 }
 
 .gacha-calculator-container-left {
-  width: 600px;
-  margin: 1%;
-  position: sticky;
-  top: 60px;
-  height: 800px;
+  width: 48%;
+  position: fixed;
+  top: 80px;
+  left: calc(50% - 640px);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 20px;
+  width: 614px;
+  z-index: 10;
 }
 
 .gacha-calculator-container-right {
-  width: 600px;
-  margin: 1%;
+  width: 48%;
+  margin-left: 52%;
 }
 
 .gacha-calculator-card-title {
@@ -1410,5 +1417,16 @@ onMounted(() => {
   .v-slider-thumb__label {
     width: 100px;
   }
+}
+
+.gacha-calculator-warning {
+  background-color: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  color: #856404;
+  font-weight: 600;
+  text-align: center;
 }
 </style>

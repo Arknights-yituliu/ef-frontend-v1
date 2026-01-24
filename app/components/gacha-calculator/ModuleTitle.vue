@@ -16,7 +16,7 @@ const props = defineProps<{title:string}>();
         stroke-linejoin="round"
       />
     </svg>
-    <div class="gacha-calculator-module-title-icon"></div>
+    <div class="gacha-calculator-module-title-icon"/>
   <div>{{props.title}}</div>
   </div>
 </template>

@@ -67,6 +67,7 @@ pages/
 - **`vuetifyIcon`**: Vuetify 图标名称，用于菜单图标
 - **`routePath`**: 路由路径，对应 pages 目录中的文件
 - **`children`**: 子路由数组，支持二级菜单
+- **`isHidden`**: （可选）布尔值，用于在侧边栏菜单中隐藏该路由，但仍然可以通过直接 URL 访问。默认为 `false`
 
 ---
 
@@ -307,6 +308,22 @@ A: 目前支持二级菜单，通过 `children` 字段配置：
 ### Q: 如何添加外部链接？
 
 A: 外部链接不建议添加到路由配置中，建议在页面内容中使用普通的 `<a>` 标签。
+
+### Q: 如何在侧边栏中隐藏路由但保持可访问？
+
+A: 在路由配置中使用 `isHidden` 属性：
+
+```json
+{
+  "i18nKey": "test",
+  "nameKey": "menu.test",
+  "routePath": "/others/test",
+  "vuetifyIcon": "mdi-flask",
+  "isHidden": true
+}
+```
+
+带有 `isHidden: true` 的路由将不会显示在侧边栏菜单中，但仍可通过直接 URL 访问。这对于开发页面、内部工具或只能通过特定链接访问的页面非常有用。
 
 ---
 

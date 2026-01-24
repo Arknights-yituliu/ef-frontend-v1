@@ -67,6 +67,7 @@ The route configuration file is located at: `custom/route/routes.json`
 - **`vuetifyIcon`**: Vuetify icon name for menu icons
 - **`routePath`**: Route path corresponding to files in the pages directory
 - **`children`**: Array of child routes, supporting secondary menus
+- **`isHidden`**: (Optional) Boolean value to hide the route from the sidebar menu while keeping it accessible via direct URL. Default is `false`
 
 ---
 
@@ -307,6 +308,22 @@ A: Currently supports two-level menus, configured through the `children` field:
 ### Q: How to add external links?
 
 A: External links are not recommended to be added to route configuration. Use regular `<a>` tags in page content instead.
+
+### Q: How to hide a route from the sidebar while keeping it accessible?
+
+A: Use the `isHidden` property in the route configuration:
+
+```json
+{
+  "i18nKey": "test",
+  "nameKey": "menu.test",
+  "routePath": "/others/test",
+  "vuetifyIcon": "mdi-flask",
+  "isHidden": true
+}
+```
+
+Routes with `isHidden: true` will not appear in the sidebar menu but can still be accessed via direct URL navigation. This is useful for development pages, internal tools, or pages that should only be accessed through specific links.
 
 ---
 

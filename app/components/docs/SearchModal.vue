@@ -25,7 +25,7 @@
           :placeholder="$t('docs.searchPlaceholder')"
           class="search-input"
           @input="handleSearch"
-        />
+        >
       </div>
 
       <!-- 搜索结果 -->

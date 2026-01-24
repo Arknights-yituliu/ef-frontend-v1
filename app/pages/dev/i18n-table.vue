@@ -51,7 +51,7 @@ const filteredItems = computed(() => {
     </template>
     <template #item="{ item }">
       <tr class="text-no-wrap">
-        <td><img :src="getItemIconUrl(item.id)" :alt="item.nameCN" style="" /></td>
+        <td><img :src="getItemIconUrl(item.id)" :alt="item.nameCN" style="" ></td>
         <td>{{ item.id }}</td>
         <td>{{ item.nameCN }}</td>
         <td>{{ item.nameEN }}</td>

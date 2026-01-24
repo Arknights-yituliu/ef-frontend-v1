@@ -82,7 +82,7 @@
     <ModuleHeader
       title="常驻礼包"
       title-en="Permanent Packs"
-      :tips="['*每月/每周礼包、新人礼包、源石']"
+      :tips="['*每月/每周礼包、新人礼包、源石、武库配额']"
     />
     <h2 style="margin: 15px">新人礼包</h2>
     <TransitionGroup v-if="newbiePacks.length > 0" name="list" tag="div" class="packs-container">
@@ -92,6 +92,11 @@
     <h2 style="margin: 15px">每月/每周礼包</h2>
     <TransitionGroup v-if="periodicPacks.length > 0" name="list" tag="div" class="packs-container">
       <ContainerPackCard v-for="packId in periodicPacks" :key="packId" v-bind="packs[packId]!" />
+    </TransitionGroup>
+
+    <h2 style="margin: 15px">武库配额</h2>
+    <TransitionGroup v-if="weaponsPacks.length > 0" name="list" tag="div" class="packs-container">
+      <ContainerPackCard v-for="packId in weaponsPacks" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
     <h2 style="margin: 15px">源石/首充源石</h2>
@@ -223,13 +228,22 @@ const updateCategorylPacks = () => {
   weaponsPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
     packId.includes('武库配额包'),
   );
-  monthlyCard.value = packsIdFilteredAndSorted.value.filter((packId) => packId.includes('月卡'));
-  originium.value = packsIdFilteredAndSorted.value.filter((packId) => packId.includes('源石'));
+  monthlyCard.value = packsIdFilteredAndSorted.value.filter((packId) => 
+    packId.includes('月卡') || 
+    packId.includes('bp_track_pay') || 
+    packId.includes('bp_track_originium')
+  );
+  originium.value = packsIdFilteredAndSorted.value.filter((packId) => 
+    packId.includes('源石') && 
+    !packId.includes('bp_track_originium')
+  );
   periodicPacks.value = packsIdFilteredAndSorted.value.filter(
     (packId) =>
       packId.includes('monthly_giftpack') ||
       packId.includes('weekly_giftpack') ||
-      packId.includes('月卡'),
+      packId.includes('月卡') ||
+      packId.includes('bp_track_pay') ||
+      packId.includes('bp_track_originium'),
   );
 };
 

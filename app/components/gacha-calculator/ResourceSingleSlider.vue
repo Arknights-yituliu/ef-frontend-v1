@@ -1,6 +1,7 @@
-<script setup lang="ts">
-import { itemIdDict } from '@/custom/core/gacha/level-reward';
-import type { Reward } from '#shared/types/gacha-calculator';
+<script lang="ts" setup>
+import {itemIdDict} from '@/custom/core/gacha/level-reward';
+import type {Reward} from '#shared/types/gacha-calculator';
+
 const props = defineProps<{
   reward:Reward,
   sliderValue:number[]
@@ -30,17 +31,18 @@ function getImageUrl(itemId: string): string {
         :key="`${props.reward.id}-${name}`"
         class="gacha-calculator-resource-single-content"
       >
-        <img class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" alt="existing" />
+        <img :src="getImageUrl(name)" alt="existing" class="gacha-calculator-gacha-item-icon" >
         X {{ reward }}
       </div>
     </div>
-  <v-range-slider v-model="props.sliderValue"
-                  show-ticks="always"
-                  step="1"
-                  max="14"
-                  tick-size="4" thumb-label="always"
+  <v-range-slider
+v-model="props.sliderValue"
+                  class="v-range-slider"
                   hide-details="auto"
-                  class="v-range-slider">
+                  max="14"
+                  show-ticks="always" step="1"
+                  thumb-label="always"
+                  tick-size="4">
     <!--                <template v-slot:thumb-label="{ modelValue }">-->
     <!--                  {{ `第` }} {{ modelValue }} {{ `日` }}-->
     <!--                </template>-->

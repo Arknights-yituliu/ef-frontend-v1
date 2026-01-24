@@ -49,18 +49,51 @@
       "tags": {
         "official": "Official",
         "yituliu": "Yituliu",
+        "yituliu3rd": "Yituliu Hosted",
         "thirdparty": "Third Party",
         "other": "Other"
       },
       "buttons": {
-        "github": "GitHub Repository",
+        "github": "GitHub",
         "discord": "Discord Community",
         "copyContact": "Copy Contact Email",
         "main": "Visit",
         "link": "New Window",
         "copyLink": "Copy Link",
         "website": "Website",
-        "news": "News"
+        "news": "News",
+        "chargeReward": "Charge Reward Query",
+        "prepOrders": "Pre-Gacha Event",
+        "factory4Graduate": "Factory Quick Graduation",
+        "wulingGraduate": "Wuling Quick Graduation",
+        "endfieldLab": "Get Started",
+        "devLog": "Dev Log",
+        "openAllMap": "Open All Maps",
+        "saveDelta": "Click to Save Delta Robot",
+        "searchEndfield": "Search Endfield Story",
+        "searchArknights": "Search Arknights Story",
+        "shopValue": "Shop Value",
+        "packageValue": "Package Value",
+        "itemValueTable": "Item Value Table",
+        "gachaCalculator": "Gacha Calculator",
+        "essenceCalculator": "Essence Calculator",
+        "gachaAnalysis": "Gacha Analysis",
+        "essenceRecognizer": "Essence Recognizer",
+        "returnofall": "RETURNOFALL",
+        "allfield": "ALLFIELD",
+        "endfieldgift": "ENDFIELDGIFT",
+        "endfield4pc": "ENDFIELD4PC",
+        "tdd202601": "TDD202601",
+        "arknightstd": "ARKNIGHTS-TD",
+        "hiddengem01": "HIDDEN-GEM-01",
+        "zmd202601": "ZMD202601",
+        "arknightstdd": "ARKNIGHTS-TDD",
+        "bilibili": "Bilibili",
+        "qq": "QQ",
+        "douyin": "Douyin",
+        "skland": "Skland",
+        "frontendRepo": "Frontend Repo",
+        "devGroup": "Dev Group"
       },
       "checkAccess": {
         "betaTestIICheckAccess": "Beta Test II Check Access",
@@ -70,6 +103,11 @@
         "betaTestIIChargeRewardQuery": "Beta Test II Charge Reward Query"
       },
       "cards": {
+        "launchRedemptionCodes": {
+          "title": "Launch Redemption Codes",
+          "tag": "Official",
+          "description": "Click the buttons below to copy launch redemption codes and redeem them in-game."
+        },
         "officialWebsite": {
           "title": "Official Website",
           "tag": "Official",
@@ -79,26 +117,71 @@
           "title": "Beta Test II Charge Reward Query",
           "tag": "Official",
           "linkText": "Check Reward",
-          "linkIcon": "mdi-open-in-new"
+          "linkIcon": "mdi-open-in-new",
+          "description": "Players who topped up during the beta test can receive rewards based on the amount topped up. Please use the query tool provided on the official website to check your charge reward status."
         },
         "prepOrders": {
           "title": "Pre-Gacha Event",
           "tag": "Official",
           "linkText": "Join Pre-Gacha",
-          "linkIcon": "mdi-open-in-new"
+          "linkIcon": "mdi-open-in-new",
+          "description": "Participate in the pre-gacha event to experience the game's gacha system in advance and receive corresponding character and item rewards after official launch."
         },
         "checkAccess": {
           "title": "Beta Test II Check Access",
           "tag": "Official",
           "linkText": "Check Access",
-          "linkIcon": "mdi-open-in-new"
+          "linkIcon": "mdi-open-in-new",
+          "description": "Check if you have obtained access to the Beta Test II of Arknights: Endfield. Official will send test access in batches, please pay attention to official announcements."
         },
         "endfieldLab": {
           "title": "Endfield Calculator",
-          "tag": "Lab",
-          "linkText": "Go to Calculator",
+          "tag": "Yituliu Hosted",
+          "linkText": "Calculator",
           "linkIcon": "mdi-web",
           "description": "A powerful AIC planning tool for Arknights: Endfield. Input your goals to generate most efficient full-chain production plans from resources to finished products, making base expansion precise and efficient."
+        },
+        "opendfieldmap": {
+          "title": "Endfield Map",
+          "tag": "Third Party",
+          "linkText": "Endfield Map",
+          "linkIcon": "mdi-web",
+          "description": "View details of item and collectible locations in all regions and instances, and participate in building a more comprehensive in-game collection experience."
+        },
+        "endfieldpuzzle": {
+          "title": "Endfield Puzzle Tool",
+          "tag": "Third Party",
+          "linkText": "Puzzle Tool",
+          "linkIcon": "mdi-web",
+          "description": "Puzzle solving tool, a great helper for robots!"
+        },
+        "endfieldMaterialProfit": {
+          "title": "Endfield Yituliu - Material Profit",
+          "tag": "Yituliu",
+          "linkText": "Material Profit",
+          "linkIcon": "mdi-chart-bar",
+          "description": "Provides shop value, package value and item value table to help players make optimal decisions."
+        },
+        "endfieldTools": {
+          "title": "Endfield Yituliu - Toolbox",
+          "tag": "Yituliu",
+          "linkText": "Toolbox",
+          "linkIcon": "mdi-toolbox",
+          "description": "Includes practical tools like gacha calculator, essence calculator and gacha analysis."
+        },
+        "endfieldResources": {
+          "title": "Endfield Yituliu - Resource Download",
+          "tag": "Yituliu",
+          "linkText": "Resource Download",
+          "linkIcon": "mdi-download",
+          "description": "Provides essence recognizer and other resource downloads."
+        },
+        "endfieldprtschat": {
+          "title": "Endfield Story Search",
+          "tag": "Third Party",
+          "linkText": "Story Search",
+          "linkIcon": "mdi-web",
+          "description": "AI-powered game story search tool"
         },
         "yiTuLiu": {
           "title": "Arknights Yituliu",
@@ -113,6 +196,11 @@
           "linkText": "Go to Penguin",
           "linkIcon": "mdi-web",
           "description": "Penguin Statistics is Department of Data Analysis of Penguin Logistics (not really). We devote ourselves to item drop analysis."
+        },
+        "followUs": {
+          "title": "Follow Us",
+          "tag": "Other",
+          "description": "Follow our social media accounts for the latest updates and news."
         },
         "contribute": {
           "title": "Contribute",
@@ -276,18 +364,25 @@
         "matchedWeapons": "Matched Weapons"
       },
       "gachaCalculator": {
+        "standard": "Standard",
+        "special": "Special",
         "title": "Gacha Calculator",
         "underDevelopment": "Under development...",
         "total": "Total",
+        "ticketgacha": "Ticket",
         "pulls": "pulls",
         "rechargeAmount": "Recharge",
         "yuan": "yuan",
-        "existing": "Existing",
-        "daily": "Daily",
         "permanent": "Potential",
         "recharge": "recharge",
         "activity": "Activity",
         "other": "Other",
+        "existing": "Existing",
+        "daily": "Daily",
+        "task": "Task",
+        "level": "Level",
+        "reward": "Reward",
+        "regional": "Regional",
         "pieChartName": "Gacha Resource Distribution",
         "pieChartTooltip": "{seriesName} {name} : {value} pulls, ({percent}%)"
       }
@@ -300,6 +395,12 @@
       "friendLinks": {
         "friendLinks": "Friend Links",
         "friendLinksDescription": "Here are some excellent tools and resource websites related to Arknights"
+      }
+    },
+    "blueprint": {
+      "zirunwang": {
+        "title": "Personal Blueprint Station",
+        "description": "This is the Personal Blueprint Station page."
       }
     }
   },
