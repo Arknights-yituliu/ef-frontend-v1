@@ -396,6 +396,12 @@
         "friendLinks": "Friend Links",
         "friendLinksDescription": "Here are some excellent tools and resource websites related to Arknights"
       }
+    },
+    "blueprint": {
+      "zirunwang": {
+        "title": "Personal Blueprint Station",
+        "description": "This is the Personal Blueprint Station page."
+      }
     }
   },
   "footer": {

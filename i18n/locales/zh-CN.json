@@ -397,6 +397,12 @@
         "friendLinks": "友情链接",
         "friendLinksDescription": "以下是一些与明日方舟相关的优秀工具和资源网站"
       }
+    },
+    "blueprint": {
+      "zirunwang": {
+        "title": "个人蓝图站",
+        "description": "这是个人蓝图站页面。"
+      }
     }
   },
   "footer": {
