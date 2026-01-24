@@ -1312,7 +1312,7 @@ onMounted(() => {
           <v-expansion-panel value="task">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
-                任务奖励 {{ numberFloor(gachaResourceStatisticsResult.totalPulls.task.ticketgachaSpecialSingle,1)  }}
+                任务奖励 {{ numberFloor(gachaResourceStatisticsResult.totalPulls.task?.ticketgachaSpecialSingle,1)  }}
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
