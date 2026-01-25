@@ -981,11 +981,11 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-btn-group style="margin: 8px auto; width: 100%">
-                <v-btn color="#B60129" style="width: 33%"> 熔火灼痕<br />01.22——02.07 </v-btn>
+                <v-btn color="#B60129" style="width: 33%"> 熔火灼痕<br >01.22——02.07 </v-btn>
                 <!--  color="#BE2F00"-->
-                <v-btn disabled style="width: 33%"> 轻飘飘的信使<br />02.07——02.24 </v-btn>
+                <v-btn disabled style="width: 33%"> 轻飘飘的信使<br >02.07——02.24 </v-btn>
                 <!--  color="#FA5B81"-->
-                <v-btn disabled style="width: 33%"> 热烈色彩<br />02.24——未知 </v-btn>
+                <v-btn disabled style="width: 33%"> 热烈色彩<br >02.24——未知 </v-btn>
               </v-btn-group>
 
               <div class="gacha-calculator-statistical-result">
@@ -1005,7 +1005,7 @@ onMounted(() => {
                           class="gacha-calculator-gacha-item-icon"
                           src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                           alt="existing"
-                        />
+                        >
                       </td>
                       <td style="width: 20%">
                         {{ totalResourceStatisticsResultDetail.originiumRecharge }}
@@ -1018,7 +1018,7 @@ onMounted(() => {
                           class="gacha-calculator-gacha-item-icon"
                           src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                           alt="existing"
-                        />
+                        >
                       </td>
                       <td style="width: 20%">
                         {{ totalResourceStatisticsResultDetail.diamond }}({{
@@ -1030,7 +1030,7 @@ onMounted(() => {
                           class="gacha-calculator-gacha-item-icon"
                           src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                           alt="existing"
-                        />
+                        >
                       </td>
                       <td>
                         {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
@@ -1040,7 +1040,7 @@ onMounted(() => {
                           class="gacha-calculator-gacha-item-icon"
                           src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                           alt="existing"
-                        />
+                        >
                       </td>
                       <td>
                         {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
@@ -1065,28 +1065,28 @@ onMounted(() => {
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                   </tr>
                 </thead>
@@ -1136,7 +1136,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.originiumRecharge"
                     hide-details="auto"
@@ -1151,7 +1151,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.diamond"
                     hide-details="auto"
@@ -1166,7 +1166,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.ticketgachaStandardSingle"
                     hide-details="auto"
@@ -1181,7 +1181,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.ticketgachaSpecialSingle"
                     hide-details="auto"
