@@ -15,7 +15,7 @@ const valleyIVRegionalStockBillStoreReward = ref<Reward>({
   content: {
     originiumRecharge: 0,
     diamond: 0,
-    ticketgachaStandardSingle: 5,
+    ticketgachaStandardSingle: 9,
     ticketgachaSpecialSingle: 0,
   },
 });

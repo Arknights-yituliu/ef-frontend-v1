@@ -142,7 +142,7 @@ export const authorityLevelUpReward = ref<Reward>({
   active: true,
   content: {
     originiumRecharge: 0,
-    diamond: 3650,
+    diamond: 4500,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0
   }

@@ -39,7 +39,8 @@ import {
   factoryManualReward,
   beginnerSignInTaskReward,
   defenseConstructionReward,
-} from '@/custom/core/gacha/task-reward';
+  newHorizonsTaskReward
+} from '@/custom/core/gacha/permanent-reward';
 
 const { t } = useI18n();
 
@@ -218,6 +219,15 @@ watch(
 );
 
 watch(
+  newHorizonsTaskReward,
+  (newValue) => {
+    saveUserConfig(newValue.id, newValue.active, 'buttonActive');
+    gachaResourceStatistics();
+  },
+  { deep: true },
+);
+
+watch(
   authorityLevelTaskRewards,
   (newValue) => {
     for (const item of newValue) {
@@ -306,6 +316,7 @@ const authorityLevelUpProgress = ref<number[]>([1, 60]);
 watch(authorityLevelUpProgress, (newVal) => {
   let result: number = 0;
   for (let i = newVal[0]!; i < newVal[1]!; i++) {
+    console.log('level: ', i, 'result: ', result);
     if (i === 44) {
       result += 200;
       continue;
@@ -314,15 +325,24 @@ watch(authorityLevelUpProgress, (newVal) => {
       result += 200;
       continue;
     }
+    if (i === 54) {
+      result += 200;
+      continue;
+    }
+    if (i === 59) {
+      result += 200;
+      continue;
+    }
     if(i>45){
       result += 100;
+      continue;
     }
     if ((i + 1) % 5 === 0) {
       result += 100;
       continue;
     }
     result += 50;
-    console.log('level: ', 60, 'result: ', result);
+
   }
   authorityLevelUpReward.value.content.diamond = result;
   saveUserConfig(authorityLevelUpReward.value.id, newVal, 'rangeSlider');
@@ -568,6 +588,7 @@ const gachaResourceStatistics = (): void => {
     _addReward(result, taskRewardTable.value);
     _addReward(result, factoryManualReward.value);
     _addReward(result, defenseConstructionReward.value);
+    _addReward(result, newHorizonsTaskReward.value);
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.permanent = _getPull(result);
   }
@@ -778,6 +799,7 @@ function loadingUserConfig() {
       if (localConfig.buttonActive) {
         _setButtonActive(localConfig.buttonActive, valleyIVRegionalStockBillStoreReward);
         _setButtonActive(localConfig.buttonActive, wulingRegionalStockBillStoreReward);
+        _setButtonActive(localConfig.buttonActive, newHorizonsTaskReward)
       }
 
       if (localConfig.buttonGroupActive) {
@@ -1150,63 +1172,7 @@ function countTuesdaysBetweenV2(
               </div>
             </v-expansion-panel-text>
           </v-expansion-panel>
-          <v-expansion-panel value="detail">
-            <v-expansion-panel-title>
-              <div class="gacha-calculator-card-title">计算详情</div>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              <v-table>
-                <thead>
-                  <tr>
-                    <th style="font-weight: bolder">奖励来源</th>
-                    <th>
-                      <img
-                        class="gacha-calculator-gacha-item-icon"
-                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-                        alt="existing"
-                      >
-                    </th>
-                    <th>
-                      <img
-                        class="gacha-calculator-gacha-item-icon"
-                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-                        alt="existing"
-                      >
-                    </th>
-                    <th>
-                      <img
-                        class="gacha-calculator-gacha-item-icon"
-                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-                        alt="existing"
-                      >
-                    </th>
-                    <th>
-                      <img
-                        class="gacha-calculator-gacha-item-icon"
-                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-                        alt="existing"
-                      >
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="item in resourceStatisticsResultDetailList">
-                    <td>{{ item.name }}</td>
-                    <td>
-                      {{ item.originiumRecharge }}（{{ numberFloor(item.originiumRecharge * 0.15)
-                      }}{{ t('page.tools.gachaCalculator.pulls') }}）
-                    </td>
-                    <td>
-                      {{ item.diamond }}（{{ numberFloor(item.diamond / 500)
-                      }}{{ t('page.tools.gachaCalculator.pulls') }}）
-                    </td>
-                    <td>{{ item.ticketgachaStandardSingle }}</td>
-                    <td>{{ item.ticketgachaSpecialSingle }}</td>
-                  </tr>
-                </tbody>
-              </v-table>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
+
         </v-expansion-panels>
         <!--        <div style="width: 100%; height: 20px" />-->
       </div>
@@ -1618,6 +1584,10 @@ function countTuesdaysBetweenV2(
               </v-card>
               <v-divider style="margin: 1rem 0" />
               <GachaCalculatorResourceSingleBtn
+                v-bind="newHorizonsTaskReward"
+                @click="newHorizonsTaskReward.active = !newHorizonsTaskReward.active"
+              />
+              <GachaCalculatorResourceSingleBtn
                 v-for="item in taskRewardTable"
                 :key="item.id"
                 v-bind="item"
@@ -1665,6 +1635,63 @@ function countTuesdaysBetweenV2(
                 v-bind="item"
                 @click="item.active = !item.active"
               />
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+          <v-expansion-panel value="detail">
+            <v-expansion-panel-title>
+              <div class="gacha-calculator-card-title">计算详情</div>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <v-table>
+                <thead>
+                <tr>
+                  <th style="font-weight: bolder">奖励来源</th>
+                  <th>
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                      alt="existing"
+                    >
+                  </th>
+                  <th>
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                      alt="existing"
+                    >
+                  </th>
+                  <th>
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                      alt="existing"
+                    >
+                  </th>
+                  <th>
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                      alt="existing"
+                    >
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in resourceStatisticsResultDetailList">
+                  <td>{{ item.name }}</td>
+                  <td>
+                    {{ item.originiumRecharge }}（{{ numberFloor(item.originiumRecharge * 0.15)
+                    }}{{ t('page.tools.gachaCalculator.pulls') }}）
+                  </td>
+                  <td>
+                    {{ item.diamond }}（{{ numberFloor(item.diamond / 500)
+                    }}{{ t('page.tools.gachaCalculator.pulls') }}）
+                  </td>
+                  <td>{{ item.ticketgachaStandardSingle }}</td>
+                  <td>{{ item.ticketgachaSpecialSingle }}</td>
+                </tr>
+                </tbody>
+              </v-table>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>

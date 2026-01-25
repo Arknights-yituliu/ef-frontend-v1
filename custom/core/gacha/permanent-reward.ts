@@ -78,6 +78,26 @@ export const beginnerSignInTaskReward = ref<Reward>({
   }
 });
 
+export const newHorizonsTaskReward = ref<Reward>({
+  id: 'new_horizons_task_reward',
+  name: {
+    zh: `于此启程任务奖励`,
+    en: ''
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '任务奖励',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 40,
+    ticketgachaSpecialSingle: 0
+  }
+});
+
+
 
 export const defenseConstructionReward  = ref<Reward>({
   id: 'defense_construction_reward',
