@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type {
-  CurrentVersionRemainingTime,
   PieChartData,
   GachaCalculatorUserConfig,
   ResourceStatisticsResultDetail,
   TotalPullsSingle,
+  PoolOption,
 } from '@/shared/types/gacha-calculator';
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resource-statistics-result';
 import { numberRound, numberFloor } from '#shared/utils/numberUtil';
@@ -16,7 +16,10 @@ import {
   worldLevelReward,
   etchSpaceSalvageReward,
 } from '@/custom/core/gacha/level-reward';
-import { beginnerSignInTaskReward, activityReward } from '@/custom/core/gacha/activity-reward';
+
+import { activityReward } from '@/custom/core/gacha/activity-reward';
+
+import { AICQuotaReward } from '@/custom/core/gacha/daily-reward';
 
 import {
   valleyIVRegionalDevelopmentReward,
@@ -34,6 +37,7 @@ import {
   taskRewardTable,
   factoryManualMaxReward,
   factoryManualReward,
+  beginnerSignInTaskReward,
   defenseConstructionReward,
 } from '@/custom/core/gacha/task-reward';
 
@@ -46,13 +50,56 @@ const rightPartPanel = ref<string[]>([
   'regionalDevelopment',
   'level',
   'activity',
-  'task',
+  'permanent',
 ]);
-const currentVersionRemainingTime = ref<CurrentVersionRemainingTime>({
-  day: 0,
-  week: 0,
-  month: 0,
+
+const poolOptions =  ref<PoolOption[]>( [
+  {
+    name: '熔火灼痕',
+    color: '#B60129',
+    start: new Date('2026/01/22 10:00:00'),
+    end: new Date('2026/02/07 12:00:00'),
+    dateText: '01.22——02.07',
+    type: '熔火灼痕',
+    disabled: false,
+  },
+  {
+    name: '轻飘飘的信使',
+    color: '#BE2F00',
+    start: new Date('2026/02/07 10:00:00'),
+    end: new Date('2026/02/24 12:00:00'),
+    dateText: '02.07——02.24',
+    type: '轻飘飘的信使',
+    disabled: true,
+  },
+  {
+    name: '热烈色彩',
+    color: '#FA5B81',
+    start: new Date('2026/02/24 10:00:00'),
+    end: new Date('2026/03/12 12:00:00'),
+    dateText: '02.24——未知',
+    type: '热烈色彩',
+    disabled: true,
+  },
+]);
+
+const currentPool = ref<PoolOption>({
+  name: '熔火灼痕',
+  color: '#B60129',
+  start: new Date('2026/01/22 10:00:00'),
+  end: new Date('2026/02/07 12:00:00'),
+  dateText: '01.22——02.07',
+  type: '熔火灼痕',
+  disabled: false,
 });
+
+const startDate:Date = new Date();
+
+function selectedPool(option: PoolOption): void {
+  currentPool.value = option;
+  createDailyReward();
+  gachaResourceStatistics();
+}
 
 //饼图的数据
 let pieChartData: PieChartData[] = [
@@ -87,179 +134,70 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   slider: {},
 });
 
-/**
- * 保存用户输入配置
- * @param key {string} 奖励的唯一key
- * @param value {number | boolean | number[] | boolean[]}奖励的状态值
- * @param type {string} 奖励UI类型，下面是奖励类型：<br>
- * 如果是按钮填入 'buttonActive'<br>
- * 如果是多个按钮填入 'buttonGroupActive'<br>
- * 如果是普通滑块填入 'slider'<br>
- * 如果是范围滑块填入 'rangeSlider'
- */
-function saveUserConfig(
-  key: string,
-  value: number | number[] | boolean | boolean[],
-  type: string,
-): void {
-  if ('rangeSlider' === type) {
-    if (!(Array.isArray(value) && value.length > 0 && typeof value[0] === 'number')) {
-      console.log('传入配置非数组类型');
-      return;
-    }
+const dailyReward = ref<Reward>({
+  id: 'day_reward',
+  name: {
+    zh: `日常奖励X0天`,
+    en: '',
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '日常奖励',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+});
 
-    value = value as number[];
-    if (gachaCalculatorUserConfig.value.rangeSlider === undefined) {
-      gachaCalculatorUserConfig.value.rangeSlider = {};
-    }
-    gachaCalculatorUserConfig.value.rangeSlider[key] = value;
-  }
+const weekTaskReward = ref<Reward>({
+  id: 'week_task_reward',
+  name: {
+    zh: `周常奖励X0周`,
+    en: '',
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '日常奖励',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+});
 
-  if ('slider' === type) {
-    if (typeof value !== 'number') {
-      console.log('传入配置非数字类型');
-      return;
-    }
-    if (gachaCalculatorUserConfig.value.slider === undefined) {
-      gachaCalculatorUserConfig.value.slider = {};
-    }
-    gachaCalculatorUserConfig.value.slider[key] = value;
-  }
+function createDailyReward(): void {
+  const remainingDays: number = calculateDaysDifference(startDate, currentPool.value.end);
+  dailyReward.value.name = {
+    zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
+    en: '',
+  };
+  dailyReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
 
-  if ('buttonActive' === type) {
-    if (typeof value !== 'boolean') {
-      console.log('传入配置非布尔类型');
-      return;
-    }
-    if (gachaCalculatorUserConfig.value.buttonActive === undefined) {
-      gachaCalculatorUserConfig.value.buttonActive = {};
-    }
-    gachaCalculatorUserConfig.value.buttonActive[key] = value;
-  }
-
-  if ('buttonGroupActive' === type) {
-     if (typeof value !== 'boolean') {
-      console.log('传入配置非布尔类型');
-      return;
-    }
-    if (gachaCalculatorUserConfig.value.buttonGroupActive === undefined) {
-      gachaCalculatorUserConfig.value.buttonGroupActive = {};
-    }
-    
-    gachaCalculatorUserConfig.value.buttonGroupActive[key] = value;
-  }
-
-  localStorage.setItem(
-    'Gacha_Calculator_User_Config',
-    JSON.stringify(gachaCalculatorUserConfig.value),
-  );
+  const remainingWeek: number = countTuesdaysBetweenV2(startDate, currentPool.value.end);
+  weekTaskReward.value.name = {
+    zh: `周常奖励X${numberRound(remainingWeek, 0)}周`,
+    en: '',
+  };
+  weekTaskReward.value.content.diamond = numberRound(remainingWeek, 0) * 500;
 }
 
-/**
- * 计算排期开始与结束日期的天数差
- * @param {Date|string|number} startDate 开始日期
- * @param {Date|string|number} endDate 结束日期
- * @returns {number} 俩个日期之间的天数差
- */
-function calculateDaysDifference(
-  startDate: Date | string | number,
-  endDate: Date | string | number,
-): number {
-  // 转换为时间戳
-  const startTimestamp = typeof startDate === 'number' ? startDate : new Date(startDate).getTime();
-  const endTimestamp = typeof endDate === 'number' ? endDate : new Date(endDate).getTime();
-  // 计算天数差
-  return (endTimestamp - startTimestamp) / (1000 * 60 * 60 * 24);
-}
-
-/**
- * 计算两个时间之间有多少个周二
- * @param startDate 开始时间，可以是Date对象、字符串或时间戳
- * @param endDate 结束时间，可以是Date对象、字符串或时间戳
- * @returns 两个时间之间周二的数量
- */
-function countTuesdaysBetween(
-  startDate: Date | string | number,
-  endDate: Date | string | number,
-): number {
-  // 将输入转换为Date对象
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-
-  // 确保开始时间不晚于结束时间
-  if (start > end) {
-    // [start, end] = [end, start];
-  }
-
-  // 设置时间为当天的0点，避免时间部分影响计算
-  start.setHours(0, 0, 0, 0);
-  end.setHours(0, 0, 0, 0);
-
-  // 获取星期几（0-6，0是周日）
-  const startDay = start.getDay();
-  const endDay = end.getDay();
-
-  // 计算开始日期到下一个周二的天数差
-  // 周二是2，所以计算：如果是周二，差0天；如果是周三，差6天；如果是周一，差1天，以此类推
-  const daysToFirstTuesday = (9 - startDay) % 7;
-
-  // 创建第一个周二的日期
-  const firstTuesday = new Date(start);
-  firstTuesday.setDate(start.getDate() + daysToFirstTuesday);
-
-  // 如果第一个周二在开始日期之后但开始日期本身就是周二，需要调整
-  if (firstTuesday > start && startDay === 2) {
-    firstTuesday.setDate(firstTuesday.getDate() - 7);
-  }
-
-  // 如果第一个周二已经超过结束日期，说明没有周二
-  if (firstTuesday > end) {
-    return 0;
-  }
-
-  // 计算最后一个周二的日期
-  const daysFromLastTuesday = (endDay - 2 + 7) % 7;
-  const lastTuesday = new Date(end);
-  lastTuesday.setDate(end.getDate() - daysFromLastTuesday);
-
-  // 计算两个周二之间的天数差
-  const daysBetween = Math.round(
-    (lastTuesday.getTime() - firstTuesday.getTime()) / (1000 * 60 * 60 * 24),
-  );
-
-  // 计算周二的数量
-  const tuesdayCount = Math.floor(daysBetween / 7) + 1;
-
-  return tuesdayCount;
-}
-
-function countTuesdaysBetweenV2(
-  startDate: Date | string | number,
-  endDate: Date | string | number,
-): number {
-  // 将输入转换为Date对象
-  const start = new Date(startDate);
-  const end = new Date(endDate).getTime();
-
-  const startTimestamp = start.getTime();
-  let week = 0;
-
-  if (start.getDay() < 2) {
-    week++;
-  }
-
-  const oneDayTimestamp = 1000 * 60 * 60 * 24;
-
-  for (let i = startTimestamp; i <= end; i++) {
-    const date = new Date(i);
-    if (date.getDay() === 2) {
-      week++;
+watch(
+  AICQuotaReward,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
     }
-    i += oneDayTimestamp;
-  }
-
-  return week;
-}
+    gachaResourceStatistics();
+  },
+  { deep: true },
+);
 
 watch(
   valleyIVRegionalStockBillStoreReward,
@@ -423,11 +361,10 @@ watch(valleyIVCollectRewardProgress, (newVal) => {
   gachaResourceStatistics();
 });
 
-const valleyIVCrateRewardProgress = ref<number>(8640);
+const valleyIVCrateRewardProgress = ref<number[]>([0, 288]);
 
 watch(valleyIVCrateRewardProgress, (newVal) => {
-  valleyIVCrateReward.value.content.diamond = newVal * 30;
-
+  valleyIVCrateReward.value.content.diamond = (newVal[1]! - newVal[0]!) * 30;
   saveUserConfig(valleyIVCrateReward.value.id, newVal, 'slider');
   gachaResourceStatistics();
 });
@@ -472,12 +409,11 @@ watch(wulingCollectRewardProgress, (newVal) => {
 });
 
 //武陵储藏箱奖励
-const wulingCrateRewardProgress = ref<number>(8640);
+const wulingCrateRewardProgress = ref<number[]>([0, 183]);
 //武陵储藏箱奖励进度
 watch(wulingCrateRewardProgress, (newVal) => {
-  wulingCrateReward.value.content.diamond = newVal * 30;
-
-  saveUserConfig(wulingCrateReward.value.id, newVal, 'slider');
+  wulingCrateReward.value.content.diamond = (newVal[1]! - newVal[0]!) * 30;
+  saveUserConfig(wulingCrateReward.value.id, newVal, 'rangeSlider');
   gachaResourceStatistics();
 });
 
@@ -508,65 +444,7 @@ watch(defenseConstructionRewardProgress, (newVal) => {
   gachaResourceStatistics();
 });
 
-const dailyReward = ref<Reward>({
-  id: 'day_reward',
-  name: {
-    zh: `日常奖励X0天`,
-    en: '',
-  },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
-  type: '通用',
-  module: '日常奖励',
-  active: true,
-  content: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-  },
-});
 
-function createDaysReward(): void {
-  const remainingDays: number = calculateDaysDifference('2026/01/22', '2026-03-05');
-  dailyReward.value.name = {
-    zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
-    en: '',
-  };
-  dailyReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
-}
-
-createDaysReward();
-
-const weekTaskReward = ref<Reward>({
-  id: 'week_task_reward',
-  name: {
-    zh: `周常奖励X0周`,
-    en: '',
-  },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
-  type: '通用',
-  module: '日常奖励',
-  active: true,
-  content: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-  },
-});
-
-function createWeekTaskReward(): void {
-  const remainingWeek: number = countTuesdaysBetweenV2('2026/01/22', '2026-03-05');
-  weekTaskReward.value.name = {
-    zh: `周常奖励X${numberRound(remainingWeek, 0)}周`,
-    en: '',
-  };
-  weekTaskReward.value.content.diamond = numberRound(remainingWeek, 0) * 500;
-}
-
-createWeekTaskReward();
 
 const resourceStatisticsResultDetailList = ref<ResourceStatisticsResultDetail[]>([]);
 
@@ -605,6 +483,7 @@ const gachaResourceStatistics = (): void => {
 
     _addReward(result, dailyReward.value);
     _addReward(result, weekTaskReward.value);
+    _addReward(result, AICQuotaReward.value);
 
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.daily = _getPull(result);
@@ -658,26 +537,32 @@ const gachaResourceStatistics = (): void => {
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     };
-    _addReward(result, beginnerSignInTaskReward.value);
-    _addReward(result, activityReward.value);
 
+    for (const reward of activityReward.value) {
+      if (checkRewardIsValid(reward)) {
+        _addReward(result, reward);
+      }
+    }
+
+    console.log(result);
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.activity = _getPull(result);
   }
 
-  function _taskRewardStatistics(): void {
+  function _permanentRewardStatistics(): void {
     const result: ResourceStatisticsResultDetail = {
-      name: '任务奖励',
+      name: '常驻奖励',
       originiumRecharge: 0,
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     };
+    _addReward(result, beginnerSignInTaskReward.value);
     _addReward(result, taskRewardTable.value);
     _addReward(result, factoryManualReward.value);
     _addReward(result, defenseConstructionReward.value);
     list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.task = _getPull(result);
+    gachaResourceStatisticsResult.value.totalPulls.permanent = _getPull(result);
   }
 
   function _totalRewardStatistics(): void {
@@ -712,10 +597,12 @@ const gachaResourceStatistics = (): void => {
         }
       }
     } else {
-      result.originiumRecharge += reward.content.originiumRecharge;
-      result.diamond += reward.content.diamond;
-      result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
-      result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+      if (reward.active) {
+        result.originiumRecharge += reward.content.originiumRecharge;
+        result.diamond += reward.content.diamond;
+        result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
+        result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+      }
     }
   }
 
@@ -724,7 +611,7 @@ const gachaResourceStatistics = (): void => {
   _regionalRewardStatistics();
   _levelRewardStatistics();
   _activityRewardStatistics();
-  _taskRewardStatistics();
+  _permanentRewardStatistics();
   _totalRewardStatistics();
 
   pieChartData = [];
@@ -777,7 +664,6 @@ function setPieChart(data: PieChartData[]) {
           percent: param.percent || 0,
         });
       },
-      position: 'inner',
     },
 
     series: [
@@ -841,13 +727,13 @@ const rangeSliderMap: Record<string, Ref<number[]>> = {
   wuling_regional_development_reward: wulingRegionalRewardProgress,
   wuling_collect_reward: valleyIVCollectRewardProgress,
   world_level_reward: worldLevelRewardProgress,
+  wuling_crate_reward: wulingCrateRewardProgress,
+  valley_IV_crate_reward: valleyIVCrateRewardProgress,
 };
 
 const sliderMap: Record<string, Ref<number>> = {
   defense_construction_reward: defenseConstructionRewardProgress,
   factory_manual_reward: factoryManualRewardProgress,
-  valley_IV_crate_reward: valleyIVCrateRewardProgress,
-  wuling_crate_reward: wulingCrateRewardProgress,
 };
 
 const buttonMap: Record<string, Ref<Reward>> = {};
@@ -888,6 +774,7 @@ function loadingUserConfig() {
       }
 
       if (localConfig.buttonGroupActive) {
+        _setButtonGroupActive(localConfig.buttonGroupActive, AICQuotaReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, authorityLevelTaskRewards);
         _setButtonGroupActive(localConfig.buttonGroupActive, taskRewardTable);
         _setButtonGroupActive(localConfig.buttonGroupActive, etchSpaceSalvageReward);
@@ -915,7 +802,7 @@ function loadingUserConfig() {
    * @param reward 奖励对象的Ref引用
    */
   function _setButtonActive(statusMap: Record<string, boolean>, reward: Ref<Reward>) {
-    const   rewardValue = reward.value
+    const rewardValue = reward.value;
     // 检查状态映射中是否存在对应ID的状态
     const status = statusMap[rewardValue.id];
     if (status !== undefined) {
@@ -932,7 +819,7 @@ function loadingUserConfig() {
   function _setButtonGroupActive(statusMap: Record<string, boolean>, rewards: Ref<Reward[]>) {
     // 获取奖励数组的实际值
     const rewardArray = rewards.value;
-    
+
     // 遍历奖励数组
     for (const reward of rewardArray) {
       // 检查状态映射中是否存在对应ID的状态
@@ -949,9 +836,211 @@ onMounted(() => {
   loadingUserConfig();
   myChart = echarts.init(document.getElementById('gacha-calculator-pie-chart'));
   setPieChart(pieChartData);
-  gachaResourceStatistics();
-  currentVersionRemainingTime.value.day = calculateDaysDifference('2026/01/22', '2026-03-05');
+  if(poolOptions.value[0]!==undefined){
+    selectedPool(poolOptions.value[0])
+  }
 });
+
+// 工具函数
+
+/**
+ * 检查奖励是否在当前池子期间内有效
+ * @param reward 奖励对象
+ * @returns 是否有效
+ */
+
+/**
+ * 保存用户输入配置
+ * @param key {string} 奖励的唯一key
+ * @param value {number | boolean | number[] | boolean[]}奖励的状态值
+ * @param type {string} 奖励UI类型，下面是奖励类型：<br>
+ * 如果是按钮填入 'buttonActive'<br>
+ * 如果是多个按钮填入 'buttonGroupActive'<br>
+ * 如果是普通滑块填入 'slider'<br>
+ * 如果是范围滑块填入 'rangeSlider'
+ */
+function saveUserConfig(
+  key: string,
+  value: number | number[] | boolean | boolean[],
+  type: string,
+): void {
+  if ('rangeSlider' === type) {
+    if (!(Array.isArray(value) && value.length > 0 && typeof value[0] === 'number')) {
+      console.log('传入配置非数组类型');
+      return;
+    }
+
+    value = value as number[];
+    if (gachaCalculatorUserConfig.value.rangeSlider === undefined) {
+      gachaCalculatorUserConfig.value.rangeSlider = {};
+    }
+    gachaCalculatorUserConfig.value.rangeSlider[key] = value;
+  }
+
+  if ('slider' === type) {
+    if (typeof value !== 'number') {
+      console.log('传入配置非数字类型');
+      return;
+    }
+    if (gachaCalculatorUserConfig.value.slider === undefined) {
+      gachaCalculatorUserConfig.value.slider = {};
+    }
+    gachaCalculatorUserConfig.value.slider[key] = value;
+  }
+
+  if ('buttonActive' === type) {
+    if (typeof value !== 'boolean') {
+      console.log('传入配置非布尔类型');
+      return;
+    }
+    if (gachaCalculatorUserConfig.value.buttonActive === undefined) {
+      gachaCalculatorUserConfig.value.buttonActive = {};
+    }
+    gachaCalculatorUserConfig.value.buttonActive[key] = value;
+  }
+
+  if ('buttonGroupActive' === type) {
+    if (typeof value !== 'boolean') {
+      console.log('传入配置非布尔类型');
+      return;
+    }
+    if (gachaCalculatorUserConfig.value.buttonGroupActive === undefined) {
+      gachaCalculatorUserConfig.value.buttonGroupActive = {};
+    }
+
+    gachaCalculatorUserConfig.value.buttonGroupActive[key] = value;
+  }
+
+  localStorage.setItem(
+    'Gacha_Calculator_User_Config',
+    JSON.stringify(gachaCalculatorUserConfig.value),
+  );
+}
+
+/**
+ * 计算排期开始与结束日期的天数差
+ * @param {Date|string|number} startDate 开始日期
+ * @param {Date|string|number} endDate 结束日期
+ * @returns {number} 俩个日期之间的天数差
+ */
+function calculateDaysDifference(
+  startDate: Date | string | number,
+  endDate: Date | string | number,
+): number {
+  // 转换为时间戳
+  const startTimestamp = typeof startDate === 'number' ? startDate : new Date(startDate).getTime();
+  const endTimestamp = typeof endDate === 'number' ? endDate : new Date(endDate).getTime();
+  // 计算天数差
+  return (endTimestamp - startTimestamp) / (1000 * 60 * 60 * 24);
+}
+
+function checkRewardIsValid(reward: Reward): boolean {
+  const currentPoolValue = currentPool.value;
+
+  // 活动结束时间在当前池子开始时间之前，活动已结束
+  if (reward.end <= currentPoolValue.start) {
+    return false;
+  }
+
+  // 活动开始时间在当前池子结束时间之后，活动未开始
+  if (reward.start > currentPoolValue.end) {
+    return false;
+  }
+
+  // 判断奖励类型是否可以被计入
+  // 通用类型都可以计入，特殊类型需要与当前池子类型匹配
+  return reward.type === '通用' || reward.type === currentPoolValue.type;
+}
+
+/**
+ * 计算两个时间之间有多少个周二
+ * @param startDate 开始时间，可以是Date对象、字符串或时间戳
+ * @param endDate 结束时间，可以是Date对象、字符串或时间戳
+ * @returns 两个时间之间周二的数量
+ */
+function countTuesdaysBetween(
+  startDate: Date | string | number,
+  endDate: Date | string | number,
+): number {
+  // 将输入转换为Date对象
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  // 确保开始时间不晚于结束时间
+  if (start > end) {
+    // [start, end] = [end, start];
+  }
+
+  // 设置时间为当天的0点，避免时间部分影响计算
+  start.setHours(0, 0, 0, 0);
+  end.setHours(0, 0, 0, 0);
+
+  // 获取星期几（0-6，0是周日）
+  const startDay = start.getDay();
+  const endDay = end.getDay();
+
+  // 计算开始日期到下一个周二的天数差
+  // 周二是2，所以计算：如果是周二，差0天；如果是周三，差6天；如果是周一，差1天，以此类推
+  const daysToFirstTuesday = (9 - startDay) % 7;
+
+  // 创建第一个周二的日期
+  const firstTuesday = new Date(start);
+  firstTuesday.setDate(start.getDate() + daysToFirstTuesday);
+
+  // 如果第一个周二在开始日期之后但开始日期本身就是周二，需要调整
+  if (firstTuesday > start && startDay === 2) {
+    firstTuesday.setDate(firstTuesday.getDate() - 7);
+  }
+
+  // 如果第一个周二已经超过结束日期，说明没有周二
+  if (firstTuesday > end) {
+    return 0;
+  }
+
+  // 计算最后一个周二的日期
+  const daysFromLastTuesday = (endDay - 2 + 7) % 7;
+  const lastTuesday = new Date(end);
+  lastTuesday.setDate(end.getDate() - daysFromLastTuesday);
+
+  // 计算两个周二之间的天数差
+  const daysBetween = Math.round(
+    (lastTuesday.getTime() - firstTuesday.getTime()) / (1000 * 60 * 60 * 24),
+  );
+
+  // 计算周二的数量
+  const tuesdayCount = Math.floor(daysBetween / 7) + 1;
+
+  return tuesdayCount;
+}
+
+function countTuesdaysBetweenV2(
+  startDate: Date | string | number,
+  endDate: Date | string | number,
+): number {
+  // 将输入转换为Date对象
+  const start = new Date(startDate);
+  const end = new Date(endDate).getTime();
+
+  const startTimestamp = start.getTime();
+  let week = 0;
+
+  if (start.getDay() < 2) {
+    week++;
+  }
+
+  const oneDayTimestamp = 1000 * 60 * 60 * 24;
+
+  for (let i = startTimestamp; i <= end; i++) {
+    const date = new Date(i);
+    if (date.getDay() === 2) {
+      week++;
+    }
+    i += oneDayTimestamp;
+  }
+
+  return week;
+}
+
 </script>
 
 <template>
@@ -981,11 +1070,14 @@ onMounted(() => {
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-btn-group style="margin: 8px auto; width: 100%">
-                <v-btn color="#B60129" style="width: 33%"> 熔火灼痕<br >01.22——02.07 </v-btn>
-                <!--  color="#BE2F00"-->
-                <v-btn disabled style="width: 33%"> 轻飘飘的信使<br >02.07——02.24 </v-btn>
-                <!--  color="#FA5B81"-->
-                <v-btn disabled style="width: 33%"> 热烈色彩<br >02.24——未知 </v-btn>
+                <v-btn
+                  v-for="option in poolOptions"
+                  style="width: 33%"
+
+                  :color="currentPool.name===option.name?option.color:'#aaaaaa'"
+                  @click="selectedPool(option)"
+                  >{{ option.name }}<br />{{ option.dateText }}</v-btn
+                >
               </v-btn-group>
 
               <div class="gacha-calculator-statistical-result">
@@ -997,57 +1089,57 @@ onMounted(() => {
                   ref="gacha-calculator-pie-chart"
                   class="gacha-calculator-pie-chart"
                 />
-                <table class="gacha-calculator-total-resource-table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <img
-                          class="gacha-calculator-gacha-item-icon"
-                          src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-                          alt="existing"
-                        >
-                      </td>
-                      <td style="width: 20%">
-                        {{ totalResourceStatisticsResultDetail.originiumRecharge }}
-                        ({{
-                          numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15)
-                        }})
-                      </td>
-                      <td>
-                        <img
-                          class="gacha-calculator-gacha-item-icon"
-                          src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-                          alt="existing"
-                        >
-                      </td>
-                      <td style="width: 20%">
-                        {{ totalResourceStatisticsResultDetail.diamond }}({{
-                          numberFloor(totalResourceStatisticsResultDetail.diamond / 500)
-                        }})
-                      </td>
-                      <td>
-                        <img
-                          class="gacha-calculator-gacha-item-icon"
-                          src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-                          alt="existing"
-                        >
-                      </td>
-                      <td>
-                        {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
-                      </td>
-                      <td>
-                        <img
-                          class="gacha-calculator-gacha-item-icon"
-                          src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-                          alt="existing"
-                        >
-                      </td>
-                      <td>
-                        {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+
+                <div class="gacha-calculator-statistics-result">
+                  <div class="gacha-calculator-statistics-result-item">
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                      alt="existing"
+                    />
+                    <span class="gacha-calculator-statistics-result-item-text">
+                      {{ totalResourceStatisticsResultDetail.originiumRecharge }}
+                      ({{
+                        numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15)
+                      }})
+                    </span>
+                  </div>
+
+                  <div class="gacha-calculator-statistics-result-item">
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                      alt="existing"
+                    />
+                    <span class="gacha-calculator-statistics-result-item-text">
+                      {{ totalResourceStatisticsResultDetail.diamond }}({{
+                        numberFloor(totalResourceStatisticsResultDetail.diamond / 500)
+                      }})
+                    </span>
+                  </div>
+
+                  <div class="gacha-calculator-statistics-result-item">
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                      alt="existing"
+                    />
+                    <span class="gacha-calculator-statistics-result-item-text">
+                      {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
+                    </span>
+                  </div>
+
+                  <div class="gacha-calculator-statistics-result-item">
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                      alt="existing"
+                    />
+                    <span class="gacha-calculator-statistics-result-item-text">
+                      {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
+                    </span>
+                  </div>
+                </div>
               </div>
             </v-expansion-panel-text>
           </v-expansion-panel>
@@ -1065,28 +1157,28 @@ onMounted(() => {
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                         alt="existing"
-                      >
+                      />
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                         alt="existing"
-                      >
+                      />
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                         alt="existing"
-                      >
+                      />
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                         alt="existing"
-                      >
+                      />
                     </th>
                   </tr>
                 </thead>
@@ -1116,6 +1208,7 @@ onMounted(() => {
       <!--      </div>-->
       <div class="gacha-calculator-container-right">
         <v-expansion-panels v-model="rightPartPanel" multiple>
+          <!--库存-->
           <v-expansion-panel value="existing">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
@@ -1136,7 +1229,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                     alt="existing"
-                  >
+                  />
                   <v-text-field
                     v-model="existingResource.originiumRecharge"
                     hide-details="auto"
@@ -1151,7 +1244,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                     alt="existing"
-                  >
+                  />
                   <v-text-field
                     v-model="existingResource.diamond"
                     hide-details="auto"
@@ -1166,7 +1259,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                     alt="existing"
-                  >
+                  />
                   <v-text-field
                     v-model="existingResource.ticketgachaStandardSingle"
                     hide-details="auto"
@@ -1181,7 +1274,7 @@ onMounted(() => {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                     alt="existing"
-                  >
+                  />
                   <v-text-field
                     v-model="existingResource.ticketgachaSpecialSingle"
                     hide-details="auto"
@@ -1192,6 +1285,8 @@ onMounted(() => {
               </div>
             </v-expansion-panel-text>
           </v-expansion-panel>
+
+          <!--日常奖励-->
           <v-expansion-panel value="daily">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
@@ -1205,12 +1300,49 @@ onMounted(() => {
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
-            <v-divider />
+            <v-divider style="margin: 1rem 0" />
             <v-expansion-panel-text>
               <GachaCalculatorResourceSingle v-bind="dailyReward" />
               <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
+              <v-divider style="margin: 1rem 0" />
+              集成配额交易
+              <GachaCalculatorResourceSingleBtn
+                v-for="item in AICQuotaReward"
+                :key="item.id"
+                v-bind="item"
+                v-show="checkRewardIsValid(item)"
+                @click="item.active = !item.active"
+              />
+
             </v-expansion-panel-text>
           </v-expansion-panel>
+
+          <!--活动奖励-->
+          <v-expansion-panel value="activity">
+            <v-expansion-panel-title>
+              <div class="gacha-calculator-card-title">
+                活动奖励
+                {{
+                  numberFloor(
+                    gachaResourceStatisticsResult.totalPulls.activity?.ticketgachaSpecialSingle,
+                    1,
+                  )
+                }}
+                {{ t('page.tools.gachaCalculator.pulls') }}
+              </div>
+            </v-expansion-panel-title>
+            <v-divider style="margin: 1rem 0" />
+            <v-expansion-panel-text>
+              <GachaCalculatorResourceSingleBtn
+                v-for="item in activityReward"
+                :key="item.id"
+                v-bind="item"
+                @click="item.active = !item.active"
+              />
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
+          <!--          地区奖励-->
           <v-expansion-panel value="regionalDevelopment">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
@@ -1224,7 +1356,7 @@ onMounted(() => {
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
-            <v-divider />
+            <v-divider style="margin: 1rem 0" />
             <v-expansion-panel-text>
               <GachaCalculatorModuleTitle title="四号谷底地区" />
               <GachaCalculatorResourceSingleBtn
@@ -1278,16 +1410,16 @@ onMounted(() => {
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="valleyIVCrateReward" />
                   <div style="height: 36px" />
-                  <v-slider
+                  <v-range-slider
                     v-model="valleyIVCrateRewardProgress"
                     step="1"
                     max="288"
-                    thumb-label="always"
                     tick-size="4"
+                    thumb-label="always"
                     hide-details="auto"
                     class="v-range-slider"
                   />
-                  宝箱按平均一个30嵌晶玉的较低期望计算
+                  储藏箱按平均一个30嵌晶玉的较低期望计算
                 </v-card-text>
               </v-card>
 
@@ -1343,7 +1475,7 @@ onMounted(() => {
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="wulingCrateReward" />
                   <div style="height: 36px" />
-                  <v-slider
+                  <v-range-slider
                     v-model="wulingCrateRewardProgress"
                     step="1"
                     max="183"
@@ -1352,11 +1484,13 @@ onMounted(() => {
                     hide-details="auto"
                     class="v-range-slider"
                   />
-                  宝箱按平均一个30嵌晶玉的较低期望计算
+                  储藏箱按平均一个30嵌晶玉的较低期望计算
                 </v-card-text>
               </v-card>
             </v-expansion-panel-text>
           </v-expansion-panel>
+
+          <!--等级奖励-->
           <v-expansion-panel value="level">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
@@ -1370,7 +1504,7 @@ onMounted(() => {
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
-            <v-divider />
+            <v-divider style="margin: 1rem 0" />
             <v-expansion-panel-text>
               <v-card>
                 <v-card-text>
@@ -1435,44 +1569,25 @@ onMounted(() => {
                   共计12节点，每节点750嵌晶玉
                 </v-card-text>
               </v-card>
-
-              <GachaCalculatorResourceSingleBtn
-                v-for="item in etchSpaceSalvageReward"
-                :key="item.id"
-                v-bind="item"
-                @click="item.active = !item.active"
-              />
             </v-expansion-panel-text>
           </v-expansion-panel>
 
-          <v-expansion-panel value="activity">
+          <!--任务奖励-->
+          <v-expansion-panel value="permanent">
             <v-expansion-panel-title>
               <div class="gacha-calculator-card-title">
-                活动奖励
+                常驻奖励
                 {{
                   numberFloor(
-                    gachaResourceStatisticsResult.totalPulls.activity?.ticketgachaSpecialSingle,
+                    gachaResourceStatisticsResult.totalPulls.permanent?.ticketgachaSpecialSingle,
                     1,
                   )
                 }}
                 {{ t('page.tools.gachaCalculator.pulls') }}
               </div>
             </v-expansion-panel-title>
-            <v-divider />
+            <v-divider style="margin: 1rem 0" />
             <v-expansion-panel-text>
-              <GachaCalculatorResourceSingleBtn
-                v-for="item in activityReward"
-                :key="item.id"
-                v-bind="item"
-                @click="item.active = !item.active"
-              />
-              <!--              <GachaCalculatorResourceSingleBtn-->
-              <!--                v-bind="preRegistrationMilestoneReward"-->
-              <!--                @click="-->
-              <!--                  preRegistrationMilestoneReward.active = !preRegistrationMilestoneReward.active-->
-              <!--                "-->
-              <!--              />-->
-              <v-divider style="margin: 1rem 0" />
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle
@@ -1494,24 +1609,7 @@ onMounted(() => {
                   刻度在1表示第一日签到已完成，不再加入第一日
                 </v-card-text>
               </v-card>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-          <v-expansion-panel value="task">
-            <v-expansion-panel-title>
-              <div class="gacha-calculator-card-title">
-                任务奖励
-                {{
-                  numberFloor(
-                    gachaResourceStatisticsResult.totalPulls.task?.ticketgachaSpecialSingle,
-                    1,
-                  )
-                }}
-                {{ t('page.tools.gachaCalculator.pulls') }}
-              </div>
-            </v-expansion-panel-title>
-            <v-divider />
-            <v-expansion-panel-text>
+              <v-divider style="margin: 1rem 0" />
               <GachaCalculatorResourceSingleBtn
                 v-for="item in taskRewardTable"
                 :key="item.id"
@@ -1553,6 +1651,13 @@ onMounted(() => {
                   据点防御任务每次40嵌晶玉
                 </v-card-text>
               </v-card>
+              <v-divider style="margin: 1rem 0" />
+              <GachaCalculatorResourceSingleBtn
+                v-for="item in etchSpaceSalvageReward"
+                :key="item.id"
+                v-bind="item"
+                @click="item.active = !item.active"
+              />
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -1591,27 +1696,25 @@ onMounted(() => {
   display: block;
 }
 
-.gacha-calculator-total-resource-table {
-  td:nth-child(odd) {
-    padding: 0 0 0 12px;
-  }
+.gacha-calculator-statistics-result {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gacha-calculator-statistics-result-item {
+  display: flex;
+  align-items: center;
+  width: 280px;
+}
+
+.gacha-calculator-statistics-result-item-text {
+  padding: 0 0 4px 12px;
 }
 
 .gacha-calculator-pie-chart {
   width: 450px;
   height: 300px;
   margin: auto;
-}
-
-.gacha-calculator-resource-table {
-  width: 200px;
-  height: 200px;
-  text-align: center;
-  font-weight: bold;
-
-  td {
-    padding: 0.1rem 0.3rem;
-  }
 }
 
 .gacha-calculator-existing-resource-input {

@@ -45,8 +45,8 @@ export interface Reward {
     en: string;
     zh: string;
   };
-  start: string;
-  end: string;
+  start: string|Date;
+  end: string|Date;
   type: string;
   module: string;
   active: boolean;
@@ -95,4 +95,14 @@ export interface GachaCalculatorUserConfig  {
   slider:{
     [key:string]:number
   }
+}
+
+export type PoolOption = {
+  name:string,
+  start: Date,
+  end: Date,
+  color:string,
+  dateText:string,
+  type:string,
+  disabled: boolean
 }
