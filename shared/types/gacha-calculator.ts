@@ -83,10 +83,16 @@ export interface GachaCalculatorUserConfig  {
   existingResource: {
     [key: string]:number
   },
-  resourceActive:{
+  buttonActive:{
     [key:string]:boolean
   },
-  slider:{
+  buttonGroupActive:{
+    [key:string]:boolean
+  }
+  rangeSlider:{
     [key:string]:number[]
+  }
+  slider:{
+    [key:string]:number
   }
 }
