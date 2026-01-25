@@ -94,7 +94,11 @@
         "skland": "Skland",
         "ioMirror": "io Mirror",
         "frontendRepo": "Frontend Repo",
-        "devGroup": "Dev Group"
+        "devGroup": "Dev Group",
+        "endfieldGachaRecord": "Query Endfield Gacha Record",
+        "arknightsGachaRecord": "Query Arknights Gacha Record",
+        "visitWiki": "Visit Wiki",
+        "visitBlueprintStation": "Visit Blueprint Station"
       },
       "checkAccess": {
         "betaTestIICheckAccess": "Beta Test II Check Access",
@@ -147,7 +151,7 @@
           "tag": "Third Party",
           "linkText": "Puzzle Tool",
           "linkIcon": "mdi-web",
-          "description": "Puzzle solving tool, a great helper for robots"
+          "description": "Puzzle solving tool, a great helper to save the Delta robot"
         },
         "endfieldMaterialProfit": {
           "title": "Endfield Yituliu - Material Profit",
@@ -186,6 +190,21 @@
           "title": "EndAxis",
           "tag": "Third Party",
           "description": "Visual timeline planning tool. Drag skills, create connections, and plan tactical flows"
+        },
+        "gachaRecordAnalysis": {
+          "title": "Endfield Gacha Record Analysis",
+          "tag": "Third Party",
+          "description": "Query and analyze Endfield and Arknights gacha records"
+        },
+        "warfarinWiki": {
+          "title": "Warfarin Wiki",
+          "tag": "Third Party",
+          "description": "Arknights: Endfield Wiki"
+        },
+        "talosPioneers": {
+          "title": "Talos Pioneers",
+          "tag": "Third Party",
+          "description": "Arknights: Endfield Blueprint Station"
         },
         "yiTuLiu": {
           "title": "Arknights Yituliu",
