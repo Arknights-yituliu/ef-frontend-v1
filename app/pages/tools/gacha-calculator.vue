@@ -310,6 +310,13 @@ watch(authorityLevelUpProgress, (newVal) => {
       result += 200;
       continue;
     }
+    if (i === 49) {
+      result += 200;
+      continue;
+    }
+    if(i>45){
+      result += 100;
+    }
     if ((i + 1) % 5 === 0) {
       result += 100;
       continue;
