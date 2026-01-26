@@ -50,8 +50,8 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
   active: true,
   content: {
     originiumRecharge: 0,
-    diamond: 1000,
-    ticketgachaStandardSingle: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 10,
     ticketgachaSpecialSingle: 0
   }
 },
@@ -122,8 +122,8 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     active: true,
     content: {
       originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 10,
+      diamond: 1000,
+      ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0
     }
   }

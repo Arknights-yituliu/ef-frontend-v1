@@ -29,8 +29,8 @@
   "active": true,
   "content": {
     "originiumRecharge": 0,
-    "diamond": 0,
-    "ticketgachaStandardSingle": 20,
+    "diamond": 100,
+    "ticketgachaStandardSingle": 0,
     "ticketgachaSpecialSingle": 0
   }
 },{
