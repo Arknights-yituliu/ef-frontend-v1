@@ -443,7 +443,7 @@ function saveRecordsToCache(uid: string, records: GachaRecord[]) {
 }
 
 // 调试开关
-const USE_DEBUG_DATA = true;
+const USE_DEBUG_DATA = false;
 
 async function submitAndVerify() {
   // ===== 调试数据逻辑 =====
