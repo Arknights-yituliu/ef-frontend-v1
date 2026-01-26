@@ -34,6 +34,23 @@
     "ticketgachaSpecialSingle": 0
   }
 },{
+  "id": "燃尽记忆之灰",
+  "name": {
+    "zh": "燃尽记忆之灰",
+    "en": ""
+  },
+  "start": "2026/01/22 10:00:00",
+  "end": "2026/03/12 10:00:00",
+  "type": "通用",
+  "module": "个人故事",
+  "active": true,
+  "content": {
+    "originiumRecharge": 0,
+    "diamond": 600,
+    "ticketgachaStandardSingle": 0,
+    "ticketgachaSpecialSingle": 0
+  }
+},{
   "id": "离群之狼",
   "name": {
     "zh": "离群之狼",
@@ -42,7 +59,7 @@
   "start": "2026/01/22 10:00:00",
   "end": "2026/03/12 10:00:00",
   "type": "通用",
-  "module": "重要任务",
+  "module": "个人故事",
   "active": true,
   "content": {
     "originiumRecharge": 0,
