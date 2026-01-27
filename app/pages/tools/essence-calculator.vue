@@ -1,6 +1,9 @@
 <template>
   <div class="page-container">
     <header class="page-title">{{ t('page.tools.essenceCalculator.title') }}</header>
+    <v-alert type="error" style="margin: 1rem 0">
+      当前网站数据为三测数据，暂且不要使用，等待后续更新
+    </v-alert>
     <v-expansion-panels :model-value="['需求设定', '计算结果']" multiple>
       <v-expansion-panel value="需求设定">
         <v-expansion-panel-title>{{
