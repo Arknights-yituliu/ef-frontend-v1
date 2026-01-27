@@ -1,27 +1,25 @@
-import TaskTable from './json/task_table.json';
-import TaskTable2 from './json/task_table2.json';
+import valleyIVTaskTable from './json/valley_IV_task_table.json';
+import wulingTaskTable from './json/wuling_task_table.json';
 import FactoryManualTable from './json/factory_manual_table.json';
 import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
 import CharProfileTeaching from './json/char_profile_teaching_table.json'
 
 const taskRewardTable = ref<Reward[]>([]);
+
 const taskNameMap = new Map<string, string>();
-for (const reward of TaskTable2) {
+
+for (const reward of valleyIVTaskTable) {
   taskRewardTable.value.push(reward);
   taskNameMap.set(reward.name.zh, reward.name.zh);
 }
 
-for (const reward of TaskTable) {
-  if (taskNameMap.has(reward.name.zh)) {
-    continue;
-  }
-  if (reward.content.originiumRecharge === 0) {
-    continue;
-  }
+for(const reward of wulingTaskTable as Reward[]) {
   taskRewardTable.value.push(reward);
   taskNameMap.set(reward.name.zh, reward.name.zh);
 }
+
+
 
 export { taskRewardTable };
 

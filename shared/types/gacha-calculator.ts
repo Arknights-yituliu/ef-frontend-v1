@@ -49,6 +49,7 @@ export interface Reward {
   end: string|Date;
   type: string;
   module: string;
+  regional?:string;
   active: boolean;
   content: {
     /** 衍质源石 */
