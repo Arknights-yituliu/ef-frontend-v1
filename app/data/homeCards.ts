@@ -485,7 +485,7 @@ export const homeCards: CardData[] = [
         i18nKey: 'buttons.openAllMap',
         buttonType: ButtonType.Main,
         action: ButtonActionType.Link,
-        actionData: 'https://opendfieldmap.org/',
+        actionData: 'https://opendfieldmap.cn/',
         target: true,
         icon: 'mdi-web',
         color: 'primary',
