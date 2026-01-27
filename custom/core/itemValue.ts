@@ -113,27 +113,27 @@ export const itemValueMap: ItemValueMap = {
   item_char_skill_specialize_1: {
     itemId: 'item_char_skill_specialize_1',
     itemName: '超距辉映管',
-    value: 80 / 6.5, // 估测每次作战掉落 6.5 个
+    value: 80 / 6.8, // 估测每次作战掉落 6.8 个
   },
   item_char_skill_specialize_2: {
     itemId: 'item_char_skill_specialize_2',
     itemName: 'D96钢样品四',
-    value: 80 / 6.5,
+    value: 80 / 6.8,
   },
   item_char_skill_specialize_3: {
     itemId: 'item_char_skill_specialize_3',
     itemName: '快子遴捡晶格',
-    value: 80 / 6.5,
+    value: 80 / 6.8,
   },
   item_char_skill_specialize_4: {
     itemId: 'item_char_skill_specialize_4',
     itemName: '象限拟合液',
-    value: 80 / 6.5,
+    value: 80 / 6.8,
   },
   item_char_skill_specialize_5: {
     itemId: 'item_char_skill_specialize_5',
     itemName: '三相纳米片',
-    value: 80 / 6.5,
+    value: 80 / 6.8,
   },
 
   // 存续的痕迹
@@ -213,7 +213,7 @@ export const itemValueMap: ItemValueMap = {
   item_case_bp_selfselect_skillsp_1: {
     itemId: '高阶培养自选箱Ⅰ',
     itemName: '高阶培养自选箱I',
-    value: (80 / 6.5) * 2,
+    value: (80 / 6.8) * 2,
   },
   item_case_bp_selfselect_exp: {
     itemId: 'item_case_bp_selfselect_exp',
