@@ -1,121 +1,183 @@
-import TaskTable from './task-table.json'
-import TaskTable2 from './task-table2.json'
-import FactoryManualTable from './factory-manual-table.json'
+import TaskTable from './json/task_table.json';
+import TaskTable2 from './json/task_table2.json';
+import FactoryManualTable from './json/factory_manual_table.json';
 import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
+import CharProfileTeaching from './json/char_profile_teaching_table.json'
 
-
-
-const taskRewardTable = ref<Reward[]>([])
-const taskNameMap = new Map<string, string>()
-for(const reward of TaskTable2) {
-   taskRewardTable.value.push(reward)
-  taskNameMap.set(reward.name.zh, reward.name.zh)
+const taskRewardTable = ref<Reward[]>([]);
+const taskNameMap = new Map<string, string>();
+for (const reward of TaskTable2) {
+  taskRewardTable.value.push(reward);
+  taskNameMap.set(reward.name.zh, reward.name.zh);
 }
 
-for(const reward of TaskTable) {
-  if(taskNameMap.has(reward.name.zh)){
-    continue
+for (const reward of TaskTable) {
+  if (taskNameMap.has(reward.name.zh)) {
+    continue;
   }
-  if(reward.content.originiumRecharge===0){
-    continue
+  if (reward.content.originiumRecharge === 0) {
+    continue;
   }
-  taskRewardTable.value.push(reward)
-  taskNameMap.set(reward.name.zh, reward.name.zh)
+  taskRewardTable.value.push(reward);
+  taskNameMap.set(reward.name.zh, reward.name.zh);
 }
 
-export { taskRewardTable }
+export { taskRewardTable };
 
 // export const taskRewardTable1 = ref<Reward[]>(TaskTable as Reward[])
 
-export const factoryManualRewardTable:Reward[] = FactoryManualTable as Reward[]
+const factoryManualRewardTable: Reward[] = FactoryManualTable as Reward[];
 
-
-
-let factoryManualCountReward = 0
-for(const reward of factoryManualRewardTable) {
-  factoryManualCountReward+=reward.content.diamond
+let factoryManualCountReward = 0;
+for (const reward of factoryManualRewardTable) {
+  factoryManualCountReward += reward.content.diamond;
 }
 
-export const factoryManualMaxReward = factoryManualCountReward
+const factoryManualMaxReward = factoryManualCountReward;
 
-export const factoryManualReward = ref<Reward>({
+const factoryManualReward = ref<Reward>({
   id: 'factory_manual_reward',
   name: {
     zh: `简制手册奖励`,
-    en: ''
+    en: '',
   },
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: '常驻奖励',
   active: true,
   content: {
     originiumRecharge: 0,
     diamond: factoryManualCountReward,
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
-  }
+    ticketgachaSpecialSingle: 0,
+  },
 });
 
-
-export const beginnerSignInTaskReward = ref<Reward>({
+const beginnerSignInTaskReward = ref<Reward>({
   id: 'beginner_sign_in_task',
   name: {
     zh: `新手签到奖励`,
-    en: ''
+    en: '',
   },
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: '常驻奖励',
   active: true,
   content: {
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 11
-  }
+    ticketgachaSpecialSingle: 11,
+  },
 });
 
-export const newHorizonsTaskReward = ref<Reward>({
+const newHorizonsTaskReward = ref<Reward>({
   id: 'new_horizons_task_reward',
   name: {
-    zh: `于此启程任务奖励`,
-    en: ''
+    zh: `于此启程常驻奖励`,
+    en: '',
   },
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: '常驻奖励',
   active: true,
   content: {
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 40,
-    ticketgachaSpecialSingle: 0
-  }
+    ticketgachaSpecialSingle: 0,
+  },
 });
 
 
 
-export const defenseConstructionReward  = ref<Reward>({
+const trainingReward = ref<Reward[]>([
+  {
+    id: '基础训练-通用战术',
+    name: {
+      zh: `基础训练-通用战术`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '常驻奖励',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 60,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+  {
+    id: '基础训练-物理异常',
+    name: {
+      zh: `基础训练-物理异常`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '常驻奖励',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 80,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+  {
+    id: '基础训练-法术异常',
+    name: {
+      zh: `基础训练-法术异常`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '常驻奖励',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 100,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  }
+]);
+
+for(const reward of CharProfileTeaching) {
+  trainingReward.value.push(reward);
+}
+
+
+
+const defenseConstructionReward = ref<Reward>({
   id: 'defense_construction_reward',
   name: {
     zh: `据点防御奖励`,
-    en: ''
+    en: '',
   },
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: '常驻奖励',
   active: true,
   content: {
     originiumRecharge: 0,
     diamond: 1280,
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
-  }
+    ticketgachaSpecialSingle: 0,
+  },
 });
 
 
+
+
+export {trainingReward,defenseConstructionReward,newHorizonsTaskReward,beginnerSignInTaskReward,factoryManualReward,factoryManualMaxReward}

@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
-import ActivityRewardTable from './activity-reward-table.json'
+import ActivityRewardTable from './json/activity_reward_table.json'
 
 const activityReward = ref<Reward[]>([])
 

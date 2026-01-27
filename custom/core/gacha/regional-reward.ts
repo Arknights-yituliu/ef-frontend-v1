@@ -1,6 +1,41 @@
 import type { CollectReward, Reward } from '#shared/types/gacha-calculator.ts';
 import { ref } from 'vue';
 
+const wulingAuryleneCollectRewardTable: CollectReward[] = [
+  {
+    originiumRecharge: 1,
+    stage: 1,
+  },
+  {
+    originiumRecharge: 1,
+    stage: 2,
+  },
+  {
+    originiumRecharge: 2,
+    stage: 3,
+  },
+  {
+    originiumRecharge: 2,
+    stage: 4,
+  },
+  {
+    originiumRecharge: 2,
+    stage: 5,
+  },
+  {
+    originiumRecharge: 3,
+    stage: 6,
+  },
+  {
+    originiumRecharge: 3,
+    stage: 7,
+  },
+  {
+    originiumRecharge: 3,
+    stage: 8,
+  },
+];
+
 const valleyIVRegionalStockBillStoreReward = ref<Reward>({
   id: 'valley_IV_regional_stock_bill_store_reward',
   name: {
@@ -39,7 +74,7 @@ const valleyIVRegionalDevelopmentReward = ref<Reward>({
   },
 });
 
-const valleyIVCollectRewardTable: CollectReward[] = [
+const valleyIVAuryleneCollectRewardTable: CollectReward[] = [
   {
     originiumRecharge: 1,
     stage: 1,
@@ -106,7 +141,7 @@ const valleyIVCollectRewardTable: CollectReward[] = [
   },
   {
     originiumRecharge: 3,
-    stage: 17
+    stage: 17,
   },
   {
     originiumRecharge: 3,
@@ -114,8 +149,8 @@ const valleyIVCollectRewardTable: CollectReward[] = [
   },
 ];
 
-const valleyIVCollectReward = ref<Reward>({
-  id: 'valley_IV_collect_reward',
+const valleyIVAuryleneCollectReward = ref<Reward>({
+  id: 'valley_IV_aurylene_collect_reward',
   name: {
     zh: `醚质收集`,
     en: '',
@@ -133,11 +168,11 @@ const valleyIVCollectReward = ref<Reward>({
   },
 });
 
-export const valleyIVCrateReward = ref<Reward>({
+const valleyIVCrateReward = ref<Reward>({
   id: 'valley_IV_crate_reward',
   name: {
     zh: `储藏箱奖励`,
-    en: ''
+    en: '',
   },
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
@@ -148,8 +183,27 @@ export const valleyIVCrateReward = ref<Reward>({
     originiumRecharge: 0,
     diamond: 8640,
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
-  }
+    ticketgachaSpecialSingle: 0,
+  },
+});
+
+const valleyIVSimulationReward = ref<Reward>({
+  id: 'valley_IV_simulation_reward',
+  name: {
+    zh: `模拟空间奖励`,
+    en: '',
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '任务奖励',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 26*25,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
 });
 
 const wulingRegionalStockBillStoreReward = ref<Reward>({
@@ -190,10 +244,8 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
   },
 });
 
-
-
-export const wulingCollectReward = ref<Reward>({
-  id: 'wuling_collect_reward',
+const wulingAuryleneCollectReward = ref<Reward>({
+  id: 'wuling_aurylene_collect_reward',
   name: {
     zh: `醚质收集`,
     en: '',
@@ -204,19 +256,18 @@ export const wulingCollectReward = ref<Reward>({
   module: '任务奖励',
   active: true,
   content: {
-    originiumRecharge: 20,
+    originiumRecharge: 17,
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
 });
 
-
-export const wulingCrateReward = ref<Reward>({
+const wulingCrateReward = ref<Reward>({
   id: 'wuling_crate_reward',
   name: {
     zh: `储藏箱奖励`,
-    en: ''
+    en: '',
   },
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
@@ -227,16 +278,40 @@ export const wulingCrateReward = ref<Reward>({
     originiumRecharge: 0,
     diamond: 5490,
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
-  }
+    ticketgachaSpecialSingle: 0,
+  },
 });
 
+const wulingSimulationReward = ref<Reward>({
+  id: 'wuling_simulation_reward',
+  name: {
+    zh: `模拟空间奖励`,
+    en: '',
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '任务奖励',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 9*25,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+});
 
 export {
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
-  valleyIVCollectReward,
-  valleyIVCollectRewardTable,
+  valleyIVAuryleneCollectRewardTable,
+  valleyIVAuryleneCollectReward,
+  valleyIVCrateReward,
+  valleyIVSimulationReward,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
+  wulingAuryleneCollectRewardTable,
+  wulingAuryleneCollectReward,
+  wulingCrateReward,
+  wulingSimulationReward
 };

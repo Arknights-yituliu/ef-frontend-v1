@@ -24,13 +24,16 @@ import { AICQuotaReward } from '@/custom/core/gacha/daily-reward';
 import {
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
-  valleyIVCollectReward,
-  valleyIVCollectRewardTable,
+  valleyIVAuryleneCollectRewardTable,
+  valleyIVAuryleneCollectReward,
   valleyIVCrateReward,
+  valleyIVSimulationReward,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
-  wulingCollectReward,
+  wulingAuryleneCollectRewardTable,
+  wulingAuryleneCollectReward,
   wulingCrateReward,
+  wulingSimulationReward
 } from '@/custom/core/gacha/regional-reward';
 
 import {
@@ -39,7 +42,8 @@ import {
   factoryManualReward,
   beginnerSignInTaskReward,
   defenseConstructionReward,
-  newHorizonsTaskReward
+  newHorizonsTaskReward,
+  trainingReward
 } from '@/custom/core/gacha/permanent-reward';
 
 const { t } = useI18n();
@@ -261,6 +265,20 @@ watch(
 );
 
 watch(
+  trainingReward,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
+    }
+    gachaResourceStatistics();
+  },
+  { deep: true },
+);
+
+
+
+
+watch(
   existingResource,
   (newValue) => {
     gachaResourceStatistics();
@@ -377,14 +395,14 @@ const valleyIVCollectRewardProgress = ref<number[]>([0, 18]);
 watch(valleyIVCollectRewardProgress, (newVal) => {
   let originiumRecharge: number = 0;
   for (let i = newVal[0]! + 1; i < newVal[1]!; i++) {
-    const stageReward = valleyIVCollectRewardTable[i];
+    const stageReward = valleyIVAuryleneCollectRewardTable[i];
     if (stageReward !== undefined) {
       originiumRecharge += stageReward.originiumRecharge || 0;
     }
   }
 
-  valleyIVCollectReward.value.content.originiumRecharge = originiumRecharge;
-  saveUserConfig(valleyIVCollectReward.value.id, newVal, 'rangeSlider');
+  valleyIVAuryleneCollectReward.value.content.originiumRecharge = originiumRecharge;
+  saveUserConfig(valleyIVAuryleneCollectReward.value.id, newVal, 'rangeSlider');
   gachaResourceStatistics();
 });
 
@@ -392,7 +410,15 @@ const valleyIVCrateRewardProgress = ref<number[]>([0, 288]);
 
 watch(valleyIVCrateRewardProgress, (newVal) => {
   valleyIVCrateReward.value.content.diamond = (newVal[1]! - newVal[0]!) * 30;
-  saveUserConfig(valleyIVCrateReward.value.id, newVal, 'slider');
+  saveUserConfig(valleyIVCrateReward.value.id, newVal, 'rangeSlider');
+  gachaResourceStatistics();
+});
+
+const valleyIVSimulationRewardProgress = ref<number[]>([0, 26]);
+
+watch(valleyIVSimulationRewardProgress, (newVal) => {
+  valleyIVSimulationReward.value.content.diamond = (newVal[1]! - newVal[0]!) * 25;
+  saveUserConfig(valleyIVSimulationReward.value.id, newVal, 'rangeSlider');
   gachaResourceStatistics();
 });
 
@@ -424,14 +450,14 @@ const wulingCollectRewardProgress = ref<number[]>([0, 11]);
 watch(wulingCollectRewardProgress, (newVal) => {
   let originiumRecharge: number = 0;
   for (let i = newVal[0]! + 1; i < newVal[1]!; i++) {
-    const stageReward = valleyIVCollectRewardTable[i];
+    const stageReward = wulingAuryleneCollectRewardTable[i];
     if (stageReward !== undefined) {
       originiumRecharge += stageReward.originiumRecharge || 0;
     }
   }
 
-  wulingCollectReward.value.content.originiumRecharge = originiumRecharge;
-  saveUserConfig(wulingCollectReward.value.id, newVal, 'rangeSlider');
+  wulingAuryleneCollectReward.value.content.originiumRecharge = originiumRecharge;
+  saveUserConfig(wulingAuryleneCollectReward.value.id, newVal, 'rangeSlider');
   gachaResourceStatistics();
 });
 
@@ -443,6 +469,18 @@ watch(wulingCrateRewardProgress, (newVal) => {
   saveUserConfig(wulingCrateReward.value.id, newVal, 'rangeSlider');
   gachaResourceStatistics();
 });
+
+
+//武陵模拟空间奖励
+const wulingSimulationRewardProgress = ref<number[]>([0, 9]);
+//武陵模拟空间奖励进度
+watch(wulingSimulationRewardProgress, (newVal) => {
+  wulingSimulationReward.value.content.diamond = (newVal[1]! - newVal[0]!) * 25;
+  saveUserConfig(wulingSimulationReward.value.id, newVal, 'rangeSlider');
+  gachaResourceStatistics();
+});
+
+
 
 //世界探索等级奖励进度
 const worldLevelRewardProgress = ref<number[]>([3, 7]);
@@ -527,12 +565,14 @@ const gachaResourceStatistics = (): void => {
 
     _addReward(result, valleyIVRegionalStockBillStoreReward.value);
     _addReward(result, valleyIVRegionalDevelopmentReward.value);
-    _addReward(result, valleyIVCollectReward.value);
+    _addReward(result, valleyIVAuryleneCollectReward.value);
     _addReward(result, valleyIVCrateReward.value);
+    _addReward(result, valleyIVSimulationReward.value);
     _addReward(result, wulingRegionalStockBillStoreReward.value);
     _addReward(result, wulingRegionalDevelopmentReward.value);
-    _addReward(result, wulingCollectReward.value);
+    _addReward(result, wulingAuryleneCollectReward.value);
     _addReward(result, wulingCrateReward.value);
+    _addReward(result, wulingSimulationReward.value);
 
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.regional = _getPull(result);
@@ -552,6 +592,7 @@ const gachaResourceStatistics = (): void => {
     _addReward(result, nodeReward.value);
     _addReward(result, worldLevelReward.value);
     _addReward(result, etchSpaceSalvageReward.value);
+    _addReward(result, trainingReward.value);
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.level = _getPull(result);
   }
@@ -750,13 +791,15 @@ const rangeSliderMap: Record<string, Ref<number[]>> = {
   beginner_sign_in_task: beginnerCheckInTaskProgress,
   node_reward: nodeRewardProgress,
   authority_level_up_reward: authorityLevelUpProgress,
-  valley_IV_regional_development_reward: valleyIVRegionalDevelopmentRewardProgress,
-  valley_IV_collect_reward: valleyIVCollectRewardProgress,
-  wuling_regional_development_reward: wulingRegionalRewardProgress,
-  wuling_collect_reward: valleyIVCollectRewardProgress,
   world_level_reward: worldLevelRewardProgress,
-  wuling_crate_reward: wulingCrateRewardProgress,
+  valley_IV_regional_development_reward: valleyIVRegionalDevelopmentRewardProgress,
+  valley_IV_aurylene_collect_reward: valleyIVCollectRewardProgress,
   valley_IV_crate_reward: valleyIVCrateRewardProgress,
+  valley_IV_simulation_reward:valleyIVSimulationRewardProgress,
+  wuling_regional_development_reward: wulingRegionalRewardProgress,
+  wuling_aurylene_collect_reward: valleyIVCollectRewardProgress,
+  wuling_crate_reward: wulingCrateRewardProgress,
+  wuling_simulation_reward:wulingSimulationRewardProgress,
 };
 
 const sliderMap: Record<string, Ref<number>> = {
@@ -807,6 +850,7 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, authorityLevelTaskRewards);
         _setButtonGroupActive(localConfig.buttonGroupActive, taskRewardTable);
         _setButtonGroupActive(localConfig.buttonGroupActive, etchSpaceSalvageReward);
+        _setButtonGroupActive(localConfig.buttonGroupActive, trainingReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
       }
 
@@ -1141,7 +1185,7 @@ function countTuesdaysBetweenV2(
                       alt="existing"
                     >
                     <span class="gacha-calculator-statistics-result-item-text">
-                      {{ totalResourceStatisticsResultDetail.diamond }}({{
+                      {{ numberFloor(totalResourceStatisticsResultDetail.diamond,0) }}({{
                         numberFloor(totalResourceStatisticsResultDetail.diamond / 500)
                       }})
                     </span>
@@ -1362,7 +1406,7 @@ function countTuesdaysBetweenV2(
               <v-divider style="margin: 1rem 0" />
               <v-card>
                 <v-card-text>
-                  <GachaCalculatorResourceSingle v-bind="valleyIVCollectReward" />
+                  <GachaCalculatorResourceSingle v-bind="valleyIVAuryleneCollectReward" />
                   <div style="height: 36px" />
                   <v-range-slider
                     v-model="valleyIVCollectRewardProgress"
@@ -1396,6 +1440,24 @@ function countTuesdaysBetweenV2(
                 </v-card-text>
               </v-card>
 
+                <v-divider style="margin: 1rem 0" />
+                <v-card>
+                  <v-card-text>
+                    <GachaCalculatorResourceSingle v-bind="valleyIVSimulationReward" />
+                    <div style="height: 36px" />
+                    <v-range-slider
+                      v-model="valleyIVSimulationRewardProgress"
+                      show-ticks="always"
+                      step="1"
+                      max="26"
+                      tick-size="4"
+                      thumb-label="always"
+                      hide-details="auto"
+                      class="v-range-slider"
+                    />
+                  </v-card-text>
+              </v-card>
+
               <GachaCalculatorModuleTitle title="武陵地区" />
               <GachaCalculatorResourceSingleBtn
                 v-bind="wulingRegionalStockBillStoreReward"
@@ -1427,7 +1489,7 @@ function countTuesdaysBetweenV2(
               <v-divider style="margin: 1rem 0" />
               <v-card>
                 <v-card-text>
-                  <GachaCalculatorResourceSingle v-bind="wulingCollectReward" />
+                  <GachaCalculatorResourceSingle v-bind="wulingAuryleneCollectReward" />
                   <div style="height: 36px" />
                   <v-range-slider
                     v-model="wulingCollectRewardProgress"
@@ -1458,6 +1520,24 @@ function countTuesdaysBetweenV2(
                     class="v-range-slider"
                   />
                   储藏箱按平均一个30嵌晶玉的较低期望计算
+                </v-card-text>
+              </v-card>
+
+              <v-divider style="margin: 1rem 0" />
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle v-bind="wulingSimulationReward" />
+                  <div style="height: 36px" />
+                  <v-range-slider
+                    v-model="wulingSimulationRewardProgress"
+                    show-ticks="always"
+                    step="1"
+                    max="9"
+                    tick-size="4"
+                    thumb-label="always"
+                    hide-details="auto"
+                    class="v-range-slider"
+                  />
                 </v-card-text>
               </v-card>
             </v-expansion-panel-text>
@@ -1635,6 +1715,16 @@ function countTuesdaysBetweenV2(
                 v-bind="item"
                 @click="item.active = !item.active"
               />
+              <v-divider style="margin: 1rem 0" />
+              <GachaCalculatorModuleTitle title="教学奖励" />
+
+              <GachaCalculatorResourceSingleBtn
+                v-for="item in trainingReward"
+                :key="item.id"
+                v-bind="item"
+                @click="item.active = !item.active"
+              />
+
             </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel value="detail">
