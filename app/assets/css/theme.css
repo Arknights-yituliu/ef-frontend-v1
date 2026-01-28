@@ -1,9 +1,12 @@
 /* ============================================
-   统一灰色主题 - 不再支持暗色模式
+   主题系统 - 支持明暗色模式切换
    ============================================ */
-:root {
+
+/* 明色主题 */
+:root,
+[data-theme='light'] {
   /* 主题变量 - 灰色背景主题 */
-  --theme-bg-primary: #e0e0e0;
+  --theme-bg-primary: #F2F2F2;
   --theme-bg-secondary: #f5f5f5;
   --theme-bg-tertiary: #e8e8e8;
   --theme-text-primary: #2c2c2c;
@@ -58,4 +61,64 @@
 
   /* 侧边栏菜单项 hover 背景变量 */
   --sidebar-item-hover-bg: #d8d8d8;
+}
+
+/* 暗色主题 */
+[data-theme='dark'] {
+  /* 主题变量 - 暗色主题 */
+  --theme-bg-primary: #1a1a1a;
+  --theme-bg-secondary: #2d2d2d;
+  --theme-bg-tertiary: #3d3d3d;
+  --theme-text-primary: #e8e8e8;
+  --theme-text-secondary: #b8b8b8;
+  --theme-text-thirdary: #888888;
+  --theme-text-tertiary: #a0a0a0;
+  --theme-text-light: #666666;
+  --theme-text-disabled: #666666;
+  --theme-border: #3d3d3d;
+  --theme-border-active: #e8e8e8;
+  --theme-accent-color: #e8e8e8;
+  --theme-accent-hover: #3d3d3d;
+  --theme-accent-contrast: #1a1a1a;
+  --theme-decorative-overlay: rgba(255, 255, 255, 0.08);
+  --theme-decorative-overlay-strong: rgba(255, 255, 255, 0.12);
+  --theme-decorative-overlay-light: rgba(255, 255, 255, 0.04);
+  --theme-decorative-overlay-medium: rgba(255, 255, 255, 0.06);
+  --theme-shadow-base: rgba(0, 0, 0, 0.4);
+  --theme-shadow-strong: rgba(0, 0, 0, 0.6);
+  --theme-shadow-accent: rgba(255, 255, 255, 0.12);
+  --theme-shadow-accent-strong: rgba(255, 255, 255, 0.16);
+  --theme-shadow-accent-hover: rgba(255, 255, 255, 0.2);
+  --theme-overlay: rgba(0, 0, 0, 0.8);
+
+  /* 毛玻璃效果变量 */
+  --theme-glass-bg: rgba(45, 45, 45, 0.75);
+  --theme-glass-bg-hover: rgba(45, 45, 45, 0.9);
+  --theme-glass-border: rgba(255, 255, 255, 0.1);
+  --theme-glass-text-shadow: rgba(0, 0, 0, 0.6);
+  --theme-glass-shadow: rgba(0, 0, 0, 0.2);
+
+  /* 沙漠波纹背景颜色变量 - 暗色系 */
+  --wave-bg-color-0: rgba(100, 100, 100, 0.2);
+  --wave-bg-color-1: rgba(100, 100, 100, 0.3);
+  --wave-bg-color-2: rgba(100, 100, 100, 0.4);
+  --wave-bg-color-3: rgba(100, 100, 100, 0.5);
+
+  /* Logo 颜色变量 */
+  --logo-color: #e8e8e8;
+  --logo-color-expanded: #e8e8e8;
+
+  /* 加载器变量 */
+  --theme-loader-bg: #2d2d2d;
+  --theme-progress-bg: #3d3d3d;
+  --theme-progress-color: #e8e8e8;
+  --theme-hexagon-fill: #e8e8e8;
+  --theme-hexagon-stroke: #e8e8e8;
+
+  /* 侧边栏滚动条变量 */
+  --sidebar-scrollbar-thumb: rgba(255, 255, 255, 0.3);
+  --sidebar-scrollbar-thumb-hover: rgba(255, 255, 255, 0.5);
+
+  /* 侧边栏菜单项 hover 背景变量 */
+  --sidebar-item-hover-bg: #3d3d3d;
 }

@@ -1,11 +1,24 @@
 export const useTheme = () => {
-  // 统一使用灰色主题，不再支持暗色模式
-  const theme = useState<'light'>('theme', () => 'light');
+  const theme = useState<'light' | 'dark'>('theme', () => 'light');
+
+  const toggleTheme = () => {
+    const newTheme = theme.value === 'light' ? 'dark' : 'light';
+    theme.value = newTheme;
+    if (import.meta.client) {
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+  };
 
   const initTheme = () => {
     if (import.meta.client) {
-      // 设置默认主题
-      document.documentElement.setAttribute('data-theme', 'light');
+      // 从 localStorage 读取保存的主题，如果没有则使用默认值
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+      
+      theme.value = initialTheme as 'light' | 'dark';
+      document.documentElement.setAttribute('data-theme', initialTheme);
     }
   };
 
@@ -16,5 +29,6 @@ export const useTheme = () => {
 
   return {
     theme: readonly(theme),
+    toggleTheme,
   };
 };
