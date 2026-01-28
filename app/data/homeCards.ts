@@ -660,7 +660,7 @@ export const homeCards: CardData[] = [
   },
   {
     i18nKey: 'penguinStatistics',
-    icon: 'https://coyituliu.cn/endfield/icons/penguin_stats_logo.png',
+    icon: 'https://cos.yituliu.cn/endfield/icons/penguin_stats_logo.png',
     image: '/images/企鹅物流数据统计.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
