@@ -3,10 +3,9 @@
    ============================================ */
 
 /* 明色主题 */
-:root,
-[data-theme='light'] {
+:root {
   /* 主题变量 - 灰色背景主题 */
-  --theme-bg-primary: #F2F2F2;
+  --theme-bg-primary: #f2f2f2;
   --theme-bg-secondary: #f5f5f5;
   --theme-bg-tertiary: #e8e8e8;
   --theme-text-primary: #2c2c2c;

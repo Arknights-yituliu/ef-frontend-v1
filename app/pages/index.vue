@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <TextParticleWord :text="t('page.home.welcome')"/>
+    <TextParticleWord :text="t('page.home.welcome')" class="particle-word" />
     <p class="page-description">{{ t('page.home.hint') }}</p>
 
     <!-- 卡片组容器 -->
@@ -16,7 +16,12 @@
 </template>
 
 <script lang="ts" setup>
-import { homeFooterButtons, homeCards, type FooterButton, ButtonActionType } from '~/data/homeCards';
+import {
+  homeFooterButtons,
+  homeCards,
+  type FooterButton,
+  ButtonActionType,
+} from '~/data/homeCards';
 
 definePageMeta({
   layout: 'default',
@@ -28,7 +33,9 @@ const showSnackbar = ref(false);
 const snackbarText = ref('');
 
 const visibleCards = computed(() => homeCards.filter((card) => card.visible !== false));
-const visibleButtons = computed(() => homeFooterButtons.filter((button) => button.visible !== false));
+const visibleButtons = computed(() =>
+  homeFooterButtons.filter((button) => button.visible !== false),
+);
 
 /**
  * 处理按钮点击事件
@@ -67,20 +74,16 @@ const showSnackbarMessage = (message: string) => {
 </script>
 
 <style scoped>
+.particle-word {
+  color: var(--theme-accent-color);
+}
+
 .page-content {
   min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.welcome-title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: var(--theme-text-primary);
-  text-align: center;
-  margin: 2rem;
 }
 
 .page-description {

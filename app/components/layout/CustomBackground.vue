@@ -1,7 +1,7 @@
 <template>
   <div class="custom-bg">
     <div class="bg-color-layer" />
-    <img :src="mapBg" class="bg-image" alt="Map Background" >
+    <img :src="mapBg" class="bg-image" alt="Map Background" />
   </div>
 </template>
 
@@ -17,18 +17,7 @@ import mapBg from '~/assets/svg/map-bg.svg?url';
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
   pointer-events: none;
-}
-
-.bg-color-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--theme-bg-primary);
-  z-index: 1;
 }
 
 .bg-image {
@@ -41,7 +30,6 @@ import mapBg from '~/assets/svg/map-bg.svg?url';
   object-fit: cover;
   opacity: 0.3;
   transition: filter 0.3s ease;
-  z-index: 2;
   /* 颜色混合算法：将 SVG 转换为灰度背景 */
   /* 1. grayscale(100%) - 将图像完全转换为灰度 */
   /* 2. brightness(200%) - 提高亮度使灰色变浅 */
