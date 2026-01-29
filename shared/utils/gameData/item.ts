@@ -1,8 +1,9 @@
 import { gachaItemMap } from '@/custom/core/gachaItem';
-import { itemTable, getLocalizedText } from '@/shared/utils/gameData/gameData';
+import { items } from '@/custom/core/items';
 import { itemValueMap } from '@/custom/core/itemValue';
 import type { ColorInstance } from 'color';
 import Color from 'color';
+import { useI18n } from 'vue-i18n';
 
 export const tierColorMap: Map<number, ColorInstance> = new Map([
   [1, Color('#9b9b9b')],
@@ -13,11 +14,18 @@ export const tierColorMap: Map<number, ColorInstance> = new Map([
   [6, Color('#ff7100')],
 ]);
 
+export function getLocalizedText(text: Record<string, string>, locale?: string): string {
+  if (locale === undefined) {
+    locale = useI18n().locale.value;
+  }
+  return text[locale] ?? '';
+}
+
 export function getItemName(itemId: string, locale?: string): string {
-  if (itemTable.value[itemId] === undefined) {
+  if (items[itemId] === undefined) {
     return itemId;
   }
-  return getLocalizedText(itemTable.value[itemId].name, locale);
+  return getLocalizedText(items[itemId].name, locale);
 }
 
 export function getItemValue(itemId: string): number {
@@ -29,7 +37,7 @@ export function getItemPulls(itemId: string): number {
 }
 
 export function getItemIconUrl(itemId: string): string | undefined {
-  const iconId = itemTable.value[itemId]?.iconId;
+  const iconId = items[itemId]?.iconId;
   if (iconId === undefined) {
     return undefined;
   }
@@ -37,7 +45,7 @@ export function getItemIconUrl(itemId: string): string | undefined {
 }
 
 export function getItemRarity(itemId: string): number | undefined {
-  return itemTable.value[itemId]?.rarity ?? undefined;
+  return items[itemId]?.rarity ?? undefined;
 }
 
 export function getItemTierColor(itemId: string): ColorInstance {

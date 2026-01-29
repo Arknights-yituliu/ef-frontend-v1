@@ -1,3 +1,5 @@
+// 本文件中的 itemName 字段仅作为备注使用，请勿依赖其值进行逻辑处理
+
 export interface ShopItem {
   itemId: string;
   itemName?: string;
