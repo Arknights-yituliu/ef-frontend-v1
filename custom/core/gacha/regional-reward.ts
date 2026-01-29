@@ -45,7 +45,7 @@ const valleyIVRegionalStockBillStoreReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区建设",
   active: true,
   content: {
     originiumRecharge: 0,
@@ -64,7 +64,7 @@ const valleyIVRegionalDevelopmentReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区建设",
   active: true,
   content: {
     originiumRecharge: 0,
@@ -158,7 +158,7 @@ const valleyIVAuryleneCollectReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区探索",
   active: true,
   content: {
     originiumRecharge: 60,
@@ -177,7 +177,7 @@ const valleyIVCrateReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区探索",
   active: true,
   content: {
     originiumRecharge: 0,
@@ -196,7 +196,7 @@ const valleyIVSimulationReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区建设",
   active: true,
   content: {
     originiumRecharge: 0,
@@ -215,7 +215,7 @@ const wulingRegionalStockBillStoreReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区建设",
   active: true,
   content: {
     originiumRecharge: 0,
@@ -234,7 +234,7 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区建设",
   active: true,
   content: {
     originiumRecharge: 0,
@@ -253,7 +253,7 @@ const wulingAuryleneCollectReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区探索",
   active: true,
   content: {
     originiumRecharge: 17,
@@ -272,7 +272,7 @@ const wulingCrateReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区探索",
   active: true,
   content: {
     originiumRecharge: 0,
@@ -291,7 +291,7 @@ const wulingSimulationReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: "地区建设",
   active: true,
   content: {
     originiumRecharge: 0,

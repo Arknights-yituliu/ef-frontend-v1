@@ -3,7 +3,7 @@ import wulingTaskTable from './json/wuling_task_table.json';
 import FactoryManualTable from './json/factory_manual_table.json';
 import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
-import CharProfileTeaching from './json/char_profile_teaching_table.json'
+import CharProfileTeaching from './json/char_profile_teaching_table.json';
 
 const taskRewardTable = ref<Reward[]>([]);
 
@@ -14,12 +14,10 @@ for (const reward of valleyIVTaskTable) {
   taskNameMap.set(reward.name.zh, reward.name.zh);
 }
 
-for(const reward of wulingTaskTable as Reward[]) {
+for (const reward of wulingTaskTable as Reward[]) {
   taskRewardTable.value.push(reward);
   taskNameMap.set(reward.name.zh, reward.name.zh);
 }
-
-
 
 export { taskRewardTable };
 
@@ -43,7 +41,7 @@ const factoryManualReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '常驻奖励',
+  module: '简制手册',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -56,13 +54,13 @@ const factoryManualReward = ref<Reward>({
 const beginnerSignInTaskReward = ref<Reward>({
   id: 'beginner_sign_in_task',
   name: {
-    zh: `新手签到奖励`,
+    zh: `唤醒签到奖励`,
     en: '',
   },
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '常驻奖励',
+  module: '常驻活动',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -72,26 +70,80 @@ const beginnerSignInTaskReward = ref<Reward>({
   },
 });
 
-const newHorizonsTaskReward = ref<Reward>({
-  id: 'new_horizons_task_reward',
-  name: {
-    zh: `于此启程常驻奖励`,
-    en: '',
+const newHorizonsTaskReward = ref<Reward[]>([
+  {
+    id: 'new_horizons_task_reward_1',
+    name: {
+      zh: `于此启程任务·1`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '常驻活动',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 10,
+      ticketgachaSpecialSingle: 0,
+    },
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
-  type: '通用',
-  module: '常驻奖励',
-  active: true,
-  content: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 40,
-    ticketgachaSpecialSingle: 0,
+  {
+    id: 'new_horizons_task_reward_2',
+    name: {
+      zh: `于此启程任务·2`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '常驻活动',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 10,
+      ticketgachaSpecialSingle: 0,
+    },
   },
-});
-
-
+  {
+    id: 'new_horizons_task_reward_3',
+    name: {
+      zh: `于此启程任务·2`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '常驻活动',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 10,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+  {
+    id: 'new_horizons_task_reward_4',
+    name: {
+      zh: `于此启程任务·4`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '常驻活动',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 10,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+]);
 
 const trainingReward = ref<Reward[]>([
   {
@@ -103,7 +155,7 @@ const trainingReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '常驻奖励',
+    module: '节点手册·训练',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -121,7 +173,7 @@ const trainingReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '常驻奖励',
+    module: '节点手册·训练',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -139,7 +191,7 @@ const trainingReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '常驻奖励',
+    module: '节点手册·训练',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -147,14 +199,16 @@ const trainingReward = ref<Reward[]>([
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     },
-  }
+  },
 ]);
 
-for(const reward of CharProfileTeaching) {
+for (const reward of CharProfileTeaching) {
   trainingReward.value.push(reward);
 }
 
+const intelArchiveReward = ref<Reward[]>([
 
+])
 
 const defenseConstructionReward = ref<Reward>({
   id: 'defense_construction_reward',
@@ -165,7 +219,8 @@ const defenseConstructionReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '常驻奖励',
+  module: '地区建设',
+  regional:'四号谷地',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -175,7 +230,11 @@ const defenseConstructionReward = ref<Reward>({
   },
 });
 
-
-
-
-export {trainingReward,defenseConstructionReward,newHorizonsTaskReward,beginnerSignInTaskReward,factoryManualReward,factoryManualMaxReward}
+export {
+  trainingReward,
+  defenseConstructionReward,
+  newHorizonsTaskReward,
+  beginnerSignInTaskReward,
+  factoryManualReward,
+  factoryManualMaxReward,
+};

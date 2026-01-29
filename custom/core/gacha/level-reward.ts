@@ -26,7 +26,7 @@ export const nodeReward = ref<Reward>(
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '权限等阶提升活动',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -46,7 +46,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: '权限等阶提升活动',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -64,7 +64,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '权限等阶提升活动',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -82,7 +82,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '权限等阶提升活动',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -100,7 +100,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '权限等阶提升活动',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -118,7 +118,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '权限等阶提升活动',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -138,7 +138,7 @@ export const authorityLevelUpReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: '权限等阶提升',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -157,7 +157,7 @@ export const worldLevelReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: '探索等级',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -177,7 +177,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -195,7 +195,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -212,7 +212,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -230,7 +230,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -248,7 +248,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -266,7 +266,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -283,7 +283,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -301,7 +301,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,
@@ -319,7 +319,7 @@ export const etchSpaceSalvageReward = ref<Reward[]>([
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
     type: '通用',
-    module: '任务奖励',
+    module: '蚀像寻遗',
     active: true,
     content: {
       originiumRecharge: 0,

@@ -18,7 +18,7 @@ for(const poolInfo of poolInfos) {
       start: new Date(poolInfo.start),
       end: new Date(poolInfo.end),
       type: poolInfo.name,
-      module: '日常',
+      module: '集成配额商店兑换',
       active: true,
       content: {
         originiumRecharge: 0,
@@ -27,26 +27,6 @@ for(const poolInfo of poolInfos) {
         ticketgachaSpecialSingle: 5
       }
     })
-  // for (let i = 1; i <= 5; i++) {
-  //   AICQuotaReward.value.push({
-  //     id: `${poolName}卡池寻访凭证_${i}`,
-  //     name: {
-  //       zh: `${poolName}卡池凭证·${i}`,
-  //       en: ''
-  //     },
-  //     start: new Date('2026/01/22 10:00:00'),
-  //     end: new Date('2026/02/07 12:00:00'),
-  //     type: poolName,
-  //     module: '日常',
-  //     active: true,
-  //     content: {
-  //       originiumRecharge: 0,
-  //       diamond: 0,
-  //       ticketgachaStandardSingle: 0,
-  //       ticketgachaSpecialSingle: 1
-  //     }
-  //   })
-  // }
 }
 
 export {AICQuotaReward}

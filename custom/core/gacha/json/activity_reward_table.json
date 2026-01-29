@@ -1,14 +1,14 @@
 [
   {
-    "id": "pre_registration_milestone",
+    "id": "游戏预约里程碑",
     "name": {
       "zh": "游戏预约里程碑",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
-    "type": "通用",
-    "module": "任务奖励",
+    "type": "其他",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -16,58 +16,61 @@
       "ticketgachaStandardSingle": 20,
       "ticketgachaSpecialSingle": 0
     }
-  },{
-  "id": "作战演练",
-  "name": {
-    "zh": "作战演练",
-    "en": ""
   },
-  "start": "2026/01/22 10:00:00",
-  "end": "2099/02/07 10:00:00",
-  "type": "通用",
-  "module": "任务奖励",
-  "active": true,
-  "content": {
-    "originiumRecharge": 0,
-    "diamond": 100,
-    "ticketgachaStandardSingle": 0,
-    "ticketgachaSpecialSingle": 0
-  }
-},{
-  "id": "燃尽记忆之灰",
-  "name": {
-    "zh": "燃尽记忆之灰",
-    "en": ""
+  {
+    "id": "作战演练",
+    "name": {
+      "zh": "作战演练",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/02/07 10:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
   },
-  "start": "2026/01/22 10:00:00",
-  "end": "2026/03/12 10:00:00",
-  "type": "通用",
-  "module": "个人故事",
-  "active": true,
-  "content": {
-    "originiumRecharge": 0,
-    "diamond": 600,
-    "ticketgachaStandardSingle": 0,
-    "ticketgachaSpecialSingle": 0
-  }
-},{
-  "id": "离群之狼",
-  "name": {
-    "zh": "离群之狼",
-    "en": ""
+  {
+    "id": "燃尽记忆之灰",
+    "name": {
+      "zh": "燃尽记忆之灰",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2026/03/12 10:00:00",
+    "type": "通用",
+    "module": "个人故事",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
   },
-  "start": "2026/01/22 10:00:00",
-  "end": "2026/03/12 10:00:00",
-  "type": "通用",
-  "module": "个人故事",
-  "active": true,
-  "content": {
-    "originiumRecharge": 0,
-    "diamond": 600,
-    "ticketgachaStandardSingle": 0,
-    "ticketgachaSpecialSingle": 0
-  }
-},
+  {
+    "id": "离群之狼",
+    "name": {
+      "zh": "离群之狼",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2026/03/12 10:00:00",
+    "type": "通用",
+    "module": "个人故事",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
   {
     "id": "熔火灼痕卡池签到_1",
     "name": {
@@ -77,7 +80,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2026/02/04 10:00:00",
     "type": "熔火灼痕",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -95,7 +98,7 @@
     "start": "2026/01/25 10:00:00",
     "end": "2026/02/04 10:00:00",
     "type": "熔火灼痕",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -113,7 +116,7 @@
     "start": "2026/01/28 10:00:00",
     "end": "2026/02/04 10:00:00",
     "type": "熔火灼痕",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -131,7 +134,7 @@
     "start": "2026/02/07 12:00:00",
     "end": "2026/02/24 10:00:00",
     "type": "轻飘飘的信使",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -149,7 +152,7 @@
     "start": "2026/02/10 12:00:00",
     "end": "2026/02/24 10:00:00",
     "type": "轻飘飘的信使",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -167,7 +170,7 @@
     "start": "2026/02/13 12:00:00",
     "end": "2026/02/24 10:00:00",
     "type": "轻飘飘的信使",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -185,7 +188,7 @@
     "start": "2026/02/24 12:00:00",
     "end": "2026/03/12 10:00:00",
     "type": "热烈色彩",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -203,7 +206,7 @@
     "start": "2026/02/27 12:00:00",
     "end": "2026/03/12 10:00:00",
     "type": "热烈色彩",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -221,7 +224,7 @@
     "start": "2026/03/02 12:00:00",
     "end": "2026/03/12 10:00:00",
     "type": "热烈色彩",
-    "module": "任务奖励",
+    "module": "活动",
     "active": true,
     "content": {
       "originiumRecharge": 0,

@@ -10,7 +10,7 @@ export const crateReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: '任务奖励',
+  module: '地图探索',
   active: true,
   content: {
     originiumRecharge: 0,

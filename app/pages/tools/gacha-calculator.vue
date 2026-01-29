@@ -226,7 +226,9 @@ watch(
 watch(
   newHorizonsTaskReward,
   (newValue) => {
-    saveUserConfig(newValue.id, newValue.active, 'buttonActive');
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
+    }
     gachaResourceStatistics();
   },
   { deep: true }
@@ -839,7 +841,7 @@ function loadingUserConfig() {
       if (localConfig.buttonActive) {
         _setButtonActive(localConfig.buttonActive, valleyIVRegionalStockBillStoreReward);
         _setButtonActive(localConfig.buttonActive, wulingRegionalStockBillStoreReward);
-        _setButtonActive(localConfig.buttonActive, newHorizonsTaskReward);
+
       }
 
       if (localConfig.buttonGroupActive) {
@@ -849,6 +851,7 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, etchSpaceSalvageReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, trainingReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
+        _setButtonGroupActive(localConfig.buttonActive, newHorizonsTaskReward);
       }
 
       if (localConfig.existingResource) {
@@ -1720,8 +1723,10 @@ function exportReward() {
               </v-card>
               <v-divider style="margin: 1rem 0" />
               <GachaCalculatorResourceSingleBtn
-                v-bind="newHorizonsTaskReward"
-                @click="newHorizonsTaskReward.active = !newHorizonsTaskReward.active"
+                v-for="item in newHorizonsTaskReward"
+                :key="item.id"
+                v-bind="item"
+                @click="item.active = !item.active"
               />
               <GachaCalculatorResourceSingleBtn
                 v-for="item in taskRewardTable"
