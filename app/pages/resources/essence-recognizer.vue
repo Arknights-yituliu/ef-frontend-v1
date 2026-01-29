@@ -55,7 +55,7 @@
         <li>
           按
           <v-hotkey keys="]" inline variant="flat" />
-          键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br />
+          键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br >
           基质扫描过程中再次按 <v-hotkey keys="]" inline variant="flat" /> 键中断扫描
         </li>
 
