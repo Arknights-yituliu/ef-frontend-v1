@@ -96,7 +96,7 @@
                   :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
                   :alt="weaponType"
                   class="group-icon"
-                />
+                >
                 <h3>{{ weaponType }}</h3>
               </div>
               <div class="weapon-grid">
