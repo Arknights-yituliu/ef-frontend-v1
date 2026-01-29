@@ -1,9 +1,6 @@
 <template>
   <div class="page-container">
     <header class="page-title">{{ t('page.tools.essenceCalculator.title') }}</header>
-    <v-alert type="error" style="margin: 1rem 0">
-      当前网站数据为三测数据，暂且不要使用，等待后续更新
-    </v-alert>
     <v-expansion-panels :model-value="['需求设定', '计算结果']" multiple>
       <v-expansion-panel value="需求设定">
         <v-expansion-panel-title>{{
@@ -160,7 +157,7 @@
 
                       <div class="pl-1 mb-6">
                         <v-chip color="info" label variant="outlined">
-                          {{ choice.battleId }}
+                          {{ choice.battleName }}
                         </v-chip>
                       </div>
 
@@ -307,8 +304,6 @@
 </template>
 
 <script lang="ts" setup>
-import { items } from '@/custom/core/items';
-
 const { t } = useI18n();
 
 interface EssenceStat {
@@ -321,6 +316,7 @@ interface EssenceStat {
 
 interface BattleChoice {
   battleId: string;
+  battleName: string;
   selectedAttribute: string[];
   selectedSecondary: string | null;
   selectedSkill: string | null;
@@ -1254,6 +1250,7 @@ const battleChoices = computed(() => {
         if (matchedSelectedIndices.length > 0) {
           result.push({
             battleId,
+            battleName,
             selectedAttribute,
             selectedSecondary,
             selectedSkill: null,
@@ -1299,6 +1296,7 @@ const battleChoices = computed(() => {
         if (matchedSelectedIndices.length > 0) {
           result.push({
             battleId,
+            battleName,
             selectedAttribute,
             selectedSecondary: null,
             selectedSkill,
