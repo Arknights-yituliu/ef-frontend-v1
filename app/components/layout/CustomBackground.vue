@@ -1,7 +1,7 @@
 <template>
   <div class="custom-bg">
     <div class="bg-color-layer" />
-    <img :src="mapBg" class="bg-image" alt="Map Background" />
+    <img :src="mapBg" class="bg-image" alt="Map Background" >
   </div>
 </template>
 
