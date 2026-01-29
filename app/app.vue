@@ -5,12 +5,8 @@
   </NuxtLayout>
 </template>
 <script lang="ts" setup>
-import { initGameData } from '@/shared/utils/gameData/gameData';
-
 // 初始化主题（确保主题系统在页面加载时就初始化）
 const { theme } = useTheme();
-
-await initGameData();
 
 // 页面挂载时，给body添加.hide-scrollbar
 onMounted(() => {

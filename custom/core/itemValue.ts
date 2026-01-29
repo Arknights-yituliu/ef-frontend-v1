@@ -1,5 +1,7 @@
 import type { ItemValueMap } from '@/shared/types/itemValue';
 
+// 本文件的 itemName 字段仅作为备注使用，请勿依赖其值进行逻辑处理
+
 export const itemValueMap: ItemValueMap = {
   item_originium_recharge: {
     itemId: 'item_originium_recharge',
@@ -211,8 +213,8 @@ export const itemValueMap: ItemValueMap = {
 
   // 物资箱
   item_case_bp_selfselect_skillsp_1: {
-    itemId: '高阶培养自选箱Ⅰ',
-    itemName: '高阶培养自选箱I',
+    itemId: 'item_case_bp_selfselect_skillsp_1',
+    itemName: '高阶培养自选箱Ⅰ',
     value: (80 / 6.8) * 2,
   },
   item_case_bp_selfselect_exp: {
