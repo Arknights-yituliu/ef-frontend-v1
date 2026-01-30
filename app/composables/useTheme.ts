@@ -1,4 +1,5 @@
 import { useTheme as useVuetifyTheme } from 'vuetify';
+import { computed, watch } from 'vue';
 
 export const useTheme = () => {
   // 使用Vuetify的useTheme
@@ -11,11 +12,6 @@ export const useTheme = () => {
     if (import.meta.client) {
       localStorage.setItem('theme', newTheme);
     }
-  };
-
-  const toggleTheme = () => {
-    const newTheme = theme.value === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
   };
 
   const initTheme = () => {
