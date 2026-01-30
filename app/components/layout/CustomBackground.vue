@@ -1,31 +1,16 @@
 <template>
-  <div class="custom-bg">
-    <div class="bg-color-layer" />
-    <img :src="mapBg" class="bg-image" alt="Map Background" >
-  </div>
+  <img src="~/assets/svg/map-bg.svg" class="bg-image" alt="Map Background" />
 </template>
 
-<script setup>
-// Import SVG file
-import mapBg from '~/assets/svg/map-bg.svg?url';
-</script>
+<script setup></script>
 
 <style scoped>
-.custom-bg {
+.bg-image {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none;
-}
-
-.bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: block;
   object-fit: cover;
   opacity: 0.3;

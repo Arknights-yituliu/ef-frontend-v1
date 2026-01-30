@@ -171,6 +171,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  position: relative; /* 为了让 CustomBackground 的图层正确 */
 }
 
 /* 增加页面内边距，限制页面宽度 */
