@@ -17,7 +17,6 @@ import mapBg from '~/assets/svg/map-bg.svg?url';
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
   pointer-events: none;
 }
 

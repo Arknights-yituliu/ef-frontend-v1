@@ -13,6 +13,11 @@ export const useTheme = () => {
     }
   };
 
+  const toggleTheme = () => {
+    const newTheme = theme.value === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  };
+
   const initTheme = () => {
     if (import.meta.client) {
       const savedTheme = localStorage.getItem('theme');

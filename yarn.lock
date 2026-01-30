@@ -9074,10 +9074,10 @@ vue-router@^4.6.0, vue-router@^4.6.3:
     "@vue/server-renderer" "3.5.22"
     "@vue/shared" "3.5.22"
 
-vuetify@^3.0.0, vuetify@^3.10.9:
-  version "3.10.9"
-  resolved "https://registry.npmmirror.com/vuetify/-/vuetify-3.10.9.tgz"
-  integrity sha512-hVeBkkSJhbhbKOIfMQTmTJ1R1S+ZHp7k3r0wWwA28eUe3ulD/uY6nrF/AZ3ZIh+WRHiDqipWmG1RrrZGUtmZOg==
+vuetify@^3.0.0, vuetify@^3.11.0:
+  version "3.11.8"
+  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.11.8.tgz"
+  integrity sha512-4iKnntOnLFFklygZjzlVfcHrtLO8+iK4HOhiia6HP2U8v82x+ngaSCgm+epvPrGyCMfCpfuEttqD2qElrr1axw==
 
 web-namespaces@^2.0.0:
   version "2.0.1"
