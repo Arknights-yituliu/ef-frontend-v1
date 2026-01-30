@@ -1,34 +1,42 @@
+import { useTheme as useVuetifyTheme } from 'vuetify';
+
 export const useTheme = () => {
-  const theme = useState<'light' | 'dark'>('theme', () => 'light');
+  // 使用Vuetify的useTheme
+  const vuetifyTheme = useVuetifyTheme();
 
   const toggleTheme = () => {
-    const newTheme = theme.value === 'light' ? 'dark' : 'light';
-    theme.value = newTheme;
+    const newTheme = vuetifyTheme.global.name.value === 'light' ? 'dark' : 'light';
+    vuetifyTheme.global.name.value = newTheme;
+    
     if (import.meta.client) {
-      document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
     }
   };
 
   const initTheme = () => {
     if (import.meta.client) {
-      // 从 localStorage 读取保存的主题，如果没有则使用默认值
       const savedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-      
-      theme.value = initialTheme as 'light' | 'dark';
+      const initialTheme = (savedTheme || (prefersDark ? 'dark' : 'light')) as 'light' | 'dark';
+
+      vuetifyTheme.global.name.value = initialTheme;
       document.documentElement.setAttribute('data-theme', initialTheme);
     }
   };
 
-  // 在客户端初始化主题
+  // 监听Vuetify主题变化，同步data-theme属性
+  watch(() => vuetifyTheme.global.name.value, (newTheme) => {
+    if (import.meta.client) {
+      document.documentElement.setAttribute('data-theme', newTheme);
+    }
+  });
+
   if (import.meta.client) {
     initTheme();
   }
 
   return {
-    theme: readonly(theme),
+    theme: computed(() => vuetifyTheme.global.name.value as 'light' | 'dark'),
     toggleTheme,
   };
 };

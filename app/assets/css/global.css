@@ -1,7 +1,6 @@
 /* 明日方舟：终末地 - 全局样式文件 */
 @import 'atomicStyles.css';
 @import 'common.css';
-@import 'theme.css';
 
 /* ============================================
    基础样式重置
@@ -25,11 +24,6 @@ body {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  color: var(--theme-text-primary);
-  background-color: var(--theme-bg-primary);
-  transition:
-    background-color var(--transition-base),
-    color var(--transition-base);
 }
 
 html {
@@ -37,120 +31,10 @@ html {
   overflow-x: hidden;
 }
 
-/* 滚动条样式重置 - 侧边栏和html共用 */
-.v-navigation-drawer__content,
-html {
-  /* Firefox 滚动条样式 */
-  scrollbar-width: thin;
-  scrollbar-color: var(--sidebar-scrollbar-thumb) transparent;
-}
-
-.v-navigation-drawer__content::-webkit-scrollbar,
-html::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
-}
-
-.v-navigation-drawer__content::-webkit-scrollbar-track,
-html::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.v-navigation-drawer__content::-webkit-scrollbar-thumb,
-html::-webkit-scrollbar-thumb {
-  background: var(--sidebar-scrollbar-thumb);
-  border-radius: 0;
-  transition: background-color var(--transition-base);
-}
-
-.v-navigation-drawer__content::-webkit-scrollbar-thumb:hover,
-html::-webkit-scrollbar-thumb:hover {
-  background: var(--sidebar-scrollbar-thumb-hover);
-}
-
 /* ============================================
    焦点样式
    ============================================ */
 :focus-visible {
-  outline: 2px solid var(--theme-accent-color);
+  outline: 2px solid currentColor;
   outline-offset: 2px;
-}
-
-/* ============================================
-   Vuetify 组件主题覆盖
-   ============================================ */
-/* Vuetify 组件背景使用自定义主题变量 */
-.v-card,
-.v-sheet,
-.v-btn,
-.v-list,
-.v-menu__content,
-.v-select__content,
-.v-overlay__content,
-.v-dialog,
-.v-bottom-sheet,
-.v-expansion-panel,
-.v-navigation-drawer,
-.v-app-bar,
-.v-tabs,
-.v-tab,
-.v-tabs-bar {
-  background-color: var(--theme-bg-secondary) !important;
-}
-
-/* Vuetify 文本颜色 */
-.v-card__text,
-.v-card__title,
-.v-card__subtitle,
-.v-list-item__title,
-.v-list-item__subtitle,
-.v-btn__content,
-.v-chip__content {
-  color: var(--theme-text-primary) !important;
-}
-
-/* Vuetify 输入框 */
-.v-field,
-.v-input__control {
-  background-color: var(--theme-bg-secondary) !important;
-}
-
-.v-field__input,
-.v-text-field input {
-  color: var(--theme-text-primary) !important;
-}
-
-/* Vuetify 表格 */
-.v-table {
-  background-color: var(--theme-bg-secondary) !important;
-}
-
-.v-table .v-table__wrapper > table > tbody > tr > td,
-.v-table .v-table__wrapper > table > thead > tr > th,
-.v-table .v-table__wrapper > table > tfoot > tr > td {
-  color: var(--theme-text-primary) !important;
-  border-color: var(--theme-border) !important;
-}
-
-/* Vuetify 数据表格 */
-.v-data-table {
-  background-color: var(--theme-bg-secondary) !important;
-}
-
-.v-data-table .v-data-table__tr > td,
-.v-data-table .v-data-table__tr > th {
-  color: var(--theme-text-primary) !important;
-  border-color: var(--theme-border) !important;
-}
-
-/* Vuetify 复选框和单选框 */
-.v-checkbox .v-selection-control__input,
-.v-radio .v-selection-control__input {
-  color: var(--theme-accent-color) !important;
-}
-
-/* Vuetify 工具提示 */
-.v-tooltip .v-overlay__content {
-  background-color: var(--theme-bg-tertiary) !important;
-  color: var(--theme-text-primary) !important;
 }

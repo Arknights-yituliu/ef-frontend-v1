@@ -27,7 +27,8 @@ import mapBg from '~/assets/svg/map-bg.svg?url';
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--theme-bg-primary);
+  /* background-color: #808080;
+  opacity: 0.5; */
   z-index: 1;
 }
 
@@ -42,11 +43,9 @@ import mapBg from '~/assets/svg/map-bg.svg?url';
   opacity: 0.3;
   transition: filter 0.3s ease;
   z-index: 2;
-  /* 颜色混合算法：将 SVG 转换为灰度背景 */
-  /* 1. grayscale(100%) - 将图像完全转换为灰度 */
-  /* 2. brightness(200%) - 提高亮度使灰色变浅 */
-  /* 3. contrast(50%) - 降低对比度使颜色更柔和 */
-  filter: grayscale(100%) brightness(200%) contrast(100%);
+  /* 将点阵图的颜色固定为 #808080 */
+  /* 使用 sepia + hue-rotate 将黑色转换为 #808080 */
+  filter: brightness(100%) contrast(100%) sepia(100%) hue-rotate(0deg) saturate(50%) brightness(0.5);
   /* 从左上(完全可见)到右下(完全透明)的渐变 */
   -webkit-mask-image: linear-gradient(
     to top left,
@@ -64,10 +63,5 @@ import mapBg from '~/assets/svg/map-bg.svg?url';
   );
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-}
-
-/* Dark mode adjustments */
-[data-theme='dark'] .bg-image {
-  filter: grayscale(100%) brightness(50%) contrast(120%);
 }
 </style>

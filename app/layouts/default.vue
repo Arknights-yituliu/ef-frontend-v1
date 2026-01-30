@@ -210,14 +210,4 @@ onUnmounted(() => {
     opacity: 0;
   }
 }
-
-:deep(.v-application) {
-  background-color: transparent !important;
-}
-</style>
-
-<style global>
-.v-application {
-  background-color: transparent !important;
-}
 </style>

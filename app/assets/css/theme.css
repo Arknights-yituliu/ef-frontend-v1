@@ -1,124 +1,66 @@
 /* ============================================
-   主题系统 - 支持明暗色模式切换
+   自定义样式变量
    ============================================ */
-
-/* 明色主题 */
-:root,
-[data-theme='light'] {
-  /* 主题变量 - 灰色背景主题 */
-  --theme-bg-primary: #F2F2F2;
-  --theme-bg-secondary: #f5f5f5;
-  --theme-bg-tertiary: #e8e8e8;
-  --theme-text-primary: #2c2c2c;
-  --theme-text-secondary: #666666;
-  --theme-text-thirdary: #999999;
-  --theme-text-tertiary: #888888;
-  --theme-text-light: #b0b0b0;
-  --theme-text-disabled: #999999;
-  --theme-border: #d0d0d0;
-  --theme-border-active: #333333;
+:root {
+  /* 自定义装饰颜色 */
   --theme-accent-color: #2c2c2c;
   --theme-accent-hover: #e8e8e8;
-  --theme-accent-contrast: #ffffff;
-  --theme-decorative-overlay: rgba(44, 44, 44, 0.08);
-  --theme-decorative-overlay-strong: rgba(44, 44, 44, 0.12);
-  --theme-decorative-overlay-light: rgba(44, 44, 44, 0.04);
-  --theme-decorative-overlay-medium: rgba(44, 44, 44, 0.06);
+  
+  /* 阴影效果 */
   --theme-shadow-base: rgba(0, 0, 0, 0.2);
   --theme-shadow-strong: rgba(0, 0, 0, 0.25);
   --theme-shadow-accent: rgba(44, 44, 44, 0.12);
   --theme-shadow-accent-strong: rgba(44, 44, 44, 0.16);
   --theme-shadow-accent-hover: rgba(44, 44, 44, 0.2);
-  --theme-overlay: rgba(0, 0, 0, 0.6);
-
-  /* 毛玻璃效果变量 */
-  --theme-glass-bg: rgba(245, 245, 245, 0.75);
-  --theme-glass-bg-hover: rgba(245, 245, 245, 0.9);
-  --theme-glass-border: rgba(255, 255, 255, 0.4);
-  --theme-glass-text-shadow: rgba(255, 255, 255, 0.6);
-  --theme-glass-shadow: rgba(0, 0, 0, 0.12);
-
-  /* 沙漠波纹背景颜色变量 - 灰色系 */
-  --wave-bg-color-0: rgba(169, 169, 169, 0.2);
-  --wave-bg-color-1: rgba(169, 169, 169, 0.3);
-  --wave-bg-color-2: rgba(169, 169, 169, 0.4);
-  --wave-bg-color-3: rgba(169, 169, 169, 0.5);
-
-  /* Logo 颜色变量 */
+  
+  /* 装饰性遮罩 */
+  --theme-decorative-overlay: rgba(44, 44, 44, 0.08);
+  --theme-decorative-overlay-strong: rgba(44, 44, 44, 0.12);
+  --theme-decorative-overlay-light: rgba(44, 44, 44, 0.04);
+  --theme-decorative-overlay-medium: rgba(44, 44, 44, 0.06);
+  
+  /* 背景和文本颜色（用于自定义组件） */
+  --theme-bg-primary: #F2F2F2;
+  --theme-bg-secondary: #f5f5f5;
+  --theme-bg-tertiary: #e8e8e8;
+  --theme-text-primary: #2c2c2c;
+  --theme-text-secondary: #666666;
+  --theme-border: #d0d0d0;
+  --theme-border-color: #d0d0d0;
+  
+  /* 其他装饰性变量 */
   --logo-color: #2c2c2c;
-  --logo-color-expanded: #2c2c2c;
-
-  /* 加载器变量 */
-  --theme-loader-bg: #e8e8e8;
-  --theme-progress-bg: #cccccc;
-  --theme-progress-color: #2c2c2c;
-  --theme-hexagon-fill: #2c2c2c;
-  --theme-hexagon-stroke: #2c2c2c;
-
-  /* 侧边栏滚动条变量 */
   --sidebar-scrollbar-thumb: rgba(44, 44, 44, 0.5);
   --sidebar-scrollbar-thumb-hover: rgba(44, 44, 44, 0.7);
-
-  /* 侧边栏菜单项 hover 背景变量 */
   --sidebar-item-hover-bg: #d8d8d8;
 }
 
-/* 暗色主题 */
+/* 暗色主题覆盖 */
 [data-theme='dark'] {
-  /* 主题变量 - 暗色主题 */
-  --theme-bg-primary: #1a1a1a;
-  --theme-bg-secondary: #2d2d2d;
-  --theme-bg-tertiary: #3d3d3d;
-  --theme-text-primary: #e8e8e8;
-  --theme-text-secondary: #b8b8b8;
-  --theme-text-thirdary: #888888;
-  --theme-text-tertiary: #a0a0a0;
-  --theme-text-light: #666666;
-  --theme-text-disabled: #666666;
-  --theme-border: #3d3d3d;
-  --theme-border-active: #e8e8e8;
   --theme-accent-color: #e8e8e8;
   --theme-accent-hover: #3d3d3d;
-  --theme-accent-contrast: #1a1a1a;
-  --theme-decorative-overlay: rgba(255, 255, 255, 0.08);
-  --theme-decorative-overlay-strong: rgba(255, 255, 255, 0.12);
-  --theme-decorative-overlay-light: rgba(255, 255, 255, 0.04);
-  --theme-decorative-overlay-medium: rgba(255, 255, 255, 0.06);
+  
   --theme-shadow-base: rgba(0, 0, 0, 0.4);
   --theme-shadow-strong: rgba(0, 0, 0, 0.6);
   --theme-shadow-accent: rgba(255, 255, 255, 0.12);
   --theme-shadow-accent-strong: rgba(255, 255, 255, 0.16);
   --theme-shadow-accent-hover: rgba(255, 255, 255, 0.2);
-  --theme-overlay: rgba(0, 0, 0, 0.8);
-
-  /* 毛玻璃效果变量 */
-  --theme-glass-bg: rgba(45, 45, 45, 0.75);
-  --theme-glass-bg-hover: rgba(45, 45, 45, 0.9);
-  --theme-glass-border: rgba(255, 255, 255, 0.1);
-  --theme-glass-text-shadow: rgba(0, 0, 0, 0.6);
-  --theme-glass-shadow: rgba(0, 0, 0, 0.2);
-
-  /* 沙漠波纹背景颜色变量 - 暗色系 */
-  --wave-bg-color-0: rgba(100, 100, 100, 0.2);
-  --wave-bg-color-1: rgba(100, 100, 100, 0.3);
-  --wave-bg-color-2: rgba(100, 100, 100, 0.4);
-  --wave-bg-color-3: rgba(100, 100, 100, 0.5);
-
-  /* Logo 颜色变量 */
+  
+  --theme-decorative-overlay: rgba(255, 255, 255, 0.08);
+  --theme-decorative-overlay-strong: rgba(255, 255, 255, 0.12);
+  --theme-decorative-overlay-light: rgba(255, 255, 255, 0.04);
+  --theme-decorative-overlay-medium: rgba(255, 255, 255, 0.06);
+  
+  --theme-bg-primary: #1a1a1a;
+  --theme-bg-secondary: #2d2d2d;
+  --theme-bg-tertiary: #3d3d3d;
+  --theme-text-primary: #e8e8e8;
+  --theme-text-secondary: #b8b8b8;
+  --theme-border: #3d3d3d;
+  --theme-border-color: #3d3d3d;
+  
   --logo-color: #e8e8e8;
-  --logo-color-expanded: #e8e8e8;
-
-  /* 加载器变量 */
-  --theme-loader-bg: #2d2d2d;
-  --theme-progress-bg: #3d3d3d;
-  --theme-progress-color: #e8e8e8;
-  --theme-hexagon-fill: #e8e8e8;
-  --theme-hexagon-stroke: #e8e8e8;
-
-  /* 侧边栏滚动条变量 */
   --sidebar-scrollbar-thumb: rgba(255, 255, 255, 0.3);
   --sidebar-scrollbar-thumb-hover: rgba(255, 255, 255, 0.5);
-
-  /* 侧边栏菜单项 hover 背景变量 */
   --sidebar-item-hover-bg: #3d3d3d;
 }

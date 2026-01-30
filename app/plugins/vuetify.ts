@@ -21,40 +21,38 @@ export default defineNuxtPlugin((app) => {
       themes: {
         light: {
           colors: {
-            // 使用自定义主题系统的颜色
-            primary: '#2c2c2c', // --theme-text-primary
-            secondary: '#666666', // --theme-text-secondary
-            accent: '#2c2c2c', // --theme-accent-color
-            background: 'transparent', // 使用透明，让CSS变量控制
-            surface: 'transparent', // 使用透明，让CSS变量控制
+            primary: '#2c2c2c',
+            secondary: '#666666',
+            accent: '#2c2c2c',
+            background: '#F2F2F2',
+            surface: '#f5f5f5',
             'on-primary': '#ffffff',
             'on-secondary': '#ffffff',
             'on-accent': '#ffffff',
-            'on-background': '#2c2c2c', // --theme-text-primary
-            'on-surface': '#2c2c2c', // --theme-text-primary
-            'on-error': '#ffffff',
-            'on-warning': '#ffffff',
-            'on-info': '#ffffff',
-            'on-success': '#ffffff',
+            'on-background': '#2c2c2c',
+            'on-surface': '#2c2c2c',
+            error: '#b71c1c',
+            info: '#0288d1',
+            success: '#43a047',
+            warning: '#f57c00',
           },
         },
         dark: {
           colors: {
-            // 使用自定义主题系统的颜色
-            primary: '#e8e8e8', // --theme-text-primary
-            secondary: '#b8b8b8', // --theme-text-secondary
-            accent: '#e8e8e8', // --theme-accent-color
-            background: 'transparent', // 使用透明，让CSS变量控制
-            surface: 'transparent', // 使用透明，让CSS变量控制
+            primary: '#e8e8e8',
+            secondary: '#b8b8b8',
+            accent: '#e8e8e8',
+            background: '#1a1a1a',
+            surface: '#2d2d2d',
             'on-primary': '#1a1a1a',
             'on-secondary': '#1a1a1a',
             'on-accent': '#1a1a1a',
-            'on-background': '#e8e8e8', // --theme-text-primary
-            'on-surface': '#e8e8e8', // --theme-text-primary
-            'on-error': '#ffffff',
-            'on-warning': '#ffffff',
-            'on-info': '#ffffff',
-            'on-success': '#ffffff',
+            'on-background': '#e8e8e8',
+            'on-surface': '#e8e8e8',
+            error: '#ef5350',
+            info: '#42a5f5',
+            success: '#66bb6a',
+            warning: '#ffa726',
           },
         },
       },
