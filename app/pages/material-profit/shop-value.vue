@@ -3,31 +3,33 @@
     <header class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</header>
     <!--    <p class="page-description">{{ $t('page.materialProfit.shopValue.description') }}</p>-->
 
-    <section v-for="shop in shops" :key="shop.shopId" class="shop-section">
+    <section v-for="shop in shops" :key="shop.shopId" class="mb-4">
       <h2 class="page-sub-title">{{ shop.shopName }}</h2>
-      <v-data-table
-        :headers="headers"
-        :hover="true"
-        :items="getTableItems(shop.shopItems)"
-        :items-per-page="25"
-        class="shop-table"
-      >
-        <template #item.itemName="{ item }">
-          {{ item.itemName }}
-        </template>
-        <template #item.quantityPerGroup="{ item }">
-          {{ item.quantityPerGroup }}
-        </template>
-        <template #item.currentPrice="{ item }">
-          {{ item.currentPrice }}
-        </template>
-        <template #item.totalValue="{ item }">
-          {{ item.totalValue.toFixed(2) }}
-        </template>
-        <template #item.costPerformance="{ item }">
-          {{ item.costPerformance.toFixed(4) }}
-        </template>
-      </v-data-table>
+      <v-card>
+        <v-data-table
+          :headers="headers"
+          :hover="true"
+          :items="getTableItems(shop.shopItems)"
+          :items-per-page="25"
+          class="mb-4"
+        >
+          <template #item.itemName="{ item }">
+            {{ item.itemName }}
+          </template>
+          <template #item.quantityPerGroup="{ item }">
+            {{ item.quantityPerGroup }}
+          </template>
+          <template #item.currentPrice="{ item }">
+            {{ item.currentPrice }}
+          </template>
+          <template #item.totalValue="{ item }">
+            {{ item.totalValue.toFixed(2) }}
+          </template>
+          <template #item.costPerformance="{ item }">
+            {{ item.costPerformance.toFixed(4) }}
+          </template>
+        </v-data-table>
+      </v-card>
     </section>
   </div>
 </template>
@@ -117,12 +119,4 @@ useHead({
 });
 </script>
 
-<style scoped>
-.shop-section {
-  margin-bottom: 2.5rem;
-}
-
-.shop-table {
-  margin-bottom: 2rem;
-}
-</style>
+<style scoped></style>
