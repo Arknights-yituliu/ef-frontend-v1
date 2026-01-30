@@ -2,18 +2,11 @@
   <h1>基质识别妙妙小工具</h1>
 
   <div class="d-flex flex-row flex-wrap ga-4 my-4">
-    <v-btn
-      append-icon="mdi-open-in-new"
-      class="essence-btn"
-      color="primary"
-      href="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/endfield-essence-recognizer-v0.2.1-windows.zip"
-      rel="noopener"
-      target="_blank"
+    <v-btn append-icon="mdi-open-in-new" color="primary" @click="downloadLatestVersion"
       >下载最新版（国内）</v-btn
     >
     <v-btn
       append-icon="mdi-open-in-new"
-      class="essence-btn"
       href="https://github.com/Logical-Byte/endfield-essence-recognizer/releases/latest"
       rel="noopener"
       target="_blank"
@@ -21,20 +14,26 @@
     >
     <v-btn
       append-icon="mdi-open-in-new"
-      class="essence-btn"
       href="https://github.com/Logical-Byte/endfield-essence-recognizer"
       rel="noopener"
       target="_blank"
       >项目地址</v-btn
     >
+    <v-btn
+      prepend-icon="mdi-qqchat"
+      href="https://qm.qq.com/cgi-bin/qm/qr?k=1xqRp7JwQHwGswa-8_SMFuAsRYYRnF8J"
+      rel="noopener"
+      target="_blank"
+      >反馈交流群：486622964</v-btn
+    >
   </div>
 
   <v-row class="my-4">
     <v-col cols="12" md="6">
-      <img src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/image_0.png" >
+      <img src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/image_0.png" />
     </v-col>
     <v-col cols="12" md="6">
-      <img src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/image_1.png" >
+      <img src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/image_1.png" />
     </v-col>
   </v-row>
 
@@ -61,7 +60,7 @@
       <li>
         按
         <v-hotkey keys="]" inline variant="flat" />
-        键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br >
+        键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br />
         基质扫描过程中再次按 <v-hotkey keys="]" inline variant="flat" /> 键中断扫描
       </li>
 
@@ -74,6 +73,21 @@
         class="text-secondary"
         >（基质的所有属性与至少 1 件已实装武器的属性完全相同）</span
       >，则是宝藏，否则是垃圾。
+    </p>
+
+    <h2>联系我们</h2>
+    <p>
+      如果在使用过程中遇到任何问题，或是想提出建议，欢迎<a
+        href="https://github.com/Logical-Byte/endfield-essence-recognizer"
+        target="_blank"
+        rel="noopener"
+        >在 GitHub 上提 ISSUE</a
+      >，或者加入反馈交流群：<a
+        href="https://qm.qq.com/cgi-bin/qm/qr?k=1xqRp7JwQHwGswa-8_SMFuAsRYYRnF8J"
+        target="_blank"
+        rel="noopener"
+        >486622964</a
+      >
     </p>
 
     <h2>说明</h2>
@@ -89,6 +103,14 @@
       <li>使用本工具即意味着您同意以上全部内容。</li>
     </ul>
   </section>
+
+  <!-- 错误提示 Snackbar -->
+  <v-snackbar v-model="showError" color="error" location="top">
+    {{ errorMessage }}
+    <template v-slot:actions>
+      <v-btn variant="text" @click="showError = false">关闭</v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <script lang="ts" setup>
@@ -96,6 +118,36 @@
 definePageMeta({
   layout: 'default',
 });
+
+// 错误提示状态
+const showError = ref(false);
+const errorMessage = ref('');
+
+// 下载最新版本
+async function downloadLatestVersion() {
+  try {
+    // 获取当前时间戳
+    const timestamp = Date.now();
+
+    // 请求版本信息
+    let versionInfo = await $fetch<{
+      latestVersion: string;
+      downloadUrl: string;
+    }>(`https://cos.yituliu.cn/endfield/endfield-essence-recognizer/version.json?t=${timestamp}`);
+
+    // 下载最新版本
+    if (versionInfo.downloadUrl) {
+      window.open(versionInfo.downloadUrl, '_blank');
+    } else {
+      errorMessage.value = '无法获取下载链接，请稍后重试';
+      showError.value = true;
+    }
+  } catch (error) {
+    console.error('获取版本信息失败:', error);
+    errorMessage.value = '获取版本信息失败，请检查网络连接后重试';
+    showError.value = true;
+  }
+}
 </script>
 
 <style scoped>
@@ -117,6 +169,15 @@ pre {
 p {
   margin-block: 0.6em;
 }
+
+/* a {
+  color: rgb(var(--v-theme-primary));
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+} */
 
 ul,
 ol {
