@@ -1413,6 +1413,7 @@ function exportReward() {
                 v-for="item in activityReward"
                 :key="item.id"
                 v-bind="item"
+                v-show="checkRewardIsValid(item)"
                 @click="item.active = !item.active"
               />
             </v-expansion-panel-text>
