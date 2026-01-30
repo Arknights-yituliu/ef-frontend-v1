@@ -1,5 +1,5 @@
 <template>
-  <img src="~/assets/svg/map-bg.svg" class="bg-image" alt="Map Background" />
+  <img src="~/assets/svg/map-bg.svg" class="bg-image" alt="Map Background" >
 </template>
 
 <script setup></script>
