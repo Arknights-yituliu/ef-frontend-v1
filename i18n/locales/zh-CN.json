@@ -113,7 +113,7 @@
         "launchRedemptionCodes": {
           "title": "开服兑换码",
           "tag": "官方",
-          "description": "于\"设置-平台与账户-礼包兑换\"处兑换"
+          "description": "于“设置-平台与账户-礼包兑换”处兑换"
         },
         "officialWebsite": {
           "title": "《明日方舟：终末地》官网",
@@ -378,7 +378,7 @@
         "selectAttributeStats": "选择基础属性",
         "selectSecondaryAttribute": "选择附加属性",
         "selectSkillAttribute": "选择技能属性",
-        "noValidDemand": "请在上方'需求设定'中至少添加一个有效的基质需求。",
+        "noValidDemand": "请在上方“需求设定”中至少添加一个有效的基质需求。",
         "debugInput": "调试输入",
         "debugOutput": "调试输出",
         "plan": "方案",
