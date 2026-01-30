@@ -10,7 +10,7 @@
           class="pack-image"
           loading="lazy"
           @error="handleImageError"
-        />
+        >
         <div v-else class="image-placeholder">
           <span class="placeholder-icon">📦</span>
         </div>
@@ -33,13 +33,13 @@
           <div class="value-stone">
             {{ $t('component.packCard.equivalent') }}
             {{ getPackStoneEquivalent(props).toFixed(1) }} {{ $t('component.packCard.stone') }}
-            <br />
+            <br >
             ￥{{ getPackPricePerStone(props).toFixed(1) }} / {{ $t('component.packCard.stone') }}
           </div>
           <div v-if="getPackTotalPulls(props) > 0" class="value-pull">
             {{ $t('component.packCard.total') }} {{ getPackTotalPulls(props).toFixed(1) }}
             {{ $t('component.packCard.pulls') }}
-            <br />
+            <br >
             ￥{{ getPackPricePerPull(props).toFixed(1) }} / {{ $t('component.packCard.pull') }}
           </div>
         </div>
