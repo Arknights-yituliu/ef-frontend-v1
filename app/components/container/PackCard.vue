@@ -80,9 +80,6 @@
 
     <!-- 展开的内容表格 - 藏在卡片背后 -->
     <div :class="{ expanded: isExpanded }" class="pack-contents-table">
-      <div class="pack-contents-header">
-        <h3>{{ $t('component.packCard.contents') }}</h3>
-      </div>
       <table class="contents-table">
         <thead>
           <tr>
@@ -207,6 +204,7 @@ const getPackComparisonBars = (pack: PackData) => [
   position: relative;
   z-index: 11;
   box-shadow: 0 0 0.75em var(--theme-shadow-base);
+  background-color: #202020;
 }
 
 .pack-image {
@@ -256,7 +254,7 @@ const getPackComparisonBars = (pack: PackData) => [
 
 /* 价格角标 */
 .pack-corner {
-  background-color: var(--theme-glass-bg);
+  background-color: #00000080;
   backdrop-filter: blur(0.625em);
   -webkit-backdrop-filter: blur(0.625em);
   position: absolute;
@@ -297,7 +295,7 @@ const getPackComparisonBars = (pack: PackData) => [
 .price-text {
   font-size: 0.875em;
   font-weight: 700;
-  color: var(--theme-text-primary);
+  color: #f0f0f0;
   position: relative;
   z-index: 1;
   text-shadow: 0 0.0625em 0.125em var(--theme-glass-text-shadow);
@@ -305,7 +303,7 @@ const getPackComparisonBars = (pack: PackData) => [
 
 /* 标题（底部覆盖） */
 .pack-display-name {
-  background-color: var(--theme-glass-bg);
+  background-color:#00000080;
   backdrop-filter: blur(0.625em);
   -webkit-backdrop-filter: blur(0.625em);
   position: absolute;
@@ -321,7 +319,7 @@ const getPackComparisonBars = (pack: PackData) => [
 
   span {
     text-align: center;
-    color: var(--theme-text-primary);
+    color: #ffffff;
     font-size: 0.75em;
     font-weight: 600;
   }
@@ -333,7 +331,7 @@ const getPackComparisonBars = (pack: PackData) => [
   display: flex;
   height: 6.25em;
   margin-left: -0.25em;
-  background-color: var(--theme-bg-secondary);
+  background-color: #939393;
   border-radius: 0.5em;
   box-shadow: 0 0 0.75em var(--theme-shadow-base);
   z-index: 10;
@@ -454,7 +452,7 @@ const getPackComparisonBars = (pack: PackData) => [
   justify-content: flex-start;
   min-width: 2.5em;
   height: 1.125em;
-  background-color: var(--theme-accent-color);
+  background-color: rgb(65, 147, 220);
   border-radius: 9999px;
   padding: 0 0.5em;
   box-shadow: 0 0 0.25em var(--theme-shadow-accent);
@@ -498,13 +496,15 @@ const getPackComparisonBars = (pack: PackData) => [
 
 /* 展开的内容表格 */
 .pack-contents-table {
+  padding-top: 20px;
+  border-radius: 8px;
   display: block;
   width: 32em;
   max-width: 95%;
   height: 0;
   margin-top: -0.75em;
   overflow: hidden;
-  background-color: var(--theme-bg-secondary);
+  background-color: #80808080;
   border-radius: 0;
   box-shadow: 0 0 0.75em var(--theme-shadow-base);
   border: 0.0625em solid var(--theme-border);
