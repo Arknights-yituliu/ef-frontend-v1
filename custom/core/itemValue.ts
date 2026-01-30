@@ -16,7 +16,7 @@ export const itemValueMap: ItemValueMap = {
   item_gachabyproducts_weapongold: {
     itemId: 'item_gachabyproducts_weapongold',
     itemName: '武库配额',
-    value: 112 / 81, // 武库配额的价值根据 非首充 648 元源石礼包 与 128 元武库配额礼包 性价比相同来计算
+    value: 40 / 25, // 武库配额的价值根据 非首充 648 元源石礼包兑换武库配额计算
   },
 
   // 养成材料

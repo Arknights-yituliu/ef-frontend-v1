@@ -135,8 +135,8 @@ export const packs: Packs = {
     imageUrl: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/优惠武库配额包.webp',
     contents: [{ itemId: 'item_gachabyproducts_weapongold', itemName: '武库配额', quantity: 2000 }],
   },
-  weapon_giftpack_03: {
-    packId: 'weapon_giftpack_03',
+  标准武库配额包: {
+    packId: '标准武库配额包',
     packDisplayNameZH: '标准武库配额包',
     packDisplayNameEN: '标准武库配额包',
     price: 128,
