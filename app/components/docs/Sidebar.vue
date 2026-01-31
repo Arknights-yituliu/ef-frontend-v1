@@ -398,7 +398,7 @@ onUnmounted(() => {
 .sidebar-nav::before {
   content: '';
   position: absolute;
-  left: 1.25rem;
+  left: 0.2rem;
   top: 0.75rem;
   bottom: 0.75rem;
   width: 1px;
