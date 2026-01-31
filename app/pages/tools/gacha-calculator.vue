@@ -1,63 +1,67 @@
 <script setup lang="ts">
 import type {
-  PieChartData,
   GachaCalculatorUserConfig,
+  PieChartData,
+  PoolOption,
   ResourceStatisticsResultDetail,
   TotalPullsSingle,
-  PoolOption,
 } from '@/shared/types/gacha-calculator';
 import { packs } from '@/custom/core/packs';
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resource-statistics-result';
-import { numberRound, numberFloor } from '#shared/utils/numberUtil';
+import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 import { nextTick, onMounted, ref, watch } from 'vue';
+
+import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
 //奖励引入
 import {
-  operationalManualNodeReward,
   authorityLevelTaskRewards,
   authorityLevelUpReward,
-  worldLevelReward,
   etchSpaceSalvageReward,
+  operationalManualNodeReward,
+  worldLevelReward,
 } from '@/custom/core/gacha/level-reward';
 
-import { activityReward } from '@/custom/core/gacha/activity-reward';
+import {
+  activityReward,
+  beginnerSignInTaskReward,
+  newHorizonsTaskReward,
+} from '@/custom/core/gacha/activity-reward';
 
 import { otherRewardTable } from '@/custom/core/gacha/other-reward';
 
 import { AICQuotaReward } from '@/custom/core/gacha/daily-reward';
 
 import {
+  valleyIVAuryleneCollectReward,
+  valleyIVAuryleneCollectRewardTable,
+  valleyIVCrateReward,
+  valleyIVCrateRewardMax,
+  valleyIVDeltaBotReward,
+  valleyIVDeltaBotRewardMax,
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
-  valleyIVAuryleneCollectRewardTable,
-  valleyIVAuryleneCollectReward,
-  valleyIVCrateRewardMax,
-  valleyIVCrateReward,
   valleyIVSimulationReward,
-  valleyIVDeltaBotRewardMax,
-  valleyIVDeltaBotReward,
 } from '@/custom/core/gacha/valley_IV_regional-reward';
 
 import {
+  wulingAuryleneCollectReward,
+  wulingAuryleneCollectRewardTable,
+  wulingCrateReward,
+  wulingCrateRewardMax,
+  wulingDeltaBotReward,
+  wulingDeltaBotRewardMax,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
-  wulingAuryleneCollectRewardTable,
-  wulingAuryleneCollectReward,
-  wulingCrateRewardMax,
-  wulingCrateReward,
   wulingSimulationReward,
-  wulingDeltaBotRewardMax,
-  wulingDeltaBotReward,
 } from '@/custom/core/gacha/wuling-regional-reward';
 
 import {
-  taskRewardTable,
-  factoryManualRewardMax,
-  factoryManualReward,
-  beginnerSignInTaskReward,
-  defenseConstructionReward,
-  newHorizonsTaskReward,
   characterTrainingReward,
+  defenseConstructionReward,
+  factoryManualReward,
+  factoryManualRewardMax,
   intelArchiveReward,
+  taskRewardTable,
 } from '@/custom/core/gacha/permanent-reward';
 
 const { t } = useI18n();
@@ -376,7 +380,6 @@ const operationalManualNodeProgress = ref<number[]>([0, 12]);
 watch(
   operationalManualNodeProgress,
   (newVal) => {
-    console.log(newVal);
     operationalManualNodeReward.value.content.diamond = (newVal[1]! - newVal[0]!) * 750;
     saveUserConfig(operationalManualNodeReward.value.id, newVal, 'rangeSlider');
     gachaResourceStatistics();
@@ -800,8 +803,6 @@ const gachaResourceStatistics = (): void => {
     gachaResourceStatisticsResult.value.totalPulls.level = _getPull(result);
   }
 
-
-
   function _permanentRewardStatistics(): void {
     const result: ResourceStatisticsResultDetail = {
       name: '常驻奖励',
@@ -814,8 +815,8 @@ const gachaResourceStatistics = (): void => {
     _addReward(result, taskRewardTable.value);
     _addReward(result, factoryManualReward.value);
     _addReward(result, defenseConstructionReward.value);
-    _addReward(result,etchSpaceSalvageReward.value);
-    _addReward(result,intelArchiveReward.value);
+    _addReward(result, etchSpaceSalvageReward.value);
+    _addReward(result, intelArchiveReward.value);
 
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.permanent = _getPull(result);
@@ -932,7 +933,7 @@ const gachaResourceStatistics = (): void => {
 
   _existingRewardStatistics();
   _activityRewardStatistics();
-  _otherRewardStatistics()
+  _otherRewardStatistics();
   _dailyRewardStatistics();
   _regionalRewardStatistics();
   _levelRewardStatistics();
@@ -1186,7 +1187,7 @@ function clearOrSelectedRewards(action: boolean) {
   _clearOrSelect('rangeSlider', factoryManualProgress, [0, factoryManualRewardMax]);
   _clearOrSelect('rangeSlider', defenseConstructionProgress, [0, 1280]);
   _clearOrSelect('button', etchSpaceSalvageReward);
-  _clearOrSelect("button",etchSpaceSalvageReward)
+  _clearOrSelect('button', etchSpaceSalvageReward);
   _clearOrSelect('button', characterTrainingReward);
 
   function _clearOrSelect(
@@ -1297,128 +1298,29 @@ function saveUserConfig(
   );
 }
 
-/**
- * 计算排期开始与结束日期的天数差
- * @param {Date|string|number} startDate 开始日期
- * @param {Date|string|number} endDate 结束日期
- * @returns {number} 俩个日期之间的天数差
- */
-function calculateDaysDifference(
-  startDate: Date | string | number,
-  endDate: Date | string | number,
-): number {
-  // 转换为时间戳
-  const startTimestamp = typeof startDate === 'number' ? startDate : new Date(startDate).getTime();
-  const endTimestamp = typeof endDate === 'number' ? endDate : new Date(endDate).getTime();
-  // 计算天数差
-  return (endTimestamp - startTimestamp) / (1000 * 60 * 60 * 24);
-}
-
 function checkRewardIsValid(reward: Reward): boolean {
   const currentPoolValue = currentPool.value;
 
+  let display = reward.type === '通用' || reward.type === currentPoolValue.type;
+
   // 活动结束时间在当前池子开始时间之前，活动已结束
-  if (reward.end <= currentPoolValue.start) {
-    return false;
+  if (reward.end <= startDate) {
+    // console.log(reward.name.zh,"过期")
+    display = false;
   }
 
   // 活动开始时间在当前池子结束时间之后，活动未开始
   if (reward.start > currentPoolValue.end) {
-    return false;
+    // console.log(reward.name.zh,"过期")
+    display = false;
   }
 
+  // console.log(currentPool.value.start, currentPoolValue.end);
+  // console.log(reward.name.zh,reward.start,reward.end);
   // 判断奖励类型是否可以被计入
   // 通用类型都可以计入，特殊类型需要与当前池子类型匹配
-  return reward.type === '通用' || reward.type === currentPoolValue.type;
-}
 
-/**
- * 计算两个时间之间有多少个周二
- * @param startDate 开始时间，可以是Date对象、字符串或时间戳
- * @param endDate 结束时间，可以是Date对象、字符串或时间戳
- * @returns 两个时间之间周二的数量
- */
-function countTuesdaysBetween(
-  startDate: Date | string | number,
-  endDate: Date | string | number,
-): number {
-  // 将输入转换为Date对象
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-
-  // 确保开始时间不晚于结束时间
-  if (start > end) {
-    // [start, end] = [end, start];
-  }
-
-  // 设置时间为当天的0点，避免时间部分影响计算
-  start.setHours(0, 0, 0, 0);
-  end.setHours(0, 0, 0, 0);
-
-  // 获取星期几（0-6，0是周日）
-  const startDay = start.getDay();
-  const endDay = end.getDay();
-
-  // 计算开始日期到下一个周二的天数差
-  // 周二是2，所以计算：如果是周二，差0天；如果是周三，差6天；如果是周一，差1天，以此类推
-  const daysToFirstTuesday = (9 - startDay) % 7;
-
-  // 创建第一个周二的日期
-  const firstTuesday = new Date(start);
-  firstTuesday.setDate(start.getDate() + daysToFirstTuesday);
-
-  // 如果第一个周二在开始日期之后但开始日期本身就是周二，需要调整
-  if (firstTuesday > start && startDay === 2) {
-    firstTuesday.setDate(firstTuesday.getDate() - 7);
-  }
-
-  // 如果第一个周二已经超过结束日期，说明没有周二
-  if (firstTuesday > end) {
-    return 0;
-  }
-
-  // 计算最后一个周二的日期
-  const daysFromLastTuesday = (endDay - 2 + 7) % 7;
-  const lastTuesday = new Date(end);
-  lastTuesday.setDate(end.getDate() - daysFromLastTuesday);
-
-  // 计算两个周二之间的天数差
-  const daysBetween = Math.round(
-    (lastTuesday.getTime() - firstTuesday.getTime()) / (1000 * 60 * 60 * 24),
-  );
-
-  // 计算周二的数量
-  const tuesdayCount = Math.floor(daysBetween / 7) + 1;
-
-  return tuesdayCount;
-}
-
-function countTuesdaysBetweenV2(
-  startDate: Date | string | number,
-  endDate: Date | string | number,
-): number {
-  // 将输入转换为Date对象
-  const start = new Date(startDate);
-  const end = new Date(endDate).getTime();
-
-  const startTimestamp = start.getTime();
-  let week = 0;
-
-  if (start.getDay() < 2) {
-    week++;
-  }
-
-  const oneDayTimestamp = 1000 * 60 * 60 * 24;
-
-  for (let i = startTimestamp; i <= end; i++) {
-    const date = new Date(i);
-    if (date.getDay() === 2) {
-      week++;
-    }
-    i += oneDayTimestamp;
-  }
-
-  return week;
+  return display;
 }
 
 function exportReward() {
@@ -1508,7 +1410,7 @@ function exportReward() {
                   style="width: 33%"
                   :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
                   @click="selectedPool(option)"
-                  >{{ option.name }}<br >{{ option.dateText }}
+                  >{{ option.name }}<br />{{ option.dateText }}
                 </v-btn>
               </v-btn-group>
 
@@ -1528,7 +1430,7 @@ function exportReward() {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                       alt="existing"
-                    >
+                    />
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.originiumRecharge }}
                       ({{
@@ -1542,7 +1444,7 @@ function exportReward() {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                       alt="existing"
-                    >
+                    />
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}({{
                         numberFloor(totalResourceStatisticsResultDetail.diamond / 500)
@@ -1555,7 +1457,7 @@ function exportReward() {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                       alt="existing"
-                    >
+                    />
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
                     </span>
@@ -1566,7 +1468,7 @@ function exportReward() {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                       alt="existing"
-                    >
+                    />
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
                     </span>
@@ -1622,7 +1524,7 @@ function exportReward() {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                     alt="existing"
-                  >
+                  />
                   <v-text-field
                     v-model="existingResource.originiumRecharge"
                     hide-details="auto"
@@ -1637,7 +1539,7 @@ function exportReward() {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                     alt="existing"
-                  >
+                  />
                   <v-text-field
                     v-model="existingResource.diamond"
                     hide-details="auto"
@@ -1652,7 +1554,7 @@ function exportReward() {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                     alt="existing"
-                  >
+                  />
                   <v-text-field
                     v-model="existingResource.ticketgachaStandardSingle"
                     hide-details="auto"
@@ -1667,7 +1569,7 @@ function exportReward() {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                     alt="existing"
-                  >
+                  />
                   <v-text-field
                     v-model="existingResource.ticketgachaSpecialSingle"
                     hide-details="auto"
@@ -1782,11 +1684,12 @@ function exportReward() {
             <v-expansion-panel-text>
               <GachaCalculatorResourceSingleBtn
                 v-for="item in otherRewardTable"
-                v-show="checkRewardIsValid(item)"
                 :key="item.id"
+                v-show="checkRewardIsValid(item)"
                 v-bind="item"
                 @click="item.active = !item.active"
-              />
+              >
+              </GachaCalculatorResourceSingleBtn>
             </v-expansion-panel-text>
           </v-expansion-panel>
 
@@ -2204,28 +2107,28 @@ function exportReward() {
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                         alt="existing"
-                      >
+                      />
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                         alt="existing"
-                      >
+                      />
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                         alt="existing"
-                      >
+                      />
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                         alt="existing"
-                      >
+                      />
                     </th>
                   </tr>
                 </thead>
