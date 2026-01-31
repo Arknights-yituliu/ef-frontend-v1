@@ -1357,7 +1357,7 @@ function exportReward() {
                   style="width: 33%"
                   :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
                   @click="selectedPool(option)"
-                  >{{ option.name }}<br />{{ option.dateText }}
+                  >{{ option.name }}<br >{{ option.dateText }}
                 </v-btn>
               </v-btn-group>
 
@@ -1377,7 +1377,7 @@ function exportReward() {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                       alt="existing"
-                    />
+                    >
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.originiumRecharge }}
                       ({{
@@ -1391,7 +1391,7 @@ function exportReward() {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                       alt="existing"
-                    />
+                    >
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}({{
                         numberFloor(totalResourceStatisticsResultDetail.diamond / 500)
@@ -1404,7 +1404,7 @@ function exportReward() {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                       alt="existing"
-                    />
+                    >
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
                     </span>
@@ -1415,7 +1415,7 @@ function exportReward() {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                       alt="existing"
-                    />
+                    >
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
                     </span>
@@ -1453,7 +1453,7 @@ function exportReward() {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.originiumRecharge"
                     hide-details="auto"
@@ -1468,7 +1468,7 @@ function exportReward() {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.diamond"
                     hide-details="auto"
@@ -1483,7 +1483,7 @@ function exportReward() {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.ticketgachaStandardSingle"
                     hide-details="auto"
@@ -1498,7 +1498,7 @@ function exportReward() {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.ticketgachaSpecialSingle"
                     hide-details="auto"
@@ -2004,28 +2004,28 @@ function exportReward() {
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-gacha-item-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                   </tr>
                 </thead>
