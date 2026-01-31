@@ -38,9 +38,7 @@ export default defineNuxtConfig({
       script: [
         {
           src: 'https://cos.yituliu.cn/echarts.min.20241028.js',
-          type: 'text/javascript',
-          defer: true, // 延迟加载（推荐）
-          async: true, // 异步加载
+          type: 'text/javascript'
         },
       ],
       link: [

@@ -1547,6 +1547,7 @@ function exportReward() {
             <v-expansion-panel-text>
               <GachaCalculatorResourceSingleBtn
                 v-for="item in activityReward"
+                v-show="checkRewardIsValid(item)"
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"
