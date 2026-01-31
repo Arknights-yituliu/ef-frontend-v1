@@ -58,7 +58,7 @@ const monthlyPassResources = computed(() => {
   const totalDiamond = oneTimeDiamond + dailyDiamond;
   const price = monthlyPack ? monthlyPack.price : 0;
   const pulls = (originiumRecharge * 75 + totalDiamond) / 500;
-  
+
   return {
     originiumRecharge,
     oneTimeDiamond,
@@ -90,13 +90,13 @@ const giftPacks = computed(() => {
     if (key.includes('月卡') || key.includes('bp_track') || key.includes('源石')) {
       continue;
     }
-    
+
     // 计算礼包的抽数，过滤掉0抽的礼包
     const pulls = calculatePackPulls(pack);
     if (pulls <= 0) {
       continue;
     }
-    
+
     packList.push({
       id: key,
       ...pack
@@ -115,7 +115,7 @@ const selectedPacks = computed({
 const firstRechargeStones = computed(() => {
   const stoneList = [];
   const stoneKeys = ['6元双倍源石', '30元双倍源石', '98元双倍源石', '198元双倍源石', '328元双倍源石', '648元双倍源石'];
-  
+
   for (const key of stoneKeys) {
     if (packs[key as keyof typeof packs]) {
       stoneList.push({
@@ -131,7 +131,7 @@ const firstRechargeStones = computed(() => {
 const normalStones = computed(() => {
   const stoneList = [];
   const stoneKeys = ['6元源石', '30元源石', '98元源石', '198元源石', '328元源石', '648元源石'];
-  
+
   for (const key of stoneKeys) {
     if (packs[key as keyof typeof packs]) {
       stoneList.push({
@@ -153,7 +153,7 @@ const originiumStoneQuantities = computed({
 function calculatePackPulls(pack: any): number {
   let totalPulls = 0;
   let totalDiamonds = 0;
-  
+
   for (const item of pack.contents) {
     if (item.itemId === 'item_originium_recharge') {
       // 1源石 = 75嵌晶玉
@@ -171,10 +171,10 @@ function calculatePackPulls(pack: any): number {
       totalPulls += item.quantity * 10;
     }
   }
-  
+
   // 将嵌晶玉转换为抽数：500嵌晶玉 = 1抽
   totalPulls += totalDiamonds / 500;
-  
+
   return totalPulls;
 }
 
@@ -201,7 +201,7 @@ function getPackIcon(pack: any): string {
 // 计算总金额
 const totalPrice = computed(() => {
   let total = 0;
-  
+
   // 礼包金额
   for (const [packId, quantity] of Object.entries(selectedPacks.value)) {
     if (quantity > 0) {
@@ -211,7 +211,7 @@ const totalPrice = computed(() => {
       }
     }
   }
-  
+
   // 普通源石金额
   for (const [stoneId, quantity] of Object.entries(originiumStoneQuantities.value)) {
     if (quantity > 0) {
@@ -221,7 +221,7 @@ const totalPrice = computed(() => {
       }
     }
   }
-  
+
   return total;
 });
 
@@ -265,7 +265,7 @@ function getImageUrl(itemId: string): string {
     'item_ticketgacha_special_single': 'ticketgacha_special_single',
     'item_ticketgacha_standard_single': 'ticketgacha_standard_single'
   };
-  
+
   if (itemIdDict[itemId]) {
     return `https://cos.yituliu.cn/endfield/unpack-images/items/item_${itemIdDict[itemId]}.webp`;
   } else {
@@ -422,13 +422,9 @@ function getImageUrl(itemId: string): string {
 
     <!-- 普通源石 -->
     <div class="section-title">普通源石</div>
-    <v-btn
-      v-for="stone in normalStones"
-      :key="stone.id"
-      class="gacha-calculator-resource-single-btn"
-      :active="true"
-    >
-      <div class="gacha-calculator-resource-single">
+
+      <div class="gacha-calculator-resource-single gacha-calculator-resource-single-1"  v-for="stone in normalStones"
+           :key="stone.id">
         <div class="gacha-calculator-resource-single-title">
           {{ stone.packDisplayNameZH }}
         </div>
@@ -464,7 +460,7 @@ function getImageUrl(itemId: string): string {
           </v-btn>
         </div>
       </div>
-    </v-btn>
+
   </div>
 </template>
 
@@ -492,7 +488,7 @@ function getImageUrl(itemId: string): string {
 .gacha-calculator-resource-single-btn {
   margin: 4px 0px;
   width: 100%;
-  border-bottom: 3px solid transparent;
+  border: 1px solid var(--theme-border-secondary);
   transition: all 0.2s ease;
 }
 
@@ -507,8 +503,17 @@ function getImageUrl(itemId: string): string {
 .gacha-calculator-resource-single {
   width: 560px;
   display: flex;
+  box-sizing: border-box;
   font-size: 1rem;
   align-items: center;
+  border-radius: 4px;
+}
+
+.gacha-calculator-resource-single-1{
+  margin: 4px 0;
+  padding: 4px 4px;
+  border: 1px solid var(--theme-border-secondary);
+  box-shadow:  rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
 }
 
 .gacha-calculator-resource-single-title {

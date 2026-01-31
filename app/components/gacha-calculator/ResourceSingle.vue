@@ -51,7 +51,10 @@ function getImageUrl(itemId: string): string {
   display: flex;
   font-size: 1rem;
   align-items: center;
-
+  padding: 4px 4px;
+  border-radius: 4px;
+  margin: 4px 0;
+  border: 1px solid var(--theme-border-secondary);
 }
 .gacha-calculator-resource-single-title {
   width: 300px;

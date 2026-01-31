@@ -15,6 +15,7 @@
   --theme-text-light: #b0b0b0;
   --theme-text-disabled: #999999;
   --theme-border: #d0d0d0;
+  --theme-border-secondary: #ebebeb;
   --theme-border-active: #333333;
   --theme-accent-color: #2c2c2c;
   --theme-accent-hover: #e8e8e8;
@@ -60,6 +61,9 @@
 
   /* 侧边栏菜单项 hover 背景变量 */
   --sidebar-item-hover-bg: #d8d8d8;
+
+
+  --gacha-calculator-moudule-title-bg:#e3e3e3;
 }
 
 /* 暗色主题 */
@@ -75,6 +79,7 @@
   --theme-text-light: #666666;
   --theme-text-disabled: #666666;
   --theme-border: #3d3d3d;
+  --theme-border-secondary: #7d7d7d;
   --theme-border-active: #e8e8e8;
   --theme-accent-color: #e8e8e8;
   --theme-accent-hover: #3d3d3d;
@@ -120,4 +125,6 @@
 
   /* 侧边栏菜单项 hover 背景变量 */
   --sidebar-item-hover-bg: #3d3d3d;
+
+  --gacha-calculator-moudule-title-bg:#3d3d3d;
 }

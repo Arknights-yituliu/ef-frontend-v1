@@ -27,7 +27,7 @@ const props = defineProps<{title:string}>();
   padding: 0 4px;
   width: 100%;
   font-size: 1.5rem;
-  background: #e3e3e3;
+  background: var(--gacha-calculator-moudule-title-bg);
   display: flex;
   align-content: center;
 }
