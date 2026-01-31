@@ -41,6 +41,10 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
     total: {
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0
+    },
+    other: {
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0
     }
   },
   rechargeAmount: 0,

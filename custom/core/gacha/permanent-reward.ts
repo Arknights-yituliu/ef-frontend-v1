@@ -1,9 +1,10 @@
+import { ref } from 'vue';
+import type { Reward } from '#shared/types/gacha-calculator';
 import valleyIVTaskTable from './json/valley_IV_task_table.json';
 import wulingTaskTable from './json/wuling_task_table.json';
 import FactoryManualTable from './json/factory_manual_table.json';
-import { ref } from 'vue';
-import type { Reward } from '#shared/types/gacha-calculator';
 import CharProfileTeaching from './json/char_profile_teaching_table.json';
+import intelArchiveRewardJson from './json/intel_archive_reward.json';
 
 const taskRewardTable = ref<Reward[]>([]);
 
@@ -30,7 +31,7 @@ for (const reward of factoryManualRewardTable) {
   factoryManualCountReward += reward.content.diamond;
 }
 
-const factoryManualMaxReward = factoryManualCountReward;
+const factoryManualRewardMax = factoryManualCountReward;
 
 const factoryManualReward = ref<Reward>({
   id: 'factory_manual_reward',
@@ -145,7 +146,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
   },
 ]);
 
-const trainingReward = ref<Reward[]>([
+const characterTrainingReward = ref<Reward[]>([
   {
     id: '基础训练-通用战术',
     name: {
@@ -203,12 +204,10 @@ const trainingReward = ref<Reward[]>([
 ]);
 
 for (const reward of CharProfileTeaching) {
-  trainingReward.value.push(reward);
+  characterTrainingReward.value.push(reward);
 }
 
-const intelArchiveReward = ref<Reward[]>([
 
-])
 
 const defenseConstructionReward = ref<Reward>({
   id: 'defense_construction_reward',
@@ -230,11 +229,20 @@ const defenseConstructionReward = ref<Reward>({
   },
 });
 
+const intelArchiveReward = ref<Reward[]>([])
+
+for(const reward of intelArchiveRewardJson) {
+  intelArchiveReward.value.push(reward);
+}
+
 export {
-  trainingReward,
+  characterTrainingReward,
   defenseConstructionReward,
   newHorizonsTaskReward,
   beginnerSignInTaskReward,
   factoryManualReward,
-  factoryManualMaxReward,
+  factoryManualRewardMax,
+  intelArchiveReward
 };
+
+

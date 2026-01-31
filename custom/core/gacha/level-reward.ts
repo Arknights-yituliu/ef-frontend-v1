@@ -16,9 +16,9 @@ for (let i = 0; i < 1; i++) {
 
 }
 
-export const nodeReward = ref<Reward>(
+export const operationalManualNodeReward = ref<Reward>(
   {
-    id: 'node_reward',
+    id: 'operational_manual_node_reward',
     name: {
       zh: `节点奖励`,
       en: ''
