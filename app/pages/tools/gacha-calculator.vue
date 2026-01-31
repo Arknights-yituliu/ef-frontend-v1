@@ -16,9 +16,8 @@ import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/g
 import {
   authorityLevelTaskRewards,
   authorityLevelUpReward,
-  etchSpaceSalvageReward,
   operationalManualNodeReward,
-  worldLevelReward,
+  worldLevelReward
 } from '@/custom/core/gacha/level-reward';
 
 import {
@@ -62,6 +61,7 @@ import {
   factoryManualRewardMax,
   intelArchiveReward,
   taskRewardTable,
+  etchSpaceSalvageReward,
 } from '@/custom/core/gacha/permanent-reward';
 
 const { t } = useI18n();

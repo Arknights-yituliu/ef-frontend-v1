@@ -5,6 +5,7 @@ import wulingTaskTable from './json/wuling_task_table.json';
 import FactoryManualTable from './json/factory_manual_table.json';
 import CharProfileTeaching from './json/char_profile_teaching_table.json';
 import intelArchiveRewardJson from './json/intel_archive_reward.json';
+import etchSpaceSalvageRewardJson from './json/etch_space_salvage_reward.json';
 
 const taskRewardTable = ref<Reward[]>([]);
 
@@ -143,12 +144,23 @@ for(const reward of intelArchiveRewardJson) {
   intelArchiveReward.value.push(reward);
 }
 
+const etchSpaceSalvageCrateRewardMax:number = 15*5+30*4+60*1
+
+const etchSpaceSalvageReward = ref<Reward[]>([]);
+
+for(const reward of etchSpaceSalvageRewardJson) {
+  etchSpaceSalvageReward.value.push(reward);
+}
+
+
+
 export {
   characterTrainingReward,
   defenseConstructionReward,
   factoryManualReward,
   factoryManualRewardMax,
-  intelArchiveReward
+  intelArchiveReward,
+  etchSpaceSalvageReward
 };
 
 
