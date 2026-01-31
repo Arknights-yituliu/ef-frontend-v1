@@ -32,17 +32,17 @@
     <v-col cols="12" md="6">
       <img
         src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_0.webp"
-      />
+      >
     </v-col>
     <v-col cols="12" md="6">
       <img
         src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_1.webp"
-      />
+      >
     </v-col>
   </v-row>
   <img
     src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/遇到报错解决方法.webp"
-  />
+  >
 
   <h2>使用前阅读</h2>
   <ul>
@@ -69,7 +69,7 @@
     <li>
       按
       <v-hotkey keys="]" inline variant="flat" />
-      键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br />
+      键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br >
       基质扫描过程中再次按 <v-hotkey keys="]" inline variant="flat" /> 键中断扫描
     </li>
 
