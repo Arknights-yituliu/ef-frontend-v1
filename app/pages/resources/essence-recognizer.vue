@@ -30,10 +30,10 @@
 
   <v-row class="my-4">
     <v-col cols="12" md="6">
-      <img src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/image_0.png" >
+      <img src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/image_0.png" />
     </v-col>
     <v-col cols="12" md="6">
-      <img src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/image_1.png" >
+      <img src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/image_1.png" />
     </v-col>
   </v-row>
 
@@ -60,7 +60,7 @@
       <li>
         按
         <v-hotkey keys="]" inline variant="flat" />
-        键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br >
+        键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br />
         基质扫描过程中再次按 <v-hotkey keys="]" inline variant="flat" /> 键中断扫描
       </li>
 
@@ -137,7 +137,7 @@ async function downloadLatestVersion() {
 
     // 下载最新版本
     if (versionInfo.downloadUrl) {
-      window.open(versionInfo.downloadUrl, '_blank');
+      window.location.href = versionInfo.downloadUrl;
     } else {
       errorMessage.value = '无法获取下载链接，请稍后重试';
       showError.value = true;
