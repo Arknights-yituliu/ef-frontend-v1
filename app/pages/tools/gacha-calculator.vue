@@ -6,6 +6,7 @@ import type {
   TotalPullsSingle,
   PoolOption
 } from '@/shared/types/gacha-calculator';
+import { packs } from '@/custom/core/packs';
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resource-statistics-result';
 import { numberRound, numberFloor } from '#shared/utils/numberUtil';
 import { nextTick, onMounted, ref, watch } from 'vue';
@@ -56,7 +57,8 @@ const rightPartPanel = ref<string[]>([
   'regionalDevelopment',
   'level',
   'activity',
-  'permanent'
+  'permanent',
+  'paidResources'
 ]);
 
 const poolOptions = ref<PoolOption[]>([
@@ -138,6 +140,23 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   buttonGroupActive: {},
   rangeSlider: {},
   slider: {}
+});
+
+// 氪金资源状态
+const paidResources = ref<{
+  monthlyPass: boolean;
+  battlePass: boolean;
+  protocolCustomization: boolean;
+  monthlyPassDays: number;
+  selectedPacks: Record<string, number>;
+  originiumStones: Record<string, number>;
+}>({
+  monthlyPass: false,
+  battlePass: false,
+  protocolCustomization: false,
+  monthlyPassDays: 30,
+  selectedPacks: {},
+  originiumStones: {}
 });
 
 const dailyReward = ref<Reward>({
@@ -300,6 +319,14 @@ watch(
     for (const item of newValue) {
       saveUserConfig(item.id, item.active, 'buttonGroupActive');
     }
+  },
+  { deep: true }
+);
+
+watch(
+  paidResources,
+  () => {
+    gachaResourceStatistics();
   },
   { deep: true }
 );
@@ -520,6 +547,46 @@ const totalResourceStatisticsResultDetail = ref({
   ticketgachaSpecialSingle: 0
 });
 
+// 计算氪金总金额
+const paidResourcesTotalPrice = computed(() => {
+  let total = 0;
+  
+  // 月卡金额
+  if (paidResources.value.monthlyPass) {
+    const monthlyPack = packs['月卡'];
+    if (monthlyPack) {
+      total += monthlyPack.price;
+    }
+  }
+  
+  // 协议定制金额（源石配给是免费的）
+  if (paidResources.value.protocolCustomization) {
+    total += 68;
+  }
+  
+  // 礼包金额
+  for (const [packId, quantity] of Object.entries(paidResources.value.selectedPacks)) {
+    if (quantity > 0) {
+      const pack = packs[packId as keyof typeof packs];
+      if (pack) {
+        total += pack.price * quantity;
+      }
+    }
+  }
+  
+  // 普通源石金额
+  for (const [stoneId, quantity] of Object.entries(paidResources.value.originiumStones)) {
+    if (quantity > 0) {
+      const stone = packs[stoneId as keyof typeof packs];
+      if (stone) {
+        total += stone.price * quantity;
+      }
+    }
+  }
+  
+  return total;
+});
+
 const gachaResourceStatistics = (): void => {
   const list: ResourceStatisticsResultDetail[] = [];
 
@@ -633,6 +700,74 @@ const gachaResourceStatistics = (): void => {
     gachaResourceStatisticsResult.value.totalPulls.permanent = _getPull(result);
   }
 
+  function _paidResourcesStatistics(): void {
+    const result: ResourceStatisticsResultDetail = {
+      name: '氪金资源',
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0
+    };
+
+    // 计算月卡
+    if (paidResources.value.monthlyPass) {
+      const monthlyPack = packs['月卡'];
+      if (monthlyPack) {
+        result.originiumRecharge += 12; // 一次性12源石
+        result.diamond += paidResources.value.monthlyPassDays * 200; // 每天200嵌晶玉
+      }
+    }
+
+    // 计算源石配给（3源石，免费）
+    if (paidResources.value.battlePass) {
+      result.originiumRecharge += 3;
+    }
+
+    // 计算协议定制（36源石，68元）
+    if (paidResources.value.protocolCustomization) {
+      result.originiumRecharge += 36;
+    }
+
+    // 计算选中的礼包
+    for (const [packId, quantity] of Object.entries(paidResources.value.selectedPacks)) {
+      if (quantity > 0 && packs[packId as keyof typeof packs]) {
+        const pack = packs[packId as keyof typeof packs];
+        if (pack && pack.contents) {
+          for (const item of pack.contents) {
+            if (item.itemId === 'item_originium_recharge') {
+              result.originiumRecharge += item.quantity * quantity;
+            } else if (item.itemId === 'item_diamond') {
+              result.diamond += item.quantity * quantity;
+            } else if (item.itemId === 'item_ticketgacha_special_single') {
+              result.ticketgachaSpecialSingle += item.quantity * quantity;
+            } else if (item.itemId === 'item_ticketgacha_standard_single') {
+              result.ticketgachaStandardSingle += item.quantity * quantity;
+            } else if (item.itemId.includes('ticketgacha_special_ten')) {
+              result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
+            }
+          }
+        }
+      }
+    }
+
+    // 计算源石
+    for (const [stoneId, quantity] of Object.entries(paidResources.value.originiumStones)) {
+      if (quantity > 0 && packs[stoneId as keyof typeof packs]) {
+        const stone = packs[stoneId as keyof typeof packs];
+        if (stone && stone.contents) {
+          for (const item of stone.contents) {
+            if (item.itemId === 'item_originium_recharge') {
+              result.originiumRecharge += item.quantity * quantity;
+            }
+          }
+        }
+      }
+    }
+
+    list.push(result);
+    gachaResourceStatisticsResult.value.totalPulls.paidResources = _getPull(result);
+  }
+
   function _totalRewardStatistics(): void {
     const result: ResourceStatisticsResultDetail = {
       name: '共计',
@@ -680,6 +815,7 @@ const gachaResourceStatistics = (): void => {
   _levelRewardStatistics();
   _activityRewardStatistics();
   _permanentRewardStatistics();
+  _paidResourcesStatistics();
   _totalRewardStatistics();
 
   pieChartData = [];
@@ -1195,7 +1331,7 @@ function exportReward() {
                 {{ t('page.tools.gachaCalculator.special')
                 }}{{ t('page.tools.gachaCalculator.ticketgacha') }}，
                 {{ t('page.tools.gachaCalculator.rechargeAmount') }}$
-                {{ gachaResourceStatisticsResult.rechargeAmount }}
+                {{ paidResourcesTotalPrice.toFixed(2) }}
                 {{ t('page.tools.gachaCalculator.yuan') }}
               </div>
             </v-expansion-panel-title>
@@ -1786,6 +1922,25 @@ function exportReward() {
                 @click="item.active = !item.active"
               />
 
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+          <!--氪金资源-->
+          <v-expansion-panel value="paidResources">
+            <v-expansion-panel-title>
+              <div class="gacha-calculator-card-title">
+                氪金资源
+                {{
+                  numberFloor(
+                    gachaResourceStatisticsResult.totalPulls.paidResources?.ticketgachaSpecialSingle,
+                    1
+                  )
+                }}
+                {{ t('page.tools.gachaCalculator.pulls') }}
+              </div>
+            </v-expansion-panel-title>
+            <v-divider style="margin: 1rem 0" />
+            <v-expansion-panel-text>
+              <GachaCalculatorPaidResources v-model="paidResources" :current-pool="currentPool" />
             </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel value="detail">
