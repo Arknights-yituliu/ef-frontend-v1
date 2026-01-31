@@ -423,8 +423,9 @@ function getImageUrl(itemId: string): string {
     <!-- 普通源石 -->
     <div class="section-title">普通源石</div>
 
-      <div class="gacha-calculator-resource-single gacha-calculator-resource-single-1"  v-for="stone in normalStones"
-           :key="stone.id">
+      <div
+v-for="stone in normalStones"  :key="stone.id"
+           class="gacha-calculator-resource-single gacha-calculator-resource-single-1">
         <div class="gacha-calculator-resource-single-title">
           {{ stone.packDisplayNameZH }}
         </div>
