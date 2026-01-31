@@ -18,19 +18,19 @@ function getImageUrl(itemId: string): string {
 
 <template>
   <v-btn
-    class="gacha-calculator-resource-single-btn"
+    class="gacha-calculator-resource-btn"
     :class="{ 'btn-active': props.active }"
     :active="props.active"
   >
-    <div class="gacha-calculator-resource-single">
-      <div class="gacha-calculator-resource-single-title">
+    <div class="gacha-calculator-resource-btn-content">
+      <div class="gacha-calculator-resource-btn-content-title">
         {{ props.name.zh }}
       </div>
       <div
         v-for="(reward, name) in props.content"
         v-show="reward > 0"
         :key="`${props.id}-${name}`"
-        class="gacha-calculator-resource-single-content"
+        class="gacha-calculator-resource-btn-content-content"
       >
         <img class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" alt="existing" >
         X {{ reward }}
@@ -45,7 +45,7 @@ function getImageUrl(itemId: string): string {
   height: 36px;
 
 }
-.gacha-calculator-resource-single-btn {
+.gacha-calculator-resource-btn {
   margin: 4px 0px;
   width: 100%;
   transition: all 0.2s ease;
@@ -53,27 +53,27 @@ function getImageUrl(itemId: string): string {
   border-bottom: 3px solid transparent;
 }
 
-.gacha-calculator-resource-single-btn.btn-active {
+.gacha-calculator-resource-btn.btn-active {
   border-bottom: 3px solid #FFD700 !important;
 }
 
-.gacha-calculator-resource-single-btn:deep([aria-pressed="true"]) {
+.gacha-calculator-resource-btn:deep([aria-pressed="true"]) {
   border-bottom: 3px solid #FFD700 !important;
 }
 
-.gacha-calculator-resource-single {
+.gacha-calculator-resource-btn-content {
   width: 560px;
   display: flex;
   font-size: 1rem;
   align-items: center;
 
 }
-.gacha-calculator-resource-single-title {
+.gacha-calculator-resource-btn-content-title {
   width: 300px;
   text-align: start;
 }
 
-.gacha-calculator-resource-single-content {
+.gacha-calculator-resource-btn-content-content {
   display: flex;
   align-items: center;
   padding: 0 4px;
