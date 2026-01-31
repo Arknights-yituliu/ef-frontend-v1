@@ -1771,7 +1771,7 @@ function exportReward() {
                 其他奖励
                 {{
                   numberFloor(
-                    gachaResourceStatisticsResult.totalPulls.activity?.ticketgachaSpecialSingle,
+                    gachaResourceStatisticsResult.totalPulls.other?.ticketgachaSpecialSingle,
                     1,
                   )
                 }}
