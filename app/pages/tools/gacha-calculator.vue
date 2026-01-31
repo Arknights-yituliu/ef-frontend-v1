@@ -1482,15 +1482,13 @@ function exportReward() {
                   text="清空除日常和活动外的奖励"
                   style="margin: 8px"
                   @click="clearOrSelectedRewards(false)"
-                >
-                </v-btn>
+                />
                 <v-btn
                   color="blue"
                   text="选中所有奖励"
                   style="margin: 8px"
                   @click="clearOrSelectedRewards(true)"
-                >
-                </v-btn>
+                />
               </div>
             </v-expansion-panel-text>
           </v-expansion-panel>
