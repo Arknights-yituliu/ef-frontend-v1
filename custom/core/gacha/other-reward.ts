@@ -4,7 +4,7 @@ import {  ref } from 'vue';
 
 const otherRewardTable= ref<Reward[]>([]);
 
-for(let reward of otherRewardTableJson as Reward[]){
+for(const reward of otherRewardTableJson as Reward[]){
   reward.start = new Date(reward.start)
   reward.end = new Date(reward.end)
   otherRewardTable.value.push(reward);
