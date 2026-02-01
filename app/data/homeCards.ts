@@ -690,7 +690,7 @@ export const homeCards: CardData[] = [
   },
   {
     i18nKey: 'followUs',
-    icon: '/images/icon/bytelogo.png',
+    icon: '/images/icon/bytelogo.webp',
     image: 'https://cos.yituliu.cn/endfield/home/lbc.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu, CardTagType.Other],
