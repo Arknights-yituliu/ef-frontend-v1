@@ -135,7 +135,7 @@ const valleyIVAuryleneCollectReward = ref<Reward>({
   },
 });
 
-const valleyIVCrateRewardMax:number = 93*15+91*30+93*60+11*100+9*75
+const valleyIVCrateRewardMax:number = 93*15+91*30+93*60+11*100+75+14*75
 
 const valleyIVCrateReward = ref<Reward>({
   id: 'valley_IV_crate_reward',
