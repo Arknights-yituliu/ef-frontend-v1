@@ -364,7 +364,7 @@
         "title": "基质计算器",
         "demandSet": "需求设定",
         "demandSetDescription1": "在此设定想要刷取的武器基质，顺序不会影响结果。",
-        "demandSetDescription2": "点击'+'按钮添加新的基质条目。",
+        "demandSetDescription2": "点击“+”按钮添加新的基质条目。",
         "attributeStats": "基础属性",
         "secondaryStats": "附加属性",
         "skillStats": "技能属性",
