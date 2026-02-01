@@ -23,7 +23,7 @@ import {
 import {
   activityReward,
   beginnerSignInTaskReward,
-  newHorizonsTaskReward
+
 } from '@/custom/core/gacha/activity-reward';
 
 import { otherRewardTable } from '@/custom/core/gacha/other-reward';
@@ -55,6 +55,7 @@ import {
 } from '@/custom/core/gacha/wuling-regional-reward';
 
 import {
+  newHorizonsTaskReward,
   characterTrainingReward,
   defenseConstructionReward,
   etchSpaceSalvageReward,
@@ -732,7 +733,7 @@ const gachaResourceStatistics = (): void => {
     };
 
     _addReward(result, beginnerSignInTaskReward.value);
-    _addReward(result, newHorizonsTaskReward.value);
+
     for (const reward of activityReward.value) {
       if (checkRewardIsValid(reward)) {
         _addReward(result, reward);
@@ -815,7 +816,7 @@ const gachaResourceStatistics = (): void => {
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     };
-
+    _addReward(result, newHorizonsTaskReward.value);
     _addReward(result, taskRewardTable.value);
     _addReward(result, factoryManualReward.value);
     _addReward(result, defenseConstructionReward.value);
@@ -1192,8 +1193,8 @@ function clearOrSelectedRewards(action: boolean) {
   _clearOrSelect('rangeSlider', factoryManualProgress, [0, factoryManualRewardMax]);
   _clearOrSelect('rangeSlider', defenseConstructionProgress, [0, 1280]);
   _clearOrSelect('button', etchSpaceSalvageReward);
-  _clearOrSelect('button', etchSpaceSalvageReward);
   _clearOrSelect('button', characterTrainingReward);
+  _clearOrSelect('button',newHorizonsTaskReward)
 
   function _clearOrSelect(
     type: string,
@@ -1561,6 +1562,9 @@ function exportReward() {
       <!--        {{ JSON.stringify(allGachaResource) }}-->
       <!--      </div>-->
       <div class="gacha-calculator-container-right">
+        <v-alert type="info" style="margin-bottom: 8px">
+          基础寻访次数仅在总计模块显示，各模块不再单独显示
+        </v-alert>
         <v-expansion-panels v-model="rightPartPanel" multiple variant="popout">
           <!--库存-->
           <v-expansion-panel value="existing">
@@ -1709,13 +1713,7 @@ function exportReward() {
                 </v-card-text>
               </v-card>
               <v-divider style="margin: 1rem 0" />
-              <GachaCalculatorResourceSingleBtn
-                v-for="item in newHorizonsTaskReward"
-                :key="item.id"
-                v-bind="item"
-                @click="item.active = !item.active"
-              />
-              <v-divider style="margin: 1rem 0" />
+
               <GachaCalculatorResourceSingleBtn
                 v-for="item in activityReward"
                 v-show="checkRewardIsValid(item)"
@@ -2069,6 +2067,13 @@ function exportReward() {
             </v-expansion-panel-title>
 
             <v-expansion-panel-text>
+              <GachaCalculatorResourceSingleBtn
+                v-for="item in newHorizonsTaskReward"
+                :key="item.id"
+                v-bind="item"
+                @click="item.active = !item.active"
+              />
+              <v-divider style="margin: 1rem 0" />
               <GachaCalculatorResourceSingleBtn
                 v-for="item in taskRewardTable"
                 :key="item.id"
