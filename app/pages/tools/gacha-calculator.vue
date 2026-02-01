@@ -4,7 +4,7 @@ import type {
   PieChartData,
   PoolOption,
   ResourceStatisticsResultDetail,
-  TotalPullsSingle,
+  TotalPullsSingle
 } from '@/shared/types/gacha-calculator';
 import { packs } from '@/custom/core/packs';
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resource-statistics-result';
@@ -23,7 +23,7 @@ import {
 import {
   activityReward,
   beginnerSignInTaskReward,
-  newHorizonsTaskReward,
+  newHorizonsTaskReward
 } from '@/custom/core/gacha/activity-reward';
 
 import { otherRewardTable } from '@/custom/core/gacha/other-reward';
@@ -39,7 +39,7 @@ import {
   valleyIVDeltaBotRewardMax,
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
-  valleyIVSimulationReward,
+  valleyIVSimulationReward
 } from '@/custom/core/gacha/valley_IV_regional-reward';
 
 import {
@@ -51,17 +51,17 @@ import {
   wulingDeltaBotRewardMax,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
-  wulingSimulationReward,
+  wulingSimulationReward
 } from '@/custom/core/gacha/wuling-regional-reward';
 
 import {
   characterTrainingReward,
   defenseConstructionReward,
+  etchSpaceSalvageReward,
   factoryManualReward,
   factoryManualRewardMax,
   intelArchiveReward,
-  taskRewardTable,
-  etchSpaceSalvageReward,
+  taskRewardTable
 } from '@/custom/core/gacha/permanent-reward';
 
 const { t } = useI18n();
@@ -326,6 +326,10 @@ watch(
       newValue.ticketgachaStandardSingle;
     gachaCalculatorUserConfig.value.existingResource.ticketgachaSpecialSingle =
       newValue.ticketgachaSpecialSingle;
+    localStorage.setItem(
+      'Gacha_Calculator_User_Config',
+      JSON.stringify(gachaCalculatorUserConfig.value),
+    );
   },
   { deep: true },
 );
@@ -1074,22 +1078,22 @@ function loadingUserConfig() {
       // 使用localConfig
       if (localConfig.rangeSlider) {
         for (const key in localConfig.rangeSlider) {
-          if (
-            localConfig.rangeSlider[key] === undefined ||
-            !Array.isArray(localConfig.rangeSlider[key])
-          ) {
+          const range = localConfig.rangeSlider[key]
+          if (range === undefined || !Array.isArray(range)) {
             continue;
           }
-          const value: number[] = localConfig.rangeSlider[key];
+          gachaCalculatorUserConfig.value.rangeSlider[key] = range;
           if (rangeSliderMap[key]) {
-            rangeSliderMap[key].value = value;
+            rangeSliderMap[key].value = range;
           }
         }
       }
 
       if (localConfig.buttonActive) {
+
         _setButtonActive(localConfig.buttonActive, valleyIVRegionalStockBillStoreReward);
         _setButtonActive(localConfig.buttonActive, wulingRegionalStockBillStoreReward);
+        gachaCalculatorUserConfig.value.buttonActive = localConfig.buttonActive
       }
 
       if (localConfig.buttonGroupActive) {
@@ -1100,7 +1104,8 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, characterTrainingReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, intelArchiveReward);
-        _setButtonGroupActive(localConfig.buttonActive, newHorizonsTaskReward);
+        _setButtonGroupActive(localConfig.buttonGroupActive, newHorizonsTaskReward);
+        gachaCalculatorUserConfig.value.buttonGroupActive = localConfig.buttonGroupActive
       }
 
       if (localConfig.existingResource) {
@@ -1490,6 +1495,63 @@ function exportReward() {
                   @click="clearOrSelectedRewards(true)"
                 />
               </div>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+          <v-expansion-panel value="detail">
+            <v-expansion-panel-title class="gacha-calculator-card-title">
+              <div>计算详情</div>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <v-table>
+                <thead>
+                <tr>
+                  <th style="font-weight: bolder">奖励来源</th>
+                  <th>
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                      alt="existing"
+                    >
+                  </th>
+                  <th>
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                      alt="existing"
+                    >
+                  </th>
+                  <th>
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                      alt="existing"
+                    >
+                  </th>
+                  <th>
+                    <img
+                      class="gacha-calculator-gacha-item-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                      alt="existing"
+                    >
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in resourceStatisticsResultDetailList">
+                  <td>{{ item.name }}</td>
+                  <td>
+                    {{ item.originiumRecharge }}（{{ numberFloor(item.originiumRecharge * 0.15)
+                    }}{{ t('page.tools.gachaCalculator.pulls') }}）
+                  </td>
+                  <td>
+                    {{ item.diamond }}（{{ numberFloor(item.diamond / 500)
+                    }}{{ t('page.tools.gachaCalculator.pulls') }}）
+                  </td>
+                  <td>{{ item.ticketgachaStandardSingle }}</td>
+                  <td>{{ item.ticketgachaSpecialSingle }}</td>
+                </tr>
+                </tbody>
+              </v-table>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -2072,7 +2134,7 @@ function exportReward() {
             </v-expansion-panel-text>
           </v-expansion-panel>
           <!--氪金资源-->
-          <v-expansion-panel value="paidResources">
+          <v-expansion-panel value="debug">
             <v-expansion-panel-title class="gacha-calculator-card-title">
               <div>
                 氪金资源
@@ -2090,61 +2152,16 @@ function exportReward() {
               <GachaCalculatorPaidResources v-model="paidResources" :current-pool="currentPool" />
             </v-expansion-panel-text>
           </v-expansion-panel>
-          <v-expansion-panel value="detail">
+          <v-expansion-panel value="paidResources">
             <v-expansion-panel-title class="gacha-calculator-card-title">
-              <div>计算详情</div>
+              <div>
+                debug
+              </div>
             </v-expansion-panel-title>
+
             <v-expansion-panel-text>
-              <v-table>
-                <thead>
-                  <tr>
-                    <th style="font-weight: bolder">奖励来源</th>
-                    <th>
-                      <img
-                        class="gacha-calculator-gacha-item-icon"
-                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-                        alt="existing"
-                      >
-                    </th>
-                    <th>
-                      <img
-                        class="gacha-calculator-gacha-item-icon"
-                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-                        alt="existing"
-                      >
-                    </th>
-                    <th>
-                      <img
-                        class="gacha-calculator-gacha-item-icon"
-                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-                        alt="existing"
-                      >
-                    </th>
-                    <th>
-                      <img
-                        class="gacha-calculator-gacha-item-icon"
-                        src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-                        alt="existing"
-                      >
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="item in resourceStatisticsResultDetailList">
-                    <td>{{ item.name }}</td>
-                    <td>
-                      {{ item.originiumRecharge }}（{{ numberFloor(item.originiumRecharge * 0.15)
-                      }}{{ t('page.tools.gachaCalculator.pulls') }}）
-                    </td>
-                    <td>
-                      {{ item.diamond }}（{{ numberFloor(item.diamond / 500)
-                      }}{{ t('page.tools.gachaCalculator.pulls') }}）
-                    </td>
-                    <td>{{ item.ticketgachaStandardSingle }}</td>
-                    <td>{{ item.ticketgachaSpecialSingle }}</td>
-                  </tr>
-                </tbody>
-              </v-table>
+
+              {{gachaCalculatorUserConfig}}
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
