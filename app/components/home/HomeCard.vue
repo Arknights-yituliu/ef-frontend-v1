@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { CardData, CardTagType, CardButton } from '~/data/homeCards';
-import { ButtonActionType, ButtonType } from '~/data/homeCards';
+import type { CardData, CardTagType, CardButton } from '@/custom/core/homeCards';
+import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
 const { t } = useI18n();
 
