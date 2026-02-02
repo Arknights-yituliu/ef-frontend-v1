@@ -198,7 +198,8 @@ const isMobile = ref(false);
 const checkIsMobile = () => {
   if (typeof navigator === 'undefined') return false;
   const userAgent = navigator.userAgent || navigator.vendor || '';
-  const mobileRegex = /android|ipad|iphone|ipod|blackberry|iemobile|opera mini|windows phone|kindle|silk|mobile/i;
+  // 精确的移动设备检测，iPad始终被视为移动设备
+  const mobileRegex = /android(?!.*mobile)|iphone|ipod|ipad|blackberry|iemobile|opera mini|windows phone|kindle|silk/i;
   return mobileRegex.test(userAgent);
 };
 
@@ -505,7 +506,7 @@ handleInputChange();
 @media (prefers-color-scheme: dark) {
   .instruction-item {
     background: rgba(255, 255, 255, 0.08);
-    color: #e0e0e0;
+    color: #303030;
   }
 
   .instruction-item:hover {
@@ -583,7 +584,7 @@ handleInputChange();
   .battery-button {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.1);
-    color: #e0e0e0;
+    color: #333333;
   }
 
   .battery-button:hover {
@@ -725,7 +726,7 @@ handleInputChange();
   }
 
   .result-value {
-    color: #e0e0e0;
+    color: #3a3a3a;
   }
 }
 
@@ -1019,11 +1020,11 @@ body.is-mobile-device .power-calc-page .page-subtitle {
 
 @media (prefers-color-scheme: dark) {
   body.is-mobile-device .power-calc-page .page-title {
-    color: #e0e0e0;
+    color: #333333;
   }
 
   body.is-mobile-device .power-calc-page .page-subtitle {
-    color: #b0b0b0;
+    color: #333333;
   }
 }
 
