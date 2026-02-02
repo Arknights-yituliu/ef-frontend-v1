@@ -144,7 +144,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'launchRedemptionCodes',
     icon: '/images/icon/hg.png',
-    image: '/images/endfieldofficial.png',
+    image: 'https://cos.yituliu.cn/endfield/home/endfieldofficial.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.Official],
     buttons: [
@@ -216,7 +216,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'officialWebsite',
     icon: '/images/icon/hg.png',
-    image: '/images/endfieldofficial.png',
+    image: 'https://cos.yituliu.cn/endfield/home/endfieldofficial.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.Official],
     buttons: [
@@ -249,7 +249,8 @@ export const homeCards: CardData[] = [
         i18nKey: 'buttons.prepOrders',
         buttonType: ButtonType.Link,
         action: ButtonActionType.Link,
-        actionData: 'https://endfield.hypergryph.com/activity/final-prep-orders?source_from=yituliu',
+        actionData:
+          'https://endfield.hypergryph.com/activity/final-prep-orders?source_from=yituliu',
         target: true,
         icon: 'mdi-open-in-new',
       },
@@ -258,7 +259,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'chargeReward',
     icon: '/images/icon/hg.png',
-    image: '/images/充值返还查询.png',
+    image: 'https://cos.yituliu.cn/endfield/home/充值返还查询.png',
     descriptionKey: 'description',
     visible: false,
     tagTypes: [CardTagType.Official],
@@ -292,7 +293,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'prepOrders',
     icon: '/images/icon/hg.png',
-    image: '/images/充值返还查询.png',
+    image: 'https://cos.yituliu.cn/endfield/home/充值返还查询.jpg',
     descriptionKey: 'description',
     visible: false,
     tagTypes: [CardTagType.Official],
@@ -301,7 +302,8 @@ export const homeCards: CardData[] = [
         i18nKey: 'buttons.main',
         buttonType: ButtonType.Main,
         action: ButtonActionType.Link,
-        actionData: 'https://endfield.hypergryph.com/activity/final-prep-orders?source_from=yituliu',
+        actionData:
+          'https://endfield.hypergryph.com/activity/final-prep-orders?source_from=yituliu',
         target: true,
         icon: 'mdi-web',
         color: 'primary',
@@ -360,7 +362,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'endfieldMaterialProfit',
     icon: 'https://ef.yituliu.cn/favicon-32x32.png',
-    image: '/images/ytl-packs.png',
+    image: 'https://cos.yituliu.cn/endfield/home/ytl-packs.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu],
     buttons: [
@@ -426,7 +428,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'endfieldResources',
     icon: 'https://ef.yituliu.cn/favicon-32x32.png',
-    image: '/images/ytl-gem.png',
+    image: 'https://cos.yituliu.cn/endfield/home/ytl-gem.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu],
     buttons: [
@@ -460,7 +462,8 @@ export const homeCards: CardData[] = [
         i18nKey: 'buttons.wulingGraduate',
         buttonType: ButtonType.Link,
         action: ButtonActionType.Link,
-        actionData: 'https://factory.ef.yituliu.cn/aef/list?o=jinlong_coupon***2&o=originium_ore*360**3&o=quartz_sand*0**3&o=iron_ore*90**3&o=xiranite_powder*2*3*3*xiranite_oven_1&o=power_proc_battery_4*2*3**power_sta_1&omt=0&loc=A&v=11',
+        actionData:
+          'https://factory.ef.yituliu.cn/aef/list?o=jinlong_coupon***2&o=originium_ore*360**3&o=quartz_sand*0**3&o=iron_ore*90**3&o=xiranite_powder*2*3*3*xiranite_oven_1&o=power_proc_battery_4*2*3**power_sta_1&omt=0&loc=A&v=11',
         target: true,
         icon: 'mdi-open-in-new',
       },
@@ -468,7 +471,8 @@ export const homeCards: CardData[] = [
         i18nKey: 'buttons.factory4Graduate',
         buttonType: ButtonType.Text,
         action: ButtonActionType.Link,
-        actionData: 'https://factory.ef.yituliu.cn/aef/flow?z=eJwtxqEKgEAQBNC.2TAg7N15YpmyyWA02cSqTBGDXy.ivfTEWAFkEzfUwYFioiP3rQuSj-0dKgowmfigfA0T69.ZdF50O7Qz7GZKL9NzFbY_&v=11',
+        actionData:
+          'https://factory.ef.yituliu.cn/aef/flow?z=eJwtxqEKgEAQBNC.2TAg7N15YpmyyWA02cSqTBGDXy.ivfTEWAFkEzfUwYFioiP3rQuSj-0dKgowmfigfA0T69.ZdF50O7Qz7GZKL9NzFbY_&v=11',
         target: true,
         icon: 'mdi-open-in-new',
       },
@@ -477,7 +481,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'opendfieldmap',
     icon: '/images/icon/oem.webp',
-    image: '/images/OEM.png',
+    image: 'https://cos.yituliu.cn/endfield/home/OEM.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
     buttons: [
@@ -547,7 +551,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'endAxis',
     icon: '/images/icon/endaxis.png',
-    image: '/images/endaxis.png',
+    image: 'https://cos.yituliu.cn/endfield/home/endaxis.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
     buttons: [
@@ -565,7 +569,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'gachaRecordAnalysis',
     icon: 'https://cdn.ceobecanteen.top/images/tool-avatar/4e935096-f334-437a-91f0-48621a67d570',
-    image: '/images/endgacha.png',
+    image: 'https://cos.yituliu.cn/endfield/home/endgacha.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
     buttons: [
@@ -591,7 +595,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'warfarinWiki',
     icon: '/images/icon/warfarinwiki.png',
-    image: '/images/warfarinwiki.png',
+    image: 'https://cos.yituliu.cn/endfield/home/warfarinwiki.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
     buttons: [
@@ -609,7 +613,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'talosPioneers',
     icon: '/images/icon/talospioneers.png',
-    image: '/images/talospioneers.png',
+    image: 'https://cos.yituliu.cn/endfield/home/talospioneers.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
     buttons: [
@@ -627,7 +631,7 @@ export const homeCards: CardData[] = [
   {
     i18nKey: 'yiTuLiu',
     icon: 'https://cos.yituliu.cn/endfield/icons/yituliu-icon.png',
-    image: '/images/明日方舟一图流.png',
+    image: 'https://cos.yituliu.cn/endfield/home/明日方舟一图流.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu],
     buttons: [
@@ -686,8 +690,8 @@ export const homeCards: CardData[] = [
   },
   {
     i18nKey: 'followUs',
-    icon: '/images/icon/bytelogo.png',
-    image: '/images/lbc.png',
+    icon: '/images/icon/bytelogo.webp',
+    image: 'https://cos.yituliu.cn/endfield/home/lbc.jpg',
     descriptionKey: 'description',
     tagTypes: [CardTagType.YiTuLiu, CardTagType.Other],
     buttons: [

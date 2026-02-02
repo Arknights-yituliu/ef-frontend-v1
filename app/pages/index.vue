@@ -21,7 +21,7 @@ import {
   homeCards,
   type FooterButton,
   ButtonActionType,
-} from '~/data/homeCards';
+} from '@/custom/core/homeCards';
 
 definePageMeta({
   layout: 'default',

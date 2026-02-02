@@ -98,9 +98,12 @@
               </div>
               <div class="weapon-grid">
                 <div
-                  v-for="[weaponId, weapon] in Object.entries(weapons).filter(
-                    ([weaponId, weapon]) => weapon.weaponType === weaponType,
-                  )"
+                  v-for="[weaponId, weapon] in Object.entries(weapons)
+                    .filter(([weaponId, weapon]) => weapon.weaponType === weaponType)
+                    .toSorted(
+                      ([weaponIdA, weaponA], [weaponIdB, weaponB]) =>
+                        weaponA.rarity - weaponB.rarity,
+                    )"
                   :key="weaponId"
                   class="weapon-item"
                   @click="addStatFromPreset({ ...weapon.stats, isCustom: false, weaponId })"
@@ -236,17 +239,46 @@
                             {{ t('page.tools.essenceCalculator.satisfiedRequirements') }}
                           </div>
                           <div class="d-flex flex-wrap ga-2">
-                            <v-chip
-                              v-for="index in choice.matchedSelectedIndices"
-                              :key="index"
-                              class="font-weight-medium"
-                              color="success"
-                              label
-                              variant="tonal"
-                            >
-                              <span class="mr-1">#{{ index + 1 }}</span>
-                              {{ getEssenceStatDescription(requiredEssenceStats[index]!) }}
-                            </v-chip>
+                            <div v-for="index in choice.matchedSelectedIndices" :key="index">
+                              <v-tooltip activator="parent" location="bottom">
+                                {{
+                                  [
+                                    requiredEssenceStats[index]!.attribute,
+                                    requiredEssenceStats[index]!.secondary,
+                                    requiredEssenceStats[index]!.skill,
+                                  ]
+                                    .filter(Boolean)
+                                    .join('、')
+                                }}
+                              </v-tooltip>
+                              <v-card
+                                v-if="requiredEssenceStats[index]!.isCustom"
+                                class="weapon-item"
+                                variant="outlined"
+                              >
+                                <div class="d-flex flex-column justify-center h-100 m-auto">
+                                  <div class="text-center font-weight-bold">
+                                    #{{ index + 1 }}
+                                    {{ getEssenceStatDescription(requiredEssenceStats[index]!) }}
+                                  </div>
+                                  <div class="text-center text-no-wrap">
+                                    {{ requiredEssenceStats[index]!.attribute ?? '' }}
+                                  </div>
+                                  <div class="text-center text-no-wrap">
+                                    {{ requiredEssenceStats[index]!.secondary ?? '' }}
+                                  </div>
+                                  <div class="text-center text-no-wrap">
+                                    {{ requiredEssenceStats[index]!.skill ?? '' }}
+                                  </div>
+                                </div>
+                              </v-card>
+                              <ContainerItemIcon
+                                v-else
+                                class="weapon-item"
+                                :item-id="requiredEssenceStats[index]!.weaponId!"
+                                show-item-name
+                              />
+                            </div>
                           </div>
                         </div>
 
@@ -256,15 +288,24 @@
                             {{ t('page.tools.essenceCalculator.matchedWeapons') }}
                           </div>
                           <div class="d-flex flex-wrap ga-2">
-                            <v-chip
-                              v-for="weaponId in choice.matchedWeaponIds"
-                              :key="weaponId"
-                              color="default"
-                              label
-                              variant="outlined"
-                            >
-                              {{ weapons[weaponId]!.weaponName }}
-                            </v-chip>
+                            <div v-for="weaponId in choice.matchedWeaponIds" :key="weaponId">
+                              <ContainerItemIcon
+                                class="weapon-item"
+                                :item-id="weaponId"
+                                show-item-name
+                              />
+                              <v-tooltip activator="parent" location="bottom">
+                                {{
+                                  [
+                                    weapons[weaponId]!.stats.attribute,
+                                    weapons[weaponId]!.stats.secondary,
+                                    weapons[weaponId]!.stats.skill,
+                                  ]
+                                    .filter(Boolean)
+                                    .join('、')
+                                }}
+                              </v-tooltip>
+                            </div>
                           </div>
                         </div>
                       </div>
