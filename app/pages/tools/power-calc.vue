@@ -373,6 +373,18 @@ handleInputChange();
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+@media (prefers-color-scheme: dark) {
+  .instruction-item {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e0e0e0;
+  }
+
+  .instruction-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
 .battery-buttons {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -426,6 +438,26 @@ handleInputChange();
 .battery-specs {
   font-size: 0.85rem;
   opacity: 0.9;
+}
+
+@media (prefers-color-scheme: dark) {
+  .battery-button {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+  }
+
+  .battery-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #667eea;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  }
+
+  .battery-button.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #667eea;
+    color: white;
+  }
 }
 
 .tree-container {
@@ -518,6 +550,26 @@ handleInputChange();
 
 .result-item.highlight .result-value {
   color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .result-item {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e0e0e0;
+  }
+
+  .result-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .result-label {
+    color: #b0b0b0;
+  }
+
+  .result-value {
+    color: #e0e0e0;
+  }
 }
 
 .instruction-text {
