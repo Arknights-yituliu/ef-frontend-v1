@@ -4,10 +4,10 @@
       class="node-card" 
       :class="{
         'output': node.type === 'output',
-        'splitter': node.type === 'splitterA' || node.type === 'splitterB',
+        'splitter': node.type === 'splitter',
         'storage': node.type === 'storage',
         'thermal': node.type === 'thermal',
-        'can-drop': node.type === 'output' || node.type === 'splitterA' || node.type === 'splitterB',
+        'can-drop': node.type === 'output' || node.type === 'splitter',
         'child-node-card': depth > 0
       }"
       @dragover.prevent="onDragOver"
@@ -18,19 +18,16 @@
         <div class="node-header">
           <div class="node-type-info">
             <span class="node-icon">
-              {{ node.type === 'output' ? '⬇️' : node.type === 'splitterA' ? '⚡' : node.type === 'splitterB' ? '⚡⚡' : node.type === 'storage' ? '📦' : '🔥' }}
+              {{ node.type === 'output' ? '⬇️' : node.type === 'splitter' ? '🔀' : node.type === 'storage' ? '📦' : '🔥' }}
             </span>
             <span class="node-name">
-              {{ node.type === 'output' ? '输出口' : node.type === 'splitterA' ? '二等分' : node.type === 'splitterB' ? '三等分' : node.type === 'storage' ? '仓库' : '热能池' }}
+              {{ node.type === 'output' ? '输出口（请拖拽设备到这里或子节点上）' : node.type === 'splitter' ? '分流器' : node.type === 'storage' ? '仓库' : '热能池' }}
             </span>
           </div>
           <div class="node-rate">{{ node.rate.toFixed(2) }}/min</div>
         </div>
-        <div v-if="isDraggingOver && (node.type === 'output' || node.type === 'splitterA' || node.type === 'splitterB')" class="drop-hint">
+        <div v-if="isDraggingOver && (node.type === 'output' || node.type === 'splitter')" class="drop-hint">
           松开以添加工具
-        </div>
-        <div v-if="(node.type === 'output' || node.type === 'splitterA' || node.type === 'splitterB') && node.children && node.children.length > 0" class="delete-button" @click.stop="removeChildren">
-          ✕ 清除子节点
         </div>
       </template>
       
@@ -41,13 +38,13 @@
             {{ powerPerMinute.toFixed(0) }} ⚡
           </div>
         </div>
-        <div v-if="(node.type === 'splitterA' || node.type === 'splitterB') && node.children && node.children.length > 0" class="child-delete-button" @click.stop="removeChildren">
+        <div class="child-delete-button" @click.stop="removeNode">
           ✕
         </div>
       </template>
     </div>
     
-    <div v-if="node.type === 'output' || node.type === 'splitterA' || node.type === 'splitterB'" class="node-children">
+    <div v-if="node.type === 'output' || node.type === 'splitter'" class="node-children">
       <template v-if="node.children && node.children.length > 0">
         <div 
           v-for="(child, index) in node.children"
@@ -59,6 +56,7 @@
             :depth="depth + 1"
             :power-per-battery="powerPerBattery"
             :burn-time-seconds="burnTimeSeconds"
+            :on-remove="onRemove"
           />
         </div>
       </template>
@@ -71,7 +69,7 @@ import { watch, computed } from 'vue';
 
 interface Node {
   id: string;
-  type: 'output' | 'splitterA' | 'splitterB' | 'storage' | 'thermal';
+  type: 'output' | 'splitter' | 'storage' | 'thermal';
   rate: number;
   children?: Node[];
 }
@@ -81,6 +79,7 @@ interface Props {
   depth: number;
   powerPerBattery?: number;
   burnTimeSeconds?: number;
+  onRemove?: (nodeId: string) => void;
 }
 
 const props = defineProps<Props>();
@@ -101,7 +100,7 @@ const isDraggingOver = ref(false);
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
 const onDragOver = (event: DragEvent) => {
-  if (props.node.type === 'output' || props.node.type === 'splitterA' || props.node.type === 'splitterB') {
+  if (props.node.type === 'output' || props.node.type === 'splitter') {
     isDraggingOver.value = true;
   }
 };
@@ -114,7 +113,7 @@ const onDrop = (event: DragEvent) => {
   event.preventDefault();
   event.stopPropagation();
   
-  if (props.node.type === 'output' || props.node.type === 'splitterA' || props.node.type === 'splitterB') {
+  if (props.node.type === 'output' || props.node.type === 'splitter') {
     const toolType = event.dataTransfer?.getData('text/plain') as Node['type'];
     if (toolType) {
       addChildren(toolType);
@@ -129,27 +128,24 @@ const addChildren = (toolType: Node['type']) => {
     props.node.children = [];
   }
   
-  // 根据工具类型生成对应数量的子节点
-  let childrenCount = 1;
-  if (toolType === 'splitterA') {
-    childrenCount = 2;
-  } else if (toolType === 'splitterB') {
-    childrenCount = 3;
-  }
-  
-  for (let i = 0; i < childrenCount; i++) {
-    props.node.children.push({
-      id: generateId(),
-      type: toolType,
-      rate: 0,
-      children: toolType === 'splitterA' || toolType === 'splitterB' ? [] : undefined
-    });
-  }
+  // 添加一个子节点
+  props.node.children.push({
+    id: generateId(),
+    type: toolType,
+    rate: 0,
+    children: toolType === 'splitter' ? [] : undefined
+  });
 };
 
 const removeChildren = () => {
   if (props.node.children) {
     props.node.children = [];
+  }
+};
+
+const removeNode = () => {
+  if (props.onRemove) {
+    props.onRemove(props.node.id);
   }
 };
 </script>

@@ -18,7 +18,7 @@
           </div>
           <div class="instruction-item mb-2 pa-3 bg-grey-lighten-4 rounded">
             <span class="instruction-number">2</span>
-            <span>二等分生成2个子节点，三等分生成3个子节点</span>
+            <span>新增子节点可继续添加分流器或热能池</span>
           </div>
           <div class="instruction-item pa-3 bg-grey-lighten-4 rounded">
             <span class="instruction-number">3</span>
@@ -85,6 +85,7 @@
               :depth="0"
               :power-per-battery="powerPerBattery"
               :burn-time-seconds="burnTimeSeconds"
+              :on-remove="removeNode"
             />
           </div>
 
@@ -127,18 +128,10 @@
         <div 
           class="sidebar-tool-item" 
           draggable="true"
-          @dragstart="onToolDragStart($event, 'splitterA')"
+          @dragstart="onToolDragStart($event, 'splitter')"
         >
-          <span class="sidebar-tool-icon">⚡</span>
-          <span class="sidebar-tool-name">二等分</span>
-        </div>
-        <div 
-          class="sidebar-tool-item" 
-          draggable="true"
-          @dragstart="onToolDragStart($event, 'splitterB')"
-        >
-          <span class="sidebar-tool-icon">⚡⚡</span>
-          <span class="sidebar-tool-name">三等分</span>
+          <span class="sidebar-tool-icon">🔀</span>
+          <span class="sidebar-tool-name">分流器</span>
         </div>
         <div 
           class="sidebar-tool-item" 
@@ -159,7 +152,7 @@ import NodeCard from '~/components/tools/NodeCard.vue';
 
 interface Node {
   id: string;
-  type: 'output' | 'splitterA' | 'splitterB' | 'storage' | 'thermal';
+  type: 'output' | 'splitter' | 'storage' | 'thermal';
   rate: number;
   children?: Node[];
 }
@@ -206,9 +199,9 @@ const resultItems = computed(() => [
   { label: '电池类型', value: batteryConfig[selectedBattery.value as keyof typeof batteryConfig].name, highlight: false, color: 'default' },
   { label: '燃烧电池', value: `${burnedCount.value.toFixed(2)} 个/分钟`, highlight: false, color: 'default' },
   { label: '需要热能池个数', value: `${simultaneousBurning.value.toFixed(2)}（${thermalPoolsNeeded.value}）`, highlight: false, color: 'default' },
-  { label: '其他来源电力', value: otherPower.value.toFixed(2), highlight: false, color: 'yellow' },
-  { label: '平均输出功率', value: totalPower.value.toFixed(2), highlight: false, color: 'blue' },
-  { label: '总电力', value: totalPowerWithOther.value.toFixed(2), highlight: true, color: 'green' }
+  { label: '其他来源电力', value: otherPower.value.toFixed(2), highlight: false, color: 'default' },
+  { label: '平均输出功率', value: totalPower.value.toFixed(2), highlight: false, color: 'default' },
+  { label: '总电力', value: totalPowerWithOther.value.toFixed(2), highlight: true, color: 'blue' }
 ]);
 
 // 输出口作为根节点
@@ -224,9 +217,32 @@ const draggedTool = ref<Node['type'] | null>(null);
 // 生成唯一ID
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
+// 删除节点
+const removeNode = (nodeId: string) => {
+  const findAndRemove = (node: Node): boolean => {
+    if (node.children) {
+      const index = node.children.findIndex(child => child.id === nodeId);
+      if (index !== -1) {
+        node.children.splice(index, 1);
+        return true;
+      }
+      for (const child of node.children) {
+        if (findAndRemove(child)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+  
+  findAndRemove(outputNode.value);
+  recalculateRates();
+  calculatePower();
+};
+
 // 拖拽工具开始
-const onToolDragStart = (event: DragEvent, toolType: Node['type']) => {
-  draggedTool.value = toolType;
+const onToolDragStart = (event: DragEvent, toolType: string) => {
+  draggedTool.value = toolType as Node['type'];
   if (event.dataTransfer) {
     event.dataTransfer.effectAllowed = 'copy';
     event.dataTransfer.setData('text/plain', toolType);
@@ -285,6 +301,7 @@ const calculatePower = () => {
     storageCount.value = initialRate.value;
     burnedCount.value = 0;
     simultaneousBurning.value = 0;
+    thermalPoolsNeeded.value = 0;
     powerPerSecond.value = 0;
     totalPower.value = 0;
   } else {
