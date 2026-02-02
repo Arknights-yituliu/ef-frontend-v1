@@ -7,7 +7,7 @@
 
       <!-- 使用说明（可折叠） -->
       <v-card class="mb-4">
-        <v-card-text class="instructions-header" @click="toggleInstructions" style="cursor: pointer;">
+        <v-card-text class="instructions-header" style="cursor: pointer;" @click="toggleInstructions">
           <h3 class="text-h6 mb-0">使用说明</h3>
           <span :class="{ collapsed: !showInstructions }">▼</span>
         </v-card-text>
@@ -47,7 +47,7 @@
             </div>
           </div>
 
-          <v-divider class="my-4"></v-divider>
+          <v-divider class="my-4"/>
 
           <v-card-title class="text-h6 px-0">输入设置</v-card-title>
           <v-row>
@@ -59,7 +59,7 @@
                 min="1"
                 variant="outlined"
                 @input="handleInputChange"
-              ></v-text-field>
+              />
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
@@ -69,7 +69,7 @@
                 min="0"
                 variant="outlined"
                 @input="handleInputChange"
-              ></v-text-field>
+              />
             </v-col>
           </v-row>
         </v-card-text>
