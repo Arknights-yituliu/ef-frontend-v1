@@ -464,6 +464,16 @@ handleInputChange();
   margin-bottom: 2rem;
 }
 
+@media (prefers-color-scheme: dark) {
+  .page-title {
+    color: #e0e0e0;
+  }
+
+  .page-subtitle {
+    color: #b0b0b0;
+  }
+}
+
 .instructions {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -938,6 +948,16 @@ body.is-mobile-device .power-calc-page .page-title {
 body.is-mobile-device .power-calc-page .page-subtitle {
   font-size: 1rem;
   margin-bottom: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.is-mobile-device .power-calc-page .page-title {
+    color: #e0e0e0;
+  }
+
+  body.is-mobile-device .power-calc-page .page-subtitle {
+    color: #b0b0b0;
+  }
 }
 
 /* 使用说明改为单列 */
