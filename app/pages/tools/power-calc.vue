@@ -5,27 +5,15 @@
       <h1 class="page-title">电池分流计算器</h1>
       <p class="page-subtitle">Battery Split Calculator</p>
 
-      <!-- 使用说明（可折叠） -->
-      <v-card class="mb-4">
-        <v-card-text class="instructions-header" style="cursor: pointer;" @click="toggleInstructions">
-          <h3 class="text-h6 mb-0">使用说明</h3>
-          <span :class="{ collapsed: !showInstructions }">▼</span>
-        </v-card-text>
-        <v-card-text v-show="showInstructions" class="instructions-content">
-          <div class="instruction-item mb-2 pa-3 bg-grey-lighten-4 rounded">
-            <span class="instruction-number">1</span>
-            <span>拖拽设备到节点卡片上（拖拽到输出口或分流器）</span>
-          </div>
-          <div class="instruction-item mb-2 pa-3 bg-grey-lighten-4 rounded">
-            <span class="instruction-number">2</span>
-            <span>新增子节点可继续添加分流器或热能池</span>
-          </div>
-          <div class="instruction-item pa-3 bg-grey-lighten-4 rounded">
-            <span class="instruction-number">3</span>
-            <span>热能池（红色）产生电力，其余电池送回仓库</span>
-          </div>
-        </v-card-text>
-      </v-card>
+      <!-- 使用说明 -->
+      <div class="instructions mb-4">
+        <div class="instruction-item">
+          <span class="instruction-text"><span class="instruction-number">1</span> 从右侧工具栏拖拽若干分流器到节点/子节点卡片上以逐级分流</span>
+        </div>
+        <div class="instruction-item">
+          <span class="instruction-text"><span class="instruction-number">2</span> 拖拽热能池到需要烧掉的电池上，其余电池认为送回仓库</span>
+        </div>          
+      </div>
 
       <!-- 电池类型选择 + 输入设置 -->
       <v-card class="mb-4">
@@ -54,7 +42,7 @@
             <v-col cols="12" sm="6">
               <v-text-field
                 v-model.number="initialRate"
-                label="初始输出速度 (个/分钟)"
+                label="电池输出速度 (个/分钟)"
                 type="number"
                 min="1"
                 variant="outlined"
@@ -64,7 +52,7 @@
             <v-col cols="12" sm="6">
               <v-text-field
                 v-model.number="otherPower"
-                label="其他来源电力 (⚡/秒)"
+                label="现有其他来源电力 (⚡)"
                 type="number"
                 min="0"
                 variant="outlined"
@@ -187,21 +175,15 @@ const thermalPoolsNeeded = ref(0);
 const powerPerSecond = ref(0);
 const totalPower = ref(0);
 const totalPowerWithOther = ref(0);
-const showInstructions = ref(true);
-
-// 切换使用说明显示
-const toggleInstructions = () => {
-  showInstructions.value = !showInstructions.value;
-};
 
 // 计算结果项
 const resultItems = computed(() => [
   { label: '电池类型', value: batteryConfig[selectedBattery.value as keyof typeof batteryConfig].name, highlight: false, color: 'default' },
   { label: '燃烧电池', value: `${burnedCount.value.toFixed(2)} 个/分钟`, highlight: false, color: 'default' },
   { label: '需要热能池个数', value: `${simultaneousBurning.value.toFixed(2)}（${thermalPoolsNeeded.value}）`, highlight: false, color: 'default' },
-  { label: '其他来源电力', value: otherPower.value.toFixed(2), highlight: false, color: 'default' },
-  { label: '平均输出功率', value: totalPower.value.toFixed(2), highlight: false, color: 'default' },
-  { label: '总电力', value: totalPowerWithOther.value.toFixed(2), highlight: true, color: 'blue' }
+  { label: '其他来源电力', value: `${otherPower.value.toFixed(2)} ⚡`, highlight: false, color: 'default' },
+  { label: '平均输出功率', value: `${totalPower.value.toFixed(2)} ⚡`, highlight: false, color: 'default' },
+  { label: '总电力', value: `${totalPowerWithOther.value.toFixed(2)} ⚡`, highlight: true, color: 'blue' }
 ]);
 
 // 输出口作为根节点
@@ -371,33 +353,24 @@ handleInputChange();
   margin-bottom: 2rem;
 }
 
-.instructions-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-}
-
-.instructions-header:hover {
-  opacity: 0.8;
-}
-
-.collapse-icon {
-  transition: transform 0.3s ease;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text-primary, #333);
-}
-
-.collapse-icon.collapsed {
-  transform: rotate(-90deg);
-}
-
-.instructions-content {
+.instructions {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  margin-bottom: 20px;
+}
+
+.instruction-item {
+  padding: 16px 20px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.instruction-item:hover {
+  background: #eeeeee;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .battery-buttons {
@@ -408,10 +381,10 @@ handleInputChange();
 
 .battery-button {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 16px;
-  padding: 32px 24px;
+  padding: 16px 20px;
   background: rgba(102, 126, 234, 0.05);
   border: 2px solid var(--border-color, #e0e0e0);
   border-radius: 16px;
@@ -435,23 +408,23 @@ handleInputChange();
 }
 
 .battery-icon {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
 }
 
 .battery-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .battery-name {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
 .battery-specs {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   opacity: 0.9;
 }
 
@@ -547,6 +520,12 @@ handleInputChange();
   color: white;
 }
 
+.instruction-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .instruction-number {
   width: 28px;
   height: 28px;
@@ -567,24 +546,24 @@ handleInputChange();
   right: 20px;
   transform: translateY(-50%);
   width: 120px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #fff9c4;
   border-radius: 12px;
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   z-index: 100;
 }
 
 .sidebar-title {
   font-size: 1.1rem;
   font-weight: 700;
-  color: white;
+  color: #333;
   margin-bottom: 16px;
   text-align: center;
   padding-bottom: 8px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-tools-list {
@@ -599,19 +578,18 @@ handleInputChange();
   align-items: center;
   gap: 8px;
   padding: 16px 12px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
   cursor: grab;
   transition: all 0.3s ease;
   color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
 .sidebar-tool-item:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, #764ba2 0%, #8e44ad 100%);
   transform: translateX(-4px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
 .sidebar-tool-item:active {
