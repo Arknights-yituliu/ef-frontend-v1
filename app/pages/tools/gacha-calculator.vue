@@ -33,8 +33,10 @@ import { AICQuotaReward } from '@/custom/core/gacha/daily-reward';
 import {
   valleyIVAuryleneCollectReward,
   valleyIVAuryleneCollectRewardTable,
-  valleyIVCrateReward,
   valleyIVCrateRewardMax,
+  valleyIVCrateReward,
+  valleyIVBattleCrateRewardMax,
+  valleyIVBattleCrateReward,
   valleyIVDeltaBotReward,
   valleyIVDeltaBotRewardMax,
   valleyIVRegionalDevelopmentReward,
@@ -465,7 +467,7 @@ watch(
   valleyIVAuryleneCollectProgress,
   (newVal) => {
     let originiumRecharge: number = 0;
-    for (let i = newVal[0]! + 1; i < newVal[1]!; i++) {
+    for (let i = newVal[0]! ; i < newVal[1]!; i++) {
       const stageReward = valleyIVAuryleneCollectRewardTable[i];
       if (stageReward !== undefined) {
         originiumRecharge += stageReward.originiumRecharge || 0;
@@ -490,6 +492,20 @@ watch(
   },
   { deep: true },
 );
+
+
+const valleyIVBattleCrateRewardProgress = ref<number[]>([0, valleyIVBattleCrateRewardMax]);
+
+watch(
+  valleyIVBattleCrateRewardProgress,
+  (newVal) => {
+    valleyIVBattleCrateReward.value.content.originiumRecharge = newVal[1]! - newVal[0]!;
+    saveUserConfig(valleyIVBattleCrateReward.value.id, newVal, 'rangeSlider');
+    gachaResourceStatistics();
+  },
+  { deep: true },
+);
+
 
 const valleyIVDeltaBotProgress = ref<number[]>([0, valleyIVDeltaBotRewardMax]);
 
@@ -548,7 +564,7 @@ watch(
   wulingAuryleneCollectProgress,
   (newVal) => {
     let originiumRecharge: number = 0;
-    for (let i = newVal[0]! + 1; i < newVal[1]!; i++) {
+    for (let i = newVal[0]! ; i < newVal[1]!; i++) {
       const stageReward = wulingAuryleneCollectRewardTable[i];
       if (stageReward !== undefined) {
         originiumRecharge += stageReward.originiumRecharge || 0;
@@ -776,6 +792,7 @@ const gachaResourceStatistics = (): void => {
     _addReward(result, valleyIVRegionalDevelopmentReward.value);
     _addReward(result, valleyIVAuryleneCollectReward.value);
     _addReward(result, valleyIVCrateReward.value);
+    _addReward(result, valleyIVBattleCrateReward.value);
     _addReward(result, valleyIVDeltaBotReward.value);
     _addReward(result, valleyIVSimulationReward.value);
     _addReward(result, wulingRegionalStockBillStoreReward.value);
@@ -1058,6 +1075,7 @@ const rangeSliderMap: Record<string, Ref<number[]>> = {
   valley_IV_regional_development_reward: valleyIVRegionalDevelopmentProgress,
   valley_IV_aurylene_collect_reward: valleyIVAuryleneCollectProgress,
   valley_IV_crate_reward: valleyIVCrateRewardProgress,
+  valley_IV_battle_crate_reward:valleyIVBattleCrateRewardProgress,
   valley_IV_delta_bot_reward: valleyIVDeltaBotProgress,
   valley_IV_simulation_reward: valleyIVSimulationProgress,
   wuling_regional_development_reward: wulingRegionalDevelopmentProgress,
@@ -1174,6 +1192,7 @@ function clearOrSelectedRewards(action: boolean) {
   _clearOrSelect('rangeSlider', valleyIVRegionalDevelopmentProgress, [0, 12]);
   _clearOrSelect('rangeSlider', valleyIVAuryleneCollectProgress, [0, 18]);
   _clearOrSelect('rangeSlider', valleyIVCrateRewardProgress, [0, valleyIVCrateRewardMax]);
+  _clearOrSelect('rangeSlider', valleyIVBattleCrateRewardProgress, [0, valleyIVBattleCrateRewardMax]);
   _clearOrSelect('rangeSlider', valleyIVDeltaBotProgress, [0, valleyIVDeltaBotRewardMax]);
   _clearOrSelect('rangeSlider', valleyIVSimulationProgress, [0, 26]);
 
@@ -1830,6 +1849,26 @@ function exportReward() {
                   储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5合成玉
                 </v-card-text>
               </v-card>
+
+              <v-divider style="margin: 1rem 0" />
+
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle v-bind="valleyIVBattleCrateReward" />
+                  <div style="height: 36px" />
+                  <v-range-slider
+                    v-model="valleyIVBattleCrateRewardProgress"
+                    step="1"
+                    :max="valleyIVBattleCrateRewardMax"
+                    tick-size="4"
+                    thumb-label="always"
+                    hide-details="auto"
+                    class="v-range-slider"
+                  />
+                  在地图上的处理险情点位可获得1源石的宝箱
+                </v-card-text>
+              </v-card>
+
               <v-divider style="margin: 1rem 0" />
               <v-card>
                 <v-card-text>

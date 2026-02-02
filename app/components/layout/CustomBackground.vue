@@ -13,6 +13,7 @@
   height: 100vh;
   display: block;
   object-fit: cover;
+  z-index: -1;
   opacity: 0.3;
   transition: filter 0.3s ease;
   /* 颜色混合算法：将 SVG 转换为灰度背景 */
