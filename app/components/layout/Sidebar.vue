@@ -37,8 +37,6 @@
             :style="{ '--item-color': getSectionColor(primaryItem.i18nKey),'--current-active-color':currentActiveColor }"
             :to="secondaryItem.routePath"
             class="secondary-item"
-            @mouseenter="handleSecondaryHover(secondaryItem.routePath, $event)"
-            @mouseleave="handleSecondaryLeave(secondaryItem.routePath)"
           >
             <!-- 左侧装饰条 -->
             <div class="item-decoration-bar" />
@@ -283,16 +281,6 @@ const resetSecondaryIcon = (path: string) => {
   }
 };
 
-// 处理二级菜单悬停
-const handleSecondaryHover = (path: string, event: MouseEvent) => {
-  rotateSecondaryIcon(path);
-};
-
-// 处理二级菜单离开
-const handleSecondaryLeave = (path: string) => {
-  // 重置动画
-  resetSecondaryIcon(path);
-};
 
 // 监听路由变化，更新二级菜单高亮
 watch(

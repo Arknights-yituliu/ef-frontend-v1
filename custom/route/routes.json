@@ -42,16 +42,22 @@
         "vuetifyIcon": "mdi-pokeball"
       },
       {
+        "i18nKey": "quantitativeCalculator",
+        "nameKey": "menu.quantitativeCalculator",
+        "routePath": "https://factory.ef.yituliu.cn/aef?v=11",
+        "vuetifyIcon": "mdi-calculator"
+      },
+      {
         "i18nKey": "gachaAnalysis",
         "nameKey": "menu.gachaAnalysis",
         "routePath": "/tools/gacha-analysis",
         "vuetifyIcon": "mdi-chart-bar"
       },
       {
-        "i18nKey": "quantitativeCalculator",
-        "nameKey": "menu.quantitativeCalculator",
-        "routePath": "https://factory.ef.yituliu.cn/aef?v=11",
-        "vuetifyIcon": "mdi-calculator"
+        "i18nKey": "batterySplitCalculator",
+        "nameKey": "menu.batterySplitCalculator",
+        "routePath": "/tools/power-calc",
+        "vuetifyIcon": "mdi-battery"
       }
     ]
   },

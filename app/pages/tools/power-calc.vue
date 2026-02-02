@@ -2,7 +2,7 @@
   <div class="power-calc-page">
     <CustomBackground />
     <div class="content">
-      <h1 class="page-title">电池分流计算器</h1>
+      <header class="page-title">电池分流计算器</header>
       <p class="page-subtitle">Battery Split Calculator</p>
 
       <!-- 使用说明 -->
@@ -455,13 +455,21 @@ handleInputChange();
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: var(--text-primary, #333);
+  color: #333;
 }
 
 .page-subtitle {
   font-size: 1.2rem;
-  color: var(--text-secondary, #666);
+  color: #666;
   margin-bottom: 2rem;
+}
+
+[data-theme='dark'] .page-title {
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] .page-subtitle {
+  color: #b0b0b0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -506,6 +514,16 @@ handleInputChange();
   }
 }
 
+[data-theme='dark'] .instruction-item {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] .instruction-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
 .battery-buttons {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -519,11 +537,11 @@ handleInputChange();
   gap: 16px;
   padding: 16px 20px;
   background: rgba(102, 126, 234, 0.05);
-  border: 2px solid var(--border-color, #e0e0e0);
+  border: 2px solid #e0e0e0;
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: var(--text-primary, #333);
+  color: #333;
 }
 
 .battery-button:hover {
@@ -579,6 +597,24 @@ handleInputChange();
     border-color: #667eea;
     color: white;
   }
+}
+
+[data-theme='dark'] .battery-button {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] .battery-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+[data-theme='dark'] .battery-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  color: white;
 }
 
 .tree-container {
@@ -691,6 +727,24 @@ handleInputChange();
   .result-value {
     color: #e0e0e0;
   }
+}
+
+[data-theme='dark'] .result-item {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] .result-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .result-label {
+  color: #b0b0b0;
+}
+
+[data-theme='dark'] .result-value {
+  color: #e0e0e0;
 }
 
 .instruction-text {
@@ -822,6 +876,10 @@ handleInputChange();
   }
 }
 
+[data-theme='dark'] .action-panel-content {
+  background: #1a1a1a;
+}
+
 @keyframes slideInRight {
   from {
     transform: translateX(100%);
@@ -874,6 +932,15 @@ handleInputChange();
   .node-type {
     color: #9fa8da;
   }
+}
+
+[data-theme='dark'] .node-info-text {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] .node-type {
+  color: #9fa8da;
 }
 
 .action-buttons {
@@ -958,6 +1025,14 @@ body.is-mobile-device .power-calc-page .page-subtitle {
   body.is-mobile-device .power-calc-page .page-subtitle {
     color: #b0b0b0;
   }
+}
+
+[data-theme='dark'] body.is-mobile-device .power-calc-page .page-title {
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] body.is-mobile-device .power-calc-page .page-subtitle {
+  color: #b0b0b0;
 }
 
 /* 使用说明改为单列 */
