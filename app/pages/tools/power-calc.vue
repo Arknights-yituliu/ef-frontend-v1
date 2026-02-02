@@ -17,7 +17,6 @@
 
       <!-- 电池类型选择 + 输入设置 -->
       <v-card class="mb-4">
-        <v-card-title class="text-h6">电池类型</v-card-title>
         <v-card-text>
           <div class="battery-buttons">
             <div
@@ -37,25 +36,26 @@
 
           <v-divider class="my-4"/>
 
-          <v-card-title class="text-h6 px-0">输入设置</v-card-title>
           <v-row>
-            <v-col cols="12" sm="6">
+            <v-col cols="12" sm="4">
               <v-text-field
                 v-model.number="initialRate"
                 label="电池输出速度 (个/分钟)"
                 type="number"
                 min="1"
                 variant="outlined"
+                density="compact"
                 @input="handleInputChange"
               />
             </v-col>
-            <v-col cols="12" sm="6">
+            <v-col cols="12" sm="4">
               <v-text-field
                 v-model.number="otherPower"
                 label="现有其他来源电力 (⚡)"
                 type="number"
                 min="0"
                 variant="outlined"
+                density="compact"
                 @input="handleInputChange"
               />
             </v-col>
