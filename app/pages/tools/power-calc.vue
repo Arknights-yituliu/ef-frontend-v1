@@ -8,10 +8,18 @@
       <!-- 使用说明 -->
       <div class="instructions mb-4">
         <div class="instruction-item">
-          <span class="instruction-text"><span class="instruction-number">1</span> 从右侧工具栏拖拽若干分流器到节点/子节点卡片上以逐级分流</span>
+          <span class="instruction-text">
+            <span class="instruction-number">1</span>
+            <template v-if="isMobile">点击节点/子节点以添加分流器或热能池</template>
+            <template v-else>从右侧工具栏拖拽分流器到节点/子节点卡片上以逐级分流</template>
+          </span>
         </div>
         <div class="instruction-item">
-          <span class="instruction-text"><span class="instruction-number">2</span> 拖拽热能池到需要烧掉的电池上，其余电池认为送回仓库</span>
+          <span class="instruction-text">
+            <span class="instruction-number">2</span>
+            <template v-if="isMobile">点击热能池到需要烧掉的电池上，其余电池认为送回仓库</template>
+            <template v-else>拖拽热能池到需要烧掉的电池上，其余电池认为送回仓库</template>
+          </span>
         </div>          
       </div>
 
@@ -74,6 +82,8 @@
               :power-per-battery="powerPerBattery"
               :burn-time-seconds="burnTimeSeconds"
               :on-remove="removeNode"
+              :on-node-click="handleNodeClick"
+              :is-mobile="isMobile"
             />
           </div>
 
@@ -109,8 +119,38 @@
 
     </div>
 
-    <!-- 右侧固定工具栏 -->
-    <div class="fixed-sidebar-tools">
+    <!-- 移动端节点操作面板 -->
+    <div v-if="isMobile && showMobileActionPanel" class="mobile-action-panel" @click="closeActionPanel">
+      <div class="action-panel-content" @click.stop>
+        <div class="panel-body">
+          <div class="node-info-text">
+            <div class="node-info-row">
+              <span class="node-type">{{ selectedNode?.type === 'output' ? '输出口' : selectedNode?.type === 'splitter' ? '分流器' : selectedNode?.type === 'storage' ? '仓库' : '热能池' }}</span>
+              <span class="node-rate">{{ selectedNode?.rate.toFixed(2) }}/min</span>
+            </div>
+          </div>
+          
+          <div v-if="selectedNode?.type === 'output' || selectedNode?.type === 'splitter'" class="action-buttons">
+            <button class="action-button splitter-btn" @click="addChildToSelected('splitter')">
+              <span class="btn-icon">🔀</span>
+              <span class="btn-text">添加分流器</span>
+            </button>
+            <button class="action-button thermal-btn" @click="addChildToSelected('thermal')">
+              <span class="btn-icon">🔥</span>
+              <span class="btn-text">添加热能池</span>
+            </button>
+          </div>
+          
+          <button v-if="selectedNode?.type !== 'output'" class="action-button delete-btn" @click="deleteSelectedNode">
+            <span class="btn-icon">🗑️</span>
+            <span class="btn-text">删除此节点</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 桌面端右侧固定工具栏 -->
+    <div v-if="!isMobile" class="fixed-sidebar-tools">
       <h3 class="sidebar-title">拖拽设备到节点上</h3>
       <div class="sidebar-tools-list">
         <div 
@@ -150,6 +190,33 @@ const otherPower = ref(0);
 const powerPerBattery = ref(50);
 const burnTimeSeconds = ref(8);
 const selectedBattery = ref('source');
+
+// 移动端检测
+const isMobile = ref(false);
+
+// 检测是否为移动设备（基于设备类型，而非屏幕宽度）
+const checkIsMobile = () => {
+  if (typeof navigator === 'undefined') return false;
+  const userAgent = navigator.userAgent || navigator.vendor || '';
+  const mobileRegex = /android|ipad|iphone|ipod|blackberry|iemobile|opera mini|windows phone|kindle|silk|mobile/i;
+  return mobileRegex.test(userAgent);
+};
+
+if (typeof window !== 'undefined') {
+  isMobile.value = checkIsMobile();
+  
+  // 给body添加类，用于CSS样式控制
+  const updateBodyClass = () => {
+    if (isMobile.value) {
+      document.body.classList.add('is-mobile-device');
+      document.body.classList.remove('is-desktop-device');
+    } else {
+      document.body.classList.remove('is-mobile-device');
+      document.body.classList.add('is-desktop-device');
+    }
+  };
+  updateBodyClass();
+}
 
 // 电池类型配置
 const batteryConfig = {
@@ -195,9 +262,53 @@ const outputNode = ref<Node>({
 });
 
 const draggedTool = ref<Node['type'] | null>(null);
+const selectedNode = ref<Node | null>(null);
+const showMobileActionPanel = ref(false);
 
 // 生成唯一ID
 const generateId = () => Math.random().toString(36).substr(2, 9);
+
+// 处理节点点击（移动端）
+const handleNodeClick = (node: Node) => {
+  if (isMobile.value) {
+    selectedNode.value = node;
+    showMobileActionPanel.value = true;
+  }
+};
+
+// 添加子节点到选中节点
+const addChildToSelected = (toolType: Node['type']) => {
+  if (selectedNode.value && (selectedNode.value.type === 'output' || selectedNode.value.type === 'splitter')) {
+    if (!selectedNode.value.children) {
+      selectedNode.value.children = [];
+    }
+    
+    selectedNode.value.children.push({
+      id: generateId(),
+      type: toolType,
+      rate: 0,
+      children: toolType === 'splitter' ? [] : undefined
+    });
+    
+    recalculateRates();
+    calculatePower();
+    showMobileActionPanel.value = false;
+  }
+};
+
+// 删除选中的节点
+const deleteSelectedNode = () => {
+  if (selectedNode.value) {
+    removeNode(selectedNode.value.id);
+    showMobileActionPanel.value = false;
+  }
+};
+
+// 关闭操作面板
+const closeActionPanel = () => {
+  showMobileActionPanel.value = false;
+  selectedNode.value = null;
+};
 
 // 删除节点
 const removeNode = (nodeId: string) => {
@@ -658,30 +769,281 @@ handleInputChange();
   text-align: center;
 }
 
-@media (max-width: 768px) {
-  .page-title {
-    font-size: 2rem;
+/* 移动端操作面板 */
+.mobile-action-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .content {
-    margin-right: 0;
-    padding-right: 20px;
+  to {
+    opacity: 1;
   }
-  
-  .fixed-sidebar-tools {
-    position: static;
-    transform: none;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
+}
+
+.action-panel-content {
+  background: white;
+  border-radius: 24px 0 0 24px;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  overflow-y: auto;
+  animation: slideInRight 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .action-panel-content {
+    background: #1a1a1a;
   }
-  
-  .sidebar-tools-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.panel-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.node-info-text {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 16px;
+  font-size: 1rem;
+  color: #333;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.node-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.node-type {
+  font-weight: 700;
+  color: #667eea;
+}
+
+.node-rate {
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .node-info-text {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e0e0e0;
+  }
+
+  .node-type {
+    color: #9fa8da;
+  }
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.action-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.action-button:active {
+  transform: translateY(0);
+}
+
+.splitter-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.thermal-btn {
+  background: linear-gradient(135deg, #f44 0%, #d33 100%);
+}
+
+.delete-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  margin-top: 8px;
+}
+
+.btn-icon {
+  font-size: 1.3rem;
+}
+
+.btn-text {
+  font-size: 0.9rem;
+}
+
+</style>
+
+<style>
+/* 移动端样式 - 基于设备类型而非屏幕宽度 */
+body.is-mobile-device .power-calc-page .content {
+  margin-right: 0;
+  padding: 12px;
+}
+
+body.is-mobile-device .power-calc-page .page-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+body.is-mobile-device .power-calc-page .page-subtitle {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* 使用说明改为单列 */
+body.is-mobile-device .power-calc-page .instructions {
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+body.is-mobile-device .power-calc-page .instruction-item {
+  padding: 12px 16px;
+}
+
+body.is-mobile-device .power-calc-page .instruction-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+body.is-mobile-device .power-calc-page .instruction-number {
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+}
+
+/* 电池按钮改为水平滚动 */
+body.is-mobile-device .power-calc-page .battery-buttons {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.is-mobile-device .power-calc-page .battery-button {
+  flex: 0 0 160px;
+  padding: 12px 16px;
+  scroll-snap-align: start;
+}
+
+body.is-mobile-device .power-calc-page .battery-icon {
+  font-size: 2rem;
+}
+
+body.is-mobile-device .power-calc-page .battery-name {
+  font-size: 1rem;
+}
+
+body.is-mobile-device .power-calc-page .battery-specs {
+  font-size: 0.75rem;
+}
+
+/* 输入框全宽 */
+body.is-mobile-device .power-calc-page .battery-buttons + .v-divider + .v-row .v-col {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 0 12px 0;
+}
+
+/* 结果显示改为2列 */
+body.is-mobile-device .power-calc-page .result-content {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+body.is-mobile-device .power-calc-page .result-item {
+  padding: 14px;
+}
+
+body.is-mobile-device .power-calc-page .result-label {
+  font-size: 0.75rem;
+}
+
+body.is-mobile-device .power-calc-page .result-value {
+  font-size: 1.1rem;
+}
+
+/* 隐藏桌面端工具栏 */
+body.is-mobile-device .power-calc-page .fixed-sidebar-tools {
+  display: none;
+}
+
+/* 平板端优化 - 仅桌面设备 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body.is-desktop-device .power-calc-page .content {
+    padding: 16px;
+  }
+
+  body.is-desktop-device .power-calc-page .result-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  body.is-desktop-device .power-calc-page .battery-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  body.is-desktop-device .power-calc-page .fixed-sidebar-tools {
+    width: 100px;
+    right: 10px;
+  }
+
+  body.is-desktop-device .power-calc-page .sidebar-tool-icon {
+    font-size: 1.5rem;
+  }
+
+  body.is-desktop-device .power-calc-page .sidebar-tool-name {
+    font-size: 0.75rem;
   }
 }
 </style>

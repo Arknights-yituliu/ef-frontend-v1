@@ -8,11 +8,13 @@
         'storage': node.type === 'storage',
         'thermal': node.type === 'thermal',
         'can-drop': node.type === 'output' || node.type === 'splitter',
-        'child-node-card': depth > 0
+        'child-node-card': depth > 0,
+        'mobile-clickable': isMobile
       }"
       @dragover.prevent="onDragOver"
       @dragleave="onDragLeave"
       @drop="onDrop"
+      @click="handleClick"
     >
       <template v-if="depth === 0">
         <div class="node-header">
@@ -21,7 +23,10 @@
               {{ node.type === 'output' ? '⬇️' : node.type === 'splitter' ? '🔀' : node.type === 'storage' ? '📦' : '🔥' }}
             </span>
             <span class="node-name">
-              {{ node.type === 'output' ? '输出口（请拖拽设备到这里或子节点上）' : node.type === 'splitter' ? '分流器' : node.type === 'storage' ? '仓库' : '热能池' }}
+              {{ node.type === 'output' ? 
+                  (isMobile ? '输出口（请点选这里或子节点以添加设备）' : '输出口（请拖拽设备到这里或子节点上）') : 
+                  (node.type === 'splitter' ? '分流器' : node.type === 'storage' ? '仓库' : '热能池') 
+              }}
             </span>
           </div>
           <div class="node-rate">{{ node.rate.toFixed(2) }}/min</div>
@@ -57,6 +62,8 @@
             :power-per-battery="powerPerBattery"
             :burn-time-seconds="burnTimeSeconds"
             :on-remove="onRemove"
+            :on-node-click="onNodeClick"
+            :is-mobile="isMobile"
           />
         </div>
       </template>
@@ -80,6 +87,8 @@ interface Props {
   powerPerBattery?: number;
   burnTimeSeconds?: number;
   onRemove?: (nodeId: string) => void;
+  onNodeClick?: (node: Node) => void;
+  isMobile?: boolean;
 }
 
 const props = defineProps<Props>();
@@ -123,6 +132,12 @@ const onDrop = (event: DragEvent) => {
   isDraggingOver.value = false;
 };
 
+const handleClick = () => {
+  if (props.onNodeClick) {
+    props.onNodeClick(props.node);
+  }
+};
+
 const addChildren = (toolType: Node['type']) => {
   if (!props.node.children) {
     props.node.children = [];
@@ -164,6 +179,10 @@ const removeNode = () => {
   margin-bottom: 12px;
   position: relative;
   cursor: default;
+}
+
+.node-card.mobile-clickable {
+  cursor: pointer;
 }
 
 .node-card.child-node-card {
@@ -215,6 +234,11 @@ const removeNode = () => {
 }
 
 .node-card.can-drop:hover {
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+}
+
+.node-card.mobile-clickable:hover {
   box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
   transform: translateY(-2px);
 }
@@ -310,9 +334,81 @@ const removeNode = () => {
   width: 100%;
 }
 
-
 .child-node {
   flex: 1;
   min-width: 0;
+}
+
+/* 移动端样式 */
+body.is-mobile-device .node-card {
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+body.is-mobile-device .node-card.child-node-card {
+  padding: 10px;
+  margin-bottom: 6px;
+}
+
+body.is-mobile-device .child-node-content {
+  gap: 2px;
+}
+
+body.is-mobile-device .child-rate {
+  font-size: 0.9rem;
+}
+
+body.is-mobile-device .child-power {
+  font-size: 0.75rem;
+}
+
+body.is-mobile-device .child-delete-button {
+  width: 18px;
+  height: 18px;
+  font-size: 0.65rem;
+  top: 3px;
+  right: 3px;
+}
+
+body.is-mobile-device .node-icon {
+  font-size: 1.5rem;
+}
+
+body.is-mobile-device .node-name {
+  font-size: 0.9rem;
+}
+
+body.is-mobile-device .node-rate {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+}
+
+body.is-mobile-device .node-header {
+  gap: 8px;
+}
+
+body.is-mobile-device .child-node {
+  flex: 1;
+  min-width: 0;
+}
+
+body.is-mobile-device .drop-hint {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+/* 平板端优化 - 仅桌面设备 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body.is-desktop-device .node-card {
+    padding: 18px;
+  }
+
+  body.is-desktop-device .node-card.child-node-card {
+    padding: 11px;
+  }
+
+  body.is-desktop-device .node-children {
+    gap: 6px;
+  }
 }
 </style>
