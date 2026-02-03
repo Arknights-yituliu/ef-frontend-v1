@@ -1438,11 +1438,11 @@ function exportReward() {
                   >{{ option.name }}<br >{{ option.dateText }}
                 </v-btn>
               </v-btn-group>
+              <div class="gacha-calculator-warning">
+                攒抽计算器尚在测试与更新中，目前可能bug较多，资源不全，结果仅供参考，切勿轻信本站！
+              </div>
 
-              <div class="gacha-calculator-statistical-result">
-                <div class="gacha-calculator-warning">
-                  攒抽计算器尚在测试与更新中，目前可能bug较多，资源不全，结果仅供参考，切勿轻信本站！
-                </div>
+              <div class="gacha-calculator-chart-and-table">
                 <div
                   id="gacha-calculator-pie-chart"
                   ref="gacha-calculator-pie-chart"
@@ -1575,7 +1575,7 @@ function exportReward() {
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-        <!--        <div style="width: 100%; height: 20px" />-->
+                <div style="width: 100%; height: 80px" />
       </div>
       <!--      <div>-->
       <!--        {{ JSON.stringify(allGachaResource) }}-->
@@ -2223,15 +2223,18 @@ function exportReward() {
 }
 
 .gacha-calculator-container-left {
+  min-width: 600px;
   max-width: 620px;
   position: sticky;
   top: 72px;
-  max-height: 800px;
+  max-height: 640px;
   z-index: 1004;
+  overflow-y: auto;
   flex: 3;
 }
 
 .gacha-calculator-container-right {
+  min-width: 600px;
   max-width: 620px;
 }
 
@@ -2244,19 +2247,20 @@ function exportReward() {
   border-bottom: 3px solid #ffd700;
 }
 
-.gacha-calculator-statistical-result {
-  display: block;
+.gacha-calculator-chart-and-table {
+  display: flex;
+  justify-content: space-between;
 }
 
 .gacha-calculator-statistics-result {
-  display: flex;
-  flex-wrap: wrap;
+  width: 180px;
 }
 
 .gacha-calculator-statistics-result-item {
   display: flex;
   align-items: center;
-  width: 280px;
+  min-width: 80px;
+  margin: 20px 0;
 }
 
 .gacha-calculator-statistics-result-item-text {
@@ -2264,9 +2268,8 @@ function exportReward() {
 }
 
 .gacha-calculator-pie-chart {
-  width: 450px;
-  height: 300px;
-  margin: auto;
+  width: 300px;
+  height: 240px;
 }
 
 .gacha-calculator-existing-resource-input {
