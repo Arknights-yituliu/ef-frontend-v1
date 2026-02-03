@@ -90,8 +90,9 @@
                     :stroke-width="line.width"
                     class="flow-line"
                   />
-                  <!-- 箭头 -->
+                  <!-- 箭头（只在showArrow为true时显示） -->
                   <polygon
+                    v-if="line.showArrow"
                     :points="calculateArrowPoints(line.x1, line.y1, line.x2, line.y2)"
                     fill="#999"
                     class="arrow-head"
@@ -317,6 +318,7 @@ interface FlowLine {
   y2: number;
   color: string;
   width: number;
+  showArrow: boolean; // 是否显示箭头
 }
 
 // 计算箭头的三个顶点坐标
@@ -387,37 +389,40 @@ const calculateFlowLines = () => {
   
   traverse(outputNode.value, 0);
   
-  // 为每个连接生成直线
+  // 为每个连接生成简单的垂直线
   connections.forEach(({ parentNode, childNode }) => {
     const parentElement = nodesWithPositions.get(parentNode.id);
     const childElement = nodesWithPositions.get(childNode.id);
     
-    // 只处理有效的连接（两个元素都存在且节点不是leaf节点）
     if (parentElement && childElement && treeContainerRef.value) {
       const parentRect = parentElement.getBoundingClientRect();
       const childRect = childElement.getBoundingClientRect();
       const containerRect = treeContainerRef.value.getBoundingClientRect();
       
-      const parentX = parentRect.left - containerRect.left + parentRect.width / 2;
-      const parentY = parentRect.bottom - containerRect.top;
+      // 使用子节点的x坐标，使线条完全垂直
       const childX = childRect.left - containerRect.left + childRect.width / 2;
+      const parentY = parentRect.bottom - containerRect.top;
       const childY = childRect.top - containerRect.top;
       
       // 统一使用灰色线条
       const lineColor = '#999';
       
-      // 固定线条宽度为2px
-      const lineWidth = 2;
+      // 根据子节点的速率与初始速度的比例计算线条宽度
+      // 初始节点的连接线宽度为144px
+      const baseWidth = 144;
+      const ratio = childNode.rate / initialRate.value;
+      const lineWidth = Math.max(2, baseWidth * ratio); // 最小2px
       
       // 确保坐标是有效的
-      if (!isNaN(parentX) && !isNaN(parentY) && !isNaN(childX) && !isNaN(childY)) {
+      if (!isNaN(childX) && !isNaN(parentY) && !isNaN(childY)) {
         lines.push({
-          x1: parentX,
+          x1: childX,
           y1: parentY,
           x2: childX,
           y2: childY,
           color: lineColor,
-          width: lineWidth
+          width: lineWidth,
+          showArrow: true
         });
       }
     }
