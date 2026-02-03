@@ -2,6 +2,7 @@
   <div class="node-wrapper">
     <div 
       class="node-card" 
+      :data-node-id="node.id"
       :class="{
         'output': node.type === 'output',
         'splitter': node.type === 'splitter',
@@ -72,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, computed } from 'vue';
+import { watch, computed, nextTick } from 'vue';
 
 interface Node {
   id: string;

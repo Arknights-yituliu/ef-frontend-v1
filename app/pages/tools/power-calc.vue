@@ -75,7 +75,31 @@
       <v-card class="mb-4">
         <v-card-title class="text-h6">分流器配置</v-card-title>
         <v-card-text>
-          <div class="tree-container">
+          <div class="tree-container" ref="treeContainerRef">
+            <!-- 流程图连接线 -->
+            <svg class="flowchart-background" ref="svgRef">
+              <g class="connections">
+                <g v-for="(line, index) in flowLines" :key="`line-${index}`">
+                  <!-- 连接线 -->
+                  <line
+                    :x1="line.x1"
+                    :y1="line.y1"
+                    :x2="line.x2"
+                    :y2="line.y2"
+                    :stroke="line.color"
+                    :stroke-width="line.width"
+                    class="flow-line"
+                  />
+                  <!-- 箭头 -->
+                  <polygon
+                    :points="calculateArrowPoints(line.x1, line.y1, line.x2, line.y2)"
+                    fill="#999"
+                    class="arrow-head"
+                  />
+                </g>
+              </g>
+            </svg>
+            
             <NodeCard
               :node="outputNode"
               :depth="0"
@@ -175,6 +199,7 @@
 </template>
 
 <script setup lang="ts">
+import { nextTick, onMounted, onUnmounted } from 'vue';
 import CustomBackground from '~/components/layout/CustomBackground.vue';
 import NodeCard from '~/components/tools/NodeCard.vue';
 
@@ -190,6 +215,20 @@ const otherPower = ref(0);
 const powerPerBattery = ref(50);
 const burnTimeSeconds = ref(8);
 const selectedBattery = ref('source');
+
+// 简单的防抖函数
+const debounce = <T extends (...args: any[]) => any>(
+  func: T,
+  duration: number = 500
+): (...args: Parameters<T>) => void => {
+  let timeout: any = 0;
+  return function (this: any, ...args: Parameters<T>) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, args);
+    }, duration);
+  };
+};
 
 // 移动端检测
 const isMobile = ref(false);
@@ -266,6 +305,127 @@ const draggedTool = ref<Node['type'] | null>(null);
 const selectedNode = ref<Node | null>(null);
 const showMobileActionPanel = ref(false);
 
+// 桑基图相关引用
+const treeContainerRef = ref<HTMLElement | null>(null);
+const svgRef = ref<SVGSVGElement | null>(null);
+
+// 流程图连接线数据
+interface FlowLine {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  color: string;
+  width: number;
+}
+
+// 计算箭头的三个顶点坐标
+const calculateArrowPoints = (x1: number, y1: number, x2: number, y2: number): string => {
+  const arrowSize = 8; // 箭头大小
+  const angle = Math.atan2(y2 - y1, x2 - x1);
+  
+  // 在线条终点稍前一点的位置开始绘制箭头
+  const offset = 2; // 箭头向后偏移，避免被节点卡片遮挡
+  const tipX = x2 - offset * Math.cos(angle);
+  const tipY = y2 - offset * Math.sin(angle);
+  
+  // 计算箭头两个底边的点
+  const leftAngle = angle + Math.PI * 0.85;
+  const rightAngle = angle - Math.PI * 0.85;
+  
+  const leftX = tipX + arrowSize * Math.cos(leftAngle);
+  const leftY = tipY + arrowSize * Math.sin(leftAngle);
+  
+  const rightX = tipX + arrowSize * Math.cos(rightAngle);
+  const rightY = tipY + arrowSize * Math.sin(rightAngle);
+  
+  return `${tipX},${tipY} ${leftX},${leftY} ${rightX},${rightY}`;
+};
+
+// 使用ref存储连接线，而不是computed，以便在DOM更新后手动更新
+const flowLines = ref<FlowLine[]>([]);
+
+// 计算连接线的函数
+const calculateFlowLines = () => {
+  const lines: FlowLine[] = [];
+  
+  // 如果容器还没渲染，返回空数组
+  if (!treeContainerRef.value) {
+    flowLines.value = lines;
+    return;
+  }
+  
+  // 先收集所有需要连接的父子对，避免遍历顺序影响结果
+  const connections: Array<{ parentNode: Node; childNode: Node }> = [];
+  
+  const collectConnections = (node: Node) => {
+    if ((node.type === 'output' || node.type === 'splitter') && node.children) {
+      node.children.forEach(child => {
+        connections.push({ parentNode: node, childNode: child });
+        // 递归处理子节点
+        collectConnections(child);
+      });
+    }
+  };
+  
+  collectConnections(outputNode.value);
+  
+  // 收集所有节点及其位置信息
+  const nodesWithPositions = new Map<string, HTMLElement>();
+  
+  const traverse = (node: Node, depth: number, parentId?: string) => {
+    const nodeElements = treeContainerRef.value?.querySelectorAll(`[data-node-id="${node.id}"]`);
+    if (nodeElements && nodeElements.length > 0) {
+      const element = nodeElements[0] as HTMLElement;
+      nodesWithPositions.set(node.id, element);
+    }
+    
+    if (node.children) {
+      node.children.forEach(child => traverse(child, depth + 1, node.id));
+    }
+  };
+  
+  traverse(outputNode.value, 0);
+  
+  // 为每个连接生成直线
+  connections.forEach(({ parentNode, childNode }) => {
+    const parentElement = nodesWithPositions.get(parentNode.id);
+    const childElement = nodesWithPositions.get(childNode.id);
+    
+    // 只处理有效的连接（两个元素都存在且节点不是leaf节点）
+    if (parentElement && childElement && treeContainerRef.value) {
+      const parentRect = parentElement.getBoundingClientRect();
+      const childRect = childElement.getBoundingClientRect();
+      const containerRect = treeContainerRef.value.getBoundingClientRect();
+      
+      const parentX = parentRect.left - containerRect.left + parentRect.width / 2;
+      const parentY = parentRect.bottom - containerRect.top;
+      const childX = childRect.left - containerRect.left + childRect.width / 2;
+      const childY = childRect.top - containerRect.top;
+      
+      // 统一使用灰色线条
+      const lineColor = '#999';
+      
+      // 固定线条宽度为2px
+      const lineWidth = 2;
+      
+      // 确保坐标是有效的
+      if (!isNaN(parentX) && !isNaN(parentY) && !isNaN(childX) && !isNaN(childY)) {
+        lines.push({
+          x1: parentX,
+          y1: parentY,
+          x2: childX,
+          y2: childY,
+          color: lineColor,
+          width: lineWidth
+        });
+      }
+    }
+  });
+  
+  flowLines.value = lines;
+};
+
 // 生成唯一ID
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
@@ -278,7 +438,7 @@ const handleNodeClick = (node: Node) => {
 };
 
 // 添加子节点到选中节点
-const addChildToSelected = (toolType: Node['type']) => {
+const addChildToSelected = async (toolType: Node['type']) => {
   if (selectedNode.value && (selectedNode.value.type === 'output' || selectedNode.value.type === 'splitter')) {
     if (!selectedNode.value.children) {
       selectedNode.value.children = [];
@@ -293,6 +453,12 @@ const addChildToSelected = (toolType: Node['type']) => {
     
     recalculateRates();
     calculatePower();
+    
+    // 等待DOM更新后再关闭面板，确保连接线已经绘制
+    await nextTick();
+    // 再次等待，确保Vue的DOM更新和浏览器的重排都完成
+    await new Promise(resolve => setTimeout(resolve, 0));
+    
     showMobileActionPanel.value = false;
   }
 };
@@ -428,11 +594,32 @@ const handleInputChange = () => {
   calculatePower();
 };
 
-// 监听outputNode的children变化，自动重新计算
-watch(() => outputNode.value.children, () => {
+// 监听outputNode的children变化，自动重新计算流量、电力和连接线
+watch(() => outputNode.value.children, async () => {
   recalculateRates();
   calculatePower();
+  await nextTick();
+  // 调用计算函数更新连接线
+  calculateFlowLines();
 }, { deep: true });
+
+// 监听窗口大小变化，重新计算路径
+onMounted(() => {
+  const handleResize = debounce(() => {
+    calculateFlowLines();
+  }, 100);
+  
+  window.addEventListener('resize', handleResize);
+  
+  // 初始化时计算一次连接线
+  nextTick(() => {
+    calculateFlowLines();
+  });
+  
+  onUnmounted(() => {
+    window.removeEventListener('resize', handleResize);
+  });
+});
 
 // 初始化计算
 handleInputChange();
@@ -620,6 +807,51 @@ handleInputChange();
 
 .tree-container {
   margin-bottom: 24px;
+  position: relative;
+  min-height: 100px;
+}
+
+/* 流程图背景层 */
+.flowchart-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.flow-line {
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.flow-line:hover {
+  opacity: 1;
+  filter: brightness(1.2);
+}
+
+.arrow-head {
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.arrow-head:hover {
+  opacity: 1;
+  filter: brightness(1.2);
+}
+
+/* 确保节点卡片在SVG层之上 */
+.tree-container :deep(.node-wrapper) {
+  position: relative;
+  z-index: 1;
+}
+
+.tree-container :deep(.node-card) {
+  position: relative;
+  z-index: 2;
 }
 
 .result-content {
