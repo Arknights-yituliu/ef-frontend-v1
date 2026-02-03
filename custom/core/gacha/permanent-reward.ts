@@ -131,14 +131,14 @@ const factoryManualReward = ref<Reward>({
 });
 
 
-const trainingReward = ref<Reward[]>([]);
+const operationalManualReward = ref<Reward[]>([]);
 
 for (const reward of OperationalManualTrainingTable) {
-  trainingReward.value.push(reward);
+  operationalManualReward.value.push(reward);
 }
 
 for(const reward  of OperationalManualIndexTable) {
-  trainingReward.value.push(reward);
+  operationalManualReward.value.push(reward);
 }
 
 
@@ -179,7 +179,7 @@ for (const reward of etchSpaceSalvageRewardJson) {
 
 export {
   newHorizonsTaskReward,
-  trainingReward,
+  operationalManualReward,
   defenseConstructionReward,
   factoryManualReward,
   factoryManualRewardMax,

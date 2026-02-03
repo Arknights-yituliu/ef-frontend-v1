@@ -1,3 +1,9 @@
+import type {
+  ResourceStatisticsResultDetail,
+  Reward,
+  TotalPullsSingle
+} from '#shared/types/gacha-calculator';
+
 /**
  * 计算排期开始与结束日期的天数差
  * @param {Date|string|number} startDate 开始日期
@@ -6,7 +12,7 @@
  */
 function calculateDaysDifference(
   startDate: Date | string | number,
-  endDate: Date | string | number,
+  endDate: Date | string | number
 ): number {
   // 转换为时间戳
   const startTimestamp = typeof startDate === 'number' ? startDate : new Date(startDate).getTime();
@@ -24,7 +30,7 @@ function calculateDaysDifference(
  */
 function countTuesdaysBetween(
   startDate: Date | string | number,
-  endDate: Date | string | number,
+  endDate: Date | string | number
 ): number {
   // 将输入转换为Date对象
   const start = new Date(startDate);
@@ -68,7 +74,7 @@ function countTuesdaysBetween(
 
   // 计算两个周二之间的天数差
   const daysBetween = Math.round(
-    (lastTuesday.getTime() - firstTuesday.getTime()) / (1000 * 60 * 60 * 24),
+    (lastTuesday.getTime() - firstTuesday.getTime()) / (1000 * 60 * 60 * 24)
   );
 
   // 计算周二的数量
@@ -79,7 +85,7 @@ function countTuesdaysBetween(
 
 function countTuesdaysBetweenV2(
   startDate: Date | string | number,
-  endDate: Date | string | number,
+  endDate: Date | string | number
 ): number {
   // 将输入转换为Date对象
   const start = new Date(startDate);
@@ -105,4 +111,34 @@ function countTuesdaysBetweenV2(
   return week;
 }
 
-export { calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2 };
+function addReward(result: ResourceStatisticsResultDetail, reward: Reward | Reward[]): void {
+  if (Array.isArray(reward)) {
+    for (const item of reward) {
+      if (item.active) {
+        result.originiumRecharge += item.content.originiumRecharge;
+        result.diamond += item.content.diamond;
+        result.ticketgachaStandardSingle += item.content.ticketgachaStandardSingle;
+        result.ticketgachaSpecialSingle += item.content.ticketgachaSpecialSingle;
+      }
+    }
+  } else {
+    if (reward.active) {
+      result.originiumRecharge += reward.content.originiumRecharge;
+      result.diamond += reward.content.diamond;
+      result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
+      result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+    }
+  }
+}
+
+function getPull(result: ResourceStatisticsResultDetail): TotalPullsSingle {
+  return {
+    ticketgachaStandardSingle: result.ticketgachaStandardSingle,
+    ticketgachaSpecialSingle:
+      result.diamond / 500 +
+      (result.originiumRecharge * 75) / 500 +
+      result.ticketgachaSpecialSingle
+  };
+}
+
+export { calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, addReward,getPull };
