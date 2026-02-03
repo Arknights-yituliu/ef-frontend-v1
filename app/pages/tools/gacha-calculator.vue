@@ -2225,6 +2225,7 @@ function exportReward() {
 .gacha-calculator-container-left {
   min-width: 600px;
   max-width: 620px;
+  padding: 4px;
   position: sticky;
   top: 72px;
   max-height: 640px;
