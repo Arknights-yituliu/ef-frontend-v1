@@ -75,9 +75,9 @@
       <v-card class="mb-4">
         <v-card-title class="text-h6">分流器配置</v-card-title>
         <v-card-text>
-          <div class="tree-container" ref="treeContainerRef">
+          <div ref="treeContainerRef" class="tree-container">
             <!-- 流程图连接线 -->
-            <svg class="flowchart-background" ref="svgRef">
+            <svg ref="svgRef" class="flowchart-background">
               <g class="connections">
                 <g v-for="(line, index) in flowLines" :key="`line-${index}`">
                   <!-- 连接线 -->
