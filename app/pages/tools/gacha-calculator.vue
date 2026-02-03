@@ -319,6 +319,20 @@ watch(
   { deep: true },
 );
 
+
+watch(
+  otherRewardTable,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
+    }
+    gachaResourceStatistics();
+  },
+  { deep: true },
+);
+
+
+
 watch(
   existingResource,
   (newValue) => {
