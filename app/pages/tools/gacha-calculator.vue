@@ -32,7 +32,7 @@ import { AICQuotaReward } from '@/custom/core/gacha/daily-reward';
 
 import {
   valleyIVAuryleneCollectReward,
-  valleyIVAuryleneCollectRewardTable,
+  valleyIVAuryleneCollectStageTable,
   valleyIVCrateRewardMax,
   valleyIVCrateReward,
   valleyIVBattleCrateRewardMax,
@@ -46,7 +46,7 @@ import {
 
 import {
   wulingAuryleneCollectReward,
-  wulingAuryleneCollectRewardTable,
+  wulingAuryleneCollectStageTable,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDeltaBotReward,
@@ -58,7 +58,7 @@ import {
 
 import {
   newHorizonsTaskReward,
-  characterTrainingReward,
+  trainingReward,
   defenseConstructionReward,
   etchSpaceSalvageReward,
   factoryManualReward,
@@ -309,7 +309,7 @@ watch(
 );
 
 watch(
-  characterTrainingReward,
+  trainingReward,
   (newValue) => {
     for (const item of newValue) {
       saveUserConfig(item.id, item.active, 'buttonGroupActive');
@@ -468,7 +468,7 @@ watch(
   (newVal) => {
     let originiumRecharge: number = 0;
     for (let i = newVal[0]! ; i < newVal[1]!; i++) {
-      const stageReward = valleyIVAuryleneCollectRewardTable[i];
+      const stageReward = valleyIVAuryleneCollectStageTable[i];
       if (stageReward !== undefined) {
         originiumRecharge += stageReward.originiumRecharge || 0;
       }
@@ -565,7 +565,7 @@ watch(
   (newVal) => {
     let originiumRecharge: number = 0;
     for (let i = newVal[0]! ; i < newVal[1]!; i++) {
-      const stageReward = wulingAuryleneCollectRewardTable[i];
+      const stageReward = wulingAuryleneCollectStageTable[i];
       if (stageReward !== undefined) {
         originiumRecharge += stageReward.originiumRecharge || 0;
       }
@@ -820,7 +820,7 @@ const gachaResourceStatistics = (): void => {
     _addReward(result, operationalManualNodeReward.value);
     _addReward(result, worldLevelReward.value);
 
-    _addReward(result, characterTrainingReward.value);
+    _addReward(result, trainingReward.value);
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.level = _getPull(result);
   }
@@ -1120,7 +1120,7 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, authorityLevelTaskRewards);
         _setButtonGroupActive(localConfig.buttonGroupActive, taskRewardTable);
         _setButtonGroupActive(localConfig.buttonGroupActive, etchSpaceSalvageReward);
-        _setButtonGroupActive(localConfig.buttonGroupActive, characterTrainingReward);
+        _setButtonGroupActive(localConfig.buttonGroupActive, trainingReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, intelArchiveReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, newHorizonsTaskReward);
@@ -1212,7 +1212,7 @@ function clearOrSelectedRewards(action: boolean) {
   _clearOrSelect('rangeSlider', factoryManualProgress, [0, factoryManualRewardMax]);
   _clearOrSelect('rangeSlider', defenseConstructionProgress, [0, 1280]);
   _clearOrSelect('button', etchSpaceSalvageReward);
-  _clearOrSelect('button', characterTrainingReward);
+  _clearOrSelect('button', trainingReward);
   _clearOrSelect('button',newHorizonsTaskReward)
 
   function _clearOrSelect(
@@ -1372,7 +1372,7 @@ function exportReward() {
   _addReward('简制手册', factoryManualReward.value);
   _addReward('据点防御任务', defenseConstructionReward.value);
   _addReward('蚀像寻遗', etchSpaceSalvageReward.value);
-  _addReward('教学奖励', characterTrainingReward.value);
+  _addReward('教学奖励', trainingReward.value);
 
   console.log(JSON.stringify(list, null, 2));
 
@@ -2163,7 +2163,7 @@ function exportReward() {
               <GachaCalculatorModuleTitle title="教学奖励" />
 
               <GachaCalculatorResourceSingleBtn
-                v-for="item in characterTrainingReward"
+                v-for="item in trainingReward"
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"

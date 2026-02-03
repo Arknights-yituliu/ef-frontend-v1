@@ -1,5 +1,41 @@
 [
   {
+    "id": "游戏预约里程碑",
+    "name": {
+      "zh": "游戏预约里程碑",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "其他",
+    "module": "活动",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 20,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "公测启程答谢礼",
+    "name": {
+      "zh": "公测启程答谢礼",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2026/02/24 10:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 10
+    }
+  },
+  {
     "id": "玩家调研问卷2026.1.22",
     "name": {
       "zh": "玩家调研问卷2026.1.22",
@@ -196,24 +232,6 @@
       "diamond": 100,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
-    }
-  },
-  {
-    "id": "公测启程答谢礼",
-    "name": {
-      "zh": "公测启程答谢礼",
-      "en": ""
-    },
-    "start": "2026/01/22 10:00:00",
-    "end": "2026/02/24 10:00:00",
-    "type": "通用",
-    "module": "其他",
-    "active": true,
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 10
     }
   }
 ]

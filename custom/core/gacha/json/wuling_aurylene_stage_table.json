@@ -1,0 +1,34 @@
+[
+  {
+    "originiumRecharge": 1,
+    "stage": 1
+  },
+  {
+    "originiumRecharge": 1,
+    "stage": 2
+  },
+  {
+    "originiumRecharge": 2,
+    "stage": 3
+  },
+  {
+    "originiumRecharge": 2,
+    "stage": 4
+  },
+  {
+    "originiumRecharge": 2,
+    "stage": 5
+  },
+  {
+    "originiumRecharge": 3,
+    "stage": 6
+  },
+  {
+    "originiumRecharge": 3,
+    "stage": 7
+  },
+  {
+    "originiumRecharge": 3,
+    "stage": 8
+  }
+]
