@@ -105,7 +105,7 @@ const valleyIVBattleCrateReward = ref<Reward>({
   }
 })
 
-const valleyIVDeltaBotRewardMax:number = 48*20
+const valleyIVDeltaBotRewardMax:number = 42*20
 
 
 const valleyIVDeltaBotReward = ref<Reward>({
