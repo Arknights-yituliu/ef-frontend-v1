@@ -3,7 +3,8 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import valleyIVTaskTable from './json/valley_IV_task_table.json';
 import wulingTaskTable from './json/wuling_task_table.json';
 import FactoryManualTable from './json/factory_manual_table.json';
-import CharProfileTeaching from './json/operational_manual_training_table.json';
+import OperationalManualTrainingTable from './json/operational_manual_training_table.json';
+import OperationalManualIndexTable from './json/operational_manual_index_table.json';
 import intelArchiveRewardJson from './json/intel_archive_reward.json';
 import etchSpaceSalvageRewardJson from './json/etch_space_salvage_reward.json';
 
@@ -132,7 +133,11 @@ const factoryManualReward = ref<Reward>({
 
 const trainingReward = ref<Reward[]>([]);
 
-for (const reward of CharProfileTeaching) {
+for (const reward of OperationalManualTrainingTable) {
+  trainingReward.value.push(reward);
+}
+
+for(const reward  of OperationalManualIndexTable) {
   trainingReward.value.push(reward);
 }
 
