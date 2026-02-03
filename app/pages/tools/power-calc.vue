@@ -667,7 +667,7 @@ handleInputChange();
 
 @media (prefers-color-scheme: dark) {
   .page-title {
-    color: #e0e0e0;
+    color: #333333;
   }
 
   .page-subtitle {
