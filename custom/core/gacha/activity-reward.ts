@@ -33,4 +33,4 @@ const beginnerSignInTaskReward = ref<Reward>({
 
 
 
-export {activityReward,newHorizonsTaskReward, beginnerSignInTaskReward,}
+export {activityReward, beginnerSignInTaskReward,}

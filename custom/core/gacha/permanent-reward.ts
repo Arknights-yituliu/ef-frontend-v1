@@ -3,7 +3,8 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import valleyIVTaskTable from './json/valley_IV_task_table.json';
 import wulingTaskTable from './json/wuling_task_table.json';
 import FactoryManualTable from './json/factory_manual_table.json';
-import CharProfileTeaching from './json/char_profile_teaching_table.json';
+import OperationalManualTrainingTable from './json/operational_manual_training_table.json';
+import OperationalManualIndexTable from './json/operational_manual_index_table.json';
 import intelArchiveRewardJson from './json/intel_archive_reward.json';
 import etchSpaceSalvageRewardJson from './json/etch_space_salvage_reward.json';
 
@@ -130,65 +131,14 @@ const factoryManualReward = ref<Reward>({
 });
 
 
-const characterTrainingReward = ref<Reward[]>([
-  {
-    id: '基础训练-通用战术',
-    name: {
-      zh: `基础训练-通用战术`,
-      en: ''
-    },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
-    type: '通用',
-    module: '节点手册·训练',
-    active: true,
-    content: {
-      originiumRecharge: 0,
-      diamond: 60,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    }
-  },
-  {
-    id: '基础训练-物理异常',
-    name: {
-      zh: `基础训练-物理异常`,
-      en: ''
-    },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
-    type: '通用',
-    module: '节点手册·训练',
-    active: true,
-    content: {
-      originiumRecharge: 0,
-      diamond: 80,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    }
-  },
-  {
-    id: '基础训练-法术异常',
-    name: {
-      zh: `基础训练-法术异常`,
-      en: ''
-    },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
-    type: '通用',
-    module: '节点手册·训练',
-    active: true,
-    content: {
-      originiumRecharge: 0,
-      diamond: 100,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    }
-  }
-]);
+const trainingReward = ref<Reward[]>([]);
 
-for (const reward of CharProfileTeaching) {
-  characterTrainingReward.value.push(reward);
+for (const reward of OperationalManualTrainingTable) {
+  trainingReward.value.push(reward);
+}
+
+for(const reward  of OperationalManualIndexTable) {
+  trainingReward.value.push(reward);
 }
 
 
@@ -229,7 +179,7 @@ for (const reward of etchSpaceSalvageRewardJson) {
 
 export {
   newHorizonsTaskReward,
-  characterTrainingReward,
+  trainingReward,
   defenseConstructionReward,
   factoryManualReward,
   factoryManualRewardMax,

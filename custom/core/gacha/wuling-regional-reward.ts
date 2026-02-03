@@ -1,40 +1,8 @@
 import type { CollectReward, Reward } from '#shared/types/gacha-calculator.ts';
 import { ref } from 'vue';
+import stageTable from './json/wuling_aurylene_stage_table.json'
 
-const wulingAuryleneCollectRewardTable: CollectReward[] = [
-  {
-    originiumRecharge: 1,
-    stage: 1,
-  },
-  {
-    originiumRecharge: 1,
-    stage: 2,
-  },
-  {
-    originiumRecharge: 2,
-    stage: 3,
-  },
-  {
-    originiumRecharge: 2,
-    stage: 4,
-  },
-  {
-    originiumRecharge: 2,
-    stage: 5,
-  },
-  {
-    originiumRecharge: 3,
-    stage: 6,
-  },
-  {
-    originiumRecharge: 3,
-    stage: 7,
-  },
-  {
-    originiumRecharge: 3,
-    stage: 8,
-  },
-];
+const wulingAuryleneCollectStageTable: CollectReward[] = stageTable as CollectReward[];
 
 
 const wulingRegionalStockBillStoreReward = ref<Reward>({
@@ -160,7 +128,7 @@ const wulingSimulationReward = ref<Reward>({
 export {
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
-  wulingAuryleneCollectRewardTable,
+  wulingAuryleneCollectStageTable,
   wulingAuryleneCollectReward,
   wulingCrateRewardMax,
   wulingCrateReward,

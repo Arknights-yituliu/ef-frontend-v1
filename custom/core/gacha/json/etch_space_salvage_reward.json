@@ -1,8 +1,25 @@
 [
   {
+    "id": "etch_space_salvage_50_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度50",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },{
     "id": "etch_space_salvage_300_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度300",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
@@ -20,7 +37,7 @@
   {
     "id": "etch_space_salvage_1200_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度1200",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
@@ -38,7 +55,7 @@
   {
     "id": "etch_space_salvage_2500_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度2500",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
@@ -56,7 +73,7 @@
   {
     "id": "etch_space_salvage_5000_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度5000",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
@@ -74,7 +91,7 @@
   {
     "id": "etch_space_salvage_10000_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度10000",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
@@ -92,7 +109,7 @@
   {
     "id": "etch_space_salvage_20000_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度20000",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
@@ -110,7 +127,7 @@
   {
     "id": "etch_space_salvage_30000_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度30000",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
@@ -128,7 +145,7 @@
   {
     "id": "etch_space_salvage_40000_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度40000",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",
@@ -146,7 +163,7 @@
   {
     "id": "etch_space_salvage_50000_reward",
     "name": {
-      "zh": "蚀像寻遗",
+      "zh": "蚀像寻遗刻度50000",
       "en": ""
     },
     "start": "2026/01/22 10:00:00",

@@ -32,7 +32,7 @@ import { AICQuotaReward } from '@/custom/core/gacha/daily-reward';
 
 import {
   valleyIVAuryleneCollectReward,
-  valleyIVAuryleneCollectRewardTable,
+  valleyIVAuryleneCollectStageTable,
   valleyIVCrateRewardMax,
   valleyIVCrateReward,
   valleyIVBattleCrateRewardMax,
@@ -46,7 +46,7 @@ import {
 
 import {
   wulingAuryleneCollectReward,
-  wulingAuryleneCollectRewardTable,
+  wulingAuryleneCollectStageTable,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDeltaBotReward,
@@ -58,7 +58,7 @@ import {
 
 import {
   newHorizonsTaskReward,
-  characterTrainingReward,
+  trainingReward,
   defenseConstructionReward,
   etchSpaceSalvageReward,
   factoryManualReward,
@@ -309,7 +309,7 @@ watch(
 );
 
 watch(
-  characterTrainingReward,
+  trainingReward,
   (newValue) => {
     for (const item of newValue) {
       saveUserConfig(item.id, item.active, 'buttonGroupActive');
@@ -468,7 +468,7 @@ watch(
   (newVal) => {
     let originiumRecharge: number = 0;
     for (let i = newVal[0]! ; i < newVal[1]!; i++) {
-      const stageReward = valleyIVAuryleneCollectRewardTable[i];
+      const stageReward = valleyIVAuryleneCollectStageTable[i];
       if (stageReward !== undefined) {
         originiumRecharge += stageReward.originiumRecharge || 0;
       }
@@ -565,7 +565,7 @@ watch(
   (newVal) => {
     let originiumRecharge: number = 0;
     for (let i = newVal[0]! ; i < newVal[1]!; i++) {
-      const stageReward = wulingAuryleneCollectRewardTable[i];
+      const stageReward = wulingAuryleneCollectStageTable[i];
       if (stageReward !== undefined) {
         originiumRecharge += stageReward.originiumRecharge || 0;
       }
@@ -820,7 +820,7 @@ const gachaResourceStatistics = (): void => {
     _addReward(result, operationalManualNodeReward.value);
     _addReward(result, worldLevelReward.value);
 
-    _addReward(result, characterTrainingReward.value);
+    _addReward(result, trainingReward.value);
     list.push(result);
     gachaResourceStatisticsResult.value.totalPulls.level = _getPull(result);
   }
@@ -1120,7 +1120,7 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, authorityLevelTaskRewards);
         _setButtonGroupActive(localConfig.buttonGroupActive, taskRewardTable);
         _setButtonGroupActive(localConfig.buttonGroupActive, etchSpaceSalvageReward);
-        _setButtonGroupActive(localConfig.buttonGroupActive, characterTrainingReward);
+        _setButtonGroupActive(localConfig.buttonGroupActive, trainingReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, intelArchiveReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, newHorizonsTaskReward);
@@ -1212,7 +1212,7 @@ function clearOrSelectedRewards(action: boolean) {
   _clearOrSelect('rangeSlider', factoryManualProgress, [0, factoryManualRewardMax]);
   _clearOrSelect('rangeSlider', defenseConstructionProgress, [0, 1280]);
   _clearOrSelect('button', etchSpaceSalvageReward);
-  _clearOrSelect('button', characterTrainingReward);
+  _clearOrSelect('button', trainingReward);
   _clearOrSelect('button',newHorizonsTaskReward)
 
   function _clearOrSelect(
@@ -1372,7 +1372,7 @@ function exportReward() {
   _addReward('简制手册', factoryManualReward.value);
   _addReward('据点防御任务', defenseConstructionReward.value);
   _addReward('蚀像寻遗', etchSpaceSalvageReward.value);
-  _addReward('教学奖励', characterTrainingReward.value);
+  _addReward('教学奖励', trainingReward.value);
 
   console.log(JSON.stringify(list, null, 2));
 
@@ -1438,11 +1438,11 @@ function exportReward() {
                   >{{ option.name }}<br >{{ option.dateText }}
                 </v-btn>
               </v-btn-group>
+              <div class="gacha-calculator-warning">
+                攒抽计算器尚在测试与更新中，目前可能bug较多，资源不全，结果仅供参考，切勿轻信本站！
+              </div>
 
-              <div class="gacha-calculator-statistical-result">
-                <div class="gacha-calculator-warning">
-                  攒抽计算器尚在测试与更新中，目前可能bug较多，资源不全，结果仅供参考，切勿轻信本站！
-                </div>
+              <div class="gacha-calculator-chart-and-table">
                 <div
                   id="gacha-calculator-pie-chart"
                   ref="gacha-calculator-pie-chart"
@@ -1575,7 +1575,7 @@ function exportReward() {
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-        <!--        <div style="width: 100%; height: 20px" />-->
+                <div style="width: 100%; height: 80px" />
       </div>
       <!--      <div>-->
       <!--        {{ JSON.stringify(allGachaResource) }}-->
@@ -2163,7 +2163,7 @@ function exportReward() {
               <GachaCalculatorModuleTitle title="教学奖励" />
 
               <GachaCalculatorResourceSingleBtn
-                v-for="item in characterTrainingReward"
+                v-for="item in trainingReward"
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"
@@ -2223,15 +2223,19 @@ function exportReward() {
 }
 
 .gacha-calculator-container-left {
+  min-width: 600px;
   max-width: 620px;
+  padding: 4px;
   position: sticky;
   top: 72px;
-  max-height: 800px;
+  max-height: 640px;
   z-index: 1004;
+  overflow-y: auto;
   flex: 3;
 }
 
 .gacha-calculator-container-right {
+  min-width: 600px;
   max-width: 620px;
 }
 
@@ -2244,19 +2248,20 @@ function exportReward() {
   border-bottom: 3px solid #ffd700;
 }
 
-.gacha-calculator-statistical-result {
-  display: block;
+.gacha-calculator-chart-and-table {
+  display: flex;
+  justify-content: space-between;
 }
 
 .gacha-calculator-statistics-result {
-  display: flex;
-  flex-wrap: wrap;
+  width: 180px;
 }
 
 .gacha-calculator-statistics-result-item {
   display: flex;
   align-items: center;
-  width: 280px;
+  min-width: 80px;
+  margin: 20px 0;
 }
 
 .gacha-calculator-statistics-result-item-text {
@@ -2264,9 +2269,8 @@ function exportReward() {
 }
 
 .gacha-calculator-pie-chart {
-  width: 450px;
-  height: 300px;
-  margin: auto;
+  width: 300px;
+  height: 240px;
 }
 
 .gacha-calculator-existing-resource-input {
