@@ -223,9 +223,21 @@
                 style="cursor: pointer;"
                 @click="toggleExpand(record.seqId)"
               >
-                <div class="character-name font-weight-bold" style="width: 80px;">
-                  {{ record.character }}
+              <div class="character-avatar" style="width: 60px; height: 60px; flex-shrink: 0;">
+                <img
+                  v-if="record.charId && record.character !== '已垫'"
+                  :src="getAvatarUrl(record.charId)"
+                  :alt="record.character"
+                  style="width: 100%; height: 100%; object-fit: contain; background-color: #f0f2f5; border-radius: 4px;"
+                  @error="handleImageError"
+                />
+                <div
+                  v-else
+                  style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 4px; font-size: 0.8rem; color: #6b7280;"
+                >
+                  {{ record.character === '已垫' ? '垫抽' : '?' }}
                 </div>
+              </div>
 
                 <div class="gacha-drawer-container" style="flex: 1;">
 
@@ -317,8 +329,12 @@
 import { computed, ref, onMounted } from 'vue';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 
-// ========== 提交并验证（含缓存合并）==========
-// 调试数据
+
+
+
+// ========== 加载/缓存数据相关 ==========
+
+// 提交并验证（含缓存合并
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 
 const viewMode = ref<'collect' | 'analyze'>('collect');
@@ -359,6 +375,7 @@ interface SixStarEntry {
   poolId: string;
   seqId: string;
   character: string;
+  charId: string;
   count: number;
   timestamp: string | number;
   fiveStars?: string[];
@@ -405,18 +422,17 @@ gachaPools.forEach(pool => {
   upCharMap.set(pool.poolId, pool.upCharName);
 });
 
-//比较seqid
+// 比较seqid
 function parseSeqId(seqId: string): number {
   const num = parseInt(seqId, 10);
   return isNaN(num) ? 0 : num;
 }
 
-// ========== 提交并验证用户输入的 UID 和 URL ==========
-// ========== 缓存相关常量 ==========
+// 提交并验证用户输入的 UID 和 URL
 const CACHE_KEY = 'endfield_gacha_records_v1';
 const LAST_UID_KEY = 'endfield_last_uid';
 
-// ========== 从 localStorage 加载缓存记录 ==========
+// 从 localStorage 加载缓存记录
 function loadCachedRecords(uid: string): GachaRecord[] {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
@@ -431,7 +447,7 @@ function loadCachedRecords(uid: string): GachaRecord[] {
   }
 }
 
-// ========== 保存记录到 localStorage ==========
+// 保存记录到 localStorage
 function saveRecordsToCache(uid: string, records: GachaRecord[]) {
   try {
     const cache = { uid, records };
@@ -446,7 +462,7 @@ function saveRecordsToCache(uid: string, records: GachaRecord[]) {
 const USE_DEBUG_DATA = true;
 
 async function submitAndVerify() {
-  // ===== 调试数据逻辑 =====
+  // 调试数据逻辑
   if (USE_DEBUG_DATA) {
     console.log('【调试模式】使用示例数据进行分析');
     try {
@@ -464,7 +480,7 @@ async function submitAndVerify() {
       return;
     }
   }
-  // ===== 用户输入逻辑 =====
+  // 用户输入逻辑
   const uid = inputUid.value.trim();
   const url = inputUrl.value.trim();
 
@@ -563,6 +579,51 @@ async function submitAndVerify() {
     isSubmitting.value = false;
   }
 }
+//启动时，若本地有缓存则读取缓存，直接进入分析页面
+onMounted(() => {
+  const lastUid = localStorage.getItem(LAST_UID_KEY);
+  if (lastUid) {
+    const cached = loadCachedRecords(lastUid);
+    if (cached.length > 0) {
+      inputUid.value = lastUid;
+      records.value = cached;
+      processGachaData(cached);
+      viewMode.value = 'analyze';
+    }
+  }
+});
+
+// 返回收集页
+function goToUpdate() {
+  viewMode.value = 'collect';
+  inputUid.value = '';
+  inputUrl.value = '';
+}
+
+//确认并清除缓存 
+function confirmClearCache() {
+  if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？\n此操作不可恢复！（抽卡数据均保存在本地）')) {
+    try {
+      localStorage.removeItem('endfield_gacha_records_v1');
+      localStorage.removeItem('endfield_last_uid');
+
+      // 清空当前响应式数据
+      records.value = [];
+      sixStarRecordsWithCount.value = [];
+      realSixStarRecords.value = [];
+      rollData.value = [];
+
+      // 跳转回收集页
+      viewMode.value = 'collect';
+      alert('本地数据已清除');
+    } catch (e) {
+      console.error('清除缓存失败', e);
+      alert('清除失败，请手动清除浏览器数据');
+    }
+  }
+}
+
+
 
 // ========== 处理抽卡数据：分组、统计、生成时间线 ==========
 function processGachaData(list: GachaRecord[]) {
@@ -595,12 +656,13 @@ function processGachaData(list: GachaRecord[]) {
     state.pullsSinceLastSix += 1;
 
     if (rarity === 6) {
-      // 🌟 出六星
+      // 出六星
       const entry: SixStarEntry = {
         poolId,
         poolName,
         seqId,
         character: charName,
+        charId: record.charId,
         count: state.pullsSinceLastSix,
         timestamp: gachaTs,
         fiveStars: [...state.fiveStars],
@@ -613,7 +675,7 @@ function processGachaData(list: GachaRecord[]) {
       state.pullsSinceLastSix = 0;
       state.fiveStars = [];
     } else if (rarity === 5) {
-      // ⭐ 记录五星（仅在未出六星期间）
+      // 记录五星（仅在未出六星期间）
       state.fiveStars.push(charName);
     }
   }
@@ -631,6 +693,7 @@ function processGachaData(list: GachaRecord[]) {
           poolId,
           poolName: lastRecord.poolName,
           character: '已垫',
+          charId: 'padded',  
           count: state.pullsSinceLastSix,
           timestamp: lastRecord.gachaTs,
           seqId: lastRecord.seqId,
@@ -662,7 +725,7 @@ function processGachaData(list: GachaRecord[]) {
   ]);
 }
 
-// 判断是否歪了（仅对真实六星有效，“已垫”不参与判断）
+// 判断是否歪了
 function isOffPool(record: SixStarEntry): boolean {
   if (record.character === '已垫') {
     return false;
@@ -673,15 +736,21 @@ function isOffPool(record: SixStarEntry): boolean {
   }
   return record.character !== upChar;
 }
-// ========== 计算属性：全部基于 realSixStarRecords ==========
-// ========== 新增：总抽数/总六星数计算属性 ==========
-// 总抽数（所有卡池总抽数，含已垫）
+
+
+
+
+
+
+
+// ========== 计算相关 ==========
+
 const totalAllPulls = computed(() => {
   const { limited, permanent, weapon } = poolSummary.value;
   return limited.total + permanent.total + weapon.total;
 });
 
-// 总六星数（仅真实六星，不含已垫）
+// 总六星数（不含已垫）
 const totalSixStarCount = computed(() => {
   const { limited, permanent, weapon } = poolSummary.value;
   return limited.totalCount + permanent.totalCount + weapon.totalCount;
@@ -821,20 +890,18 @@ interface GachaTag {
 
 // 计算特色抽卡标签
 const gachaTags = computed(() => {
-  // 用 let 声明，允许后续修改
   const tags: GachaTag[] = [];
   const realSixStars = realSixStarRecords.value;
 
-  // ========== 核心修改：使用 poolSummary 中已有的平均逻辑 ==========
-  // 1. 先获取所有卡池的总抽数和总出货数（复用 poolSummary 的计算结果）
+  // 1. 先获取所有卡池的总抽数和总出货数
   const { limited, permanent, weapon } = poolSummary.value;
-  // 计算全卡池综合平均出货数（和 poolSummary 逻辑一致）
+  // 计算全卡池综合平均出货数
   const totalAllPools = limited.total + permanent.total + weapon.total;
   const totalAllCounts = limited.totalCount + permanent.totalCount + weapon.totalCount;
-  // 复用现有平均计算逻辑：总抽数 / 出货次数（避免除零）
+  // 复用现有平均计算逻辑：总抽数 / 出货次数
   const avgPulls = totalAllCounts > 0 ? totalAllPools / totalAllCounts : 0;
 
-  // 2. 添加平均出货数对应的等级标签（最前面展示）
+  // 2. 添加平均出货数对应的等级标签
   if (avgPulls > 0) {
     if (avgPulls <= 30) {
       tags.push({ name: '至尊欧皇', type: 'lucky' });
@@ -849,7 +916,7 @@ const gachaTags = computed(() => {
     }
   }
 
-  // ========== 原有标签逻辑（保持不变，仅修复 const 报错） ==========
+ 
   // 1. 统计十连内多金标签（十连双金/三金）
   const sortedByTime = [...realSixStars].sort((a, b) => {
     const tsA = safeTimestamp(a.timestamp);
@@ -879,7 +946,7 @@ const gachaTags = computed(() => {
       tags.push({ name: '十连双金', type: 'lucky' });
     } else if (multiCount >= 3 && !tags.some(t => t.name === '十连三金')) {
       tags.push({ name: '十连三金', type: 'lucky' });
-      // 有三金就移除已有的双金标签（修复 const 赋值问题）
+      // 有三金就移除已有的双金标签
       const duplicateIndex = tags.findIndex(t => t.name === '十连双金');
       if (duplicateIndex !== -1) {
         tags.splice(duplicateIndex, 1);
@@ -887,31 +954,31 @@ const gachaTags = computed(() => {
     }
   }
 
-  // 2. 三连不歪（连续3次出UP角色）
+  // 2. 三连不歪
   let consecutiveOnBanner = 0;
   for (const record of realSixStars) {
     if (isOnBanner(record)) {
       consecutiveOnBanner++;
       if (consecutiveOnBanner >= 3 && !tags.some(t => t.name === '三连不歪')) {
         tags.push({ name: '三连不歪', type: 'lucky' });
-        break; // 找到就停止，避免重复
+        break;
       }
     } else {
-      consecutiveOnBanner = 0; // 歪了就重置计数
+      consecutiveOnBanner = 0;
     }
   }
 
-  // 3. 单抽出金（1抽出六星）
+  // 3. 单抽出金
   if (realSixStars.some(r => r.count === 1) && !tags.some(t => t.name === '单抽出金')) {
     tags.push({ name: '单抽出金', type: 'lucky' });
   }
 
-  // 4. 八十连保底（超过80抽才出六星）
+  // 4. 八十连保底
   if (realSixStars.some(r => r.count >= 80) && !tags.some(t => t.name === '八十连保底')) {
     tags.push({ name: '八十连保底', type: 'unlucky' });
   }
 
-  // 5. 全勤不歪（所有限定池六星都没歪）
+  // 5. 全勤不歪
   const limitedSixStars = realSixStars.filter(r => getPoolType(r.poolId) === 'limited');
   if (limitedSixStars.length > 0 && limitedSixStars.every(isOnBanner) && !tags.some(t => t.name === '全勤不歪')) {
     tags.push({ name: '全勤不歪', type: 'lucky' });
@@ -920,8 +987,11 @@ const gachaTags = computed(() => {
   return tags;
 });
 
-// ========== UI 相关：基于 sixStarRecordsWithCount ==========
 
+
+// ========== UI 相关 ==========
+
+//横向条形图排序、分组
 const sortedData = computed(() => [...sixStarRecordsWithCount.value]);
 
 const consecutiveGroups = computed(() => {
@@ -947,7 +1017,6 @@ const getBarWidth = (count: number) => {
 
 // 返回用于样式的状态标识
 function getBarType(record: SixStarEntry): string {
-  // 特殊条目：已垫
 
   const upChar = upCharMap.get(record.poolId);
   const isOnBanner = !!upChar && record.character === upChar;
@@ -1004,49 +1073,19 @@ function toggleExpand(seqId: string) {
   }
 }
 
-//启动时，若本地有缓存则读取缓存，直接进入分析页面
-onMounted(() => {
-  const lastUid = localStorage.getItem(LAST_UID_KEY);
-  if (lastUid) {
-    const cached = loadCachedRecords(lastUid);
-    if (cached.length > 0) {
-      inputUid.value = lastUid;
-      records.value = cached;
-      processGachaData(cached);
-      viewMode.value = 'analyze';
-    }
-  }
-});
-
-// ========== 返回收集页 ==========
-function goToUpdate() {
-  viewMode.value = 'collect';
-  inputUid.value = '';
-  inputUrl.value = '';
+// 获取头像 URL
+function getAvatarUrl(charId: string): string {
+  return `https://cos.yituliu.cn/endfield/unpack-images/characters/icon_${charId}.webp`;
 }
 
-// ========== 确认并清除缓存 ==========
-function confirmClearCache() {
-  if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？\n此操作不可恢复！（抽卡数据均保存在本地）')) {
-    try {
-      localStorage.removeItem('endfield_gacha_records_v1');
-      localStorage.removeItem('endfield_last_uid');
-
-      // 清空当前响应式数据
-      records.value = [];
-      sixStarRecordsWithCount.value = [];
-      realSixStarRecords.value = [];
-      rollData.value = [];
-
-      // 跳转回收集页
-      viewMode.value = 'collect';
-      alert('本地数据已清除');
-    } catch (e) {
-      console.error('清除缓存失败', e);
-      alert('清除失败，请手动清除浏览器数据');
-    }
-  }
+// 图片加载失败时的兜底处理
+function handleImageError(e: Event) {
+  const img = e.target as HTMLImageElement;
+  img.style.opacity = '0.5';
+  // 或者替换为默认图：img.src = '/default-avatar.png';
 }
+
+
 </script>
 
 <style scoped>
