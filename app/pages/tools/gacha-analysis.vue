@@ -230,7 +230,7 @@
                   :alt="record.character"
                   style="width: 100%; height: 100%; object-fit: contain; background-color: #f0f2f5; border-radius: 4px;"
                   @error="handleImageError"
-                />
+                >
                 <div
                   v-else
                   style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 4px; font-size: 0.8rem; color: #6b7280;"
