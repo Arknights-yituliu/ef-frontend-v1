@@ -246,12 +246,12 @@
                   <div v-if="expandedSeqId === record.seqId && record.fiveStars && record.fiveStars.length > 0" class="mt-2 ml-4">
                     <div style="font-size: 0.875rem; color: #555;">
                       <span
-                        v-for="(char, i) in record.fiveStars"
+                        v-for="(item, i) in countFiveStars(record.fiveStars || [])"
                         :key="i"
                         class="mx-1"
                         style="background-color: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px;"
                       >
-                        {{ char }}
+                        {{ item.name }}×{{ item.count }}
                       </span>
                     </div>
                   </div>
@@ -689,6 +689,19 @@ const totalSixStarCount = computed(() => {
 const totalPulls = computed(() => {
   return realSixStarRecords.value.reduce((sum, r) => sum + r.count, 0);
 });
+
+// 五星计数
+function countFiveStars(fiveStars: string[]): { name: string; count: number }[] {
+  if (!fiveStars || fiveStars.length === 0) return [];
+
+  const counter: Record<string, number> = {};
+  for (const char of fiveStars) {
+    counter[char] = (counter[char] || 0) + 1;
+  }
+
+  // 转为数组，按出现顺序或字母排序（可选）
+  return Object.entries(counter).map(([name, count]) => ({ name, count }));
+}
 
 const poolSummary = computed(() => {
   // 初始化三类卡池的统计结构

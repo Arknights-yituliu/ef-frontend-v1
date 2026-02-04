@@ -212,7 +212,6 @@
   display: flex;
   align-items: center;
   border-radius: 16px;
-  border: 0.5px solid var(--theme-border);
   background-color: rgba(255, 255, 255, 0.8); 
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -365,9 +364,8 @@
 
 .pool-card {
   border-radius: 12px;
-  border: 0.5px solid var(--theme-border);
   padding: 16px 12px; 
-  box-shadow: 0 0 0.75em var(--theme-shadow-base);
+  box-shadow: 0 0 0.5em var(--theme-shadow-base);
   transition: all 0.2s ease;
   background-color: rgba(255, 255, 255, 0.6);
   
