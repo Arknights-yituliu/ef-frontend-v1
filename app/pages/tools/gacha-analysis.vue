@@ -1,6 +1,6 @@
 <template>
 
-  <div style="background-color: #eee;  border-radius: 16px; padding: 24px;">
+  <div style=" border-radius: 16px; padding: 24px;">
     <h2>锐意开发中···</h2>
     <!-- 数据收集 -->
     <div v-if="viewMode === 'collect'" class="collect-form">
@@ -60,11 +60,11 @@
               </div>
               <div class="user-stats-basic">
                 <div class="stat-item">
-                  <span class="stat-label">{{ $t('总抽数') }}：</span>
+                  <span class="stat-label">{{ '总抽数' }}：</span>
                   <span class="stat-value">{{ totalAllPulls }}</span>
                 </div>
                 <div class="stat-item">
-                  <span class="stat-label">{{ $t('总六星数') }}：</span>
+                  <span class="stat-label">{{ '总六星数' }}：</span>
                   <span class="stat-value">{{ totalSixStarCount }}</span>
                 </div>
               </div>
@@ -80,7 +80,7 @@
                 {{ tag.name }}
               </div>
               <div v-if="gachaTags.length === 0" class="no-tags">
-                {{ $t('暂无特色抽卡记录') }}
+                {{ '暂无特色抽卡记录' }}
               </div>
             </div>
           </div>
@@ -100,24 +100,24 @@
 
               <div class="pool-card-core">
                 <span class="total-gacha-count">{{ info.total }}</span>
-                <span class="core-label">{{ $t('抽') }}</span>
+                <span class="core-label">{{ '抽' }}</span>
               </div>
 
               <div class="stats">
                 <div v-if="type !== 'limited' && type !== 'weapon'" class="stat-item">
-                  <span class="label">{{ $t('六星') }}：</span>
+                  <span class="label">{{ '六星' }}：</span>
                   <span class="value">{{ info.totalCount }}</span>
                 </div>
                 <div v-if="type === 'limited' || type === 'weapon'" class="stat-item">
-                  <span class="label">{{ $t('不歪/六星') }}：</span>
+                  <span class="label">{{ '不歪/六星' }}：</span>
                   <span class="value">{{ info.nonPityCount }} / {{ info.totalCount }}</span>
                 </div>
                 <div v-if="type !== 'limited'" class="stat-item">
-                  <span class="label">{{ $t('平均出货数') }}：</span>
+                  <span class="label">{{ '平均出货数' }}：</span>
                   <span class="value">{{ info.average.toFixed(1) }}</span>
                 </div>
                 <div v-if="type === 'limited'" class="stat-item">
-                  <span class="label">{{ $t('UP平均') }}：</span>
+                  <span class="label">{{ 'UP平均' }}：</span>
                   <span class="value">{{ info.nonPityAverage.toFixed(1) }}</span>
                 </div>
               </div>
@@ -125,7 +125,7 @@
           </div>
 
           <div class="mt-4">
-            <h3 class="text-subtitle-2 mb-2">{{ $t('卡池抽卡分布') }}</h3>
+            <h3 class="text-subtitle-2 mb-2">{{ '卡池抽卡分布' }}</h3>
             <div class="d-flex flex-wrap">
               <v-chip
                 v-for="(item, pool) in poolDistribution"
@@ -141,7 +141,7 @@
           </div>
 
           <div class="mt-4">
-            <h3 class="text-subtitle-2 mb-2">{{ $t('角色抽取频次 TOP 3') }}</h3>
+            <h3 class="text-subtitle-2 mb-2">{{ '角色抽取频次 TOP 3' }}</h3>
             <div class="d-flex flex-wrap gap-2">
               <v-chip
                 v-for="(char, index) in topCharacters"
@@ -169,7 +169,7 @@
               elevation="0"
               @click="selectPool('limited')"
             >
-              {{ $t('限定池') }}
+              {{ '限定池' }}
             </v-btn>
             <v-btn
               class="pool-selector__btn"
@@ -178,7 +178,7 @@
               elevation="0"
               @click="selectPool('permanent')"
             >
-              {{ $t('常驻池') }}
+              {{ '常驻池' }}
             </v-btn>
             <v-btn
               class="pool-selector__btn"
@@ -187,7 +187,7 @@
               elevation="0"
               @click="selectPool('weapon')"
             >
-              {{ $t('武器池') }}
+              {{ '武器池' }}
             </v-btn>
           </div>
         </div>
@@ -197,7 +197,7 @@
           style="width: 100%; margin: 20px 0; text-align: center; padding: 48px 0;"
         >
           <div style="font-size: 1rem; color: #6b7280; font-weight: 500;">
-            {{ $t('暂无该卡池的抽卡数据') }}
+            {{ '暂无该卡池的抽卡数据' }}
           </div>
         </div>
 
@@ -210,7 +210,7 @@
               style="width: 100%; background-color: #f9fafb; border-radius: 8px; margin: 8px 0; padding: 24px 0; text-align: center;"
             >
               <div style="font-size: 0.9rem; color: #9ca3af;">
-                {{  $t('该卡池分组暂无抽卡记录') }}
+                {{  '该卡池分组暂无抽卡记录' }}
               </div>
             </div>
 
@@ -443,7 +443,7 @@ function saveRecordsToCache(uid: string, records: GachaRecord[]) {
 }
 
 // 调试开关
-const USE_DEBUG_DATA = false;
+const USE_DEBUG_DATA = true;
 
 async function submitAndVerify() {
   // ===== 调试数据逻辑 =====
