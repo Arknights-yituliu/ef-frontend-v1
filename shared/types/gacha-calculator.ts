@@ -80,21 +80,27 @@ export interface GachaResourceStatisticsResult {
   ticketgachaSpecialSingle: number;
 }
 
-export interface GachaCalculatorUserConfig  {
+export interface GachaCalculatorUserConfig {
   existingResource: {
-    [key: string]:number
-  },
-  buttonActive:{
-    [key:string]:boolean
-  },
-  buttonGroupActive:{
-    [key:string]:boolean
-  }
-  rangeSlider:{
-    [key:string]:number[]
-  }
-  slider:{
-    [key:string]:number
+    [key: string]: number;
+  };
+  buttonActive: {
+    [key: string]: boolean;
+  };
+  buttonGroupActive: {
+    [key: string]: boolean;
+  };
+  rangeSlider: {
+    [key: string]: number[];
+  };
+  slider: {
+    [key: string]: number;
+  };
+}
+
+export type ModuleSelectedStatus = {
+  [key: string]:{
+    [key: string]:boolean
   }
 }
 

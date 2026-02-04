@@ -2,11 +2,30 @@ import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
 import valleyIVTaskTable from './json/valley_IV_task_table.json';
 import wulingTaskTable from './json/wuling_task_table.json';
-import FactoryManualTable from './json/factory_manual_table.json';
-import OperationalManualTrainingTable from './json/operational_manual_training_table.json';
-import OperationalManualIndexTable from './json/operational_manual_index_table.json';
-import intelArchiveRewardJson from './json/intel_archive_reward.json';
+
+
+
 import etchSpaceSalvageRewardJson from './json/etch_space_salvage_reward.json';
+
+
+const beginnerSignInTaskReward = ref<Reward>({
+  id: 'beginner_sign_in_task',
+  name: {
+    zh: `唤醒签到奖励`,
+    en: '',
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '常驻活动',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 11,
+  },
+});
 
 
 const newHorizonsTaskReward = ref<Reward[]>([
@@ -102,44 +121,10 @@ export { taskRewardTable };
 
 // export const taskRewardTable1 = ref<Reward[]>(TaskTable as Reward[])
 
-const factoryManualRewardTable: Reward[] = FactoryManualTable as Reward[];
-
-let factoryManualCountReward = 0;
-for (const reward of factoryManualRewardTable) {
-  factoryManualCountReward += reward.content.diamond;
-}
-
-const factoryManualRewardMax = factoryManualCountReward;
-
-const factoryManualReward = ref<Reward>({
-  id: 'factory_manual_reward',
-  name: {
-    zh: `简制手册奖励`,
-    en: ''
-  },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
-  type: '通用',
-  module: '简制手册',
-  active: true,
-  content: {
-    originiumRecharge: 0,
-    diamond: factoryManualCountReward,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
-  }
-});
 
 
-const operationalManualReward = ref<Reward[]>([]);
 
-for (const reward of OperationalManualTrainingTable) {
-  operationalManualReward.value.push(reward);
-}
 
-for(const reward  of OperationalManualIndexTable) {
-  operationalManualReward.value.push(reward);
-}
 
 
 const defenseConstructionReward = ref<Reward>({
@@ -162,11 +147,6 @@ const defenseConstructionReward = ref<Reward>({
   }
 });
 
-const intelArchiveReward = ref<Reward[]>([]);
-
-for (const reward of intelArchiveRewardJson) {
-  intelArchiveReward.value.push(reward);
-}
 
 const etchSpaceSalvageCrateRewardMax: number = 15 * 5 + 30 * 4 + 60 * 1;
 
@@ -178,12 +158,10 @@ for (const reward of etchSpaceSalvageRewardJson) {
 
 
 export {
+  beginnerSignInTaskReward,
   newHorizonsTaskReward,
-  operationalManualReward,
   defenseConstructionReward,
-  factoryManualReward,
-  factoryManualRewardMax,
-  intelArchiveReward,
+
   etchSpaceSalvageReward
 };
 

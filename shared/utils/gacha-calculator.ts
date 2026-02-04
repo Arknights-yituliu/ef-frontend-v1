@@ -3,6 +3,24 @@ import type {
   Reward,
   TotalPullsSingle
 } from '#shared/types/gacha-calculator';
+import { AICQuotaReward } from '@/custom/core/gacha/dailyReward';
+import { activityReward } from '@/custom/core/gacha/activityReward';
+import {
+  valleyIVAuryleneCollectReward,
+  valleyIVCrateReward,
+  valleyIVRegionalDevelopmentReward,
+  valleyIVRegionalStockBillStoreReward,
+  valleyIVSimulationReward,
+} from '@/custom/core/gacha/valleyIVRegionalReward';
+import {
+  wulingAuryleneCollectReward, wulingCrateReward,
+  wulingRegionalDevelopmentReward,
+  wulingRegionalStockBillStoreReward, wulingSimulationReward
+} from '@/custom/core/gacha/wulingRegionalReward';
+import { authorityLevelTaskRewards, authorityLevelUpReward, worldLevelReward } from '@/custom/core/gacha/levelReward';
+import { operationalManualNodeReward, operationalManualReward } from '@/custom/core/gacha/operationalManualReward';
+import { beginnerSignInTaskReward, defenseConstructionReward, etchSpaceSalvageReward, taskRewardTable } from '@/custom/core/gacha/permanentReward';
+import { factoryManualReward } from '@/custom/core/gacha/otherReward';
 
 /**
  * 计算排期开始与结束日期的天数差
@@ -89,18 +107,22 @@ function countTuesdaysBetweenV2(
 ): number {
   // 将输入转换为Date对象
   const start = new Date(startDate);
-  const end = new Date(endDate).getTime();
+  const end = new Date(endDate);
 
   const startTimestamp = start.getTime();
+  const endTimestamp = end.getTime();
   let week = 0;
 
   if (start.getDay() < 2) {
     week++;
   }
+  if(start.getDay() >2) {
+    week++;
+  }
 
   const oneDayTimestamp = 1000 * 60 * 60 * 24;
 
-  for (let i = startTimestamp; i <= end; i++) {
+  for (let i = startTimestamp; i <= endTimestamp; i++) {
     const date = new Date(i);
     if (date.getDay() === 2) {
       week++;
@@ -139,6 +161,60 @@ function getPull(result: ResourceStatisticsResultDetail): TotalPullsSingle {
       (result.originiumRecharge * 75) / 500 +
       result.ticketgachaSpecialSingle
   };
+}
+
+
+function exportReward() {
+  const list: any = [];
+
+  _addReward('集成配额商店兑换', AICQuotaReward.value);
+  _addReward('活动奖励', activityReward.value);
+  _addReward('四号谷地·调度券商店', valleyIVRegionalStockBillStoreReward.value);
+  _addReward('四号谷地·地区建设等级奖励', valleyIVRegionalDevelopmentReward.value);
+  _addReward('四号谷地·醚质收集', valleyIVAuryleneCollectReward.value);
+  _addReward('四号谷地·储藏箱', valleyIVCrateReward.value);
+  _addReward('四号谷地·模拟空间', valleyIVSimulationReward.value);
+  _addReward('武陵·调度券商店', wulingRegionalStockBillStoreReward.value);
+  _addReward('武陵·地区建设等级奖励', wulingRegionalDevelopmentReward.value);
+  _addReward('武陵·醚质收集', wulingAuryleneCollectReward.value);
+  _addReward('武陵·储藏箱', wulingCrateReward.value);
+  _addReward('武陵·模拟空间', wulingSimulationReward.value);
+  _addReward('权限等级提升', authorityLevelUpReward.value);
+  _addReward('权限等级提升任务', authorityLevelTaskRewards.value);
+  _addReward('世界探索等级奖励', worldLevelReward.value);
+  _addReward('节点手册奖励', operationalManualNodeReward.value);
+  _addReward('新手签到奖励', beginnerSignInTaskReward.value);
+  _addReward('任务奖励', taskRewardTable.value);
+  _addReward('简制手册', factoryManualReward.value);
+  _addReward('据点防御任务', defenseConstructionReward.value);
+  _addReward('蚀像寻遗', etchSpaceSalvageReward.value);
+  _addReward('教学奖励', operationalManualReward.value);
+
+  console.log(JSON.stringify(list, null, 2));
+
+  function _addReward(type: string, reward: Reward | Reward[]): void {
+    if (Array.isArray(reward)) {
+      for (const item of reward) {
+        list.push({
+          type: type,
+          name: item.name.zh,
+          originiumRecharge: item.content.originiumRecharge,
+          diamond: item.content.diamond,
+          ticketgachaStandardSingle: item.content.ticketgachaStandardSingle,
+          ticketgachaSpecialSingle: item.content.ticketgachaSpecialSingle,
+        });
+      }
+    } else {
+      list.push({
+        type: type,
+        name: reward.name.zh,
+        originiumRecharge: reward.content.originiumRecharge,
+        diamond: reward.content.diamond,
+        ticketgachaStandardSingle: reward.content.ticketgachaStandardSingle,
+        ticketgachaSpecialSingle: reward.content.ticketgachaSpecialSingle,
+      });
+    }
+  }
 }
 
 export { calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, addReward,getPull };

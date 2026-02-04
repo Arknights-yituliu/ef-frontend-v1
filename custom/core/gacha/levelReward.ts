@@ -12,30 +12,7 @@ export const itemIdDict: ItemDict = {
 
 
 
-for (let i = 0; i < 1; i++) {
 
-}
-
-export const operationalManualNodeReward = ref<Reward>(
-  {
-    id: 'operational_manual_node_reward',
-    name: {
-      zh: `节点奖励`,
-      en: ''
-    },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
-    type: '通用',
-    module: '权限等阶提升活动',
-    active: true,
-    content: {
-      originiumRecharge: 0,
-      diamond: 9000,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    }
-  }
-);
 
 export const authorityLevelTaskRewards = ref<Reward[]>([{
   id: 'authority_level_8_task_rewards',
