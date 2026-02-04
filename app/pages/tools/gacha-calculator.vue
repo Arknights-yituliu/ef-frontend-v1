@@ -1519,7 +1519,7 @@ function clearOrSelectAllLevelModule(action: boolean) {
 
 
 function clearOrSelectAllPermanentModule(action: boolean) {
-  clearOrSelectAll(action, 'button', beginnerSignInTaskReward);
+  clearOrSelectAll(action, 'rangeSlider', beginnerCheckInTaskProgress,[0,14]);
   clearOrSelectAll(action, 'button', newHorizonsTaskReward);
   clearOrSelectAll(action, 'button', valleyIVTaskRewardTable);
   clearOrSelectAll(action, 'button', wulingTaskRewardTable);
