@@ -1,5 +1,5 @@
 import type {
-  ResourceStatisticsResultDetail,
+  RewardStatisticsResultDetail,
   Reward,
   TotalPullsSingle
 } from '#shared/types/gacha-calculator';
@@ -19,7 +19,7 @@ import {
 } from '@/custom/core/gacha/wulingRegionalReward';
 import { authorityLevelTaskRewards, authorityLevelUpReward, worldLevelReward } from '@/custom/core/gacha/levelReward';
 import { operationalManualNodeReward, operationalManualReward } from '@/custom/core/gacha/operationalManualReward';
-import { beginnerSignInTaskReward, defenseConstructionReward, etchSpaceSalvageReward, taskRewardTable } from '@/custom/core/gacha/permanentReward';
+import { beginnerSignInTaskReward, defenseConstructionReward, etchSpaceSalvageReward, valleyIVTaskRewardTable } from '@/custom/core/gacha/permanentReward';
 import { factoryManualReward } from '@/custom/core/gacha/otherReward';
 
 /**
@@ -133,7 +133,7 @@ function countTuesdaysBetweenV2(
   return week;
 }
 
-function addReward(result: ResourceStatisticsResultDetail, reward: Reward | Reward[]): void {
+function addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward[]): void {
   if (Array.isArray(reward)) {
     for (const item of reward) {
       if (item.active) {
@@ -153,7 +153,7 @@ function addReward(result: ResourceStatisticsResultDetail, reward: Reward | Rewa
   }
 }
 
-function getPull(result: ResourceStatisticsResultDetail): TotalPullsSingle {
+function getPull(result: RewardStatisticsResultDetail): TotalPullsSingle {
   return {
     ticketgachaStandardSingle: result.ticketgachaStandardSingle,
     ticketgachaSpecialSingle:
@@ -163,58 +163,58 @@ function getPull(result: ResourceStatisticsResultDetail): TotalPullsSingle {
   };
 }
 
-
-function exportReward() {
-  const list: any = [];
-
-  _addReward('集成配额商店兑换', AICQuotaReward.value);
-  _addReward('活动奖励', activityReward.value);
-  _addReward('四号谷地·调度券商店', valleyIVRegionalStockBillStoreReward.value);
-  _addReward('四号谷地·地区建设等级奖励', valleyIVRegionalDevelopmentReward.value);
-  _addReward('四号谷地·醚质收集', valleyIVAuryleneCollectReward.value);
-  _addReward('四号谷地·储藏箱', valleyIVCrateReward.value);
-  _addReward('四号谷地·模拟空间', valleyIVSimulationReward.value);
-  _addReward('武陵·调度券商店', wulingRegionalStockBillStoreReward.value);
-  _addReward('武陵·地区建设等级奖励', wulingRegionalDevelopmentReward.value);
-  _addReward('武陵·醚质收集', wulingAuryleneCollectReward.value);
-  _addReward('武陵·储藏箱', wulingCrateReward.value);
-  _addReward('武陵·模拟空间', wulingSimulationReward.value);
-  _addReward('权限等级提升', authorityLevelUpReward.value);
-  _addReward('权限等级提升任务', authorityLevelTaskRewards.value);
-  _addReward('世界探索等级奖励', worldLevelReward.value);
-  _addReward('节点手册奖励', operationalManualNodeReward.value);
-  _addReward('新手签到奖励', beginnerSignInTaskReward.value);
-  _addReward('任务奖励', taskRewardTable.value);
-  _addReward('简制手册', factoryManualReward.value);
-  _addReward('据点防御任务', defenseConstructionReward.value);
-  _addReward('蚀像寻遗', etchSpaceSalvageReward.value);
-  _addReward('教学奖励', operationalManualReward.value);
-
-  console.log(JSON.stringify(list, null, 2));
-
-  function _addReward(type: string, reward: Reward | Reward[]): void {
-    if (Array.isArray(reward)) {
-      for (const item of reward) {
-        list.push({
-          type: type,
-          name: item.name.zh,
-          originiumRecharge: item.content.originiumRecharge,
-          diamond: item.content.diamond,
-          ticketgachaStandardSingle: item.content.ticketgachaStandardSingle,
-          ticketgachaSpecialSingle: item.content.ticketgachaSpecialSingle,
-        });
-      }
-    } else {
-      list.push({
-        type: type,
-        name: reward.name.zh,
-        originiumRecharge: reward.content.originiumRecharge,
-        diamond: reward.content.diamond,
-        ticketgachaStandardSingle: reward.content.ticketgachaStandardSingle,
-        ticketgachaSpecialSingle: reward.content.ticketgachaSpecialSingle,
-      });
-    }
-  }
-}
+//
+// function exportReward() {
+//   const list: any = [];
+//
+//   _addReward('集成配额商店兑换', AICQuotaReward.value);
+//   _addReward('活动奖励', activityReward.value);
+//   _addReward('四号谷地·调度券商店', valleyIVRegionalStockBillStoreReward.value);
+//   _addReward('四号谷地·地区建设等级奖励', valleyIVRegionalDevelopmentReward.value);
+//   _addReward('四号谷地·醚质收集', valleyIVAuryleneCollectReward.value);
+//   _addReward('四号谷地·储藏箱', valleyIVCrateReward.value);
+//   _addReward('四号谷地·模拟空间', valleyIVSimulationReward.value);
+//   _addReward('武陵·调度券商店', wulingRegionalStockBillStoreReward.value);
+//   _addReward('武陵·地区建设等级奖励', wulingRegionalDevelopmentReward.value);
+//   _addReward('武陵·醚质收集', wulingAuryleneCollectReward.value);
+//   _addReward('武陵·储藏箱', wulingCrateReward.value);
+//   _addReward('武陵·模拟空间', wulingSimulationReward.value);
+//   _addReward('权限等级提升', authorityLevelUpReward.value);
+//   _addReward('权限等级提升任务', authorityLevelTaskRewards.value);
+//   _addReward('世界探索等级奖励', worldLevelReward.value);
+//   _addReward('节点手册奖励', operationalManualNodeReward.value);
+//   _addReward('新手签到奖励', beginnerSignInTaskReward.value);
+//   _addReward('任务奖励', taskRewardTable.value);
+//   _addReward('简制手册', factoryManualReward.value);
+//   _addReward('据点防御任务', defenseConstructionReward.value);
+//   _addReward('蚀像寻遗', etchSpaceSalvageReward.value);
+//   _addReward('教学奖励', operationalManualReward.value);
+//
+//   console.log(JSON.stringify(list, null, 2));
+//
+//   function _addReward(type: string, reward: Reward | Reward[]): void {
+//     if (Array.isArray(reward)) {
+//       for (const item of reward) {
+//         list.push({
+//           type: type,
+//           name: item.name.zh,
+//           originiumRecharge: item.content.originiumRecharge,
+//           diamond: item.content.diamond,
+//           ticketgachaStandardSingle: item.content.ticketgachaStandardSingle,
+//           ticketgachaSpecialSingle: item.content.ticketgachaSpecialSingle,
+//         });
+//       }
+//     } else {
+//       list.push({
+//         type: type,
+//         name: reward.name.zh,
+//         originiumRecharge: reward.content.originiumRecharge,
+//         diamond: reward.content.diamond,
+//         ticketgachaStandardSingle: reward.content.ticketgachaStandardSingle,
+//         ticketgachaSpecialSingle: reward.content.ticketgachaSpecialSingle,
+//       });
+//     }
+//   }
+// }
 
 export { calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, addReward,getPull };

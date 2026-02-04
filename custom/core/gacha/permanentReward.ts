@@ -103,21 +103,21 @@ const newHorizonsTaskReward = ref<Reward[]>([
   }
 ]);
 
-const taskRewardTable = ref<Reward[]>([]);
+const valleyIVTaskRewardTable = ref<Reward[]>(valleyIVTaskTable)
+const wulingTaskRewardTable = ref<Reward[]>(wulingTaskTable);
 
-const taskNameMap = new Map<string, string>();
+// for (const reward of valleyIVTaskTable) {
+//   valleyIVTaskRewardTable.value.push(reward);
+// }
 
-for (const reward of valleyIVTaskTable) {
-  taskRewardTable.value.push(reward);
-  taskNameMap.set(reward.name.zh, reward.name.zh);
-}
 
-for (const reward of wulingTaskTable as Reward[]) {
-  taskRewardTable.value.push(reward);
-  taskNameMap.set(reward.name.zh, reward.name.zh);
-}
 
-export { taskRewardTable };
+
+// for (const reward of wulingTaskTable as Reward[]) {
+//   wulingTaskRewardTable.value.push(reward);
+// }
+
+
 
 // export const taskRewardTable1 = ref<Reward[]>(TaskTable as Reward[])
 
@@ -158,6 +158,8 @@ for (const reward of etchSpaceSalvageRewardJson) {
 
 
 export {
+  valleyIVTaskRewardTable,
+  wulingTaskRewardTable,
   beginnerSignInTaskReward,
   newHorizonsTaskReward,
   defenseConstructionReward,

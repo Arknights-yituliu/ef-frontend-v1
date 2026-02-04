@@ -11,7 +11,7 @@ export type CollectReward  = Record<string, number>
 
 
 
-export type ResourceStatisticsResultDetail ={
+export type RewardStatisticsResultDetail ={
   name: string;
   /** 衍质源石 */
   originiumRecharge: number;
