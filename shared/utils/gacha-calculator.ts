@@ -232,313 +232,313 @@ export { calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, 
 
 
 
-const gachaResourceStatistics = (): void => {
-  const list: RewardStatisticsResultDetail[] = [];
-
-  function _existingRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '库存',
-      originiumRecharge: existingResource.value.originiumRecharge / 1,
-      diamond: existingResource.value.diamond / 1,
-      ticketgachaStandardSingle: existingResource.value.ticketgachaStandardSingle / 1,
-      ticketgachaSpecialSingle: existingResource.value.ticketgachaSpecialSingle / 1
-    };
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.existing = _getPull(result);
-  }
-
-  function _dailyRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '日常奖励',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-
-    _addReward(result, dailyReward.value);
-    _addReward(result, weekTaskReward.value);
-    for (const reward of AICQuotaReward.value) {
-      if (checkRewardIsValid(reward)) {
-        _addReward(result, reward);
-      }
-    }
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.daily = _getPull(result);
-  }
-
-  function _activityRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '活动奖励',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-
-    for (const reward of activityReward.value) {
-      if (checkRewardIsValid(reward)) {
-        _addReward(result, reward);
-      }
-    }
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.activity = _getPull(result);
-  }
-
-  function _otherRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '其他奖励',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-
-    for (const reward of otherRewardTable.value) {
-      if (checkRewardIsValid(reward)) {
-        _addReward(result, reward);
-      }
-    }
-
-    _addReward(result, factoryManualReward.value);
-    _addReward(result, intelArchiveReward.value);
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.other = _getPull(result);
-  }
-
-  function _regionalRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '地区奖励',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-
-    _addReward(result, valleyIVRegionalStockBillStoreReward.value);
-    _addReward(result, valleyIVRegionalDevelopmentReward.value);
-    _addReward(result, valleyIVAuryleneCollectReward.value);
-    _addReward(result, valleyIVCrateReward.value);
-    _addReward(result, valleyIVBattleCrateReward.value);
-    _addReward(result, valleyIVDeltaBotReward.value);
-    _addReward(result, valleyIVSimulationReward.value);
-    _addReward(result, wulingRegionalStockBillStoreReward.value);
-    _addReward(result, wulingRegionalDevelopmentReward.value);
-    _addReward(result, wulingAuryleneCollectReward.value);
-    _addReward(result, wulingCrateReward.value);
-    _addReward(result, wulingDeltaBotReward.value);
-    _addReward(result, wulingSimulationReward.value);
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.regional = _getPull(result);
-  }
-
-  function _levelRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '等级奖励',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-
-    _addReward(result, authorityLevelTaskRewards.value);
-    _addReward(result, authorityLevelUpReward.value);
-    _addReward(result, worldLevelReward.value);
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.level = _getPull(result);
-  }
-
-  function _permanentRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '常驻奖励',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-    _addReward(result, beginnerSignInTaskReward.value);
-    _addReward(result, newHorizonsTaskReward.value);
-    _addReward(result, valleyIVTaskRewardTable.value);
-    _addReward(result,wulingTaskRewardTable.value);
-    _addReward(result, defenseConstructionReward.value);
-    _addReward(result, etchSpaceSalvageReward.value);
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.permanent = _getPull(result);
-  }
-
-  function _operationalManualRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '行动手册',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-
-    _addReward(result, operationalManualNodeReward.value);
-    _addReward(result, operationalManualReward.value);
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.operationalManual = _getPull(result);
-  }
-
-  function _paidResourcesStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '氪金资源',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-
-    // 计算月卡
-    if (rechargeResources.value.monthlyPass) {
-      const monthlyPack = packs['月卡'];
-      if (monthlyPack) {
-        result.originiumRecharge += 12; // 一次性12源石
-        result.diamond += rechargeResources.value.monthlyPassDays * 200; // 每天200嵌晶玉
-      }
-    }
-
-    // 计算源石配给（3源石，免费）
-    if (rechargeResources.value.battlePass) {
-      result.originiumRecharge += 3;
-    }
-
-    // 计算协议定制（36源石，68元）
-    if (rechargeResources.value.protocolCustomization) {
-      result.originiumRecharge += 36;
-    }
-
-    // 计算选中的礼包
-    for (const [packId, quantity] of Object.entries(rechargeResources.value.selectedPacks)) {
-      if (quantity > 0 && packs[packId as keyof typeof packs]) {
-        const pack = packs[packId as keyof typeof packs];
-        if (pack && pack.contents) {
-          for (const item of pack.contents) {
-            if (item.itemId === 'item_originium_recharge') {
-              result.originiumRecharge += item.quantity * quantity;
-            } else if (item.itemId === 'item_diamond') {
-              result.diamond += item.quantity * quantity;
-            } else if (item.itemId === 'item_ticketgacha_special_single') {
-              result.ticketgachaSpecialSingle += item.quantity * quantity;
-            } else if (item.itemId === 'item_ticketgacha_standard_single') {
-              result.ticketgachaStandardSingle += item.quantity * quantity;
-            } else if (item.itemId.includes('ticketgacha_special_ten')) {
-              result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
-            }
-          }
-        }
-      }
-    }
-
-    // 计算源石
-    for (const [stoneId, quantity] of Object.entries(rechargeResources.value.originiumStones)) {
-      if (quantity > 0 && packs[stoneId as keyof typeof packs]) {
-        const stone = packs[stoneId as keyof typeof packs];
-        if (stone && stone.contents) {
-          for (const item of stone.contents) {
-            if (item.itemId === 'item_originium_recharge') {
-              result.originiumRecharge += item.quantity * quantity;
-            }
-          }
-        }
-      }
-    }
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.recharge = _getPull(result);
-  }
-
-  function _totalRewardStatistics(): void {
-    const result: RewardStatisticsResultDetail = {
-      name: '共计',
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
-    };
-    for (const item of list) {
-      result.originiumRecharge += item.originiumRecharge;
-      result.diamond += item.diamond;
-      result.ticketgachaStandardSingle += item.ticketgachaStandardSingle;
-      result.ticketgachaSpecialSingle += item.ticketgachaSpecialSingle;
-    }
-
-    totalResourceStatisticsResultDetail.value = result;
-
-    list.push(result);
-    gachaResourceStatisticsResult.value.totalPulls.total = _getPull(result);
-  }
-
-  function _addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward[]): void {
-    if (Array.isArray(reward)) {
-      for (const item of reward) {
-        if (item.active) {
-          result.originiumRecharge += item.content.originiumRecharge;
-          result.diamond += item.content.diamond;
-          result.ticketgachaStandardSingle += item.content.ticketgachaStandardSingle;
-          result.ticketgachaSpecialSingle += item.content.ticketgachaSpecialSingle;
-        }
-      }
-    } else {
-      if (reward.active) {
-        result.originiumRecharge += reward.content.originiumRecharge;
-        result.diamond += reward.content.diamond;
-        result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
-        result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
-      }
-    }
-  }
-
-  _existingRewardStatistics();
-  _activityRewardStatistics();
-  _otherRewardStatistics();
-  _dailyRewardStatistics();
-  _regionalRewardStatistics();
-  _levelRewardStatistics();
-  _permanentRewardStatistics();
-  _operationalManualRewardStatistics();
-  _paidResourcesStatistics();
-  _totalRewardStatistics();
-
-  pieChartData = [];
-  for (const key in gachaResourceStatisticsResult.value.totalPulls) {
-    const totalPullsSingle: TotalPullsSingle = gachaResourceStatisticsResult.value.totalPulls[
-      key
-      ] as TotalPullsSingle;
-    if (totalPullsSingle === undefined) {
-      continue;
-    }
-    const value: number = totalPullsSingle.ticketgachaSpecialSingle || 0;
-
-    if ('total' === key || value === 0) {
-      continue;
-    }
-    pieChartData.push({
-      value: numberFloor(value),
-      name: t(`page.tools.gachaCalculator.${key}`) + t(`page.tools.gachaCalculator.reward`)
-    });
-  }
-
-  setPieChart(pieChartData);
-
-  resourceStatisticsResultDetailList.value = list;
-
-  function _getPull(result: RewardStatisticsResultDetail): TotalPullsSingle {
-    return {
-      ticketgachaStandardSingle: result.ticketgachaStandardSingle,
-      ticketgachaSpecialSingle:
-        result.diamond / 500 +
-        (result.originiumRecharge * 75) / 500 +
-        result.ticketgachaSpecialSingle
-    };
-  }
-};
+// const gachaResourceStatistics = (): void => {
+//   const list: RewardStatisticsResultDetail[] = [];
+//
+//   function _existingRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '库存',
+//       originiumRecharge: existingResource.value.originiumRecharge / 1,
+//       diamond: existingResource.value.diamond / 1,
+//       ticketgachaStandardSingle: existingResource.value.ticketgachaStandardSingle / 1,
+//       ticketgachaSpecialSingle: existingResource.value.ticketgachaSpecialSingle / 1
+//     };
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.existing = _getPull(result);
+//   }
+//
+//   function _dailyRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '日常奖励',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//
+//     _addReward(result, dailyReward.value);
+//     _addReward(result, weekTaskReward.value);
+//     for (const reward of AICQuotaReward.value) {
+//       if (checkRewardIsValid(reward)) {
+//         _addReward(result, reward);
+//       }
+//     }
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.daily = _getPull(result);
+//   }
+//
+//   function _activityRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '活动奖励',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//
+//     for (const reward of activityReward.value) {
+//       if (checkRewardIsValid(reward)) {
+//         _addReward(result, reward);
+//       }
+//     }
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.activity = _getPull(result);
+//   }
+//
+//   function _otherRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '其他奖励',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//
+//     for (const reward of otherRewardTable.value) {
+//       if (checkRewardIsValid(reward)) {
+//         _addReward(result, reward);
+//       }
+//     }
+//
+//     _addReward(result, factoryManualReward.value);
+//     _addReward(result, intelArchiveReward.value);
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.other = _getPull(result);
+//   }
+//
+//   function _regionalRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '地区奖励',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//
+//     _addReward(result, valleyIVRegionalStockBillStoreReward.value);
+//     _addReward(result, valleyIVRegionalDevelopmentReward.value);
+//     _addReward(result, valleyIVAuryleneCollectReward.value);
+//     _addReward(result, valleyIVCrateReward.value);
+//     _addReward(result, valleyIVBattleCrateReward.value);
+//     _addReward(result, valleyIVDeltaBotReward.value);
+//     _addReward(result, valleyIVSimulationReward.value);
+//     _addReward(result, wulingRegionalStockBillStoreReward.value);
+//     _addReward(result, wulingRegionalDevelopmentReward.value);
+//     _addReward(result, wulingAuryleneCollectReward.value);
+//     _addReward(result, wulingCrateReward.value);
+//     _addReward(result, wulingDeltaBotReward.value);
+//     _addReward(result, wulingSimulationReward.value);
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.regional = _getPull(result);
+//   }
+//
+//   function _levelRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '等级奖励',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//
+//     _addReward(result, authorityLevelTaskRewards.value);
+//     _addReward(result, authorityLevelUpReward.value);
+//     _addReward(result, worldLevelReward.value);
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.level = _getPull(result);
+//   }
+//
+//   function _permanentRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '常驻奖励',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//     _addReward(result, beginnerSignInTaskReward.value);
+//     _addReward(result, newHorizonsTaskReward.value);
+//     _addReward(result, valleyIVTaskRewardTable.value);
+//     _addReward(result,wulingTaskRewardTable.value);
+//     _addReward(result, defenseConstructionReward.value);
+//     _addReward(result, etchSpaceSalvageReward.value);
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.permanent = _getPull(result);
+//   }
+//
+//   function _operationalManualRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '行动手册',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//
+//     _addReward(result, operationalManualNodeReward.value);
+//     _addReward(result, operationalManualReward.value);
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.operationalManual = _getPull(result);
+//   }
+//
+//   function _paidResourcesStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '氪金资源',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//
+//     // 计算月卡
+//     if (rechargeResources.value.monthlyPass) {
+//       const monthlyPack = packs['月卡'];
+//       if (monthlyPack) {
+//         result.originiumRecharge += 12; // 一次性12源石
+//         result.diamond += rechargeResources.value.monthlyPassDays * 200; // 每天200嵌晶玉
+//       }
+//     }
+//
+//     // 计算源石配给（3源石，免费）
+//     if (rechargeResources.value.battlePass) {
+//       result.originiumRecharge += 3;
+//     }
+//
+//     // 计算协议定制（36源石，68元）
+//     if (rechargeResources.value.protocolCustomization) {
+//       result.originiumRecharge += 36;
+//     }
+//
+//     // 计算选中的礼包
+//     for (const [packId, quantity] of Object.entries(rechargeResources.value.selectedPacks)) {
+//       if (quantity > 0 && packs[packId as keyof typeof packs]) {
+//         const pack = packs[packId as keyof typeof packs];
+//         if (pack && pack.contents) {
+//           for (const item of pack.contents) {
+//             if (item.itemId === 'item_originium_recharge') {
+//               result.originiumRecharge += item.quantity * quantity;
+//             } else if (item.itemId === 'item_diamond') {
+//               result.diamond += item.quantity * quantity;
+//             } else if (item.itemId === 'item_ticketgacha_special_single') {
+//               result.ticketgachaSpecialSingle += item.quantity * quantity;
+//             } else if (item.itemId === 'item_ticketgacha_standard_single') {
+//               result.ticketgachaStandardSingle += item.quantity * quantity;
+//             } else if (item.itemId.includes('ticketgacha_special_ten')) {
+//               result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
+//             }
+//           }
+//         }
+//       }
+//     }
+//
+//     // 计算源石
+//     for (const [stoneId, quantity] of Object.entries(rechargeResources.value.originiumStones)) {
+//       if (quantity > 0 && packs[stoneId as keyof typeof packs]) {
+//         const stone = packs[stoneId as keyof typeof packs];
+//         if (stone && stone.contents) {
+//           for (const item of stone.contents) {
+//             if (item.itemId === 'item_originium_recharge') {
+//               result.originiumRecharge += item.quantity * quantity;
+//             }
+//           }
+//         }
+//       }
+//     }
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.recharge = _getPull(result);
+//   }
+//
+//   function _totalRewardStatistics(): void {
+//     const result: RewardStatisticsResultDetail = {
+//       name: '共计',
+//       originiumRecharge: 0,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0
+//     };
+//     for (const item of list) {
+//       result.originiumRecharge += item.originiumRecharge;
+//       result.diamond += item.diamond;
+//       result.ticketgachaStandardSingle += item.ticketgachaStandardSingle;
+//       result.ticketgachaSpecialSingle += item.ticketgachaSpecialSingle;
+//     }
+//
+//     totalResourceStatisticsResultDetail.value = result;
+//
+//     list.push(result);
+//     gachaResourceStatisticsResult.value.totalPulls.total = _getPull(result);
+//   }
+//
+//   function _addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward[]): void {
+//     if (Array.isArray(reward)) {
+//       for (const item of reward) {
+//         if (item.active) {
+//           result.originiumRecharge += item.content.originiumRecharge;
+//           result.diamond += item.content.diamond;
+//           result.ticketgachaStandardSingle += item.content.ticketgachaStandardSingle;
+//           result.ticketgachaSpecialSingle += item.content.ticketgachaSpecialSingle;
+//         }
+//       }
+//     } else {
+//       if (reward.active) {
+//         result.originiumRecharge += reward.content.originiumRecharge;
+//         result.diamond += reward.content.diamond;
+//         result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
+//         result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+//       }
+//     }
+//   }
+//
+//   _existingRewardStatistics();
+//   _activityRewardStatistics();
+//   _otherRewardStatistics();
+//   _dailyRewardStatistics();
+//   _regionalRewardStatistics();
+//   _levelRewardStatistics();
+//   _permanentRewardStatistics();
+//   _operationalManualRewardStatistics();
+//   _paidResourcesStatistics();
+//   _totalRewardStatistics();
+//
+//   pieChartData = [];
+//   for (const key in gachaResourceStatisticsResult.value.totalPulls) {
+//     const totalPullsSingle: TotalPullsSingle = gachaResourceStatisticsResult.value.totalPulls[
+//       key
+//       ] as TotalPullsSingle;
+//     if (totalPullsSingle === undefined) {
+//       continue;
+//     }
+//     const value: number = totalPullsSingle.ticketgachaSpecialSingle || 0;
+//
+//     if ('total' === key || value === 0) {
+//       continue;
+//     }
+//     pieChartData.push({
+//       value: numberFloor(value),
+//       name: t(`page.tools.gachaCalculator.${key}`) + t(`page.tools.gachaCalculator.reward`)
+//     });
+//   }
+//
+//   setPieChart(pieChartData);
+//
+//   resourceStatisticsResultDetailList.value = list;
+//
+//   function _getPull(result: RewardStatisticsResultDetail): TotalPullsSingle {
+//     return {
+//       ticketgachaStandardSingle: result.ticketgachaStandardSingle,
+//       ticketgachaSpecialSingle:
+//         result.diamond / 500 +
+//         (result.originiumRecharge * 75) / 500 +
+//         result.ticketgachaSpecialSingle
+//     };
+//   }
+// };
 // pieChartData.value[0].value = 1;

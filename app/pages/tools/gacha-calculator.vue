@@ -1233,7 +1233,10 @@ const allRewardStatisticsV2 = (): void => {
     result.ticketgachaSpecialSingle += item.ticketgachaSpecialSingle;
   }
 
-  list.push(result);
+
+
+  totalResourceStatisticsResultDetail.value = result
+
   gachaResourceStatisticsResult.value.totalPulls.total = getPull(result);
 
   resourceStatisticsResultDetailList.value = list;
@@ -1253,7 +1256,7 @@ const allRewardStatisticsV2 = (): void => {
     }
     pieChartData.push({
       value: numberFloor(value),
-      name: t(`page.tools.gachaCalculator.${key}`) + t(`page.tools.gachaCalculator.reward`)
+      name: t(`page.tools.gachaCalculator.${key}`)
     });
   }
 
@@ -1279,15 +1282,19 @@ let pieChartData: PieChartData[] = [
 function setPieChart(data: PieChartData[]) {
   const option = {
     tooltip: {
+      confine: true, // 限制 tooltip 在图表容器内显示
+      trigger: 'item',
       formatter: (params: any) => {
         // ECharts 饼图的 params 可能是单个对象或数组
         const param = Array.isArray(params) ? params[0] : params;
-        return t('page.tools.gachaCalculator.pieChartTooltip', {
-          seriesName: param.seriesName || '',
-          name: param.name || '',
-          value: param.value || 0,
-          percent: param.percent || 0
-        });
+        // 使用 HTML 换行标签
+        return `
+          <div>
+            <div> ${param.name || ''}</div>
+            <div>${param.seriesName || ''}</div>
+            <div> ${(param.percent || 0).toFixed(1)}%</div>
+          </div>
+        `;
       }
     },
 
