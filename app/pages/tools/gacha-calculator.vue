@@ -1787,7 +1787,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                 <thead>
                   <tr>
                     <td>模块</td>
-                    <td >操作</td>
+                    <td>操作</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -1871,7 +1871,7 @@ function checkRewardIsValid(reward: Reward): boolean {
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-        <div style="width: 100%; height: 80px" />
+        <div  class="placeholder-block" />
       </div>
       <!--      <div>-->
       <!--        {{ JSON.stringify(allGachaResource) }}-->
@@ -2656,7 +2656,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   margin: 4px;
 }
 
-.gacha-calculator-result-detail-table-icon{
+.gacha-calculator-result-detail-table-icon {
   width: 36px;
   height: 36px;
 }
@@ -2671,6 +2671,12 @@ function checkRewardIsValid(reward: Reward): boolean {
   width: 36px;
   height: 36px;
   margin: 0 12px 0 0;
+}
+
+.placeholder-block {
+  width: 100%;
+  height: 80px;
+  display: block;
 }
 
 @media screen and (max-width: 600px) {
@@ -2745,17 +2751,21 @@ function checkRewardIsValid(reward: Reward): boolean {
     font-size: 0.8rem;
   }
 
-  .gacha-calculator-result-detail-table{
+  .gacha-calculator-result-detail-table {
     font-size: 0.6rem;
   }
 
-  .gacha-calculator-result-detail-table-icon{
-     width: 24px;
-     height: 24px;
+  .gacha-calculator-result-detail-table-icon {
+    width: 24px;
+    height: 24px;
   }
 
   .content-container {
     padding: 0.5rem;
+  }
+
+  .placeholder-block {
+    display: none;
   }
 }
 
