@@ -1527,13 +1527,11 @@ function clearOrSelectAllLevelModule(action: boolean) {
 }
 
 
-function clearOrSelectAllPermanentModule(action: boolean) {
+function clearOrSelectAllOtherPermanentModule(action: boolean) {
   clearOrSelectAll(action, 'rangeSlider', beginnerCheckInTaskProgress,[0,14]);
   clearOrSelectAll(action, 'button', newHorizonsTaskReward);
-  clearOrSelectAll(action, 'button', valleyIVTaskRewardTable);
-  clearOrSelectAll(action, 'button', wulingTaskRewardTable);
   clearOrSelectAll(action, 'rangeSlider', defenseConstructionProgress, [0, 1280]);
-  clearOrSelectAll(action, 'button', etchSpaceSalvageReward);
+
 }
 
 function clearOrSelectAllPermanentValleyIVTaskModule(action: boolean) {
@@ -1791,7 +1789,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 
           <v-expansion-panel>
             <v-expansion-panel-title class="gacha-calculator-card-title">
-              <div>快捷设置</div>
+              <div>一键全选或清空</div>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-table style="text-align: center">
@@ -1808,7 +1806,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                 </thead>
                 <tbody>
                 <tr>
-                  <td>活动奖励模块</td>
+                  <td>活动奖励</td>
                   <td>
                     <v-btn
                       color="red"
@@ -1827,7 +1825,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                   </td>
                 </tr>
                 <tr>
-                  <td>其他奖励模块</td>
+                  <td>其他奖励</td>
                   <td>
                     <v-btn
                       color="red"
@@ -1846,7 +1844,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                   </td>
                 </tr>
                 <tr>
-                  <td>地区奖励模块</td>
+                  <td>地区奖励</td>
                   <td>
                     <v-btn
                       color="red"
@@ -1865,7 +1863,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                   </td>
                 </tr>
                 <tr>
-                  <td>等级奖励模块</td>
+                  <td>等级奖励</td>
                   <td>
                     <v-btn
                       color="red"
@@ -1884,13 +1882,13 @@ function checkRewardIsValid(reward: Reward): boolean {
                   </td>
                 </tr>
                 <tr>
-                  <td>常驻奖励模块</td>
+                  <td>常驻奖励-其他</td>
                   <td>
                     <v-btn
                       color="red"
                       text="清空所有选中奖励"
                       style="margin: 8px"
-                      @click="clearOrSelectAllPermanentModule(false)"
+                      @click="clearOrSelectAllOtherPermanentModule(false)"
                     />
                   </td>
                   <td>
@@ -1898,7 +1896,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                       color="blue"
                       text="选中所有奖励"
                       style="margin: 8px"
-                      @click="clearOrSelectAllPermanentModule(true)"
+                      @click="clearOrSelectAllOtherPermanentModule(true)"
                     />
                   </td>
                 </tr>
@@ -1917,7 +1915,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                       color="blue"
                       text="选中所有奖励"
                       style="margin: 8px"
-                      @click="clearOrSelectAllPermanentModule(true)"
+                      @click="clearOrSelectAllPermanentValleyIVTaskModule(true)"
                     />
                   </td>
                 </tr>
@@ -1941,7 +1939,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                   </td>
                 </tr>
                 <tr>
-                  <td>常驻奖励—武陵任务</td>
+                  <td>常驻奖励—蚀刻遗像</td>
                   <td>
                     <v-btn
                       color="red"
@@ -1960,7 +1958,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                   </td>
                 </tr>
                 <tr>
-                  <td>行动手册模块</td>
+                  <td>行动手册</td>
                   <td>
                     <v-btn
                       color="red"
@@ -2545,7 +2543,7 @@ function checkRewardIsValid(reward: Reward): boolean {
           <v-expansion-panel value="permanent">
             <v-expansion-panel-title class="gacha-calculator-card-title">
               <div>
-                常驻奖励总计
+                常驻奖励-其他，以下常驻总计
                 {{
                   numberFloor(
                     gachaResourceStatisticsResult.totalPulls.permanent?.ticketgachaSpecialSingle,
