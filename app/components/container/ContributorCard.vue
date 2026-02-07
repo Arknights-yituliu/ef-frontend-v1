@@ -160,7 +160,7 @@ onBeforeUnmount(() => {
             :src="props.contributor.avatarImg"
             class="card__avatar"
             loading="lazy"
-          >
+          />
         </div>
         <div class="card__content">
           <div class="card__meta">
@@ -168,7 +168,7 @@ onBeforeUnmount(() => {
               v-if="contributor.link"
               :href="contributor.link"
               class="card__profile-link"
-              rel="noopener"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <span>{{ t('component.contributorCard.profileLink') }}</span>

@@ -50,8 +50,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
       }
 
       // 在新窗口打开文档页面
-      // 'noopener' 参数用于安全防护，防止新页面访问 window.opener
-      window.open(targetUrl, '_blank', 'noopener');
+      window.open(targetUrl, '_blank', 'noopener noreferrer');
     }
     // 中止当前导航，因为已经在 new 窗口打开了
     // 这样可以保持用户停留在原页面
