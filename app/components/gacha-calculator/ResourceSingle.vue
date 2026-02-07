@@ -66,4 +66,17 @@ function getImageUrl(itemId: string): string {
   align-items: center;
   padding: 0 4px;
 }
+
+@media screen and (max-width: 600px) {
+
+  .gacha-calculator-resource-single{
+    font-size: 0.8rem;
+  }
+
+  .gacha-calculator-resource-single-title {
+    width: 150px;
+    text-align: start;
+  }
+}
+
 </style>

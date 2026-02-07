@@ -187,7 +187,7 @@ onUnmounted(() => {
 /* 小屏幕上减少页面内边距 */
 @media screen and (max-width: 600px) {
   .content-container {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 }
 
