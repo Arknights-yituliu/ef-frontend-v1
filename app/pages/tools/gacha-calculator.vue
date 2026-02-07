@@ -1239,6 +1239,8 @@ const allRewardStatisticsV2 = (): void => {
 
   gachaResourceStatisticsResult.value.totalPulls.total = getPull(result);
 
+  list.push(result)
+
   resourceStatisticsResultDetailList.value = list;
 
   pieChartData = [];
