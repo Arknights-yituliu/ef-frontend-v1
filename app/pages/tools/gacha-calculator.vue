@@ -84,15 +84,7 @@ const leftPartPanel = ref<string[]>(['statisticalResult', 'detail']);
 const rightPartPanel = ref<string[]>([]);
 
 const poolOptions = ref<PoolOption[]>([
-  {
-    name: '熔火灼痕',
-    color: '#B60129',
-    start: new Date('2026/01/22 10:00:00'),
-    end: new Date('2026/02/07 12:00:00'),
-    dateText: '01.22——02.07',
-    type: '熔火灼痕',
-    disabled: false,
-  },
+
   {
     name: '轻飘飘的信使',
     color: '#BE2F00',
@@ -111,16 +103,25 @@ const poolOptions = ref<PoolOption[]>([
     type: '热烈色彩',
     disabled: true,
   },
+  {
+    name: '敬请期待',
+    color: '#B60129',
+    start: new Date('2026/03/12 10:00:00'),
+    end: new Date('2026/03/28 12:00:00'),
+    dateText: '',
+    type: '1111',
+    disabled: false,
+  },
 ]);
 
-const currentPool = ref<PoolOption>({
-  name: '熔火灼痕',
-  color: '#B60129',
-  start: new Date('2026/01/22 10:00:00'),
-  end: new Date('2026/02/07 12:00:00'),
-  dateText: '01.22——02.07',
-  type: '熔火灼痕',
-  disabled: false,
+const currentPool = ref<PoolOption>( {
+  name: '轻飘飘的信使',
+  color: '#BE2F00',
+  start: new Date('2026/02/07 10:00:00'),
+  end: new Date('2026/02/24 12:00:00'),
+  dateText: '02.07——02.24',
+  type: '轻飘飘的信使',
+  disabled: true,
 });
 
 const startDate: Date = new Date();

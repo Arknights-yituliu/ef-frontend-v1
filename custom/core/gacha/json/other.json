@@ -9,7 +9,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -27,7 +27,7 @@
     "end": "2026/02/24 10:00:00",
     "type": "通用",
     "module": "其他",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -45,7 +45,7 @@
     "end": "2026/01/29 10:00:00",
     "type": "通用",
     "module": "问卷",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -63,7 +63,7 @@
     "end": "2026/01/31 10:00:00",
     "type": "通用",
     "module": "问卷",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -81,7 +81,7 @@
     "end": "2026/02/04 10:00:00",
     "type": "通用",
     "module": "问卷",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -99,7 +99,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "森空岛",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -117,7 +117,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "森空岛",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 120,
@@ -136,7 +136,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "森空岛",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 90,
@@ -154,7 +154,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "森空岛",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 90,
@@ -172,7 +172,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "兑换码",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 500,
@@ -190,7 +190,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "兑换码",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 1500,
@@ -208,7 +208,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "兑换码",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -226,7 +226,7 @@
     "end": "2099/12/31 10:00:00",
     "type": "通用",
     "module": "其他",
-    "active": true,
+    "active": false,
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
@@ -243,7 +243,7 @@
   "end": "2099/12/31 10:00:00",
   "type": "通用",
   "module": "其他",
-  "active": true,
+  "active": false,
   "content": {
     "originiumRecharge": 0,
     "diamond": 100,
