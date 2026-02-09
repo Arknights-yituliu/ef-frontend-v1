@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <v-container>
     <header class="page-title">{{ $t('page.others.friendLinks.friendLinks') }}</header>
     <p class="page-description">{{ $t('page.others.friendLinks.friendLinksDescription') }}</p>
 
@@ -27,7 +27,7 @@
               :src="link.icon_url"
               class="link-icon"
               @error="handleImageError"
-            >
+            />
             <h3 class="link-name">{{ getLocalizedValue(link.localized_name) }}</h3>
           </div>
 
@@ -76,7 +76,7 @@
         </div>
       </ContainerSpotlightCard>
     </section>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>
