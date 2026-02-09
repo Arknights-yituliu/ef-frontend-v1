@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <v-container>
     <h1 class="page-title">{{ $t('page.others.test.title') }}</h1>
     <p class="page-description">{{ $t('page.others.test.description') }}</p>
 
@@ -131,7 +131,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </div>
+  </v-container>
 </template>
 
 <script setup lang="ts">

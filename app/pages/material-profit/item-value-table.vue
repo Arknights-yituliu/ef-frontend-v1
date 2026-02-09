@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <v-container>
     <header class="page-title">{{ $t('page.materialProfit.itemValueTable.title') }}</header>
     <!--    <p class="page-description">{{ $t('page.materialProfit.itemValueTable.description') }}</p>-->
 
@@ -94,7 +94,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>

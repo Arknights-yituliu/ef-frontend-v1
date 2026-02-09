@@ -20,7 +20,7 @@
             <template v-if="isMobile">点击热能池到需要烧掉的电池上，其余电池认为送回仓库</template>
             <template v-else>拖拽热能池到需要烧掉的电池上，其余电池认为送回仓库</template>
           </span>
-        </div>          
+        </div>
       </div>
 
       <!-- 电池类型选择 + 输入设置 -->
@@ -31,7 +31,7 @@
               v-for="(config, key) in batteryConfig"
               :key="key"
               class="battery-button"
-              :class="{ 'active': selectedBattery === key }"
+              :class="{ active: selectedBattery === key }"
               @click="selectBattery(key as keyof typeof batteryConfig)"
             >
               <div class="battery-icon">🔋</div>
@@ -42,7 +42,7 @@
             </div>
           </div>
 
-          <v-divider class="my-4"/>
+          <v-divider class="my-4" />
 
           <v-row>
             <v-col cols="12" sm="4">
@@ -100,7 +100,7 @@
                 </g>
               </g>
             </svg>
-            
+
             <NodeCard
               :node="outputNode"
               :depth="0"
@@ -112,10 +112,11 @@
             />
           </div>
 
-          <div v-if="outputNode.children && outputNode.children.length > 0" class="text-center mt-4">
-            <v-btn color="error" variant="flat" @click="resetTree">
-              重置配置
-            </v-btn>
+          <div
+            v-if="outputNode.children && outputNode.children.length > 0"
+            class="text-center mt-4"
+          >
+            <v-btn color="error" variant="flat" @click="resetTree"> 重置配置 </v-btn>
           </div>
         </v-card-text>
       </v-card>
@@ -125,14 +126,14 @@
         <v-card-title class="text-h6">计算结果</v-card-title>
         <v-card-text>
           <div class="result-content">
-            <div 
-              v-for="(item, index) in resultItems" 
-              :key="index" 
+            <div
+              v-for="(item, index) in resultItems"
+              :key="index"
               class="result-item"
-              :class="{ 
-                highlight: item.highlight, 
+              :class="{
+                highlight: item.highlight,
                 blue: item.color === 'blue',
-                yellow: item.color === 'yellow'
+                yellow: item.color === 'yellow',
               }"
             >
               <div class="result-label">{{ item.label }}</div>
@@ -141,21 +142,35 @@
           </div>
         </v-card-text>
       </v-card>
-
     </div>
 
     <!-- 移动端节点操作面板 -->
-    <div v-if="isMobile && showMobileActionPanel" class="mobile-action-panel" @click="closeActionPanel">
+    <div
+      v-if="isMobile && showMobileActionPanel"
+      class="mobile-action-panel"
+      @click="closeActionPanel"
+    >
       <div class="action-panel-content" @click.stop>
         <div class="panel-body">
           <div class="node-info-text">
             <div class="node-info-row">
-              <span class="node-type">{{ selectedNode?.type === 'output' ? '输出口' : selectedNode?.type === 'splitter' ? '分流器' : selectedNode?.type === 'storage' ? '仓库' : '热能池' }}</span>
+              <span class="node-type">{{
+                selectedNode?.type === 'output'
+                  ? '输出口'
+                  : selectedNode?.type === 'splitter'
+                    ? '分流器'
+                    : selectedNode?.type === 'storage'
+                      ? '仓库'
+                      : '热能池'
+              }}</span>
               <span class="node-rate">{{ selectedNode?.rate.toFixed(2) }}/min</span>
             </div>
           </div>
-          
-          <div v-if="selectedNode?.type === 'output' || selectedNode?.type === 'splitter'" class="action-buttons">
+
+          <div
+            v-if="selectedNode?.type === 'output' || selectedNode?.type === 'splitter'"
+            class="action-buttons"
+          >
             <button class="action-button splitter-btn" @click="addChildToSelected('splitter')">
               <span class="btn-icon">🔀</span>
               <span class="btn-text">添加分流器</span>
@@ -165,8 +180,12 @@
               <span class="btn-text">添加热能池</span>
             </button>
           </div>
-          
-          <button v-if="selectedNode?.type !== 'output'" class="action-button delete-btn" @click="deleteSelectedNode">
+
+          <button
+            v-if="selectedNode?.type !== 'output'"
+            class="action-button delete-btn"
+            @click="deleteSelectedNode"
+          >
             <span class="btn-icon">🗑️</span>
             <span class="btn-text">删除此节点</span>
           </button>
@@ -178,16 +197,16 @@
     <div v-if="!isMobile" class="fixed-sidebar-tools">
       <h3 class="sidebar-title">拖拽设备到节点上</h3>
       <div class="sidebar-tools-list">
-        <div 
-          class="sidebar-tool-item" 
+        <div
+          class="sidebar-tool-item"
           draggable="true"
           @dragstart="onToolDragStart($event, 'splitter')"
         >
           <span class="sidebar-tool-icon">🔀</span>
           <span class="sidebar-tool-name">分流器</span>
         </div>
-        <div 
-          class="sidebar-tool-item" 
+        <div
+          class="sidebar-tool-item"
           draggable="true"
           @dragstart="onToolDragStart($event, 'thermal')"
         >
@@ -220,8 +239,8 @@ const selectedBattery = ref('source');
 // 简单的防抖函数
 const debounce = <T extends (...args: any[]) => any>(
   func: T,
-  duration: number = 500
-): (...args: Parameters<T>) => void => {
+  duration: number = 500,
+): ((...args: Parameters<T>) => void) => {
   let timeout: any = 0;
   return function (this: any, ...args: Parameters<T>) {
     clearTimeout(timeout);
@@ -239,13 +258,14 @@ const checkIsMobile = () => {
   if (typeof navigator === 'undefined') return false;
   const userAgent = navigator.userAgent || navigator.vendor || '';
   // 精确的移动设备检测，iPad始终被视为移动设备
-  const mobileRegex = /android(?!.*mobile)|iphone|ipod|ipad|blackberry|iemobile|opera mini|windows phone|kindle|silk/i;
+  const mobileRegex =
+    /android(?!.*mobile)|iphone|ipod|ipad|blackberry|iemobile|opera mini|windows phone|kindle|silk/i;
   return mobileRegex.test(userAgent);
 };
 
 if (typeof window !== 'undefined') {
   isMobile.value = checkIsMobile();
-  
+
   // 给body添加类，用于CSS样式控制
   const updateBodyClass = () => {
     if (isMobile.value) {
@@ -265,7 +285,7 @@ const batteryConfig = {
   'low-gu': { power: 220, time: 40, name: '低容谷地电池' },
   'mid-gu': { power: 420, time: 40, name: '中容谷地电池' },
   'high-gu': { power: 1100, time: 40, name: '高容谷地电池' },
-  'low-wu': { power: 1600, time: 40, name: '低容武陵电池' }
+  'low-wu': { power: 1600, time: 40, name: '低容武陵电池' },
 };
 
 // 选择电池类型
@@ -286,12 +306,42 @@ const totalPowerWithOther = ref(0);
 
 // 计算结果项
 const resultItems = computed(() => [
-  { label: '电池类型', value: batteryConfig[selectedBattery.value as keyof typeof batteryConfig].name, highlight: false, color: 'default' },
-  { label: '燃烧电池', value: `${burnedCount.value.toFixed(2)} 个/分钟`, highlight: false, color: 'default' },
-  { label: '需要热能池个数', value: `${simultaneousBurning.value.toFixed(2)}（${thermalPoolsNeeded.value}）`, highlight: false, color: 'default' },
-  { label: '其他来源电力', value: `${otherPower.value.toFixed(2)} ⚡`, highlight: false, color: 'default' },
-  { label: '平均输出功率', value: `${totalPower.value.toFixed(2)} ⚡`, highlight: false, color: 'default' },
-  { label: '总电力', value: `${totalPowerWithOther.value.toFixed(2)} ⚡`, highlight: true, color: 'blue' }
+  {
+    label: '电池类型',
+    value: batteryConfig[selectedBattery.value as keyof typeof batteryConfig].name,
+    highlight: false,
+    color: 'default',
+  },
+  {
+    label: '燃烧电池',
+    value: `${burnedCount.value.toFixed(2)} 个/分钟`,
+    highlight: false,
+    color: 'default',
+  },
+  {
+    label: '需要热能池个数',
+    value: `${simultaneousBurning.value.toFixed(2)}（${thermalPoolsNeeded.value}）`,
+    highlight: false,
+    color: 'default',
+  },
+  {
+    label: '其他来源电力',
+    value: `${otherPower.value.toFixed(2)} ⚡`,
+    highlight: false,
+    color: 'default',
+  },
+  {
+    label: '平均输出功率',
+    value: `${totalPower.value.toFixed(2)} ⚡`,
+    highlight: false,
+    color: 'default',
+  },
+  {
+    label: '总电力',
+    value: `${totalPowerWithOther.value.toFixed(2)} ⚡`,
+    highlight: true,
+    color: 'blue',
+  },
 ]);
 
 // 输出口作为根节点
@@ -299,7 +349,7 @@ const outputNode = ref<Node>({
   id: 'output',
   type: 'output',
   rate: 30,
-  children: []
+  children: [],
 });
 
 const draggedTool = ref<Node['type'] | null>(null);
@@ -325,22 +375,22 @@ interface FlowLine {
 const calculateArrowPoints = (x1: number, y1: number, x2: number, y2: number): string => {
   const arrowSize = 8; // 箭头大小
   const angle = Math.atan2(y2 - y1, x2 - x1);
-  
+
   // 在线条终点稍前一点的位置开始绘制箭头
   const offset = 2; // 箭头向后偏移，避免被节点卡片遮挡
   const tipX = x2 - offset * Math.cos(angle);
   const tipY = y2 - offset * Math.sin(angle);
-  
+
   // 计算箭头两个底边的点
   const leftAngle = angle + Math.PI * 0.85;
   const rightAngle = angle - Math.PI * 0.85;
-  
+
   const leftX = tipX + arrowSize * Math.cos(leftAngle);
   const leftY = tipY + arrowSize * Math.sin(leftAngle);
-  
+
   const rightX = tipX + arrowSize * Math.cos(rightAngle);
   const rightY = tipY + arrowSize * Math.sin(rightAngle);
-  
+
   return `${tipX},${tipY} ${leftX},${leftY} ${rightX},${rightY}`;
 };
 
@@ -350,69 +400,69 @@ const flowLines = ref<FlowLine[]>([]);
 // 计算连接线的函数
 const calculateFlowLines = () => {
   const lines: FlowLine[] = [];
-  
+
   // 如果容器还没渲染，返回空数组
   if (!treeContainerRef.value) {
     flowLines.value = lines;
     return;
   }
-  
+
   // 先收集所有需要连接的父子对，避免遍历顺序影响结果
   const connections: Array<{ parentNode: Node; childNode: Node }> = [];
-  
+
   const collectConnections = (node: Node) => {
     if ((node.type === 'output' || node.type === 'splitter') && node.children) {
-      node.children.forEach(child => {
+      node.children.forEach((child) => {
         connections.push({ parentNode: node, childNode: child });
         // 递归处理子节点
         collectConnections(child);
       });
     }
   };
-  
+
   collectConnections(outputNode.value);
-  
+
   // 收集所有节点及其位置信息
   const nodesWithPositions = new Map<string, HTMLElement>();
-  
+
   const traverse = (node: Node, depth: number, parentId?: string) => {
     const nodeElements = treeContainerRef.value?.querySelectorAll(`[data-node-id="${node.id}"]`);
     if (nodeElements && nodeElements.length > 0) {
       const element = nodeElements[0] as HTMLElement;
       nodesWithPositions.set(node.id, element);
     }
-    
+
     if (node.children) {
-      node.children.forEach(child => traverse(child, depth + 1, node.id));
+      node.children.forEach((child) => traverse(child, depth + 1, node.id));
     }
   };
-  
+
   traverse(outputNode.value, 0);
-  
+
   // 为每个连接生成简单的垂直线
   connections.forEach(({ parentNode, childNode }) => {
     const parentElement = nodesWithPositions.get(parentNode.id);
     const childElement = nodesWithPositions.get(childNode.id);
-    
+
     if (parentElement && childElement && treeContainerRef.value) {
       const parentRect = parentElement.getBoundingClientRect();
       const childRect = childElement.getBoundingClientRect();
       const containerRect = treeContainerRef.value.getBoundingClientRect();
-      
+
       // 使用子节点的x坐标，使线条完全垂直
       const childX = childRect.left - containerRect.left + childRect.width / 2;
       const parentY = parentRect.bottom - containerRect.top;
       const childY = childRect.top - containerRect.top;
-      
+
       // 统一使用灰色线条
       const lineColor = '#999';
-      
+
       // 根据子节点的速率与初始速度的比例计算线条宽度
       // 初始节点的连接线宽度为144px
       const baseWidth = 144;
       const ratio = childNode.rate / initialRate.value;
       const lineWidth = Math.max(2, baseWidth * ratio); // 最小2px
-      
+
       // 确保坐标是有效的
       if (!isNaN(childX) && !isNaN(parentY) && !isNaN(childY)) {
         lines.push({
@@ -422,12 +472,12 @@ const calculateFlowLines = () => {
           y2: childY,
           color: lineColor,
           width: lineWidth,
-          showArrow: true
+          showArrow: true,
         });
       }
     }
   });
-  
+
   flowLines.value = lines;
 };
 
@@ -444,26 +494,29 @@ const handleNodeClick = (node: Node) => {
 
 // 添加子节点到选中节点
 const addChildToSelected = async (toolType: Node['type']) => {
-  if (selectedNode.value && (selectedNode.value.type === 'output' || selectedNode.value.type === 'splitter')) {
+  if (
+    selectedNode.value &&
+    (selectedNode.value.type === 'output' || selectedNode.value.type === 'splitter')
+  ) {
     if (!selectedNode.value.children) {
       selectedNode.value.children = [];
     }
-    
+
     selectedNode.value.children.push({
       id: generateId(),
       type: toolType,
       rate: 0,
-      children: toolType === 'splitter' ? [] : undefined
+      children: toolType === 'splitter' ? [] : undefined,
     });
-    
+
     recalculateRates();
     calculatePower();
-    
+
     // 等待DOM更新后再关闭面板，确保连接线已经绘制
     await nextTick();
     // 再次等待，确保Vue的DOM更新和浏览器的重排都完成
-    await new Promise(resolve => setTimeout(resolve, 0));
-    
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
     showMobileActionPanel.value = false;
   }
 };
@@ -486,7 +539,7 @@ const closeActionPanel = () => {
 const removeNode = (nodeId: string) => {
   const findAndRemove = (node: Node): boolean => {
     if (node.children) {
-      const index = node.children.findIndex(child => child.id === nodeId);
+      const index = node.children.findIndex((child) => child.id === nodeId);
       if (index !== -1) {
         node.children.splice(index, 1);
         return true;
@@ -499,7 +552,7 @@ const removeNode = (nodeId: string) => {
     }
     return false;
   };
-  
+
   findAndRemove(outputNode.value);
   recalculateRates();
   calculatePower();
@@ -525,17 +578,17 @@ const resetTree = () => {
 // 重新计算所有节点的流量
 const recalculateRates = () => {
   outputNode.value.rate = initialRate.value;
-  
+
   const calculateNodeRate = (node: Node) => {
     if (node.children && node.children.length > 0) {
       const outputRate = node.rate / node.children.length;
-      node.children.forEach(child => {
+      node.children.forEach((child) => {
         child.rate = outputRate;
         calculateNodeRate(child);
       });
     }
   };
-  
+
   calculateNodeRate(outputNode.value);
 };
 
@@ -545,7 +598,7 @@ const calculatePower = () => {
   let burned = 0;
   let hasThermal = false;
   let hasStorage = false;
-  
+
   const traverseNode = (node: Node) => {
     if (node.type === 'storage') {
       storage += node.rate;
@@ -554,14 +607,14 @@ const calculatePower = () => {
       burned += node.rate;
       hasThermal = true;
     }
-    
+
     if (node.children) {
-      node.children.forEach(child => traverseNode(child));
+      node.children.forEach((child) => traverseNode(child));
     }
   };
-  
+
   traverseNode(outputNode.value);
-  
+
   if (!hasThermal && !hasStorage) {
     storageCount.value = initialRate.value;
     burnedCount.value = 0;
@@ -573,21 +626,21 @@ const calculatePower = () => {
     burnedCount.value = burned;
     // 送入仓库 = 总数 - 烧掉的电池数
     storageCount.value = initialRate.value - burned;
-    
+
     // 同时燃烧的电池数 = 每分钟燃烧数 * (燃烧时间秒 / 60)
     const burnTimeMinutes = burnTimeSeconds.value / 60;
     simultaneousBurning.value = burned * burnTimeMinutes;
-    
+
     // 需要热能池个数 = 向上取整(同时燃烧电池数 / 每个热能池容量)
     // 假设每个热能池可以同时燃烧1个电池
     thermalPoolsNeeded.value = Math.ceil(simultaneousBurning.value);
-    
+
     // 每秒电力输出 = 同时燃烧的电池数 * 每秒电力
     powerPerSecond.value = simultaneousBurning.value * powerPerBattery.value;
-    
+
     // 平均输出功率 = 每秒电力输出
     totalPower.value = powerPerSecond.value;
-    
+
     // 总电力 = 平均输出功率 + 其他来源电力
     totalPowerWithOther.value = powerPerSecond.value + otherPower.value;
   }
@@ -600,27 +653,31 @@ const handleInputChange = () => {
 };
 
 // 监听outputNode的children变化，自动重新计算流量、电力和连接线
-watch(() => outputNode.value.children, async () => {
-  recalculateRates();
-  calculatePower();
-  await nextTick();
-  // 调用计算函数更新连接线
-  calculateFlowLines();
-}, { deep: true });
+watch(
+  () => outputNode.value.children,
+  async () => {
+    recalculateRates();
+    calculatePower();
+    await nextTick();
+    // 调用计算函数更新连接线
+    calculateFlowLines();
+  },
+  { deep: true },
+);
 
 // 监听窗口大小变化，重新计算路径
 onMounted(() => {
   const handleResize = debounce(() => {
     calculateFlowLines();
   }, 100);
-  
+
   window.addEventListener('resize', handleResize);
-  
+
   // 初始化时计算一次连接线
   nextTick(() => {
     calculateFlowLines();
   });
-  
+
   onUnmounted(() => {
     window.removeEventListener('resize', handleResize);
   });
@@ -632,7 +689,6 @@ handleInputChange();
 
 <style scoped>
 .power-calc-page {
-  min-height: 100vh;
   position: relative;
   z-index: 1;
 }
@@ -883,24 +939,24 @@ handleInputChange();
 }
 
 .result-item.highlight {
-  background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+  background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(102, 187, 106, 0.4);
 }
 
 .result-item.highlight:hover {
-  background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
   box-shadow: 0 6px 16px rgba(102, 187, 106, 0.5);
 }
 
 .result-item.blue {
-  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
 }
 
 .result-item.blue:hover {
-  background: linear-gradient(135deg, #1E88E5 0%, #1565C0 100%);
+  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
   box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
 }
 
@@ -910,13 +966,13 @@ handleInputChange();
 }
 
 .result-item.yellow {
-  background: linear-gradient(135deg, #FFC107 0%, #FFA000 100%);
+  background: linear-gradient(135deg, #ffc107 0%, #ffa000 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
 }
 
 .result-item.yellow:hover {
-  background: linear-gradient(135deg, #FFB300 0%, #FF8F00 100%);
+  background: linear-gradient(135deg, #ffb300 0%, #ff8f00 100%);
   box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
 }
 
@@ -1235,7 +1291,6 @@ handleInputChange();
 .btn-text {
   font-size: 0.9rem;
 }
-
 </style>
 
 <style>
