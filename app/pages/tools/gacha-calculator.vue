@@ -1702,7 +1702,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                   class="gacha-calculator-pool-btn-pc"
                   :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
                   @click="selectedPool(option)"
-                  >{{ option.name }}<br />{{ option.dateText }}
+                  >{{ option.name }}<br >{{ option.dateText }}
                 </v-btn>
               </v-btn-group>
               <v-btn
@@ -1710,7 +1710,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                 class="gacha-calculator-pool-btn-phone"
                 :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
                 @click="selectedPool(option)"
-                >{{ option.name }}<br />{{ option.dateText }}
+                >{{ option.name }}<br >{{ option.dateText }}
               </v-btn>
 
               <div class="gacha-calculator-warning">
@@ -1730,7 +1730,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                       alt="existing"
-                    />
+                    >
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.originiumRecharge }}
                       ({{
@@ -1744,7 +1744,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                       alt="existing"
-                    />
+                    >
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}({{
                         numberFloor(totalResourceStatisticsResultDetail.diamond / 500)
@@ -1757,7 +1757,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                       alt="existing"
-                    />
+                    >
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
                     </span>
@@ -1768,7 +1768,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                       class="gacha-calculator-gacha-item-icon"
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                       alt="existing"
-                    />
+                    >
                     <span class="gacha-calculator-statistics-result-item-text">
                       {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
                     </span>
@@ -1827,28 +1827,28 @@ function checkRewardIsValid(reward: Reward): boolean {
                         class="gacha-calculator-result-detail-table-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-result-detail-table-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-result-detail-table-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                     <th>
                       <img
                         class="gacha-calculator-result-detail-table-icon"
                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                         alt="existing"
-                      />
+                      >
                     </th>
                   </tr>
                 </thead>
@@ -1903,7 +1903,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.originiumRecharge"
                     hide-details="auto"
@@ -1918,7 +1918,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.diamond"
                     hide-details="auto"
@@ -1933,7 +1933,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.ticketgachaStandardSingle"
                     hide-details="auto"
@@ -1948,7 +1948,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                     class="gacha-calculator-gacha-item-icon"
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                     alt="existing"
-                  />
+                  >
                   <v-text-field
                     v-model="existingResource.ticketgachaSpecialSingle"
                     hide-details="auto"

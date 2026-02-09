@@ -27,7 +27,7 @@
               :src="link.icon_url"
               class="link-icon"
               @error="handleImageError"
-            />
+            >
             <h3 class="link-name">{{ getLocalizedValue(link.localized_name) }}</h3>
           </div>
 
