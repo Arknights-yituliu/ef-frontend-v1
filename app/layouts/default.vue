@@ -176,18 +176,13 @@ onUnmounted(() => {
 
 /* 增加页面内边距，限制页面宽度 */
 .content-container {
-  width: 100%;
-  max-width: 1600px;
-  min-width: 50%; /** 最大 1600px，但是如果屏幕太大了，至少也要占满一半宽度 */
-  padding: 2rem;
-  margin: auto;
   flex: 1; /* 使页面至少占满纵向空间 */
 }
 
 /* 小屏幕上减少页面内边距 */
 @media screen and (max-width: 600px) {
   .content-container {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 }
 

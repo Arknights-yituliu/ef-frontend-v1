@@ -18,10 +18,11 @@
     "tools": "Tools",
     "gachaCalculator": "Gacha Calculator",
     "essenceCalculator": "Essence Calculator",
-    "quantitativeCalculator": "Quantitative Calculator",
-    "gachaAnalysis": "Gacha Analysis",
+    "quantitativeCalculator": "Production Line Quantitative Calculator",
+    "batterySplitCalculator": "Battery Split Calculator",
     "resources": "Resource Download",
     "essenceRecognizer": "Essence Recognizer",
+    "batterySplitCalculator": "Battery Split Calculator",
     "others": "Others",
     "friendLinks": "Friend Links",
     "test": "Test",
@@ -68,6 +69,7 @@
         "factory4Graduate": "Factory Quick Graduation",
         "wulingGraduate": "Wuling Quick Graduation",
         "endfieldLab": "Get Started",
+        "startUsing": "Start Using",
         "devLog": "Dev Log",
         "openAllMap": "Open All Maps",
         "saveDelta": "Click to Save Delta Robot",
@@ -168,6 +170,11 @@
           "linkText": "Toolbox",
           "linkIcon": "mdi-toolbox",
           "description": "Includes practical tools like gacha calculator, essence calculator and gacha analysis"
+        },
+        "dige": {
+          "title": "D.I.G.E. - Thermal Energy Pond Planner",
+          "tag": "Third Party",
+          "description": "A power utility tool designed for the Arknights: Endfield industrial system."
         },
         "endfieldResources": {
           "title": "Endfield Yituliu - Resource Download",
@@ -378,7 +385,7 @@
         "selectAttributeStats": "Select Basic Attribute",
         "selectSecondaryAttribute": "Select Secondary Attribute",
         "selectSkillAttribute": "Select Skill Attribute",
-        "noValidDemand": "Please add at least one valid essence demand in the 'Demand Set' above.",
+        "noValidDemand": "Please add at least one valid essence demand in the 'Demand Set' section.",
         "debugInput": "Debug Input",
         "debugOutput": "Debug Output",
         "plan": "Plan",

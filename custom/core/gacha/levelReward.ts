@@ -1,0 +1,151 @@
+import type { ItemDict, Reward } from '#shared/types/gacha-calculator.ts';
+import authorityLevelUpRewardTable from './json/authority_level_up_reward_table.json'
+import { ref } from 'vue';
+
+
+export const itemIdDict: ItemDict = {
+  originiumRecharge: 'originium_recharge',
+  diamond: 'diamond',
+  ticketgachaStandardSingle: 'ticketgacha_standard_single',
+  ticketgachaSpecialSingle: 'ticketgacha_special_single'
+};
+
+
+
+
+
+
+export const authorityLevelTaskRewards = ref<Reward[]>([{
+  id: 'authority_level_8_task_rewards',
+  name: {
+    zh: `权限等阶8奖励`,
+    en: ''
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '权限等阶提升活动',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 10,
+    ticketgachaSpecialSingle: 0
+  }
+},
+  {
+    id: 'authority_level_15_task_rewards',
+    name: {
+      zh: `权限等阶15奖励`,
+      en: ''
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '权限等阶提升活动',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 1000,
+      ticketgachaStandardSingle: 10,
+      ticketgachaSpecialSingle: 0
+    }
+  },
+  {
+    id: 'authority_level_20_task_rewards',
+    name: {
+      zh: `权限等阶20奖励`,
+      en: ''
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '权限等阶提升活动',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 1000,
+      ticketgachaStandardSingle: 10,
+      ticketgachaSpecialSingle: 0
+    }
+  },
+  {
+    id: 'authority_level_30_task_rewards',
+    name: {
+      zh: `权限等阶30奖励`,
+      en: ''
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '权限等阶提升活动',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 1000,
+      ticketgachaStandardSingle: 10,
+      ticketgachaSpecialSingle: 0
+    }
+  },
+  {
+    id: 'authority_level_45_task_rewards',
+    name: {
+      zh: `权限等阶45奖励`,
+      en: ''
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '权限等阶提升活动',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 1000,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0
+    }
+  }
+]);
+
+export const authorityLevelUpReward = ref<Reward>({
+  id: 'authority_level_up_reward',
+  name: {
+    zh: `权限等级提升奖励`,
+    en: ''
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '权限等阶提升',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 4500,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0
+  }
+});
+
+export const worldLevelReward = ref<Reward>({
+  id: 'world_level_reward',
+  name: {
+    zh: `探索等级奖励`,
+    en: ''
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '探索等级',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 12,
+    ticketgachaSpecialSingle: 0
+  }
+});
+
+export{
+  authorityLevelUpRewardTable
+}
+

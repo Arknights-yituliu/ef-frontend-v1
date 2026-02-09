@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <v-container>
     <header class="page-title">{{ $t('page.materialProfit.packageValue.title') }}</header>
     <!--    <p class="page-description">{{ $t('page.materialProfit.packageValue.description') }}</p>-->
 
@@ -127,7 +127,7 @@
     <div v-else class="no-data">
       <p>{{ $t('common.noData') }}</p>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>
@@ -228,14 +228,14 @@ const updateCategorylPacks = () => {
   weaponsPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
     packId.includes('武库配额包'),
   );
-  monthlyCard.value = packsIdFilteredAndSorted.value.filter((packId) => 
-    packId.includes('月卡') || 
-    packId.includes('bp_track_pay') || 
-    packId.includes('bp_track_originium')
+  monthlyCard.value = packsIdFilteredAndSorted.value.filter(
+    (packId) =>
+      packId.includes('月卡') ||
+      packId.includes('bp_track_pay') ||
+      packId.includes('bp_track_originium'),
   );
-  originium.value = packsIdFilteredAndSorted.value.filter((packId) => 
-    packId.includes('源石') && 
-    !packId.includes('bp_track_originium')
+  originium.value = packsIdFilteredAndSorted.value.filter(
+    (packId) => packId.includes('源石') && !packId.includes('bp_track_originium'),
   );
   periodicPacks.value = packsIdFilteredAndSorted.value.filter(
     (packId) =>

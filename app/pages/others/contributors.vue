@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <v-container>
     <header class="page-title">{{ t('page.contributors.title') }}</header>
     <p class="page-description">{{ t('page.contributors.description') }}</p>
 
@@ -11,7 +11,7 @@
       />
     </section>
     <p v-else class="contributors__empty">{{ t('component.contributorCard.empty') }}</p>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>

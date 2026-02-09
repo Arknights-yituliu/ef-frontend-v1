@@ -168,7 +168,7 @@ onBeforeUnmount(() => {
               v-if="contributor.link"
               :href="contributor.link"
               class="card__profile-link"
-              rel="noopener"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <span>{{ t('component.contributorCard.profileLink') }}</span>

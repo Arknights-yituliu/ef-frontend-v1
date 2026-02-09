@@ -1,15 +1,11 @@
 import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
-import ActivityRewardTable from './json/activity_reward_table.json'
+import valleyIVTaskTable from './json/valley_IV_task_table.json';
+import wulingTaskTable from './json/wuling_task_table.json';
 
-const activityReward = ref<Reward[]>([])
 
-for(const reward of ActivityRewardTable as Reward[]){
-  reward.start = new Date(reward.start)
-  reward.end = new Date(reward.end)
-  activityReward.value.push(reward)
-}
 
+import etchSpaceSalvageRewardJson from './json/etch_space_salvage_reward.json';
 
 
 const beginnerSignInTaskReward = ref<Reward>({
@@ -31,12 +27,13 @@ const beginnerSignInTaskReward = ref<Reward>({
   },
 });
 
+
 const newHorizonsTaskReward = ref<Reward[]>([
   {
     id: 'new_horizons_task_reward_1',
     name: {
       zh: `于此启程任务·1`,
-      en: '',
+      en: ''
     },
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
@@ -47,14 +44,14 @@ const newHorizonsTaskReward = ref<Reward[]>([
       originiumRecharge: 0,
       diamond: 0,
       ticketgachaStandardSingle: 10,
-      ticketgachaSpecialSingle: 0,
-    },
+      ticketgachaSpecialSingle: 0
+    }
   },
   {
     id: 'new_horizons_task_reward_2',
     name: {
       zh: `于此启程任务·2`,
-      en: '',
+      en: ''
     },
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
@@ -65,14 +62,14 @@ const newHorizonsTaskReward = ref<Reward[]>([
       originiumRecharge: 0,
       diamond: 0,
       ticketgachaStandardSingle: 10,
-      ticketgachaSpecialSingle: 0,
-    },
+      ticketgachaSpecialSingle: 0
+    }
   },
   {
     id: 'new_horizons_task_reward_3',
     name: {
       zh: `于此启程任务·2`,
-      en: '',
+      en: ''
     },
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
@@ -83,14 +80,14 @@ const newHorizonsTaskReward = ref<Reward[]>([
       originiumRecharge: 0,
       diamond: 0,
       ticketgachaStandardSingle: 10,
-      ticketgachaSpecialSingle: 0,
-    },
+      ticketgachaSpecialSingle: 0
+    }
   },
   {
     id: 'new_horizons_task_reward_4',
     name: {
       zh: `于此启程任务·4`,
-      en: '',
+      en: ''
     },
     start: '2026/01/22 10:00:00',
     end: '2099/12/31 10:00:00',
@@ -101,9 +98,73 @@ const newHorizonsTaskReward = ref<Reward[]>([
       originiumRecharge: 0,
       diamond: 0,
       ticketgachaStandardSingle: 10,
-      ticketgachaSpecialSingle: 0,
-    },
-  },
+      ticketgachaSpecialSingle: 0
+    }
+  }
 ]);
 
-export {activityReward,newHorizonsTaskReward, beginnerSignInTaskReward,}
+const valleyIVTaskRewardTable = ref<Reward[]>(valleyIVTaskTable)
+const wulingTaskRewardTable = ref<Reward[]>(wulingTaskTable);
+
+// for (const reward of valleyIVTaskTable) {
+//   valleyIVTaskRewardTable.value.push(reward);
+// }
+
+
+
+
+// for (const reward of wulingTaskTable as Reward[]) {
+//   wulingTaskRewardTable.value.push(reward);
+// }
+
+
+
+// export const taskRewardTable1 = ref<Reward[]>(TaskTable as Reward[])
+
+
+
+
+
+
+
+const defenseConstructionReward = ref<Reward>({
+  id: 'defense_construction_reward',
+  name: {
+    zh: `据点防御奖励`,
+    en: ''
+  },
+  start: '2026/01/22 10:00:00',
+  end: '2099/12/31 10:00:00',
+  type: '通用',
+  module: '地区建设',
+  regional: '四号谷地',
+  active: true,
+  content: {
+    originiumRecharge: 0,
+    diamond: 1280,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0
+  }
+});
+
+
+const etchSpaceSalvageCrateRewardMax: number = 15 * 5 + 30 * 4 + 60 * 1;
+
+const etchSpaceSalvageReward = ref<Reward[]>([]);
+
+for (const reward of etchSpaceSalvageRewardJson) {
+  etchSpaceSalvageReward.value.push(reward);
+}
+
+
+export {
+  valleyIVTaskRewardTable,
+  wulingTaskRewardTable,
+  beginnerSignInTaskReward,
+  newHorizonsTaskReward,
+  defenseConstructionReward,
+
+  etchSpaceSalvageReward
+};
+
+

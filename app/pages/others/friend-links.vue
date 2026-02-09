@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <v-container>
     <header class="page-title">{{ $t('page.others.friendLinks.friendLinks') }}</header>
     <p class="page-description">{{ $t('page.others.friendLinks.friendLinksDescription') }}</p>
 
@@ -76,7 +76,7 @@
         </div>
       </ContainerSpotlightCard>
     </section>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>

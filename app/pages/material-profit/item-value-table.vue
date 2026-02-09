@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <v-container>
     <header class="page-title">{{ $t('page.materialProfit.itemValueTable.title') }}</header>
     <!--    <p class="page-description">{{ $t('page.materialProfit.itemValueTable.description') }}</p>-->
 
@@ -94,19 +94,19 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>
-import { getItemRarity } from '@/shared/utils/gameData/item';
 import { itemValueMap } from '@/custom/core/itemValue';
+import { getItemRarity } from '@/shared/utils/gameData/item';
 
 definePageMeta({
   layout: 'default',
 });
 
 // SEO 配置
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const siteName = computed(() => t('layout.siteName'));
 const pageTitle = computed(
   () => `${t('page.materialProfit.itemValueTable.title')} - ${siteName.value}`,
@@ -183,7 +183,7 @@ const filteredAndSortedItemIdList = computed(() => {
 async function copyValueToClipboard(itemId: string) {
   try {
     const value = getItemValue(itemId);
-    const itemName = getItemName(itemId);
+    const itemName = getItemName(itemId, locale.value);
 
     // 复制精确值到剪贴板
     await navigator.clipboard.writeText(value.toString());

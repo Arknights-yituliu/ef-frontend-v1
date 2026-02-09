@@ -284,7 +284,7 @@ function getImageUrl(itemId: string): string {
       :active="monthlyPassActive"
       @click="monthlyPassActive = !monthlyPassActive"
     >
-      <div class="gacha-calculator-resource-single">
+      <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
           月卡（{{ monthlyPassDays }}天）
         </div>
@@ -315,7 +315,7 @@ function getImageUrl(itemId: string): string {
       :active="sourceRationActive"
       @click="sourceRationActive = !sourceRationActive"
     >
-      <div class="gacha-calculator-resource-single">
+      <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
           源石配给
         </div>
@@ -338,7 +338,7 @@ function getImageUrl(itemId: string): string {
       :active="protocolCustomizationActive"
       @click="protocolCustomizationActive = !protocolCustomizationActive"
     >
-      <div class="gacha-calculator-resource-single">
+      <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
           协议定制
         </div>
@@ -368,7 +368,7 @@ function getImageUrl(itemId: string): string {
       :active="selectedPacks[pack.id] > 0"
       @click="togglePack(pack.id)"
     >
-      <div class="gacha-calculator-resource-single">
+      <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
           {{ pack.packDisplayNameZH }}
         </div>
@@ -399,7 +399,7 @@ function getImageUrl(itemId: string): string {
       :active="(selectedPacks[stone.id] || 0) > 0"
       @click="togglePack(stone.id)"
     >
-      <div class="gacha-calculator-resource-single">
+      <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
           {{ stone.packDisplayNameZH }}
         </div>
@@ -425,7 +425,7 @@ function getImageUrl(itemId: string): string {
 
       <div
 v-for="stone in normalStones"  :key="stone.id"
-           class="gacha-calculator-resource-single gacha-calculator-resource-single-1">
+           class="gacha-calculator-resource-single">
         <div class="gacha-calculator-resource-single-title">
           {{ stone.packDisplayNameZH }}
         </div>
@@ -467,7 +467,6 @@ v-for="stone in normalStones"  :key="stone.id"
 
 <style scoped>
 .paid-resources-container {
-  padding: 0.5rem;
 }
 
 .section-title {
@@ -501,7 +500,7 @@ v-for="stone in normalStones"  :key="stone.id"
   border-bottom: 3px solid #FFD700 !important;
 }
 
-.gacha-calculator-resource-single {
+.gacha-calculator-resource-single-btn-content {
   width: 560px;
   display: flex;
   box-sizing: border-box;
@@ -510,7 +509,13 @@ v-for="stone in normalStones"  :key="stone.id"
   border-radius: 4px;
 }
 
-.gacha-calculator-resource-single-1{
+.gacha-calculator-resource-single{
+  width: 560px;
+  display: flex;
+  box-sizing: border-box;
+  font-size: 1rem;
+  align-items: center;
+  border-radius: 4px;
   margin: 4px 0;
   padding: 4px 4px;
   border: 1px solid var(--theme-border-secondary);
@@ -532,4 +537,23 @@ v-for="stone in normalStones"  :key="stone.id"
   margin: 0 8px;
   font-weight: 600;
 }
+
+
+@media screen and (max-width: 600px) {
+  .gacha-calculator-resource-single-btn-content {
+    width: 300px;
+    font-size: 0.8rem;
+  }
+
+  .gacha-calculator-resource-single {
+    width: 300px;
+    font-size: 0.8rem;
+  }
+
+  .gacha-calculator-resource-single-title {
+    width: 120px;
+  }
+
+}
+
 </style>

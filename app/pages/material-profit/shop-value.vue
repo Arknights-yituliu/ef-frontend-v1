@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <v-container>
     <header class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</header>
     <!--    <p class="page-description">{{ $t('page.materialProfit.shopValue.description') }}</p>-->
 
@@ -31,7 +31,7 @@
         </v-data-table>
       </v-card>
     </section>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>

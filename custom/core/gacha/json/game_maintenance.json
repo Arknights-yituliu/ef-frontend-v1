@@ -1,0 +1,55 @@
+[
+  {
+    "id": "2026.1.30更新补偿",
+    "name": {
+      "zh": "2026.1.30更新补偿",
+      "en": ""
+    },
+    "start": "2026/01/30 10:00:00",
+    "end": "2026/02/28 10:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "体验优化补偿",
+    "name": {
+      "zh": "体验优化补偿",
+      "en": ""
+    },
+    "start": "2026/01/30 10:00:00",
+    "end": "2026/02/28 10:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },{
+  "id": "2026.2.5更新补偿",
+  "name": {
+    "zh": "2026.2.5更新补偿",
+    "en": ""
+  },
+  "start": "2026/02/05 10:00:00",
+  "end": "2026/03/01 10:00:00",
+  "type": "通用",
+  "module": "维护",
+  "active": true,
+  "content": {
+    "originiumRecharge": 0,
+    "diamond": 200,
+    "ticketgachaStandardSingle": 0,
+    "ticketgachaSpecialSingle": 0
+  }
+}
+]

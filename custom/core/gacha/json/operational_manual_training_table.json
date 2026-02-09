@@ -1,5 +1,59 @@
 [
   {
+    "id": "基础训练-通用战术",
+    "name": {
+      "zh": "基础训练-通用战术",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "节点手册·训练",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "基础训练-物理异常",
+    "name": {
+      "zh": "基础训练-物理异常",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "节点手册·训练",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "基础训练-法术异常",
+    "name": {
+      "zh": "基础训练-法术异常",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "节点手册·训练",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
     "id": "干员教学·骏卫",
     "name": {
       "zh": "干员教学·骏卫",
@@ -8,7 +62,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -26,7 +80,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -44,7 +98,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -62,7 +116,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -80,7 +134,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -98,7 +152,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -116,7 +170,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -134,7 +188,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,
@@ -152,7 +206,7 @@
     "start": "2026/01/22 10:00:00",
     "end": "2099/12/31 10:00:00",
     "type": "通用",
-   "module": "节点手册·训练",
+    "module": "节点手册·训练",
     "active": true,
     "content": {
       "originiumRecharge": 0,

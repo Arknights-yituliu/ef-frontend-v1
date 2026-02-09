@@ -1,0 +1,487 @@
+[
+  {
+    "id": "etch_space_salvage_50_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度50",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },{
+    "id": "etch_space_salvage_300_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度300",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_1200_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度1200",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_2500_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度2500",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_5000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度5000",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_10000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度10000",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_20000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度20000",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_30000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度30000",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_40000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度40000",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_50000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度50000",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "像差探索计划I",
+    "name": {
+      "zh": "像差探索计划I",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "像差探索计划II",
+    "name": {
+      "zh": "像差探索计划II",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定2",
+    "name": {
+      "zh": "探索研发·协议稳定2",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定3",
+    "name": {
+      "zh": "探索研发·协议稳定3",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定4",
+    "name": {
+      "zh": "探索研发·协议稳定4",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定5",
+    "name": {
+      "zh": "探索研发·协议稳定5",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定6",
+    "name": {
+      "zh": "探索研发·协议稳定6",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容2",
+    "name": {
+      "zh": "探索研发·封装扩容2",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容3",
+    "name": {
+      "zh": "探索研发·封装扩容3",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容4",
+    "name": {
+      "zh": "探索研发·封装扩容4",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容5",
+    "name": {
+      "zh": "探索研发·封装扩容5",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "作战研发·碎片化医疗",
+    "name": {
+      "zh": "作战研发·碎片化医疗",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "作战研发·战术节奏",
+    "name": {
+      "zh": "作战研发·战术节奏",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·爆炸物携行2",
+    "name": {
+      "zh": "探索研发·爆炸物携行2",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·装甲镀层",
+    "name": {
+      "zh": "探索研发·装甲镀层",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·紊乱耐受1",
+    "name": {
+      "zh": "探索研发·紊乱耐受1",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "转化研发·结核精炼1",
+    "name": {
+      "zh": "转化研发·结核精炼1",
+      "en": ""
+    },
+    "start": "2026/01/22 10:00:00",
+    "end": "2099/12/31 10:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }
+]

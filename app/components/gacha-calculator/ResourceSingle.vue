@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { itemIdDict } from '@/custom/core/gacha/level-reward';
+import { itemIdDict } from '@/custom/core/gacha/levelReward';
 import type { Reward } from '#shared/types/gacha-calculator';
 const props = defineProps<Reward>();
 
@@ -66,4 +66,17 @@ function getImageUrl(itemId: string): string {
   align-items: center;
   padding: 0 4px;
 }
+
+@media screen and (max-width: 600px) {
+
+  .gacha-calculator-resource-single{
+    font-size: 0.8rem;
+  }
+
+  .gacha-calculator-resource-single-title {
+    width: 150px;
+    text-align: start;
+  }
+}
+
 </style>

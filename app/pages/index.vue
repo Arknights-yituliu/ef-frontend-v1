@@ -1,18 +1,20 @@
 <template>
-  <div class="page-content">
-    <TextParticleWord :text="t('page.home.welcome')" class="particle-word" />
-    <p class="page-description">{{ t('page.home.hint') }}</p>
+  <v-container>
+    <div class="page-content">
+      <TextParticleWord :text="t('page.home.welcome')" class="particle-word" />
+      <p class="page-description">{{ t('page.home.hint') }}</p>
 
-    <!-- 卡片组容器 -->
-    <div class="card-group">
-      <HomeCard v-for="card in visibleCards" :key="card.i18nKey" :card="card" />
+      <!-- 卡片组容器 -->
+      <div class="card-group">
+        <HomeCard v-for="card in visibleCards" :key="card.i18nKey" :card="card" />
+      </div>
+
+      <!-- 复制成功提示 -->
+      <v-snackbar v-model="showSnackbar" :timeout="2000" color="success">
+        {{ snackbarText }}
+      </v-snackbar>
     </div>
-
-    <!-- 复制成功提示 -->
-    <v-snackbar v-model="showSnackbar" :timeout="2000" color="success">
-      {{ snackbarText }}
-    </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>
@@ -21,7 +23,7 @@ import {
   homeCards,
   type FooterButton,
   ButtonActionType,
-} from '~/data/homeCards';
+} from '@/custom/core/homeCards';
 
 definePageMeta({
   layout: 'default',
