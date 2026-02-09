@@ -6,6 +6,8 @@ const { t } = useI18n();
 
 interface Props {
   card: CardData;
+  isFavorited?: boolean;
+  onToggleFavorite?: () => void;
 }
 
 const props = defineProps<Props>();
@@ -34,6 +36,8 @@ const cardData = computed(() => {
   const textButtons = buttons.filter((btn) => btn.buttonType === ButtonType.Text);
   // Blank 类型的按钮不会显示
 
+  const isFavorited = props.isFavorited || false;
+
   return {
     title: t(`${baseKey}.title`),
     tags,
@@ -47,6 +51,7 @@ const cardData = computed(() => {
     mainButtons,
     linkButtons,
     textButtons,
+    isFavorited,
   };
 });
 
@@ -94,6 +99,15 @@ const copyToClipboard = async (text: string, successMessage: string) => {
     alert(t('common.copyFailed'));
   }
 };
+
+/**
+ * 切换收藏状态
+ */
+const toggleFavorite = () => {
+  if (props.onToggleFavorite) {
+    props.onToggleFavorite();
+  }
+};
 </script>
 
 <template>
@@ -113,25 +127,16 @@ const copyToClipboard = async (text: string, successMessage: string) => {
           </span>
         </div>
       </div>
-      <!-- 标题栏右侧小按钮 - 暂时注释 -->
-      <!-- <div class="home-card-header-actions">
-        <v-btn
-          icon="mdi-close"
-          size="x-small"
-          color="error"
-          class="action-icon-btn"
-          variant="text"
-          density="comfortable"
-        />
-        <v-btn
-          icon="mdi-heart-outline"
-          size="x-small"
-          color="warning"
-          class="action-icon-btn"
-          variant="text"
-          density="comfortable"
-        />
-      </div> -->
+      <!-- 收藏按钮 -->
+      <v-btn
+        :icon="cardData.isFavorited ? 'mdi-star' : 'mdi-star-outline'"
+        size="large"
+        :color="cardData.isFavorited ? 'warning' : 'grey'"
+        class="favorite-btn"
+        variant="text"
+        density="comfortable"
+        @click.stop="toggleFavorite"
+      />
     </div>
     <div class="home-card-content">
       <div v-if="cardData.image" class="home-card-image-wrapper">
@@ -200,9 +205,9 @@ const copyToClipboard = async (text: string, successMessage: string) => {
 /* 卡片标题栏：深色背景 */
 .home-card-header {
   background-color: rgba(0, 0, 0, 0.8);
-  padding: 16px;
+  padding: 16px 0px 16px 16px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 16px;
   height: 72px;
   position: relative;
@@ -217,17 +222,20 @@ const copyToClipboard = async (text: string, successMessage: string) => {
   flex-shrink: 0;
 }
 
-/* 小图标按钮 */
-.action-icon-btn {
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
+/* 收藏按钮 */
+.favorite-btn {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+  align-self: center;
 }
 
-.action-icon-btn:hover {
+.favorite-btn:hover {
   opacity: 1;
+  transform: scale(1.1);
 }
 
 .home-card-header::before {

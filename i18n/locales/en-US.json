@@ -324,8 +324,9 @@
   },
   "page": {
     "home": {
-      "welcome": "Welcome to the Endfield Yituliu data showcase site.",
-      "hint": "Choose a topic from the menu on the left to get started."
+      "welcome": "Welcome to Endfield Yituliu data showcase site.",
+      "hint": "Choose a topic from the menu on the left to get started.",
+      "favorites": "My Favorites"
     },
     "contributors": {
       "title": "Contributors & Collaborators",
