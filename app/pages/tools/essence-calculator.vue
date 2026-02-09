@@ -1,347 +1,362 @@
 <template>
-  <div class="page-container">
-    <header class="page-title">{{ t('page.tools.essenceCalculator.title') }}</header>
-    <v-expansion-panels :model-value="['需求设定', '计算结果']" multiple>
-      <v-expansion-panel value="需求设定">
-        <v-expansion-panel-title>{{
-          t('page.tools.essenceCalculator.demandSet')
-        }}</v-expansion-panel-title>
-        <v-expansion-panel-text>
-          <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
-          <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
-          <div class="mb-8" />
-          <v-row v-for="(stat, index) in requiredEssenceStats" :key="index" align="center">
-            <v-col cols="0" md="1" />
-            <v-col cols="12" md="2">
-              <div>
-                <span class="font-weight-bold mr-4">#{{ index + 1 }}</span
-                ><span>{{ getEssenceStatDescription(stat) }}</span>
-              </div>
-            </v-col>
-            <v-col cols="12" md="2">
-              <v-select
-                v-model="stat.attribute"
-                :items="allAttributeStats"
-                :label="t('page.tools.essenceCalculator.attributeStats')"
-                :list-props="{ density: 'comfortable' }"
-                :menu-props="{ maxHeight: 1024 }"
-                :disabled="!stat.isCustom"
-                density="comfortable"
-                hide-details
-                variant="outlined"
-              />
-            </v-col>
-            <v-col cols="12" md="2">
-              <v-select
-                v-model="stat.secondary"
-                :items="allSecondaryStats"
-                :label="t('page.tools.essenceCalculator.secondaryStats')"
-                :list-props="{ density: 'comfortable' }"
-                :menu-props="{ maxHeight: 1024 }"
-                :disabled="!stat.isCustom"
-                density="comfortable"
-                hide-details
-                variant="outlined"
-              />
-            </v-col>
-            <v-col cols="12" md="2">
-              <v-select
-                v-model="stat.skill"
-                :items="allSkillStats"
-                :label="t('page.tools.essenceCalculator.skillStats')"
-                :list-props="{ density: 'comfortable' }"
-                :menu-props="{ maxHeight: 1024 }"
-                :disabled="!stat.isCustom"
-                density="comfortable"
-                hide-details
-                variant="outlined"
-              />
-            </v-col>
-            <v-col cols="12" md="3">
-              <v-btn
-                :disabled="index === 0"
-                icon="mdi-chevron-up"
-                variant="text"
-                @click="moveUp(index)"
-              />
-              <v-btn
-                :disabled="index === requiredEssenceStats.length - 1"
-                icon="mdi-chevron-down"
-                variant="text"
-                @click="moveDown(index)"
-              />
-              <v-btn color="error" icon="mdi-delete" variant="text" @click="removeStat(index)" />
-            </v-col>
-          </v-row>
-          <div class="mt-8 mb-8">
-            <div class="d-flex align-center mb-4 mt-8 ga-2">
-              <v-icon>mdi-pencil</v-icon>
-              <h3>{{ $t('page.tools.essenceCalculator.custom') }}</h3>
-            </div>
-            <div>
-              <v-btn
-                class="customize-button"
-                prepend-icon="mdi-plus"
-                stacked
-                @click="addStatFromPreset({ ...emptyStat })"
-                >{{ $t('page.tools.essenceCalculator.blank') }}</v-btn
-              >
-            </div>
-            <div v-for="weaponType in weaponTypes" :key="weaponType">
-              <div class="d-flex align-center mb-4 mt-8 ga-2">
-                <img
-                  :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
-                  :alt="weaponType"
-                  class="group-icon"
-                >
-                <h3>{{ weaponType }}</h3>
-              </div>
-              <div class="weapon-grid">
-                <div
-                  v-for="[weaponId, weapon] in Object.entries(weapons)
-                    .filter(([weaponId, weapon]) => weapon.weaponType === weaponType)
-                    .toSorted(
-                      ([weaponIdA, weaponA], [weaponIdB, weaponB]) =>
-                        weaponA.rarity - weaponB.rarity,
-                    )"
-                  :key="weaponId"
-                  class="weapon-item"
-                  @click="addStatFromPreset({ ...weapon.stats, isCustom: false, weaponId })"
-                >
-                  <ContainerItemIcon :item-id="weaponId" show-item-name />
-                </div>
-              </div>
-            </div>
-          </div>
-        </v-expansion-panel-text>
-      </v-expansion-panel>
-
-      <v-expansion-panel value="计算结果">
-        <v-expansion-panel-title>{{
-          t('page.tools.essenceCalculator.output')
-        }}</v-expansion-panel-title>
-        <v-expansion-panel-text>
-          <template v-if="bestChoices.length > 0">
-            <div v-for="(choice, i) in bestChoices" :key="i" class="mb-6">
-              <v-card class="result-card" elevation="2" rounded="lg">
-                <v-card-item class="bg-info py-3">
-                  <v-card-title class="text-h6 font-weight-bold">
-                    {{ t('page.tools.essenceCalculator.plan') }} {{ i + 1 }}
-                  </v-card-title>
-                  <template #append>
-                    <v-chip
-                      class="font-weight-bold mr-2"
-                      color="success"
-                      size="small"
-                      variant="flat"
-                    >
-                      {{ choice.matchedSelectedIndices.length }}
-                      {{ t('page.tools.essenceCalculator.requirementsMet') }}
-                    </v-chip>
-                    <v-chip class="font-weight-bold" color="success" size="small" variant="flat">
-                      {{ choice.matchedWeaponIds.length }}
-                      {{ t('page.tools.essenceCalculator.weaponsMatched') }}
-                    </v-chip>
-                  </template>
-                </v-card-item>
-
-                <v-divider />
-
-                <v-card-text class="pt-4">
-                  <v-row>
-                    <!-- Left Column: Configuration -->
-                    <v-col cols="12" md="5">
-                      <div class="d-flex align-center mb-3">
-                        <v-icon class="mr-2" color="primary" icon="mdi-map-marker" size="small" />
-                        <span class="text-subtitle-1 font-weight-bold">{{
-                          t('page.tools.essenceCalculator.farmLocation')
-                        }}</span>
-                      </div>
-
-                      <div class="pl-1 mb-6">
-                        <v-chip color="info" label variant="outlined">
-                          {{ choice.battleName }}
+  <v-container fluid class="page-container">
+    <v-row>
+      <v-col cols="12" lg="6">
+        <v-expansion-panels model-value="计算结果">
+          <v-expansion-panel value="计算结果">
+            <v-expansion-panel-title>{{
+              t('page.tools.essenceCalculator.output')
+            }}</v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <template v-if="bestChoices.length > 0">
+                <div v-for="(choice, i) in bestChoices" :key="i" class="mb-6">
+                  <v-card class="result-card" elevation="2" rounded="lg">
+                    <v-card-item class="bg-info py-3">
+                      <v-card-title class="text-h6 font-weight-bold">
+                        {{ t('page.tools.essenceCalculator.plan') }} {{ i + 1 }}
+                      </v-card-title>
+                      <template #append>
+                        <v-chip
+                          class="font-weight-bold mr-2"
+                          color="success"
+                          size="small"
+                          variant="flat"
+                        >
+                          {{ choice.matchedSelectedIndices.length }}
+                          {{ t('page.tools.essenceCalculator.requirementsMet') }}
                         </v-chip>
-                      </div>
+                        <v-chip
+                          class="font-weight-bold"
+                          color="success"
+                          size="small"
+                          variant="flat"
+                        >
+                          {{ choice.matchedWeaponIds.length }}
+                          {{ t('page.tools.essenceCalculator.weaponsMatched') }}
+                        </v-chip>
+                      </template>
+                    </v-card-item>
 
-                      <div class="d-flex align-center mb-3">
-                        <v-icon class="mr-2" color="primary" icon="mdi-tune" size="small" />
-                        <span class="text-subtitle-1 font-weight-bold">{{
-                          t('page.tools.essenceCalculator.preEngraveStats')
-                        }}</span>
-                      </div>
+                    <v-divider />
 
-                      <div class="pl-1">
-                        <!-- Primary Attributes -->
-                        <div class="mb-4">
-                          <div class="text-medium-emphasis mb-1">
-                            {{ t('page.tools.essenceCalculator.selectAttributeStats') }}
-                          </div>
-                          <div class="d-flex flex-wrap ga-2">
-                            <v-chip
-                              v-for="attr in choice.selectedAttribute"
-                              :key="attr"
+                    <v-card-text class="pt-4">
+                      <v-row>
+                        <!-- Left Column: Configuration -->
+                        <v-col cols="12" md="5">
+                          <div class="d-flex align-center mb-3">
+                            <v-icon
+                              class="mr-2"
                               color="primary"
-                              label
-                              variant="flat"
-                            >
-                              {{ attr }}
+                              icon="mdi-map-marker"
+                              size="small"
+                            />
+                            <span class="text-subtitle-1 font-weight-bold">{{
+                              t('page.tools.essenceCalculator.farmLocation')
+                            }}</span>
+                          </div>
+
+                          <div class="pl-1 mb-6">
+                            <v-chip color="info" label variant="outlined">
+                              {{ choice.battleName }}
                             </v-chip>
                           </div>
-                        </div>
 
-                        <!-- Secondary Attribute -->
-                        <div v-if="choice.selectedSecondary" class="mb-4">
-                          <div class="text-medium-emphasis mb-1">
-                            {{ t('page.tools.essenceCalculator.selectSecondaryAttribute') }}
+                          <div class="d-flex align-center mb-3">
+                            <v-icon class="mr-2" color="primary" icon="mdi-tune" size="small" />
+                            <span class="text-subtitle-1 font-weight-bold">{{
+                              t('page.tools.essenceCalculator.preEngraveStats')
+                            }}</span>
                           </div>
-                          <v-chip color="teal" label variant="flat">
-                            {{ choice.selectedSecondary }}
-                          </v-chip>
-                        </div>
 
-                        <!-- Skill Attribute -->
-                        <div v-if="choice.selectedSkill" class="mb-4">
-                          <div class="text-medium-emphasis mb-1">
-                            {{ t('page.tools.essenceCalculator.selectSkillAttribute') }}
+                          <div class="pl-1">
+                            <!-- Primary Attributes -->
+                            <div class="mb-4">
+                              <div class="text-medium-emphasis mb-1">
+                                {{ t('page.tools.essenceCalculator.selectAttributeStats') }}
+                              </div>
+                              <div class="d-flex flex-wrap ga-2">
+                                <v-chip
+                                  v-for="attr in choice.selectedAttribute"
+                                  :key="attr"
+                                  color="primary"
+                                  label
+                                  variant="flat"
+                                >
+                                  {{ attr }}
+                                </v-chip>
+                              </div>
+                            </div>
+
+                            <!-- Secondary Attribute -->
+                            <div v-if="choice.selectedSecondary" class="mb-4">
+                              <div class="text-medium-emphasis mb-1">
+                                {{ t('page.tools.essenceCalculator.selectSecondaryAttribute') }}
+                              </div>
+                              <v-chip color="teal" label variant="flat">
+                                {{ choice.selectedSecondary }}
+                              </v-chip>
+                            </div>
+
+                            <!-- Skill Attribute -->
+                            <div v-if="choice.selectedSkill" class="mb-4">
+                              <div class="text-medium-emphasis mb-1">
+                                {{ t('page.tools.essenceCalculator.selectSkillAttribute') }}
+                              </div>
+                              <v-chip color="blue" label variant="flat">
+                                {{ choice.selectedSkill }}
+                              </v-chip>
+                            </div>
                           </div>
-                          <v-chip color="blue" label variant="flat">
-                            {{ choice.selectedSkill }}
-                          </v-chip>
-                        </div>
-                      </div>
-                    </v-col>
+                        </v-col>
 
-                    <v-divider vertical class="hidden-sm-and-down" />
-                    <v-divider class="hidden-md-and-up my-4" />
+                        <v-divider vertical class="hidden-sm-and-down" />
+                        <v-divider class="hidden-md-and-up my-4" />
 
-                    <!-- Right Column: Results -->
-                    <v-col cols="12" md="7">
-                      <div class="d-flex align-center mb-3">
-                        <v-icon
-                          class="mr-2"
-                          color="success"
-                          icon="mdi-check-circle-outline"
-                          size="small"
-                        />
-                        <span class="text-subtitle-1 font-weight-bold">{{
-                          t('page.tools.essenceCalculator.planDescription', {
-                            count: choice.matchedSelectedIndices.length,
-                            weaponCount: choice.matchedWeaponIds.length,
-                          })
-                        }}</span>
-                      </div>
-
-                      <div class="pl-1">
-                        <!-- Satisfied Requirements -->
-                        <div class="mb-4">
-                          <div class="text-medium-emphasis mb-1">
-                            {{ t('page.tools.essenceCalculator.satisfiedRequirements') }}
+                        <!-- Right Column: Results -->
+                        <v-col cols="12" md="7">
+                          <div class="d-flex align-center mb-3">
+                            <v-icon
+                              class="mr-2"
+                              color="success"
+                              icon="mdi-check-circle-outline"
+                              size="small"
+                            />
+                            <span class="text-subtitle-1 font-weight-bold">{{
+                              t('page.tools.essenceCalculator.planDescription', {
+                                count: choice.matchedSelectedIndices.length,
+                                weaponCount: choice.matchedWeaponIds.length,
+                              })
+                            }}</span>
                           </div>
-                          <div class="d-flex flex-wrap ga-2">
-                            <div v-for="index in choice.matchedSelectedIndices" :key="index">
-                              <v-tooltip activator="parent" location="bottom">
-                                {{
-                                  [
-                                    requiredEssenceStats[index]!.attribute,
-                                    requiredEssenceStats[index]!.secondary,
-                                    requiredEssenceStats[index]!.skill,
-                                  ]
-                                    .filter(Boolean)
-                                    .join('、')
-                                }}
-                              </v-tooltip>
-                              <v-card
-                                v-if="requiredEssenceStats[index]!.isCustom"
-                                class="weapon-item"
-                                variant="outlined"
-                              >
-                                <div class="d-flex flex-column justify-center h-100 m-auto">
-                                  <div class="text-center font-weight-bold">
-                                    #{{ index + 1 }}
-                                    {{ getEssenceStatDescription(requiredEssenceStats[index]!) }}
-                                  </div>
-                                  <div class="text-center text-no-wrap">
-                                    {{ requiredEssenceStats[index]!.attribute ?? '' }}
-                                  </div>
-                                  <div class="text-center text-no-wrap">
-                                    {{ requiredEssenceStats[index]!.secondary ?? '' }}
-                                  </div>
-                                  <div class="text-center text-no-wrap">
-                                    {{ requiredEssenceStats[index]!.skill ?? '' }}
-                                  </div>
+
+                          <div class="pl-1">
+                            <!-- Satisfied Requirements -->
+                            <div class="mb-4">
+                              <div class="text-medium-emphasis mb-1">
+                                {{ t('page.tools.essenceCalculator.satisfiedRequirements') }}
+                              </div>
+                              <div class="d-flex flex-wrap ga-2">
+                                <div v-for="index in choice.matchedSelectedIndices" :key="index">
+                                  <v-tooltip activator="parent" location="bottom">
+                                    {{
+                                      [
+                                        requiredEssenceStats[index]!.attribute,
+                                        requiredEssenceStats[index]!.secondary,
+                                        requiredEssenceStats[index]!.skill,
+                                      ]
+                                        .filter(Boolean)
+                                        .join('、')
+                                    }}
+                                  </v-tooltip>
+                                  <v-card
+                                    v-if="requiredEssenceStats[index]!.isCustom"
+                                    class="weapon-item"
+                                    variant="outlined"
+                                  >
+                                    <div class="d-flex flex-column justify-center h-100 m-auto">
+                                      <div class="text-center font-weight-bold">
+                                        #{{ index + 1 }}
+                                        {{
+                                          getEssenceStatDescription(requiredEssenceStats[index]!)
+                                        }}
+                                      </div>
+                                      <div class="text-center text-no-wrap">
+                                        {{ requiredEssenceStats[index]!.attribute ?? '' }}
+                                      </div>
+                                      <div class="text-center text-no-wrap">
+                                        {{ requiredEssenceStats[index]!.secondary ?? '' }}
+                                      </div>
+                                      <div class="text-center text-no-wrap">
+                                        {{ requiredEssenceStats[index]!.skill ?? '' }}
+                                      </div>
+                                    </div>
+                                  </v-card>
+                                  <ContainerItemIcon
+                                    v-else
+                                    class="weapon-item"
+                                    :item-id="requiredEssenceStats[index]!.weaponId!"
+                                    show-item-name
+                                  />
                                 </div>
-                              </v-card>
-                              <ContainerItemIcon
-                                v-else
-                                class="weapon-item"
-                                :item-id="requiredEssenceStats[index]!.weaponId!"
-                                show-item-name
-                              />
+                              </div>
+                            </div>
+
+                            <!-- Matched Weapons -->
+                            <div>
+                              <div class="text-medium-emphasis mb-1">
+                                {{ t('page.tools.essenceCalculator.matchedWeapons') }}
+                              </div>
+                              <div class="d-flex flex-wrap ga-2">
+                                <div
+                                  v-for="weaponId in choice.matchedWeaponIds.toSorted(
+                                    (weaponIdA, weaponIdB) => {
+                                      const weaponA = weapons[weaponIdA]!;
+                                      const weaponB = weapons[weaponIdB]!;
+                                      return weaponB.rarity - weaponA.rarity;
+                                    },
+                                  )"
+                                  :key="weaponId"
+                                >
+                                  <ContainerItemIcon
+                                    class="weapon-item"
+                                    :item-id="weaponId"
+                                    show-item-name
+                                  />
+                                  <v-tooltip activator="parent" location="bottom">
+                                    {{
+                                      [
+                                        weapons[weaponId]!.stats.attribute,
+                                        weapons[weaponId]!.stats.secondary,
+                                        weapons[weaponId]!.stats.skill,
+                                      ]
+                                        .filter(Boolean)
+                                        .join('、')
+                                    }}
+                                  </v-tooltip>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </div>
+              </template>
+              <template v-else>
+                <v-alert border="start" type="info" variant="tonal">
+                  {{ t('page.tools.essenceCalculator.noValidDemand') }}
+                </v-alert>
+              </template>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
 
-                        <!-- Matched Weapons -->
-                        <div>
-                          <div class="text-medium-emphasis mb-1">
-                            {{ t('page.tools.essenceCalculator.matchedWeapons') }}
-                          </div>
-                          <div class="d-flex flex-wrap ga-2">
-                            <div v-for="weaponId in choice.matchedWeaponIds" :key="weaponId">
-                              <ContainerItemIcon
-                                class="weapon-item"
-                                :item-id="weaponId"
-                                show-item-name
-                              />
-                              <v-tooltip activator="parent" location="bottom">
-                                {{
-                                  [
-                                    weapons[weaponId]!.stats.attribute,
-                                    weapons[weaponId]!.stats.secondary,
-                                    weapons[weaponId]!.stats.skill,
-                                  ]
-                                    .filter(Boolean)
-                                    .join('、')
-                                }}
-                              </v-tooltip>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </v-col>
-                  </v-row>
-                </v-card-text>
-              </v-card>
-            </div>
-          </template>
-          <template v-else>
-            <v-alert border="start" type="info" variant="tonal">
-              {{ t('page.tools.essenceCalculator.noValidDemand') }}
-            </v-alert>
-          </template>
-        </v-expansion-panel-text>
-      </v-expansion-panel>
-
-      <v-expansion-panel>
-        <v-expansion-panel-title>{{
-          t('page.tools.essenceCalculator.debugInput')
-        }}</v-expansion-panel-title>
-        <v-expansion-panel-text>
-          <pre>{{ requiredEssenceStats }}</pre>
-        </v-expansion-panel-text>
-      </v-expansion-panel>
-
-      <v-expansion-panel>
-        <v-expansion-panel-title>{{
-          t('page.tools.essenceCalculator.debugOutput')
-        }}</v-expansion-panel-title>
-        <v-expansion-panel-text>
-          <pre>{{ JSON.stringify(battleChoices, null, 2) }}</pre>
-        </v-expansion-panel-text>
-      </v-expansion-panel>
-    </v-expansion-panels>
-  </div>
+      <v-col cols="12" lg="6">
+        <v-expansion-panels model-value="需求设定">
+          <v-expansion-panel value="需求设定">
+            <v-expansion-panel-title>{{
+              t('page.tools.essenceCalculator.demandSet')
+            }}</v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
+              <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
+              <div class="mb-8" />
+              <v-row v-for="(stat, index) in requiredEssenceStats" :key="index" align="center">
+                <v-col cols="0" md="1" />
+                <v-col cols="12" md="2">
+                  <div>
+                    <span class="font-weight-bold mr-4">#{{ index + 1 }}</span
+                    ><span>{{ getEssenceStatDescription(stat) }}</span>
+                  </div>
+                </v-col>
+                <v-col cols="12" md="2">
+                  <v-select
+                    v-model="stat.attribute"
+                    :items="allAttributeStats"
+                    :label="t('page.tools.essenceCalculator.attributeStats')"
+                    :list-props="{ density: 'compact' }"
+                    :menu-props="{ maxHeight: 1024 }"
+                    :disabled="!stat.isCustom"
+                    density="compact"
+                    hide-details
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="12" md="2">
+                  <v-select
+                    v-model="stat.secondary"
+                    :items="allSecondaryStats"
+                    :label="t('page.tools.essenceCalculator.secondaryStats')"
+                    :list-props="{ density: 'compact' }"
+                    :menu-props="{ maxHeight: 1024 }"
+                    :disabled="!stat.isCustom"
+                    density="compact"
+                    hide-details
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="12" md="2">
+                  <v-select
+                    v-model="stat.skill"
+                    :items="allSkillStats"
+                    :label="t('page.tools.essenceCalculator.skillStats')"
+                    :list-props="{ density: 'compact' }"
+                    :menu-props="{ maxHeight: 1024 }"
+                    :disabled="!stat.isCustom"
+                    density="compact"
+                    hide-details
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="12" md="3">
+                  <v-btn
+                    :disabled="index === 0"
+                    icon="mdi-chevron-up"
+                    variant="text"
+                    @click="moveUp(index)"
+                  />
+                  <v-btn
+                    :disabled="index === requiredEssenceStats.length - 1"
+                    icon="mdi-chevron-down"
+                    variant="text"
+                    @click="moveDown(index)"
+                  />
+                  <v-btn
+                    color="error"
+                    icon="mdi-delete"
+                    variant="text"
+                    @click="removeStat(index)"
+                  />
+                </v-col>
+              </v-row>
+              <div class="mt-8 mb-8">
+                <div class="d-flex align-center mb-4 mt-8 ga-2">
+                  <v-icon>mdi-pencil</v-icon>
+                  <h3>{{ $t('page.tools.essenceCalculator.custom') }}</h3>
+                </div>
+                <div>
+                  <v-btn
+                    class="customize-button"
+                    prepend-icon="mdi-plus"
+                    stacked
+                    @click="addStatFromPreset({ ...emptyStat })"
+                    >{{ $t('page.tools.essenceCalculator.blank') }}</v-btn
+                  >
+                </div>
+                <div v-for="weaponType in weaponTypes" :key="weaponType">
+                  <div class="d-flex align-center mb-4 mt-8 ga-2">
+                    <img
+                      :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
+                      :alt="weaponType"
+                      class="group-icon"
+                    />
+                    <h3>{{ weaponType }}</h3>
+                  </div>
+                  <div class="weapon-grid">
+                    <div
+                      v-for="[weaponId, weapon] in Object.entries(weapons)
+                        .filter(([weaponId, weapon]) => weapon.weaponType === weaponType)
+                        .toSorted(
+                          ([weaponIdA, weaponA], [weaponIdB, weaponB]) =>
+                            weaponB.rarity - weaponA.rarity,
+                        )"
+                      :key="weaponId"
+                      class="weapon-item"
+                      @click="addStatFromPreset({ ...weapon.stats, isCustom: false, weaponId })"
+                    >
+                      <ContainerItemIcon :item-id="weaponId" show-item-name />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts" setup>
@@ -368,9 +383,9 @@ interface BattleChoice {
 const emptyStat: EssenceStat = {
   isCustom: true,
   weaponId: null,
-  attribute: null,
-  secondary: null,
-  skill: null,
+  attribute: '',
+  secondary: '',
+  skill: '',
 };
 
 interface EnergyAlluvium {
@@ -1369,7 +1384,7 @@ const bestChoices = computed(() => {
 
 <style scoped>
 .page-container {
-  --weapon-icon-size: clamp(3rem, 16vw, 6rem);
+  --weapon-icon-size: clamp(2.5rem, 14vw, 5rem);
 }
 
 .group-icon {
