@@ -7,6 +7,37 @@ const poolInfos = [
   {name:'热烈色彩',start:'2026/02/24 12:00:00',end:'2026/03/12 10:00:00'}
 ];
 
+
+const umbralMonumentVersion = [
+  {
+    name:"影拓丰碑·零号协议",start:'2026/02/24 12:00:00',end:'2026/03/12 10:00:00'
+  }
+]
+
+const umbralMonumentReward = ref<Reward[]>([]);
+
+for(const version of umbralMonumentVersion) {
+  umbralMonumentReward.value.push({
+    id: `${version.name}`,
+    name: {
+      zh: `${version.name}`,
+      en: ''
+    },
+    start: new Date(version.start),
+    end: new Date(version.end),
+    type: version.name,
+    module: '集成配额商店兑换',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 5
+    }
+  })
+}
+
+
 const AICQuotaReward = ref<Reward[]>([]);
 for(const poolInfo of poolInfos) {
     AICQuotaReward.value.push({
