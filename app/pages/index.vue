@@ -4,9 +4,26 @@
       <TextParticleWord :text="t('page.home.welcome')" class="particle-word" />
       <p class="page-description">{{ t('page.home.hint') }}</p>
 
-      <!-- 卡片组容器 -->
+      <!-- 小卡片组容器 - 仅显示收藏的卡片 -->
+      <div v-if="favoritedCards.length > 0" class="small-card-section">
+        <div class="small-card-group">
+          <HomeSmallCard 
+            v-for="card in favoritedCards" 
+            :key="card.i18nKey" 
+            :card="card"
+          />
+        </div>
+      </div>
+
+      <!-- 大卡片组容器 -->
       <div class="card-group">
-        <HomeCard v-for="card in visibleCards" :key="card.i18nKey" :card="card" />
+        <HomeCard 
+          v-for="card in visibleCards" 
+          :key="card.i18nKey" 
+          :card="card"
+          :is-favorited="isFavorited(card)"
+          :on-toggle-favorite="() => toggleFavorite(card)"
+        />
       </div>
 
       <!-- 复制成功提示 -->
@@ -22,6 +39,7 @@ import {
   homeFooterButtons,
   homeCards,
   type FooterButton,
+  type CardData,
   ButtonActionType,
 } from '@/custom/core/homeCards';
 
@@ -34,10 +52,63 @@ const { t } = useI18n();
 const showSnackbar = ref(false);
 const snackbarText = ref('');
 
+// 收藏状态管理
+const favorites = ref<Set<string>>(new Set());
+
+// 从 localStorage 加载收藏状态
+const loadFavorites = () => {
+  const saved = localStorage.getItem('homeFavorites');
+  if (saved) {
+    try {
+      favorites.value = new Set(JSON.parse(saved));
+    } catch (e) {
+      console.error('Failed to load favorites:', e);
+      favorites.value = new Set();
+    }
+  }
+};
+
+// 保存收藏状态到 localStorage
+const saveFavorites = () => {
+  localStorage.setItem('homeFavorites', JSON.stringify([...favorites.value]));
+};
+
+// 检查卡片是否被收藏
+const isFavorited = (card: CardData) => {
+  return favorites.value.has(card.i18nKey);
+};
+
+// 切换收藏状态
+const toggleFavorite = (card: CardData) => {
+  if (favorites.value.has(card.i18nKey)) {
+    favorites.value.delete(card.i18nKey);
+  } else {
+    favorites.value.add(card.i18nKey);
+  }
+  saveFavorites();
+};
+
+// 获取收藏的卡片列表
+const favoritedCards = computed(() => {
+  return homeCards
+    .filter(card => card.visible !== false && isFavorited(card))
+    .sort((a, b) => {
+      // 按收藏时间排序（最近收藏的在前）
+      const aIndex = [...favorites.value].indexOf(a.i18nKey);
+      const bIndex = [...favorites.value].indexOf(b.i18nKey);
+      return aIndex - bIndex;
+    });
+});
+
 const visibleCards = computed(() => homeCards.filter((card) => card.visible !== false));
 const visibleButtons = computed(() =>
   homeFooterButtons.filter((button) => button.visible !== false),
 );
+
+// 组件挂载时加载收藏状态
+onMounted(() => {
+  loadFavorites();
+});
 
 /**
  * 处理按钮点击事件
@@ -101,8 +172,37 @@ const showSnackbarMessage = (message: string) => {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   gap: 1.5rem;
   max-width: 1320px;
-  margin: 3rem auto 2rem;
+  margin: 2rem auto 1.5rem;
   width: 100%;
+}
+
+/* 小卡片区域 */
+.small-card-section {
+  max-width: 1320px;
+  margin: 2rem auto 0;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--theme-text-primary);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--theme-accent-color);
+}
+
+.small-card-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.small-card-group :deep(.home-small-card) {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .button-group {

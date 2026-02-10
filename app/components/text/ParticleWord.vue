@@ -28,6 +28,7 @@ const ANIMATE_TIME = 20;
 const OPACITY_STEP = 1 / ANIMATE_TIME;
 const RADIUS = 40; // 鼠标交互半径
 const INTENSITY = 0.95; // 排斥/吸引强度
+const VELOCITY_THRESHOLD = 0.01; // 速度阈值，低于此值认为粒子已稳定
 
 interface ParticleData {
   x: number;
@@ -97,6 +98,14 @@ class Particle {
     this.y += this.vy;
     if (this.opacity < 1) this.opacity += OPACITY_STEP;
   }
+
+  // 检查粒子是否稳定（速度接近0且接近目标位置）
+  isSettled(): boolean {
+    const dx = Math.abs(this.x - this.totalX);
+    const dy = Math.abs(this.y - this.totalY);
+    const speed = Math.sqrt(this.vx ** 2 + this.vy ** 2);
+    return dx < 0.5 && dy < 0.5 && speed < VELOCITY_THRESHOLD && this.opacity >= 1;
+  }
 }
 
 class ParticleCanvas {
@@ -106,6 +115,8 @@ class ParticleCanvas {
   mouseX: number = 0;
   mouseY: number = 0;
   animationId: number = 0;
+  isAnimating: boolean = false;
+  mouseActive: boolean = false;
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -123,11 +134,20 @@ class ParticleCanvas {
       // 将鼠标坐标按比例缩放到画布的实际像素坐标
       this.mouseX = (e.clientX - rect.left) * scaleX;
       this.mouseY = (e.clientY - rect.top) * scaleY;
+      
+      // 鼠标移动时启动动画
+      if (!this.mouseActive) {
+        this.mouseActive = true;
+        if (!this.isAnimating) {
+          this.startAnimation();
+        }
+      }
     });
 
     this.canvas.addEventListener('mouseleave', () => {
       this.mouseX = 0;
       this.mouseY = 0;
+      this.mouseActive = false;
     });
   }
 
@@ -175,21 +195,47 @@ class ParticleCanvas {
     );
   }
 
+  startAnimation() {
+    if (!this.isAnimating) {
+      this.isAnimating = true;
+      this.animate();
+    }
+  }
+
+  stopAnimation() {
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = 0;
+    }
+    this.isAnimating = false;
+  }
+
   animate() {
     this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+    let allSettled = true;
 
     this.particles.forEach((particle) => {
       particle.update(this.mouseX, this.mouseY);
       particle.draw(this.ctx);
+      
+      // 检查是否有粒子还在移动
+      if (!particle.isSettled()) {
+        allSettled = false;
+      }
     });
+
+    // 如果鼠标不在活动状态且所有粒子都已稳定，停止动画
+    if (!this.mouseActive && allSettled) {
+      this.stopAnimation();
+      return;
+    }
 
     this.animationId = requestAnimationFrame(() => this.animate());
   }
 
   destroy() {
-    if (this.animationId) {
-      cancelAnimationFrame(this.animationId);
-    }
+    this.stopAnimation();
   }
 }
 
@@ -213,7 +259,7 @@ const initParticleCanvas = () => {
     const color = Color(getComputedStyle(canvasRef.value).color);
 
     particleCanvasRef.value.generateTextParticles(props.text, color);
-    particleCanvasRef.value.animate();
+    particleCanvasRef.value.startAnimation();
     isLoaded.value = true;
   }
 };
@@ -230,7 +276,7 @@ onUnmounted(() => {
 
 // 监听 props 变化
 watch(
-  props,
+  () => props.text,
   () => {
     initParticleCanvas();
   },

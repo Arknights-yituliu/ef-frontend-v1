@@ -325,7 +325,8 @@
   "page": {
     "home": {
       "welcome": "欢迎来到终末地一图流",
-      "hint": "请选择要查看的内容"
+      "hint": "请选择要查看的内容",
+      "favorites": "我的收藏"
     },
     "contributors": {
       "title": "贡献者 / 参与者",
