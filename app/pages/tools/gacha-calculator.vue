@@ -2644,7 +2644,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 1280px;
+  width: 1280px;
 }
 
 .gacha-calculator-container-left {
@@ -2753,6 +2753,13 @@ function checkRewardIsValid(reward: Reward): boolean {
   height: 80px;
   display: block;
 }
+
+@media screen and (max-width: 1400px) {
+  .gacha-calculator-container {
+    width: 800px;
+  }
+}
+
 
 @media screen and (max-width: 600px) {
   .gacha-calculator-container-left {
