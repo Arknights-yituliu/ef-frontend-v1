@@ -23,7 +23,12 @@ export type RewardStatisticsResultDetail ={
   ticketgachaSpecialSingle: number;
 }
 
-export type TotalPullsSingle = Record<string, number>
+export interface TotalPullsSingle {
+  /** 基础寻访凭证 */
+  ticketgachaStandardSingle: number;
+  /** 特许寻访凭证 */
+  ticketgachaSpecialSingle: number;
+}
 
 
 // export type ResourceStatisticsResultDetail =  Record<string,{

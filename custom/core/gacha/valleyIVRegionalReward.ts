@@ -1,6 +1,6 @@
 import type { CollectReward, Reward } from '#shared/types/gacha-calculator.ts';
 import { ref } from 'vue';
-import stageTable from './json/valley_IV_aurylene_stage_table.json'
+import stageTable from './json/valley_IV_aurylene_stage_table.json';
 
 const valleyIVAuryleneCollectStageTable: CollectReward[] = stageTable as CollectReward[];
 
@@ -13,7 +13,7 @@ const valleyIVRegionalStockBillStoreReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: "地区建设",
+  module: '地区建设',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -32,7 +32,7 @@ const valleyIVRegionalDevelopmentReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: "地区建设",
+  module: '地区建设',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -41,8 +41,6 @@ const valleyIVRegionalDevelopmentReward = ref<Reward>({
     ticketgachaSpecialSingle: 0,
   },
 });
-
-
 
 const valleyIVAuryleneCollectReward = ref<Reward>({
   id: 'valley_IV_aurylene_collect_reward',
@@ -53,7 +51,7 @@ const valleyIVAuryleneCollectReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: "地区探索",
+  module: '地区探索',
   active: true,
   content: {
     originiumRecharge: 43,
@@ -63,7 +61,7 @@ const valleyIVAuryleneCollectReward = ref<Reward>({
   },
 });
 
-const valleyIVCrateRewardMax:number = 93*15+91*30+93*60+11*100
+const valleyIVCrateRewardMax: number = 93 * 15 + 91 * 30 + 93 * 60 + 11 * 100;
 
 const valleyIVCrateReward = ref<Reward>({
   id: 'valley_IV_crate_reward',
@@ -74,7 +72,7 @@ const valleyIVCrateReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: "地区探索",
+  module: '地区探索',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -95,18 +93,17 @@ const valleyIVBattleCrateReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: "地区探索",
+  module: '地区探索',
   active: true,
   content: {
     originiumRecharge: valleyIVBattleCrateRewardMax,
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
-  }
-})
+  },
+});
 
-const valleyIVDeltaBotRewardMax:number = 42*20
-
+const valleyIVDeltaBotRewardMax: number = 42 * 20;
 
 const valleyIVDeltaBotReward = ref<Reward>({
   id: 'valley_IV_delta_bot_reward',
@@ -117,7 +114,7 @@ const valleyIVDeltaBotReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: "地区探索",
+  module: '地区探索',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -136,16 +133,54 @@ const valleyIVSimulationReward = ref<Reward>({
   start: '2026/01/22 10:00:00',
   end: '2099/12/31 10:00:00',
   type: '通用',
-  module: "地区建设",
+  module: '地区建设',
   active: true,
   content: {
     originiumRecharge: 0,
-    diamond: 26*25,
+    diamond: 26 * 25,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
 });
 
+const valleyIVDefenseConstructionReward = ref<Reward[]>([
+  {
+    id: 'valley_IV_defense_construction_reward_1',
+    name: {
+      zh: `谷地通道据点防御`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 240,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+  {
+    id: 'valley_IV_defense_construction_reward_2',
+    name: {
+      zh: `源石研究园据点防御`,
+      en: '',
+    },
+    start: '2026/01/22 10:00:00',
+    end: '2099/12/31 10:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    content: {
+      originiumRecharge: 0,
+      diamond: 320,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+]);
 
 export {
   valleyIVRegionalDevelopmentReward,
@@ -158,5 +193,6 @@ export {
   valleyIVBattleCrateReward,
   valleyIVSimulationReward,
   valleyIVDeltaBotRewardMax,
-  valleyIVDeltaBotReward
+  valleyIVDeltaBotReward,
+  valleyIVDefenseConstructionReward
 };

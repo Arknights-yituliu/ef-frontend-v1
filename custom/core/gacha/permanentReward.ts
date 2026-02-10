@@ -127,25 +127,6 @@ const wulingTaskRewardTable = ref<Reward[]>(wulingTaskTable);
 
 
 
-const defenseConstructionReward = ref<Reward>({
-  id: 'defense_construction_reward',
-  name: {
-    zh: `据点防御奖励`,
-    en: ''
-  },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
-  type: '通用',
-  module: '地区建设',
-  regional: '四号谷地',
-  active: true,
-  content: {
-    originiumRecharge: 0,
-    diamond: 1280,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
-  }
-});
 
 
 const etchSpaceSalvageCrateRewardMax: number = 15 * 5 + 30 * 4 + 60 * 1;
@@ -162,7 +143,7 @@ export {
   wulingTaskRewardTable,
   beginnerSignInTaskReward,
   newHorizonsTaskReward,
-  defenseConstructionReward,
+
 
   etchSpaceSalvageReward
 };

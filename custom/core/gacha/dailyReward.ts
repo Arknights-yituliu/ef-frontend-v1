@@ -10,7 +10,7 @@ const poolInfos = [
 
 const umbralMonumentVersion = [
   {
-    name:"影拓丰碑·零号协议",start:'2026/02/24 12:00:00',end:'2026/03/12 10:00:00',content: {
+    name:"影拓丰碑·零号协议",start:'2026/02/14 12:00:00',end:'2026/03/12 10:00:00',content: {
       originiumRecharge: 0,
       diamond: 2400,
       ticketgachaStandardSingle: 0,
@@ -30,7 +30,7 @@ for(const version of umbralMonumentVersion) {
     },
     start: new Date(version.start),
     end: new Date(version.end),
-    type: version.name,
+    type: '通用',
     module: '集成配额商店兑换',
     active: true,
     content: {
@@ -65,4 +65,4 @@ for(const poolInfo of poolInfos) {
     })
 }
 
-export {AICQuotaReward}
+export {AICQuotaReward,umbralMonumentReward}

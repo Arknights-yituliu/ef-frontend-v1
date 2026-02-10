@@ -3,34 +3,7 @@ import type {
   Reward,
   TotalPullsSingle
 } from '#shared/types/gacha-calculator';
-import { AICQuotaReward } from '@/custom/core/gacha/dailyReward';
-import { activityReward } from '@/custom/core/gacha/activityReward';
-import {
-  valleyIVAuryleneCollectReward, valleyIVBattleCrateReward,
-  valleyIVCrateReward, valleyIVDeltaBotReward,
-  valleyIVRegionalDevelopmentReward,
-  valleyIVRegionalStockBillStoreReward,
-  valleyIVSimulationReward,
-} from '@/custom/core/gacha/valleyIVRegionalReward';
-import {
-  wulingAuryleneCollectReward, wulingCrateReward, wulingDeltaBotReward,
-  wulingRegionalDevelopmentReward,
-  wulingRegionalStockBillStoreReward, wulingSimulationReward
-} from '@/custom/core/gacha/wulingRegionalReward';
-import { authorityLevelTaskRewards, authorityLevelUpReward, worldLevelReward } from '@/custom/core/gacha/levelReward';
-import { operationalManualNodeReward, operationalManualReward } from '@/custom/core/gacha/operationalManualReward';
-import {
-  beginnerSignInTaskReward,
-  defenseConstructionReward,
-  etchSpaceSalvageReward,
-  newHorizonsTaskReward,
-  valleyIVTaskRewardTable,
-  wulingTaskRewardTable,
-} from '@/custom/core/gacha/permanentReward';
-import { factoryManualReward, intelArchiveReward, otherRewardTable } from '@/custom/core/gacha/otherReward';
-import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
-import { packs } from '@/custom/core/packs';
-import { numberFloor } from '#shared/utils/numberUtil';
+
 
 /**
  * 计算排期开始与结束日期的天数差
@@ -163,15 +136,32 @@ function addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward
   }
 }
 
-function getPull(result: RewardStatisticsResultDetail): TotalPullsSingle {
+function getRewardsPull(reward: RewardStatisticsResultDetail[]): TotalPullsSingle{
+  const result: TotalPullsSingle = {
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle:0
+  };
+  for(const item of reward) {
+    result.ticketgachaStandardSingle+=item.ticketgachaStandardSingle;
+    result.ticketgachaSpecialSingle+=( item.diamond / 500 +
+      (item.originiumRecharge * 75) / 500 +
+      item.ticketgachaSpecialSingle);
+  }
+
+  return result;
+}
+
+function getRewardPull(reward: RewardStatisticsResultDetail): TotalPullsSingle {
   return {
-    ticketgachaStandardSingle: result.ticketgachaStandardSingle,
+    ticketgachaStandardSingle: reward.ticketgachaStandardSingle,
     ticketgachaSpecialSingle:
-      result.diamond / 500 +
-      (result.originiumRecharge * 75) / 500 +
-      result.ticketgachaSpecialSingle
+      reward.diamond / 500 +
+      (reward.originiumRecharge * 75) / 500 +
+      reward.ticketgachaSpecialSingle
   };
 }
+
+export { calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, addReward,getRewardPull,getRewardsPull };
 
 //
 // function exportReward() {
@@ -227,7 +217,7 @@ function getPull(result: RewardStatisticsResultDetail): TotalPullsSingle {
 //   }
 // }
 
-export { calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, addReward,getPull };
+
 
 
 
