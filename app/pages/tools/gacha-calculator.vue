@@ -19,13 +19,10 @@ import {
   getRewardPull,
   getRewardsPull,
 } from '#shared/utils/gacha-calculator';
+
 //奖励引入
-import {
-  authorityLevelUpRewardTable,
-  authorityLevelTaskRewards,
-  authorityLevelUpReward,
-  worldLevelReward,
-} from '@/custom/core/gacha/levelReward';
+import { AICQuotaReward,umbralMonumentReward } from '@/custom/core/gacha/dailyReward';
+
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
 import {
@@ -35,7 +32,7 @@ import {
   intelArchiveReward,
 } from '@/custom/core/gacha/otherReward';
 
-import { AICQuotaReward,umbralMonumentReward } from '@/custom/core/gacha/dailyReward';
+
 
 import {
   valleyIVAuryleneCollectReward,
@@ -64,6 +61,14 @@ import {
   wulingSimulationReward,
   wulingDefenseConstructionReward,
 } from '@/custom/core/gacha/wulingRegionalReward';
+
+import {
+  authorityLevelUpRewardTable,
+  authorityLevelTaskRewards,
+  authorityLevelUpReward,
+  worldLevelReward,
+} from '@/custom/core/gacha/levelReward';
+
 
 import {
   beginnerSignInTaskReward,
@@ -271,6 +276,7 @@ function createDailyReward(): void {
   weekTaskReward.value.content.diamond = numberRound(remainingWeek, 0) * 500;
 
   dailyRewardStatistics();
+  allRewardStatisticsV2();
 }
 
 watch(
