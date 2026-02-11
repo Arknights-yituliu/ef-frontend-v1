@@ -61,8 +61,8 @@ class Particle {
     this.opacity = 0;
   }
 
-  draw(ctx: CanvasRenderingContext2D) {
-    const colorString = this.color.alpha(this.opacity).string();
+  draw(ctx: CanvasRenderingContext2D, currentColor: ColorInstance) {
+    const colorString = currentColor.alpha(this.opacity).string();
     ctx.fillStyle = colorString;
     ctx.strokeStyle = colorString;
     ctx.fillRect(this.x, this.y, this.r * 2, this.r * 2);
@@ -117,6 +117,7 @@ class ParticleCanvas {
   animationId: number = 0;
   isAnimating: boolean = false;
   mouseActive: boolean = false;
+  currentColor: ColorInstance = Color('#000000');
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -152,6 +153,9 @@ class ParticleCanvas {
   }
 
   generateTextParticles(text: string, color: ColorInstance = Color('#000000')) {
+    // 更新当前颜色
+    this.currentColor = color;
+
     // 创建临时画布用于文本渲染
     const tempCanvas = document.createElement('canvas');
     const tempCtx = tempCanvas.getContext('2d')!;
@@ -183,7 +187,7 @@ class ParticleCanvas {
           particles.push({
             x,
             y,
-            color: color,
+            color: this.currentColor,
           });
         }
       }
@@ -191,7 +195,7 @@ class ParticleCanvas {
 
     // 创建粒子实例
     this.particles = particles.map(
-      (particle) => new Particle(particle.x, particle.y, ANIMATE_TIME, particle.color),
+      (particle) => new Particle(particle.x, particle.y, ANIMATE_TIME, this.currentColor),
     );
   }
 
@@ -217,7 +221,7 @@ class ParticleCanvas {
 
     this.particles.forEach((particle) => {
       particle.update(this.mouseX, this.mouseY);
-      particle.draw(this.ctx);
+      particle.draw(this.ctx, this.currentColor);
       
       // 检查是否有粒子还在移动
       if (!particle.isSettled()) {
