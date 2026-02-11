@@ -33,7 +33,6 @@ const VELOCITY_THRESHOLD = 0.01; // 速度阈值，低于此值认为粒子已�
 interface ParticleData {
   x: number;
   y: number;
-  color: ColorInstance;
 }
 
 class Particle {
@@ -47,17 +46,15 @@ class Particle {
   vy: number = 0;
   time: number;
   r: number;
-  color: ColorInstance;
   opacity: number;
 
-  constructor(totalX: number, totalY: number, time: number, color: ColorInstance) {
+  constructor(totalX: number, totalY: number, time: number) {
     this.x = Math.random() * CANVAS_WIDTH;
     this.y = Math.random() * CANVAS_HEIGHT;
     this.totalX = totalX;
     this.totalY = totalY;
     this.time = time;
     this.r = 1.2;
-    this.color = color;
     this.opacity = 0;
   }
 
@@ -153,7 +150,7 @@ class ParticleCanvas {
   }
 
   generateTextParticles(text: string, color: ColorInstance = Color('#000000')) {
-    // 更新当前颜色
+    // Update current color
     this.currentColor = color;
 
     // 创建临时画布用于文本渲染
@@ -187,7 +184,6 @@ class ParticleCanvas {
           particles.push({
             x,
             y,
-            color: this.currentColor,
           });
         }
       }
@@ -195,7 +191,7 @@ class ParticleCanvas {
 
     // 创建粒子实例
     this.particles = particles.map(
-      (particle) => new Particle(particle.x, particle.y, ANIMATE_TIME, this.currentColor),
+      (particle) => new Particle(particle.x, particle.y, ANIMATE_TIME),
     );
   }
 
