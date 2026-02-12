@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="page-container">
+  <v-container class="page-container" fluid>
     <v-row>
       <v-col cols="12" lg="6">
         <v-expansion-panels model-value="计算结果">
@@ -109,7 +109,7 @@
                           </div>
                         </v-col>
 
-                        <v-divider vertical class="hidden-sm-and-down" />
+                        <v-divider class="hidden-sm-and-down" vertical />
                         <v-divider class="hidden-md-and-up my-4" />
 
                         <!-- Right Column: Results -->
@@ -243,74 +243,87 @@
               <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
               <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
               <div class="mb-8" />
-              <v-row v-for="(stat, index) in requiredEssenceStats" :key="index" align="center">
-                <v-col cols="0" md="1" />
-                <v-col cols="12" md="2">
-                  <div>
-                    <span class="font-weight-bold mr-4">#{{ index + 1 }}</span
-                    ><span>{{ getEssenceStatDescription(stat) }}</span>
-                  </div>
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-select
-                    v-model="stat.attribute"
-                    :items="allAttributeStats"
-                    :label="t('page.tools.essenceCalculator.attributeStats')"
-                    :list-props="{ density: 'compact' }"
-                    :menu-props="{ maxHeight: 1024 }"
-                    :disabled="!stat.isCustom"
-                    density="compact"
-                    hide-details
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-select
-                    v-model="stat.secondary"
-                    :items="allSecondaryStats"
-                    :label="t('page.tools.essenceCalculator.secondaryStats')"
-                    :list-props="{ density: 'compact' }"
-                    :menu-props="{ maxHeight: 1024 }"
-                    :disabled="!stat.isCustom"
-                    density="compact"
-                    hide-details
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-select
-                    v-model="stat.skill"
-                    :items="allSkillStats"
-                    :label="t('page.tools.essenceCalculator.skillStats')"
-                    :list-props="{ density: 'compact' }"
-                    :menu-props="{ maxHeight: 1024 }"
-                    :disabled="!stat.isCustom"
-                    density="compact"
-                    hide-details
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12" md="3">
-                  <v-btn
-                    :disabled="index === 0"
-                    icon="mdi-chevron-up"
-                    variant="text"
-                    @click="moveUp(index)"
-                  />
-                  <v-btn
-                    :disabled="index === requiredEssenceStats.length - 1"
-                    icon="mdi-chevron-down"
-                    variant="text"
-                    @click="moveDown(index)"
-                  />
-                  <v-btn
-                    color="error"
-                    icon="mdi-delete"
-                    variant="text"
-                    @click="removeStat(index)"
-                  />
-                </v-col>
-              </v-row>
+              <v-card
+                v-for="(stat, index) in requiredEssenceStats"
+                :key="index"
+                class="pa-2 my-2"
+                elevation="4"
+              >
+                <v-row align="center">
+                  <v-col cols="0" md="1" />
+                  <v-col cols="12" md="2">
+                    <div>
+                      <span class="font-weight-bold mr-4">#{{ index + 1 }}</span
+                      ><span>{{ getEssenceStatDescription(stat) }}</span>
+                    </div>
+                  </v-col>
+                  <v-col cols="12" md="2">
+                    <v-select
+                      v-if="stat.isCustom"
+                      v-model="stat.attribute"
+                      density="compact"
+                      hide-details
+                      :items="allAttributeStats"
+                      :label="t('page.tools.essenceCalculator.attributeStats')"
+                      :list-props="{ density: 'compact' }"
+                      variant="outlined"
+                    />
+                    <v-chip v-else color="primary" variant="flat">
+                      {{ stat.attribute }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12" md="2">
+                    <v-select
+                      v-if="stat.isCustom"
+                      v-model="stat.secondary"
+                      density="compact"
+                      hide-details
+                      :items="allSecondaryStats"
+                      :label="t('page.tools.essenceCalculator.secondaryStats')"
+                      :list-props="{ density: 'compact' }"
+                      variant="outlined"
+                    />
+                    <v-chip v-else color="secondary" variant="flat">
+                      {{ stat.secondary }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12" md="2">
+                    <v-select
+                      v-if="stat.isCustom"
+                      v-model="stat.skill"
+                      density="compact"
+                      hide-details
+                      :items="allSkillStats"
+                      :label="t('page.tools.essenceCalculator.skillStats')"
+                      :list-props="{ density: 'compact' }"
+                      variant="outlined"
+                    />
+                    <v-chip v-else color="success" variant="flat">
+                      {{ stat.skill }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12" md="3">
+                    <v-btn
+                      :disabled="index === 0"
+                      icon="mdi-chevron-up"
+                      variant="text"
+                      @click="moveUp(index)"
+                    />
+                    <v-btn
+                      :disabled="index === requiredEssenceStats.length - 1"
+                      icon="mdi-chevron-down"
+                      variant="text"
+                      @click="moveDown(index)"
+                    />
+                    <v-btn
+                      color="error"
+                      icon="mdi-delete"
+                      variant="text"
+                      @click="removeStat(index)"
+                    />
+                  </v-col>
+                </v-row>
+              </v-card>
               <div class="mt-8 mb-8">
                 <div class="d-flex align-center mb-4 mt-8 ga-2">
                   <v-icon>mdi-pencil</v-icon>
@@ -331,7 +344,7 @@
                       :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
                       :alt="weaponType"
                       class="group-icon"
-                    >
+                    />
                     <h3>{{ weaponType }}</h3>
                   </div>
                   <div class="weapon-grid">
