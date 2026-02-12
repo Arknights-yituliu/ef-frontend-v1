@@ -167,5 +167,54 @@
         "url": "https://endfield-calc.github.io/"
       }
     ]
+  },
+  {
+    "id": "JEI-Web",
+    "localized_name": {
+      "zh_CN": "JEI-Web",
+      "en_US": "JEI-Web"
+    },
+    "localized_description": {
+      "zh_CN": "一个为明日方舟：终末地和其他游戏提供的可扩展 JEI 类似物实现，支持物品浏览，配方查询，生产线规划，物品收藏，高级过滤，wiki 查看，多资源包支持，历史记录和几个小游戏。",
+      "en_US": "A scalable JEI-like implementation for Arknights: Endfield and other games, supporting item browsing, recipe lookup, production planning, item collection, advanced filtering, wiki viewing, multi-resource pack support, history tracking, and several mini-games."
+    },
+    "localized_slogan": {
+      "zh_CN": "万物一查即知",
+      "en_US": "One Search, Everything Known"
+    },
+    "localized_tags": {
+      "zh_CN": ["JEI", "物品浏览", "配方查询", "产线规划"],
+      "en_US": ["JEI", "Item Browsing", "Recipe Lookup", "Production Planning"]
+    },
+    "icon_url": "https://jeiweb.sirrus.cc/icons/icon.svg",
+    "links": [
+      {
+        "primary": true,
+        "regionality": "global",
+        "localized_name": {
+          "zh_CN": "腾讯镜像",
+          "en_US": "Tencent Mirror"
+        },
+        "url": "https://fastjeiweb.sirrus.cc/"
+      },
+      {
+        "primary": false,
+        "regionality": "global",
+        "localized_name": {
+          "zh_CN": "Cloudflare 镜像",
+          "en_US": "Cloudflare Mirror"
+        },
+        "url": "https://jeiweb.sirrus.cc/"
+      },
+      {
+        "primary": false,
+        "regionality": "global",
+        "localized_name": {
+          "zh_CN": "GitHub 仓库",
+          "en_US": "GitHub Repository"
+        },
+        "url": "https://github.com/AndreaFrederica/jei-web"
+      }
+    ]
   }
 ]
