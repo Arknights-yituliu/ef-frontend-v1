@@ -21,9 +21,9 @@ import {
 } from '#shared/utils/gacha-calculator';
 
 //奖励引入
-import { AICQuotaReward,umbralMonumentReward } from '@/custom/core/gacha/dailyReward';
+import { dailyReward,weekTaskReward,calculatorDailyReward,AICQuotaReward,umbralMonumentReward } from '@/custom/core/gacha/dailyReward';
 
-import { activityReward } from '@/custom/core/gacha/activityReward';
+import { activityReward,createSignInReward} from '@/custom/core/gacha/activityReward';
 
 import {
   otherRewardTable,
@@ -94,7 +94,7 @@ const poolOptions = ref<PoolOption[]>([
   {
     name: '轻飘飘的信使',
     color: '#BE2F00',
-    start: new Date('2026/02/07 10:00:00'),
+    start: new Date('2026/02/07 12:00:00'),
     end: new Date('2026/02/24 12:00:00'),
     dateText: '02.07——02.24',
     type: '轻飘飘的信使',
@@ -103,7 +103,7 @@ const poolOptions = ref<PoolOption[]>([
   {
     name: '热烈色彩',
     color: '#FA5B81',
-    start: new Date('2026/02/24 10:00:00'),
+    start: new Date('2026/02/24 12:00:00'),
     end: new Date('2026/03/12 12:00:00'),
     dateText: '02.24——未知',
     type: '热烈色彩',
@@ -112,7 +112,7 @@ const poolOptions = ref<PoolOption[]>([
   {
     name: '敬请期待',
     color: '#B60129',
-    start: new Date('2026/03/12 10:00:00'),
+    start: new Date('2026/03/12 12:00:00'),
     end: new Date('2026/03/28 12:00:00'),
     dateText: '',
     type: '1111',
@@ -123,7 +123,7 @@ const poolOptions = ref<PoolOption[]>([
 const currentPool = ref<PoolOption>({
   name: '轻飘飘的信使',
   color: '#BE2F00',
-  start: new Date('2026/02/07 10:00:00'),
+  start: new Date('2026/02/07 12:00:00'),
   end: new Date('2026/02/24 12:00:00'),
   dateText: '02.07——02.24',
   type: '轻飘飘的信使',
@@ -134,7 +134,8 @@ const startDate: Date = new Date();
 
 function selectedPool(option: PoolOption): void {
   currentPool.value = option;
-  createDailyReward();
+  calculatorDailyReward(startDate,option.end);
+  createSignInReward(startDate,option.end);
   existingRewardStatistics();
   dailyRewardStatistics();
   activityRewardStatistics();
@@ -222,62 +223,6 @@ function existingRewardStatistics(): void {
  * 日常奖励计算相关代码起始
  */
 
-const dailyReward = ref<Reward>({
-  id: 'day_reward',
-  name: {
-    zh: `日常奖励X0天`,
-    en: '',
-  },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
-  type: '通用',
-  module: '日常奖励',
-  active: true,
-  content: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-  },
-});
-
-const weekTaskReward = ref<Reward>({
-  id: 'week_task_reward',
-  name: {
-    zh: `周常奖励X0周`,
-    en: '',
-  },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
-  type: '通用',
-  module: '日常奖励',
-  active: true,
-  content: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-  },
-});
-
-function createDailyReward(): void {
-  const remainingDays: number = calculateDaysDifference(startDate, currentPool.value.end);
-  dailyReward.value.name = {
-    zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
-    en: '',
-  };
-  dailyReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
-
-  const remainingWeek: number = countTuesdaysBetweenV2(startDate, currentPool.value.end);
-  weekTaskReward.value.name = {
-    zh: `周常奖励X${numberRound(remainingWeek, 0)}周`,
-    en: '',
-  };
-  weekTaskReward.value.content.diamond = numberRound(remainingWeek, 0) * 500;
-
-  dailyRewardStatistics();
-  allRewardStatisticsV2();
-}
 
 watch(
   AICQuotaReward,
