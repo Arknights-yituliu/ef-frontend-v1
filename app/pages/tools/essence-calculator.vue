@@ -11,6 +11,14 @@
               <template v-if="bestChoices.length > 0">
                 <div v-for="(choice, i) in bestChoices" :key="i" class="mb-6">
                   <v-card class="result-card" elevation="2" rounded="lg">
+                    <template #image>
+                      <v-img
+                        class="opacity-30"
+                        :src="energyAlluviums[choice.battleId]!.imageUrl"
+                        cover
+                        style="mask-image: linear-gradient(to right, transparent, black)"
+                      />
+                    </template>
                     <v-card-item class="bg-info py-3">
                       <v-card-title class="text-h6 font-weight-bold">
                         {{ t('page.tools.essenceCalculator.plan') }} {{ i + 1 }}
@@ -404,6 +412,7 @@ const emptyStat: EssenceStat = {
 interface EnergyAlluvium {
   battleId: string;
   battleName: string;
+  imageUrl: string;
   secondaryStats: string[];
   skillStats: string[];
 }
@@ -458,10 +467,12 @@ const allSkillStats = [
 ];
 
 /** 能量淤积点信息 */
-const EnergyAlluviums: Record<string, EnergyAlluvium> = {
+const energyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·枢纽区': {
     battleId: '重度能量淤积点·枢纽区',
     battleName: '重度能量淤积点·枢纽区',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv001_1.webp',
     secondaryStats: [
       '攻击提升',
       '灼热伤害提升',
@@ -477,6 +488,8 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·源石研究园': {
     battleId: '重度能量淤积点·源石研究园',
     battleName: '重度能量淤积点·源石研究园',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv005_1.webp',
     secondaryStats: [
       '攻击提升',
       '物理伤害提升',
@@ -492,6 +505,8 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·矿脉源区': {
     battleId: '重度能量淤积点·矿脉源区',
     battleName: '重度能量淤积点·矿脉源区',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv006_1.webp',
     secondaryStats: [
       '生命提升',
       '物理伤害提升',
@@ -507,6 +522,8 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·供能高地': {
     battleId: '重度能量淤积点·供能高地',
     battleName: '重度能量淤积点·供能高地',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv007_1.webp',
     secondaryStats: [
       '攻击提升',
       '生命提升',
@@ -522,6 +539,8 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·武陵城': {
     battleId: '重度能量淤积点·武陵城',
     battleName: '重度能量淤积点·武陵城',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv002_1.webp',
     secondaryStats: [
       '攻击提升',
       '生命提升',
@@ -1278,7 +1297,7 @@ const battleChoices = computed(() => {
   const result: BattleChoice[] = [];
   // 枚举所有能量淤积点
   for (const { battleId, battleName, secondaryStats, skillStats } of Object.values(
-    EnergyAlluviums,
+    energyAlluviums,
   )) {
     // 枚举基础属性组合
     for (const selectedAttribute of combinations(allAttributeStats, 3)) {
