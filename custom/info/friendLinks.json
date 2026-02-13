@@ -190,6 +190,15 @@
     "links": [
       {
         "primary": true,
+        "regionality": "CHINA_MAINLAND",
+        "localized_name": {
+          "zh_CN": "国内镜像",
+          "en_US": "CN Mirror"
+        },
+        "url": "https://jei.mic.run/"
+      },
+      {
+        "primary": false,
         "regionality": "global",
         "localized_name": {
           "zh_CN": "腾讯镜像",
