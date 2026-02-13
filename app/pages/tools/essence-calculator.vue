@@ -10,13 +10,13 @@
             <v-expansion-panel-text>
               <template v-if="bestChoices.length > 0">
                 <div v-for="(choice, i) in bestChoices" :key="i" class="mb-6">
-                  <v-card class="result-card" elevation="2" rounded="lg">
+                  <v-card elevation="2" rounded="lg">
                     <template #image>
                       <v-img
-                        class="opacity-30"
-                        :src="energyAlluviums[choice.battleId]!.imageUrl"
+                        class="result-card-background-image opacity-30"
+                        :alt="choice.battleName"
                         cover
-                        style="mask-image: linear-gradient(to right, transparent, black)"
+                        :src="energyAlluviums[choice.battleId]!.imageUrl"
                       />
                     </template>
                     <v-card-item class="bg-info py-3">
@@ -98,7 +98,7 @@
                             <!-- Secondary Attribute -->
                             <div v-if="choice.selectedSecondary" class="mb-4">
                               <div class="text-medium-emphasis mb-1">
-                                {{ t('page.tools.essenceCalculator.selectSecondaryAttribute') }}
+                                {{ t('page.tools.essenceCalculator.selectSecondaryStats') }}
                               </div>
                               <v-chip color="teal" label variant="flat">
                                 {{ choice.selectedSecondary }}
@@ -108,7 +108,7 @@
                             <!-- Skill Attribute -->
                             <div v-if="choice.selectedSkill" class="mb-4">
                               <div class="text-medium-emphasis mb-1">
-                                {{ t('page.tools.essenceCalculator.selectSkillAttribute') }}
+                                {{ t('page.tools.essenceCalculator.selectSkillStats') }}
                               </div>
                               <v-chip color="blue" label variant="flat">
                                 {{ choice.selectedSkill }}
@@ -1425,6 +1425,11 @@ const bestChoices = computed(() => {
 <style scoped>
 .page-container {
   --weapon-icon-size: clamp(2.5rem, 14vw, 5rem);
+}
+
+.result-card-background-image {
+  mask-image: linear-gradient(to right, transparent, black);
+  -webkit-mask-image: linear-gradient(to right, transparent, black);
 }
 
 .group-icon {
