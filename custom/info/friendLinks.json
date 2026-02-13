@@ -216,5 +216,36 @@
         "url": "https://github.com/AndreaFrederica/jei-web"
       }
     ]
+  },
+  {
+    "id": "协议终端",
+    "localized_name": {
+      "zh_CN": "协议终端",
+      "en_US": "Protocol Terminal"
+    },
+    "localized_description": {
+      "zh_CN": "《明日方舟：终末地》一站式玩家服务平台。深度集成数据查询、抽卡分析、百科检索与 MaaEnd，解决所有需求。",
+      "en_US": "An all-in-one service platform for Arknights: Endfield. Deeply integrating data queries, gacha analytics, wiki access, and MaaEnd to cover all your frontier needs."
+    },
+    "localized_slogan": {
+      "zh_CN": "一站式协议连接，全方位终末掌控",
+      "en_US": "One Terminal, Total Control"
+    },
+    "localized_tags": {
+      "zh_CN": ["一站式便携工具", "数据查询与分析"],
+      "en_US": ["All-in-One Tool", "Data & Analytics"]
+    },
+    "icon_url": "https://end.shallow.ink/icon.svg",
+    "links": [
+      {
+        "primary": true,
+        "regionality": "CHINA_MAINLAND",
+        "localized_name": {
+          "zh_CN": "进入终端",
+          "en_US": "Access Terminal"
+        },
+        "url": "https://end.shallow.ink"
+      }
+    ]
   }
 ]
