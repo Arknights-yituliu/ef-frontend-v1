@@ -3,9 +3,6 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import {
   calculateDaysDifference,
   countTuesdaysBetweenV2,
-  addReward,
-  getRewardPull,
-  getRewardsPull,
 } from '#shared/utils/gacha-calculator';
 import { numberRound } from '#shared/utils/numberUtil';
 
@@ -16,8 +13,8 @@ const dailyReward = ref<Reward>({
     zh: `日常奖励X0天`,
     en: '',
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '日常奖励',
   active: true,
@@ -35,8 +32,8 @@ const weekTaskReward = ref<Reward>({
     zh: `周常奖励X0周`,
     en: '',
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '日常奖励',
   active: true,
@@ -67,15 +64,15 @@ function calculatorDailyReward(start:Date,end:Date): void {
 
 
 const poolInfos = [
-  {name:'熔火灼痕',start:'2026/01/22 10:00:00',end:'2026/02/07 10:00:00'},
-  {name:'轻飘飘的信使',start:'2026/02/07 12:00:00',end:'2026/02/24 10:00:00'},
-  {name:'热烈色彩',start:'2026/02/24 12:00:00',end:'2026/03/12 10:00:00'}
+  {name:'熔火灼痕',start:'2026/01/22 12:00:00',end:'2026/02/07 12:00:00'},
+  {name:'轻飘飘的信使',start:'2026/02/07 12:00:00',end:'2026/02/24 12:00:00'},
+  {name:'热烈色彩',start:'2026/02/24 12:00:00',end:'2026/03/12 12:00:00'}
 ];
 
 
 const umbralMonumentVersion = [
   {
-    name:"影拓丰碑·零号协议",start:'2026/02/14 12:00:00',end:'2026/03/12 10:00:00',content: {
+    name:"影拓丰碑·零号协议",start:'2026/02/14 12:00:00',end:'2026/03/12 12:00:00',content: {
       originiumRecharge: 0,
       diamond: 2400,
       ticketgachaStandardSingle: 0,

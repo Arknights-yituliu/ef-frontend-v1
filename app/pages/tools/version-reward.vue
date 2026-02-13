@@ -4,7 +4,7 @@ import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 
 import { dailyReward,weekTaskReward,calculatorDailyReward,AICQuotaReward, umbralMonumentReward } from '@/custom/core/gacha/dailyReward';
 
-import { activityReward } from '@/custom/core/gacha/activityReward';
+import { activityReward ,createSignInReward} from '@/custom/core/gacha/activityReward';
 
 import {
   otherRewardTable,
@@ -64,7 +64,7 @@ import {
 
 const version1Reward = ref<Reward[]>([]);
 
-calculatorDailyReward(new Date('2026/01/22 10:00:00'),new Date('2026/03/12 10:00:00'))
+calculatorDailyReward(new Date('2026/01/22 12:00:00'),new Date('2026/03/12 10:00:00'))
 
 version1Reward.value.push(dailyReward.value)
 version1Reward.value.push(weekTaskReward.value)
@@ -77,6 +77,7 @@ for (const reward of umbralMonumentReward.value) {
   version1Reward.value.push(reward);
 }
 
+createSignInReward(new Date('2026/01/22 12:00:00'),new Date('2026/03/12 10:00:00'));
 for (const reward of activityReward.value) {
   version1Reward.value.push(reward);
 }

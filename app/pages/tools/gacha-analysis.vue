@@ -1,3 +1,11 @@
+<!--{-->
+<!--"i18nKey": "gachaAnalysis",-->
+<!--"nameKey": "menu.gachaAnalysis",-->
+<!--"routePath": "/tools/gacha-analysis",-->
+<!--"vuetifyIcon": "mdi-chart-bar"-->
+<!--},-->
+
+
 <template>
 
   <div style=" border-radius: 16px; padding: 24px;">
@@ -267,7 +275,7 @@
                       </span>
                     </div>
                   </div>
-                  
+
                 </div>
 
 
@@ -459,7 +467,7 @@ function saveRecordsToCache(uid: string, records: GachaRecord[]) {
 }
 
 // 调试开关
-const USE_DEBUG_DATA = true;
+const USE_DEBUG_DATA = false;
 
 async function submitAndVerify() {
   // 调试数据逻辑
@@ -600,7 +608,7 @@ function goToUpdate() {
   inputUrl.value = '';
 }
 
-//确认并清除缓存 
+//确认并清除缓存
 function confirmClearCache() {
   if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？\n此操作不可恢复！（抽卡数据均保存在本地）')) {
     try {
@@ -693,7 +701,7 @@ function processGachaData(list: GachaRecord[]) {
           poolId,
           poolName: lastRecord.poolName,
           character: '已垫',
-          charId: 'padded',  
+          charId: 'padded',
           count: state.pullsSinceLastSix,
           timestamp: lastRecord.gachaTs,
           seqId: lastRecord.seqId,
@@ -916,7 +924,7 @@ const gachaTags = computed(() => {
     }
   }
 
- 
+
   // 1. 统计十连内多金标签（十连双金/三金）
   const sortedByTime = [...realSixStars].sort((a, b) => {
     const tsA = safeTimestamp(a.timestamp);

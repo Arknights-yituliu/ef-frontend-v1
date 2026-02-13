@@ -12,8 +12,8 @@ const operationalManualNodeReward = ref<Reward>(
       zh: `节点奖励`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '节点手册',
     active: true,
