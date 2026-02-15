@@ -567,7 +567,6 @@ onUnmounted(() => {
 }
 
 .jump-hint-icon {
-  margin-right: 0.5rem;
   opacity: 0.5;
   transition: opacity var(--transition-base);
 }
