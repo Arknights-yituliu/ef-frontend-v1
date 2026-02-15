@@ -203,7 +203,6 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 16px;
-  color: #1f2937;
 }
 
 
@@ -212,7 +211,6 @@
   display: flex;
   align-items: center;
   border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.8); 
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   box-shadow: 0 0 0.75em var(--theme-shadow-base);
@@ -253,7 +251,6 @@
 .user-name {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #1f2937;
   margin: 0 0 4px 0;
 }
 
@@ -329,7 +326,6 @@
 .user-stats-basic .stat-value {
   font-size: 1rem;
   font-weight: 700;
-  color: #1f2937;
 }
 
 .stat-block {
@@ -340,7 +336,6 @@
   display: block;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #111827;
   line-height: 1.2;
 }
 
@@ -366,9 +361,7 @@
   border-radius: 12px;
   padding: 16px 12px; 
   box-shadow: 0 0 0.5em var(--theme-shadow-base);
-  transition: all 0.2s ease;
-  background-color: rgba(255, 255, 255, 0.6);
-  
+  transition: all 0.2s ease;  
   display: flex;
   flex-direction: column;
   height: 140px; 
@@ -377,7 +370,6 @@
 .pool-card:hover {
   transform: translateY(-1px); 
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
-  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .pool-card-header {
@@ -386,7 +378,6 @@
 .pool-card-name {
   font-weight: 600;
   font-size: 0.95rem;
-  color: #1f2937;
 }
 
 .pool-card-core {
@@ -398,7 +389,6 @@
 .total-gacha-count {
   font-size: 2rem;
   font-weight: 700;
-  color: #111827;
   line-height: 1;
 }
 .core-label {
@@ -424,7 +414,6 @@
 }
 .value {
   font-weight: 600;
-  color: #374151;
 }
 
 .pool-card--limited {
@@ -444,7 +433,6 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px; 
   border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.8);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
@@ -716,13 +704,6 @@
     margin-top: 8px;
   }
 
-  .pool-cards {
-    grid-template-columns: 1fr; 
-  }
-
-  .pool-card {
-    height: 150px;
-  }
 
   /* 卡池分布/角色TOP3 优化 */
   .d-flex.flex-wrap {

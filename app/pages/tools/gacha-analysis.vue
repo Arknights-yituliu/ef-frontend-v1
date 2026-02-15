@@ -15,13 +15,13 @@
       <header class="page-title">导入抽卡记录</header>
 
       <div class="form-group">
-        <label>UID</label>
+        <label>查询链接</label>
         <input
-          v-model="inputUid"
+          v-model="inputUrl"
           :disabled="isSubmitting"
-          placeholder="请输入UID"
+          placeholder="粘贴从游戏内复制的完整查询链接"
           type="text"
-        >
+        />
       </div>
 
       <div class="form-group">
@@ -231,21 +231,21 @@
                 style="cursor: pointer;"
                 @click="toggleExpand(record.seqId)"
               >
-              <div class="character-avatar" style="width: 60px; height: 60px; flex-shrink: 0;">
-                <img
-                  v-if="record.charId && record.character !== '已垫'"
-                  :alt="record.character"
-                  :src="getAvatarUrl(record.charId)"
-                  style="width: 100%; height: 100%; object-fit: contain; background-color: #f0f2f5; border-radius: 4px;"
-                  @error="handleImageError"
-                >
-                <div
-                  v-else
-                  style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 4px; font-size: 0.8rem; color: #6b7280;"
-                >
-                  {{ record.character === '已垫' ? '垫抽' : '?' }}
+                <div class="character-avatar" style="width: 60px; height: 60px; flex-shrink: 0;margin-right: 4px;">
+                  <img
+                    v-if="record.charId && record.character !== '已垫'"
+                    :alt="record.character"
+                    :src="getAvatarUrl(record.charId)"
+                    style="width: 100%; height: 100%; object-fit: contain; background-color: #f0f2f5; border-radius: 50%; "
+                    @error="handleImageError"
+                  >
+                  <div
+                    v-else
+                    style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 4px; border-radius: 50%; font-size: 0.8rem; color: #6b7280;"
+                  >
+                    {{ record.character === '已垫' ? '垫抽' : '?' }}
+                  </div>
                 </div>
-              </div>
 
                 <div class="gacha-drawer-container" style="flex: 1;">
 
@@ -255,7 +255,7 @@
                       :class="getBarType(record)"
                       :style="{ width: ` ${getBarWidth(record.count)}%` }"
                     >
-                      <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px;">
+                      <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px; color: #000;">
                         {{ record.count }} 抽
                       </div>
                     </div>
@@ -263,15 +263,28 @@
                     <span v-if="record.character !== '已垫' && record.count <= 10" class="lucky-label">超欧</span>
                   </div>
 
-                  <div v-if="expandedSeqId === record.seqId && record.fiveStars && record.fiveStars.length > 0" class="mt-2 ml-4">
-                    <div style="font-size: 0.875rem; color: #555;">
+                  <div 
+                    v-if="expandedSeqId === record.seqId && record.fiveStars?.length" 
+                    class="mt-2 ml-4"
+                  >
+                    <div style="font-size: 0.9rem; color: #555;">
                       <span
                         v-for="(item, i) in countFiveStars(record.fiveStars || [])"
                         :key="i"
-                        class="mx-1"
-                        style="background-color: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px;"
+                        class="mx-1 d-inline-flex flex-column align-items-center"
+                        style="width: 48px;"
                       >
-                        {{ item.name }}×{{ item.count }}
+                        <!-- 头像 -->
+                        <img
+                          :src="getAvatarUrl(item.name)"
+                          :alt="item.name"
+                          style="width: 40px; height: 40px; object-fit: contain; background-color: #e0f2fe; border-radius: 4px;"
+                          @error="handleImageError"
+                        />
+                        <!-- 计数 -->
+                        <span style="font-size: 0.7rem; color: #0284c7; margin-top: 2px;">
+                          ×{{ item.count }}
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -347,7 +360,6 @@ import { gachaPools } from '@/custom/core/gacha-pool-info';
 
 const viewMode = ref<'collect' | 'analyze'>('collect');
 
-const inputUid = ref('');
 const inputUrl = ref('');
 const isSubmitting = ref(false);
 const collectError = ref('');
@@ -437,17 +449,17 @@ function parseSeqId(seqId: string): number {
 }
 
 // 提交并验证用户输入的 UID 和 URL
-const CACHE_KEY = 'endfield_gacha_records_v1';
-const LAST_UID_KEY = 'endfield_last_uid';
+const CACHE_KEY = 'endfield_gacha_records_v2';
+const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
 
 // 从 localStorage 加载缓存记录
-function loadCachedRecords(uid: string): GachaRecord[] {
+function loadCachedRecords(roleId: string): GachaRecord[] {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
     if (!raw) return [];
 
-    const cache = JSON.parse(raw) as { uid: string; records: GachaRecord[] };
-    return cache.uid === uid ? cache.records : [];
+    const cache = JSON.parse(raw) as { roleId: string; records: GachaRecord[] };
+    return cache.roleId === roleId ? cache.records : [];
   } catch (error) {
     console.warn('缓存读取失败，清空旧数据', error);
     localStorage.removeItem(CACHE_KEY);
@@ -456,27 +468,27 @@ function loadCachedRecords(uid: string): GachaRecord[] {
 }
 
 // 保存记录到 localStorage
-function saveRecordsToCache(uid: string, records: GachaRecord[]) {
+function saveRecordsToCache(roleId: string, records: GachaRecord[]) {
   try {
-    const cache = { uid, records };
+    const cache = { roleId, records };
     localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
-    localStorage.setItem(LAST_UID_KEY, uid);
+    localStorage.setItem(LAST_ROLE_ID_KEY, roleId);
   } catch (error) {
     console.error('缓存保存失败', error);
   }
 }
 
 // 调试开关
-const USE_DEBUG_DATA = false;
+const USE_DEBUG_DATA = true;
 
 async function submitAndVerify() {
-  // 调试数据逻辑
+  // 调试数据逻辑（保持兼容，但缓存 key 改为 debug_roleId）
   if (USE_DEBUG_DATA) {
     console.log('【调试模式】使用示例数据进行分析');
     try {
       const mergedRecords: GachaRecord[] = debugGachaData.data;
 
-      saveRecordsToCache('debug_uid', mergedRecords);
+      saveRecordsToCache('debug_roleId', mergedRecords);
       records.value = mergedRecords;
       processGachaData(mergedRecords);
       viewMode.value = 'analyze';
@@ -488,19 +500,25 @@ async function submitAndVerify() {
       return;
     }
   }
-  // 用户输入逻辑
-  const uid = inputUid.value.trim();
-  const url = inputUrl.value.trim();
 
-  if (!uid || !url) {
-    collectError.value = '请填写 UID 和查询链接';
+  // 用户输入：仅需查询链接
+  const url = inputUrl.value.trim();
+  if (!url) {
+    collectError.value = '请粘贴完整的查询链接';
     return;
   }
 
+  let hgToken = '';
   try {
-    new URL(url);
+    const urlObj = new URL(url);
+    hgToken = urlObj.searchParams.get('hgToken') || '';
   } catch {
     collectError.value = '链接格式不正确，请粘贴完整的查询链接';
+    return;
+  }
+
+  if (!hgToken) {
+    collectError.value = '链接中未找到 hgToken，请确认是否为有效查询链接';
     return;
   }
 
@@ -510,28 +528,64 @@ async function submitAndVerify() {
   try {
     const BASE_URL = 'https://endfield.backend.yituliu.cn';
 
-    // Step 1: 上传记录
-    const uploadRes = await fetch(`${BASE_URL}/pool-record/character/upload`, {
+    // Step 1: 创建导入任务
+    const uploadRes = await fetch(`${BASE_URL}/pool-record/create-task`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ uid, url }),
+      body: JSON.stringify({ hgToken }),
     });
 
     if (!uploadRes.ok) {
-      throw new Error(`上传失败（状态码 ${uploadRes.status}）`);
+      throw new Error(`任务创建失败（状态码 ${uploadRes.status}）`);
     }
 
-    // Step 2: 查询记录
-    const listUrl = `${BASE_URL}/pool-record/character/list?uid=${encodeURIComponent(uid)}`;
-    const listRes = await fetch(listUrl, { method: 'GET' });
+    const taskResponse = await uploadRes.json();
+    // ⚠️ 假设后端实际返回 { taskId: "xxx" }
+    // 如果后端真的只返回 {}，此流程无法继续 —— 需后端配合
+    const taskId = taskResponse?.taskId;
+    if (!taskId) {
+      throw new Error('未收到任务ID，请稍后重试');
+    }
 
+    // Step 2: 轮询检查任务进度（最多 60 秒）
+    let roleId = '';
+    let retryCount = 0;
+    const maxRetries = 30; // 30 * 2s = 60s
+
+    while (retryCount < maxRetries) {
+      await new Promise(resolve => setTimeout(resolve, 2000)); // 等待 2 秒
+
+      const checkRes = await fetch(`${BASE_URL}/pool-record/check-task?taskId=${encodeURIComponent(taskId)}`);
+      if (!checkRes.ok) {
+        retryCount++;
+        continue;
+      }
+
+      const checkData = await checkRes.json();
+      if (checkData.code === 200 && checkData.data?.roleId) {
+        roleId = checkData.data.roleId;
+        break;
+      } else {
+        retryCount++;
+      }
+    }
+
+    if (!roleId) {
+      throw new Error('任务处理超时，请稍后重试');
+    }
+
+    // Step 3: 获取抽卡记录
+    const listRes = await fetch(`${BASE_URL}/pool-record/character/list?roleId=${encodeURIComponent(roleId)}`);
     if (!listRes.ok) {
-      throw new Error(`查询失败（状态码 ${listRes.status}）`);
+      throw new Error(`获取记录失败（状态码 ${listRes.status}）`);
     }
 
     const data = await listRes.json();
+    if (!data?.data || !Array.isArray(data.data)) {
+      throw new Error('未返回有效抽卡数据');
+    }
 
-    // Step 3: 转换新数据
+    // Step 4: 转换新数据（注意：移除 endfieldUid，保留 uid 但非主键）
     const newRecords: GachaRecord[] = (data.data || [])
       .map((item: any) => ({
         id: item.id,
@@ -541,8 +595,7 @@ async function submitAndVerify() {
         rarity: item.rarity,
         gachaTs: item.gachaTs,
         seqId: item.seqId,
-        endfieldUid: item.endfieldUid || '',
-        uid: item.uid || '',
+        uid: item.uid || '',           // 保留，但不用作缓存 key
         charId: item.charId || '',
         isFree: item.isFree ?? false,
         isNew: item.isNew ?? false,
@@ -556,15 +609,13 @@ async function submitAndVerify() {
       throw new Error('未找到任何抽卡记录，请确认链接有效且包含数据');
     }
 
-    // Step 4: 加载缓存并合并（按 seqId 去重）
-    const cachedRecords = loadCachedRecords(uid);
+    // Step 5: 加载缓存并合并（按 seqId 去重），使用 roleId 作为缓存 key
+    const cachedRecords = loadCachedRecords(roleId);
 
     const recordMap = new Map<string, GachaRecord>();
-    // 先加缓存（旧数据）
     for (const rec of cachedRecords) {
       recordMap.set(rec.seqId, rec);
     }
-    // 再加新数据（自动覆盖同 seqId，但通常不会冲突）
     for (const rec of newRecords) {
       recordMap.set(rec.seqId, rec);
     }
@@ -572,10 +623,10 @@ async function submitAndVerify() {
     const mergedRecords = Array.from(recordMap.values())
       .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-    // Step 5: 保存合并后的数据到缓存
-    saveRecordsToCache(uid, mergedRecords);
+    // Step 6: 保存到缓存（key 为 roleId）
+    saveRecordsToCache(roleId, mergedRecords);
 
-    // Step 6: 更新响应式状态
+    // Step 7: 更新响应式状态
     records.value = mergedRecords;
     processGachaData(mergedRecords);
     viewMode.value = 'analyze';
@@ -589,11 +640,10 @@ async function submitAndVerify() {
 }
 // 启动时，若本地有缓存则读取缓存，直接进入分析页面
 onMounted(() => {
-  const lastUid = localStorage.getItem(LAST_UID_KEY);
-  if (lastUid) {
-    const cached = loadCachedRecords(lastUid);
+  const lastRoleId = localStorage.getItem(LAST_ROLE_ID_KEY);
+  if (lastRoleId) {
+    const cached = loadCachedRecords(lastRoleId);
     if (cached.length > 0) {
-      inputUid.value = lastUid;
       records.value = cached;
       processGachaData(cached);
       viewMode.value = 'analyze';
@@ -604,7 +654,6 @@ onMounted(() => {
 // 返回收集页
 function goToUpdate() {
   viewMode.value = 'collect';
-  inputUid.value = '';
   inputUrl.value = '';
 }
 
@@ -684,7 +733,7 @@ function processGachaData(list: GachaRecord[]) {
       state.fiveStars = [];
     } else if (rarity === 5) {
       // 记录五星（仅在未出六星期间）
-      state.fiveStars.push(charName);
+      state.fiveStars.push(record.charId);
     }
   }
 
