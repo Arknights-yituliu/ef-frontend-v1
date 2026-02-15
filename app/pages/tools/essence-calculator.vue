@@ -13,7 +13,7 @@
                   <v-card elevation="2" rounded="lg">
                     <template #image>
                       <v-img
-                        class="result-card-background-image opacity-30"
+                        class="result-card-background-image opacity-30 d-none d-md-block"
                         :alt="choice.battleName"
                         cover
                         :src="energyAlluviums[choice.battleId]!.imageUrl"
@@ -1420,8 +1420,10 @@ const bestChoices = computed(() => {
 }
 
 .result-card-background-image {
-  mask-image: linear-gradient(to right, transparent, black);
-  -webkit-mask-image: linear-gradient(to right, transparent, black);
+  mask-image: linear-gradient(40deg, black, transparent 70%);
+  -webkit-mask-image: linear-gradient(40deg, black, transparent 70%);
+  transform: scale(0.8) translate(-30%, 0);
+  transform-origin: bottom left;
 }
 
 .group-icon {
