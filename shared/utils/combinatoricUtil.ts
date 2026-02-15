@@ -8,7 +8,7 @@ export function* combinations<T>(array: T[], k: number): Generator<T[]> {
   const n = array.length;
 
   if (!Number.isInteger(k)) {
-    throw new Error(`k must be an integer, but got ${k}`);
+    throw new TypeError(`k must be an integer, but got ${k}`);
   }
 
   if (k > n || k < 0) {
@@ -63,7 +63,7 @@ export function* combinationsWithReplacement<T>(array: T[], k: number): Generato
   const n = array.length;
 
   if (!Number.isInteger(k)) {
-    throw new Error(`k must be an integer, but got ${k}`);
+    throw new TypeError(`k must be an integer, but got ${k}`);
   }
 
   if (k < 0) {
@@ -102,7 +102,7 @@ export function* permutations<T>(array: T[], k: number): Generator<T[]> {
   const n = array.length;
 
   if (!Number.isInteger(k)) {
-    throw new Error(`k must be an integer, but got ${k}`);
+    throw new TypeError(`k must be an integer, but got ${k}`);
   }
 
   if (k > n || k < 0) {

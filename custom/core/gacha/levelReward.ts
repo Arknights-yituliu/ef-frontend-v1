@@ -1,6 +1,6 @@
 import type { ItemDict, Reward } from '#shared/types/gacha-calculator.ts';
-import authorityLevelUpRewardTable from './json/authority_level_up_reward_table.json'
 import { ref } from 'vue';
+
 
 
 export const itemIdDict: ItemDict = {
@@ -145,7 +145,7 @@ export const worldLevelReward = ref<Reward>({
   }
 });
 
-export{
-  authorityLevelUpRewardTable
-}
 
+
+
+export {default as authorityLevelUpRewardTable} from './json/authority_level_up_reward_table.json'

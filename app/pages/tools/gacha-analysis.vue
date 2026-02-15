@@ -18,9 +18,9 @@
         <label>UID</label>
         <input
           v-model="inputUid"
-          type="text"
-          placeholder="请输入UID"
           :disabled="isSubmitting"
+          placeholder="请输入UID"
+          type="text"
         >
       </div>
 
@@ -28,9 +28,9 @@
         <label>查询链接</label>
         <textarea
           v-model="inputUrl"
+          :disabled="isSubmitting"
           placeholder="粘贴完整的URL"
           rows="3"
-          :disabled="isSubmitting"
         />
         <p class="help-text">
           <a href="#">如何获取url</a>
@@ -40,8 +40,8 @@
       <p v-if="collectError" class="error-text">{{ collectError }}</p>
 
       <button
-        :disabled="isSubmitting"
         class="submit-btn"
+        :disabled="isSubmitting"
         @click="submitAndVerify"
       >
         {{ isSubmitting ? '验证中...' : '开始分析' }}
@@ -55,9 +55,9 @@
           <div class="user-card">
             <div class="user-avatar">
               <img
-                src=""
                 alt="用户头像"
                 class="avatar-img"
+                src=""
               >
             </div>
 
@@ -138,9 +138,9 @@
               <v-chip
                 v-for="(item, pool) in poolDistribution"
                 :key="pool"
-                size="small"
                 :color="getPoolColor(pool)"
                 label
+                size="small"
                 style="margin-right: 5px;"
               >
                 {{ pool }}: {{ item.count }} ({{ Math.round(item.ratio * 100) }}%)
@@ -154,9 +154,9 @@
               <v-chip
                 v-for="(char, index) in topCharacters"
                 :key="char.name"
-                size="small"
                 :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
                 label
+                size="small"
                 style="margin-right: 5px;"
               >
                 {{ char.name }} ×{{ char.times }}
@@ -173,8 +173,8 @@
             <v-btn
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'limited' }"
-              variant="flat"
               elevation="0"
+              variant="flat"
               @click="selectPool('limited')"
             >
               {{ '限定池' }}
@@ -182,8 +182,8 @@
             <v-btn
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'permanent' }"
-              variant="flat"
               elevation="0"
+              variant="flat"
               @click="selectPool('permanent')"
             >
               {{ '常驻池' }}
@@ -191,8 +191,8 @@
             <v-btn
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'weapon' }"
-              variant="flat"
               elevation="0"
+              variant="flat"
               @click="selectPool('weapon')"
             >
               {{ '武器池' }}
@@ -234,8 +234,8 @@
               <div class="character-avatar" style="width: 60px; height: 60px; flex-shrink: 0;">
                 <img
                   v-if="record.charId && record.character !== '已垫'"
-                  :src="getAvatarUrl(record.charId)"
                   :alt="record.character"
+                  :src="getAvatarUrl(record.charId)"
                   style="width: 100%; height: 100%; object-fit: contain; background-color: #f0f2f5; border-radius: 4px;"
                   @error="handleImageError"
                 >
@@ -334,16 +334,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue';
-import { gachaPools } from '@/custom/core/gacha-pool-info';
+import { computed, onMounted, ref } from 'vue';
+// 提交并验证（含缓存合并
+import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 
 
 
 
 // ========== 加载/缓存数据相关 ==========
 
-// 提交并验证（含缓存合并
-import debugGachaData from '@/custom/core/gacha-analysis-example.json';
+import { gachaPools } from '@/custom/core/gacha-pool-info';
 
 const viewMode = ref<'collect' | 'analyze'>('collect');
 
@@ -359,7 +359,7 @@ const realSixStarRecords = ref<SixStarEntry[]>([]);
 // const fetchedRecords = ref<GachaRecord[]>([]);
 
 
-//原始数据
+// 原始数据
 interface GachaRecord {
   id: number;
   endfieldUid: string;
@@ -426,13 +426,13 @@ function getPoolColor(poolName: string): string {
 }
 
 const upCharMap = new Map<string, string>();
-gachaPools.forEach(pool => {
+for (const pool of gachaPools) {
   upCharMap.set(pool.poolId, pool.upCharName);
-});
+}
 
 // 比较seqid
 function parseSeqId(seqId: string): number {
-  const num = parseInt(seqId, 10);
+  const num = Number.parseInt(seqId, 10);
   return isNaN(num) ? 0 : num;
 }
 
@@ -448,8 +448,8 @@ function loadCachedRecords(uid: string): GachaRecord[] {
 
     const cache = JSON.parse(raw) as { uid: string; records: GachaRecord[] };
     return cache.uid === uid ? cache.records : [];
-  } catch (e) {
-    console.warn('缓存读取失败，清空旧数据', e);
+  } catch (error) {
+    console.warn('缓存读取失败，清空旧数据', error);
     localStorage.removeItem(CACHE_KEY);
     return [];
   }
@@ -461,8 +461,8 @@ function saveRecordsToCache(uid: string, records: GachaRecord[]) {
     const cache = { uid, records };
     localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
     localStorage.setItem(LAST_UID_KEY, uid);
-  } catch (e) {
-    console.error('缓存保存失败', e);
+  } catch (error) {
+    console.error('缓存保存失败', error);
   }
 }
 
@@ -482,9 +482,9 @@ async function submitAndVerify() {
       viewMode.value = 'analyze';
       collectError.value = '';
       return;
-    } catch (err: any) {
-      console.error('调试数据处理失败:', err);
-      collectError.value = '调试数据加载失败：' + err.message;
+    } catch (error: any) {
+      console.error('调试数据处理失败:', error);
+      collectError.value = '调试数据加载失败：' + error.message;
       return;
     }
   }
@@ -580,14 +580,14 @@ async function submitAndVerify() {
     processGachaData(mergedRecords);
     viewMode.value = 'analyze';
 
-  } catch (err: any) {
-    console.error('数据验证失败:', err);
-    collectError.value = err.message || '网络错误，请稍后重试';
+  } catch (error: any) {
+    console.error('数据验证失败:', error);
+    collectError.value = error.message || '网络错误，请稍后重试';
   } finally {
     isSubmitting.value = false;
   }
 }
-//启动时，若本地有缓存则读取缓存，直接进入分析页面
+// 启动时，若本地有缓存则读取缓存，直接进入分析页面
 onMounted(() => {
   const lastUid = localStorage.getItem(LAST_UID_KEY);
   if (lastUid) {
@@ -608,7 +608,7 @@ function goToUpdate() {
   inputUrl.value = '';
 }
 
-//确认并清除缓存
+// 确认并清除缓存
 function confirmClearCache() {
   if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？\n此操作不可恢复！（抽卡数据均保存在本地）')) {
     try {
@@ -624,8 +624,8 @@ function confirmClearCache() {
       // 跳转回收集页
       viewMode.value = 'collect';
       alert('本地数据已清除');
-    } catch (e) {
-      console.error('清除缓存失败', e);
+    } catch (error) {
+      console.error('清除缓存失败', error);
       alert('清除失败，请手动清除浏览器数据');
     }
   }
@@ -693,8 +693,7 @@ function processGachaData(list: GachaRecord[]) {
     if (state.pullsSinceLastSix > 0) {
       // 找到该池子最后一抽的记录（用于 seqId 和 timestamp）
       const lastRecord = sortedRecords
-        .filter(r => r.poolId === poolId)
-        .at(-1);
+        .findLast(r => r.poolId === poolId);
 
       if (lastRecord) {
         resultWithPadded.push({
@@ -872,9 +871,9 @@ const poolDistribution = computed(() => {
   // 3. 计算总抽数（包含已垫）和占比
   const total = Object.values(map).reduce((sum, item) => sum + item.count, 0);
 
-  Object.values(map).forEach(item => {
+  for (const item of Object.values(map)) {
     item.ratio = total > 0 ? item.count / total : 0;
-  });
+  }
 
   return map;
 });
@@ -999,7 +998,7 @@ const gachaTags = computed(() => {
 
 // ========== UI 相关 ==========
 
-//横向条形图排序、分组
+// 横向条形图排序、分组
 const sortedData = computed(() => [...sixStarRecordsWithCount.value]);
 
 const consecutiveGroups = computed(() => {
@@ -1018,9 +1017,9 @@ const consecutiveGroups = computed(() => {
 
 
 
-const getBarWidth = (count: number) => {
+function getBarWidth (count: number) {
   return (count / 80) * 95;
-};
+}
 
 
 // 返回用于样式的状态标识
@@ -1059,9 +1058,9 @@ function isOnBanner(record: SixStarEntry): boolean {
   return !!upChar && record.character === upChar;
 }
 const selectedPool = ref<'limited' | 'permanent' | 'weapon'>('limited');
-const selectPool = (pool: 'limited' | 'permanent' | 'weapon') => {
+function selectPool (pool: 'limited' | 'permanent' | 'weapon') {
   selectedPool.value = pool;
-};
+}
 
 const filteredConsecutiveGroups = computed(() => {
   if (!selectedPool.value) return consecutiveGroups.value;

@@ -22,8 +22,8 @@
         <input
           ref="searchInput"
           v-model="searchQuery"
-          :placeholder="$t('docs.searchPlaceholder')"
           class="search-input"
+          :placeholder="$t('docs.searchPlaceholder')"
           @input="handleSearch"
         >
       </div>
@@ -97,7 +97,7 @@ watch(
 );
 
 // 处理搜索
-const handleSearch = async () => {
+async function handleSearch () {
   if (!searchQuery.value.trim()) {
     searchResults.value = [];
     return;
@@ -113,55 +113,55 @@ const handleSearch = async () => {
   } finally {
     isLoading.value = false;
   }
-};
+}
 
 // 关闭模态框
-const closeModal = () => {
+function closeModal () {
   emit('close');
   searchQuery.value = '';
   searchResults.value = [];
-};
+}
 
 // 格式化路径显示（去除语言后缀和锚点）
-const formatPath = (id: string): string => {
+function formatPath (id: string): string {
   // id 格式类似: /introduction/docs-setting-zh#section-name
   // 显示为: /introduction/docs-setting
   return id.split('#')[0].replace(/-(zh|en)$/, '');
-};
+}
 
 // 截断内容显示
-const truncateContent = (content: string, maxLength: number): string => {
+function truncateContent (content: string, maxLength: number): string {
   if (!content) return '';
   if (content.length <= maxLength) return content;
-  return content.substring(0, maxLength) + '...';
-};
+  return content.slice(0, Math.max(0, maxLength)) + '...';
+}
 
 // 处理搜索结果的 id，转换为可导航的路径
 // id 格式: /introduction/docs-setting-zh#section-name
 // 需要去除语言后缀，保留锚点: /introduction/docs-setting#section-name
-const formatNavigationPath = (id: string): string => {
+function formatNavigationPath (id: string): string {
   // 分离路径和锚点
   const [path, anchor] = id.split('#');
   // 去除语言后缀
   const routePath = path.replace(/-(zh|en)$/, '');
   // 如果有锚点，添加回去
   return anchor ? `${routePath}#${anchor}` : routePath;
-};
+}
 
 // 跳转到搜索结果
-const goToResult = (id: string) => {
+function goToResult (id: string) {
   closeModal();
   // 将 id 转换为可导航的路径（去除语言后缀，保留锚点）
   const navigationPath = formatNavigationPath(id);
   navigateTo(navigationPath);
-};
+}
 
 // 监听键盘事件
-const handleKeydown = (e: KeyboardEvent) => {
+function handleKeydown (e: KeyboardEvent) {
   if (e.key === 'Escape') {
     closeModal();
   }
-};
+}
 
 onMounted(() => {
   document.addEventListener('keydown', handleKeydown);

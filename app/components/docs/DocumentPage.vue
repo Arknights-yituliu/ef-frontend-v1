@@ -46,7 +46,7 @@ const { data: page, refresh } = await useAsyncData<PageData | null>(
   `${route.path}-${locale.value}-${props.collectionName}`,
   () => {
     // content/ 下的实际文件路径形如 introduction/route-setting-zh或introduction/route-setting-en
-    const contentPath = `${route.path}-${locale.value.substring(0, 2)}`;
+    const contentPath = `${route.path}-${locale.value.slice(0, 2)}`;
 
     // @ts-expect-error - queryCollection 的类型定义不支持动态字符串，但运行时可以正常工作
     return (queryCollection(props.collectionName) as any).path(contentPath).first();
@@ -60,14 +60,14 @@ watch(locale, () => {
 });
 
 // 提取文档标题的函数
-const extractHeadings = () => {
+function extractHeadings () {
   nextTick(() => {
     const headings: Array<{ id: string; text: string; depth: number }> = [];
     const headingElements = document.querySelectorAll('.doc-body h2, .doc-body h3, .doc-body h4');
 
-    headingElements.forEach((el) => {
+    for (const el of headingElements) {
       const tagName = el.tagName.toLowerCase();
-      const depth = parseInt(tagName.substring(1));
+      const depth = Number.parseInt(tagName.slice(1));
       const text = el.textContent || '';
       let id = el.id;
 
@@ -75,20 +75,20 @@ const extractHeadings = () => {
       if (!id) {
         id = text
           .toLowerCase()
-          .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-')
+          .replace(/[^a-z0-9\u4E00-\u9FA5]+/g, '-')
           .replace(/^-|-$/g, '');
         el.id = id;
       }
 
       headings.push({ id, text, depth });
-    });
+    }
 
     // 更新布局中的标题列表
     if (setDocHeadings) {
       setDocHeadings(headings);
     }
   });
-};
+}
 
 // 页面挂载时提取标题
 onMounted(() => {

@@ -183,16 +183,16 @@ const valleyIVDefenseConstructionReward = ref<Reward[]>([
 ]);
 
 export {
+  valleyIVAuryleneCollectReward,
+  valleyIVAuryleneCollectStageTable,
+  valleyIVBattleCrateReward,
+  valleyIVBattleCrateRewardMax,
+  valleyIVCrateReward,
+  valleyIVCrateRewardMax,
+  valleyIVDefenseConstructionReward,
+  valleyIVDeltaBotReward,
+  valleyIVDeltaBotRewardMax,
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
-  valleyIVAuryleneCollectStageTable,
-  valleyIVAuryleneCollectReward,
-  valleyIVCrateRewardMax,
-  valleyIVCrateReward,
-  valleyIVBattleCrateRewardMax,
-  valleyIVBattleCrateReward,
-  valleyIVSimulationReward,
-  valleyIVDeltaBotRewardMax,
-  valleyIVDeltaBotReward,
-  valleyIVDefenseConstructionReward
+  valleyIVSimulationReward
 };
