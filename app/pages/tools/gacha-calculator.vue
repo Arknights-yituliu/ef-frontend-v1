@@ -1819,41 +1819,6 @@ function checkRewardIsValid(reward: Reward): boolean {
             </v-expansion-panel-text>
           </v-expansion-panel>
 
-          <v-expansion-panel>
-            <v-expansion-panel-title class="gacha-calculator-card-title">
-              <div>一键全选或清空</div>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              <v-table class="gacha-calculator-shortcut-btn-table">
-                <thead>
-                  <tr>
-                    <td>模块</td>
-                    <td>操作</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="action in clearBtnGroup">
-                    <td>{{ action.text }}</td>
-                    <td>
-                      <v-btn
-                        class="gacha-calculator-shortcut-btn"
-                        color="red"
-                        text="清空所有选中奖励"
-                        @click="action.func(false)"
-                      />
-                      <v-btn
-                        class="gacha-calculator-shortcut-btn"
-                        color="blue"
-                        text="选中所有奖励"
-                        @click="action.func(true)"
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </v-table>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
           <v-expansion-panel value="detail">
             <v-expansion-panel-title class="gacha-calculator-card-title">
               <div>计算详情</div>
@@ -1914,6 +1879,41 @@ function checkRewardIsValid(reward: Reward): boolean {
                     </td>
                     <td>{{ item.ticketgachaStandardSingle }}</td>
                     <td>{{ item.ticketgachaSpecialSingle }}</td>
+                  </tr>
+                </tbody>
+              </v-table>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-title class="gacha-calculator-card-title">
+              <div>一键全选或清空</div>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <v-table class="gacha-calculator-shortcut-btn-table">
+                <thead>
+                  <tr>
+                    <td>模块</td>
+                    <td>操作</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="action in clearBtnGroup">
+                    <td>{{ action.text }}</td>
+                    <td>
+                      <v-btn
+                        color="red"
+                        text="清空所有选中奖励"
+                        class="gacha-calculator-shortcut-btn"
+                        @click="action.func(false)"
+                      />
+                      <v-btn
+                        color="blue"
+                        text="选中所有奖励"
+                        class="gacha-calculator-shortcut-btn"
+                        @click="action.func(true)"
+                      />
+                    </td>
                   </tr>
                 </tbody>
               </v-table>
