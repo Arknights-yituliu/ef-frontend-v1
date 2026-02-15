@@ -468,7 +468,7 @@ onUnmounted(() => {
   justify-content: flex-start;
   gap: 0.75rem;
   height: 3.5rem;
-  padding-left: 3rem;
+  padding-left: 2.2rem;
   padding-right: 1rem;
   color: var(--theme-text-secondary);
   text-decoration: none;
