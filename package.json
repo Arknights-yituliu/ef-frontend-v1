@@ -21,6 +21,7 @@
     "@nuxtjs/i18n": "^10.2.0",
     "@nuxtjs/seo": "^3.3.0",
     "@types/node": "^24.10.0",
+    "@vueuse/core": "^14.2.1",
     "better-sqlite3": "^12.4.1",
     "color": "^5.0.3",
     "echarts": "^6.0.0",
