@@ -57,7 +57,7 @@
               <img
                 alt="用户头像"
                 class="avatar-img"
-                src=""
+                src="https://cos.yituliu.cn/endfield/unpack-images/characters/icon_chr_0003_endminf.webp "
               >
             </div>
 
@@ -477,7 +477,7 @@ function saveRecordsToCache(roleId: string, records: GachaRecord[]) {
 }
 
 // 调试开关
-const USE_DEBUG_DATA = true;
+const USE_DEBUG_DATA = false;
 
 async function submitAndVerify() {
   // 调试数据逻辑（保持兼容，但缓存 key 改为 debug_roleId）
