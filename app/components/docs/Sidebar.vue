@@ -39,9 +39,9 @@
                 class="nav-item"
               >
                 <NuxtLink
-                  :to="item.path"
                   class="nav-link"
                   :class="{ 'is-active': isActivePath(item.path) }"
+                  :to="item.path"
                   @click="handleLinkClick"
                 >
                   <div class="link-bg" />
@@ -57,18 +57,18 @@
 
     <!-- 折叠按钮 -->
     <button
-      class="collapse-toggle"
       :aria-label="isCollapsed ? $t('docs.expand') : $t('docs.collapse')"
+      class="collapse-toggle"
       @click="toggleCollapse"
     >
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M15 18l-6-6 6-6"
-          stroke="currentColor"
-          stroke-width="2"
           fill="none"
+          stroke="currentColor"
           stroke-linecap="round"
           stroke-linejoin="round"
+          stroke-width="2"
         />
       </svg>
     </button>
@@ -110,11 +110,11 @@ let highlightUpdateTimer: ReturnType<typeof setTimeout> | null = null;
 const docNavigation = computed(() => docNavigationData);
 
 // 判断是否是当前激活路径
-const isActivePath = (path: string) => {
+function isActivePath (path: string) {
   return route.path === path;
-};
+}
 
-const getDOMElement = (el: Element | ComponentPublicInstance | null): HTMLElement | null => {
+function getDOMElement (el: Element | ComponentPublicInstance | null): HTMLElement | null {
   if (!el) {
     return null;
   }
@@ -125,24 +125,24 @@ const getDOMElement = (el: Element | ComponentPublicInstance | null): HTMLElemen
     return el.$el;
   }
   return null;
-};
+}
 
-const setLinkRef = (el: Element | ComponentPublicInstance | null, path: string) => {
+function setLinkRef (el: Element | ComponentPublicInstance | null, path: string) {
   const element = getDOMElement(el);
   if (!element) {
     linkRefs.value.delete(path);
     return;
   }
   linkRefs.value.set(path, element);
-};
+}
 
-const getRelativeTop = (element: HTMLElement, container: HTMLElement) => {
+function getRelativeTop (element: HTMLElement, container: HTMLElement) {
   const elementRect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
   return elementRect.top - containerRect.top;
-};
+}
 
-const updateHighlight = () => {
+function updateHighlight () {
   nextTick(() => {
     const activeEl = linkRefs.value.get(route.path);
     const container = sidebarNavRef.value;
@@ -155,10 +155,10 @@ const updateHighlight = () => {
     highlightTop.value = getRelativeTop(activeEl, container);
     highlightHeight.value = activeEl.offsetHeight;
   });
-};
+}
 
 // 延迟更新高亮
-const delayedUpdateHighlight = () => {
+function delayedUpdateHighlight () {
   if (highlightUpdateTimer) {
     clearTimeout(highlightUpdateTimer);
   }
@@ -166,10 +166,10 @@ const delayedUpdateHighlight = () => {
     updateHighlight();
     highlightUpdateTimer = null;
   }, 400);
-};
+}
 
 // 切换折叠状态
-const toggleCollapse = () => {
+function toggleCollapse () {
   isCollapsed.value = !isCollapsed.value;
   if (isCollapsed.value) {
     highlightHeight.value = 0;
@@ -177,20 +177,20 @@ const toggleCollapse = () => {
     // 折叠/展开后延迟更新高亮
     delayedUpdateHighlight();
   }
-};
+}
 
 // 处理链接点击（移动端关闭侧边栏）
-const handleLinkClick = () => {
+function handleLinkClick () {
   if (props.isOpen) {
     emit('close');
   }
-};
+}
 
-const handleResize = () => {
+function handleResize () {
   if (!isCollapsed.value) {
     updateHighlight();
   }
-};
+}
 
 watch(
   () => route.path,

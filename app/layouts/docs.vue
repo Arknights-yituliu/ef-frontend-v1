@@ -36,8 +36,8 @@
       <!-- 移动端菜单按钮（左侧） -->
       <button
         :aria-label="$t('docs.toggleSidebar')"
-        :class="{ active: isSidebarOpen }"
         class="mobile-menu-button mobile-menu-left"
+        :class="{ active: isSidebarOpen }"
         @click="toggleSidebar"
       >
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -53,8 +53,8 @@
       <!-- 移动端菜单按钮（右侧） -->
       <button
         :aria-label="$t('docs.toggleToc')"
-        :class="{ active: isTocOpen }"
         class="mobile-menu-button mobile-menu-right"
+        :class="{ active: isTocOpen }"
         @click="toggleToc"
       >
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +92,7 @@
     <DocsToc :headings="headings" :is-open="isTocOpen" @close="closeToc" />
 
     <!-- 主内容区域 -->
-    <div :class="{ 'sidebar-collapsed': false, 'toc-collapsed': false }" class="docs-main">
+    <div class="docs-main" :class="{ 'sidebar-collapsed': false, 'toc-collapsed': false }">
       <div class="docs-content">
         <slot />
       </div>
@@ -119,15 +119,15 @@ const isSearchModalOpen = ref(false);
 const headings = ref<Array<{ id: string; text: string; depth: number }>>([]);
 
 // 提供给页面组件设置标题的方法
-const setHeadings = (newHeadings: Array<{ id: string; text: string; depth: number }>) => {
+function setHeadings (newHeadings: Array<{ id: string; text: string; depth: number }>) {
   headings.value = newHeadings;
-};
+}
 
 // 提供到页面组件
 provide('setDocHeadings', setHeadings);
 
 // 切换侧边栏
-const toggleSidebar = () => {
+function toggleSidebar () {
   isSidebarOpen.value = !isSidebarOpen.value;
   if (isSidebarOpen.value) {
     isTocOpen.value = false;
@@ -136,10 +136,10 @@ const toggleSidebar = () => {
   } else {
     document.body.style.overflow = '';
   }
-};
+}
 
 // 切换TOC
-const toggleToc = () => {
+function toggleToc () {
   isTocOpen.value = !isTocOpen.value;
   if (isTocOpen.value) {
     isSidebarOpen.value = false;
@@ -148,40 +148,40 @@ const toggleToc = () => {
   } else {
     document.body.style.overflow = '';
   }
-};
+}
 
 // 关闭侧边栏
-const closeSidebar = () => {
+function closeSidebar () {
   isSidebarOpen.value = false;
   document.body.style.overflow = '';
-};
+}
 
 // 关闭TOC
-const closeToc = () => {
+function closeToc () {
   isTocOpen.value = false;
   document.body.style.overflow = '';
-};
+}
 
 // 关闭所有
-const closeAll = () => {
+function closeAll () {
   isSidebarOpen.value = false;
   isTocOpen.value = false;
   document.body.style.overflow = '';
-};
+}
 
 // 打开搜索弹窗
-const openSearchModal = () => {
+function openSearchModal () {
   isSearchModalOpen.value = true;
   isSidebarOpen.value = false;
   isTocOpen.value = false;
   document.body.style.overflow = 'hidden';
-};
+}
 
 // 关闭搜索弹窗
-const closeSearchModal = () => {
+function closeSearchModal () {
   isSearchModalOpen.value = false;
   document.body.style.overflow = '';
-};
+}
 
 // 监听窗口大小变化
 let resizeHandler: (() => void) | null = null;

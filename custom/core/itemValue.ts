@@ -23,42 +23,42 @@ export const itemValueMap: ItemValueMap = {
   item_gold: {
     itemId: 'item_gold',
     itemName: '折金票',
-    value: 80 / 34000,
+    value: 80 / 34_000,
   },
   干员作战记录经验: {
     itemId: '干员作战记录经验',
     itemName: '干员作战记录经验',
-    value: 80 / 170000,
+    value: 80 / 170_000,
   },
   item_expcard_stage1_low: {
     itemId: 'item_expcard_stage1_low',
     itemName: '初级作战记录',
-    value: (80 / 170000) * 200,
+    value: (80 / 170_000) * 200,
   },
   item_expcard_stage1_mid: {
     itemId: 'item_expcard_stage1_mid',
     itemName: '中级作战记录',
-    value: (80 / 170000) * 1000,
+    value: (80 / 170_000) * 1000,
   },
   item_expcard_stage1_high: {
     itemId: 'item_expcard_stage1_high',
     itemName: '高级作战记录',
-    value: (80 / 170000) * 10000,
+    value: (80 / 170_000) * 10_000,
   },
   干员认知载体经验: {
     itemId: '干员认知载体经验',
     itemName: '干员认知载体经验',
-    value: 80 / 68000,
+    value: 80 / 68_000,
   },
   item_expcard_stage2_low: {
     itemId: 'item_expcard_stage2_low',
     itemName: '初级认知载体',
-    value: (80 / 68000) * 1000,
+    value: (80 / 68_000) * 1000,
   },
   item_expcard_stage2_high: {
     itemId: 'item_expcard_stage2_high',
     itemName: '高级认知载体',
-    value: (80 / 68000) * 10000,
+    value: (80 / 68_000) * 10_000,
   },
   item_char_break_stage_1_2: {
     itemId: 'item_char_break_stage_1_2',
@@ -73,22 +73,22 @@ export const itemValueMap: ItemValueMap = {
   武器经验: {
     itemId: '武器经验',
     itemName: '武器经验',
-    value: 80 / 170000,
+    value: 80 / 170_000,
   },
   item_weapon_expcard_low: {
     itemId: 'item_weapon_expcard_low',
     itemName: '武器检查单元',
-    value: (80 / 170000) * 200,
+    value: (80 / 170_000) * 200,
   },
   item_weapon_expcard_mid: {
     itemId: 'item_weapon_expcard_mid',
     itemName: '武器检查装置',
-    value: (80 / 170000) * 1000,
+    value: (80 / 170_000) * 1000,
   },
   item_weapon_expcard_high: {
     itemId: 'item_weapon_expcard_high',
     itemName: '武器检查套组',
-    value: (80 / 170000) * 10000,
+    value: (80 / 170_000) * 10_000,
   },
   item_weapon_break_low: {
     itemId: 'item_weapon_break_low',

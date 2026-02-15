@@ -2,7 +2,6 @@
   <div class="node-wrapper">
     <div 
       class="node-card" 
-      :data-node-id="node.id"
       :class="{
         'output': node.type === 'output',
         'splitter': node.type === 'splitter',
@@ -12,10 +11,11 @@
         'child-node-card': depth > 0,
         'mobile-clickable': isMobile
       }"
-      @dragover.prevent="onDragOver"
-      @dragleave="onDragLeave"
-      @drop="onDrop"
+      :data-node-id="node.id"
       @click="handleClick"
+      @dragleave="onDragLeave"
+      @dragover.prevent="onDragOver"
+      @drop="onDrop"
     >
       <template v-if="depth === 0">
         <div class="node-header">
@@ -58,13 +58,13 @@
           class="child-node"
         >
           <NodeCard 
-            :node="child"
-            :depth="depth + 1"
-            :power-per-battery="powerPerBattery"
             :burn-time-seconds="burnTimeSeconds"
-            :on-remove="onRemove"
-            :on-node-click="onNodeClick"
+            :depth="depth + 1"
             :is-mobile="isMobile"
+            :node="child"
+            :on-node-click="onNodeClick"
+            :on-remove="onRemove"
+            :power-per-battery="powerPerBattery"
           />
         </div>
       </template>
@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, computed, nextTick } from 'vue';
+import { computed, nextTick, watch } from 'vue';
 
 interface Node {
   id: string;
@@ -107,19 +107,19 @@ const powerPerMinute = computed(() => {
 
 const isDraggingOver = ref(false);
 
-const generateId = () => Math.random().toString(36).substr(2, 9);
+const generateId = () => Math.random().toString(36).slice(2, 11);
 
-const onDragOver = (event: DragEvent) => {
+function onDragOver (event: DragEvent) {
   if (props.node.type === 'output' || props.node.type === 'splitter') {
     isDraggingOver.value = true;
   }
-};
+}
 
-const onDragLeave = () => {
+function onDragLeave () {
   isDraggingOver.value = false;
-};
+}
 
-const onDrop = (event: DragEvent) => {
+function onDrop (event: DragEvent) {
   event.preventDefault();
   event.stopPropagation();
   
@@ -131,15 +131,15 @@ const onDrop = (event: DragEvent) => {
   }
   
   isDraggingOver.value = false;
-};
+}
 
-const handleClick = () => {
+function handleClick () {
   if (props.onNodeClick) {
     props.onNodeClick(props.node);
   }
-};
+}
 
-const addChildren = (toolType: Node['type']) => {
+function addChildren (toolType: Node['type']) {
   if (!props.node.children) {
     props.node.children = [];
   }
@@ -151,19 +151,19 @@ const addChildren = (toolType: Node['type']) => {
     rate: 0,
     children: toolType === 'splitter' ? [] : undefined
   });
-};
+}
 
-const removeChildren = () => {
+function removeChildren () {
   if (props.node.children) {
     props.node.children = [];
   }
-};
+}
 
-const removeNode = () => {
+function removeNode () {
   if (props.onRemove) {
     props.onRemove(props.node.id);
   }
-};
+}
 </script>
 
 <style scoped>

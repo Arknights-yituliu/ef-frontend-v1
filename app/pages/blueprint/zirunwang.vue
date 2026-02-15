@@ -19,7 +19,7 @@
             <!-- 紧凑布局：段落、需求、产出全部在一行 -->
             <v-card-text>
               <!-- 段落 -->
-              <div v-if="card.paragraphs && card.paragraphs.length" class="paragraphs-row">
+              <div v-if="card.paragraphs && card.paragraphs.length > 0" class="paragraphs-row">
                 <div v-for="(paragraph, pIndex) in card.paragraphs" :key="pIndex" class="paragraph-item">
                   {{ paragraph }}
                 </div>

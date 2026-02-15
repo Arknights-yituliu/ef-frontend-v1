@@ -11,10 +11,10 @@
         <p>
           {{ $t('footer.copyrightText2') }}
           <a
-            href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh"
-            target="_blank"
-            rel="noopener noreferrer"
             class="footer-link"
+            href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             {{ $t('footer.copyrightLink') }}
           </a>
@@ -23,10 +23,10 @@
         <p>
           {{ $t('footer.copyrightText4') }}
           <a
-            href="https://qm.qq.com/cgi-bin/qm/qr?k=zuIC56a53O_-xpNk06eAJXrxjlJruD6f"
-            target="_blank"
-            rel="noopener noreferrer"
             class="footer-link"
+            href="https://qm.qq.com/cgi-bin/qm/qr?k=zuIC56a53O_-xpNk06eAJXrxjlJruD6f"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             {{ $t('footer.developmentGroup') }}
           </a>
@@ -38,16 +38,16 @@
     <!-- 备案信息 -->
     <div class="footer-beian">
       <img
-        src="/images/website-record.png"
         alt="备案图标"
         class="beian-icon"
+        src="/images/website-record.png"
         @error="handleImageError"
       >
       <a
-        href="https://beian.miit.gov.cn/"
-        target="_blank"
-        rel="noopener noreferrer"
         class="beian-link"
+        href="https://beian.miit.gov.cn/"
+        rel="noopener noreferrer"
+        target="_blank"
       >
         {{ $t('footer.beian') }}
       </a>
@@ -56,13 +56,13 @@
 </template>
 
 <script setup lang="ts">
-const handleImageError = (event: Event) => {
+function handleImageError (event: Event) {
   // 如果备案图标加载失败，隐藏图片元素
   const target = event.target as HTMLImageElement;
   if (target) {
     target.style.display = 'none';
   }
-};
+}
 </script>
 
 <style scoped>

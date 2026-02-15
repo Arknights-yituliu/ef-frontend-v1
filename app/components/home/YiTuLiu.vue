@@ -13,13 +13,13 @@
       </div>
       <div class="flex-1" />
       <v-btn
-        :text="$t('component.home.yiTuLiu.goToYiTuLiu')"
         append-icon="mdi-open-in-new"
         color="primary"
+        href="https://ark.yituliu.cn/"
         prepend-icon="mdi-web"
         size="small"
-        href="https://ark.yituliu.cn/"
         target="_blank"
+        :text="$t('component.home.yiTuLiu.goToYiTuLiu')"
       />
     </div>
     <div class="home-card-content">

@@ -9,11 +9,11 @@
     @mousemove="handleMouseMove"
   >
     <div
+      class="spotlight-overlay"
       :style="{
         opacity,
         background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${computedSpotlightColor}, transparent 80%)`,
       }"
-      class="spotlight-overlay"
     />
     <slot />
   </article>
@@ -52,30 +52,30 @@ const computedSpotlightColor = computed(() => {
     : 'rgba(124,124,124,0.25)'; // 浅色主题使用白色
 });
 
-const handleMouseMove = (e: MouseEvent) => {
+function handleMouseMove (e: MouseEvent) {
   if (!divRef.value || isFocused.value) return;
 
   const rect = divRef.value.getBoundingClientRect();
   position.value = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-};
+}
 
-const handleFocus = () => {
+function handleFocus () {
   isFocused.value = true;
   opacity.value = 0.6;
-};
+}
 
-const handleBlur = () => {
+function handleBlur () {
   isFocused.value = false;
   opacity.value = 0;
-};
+}
 
-const handleMouseEnter = () => {
+function handleMouseEnter () {
   opacity.value = 0.6;
-};
+}
 
-const handleMouseLeave = () => {
+function handleMouseLeave () {
   opacity.value = 0;
-};
+}
 </script>
 
 <style scoped>

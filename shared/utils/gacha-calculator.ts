@@ -1,6 +1,6 @@
 import type {
-  RewardStatisticsResultDetail,
   Reward,
+  RewardStatisticsResultDetail,
   TotalPullsSingle
 } from '#shared/types/gacha-calculator';
 
@@ -161,7 +161,7 @@ function getRewardPull(reward: RewardStatisticsResultDetail): TotalPullsSingle {
   };
 }
 
-export { calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, addReward,getRewardPull,getRewardsPull };
+export { addReward, calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2,getRewardPull,getRewardsPull };
 
 //
 // function exportReward() {

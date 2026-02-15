@@ -349,10 +349,10 @@
                 <div v-for="weaponType in weaponTypes" :key="weaponType">
                   <div class="d-flex align-center mb-4 mt-8 ga-2">
                     <img
-                      :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
                       :alt="weaponType"
                       class="group-icon"
-                    />
+                      :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
+                    >
                     <h3>{{ weaponType }}</h3>
                   </div>
                   <div class="weapon-grid">
@@ -381,6 +381,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useLocalStorage } from '@vueuse/core';
 const { t } = useI18n();
 
 interface EssenceStat {
@@ -1255,7 +1256,14 @@ const weapons: Record<string, WeaponPreset> = {
 };
 
 /** 需求的基质属性 */
-const requiredEssenceStats = ref<EssenceStat[]>([{ ...emptyStat }]);
+const requiredEssenceStats = useLocalStorage<EssenceStat[]>(
+  'essence-calculator-required-essence-stats',
+  [],
+  {
+    writeDefaults: false,
+    listenToStorageChanges: false,
+  },
+);
 
 function getGroupIconUrl(iconId: string): string {
   return `https://cos.yituliu.cn/endfield/sprites_selective/wiki/groupicon/${iconId}.png`;

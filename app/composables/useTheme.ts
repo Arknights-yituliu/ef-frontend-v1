@@ -1,10 +1,10 @@
-export const useTheme = () => {
+export function useTheme () {
   const theme = useState<'light' | 'dark'>('theme', () => 'light');
 
   const setTheme = (newTheme: 'light' | 'dark') => {
     theme.value = newTheme;
     if (import.meta.client) {
-      document.documentElement.setAttribute('data-theme', newTheme);
+      document.documentElement.dataset.theme = newTheme;
 
       // Nuxt Content 会以根元素是否存在 dark 类来确定主题
       document.documentElement.classList.toggle('dark', newTheme === 'dark');
@@ -37,4 +37,4 @@ export const useTheme = () => {
     setTheme,
     toggleTheme,
   };
-};
+}

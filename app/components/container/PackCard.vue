@@ -6,9 +6,9 @@
         <img
           v-if="props.imageUrl && !imageError"
           :alt="packDisplayName"
-          :src="props.imageUrl"
           class="pack-image"
           loading="lazy"
+          :src="props.imageUrl"
           @error="handleImageError"
         >
         <div v-else class="image-placeholder">
@@ -55,10 +55,10 @@
               <span>{{ bar.barLabel }}</span>
             </div>
             <div
+              class="pack-line-bar"
               :style="{
                 width: `${bar.percentage * 5}em`,
               }"
-              class="pack-line-bar"
             >
               <span>{{ (bar.percentage * 100).toFixed(0) }}%</span>
             </div>
@@ -79,7 +79,7 @@
     </p>
 
     <!-- 展开的内容表格 - 藏在卡片背后 -->
-    <div :class="{ expanded: isExpanded }" class="pack-contents-table">
+    <div class="pack-contents-table" :class="{ expanded: isExpanded }">
       <div class="pack-contents-header">
         <h3>{{ $t('component.packCard.contents') }}</h3>
       </div>
@@ -145,15 +145,16 @@ const packDescription = computed(() => {
 //   return locale.value === 'en-US' ? bar.labelEN : bar.labelZH;
 // };
 
-const handleImageError = () => {
+function handleImageError () {
   imageError.value = true;
-};
+}
 
-const toggleExpanded = () => {
+function toggleExpanded () {
   isExpanded.value = !isExpanded.value;
-};
+}
 
-const getPackComparisonBars = (pack: PackData) => [
+function getPackComparisonBars (pack: PackData) {
+  return [
   {
     barLabel: $t('component.packCard.packSanityEfficiency'),
     percentage: getPackSanityEfficiency(pack),
@@ -164,9 +165,10 @@ const getPackComparisonBars = (pack: PackData) => [
   },
   {
     barLabel: $t('component.packCard.648StoneEfficiency'),
-    percentage: 1.0,
+    percentage: 1,
   },
-];
+]
+}
 </script>
 
 <style scoped>

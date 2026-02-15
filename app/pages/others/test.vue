@@ -25,16 +25,16 @@
             <v-card-title>输入框组件</v-card-title>
             <v-card-text>
               <v-text-field
+                class="mb-2"
+                color="primary"
                 label="输入框示例"
                 placeholder="请输入内容"
-                color="primary"
                 variant="outlined"
-                class="mb-2"
               />
               <v-textarea
+                color="primary"
                 label="文本域示例"
                 placeholder="请输入多行文本"
-                color="primary"
                 variant="outlined"
               />
             </v-card-text>
@@ -64,7 +64,7 @@
                       <v-chip color="success" size="small">正常</v-chip>
                     </td>
                     <td>
-                      <v-btn size="small" color="primary" variant="text">查看</v-btn>
+                      <v-btn color="primary" size="small" variant="text">查看</v-btn>
                     </td>
                   </tr>
                   <tr>
@@ -76,7 +76,7 @@
                       <v-chip color="warning" size="small">警告</v-chip>
                     </td>
                     <td>
-                      <v-btn size="small" color="primary" variant="text">查看</v-btn>
+                      <v-btn color="primary" size="small" variant="text">查看</v-btn>
                     </td>
                   </tr>
                   <tr>
@@ -88,7 +88,7 @@
                       <v-chip color="error" size="small">错误</v-chip>
                     </td>
                     <td>
-                      <v-btn size="small" color="primary" variant="text">查看</v-btn>
+                      <v-btn color="primary" size="small" variant="text">查看</v-btn>
                     </td>
                   </tr>
                 </tbody>
@@ -101,8 +101,8 @@
           <v-card class="mb-4">
             <v-card-title>开关和选择器</v-card-title>
             <v-card-text>
-              <v-switch label="启用选项" color="primary" class="mb-2" />
-              <v-checkbox label="复选框选项" color="primary" class="mb-2" />
+              <v-switch class="mb-2" color="primary" label="启用选项" />
+              <v-checkbox class="mb-2" color="primary" label="复选框选项" />
               <v-radio-group color="primary">
                 <v-radio label="选项 1" value="1" />
                 <v-radio label="选项 2" value="2" />
@@ -116,15 +116,15 @@
           <v-card class="mb-4">
             <v-card-title>进度条和滑块</v-card-title>
             <v-card-text>
-              <v-progress-linear color="primary" model-value="45" class="mb-4" />
-              <v-progress-circular color="accent" model-value="70" class="mb-4" />
+              <v-progress-linear class="mb-4" color="primary" model-value="45" />
+              <v-progress-circular class="mb-4" color="accent" model-value="70" />
               <v-slider
-                label="滑块示例"
                 color="primary"
-                track-color="secondary"
-                min="0"
+                label="滑块示例"
                 max="100"
+                min="0"
                 model-value="50"
+                track-color="secondary"
               />
             </v-card-text>
           </v-card>
