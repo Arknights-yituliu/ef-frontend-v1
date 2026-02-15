@@ -3,7 +3,7 @@
     <header class="page-title">{{ t('page.contributors.title') }}</header>
     <p class="page-description">{{ t('page.contributors.description') }}</p>
 
-    <section v-if="contributors.length" class="contributors__cards">
+    <section v-if="contributors.length > 0" class="contributors__cards">
       <ContainerContributorCard
         v-for="contributor in contributors"
         :key="contributor.name"

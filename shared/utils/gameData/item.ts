@@ -1,9 +1,9 @@
-import { gachaItemMap } from '@/custom/core/gachaItem';
-import { items } from '@/custom/core/items';
-import { itemValueMap } from '@/custom/core/itemValue';
 import type { ColorInstance } from 'color';
 import Color from 'color';
 import { useI18n } from 'vue-i18n';
+import { gachaItemMap } from '@/custom/core/gachaItem';
+import { items } from '@/custom/core/items';
+import { itemValueMap } from '@/custom/core/itemValue';
 
 export const tierColorMap: Map<number, ColorInstance> = new Map([
   [1, Color('#9b9b9b')],

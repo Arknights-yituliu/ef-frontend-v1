@@ -1,5 +1,5 @@
-import { ref } from 'vue';
 import type { Reward } from '../../../shared/types/gacha-calculator';
+import { ref } from 'vue';
 
 export const crateReward = ref<Reward>({
   id: 'crate_reward',
@@ -14,7 +14,7 @@ export const crateReward = ref<Reward>({
   active: true,
   content: {
     originiumRecharge: 0,
-    diamond: 18840,
+    diamond: 18_840,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0
   }

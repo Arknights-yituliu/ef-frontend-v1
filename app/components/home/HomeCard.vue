@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CardData, CardTagType, CardButton } from '@/custom/core/homeCards';
+import type { CardButton, CardData, CardTagType } from '@/custom/core/homeCards';
 import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
 const { t } = useI18n();
@@ -58,25 +58,30 @@ const cardData = computed(() => {
 /**
  * 根据标签类型获取对应的颜色
  */
-const getTagColor = (tagType: CardTagType): string => {
+function getTagColor (tagType: CardTagType): string {
   switch (tagType) {
-    case 'official':
-      return '#FFC107'; // 黄色
-    case 'yituliu':
-      return '#00BCD4'; // 青色
-    case 'yituliu3rd':
-      return '#00BCD4'; // 青色
-    case 'thirdparty':
-      return '#F44336'; // 红色
-    default:
-      return '#9E9E9E'; // 灰色
+    case 'official': {
+      return '#FFC107';
+    } // 黄色
+    case 'yituliu': {
+      return '#00BCD4';
+    } // 青色
+    case 'yituliu3rd': {
+      return '#00BCD4';
+    } // 青色
+    case 'thirdparty': {
+      return '#F44336';
+    } // 红色
+    default: {
+      return '#9E9E9E';
+    } // 灰色
   }
-};
+}
 
 /**
  * 处理卡片内按钮点击事件
  */
-const handleCardButtonClick = (button: CardButton) => {
+function handleCardButtonClick (button: CardButton) {
   if (button.action === ButtonActionType.Link) {
     // 跳转链接
     const target = button.target ? '_blank' : '_self';
@@ -85,12 +90,12 @@ const handleCardButtonClick = (button: CardButton) => {
     // 复制文本
     copyToClipboard(button.actionData, t('common.copySuccess'));
   }
-};
+}
 
 /**
  * 复制文本到剪贴板
  */
-const copyToClipboard = async (text: string, successMessage: string) => {
+async function copyToClipboard (text: string, successMessage: string) {
   try {
     await navigator.clipboard.writeText(text);
     alert(successMessage);
@@ -98,22 +103,22 @@ const copyToClipboard = async (text: string, successMessage: string) => {
     console.error('复制失败:', error);
     alert(t('common.copyFailed'));
   }
-};
+}
 
 /**
  * 切换收藏状态
  */
-const toggleFavorite = () => {
+function toggleFavorite () {
   if (props.onToggleFavorite) {
     props.onToggleFavorite();
   }
-};
+}
 </script>
 
 <template>
   <v-card class="home-card">
     <div class="home-card-header">
-      <img v-if="cardData.icon" :alt="cardData.title" :src="cardData.icon" class="home-card-logo" >
+      <img v-if="cardData.icon" :alt="cardData.title" class="home-card-logo" :src="cardData.icon" >
       <div class="home-card-title">
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-card-tags">
@@ -129,18 +134,18 @@ const toggleFavorite = () => {
       </div>
       <!-- 收藏按钮 -->
       <v-btn
+        class="favorite-btn"
+        :color="cardData.isFavorited ? 'warning' : 'grey'"
+        density="comfortable"
         :icon="cardData.isFavorited ? 'mdi-star' : 'mdi-star-outline'"
         size="large"
-        :color="cardData.isFavorited ? 'warning' : 'grey'"
-        class="favorite-btn"
         variant="text"
-        density="comfortable"
         @click.stop="toggleFavorite"
       />
     </div>
     <div class="home-card-content">
       <div v-if="cardData.image" class="home-card-image-wrapper">
-        <img :alt="cardData.title" :src="cardData.image" class="home-card-image" >
+        <img :alt="cardData.title" class="home-card-image" :src="cardData.image" >
         <div v-if="cardData.description" class="home-card-overlay">
           <p class="home-card-description">{{ cardData.description }}</p>
         </div>
@@ -159,35 +164,35 @@ const toggleFavorite = () => {
       <v-btn
         v-for="button in cardData.linkButtons"
         :key="button.i18nKey"
-        :text="t(`component.home.${button.i18nKey}`)"
+        class="card-button card-button-text"
         color="black"
         :prepend-icon="button.icon"
         size="small"
+        :text="t(`component.home.${button.i18nKey}`)"
         variant="text"
-        class="card-button card-button-text"
         @click="handleCardButtonClick(button)"
       />
       <v-btn
         v-for="button in cardData.textButtons"
         :key="button.i18nKey"
-        :text="t(`component.home.${button.i18nKey}`)"
+        class="card-button card-button-text"
         color="black"
         :prepend-icon="button.icon"
         size="small"
+        :text="t(`component.home.${button.i18nKey}`)"
         variant="text"
-        class="card-button card-button-text"
         @click="handleCardButtonClick(button)"
       />
       <!-- 主按钮 - 永远置于最右侧 -->
       <v-btn
         v-for="button in cardData.mainButtons"
         :key="button.i18nKey"
-        :text="t(`component.home.${button.i18nKey}`)"
+        class="card-button"
         :color="button.color || 'primary'"
         :prepend-icon="button.icon"
         size="small"
-        class="card-button"
         :style="{ borderLeft: `3px solid ${cardData.primaryTagColor}` }"
+        :text="t(`component.home.${button.i18nKey}`)"
         @click="handleCardButtonClick(button)"
       />
     </div>

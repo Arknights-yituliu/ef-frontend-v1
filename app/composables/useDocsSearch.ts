@@ -15,7 +15,7 @@ interface SearchResult {
   matches?: readonly any[];
 }
 
-export const useDocsSearch = () => {
+export function useDocsSearch () {
   const { locale } = useI18n();
   const appConfig = useAppConfig();
 
@@ -152,4 +152,4 @@ export const useDocsSearch = () => {
     search,
     getLanguageSuffix,
   };
-};
+}

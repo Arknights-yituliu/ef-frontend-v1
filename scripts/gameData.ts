@@ -1,7 +1,3 @@
-import dotenv from 'dotenv';
-import * as fs from 'fs';
-import path from 'path';
-
 import type {
   I18nTextTable,
   ItemListByTypeTable,
@@ -9,6 +5,10 @@ import type {
   ItemTypeTable,
   TranslationKey,
 } from './models';
+import * as fs from 'node:fs';
+import path from 'node:path';
+
+import dotenv from 'dotenv';
 
 // 从环境变量加载数据目录，避免硬编码路径
 dotenv.config();
@@ -35,7 +35,7 @@ function parseJSONWithBigInt(text: string) {
 
 function readJSONWithBigInt(relativePath: string) {
   const fullPath = path.join(endfieldDataDir, relativePath);
-  const text = fs.readFileSync(fullPath, 'utf-8');
+  const text = fs.readFileSync(fullPath, 'utf8');
   return parseJSONWithBigInt(text);
 }
 
@@ -96,7 +96,7 @@ const worldEnergyPointTable = readJSONWithBigInt('TableCfg/WorldEnergyPointTable
 const i18nTextTables: Map<string, I18nTextTable> = new Map(
   i18nLanguages.map((lang) => [
     lang,
-    JSON.parse(fs.readFileSync(getI18nTextTablePath(lang), 'utf-8')),
+    JSON.parse(fs.readFileSync(getI18nTextTablePath(lang), 'utf8')),
   ]),
 );
 
@@ -213,15 +213,18 @@ function makeWeapons() {
       const gemStat = gemTagIdTable[tagId]!;
       const gem = gemTable[gemStat]!;
       switch (gem.termType) {
-        case 0:
+        case 0: {
           result.attribute = getGemTagName(gem.gemTermId, language);
           break;
-        case 1:
+        }
+        case 1: {
           result.secondary = getGemTagName(gem.gemTermId, language);
           break;
-        case 2:
+        }
+        case 2: {
           result.skill = getGemTagName(gem.gemTermId, language);
           break;
+        }
       }
     }
     return result;

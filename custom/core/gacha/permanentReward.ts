@@ -1,11 +1,11 @@
-import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
-import valleyIVTaskTable from './json/valley_IV_task_table.json';
-import wulingTaskTable from './json/wuling_task_table.json';
-
-
-
+import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from './json/etch_space_salvage_reward.json';
+import valleyIVTaskTable from './json/valley_IV_task_table.json';
+
+
+
+import wulingTaskTable from './json/wuling_task_table.json';
 
 
 const beginnerSignInTaskReward = ref<Reward>({
@@ -139,13 +139,13 @@ for (const reward of etchSpaceSalvageRewardJson) {
 
 
 export {
-  valleyIVTaskRewardTable,
-  wulingTaskRewardTable,
   beginnerSignInTaskReward,
+  etchSpaceSalvageReward,
   newHorizonsTaskReward,
+  valleyIVTaskRewardTable,
 
 
-  etchSpaceSalvageReward
+  wulingTaskRewardTable
 };
 
 

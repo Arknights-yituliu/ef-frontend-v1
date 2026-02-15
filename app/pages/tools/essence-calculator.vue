@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="page-container">
+  <v-container class="page-container" fluid>
     <v-row>
       <v-col cols="12" lg="6">
         <v-expansion-panels model-value="计算结果">
@@ -109,7 +109,7 @@
                           </div>
                         </v-col>
 
-                        <v-divider vertical class="hidden-sm-and-down" />
+                        <v-divider class="hidden-sm-and-down" vertical />
                         <v-divider class="hidden-md-and-up my-4" />
 
                         <!-- Right Column: Results -->
@@ -254,39 +254,39 @@
                 <v-col cols="12" md="2">
                   <v-select
                     v-model="stat.attribute"
+                    density="compact"
+                    :disabled="!stat.isCustom"
+                    hide-details
                     :items="allAttributeStats"
                     :label="t('page.tools.essenceCalculator.attributeStats')"
                     :list-props="{ density: 'compact' }"
                     :menu-props="{ maxHeight: 1024 }"
-                    :disabled="!stat.isCustom"
-                    density="compact"
-                    hide-details
                     variant="outlined"
                   />
                 </v-col>
                 <v-col cols="12" md="2">
                   <v-select
                     v-model="stat.secondary"
+                    density="compact"
+                    :disabled="!stat.isCustom"
+                    hide-details
                     :items="allSecondaryStats"
                     :label="t('page.tools.essenceCalculator.secondaryStats')"
                     :list-props="{ density: 'compact' }"
                     :menu-props="{ maxHeight: 1024 }"
-                    :disabled="!stat.isCustom"
-                    density="compact"
-                    hide-details
                     variant="outlined"
                   />
                 </v-col>
                 <v-col cols="12" md="2">
                   <v-select
                     v-model="stat.skill"
+                    density="compact"
+                    :disabled="!stat.isCustom"
+                    hide-details
                     :items="allSkillStats"
                     :label="t('page.tools.essenceCalculator.skillStats')"
                     :list-props="{ density: 'compact' }"
                     :menu-props="{ maxHeight: 1024 }"
-                    :disabled="!stat.isCustom"
-                    density="compact"
-                    hide-details
                     variant="outlined"
                   />
                 </v-col>
@@ -328,9 +328,9 @@
                 <div v-for="weaponType in weaponTypes" :key="weaponType">
                   <div class="d-flex align-center mb-4 mt-8 ga-2">
                     <img
-                      :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
                       :alt="weaponType"
                       class="group-icon"
+                      :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
                     >
                     <h3>{{ weaponType }}</h3>
                   </div>

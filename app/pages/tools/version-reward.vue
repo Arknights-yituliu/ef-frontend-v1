@@ -1,31 +1,51 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from 'vue';
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
-
-import { dailyReward,weekTaskReward,calculatorDailyReward,AICQuotaReward, umbralMonumentReward } from '@/custom/core/gacha/dailyReward';
+import { nextTick, onMounted, ref, watch } from 'vue';
 
 import { activityReward ,createSignInReward} from '@/custom/core/gacha/activityReward';
 
+import { AICQuotaReward,calculatorDailyReward,dailyReward,umbralMonumentReward, weekTaskReward } from '@/custom/core/gacha/dailyReward';
+
 import {
-  otherRewardTable,
+  authorityLevelTaskRewards,
+  authorityLevelUpReward,
+  authorityLevelUpRewardTable,
+  worldLevelReward,
+} from '@/custom/core/gacha/levelReward';
+
+import {
+  operationalManualNodeReward,
+  operationalManualReward,
+} from '@/custom/core/gacha/operationalManualReward';
+
+import {
   factoryManualReward,
   factoryManualRewardMax,
   intelArchiveReward,
+  otherRewardTable,
 } from '@/custom/core/gacha/otherReward';
+
+import {
+  beginnerSignInTaskReward,
+  etchSpaceSalvageReward,
+  newHorizonsTaskReward,
+  valleyIVTaskRewardTable,
+  wulingTaskRewardTable,
+} from '@/custom/core/gacha/permanentReward';
 
 import {
   valleyIVAuryleneCollectReward,
   valleyIVAuryleneCollectStageTable,
-  valleyIVCrateRewardMax,
-  valleyIVCrateReward,
-  valleyIVBattleCrateRewardMax,
   valleyIVBattleCrateReward,
+  valleyIVBattleCrateRewardMax,
+  valleyIVCrateReward,
+  valleyIVCrateRewardMax,
+  valleyIVDefenseConstructionReward,
   valleyIVDeltaBotReward,
   valleyIVDeltaBotRewardMax,
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
   valleyIVSimulationReward,
-  valleyIVDefenseConstructionReward,
 } from '@/custom/core/gacha/valleyIVRegionalReward';
 
 import {
@@ -33,41 +53,20 @@ import {
   wulingAuryleneCollectStageTable,
   wulingCrateReward,
   wulingCrateRewardMax,
+  wulingDefenseConstructionReward,
   wulingDeltaBotReward,
   wulingDeltaBotRewardMax,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
   wulingSimulationReward,
-  wulingDefenseConstructionReward,
 } from '@/custom/core/gacha/wulingRegionalReward';
-
-import {
-  authorityLevelUpRewardTable,
-  authorityLevelTaskRewards,
-  authorityLevelUpReward,
-  worldLevelReward,
-} from '@/custom/core/gacha/levelReward';
-
-import {
-  beginnerSignInTaskReward,
-  newHorizonsTaskReward,
-  etchSpaceSalvageReward,
-  valleyIVTaskRewardTable,
-  wulingTaskRewardTable,
-} from '@/custom/core/gacha/permanentReward';
-
-import {
-  operationalManualReward,
-  operationalManualNodeReward,
-} from '@/custom/core/gacha/operationalManualReward';
 
 
 const version1Reward = ref<Reward[]>([]);
 
 calculatorDailyReward(new Date('2026/01/22 12:00:00'),new Date('2026/03/12 10:00:00'))
 
-version1Reward.value.push(dailyReward.value)
-version1Reward.value.push(weekTaskReward.value)
+version1Reward.value.push(dailyReward.value, weekTaskReward.value)
 
 for (const reward of AICQuotaReward.value) {
   version1Reward.value.push(reward);
@@ -92,23 +91,12 @@ for (const reward of intelArchiveReward.value) {
   version1Reward.value.push(reward);
 }
 
-version1Reward.value.push(valleyIVAuryleneCollectReward.value);
-version1Reward.value.push(valleyIVCrateReward.value);
-version1Reward.value.push(valleyIVBattleCrateReward.value);
-version1Reward.value.push(valleyIVDeltaBotReward.value);
-version1Reward.value.push(valleyIVRegionalDevelopmentReward.value);
-version1Reward.value.push(valleyIVRegionalStockBillStoreReward.value);
-version1Reward.value.push(valleyIVSimulationReward.value);
+version1Reward.value.push(valleyIVAuryleneCollectReward.value, valleyIVCrateReward.value, valleyIVBattleCrateReward.value, valleyIVDeltaBotReward.value, valleyIVRegionalDevelopmentReward.value, valleyIVRegionalStockBillStoreReward.value, valleyIVSimulationReward.value);
 for (const reward of valleyIVDefenseConstructionReward.value) {
   version1Reward.value.push(reward);
 }
 
-version1Reward.value.push(wulingAuryleneCollectReward.value);
-version1Reward.value.push(wulingCrateReward.value);
-version1Reward.value.push(wulingDeltaBotReward.value);
-version1Reward.value.push(wulingRegionalDevelopmentReward.value);
-version1Reward.value.push(wulingRegionalStockBillStoreReward.value);
-version1Reward.value.push(wulingSimulationReward.value);
+version1Reward.value.push(wulingAuryleneCollectReward.value, wulingCrateReward.value, wulingDeltaBotReward.value, wulingRegionalDevelopmentReward.value, wulingRegionalStockBillStoreReward.value, wulingSimulationReward.value);
 for (const reward of wulingDefenseConstructionReward.value) {
   version1Reward.value.push(reward);
 }
@@ -117,11 +105,7 @@ for (const reward of authorityLevelTaskRewards.value) {
   version1Reward.value.push(reward);
 }
 
-version1Reward.value.push(authorityLevelUpReward.value);
-
-version1Reward.value.push(worldLevelReward.value);
-
-version1Reward.value.push(beginnerSignInTaskReward.value);
+version1Reward.value.push(authorityLevelUpReward.value, worldLevelReward.value, beginnerSignInTaskReward.value);
 
 for (const reward of newHorizonsTaskReward.value) {
   version1Reward.value.push(reward);
@@ -183,30 +167,30 @@ version1Reward.value.push(version1RewardTotal)
         <th style="font-weight: bolder">来源</th>
         <th>
           <img
+            alt="existing"
             class="version-reward-table-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-            alt="existing"
           >
         </th>
         <th>
           <img
+            alt="existing"
             class="version-reward-table-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-            alt="existing"
           >
         </th>
         <th>
           <img
+            alt="existing"
             class="version-reward-table-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-            alt="existing"
           >
         </th>
         <th>
           <img
+            alt="existing"
             class="version-reward-table-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-            alt="existing"
           >
         </th>
       </tr>

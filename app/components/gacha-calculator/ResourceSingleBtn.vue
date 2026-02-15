@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { itemIdDict } from '@/custom/core/gacha/levelReward';
 import type { Reward } from '#shared/types/gacha-calculator';
+import { itemIdDict } from '@/custom/core/gacha/levelReward';
 const props = defineProps<Reward>();
 
 /**
@@ -18,9 +18,9 @@ function getImageUrl(itemId: string): string {
 
 <template>
   <v-btn
+    :active="props.active"
     class="gacha-calculator-resource-btn"
     :class="{ 'btn-active': props.active }"
-    :active="props.active"
   >
     <div class="gacha-calculator-resource-btn-content">
       <div class="gacha-calculator-resource-btn-content-title">
@@ -32,7 +32,7 @@ function getImageUrl(itemId: string): string {
         :key="`${props.id}-${name}`"
         class="gacha-calculator-resource-btn-content-content"
       >
-        <img class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" alt="existing" >
+        <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" >
         X {{ reward }}
       </div>
     </div>

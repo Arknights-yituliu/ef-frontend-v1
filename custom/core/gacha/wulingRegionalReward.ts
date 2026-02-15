@@ -148,14 +148,14 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
 ])
 
 export {
+  wulingAuryleneCollectReward,
+  wulingAuryleneCollectStageTable,
+  wulingCrateReward,
+  wulingCrateRewardMax,
+  wulingDefenseConstructionReward,
+  wulingDeltaBotReward,
+  wulingDeltaBotRewardMax,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
-  wulingAuryleneCollectStageTable,
-  wulingAuryleneCollectReward,
-  wulingCrateRewardMax,
-  wulingCrateReward,
-  wulingSimulationReward,
-  wulingDeltaBotRewardMax,
-  wulingDeltaBotReward,
-  wulingDefenseConstructionReward
+  wulingSimulationReward
 };

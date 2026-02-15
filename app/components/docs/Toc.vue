@@ -34,37 +34,37 @@
               :class="`toc-item-level-${heading.depth}`"
             >
               <a
-                :href="`#${heading.id}`"
                 class="toc-link"
                 :class="{ 'is-active': activeHeading === heading.id }"
+                :href="`#${heading.id}`"
                 @click.prevent="scrollToHeading(heading.id)"
               >
                 <svg
+                  aria-hidden="true"
                   class="toc-marker"
                   :class="[`depth-${heading.depth}`, { 'is-active': activeHeading === heading.id }]"
                   viewBox="0 0 32 32"
                   xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
                 >
                   <template v-if="heading.depth === 2">
-                    <polygon points="16,4 28,16 16,28 4,16" class="marker-diamond-outer" />
-                    <polygon points="16,8 24,16 16,24 8,16" class="marker-diamond-inner" />
-                    <polygon points="16,12 20,16 16,20 12,16" class="marker-diamond-core" />
-                    <line x1="16" y1="10" x2="16" y2="22" class="marker-cross" />
-                    <line x1="10" y1="16" x2="22" y2="16" class="marker-cross" />
+                    <polygon class="marker-diamond-outer" points="16,4 28,16 16,28 4,16" />
+                    <polygon class="marker-diamond-inner" points="16,8 24,16 16,24 8,16" />
+                    <polygon class="marker-diamond-core" points="16,12 20,16 16,20 12,16" />
+                    <line class="marker-cross" x1="16" x2="16" y1="10" y2="22" />
+                    <line class="marker-cross" x1="10" x2="22" y1="16" y2="16" />
                   </template>
                   <template v-else-if="heading.depth === 3">
-                    <polygon points="16,6 26,16 16,26 6,16" class="marker-diamond-outer" />
-                    <polygon points="16,11 21,16 16,21 11,16" class="marker-diamond-inner" />
-                    <line x1="16" y1="12" x2="16" y2="20" class="marker-cross" />
-                    <line x1="12" y1="16" x2="20" y2="16" class="marker-cross" />
+                    <polygon class="marker-diamond-outer" points="16,6 26,16 16,26 6,16" />
+                    <polygon class="marker-diamond-inner" points="16,11 21,16 16,21 11,16" />
+                    <line class="marker-cross" x1="16" x2="16" y1="12" y2="20" />
+                    <line class="marker-cross" x1="12" x2="20" y1="16" y2="16" />
                   </template>
                   <template v-else-if="heading.depth === 4">
-                    <polygon points="16,8 24,16 16,24 8,16" class="marker-diamond-outer" />
-                    <polygon points="16,13 19,16 16,19 13,16" class="marker-diamond-core" />
+                    <polygon class="marker-diamond-outer" points="16,8 24,16 16,24 8,16" />
+                    <polygon class="marker-diamond-core" points="16,13 19,16 16,19 13,16" />
                   </template>
                   <template v-else>
-                    <polygon points="16,12 20,16 16,20 12,16" class="marker-diamond-dot" />
+                    <polygon class="marker-diamond-dot" points="16,12 20,16 16,20 12,16" />
                   </template>
                 </svg>
                 <span class="link-text">{{ heading.text }}</span>
@@ -81,18 +81,18 @@
 
     <!-- 折叠按钮 -->
     <button
-      class="collapse-toggle"
       :aria-label="isCollapsed ? $t('docs.expand') : $t('docs.collapse')"
+      class="collapse-toggle"
       @click="toggleCollapse"
     >
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M9 18l6-6-6-6"
-          stroke="currentColor"
-          stroke-width="2"
           fill="none"
+          stroke="currentColor"
           stroke-linecap="round"
           stroke-linejoin="round"
+          stroke-width="2"
         />
       </svg>
     </button>
@@ -139,7 +139,7 @@ let highlightUpdateTimer: ReturnType<typeof setTimeout> | null = null;
 // 监听滚动，更新激活的标题
 let scrollHandler: (() => void) | null = null;
 
-const getDOMElement = (el: Element | ComponentPublicInstance | null): HTMLElement | null => {
+function getDOMElement (el: Element | ComponentPublicInstance | null): HTMLElement | null {
   if (!el) {
     return null;
   }
@@ -150,31 +150,31 @@ const getDOMElement = (el: Element | ComponentPublicInstance | null): HTMLElemen
     return el.$el;
   }
   return null;
-};
+}
 
-const setHeadingRef = (el: Element | ComponentPublicInstance | null, id: string) => {
+function setHeadingRef (el: Element | ComponentPublicInstance | null, id: string) {
   const element = getDOMElement(el);
   if (!element) {
     headingRefs.value.delete(id);
     return;
   }
   headingRefs.value.set(id, element);
-};
+}
 
-const getRelativeTop = (element: HTMLElement, container: HTMLElement) => {
+function getRelativeTop (element: HTMLElement, container: HTMLElement) {
   const elementRect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
   return elementRect.top - containerRect.top;
-};
+}
 
-const resolveActiveHeading = () => {
+function resolveActiveHeading () {
   if (activeHeading.value) {
     return activeHeading.value;
   }
   return props.headings[0]?.id || '';
-};
+}
 
-const updateHighlight = () => {
+function updateHighlight () {
   nextTick(() => {
     const container = tocNavRef.value;
     if (!container || isCollapsed.value) {
@@ -193,10 +193,10 @@ const updateHighlight = () => {
     highlightTop.value = getRelativeTop(activeEl, container);
     highlightHeight.value = activeEl.offsetHeight;
   });
-};
+}
 
 // 延迟更新高亮
-const delayedUpdateHighlight = () => {
+function delayedUpdateHighlight () {
   if (highlightUpdateTimer) {
     clearTimeout(highlightUpdateTimer);
   }
@@ -204,10 +204,10 @@ const delayedUpdateHighlight = () => {
     updateHighlight();
     highlightUpdateTimer = null;
   }, 400);
-};
+}
 
 // 切换折叠状态
-const toggleCollapse = () => {
+function toggleCollapse () {
   isCollapsed.value = !isCollapsed.value;
   if (isCollapsed.value) {
     highlightHeight.value = 0;
@@ -215,10 +215,10 @@ const toggleCollapse = () => {
     // 折叠/展开后延迟更新高亮
     delayedUpdateHighlight();
   }
-};
+}
 
 // 滚动到指定标题
-const scrollToHeading = (id: string) => {
+function scrollToHeading (id: string) {
   const element = document.getElementById(id);
   if (element) {
     const top = element.offsetTop - 80; // 减去顶部导航栏高度
@@ -233,7 +233,7 @@ const scrollToHeading = (id: string) => {
       emit('close');
     }
   }
-};
+}
 
 onMounted(() => {
   scrollHandler = () => {
