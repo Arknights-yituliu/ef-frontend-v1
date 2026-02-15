@@ -416,7 +416,8 @@
         "reward": "Reward",
         "regional": "Regional",
         "pieChartName": "Gacha Resource Distribution",
-        "pieChartTooltip": "{seriesName} {name} : {value} pulls, ({percent}%)"
+        "pieChartTooltip": "{seriesName} {name} : {value} pulls, ({percent}%)",
+        "countWithPulls": "{count} ({pulls} pulls)"
       }
     },
     "others": {

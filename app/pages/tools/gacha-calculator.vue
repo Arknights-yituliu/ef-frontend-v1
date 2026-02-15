@@ -1766,10 +1766,14 @@ function checkRewardIsValid(reward: Reward): boolean {
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                     >
                     <span class="gacha-calculator-statistics-result-item-text">
-                      {{ totalResourceStatisticsResultDetail.originiumRecharge }}
-                      ({{
-                        numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15)
-                      }})
+                      {{
+                        t('page.tools.gachaCalculator.countWithPulls', {
+                          count: totalResourceStatisticsResultDetail.originiumRecharge,
+                          pulls: numberFloor(
+                            totalResourceStatisticsResultDetail.originiumRecharge * 0.15,
+                          ),
+                        })
+                      }}
                     </span>
                   </div>
 
@@ -1780,9 +1784,12 @@ function checkRewardIsValid(reward: Reward): boolean {
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                     >
                     <span class="gacha-calculator-statistics-result-item-text">
-                      {{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}({{
-                        numberFloor(totalResourceStatisticsResultDetail.diamond / 500)
-                      }})
+                      {{
+                        t('page.tools.gachaCalculator.countWithPulls', {
+                          count: numberFloor(totalResourceStatisticsResultDetail.diamond, 0),
+                          pulls: numberFloor(totalResourceStatisticsResultDetail.diamond / 500),
+                        })
+                      }}
                     </span>
                   </div>
 
@@ -1890,12 +1897,20 @@ function checkRewardIsValid(reward: Reward): boolean {
                   <tr v-for="item in resourceStatisticsResultDetailList">
                     <td>{{ item.name }}</td>
                     <td>
-                      {{ item.originiumRecharge }}（{{ numberFloor(item.originiumRecharge * 0.15)
-                      }}{{ t('page.tools.gachaCalculator.pulls') }}）
+                      {{
+                        t('page.tools.gachaCalculator.countWithPulls', {
+                          count: item.originiumRecharge,
+                          pulls: numberFloor(item.originiumRecharge * 0.15),
+                        })
+                      }}
                     </td>
                     <td>
-                      {{ item.diamond }}（{{ numberFloor(item.diamond / 500)
-                      }}{{ t('page.tools.gachaCalculator.pulls') }}）
+                      {{
+                        t('page.tools.gachaCalculator.countWithPulls', {
+                          count: item.diamond,
+                          pulls: numberFloor(item.diamond / 500),
+                        })
+                      }}
                     </td>
                     <td>{{ item.ticketgachaStandardSingle }}</td>
                     <td>{{ item.ticketgachaSpecialSingle }}</td>
