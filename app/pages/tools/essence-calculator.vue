@@ -13,8 +13,8 @@
                   <v-card elevation="2" rounded="lg">
                     <template #image>
                       <v-img
-                        class="result-card-background-image opacity-30 d-none d-md-block"
                         :alt="choice.battleName"
+                        class="result-card-background-image opacity-30 d-none d-md-block"
                         cover
                         :src="energyAlluviums[choice.battleId]!.imageUrl"
                       />
