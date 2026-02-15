@@ -278,8 +278,8 @@
                       >
                         <!-- 五星头像 -->
                         <img
-                          :src="getAvatarUrl(item.name)"
                           :alt="item.name"
+                          :src="getAvatarUrl(item.name)"
                           style="width: 40px; height: 40px; object-fit: contain; background-color: #e0f2fe; border-radius: 4px;"
                           @error="handleImageError"
                         />
