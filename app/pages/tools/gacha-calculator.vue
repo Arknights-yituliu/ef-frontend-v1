@@ -2690,7 +2690,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 }
 
 .gacha-calculator-statistics-result {
-  width: 180px;
+  width: 230px;
 }
 
 .gacha-calculator-statistics-result-item {
