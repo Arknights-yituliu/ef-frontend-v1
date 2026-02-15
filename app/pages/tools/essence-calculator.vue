@@ -364,10 +364,10 @@
                             weaponB.rarity - weaponA.rarity,
                         )"
                       :key="weaponId"
-                      role="button"
-                      tabindex="0"
                       :aria-pressed="selectedWeaponIds.has(weaponId)"
                       class="weapon-icon-wrapper weapon-item"
+                      role="button"
+                      tabindex="0"
                       @click="toggleWeaponPreset({ ...weapon.stats, isCustom: false, weaponId })"
                       @keydown.enter.space.prevent="toggleWeaponPreset({ ...weapon.stats, isCustom: false, weaponId })"
                     >
