@@ -64,6 +64,14 @@
               />
             </svg>
             <span class="secondary-text">{{ $t(`menu.${secondaryItem.i18nKey}`) }}</span>
+            <!-- 跳转提示图标 -->
+            <v-icon
+              v-if="secondaryItem.showJumpHint"
+              class="jump-hint-icon"
+              size="20"
+            >
+              mdi-open-in-new
+            </v-icon>
           </NuxtLink>
         </div>
       </div>
@@ -98,7 +106,8 @@ interface SecondaryMenuItem {
   routePath: string;
   iconPath?: string;
   vuetifyIcon?: string;
-  isHidden?:boolean;
+  isHidden?: boolean;
+  showJumpHint?: boolean;
 }
 
 interface PrimaryMenuItem {
@@ -555,6 +564,16 @@ onUnmounted(() => {
   text-overflow: ellipsis;
   margin-left: 0.5rem;
   z-index: 1;
+}
+
+.jump-hint-icon {
+  margin-right: 0.5rem;
+  opacity: 0.5;
+  transition: opacity var(--transition-base);
+}
+
+.secondary-item:hover .jump-hint-icon {
+  opacity: 1;
 }
 
 /* 底部装饰 */
