@@ -364,10 +364,17 @@
                             weaponB.rarity - weaponA.rarity,
                         )"
                       :key="weaponId"
-                      class="weapon-item"
-                      @click="addStatFromPreset({ ...weapon.stats, isCustom: false, weaponId })"
+                      role="button"
+                      tabindex="0"
+                      :aria-pressed="selectedWeaponIds.has(weaponId)"
+                      class="weapon-icon-wrapper weapon-item"
+                      @click="toggleWeaponPreset({ ...weapon.stats, isCustom: false, weaponId })"
+                      @keydown.enter.space.prevent="toggleWeaponPreset({ ...weapon.stats, isCustom: false, weaponId })"
                     >
                       <ContainerItemIcon :item-id="weaponId" show-item-name />
+                      <div v-if="selectedWeaponIds.has(weaponId)" class="weapon-selected-overlay">
+                        <v-icon color="white" size="large">mdi-check-circle</v-icon>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1269,6 +1276,28 @@ function getGroupIconUrl(iconId: string): string {
   return `https://cos.yituliu.cn/endfield/sprites_selective/wiki/groupicon/${iconId}.png`;
 }
 
+/** 已选武器 ID 集合（O(1) 查询） */
+const selectedWeaponIds = computed(() => {
+  const ids = new Set<string>();
+  for (const s of requiredEssenceStats.value) {
+    if (!s.isCustom && s.weaponId) ids.add(s.weaponId);
+  }
+  return ids;
+});
+
+function toggleWeaponPreset(stats: EssenceStat) {
+  if (!stats.isCustom && stats.weaponId) {
+    const index = requiredEssenceStats.value.findIndex(
+      (s) => !s.isCustom && s.weaponId === stats.weaponId,
+    );
+    if (index !== -1) {
+      requiredEssenceStats.value.splice(index, 1);
+      return;
+    }
+  }
+  requiredEssenceStats.value.push({ ...stats });
+}
+
 function addStatFromPreset(stats: EssenceStat) {
   requiredEssenceStats.value.push({ ...stats });
 }
@@ -1461,5 +1490,22 @@ const bestChoices = computed(() => {
 .weapon-item {
   width: var(--weapon-icon-size);
   height: var(--weapon-icon-size);
+}
+
+.weapon-icon-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.weapon-selected-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: var(--radius-sm);
+  pointer-events: none;
 }
 </style>
