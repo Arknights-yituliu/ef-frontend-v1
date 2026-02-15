@@ -168,6 +168,9 @@
 
 
       <div class="gacha-dashboard">
+        <!-- <div style="color: red; font-size: 14px;">
+          DEBUG: currentPoolGroup.length = {{ currentPoolGroup.length }}
+        </div> -->
         <div style="display: flex; width: 100%; justify-content: center;">
           <div class="pool-selector">
             <v-btn
@@ -209,51 +212,50 @@
           </div>
         </div>
 
-        <div v-for="(segment, idx) in filteredConsecutiveGroups" :key="idx" class="mb-8">
-          <h2 class="text-h5 mb-3">{{ segment.poolName }}</h2>
+        <div v-for="group in currentPoolGroup" :key="group.poolId" class="mb-8">
+          <h2 class="text-h5 mb-3">{{ group.poolName }}</h2>
 
           <div class="custom-gacha-list">
             <div
-              v-if="!segment.records || segment.records.length === 0"
+              v-if="!group.records || group.records.length === 0"
               style="width: 100%; background-color: #f9fafb; border-radius: 8px; margin: 8px 0; padding: 24px 0; text-align: center;"
             >
               <div style="font-size: 0.9rem; color: #9ca3af;">
-                {{  '该卡池分组暂无抽卡记录' }}
+                {{ '该卡池分组暂无抽卡记录' }}
               </div>
             </div>
 
             <div v-else>
               <div
-                v-for="(record, index) in segment.records"
-                :key="` $ {idx}- $ {index}`"
+                v-for="(record, index) in group.records"
+                :key="`${group.poolId}-${index}`"
                 class="custom-gacha-item mb-2"
                 :class="{ 'on-banner': isOnBanner(record) }"
                 style="cursor: pointer;"
                 @click="toggleExpand(record.seqId)"
               >
-                <div class="character-avatar" style="width: 60px; height: 60px; flex-shrink: 0;margin-right: 4px;">
+                <div class="character-avatar" style="width: 60px; height: 60px; flex-shrink: 0; margin-right: 4px;">
                   <img
                     v-if="record.charId && record.character !== '已垫'"
                     :alt="record.character"
                     :src="getAvatarUrl(record.charId)"
-                    style="width: 100%; height: 100%; object-fit: contain; background-color: #f0f2f5; border-radius: 50%; "
+                    style="width: 100%; height: 100%; object-fit: contain; background-color: #f0f2f5; border-radius: 50%;"
                     @error="handleImageError"
-                  >
+                  />
                   <div
                     v-else
-                    style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 4px; border-radius: 50%; font-size: 0.8rem; color: #6b7280;"
+                    style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 50%; font-size: 0.8rem; color: #6b7280;"
                   >
                     {{ record.character === '已垫' ? '垫抽' : '?' }}
                   </div>
                 </div>
 
                 <div class="gacha-drawer-container" style="flex: 1;">
-
                   <div class="gacha-bar-container">
                     <div
                       class="gacha-bar"
                       :class="getBarType(record)"
-                      :style="{ width: ` ${getBarWidth(record.count)}%` }"
+                      :style="{ width: `${getBarWidth(record.count)}%` }"
                     >
                       <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px; color: #000;">
                         {{ record.count }} 抽
@@ -274,25 +276,21 @@
                         class="mx-1 d-inline-flex flex-column align-items-center"
                         style="width: 48px;"
                       >
-                        <!-- 头像 -->
+                        <!-- 五星头像 -->
                         <img
                           :src="getAvatarUrl(item.name)"
                           :alt="item.name"
                           style="width: 40px; height: 40px; object-fit: contain; background-color: #e0f2fe; border-radius: 4px;"
                           @error="handleImageError"
                         />
-                        <!-- 计数 -->
+                        <!-- 计数（已水平居中） -->
                         <span style="font-size: 0.7rem; color: #0284c7; margin-top: 2px;">
                           ×{{ item.count }}
                         </span>
                       </span>
                     </div>
                   </div>
-
                 </div>
-
-
-
               </div>
             </div>
           </div>
@@ -793,8 +791,61 @@ function isOffPool(record: SixStarEntry): boolean {
   return record.character !== upChar;
 }
 
+// 在 <script setup> 中
+const groupedByPool = computed(() => {
+  const map = new Map<string, { poolId: string; poolName: string; records: SixStarEntry[] }>();
+  
+  // 遍历所有六星记录（含“已垫”）
+  for (const record of sixStarRecordsWithCount.value) {
+    if (!map.has(record.poolId)) {
+      map.set(record.poolId, {
+        poolId: record.poolId,
+        poolName: record.poolName,
+        records: [],
+      });
+    }
+    map.get(record.poolId)!.records.push(record);
+  }
 
+  // 转为数组，并按你想要的顺序排序（比如：限定 > 常驻 > 武器）
+  const orderMap: Record<string, number> = {
+    'limited': 0,
+    'permanent': 1,
+    'weapon': 2,
+    'default': 999,
+  };
 
+  console.log('分组结果:', Array.from(map.values()));
+  return Array.from(map.values());
+
+  return Array.from(map.values()).sort((a, b) => {
+    const aOrder = orderMap[a.poolId] ?? orderMap['default'];
+    const bOrder = orderMap[b.poolId] ?? orderMap['default'];
+    return aOrder! - bOrder!;
+  });
+});
+// 当前选中的卡池分组
+const currentPoolGroup = computed(() => {
+  return groupedByPool.value.filter(group => {
+    const { poolId } = group;
+    const sel = selectedPool.value;
+
+    if (sel === 'permanent') {
+      return poolId === 'standard' || poolId === 'beginner';
+    }
+
+    if (sel === 'limited') {
+      return poolId.startsWith('special_') || poolId.startsWith('activity_');
+    }
+
+    if (sel === 'weapon') {
+      return false; // 或者未来有再加
+    }
+
+    // 默认不显示
+    return false;
+  });
+});
 
 
 
