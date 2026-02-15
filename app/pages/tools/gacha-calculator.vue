@@ -1821,7 +1821,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 
           <v-expansion-panel value="detail">
             <v-expansion-panel-title class="gacha-calculator-card-title">
-              <div>计算详情</div>
+              <div>{{ t('page.tools.gachaCalculator.calculationDetail') }}</div>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-table class="gacha-calculator-result-detail-table">
@@ -1887,7 +1887,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 
           <v-expansion-panel>
             <v-expansion-panel-title class="gacha-calculator-card-title">
-              <div>一键全选或清空</div>
+              <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-table class="gacha-calculator-shortcut-btn-table">

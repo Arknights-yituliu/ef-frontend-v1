@@ -420,7 +420,9 @@
         "regional": "地区",
         "pieChartName": "攒抽占比",
         "pieChartTooltip": "{seriesName} {name} : {value}抽,占 ({percent}%)",
-        "countWithPulls": "{count}（{pulls} 抽）"
+        "countWithPulls": "{count}（{pulls} 抽）",
+        "calculationDetail": "计算详情",
+        "shortcutActions": "一键全选或清空"
       }
     },
     "others": {
