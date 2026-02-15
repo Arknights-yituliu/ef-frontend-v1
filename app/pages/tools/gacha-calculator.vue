@@ -2635,7 +2635,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   position: sticky;
   top: 72px;
   max-height: calc(100vh - 140px);
-  z-index: 1004;
+  z-index: 1003;
   overflow-y: auto;
   flex: 3;
 }
