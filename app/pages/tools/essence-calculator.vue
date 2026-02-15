@@ -10,7 +10,15 @@
             <v-expansion-panel-text>
               <template v-if="bestChoices.length > 0">
                 <div v-for="(choice, i) in bestChoices" :key="i" class="mb-6">
-                  <v-card class="result-card" elevation="2" rounded="lg">
+                  <v-card elevation="2" rounded="lg">
+                    <template #image>
+                      <v-img
+                        class="result-card-background-image opacity-30 d-none d-md-block"
+                        :alt="choice.battleName"
+                        cover
+                        :src="energyAlluviums[choice.battleId]!.imageUrl"
+                      />
+                    </template>
                     <v-card-item class="bg-info py-3">
                       <v-card-title class="text-h6 font-weight-bold">
                         {{ t('page.tools.essenceCalculator.plan') }} {{ i + 1 }}
@@ -90,7 +98,7 @@
                             <!-- Secondary Attribute -->
                             <div v-if="choice.selectedSecondary" class="mb-4">
                               <div class="text-medium-emphasis mb-1">
-                                {{ t('page.tools.essenceCalculator.selectSecondaryAttribute') }}
+                                {{ t('page.tools.essenceCalculator.selectSecondaryStats') }}
                               </div>
                               <v-chip color="teal" label variant="flat">
                                 {{ choice.selectedSecondary }}
@@ -100,7 +108,7 @@
                             <!-- Skill Attribute -->
                             <div v-if="choice.selectedSkill" class="mb-4">
                               <div class="text-medium-emphasis mb-1">
-                                {{ t('page.tools.essenceCalculator.selectSkillAttribute') }}
+                                {{ t('page.tools.essenceCalculator.selectSkillStats') }}
                               </div>
                               <v-chip color="blue" label variant="flat">
                                 {{ choice.selectedSkill }}
@@ -243,74 +251,87 @@
               <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
               <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
               <div class="mb-8" />
-              <v-row v-for="(stat, index) in requiredEssenceStats" :key="index" align="center">
-                <v-col cols="0" md="1" />
-                <v-col cols="12" md="2">
-                  <div>
-                    <span class="font-weight-bold mr-4">#{{ index + 1 }}</span
-                    ><span>{{ getEssenceStatDescription(stat) }}</span>
-                  </div>
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-select
-                    v-model="stat.attribute"
-                    density="compact"
-                    :disabled="!stat.isCustom"
-                    hide-details
-                    :items="allAttributeStats"
-                    :label="t('page.tools.essenceCalculator.attributeStats')"
-                    :list-props="{ density: 'compact' }"
-                    :menu-props="{ maxHeight: 1024 }"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-select
-                    v-model="stat.secondary"
-                    density="compact"
-                    :disabled="!stat.isCustom"
-                    hide-details
-                    :items="allSecondaryStats"
-                    :label="t('page.tools.essenceCalculator.secondaryStats')"
-                    :list-props="{ density: 'compact' }"
-                    :menu-props="{ maxHeight: 1024 }"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-select
-                    v-model="stat.skill"
-                    density="compact"
-                    :disabled="!stat.isCustom"
-                    hide-details
-                    :items="allSkillStats"
-                    :label="t('page.tools.essenceCalculator.skillStats')"
-                    :list-props="{ density: 'compact' }"
-                    :menu-props="{ maxHeight: 1024 }"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12" md="3">
-                  <v-btn
-                    :disabled="index === 0"
-                    icon="mdi-chevron-up"
-                    variant="text"
-                    @click="moveUp(index)"
-                  />
-                  <v-btn
-                    :disabled="index === requiredEssenceStats.length - 1"
-                    icon="mdi-chevron-down"
-                    variant="text"
-                    @click="moveDown(index)"
-                  />
-                  <v-btn
-                    color="error"
-                    icon="mdi-delete"
-                    variant="text"
-                    @click="removeStat(index)"
-                  />
-                </v-col>
-              </v-row>
+              <v-card
+                v-for="(stat, index) in requiredEssenceStats"
+                :key="index"
+                class="pa-2 my-2"
+                elevation="4"
+              >
+                <v-row align="center">
+                  <v-col cols="0" md="1" />
+                  <v-col cols="12" md="2">
+                    <div>
+                      <span class="font-weight-bold mr-4">#{{ index + 1 }}</span
+                      ><span>{{ getEssenceStatDescription(stat) }}</span>
+                    </div>
+                  </v-col>
+                  <v-col cols="12" md="2">
+                    <v-select
+                      v-if="stat.isCustom"
+                      v-model="stat.attribute"
+                      density="compact"
+                      hide-details
+                      :items="allAttributeStats"
+                      :label="t('page.tools.essenceCalculator.attributeStats')"
+                      :list-props="{ density: 'compact' }"
+                      variant="outlined"
+                    />
+                    <v-chip v-else color="primary" variant="flat">
+                      {{ stat.attribute }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12" md="2">
+                    <v-select
+                      v-if="stat.isCustom"
+                      v-model="stat.secondary"
+                      density="compact"
+                      hide-details
+                      :items="allSecondaryStats"
+                      :label="t('page.tools.essenceCalculator.secondaryStats')"
+                      :list-props="{ density: 'compact' }"
+                      variant="outlined"
+                    />
+                    <v-chip v-else color="secondary" variant="flat">
+                      {{ stat.secondary }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12" md="2">
+                    <v-select
+                      v-if="stat.isCustom"
+                      v-model="stat.skill"
+                      density="compact"
+                      hide-details
+                      :items="allSkillStats"
+                      :label="t('page.tools.essenceCalculator.skillStats')"
+                      :list-props="{ density: 'compact' }"
+                      variant="outlined"
+                    />
+                    <v-chip v-else color="success" variant="flat">
+                      {{ stat.skill }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12" md="3">
+                    <v-btn
+                      :disabled="index === 0"
+                      icon="mdi-chevron-up"
+                      variant="text"
+                      @click="moveUp(index)"
+                    />
+                    <v-btn
+                      :disabled="index === requiredEssenceStats.length - 1"
+                      icon="mdi-chevron-down"
+                      variant="text"
+                      @click="moveDown(index)"
+                    />
+                    <v-btn
+                      color="error"
+                      icon="mdi-delete"
+                      variant="text"
+                      @click="removeStat(index)"
+                    />
+                  </v-col>
+                </v-row>
+              </v-card>
               <div class="mt-8 mb-8">
                 <div class="d-flex align-center mb-4 mt-8 ga-2">
                   <v-icon>mdi-pencil</v-icon>
@@ -392,6 +413,7 @@ const emptyStat: EssenceStat = {
 interface EnergyAlluvium {
   battleId: string;
   battleName: string;
+  imageUrl: string;
   secondaryStats: string[];
   skillStats: string[];
 }
@@ -446,10 +468,12 @@ const allSkillStats = [
 ];
 
 /** 能量淤积点信息 */
-const EnergyAlluviums: Record<string, EnergyAlluvium> = {
+const energyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·枢纽区': {
     battleId: '重度能量淤积点·枢纽区',
     battleName: '重度能量淤积点·枢纽区',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv001_1.webp',
     secondaryStats: [
       '攻击提升',
       '灼热伤害提升',
@@ -465,6 +489,8 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·源石研究园': {
     battleId: '重度能量淤积点·源石研究园',
     battleName: '重度能量淤积点·源石研究园',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv005_1.webp',
     secondaryStats: [
       '攻击提升',
       '物理伤害提升',
@@ -480,6 +506,8 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·矿脉源区': {
     battleId: '重度能量淤积点·矿脉源区',
     battleName: '重度能量淤积点·矿脉源区',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv006_1.webp',
     secondaryStats: [
       '生命提升',
       '物理伤害提升',
@@ -495,6 +523,8 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·供能高地': {
     battleId: '重度能量淤积点·供能高地',
     battleName: '重度能量淤积点·供能高地',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv007_1.webp',
     secondaryStats: [
       '攻击提升',
       '生命提升',
@@ -510,6 +540,8 @@ const EnergyAlluviums: Record<string, EnergyAlluvium> = {
   '重度能量淤积点·武陵城': {
     battleId: '重度能量淤积点·武陵城',
     battleName: '重度能量淤积点·武陵城',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv002_1.webp',
     secondaryStats: [
       '攻击提升',
       '生命提升',
@@ -1273,7 +1305,7 @@ const battleChoices = computed(() => {
   const result: BattleChoice[] = [];
   // 枚举所有能量淤积点
   for (const { battleId, battleName, secondaryStats, skillStats } of Object.values(
-    EnergyAlluviums,
+    energyAlluviums,
   )) {
     // 枚举基础属性组合
     for (const selectedAttribute of combinations(allAttributeStats, 3)) {
@@ -1393,6 +1425,13 @@ const bestChoices = computed(() => {
 <style scoped>
 .page-container {
   --weapon-icon-size: clamp(2.5rem, 14vw, 5rem);
+}
+
+.result-card-background-image {
+  mask-image: linear-gradient(40deg, black, transparent 70%);
+  -webkit-mask-image: linear-gradient(40deg, black, transparent 70%);
+  transform: scale(0.8) translate(-30%, 0);
+  transform-origin: bottom left;
 }
 
 .group-icon {

@@ -17,7 +17,7 @@
     "itemValueTable": "物品价值表",
     "tools": "一图流工具箱",
     "gachaCalculator": "攒抽计算器",
-    "essenceCalculator": "基质计算器",
+    "essenceCalculator": "基质规划器",
     "quantitativeCalculator": "产线量化计算器",
     "resources": "资源下载",
     "essenceRecognizer": "基质识别工具",
@@ -86,7 +86,7 @@
         "packageValue": "礼包性价比",
         "itemValueTable": "物品价值表",
         "gachaCalculator": "攒抽计算器",
-        "essenceCalculator": "基质计算器",
+        "essenceCalculator": "基质规划器",
         "quantitativeCalculator": "量化计算器",
         "batterySplitCalculator": "分流计算器",
         "essenceRecognizer": "基质识别工具",
@@ -169,7 +169,7 @@
           "tag": "一图流",
           "linkText": "工具箱",
           "linkIcon": "mdi-toolbox",
-          "description": "包含攒抽计算器、基质计算器和抽卡分析等实用工具"
+          "description": "包含攒抽计算器、基质规划器和抽卡分析等实用工具"
         },
         "dige": {
           "title": "D.I.G.E. - 终末地热能池规划器",
@@ -369,7 +369,7 @@
     },
     "tools": {
       "essenceCalculator": {
-        "title": "基质计算器",
+        "title": "基质规划器",
         "demandSet": "需求设定",
         "demandSetDescription1": "在此设定想要刷取的武器基质，顺序不会影响结果。",
         "demandSetDescription2": "点击“+”按钮添加新的基质条目。",
@@ -384,8 +384,8 @@
         "farmLocation": "刷取地点",
         "preEngraveStats": "预刻写方案",
         "selectAttributeStats": "选择基础属性",
-        "selectSecondaryAttribute": "选择附加属性",
-        "selectSkillAttribute": "选择技能属性",
+        "selectSecondaryStats": "选择附加属性",
+        "selectSkillStats": "选择技能属性",
         "noValidDemand": "请在“需求设定”中至少添加一个有效的基质需求。",
         "debugInput": "调试输入",
         "debugOutput": "调试输出",
