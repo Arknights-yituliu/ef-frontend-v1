@@ -17,7 +17,7 @@
       <div class="form-group">
         <label>查询链接</label>
         <textarea
-          v-model="inputUrl"
+          v-model="inputCredential"
           :disabled="isSubmitting"
           placeholder="粘贴完整的URL"
           rows="3"
@@ -348,7 +348,7 @@ import { gachaPools } from '@/custom/core/gacha-pool-info';
 
 const viewMode = ref<'collect' | 'analyze'>('collect');
 
-const inputUrl = ref('');
+const inputCredential = ref('');
 const isSubmitting = ref(false);
 const collectError = ref('');
 const records = ref<GachaRecord[]>([]);
@@ -420,7 +420,7 @@ const poolColorMap: Record<string, string> = {
   '基础寻访': 'deep-purple',
   '启程寻访': 'cyan',
   '特许寻访': 'amber',
-};
+};   
 function getPoolColor(poolName: string): string {
   return poolColorMap[poolName] || 'amber darken-3';
 }
@@ -489,50 +489,66 @@ async function submitAndVerify() {
     }
   }
 
-  // 用户输入：仅需查询链接
-  const url = inputUrl.value.trim();
-  if (!url) {
-    collectError.value = '请粘贴完整的查询链接';
+  // 用户输入：登录凭证 JSON 内容
+  const credentialJson = inputCredential.value.trim();
+  if (!credentialJson) {
+    collectError.value = '请粘贴完整的登录凭证 JSON';
     return;
   }
 
   let hgToken = '';
   try {
-    const urlObj = new URL(url);
-    hgToken = urlObj.searchParams.get('hgToken') || '';
-  } catch {
-    collectError.value = '链接格式不正确，请粘贴完整的查询链接';
+    // 解析 JSON
+    const credentialObj = JSON.parse(credentialJson);
+    
+    // 验证 JSON 结构
+    if (!credentialObj || typeof credentialObj !== 'object') {
+      throw new Error('无效的 JSON 对象');
+    }
+    
+    if (credentialObj.code !== 0) {
+      throw new Error('凭证状态异常，请重新获取');
+    }
+    
+    // 提取 token
+    hgToken = credentialObj.data?.content || '';
+  } catch (e: any) {
+    console.error('凭证解析失败:', e);
+    collectError.value = '凭证格式不正确，请粘贴完整的 JSON 内容';
     return;
   }
 
   if (!hgToken) {
-    collectError.value = '链接中未找到 hgToken，请确认是否为有效查询链接';
+    collectError.value = '凭证中未找到有效 token，请确认是否为完整凭证';
     return;
   }
 
   isSubmitting.value = true;
   collectError.value = '';
 
-  try {
+   try {
     const BASE_URL = 'https://endfield.backend.yituliu.cn';
 
-    // Step 1: 创建导入任务
+    // Step 1: 创建导入任务 - 使用 FormData
+    const formData = new FormData();
+    formData.append('hgToken', hgToken);
+
     const uploadRes = await fetch(`${BASE_URL}/pool-record/create-task`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ hgToken }),
+      body: formData,
     });
 
     if (!uploadRes.ok) {
-      throw new Error(`任务创建失败（状态码 ${uploadRes.status}）`);
+      const errorData = await uploadRes.json().catch(() => ({}));
+      throw new Error(errorData.msg || `任务创建失败（状态码 ${uploadRes.status}）`);
     }
 
     const taskResponse = await uploadRes.json();
-    // ⚠️ 假设后端实际返回 { taskId: "xxx" }
-    // 如果后端真的只返回 {}，此流程无法继续 —— 需后端配合
-    const taskId = taskResponse?.taskId;
+    console.log('任务创建响应:', taskResponse);  // 调试用
+
+    const taskId = taskResponse?.data;
     if (!taskId) {
-      throw new Error('未收到任务ID，请稍后重试');
+      throw new Error('未收到任务 ID，请稍后重试');
     }
 
     // Step 2: 轮询检查任务进度（最多 60 秒）
@@ -563,7 +579,7 @@ async function submitAndVerify() {
     }
 
     // Step 3: 获取抽卡记录
-    const listRes = await fetch(`${BASE_URL}/pool-record/character/list?roleId=${encodeURIComponent(roleId)}`);
+    const listRes = await fetch(`${BASE_URL}/pool-record/character/list?taskId=${encodeURIComponent(taskId)}`);
     if (!listRes.ok) {
       throw new Error(`获取记录失败（状态码 ${listRes.status}）`);
     }
@@ -642,7 +658,7 @@ onMounted(() => {
 // 返回收集页
 function goToUpdate() {
   viewMode.value = 'collect';
-  inputUrl.value = '';
+  inputCredential.value = '';
 }
 
 // 确认并清除缓存
