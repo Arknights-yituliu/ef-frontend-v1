@@ -2,7 +2,7 @@
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 import { nextTick, onMounted, ref, watch } from 'vue';
 
-import { activityReward ,createSignInReward} from '@/custom/core/gacha/activityReward';
+import { activityReward } from '@/custom/core/gacha/activityReward';
 
 import { AICQuotaReward,calculatorDailyReward,dailyReward,umbralMonumentReward, weekTaskReward } from '@/custom/core/gacha/dailyReward';
 
@@ -64,7 +64,7 @@ import {
 
 const version1Reward = ref<Reward[]>([]);
 
-calculatorDailyReward(new Date('2026/01/22 12:00:00'),new Date('2026/03/12 10:00:00'))
+calculatorDailyReward(new Date('2026/01/22 12:00:00'),new Date('2026/03/12 12:00:00'))
 
 version1Reward.value.push(dailyReward.value, weekTaskReward.value)
 
@@ -76,7 +76,6 @@ for (const reward of umbralMonumentReward.value) {
   version1Reward.value.push(reward);
 }
 
-createSignInReward(new Date('2026/01/22 12:00:00'),new Date('2026/03/12 10:00:00'));
 for (const reward of activityReward.value) {
   version1Reward.value.push(reward);
 }
@@ -135,8 +134,8 @@ const version1RewardTotal:Reward =  {
     zh: `总和`,
     en: ''
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '总和',
   active: true,

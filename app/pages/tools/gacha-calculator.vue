@@ -16,7 +16,7 @@ import {
 } from '#shared/utils/gacha-calculator';
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 import { nextTick, onMounted, ref, watch } from 'vue';
-import { activityReward,createSignInReward} from '@/custom/core/gacha/activityReward';
+import { activityReward} from '@/custom/core/gacha/activityReward';
 
 // 奖励引入
 import { AICQuotaReward,calculatorDailyReward,dailyReward,umbralMonumentReward,weekTaskReward } from '@/custom/core/gacha/dailyReward';
@@ -135,7 +135,6 @@ const startDate: Date = new Date();
 function selectedPool(option: PoolOption): void {
   currentPool.value = option;
   calculatorDailyReward(startDate,option.end);
-  createSignInReward(startDate,option.end);
   existingRewardStatistics();
   dailyRewardStatistics();
   activityRewardStatistics();
@@ -1118,22 +1117,22 @@ function rechargeResourceStatistics(): void {
           switch (item.itemId) {
           case 'item_originium_recharge': {
             result.originiumRecharge += item.quantity * quantity;
-          
+
           break;
           }
           case 'item_diamond': {
             result.diamond += item.quantity * quantity;
-          
+
           break;
           }
           case 'item_ticketgacha_special_single': {
             result.ticketgachaSpecialSingle += item.quantity * quantity;
-          
+
           break;
           }
           case 'item_ticketgacha_standard_single': {
             result.ticketgachaStandardSingle += item.quantity * quantity;
-          
+
           break;
           }
           default: { if (item.itemId.includes('ticketgacha_special_ten')) {

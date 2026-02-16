@@ -76,7 +76,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       en: ''
     },
     start: '2026/01/22 12:00:00',
-    end: '2099/12/31 10:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
     active: true,
@@ -93,8 +93,8 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       zh: `权限等阶45奖励`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
     active: true,
@@ -113,8 +113,8 @@ export const authorityLevelUpReward = ref<Reward>({
     zh: `权限等级提升奖励`,
     en: ''
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '权限等阶提升',
   active: true,
@@ -132,8 +132,8 @@ export const worldLevelReward = ref<Reward>({
     zh: `探索等级奖励`,
     en: ''
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '探索等级',
   active: true,

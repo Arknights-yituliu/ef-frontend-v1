@@ -89,8 +89,8 @@ const newHorizonsTaskReward = ref<Reward[]>([
       zh: `于此启程任务·4`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '常驻活动',
     active: true,
