@@ -10,6 +10,9 @@ const activityReward = ref<Reward[]>([]);
 for (const reward of ActivityRewardTable as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
+  if(reward.start<new Date()) {
+    reward.active = false;
+  }
   activityReward.value.push(reward);
 }
 
@@ -70,7 +73,8 @@ const springFestivalSignIn = [
 
 
 for(const item of springFestivalSignIn) {
-  activityReward.value.push({
+
+  const reward = {
     id: `${item.name}`,
     name: {
       zh: `${item.name}`,
@@ -87,7 +91,12 @@ for(const item of springFestivalSignIn) {
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     }
-  })
+  }
+
+  if(reward.start<new Date()) {
+    reward.active = false;
+  }
+  activityReward.value.push(reward)
 }
 
 
