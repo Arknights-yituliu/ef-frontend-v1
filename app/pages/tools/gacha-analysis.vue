@@ -512,8 +512,8 @@ async function submitAndVerify() {
     
     // 提取 token
     hgToken = credentialObj.data?.content || '';
-  } catch (e: any) {
-    console.error('凭证解析失败:', e);
+  } catch (error: any) {
+    console.error('凭证解析失败:', error);
     collectError.value = '凭证格式不正确，请粘贴完整的 JSON 内容';
     return;
   }
