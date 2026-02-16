@@ -34,7 +34,9 @@
               :class="{ active: selectedBattery === key }"
               @click="selectBattery(key as keyof typeof batteryConfig)"
             >
-              <div class="battery-icon">🔋</div>
+              <div class="battery-icon">
+                <img :src="config.image" :alt="config.name" />
+              </div>
               <div class="battery-info">
                 <div class="battery-name">{{ config.name }}</div>
                 <div class="battery-specs">{{ config.time }}秒, {{ config.power }}电力</div>
@@ -281,11 +283,11 @@ if (typeof window !== 'undefined') {
 
 // 电池类型配置
 const batteryConfig = {
-  source: { power: 50, time: 8, name: '源矿' },
-  'low-gu': { power: 220, time: 40, name: '低容谷地电池' },
-  'mid-gu': { power: 420, time: 40, name: '中容谷地电池' },
-  'high-gu': { power: 1100, time: 40, name: '高容谷地电池' },
-  'low-wu': { power: 1600, time: 40, name: '低容武陵电池' },
+  source: { power: 50, time: 8, name: '源矿', image: 'https://cos.yituliu.cn/endfield/items/item_originium_ore.webp' },
+  'low-gu': { power: 220, time: 40, name: '低容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_1.webp' },
+  'mid-gu': { power: 420, time: 40, name: '中容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_2.webp' },
+  'high-gu': { power: 1100, time: 40, name: '高容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_3.webp' },
+  'low-wu': { power: 1600, time: 40, name: '低容武陵电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_4.webp' },
 };
 
 // 选择电池类型
@@ -808,7 +810,18 @@ handleInputChange();
 }
 
 .battery-icon {
-  font-size: 2.5rem;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.battery-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .battery-info {
@@ -1366,7 +1379,8 @@ body.is-mobile-device .power-calc-page .battery-button {
 }
 
 body.is-mobile-device .power-calc-page .battery-icon {
-  font-size: 2rem;
+  width: 48px;
+  height: 48px;
 }
 
 body.is-mobile-device .power-calc-page .battery-name {
