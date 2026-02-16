@@ -6,11 +6,11 @@
     <!--    :loading-duration="loadingDuration"-->
     <!--    @complete="handleInitialLoaderComplete"-->
     <!--  />-->
-    <v-navigation-drawer v-model="drawer" :width="280" class="navigation-drawer">
+    <v-navigation-drawer v-model="drawer" class="navigation-drawer" :width="280">
       <LayoutSidebar />
     </v-navigation-drawer>
 
-    <v-app-bar :elevation="0" class="app-bar">
+    <v-app-bar class="app-bar" :elevation="0">
       <!-- 扫描线 SVG 动画 -->
       <svg class="header-scanline" preserveAspectRatio="none" viewBox="0 0 100 100">
         <defs>
@@ -52,8 +52,8 @@
     <v-fade-transition>
       <v-btn
         v-show="showBackToTop"
-        :color="theme === 'light' ? 'grey-lighten-3' : 'grey-darken-4'"
         class="back-to-top-btn"
+        :color="theme === 'light' ? 'grey-lighten-3' : 'grey-darken-4'"
         icon="mdi-arrow-up"
         rounded="circle"
         size="large"
@@ -79,9 +79,9 @@ const loadingDuration =
   typeof initialLoaderConfig.loadingDuration === 'number'
     ? initialLoaderConfig.loadingDuration
     : 3000;
-const handleInitialLoaderComplete = () => {
+function handleInitialLoaderComplete () {
   isInitialLoading.value = false;
-};
+}
 
 /** 边栏是否展开 */
 const drawer = ref(true);
@@ -108,16 +108,16 @@ useHead(() => ({
 const showBackToTop = ref(false);
 const scrollThreshold = 300; // 滚动超过300px时显示按钮
 
-const handleScroll = () => {
+function handleScroll () {
   showBackToTop.value = window.scrollY > scrollThreshold;
-};
+}
 
-const scrollToTop = () => {
+function scrollToTop () {
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
-};
+}
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);

@@ -21,7 +21,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
    */
   const isDocsRoute = (route: typeof to | typeof from) => {
     // 如果没有配置文档路由前缀，或者路由路径不存在，则不是文档路由
-    if (!docsRoutePrefixes.length || !route?.path) {
+    if (docsRoutePrefixes.length === 0 || !route?.path) {
       return false;
     }
 

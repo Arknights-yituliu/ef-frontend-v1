@@ -7,10 +7,10 @@
     <section class="filter-container">
       <v-text-field
         v-model="searchQuery"
-        :placeholder="$t('page.materialProfit.packageValue.searchPlaceholder')"
         class="filter-search"
         density="compact"
         hide-details
+        :placeholder="$t('page.materialProfit.packageValue.searchPlaceholder')"
         variant="outlined"
       />
       <div class="filter-sort">
@@ -23,37 +23,37 @@
           inline
         >
           <v-radio
-            :label="$t('page.materialProfit.packageValue.sortDefault')"
             density="compact"
+            :label="$t('page.materialProfit.packageValue.sortDefault')"
             value="default"
           />
           <v-radio
-            :label="$t('page.materialProfit.packageValue.sortPrice')"
             density="compact"
+            :label="$t('page.materialProfit.packageValue.sortPrice')"
             value="price"
           />
           <v-radio
-            :label="$t('page.materialProfit.packageValue.sortGachaOnly')"
             density="compact"
+            :label="$t('page.materialProfit.packageValue.sortGachaOnly')"
             value="gachaOnly"
           />
           <v-radio
-            :label="$t('page.materialProfit.packageValue.sortAllItems')"
             density="compact"
+            :label="$t('page.materialProfit.packageValue.sortAllItems')"
             value="allItems"
           />
         </v-radio-group>
       </div>
 
       <v-btn
+        class="sort-order-btn"
+        density="compact"
+        size="large"
         :title="
           sortOrder === 'asc'
             ? $t('page.materialProfit.packageValue.sortAsc')
             : $t('page.materialProfit.packageValue.sortDesc')
         "
-        class="sort-order-btn"
-        density="compact"
-        size="large"
         variant="outlined"
         @click="toggleSortOrder"
       >
@@ -65,11 +65,11 @@
     </section>
     <!-- 礼包卡片列表 -->
     <ModuleHeader
+      :tips="['*在售/即将开售的限时礼包，常驻、半常驻礼包和源石请往下翻']"
       title="在售/即将开售的礼包"
       title-en="New Packs"
-      :tips="['*在售/即将开售的限时礼包，常驻、半常驻礼包和源石请往下翻']"
     />
-    <TransitionGroup v-if="seasonalPacks.length > 0" name="list" tag="div" class="packs-container">
+    <TransitionGroup v-if="seasonalPacks.length > 0" class="packs-container" name="list" tag="div">
       <ContainerPackCard v-for="packId in seasonalPacks" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
@@ -80,27 +80,27 @@
     ></ModuleHeader> -->
 
     <ModuleHeader
+      :tips="['*每月/每周礼包、新人礼包、源石、武库配额']"
       title="常驻礼包"
       title-en="Permanent Packs"
-      :tips="['*每月/每周礼包、新人礼包、源石、武库配额']"
     />
     <h2 style="margin: 15px">新人礼包</h2>
-    <TransitionGroup v-if="newbiePacks.length > 0" name="list" tag="div" class="packs-container">
+    <TransitionGroup v-if="newbiePacks.length > 0" class="packs-container" name="list" tag="div">
       <ContainerPackCard v-for="packId in newbiePacks" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
     <h2 style="margin: 15px">每月/每周礼包</h2>
-    <TransitionGroup v-if="periodicPacks.length > 0" name="list" tag="div" class="packs-container">
+    <TransitionGroup v-if="periodicPacks.length > 0" class="packs-container" name="list" tag="div">
       <ContainerPackCard v-for="packId in periodicPacks" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
     <h2 style="margin: 15px">武库配额</h2>
-    <TransitionGroup v-if="weaponsPacks.length > 0" name="list" tag="div" class="packs-container">
+    <TransitionGroup v-if="weaponsPacks.length > 0" class="packs-container" name="list" tag="div">
       <ContainerPackCard v-for="packId in weaponsPacks" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
     <h2 style="margin: 15px">源石/首充源石</h2>
-    <TransitionGroup v-if="originium.length > 0" name="list" tag="div" class="packs-container">
+    <TransitionGroup v-if="originium.length > 0" class="packs-container" name="list" tag="div">
       <ContainerPackCard v-for="packId in originium" :key="packId" v-bind="packs[packId]!" />
     </TransitionGroup>
 
@@ -131,8 +131,8 @@
 </template>
 
 <script lang="ts" setup>
-import { packs } from '@/custom/core/packs';
 import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
+import { packs } from '@/custom/core/packs';
 // 全局数据引用
 const defaultSorting: Map<string, number> = new Map(
   Object.keys(packs).map((packId, index) => [packId, index]),
@@ -157,7 +157,7 @@ const sortOrder = ref<'asc' | 'desc'>('asc');
 /**
  * 应用筛选和排序
  */
-const applyFilterAndSort = () => {
+function applyFilterAndSort () {
   // 1. 搜索筛选
   const query = searchQuery.value.trim().toLowerCase();
   const result = Object.keys(packs).filter((packId) => {
@@ -174,25 +174,30 @@ const applyFilterAndSort = () => {
     let valueB: number;
 
     switch (sortField.value) {
-      case 'default':
+      case 'default': {
         valueA = defaultSorting.get(packA.packId)!;
         valueB = defaultSorting.get(packB.packId)!;
         break;
-      case 'price':
+      }
+      case 'price': {
         valueA = packA.price;
         valueB = packB.price;
         break;
-      case 'gachaOnly':
+      }
+      case 'gachaOnly': {
         valueA = getPackPullsEfficiency(packA);
         valueB = getPackPullsEfficiency(packB);
         break;
-      case 'allItems':
+      }
+      case 'allItems': {
         valueA = getPackSanityEfficiency(packA);
         valueB = getPackSanityEfficiency(packB);
         break;
-      default:
+      }
+      default: {
         valueA = defaultSorting.get(packA.packId)!;
         valueB = defaultSorting.get(packB.packId)!;
+      }
     }
 
     if (sortOrder.value === 'asc') {
@@ -203,16 +208,16 @@ const applyFilterAndSort = () => {
   });
 
   packsIdFilteredAndSorted.value = result;
-};
+}
 
 /**
  * 切换排序方向
  */
-const toggleSortOrder = () => {
+function toggleSortOrder () {
   sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
-};
+}
 
-const updateCategorylPacks = () => {
+function updateCategorylPacks () {
   seasonalPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
     packId.includes('seasonal_giftpack'),
   );
@@ -245,7 +250,7 @@ const updateCategorylPacks = () => {
       packId.includes('bp_track_pay') ||
       packId.includes('bp_track_originium'),
   );
-};
+}
 
 // 监听搜索和排序变化
 watch([searchQuery, sortField, sortOrder], () => {

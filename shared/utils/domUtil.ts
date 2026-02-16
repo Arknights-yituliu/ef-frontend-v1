@@ -1,5 +1,5 @@
 // 获取实际的 DOM 元素（处理组件实例的情况）
-export const getDOMElement = (el: any): HTMLElement | null => {
+export function getDOMElement (el: any): HTMLElement | null {
   if (!el) return null;
 
   // 如果是 DOM 元素，直接返回
@@ -39,10 +39,10 @@ export const getDOMElement = (el: any): HTMLElement | null => {
       if (rect && typeof rect === 'object') {
         return el as HTMLElement;
       }
-    } catch (e) {
+    } catch {
       // 忽略错误
     }
   }
 
   return null;
-};
+}

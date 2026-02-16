@@ -4,10 +4,8 @@
  * @param assets 本地资源映射对象（从 import.meta.glob 获取）
  * @returns 解析后的 URL 字符串，如果无法解析则返回 undefined
  */
-export const resolvePictureUrl = (
-  source: string,
-  assets: Record<string, string>,
-): string | undefined => {
+export function resolvePictureUrl (source: string,
+  assets: Record<string, string>): string | undefined {
   // 如果是 HTTP/HTTPS URL，直接返回
   if (/^https?:\/\//i.test(source)) {
     return source;
@@ -26,4 +24,4 @@ export const resolvePictureUrl = (
   }
 
   return undefined;
-};
+}

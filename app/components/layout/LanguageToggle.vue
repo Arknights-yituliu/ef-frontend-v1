@@ -3,8 +3,8 @@
     <button
       v-for="localeItem in availableLocales"
       :key="localeItem.code"
-      :class="{ active: currentLocale === localeItem.code }"
       class="language-btn"
+      :class="{ active: currentLocale === localeItem.code }"
       @click="handleLocaleChange(localeItem.code)"
     >
       <div class="btn-bg" />
@@ -45,19 +45,22 @@ const availableLocales = computed(() => {
 });
 
 // 将项目的语言代码映射到 Vuetify 的语言代码
-const getVuetifyLocale = (localeCode: string): 'en' | 'zhHans' => {
+function getVuetifyLocale (localeCode: string): 'en' | 'zhHans' {
   switch (localeCode) {
-    case 'zh-CN':
+    case 'zh-CN': {
       return 'zhHans';
-    case 'en-US':
+    }
+    case 'en-US': {
       return 'en';
-    default:
+    }
+    default: {
       return 'zhHans';
+    }
   }
-};
+}
 
 // 处理语言切换
-const handleLocaleChange = async (newLocale: 'zh-CN' | 'en-US') => {
+async function handleLocaleChange (newLocale: 'zh-CN' | 'en-US') {
   // 切换根html元素的lang属性
   document.documentElement.setAttribute('lang', newLocale);
 
@@ -66,7 +69,7 @@ const handleLocaleChange = async (newLocale: 'zh-CN' | 'en-US') => {
   // 同步更新 Vuetify 的语言设置
   // 参考：https://vuetifyjs.com/en/features/internationalization
   current.value = getVuetifyLocale(newLocale);
-};
+}
 
 // 组件挂载时，确保 Vuetify 语言与当前 i18n 语言同步
 onMounted(() => {

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="page-content">
-      <TextParticleWord :text="t('page.home.welcome')" class="particle-word" />
+      <TextParticleWord class="particle-word" :text="t('page.home.welcome')" />
       <p class="page-description">{{ t('page.home.hint') }}</p>
 
       <!-- 小卡片组容器 - 仅显示收藏的卡片 -->
@@ -27,7 +27,7 @@
       </div>
 
       <!-- 复制成功提示 -->
-      <v-snackbar v-model="showSnackbar" :timeout="2000" color="success">
+      <v-snackbar v-model="showSnackbar" color="success" :timeout="2000">
         {{ snackbarText }}
       </v-snackbar>
     </div>
@@ -36,11 +36,11 @@
 
 <script lang="ts" setup>
 import {
-  homeFooterButtons,
-  homeCards,
-  type FooterButton,
-  type CardData,
   ButtonActionType,
+  type CardData,
+  type FooterButton,
+  homeCards,
+  homeFooterButtons,
 } from '@/custom/core/homeCards';
 
 definePageMeta({
@@ -56,37 +56,37 @@ const snackbarText = ref('');
 const favorites = ref<Set<string>>(new Set());
 
 // 从 localStorage 加载收藏状态
-const loadFavorites = () => {
+function loadFavorites () {
   const saved = localStorage.getItem('homeFavorites');
   if (saved) {
     try {
       favorites.value = new Set(JSON.parse(saved));
-    } catch (e) {
-      console.error('Failed to load favorites:', e);
+    } catch (error) {
+      console.error('Failed to load favorites:', error);
       favorites.value = new Set();
     }
   }
-};
+}
 
 // 保存收藏状态到 localStorage
-const saveFavorites = () => {
+function saveFavorites () {
   localStorage.setItem('homeFavorites', JSON.stringify([...favorites.value]));
-};
+}
 
 // 检查卡片是否被收藏
-const isFavorited = (card: CardData) => {
+function isFavorited (card: CardData) {
   return favorites.value.has(card.i18nKey);
-};
+}
 
 // 切换收藏状态
-const toggleFavorite = (card: CardData) => {
+function toggleFavorite (card: CardData) {
   if (favorites.value.has(card.i18nKey)) {
     favorites.value.delete(card.i18nKey);
   } else {
     favorites.value.add(card.i18nKey);
   }
   saveFavorites();
-};
+}
 
 // 获取收藏的卡片列表
 const favoritedCards = computed(() => {
@@ -113,7 +113,7 @@ onMounted(() => {
 /**
  * 处理按钮点击事件
  */
-const handleButtonClick = (button: FooterButton) => {
+function handleButtonClick (button: FooterButton) {
   if (button.action === ButtonActionType.Link) {
     // 跳转链接
     const target = button.target ? '_blank' : '_self';
@@ -122,12 +122,12 @@ const handleButtonClick = (button: FooterButton) => {
     // 复制文本
     copyToClipboard(button.actionData, button.copySuccessText || t('common.copySuccess'));
   }
-};
+}
 
 /**
  * 复制文本到剪贴板
  */
-const copyToClipboard = async (text: string, successMessage: string) => {
+async function copyToClipboard (text: string, successMessage: string) {
   try {
     await navigator.clipboard.writeText(text);
     showSnackbarMessage(successMessage);
@@ -135,15 +135,15 @@ const copyToClipboard = async (text: string, successMessage: string) => {
     console.error('复制失败:', error);
     showSnackbarMessage(t('common.copyFailed'));
   }
-};
+}
 
 /**
  * 显示提示消息
  */
-const showSnackbarMessage = (message: string) => {
+function showSnackbarMessage (message: string) {
   snackbarText.value = message;
   showSnackbar.value = true;
-};
+}
 </script>
 
 <style scoped>

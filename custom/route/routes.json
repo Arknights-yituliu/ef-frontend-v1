@@ -45,7 +45,8 @@
         "i18nKey": "quantitativeCalculator",
         "nameKey": "menu.quantitativeCalculator",
         "routePath": "https://factory.ef.yituliu.cn/aef?v=11",
-        "vuetifyIcon": "mdi-calculator"
+        "vuetifyIcon": "mdi-calculator",
+        "showJumpHint": true
       },
 
       {
@@ -98,7 +99,8 @@
         "nameKey": "menu.projectStructure",
         "routePath": "/introduction/project-structure",
         "vuetifyIcon": "mdi-file-tree",
-        "isDocs": true
+        "isDocs": true,
+        "showJumpHint": true
       }
     ]
   },
@@ -112,13 +114,15 @@
         "i18nKey": "infrastructureLayoutGuide",
         "nameKey": "menu.infrastructureLayoutGuide",
         "routePath": "/operations/infrastructure-layout-guide",
-        "vuetifyIcon": "mdi-view-grid"
+        "vuetifyIcon": "mdi-view-grid",
+        "showJumpHint": true
       },
       {
         "i18nKey": "how2getgachadurl",
         "nameKey": "menu.how2getgachadurl",
         "routePath": "/operations/how2get-gacha-url-en",
-        "vuetifyIcon": "mdi-link"
+        "vuetifyIcon": "mdi-link",
+        "showJumpHint": true
       }
     ]
   }

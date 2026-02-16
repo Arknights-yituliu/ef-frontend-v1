@@ -9,7 +9,7 @@
     <!-- 菜单容器（用于高亮区域的定位） -->
     <nav ref="menuContainerRef" class="menu-container hide-scrollbar">
       <!-- 主页链接 -->
-      <NuxtLink :class="{ active: route.path === '/' }" class="secondary-item home-link" to="/">
+      <NuxtLink class="secondary-item home-link" :class="{ active: route.path === '/' }" to="/">
         <v-icon class="secondary-icon" size="20">mdi-home</v-icon>
         <span class="secondary-text">{{ $t('menu.home') }}</span>
       </NuxtLink>
@@ -33,10 +33,10 @@
             :ref="
               (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
             "
+            class="secondary-item"
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
             :style="{ '--item-color': getSectionColor(primaryItem.i18nKey),'--current-active-color':currentActiveColor }"
             :to="secondaryItem.routePath"
-            class="secondary-item"
           >
             <!-- 左侧装饰条 -->
             <div class="item-decoration-bar" />
@@ -57,19 +57,28 @@
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                :d="secondaryItem.iconPath"
                 class="secondary-icon-path"
+                :d="secondaryItem.iconPath"
                 fill="currentColor"
                 stroke="none"
               />
             </svg>
             <span class="secondary-text">{{ $t(`menu.${secondaryItem.i18nKey}`) }}</span>
+            <!-- 跳转提示图标 -->
+            <v-icon
+              v-if="secondaryItem.showJumpHint"
+              class="jump-hint-icon"
+              size="20"
+            >
+              mdi-open-in-new
+            </v-icon>
           </NuxtLink>
         </div>
       </div>
 
       <!-- 二级菜单高亮区域 -->
       <div
+        class="secondary-highlight"
         :style="{
           transform: `translateY(${secondaryHighlightTop}px)`,
           height: `${secondaryHighlightHeight}px`,
@@ -77,7 +86,6 @@
           backgroundColor: currentActiveColor,
           boxShadow: `0 0 0.75rem ${currentActiveColor}, 0 0 1.5rem ${currentActiveColor}66`,
         }"
-        class="secondary-highlight"
       />
     </nav>
 
@@ -98,7 +106,8 @@ interface SecondaryMenuItem {
   routePath: string;
   iconPath?: string;
   vuetifyIcon?: string;
-  isHidden?:boolean;
+  isHidden?: boolean;
+  showJumpHint?: boolean;
 }
 
 interface PrimaryMenuItem {
@@ -135,12 +144,12 @@ const sectionColors = {
 };
 
 // 获取section对应的颜色
-const getSectionColor = (i18nKey: string) => {
+function getSectionColor (i18nKey: string) {
   if (sectionColors[i18nKey as keyof typeof sectionColors]) {
     return sectionColors[i18nKey as keyof typeof sectionColors];
   }
   return cmykColors.key; // 默认返回黑色
-};
+}
 
 // 获取当前激活项对应的颜色
 const currentActiveColor = computed(() => {
@@ -158,11 +167,11 @@ const currentActiveColor = computed(() => {
 });
 
 // 点击 Logo 跳转到首页
-const navigateToHome = () => {
+function navigateToHome () {
   if (route.path !== '/') {
     router.push('/');
   }
-};
+}
 
 // 菜单项 ref 存储
 const secondaryItemRefs = ref<Map<string, HTMLElement>>(new Map());
@@ -177,37 +186,35 @@ const secondaryHighlightTop = ref(0);
 const secondaryHighlightHeight = ref(0);
 
 // 设置二级菜单项 ref
-const setSecondaryItemRef = (
-  el: any,
+function setSecondaryItemRef (el: any,
   primaryIndex: number,
   secondaryIndex: number,
-  path: string,
-) => {
+  path: string) {
   if (el) {
     secondaryItemRefs.value.set(path, el);
   } else {
     secondaryItemRefs.value.delete(path);
   }
-};
+}
 
 // 设置二级菜单图标 ref
-const setSecondaryIconRef = (el: any, path: string) => {
+function setSecondaryIconRef (el: any, path: string) {
   if (el) {
     secondaryIconRefs.value.set(path, el);
   } else {
     secondaryIconRefs.value.delete(path);
   }
-};
+}
 
 // 计算元素相对于容器的位置
-const getRelativeTop = (element: HTMLElement, container: HTMLElement): number => {
+function getRelativeTop (element: HTMLElement, container: HTMLElement): number {
   const elementRect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
   return elementRect.top - containerRect.top;
-};
+}
 
 // 更新二级菜单高亮位置
-const updateSecondaryHighlight = () => {
+function updateSecondaryHighlight () {
   nextTick(() => {
     const activePath = route.path;
     const activeSecondaryRef = secondaryItemRefs.value.get(activePath);
@@ -223,14 +230,14 @@ const updateSecondaryHighlight = () => {
       secondaryHighlightHeight.value = 0;
     }
   });
-};
+}
 
-const isActiveRoute = (path: string) => {
+function isActiveRoute (path: string) {
   return route.path === path;
-};
+}
 
 // 旋转二级菜单图标动画（顺时针旋转一圈）
-const rotateSecondaryIcon = (path: string) => {
+function rotateSecondaryIcon (path: string) {
   const iconRef = secondaryIconRefs.value.get(path);
   if (!iconRef) return;
 
@@ -259,10 +266,10 @@ const rotateSecondaryIcon = (path: string) => {
 
   // 保存动画引用
   activeRotateAnimations.value.set(path, rotateAnimation);
-};
+}
 
 // 重置二级菜单图标（移除旋转动画效果）
-const resetSecondaryIcon = (path: string) => {
+function resetSecondaryIcon (path: string) {
   const existingAnimation = activeRotateAnimations.value.get(path);
   if (existingAnimation) {
     existingAnimation.kill();
@@ -279,7 +286,7 @@ const resetSecondaryIcon = (path: string) => {
       rotation: 0,
     });
   }
-};
+}
 
 
 // 监听路由变化，更新二级菜单高亮
@@ -292,14 +299,14 @@ watch(
 );
 
 // 监听窗口大小变化和滚动（用于响应式）
-const handleResize = () => {
+function handleResize () {
   setTimeout(() => {
     updateSecondaryHighlight();
   }, 400);
-};
+}
 
 let scrollFrame: number | null = null;
-const handleScroll = () => {
+function handleScroll () {
   if (scrollFrame !== null) {
     cancelAnimationFrame(scrollFrame);
   }
@@ -307,7 +314,7 @@ const handleScroll = () => {
     updateSecondaryHighlight();
     scrollFrame = null;
   });
-};
+}
 
 let sidebarElement: HTMLElement | null = null;
 
@@ -461,7 +468,7 @@ onUnmounted(() => {
   justify-content: flex-start;
   gap: 0.75rem;
   height: 3.5rem;
-  padding-left: 3rem;
+  padding-left: 2.2rem;
   padding-right: 1rem;
   color: var(--theme-text-secondary);
   text-decoration: none;
@@ -557,6 +564,15 @@ onUnmounted(() => {
   text-overflow: ellipsis;
   margin-left: 0.5rem;
   z-index: 1;
+}
+
+.jump-hint-icon {
+  opacity: 0.5;
+  transition: opacity var(--transition-base);
+}
+
+.secondary-item:hover .jump-hint-icon {
+  opacity: 1;
 }
 
 /* 底部装饰 */

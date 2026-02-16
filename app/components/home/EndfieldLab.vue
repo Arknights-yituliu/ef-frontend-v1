@@ -13,25 +13,25 @@
       </div>
       <div class="flex-1" />
       <v-btn
-        :text="$t('component.home.endfieldLab.goToEndfieldLab')"
         append-icon="mdi-open-in-new"
         color="primary"
+        href="https://factory.ef.yituliu.cn/"
         prepend-icon="mdi-web"
         size="small"
-        href="https://factory.ef.yituliu.cn/"
         target="_blank"
+        :text="$t('component.home.endfieldLab.goToEndfieldLab')"
       />
     </div>
     <div class="home-card-content">
       <p class="mb-3">{{ $t('component.home.endfieldLab.description') }}</p>
       <div class="video-container">
         <iframe
-          src="//player.bilibili.com/player.html?autoplay=false&isOutside=true&aid=115783980156084&bvid=BV1XNBYBkE8f&cid=34986264090&p=1"
-          scrolling="no"
+          allowfullscreen="true"
           border="0"
           frameborder="no"
           framespacing="0"
-          allowfullscreen="true"
+          scrolling="no"
+          src="//player.bilibili.com/player.html?autoplay=false&isOutside=true&aid=115783980156084&bvid=BV1XNBYBkE8f&cid=34986264090&p=1"
         />
       </div>
     </div>

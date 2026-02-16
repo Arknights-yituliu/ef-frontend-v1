@@ -1,11 +1,11 @@
-import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
-import valleyIVTaskTable from './json/valley_IV_task_table.json';
-import wulingTaskTable from './json/wuling_task_table.json';
-
-
-
+import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from './json/etch_space_salvage_reward.json';
+import valleyIVTaskTable from './json/valley_IV_task_table.json';
+
+
+
+import wulingTaskTable from './json/wuling_task_table.json';
 
 
 const beginnerSignInTaskReward = ref<Reward>({
@@ -89,8 +89,8 @@ const newHorizonsTaskReward = ref<Reward[]>([
       zh: `于此启程任务·4`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '常驻活动',
     active: true,
@@ -139,13 +139,13 @@ for (const reward of etchSpaceSalvageRewardJson) {
 
 
 export {
-  valleyIVTaskRewardTable,
-  wulingTaskRewardTable,
   beginnerSignInTaskReward,
+  etchSpaceSalvageReward,
   newHorizonsTaskReward,
+  valleyIVTaskRewardTable,
 
 
-  etchSpaceSalvageReward
+  wulingTaskRewardTable
 };
 
 

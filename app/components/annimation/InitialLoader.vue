@@ -1,8 +1,8 @@
 <!-- 引入 Vue 相关 API -->
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
 // 引入 GSAP 动画库
 import { gsap } from 'gsap';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
 // 定义组件接收的 props 接口
 interface Props {
@@ -24,7 +24,7 @@ const emit = defineEmits<{
 const stage = ref<'loading' | 'reveal' | 'complete'>('loading');
 
 // 初始化所有阶段（同时准备加载和揭幕阶段）
-const initAllPhases = () => {
+function initAllPhases () {
   nextTick(() => {
     // 在下次 DOM 更新后执行
     // 1. 先创建揭幕阶段的六边形（但动画暂停）
@@ -41,7 +41,7 @@ const initAllPhases = () => {
       animateProgress(); // 启动进度条动画
     }, 50); // 延迟 50 毫秒
   });
-};
+}
 
 // 揭幕阶段相关
 // 揭幕阶段 SVG 容器引用
@@ -54,7 +54,7 @@ const row = 15;
 const line = 15;
 
 // 创建六边形矩阵（揭幕阶段）
-const createBlocks = () => {
+function createBlocks () {
   // 如果没有容器元素则返回
   if (!containerRef.value) return;
 
@@ -63,7 +63,7 @@ const createBlocks = () => {
   const existingGroups = containerRef.value.querySelectorAll('g');
 
   // 移除所有 g 元素
-  existingGroups.forEach((group) => group.remove());
+  for (const group of existingGroups) group.remove();
 
   // 清空 blocks 数组
   blocks.value = [];
@@ -84,7 +84,7 @@ const createBlocks = () => {
       // 如果没有 defs 元素
       containerRef.value.insertBefore(defs, containerRef.value.firstChild); // 插入 defs 元素
     }
-    containerRef.value.querySelector('defs')?.appendChild(hexagonDef); // 添加六边形定义到 defs
+    containerRef.value.querySelector('defs')?.append(hexagonDef); // 添加六边形定义到 defs
   }
 
   // 创建六边形矩阵
@@ -99,43 +99,43 @@ const createBlocks = () => {
       use.setAttribute('x', `${l % 2 ? 86.5 * r : 86.5 * r + 43.3}`); // 设置 x 坐标，奇偶行错位排列
       use.setAttribute('y', `${74.5 * l}`); // 设置 y 坐标
       use.setAttribute('transform-origin', '50 50'); // 设置变换原点
-      g.appendChild(use); // 添加 use 元素到 g 元素
+      g.append(use); // 添加 use 元素到 g 元素
       blocks.value.push(use); // 添加到 blocks 数组
     }
-    containerRef.value.appendChild(g); // 添加 g 元素到容器
+    containerRef.value.append(g); // 添加 g 元素到容器
   }
-};
+}
 
 // 加载阶段相关
 const logoRef = ref<SVGSVGElement | null>(null); // Logo SVG 元素引用
 const logoPaths = ref<Array<SVGPathElement | SVGEllipseElement | SVGCircleElement>>([]); // Logo 中所有路径元素
 
 // 收集logo中的所有路径元素
-const collectLogoPaths = () => {
+function collectLogoPaths () {
   // 如果没有 Logo 元素则返回
   if (!logoRef.value) return;
 
   logoPaths.value = []; // 清空路径数组
   // 收集所有 path 元素
   const paths = logoRef.value.querySelectorAll('path'); // 查找所有 path 元素
-  paths.forEach((path) => {
+  for (const path of paths) {
     logoPaths.value.push(path); // 添加到路径数组
-  });
+  }
   // 收集所有 ellipse 元素
   const ellipses = logoRef.value.querySelectorAll('ellipse'); // 查找所有 ellipse 元素
-  ellipses.forEach((ellipse) => {
+  for (const ellipse of ellipses) {
     logoPaths.value.push(ellipse); // 添加到路径数组
-  });
+  }
   // 收集所有 circle 元素
   const circles = logoRef.value.querySelectorAll('circle'); // 查找所有 circle 元素
-  circles.forEach((circle) => {
+  for (const circle of circles) {
     logoPaths.value.push(circle); // 添加到路径数组
-  });
-};
+  }
+}
 
 const revealTimeline = ref<gsap.core.Timeline | null>(null); // GSAP 动画时间线
 // 创建并准备揭幕阶段动画（暂停状态）
-const prepareRevealAnimation = () => {
+function prepareRevealAnimation () {
   // 如果 blocks 为空则返回
   if (blocks.value.length === 0) return;
 
@@ -181,27 +181,27 @@ const prepareRevealAnimation = () => {
       },
       '<0.15',
     ); // 在前一个动画结束前 0.15 秒开始
-};
+}
 
 // Logo 线条逐步绘制动画
-const animateLogo = () => {
+function animateLogo () {
   // 如果没有 Logo 元素或路径为空，则返回
   if (!logoRef.value || logoPaths.value.length === 0) return;
 
   // 为每个路径设置初始状态（完全隐藏）
-  logoPaths.value.forEach((path) => {
+  for (const path of logoPaths.value) {
     const length = path.getTotalLength(); // 获取路径总长度
     gsap.set(path, {
       strokeDasharray: length, // 设置虚线长度等于路径长度
       strokeDashoffset: length, // 设置偏移量使路径不可见
       opacity: 1, // 保持不透明度为 1
     });
-  });
+  }
 
   // 创建时间线，逐个绘制路径
   const drawTimeline = gsap.timeline();
 
-  logoPaths.value.forEach((path, index) => {
+  for (const [index, path] of logoPaths.value.entries()) {
     drawTimeline.to(
       path,
       {
@@ -211,13 +211,13 @@ const animateLogo = () => {
       },
       index * 0.1, // 每个路径间隔0.1秒开始
     );
-  });
-};
+  }
+}
 
 const progressCircleRef = ref<SVGCircleElement | null>(null); // 进度圆环元素引用
 
 // 环形进度条动画（可配置时长）
-const animateProgress = () => {
+function animateProgress () {
   // 如果没有进度圆环或 Logo 元素，则返回
   if (!progressCircleRef.value || !logoRef.value) return;
 
@@ -231,9 +231,9 @@ const animateProgress = () => {
       // 动画完成后的回调
       // 停止logo绘制动画
       if (logoPaths.value.length > 0) {
-        logoPaths.value.forEach((path) => {
+        for (const path of logoPaths.value) {
           gsap.killTweensOf(path); // 停止路径上的所有动画
-        });
+        }
       }
       // 立即切换到揭幕阶段（移除加载阶段）并恢复动画播放
       stage.value = 'reveal'; // 切换阶段到 'reveal'
@@ -263,7 +263,7 @@ const animateProgress = () => {
       },
       0,
     ); // 与上一个动画同时开始
-};
+}
 
 // 组件挂载时的钩子
 onMounted(() => {
@@ -443,8 +443,8 @@ const showRevealPhase = computed(
       <!-- 揭幕阶段（从一开始就渲染，但动画暂停） -->
       <div
         v-if="showRevealPhase"
-        :class="{ 'reveal-active': stage === 'reveal' }"
         class="reveal-phase"
+        :class="{ 'reveal-active': stage === 'reveal' }"
       >
         <!-- 揭幕阶段 SVG 容器 -->
         <svg ref="containerRef" class="reveal-svg" viewBox="0 0 1000 1000">

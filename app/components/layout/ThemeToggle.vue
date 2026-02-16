@@ -1,99 +1,99 @@
 <template>
-  <button class="theme-toggle" :aria-label="$t('layout.theme')" @click="toggleTheme">
+  <button :aria-label="$t('layout.theme')" class="theme-toggle" @click="toggleTheme">
     <div class="toggle-bg" />
     <svg
       class="theme-icon"
+      :class="{ dark: theme === 'dark' }"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
-      :class="{ dark: theme === 'dark' }"
     >
       <!-- 太阳图标 -->
       <g v-if="theme === 'light'" class="sun-icon">
-        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <circle cx="12" cy="12" fill="none" r="4" stroke="currentColor" stroke-width="1.5" />
         <line
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.5"
           x1="12"
+          x2="12"
           y1="2"
-          x2="12"
           y2="4"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
         />
         <line
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.5"
           x1="12"
-          y1="20"
           x2="12"
+          y1="20"
           y2="22"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
         />
         <line
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.5"
           x1="22"
-          y1="12"
           x2="20"
-          y2="12"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-        />
-        <line
-          x1="4"
           y1="12"
-          x2="2"
           y2="12"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
         />
         <line
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.5"
+          x1="4"
+          x2="2"
+          y1="12"
+          y2="12"
+        />
+        <line
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.5"
           x1="18.364"
+          x2="17.657"
           y1="5.636"
-          x2="17.657"
           y2="6.343"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
         />
         <line
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.5"
           x1="6.343"
+          x2="5.636"
           y1="17.657"
-          x2="5.636"
           y2="18.364"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
         />
         <line
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.5"
           x1="18.364"
-          y1="18.364"
           x2="17.657"
+          y1="18.364"
           y2="17.657"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
         />
         <line
-          x1="6.343"
-          y1="6.343"
-          x2="5.636"
-          y2="5.636"
           stroke="currentColor"
-          stroke-width="1.5"
           stroke-linecap="round"
+          stroke-width="1.5"
+          x1="6.343"
+          x2="5.636"
+          y1="6.343"
+          y2="5.636"
         />
       </g>
       <!-- 月亮图标 -->
       <g v-else class="moon-icon">
         <path
           d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-          stroke="currentColor"
-          stroke-width="1.5"
           fill="none"
+          stroke="currentColor"
           stroke-linecap="round"
           stroke-linejoin="round"
+          stroke-width="1.5"
         />
-        <circle cx="17" cy="7" r="1" fill="currentColor" opacity="0.6" />
+        <circle cx="17" cy="7" fill="currentColor" opacity="0.6" r="1" />
       </g>
     </svg>
     <div class="toggle-glow" />

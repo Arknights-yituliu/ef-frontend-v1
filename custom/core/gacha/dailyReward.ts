@@ -1,10 +1,10 @@
-import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
 import {
   calculateDaysDifference,
   countTuesdaysBetweenV2,
 } from '#shared/utils/gacha-calculator';
 import { numberRound } from '#shared/utils/numberUtil';
+import { ref } from 'vue';
 
 
 const dailyReward = ref<Reward>({
@@ -127,4 +127,4 @@ for(const poolInfo of poolInfos) {
     })
 }
 
-export {dailyReward,weekTaskReward,calculatorDailyReward,AICQuotaReward,umbralMonumentReward}
+export {AICQuotaReward,calculatorDailyReward,dailyReward,umbralMonumentReward,weekTaskReward}
