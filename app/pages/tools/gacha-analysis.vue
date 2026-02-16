@@ -16,16 +16,6 @@
 
       <div class="form-group">
         <label>查询链接</label>
-        <input
-          v-model="inputUrl"
-          :disabled="isSubmitting"
-          placeholder="粘贴从游戏内复制的完整查询链接"
-          type="text"
-        />
-      </div>
-
-      <div class="form-group">
-        <label>查询链接</label>
         <textarea
           v-model="inputUrl"
           :disabled="isSubmitting"
