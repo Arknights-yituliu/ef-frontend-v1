@@ -1902,15 +1902,15 @@ function checkRewardIsValid(reward: Reward): boolean {
                     <td>{{ action.text }}</td>
                     <td>
                       <v-btn
+                        class="gacha-calculator-shortcut-btn"
                         color="red"
                         text="清空所有选中奖励"
-                        class="gacha-calculator-shortcut-btn"
                         @click="action.func(false)"
                       />
                       <v-btn
+                        class="gacha-calculator-shortcut-btn"
                         color="blue"
                         text="选中所有奖励"
-                        class="gacha-calculator-shortcut-btn"
                         @click="action.func(true)"
                       />
                     </td>
