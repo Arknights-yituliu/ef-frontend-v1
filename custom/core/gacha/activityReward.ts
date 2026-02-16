@@ -1,8 +1,8 @@
 import type { Reward } from '#shared/types/gacha-calculator';
 
 import { ref } from 'vue';
-import ActivityRewardTable from './json/activity_reward_table.json';
 import { umbralMonumentReward } from '@/custom/core/gacha/dailyReward';
+import ActivityRewardTable from './json/activity_reward_table.json';
 
 
 const activityReward = ref<Reward[]>([]);
