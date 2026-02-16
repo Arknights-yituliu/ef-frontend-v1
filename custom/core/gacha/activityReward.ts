@@ -1,7 +1,7 @@
 import type { Reward } from '#shared/types/gacha-calculator';
 
 import { ref } from 'vue';
-import { umbralMonumentReward } from '@/custom/core/gacha/dailyReward';
+
 import ActivityRewardTable from './json/activity_reward_table.json';
 
 
@@ -70,7 +70,7 @@ const springFestivalSignIn = [
 
 
 for(const item of springFestivalSignIn) {
-  umbralMonumentReward.value.push({
+  activityReward.value.push({
     id: `${item.name}`,
     name: {
       zh: `${item.name}`,
