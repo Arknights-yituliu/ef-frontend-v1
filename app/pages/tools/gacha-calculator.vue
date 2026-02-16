@@ -1766,10 +1766,14 @@ function checkRewardIsValid(reward: Reward): boolean {
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                     >
                     <span class="gacha-calculator-statistics-result-item-text">
-                      {{ totalResourceStatisticsResultDetail.originiumRecharge }}
-                      ({{
-                        numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15)
-                      }})
+                      {{
+                        t('page.tools.gachaCalculator.countWithPulls', {
+                          count: totalResourceStatisticsResultDetail.originiumRecharge,
+                          pulls: numberFloor(
+                            totalResourceStatisticsResultDetail.originiumRecharge * 0.15,
+                          ),
+                        })
+                      }}
                     </span>
                   </div>
 
@@ -1780,9 +1784,12 @@ function checkRewardIsValid(reward: Reward): boolean {
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                     >
                     <span class="gacha-calculator-statistics-result-item-text">
-                      {{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}({{
-                        numberFloor(totalResourceStatisticsResultDetail.diamond / 500)
-                      }})
+                      {{
+                        t('page.tools.gachaCalculator.countWithPulls', {
+                          count: numberFloor(totalResourceStatisticsResultDetail.diamond, 0),
+                          pulls: numberFloor(totalResourceStatisticsResultDetail.diamond / 500),
+                        })
+                      }}
                     </span>
                   </div>
 
@@ -1812,44 +1819,9 @@ function checkRewardIsValid(reward: Reward): boolean {
             </v-expansion-panel-text>
           </v-expansion-panel>
 
-          <v-expansion-panel>
-            <v-expansion-panel-title class="gacha-calculator-card-title">
-              <div>一键全选或清空</div>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              <v-table class="gacha-calculator-shortcut-btn-table">
-                <thead>
-                  <tr>
-                    <td>模块</td>
-                    <td>操作</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="action in clearBtnGroup">
-                    <td>{{ action.text }}</td>
-                    <td>
-                      <v-btn
-                        class="gacha-calculator-shortcut-btn"
-                        color="red"
-                        text="清空所有选中奖励"
-                        @click="action.func(false)"
-                      />
-                      <v-btn
-                        class="gacha-calculator-shortcut-btn"
-                        color="blue"
-                        text="选中所有奖励"
-                        @click="action.func(true)"
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </v-table>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
           <v-expansion-panel value="detail">
             <v-expansion-panel-title class="gacha-calculator-card-title">
-              <div>计算详情</div>
+              <div>{{ t('page.tools.gachaCalculator.calculationDetail') }}</div>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-table class="gacha-calculator-result-detail-table">
@@ -1890,15 +1862,58 @@ function checkRewardIsValid(reward: Reward): boolean {
                   <tr v-for="item in resourceStatisticsResultDetailList">
                     <td>{{ item.name }}</td>
                     <td>
-                      {{ item.originiumRecharge }}（{{ numberFloor(item.originiumRecharge * 0.15)
-                      }}{{ t('page.tools.gachaCalculator.pulls') }}）
+                      {{
+                        t('page.tools.gachaCalculator.countWithPulls', {
+                          count: item.originiumRecharge,
+                          pulls: numberFloor(item.originiumRecharge * 0.15),
+                        })
+                      }}
                     </td>
                     <td>
-                      {{ item.diamond }}（{{ numberFloor(item.diamond / 500)
-                      }}{{ t('page.tools.gachaCalculator.pulls') }}）
+                      {{
+                        t('page.tools.gachaCalculator.countWithPulls', {
+                          count: item.diamond,
+                          pulls: numberFloor(item.diamond / 500),
+                        })
+                      }}
                     </td>
                     <td>{{ item.ticketgachaStandardSingle }}</td>
                     <td>{{ item.ticketgachaSpecialSingle }}</td>
+                  </tr>
+                </tbody>
+              </v-table>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-title class="gacha-calculator-card-title">
+              <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <v-table class="gacha-calculator-shortcut-btn-table">
+                <thead>
+                  <tr>
+                    <td>模块</td>
+                    <td>操作</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="action in clearBtnGroup">
+                    <td>{{ action.text }}</td>
+                    <td>
+                      <v-btn
+                        color="red"
+                        text="清空所有选中奖励"
+                        class="gacha-calculator-shortcut-btn"
+                        @click="action.func(false)"
+                      />
+                      <v-btn
+                        color="blue"
+                        text="选中所有奖励"
+                        class="gacha-calculator-shortcut-btn"
+                        @click="action.func(true)"
+                      />
+                    </td>
                   </tr>
                 </tbody>
               </v-table>
@@ -2620,7 +2635,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   position: sticky;
   top: 72px;
   max-height: calc(100vh - 140px);
-  z-index: 1004;
+  z-index: 1003;
   overflow-y: auto;
   flex: 3;
 }
@@ -2675,7 +2690,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 }
 
 .gacha-calculator-statistics-result {
-  width: 180px;
+  width: 230px;
 }
 
 .gacha-calculator-statistics-result-item {
