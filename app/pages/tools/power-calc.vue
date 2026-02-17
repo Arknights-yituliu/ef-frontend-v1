@@ -174,11 +174,11 @@
             class="action-buttons"
           >
             <button class="action-button splitter-btn" @click="addChildToSelected('splitter')">
-              <span class="btn-icon">🔀</span>
+              <img class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" alt="分流器" />
               <span class="btn-text">添加分流器</span>
             </button>
             <button class="action-button thermal-btn" @click="addChildToSelected('thermal')">
-              <span class="btn-icon">🔥</span>
+              <img class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" alt="热能池" />
               <span class="btn-text">添加热能池</span>
             </button>
           </div>
@@ -204,7 +204,7 @@
           draggable="true"
           @dragstart="onToolDragStart($event, 'splitter')"
         >
-          <span class="sidebar-tool-icon">🔀</span>
+          <img class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" alt="分流器" />
           <span class="sidebar-tool-name">分流器</span>
         </div>
         <div
@@ -212,7 +212,7 @@
           draggable="true"
           @dragstart="onToolDragStart($event, 'thermal')"
         >
-          <span class="sidebar-tool-icon">🔥</span>
+          <img class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" alt="热能池" />
           <span class="sidebar-tool-name">热能池</span>
         </div>
       </div>
@@ -1129,7 +1129,9 @@ handleInputChange();
 }
 
 .sidebar-tool-icon {
-  font-size: 2rem;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
 .sidebar-tool-name {
@@ -1296,7 +1298,9 @@ handleInputChange();
 }
 
 .btn-icon {
-  font-size: 1.3rem;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 
 .btn-text {
@@ -1439,7 +1443,8 @@ body.is-mobile-device .power-calc-page .fixed-sidebar-tools {
   }
 
   body.is-desktop-device .power-calc-page .sidebar-tool-icon {
-    font-size: 1.5rem;
+    width: 56px;
+    height: 56px;
   }
 
   body.is-desktop-device .power-calc-page .sidebar-tool-name {
