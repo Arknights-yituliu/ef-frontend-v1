@@ -1703,7 +1703,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 </script>
 
 <template>
-  <v-container>
+
     <section class="gacha-calculator-container">
       <div class="gacha-calculator-container-left">
         <v-expansion-panels v-model="leftPartPanel" multiple variant="popout">
@@ -2616,7 +2616,7 @@ function checkRewardIsValid(reward: Reward): boolean {
         </v-expansion-panels>
       </div>
     </section>
-  </v-container>
+
 </template>
 
 <style scoped>
@@ -2742,8 +2742,13 @@ function checkRewardIsValid(reward: Reward): boolean {
 
 
 @media screen and (max-width: 600px) {
+  .gacha-calculator-container {
+    width:100%;
+    background: red;
+  }
+
   .gacha-calculator-container-left {
-    max-width: 360px;
+    max-width: 350px;
     min-width: 320px;
     position: static;
     max-height: max-content;
@@ -2751,7 +2756,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   }
 
   .gacha-calculator-container-right {
-    max-width: 360px;
+    max-width: 350px;
     min-width: 320px;
   }
 
