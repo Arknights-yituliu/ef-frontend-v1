@@ -35,7 +35,7 @@
               @click="selectBattery(key as keyof typeof batteryConfig)"
             >
               <div class="battery-icon">
-                <img :src="config.image" :alt="config.name" />
+                <img :alt="config.name" :src="config.image" />
               </div>
               <div class="battery-info">
                 <div class="battery-name">{{ config.name }}</div>
