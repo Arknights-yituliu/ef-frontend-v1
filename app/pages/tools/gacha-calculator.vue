@@ -2744,7 +2744,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 @media screen and (max-width: 600px) {
   .gacha-calculator-container {
     width:100%;
-    background: red;
+
   }
 
   .gacha-calculator-container-left {
