@@ -174,11 +174,11 @@
             class="action-buttons"
           >
             <button class="action-button splitter-btn" @click="addChildToSelected('splitter')">
-              <img class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" alt="分流器" />
+              <img alt="分流器" class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" />
               <span class="btn-text">添加分流器</span>
             </button>
             <button class="action-button thermal-btn" @click="addChildToSelected('thermal')">
-              <img class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" alt="热能池" />
+              <img alt="热能池" class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" />
               <span class="btn-text">添加热能池</span>
             </button>
           </div>
@@ -204,7 +204,7 @@
           draggable="true"
           @dragstart="onToolDragStart($event, 'splitter')"
         >
-          <img class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" alt="分流器" />
+          <img alt="分流器" class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" />
           <span class="sidebar-tool-name">分流器</span>
         </div>
         <div
@@ -212,7 +212,7 @@
           draggable="true"
           @dragstart="onToolDragStart($event, 'thermal')"
         >
-          <img class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" alt="热能池" />
+          <img alt="热能池" class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" />
           <span class="sidebar-tool-name">热能池</span>
         </div>
       </div>
