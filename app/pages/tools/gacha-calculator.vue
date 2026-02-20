@@ -412,7 +412,7 @@ function otherRewardStatistics(): void {
  * 四号谷地地区奖励起始
  */
 
-// 四号谷底调度商店
+// 四号谷地调度商店
 watch(
   valleyIVRegionalStockBillStoreReward,
   (newValue) => {
@@ -424,7 +424,7 @@ watch(
   { deep: true },
 );
 
-// 四号谷底地区建设等级进度
+// 四号谷地地区建设等级进度
 const valleyIVRegionalDevelopmentProgress = ref<number[]>([1, 12]);
 
 watch(
@@ -452,7 +452,7 @@ watch(
   { deep: true },
 );
 
-// 四号谷底地区醚质收集进度
+// 四号谷地地区醚质收集进度
 const valleyIVAuryleneCollectProgress = ref<number[]>([0, 18]);
 
 watch(
@@ -475,7 +475,7 @@ watch(
   { deep: true },
 );
 
-// 四号谷底地区储藏箱开启进度
+// 四号谷地地区储藏箱开启进度
 const valleyIVCrateRewardProgress = ref<number[]>([0, valleyIVCrateRewardMax]);
 
 watch(
@@ -490,7 +490,7 @@ watch(
   { deep: true },
 );
 
-// 四号谷底地区淤积点宝箱
+// 四号谷地地区淤积点宝箱
 const valleyIVBattleCrateRewardProgress = ref<number[]>([0, valleyIVBattleCrateRewardMax]);
 
 watch(
@@ -2141,7 +2141,7 @@ function checkRewardIsValid(reward: Reward): boolean {
             </v-expansion-panel-title>
 
             <v-expansion-panel-text>
-              <GachaCalculatorModuleTitle title="四号谷底地区" />
+              <GachaCalculatorModuleTitle title="四号谷地地区" />
               <GachaCalculatorResourceSingleBtn
                 v-bind="valleyIVRegionalStockBillStoreReward"
                 @click="
