@@ -1,9 +1,8 @@
 import type { CollectReward, Reward } from '#shared/types/gacha-calculator.ts';
 import { ref } from 'vue';
-import stageTable from './json/wuling_aurylene_stage_table.json'
+import stageTable from './json/wuling_aurylene_stage_table.json';
 
 const wulingAuryleneCollectStageTable: CollectReward[] = stageTable as CollectReward[];
-
 
 const wulingRegionalStockBillStoreReward = ref<Reward>({
   id: 'wuling_regional_stock_bill_store_reward',
@@ -14,7 +13,7 @@ const wulingRegionalStockBillStoreReward = ref<Reward>({
   start: '2026/01/22 12:00:00',
   end: '2099/12/31 12:00:00',
   type: '通用',
-  module: "地区建设",
+  module: '地区建设',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -33,7 +32,7 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
   start: '2026/01/22 12:00:00',
   end: '2099/12/31 12:00:00',
   type: '通用',
-  module: "地区建设",
+  module: '地区建设',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -52,7 +51,7 @@ const wulingAuryleneCollectReward = ref<Reward>({
   start: '2026/01/22 12:00:00',
   end: '2099/12/31 12:00:00',
   type: '通用',
-  module: "地区探索",
+  module: '地区探索',
   active: true,
   content: {
     originiumRecharge: 17,
@@ -62,7 +61,7 @@ const wulingAuryleneCollectReward = ref<Reward>({
   },
 });
 
-const wulingCrateRewardMax:number = 94*15+72*30+35*60+26*100
+const wulingCrateRewardMax: number = 94 * 15 + 68 * 30 + 34 * 60 + 26 * 100 + 15 * 150;
 
 const wulingCrateReward = ref<Reward>({
   id: 'wuling_crate_reward',
@@ -73,7 +72,7 @@ const wulingCrateReward = ref<Reward>({
   start: '2026/01/22 12:00:00',
   end: '2099/12/31 12:00:00',
   type: '通用',
-  module: "地区探索",
+  module: '地区探索',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -83,8 +82,7 @@ const wulingCrateReward = ref<Reward>({
   },
 });
 
-const wulingDeltaBotRewardMax:number = 25*20
-
+const wulingDeltaBotRewardMax: number = 25 * 20;
 
 const wulingDeltaBotReward = ref<Reward>({
   id: 'wuling_delta_bot_reward',
@@ -95,7 +93,7 @@ const wulingDeltaBotReward = ref<Reward>({
   start: '2026/01/22 12:00:00',
   end: '2099/12/31 12:00:00',
   type: '通用',
-  module: "地区探索",
+  module: '地区探索',
   active: true,
   content: {
     originiumRecharge: 0,
@@ -104,7 +102,6 @@ const wulingDeltaBotReward = ref<Reward>({
     ticketgachaSpecialSingle: 0,
   },
 });
-
 
 const wulingSimulationReward = ref<Reward>({
   id: 'wuling_simulation_reward',
@@ -115,16 +112,15 @@ const wulingSimulationReward = ref<Reward>({
   start: '2026/01/22 12:00:00',
   end: '2099/12/31 12:00:00',
   type: '通用',
-  module: "地区建设",
+  module: '地区建设',
   active: true,
   content: {
     originiumRecharge: 0,
-    diamond: 9*25,
+    diamond: 9 * 25,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
 });
-
 
 const wulingDefenseConstructionReward = ref<Reward[]>([
   {
@@ -145,7 +141,7 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
       ticketgachaSpecialSingle: 0,
     },
   },
-])
+]);
 
 export {
   wulingAuryleneCollectReward,
@@ -157,5 +153,5 @@ export {
   wulingDeltaBotRewardMax,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
-  wulingSimulationReward
+  wulingSimulationReward,
 };
