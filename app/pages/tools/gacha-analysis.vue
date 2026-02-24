@@ -584,13 +584,18 @@ async function submitAndVerify() {
       throw new Error(`获取记录失败（状态码 ${listRes.status}）`);
     }
 
-    const data = await listRes.json();
-    if (!data?.data || !Array.isArray(data.data)) {
-      throw new Error('未返回有效抽卡数据');
+    const listResponse = await listRes.json();
+    
+    // 验证新结构：确保 data 对象存在且包含 characterPoolRecord
+    if (!listResponse?.data || !Array.isArray(listResponse.data.characterPoolRecord)) {
+      throw new Error('未返回有效抽卡数据 (characterPoolRecord 缺失)');
     }
 
-    // Step 4: 转换新数据（注意：移除 endfieldUid，保留 uid 但非主键）
-    const newRecords: GachaRecord[] = (data.data || [])
+    // Step 4: 转换新数据 (从 data.characterPoolRecord 中读取)
+    // 注意：如果还需要合并 weaponPoolRecord，可以在这里额外处理并 concat 到数组中
+    const rawRecords = listResponse.data.characterPoolRecord || [];
+
+    const newRecords: GachaRecord[] = rawRecords
       .map((item: any) => ({
         id: item.id,
         poolId: item.poolId,
@@ -599,7 +604,7 @@ async function submitAndVerify() {
         rarity: item.rarity,
         gachaTs: item.gachaTs,
         seqId: item.seqId,
-        uid: item.uid || '',           // 保留，但不用作缓存 key
+        uid: item.uid || '',
         charId: item.charId || '',
         isFree: item.isFree ?? false,
         isNew: item.isNew ?? false,
@@ -608,7 +613,6 @@ async function submitAndVerify() {
         serverId: item.serverId || '',
       }))
       .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
-
     if (newRecords.length === 0) {
       throw new Error('未找到任何抽卡记录，请确认链接有效且包含数据');
     }
