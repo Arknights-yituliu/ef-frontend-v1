@@ -301,10 +301,10 @@
 
   <!-- 底部按钮 -->
   <div class="action-buttons-container" style="margin-top: 40px; display: flex; justify-content: center; gap: 16px;">
-    <button class="btn update-btn" @click="goToUpdate" style="padding: 8px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
+    <button class="btn update-btn" style="padding: 8px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="goToUpdate">
       更新数据
     </button>
-    <button class="btn clear-btn" @click="confirmClearCache" style="padding: 8px 24px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer;">
+    <button class="btn clear-btn" style="padding: 8px 24px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="confirmClearCache">
       清除缓存
     </button>
   </div>
