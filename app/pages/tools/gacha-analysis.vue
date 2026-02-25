@@ -157,147 +157,158 @@
       </div>
 
 
-      <div class="gacha-dashboard">
-        <!-- <div style="color: red; font-size: 14px;">
-          DEBUG: currentPoolGroup.length = {{ currentPoolGroup.length }}
-        </div> -->
-        <div style="display: flex; width: 100%; justify-content: center;">
-          <div class="pool-selector">
-            <v-btn
-              class="pool-selector__btn"
-              :class="{ 'pool-selector__btn--active': selectedPool === 'limited' }"
-              elevation="0"
-              variant="flat"
-              @click="selectPool('limited')"
-            >
-              {{ '限定池' }}
-            </v-btn>
-            <v-btn
-              class="pool-selector__btn"
-              :class="{ 'pool-selector__btn--active': selectedPool === 'permanent' }"
-              elevation="0"
-              variant="flat"
-              @click="selectPool('permanent')"
-            >
-              {{ '常驻池' }}
-            </v-btn>
-            <v-btn
-              class="pool-selector__btn"
-              :class="{ 'pool-selector__btn--active': selectedPool === 'weapon' }"
-              elevation="0"
-              variant="flat"
-              @click="selectPool('weapon')"
-            >
-              {{ '武器池' }}
-            </v-btn>
-          </div>
-        </div>
+<div class="gacha-dashboard">
+  <!-- 1. 卡池选择器 -->
+  <div style="display: flex; width: 100%; justify-content: center; margin-bottom: 20px;">
+    <div class="pool-selector" style="display: flex; gap: 8px;">
+      <v-btn
+        class="pool-selector__btn"
+        :class="{ 'pool-selector__btn--active': selectedPool === 'limited' }"
+        elevation="0"
+        variant="flat"
+        @click="selectPool('limited')"
+      >
+        限定寻访
+      </v-btn>
+      <v-btn
+        class="pool-selector__btn"
+        :class="{ 'pool-selector__btn--active': selectedPool === 'permanent' }"
+        elevation="0"
+        variant="flat"
+        @click="selectPool('permanent')"
+      >
+        常驻寻访
+      </v-btn>
+      <v-btn
+        class="pool-selector__btn"
+        :class="{ 'pool-selector__btn--active': selectedPool === 'weapon' }"
+        elevation="0"
+        variant="flat"
+        @click="selectPool('weapon')"
+      >
+        武器熔铸
+      </v-btn>
+    </div>
+  </div>
 
+  <!-- 2. 空状态提示 -->
+  <div
+    v-if="!currentPoolGroup || currentPoolGroup.length === 0"
+    style="width: 100%; margin: 40px 0; text-align: center; padding: 48px 0; background: #f9fafb; border-radius: 8px;"
+  >
+    <div style="font-size: 1rem; color: #6b7280; font-weight: 500;">
+      {{ selectedPool === 'weapon' ? '暂无武器池抽卡数据' : '暂无该卡池的抽卡数据' }}
+    </div>
+  </div>
+
+  <!-- 3. 数据列表渲染 -->
+  <!-- 注意：这里循环的是 currentPoolGroup，它已经根据 selectedPool 过滤过了 -->
+  <div v-for="group in currentPoolGroup" :key="group.poolId" class="mb-8">
+    <h2 class="text-h5 mb-3" style="border-left: 4px solid currentColor; padding-left: 12px;">
+      {{ group.poolName }}
+    </h2>
+
+    <div class="custom-gacha-list">
+      <div v-if="!group.records || group.records.length === 0" style="padding: 20px; color: #999; font-size: 0.9rem;">
+        该卡池暂无记录
+      </div>
+
+      <div v-else>
         <div
-          v-if="!filteredConsecutiveGroups || filteredConsecutiveGroups.length === 0"
-          style="width: 100%; margin: 20px 0; text-align: center; padding: 48px 0;"
+          v-for="(record, index) in group.records"
+          :key="`${group.poolId}-${record.seqId}`"
+          class="custom-gacha-item mb-2"
+          :class="{ 'on-banner': isOnBanner(record) }"
+          style="cursor: pointer; display: flex; align-items: center; padding: 8px; border-radius: 8px; transition: background 0.2s;"
+          @click="toggleExpand(record.seqId)"
+          @mouseenter="($event.currentTarget as HTMLElement).style.backgroundColor = '#f3f4f6'"
+          @mouseleave="($event.currentTarget as HTMLElement).style.backgroundColor = 'transparent'"
         >
-          <div style="font-size: 1rem; color: #6b7280; font-weight: 500;">
-            {{ '暂无该卡池的抽卡数据' }}
-          </div>
-        </div>
-
-        <div v-for="group in currentPoolGroup" :key="group.poolId" class="mb-8">
-          <h2 class="text-h5 mb-3">{{ group.poolName }}</h2>
-
-          <div class="custom-gacha-list">
+          <!-- 头像区域 -->
+          <div class="character-avatar" style="width: 50px; height: 50px; flex-shrink: 0; margin-right: 12px;">
+            <img
+              v-if="record.charId && record.character !== '已垫'"
+              :alt="record.character"
+              :src="getAvatarUrl(record.charId)"
+              style="width: 100%; height: 100%; object-fit: contain; background-color: #fff; border-radius: 50%; border: 1px solid #e5e7eb;"
+              @error="handleImageError"
+            />
             <div
-              v-if="!group.records || group.records.length === 0"
-              style="width: 100%; background-color: #f9fafb; border-radius: 8px; margin: 8px 0; padding: 24px 0; text-align: center;"
+              v-else
+              style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 50%; font-size: 0.8rem; color: #6b7280;"
             >
-              <div style="font-size: 0.9rem; color: #9ca3af;">
-                {{ '该卡池分组暂无抽卡记录' }}
+              {{ record.character === '已垫' ? '垫' : '?' }}
+            </div>
+          </div>
+
+          <!-- 条形图区域 -->
+          <div class="gacha-drawer-container" style="flex: 1;">
+            <div class="gacha-bar-container" style="position: relative; height: 32px; display: flex; align-items: center;">
+            <div
+              class="gacha-bar"
+              :class="getBarType(record)"
+              :style="{ width: (Math.min(getBarWidth(record.count), 100) + '%'), height: '100%', borderRadius: '4px', transition: 'width 0.5s ease' }"
+            >
+              <div class="pull-count" style="width: 60px; text-align: right; padding-right: 12px; color: #000; font-weight: bold; font-size: 0.9rem;">
+                {{ record.count }} 抽
               </div>
             </div>
+              
+              <!-- 标签 -->
+              <span v-if="isOffPool(record) && record.count > 60" class="off-label" style="position: absolute; right: 0; font-size: 0.75rem; color: #ef4444; font-weight: bold;">超非</span>
+              <span v-if="record.character !== '已垫' && record.count <= 10" class="lucky-label" style="position: absolute; right: 0; font-size: 0.75rem; color: #10b981; font-weight: bold;">超欧</span>
+              <span v-if="record.character === '已垫'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">当前垫抽</span>
+            </div>
 
-            <div v-else>
-              <div
-                v-for="(record, index) in group.records"
-                :key="`${group.poolId}-${index}`"
-                class="custom-gacha-item mb-2"
-                :class="{ 'on-banner': isOnBanner(record) }"
-                style="cursor: pointer;"
-                @click="toggleExpand(record.seqId)"
-              >
-                <div class="character-avatar" style="width: 60px; height: 60px; flex-shrink: 0; margin-right: 4px;">
+            <!-- 展开的五星/四星详情 -->
+            <div 
+              v-if="expandedSeqId === record.seqId && record.fiveStars?.length" 
+              class="mt-2 ml-2 p-2"
+              style="background-color: #f9fafb; border-radius: 6px;"
+            >
+
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <div
+                  v-for="(item, i) in countFiveStars(record.fiveStars || [])"
+                  :key="i"
+                  class="d-flex flex-column align-center"
+                  style="width: 40px;"
+                >
                   <img
-                    v-if="record.charId && record.character !== '已垫'"
-                    :alt="record.character"
-                    :src="getAvatarUrl(record.charId)"
-                    style="width: 100%; height: 100%; object-fit: contain; background-color: #f0f2f5; border-radius: 50%;"
+                    :alt="item.name"
+                    :src="getAvatarUrl(item.name)"
+                    style="width: 32px; height: 32px; object-fit: contain; background-color: #fff; border-radius: 4px; border: 1px solid #eee;"
                     @error="handleImageError"
                   />
-                  <div
-                    v-else
-                    style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 50%; font-size: 0.8rem; color: #6b7280;"
-                  >
-                    {{ record.character === '已垫' ? '垫抽' : '?' }}
-                  </div>
-                </div>
-
-                <div class="gacha-drawer-container" style="flex: 1;">
-                  <div class="gacha-bar-container">
-                    <div
-                      class="gacha-bar"
-                      :class="getBarType(record)"
-                      :style="{ width: `${getBarWidth(record.count)}%` }"
-                    >
-                      <div class="pull-count" style="width: 60px; text-align: right; margin-right: 16px; color: #000;">
-                        {{ record.count }} 抽
-                      </div>
-                    </div>
-                    <span v-if="isOffPool(record) && record.count > 60" class="off-label">超非</span>
-                    <span v-if="record.character !== '已垫' && record.count <= 10" class="lucky-label">超欧</span>
-                  </div>
-
-                  <div 
-                    v-if="expandedSeqId === record.seqId && record.fiveStars?.length" 
-                    class="mt-2 ml-4"
-                  >
-                    <div style="font-size: 0.9rem; color: #555;">
-                      <span
-                        v-for="(item, i) in countFiveStars(record.fiveStars || [])"
-                        :key="i"
-                        class="mx-1 d-inline-flex flex-column align-items-center"
-                        style="width: 48px;"
-                      >
-                        <!-- 五星头像 -->
-                        <img
-                          :alt="item.name"
-                          :src="getAvatarUrl(item.name)"
-                          style="width: 40px; height: 40px; object-fit: contain; background-color: #e0f2fe; border-radius: 4px;"
-                          @error="handleImageError"
-                        />
-                        <!-- 计数（已水平居中） -->
-                        <span style="font-size: 0.7rem; color: #0284c7; margin-top: 2px;">
-                          ×{{ item.count }}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
+                  <span v-if="item.count > 1" style="font-size: 0.65rem; color: #0284c7; margin-top: 2px;">
+                    x{{ item.count }}
+                  </span>
                 </div>
               </div>
             </div>
+            
+            <!-- 名称显示 (可选，如果想直接显示名字) -->
+            <div v-if="record.character !== '已垫'" style="margin-top: 4px; font-size: 0.85rem; color: #374151; font-weight: 500;">
+              {{ record.character }}
+              <span v-if="isOnBanner(record)" style="color: #d97706; font-size: 0.75rem; margin-left: 4px;">(UP)</span>
+              <span v-if="isOffPool(record)" style="color: #ef4444; font-size: 0.75rem; margin-left: 4px;">(歪)</span>
+            </div>
           </div>
         </div>
-
-        <div class="action-buttons-container">
-          <div class="action-buttons">
-            <button class="btn update-btn" @click="goToUpdate">
-              更新抽卡数据
-            </button>
-            <button class="btn clear-btn" @click="confirmClearCache">
-              删除本地数据
-            </button>
-          </div>
-        </div>
-
       </div>
+    </div>
+  </div>
+
+  <!-- 底部按钮 -->
+  <div class="action-buttons-container" style="margin-top: 40px; display: flex; justify-content: center; gap: 16px;">
+    <button class="btn update-btn" @click="goToUpdate" style="padding: 8px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
+      更新数据
+    </button>
+    <button class="btn clear-btn" @click="confirmClearCache" style="padding: 8px 24px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer;">
+      清除缓存
+    </button>
+  </div>
+</div>
 
       <div style=" margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
         <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
@@ -588,35 +599,60 @@ async function submitAndVerify() {
     
     // 验证新结构：确保 data 对象存在且包含 characterPoolRecord
     if (!listResponse?.data || !Array.isArray(listResponse.data.characterPoolRecord)) {
-      throw new Error('未返回有效抽卡数据 (characterPoolRecord 缺失)');
+      throw new Error('未返回有效抽卡数据');
     }
 
     // Step 4: 转换新数据 (从 data.characterPoolRecord 中读取)
-    // 注意：如果还需要合并 weaponPoolRecord，可以在这里额外处理并 concat 到数组中
-    const rawRecords = listResponse.data.characterPoolRecord || [];
+    const charRecords = listResponse.data.characterPoolRecord || [];
+    const weaponRecords = listResponse.data.weaponPoolRecord || [];
 
-    const newRecords: GachaRecord[] = rawRecords
-      .map((item: any) => ({
-        id: item.id,
-        poolId: item.poolId,
-        poolName: item.poolName,
-        charName: item.charName,
-        rarity: item.rarity,
-        gachaTs: item.gachaTs,
-        seqId: item.seqId,
-        uid: item.uid || '',
-        charId: item.charId || '',
-        isFree: item.isFree ?? false,
-        isNew: item.isNew ?? false,
-        lang: item.lang || 'zh-cn',
-        poolType: item.poolType || '',
-        serverId: item.serverId || '',
-      }))
-      .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
+    // 1. 转换角色数据
+    const processedCharRecords: GachaRecord[] = charRecords.map((item: any) => ({
+      id: item.id,
+      poolId: item.poolId,
+      poolName: item.poolName,
+      charName: item.charName,
+      rarity: item.rarity,
+      gachaTs: item.gachaTs,
+      seqId: item.seqId,
+      uid: item.uid || '',
+      charId: item.charId || '',
+      isFree: item.isFree ?? false,
+      isNew: item.isNew ?? false,
+      lang: item.lang || 'zh-cn',
+      poolType: item.poolType || '',
+      serverId: item.serverId || '',
+    }));
+
+    // 2. 转换武器数据 (映射到 GachaRecord 结构)
+    const processedWeaponRecords: GachaRecord[] = weaponRecords.map((item: any) => ({
+      id: item.id,
+      poolId: item.poolId,
+      poolName: item.poolName,
+      // 关键映射：将武器信息填入角色字段，以便复用后续逻辑
+      charName: item.weaponName, 
+      charId: item.weaponId,   
+      rarity: item.rarity,
+      gachaTs: item.gachaTs,
+      seqId: item.seqId,
+      uid: item.uid || '', // 如果武器数据没uid，保持空字符串
+      isFree: false,       // 武器池通常没有免费单抽概念，或根据实际字段调整
+      isNew: item.new ?? false,
+      lang: item.lang || 'zh-cn',
+      poolType: item.poolType || '',
+      serverId: item.serverId || '',
+    }));
+
+    // 3. 合并并排序 (全局按 seqId 排序)
+    const allNewRecords = [...processedCharRecords, ...processedWeaponRecords];
+    
+    const newRecords: GachaRecord[] = allNewRecords.sort(
+      (a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId)
+    );
+
     if (newRecords.length === 0) {
-      throw new Error('未找到任何抽卡记录，请确认链接有效且包含数据');
+      throw new Error('未找到任何抽卡记录（角色或武器）');
     }
-
     // Step 5: 加载缓存并合并（按 seqId 去重），使用 roleId 作为缓存 key
     const cachedRecords = loadCachedRecords(roleId);
 
@@ -692,13 +728,13 @@ function confirmClearCache() {
 
 // ========== 处理抽卡数据：分组、统计、生成时间线 ==========
 function processGachaData(list: GachaRecord[]) {
-  // 1. 确保全局按 seqId 升序（你已有，但再强调一次）
+  // 1. 确保全局按 seqId 升序
   const sortedRecords = [...list].sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
   // 2. 为每个 poolId 维护状态
   interface PoolState {
     pullsSinceLastSix: number;
-    fiveStars: string[];
+    fiveStars: string[]; // 存储该池子两次金之间的 5 星记录 ID (无论是角色还是武器)
   }
 
   const poolState: Record<string, PoolState> = {};
@@ -720,14 +756,15 @@ function processGachaData(list: GachaRecord[]) {
     const state = poolState[poolId];
     state.pullsSinceLastSix += 1;
 
+    // 【统一逻辑】只要 rarity === 6 视为出货 (金)
+    // 适用于角色池 (6星角色) 和 武器池 (6星武器)
     if (rarity === 6) {
-      // 出六星
       const entry: SixStarEntry = {
         poolId,
         poolName,
         seqId,
-        character: charName,
-        charId: record.charId,
+        character: charName, // 这里可能是角色名，也可能是武器名
+        charId: record.charId, // 这里可能是角色ID，也可能是武器ID
         count: state.pullsSinceLastSix,
         timestamp: gachaTs,
         fiveStars: [...state.fiveStars],
@@ -739,18 +776,19 @@ function processGachaData(list: GachaRecord[]) {
       // 重置状态
       state.pullsSinceLastSix = 0;
       state.fiveStars = [];
-    } else if (rarity === 5) {
-      // 记录五星（仅在未出六星期间）
+    } 
+    // 【统一逻辑】只要 rarity === 5 视为垫刀记录 (紫)
+    // 适用于角色池 (5星角色) 和 武器池 (5星武器)
+    else if (rarity === 5) {
       state.fiveStars.push(record.charId);
     }
   }
 
-  // 4. 补充“已垫”记录（对每个池子当前未出六星的部分）
+  // 4. 补充“已垫”记录（对每个池子当前未出金的部分）
   for (const [poolId, state] of Object.entries(poolState)) {
     if (state.pullsSinceLastSix > 0) {
       // 找到该池子最后一抽的记录（用于 seqId 和 timestamp）
-      const lastRecord = sortedRecords
-        .findLast(r => r.poolId === poolId);
+      const lastRecord = sortedRecords.findLast(r => r.poolId === poolId);
 
       if (lastRecord) {
         resultWithPadded.push({
@@ -841,15 +879,19 @@ const currentPoolGroup = computed(() => {
     const sel = selectedPool.value;
 
     if (sel === 'permanent') {
+      // 常驻池：standard, beginner 等
       return poolId === 'standard' || poolId === 'beginner';
     }
 
     if (sel === 'limited') {
+      // 限定池：special_, activity_ 等
       return poolId.startsWith('special_') || poolId.startsWith('activity_');
     }
 
     if (sel === 'weapon') {
-      return false; // 或者未来有再加
+      // 【修改点】武器池：匹配 poolId 中包含 'weapon' 或 'wepon' (注意后端拼写可能是 weponbox)
+      // 根据你提供的示例数据 poolId: "weponbox_1_0_1"
+      return poolId.includes('weapon') || poolId.includes('wepon');
     }
 
     // 默认不显示
