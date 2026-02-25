@@ -19,7 +19,7 @@ import { nextTick, onMounted, ref, watch } from 'vue';
 import { activityReward} from '@/custom/core/gacha/activityReward';
 
 // 奖励引入
-import { AICQuotaReward,calculatorDailyReward,dailyReward,umbralMonumentReward,weekTaskReward } from '@/custom/core/gacha/dailyReward';
+import { AICQuotaReward,calculatorDailyReward,dailyReward,weekTaskReward } from '@/custom/core/gacha/dailyReward';
 
 import {
   authorityLevelTaskRewards,
@@ -236,17 +236,7 @@ watch(
   { deep: true },
 );
 
-watch(
-  umbralMonumentReward,
-  (newValue) => {
-    for (const item of newValue) {
-      saveUserConfig(item.id, item.active, 'buttonGroupActive');
-    }
-    dailyRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
+
 
 
 
@@ -1378,7 +1368,7 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, intelArchiveReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, newHorizonsTaskReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, otherRewardTable);
-        _setButtonGroupActive(localConfig.buttonGroupActive, umbralMonumentReward);
+
         gachaCalculatorUserConfig.value.buttonGroupActive = localConfig.buttonGroupActive;
       }
 
@@ -2035,15 +2025,9 @@ function checkRewardIsValid(reward: Reward): boolean {
                 v-bind="item"
                 @click="item.active = !item.active"
               />
-              <v-divider style="margin: 1rem 0" />
-              <GachaCalculatorModuleTitle title="影拓丰碑"/>
-              <GachaCalculatorResourceSingleBtn
-                v-for="item in umbralMonumentReward"
-                v-show="checkRewardIsValid(item)"
-                :key="item.id"
-                v-bind="item"
-                @click="item.active = !item.active"
-              />
+
+
+
             </v-expansion-panel-text>
           </v-expansion-panel>
 

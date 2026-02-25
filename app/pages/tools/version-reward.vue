@@ -4,7 +4,7 @@ import { nextTick, onMounted, ref, watch } from 'vue';
 
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
-import { AICQuotaReward,calculatorDailyReward,dailyReward,umbralMonumentReward, weekTaskReward } from '@/custom/core/gacha/dailyReward';
+import { AICQuotaReward,calculatorDailyReward,dailyReward, weekTaskReward } from '@/custom/core/gacha/dailyReward';
 
 import {
   authorityLevelTaskRewards,
@@ -72,9 +72,7 @@ for (const reward of AICQuotaReward.value) {
   version1Reward.value.push(reward);
 }
 
-for (const reward of umbralMonumentReward.value) {
-  version1Reward.value.push(reward);
-}
+
 
 for (const reward of activityReward.value) {
   version1Reward.value.push(reward);
