@@ -199,13 +199,13 @@ const fourValleyTableItems = [
 
 // 武陵表格数据（静态，固定顺序）
 const wulingTableItems = [
-  { weekday: '周一', buyAllPrice: '< 1438', buyHalfPrice: '> 1438', isCurrentDay: false },
-  { weekday: '周二', buyAllPrice: '< 1441', buyHalfPrice: '> 1441', isCurrentDay: false },
-  { weekday: '周三', buyAllPrice: '< 1349', buyHalfPrice: '> 1349', isCurrentDay: false },
-  { weekday: '周四', buyAllPrice: '< 1344', buyHalfPrice: '> 1344', isCurrentDay: false },
-  { weekday: '周五', buyAllPrice: '< 1256', buyHalfPrice: '> 1256', isCurrentDay: false },
-  { weekday: '周六', buyAllPrice: '< 1198', buyHalfPrice: '> 1198', isCurrentDay: false },
-  { weekday: '周日', buyAllPrice: '< 1517', buyHalfPrice: '> 1517', isCurrentDay: false },
+  { weekday: '周一', buyAllPrice: '≤ 1438', buyHalfPrice: '> 1438', isCurrentDay: false },
+  { weekday: '周二', buyAllPrice: '≤ 1441', buyHalfPrice: '> 1441', isCurrentDay: false },
+  { weekday: '周三', buyAllPrice: '≤ 1349', buyHalfPrice: '> 1349', isCurrentDay: false },
+  { weekday: '周四', buyAllPrice: '≤ 1344', buyHalfPrice: '> 1344', isCurrentDay: false },
+  { weekday: '周五', buyAllPrice: '≤ 1256', buyHalfPrice: '> 1256', isCurrentDay: false },
+  { weekday: '周六', buyAllPrice: '≤ 1198', buyHalfPrice: '> 1198', isCurrentDay: false },
+  { weekday: '周日', buyAllPrice: '≤ 1517', buyHalfPrice: '> 1517', isCurrentDay: false },
 ];
 
 // 更新表格中当前日期的高亮
