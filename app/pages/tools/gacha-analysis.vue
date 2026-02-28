@@ -256,7 +256,7 @@
               
               <!-- 标签 -->
               <span v-if="isOffPool(record) && record.count > 60" class="off-label" style="position: absolute; right: 0; font-size: 0.75rem; color: #ef4444; font-weight: bold;">超非</span>
-              <span v-if="record.character !== '已垫' && record.count <= 10" class="lucky-label" style="position: absolute; right: 0; font-size: 0.75rem; color: #10b981; font-weight: bold;">超欧</span>
+              <span v-if="record.character !== '已垫' && record.character !== '赠送十连' && record.count <= 10" class="lucky-label" style="position: absolute; right: 0; font-size: 0.75rem; color: #10b981; font-weight: bold;">超欧</span>
               <span v-if="record.character === '已垫'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">当前垫抽</span>
             </div>
 
@@ -368,21 +368,19 @@ const sixStarRecordsWithCount = computed(() => {
     .sort((a, b) => parseSeqId(b.seqId) - parseSeqId(a.seqId));
 });
 const realSixStarRecords = computed(() => {
-  return sixStarRecordsWithCount.value.filter(r => r.character !== '已垫');
+  return sixStarRecordsWithCount.value.filter(r => 
+    r.charId !== 'padded' &&      // 排除已垫
+    r.charId !== 'free_bundle'    // 排除免费赠送虚拟节点
+  );
 });
 
-// --- 【关键修改】物理隔离数据源 ---
-// 原始记录：分开存储，避免 seqId 在全局排序时互相干扰
 const characterRecords = ref<GachaRecord[]>([]);
 const weaponRecords = ref<GachaRecord[]>([]);
 
-// 分析后的 6 星记录：分开存储，确保保底计数 (count) 绝对准确
 const characterSixStarResults = ref<SixStarEntry[]>([]);
 const weaponSixStarResults = ref<SixStarEntry[]>([]);
 
-// 聚合展示用的数据（用于兼容你原有的 UI 逻辑）
 const rollData = ref<Array<[string, string, string, number]>>([]);
-// const fetchedRecords = ref<GachaRecord[]>([]);
 
 
 // 原始数据
@@ -533,7 +531,6 @@ function normalizeRecord(item: any, isWeapon: boolean): GachaRecord {
     lang: item.lang || 'zh-cn',
     poolType: item.poolType || '',
     serverId: item.serverId || '',
-    // 兼容多种后端字段名
     isFree: (item.isFree !== undefined ? item.isFree : item.free) ?? false,
     isNew: (item.isNew !== undefined ? item.isNew : item.new) ?? false,
   };
@@ -654,10 +651,7 @@ async function submitAndVerify() {
   }
 }
 
-/**
- * 辅助函数：针对单一池子类型的合并去重排序
- * 解决了不同卡池类型 seqId 冲突的问题
- */
+
 function mergeAndSortRecords(oldList: GachaRecord[], newList: GachaRecord[]): GachaRecord[] {
   const map = new Map<string, GachaRecord>();
   // seqId 在同类卡池内是唯一的，直接作为 Key
@@ -700,13 +694,11 @@ function confirmClearCache() {
     localStorage.removeItem(CACHE_KEY); 
     localStorage.removeItem(LAST_ROLE_ID_KEY);
     
-    // 重置所有新定义的隔离变量
     characterRecords.value = [];
     weaponRecords.value = [];
     characterSixStarResults.value = [];
     weaponSixStarResults.value = [];
     
-    // 原有变量重置
     inputCredential.value = '';
     collectError.value = '';
     viewMode.value = 'collect';
@@ -715,11 +707,8 @@ function confirmClearCache() {
 }
 
 
-// ========== 处理抽卡数据：分组、统计、生成时间线 ==========
-/**
- * 核心分析逻辑（物理隔离版）
- * 作用：分别计算角色池和武器池的保底进度，互不干扰
- */
+// ========== 处理抽卡数据：分组、统计、生成时间线，分别计算角色池和武器池的保底进度，互不干扰==========
+
 function processGachaData() {
   const analyzeSingleType = (list: GachaRecord[]) => {
     const resultWithPadded: SixStarEntry[] = [];
@@ -746,7 +735,7 @@ function processGachaData() {
             name: record.charId
           });
         }
-        continue; // 结束本次循环，不进入下方的水位逻辑
+        continue;
       }
 
       // --- 【正常保底水位逻辑】 ---
@@ -778,12 +767,9 @@ function processGachaData() {
           poolName: firstInPool?.poolName || '未知卡池',
           character: '赠送十连',
           charId: 'free_bundle',
-          count: 10, // 或者使用 state.freeCount
+          count: 10,
           timestamp: firstInPool?.gachaTs || Date.now(),
-          // 这里的 seqId 修改为包含 _bottom_free 标识，配合我之前给你的排序函数
-          seqId: (firstInPool?.seqId || '0') + '_bottom_free', 
-          
-          // 【关键修改点】：直接映射为 ID 数组，不要加 "(5星)" 这种后缀
+          seqId: (firstInPool?.seqId || '0') + '_bottom_free',     
           fiveStars: state.freeRecords.map(r => r.name) 
         });
       }
@@ -839,7 +825,7 @@ function processGachaData() {
 
 // 判断是否歪了
 function isOffPool(record: SixStarEntry): boolean {
-  if (record.character === '已垫') {
+  if (record.character === '已垫'|| record.character === '赠送十连') {
     return false;
   }
   const upChar = upCharMap.get(record.poolId);
@@ -899,8 +885,6 @@ const currentPoolGroup = computed(() => {
     }
 
     if (sel === 'weapon') {
-      // 【修改点】武器池：匹配 poolId 中包含 'weapon' 或 'wepon' (注意后端拼写可能是 weponbox)
-      // 根据你提供的示例数据 poolId: "weponbox_1_0_1"
       return poolId.includes('weapon') || poolId.includes('wepon');
     }
 
@@ -916,7 +900,7 @@ const currentPoolGroup = computed(() => {
 
 const totalAllPulls = computed(() => {
   const { limited, permanent, weapon } = poolSummary.value;
-  return limited.total + permanent.total + weapon.total;
+  return limited.total + permanent.total;
 });
 
 // 总六星数（不含已垫）
@@ -1017,9 +1001,14 @@ const poolDistribution = computed(() => {
 
 const topCharacters = computed(() => {
   const freq: Record<string, number> = {};
+  
   for (const r of realSixStarRecords.value) {
+    const type = getPoolType(r.poolId);
+    if (type === 'weapon') continue;
+
     freq[r.character] = (freq[r.character] || 0) + 1;
   }
+
   return Object.entries(freq)
     .map(([name, times]) => ({ name, times }))
     .sort((a, b) => b.times - a.times)
@@ -1222,11 +1211,10 @@ function getAvatarUrl(charId: string): string {
   return `https://cos.yituliu.cn/endfield/unpack-images/characters/icon_${charId}.webp`;
 }
 
-// 图片加载失败时的兜底处理
+// 图片加载失败时
 function handleImageError(e: Event) {
   const img = e.target as HTMLImageElement;
   img.style.opacity = '0.5';
-  // 或者替换为默认图：img.src = '/default-avatar.png';
 }
 
 
