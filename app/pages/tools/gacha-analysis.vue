@@ -30,11 +30,11 @@
       <div class="form-group" style="margin-top: 20px; padding: 16px; border: 2px dashed #eee; border-radius: 8px;">
         <label style="display: block; margin-bottom: 8px; font-weight: bold;">本地导入（JSON备份文件）</label>
         <input 
-          type="file" 
           accept=".json" 
-          @change="handleImportFile" 
-          :disabled="isSubmitting"
-          style="font-size: 14px;"
+          :disabled="isSubmitting" 
+          style="font-size: 14px;" 
+          type="file"
+          @change="handleImportFile"
         />
       </div>
 
@@ -1261,7 +1261,7 @@ function handleImageError(e: Event) {
   img.style.opacity = '0.5';
 }
 
-const exportDataToJson = () => {
+function exportDataToJson () {
   // 1. 尝试从当前响应式变量中构建完整的原始数据
   // 我们模仿后端返回的结构，这样导出的文件以后也可以直接作为“凭证”或“备份”导入
   const exportObj = {
@@ -1294,11 +1294,11 @@ const exportDataToJson = () => {
     const blob = new Blob([jsonString], { type: 'application/json' });
     triggerDownload(blob);
     console.log('✅ 内存数据导出成功');
-  } catch (e) {
-    console.error('导出失败:', e);
+  } catch (error) {
+    console.error('导出失败:', error);
     alert('导出过程中出现错误');
   }
-};
+}
 
 // 辅助下载函数，避免重复代码
 function triggerDownload(blob: Blob) {
@@ -1309,14 +1309,14 @@ function triggerDownload(blob: Blob) {
   
   link.download = `endfield_gacha_backup_${dateStr}.json`;
   link.href = url;
-  document.body.appendChild(link);
+  document.body.append(link);
   link.click();
-  document.body.removeChild(link);
+  link.remove();
   URL.revokeObjectURL(url);
 }
 
-//上传抽卡数据
-const handleImportFile = async (event: Event) => {
+// 上传抽卡数据
+async function handleImportFile (event: Event) {
   const input = event.target as HTMLInputElement;
   if (!input.files || input.files.length === 0) return;
 
@@ -1325,7 +1325,7 @@ const handleImportFile = async (event: Event) => {
   collectError.value = '';
 
   const reader = new FileReader();
-  reader.onload = async (e) => {
+  reader.addEventListener('load', async (e) => {
     try {
       const content = e.target?.result as string;
       const importedData = JSON.parse(content);
@@ -1362,17 +1362,17 @@ const handleImportFile = async (event: Event) => {
       processGachaData();
       viewMode.value = 'analyze';
 
-    } catch (err: any) {
-      console.error('导入失败:', err);
-      collectError.value = '导入失败: ' + (err.message || '格式错误');
+    } catch (error: any) {
+      console.error('导入失败:', error);
+      collectError.value = '导入失败: ' + (error.message || '格式错误');
     } finally {
       isSubmitting.value = false;
       input.value = '';
     }
-  };
+  });
 
   reader.readAsText(file!);
-};
+}
 </script>
 
 <style scoped>
