@@ -510,7 +510,7 @@ function saveRecordsToCache(roleId: string, data: { chars: GachaRecord[], weps: 
 }
 
 // 调试开关
-const USE_DEBUG_DATA = true;
+const USE_DEBUG_DATA = false;
 
 /**
  * 标准化单条记录：处理字段兼容性并映射角色/武器
@@ -1175,7 +1175,6 @@ function getBarType(record: SixStarEntry): string {
     }
   }
 
-  // 兜底（比如没有 UP 信息）
   return 'default';
 }
 
