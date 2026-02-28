@@ -19,11 +19,11 @@
         <textarea
           v-model="inputCredential"
           :disabled="isSubmitting"
-          placeholder="粘贴完整的URL"
+          placeholder="请将查询链接内所有内容粘贴进来"
           rows="3"
         />
         <p class="help-text">
-          <a href="#">如何获取url</a>
+          <a href="https://web-api.hypergryph.com/account/info/hg">登陆鹰角通行证后，点击获取查询链接</a>
         </p>
       </div>
 
