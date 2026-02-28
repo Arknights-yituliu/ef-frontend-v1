@@ -87,19 +87,19 @@
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.wulingStrategyTable') }}</span>
                 </div>
                 <v-data-table
-                  :headers="wulingTableHeaders"
-                  :items="wulingTableItems"
                   class="elevation-0"
                   density="compact"
+                  :headers="wulingTableHeaders"
                   hide-default-footer
+                  :items="wulingTableItems"
                 >
-                  <template v-slot:item.weekday="{ item }">
+                  <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
-                  <template v-slot:item.buyAllPrice="{ item }">
+                  <template #item.buyAllPrice="{ item }">
                     <span class="wuling-buy-all" v-html="item.buyAllPrice"></span>
                   </template>
-                  <template v-slot:item.buyHalfPrice="{ item }">
+                  <template #item.buyHalfPrice="{ item }">
                     <span class="wuling-buy-just" v-html="item.buyHalfPrice"></span>
                   </template>
                 </v-data-table>
@@ -114,22 +114,22 @@
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValleyStrategyTable') }}</span>
                 </div>
                 <v-data-table
-                  :headers="fourValleyTableHeaders"
-                  :items="fourValleyTableItems"
                   class="elevation-0"
                   density="compact"
+                  :headers="fourValleyTableHeaders"
                   hide-default-footer
+                  :items="fourValleyTableItems"
                 >
-                  <template v-slot:item.weekday="{ item }">
+                  <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
-                  <template v-slot:item.buyAllPrice="{ item }">
+                  <template #item.buyAllPrice="{ item }">
                     <span class="four-valley-buy-all" v-html="item.buyAllPrice"></span>
                   </template>
-                  <template v-slot:item.buyOneThirdPrice="{ item }">
+                  <template #item.buyOneThirdPrice="{ item }">
                     <span class="four-valley-buy-middle" v-html="item.buyOneThirdPrice"></span>
                   </template>
-                  <template v-slot:item.buyTwoThirdsPrice="{ item }">
+                  <template #item.buyTwoThirdsPrice="{ item }">
                     <span class="four-valley-buy-just" v-html="item.buyTwoThirdsPrice"></span>
                   </template>
                 </v-data-table>
@@ -143,7 +143,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import CustomBackground from '~/components/layout/CustomBackground.vue';
 
@@ -210,12 +210,12 @@ const wulingTableItems = [
 
 // 更新表格中当前日期的高亮
 function updateCurrentDayHighlight(): void {
-  fourValleyTableItems.forEach((item, index) => {
+  for (const [index, item] of fourValleyTableItems.entries()) {
     item.isCurrentDay = index === currentDayIndex.value;
-  });
-  wulingTableItems.forEach((item, index) => {
+  }
+  for (const [index, item] of wulingTableItems.entries()) {
     item.isCurrentDay = index === currentDayIndex.value;
-  });
+  }
 }
 
 // 获取今天是星期几（考虑凌晨4点刷新）
@@ -224,7 +224,7 @@ function getCurrentDayIndex(): void {
   const hour = now.getHours();
   
   // 商店凌晨4点刷新，0-3点算前一天
-  let adjustedDate = new Date(now);
+  const adjustedDate = new Date(now);
   if (hour < 4) {
     adjustedDate.setDate(adjustedDate.getDate() - 1);
   }
