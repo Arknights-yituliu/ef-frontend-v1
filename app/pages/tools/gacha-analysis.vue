@@ -517,7 +517,7 @@ async function submitAndVerify() {
       const allRecords = [
         ...rawCharRecords.map(item => normalizeDebugRecord(item, false)),
         ...rawWeaponRecords.map(item => normalizeDebugRecord(item, true))
-      ].sort((a, b) => (parseInt(a.seqId, 10) || 0) - (parseInt(b.seqId, 10) || 0));
+      ].sort((a, b) => (Number.parseInt(a.seqId, 10) || 0) - (Number.parseInt(b.seqId, 10) || 0));
 
       // 写入调试缓存并更新状态
       const DEBUG_ROLE_ID = 'debug_roleId';
@@ -715,7 +715,7 @@ async function submitAndVerify() {
     // 如果需要严格排序，可以自定义解析逻辑，但通常 104_x 和 105_y 的顺序是对的
     const newRecords = finalRecords.sort((a, b) => {
       // 提取原始数字部分进行排序 (去掉后缀)
-      const getBaseNum = (s: string) => parseInt(s.split('_')[0], 10) || 0;
+      const getBaseNum = (s: string) => Number.parseInt(s.split('_')[0], 10) || 0;
       return getBaseNum(a.seqId) - getBaseNum(b.seqId);
     });
 
