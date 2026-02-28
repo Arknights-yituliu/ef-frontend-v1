@@ -21,6 +21,12 @@
         "nameKey": "menu.itemValueTable",
         "routePath": "/material-profit/item-value-table",
         "vuetifyIcon": "mdi-table"
+      },
+      {
+        "i18nKey": "couponStrategy",
+        "nameKey": "menu.couponStrategy",
+        "routePath": "/material-profit/coupon-strategy",
+        "vuetifyIcon": "mdi-ticket"
       }
     ]
   },

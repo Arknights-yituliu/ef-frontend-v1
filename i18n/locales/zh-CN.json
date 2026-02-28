@@ -15,6 +15,7 @@
     "shopValue": "商店性价比",
     "packageValue": "礼包性价比",
     "itemValueTable": "物品价值表",
+    "couponStrategy": "最优倒货策略",
     "tools": "一图流工具箱",
     "gachaCalculator": "攒抽计算器",
     "essenceCalculator": "基质规划器",
@@ -365,6 +366,25 @@
         "sortRarity": "稀有度",
         "sortAsc": "升序",
         "sortDesc": "降序"
+      },
+      "couponStrategy": {
+        "title": "弹性需求物资交易策略",
+        "subtitle": "根据弹性需求物资最低价的变化规律，优化每日购买额度的使用策略",
+        "todayStrategy": "今日最优策略",
+        "refreshCountdown": "距离下次价格刷新：",
+        "wuling": "武陵",
+        "fourValley": "四号谷地",
+        "lowestPriceBelow": "当最低价低于 {price} 时",
+        "lowestPriceAbove": "当最低价高于 {price} 时",
+        "priceBetween": "当最低价在 {price1} 到 {price2} 之间时",
+        "buyAll": "全部购买",
+        "buyHalfQuota": "买到还剩1/2配额",
+        "buyOneThirdQuota": "买到还剩1/3配额",
+        "buyTwoThirdsQuota": "买到还剩2/3配额",
+        "strategyTable": "策略速查表",
+        "weekday": "星期",
+        "wulingStrategyTable": "武陵",
+        "fourValleyStrategyTable": "四号谷地"
       }
     },
     "tools": {

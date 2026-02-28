@@ -25,7 +25,8 @@
     "others": "Others",
     "friendLinks": "Friend Links",
     "test": "Test",
-    "contributors": "Contributors"
+    "contributors": "Contributors",
+    "couponStrategy": "Coupon Strategy"
   },
   "common": {
     "language": "Language",
@@ -364,6 +365,25 @@
         "sortRarity": "Rarity",
         "sortAsc": "Ascending",
         "sortDesc": "Descending"
+      },
+      "couponStrategy": {
+        "title": "Coupon Strategy",
+        "subtitle": "Optimize daily purchasing strategy based on store coupon prices",
+        "todayStrategy": "Today's Best Strategy",
+        "refreshCountdown": "Time to Refresh: ",
+        "wuling": "Wuling",
+        "fourValley": "Four Valley",
+        "lowestPriceBelow": "When price is below {price}",
+        "lowestPriceAbove": "When price is above {price}",
+        "priceBetween": "When price is between {price1} and {price2}",
+        "buyAll": "Buy Full Quota",
+        "buyHalfQuota": "Buy Half Quota",
+        "buyOneThirdQuota": "Buy One Third Quota",
+        "buyTwoThirdsQuota": "Buy Two Thirds Quota",
+        "strategyTable": "Strategy Reference Table",
+        "weekday": "Weekday",
+        "wulingStrategyTable": "Wuling Strategy Table",
+        "fourValleyStrategyTable": "Four Valley Strategy Table"
       }
     },
     "tools": {
