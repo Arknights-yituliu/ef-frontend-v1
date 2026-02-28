@@ -260,7 +260,7 @@
               <span v-if="record.character === '已垫'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">当前垫抽</span>
             </div>
 
-            <!-- 展开的五星/四星详情 -->
+            <!-- 展开的五星详情 -->
             <div 
               v-if="expandedSeqId === record.seqId && record.fiveStars?.length" 
               class="mt-2 ml-2 p-2"
@@ -721,19 +721,35 @@ function confirmClearCache() {
  * 作用：分别计算角色池和武器池的保底进度，互不干扰
  */
 function processGachaData() {
-  // 1. 定义内部通用的分析逻辑（纯函数式）
   const analyzeSingleType = (list: GachaRecord[]) => {
     const resultWithPadded: SixStarEntry[] = [];
-    const poolState: Record<string, { count: number; fiveStars: string[] }> = {};
+    // 增加数据结构：freeRecords 用于存放免费产出
+    const poolState: Record<string, { 
+      count: number; 
+      fiveStars: string[]; 
+      freeRecords: { rarity: number; name: string }[] 
+    }> = {};
 
     for (const record of list) {
-      // --- 修复点：如果当前池子 ID 还没记录，先初始化它 ---
       if (!poolState[record.poolId]) {
-        poolState[record.poolId] = { count: 0, fiveStars: [] };
+        poolState[record.poolId] = { count: 0, fiveStars: [], freeRecords: [] };
       }
-      
-      // 现在 TS 知道 state 绝对不是 undefined 了
-      const state = poolState[record.poolId]!; 
+      const state = poolState[record.poolId]!;
+
+      // --- 【核心逻辑：免费抽数分流】 ---
+      if (record.isFree) {
+        // 1. 完全不增加 state.count (跳过保底水位)
+        // 2. 如果是 5 星或 6 星，记录到该池子的免费清单里
+        if (record.rarity >= 5) {
+          state.freeRecords.push({
+            rarity: record.rarity,
+            name: record.charId
+          });
+        }
+        continue; // 结束本次循环，不进入下方的水位逻辑
+      }
+
+      // --- 【正常保底水位逻辑】 ---
       state.count++;
 
       if (record.rarity === 6) {
@@ -751,10 +767,31 @@ function processGachaData() {
       }
     }
 
-    // 2. 补充“已垫”逻辑：处理每个池子最后一次出金后的剩余抽数
+    // --- 【特殊处理：将每个池子的免费统计作为虚拟节点插入】 ---
+    for (const [poolId, state] of Object.entries(poolState)) {
+      if (state.freeRecords.length > 0) {
+        // 找到该池子中 seqId 最小的记录作为锚点（用于让它显示在底端）
+        const firstInPool = list.find(r => r.poolId === poolId);
+        
+        resultWithPadded.push({
+          poolId,
+          poolName: firstInPool?.poolName || '未知卡池',
+          character: '赠送十连',
+          charId: 'free_bundle',
+          count: 10, // 或者使用 state.freeCount
+          timestamp: firstInPool?.gachaTs || Date.now(),
+          // 这里的 seqId 修改为包含 _bottom_free 标识，配合我之前给你的排序函数
+          seqId: (firstInPool?.seqId || '0') + '_bottom_free', 
+          
+          // 【关键修改点】：直接映射为 ID 数组，不要加 "(5星)" 这种后缀
+          fiveStars: state.freeRecords.map(r => r.name) 
+        });
+      }
+    }
+
+    // 2. 垫刀逻辑
     for (const [poolId, state] of Object.entries(poolState)) {
       if (state.count > 0) {
-        // 找到该池子的最后一条物理记录作为“已垫”的锚点
         const last = list.filter(r => r.poolId === poolId).pop();
         if (last) {
           resultWithPadded.push({
