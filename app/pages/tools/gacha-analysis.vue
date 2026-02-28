@@ -363,10 +363,25 @@ const inputCredential = ref('');
 const isSubmitting = ref(false);
 const collectError = ref('');
 const records = ref<GachaRecord[]>([]);
-const rollData = ref<Array<[string, string, string, number]>>([]);
-const sixStarRecordsWithCount = ref<SixStarEntry[]>([]);
-const realSixStarRecords = ref<SixStarEntry[]>([]);
+const sixStarRecordsWithCount = computed(() => {
+  return [...characterSixStarResults.value, ...weaponSixStarResults.value]
+    .sort((a, b) => parseSeqId(b.seqId) - parseSeqId(a.seqId));
+});
+const realSixStarRecords = computed(() => {
+  return sixStarRecordsWithCount.value.filter(r => r.character !== '已垫');
+});
 
+// --- 【关键修改】物理隔离数据源 ---
+// 原始记录：分开存储，避免 seqId 在全局排序时互相干扰
+const characterRecords = ref<GachaRecord[]>([]);
+const weaponRecords = ref<GachaRecord[]>([]);
+
+// 分析后的 6 星记录：分开存储，确保保底计数 (count) 绝对准确
+const characterSixStarResults = ref<SixStarEntry[]>([]);
+const weaponSixStarResults = ref<SixStarEntry[]>([]);
+
+// 聚合展示用的数据（用于兼容你原有的 UI 逻辑）
+const rollData = ref<Array<[string, string, string, number]>>([]);
 // const fetchedRecords = ref<GachaRecord[]>([]);
 
 
@@ -408,12 +423,14 @@ function safeTimestamp(ts: string | number): number {
 }
 
 function getPoolType(poolId: string): 'limited' | 'permanent' | 'weapon' {
-  if (poolId.startsWith('special')) {
-    return 'limited';
-  }
-  if (poolId.startsWith('weapon') || poolId.includes('weapon')) {
+  if (poolId.includes('weapon') || poolId.includes('wepon')) {
     return 'weapon';
   }
+  
+  if (poolId.startsWith('special') || poolId.startsWith('activity')) {
+    return 'limited';
+  }
+  
   return 'permanent';
 }
 
@@ -451,92 +468,113 @@ function parseSeqId(seqId: string): number {
 const CACHE_KEY = 'endfield_gacha_records_v2';
 const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
 
-// 从 localStorage 加载缓存记录
-function loadCachedRecords(roleId: string): GachaRecord[] {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return [];
+/**
+ * 从本地缓存读取数据（适配物理隔离结构）
+ */
+function loadCachedRecords(roleId: string): { chars: GachaRecord[], weps: GachaRecord[] } {
+  const CACHE_KEY = 'endfield_gacha_records_v2';
+  const localData = localStorage.getItem(CACHE_KEY);
+  if (!localData) return { chars: [], weps: [] };
 
-    const cache = JSON.parse(raw) as { roleId: string; records: GachaRecord[] };
-    return cache.roleId === roleId ? cache.records : [];
-  } catch (error) {
-    console.warn('缓存读取失败，清空旧数据', error);
-    localStorage.removeItem(CACHE_KEY);
-    return [];
+  try {
+    const parsed = JSON.parse(localData);
+    const userData = parsed[roleId] || {};
+    // 确保返回的是分流后的对象结构
+    return {
+      chars: Array.isArray(userData.chars) ? userData.chars : [],
+      weps: Array.isArray(userData.weps) ? userData.weps : []
+    };
+  } catch (e) {
+    return { chars: [], weps: [] };
   }
 }
 
 // 保存记录到 localStorage
-function saveRecordsToCache(roleId: string, records: GachaRecord[]) {
+function saveRecordsToCache(roleId: string, data: { chars: GachaRecord[], weps: GachaRecord[] }) {
+  const CACHE_KEY = 'endfield_gacha_records_v2';
+  const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
   try {
-    const cache = { roleId, records };
-    localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+    const localData = localStorage.getItem(CACHE_KEY);
+    const allData = localData ? JSON.parse(localData) : {};
+    
+    // 存入分流后的结构
+    allData[roleId] = {
+      chars: data.chars,
+      weps: data.weps,
+      updateTs: Date.now()
+    };
+    
+    localStorage.setItem(CACHE_KEY, JSON.stringify(allData));
     localStorage.setItem(LAST_ROLE_ID_KEY, roleId);
-  } catch (error) {
-    console.error('缓存保存失败', error);
+  } catch (e) {
+    console.error('保存失败', e);
   }
 }
 
 // 调试开关
 const USE_DEBUG_DATA = true;
 
+/**
+ * 标准化单条记录：处理字段兼容性并映射角色/武器
+ */
+function normalizeRecord(item: any, isWeapon: boolean): GachaRecord {
+  return {
+    id: item.id ?? 0,
+    endfieldUid: '',
+    uid: item.roleId || item.uid || 'unknown',
+    poolId: item.poolId || '',
+    poolName: item.poolName || '',
+    // 关键逻辑：如果是武器池，将武器名称/ID映射到通用的 charName/charId 字段
+    charName: isWeapon ? (item.weaponName || item.charName) : item.charName,
+    charId: isWeapon ? (item.weaponId || item.charId) : item.charId,
+    rarity: Number(item.rarity ?? 0),
+    gachaTs: item.gachaTs ?? Date.now(),
+    seqId: String(item.seqId ?? ''),
+    lang: item.lang || 'zh-cn',
+    poolType: item.poolType || '',
+    serverId: item.serverId || '',
+    // 兼容多种后端字段名
+    isFree: (item.isFree !== undefined ? item.isFree : item.free) ?? false,
+    isNew: (item.isNew !== undefined ? item.isNew : item.new) ?? false,
+  };
+}
 
 // 提交并验证用户输入的 UID 和 URL
+
 async function submitAndVerify() {
   // ==========================================
-  // 1. 【调试模式优先】
+  // 1. 【调试模式】
   // ==========================================
   if (USE_DEBUG_DATA) {
-    console.log('--- [DEBUG MODE] 正在加载本地示例数据 ---');
+    console.log('--- [DEBUG MODE] 正在加载本地分流数据 ---');
     try {
       const rawData = debugGachaData.data;
-      if (!rawData) throw new Error('本地调试 JSON 数据为空');
+      if (!rawData) throw new Error('调试数据为空');
 
-      const rawCharRecords = rawData.characterPoolRecord || [];
-      const rawWeaponRecords = rawData.weaponPoolRecord || [];
+      // 分别标准化并排序
+      characterRecords.value = (rawData.characterPoolRecord || [])
+        .map(item => normalizeRecord(item, false))
+        .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-      // 内部标准化函数
-      const normalizeDebugRecord = (item: any, isWeapon: boolean): GachaRecord => ({
-        id: item.id ?? 0,
-        endfieldUid: '',
-        uid: item.roleId || 'debug_role',
-        poolId: item.poolId || '',
-        poolName: item.poolName || '',
-        charName: isWeapon ? (item.weaponName || item.charName) : item.charName,
-        charId: isWeapon ? (item.weaponId || item.charId) : item.charId,
-        rarity: Number(item.rarity ?? 0),
-        gachaTs: item.gachaTs ?? Date.now(),
-        seqId: String(item.seqId ?? ''),
-        lang: item.lang || 'zh-cn',
-        poolType: item.poolType || '',
-        serverId: item.serverId || '',
-        isFree: (item.isFree !== undefined ? item.isFree : item.free) ?? false,
-        isNew: (item.isNew !== undefined ? item.isNew : item.new) ?? false,
-      });
+      weaponRecords.value = (rawData.weaponPoolRecord || [])
+        .map(item => normalizeRecord(item, true))
+        .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-      const allRecords = [
-        ...rawCharRecords.map(item => normalizeDebugRecord(item, false)),
-        ...rawWeaponRecords.map(item => normalizeDebugRecord(item, true))
-      ].sort((a, b) => (parseInt(a.seqId, 10) || 0) - (parseInt(b.seqId, 10) || 0));
-
-      // 写入调试缓存并更新状态
-      const DEBUG_ROLE_ID = 'debug_roleId';
-      saveRecordsToCache(DEBUG_ROLE_ID, allRecords);
-      records.value = allRecords;
-      processGachaData(allRecords);
+      // 执行分析逻辑（内部会分别处理两个数组）
+      processGachaData();
       
-      // UI 跳转
       viewMode.value = 'analyze';
       collectError.value = '';
-      return; // 【关键】执行完调试逻辑立即返回，不触发后续验证
+      return;
     } catch (error: any) {
-      console.error('调试数据处理失败:', error);
       collectError.value = '调试模式异常: ' + error.message;
       return;
     }
   }
 
-  // 2. 原有的正常校验逻辑
+  // ==========================================
+  // 2. 【正式模式：凭证校验】
+  // ==========================================
   const credentialJson = inputCredential.value.trim();
   if (!credentialJson) {
     collectError.value = '请粘贴完整的登录凭证 JSON';
@@ -545,224 +583,106 @@ async function submitAndVerify() {
 
   let hgToken = '';
   try {
-    // 解析 JSON
     const credentialObj = JSON.parse(credentialJson);
-    
-    // 验证 JSON 结构
-    if (!credentialObj || typeof credentialObj !== 'object') {
-      throw new Error('无效的 JSON 对象');
-    }
-    
-    if (credentialObj.code !== 0) {
-      throw new Error('凭证状态异常，请重新获取');
-    }
-    
-    // 提取 token
+    if (!credentialObj || credentialObj.code !== 0) throw new Error('凭证状态异常');
     hgToken = credentialObj.data?.content || '';
   } catch (error: any) {
-    console.error('凭证解析失败:', error);
-    collectError.value = '凭证格式不正确，请粘贴完整的 JSON 内容';
-    return;
-  }
-
-  if (!hgToken) {
-    collectError.value = '凭证中未找到有效 token，请确认是否为完整凭证';
+    collectError.value = '凭证格式错误';
     return;
   }
 
   isSubmitting.value = true;
   collectError.value = '';
 
-   try {
+  try {
     const BASE_URL = 'https://endfield.backend.yituliu.cn';
-
-    // Step 1: 创建导入任务 - 使用 FormData
     const formData = new FormData();
     formData.append('hgToken', hgToken);
 
-    const uploadRes = await fetch(`${BASE_URL}/pool-record/create-task`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (!uploadRes.ok) {
-      const errorData = await uploadRes.json().catch(() => ({}));
-      throw new Error(errorData.msg || `任务创建失败（状态码 ${uploadRes.status}）`);
-    }
-
+    // Step 1: 创建任务
+    const uploadRes = await fetch(`${BASE_URL}/pool-record/create-task`, { method: 'POST', body: formData });
     const taskResponse = await uploadRes.json();
-    console.log('任务创建响应:', taskResponse);  // 调试用
-
     const taskId = taskResponse?.data;
-    if (!taskId) {
-      throw new Error('未收到任务 ID，请稍后重试');
-    }
+    if (!taskId) throw new Error('获取任务ID失败');
 
-    // Step 2: 轮询检查任务进度（最多 60 秒）
+    // Step 2: 轮询任务状态
     let roleId = '';
-    let retryCount = 0;
-    const maxRetries = 30; // 30 * 2s = 60s
-
-    while (retryCount < maxRetries) {
-      await new Promise(resolve => setTimeout(resolve, 2000)); // 等待 2 秒
-
+    for (let i = 0; i < 30; i++) {
+      await new Promise(res => setTimeout(res, 2000));
       const checkRes = await fetch(`${BASE_URL}/pool-record/check-task?taskId=${encodeURIComponent(taskId)}`);
-      if (!checkRes.ok) {
-        retryCount++;
-        continue;
-      }
-
       const checkData = await checkRes.json();
       if (checkData.code === 200 && checkData.data?.roleId) {
         roleId = checkData.data.roleId;
         break;
-      } else {
-        retryCount++;
       }
     }
+    if (!roleId) throw new Error('任务处理超时');
 
-    if (!roleId) {
-      throw new Error('任务处理超时，请稍后重试');
-    }
-
-    // Step 3: 获取抽卡记录
+    // Step 3: 获取数据并分流处理
     const listRes = await fetch(`${BASE_URL}/pool-record/character/list?taskId=${encodeURIComponent(taskId)}`);
-    if (!listRes.ok) {
-      throw new Error(`获取记录失败（状态码 ${listRes.status}）`);
-    }
-
     const listResponse = await listRes.json();
+    if (!listResponse?.data) throw new Error('返回数据无效');
+
+    const rawChar = listResponse.data.characterPoolRecord || [];
+    const rawWep = listResponse.data.weaponPoolRecord || [];
+
+    // 标准化新抓取的数据
+    const newCharRecords = rawChar.map((item: any) => normalizeRecord(item, false));
+    const newWepRecords = rawWep.map((item: any) => normalizeRecord(item, true));
+
+    // Step 4: 加载并合并缓存 (针对不同类型分别去重合并)
+    const cachedData = loadCachedRecords(roleId); 
+    // 注意：这里的 cachedData 结构应修改为 { chars: GachaRecord[], weps: GachaRecord[] }
     
-    // 验证数据结构
-    if (!listResponse?.data) {
-      throw new Error('未返回有效数据对象');
-    }
-    
-    // 获取原始数组 (可能包含 characterPoolRecord 和 weaponPoolRecord)
-    const rawCharRecords = listResponse.data.characterPoolRecord || [];
-    const rawWeaponRecords = listResponse.data.weaponPoolRecord || [];
+    characterRecords.value = mergeAndSortRecords(cachedData.chars || [], newCharRecords);
+    weaponRecords.value = mergeAndSortRecords(cachedData.weps || [], newWepRecords);
 
-    if (rawCharRecords.length === 0 && rawWeaponRecords.length === 0) {
-      throw new Error('未找到任何抽卡记录（角色池和武器池均为空）');
-    }
-
-    // Step 4: 转换数据 (沿用第二份代码的稳健逻辑，增加武器池支持)
-    
-    // 辅助函数：统一字段映射，兼容 free/isFree 和 new/isNew
-    function mapRecord(item: any, isWeapon: boolean = false): GachaRecord {
-      return {
-        id: item.id,
-        poolId: item.poolId,
-        poolName: item.poolName,
-        // 武器池将 weaponName/weaponId 映射到 charName/charId
-        charName: isWeapon ? (item.weaponName || item.charName) : item.charName,
-        charId: isWeapon ? (item.weaponId || item.charId) : item.charId,
-        rarity: item.rarity,
-        gachaTs: item.gachaTs,
-        seqId: item.seqId,
-        uid: item.uid || '',
-        // 关键修复：兼容 free 和 isFree 字段
-        isFree: (item.isFree !== undefined ? item.isFree : item.free) ?? false,
-        // 关键修复：兼容 new 和 isNew 字段
-        isNew: (item.isNew !== undefined ? item.isNew : item.new) ?? false,
-        lang: item.lang || 'zh-cn',
-        poolType: item.poolType || '',
-        serverId: item.serverId || '',
-      };
-    }
-
-    const processedCharRecords = rawCharRecords.map(item => normalizeRecord(item, false));
-    const processedWeaponRecords = rawWeaponRecords.map(item => normalizeRecord(item, true));
-
-    // 【关键修复】检测并解决 seqId 冲突
-    const finalRecords: GachaRecord[] = [];
-    const seenSeqIds = new Map<string, number>(); // 记录每个 seqId 出现的次数
-
-    // 辅助函数：处理单条记录，解决冲突
-    function processRecordWithConflictCheck(rec: GachaRecord) {
-      const originalSeqId = String(rec.seqId);
-      
-      // 检查该 seqId 是否已经出现过
-      if (seenSeqIds.has(originalSeqId)) {
-        // 如果出现过，说明冲突了！
-        const count = seenSeqIds.get(originalSeqId)!;
-        
-        // 生成新的唯一 seqId：原seqId + "_" + 出现次数 + "_" + 类型标记
-        // 例如：104_1_char, 104_2_weapon
-        const typeMark = rec.poolId.includes('weapon') || rec.poolId.includes('wepon') ? 'w' : 'c';
-        const newSeqId = `${originalSeqId}_${count}_${typeMark}`;
-        
-        console.warn(`⚠️ 检测到 seqId 冲突 (${originalSeqId})，已重命名为: ${newSeqId} (原数据: ${rec.charName})`);
-        
-        rec.seqId = newSeqId; // 覆盖当前记录的 seqId
-        seenSeqIds.set(originalSeqId, count + 1);
-      } else {
-        // 第一次出现，正常记录
-        seenSeqIds.set(originalSeqId, 1);
-      }
-      
-      finalRecords.push(rec);
-    }
-
-    // 1. 先处理角色池
-    processedCharRecords.forEach(processRecordWithConflictCheck);
-    // 2. 再处理武器池
-    processedWeaponRecords.forEach(processRecordWithConflictCheck);
-
-    // 现在 finalRecords 里的所有 seqId 都是唯一的了
-    // 排序
-    // 注意：因为修改了 seqId 格式 (104_1_c)，直接 parseInt 可能会只取到 104，排序依然大致正确
-    // 如果需要严格排序，可以自定义解析逻辑，但通常 104_x 和 105_y 的顺序是对的
-    const newRecords = finalRecords.sort((a, b) => {
-      // 提取原始数字部分进行排序 (去掉后缀)
-      const getBaseNum = (s: string) => parseInt(s.split('_')[0], 10) || 0;
-      return getBaseNum(a.seqId) - getBaseNum(b.seqId);
+    // Step 5: 持久化与分析
+    saveRecordsToCache(roleId, {
+      chars: characterRecords.value,
+      weps: weaponRecords.value
     });
 
-    // 调试：再次确认卡契尔还在不在
-    const kaqier = newRecords.find(r => r.charName === '卡契尔');
-    if (kaqier) {
-      console.log('✅ [修复后] 卡契尔已成功保留！新 seqId:', kaqier.seqId);
-    } else {
-      console.error('❌ [修复失败] 卡契尔依然丢失');
-    }
-
-    // Step 5: 合并缓存 (现在不会发生覆盖了，因为 seqId 唯一)
-    const cachedRecords = loadCachedRecords(roleId);
-    const recordMap = new Map<string, GachaRecord>();
-
-    for (const rec of cachedRecords) {
-      recordMap.set(String(rec.seqId), rec);
-    }
-    for (const rec of newRecords) {
-      recordMap.set(String(rec.seqId), rec);
-    }
-    
-    const mergedRecords = Array.from(recordMap.values())
-      .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
-
-    // Step 6: 保存到缓存
-    saveRecordsToCache(roleId, mergedRecords);
-
-    // Step 7: 更新响应式状态
-    records.value = mergedRecords;
-    processGachaData(mergedRecords);
+    processGachaData();
     viewMode.value = 'analyze';
+
   } catch (error: any) {
-    console.error('数据验证失败:', error);
-    collectError.value = error.message || '网络错误，请稍后重试';
+    console.error('分析失败:', error);
+    collectError.value = error.message || '网络错误';
   } finally {
     isSubmitting.value = false;
   }
 }
+
+/**
+ * 辅助函数：针对单一池子类型的合并去重排序
+ * 解决了不同卡池类型 seqId 冲突的问题
+ */
+function mergeAndSortRecords(oldList: GachaRecord[], newList: GachaRecord[]): GachaRecord[] {
+  const map = new Map<string, GachaRecord>();
+  // seqId 在同类卡池内是唯一的，直接作为 Key
+  oldList.forEach(r => map.set(String(r.seqId), r));
+  newList.forEach(r => map.set(String(r.seqId), r));
+  
+  return Array.from(map.values()).sort((a, b) => {
+    return parseSeqId(a.seqId) - parseSeqId(b.seqId);
+  });
+}
+
 // 启动时，若本地有缓存则读取缓存，直接进入分析页面
 onMounted(() => {
+  const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
   const lastRoleId = localStorage.getItem(LAST_ROLE_ID_KEY);
+  
   if (lastRoleId) {
     const cached = loadCachedRecords(lastRoleId);
-    if (cached.length > 0) {
-      records.value = cached;
-      processGachaData(cached);
+    // 只有当存在任意记录时才进入分析页
+    if (cached.chars.length > 0 || cached.weps.length > 0) {
+      characterRecords.value = cached.chars;
+      weaponRecords.value = cached.weps;
+      
+      // 执行全量分析（不需要传参）
+      processGachaData(); 
       viewMode.value = 'analyze';
     }
   }
@@ -776,139 +696,108 @@ function goToUpdate() {
 
 // 确认并清除缓存
 function confirmClearCache() {
-  if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？\n此操作不可恢复！（抽卡数据均保存在本地）')) {
-    try {
-      // 1. 清除存储数据 (确保 Key 与定义一致)
-      // 使用之前定义的常量 CACHE_KEY 和 LAST_ROLE_ID_KEY
-      localStorage.removeItem('endfield_gacha_records_v2'); 
-      localStorage.removeItem('endfield_last_role_id');
-      
-      // 兼容性清理：如果你之前用过旧版 key，也可以顺带清理
-      localStorage.removeItem('endfield_gacha_records_v1');
-      localStorage.removeItem('endfield_last_uid');
-
-      // 2. 重置所有响应式状态
-      records.value = [];
-      rollData.value = [];
-      sixStarRecordsWithCount.value = [];
-      realSixStarRecords.value = [];
-      
-      // 3. 重置输入框和错误信息
-      inputCredential.value = '';
-      collectError.value = '';
-
-      // 4. 跳转回收集页
-      viewMode.value = 'collect';
-      
-      alert('本地数据已完全清除');
-    } catch (error) {
-      console.error('清除缓存失败', error);
-      alert('清除失败，请手动清除浏览器本地存储数据');
-    }
+  if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？')) {
+    localStorage.removeItem(CACHE_KEY); 
+    localStorage.removeItem(LAST_ROLE_ID_KEY);
+    
+    // 重置所有新定义的隔离变量
+    characterRecords.value = [];
+    weaponRecords.value = [];
+    characterSixStarResults.value = [];
+    weaponSixStarResults.value = [];
+    
+    // 原有变量重置
+    inputCredential.value = '';
+    collectError.value = '';
+    viewMode.value = 'collect';
+    alert('本地数据已完全清除');
   }
 }
 
 
-
 // ========== 处理抽卡数据：分组、统计、生成时间线 ==========
-function processGachaData(list: GachaRecord[]) {
-  // 1. 确保全局按 seqId 升序
-  const sortedRecords = [...list].sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
+/**
+ * 核心分析逻辑（物理隔离版）
+ * 作用：分别计算角色池和武器池的保底进度，互不干扰
+ */
+function processGachaData() {
+  // 1. 定义内部通用的分析逻辑（纯函数式）
+  const analyzeSingleType = (list: GachaRecord[]) => {
+    const resultWithPadded: SixStarEntry[] = [];
+    const poolState: Record<string, { count: number; fiveStars: string[] }> = {};
 
-  // 2. 为每个 poolId 维护状态
-  interface PoolState {
-    pullsSinceLastSix: number;
-    fiveStars: string[]; // 存储该池子两次金之间的 5 星记录 ID (无论是角色还是武器)
-  }
+    for (const record of list) {
+      // --- 修复点：如果当前池子 ID 还没记录，先初始化它 ---
+      if (!poolState[record.poolId]) {
+        poolState[record.poolId] = { count: 0, fiveStars: [] };
+      }
+      
+      // 现在 TS 知道 state 绝对不是 undefined 了
+      const state = poolState[record.poolId]!; 
+      state.count++;
 
-  const poolState: Record<string, PoolState> = {};
-  const resultRealOnly: SixStarEntry[] = [];
-  const resultWithPadded: SixStarEntry[] = [];
-
-  // 3. 遍历每一条记录（全局时序）
-  for (const record of sortedRecords) {
-    const { poolId, poolName, rarity, charName, seqId, gachaTs } = record;
-
-    // 初始化池子状态
-    if (!poolState[poolId]) {
-      poolState[poolId] = {
-        pullsSinceLastSix: 0,
-        fiveStars: [],
-      };
-    }
-
-    const state = poolState[poolId];
-    state.pullsSinceLastSix += 1;
-
-    // 【统一逻辑】只要 rarity === 6 视为出货 (金)
-    // 适用于角色池 (6星角色) 和 武器池 (6星武器)
-    if (rarity === 6) {
-      const entry: SixStarEntry = {
-        poolId,
-        poolName,
-        seqId,
-        character: charName, // 这里可能是角色名，也可能是武器名
-        charId: record.charId, // 这里可能是角色ID，也可能是武器ID
-        count: state.pullsSinceLastSix,
-        timestamp: gachaTs,
-        fiveStars: [...state.fiveStars],
-      };
-
-      resultRealOnly.push(entry);
-      resultWithPadded.push(entry);
-
-      // 重置状态
-      state.pullsSinceLastSix = 0;
-      state.fiveStars = [];
-    } 
-    // 【统一逻辑】只要 rarity === 5 视为垫刀记录 (紫)
-    // 适用于角色池 (5星角色) 和 武器池 (5星武器)
-    else if (rarity === 5) {
-      state.fiveStars.push(record.charId);
-    }
-  }
-
-  // 4. 补充“已垫”记录（对每个池子当前未出金的部分）
-  for (const [poolId, state] of Object.entries(poolState)) {
-    if (state.pullsSinceLastSix > 0) {
-      // 找到该池子最后一抽的记录（用于 seqId 和 timestamp）
-      const lastRecord = sortedRecords.findLast(r => r.poolId === poolId);
-
-      if (lastRecord) {
+      if (record.rarity === 6) {
         resultWithPadded.push({
-          poolId,
-          poolName: lastRecord.poolName,
-          character: '已垫',
-          charId: 'padded',
-          count: state.pullsSinceLastSix,
-          timestamp: lastRecord.gachaTs,
-          seqId: lastRecord.seqId,
-          fiveStars: [...state.fiveStars],
+          ...record,
+          character: record.charName,
+          count: state.count,
+          timestamp: record.gachaTs,
+          fiveStars: [...state.fiveStars]
         });
+        state.count = 0;
+        state.fiveStars = [];
+      } else if (record.rarity === 5) {
+        state.fiveStars.push(record.charId);
       }
     }
-  }
 
-  // 5. 排序：按 seqId 降序，“已垫”同 seqId 时靠后
-  const sortBySeqIdDesc = (a: SixStarEntry, b: SixStarEntry) => {
-    const aSeq = parseSeqId(a.seqId);
-    const bSeq = parseSeqId(b.seqId);
-    if (aSeq !== bSeq) return bSeq - aSeq;
-    if (a.character === '已垫' && b.character !== '已垫') return 1;
-    if (b.character === '已垫' && a.character !== '已垫') return -1;
-    return 0;
+    // 2. 补充“已垫”逻辑：处理每个池子最后一次出金后的剩余抽数
+    for (const [poolId, state] of Object.entries(poolState)) {
+      if (state.count > 0) {
+        // 找到该池子的最后一条物理记录作为“已垫”的锚点
+        const last = list.filter(r => r.poolId === poolId).pop();
+        if (last) {
+          resultWithPadded.push({
+            poolId,
+            poolName: last.poolName,
+            character: '已垫',
+            charId: 'padded',
+            count: state.count,
+            timestamp: last.gachaTs,
+            seqId: last.seqId,
+            fiveStars: [...state.fiveStars]
+          });
+        }
+      }
+    }
+    return resultWithPadded;
   };
 
-  sixStarRecordsWithCount.value = resultWithPadded.sort(sortBySeqIdDesc);
-  realSixStarRecords.value = resultRealOnly.sort(sortBySeqIdDesc);
+  // 3. 执行分析并赋值给隔离的响应式变量
+  // 使用之前定义的 parseSeqId 进行降序排列（最新的在前面）
+  const sortByDesc = (a: SixStarEntry, b: SixStarEntry) => parseSeqId(b.seqId) - parseSeqId(a.seqId);
+  
+  // 分别处理角色和武器
+  const charAnalysis = analyzeSingleType(characterRecords.value);
+  const wepAnalysis = analyzeSingleType(weaponRecords.value);
 
-  // 6. 更新 rollData（保持兼容）
-  rollData.value = sixStarRecordsWithCount.value.map(item => [
-    item.poolId,
-    item.poolName,
-    item.character,
-    item.count,
-  ]);
+  // 4. 更新响应式结果
+  characterSixStarResults.value = charAnalysis.sort(sortByDesc);
+  weaponSixStarResults.value = wepAnalysis.sort(sortByDesc);
+
+  // 5. 兼容性适配：更新 rollData 供旧版 UI 模板渲染
+  // 如果你的 template 还在使用 rollData，这行代码能保证它不会失效
+  rollData.value = [...characterSixStarResults.value, ...weaponSixStarResults.value]
+    .sort(sortByDesc)
+    .map(item => [
+      item.poolId,
+      item.poolName,
+      item.character,
+      item.count
+    ]);
+
+  console.log('✅ 分析完成：角色 6 星记录', characterSixStarResults.value.length, '条');
+  console.log('✅ 分析完成：武器 6 星记录', weaponSixStarResults.value.length, '条');
 }
 
 // 判断是否歪了
@@ -1016,69 +905,44 @@ function countFiveStars(fiveStars: string[]): { name: string; count: number }[] 
 }
 
 const poolSummary = computed(() => {
-  // 初始化三类卡池的统计结构
-  // 新增 nonPityTotal（不歪角色的总抽数）、nonPityAverage（出不歪的平均抽数）
+  // 初始化统计结构
   const summary = {
-    limited: {
-      total: 0,
-      average: 0,
-      nonPityCount: 0,
-      totalCount: 0,
-      nonPityTotal: 0,
-      nonPityAverage: 0
-    },
-    permanent: {
-      total: 0,
-      average: 0,
-      nonPityCount: 0,
-      totalCount: 0,
-      nonPityTotal: 0,
-      nonPityAverage: 0
-    },
-    weapon: {
-      total: 0,
-      average: 0,
-      nonPityCount: 0,
-      totalCount: 0,
-      nonPityTotal: 0,
-      nonPityAverage: 0
-    },
+    limited: { total: 0, average: 0, nonPityCount: 0, totalCount: 0, nonPityTotal: 0, nonPityAverage: 0 },
+    permanent: { total: 0, average: 0, nonPityCount: 0, totalCount: 0, nonPityTotal: 0, nonPityAverage: 0 },
+    weapon: { total: 0, average: 0, nonPityCount: 0, totalCount: 0, nonPityTotal: 0, nonPityAverage: 0 },
   };
 
-  // Step 1: 统计「总抽数」（来自 sixStarRecordsWithCount，含“已垫”）
-  // 同时统计「不歪角色的总抽数」
+  // Step 1: 统计总抽数（含已垫）
+  // 遍历所有分析出的六星/垫刀项
   for (const record of sixStarRecordsWithCount.value) {
     const type = getPoolType(record.poolId);
-    summary[type].total += record.count;
+    if (summary[type]) {
+      summary[type].total += record.count;
+    }
+  }
 
-    // 仅对「真实六星记录」且「不歪」的情况，累加不歪总抽数
-    // 先找到对应的真实六星记录，匹配 seqId/poolId 确保数据对应
-    const realRecord = realSixStarRecords.value.find(
-      r => r.poolId === record.poolId && r.seqId === record.seqId
-    );
-    if (realRecord && isOnBanner(realRecord)) {
+  // Step 2: 遍历「真实六星」，统计出货数与不歪数
+  for (const record of realSixStarRecords.value) {
+    const type = getPoolType(record.poolId);
+    if (!summary[type]) continue;
+
+    summary[type].totalCount += 1;
+
+    // 判断是否“不歪” (UP内)
+    if (isOnBanner(record)) {
+      summary[type].nonPityCount += 1;
       summary[type].nonPityTotal += record.count;
     }
   }
 
-  // Step 2: 遍历「真实六星」，统计出货总数 + 不歪（UP）次数
-  for (const record of realSixStarRecords.value) {
-    const type = getPoolType(record.poolId);
-    summary[type].totalCount += 1; // 每条都是一个六星出货
-
-    // 判断是否“不歪”：即角色 == 当前卡池 UP 角色
-    if (isOnBanner(record)) {
-      summary[type].nonPityCount += 1;
-    }
-  }
-
-  // Step 3: 计算平均抽数
-  for (const key of ['limited', 'permanent', 'weapon'] as const) {
+  // Step 3: 计算平均值
+  const keys = ['limited', 'permanent', 'weapon'] as const;
+  for (const key of keys) {
     const s = summary[key];
-    // 所有六星的平均抽数（总抽数 / 总出货次数）
+    
     s.average = s.totalCount > 0 ? s.total / s.totalCount : 0;
-    // 出不歪的平均抽数（不歪总抽数 / 不歪次数），避免除零
-    s.nonPityAverage = s.nonPityCount > 0 ? s.total / s.nonPityCount : 0;
+    
+    s.nonPityAverage = s.nonPityCount > 0 ? s.nonPityTotal / s.nonPityCount : 0;
   }
 
   return summary;
