@@ -15,7 +15,7 @@
       <header class="page-title">导入抽卡记录</header>
 
       <div class="form-group">
-        <label>查询链接</label>
+        <label>在线更新（粘贴查询链接）</label>
         <textarea
           v-model="inputCredential"
           :disabled="isSubmitting"
@@ -23,8 +23,19 @@
           rows="3"
         />
         <p class="help-text">
-          <a href="https://web-api.hypergryph.com/account/info/hg">登陆鹰角通行证后，点击获取查询链接</a>
+          <a href="https://web-api.hypergryph.com/account/info/hg" target="_blank">登陆鹰角通行证后，点击获取查询链接</a>
         </p>
+      </div>
+
+      <div class="form-group" style="margin-top: 20px; padding: 16px; border: 2px dashed #eee; border-radius: 8px;">
+        <label style="display: block; margin-bottom: 8px; font-weight: bold;">本地导入（JSON备份文件）</label>
+        <input 
+          type="file" 
+          accept=".json" 
+          @change="handleImportFile" 
+          :disabled="isSubmitting"
+          style="font-size: 14px;"
+        />
       </div>
 
       <p v-if="collectError" class="error-text">{{ collectError }}</p>
@@ -300,10 +311,15 @@
   </div>
 
   <!-- 底部按钮 -->
-  <div class="action-buttons-container" style="margin-top: 40px; display: flex; justify-content: center; gap: 16px;">
+  <div class="action-buttons-container" style="margin-top: 40px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
     <button class="btn update-btn" style="padding: 8px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="goToUpdate">
       更新数据
     </button>
+    
+    <button class="btn export-btn" style="padding: 8px 24px; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="exportDataToJson">
+      导出数据
+    </button>
+
     <button class="btn clear-btn" style="padding: 8px 24px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="confirmClearCache">
       删除记录
     </button>
@@ -1245,7 +1261,118 @@ function handleImageError(e: Event) {
   img.style.opacity = '0.5';
 }
 
+const exportDataToJson = () => {
+  // 1. 尝试从当前响应式变量中构建完整的原始数据
+  // 我们模仿后端返回的结构，这样导出的文件以后也可以直接作为“凭证”或“备份”导入
+  const exportObj = {
+    code: 200,
+    data: {
+      characterPoolRecord: characterRecords.value,
+      weaponPoolRecord: weaponRecords.value,
+      exportTs: Date.now()
+    }
+  };
 
+  // 2. 检查是否有数据（如果两个数组都为空，说明确实没数据）
+  if (characterRecords.value.length === 0 && weaponRecords.value.length === 0) {
+    // 如果内存没有，尝试去 localStorage 捞一把
+    const CACHE_KEY = 'endfield_gacha_records_v2';
+    const localRaw = localStorage.getItem(CACHE_KEY);
+    if (!localRaw) {
+      alert('当前没有可导出的数据，请先更新或获取数据');
+      return;
+    }
+    // 注意：这里导出的将是包含所有 roleId 的完整缓存对象
+    const blob = new Blob([localRaw], { type: 'application/json' });
+    triggerDownload(blob);
+    return;
+  }
+
+  // 3. 执行内存数据的导出
+  try {
+    const jsonString = JSON.stringify(exportObj, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    triggerDownload(blob);
+    console.log('✅ 内存数据导出成功');
+  } catch (e) {
+    console.error('导出失败:', e);
+    alert('导出过程中出现错误');
+  }
+};
+
+// 辅助下载函数，避免重复代码
+function triggerDownload(blob: Blob) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  const now = new Date();
+  const dateStr = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+  
+  link.download = `endfield_gacha_backup_${dateStr}.json`;
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+//上传抽卡数据
+const handleImportFile = async (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  if (!input.files || input.files.length === 0) return;
+
+  const file = input.files[0];
+  isSubmitting.value = true;
+  collectError.value = '';
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const content = e.target?.result as string;
+      const importedData = JSON.parse(content);
+
+      // 1. 结构校验：判断是我们导出的格式还是原始格式
+      // 我们在导出时构造了 { data: { characterPoolRecord, weaponPoolRecord } }
+      const charData = importedData.data?.characterPoolRecord || importedData.characterPoolRecord || [];
+      const wepData = importedData.data?.weaponPoolRecord || importedData.weaponPoolRecord || [];
+
+      if (charData.length === 0 && wepData.length === 0) {
+        throw new Error('文件内容不符合规范或记录为空');
+      }
+
+      // 2. 获取 RoleId (用于缓存关联)
+      // 尝试从第一条记录拿 UID
+      const sample = charData[0] || wepData[0];
+      const roleId = sample?.roleId || sample?.uid || 'imported_user';
+
+      // 3. 标准化数据 (复用你现有的 normalizeRecord)
+      const newCharRecords = charData.map((item: any) => normalizeRecord(item, false));
+      const newWepRecords = wepData.map((item: any) => normalizeRecord(item, true));
+
+      // 4. 与本地现有缓存合并 (去重)
+      const cached = loadCachedRecords(roleId);
+      characterRecords.value = mergeAndSortRecords(cached.chars, newCharRecords);
+      weaponRecords.value = mergeAndSortRecords(cached.weps, newWepRecords);
+
+      // 5. 写入缓存并分析
+      saveRecordsToCache(roleId, {
+        chars: characterRecords.value,
+        weps: weaponRecords.value
+      });
+
+      processGachaData();
+      viewMode.value = 'analyze';
+
+    } catch (err: any) {
+      console.error('导入失败:', err);
+      collectError.value = '导入失败: ' + (err.message || '格式错误');
+    } finally {
+      isSubmitting.value = false;
+      input.value = '';
+    }
+  };
+
+  reader.readAsText(file!);
+};
 </script>
 
 <style scoped>
