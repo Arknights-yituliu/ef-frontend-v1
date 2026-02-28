@@ -792,7 +792,7 @@ function processGachaData() {
     // 2. 垫刀逻辑
     for (const [poolId, state] of Object.entries(poolState)) {
       if (state.count > 0) {
-        const last = list.filter(r => r.poolId === poolId).pop();
+        const last = list.findLast(r => r.poolId === poolId);
         if (last) {
           resultWithPadded.push({
             poolId,
