@@ -115,7 +115,7 @@
                   <span class="value">{{ info.average.toFixed(1) }}</span>
                 </div>
                 <div v-if="type === 'limited'" class="stat-item">
-                  <span class="label">{{ 'UP平均' }}：</span>
+                  <span class="label">{{ '毕业平均' }}：</span>
                   <span class="value">{{ info.nonPityAverage.toFixed(1) }}</span>
                 </div>
               </div>
@@ -215,7 +215,7 @@
 
       <div v-else>
         <div
-          v-for="(record, index) in group.records"
+          v-for="(record) in group.records"
           :key="`${group.poolId}-${record.seqId}`"
           class="custom-gacha-item mb-2"
           :class="{ 'on-banner': isOnBanner(record) }"
@@ -305,7 +305,7 @@
       更新数据
     </button>
     <button class="btn clear-btn" style="padding: 8px 24px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="confirmClearCache">
-      清除缓存
+      删除记录
     </button>
   </div>
 </div>
@@ -926,44 +926,73 @@ function countFiveStars(fiveStars: string[]): { name: string; count: number }[] 
 }
 
 const poolSummary = computed(() => {
-  // 初始化统计结构
-  const summary = {
-    limited: { total: 0, average: 0, nonPityCount: 0, totalCount: 0, nonPityTotal: 0, nonPityAverage: 0 },
-    permanent: { total: 0, average: 0, nonPityCount: 0, totalCount: 0, nonPityTotal: 0, nonPityAverage: 0 },
-    weapon: { total: 0, average: 0, nonPityCount: 0, totalCount: 0, nonPityTotal: 0, nonPityAverage: 0 },
+  interface PoolStats {
+    total: number;
+    totalCount: number;
+    nonPityCount: number;
+    average: number;
+    nonPityAverage: number; // 👈 重新启用这个字段，用于存放“UP平均”
+  }
+
+  const summary: Record<'limited' | 'permanent' | 'weapon', PoolStats> = {
+    limited: { total: 0, totalCount: 0, nonPityCount: 0, average: 0, nonPityAverage: 0 },
+    permanent: { total: 0, totalCount: 0, nonPityCount: 0, average: 0, nonPityAverage: 0 },
+    weapon: { total: 0, totalCount: 0, nonPityCount: 0, average: 0, nonPityAverage: 0 },
   };
 
-  // Step 1: 统计总抽数（含已垫）
-  // 遍历所有分析出的六星/垫刀项
-  for (const record of sixStarRecordsWithCount.value) {
+  // 辅助累加器：记录从上一个 UP 至今，或者从卡池开始至今投入的“有效抽数”
+  const runningPullsSinceLastUp: Record<'limited' | 'permanent' | 'weapon', number> = {
+    limited: 0, permanent: 0, weapon: 0
+  };
+  // 累计为了抽到 UP 角色总共花掉的抽数
+  const totalPullsForUp: Record<'limited' | 'permanent' | 'weapon', number> = {
+    limited: 0, permanent: 0, weapon: 0
+  };
+
+  // 按时间正序遍历
+  const chronologicalRecords = [...sixStarRecordsWithCount.value].reverse();
+
+  for (const record of chronologicalRecords) {
     const type = getPoolType(record.poolId);
-    if (summary[type]) {
-      summary[type].total += record.count;
+    if (!(type in summary)) continue;
+
+    // 1. 累计水位：排除“免费获取”虚拟节点
+    const isFreeBundle = record.charId === 'free_bundle';
+    const currentCount = record.count || 0;
+
+    if (!isFreeBundle) {
+      runningPullsSinceLastUp[type] += currentCount;
+    }
+
+    // 更新总展示抽数（含免费）
+    summary[type].total += currentCount;
+
+    // 2. 真实出货逻辑
+    const isRealSixStar = record.charId !== 'padded' && !isFreeBundle;
+
+    if (isRealSixStar) {
+      summary[type].totalCount += 1;
+
+      // 如果是 UP 角色
+      if (isOnBanner(record)) {
+        summary[type].nonPityCount += 1;
+        
+        // 将这一段路程的所有抽数（含之前歪掉的）加入“UP总投入”
+        totalPullsForUp[type] += runningPullsSinceLastUp[type];
+        
+        // 重置“距上一个UP”的计数器，开始下一轮统计
+        runningPullsSinceLastUp[type] = 0;
+      }
     }
   }
 
-  // Step 2: 遍历「真实六星」，统计出货数与不歪数
-  for (const record of realSixStarRecords.value) {
-    const type = getPoolType(record.poolId);
-    if (!summary[type]) continue;
-
-    summary[type].totalCount += 1;
-
-    // 判断是否“不歪” (UP内)
-    if (isOnBanner(record)) {
-      summary[type].nonPityCount += 1;
-      summary[type].nonPityTotal += record.count;
-    }
-  }
-
-  // Step 3: 计算平均值
-  const keys = ['limited', 'permanent', 'weapon'] as const;
-  for (const key of keys) {
+  // 3. 计算结果
+  for (const key of (['limited', 'permanent', 'weapon'] as const)) {
     const s = summary[key];
-    
+    // 六星平均出货（所有六星）
     s.average = s.totalCount > 0 ? s.total / s.totalCount : 0;
-    
-    s.nonPityAverage = s.nonPityCount > 0 ? s.nonPityTotal / s.nonPityCount : 0;
+    // UP平均出货：总投入 / UP个数
+    s.nonPityAverage = s.nonPityCount > 0 ? totalPullsForUp[key] / s.nonPityCount : 0;
   }
 
   return summary;
