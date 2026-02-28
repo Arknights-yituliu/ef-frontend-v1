@@ -478,29 +478,65 @@ function saveRecordsToCache(roleId: string, records: GachaRecord[]) {
 }
 
 // 调试开关
-const USE_DEBUG_DATA = false;
+const USE_DEBUG_DATA = true;
 
+
+// 提交并验证用户输入的 UID 和 URL
 async function submitAndVerify() {
-  // 调试数据逻辑（保持兼容，但缓存 key 改为 debug_roleId）
+  // ==========================================
+  // 1. 【调试模式优先】
+  // ==========================================
   if (USE_DEBUG_DATA) {
-    console.log('【调试模式】使用示例数据进行分析');
+    console.log('--- [DEBUG MODE] 正在加载本地示例数据 ---');
     try {
-      const mergedRecords: GachaRecord[] = debugGachaData.data;
+      const rawData = debugGachaData.data;
+      if (!rawData) throw new Error('本地调试 JSON 数据为空');
 
-      saveRecordsToCache('debug_roleId', mergedRecords);
-      records.value = mergedRecords;
-      processGachaData(mergedRecords);
+      const rawCharRecords = rawData.characterPoolRecord || [];
+      const rawWeaponRecords = rawData.weaponPoolRecord || [];
+
+      // 内部标准化函数
+      const normalizeDebugRecord = (item: any, isWeapon: boolean): GachaRecord => ({
+        id: item.id ?? 0,
+        endfieldUid: '',
+        uid: item.roleId || 'debug_role',
+        poolId: item.poolId || '',
+        poolName: item.poolName || '',
+        charName: isWeapon ? (item.weaponName || item.charName) : item.charName,
+        charId: isWeapon ? (item.weaponId || item.charId) : item.charId,
+        rarity: Number(item.rarity ?? 0),
+        gachaTs: item.gachaTs ?? Date.now(),
+        seqId: String(item.seqId ?? ''),
+        lang: item.lang || 'zh-cn',
+        poolType: item.poolType || '',
+        serverId: item.serverId || '',
+        isFree: (item.isFree !== undefined ? item.isFree : item.free) ?? false,
+        isNew: (item.isNew !== undefined ? item.isNew : item.new) ?? false,
+      });
+
+      const allRecords = [
+        ...rawCharRecords.map(item => normalizeDebugRecord(item, false)),
+        ...rawWeaponRecords.map(item => normalizeDebugRecord(item, true))
+      ].sort((a, b) => (parseInt(a.seqId, 10) || 0) - (parseInt(b.seqId, 10) || 0));
+
+      // 写入调试缓存并更新状态
+      const DEBUG_ROLE_ID = 'debug_roleId';
+      saveRecordsToCache(DEBUG_ROLE_ID, allRecords);
+      records.value = allRecords;
+      processGachaData(allRecords);
+      
+      // UI 跳转
       viewMode.value = 'analyze';
       collectError.value = '';
-      return;
+      return; // 【关键】执行完调试逻辑立即返回，不触发后续验证
     } catch (error: any) {
       console.error('调试数据处理失败:', error);
-      collectError.value = '调试数据加载失败：' + error.message;
+      collectError.value = '调试模式异常: ' + error.message;
       return;
     }
   }
 
-  // 用户输入：登录凭证 JSON 内容
+  // 2. 原有的正常校验逻辑
   const credentialJson = inputCredential.value.trim();
   if (!credentialJson) {
     collectError.value = '请粘贴完整的登录凭证 JSON';
@@ -597,84 +633,121 @@ async function submitAndVerify() {
 
     const listResponse = await listRes.json();
     
-    // 验证新结构：确保 data 对象存在且包含 characterPoolRecord
-    if (!listResponse?.data || !Array.isArray(listResponse.data.characterPoolRecord)) {
-      throw new Error('未返回有效抽卡数据');
+    // 验证数据结构
+    if (!listResponse?.data) {
+      throw new Error('未返回有效数据对象');
     }
-
-    // Step 4: 转换新数据 (从 data.characterPoolRecord 中读取)
-    const charRecords = listResponse.data.characterPoolRecord || [];
-    const weaponRecords = listResponse.data.weaponPoolRecord || [];
-
-    // 1. 转换角色数据
-    const processedCharRecords: GachaRecord[] = charRecords.map((item: any) => ({
-      id: item.id,
-      poolId: item.poolId,
-      poolName: item.poolName,
-      charName: item.charName,
-      rarity: item.rarity,
-      gachaTs: item.gachaTs,
-      seqId: item.seqId,
-      uid: item.uid || '',
-      charId: item.charId || '',
-      isFree: item.isFree ?? false,
-      isNew: item.isNew ?? false,
-      lang: item.lang || 'zh-cn',
-      poolType: item.poolType || '',
-      serverId: item.serverId || '',
-    }));
-
-    // 2. 转换武器数据 (映射到 GachaRecord 结构)
-    const processedWeaponRecords: GachaRecord[] = weaponRecords.map((item: any) => ({
-      id: item.id,
-      poolId: item.poolId,
-      poolName: item.poolName,
-      // 关键映射：将武器信息填入角色字段，以便复用后续逻辑
-      charName: item.weaponName, 
-      charId: item.weaponId,   
-      rarity: item.rarity,
-      gachaTs: item.gachaTs,
-      seqId: item.seqId,
-      uid: item.uid || '', // 如果武器数据没uid，保持空字符串
-      isFree: false,       // 武器池通常没有免费单抽概念，或根据实际字段调整
-      isNew: item.new ?? false,
-      lang: item.lang || 'zh-cn',
-      poolType: item.poolType || '',
-      serverId: item.serverId || '',
-    }));
-
-    // 3. 合并并排序 (全局按 seqId 排序)
-    const allNewRecords = [...processedCharRecords, ...processedWeaponRecords];
     
-    const newRecords: GachaRecord[] = allNewRecords.sort(
-      (a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId)
-    );
+    // 获取原始数组 (可能包含 characterPoolRecord 和 weaponPoolRecord)
+    const rawCharRecords = listResponse.data.characterPoolRecord || [];
+    const rawWeaponRecords = listResponse.data.weaponPoolRecord || [];
 
-    if (newRecords.length === 0) {
-      throw new Error('未找到任何抽卡记录（角色或武器）');
+    if (rawCharRecords.length === 0 && rawWeaponRecords.length === 0) {
+      throw new Error('未找到任何抽卡记录（角色池和武器池均为空）');
     }
-    // Step 5: 加载缓存并合并（按 seqId 去重），使用 roleId 作为缓存 key
-    const cachedRecords = loadCachedRecords(roleId);
 
+    // Step 4: 转换数据 (沿用第二份代码的稳健逻辑，增加武器池支持)
+    
+    // 辅助函数：统一字段映射，兼容 free/isFree 和 new/isNew
+    function mapRecord(item: any, isWeapon: boolean = false): GachaRecord {
+      return {
+        id: item.id,
+        poolId: item.poolId,
+        poolName: item.poolName,
+        // 武器池将 weaponName/weaponId 映射到 charName/charId
+        charName: isWeapon ? (item.weaponName || item.charName) : item.charName,
+        charId: isWeapon ? (item.weaponId || item.charId) : item.charId,
+        rarity: item.rarity,
+        gachaTs: item.gachaTs,
+        seqId: item.seqId,
+        uid: item.uid || '',
+        // 关键修复：兼容 free 和 isFree 字段
+        isFree: (item.isFree !== undefined ? item.isFree : item.free) ?? false,
+        // 关键修复：兼容 new 和 isNew 字段
+        isNew: (item.isNew !== undefined ? item.isNew : item.new) ?? false,
+        lang: item.lang || 'zh-cn',
+        poolType: item.poolType || '',
+        serverId: item.serverId || '',
+      };
+    }
+
+    const processedCharRecords = rawCharRecords.map(item => normalizeRecord(item, false));
+    const processedWeaponRecords = rawWeaponRecords.map(item => normalizeRecord(item, true));
+
+    // 【关键修复】检测并解决 seqId 冲突
+    const finalRecords: GachaRecord[] = [];
+    const seenSeqIds = new Map<string, number>(); // 记录每个 seqId 出现的次数
+
+    // 辅助函数：处理单条记录，解决冲突
+    function processRecordWithConflictCheck(rec: GachaRecord) {
+      const originalSeqId = String(rec.seqId);
+      
+      // 检查该 seqId 是否已经出现过
+      if (seenSeqIds.has(originalSeqId)) {
+        // 如果出现过，说明冲突了！
+        const count = seenSeqIds.get(originalSeqId)!;
+        
+        // 生成新的唯一 seqId：原seqId + "_" + 出现次数 + "_" + 类型标记
+        // 例如：104_1_char, 104_2_weapon
+        const typeMark = rec.poolId.includes('weapon') || rec.poolId.includes('wepon') ? 'w' : 'c';
+        const newSeqId = `${originalSeqId}_${count}_${typeMark}`;
+        
+        console.warn(`⚠️ 检测到 seqId 冲突 (${originalSeqId})，已重命名为: ${newSeqId} (原数据: ${rec.charName})`);
+        
+        rec.seqId = newSeqId; // 覆盖当前记录的 seqId
+        seenSeqIds.set(originalSeqId, count + 1);
+      } else {
+        // 第一次出现，正常记录
+        seenSeqIds.set(originalSeqId, 1);
+      }
+      
+      finalRecords.push(rec);
+    }
+
+    // 1. 先处理角色池
+    processedCharRecords.forEach(processRecordWithConflictCheck);
+    // 2. 再处理武器池
+    processedWeaponRecords.forEach(processRecordWithConflictCheck);
+
+    // 现在 finalRecords 里的所有 seqId 都是唯一的了
+    // 排序
+    // 注意：因为修改了 seqId 格式 (104_1_c)，直接 parseInt 可能会只取到 104，排序依然大致正确
+    // 如果需要严格排序，可以自定义解析逻辑，但通常 104_x 和 105_y 的顺序是对的
+    const newRecords = finalRecords.sort((a, b) => {
+      // 提取原始数字部分进行排序 (去掉后缀)
+      const getBaseNum = (s: string) => parseInt(s.split('_')[0], 10) || 0;
+      return getBaseNum(a.seqId) - getBaseNum(b.seqId);
+    });
+
+    // 调试：再次确认卡契尔还在不在
+    const kaqier = newRecords.find(r => r.charName === '卡契尔');
+    if (kaqier) {
+      console.log('✅ [修复后] 卡契尔已成功保留！新 seqId:', kaqier.seqId);
+    } else {
+      console.error('❌ [修复失败] 卡契尔依然丢失');
+    }
+
+    // Step 5: 合并缓存 (现在不会发生覆盖了，因为 seqId 唯一)
+    const cachedRecords = loadCachedRecords(roleId);
     const recordMap = new Map<string, GachaRecord>();
+
     for (const rec of cachedRecords) {
-      recordMap.set(rec.seqId, rec);
+      recordMap.set(String(rec.seqId), rec);
     }
     for (const rec of newRecords) {
-      recordMap.set(rec.seqId, rec);
+      recordMap.set(String(rec.seqId), rec);
     }
-
+    
     const mergedRecords = Array.from(recordMap.values())
       .sort((a: GachaRecord, b: GachaRecord) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
-    // Step 6: 保存到缓存（key 为 roleId）
+    // Step 6: 保存到缓存
     saveRecordsToCache(roleId, mergedRecords);
 
     // Step 7: 更新响应式状态
     records.value = mergedRecords;
     processGachaData(mergedRecords);
     viewMode.value = 'analyze';
-
   } catch (error: any) {
     console.error('数据验证失败:', error);
     collectError.value = error.message || '网络错误，请稍后重试';
@@ -705,21 +778,32 @@ function goToUpdate() {
 function confirmClearCache() {
   if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？\n此操作不可恢复！（抽卡数据均保存在本地）')) {
     try {
+      // 1. 清除存储数据 (确保 Key 与定义一致)
+      // 使用之前定义的常量 CACHE_KEY 和 LAST_ROLE_ID_KEY
+      localStorage.removeItem('endfield_gacha_records_v2'); 
+      localStorage.removeItem('endfield_last_role_id');
+      
+      // 兼容性清理：如果你之前用过旧版 key，也可以顺带清理
       localStorage.removeItem('endfield_gacha_records_v1');
       localStorage.removeItem('endfield_last_uid');
 
-      // 清空当前响应式数据
+      // 2. 重置所有响应式状态
       records.value = [];
+      rollData.value = [];
       sixStarRecordsWithCount.value = [];
       realSixStarRecords.value = [];
-      rollData.value = [];
+      
+      // 3. 重置输入框和错误信息
+      inputCredential.value = '';
+      collectError.value = '';
 
-      // 跳转回收集页
+      // 4. 跳转回收集页
       viewMode.value = 'collect';
-      alert('本地数据已清除');
+      
+      alert('本地数据已完全清除');
     } catch (error) {
       console.error('清除缓存失败', error);
-      alert('清除失败，请手动清除浏览器数据');
+      alert('清除失败，请手动清除浏览器本地存储数据');
     }
   }
 }
