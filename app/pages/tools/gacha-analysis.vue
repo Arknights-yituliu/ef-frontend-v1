@@ -484,7 +484,7 @@ function loadCachedRecords(roleId: string): { chars: GachaRecord[], weps: GachaR
       chars: Array.isArray(userData.chars) ? userData.chars : [],
       weps: Array.isArray(userData.weps) ? userData.weps : []
     };
-  } catch (e) {
+  } catch {
     return { chars: [], weps: [] };
   }
 }
@@ -506,8 +506,8 @@ function saveRecordsToCache(roleId: string, data: { chars: GachaRecord[], weps: 
     
     localStorage.setItem(CACHE_KEY, JSON.stringify(allData));
     localStorage.setItem(LAST_ROLE_ID_KEY, roleId);
-  } catch (e) {
-    console.error('保存失败', e);
+  } catch (error) {
+    console.error('保存失败', error);
   }
 }
 
@@ -586,7 +586,7 @@ async function submitAndVerify() {
     const credentialObj = JSON.parse(credentialJson);
     if (!credentialObj || credentialObj.code !== 0) throw new Error('凭证状态异常');
     hgToken = credentialObj.data?.content || '';
-  } catch (error: any) {
+  } catch {
     collectError.value = '凭证格式错误';
     return;
   }
@@ -661,8 +661,8 @@ async function submitAndVerify() {
 function mergeAndSortRecords(oldList: GachaRecord[], newList: GachaRecord[]): GachaRecord[] {
   const map = new Map<string, GachaRecord>();
   // seqId 在同类卡池内是唯一的，直接作为 Key
-  oldList.forEach(r => map.set(String(r.seqId), r));
-  newList.forEach(r => map.set(String(r.seqId), r));
+  for (const r of oldList) map.set(String(r.seqId), r);
+  for (const r of newList) map.set(String(r.seqId), r);
   
   return Array.from(map.values()).sort((a, b) => {
     return parseSeqId(a.seqId) - parseSeqId(b.seqId);
