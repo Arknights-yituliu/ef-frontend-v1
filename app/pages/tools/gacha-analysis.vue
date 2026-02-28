@@ -245,7 +245,7 @@
               @error="handleImageError"
             />
             <div
-              v-else
+              v-if="record.charId && record.character == '已垫'"
               style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 50%; font-size: 0.8rem; color: #6b7280;"
             >
               {{ record.character === '已垫' ? '垫' : '?' }}
@@ -269,6 +269,8 @@
               <span v-if="isOffPool(record) && record.count > 60" class="off-label" style="position: absolute; right: 0; font-size: 0.75rem; color: #ef4444; font-weight: bold;">超非</span>
               <span v-if="record.character !== '已垫' && record.character !== '赠送十连' && record.count <= 10" class="lucky-label" style="position: absolute; right: 0; font-size: 0.75rem; color: #10b981; font-weight: bold;">超欧</span>
               <span v-if="record.character === '已垫'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">当前垫抽</span>
+              <span v-if="record.character === '赠送十连'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">赠送十连</span>
+
             </div>
 
             <!-- 展开的五星详情 -->
@@ -299,7 +301,7 @@
             </div>
             
             <!-- 名称显示 (可选，如果想直接显示名字) -->
-            <div v-if="record.character !== '已垫'" style="margin-top: 4px; font-size: 0.85rem; color: #374151; font-weight: 500;">
+            <div v-if="record.character !== '已垫'&& record.character !== '赠送十连'" style="margin-top: 4px; font-size: 0.85rem; color: #374151; font-weight: 500;">
               {{ record.character }}
               <span v-if="isOnBanner(record)" style="color: #d97706; font-size: 0.75rem; margin-left: 4px;">(UP)</span>
               <span v-if="isOffPool(record)" style="color: #ef4444; font-size: 0.75rem; margin-left: 4px;">(歪)</span>
