@@ -82,6 +82,28 @@ const wulingCrateReward = ref<Reward>({
   },
 });
 
+
+const wulingBattleCrateRewardMax = 7;
+
+const wulingBattleCrateReward = ref<Reward>({
+  id: 'wuling_battle_crate_reward',
+  name: {
+    zh: `处理险情储藏箱奖励`,
+    en: '',
+  },
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
+  type: '通用',
+  module: '地区探索',
+  active: true,
+  content: {
+    originiumRecharge: wulingBattleCrateRewardMax,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+});
+
 const wulingDeltaBotRewardMax: number = 25 * 20;
 
 const wulingDeltaBotReward = ref<Reward>({
@@ -146,6 +168,8 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
 export {
   wulingAuryleneCollectReward,
   wulingAuryleneCollectStageTable,
+  wulingBattleCrateReward,
+  wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,

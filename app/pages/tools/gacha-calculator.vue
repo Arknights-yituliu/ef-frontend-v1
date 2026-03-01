@@ -71,6 +71,8 @@ import {
 import {
   wulingAuryleneCollectReward,
   wulingAuryleneCollectStageTable,
+  wulingBattleCrateReward,
+  wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,
@@ -92,21 +94,21 @@ const rightPartPanel = ref<string[]>([]);
 
 const poolOptions = ref<PoolOption[]>([
   {
-    name: '轻飘飘的信使',
-    color: '#BE2F00',
-    start: new Date('2026/02/07 12:00:00'),
-    end: new Date('2026/02/24 12:00:00'),
-    dateText: '02.07——02.24',
-    type: '轻飘飘的信使',
-    disabled: true,
-  },
-  {
     name: '热烈色彩',
     color: '#FA5B81',
     start: new Date('2026/02/24 12:00:00'),
     end: new Date('2026/03/12 12:00:00'),
     dateText: '02.24——未知',
     type: '热烈色彩',
+    disabled: false,
+  },
+  {
+    name: '汤汤卡池',
+    color: '#B60129',
+    start: new Date('2026/03/12 12:00:00'),
+    end: new Date('2026/03/28 12:00:00'),
+    dateText: '',
+    type: '1111',
     disabled: true,
   },
   {
@@ -116,7 +118,7 @@ const poolOptions = ref<PoolOption[]>([
     end: new Date('2026/03/28 12:00:00'),
     dateText: '',
     type: '1111',
-    disabled: false,
+    disabled: true,
   },
 ]);
 
@@ -127,7 +129,7 @@ const currentPool = ref<PoolOption>({
   end: new Date('2026/02/24 12:00:00'),
   dateText: '02.07——02.24',
   type: '轻飘飘的信使',
-  disabled: true,
+  disabled: false,
 });
 
 const startDate: Date = new Date();
@@ -622,9 +624,25 @@ watch(
   { deep: true },
 );
 
-// 武陵储藏箱奖励
+// 武陵地区淤积点宝箱
+const wulingBattleCrateRewardProgress = ref<number[]>([0, wulingBattleCrateRewardMax]);
+
+watch(
+  wulingBattleCrateRewardProgress,
+  (newVal) => {
+    wulingBattleCrateReward.value.content.originiumRecharge = newVal[1]! - newVal[0]!;
+    saveUserConfig( wulingBattleCrateReward.value.id, newVal, 'rangeSlider');
+
+    wulingRegionalRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
+
+
+// 武陵维修机器人奖励
 const wulingDeltaBotProgress = ref<number[]>([0, wulingDeltaBotRewardMax]);
-// 武陵储藏箱奖励进度
+// 武陵维修机器人奖励进度
 watch(
   wulingDeltaBotProgress,
   (newVal) => {
@@ -722,6 +740,7 @@ function wulingRegionalRewardStatistics(): void {
   addReward(result, wulingRegionalDevelopmentReward.value);
   addReward(result, wulingAuryleneCollectReward.value);
   addReward(result, wulingCrateReward.value);
+  addReward(result,wulingBattleCrateReward.value);
   addReward(result, wulingDeltaBotReward.value);
   addReward(result, wulingSimulationReward.value);
   addReward(result, wulingDefenseConstructionReward.value);
@@ -1323,6 +1342,7 @@ const rangeSliderMap: Record<string, Ref<number[]>> = {
   wuling_regional_development_reward: wulingRegionalDevelopmentProgress,
   wuling_aurylene_collect_reward: wulingAuryleneCollectProgress,
   wuling_crate_reward: wulingCrateRewardProgress,
+  wuling_battle_crate_reward: wulingBattleCrateRewardProgress,
   wuling_delta_bot_reward: wulingDeltaBotProgress,
   wuling_simulation_reward: wulingSimulationProgress,
   factory_manual_reward: factoryManualProgress,
@@ -1480,6 +1500,7 @@ function clearOrSelectAllWulingRegionalModule(action: boolean) {
   clearOrSelectAll(action, 'rangeSlider', wulingRegionalDevelopmentProgress, [0, 6]);
   clearOrSelectAll(action, 'rangeSlider', wulingAuryleneCollectProgress, [0, 18]);
   clearOrSelectAll(action, 'rangeSlider', wulingCrateRewardProgress, [0, wulingCrateRewardMax]);
+  clearOrSelectAll(action,'rangeSlider', wulingBattleCrateRewardProgress, [0, wulingBattleCrateRewardMax]);
   clearOrSelectAll(action, 'rangeSlider', wulingDeltaBotProgress, [0, wulingDeltaBotRewardMax]);
   clearOrSelectAll(action, 'rangeSlider', wulingSimulationProgress, [0, 9]);
   clearOrSelectAll(action,'button',wulingDefenseConstructionReward)
@@ -1724,6 +1745,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                   v-for="option in poolOptions"
                   class="gacha-calculator-pool-btn-pc"
                   :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
+                  :disabled  = "option.disabled"
                   @click="selectedPool(option)"
                   >{{ option.name }}<br >{{ option.dateText }}
                 </v-btn>
@@ -1732,6 +1754,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                 v-for="option in poolOptions"
                 class="gacha-calculator-pool-btn-phone"
                 :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
+                :disabled  = "option.disabled"
                 @click="selectedPool(option)"
                 >{{ option.name }}<br >{{ option.dateText }}
               </v-btn>
@@ -2316,6 +2339,23 @@ function checkRewardIsValid(reward: Reward): boolean {
                     tick-size="4"
                   />
                   储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5合成玉
+                </v-card-text>
+              </v-card>
+
+              <v-card>
+                <v-card-text>
+                  <GachaCalculatorResourceSingle v-bind="wulingBattleCrateReward" />
+                  <div style="height: 36px" />
+                  <v-range-slider
+                    v-model="wulingBattleCrateRewardProgress"
+                    class="v-range-slider"
+                    hide-details="auto"
+                    :max="wulingBattleCrateRewardMax"
+                    step="1"
+                    thumb-label="always"
+                    tick-size="4"
+                  />
+                  在地图上的处理险情点位可获得1源石的宝箱
                 </v-card-text>
               </v-card>
 
