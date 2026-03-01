@@ -14,9 +14,9 @@
       <header class="page-title">导入抽卡记录</header>
 
       <div style="display: flex; background: #f3f4f6; padding: 4px; border-radius: 8px; margin-bottom: 24px;">
-        <button 
+        <button
           style="flex: 1; padding: 8px; border-radius: 6px; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s;"
-          :style="{ 
+          :style="{
             backgroundColor: importMethod === 'online' ? '#fff' : 'transparent',
             boxShadow: importMethod === 'online' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
             fontWeight: importMethod === 'online' ? 'bold' : 'normal',
@@ -26,9 +26,9 @@
         >
           链接导入
         </button>
-        <button 
+        <button
           style="flex: 1; padding: 8px; border-radius: 6px; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s;"
-          :style="{ 
+          :style="{
             backgroundColor: importMethod === 'local' ? '#fff' : 'transparent',
             boxShadow: importMethod === 'local' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
             fontWeight: importMethod === 'local' ? 'bold' : 'normal',
@@ -55,15 +55,15 @@
         </p>
       </div>
 
-      <div 
-        v-show="importMethod === 'local'" 
-        class="form-group" 
+      <div
+        v-show="importMethod === 'local'"
+        class="form-group"
         style="padding: 24px; border: 2px dashed #e5e7eb; border-radius: 12px; background-color: #fafafa; text-align: center;"
       >
         <label style="display: block; margin-bottom: 12px; color: #374151; font-weight: 500;">上传 JSON 备份文件</label>
-        <input 
-          accept=".json" 
-          :disabled="isSubmitting" 
+        <input
+          accept=".json"
+          :disabled="isSubmitting"
           style="font-size: 14px; color: #6b7280;"
           type="file"
           @change="onFileSelected"
@@ -175,7 +175,7 @@
             <h3 class="text-subtitle-2 mb-2">{{ '抽数分布' }}</h3>
             <div class="d-flex flex-wrap">
                 <v-chip
-                  v-for="([pool, item], index) in Object.entries(poolDistribution).slice(0, 5)"
+                  v-for="([pool, item]) in Object.entries(poolDistribution).slice(0, 5)"
                   :key="pool"
                   :color="getPoolColor(pool)"
                   label
@@ -252,12 +252,12 @@
 
         <!-- 3. 数据列表渲染 -->
         <div v-for="group in currentPoolGroup" :key="group.poolId" class="mb-8">
-          <h2 
-              class="text-h5 mb-3" 
+          <h2
+              class="text-h5 mb-3"
               style="border-left: 4px solid currentColor; padding-left: 12px; display: flex; justify-content: space-between; align-items: center;"
             >
               <span>{{ group.poolName }}</span>
-              
+
               <div style="font-size: 0.9rem; color: #6b7280; font-weight: normal; display: flex; align-items: baseline; gap: 4px;">
                 <span style="font-size: 0.8rem; opacity: 0.8;">共计</span>
                 <span style="font-size: 1.1rem; font-weight: bold; color: #374151;">
@@ -307,15 +307,15 @@
                       </div>
                     </div>
 
-                    <div 
-                      v-if="!isVirtualRecord(record.character) && selectedPool === 'limited'" 
+                    <div
+                      v-if="!isVirtualRecord(record.character) && selectedPool === 'limited'"
                       style="position: absolute; right: 8px; display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;"
                     >
                       <template v-if="getProbabilityInfo(record, group.records)">
                         <span
-:style="{ 
-                          fontSize: '0.75rem', 
-                          fontWeight: 'bold', 
+:style="{
+                          fontSize: '0.75rem',
+                          fontWeight: 'bold',
                           color: getProbabilityInfo(record, group.records)!.isBig ? '#d97706' : '#374151',
                           backgroundColor: getProbabilityInfo(record, group.records)!.isBig ? '#fef3c7' : 'transparent',
                           padding: getProbabilityInfo(record, group.records)!.isBig ? '2px 4px' : '0',
@@ -333,8 +333,8 @@
                     <span v-if="record.character === '赠送十连'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">赠送十连</span>
                   </div>
 
-                  <div 
-                    v-if="expandedSeqId === record.seqId && record.fiveStars?.length" 
+                  <div
+                    v-if="expandedSeqId === record.seqId && record.fiveStars?.length"
                     class="mt-2 ml-2 p-2"
                     style="background-color: #f9fafb; border-radius: 6px;"
                   >
@@ -357,9 +357,9 @@
                       </div>
                     </div>
                   </div>
-                  
-                  <div 
-                    v-if="!isVirtualRecord(record.character) && expandedSeqId !== record.seqId" 
+
+                  <div
+                    v-if="!isVirtualRecord(record.character) && expandedSeqId !== record.seqId"
                     style="margin-top: 4px; font-size: 0.85rem; color: #374151; font-weight: 500;"
                   >
                     {{ record.character }}
@@ -377,7 +377,7 @@
           <button class="btn update-btn" style="padding: 8px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="goToUpdate">
             更新数据
           </button>
-          
+
           <button class="btn export-btn" style="padding: 8px 24px; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="exportDataToJson">
             导出数据
           </button>
@@ -441,12 +441,12 @@ const isSubmitting = ref(false);
 const collectError = ref('');
 const sixStarRecordsWithCount = computed(() => {
   return [...characterSixStarResults.value, ...weaponSixStarResults.value]
-    .sort((a, b) => parseSeqId(b.seqId) - parseSeqId(a.seqId));
+    .toSorted((a, b) => parseSeqId(b.seqId) - parseSeqId(a.seqId));
 });
 const realSixStarRecords = computed(() => {
-  return sixStarRecordsWithCount.value.filter(r => 
-    r.charId !== 'padded' &&      
-    r.charId !== 'free_bundle'    
+  return sixStarRecordsWithCount.value.filter(r =>
+    r.charId !== 'padded' &&
+    r.charId !== 'free_bundle'
   );
 });
 
@@ -494,7 +494,7 @@ interface SixStarEntry {
 function safeTimestamp(ts: string | number): number {
   if (typeof ts === 'number') return ts;
   const num = Number(ts);
-  if (!isNaN(num)) return num;
+  if (Number.isNaN(num)) return num;
   return new Date(ts).getTime();
 }
 
@@ -502,11 +502,11 @@ function getPoolType(poolId: string): 'limited' | 'permanent' | 'weapon' {
   if (poolId.includes('weapon') || poolId.includes('wepon')) {
     return 'weapon';
   }
-  
+
   if (poolId.startsWith('special') || poolId.startsWith('activity')) {
     return 'limited';
   }
-  
+
   return 'permanent';
 }
 
@@ -524,7 +524,7 @@ const poolColorMap: Record<string, string> = {
   '基础寻访': 'deep-purple',
   '启程寻访': 'cyan',
   '特许寻访': 'amber',
-};   
+};
 function getPoolColor(poolName: string): string {
   return poolColorMap[poolName] || 'amber darken-3';
 }
@@ -554,15 +554,15 @@ async function submitAndVerify() {
       // 分别标准化并排序
       characterRecords.value = (rawData.characterPoolRecord || [])
         .map(item => normalizeRecord(item, false))
-        .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
+        .toSorted((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
       weaponRecords.value = (rawData.weaponPoolRecord || [])
         .map(item => normalizeRecord(item, true))
-        .sort((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
+        .toSorted((a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId));
 
       // 执行分析逻辑（内部会分别处理两个数组）
       processGachaData();
-      
+
       viewMode.value = 'analyze';
       collectError.value = '';
       return;
@@ -629,9 +629,9 @@ async function submitAndVerify() {
     const newWepRecords = rawWep.map((item: any) => normalizeRecord(item, true));
 
     // Step 4: 加载并合并缓存 (针对不同类型分别去重合并)
-    const cachedData = loadCachedRecords(roleId); 
+    const cachedData = loadCachedRecords(roleId);
     // 注意：这里的 cachedData 结构应修改为 { chars: GachaRecord[], weps: GachaRecord[] }
-    
+
     characterRecords.value = mergeAndSortRecords(cachedData.chars || [], newCharRecords);
     weaponRecords.value = mergeAndSortRecords(cachedData.weps || [], newWepRecords);
 
@@ -658,60 +658,53 @@ async function processLocalFile(file: File) {
   isSubmitting.value = true;
   collectError.value = '';
 
-  const reader = new FileReader();
-  
-  // 使用 onload 替代 addEventListener，逻辑更清晰
-  reader.addEventListener('load', async (e) => {
-    try {
-      const content = e.target?.result as string;
-      const importedData = JSON.parse(content);
+  try {
+    const content = await file.text();
 
-      // 1. 结构校验与兼容处理
-      // 兼容两种格式：带 data 外层的导出格式 和 直接包含 record 的原始格式
-      const charData = importedData.data?.characterPoolRecord || importedData.characterPoolRecord || [];
-      const wepData = importedData.data?.weaponPoolRecord || importedData.weaponPoolRecord || [];
+    const importedData = JSON.parse(content);
 
-      if (charData.length === 0 && wepData.length === 0) {
-        throw new Error('文件内容不符合规范或记录为空');
-      }
+    // 1. 结构校验与兼容处理
+    // 兼容两种格式：带 data 外层的导出格式 和 直接包含 record 的原始格式
+    const charData = importedData.data?.characterPoolRecord || importedData.characterPoolRecord || [];
+    const wepData = importedData.data?.weaponPoolRecord || importedData.weaponPoolRecord || [];
 
-      // 2. 身份识别 (获取 RoleId 用于关联本地缓存)
-      const sample = charData[0] || wepData[0];
-      const roleId = sample?.roleId || sample?.uid || 'imported_user';
-
-      // 3. 数据标准化
-      const newCharRecords = charData.map((item: any) => normalizeRecord(item, false));
-      const newWepRecords = wepData.map((item: any) => normalizeRecord(item, true));
-
-      // 4. 合并与去重
-      const cached = loadCachedRecords(roleId);
-      
-      characterRecords.value = mergeAndSortRecords(cached.chars, newCharRecords);
-      weaponRecords.value = mergeAndSortRecords(cached.weps, newWepRecords);
-
-      // 5. 持久化存储
-      saveRecordsToCache(roleId, {
-        chars: characterRecords.value,
-        weps: weaponRecords.value
-      });
-
-      // 6. 触发分析引擎并切换视图
-      processGachaData(); // 重新计算概率、大保底等信息
-      viewMode.value = 'analyze'; // 切换回分析图表页面
-
-    } catch (error: any) {
-      console.error('导入分析失败:', error);
-      collectError.value = '导入失败: ' + (error.message || '格式错误');
-    } finally {
-      isSubmitting.value = false;
-      // 解析完成后清理状态，防止重复提交
-      selectedFile.value = null;
-      selectedFileName.value = '';
+    if (charData.length === 0 && wepData.length === 0) {
+      throw new Error('文件内容不符合规范或记录为空');
     }
-  });
 
-  // 读取文件内容
-  reader.readAsText(file);
+    // 2. 身份识别 (获取 RoleId 用于关联本地缓存)
+    const sample = charData[0] || wepData[0];
+    const roleId = sample?.roleId || sample?.uid || 'imported_user';
+
+    // 3. 数据标准化
+    const newCharRecords = charData.map((item: any) => normalizeRecord(item, false));
+    const newWepRecords = wepData.map((item: any) => normalizeRecord(item, true));
+
+    // 4. 合并与去重
+    const cached = loadCachedRecords(roleId);
+
+    characterRecords.value = mergeAndSortRecords(cached.chars, newCharRecords);
+    weaponRecords.value = mergeAndSortRecords(cached.weps, newWepRecords);
+
+    // 5. 持久化存储
+    saveRecordsToCache(roleId, {
+      chars: characterRecords.value,
+      weps: weaponRecords.value
+    });
+
+    // 6. 触发分析引擎并切换视图
+    processGachaData(); // 重新计算概率、大保底等信息
+    viewMode.value = 'analyze'; // 切换回分析图表页面
+
+  } catch (error: any) {
+    console.error('导入分析失败:', error);
+    collectError.value = '导入失败：' + (error.message || '格式错误');
+  } finally {
+    // 无论成功失败，最后都重置状态
+    isSubmitting.value = false;
+    selectedFile.value = null;
+    selectedFileName.value = '';
+  }
 }
 
 
@@ -764,14 +757,14 @@ function saveRecordsToCache(roleId: string, data: { chars: GachaRecord[], weps: 
   try {
     const localData = localStorage.getItem(CACHE_KEY);
     const allData = localData ? JSON.parse(localData) : {};
-    
+
     // 存入分流后的结构
     allData[roleId] = {
       chars: data.chars,
       weps: data.weps,
       updateTs: Date.now()
     };
-    
+
     localStorage.setItem(CACHE_KEY, JSON.stringify(allData));
     localStorage.setItem(LAST_ROLE_ID_KEY, roleId);
   } catch (error) {
@@ -808,7 +801,7 @@ function normalizeRecord(item: any, isWeapon: boolean): GachaRecord {
 // 比较seqid
 function parseSeqId(seqId: string): number {
   const num = Number.parseInt(seqId, 10);
-  return isNaN(num) ? 0 : num;
+  return Number.isNaN(num) ? 0 : num;
 }
 
 function mergeAndSortRecords(oldList: GachaRecord[], newList: GachaRecord[]): GachaRecord[] {
@@ -816,8 +809,8 @@ function mergeAndSortRecords(oldList: GachaRecord[], newList: GachaRecord[]): Ga
   // seqId 在同类卡池内是唯一的，直接作为 Key
   for (const r of oldList) map.set(String(r.seqId), r);
   for (const r of newList) map.set(String(r.seqId), r);
-  
-  return Array.from(map.values()).sort((a, b) => {
+
+  return Array.from(map.values()).toSorted((a, b) => {
     return parseSeqId(a.seqId) - parseSeqId(b.seqId);
   });
 }
@@ -826,16 +819,16 @@ function mergeAndSortRecords(oldList: GachaRecord[], newList: GachaRecord[]): Ga
 onMounted(() => {
   const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
   const lastRoleId = localStorage.getItem(LAST_ROLE_ID_KEY);
-  
+
   if (lastRoleId) {
     const cached = loadCachedRecords(lastRoleId);
     // 只有当存在任意记录时才进入分析页
     if (cached.chars.length > 0 || cached.weps.length > 0) {
       characterRecords.value = cached.chars;
       weaponRecords.value = cached.weps;
-      
+
       // 执行全量分析（不需要传参）
-      processGachaData(); 
+      processGachaData();
       viewMode.value = 'analyze';
     }
   }
@@ -850,14 +843,14 @@ function goToUpdate() {
 // 确认并清除缓存
 function confirmClearCache() {
   if (confirm('⚠️ 确定要删除所有本地抽卡记录吗？')) {
-    localStorage.removeItem(CACHE_KEY); 
+    localStorage.removeItem(CACHE_KEY);
     localStorage.removeItem(LAST_ROLE_ID_KEY);
-    
+
     characterRecords.value = [];
     weaponRecords.value = [];
     characterSixStarResults.value = [];
     weaponSixStarResults.value = [];
-    
+
     inputCredential.value = '';
     collectError.value = '';
     viewMode.value = 'collect';
@@ -872,10 +865,10 @@ function processGachaData() {
   const analyzeSingleType = (list: GachaRecord[]) => {
     const resultWithPadded: SixStarEntry[] = [];
     // 增加数据结构：freeRecords 用于存放免费产出
-    const poolState: Record<string, { 
-      count: number; 
-      fiveStars: string[]; 
-      freeRecords: { rarity: number; name: string }[] 
+    const poolState: Record<string, {
+      count: number;
+      fiveStars: string[];
+      freeRecords: { rarity: number; name: string }[]
     }> = {};
 
     for (const record of list) {
@@ -920,7 +913,7 @@ function processGachaData() {
       if (state.freeRecords.length > 0) {
         // 找到该池子中 seqId 最小的记录作为锚点（用于让它显示在底端）
         const firstInPool = list.find(r => r.poolId === poolId);
-        
+
         resultWithPadded.push({
           poolId,
           poolName: firstInPool?.poolName || '未知卡池',
@@ -928,8 +921,8 @@ function processGachaData() {
           charId: 'free_bundle',
           count: 10,
           timestamp: firstInPool?.gachaTs || Date.now(),
-          seqId: (firstInPool?.seqId || '0') + '_bottom_free',     
-          fiveStars: state.freeRecords.map(r => r.name) 
+          seqId: (firstInPool?.seqId || '0') + '_bottom_free',
+          fiveStars: state.freeRecords.map(r => r.name)
         });
       }
     }
@@ -956,21 +949,20 @@ function processGachaData() {
   };
 
   // 3. 执行分析并赋值给隔离的响应式变量
-  // 使用之前定义的 parseSeqId 进行降序排列（最新的在前面）
+  // 按 parseSeqId 进行降序排列（最新的在前面）
   const sortByDesc = (a: SixStarEntry, b: SixStarEntry) => parseSeqId(b.seqId) - parseSeqId(a.seqId);
-  
+
   // 分别处理角色和武器
   const charAnalysis = analyzeSingleType(characterRecords.value);
   const wepAnalysis = analyzeSingleType(weaponRecords.value);
 
   // 4. 更新响应式结果
-  characterSixStarResults.value = charAnalysis.sort(sortByDesc);
-  weaponSixStarResults.value = wepAnalysis.sort(sortByDesc);
+  characterSixStarResults.value = charAnalysis.toSorted(sortByDesc);
+  weaponSixStarResults.value = wepAnalysis.toSorted(sortByDesc);
 
   // 5. 兼容性适配：更新 rollData 供旧版 UI 模板渲染
-  // 如果你的 template 还在使用 rollData，这行代码能保证它不会失效
   rollData.value = [...characterSixStarResults.value, ...weaponSixStarResults.value]
-    .sort(sortByDesc)
+    .toSorted(sortByDesc)
     .map(item => [
       item.poolId,
       item.poolName,
@@ -978,8 +970,8 @@ function processGachaData() {
       item.count
     ]);
 
-  console.log('✅ 分析完成：角色 6 星记录', characterSixStarResults.value.length, '条');
-  console.log('✅ 分析完成：武器 6 星记录', weaponSixStarResults.value.length, '条');
+  // console.log('✅ 分析完成：角色 6 星记录', characterSixStarResults.value.length, '条');
+  // console.log('✅ 分析完成：武器 6 星记录', weaponSixStarResults.value.length, '条');
 }
 
 // 判断是否歪了
@@ -997,7 +989,7 @@ function isOffPool(record: SixStarEntry): boolean {
 // 在 <script setup> 中
 const groupedByPool = computed(() => {
   const map = new Map<string, { poolId: string; poolName: string; records: SixStarEntry[] }>();
-  
+
   // 遍历所有六星记录（含“已垫”）
   for (const record of sixStarRecordsWithCount.value) {
     if (!map.has(record.poolId)) {
@@ -1021,7 +1013,7 @@ const groupedByPool = computed(() => {
   console.log('分组结果:', Array.from(map.values()));
   return Array.from(map.values());
 
-  return Array.from(map.values()).sort((a, b) => {
+  return Array.from(map.values()).toSorted((a, b) => {
     const aOrder = orderMap[a.poolId] ?? orderMap['default'];
     const bOrder = orderMap[b.poolId] ?? orderMap['default'];
     return aOrder! - bOrder!;
@@ -1058,7 +1050,7 @@ const currentPoolGroup = computed(() => {
 // ========== 计算相关 ==========
 
 const totalAllPulls = computed(() => {
-  const { limited, permanent, weapon } = poolSummary.value;
+  const { limited, permanent } = poolSummary.value;
   return limited.total + permanent.total;
 });
 
@@ -1066,9 +1058,6 @@ const totalAllPulls = computed(() => {
 const totalSixStarCount = computed(() => {
   const { limited, permanent } = poolSummary.value;
   return limited.totalCount + permanent.totalCount;
-});
-const totalPulls = computed(() => {
-  return realSixStarRecords.value.reduce((sum, r) => sum + r.count, 0);
 });
 
 // 五星计数
@@ -1109,7 +1098,7 @@ const poolSummary = computed(() => {
   };
 
   // 按时间正序遍历
-  const chronologicalRecords = [...sixStarRecordsWithCount.value].reverse();
+  const chronologicalRecords = [...sixStarRecordsWithCount.value].toReversed();
 
   for (const record of chronologicalRecords) {
     const type = getPoolType(record.poolId);
@@ -1135,10 +1124,10 @@ const poolSummary = computed(() => {
       // 如果是 UP 角色
       if (isOnBanner(record)) {
         summary[type].nonPityCount += 1;
-        
+
         // 将这一段路程的所有抽数（含之前歪掉的）加入“UP总投入”
         totalPullsForUp[type] += runningPullsSinceLastUp[type];
-        
+
         // 重置“距上一个UP”的计数器，开始下一轮统计
         runningPullsSinceLastUp[type] = 0;
       }
@@ -1189,7 +1178,7 @@ const poolDistribution = computed(() => {
 
 const topCharacters = computed(() => {
   const freq: Record<string, number> = {};
-  
+
   for (const r of realSixStarRecords.value) {
     const type = getPoolType(r.poolId);
     if (type === 'weapon') continue;
@@ -1199,7 +1188,7 @@ const topCharacters = computed(() => {
 
   return Object.entries(freq)
     .map(([name, times]) => ({ name, times }))
-    .sort((a, b) => b.times - a.times)
+    .toSorted((a, b) => b.times - a.times)
     .slice(0, 3);
 });
 
@@ -1220,29 +1209,25 @@ interface GachaTag {
 const gachaTags = computed(() => {
   const tags: GachaTag[] = [];
   const realSixStars = realSixStarRecords.value;
-
-  // 1. 先获取所有卡池的总抽数和总出货数
-  const { limited, permanent, weapon } = poolSummary.value;
-
   const graduateAverage = poolSummary.value.limited.graduateAverage;
   // 2. 添加平均出货数对应的等级标签
   if (graduateAverage > 0) {
   if (graduateAverage <= 40) {
       tags.push({ name: '至尊欧皇', type: 'lucky' });
-    } else if (graduateAverage <= 65) { 
+    } else if (graduateAverage <= 65) {
       tags.push({ name: '欧皇', type: 'lucky' });
     } else if (graduateAverage <= 85) {
       tags.push({ name: '路过的欧洲人', type: 'lucky' });
     } else if (graduateAverage <= 105) {
       tags.push({ name: '小非酋', type: 'unlucky' });
-    } else { 
+    } else {
       tags.push({ name: '血统纯正的非酋', type: 'unlucky' });
     }
   }
 
 
   // 1. 统计十连内多金标签（十连双金/三金）
-  const sortedByTime = [...realSixStars].sort((a, b) => {
+  const sortedByTime = [...realSixStars].toSorted((a, b) => {
     const tsA = safeTimestamp(a.timestamp);
     const tsB = safeTimestamp(b.timestamp);
     return tsA - tsB;
@@ -1304,7 +1289,7 @@ const gachaTags = computed(() => {
 
   // 5. 全勤不歪
   const limitedSixStars = realSixStars.filter(r => getPoolType(r.poolId) === 'limited');
-  if (limitedSixStars.length > 0 && limitedSixStars.every(isOnBanner) && !tags.some(t => t.name === '全勤不歪')) {
+  if (limitedSixStars.length > 0 && limitedSixStars.every(r => isOnBanner(r)) && !tags.some(t => t.name === '全勤不歪')) {
     tags.push({ name: '全勤不歪', type: 'lucky' });
   }
 
@@ -1321,21 +1306,21 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
   if (isVirtualRecord(current.character)) return null;
 
   let isBigPity = false;
-  let debugPulls = 0; 
+  let debugPulls = 0;
 
-  const sortedRecords = [...allInGroup].sort((a, b) => Number.parseInt(a.seqId) - Number.parseInt(b.seqId));
+  const sortedRecords = [...allInGroup].toSorted((a, b) => Number.parseInt(a.seqId) - Number.parseInt(b.seqId));
   const currentIndex = sortedRecords.findIndex(r => r.seqId === current.seqId);
-  
+
   if (currentIndex !== -1) {
     // --- 核心修复：向上追溯直到遇到“上一个 UP” ---
     for (let i = currentIndex; i >= 0; i--) {
       const r = sortedRecords[i];
-      
+
       if (r!.character !== '赠送十连') {
         debugPulls += r!.count;
       }
 
-      if (i !== currentIndex && 
+      if (i !== currentIndex &&
         isOnBanner(r!)) {
           break;
         }
@@ -1355,7 +1340,7 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
   if (current.count > 65) {
     prob = 0.8 + (current.count - 65) * 5;
   }
-  
+
   return {
     label: `${Math.min(prob, 100).toFixed(1)}%`,
     subLabel: isOnBanner(current) ? '50% 不歪' : '50% 歪',
@@ -1431,13 +1416,6 @@ function selectPool (pool: 'limited' | 'permanent' | 'weapon') {
   selectedPool.value = pool;
 }
 
-const filteredConsecutiveGroups = computed(() => {
-  if (!selectedPool.value) return consecutiveGroups.value;
-  return consecutiveGroups.value.filter(
-    segment => getPoolType(segment.records[0]?.poolId || '') === selectedPool.value
-  );
-});
-
 
 const expandedSeqId = ref<string | null>(null);
 
@@ -1449,12 +1427,12 @@ function toggleExpand(seqId: string) {
   }
 }
 
-// 获取头像 URL 
+// 获取头像 URL
 function getAvatarUrl(id: string, isWeapon: boolean = false): string {
   if (id === 'padded') {
-    return `https://cos.yituliu.cn/endfield/other/blank.webp `; 
+    return `https://cos.yituliu.cn/endfield/other/blank.webp `;
   }
-  
+
   if (id === 'free_bundle') {
     return `https://cos.yituliu.cn/endfield/other/blank.webp `;
   }
@@ -1462,7 +1440,7 @@ function getAvatarUrl(id: string, isWeapon: boolean = false): string {
   if (isWeapon) {
     return `https://cos.yituliu.cn/endfield/unpack-images/items/${id}.webp`;
   }
-  
+
   return `https://cos.yituliu.cn/endfield/unpack-images/characters/icon_${id}.webp`;
 }
 
@@ -1517,7 +1495,7 @@ function triggerDownload(blob: Blob) {
   const link = document.createElement('a');
   const now = new Date();
   const dateStr = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
-  
+
   link.download = `endfield_gacha_backup_${dateStr}.json`;
   link.href = url;
   document.body.append(link);
