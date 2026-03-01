@@ -251,7 +251,7 @@
                   <img
                     v-if="record.charId && record.character !== '已垫'"
                     :alt="record.character"
-                    :src="getAvatarUrl(record.charId)"
+                    :src="getAvatarUrl(record.charId, getPoolType(record.poolId) === 'weapon')"
                     style="width: 100%; height: 100%; object-fit: contain; background-color: #fff; border-radius: 50%; border: 1px solid #e5e7eb;"
                     @error="handleImageError"
                   />
@@ -299,7 +299,7 @@
                       >
                         <img
                           :alt="item.name"
-                          :src="getAvatarUrl(item.name)"
+                          :src="getAvatarUrl(item.name, getPoolType(record.poolId) === 'weapon')"
                           style="width: 32px; height: 32px; object-fit: contain; background-color: #fff; border-radius: 4px; border: 1px solid #eee;"
                           @error="handleImageError"
                         />
@@ -1267,9 +1267,15 @@ function toggleExpand(seqId: string) {
   }
 }
 
-// 获取头像 URL
-function getAvatarUrl(charId: string): string {
-  return `https://cos.yituliu.cn/endfield/unpack-images/characters/icon_${charId}.webp`;
+// 修改后的获取头像 URL 函数
+function getAvatarUrl(id: string, isWeapon: boolean = false): string {
+  // 如果是武器，路径指向 weapons 文件夹，并使用 weaponId
+  if (isWeapon) {
+    return `https://cos.yituliu.cn/endfield/unpack-images/items/${id}.webp`;
+  }
+  
+  // 否则指向角色文件夹
+  return `https://cos.yituliu.cn/endfield/unpack-images/characters/icon_${id}.webp`;
 }
 
 // 图片加载失败时
