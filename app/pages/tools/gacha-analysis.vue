@@ -1092,11 +1092,7 @@ const gachaTags = computed(() => {
 
   // 1. 先获取所有卡池的总抽数和总出货数
   const { limited, permanent, weapon } = poolSummary.value;
-  // 计算全卡池综合平均出货数
-  const totalAllPools = limited.total + permanent.total + weapon.total;
-  const totalAllCounts = limited.totalCount + permanent.totalCount + weapon.totalCount;
-  // 复用现有平均计算逻辑：总抽数 / 出货次数
-  const avgPulls = totalAllCounts > 0 ? totalAllPools / totalAllCounts : 0;
+
   const graduateAverage = poolSummary.value.limited.graduateAverage;
   // 2. 添加平均出货数对应的等级标签
   if (graduateAverage > 0) {
