@@ -5,7 +5,7 @@
 <!--"vuetifyIcon": "mdi-chart-bar"-->
 <!--},-->
 
-
+<!-- 当卡池更新时请到/custom/core/gacha-pool-info.ts增加新卡池信息 -->
 <template>
 
   <div style=" border-radius: 16px; padding: 24px;">
@@ -13,52 +13,77 @@
     <div v-if="viewMode === 'collect'" class="collect-form">
       <header class="page-title">导入抽卡记录</header>
 
-      <div class="form-group">
-        <label>在线查询</label>
+      <div style="display: flex; background: #f3f4f6; padding: 4px; border-radius: 8px; margin-bottom: 24px;">
+        <button 
+          @click="importMethod = 'online'"
+          style="flex: 1; padding: 8px; border-radius: 6px; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s;"
+          :style="{ 
+            backgroundColor: importMethod === 'online' ? '#fff' : 'transparent',
+            boxShadow: importMethod === 'online' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
+            fontWeight: importMethod === 'online' ? 'bold' : 'normal',
+            color: importMethod === 'online' ? '#3b82f6' : '#6b7280'
+          }"
+        >
+          链接导入
+        </button>
+        <button 
+          @click="importMethod = 'local'"
+          style="flex: 1; padding: 8px; border-radius: 6px; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s;"
+          :style="{ 
+            backgroundColor: importMethod === 'local' ? '#fff' : 'transparent',
+            boxShadow: importMethod === 'local' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
+            fontWeight: importMethod === 'local' ? 'bold' : 'normal',
+            color: importMethod === 'local' ? '#3b82f6' : '#6b7280'
+          }"
+        >
+          本地文件
+        </button>
+      </div>
+
+      <div v-show="importMethod === 'online'" class="form-group">
         <textarea
           v-model="inputCredential"
           :disabled="isSubmitting"
           placeholder="请将查询链接内所有内容粘贴进来"
-          rows="3"
+          rows="4"
+          style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; outline: none; resize: none;"
         />
-        <div style="display: flex; gap: 16px; margin-top: 8px;">
-          <p class="help-text">
-            <a href="https://web-api.hypergryph.com/account/info/hg" target="_blank">登陆鹰角通行证后，点击获取查询链接</a>
-          </p>
-          <p class="help-text">
-            <a 
-              @click="showLocalImport = !showLocalImport"
-            >
-              {{ showLocalImport ? '隐藏本地导入' : '从本地导入' }}
-            </a>
-          </p>
-        </div>
+        <p class="help-text" style="margin-top: 8px;">
+          <a href="https://web-api.hypergryph.com/account/info/hg" target="_blank" style="color: #3b82f6; text-decoration: none;">
+            点击此处获取查询链接（需登陆鹰角通行证）
+          </a>
+        </p>
       </div>
 
-      <transition name="fade">
-        <div 
-          v-if="showLocalImport" 
-          class="form-group" 
-          style="margin-top: 20px; padding: 16px; border: 2px dashed #eee; border-radius: 8px; background-color: #fafafa;"
-        >
-          <label class="help-text">本地导入（JSON备份文件）</label>
-          <input 
-            accept=".json" 
-            :disabled="isSubmitting" 
-            style="font-size: 14px;" 
-            type="file"
-            @change="handleImportFile"
-          />
-        </div>
-      </transition>
-      <p v-if="collectError" class="error-text">{{ collectError }}</p>
+      <div 
+        v-show="importMethod === 'local'" 
+        class="form-group" 
+        style="padding: 24px; border: 2px dashed #e5e7eb; border-radius: 12px; background-color: #fafafa; text-align: center;"
+      >
+        <label style="display: block; margin-bottom: 12px; color: #374151; font-weight: 500;">上传 JSON 备份文件</label>
+        <input 
+          accept=".json" 
+          :disabled="isSubmitting" 
+          type="file"
+          @change="onFileSelected"
+          style="font-size: 14px; color: #6b7280;"
+        />
+        <p v-if="selectedFileName" style="margin-top: 10px; font-size: 0.85rem; color: #10b981; font-weight: 500;">
+          已选中: {{ selectedFileName }}
+        </p>
+        <p style="font-size: 0.75rem; color: #9ca3af; margin-top: 8px;">支持从本工具导出的 .json 格式文件</p>
+      </div>
+
+      <p v-if="collectError" class="error-text" style="color: #ef4444; font-size: 0.875rem; margin-top: 12px;">{{ collectError }}</p>
 
       <button
         class="submit-btn"
-        :disabled="isSubmitting"
-        @click="submitAndVerify"
+        :disabled="isSubmitting || (importMethod === 'local' && !selectedFile)"
+        @click="handleMainAction"
+        style="width: 100%; margin-top: 24px; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: opacity 0.2s;"
+        :style="{ opacity: (isSubmitting || (importMethod === 'local' && !selectedFile)) ? 0.6 : 1 }"
       >
-        {{ isSubmitting ? '验证中...' : '开始分析' }}
+        {{ isSubmitting ? '分析中...' : '开始分析' }}
       </button>
     </div>
 
@@ -226,7 +251,6 @@
         </div>
 
         <!-- 3. 数据列表渲染 -->
-        <!-- 注意：这里循环的是 currentPoolGroup，它已经根据 selectedPool 过滤过了 -->
         <div v-for="group in currentPoolGroup" :key="group.poolId" class="mb-8">
           <h2 
               class="text-h5 mb-3" 
@@ -288,8 +312,7 @@
                       style="position: absolute; right: 8px; display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;"
                     >
                       <template v-if="getProbabilityInfo(record, group.records)">
-                        <span
-:style="{ 
+                        <span :style="{ 
                           fontSize: '0.75rem', 
                           fontWeight: 'bold', 
                           color: getProbabilityInfo(record, group.records)!.isBig ? '#d97706' : '#374151',
@@ -403,8 +426,10 @@
 import { computed, onMounted, ref } from 'vue';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 
+// 调试开关
+const USE_DEBUG_DATA = false;
 
-// ========== 加载/缓存数据相关 ==========
+// ========== 获取、加载抽卡数据==========
 
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 
@@ -413,19 +438,18 @@ const viewMode = ref<'collect' | 'analyze'>('collect');
 const inputCredential = ref('');
 const isSubmitting = ref(false);
 const collectError = ref('');
-const records = ref<GachaRecord[]>([]);
 const sixStarRecordsWithCount = computed(() => {
   return [...characterSixStarResults.value, ...weaponSixStarResults.value]
     .sort((a, b) => parseSeqId(b.seqId) - parseSeqId(a.seqId));
 });
 const realSixStarRecords = computed(() => {
   return sixStarRecordsWithCount.value.filter(r => 
-    r.charId !== 'padded' &&      // 排除已垫
-    r.charId !== 'free_bundle'    // 排除免费赠送虚拟节点
+    r.charId !== 'padded' &&      
+    r.charId !== 'free_bundle'    
   );
 });
 
-const showLocalImport = ref(false);
+const importMethod = ref('online');
 
 const characterRecords = ref<GachaRecord[]>([]);
 const weaponRecords = ref<GachaRecord[]>([]);
@@ -509,92 +533,17 @@ for (const pool of gachaPools) {
   upCharMap.set(pool.poolId, pool.upCharName);
 }
 
-// 比较seqid
-function parseSeqId(seqId: string): number {
-  const num = Number.parseInt(seqId, 10);
-  return isNaN(num) ? 0 : num;
-}
+// ========== 通过链接获取 ==========
 
 // 提交并验证用户输入的 UID 和 URL
 const CACHE_KEY = 'endfield_gacha_records_v2';
 const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
 
 
-// 从本地缓存读取数据（适配物理隔离结构）
-
-function loadCachedRecords(roleId: string): { chars: GachaRecord[], weps: GachaRecord[] } {
-  const CACHE_KEY = 'endfield_gacha_records_v2';
-  const localData = localStorage.getItem(CACHE_KEY);
-  if (!localData) return { chars: [], weps: [] };
-
-  try {
-    const parsed = JSON.parse(localData);
-    const userData = parsed[roleId] || {};
-    // 确保返回的是分流后的对象结构
-    return {
-      chars: Array.isArray(userData.chars) ? userData.chars : [],
-      weps: Array.isArray(userData.weps) ? userData.weps : []
-    };
-  } catch {
-    return { chars: [], weps: [] };
-  }
-}
-
-// 保存记录到 localStorage
-function saveRecordsToCache(roleId: string, data: { chars: GachaRecord[], weps: GachaRecord[] }) {
-  const CACHE_KEY = 'endfield_gacha_records_v2';
-  const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
-  try {
-    const localData = localStorage.getItem(CACHE_KEY);
-    const allData = localData ? JSON.parse(localData) : {};
-    
-    // 存入分流后的结构
-    allData[roleId] = {
-      chars: data.chars,
-      weps: data.weps,
-      updateTs: Date.now()
-    };
-    
-    localStorage.setItem(CACHE_KEY, JSON.stringify(allData));
-    localStorage.setItem(LAST_ROLE_ID_KEY, roleId);
-  } catch (error) {
-    console.error('保存失败', error);
-  }
-}
-
-// 调试开关
-const USE_DEBUG_DATA = false;
-
-/**
- * 标准化单条记录：处理字段兼容性并映射角色/武器
- */
-function normalizeRecord(item: any, isWeapon: boolean): GachaRecord {
-  return {
-    id: item.id ?? 0,
-    endfieldUid: '',
-    uid: item.roleId || item.uid || 'unknown',
-    poolId: item.poolId || '',
-    poolName: item.poolName || '',
-    // 关键逻辑：如果是武器池，将武器名称/ID映射到通用的 charName/charId 字段
-    charName: isWeapon ? (item.weaponName || item.charName) : item.charName,
-    charId: isWeapon ? (item.weaponId || item.charId) : item.charId,
-    rarity: Number(item.rarity ?? 0),
-    gachaTs: item.gachaTs ?? Date.now(),
-    seqId: String(item.seqId ?? ''),
-    lang: item.lang || 'zh-cn',
-    poolType: item.poolType || '',
-    serverId: item.serverId || '',
-    isFree: (item.isFree !== undefined ? item.isFree : item.free) ?? false,
-    isNew: (item.isNew !== undefined ? item.isNew : item.new) ?? false,
-  };
-}
-
 // 提交并验证用户输入的 UID 和 URL
 
 async function submitAndVerify() {
-  // ==========================================
-  // 1. 【调试模式】
-  // ==========================================
+  // 调试模式】
   if (USE_DEBUG_DATA) {
     console.log('--- [DEBUG MODE] 正在加载本地分流数据 ---');
     try {
@@ -622,9 +571,7 @@ async function submitAndVerify() {
     }
   }
 
-  // ==========================================
-  // 2. 【正式模式：凭证校验】
-  // ==========================================
+  // 【正式分析】：凭证调验
   const credentialJson = inputCredential.value.trim();
   if (!credentialJson) {
     collectError.value = '请粘贴完整的登录凭证 JSON';
@@ -704,6 +651,164 @@ async function submitAndVerify() {
   }
 }
 
+// ========== 通过导入本地文件获取数据 ==========
+
+async function processLocalFile(file: File) {
+  isSubmitting.value = true;
+  collectError.value = '';
+
+  const reader = new FileReader();
+  
+  // 使用 onload 替代 addEventListener，逻辑更清晰
+  reader.onload = async (e) => {
+    try {
+      const content = e.target?.result as string;
+      const importedData = JSON.parse(content);
+
+      // 1. 结构校验与兼容处理
+      // 兼容两种格式：带 data 外层的导出格式 和 直接包含 record 的原始格式
+      const charData = importedData.data?.characterPoolRecord || importedData.characterPoolRecord || [];
+      const wepData = importedData.data?.weaponPoolRecord || importedData.weaponPoolRecord || [];
+
+      if (charData.length === 0 && wepData.length === 0) {
+        throw new Error('文件内容不符合规范或记录为空');
+      }
+
+      // 2. 身份识别 (获取 RoleId 用于关联本地缓存)
+      const sample = charData[0] || wepData[0];
+      const roleId = sample?.roleId || sample?.uid || 'imported_user';
+
+      // 3. 数据标准化
+      const newCharRecords = charData.map((item: any) => normalizeRecord(item, false));
+      const newWepRecords = wepData.map((item: any) => normalizeRecord(item, true));
+
+      // 4. 合并与去重
+      const cached = loadCachedRecords(roleId);
+      
+      characterRecords.value = mergeAndSortRecords(cached.chars, newCharRecords);
+      weaponRecords.value = mergeAndSortRecords(cached.weps, newWepRecords);
+
+      // 5. 持久化存储
+      saveRecordsToCache(roleId, {
+        chars: characterRecords.value,
+        weps: weaponRecords.value
+      });
+
+      // 6. 触发分析引擎并切换视图
+      processGachaData(); // 重新计算概率、大保底等信息
+      viewMode.value = 'analyze'; // 切换回分析图表页面
+
+    } catch (error: any) {
+      console.error('导入分析失败:', error);
+      collectError.value = '导入失败: ' + (error.message || '格式错误');
+    } finally {
+      isSubmitting.value = false;
+      // 解析完成后清理状态，防止重复提交
+      selectedFile.value = null;
+      selectedFileName.value = '';
+    }
+  };
+
+  // 读取文件内容
+  reader.readAsText(file);
+}
+
+
+const selectedFile = ref<File | null>(null);
+const selectedFileName = ref('');
+
+// 当用户选择文件时，仅记录文件，不执行分析
+const onFileSelected = (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  if (target.files && target.files[0]) {
+    selectedFile.value = target.files[0];
+    selectedFileName.value = target.files[0].name;
+    collectError.value = ''; // 清空之前的报错
+  }
+};
+
+// 按钮点击处理函数
+const handleMainAction = () => {
+  if (importMethod.value === 'online') {
+    submitAndVerify();
+  } else {
+    if (selectedFile.value) {
+      processLocalFile(selectedFile.value);
+    }
+  }
+};
+
+function loadCachedRecords(roleId: string): { chars: GachaRecord[], weps: GachaRecord[] } {
+  const CACHE_KEY = 'endfield_gacha_records_v2';
+  const localData = localStorage.getItem(CACHE_KEY);
+  if (!localData) return { chars: [], weps: [] };
+
+  try {
+    const parsed = JSON.parse(localData);
+    const userData = parsed[roleId] || {};
+    // 确保返回的是分流后的对象结构
+    return {
+      chars: Array.isArray(userData.chars) ? userData.chars : [],
+      weps: Array.isArray(userData.weps) ? userData.weps : []
+    };
+  } catch {
+    return { chars: [], weps: [] };
+  }
+}
+
+// 保存记录到 localStorage
+function saveRecordsToCache(roleId: string, data: { chars: GachaRecord[], weps: GachaRecord[] }) {
+  const CACHE_KEY = 'endfield_gacha_records_v2';
+  const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
+  try {
+    const localData = localStorage.getItem(CACHE_KEY);
+    const allData = localData ? JSON.parse(localData) : {};
+    
+    // 存入分流后的结构
+    allData[roleId] = {
+      chars: data.chars,
+      weps: data.weps,
+      updateTs: Date.now()
+    };
+    
+    localStorage.setItem(CACHE_KEY, JSON.stringify(allData));
+    localStorage.setItem(LAST_ROLE_ID_KEY, roleId);
+  } catch (error) {
+    console.error('保存失败', error);
+  }
+}
+
+// ========== 对获取到的数据进行标准化 ==========
+/**
+ * 标准化单条记录：处理字段兼容性并映射角色/武器
+ */
+function normalizeRecord(item: any, isWeapon: boolean): GachaRecord {
+  return {
+    id: item.id ?? 0,
+    endfieldUid: '',
+    uid: item.roleId || item.uid || 'unknown',
+    poolId: item.poolId || '',
+    poolName: item.poolName || '',
+    charName: isWeapon ? (item.weaponName || item.charName) : item.charName,
+    charId: isWeapon ? (item.weaponId || item.charId) : item.charId,
+    rarity: Number(item.rarity ?? 0),
+    gachaTs: item.gachaTs ?? Date.now(),
+    seqId: String(item.seqId ?? ''),
+    lang: item.lang || 'zh-cn',
+    poolType: item.poolType || '',
+    serverId: item.serverId || '',
+    isFree: (item.isFree !== undefined ? item.isFree : item.free) ?? false,
+    isNew: (item.isNew !== undefined ? item.isNew : item.new) ?? false,
+  };
+}
+
+
+
+// 比较seqid
+function parseSeqId(seqId: string): number {
+  const num = Number.parseInt(seqId, 10);
+  return isNaN(num) ? 0 : num;
+}
 
 function mergeAndSortRecords(oldList: GachaRecord[], newList: GachaRecord[]): GachaRecord[] {
   const map = new Map<string, GachaRecord>();
@@ -1205,10 +1310,9 @@ const gachaTags = computed(() => {
   return tags;
 });
 
-
+// 判断是否为120抽大保底
 // 1. 判断虚拟记录的辅助函数
 const isVirtualRecord = (name: string) => name === '已垫' || name === '赠送十连';
-
 /**
  * 核心逻辑：获取显示所需的概率和保底状态
  */
@@ -1230,13 +1334,10 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
         debugPulls += r!.count;
       }
 
-      // 如果不是当前这条记录，且这条记录是“六星”
-      if (i !== currentIndex && // 判断这只六星是不是 UP 角色
-        // 如果是 UP，说明保底序列在这里重置了，停止累加
+      if (i !== currentIndex && 
         isOnBanner(r!)) {
           break;
         }
-        // 如果是“歪”了，循环不会 break，会继续向上加更早的抽数
     }
 
     if (isOnBanner(current) && debugPulls >= 120) {
@@ -1370,9 +1471,9 @@ function handleImageError(e: Event) {
   img.style.opacity = '0.5';
 }
 
+//===== 导出数据文件 =====
 function exportDataToJson () {
   // 1. 尝试从当前响应式变量中构建完整的原始数据
-  // 我们模仿后端返回的结构，这样导出的文件以后也可以直接作为“凭证”或“备份”导入
   const exportObj = {
     code: 200,
     data: {
@@ -1424,67 +1525,9 @@ function triggerDownload(blob: Blob) {
   URL.revokeObjectURL(url);
 }
 
-// 上传抽卡数据
-async function handleImportFile (event: Event) {
-  const input = event.target as HTMLInputElement;
-  if (!input.files || input.files.length === 0) return;
 
-  const file = input.files[0];
-  isSubmitting.value = true;
-  collectError.value = '';
-
-  const reader = new FileReader();
-  reader.addEventListener('load', async (e) => {
-    try {
-      const content = e.target?.result as string;
-      const importedData = JSON.parse(content);
-
-      // 1. 结构校验：判断是我们导出的格式还是原始格式
-      // 我们在导出时构造了 { data: { characterPoolRecord, weaponPoolRecord } }
-      const charData = importedData.data?.characterPoolRecord || importedData.characterPoolRecord || [];
-      const wepData = importedData.data?.weaponPoolRecord || importedData.weaponPoolRecord || [];
-
-      if (charData.length === 0 && wepData.length === 0) {
-        throw new Error('文件内容不符合规范或记录为空');
-      }
-
-      // 2. 获取 RoleId (用于缓存关联)
-      // 尝试从第一条记录拿 UID
-      const sample = charData[0] || wepData[0];
-      const roleId = sample?.roleId || sample?.uid || 'imported_user';
-
-      // 3. 标准化数据 (复用你现有的 normalizeRecord)
-      const newCharRecords = charData.map((item: any) => normalizeRecord(item, false));
-      const newWepRecords = wepData.map((item: any) => normalizeRecord(item, true));
-
-      // 4. 与本地现有缓存合并 (去重)
-      const cached = loadCachedRecords(roleId);
-      characterRecords.value = mergeAndSortRecords(cached.chars, newCharRecords);
-      weaponRecords.value = mergeAndSortRecords(cached.weps, newWepRecords);
-
-      // 5. 写入缓存并分析
-      saveRecordsToCache(roleId, {
-        chars: characterRecords.value,
-        weps: weaponRecords.value
-      });
-
-      processGachaData();
-      viewMode.value = 'analyze';
-
-    } catch (error: any) {
-      console.error('导入失败:', error);
-      collectError.value = '导入失败: ' + (error.message || '格式错误');
-    } finally {
-      isSubmitting.value = false;
-      input.value = '';
-    }
-  });
-
-  reader.readAsText(file!);
-}
-
+//获取用户uid
 const displayUid = computed(() => {
-  // 优先从角色记录拿，拿不到再从武器记录拿
   const firstRecord = characterRecords.value[0] || weaponRecords.value[0];
   return firstRecord?.uid || '未知';
 });
