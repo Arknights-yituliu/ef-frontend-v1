@@ -278,7 +278,7 @@
                 :key="`${group.poolId}-${record.seqId}`"
                 class="custom-gacha-item mb-2"
                 :class="{ 'on-banner': isOnBanner(record) }"
-                style="cursor: pointer; display: flex; align-items: center; padding: 8px; border-radius: 8px; transition: background 0.2s;"
+                style="cursor: pointer; display: flex; align-items: center; padding: 8px; border-radius: 8px; transition: background 0.3s;"
                 @click="toggleExpand(record.seqId)"
                 @mouseenter="($event.currentTarget as HTMLElement).style.backgroundColor = '#f3f4f6'"
                 @mouseleave="($event.currentTarget as HTMLElement).style.backgroundColor = 'transparent'"
@@ -300,7 +300,7 @@
                     <div
                       class="gacha-bar"
                       :class="getBarType(record)"
-                      :style="{ width: (Math.min(getBarWidth(record.count), 100) + '%'), height: '100%', borderRadius: '4px', transition: 'width 0.5s ease' }"
+                      :style="{ width: (Math.min(getBarWidth(record.count), 100) + '%') }"
                     >
                       <div class="pull-count" style="width: 60px; text-align: right; padding-right: 12px; color: #000; font-weight: bold; font-size: 0.9rem;">
                         {{ record.count }} 抽
