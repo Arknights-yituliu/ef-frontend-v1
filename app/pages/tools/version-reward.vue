@@ -55,6 +55,8 @@ import {
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,
   wulingDeltaBotReward,
+  wulingBattleCrateReward,
+  wulingBattleCrateRewardMax,
   wulingDeltaBotRewardMax,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
@@ -88,12 +90,24 @@ for (const reward of intelArchiveReward.value) {
   version1Reward.value.push(reward);
 }
 
-version1Reward.value.push(valleyIVAuryleneCollectReward.value, valleyIVCrateReward.value, valleyIVBattleCrateReward.value, valleyIVDeltaBotReward.value, valleyIVRegionalDevelopmentReward.value, valleyIVRegionalStockBillStoreReward.value, valleyIVSimulationReward.value);
+version1Reward.value.push(valleyIVAuryleneCollectReward.value,
+  valleyIVCrateReward.value,
+  valleyIVBattleCrateReward.value,
+  valleyIVDeltaBotReward.value,
+  valleyIVRegionalDevelopmentReward.value,
+  valleyIVRegionalStockBillStoreReward.value,
+  valleyIVSimulationReward.value,
+);
 for (const reward of valleyIVDefenseConstructionReward.value) {
   version1Reward.value.push(reward);
 }
 
-version1Reward.value.push(wulingAuryleneCollectReward.value, wulingCrateReward.value, wulingDeltaBotReward.value, wulingRegionalDevelopmentReward.value, wulingRegionalStockBillStoreReward.value, wulingSimulationReward.value);
+version1Reward.value.push(wulingAuryleneCollectReward.value,
+  wulingCrateReward.value,
+  wulingDeltaBotReward.value,
+  wulingRegionalDevelopmentReward.value,
+  wulingRegionalStockBillStoreReward.value,
+  wulingSimulationReward.value, wulingBattleCrateReward.value);
 for (const reward of wulingDefenseConstructionReward.value) {
   version1Reward.value.push(reward);
 }
