@@ -1500,7 +1500,7 @@ function clearOrSelectAllWulingRegionalModule(action: boolean) {
   clearOrSelectAll(action, 'rangeSlider', wulingRegionalDevelopmentProgress, [0, 6]);
   clearOrSelectAll(action, 'rangeSlider', wulingAuryleneCollectProgress, [0, 18]);
   clearOrSelectAll(action, 'rangeSlider', wulingCrateRewardProgress, [0, wulingCrateRewardMax]);
-  clearOrSelectAll(action,'rangeSlider', wulingBattleCrateReward, [0, wulingBattleCrateRewardMax]);
+  clearOrSelectAll(action,'rangeSlider', wulingBattleCrateRewardProgress, [0, wulingBattleCrateRewardMax]);
   clearOrSelectAll(action, 'rangeSlider', wulingDeltaBotProgress, [0, wulingDeltaBotRewardMax]);
   clearOrSelectAll(action, 'rangeSlider', wulingSimulationProgress, [0, 9]);
   clearOrSelectAll(action,'button',wulingDefenseConstructionReward)
