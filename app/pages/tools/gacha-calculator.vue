@@ -71,11 +71,11 @@ import {
 import {
   wulingAuryleneCollectReward,
   wulingAuryleneCollectStageTable,
+  wulingBattleCrateReward,
+  wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,
-  wulingBattleCrateRewardMax,
-  wulingBattleCrateReward,
   wulingDeltaBotReward,
   wulingDeltaBotRewardMax,
   wulingRegionalDevelopmentReward,
@@ -1745,8 +1745,8 @@ function checkRewardIsValid(reward: Reward): boolean {
                   v-for="option in poolOptions"
                   class="gacha-calculator-pool-btn-pc"
                   :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
-                  @click="selectedPool(option)"
                   :disabled  = "option.disabled"
+                  @click="selectedPool(option)"
                   >{{ option.name }}<br >{{ option.dateText }}
                 </v-btn>
               </v-btn-group>
@@ -1754,8 +1754,8 @@ function checkRewardIsValid(reward: Reward): boolean {
                 v-for="option in poolOptions"
                 class="gacha-calculator-pool-btn-phone"
                 :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
-                @click="selectedPool(option)"
                 :disabled  = "option.disabled"
+                @click="selectedPool(option)"
                 >{{ option.name }}<br >{{ option.dateText }}
               </v-btn>
 
