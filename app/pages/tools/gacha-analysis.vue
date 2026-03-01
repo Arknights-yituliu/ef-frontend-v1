@@ -958,8 +958,8 @@ const totalAllPulls = computed(() => {
 
 // 总六星数（不含已垫）
 const totalSixStarCount = computed(() => {
-  const { limited, permanent, weapon } = poolSummary.value;
-  return limited.totalCount + permanent.totalCount + weapon.totalCount;
+  const { limited, permanent } = poolSummary.value;
+  return limited.totalCount + permanent.totalCount;
 });
 const totalPulls = computed(() => {
   return realSixStarRecords.value.reduce((sum, r) => sum + r.count, 0);
