@@ -1,151 +1,205 @@
 <template>
-  <div class="coupon-strategy-page">
-    <CustomBackground />
-    <div class="content">
-      <header class="page-title">{{ t('page.materialProfit.couponStrategy.title') }}</header>
-      <p class="page-subtitle">{{ t('page.materialProfit.couponStrategy.subtitle') }}</p>
+  <v-container>
+    <header class="page-title">
+      {{ t('page.materialProfit.couponStrategy.title') }}
+    </header>
+    <p class="text-body-1 text-medium-emphasis mb-8">
+      {{ t('page.materialProfit.couponStrategy.subtitle') }}
+    </p>
 
-      <!-- 第一个大卡片：今日最优策略 -->
-      <v-card class="mb-4">
-        <v-card-title class="text-h6">
-          <v-icon class="mr-2">mdi-calendar-today</v-icon>
-          {{ t('page.materialProfit.couponStrategy.todayStrategy') }}
-          <v-spacer />
-          <div class="refresh-countdown mr-4">
-            <span class="countdown-label mr-2">{{ t('page.materialProfit.couponStrategy.refreshCountdown') }}</span>
-            <v-icon class="mr-1" size="small">mdi-clock-outline</v-icon>
-            <span>{{ countdownText }}</span>
-          </div>
-        </v-card-title>
-        <v-card-text>
-          <v-row>
-            <!-- 武陵 -->
-            <v-col cols="12" md="6">
-              <div class="region-section wuling-region">
-                <div class="region-header">
-                  <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
-                  <span class="region-title">{{ t('page.materialProfit.couponStrategy.wuling') }}</span>
-                </div>
-                <div class="strategy-display">
-                  <div class="strategy-item">
-                    <v-icon class="strategy-icon" color="cyan">mdi-check-circle</v-icon>
-                    <span class="strategy-label">{{ t('page.materialProfit.couponStrategy.lowestPriceBelow', { price: wulingPrices[currentDayIndex] }) }}</span>
-                    <span class="strategy-value wuling-success-text">{{ t('page.materialProfit.couponStrategy.buyAll') }}</span>
-                  </div>
-                  <div class="strategy-item">
-                    <v-icon class="strategy-icon" color="blue-grey">mdi-alert-circle</v-icon>
-                    <span class="strategy-label">{{ t('page.materialProfit.couponStrategy.lowestPriceAbove', { price: wulingPrices[currentDayIndex] }) }}</span>
-                    <span class="strategy-value wuling-warning-text">{{ t('page.materialProfit.couponStrategy.buyHalfQuota') }}</span>
-                  </div>
-                </div>
+    <!-- 第一个大卡片：今日最优策略 -->
+    <v-card class="mb-4">
+      <v-card-title>
+        <v-icon class="mr-2">mdi-calendar-today</v-icon>
+        {{ t('page.materialProfit.couponStrategy.todayStrategy') }}
+        <v-spacer />
+        <div
+          class="d-flex align-center text-body-2 font-weight-semibold px-4 py-2 rounded-pill mr-4"
+          style="background: rgba(102, 126, 234, 0.1)"
+        >
+          <span class="text-caption text-medium-emphasis mr-2">{{
+            t('page.materialProfit.couponStrategy.refreshCountdown')
+          }}</span>
+          <v-icon class="mr-1" size="small">mdi-clock-outline</v-icon>
+          <span>{{ countdownText }}</span>
+        </div>
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <!-- 武陵 -->
+          <v-col cols="12" md="6">
+            <div class="wuling-region pa-4 border rounded-lg">
+              <div class="region-header d-flex align-center mb-4 pb-3">
+                <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
+                <span class="text-subtitle-1 font-weight-bold">{{
+                  t('page.materialProfit.couponStrategy.wuling')
+                }}</span>
               </div>
-            </v-col>
-
-            <!-- 四号谷地 -->
-            <v-col cols="12" md="6">
-              <div class="region-section four-valley-region">
-                <div class="region-header">
-                  <v-icon class="mr-2" color="light-green">mdi-map-marker</v-icon>
-                  <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValley') }}</span>
-                </div>
-                <div class="strategy-display">
-                  <div class="strategy-item">
-                    <v-icon class="strategy-icon" color="light-green">mdi-check-circle</v-icon>
-                    <span class="strategy-label">{{ t('page.materialProfit.couponStrategy.lowestPriceBelow', { price: fourValleyFirstPrices[currentDayIndex] }) }}</span>
-                    <span class="strategy-value four-valley-success-text">{{ t('page.materialProfit.couponStrategy.buyAll') }}</span>
-                  </div>
-                  <div class="strategy-item">
-                    <v-icon class="strategy-icon" color="lime">mdi-information</v-icon>
-                    <span class="strategy-label">{{ t('page.materialProfit.couponStrategy.priceBetween', { price1: fourValleyFirstPrices[currentDayIndex], price2: fourValleySecondPrices[currentDayIndex] }) }}</span>
-                    <span class="strategy-value four-valley-info-text">{{ t('page.materialProfit.couponStrategy.buyOneThirdQuota') }}</span>
-                  </div>
-                  <div class="strategy-item">
-                    <v-icon class="strategy-icon" color="amber">mdi-alert-circle</v-icon>
-                    <span class="strategy-label">{{ t('page.materialProfit.couponStrategy.lowestPriceAbove', { price: fourValleySecondPrices[currentDayIndex] }) }}</span>
-                    <span class="strategy-value four-valley-warning-text">{{ t('page.materialProfit.couponStrategy.buyTwoThirdsQuota') }}</span>
-                  </div>
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
-
-      <!-- 第二个大卡片：策略速查表 -->
-      <v-card class="mb-4">
-        <v-card-title class="text-h6">
-          <v-icon class="mr-2">mdi-table</v-icon>
-          {{ t('page.materialProfit.couponStrategy.strategyTable') }}
-        </v-card-title>
-        <v-card-text>
-          <v-row>
-            <!-- 武陵速查表 -->
-            <v-col cols="12" md="6">
-              <div class="table-section wuling-region">
-                <div class="region-header">
-                  <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
-                  <span class="region-title">{{ t('page.materialProfit.couponStrategy.wulingStrategyTable') }}</span>
-                </div>
-                <v-data-table
-                  class="elevation-0"
-                  density="compact"
-                  :headers="wulingTableHeaders"
-                  hide-default-footer
-                  :items="wulingTableItems"
+              <div class="mb-5">
+                <div
+                  class="strategy-item d-flex align-center ga-3 py-3 px-4 bg-surface rounded-lg mb-3"
                 >
-                  <template #item.weekday="{ item }">
-                    <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
-                  </template>
-                  <template #item.buyAllPrice="{ item }">
-                    <span class="wuling-buy-all" v-html="item.buyAllPrice"></span>
-                  </template>
-                  <template #item.buyHalfPrice="{ item }">
-                    <span class="wuling-buy-just" v-html="item.buyHalfPrice"></span>
-                  </template>
-                </v-data-table>
-              </div>
-            </v-col>
-
-            <!-- 四号谷地速查表 -->
-            <v-col cols="12" md="6">
-              <div class="table-section four-valley-region">
-                <div class="region-header">
-                  <v-icon class="mr-2" color="light-green">mdi-map-marker</v-icon>
-                  <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValleyStrategyTable') }}</span>
+                  <v-icon class="flex-shrink-0" color="cyan">mdi-check-circle</v-icon>
+                  <span class="text-body-2 font-weight-semibold text-medium-emphasis">{{
+                    t('page.materialProfit.couponStrategy.lowestPriceBelow', {
+                      price: wulingPrices[currentDayIndex],
+                    })
+                  }}</span>
+                  <span class="wuling-success-text text-body-1 font-weight-bold">{{
+                    t('page.materialProfit.couponStrategy.buyAll')
+                  }}</span>
                 </div>
-                <v-data-table
-                  class="elevation-0"
-                  density="compact"
-                  :headers="fourValleyTableHeaders"
-                  hide-default-footer
-                  :items="fourValleyTableItems"
+                <div
+                  class="strategy-item d-flex align-center ga-3 py-3 px-4 bg-surface rounded-lg mb-3"
                 >
-                  <template #item.weekday="{ item }">
-                    <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
-                  </template>
-                  <template #item.buyAllPrice="{ item }">
-                    <span class="four-valley-buy-all" v-html="item.buyAllPrice"></span>
-                  </template>
-                  <template #item.buyOneThirdPrice="{ item }">
-                    <span class="four-valley-buy-middle" v-html="item.buyOneThirdPrice"></span>
-                  </template>
-                  <template #item.buyTwoThirdsPrice="{ item }">
-                    <span class="four-valley-buy-just" v-html="item.buyTwoThirdsPrice"></span>
-                  </template>
-                </v-data-table>
+                  <v-icon class="flex-shrink-0" color="blue-grey">mdi-alert-circle</v-icon>
+                  <span class="text-body-2 font-weight-semibold text-medium-emphasis">{{
+                    t('page.materialProfit.couponStrategy.lowestPriceAbove', {
+                      price: wulingPrices[currentDayIndex],
+                    })
+                  }}</span>
+                  <span class="wuling-warning-text text-body-1 font-weight-bold">{{
+                    t('page.materialProfit.couponStrategy.buyHalfQuota')
+                  }}</span>
+                </div>
               </div>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
-    </div>
-  </div>
+            </div>
+          </v-col>
+
+          <!-- 四号谷地 -->
+          <v-col cols="12" md="6">
+            <div class="four-valley-region pa-4 border rounded-lg">
+              <div class="region-header d-flex align-center mb-4 pb-3">
+                <v-icon class="mr-2" color="light-green">mdi-map-marker</v-icon>
+                <span class="text-subtitle-1 font-weight-bold">{{
+                  t('page.materialProfit.couponStrategy.fourValley')
+                }}</span>
+              </div>
+              <div class="mb-5">
+                <div
+                  class="strategy-item d-flex align-center ga-3 py-3 px-4 bg-surface rounded-lg mb-3"
+                >
+                  <v-icon class="flex-shrink-0" color="light-green">mdi-check-circle</v-icon>
+                  <span class="text-body-2 font-weight-semibold text-medium-emphasis">{{
+                    t('page.materialProfit.couponStrategy.lowestPriceBelow', {
+                      price: fourValleyFirstPrices[currentDayIndex],
+                    })
+                  }}</span>
+                  <span class="four-valley-success-text text-body-1 font-weight-bold">{{
+                    t('page.materialProfit.couponStrategy.buyAll')
+                  }}</span>
+                </div>
+                <div
+                  class="strategy-item d-flex align-center ga-3 py-3 px-4 bg-surface rounded-lg mb-3"
+                >
+                  <v-icon class="flex-shrink-0" color="lime">mdi-information</v-icon>
+                  <span class="text-body-2 font-weight-semibold text-medium-emphasis">{{
+                    t('page.materialProfit.couponStrategy.priceBetween', {
+                      price1: fourValleyFirstPrices[currentDayIndex],
+                      price2: fourValleySecondPrices[currentDayIndex],
+                    })
+                  }}</span>
+                  <span class="four-valley-info-text text-body-1 font-weight-bold">{{
+                    t('page.materialProfit.couponStrategy.buyOneThirdQuota')
+                  }}</span>
+                </div>
+                <div
+                  class="strategy-item d-flex align-center ga-3 py-3 px-4 bg-surface rounded-lg mb-3"
+                >
+                  <v-icon class="flex-shrink-0" color="amber">mdi-alert-circle</v-icon>
+                  <span class="text-body-2 font-weight-semibold text-medium-emphasis">{{
+                    t('page.materialProfit.couponStrategy.lowestPriceAbove', {
+                      price: fourValleySecondPrices[currentDayIndex],
+                    })
+                  }}</span>
+                  <span class="four-valley-warning-text text-body-1 font-weight-bold">{{
+                    t('page.materialProfit.couponStrategy.buyTwoThirdsQuota')
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+
+    <!-- 第二个大卡片：策略速查表 -->
+    <v-card class="mb-4">
+      <v-card-title class="text-h6">
+        <v-icon class="mr-2">mdi-table</v-icon>
+        {{ t('page.materialProfit.couponStrategy.strategyTable') }}
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <!-- 武陵速查表 -->
+          <v-col cols="12" md="6">
+            <div class="wuling-region pa-4 border rounded-lg">
+              <div class="region-header d-flex align-center mb-4 pb-3">
+                <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
+                <span class="text-subtitle-1 font-weight-bold">{{
+                  t('page.materialProfit.couponStrategy.wulingStrategyTable')
+                }}</span>
+              </div>
+              <v-data-table
+                class="elevation-0"
+                density="compact"
+                :headers="wulingTableHeaders"
+                hide-default-footer
+                :items="wulingTableItems"
+              >
+                <template #item.weekday="{ item }">
+                  <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
+                </template>
+                <template #item.buyAllPrice="{ item }">
+                  <span class="wuling-buy-all" v-html="item.buyAllPrice"></span>
+                </template>
+                <template #item.buyHalfPrice="{ item }">
+                  <span class="wuling-buy-just" v-html="item.buyHalfPrice"></span>
+                </template>
+              </v-data-table>
+            </div>
+          </v-col>
+
+          <!-- 四号谷地速查表 -->
+          <v-col cols="12" md="6">
+            <div class="four-valley-region pa-4 border rounded-lg">
+              <div class="region-header d-flex align-center mb-4 pb-3">
+                <v-icon class="mr-2" color="light-green">mdi-map-marker</v-icon>
+                <span class="text-subtitle-1 font-weight-bold">{{
+                  t('page.materialProfit.couponStrategy.fourValleyStrategyTable')
+                }}</span>
+              </div>
+              <v-data-table
+                class="elevation-0"
+                density="compact"
+                :headers="fourValleyTableHeaders"
+                hide-default-footer
+                :items="fourValleyTableItems"
+              >
+                <template #item.weekday="{ item }">
+                  <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
+                </template>
+                <template #item.buyAllPrice="{ item }">
+                  <span class="four-valley-buy-all" v-html="item.buyAllPrice"></span>
+                </template>
+                <template #item.buyOneThirdPrice="{ item }">
+                  <span class="four-valley-buy-middle" v-html="item.buyOneThirdPrice"></span>
+                </template>
+                <template #item.buyTwoThirdsPrice="{ item }">
+                  <span class="four-valley-buy-just" v-html="item.buyTwoThirdsPrice"></span>
+                </template>
+              </v-data-table>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+  </v-container>
 </template>
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import CustomBackground from '~/components/layout/CustomBackground.vue';
 
 const { t } = useI18n();
 
@@ -168,14 +222,26 @@ const wulingPrices: number[] = [1438, 1441, 1349, 1344, 1256, 1198, 1517];
 const wulingTableHeaders: TableHeader[] = [
   { title: t('page.materialProfit.couponStrategy.weekday'), key: 'weekday', align: 'center' },
   { title: t('page.materialProfit.couponStrategy.buyAll'), key: 'buyAllPrice', align: 'center' },
-  { title: t('page.materialProfit.couponStrategy.buyHalfQuota'), key: 'buyHalfPrice', align: 'center' },
+  {
+    title: t('page.materialProfit.couponStrategy.buyHalfQuota'),
+    key: 'buyHalfPrice',
+    align: 'center',
+  },
 ];
 
 const fourValleyTableHeaders: TableHeader[] = [
   { title: t('page.materialProfit.couponStrategy.weekday'), key: 'weekday', align: 'center' },
   { title: t('page.materialProfit.couponStrategy.buyAll'), key: 'buyAllPrice', align: 'center' },
-  { title: t('page.materialProfit.couponStrategy.buyOneThirdQuota'), key: 'buyOneThirdPrice', align: 'center' },
-  { title: t('page.materialProfit.couponStrategy.buyTwoThirdsQuota'), key: 'buyTwoThirdsPrice', align: 'center' },
+  {
+    title: t('page.materialProfit.couponStrategy.buyOneThirdQuota'),
+    key: 'buyOneThirdPrice',
+    align: 'center',
+  },
+  {
+    title: t('page.materialProfit.couponStrategy.buyTwoThirdsQuota'),
+    key: 'buyTwoThirdsPrice',
+    align: 'center',
+  },
 ];
 
 const currentDayIndex = ref<number>(0);
@@ -188,13 +254,55 @@ let lastCheckedDate = '';
 
 // 四号谷地表格数据（静态，固定顺序）
 const fourValleyTableItems = [
-  { weekday: '周一', buyAllPrice: '< 924', buyOneThirdPrice: '924 - 1014', buyTwoThirdsPrice: '> 1014', isCurrentDay: false },
-  { weekday: '周二', buyAllPrice: '< 864', buyOneThirdPrice: '864 - 1109', buyTwoThirdsPrice: '> 1109', isCurrentDay: false },
-  { weekday: '周三', buyAllPrice: '< 824', buyOneThirdPrice: '824 - 917', buyTwoThirdsPrice: '> 917', isCurrentDay: false },
-  { weekday: '周四', buyAllPrice: '< 793', buyOneThirdPrice: '793 - 967', buyTwoThirdsPrice: '> 967', isCurrentDay: false },
-  { weekday: '周五', buyAllPrice: '< 747', buyOneThirdPrice: '747 - 870', buyTwoThirdsPrice: '> 870', isCurrentDay: false },
-  { weekday: '周六', buyAllPrice: '< 816', buyOneThirdPrice: '816 - 825', buyTwoThirdsPrice: '> 825', isCurrentDay: false },
-  { weekday: '周日', buyAllPrice: '< 959', buyOneThirdPrice: '959 - 1206', buyTwoThirdsPrice: '> 1206', isCurrentDay: false },
+  {
+    weekday: '周一',
+    buyAllPrice: '< 924',
+    buyOneThirdPrice: '924 - 1014',
+    buyTwoThirdsPrice: '> 1014',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周二',
+    buyAllPrice: '< 864',
+    buyOneThirdPrice: '864 - 1109',
+    buyTwoThirdsPrice: '> 1109',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周三',
+    buyAllPrice: '< 824',
+    buyOneThirdPrice: '824 - 917',
+    buyTwoThirdsPrice: '> 917',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周四',
+    buyAllPrice: '< 793',
+    buyOneThirdPrice: '793 - 967',
+    buyTwoThirdsPrice: '> 967',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周五',
+    buyAllPrice: '< 747',
+    buyOneThirdPrice: '747 - 870',
+    buyTwoThirdsPrice: '> 870',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周六',
+    buyAllPrice: '< 816',
+    buyOneThirdPrice: '816 - 825',
+    buyTwoThirdsPrice: '> 825',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周日',
+    buyAllPrice: '< 959',
+    buyOneThirdPrice: '959 - 1206',
+    buyTwoThirdsPrice: '> 1206',
+    isCurrentDay: false,
+  },
 ];
 
 // 武陵表格数据（静态，固定顺序）
@@ -222,28 +330,28 @@ function updateCurrentDayHighlight(): void {
 function getCurrentDayIndex(): void {
   const now = new Date();
   const hour = now.getHours();
-  
+
   // 商店凌晨4点刷新，0-3点算前一天
   const adjustedDate = new Date(now);
   if (hour < 4) {
     adjustedDate.setDate(adjustedDate.getDate() - 1);
   }
-  
+
   // 生成日期字符串用于缓存比较
   const dateStr = `${adjustedDate.getFullYear()}-${adjustedDate.getMonth()}-${adjustedDate.getDate()}`;
-  
+
   // 如果日期没有变化，不执行更新
   if (dateStr === lastCheckedDate) {
     return;
   }
-  
+
   lastCheckedDate = dateStr;
-  
+
   const day = adjustedDate.getDay(); // 0-6, 0是周日
   // 转换为周一-周日（周一=0, 周日=6）
   const adjustedDay = day === 0 ? 6 : day - 1;
   currentDayIndex.value = adjustedDay;
-  
+
   // 更新表格高亮
   updateCurrentDayHighlight();
 }
@@ -252,24 +360,24 @@ function getCurrentDayIndex(): void {
 function updateCountdown(): void {
   const now = new Date();
   const hour = now.getHours();
-  
+
   // 计算目标时间：凌晨4点
   const targetDate = new Date(now);
   targetDate.setHours(4, 0, 0, 0);
-  
+
   // 如果当前时间已经过了今天4点，则计算到明天4点
   if (hour >= 4) {
     targetDate.setDate(targetDate.getDate() + 1);
   }
-  
+
   const diff = targetDate.getTime() - now.getTime();
   countdown.value = Math.max(0, diff);
-  
+
   // 格式化时间
   const hours = Math.floor(countdown.value / (1000 * 60 * 60));
   const minutes = Math.floor((countdown.value % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((countdown.value % (1000 * 60)) / 1000);
-  
+
   countdownText.value = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
@@ -303,90 +411,24 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.coupon-strategy-page {
-  position: relative;
-  z-index: 1;
-}
-
-.content {
-  padding: 20px;
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-.page-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.page-subtitle {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 2rem;
-}
-
-.region-section,
-.table-section {
-  padding: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background: #fafafa;
-}
-
+/* region-header 底部分割线，颜色由区域主题覆盖 */
 .region-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
   border-bottom: 2px solid #e0e0e0;
 }
 
-.region-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-}
-
-.strategy-display {
-  margin-bottom: 20px;
-}
-
+/* 策略卡片阴影与 hover 动效 */
 .strategy-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: #fff;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .strategy-item:hover {
-  background: #f5f5f5;
   transform: translateX(4px);
-}
-
-.strategy-icon {
-  flex-shrink: 0;
-}
-
-.strategy-label {
-  font-size: 1rem;
-  color: #666;
-  font-weight: 600;
-}
-
-.strategy-value {
-  font-size: 1.1rem;
-  font-weight: 700;
 }
 
 /* 武陵青蓝色主题 */
 .wuling-region {
-  border-color: rgba(0, 188, 212, 0.3);
+  border-color: rgba(0, 188, 212, 0.3) !important;
 }
 
 .wuling-region .region-header {
@@ -395,12 +437,10 @@ onUnmounted(() => {
 
 .wuling-success-text {
   color: #00bcd4;
-  font-weight: 700;
 }
 
 .wuling-warning-text {
   color: #607d8b;
-  font-weight: 700;
 }
 
 .wuling-buy-all {
@@ -415,7 +455,7 @@ onUnmounted(() => {
 
 /* 四号谷地黄绿色主题 */
 .four-valley-region {
-  border-color: rgba(139, 195, 74, 0.3);
+  border-color: rgba(139, 195, 74, 0.3) !important;
 }
 
 .four-valley-region .region-header {
@@ -424,17 +464,14 @@ onUnmounted(() => {
 
 .four-valley-success-text {
   color: #8bc34a;
-  font-weight: 700;
 }
 
 .four-valley-info-text {
   color: #cddc39;
-  font-weight: 700;
 }
 
 .four-valley-warning-text {
   color: #ffc107;
-  font-weight: 700;
 }
 
 .four-valley-buy-all {
@@ -475,96 +512,30 @@ onUnmounted(() => {
   border-radius: 4px;
 }
 
-.refresh-countdown {
-  display: flex;
-  align-items: center;
-  font-size: 0.95rem;
-  color: #666;
-  background: rgba(102, 126, 234, 0.1);
-  padding: 6px 16px;
-  border-radius: 16px;
-  font-weight: 600;
-}
-
-.countdown-label {
-  font-size: 0.9rem;
-  color: #666;
-}
-
 @media (prefers-color-scheme: dark) {
-  .page-title {
-    color: #e0e0e0;
-  }
-
-  .page-subtitle {
-    color: #b0b0b0;
-  }
-
-  .region-section,
-  .table-section {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
   .region-header {
     border-color: rgba(255, 255, 255, 0.1);
   }
 
   .strategy-item {
-    background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  .strategy-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .strategy-label {
-    color: #b0b0b0;
   }
 
   .wuling-buy-all {
     color: #26c6da;
   }
-
   .wuling-buy-just {
     color: #78909c;
   }
-
   .four-valley-buy-all {
     color: #9ccc65;
   }
-
   .four-valley-buy-middle {
     color: #d0e157;
   }
-
   .four-valley-buy-just {
     color: #ffb74d;
   }
-
-  .refresh-countdown {
-    color: #b0b0b0;
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .countdown-label {
-    color: #b0b0b0;
-  }
-}
-
-[data-theme='dark'] .page-title {
-  color: #e0e0e0;
-}
-
-[data-theme='dark'] .page-subtitle {
-  color: #b0b0b0;
-}
-
-[data-theme='dark'] .region-section,
-[data-theme='dark'] .table-section {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
 }
 
 [data-theme='dark'] .region-header {
@@ -572,44 +543,22 @@ onUnmounted(() => {
 }
 
 [data-theme='dark'] .strategy-item {
-  background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme='dark'] .strategy-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme='dark'] .strategy-label {
-  color: #b0b0b0;
 }
 
 [data-theme='dark'] .wuling-buy-all {
   color: #26c6da;
 }
-
 [data-theme='dark'] .wuling-buy-just {
   color: #78909c;
 }
-
 [data-theme='dark'] .four-valley-buy-all {
   color: #9ccc65;
 }
-
 [data-theme='dark'] .four-valley-buy-middle {
   color: #d0e157;
 }
-
 [data-theme='dark'] .four-valley-buy-just {
   color: #ffb74d;
-}
-
-[data-theme='dark'] .refresh-countdown {
-  color: #b0b0b0;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme='dark'] .countdown-label {
-  color: #b0b0b0;
 }
 </style>
