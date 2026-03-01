@@ -274,7 +274,8 @@
                       style="position: absolute; right: 8px; display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;"
                     >
                       <template v-if="getProbabilityInfo(record, group.records)">
-                        <span :style="{ 
+                        <span
+:style="{ 
                           fontSize: '0.75rem', 
                           fontWeight: 'bold', 
                           color: getProbabilityInfo(record, group.records)!.isBig ? '#d97706' : '#374151',
@@ -349,7 +350,7 @@
         </div>
       </div>
 
-      <div style=" margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;" v-if="USE_DEBUG_DATA">
+      <div v-if="USE_DEBUG_DATA" style=" margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
         <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
 
         <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -503,7 +504,7 @@ const CACHE_KEY = 'endfield_gacha_records_v2';
 const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
 
 
-//从本地缓存读取数据（适配物理隔离结构）
+// 从本地缓存读取数据（适配物理隔离结构）
 
 function loadCachedRecords(roleId: string): { chars: GachaRecord[], weps: GachaRecord[] } {
   const CACHE_KEY = 'endfield_gacha_records_v2';
@@ -1201,7 +1202,7 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
   let isBigPity = false;
   let debugPulls = 0; 
 
-  const sortedRecords = [...allInGroup].sort((a, b) => parseInt(a.seqId) - parseInt(b.seqId));
+  const sortedRecords = [...allInGroup].sort((a, b) => Number.parseInt(a.seqId) - Number.parseInt(b.seqId));
   const currentIndex = sortedRecords.findIndex(r => r.seqId === current.seqId);
   
   if (currentIndex !== -1) {
@@ -1214,14 +1215,12 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
       }
 
       // 如果不是当前这条记录，且这条记录是“六星”
-      if (i !== currentIndex) {
-        // 判断这只六星是不是 UP 角色
+      if (i !== currentIndex && // 判断这只六星是不是 UP 角色
         // 如果是 UP，说明保底序列在这里重置了，停止累加
-        if (isOnBanner(r!)) {
+        isOnBanner(r!)) {
           break;
         }
         // 如果是“歪”了，循环不会 break，会继续向上加更早的抽数
-      }
     }
 
     if (isOnBanner(current) && debugPulls >= 120) {
