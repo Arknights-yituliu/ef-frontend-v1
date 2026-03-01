@@ -1072,7 +1072,7 @@ const topCharacters = computed(() => {
     .slice(0, 3);
 });
 
-//计算每个卡池的总抽数
+// 计算每个卡池的总抽数
 function getPoolTotalPulls(records: SixStarEntry[]): number {
   return records.reduce((sum, r) => sum + (r.count || 0), 0);
 }
