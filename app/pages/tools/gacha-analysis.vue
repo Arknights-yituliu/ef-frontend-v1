@@ -65,7 +65,7 @@
             <div class="user-info">
               <div >
                 <h3 class="user-name">{{ '管理员' }}</h3>
-                <p class="user-uid">UID: {{ records[0]?.uid || '未知' }}</p>
+                <p class="user-uid">UID: {{ displayUid }}</p>
               </div>
               <div class="user-stats-basic">
                 <div class="stat-item">
@@ -249,18 +249,12 @@
                 <!-- 头像区域 -->
                 <div class="character-avatar" style="width: 50px; height: 50px; flex-shrink: 0; margin-right: 12px;">
                   <img
-                    v-if="record.charId && record.character !== '已垫'"
+                    v-if="record.charId"
                     :alt="record.character"
                     :src="getAvatarUrl(record.charId, getPoolType(record.poolId) === 'weapon')"
                     style="width: 100%; height: 100%; object-fit: contain; background-color: #fff; border-radius: 50%; border: 1px solid #e5e7eb;"
                     @error="handleImageError"
                   />
-                  <div
-                    v-if="record.charId && record.character == '已垫'"
-                    style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; border-radius: 50%; font-size: 0.8rem; color: #6b7280;"
-                  >
-                    {{ record.character === '已垫' ? '垫' : '?' }}
-                  </div>
                 </div>
 
                 <!-- 条形图区域 -->
@@ -1267,14 +1261,20 @@ function toggleExpand(seqId: string) {
   }
 }
 
-// 修改后的获取头像 URL 函数
+// 获取头像 URL 
 function getAvatarUrl(id: string, isWeapon: boolean = false): string {
-  // 如果是武器，路径指向 weapons 文件夹，并使用 weaponId
+  if (id === 'padded') {
+    return `https://cos.yituliu.cn/endfield/other/dian.webp`; 
+  }
+  
+  if (id === 'free_bundle') {
+    return `https://cos.yituliu.cn/endfield/other/zheng.webp`;
+  }
+
   if (isWeapon) {
     return `https://cos.yituliu.cn/endfield/unpack-images/items/${id}.webp`;
   }
   
-  // 否则指向角色文件夹
   return `https://cos.yituliu.cn/endfield/unpack-images/characters/icon_${id}.webp`;
 }
 
@@ -1396,6 +1396,13 @@ async function handleImportFile (event: Event) {
 
   reader.readAsText(file!);
 }
+
+const displayUid = computed(() => {
+  // 优先从角色记录拿，拿不到再从武器记录拿
+  const firstRecord = characterRecords.value[0] || weaponRecords.value[0];
+  return firstRecord?.uid || '未知';
+});
+
 </script>
 
 <style scoped>
