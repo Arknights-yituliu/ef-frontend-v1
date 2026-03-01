@@ -15,14 +15,31 @@ const gachaPools: GachaPool[] = [
     upCharName: "莱万汀",
   },
   {
+    poolId: "weponbox_1_0_1",
+    poolName: "熔铸申领",
+    upCharName: "熔铸火焰",
+  },
+
+  {
     poolId: "special_1_0_2",
     poolName: "热烈色彩",
     upCharName: "伊冯",
   },
   {
+    poolId: "weponbox_1_0_3",
+    poolName: "绘涂申领",
+    upCharName: "艺术暴君",
+  },
+
+  {
     poolId: "special_1_0_3",
     poolName: "轻飘飘的信使",
     upCharName: "洁尔佩塔",
+  },
+    {
+    poolId: "weponbox_1_0_3",
+    poolName: "迅行申领",
+    upCharName: "使命必达",
   },
 ];
 

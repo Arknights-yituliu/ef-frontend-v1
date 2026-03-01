@@ -196,7 +196,7 @@
               variant="flat"
               @click="selectPool('weapon')"
             >
-              武器熔铸
+              武库申领
             </v-btn>
           </div>
         </div>
@@ -1176,7 +1176,7 @@ const gachaTags = computed(() => {
 
   // 4. 八十连保底
   if (realSixStars.some(r => r.count >= 80) && !tags.some(t => t.name === '八十连保底')) {
-    tags.push({ name: '八十连保底', type: 'unlucky' });
+    tags.push({ name: '小保底吃满', type: 'unlucky' });
   }
 
   // 5. 全勤不歪
