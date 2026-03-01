@@ -168,11 +168,11 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
 export {
   wulingAuryleneCollectReward,
   wulingAuryleneCollectStageTable,
+  wulingBattleCrateReward,
+  wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,
-  wulingBattleCrateRewardMax,
-  wulingBattleCrateReward,
   wulingDeltaBotReward,
   wulingDeltaBotRewardMax,
   wulingRegionalDevelopmentReward,

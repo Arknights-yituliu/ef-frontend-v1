@@ -1,9 +1,9 @@
 import type {  Reward } from '#shared/types/gacha-calculator.ts';
 import {  ref } from 'vue';
 import FactoryManualTable from './json/factory_manual_table.json';
+import GameMaintenance from './json/game_maintenance.json'
 import IntelArchiveRewardJson from './json/intel_archive_reward.json';
 import OtherRewardTableJson from './json/other.json';
-import GameMaintenance from './json/game_maintenance.json'
 
 const otherRewardTable= ref<Reward[]>([]);
 
