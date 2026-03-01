@@ -15,7 +15,6 @@
 
       <div style="display: flex; background: #f3f4f6; padding: 4px; border-radius: 8px; margin-bottom: 24px;">
         <button 
-          @click="importMethod = 'online'"
           style="flex: 1; padding: 8px; border-radius: 6px; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s;"
           :style="{ 
             backgroundColor: importMethod === 'online' ? '#fff' : 'transparent',
@@ -23,11 +22,11 @@
             fontWeight: importMethod === 'online' ? 'bold' : 'normal',
             color: importMethod === 'online' ? '#3b82f6' : '#6b7280'
           }"
+          @click="importMethod = 'online'"
         >
           链接导入
         </button>
         <button 
-          @click="importMethod = 'local'"
           style="flex: 1; padding: 8px; border-radius: 6px; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s;"
           :style="{ 
             backgroundColor: importMethod === 'local' ? '#fff' : 'transparent',
@@ -35,6 +34,7 @@
             fontWeight: importMethod === 'local' ? 'bold' : 'normal',
             color: importMethod === 'local' ? '#3b82f6' : '#6b7280'
           }"
+          @click="importMethod = 'local'"
         >
           本地文件
         </button>
@@ -49,7 +49,7 @@
           style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; outline: none; resize: none;"
         />
         <p class="help-text" style="margin-top: 8px;">
-          <a href="https://web-api.hypergryph.com/account/info/hg" target="_blank" style="color: #3b82f6; text-decoration: none;">
+          <a href="https://web-api.hypergryph.com/account/info/hg" style="color: #3b82f6; text-decoration: none;" target="_blank">
             点击此处获取查询链接（需登陆鹰角通行证）
           </a>
         </p>
@@ -64,9 +64,9 @@
         <input 
           accept=".json" 
           :disabled="isSubmitting" 
+          style="font-size: 14px; color: #6b7280;"
           type="file"
           @change="onFileSelected"
-          style="font-size: 14px; color: #6b7280;"
         />
         <p v-if="selectedFileName" style="margin-top: 10px; font-size: 0.85rem; color: #10b981; font-weight: 500;">
           已选中: {{ selectedFileName }}
@@ -79,9 +79,9 @@
       <button
         class="submit-btn"
         :disabled="isSubmitting || (importMethod === 'local' && !selectedFile)"
-        @click="handleMainAction"
         style="width: 100%; margin-top: 24px; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: opacity 0.2s;"
         :style="{ opacity: (isSubmitting || (importMethod === 'local' && !selectedFile)) ? 0.6 : 1 }"
+        @click="handleMainAction"
       >
         {{ isSubmitting ? '分析中...' : '开始分析' }}
       </button>
@@ -312,7 +312,8 @@
                       style="position: absolute; right: 8px; display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;"
                     >
                       <template v-if="getProbabilityInfo(record, group.records)">
-                        <span :style="{ 
+                        <span
+:style="{ 
                           fontSize: '0.75rem', 
                           fontWeight: 'bold', 
                           color: getProbabilityInfo(record, group.records)!.isBig ? '#d97706' : '#374151',
@@ -426,12 +427,12 @@
 import { computed, onMounted, ref } from 'vue';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 
-// 调试开关
-const USE_DEBUG_DATA = false;
-
 // ========== 获取、加载抽卡数据==========
 
 import { gachaPools } from '@/custom/core/gacha-pool-info';
+
+// 调试开关
+const USE_DEBUG_DATA = false;
 
 const viewMode = ref<'collect' | 'analyze'>('collect');
 
@@ -660,7 +661,7 @@ async function processLocalFile(file: File) {
   const reader = new FileReader();
   
   // 使用 onload 替代 addEventListener，逻辑更清晰
-  reader.onload = async (e) => {
+  reader.addEventListener('load', async (e) => {
     try {
       const content = e.target?.result as string;
       const importedData = JSON.parse(content);
@@ -707,7 +708,7 @@ async function processLocalFile(file: File) {
       selectedFile.value = null;
       selectedFileName.value = '';
     }
-  };
+  });
 
   // 读取文件内容
   reader.readAsText(file);
@@ -718,17 +719,17 @@ const selectedFile = ref<File | null>(null);
 const selectedFileName = ref('');
 
 // 当用户选择文件时，仅记录文件，不执行分析
-const onFileSelected = (e: Event) => {
+function onFileSelected (e: Event) {
   const target = e.target as HTMLInputElement;
   if (target.files && target.files[0]) {
     selectedFile.value = target.files[0];
     selectedFileName.value = target.files[0].name;
     collectError.value = ''; // 清空之前的报错
   }
-};
+}
 
 // 按钮点击处理函数
-const handleMainAction = () => {
+function handleMainAction () {
   if (importMethod.value === 'online') {
     submitAndVerify();
   } else {
@@ -736,7 +737,7 @@ const handleMainAction = () => {
       processLocalFile(selectedFile.value);
     }
   }
-};
+}
 
 function loadCachedRecords(roleId: string): { chars: GachaRecord[], weps: GachaRecord[] } {
   const CACHE_KEY = 'endfield_gacha_records_v2';
@@ -1471,7 +1472,7 @@ function handleImageError(e: Event) {
   img.style.opacity = '0.5';
 }
 
-//===== 导出数据文件 =====
+// ===== 导出数据文件 =====
 function exportDataToJson () {
   // 1. 尝试从当前响应式变量中构建完整的原始数据
   const exportObj = {
@@ -1526,7 +1527,7 @@ function triggerDownload(blob: Blob) {
 }
 
 
-//获取用户uid
+// 获取用户uid
 const displayUid = computed(() => {
   const firstRecord = characterRecords.value[0] || weaponRecords.value[0];
   return firstRecord?.uid || '未知';
