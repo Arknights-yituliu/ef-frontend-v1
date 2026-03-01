@@ -14,29 +14,43 @@
       <header class="page-title">导入抽卡记录</header>
 
       <div class="form-group">
-        <label>在线更新（粘贴查询链接）</label>
+        <label>在线查询</label>
         <textarea
           v-model="inputCredential"
           :disabled="isSubmitting"
           placeholder="请将查询链接内所有内容粘贴进来"
           rows="3"
         />
-        <p class="help-text">
-          <a href="https://web-api.hypergryph.com/account/info/hg" target="_blank">登陆鹰角通行证后，点击获取查询链接</a>
-        </p>
+        <div style="display: flex; gap: 16px; margin-top: 8px;">
+          <p class="help-text">
+            <a href="https://web-api.hypergryph.com/account/info/hg" target="_blank">登陆鹰角通行证后，点击获取查询链接</a>
+          </p>
+          <p class="help-text">
+            <a 
+              @click="showLocalImport = !showLocalImport"
+            >
+              {{ showLocalImport ? '隐藏本地导入' : '从本地导入' }}
+            </a>
+          </p>
+        </div>
       </div>
 
-      <div class="form-group" style="margin-top: 20px; padding: 16px; border: 2px dashed #eee; border-radius: 8px;">
-        <label style="display: block; margin-bottom: 8px; font-weight: bold;">本地导入（JSON备份文件）</label>
-        <input 
-          accept=".json" 
-          :disabled="isSubmitting" 
-          style="font-size: 14px;" 
-          type="file"
-          @change="handleImportFile"
-        />
-      </div>
-
+      <transition name="fade">
+        <div 
+          v-if="showLocalImport" 
+          class="form-group" 
+          style="margin-top: 20px; padding: 16px; border: 2px dashed #eee; border-radius: 8px; background-color: #fafafa;"
+        >
+          <label class="help-text">本地导入（JSON备份文件）</label>
+          <input 
+            accept=".json" 
+            :disabled="isSubmitting" 
+            style="font-size: 14px;" 
+            type="file"
+            @change="handleImportFile"
+          />
+        </div>
+      </transition>
       <p v-if="collectError" class="error-text">{{ collectError }}</p>
 
       <button
@@ -410,6 +424,8 @@ const realSixStarRecords = computed(() => {
     r.charId !== 'free_bundle'    // 排除免费赠送虚拟节点
   );
 });
+
+const showLocalImport = ref(false);
 
 const characterRecords = ref<GachaRecord[]>([]);
 const weaponRecords = ref<GachaRecord[]>([]);
