@@ -280,8 +280,7 @@
                 :class="{ 'on-banner': isOnBanner(record) }"
                 style="cursor: pointer; display: flex; align-items: center; padding: 8px; border-radius: 8px; transition: background 0.3s;"
                 @click="toggleExpand(record.seqId)"
-                @mouseenter="($event.currentTarget as HTMLElement).style.backgroundColor = '#f3f4f6'"
-                @mouseleave="($event.currentTarget as HTMLElement).style.backgroundColor = 'transparent'"
+
               >
                 <!-- 头像区域 -->
                 <div class="character-avatar" style="width: 50px; height: 50px; flex-shrink: 0; margin-right: 12px;">
@@ -289,7 +288,7 @@
                     v-if="record.charId"
                     :alt="record.character"
                     :src="getAvatarUrl(record.charId, getPoolType(record.poolId) === 'weapon')"
-                    style="width: 100%; height: 100%; object-fit: contain; background-color: #fff; border-radius: 50%; border: 1px solid #e5e7eb;"
+                    style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; border: 1px solid #e5e7eb;"
                     @error="handleImageError"
                   />
                 </div>
@@ -323,7 +322,7 @@
                         }">
                           {{ getProbabilityInfo(record, group.records)!.label }}
                         </span>
-                        <span :style="{ fontSize: '0.65rem', color: isOnBanner(record) ? '#d97706' : '#ef4444' }">
+                        <span :style="{ fontSize: '0.65rem', color: '#d97706'}">
                           {{ getProbabilityInfo(record, group.records)!.subLabel }}
                         </span>
                       </template>
@@ -336,7 +335,7 @@
                   <div
                     v-if="expandedSeqId === record.seqId && record.fiveStars?.length"
                     class="mt-2 ml-2 p-2"
-                    style="background-color: #f9fafb; border-radius: 6px;"
+                    style=" border-radius: 6px;"
                   >
                     <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                       <div
@@ -388,6 +387,151 @@
         </div>
       </div>
 
+      <div class="chart-container">
+        <!-- 顶部控制栏 -->
+        <div class="header-panel">
+          <div class="title-section">
+            <h2>六星出货的几何分布</h2>
+            <!-- 切换按钮 -->
+            <div class="toggle-group">
+              <button
+                class="toggle-btn"
+                :class="{ active: viewType === 'chart' }"
+                @click="viewType = 'chart'"
+              >
+                曲线图
+              </button>
+              <button
+                class="toggle-btn"
+                :class="{ active: viewType === 'table' }"
+                @click="viewType = 'table'"
+              >
+                数据表
+              </button>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between ;">
+
+            <div class="gacha-stats">
+              <template v-if="isCalculated">
+
+                <!-- 概率峰值 -->
+                <div class="gacha-stat-row">
+                  <span class="stat-label">概率峰值:</span>
+                  <span class="stat-value highlight">
+                    第
+                    <CountTo
+                      class="count-text"
+                      :decimals="0"
+                      :duration="1500"
+                      :end-val="animatedPeakInfo.n"
+                      :start-val="0"
+                    />
+                    抽
+                    (
+                    <CountTo
+                      class="count-text"
+                      :decimals="2"
+                      :duration="1500"
+                      :end-val="animatedPeakInfo.chance"
+                      :start-val="0"
+                    />
+                    %)
+                  </span>
+                </div>
+
+                <!-- 数学期望 -->
+                <div class="gacha-stat-row">
+                  <span class="stat-label">数学期望 (平均出货):</span>
+                  <span class="stat-value primary">
+                    <CountTo
+                      class="count-text"
+                      :decimals="2"
+                      :duration="1500"
+                      :end-val="expectationResult.average"
+                      :start-val="0"
+                    /> 抽
+                  </span>
+                </div>
+
+                <!-- 综合出率 -->
+                <div class="gacha-stat-row">
+                  <span class="stat-label">综合出率:</span>
+                  <span class="stat-value">
+                    <CountTo
+                      class="count-text"
+                      :decimals="2"
+                      :duration="1500"
+                      :end-val="expectationResult.overallRate"
+                      :start-val="0"
+                    />%
+                  </span>
+                </div>
+              </template>
+
+              <template v-else>
+                <div class="gacha-stat-placeholder">
+                  点击上方按钮开始计算详细数据...
+                </div>
+              </template>
+            </div>
+
+            <div class="action-bar" style="margin-bottom: 15px; text-align: right;">
+              <button
+                v-if="!isCalculated"
+                class="calc-btn"
+                @click="startCalculation"
+              >
+                开始计算概率和期望
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 视图内容区域 -->
+        <div class="content-area">
+
+          <!-- 1. 曲线图视图 -->
+          <div v-show="isCalculated &&viewType === 'chart'" ref="chartRef" class="echarts-canvas"></div>
+
+          <!-- 2. 数据表视图 -->
+          <div v-show="viewType === 'table'" class="data-table-wrapper">
+            <table class="gacha-table">
+              <thead>
+                <tr>
+                  <th>抽数 (n)</th>
+                  <th>当前面板概率</th>
+                  <th>恰好在此抽出金概率 P(n)</th>
+                  <th>累积未中概率</th>
+                  <th>期望贡献 (n × P)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="row in expectationResult.detailList"
+                  :key="row.n"
+                  :class="{ 'highlight-row': row.n === Math.round(expectationResult.average) }"
+                >
+                  <td>
+                    <strong>{{ row.n }}</strong>
+                    <span v-if="row.n === Math.round(expectationResult.average)" class="badge">期望附近</span>
+                  </td>
+                  <td>{{ (row.rate * 100).toFixed(2) }}%</td>
+                  <td class="prob-cell">{{ (row.exactChance * 100).toFixed(4) }}%</td>
+                  <td class="dim-text">{{ (row.cumulativeFail * 100).toFixed(4) }}%</td>
+                  <td>{{ row.contribution.toFixed(6) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+
+
       <div v-if="USE_DEBUG_DATA" style=" margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
         <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
 
@@ -424,12 +568,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import * as echarts from 'echarts';
+import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'; // 合并所有 vue 引用
+import { CountTo } from 'vue3-count-to';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
-
-// ========== 获取、加载抽卡数据==========
-
 import { gachaPools } from '@/custom/core/gacha-pool-info';
+// ========== 获取、加载抽卡数据==========
 
 // 调试开关
 const USE_DEBUG_DATA = false;
@@ -1300,11 +1444,36 @@ const gachaTags = computed(() => {
 // 1. 判断虚拟记录的辅助函数
 const isVirtualRecord = (name: string) => name === '已垫' || name === '赠送十连';
 /**
- * 核心逻辑：获取显示所需的概率和保底状态
+ * 核心逻辑：获取显示所需的“恰好在这一抽才出金”的全局概率
  */
 function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
   if (isVirtualRecord(current.character)) return null;
 
+  const pullCount = current.count; // 当前出金时显示的垫抽数 (1-80)
+
+  // --- 第一步：计算“前 N-1 抽都没出金”的累积概率 ---
+  let probabilityOfNotPullingBefore = 1;
+
+  for (let i = 1; i < pullCount; i++) {
+    let rateAtI = 0.008; // 基础 0.8%
+    if (i > 65) {
+      rateAtI = 0.008 + (i - 65) * 0.05;
+    }
+    probabilityOfNotPullingBefore *= (1 - Math.min(rateAtI, 1));
+  }
+
+  // --- 第二步：计算“第 N 抽刚好出金”的即时概率 ---
+  let rateAtCurrent = 0.008;
+  if (pullCount > 65) {
+    rateAtCurrent = 0.008 + (pullCount - 65) * 0.05;
+  }
+  rateAtCurrent = Math.min(rateAtCurrent, 1);
+
+  // --- 第三步：组合最终概率 ---
+  // P = (前N-1抽没出) * (这一抽中了) * (50% 歪或不歪)
+  const chanceOfExactPull = probabilityOfNotPullingBefore * rateAtCurrent * 0.5;
+
+  // --- 额外逻辑：大保底判断 ---
   let isBigPity = false;
   let debugPulls = 0;
 
@@ -1312,38 +1481,36 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
   const currentIndex = sortedRecords.findIndex(r => r.seqId === current.seqId);
 
   if (currentIndex !== -1) {
-    // --- 核心修复：向上追溯直到遇到“上一个 UP” ---
     for (let i = currentIndex; i >= 0; i--) {
-      const r = sortedRecords[i];
-
-      if (r!.character !== '赠送十连') {
-        debugPulls += r!.count;
-      }
-
-      if (i !== currentIndex &&
-        isOnBanner(r!)) {
-          break;
-        }
+    const r = sortedRecords[i];
+    if (r!.character !== '赠送十连') {
+    debugPulls += r!.count;
     }
-
+    if (i !== currentIndex &&
+      isOnBanner(r!)) {
+        break;
+      }
+    }
     if (isOnBanner(current) && debugPulls >= 120) {
-      isBigPity = true;
+    isBigPity = true;
     }
   }
 
   // --- 返回显示对象 ---
   if (isBigPity) {
-    return { label: '大保底', subLabel: '100% 不歪', isBig: true };
+    return { label: '大保底', subLabel: '', isBig: true };
   }
 
   let prob = 0.8;
   if (current.count > 65) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     prob = 0.8 + (current.count - 65) * 5;
   }
 
   return {
-    label: `${Math.min(prob, 100).toFixed(1)}%`,
-    subLabel: isOnBanner(current) ? '50% 不歪' : '50% 歪',
+    // 转换为百分比并保留两位小数，例如 "1.49%"
+    label: `${(chanceOfExactPull * 100).toFixed(2)}%`,
+    subLabel: `事件概率`,
     isBig: false
   };
 }
@@ -1492,6 +1659,221 @@ function triggerDownload(blob: Blob) {
 const displayUid = computed(() => {
   const firstRecord = characterRecords.value[0] || weaponRecords.value[0];
   return firstRecord?.uid || '未知';
+});
+
+
+const chartRef = ref<HTMLElement | null>(null);
+let myChart: echarts.ECharts | null = null;
+const viewType = ref<'chart' | 'table'>('chart'); // 默认显示图表
+
+const isCalculated = ref(false);
+
+function startCalculation() {
+  isCalculated.value = true;
+}
+
+// ================= 核心算法：计算分布与期望 =================
+const probabilityData = computed(() => {
+  const xAxis: number[] = [];
+  const probValues: number[] = []; // 恰好在此抽出金的概率 (%)
+
+  let pNotPullingBefore = 1;
+  const BASE_RATE = 0.008;
+  const SOFT_PITY_START = 65;
+  const RATE_INCREMENT = 0.05;
+
+  for (let n = 1; n <= 80; n++) {
+    xAxis.push(n);
+
+    let rateAtN = BASE_RATE;
+    if (n > SOFT_PITY_START) {
+      rateAtN = BASE_RATE + (n - SOFT_PITY_START) * RATE_INCREMENT;
+    }
+    rateAtN = Math.min(rateAtN, 1);
+
+    const exactChance = pNotPullingBefore * rateAtN;
+
+    probValues.push(exactChance * 100);
+
+    pNotPullingBefore *= (1 - rateAtN);
+
+    if (rateAtN >= 1 && pNotPullingBefore < 1e-9) break;
+  }
+
+  return { xAxis, probValues };
+});
+
+// 计算峰值
+const peakInfo = computed(() => {
+  const { probValues } = probabilityData.value;
+  if (probValues.length === 0) return { n: 0, chance: 0 };
+  const maxVal = Math.max(...probValues);
+  const index = probValues.indexOf(maxVal);
+  return { n: index + 1, chance: maxVal };
+});
+const animatedPeakInfo = computed(() => {
+  if (!isCalculated.value) {
+    return { n: 0, chance: 0 };
+  }
+  return peakInfo.value;
+});
+
+// 【新增】计算期望值和详细列表
+const expectationResult = computed(() => {
+  if (!isCalculated.value) {
+    return {
+      average: 0,
+      overallRate: 0,
+      detailList: []
+    };
+  }
+
+  let expectedValue = 0;
+  const detailList: Array<{
+    n: number;
+    rate: number;
+    exactChance: number;
+    cumulativeFail: number;
+    contribution: number;
+  }> = [];
+
+  let pNotPullingBefore = 1;
+  const BASE_RATE = 0.008;
+  const SOFT_PITY_START = 65;
+  const RATE_INCREMENT = 0.05;
+
+  // 计算到 100 抽以确保覆盖硬保底
+  for (let n = 1; n <= 100; n++) {
+    let rateAtN = BASE_RATE;
+    if (n > SOFT_PITY_START) {
+      rateAtN = BASE_RATE + (n - SOFT_PITY_START) * RATE_INCREMENT;
+    }
+    rateAtN = Math.min(rateAtN, 1);
+
+    const exactChance = pNotPullingBefore * rateAtN;
+    const contribution = n * exactChance;
+
+    expectedValue += contribution;
+
+    // 只记录前 80 抽或概率显著的数据，避免表格过长
+    if (n <= 80 || exactChance > 0.0001) {
+      detailList.push({
+        n,
+        rate: rateAtN,
+        exactChance,
+        cumulativeFail: pNotPullingBefore * (1 - rateAtN), // 更新后的累积失败
+        contribution
+      });
+    }
+
+    pNotPullingBefore *= (1 - rateAtN);
+
+    if (rateAtN >= 1 && pNotPullingBefore < 1e-9) break;
+  }
+
+  const overallRate = expectedValue > 0 ? (1 / expectedValue) * 100 : 0;
+
+  return {
+    average: expectedValue,
+    overallRate,
+    detailList
+  };
+});
+
+// ================= 图表渲染逻辑 =================
+onMounted(async () => {
+  await nextTick();
+  initChartLogic();
+});
+
+// 监听视图切换，如果是从 table 切回 chart，需要 resize
+watch(viewType, (newVal) => {
+  if (newVal === 'chart') {
+    nextTick(() => {
+      if (myChart) myChart.resize();
+      else initChartLogic();
+    });
+  }
+});
+
+function initChartLogic() {
+  if (!chartRef.value || myChart) return;
+  if (chartRef.value.offsetHeight === 0) {
+    setTimeout(initChartLogic, 100);
+    return;
+  }
+
+  myChart = echarts.init(chartRef.value);
+
+  const handleResize = () => myChart?.resize();
+  window.addEventListener('resize', handleResize);
+
+  renderChart();
+
+  watch(probabilityData, () => renderChart(), { deep: true });
+
+  (myChart as any)._resizeHandler = handleResize;
+}
+
+function renderChart() {
+  if (!myChart) return;
+  const data = probabilityData.value;
+
+  const option: echarts.EChartsOption = {
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,0,0,0.8)',
+      borderColor: '#444',
+      textStyle: { color: '#fff' },
+      formatter: (params: any) => {
+        const n = params[0].name;
+        const val = params[0].data as number;
+        return `<b>第 ${n} 抽</b><br/>出金概率: <b>${val.toFixed(4)}%</b>`;
+      }
+    },
+    grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },
+    xAxis: {
+      type: 'category',
+      name: '抽数',
+      data: data.xAxis,
+      axisLine: { lineStyle: { color: '#666' } },
+      axisLabel: { color: '#aaa' }
+    },
+    yAxis: {
+      type: 'value',
+      name: '概率 (%)',
+      splitLine: { lineStyle: { color: '#333' } },
+      axisLabel: { color: '#aaa' }
+    },
+    series: [{
+      name: '出金概率',
+      type: 'line',
+      data: data.probValues,
+      smooth: true,
+      symbol: 'circle',
+      symbolSize: 4,
+      lineStyle: { color: '#f1c40f', width: 3 },
+      itemStyle: { color: '#f1c40f' },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(241, 196, 15, 0.3)' },
+          { offset: 1, color: 'transparent' }
+        ])
+      }
+    }]
+  };
+
+  myChart.setOption(option, true);
+}
+
+onUnmounted(() => {
+  if (myChart && (myChart as any)._resizeHandler) {
+    window.removeEventListener('resize', (myChart as any)._resizeHandler);
+  }
+  if (myChart) {
+    myChart.dispose();
+    myChart = null;
+  }
 });
 
 </script>

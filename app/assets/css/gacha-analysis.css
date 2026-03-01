@@ -52,7 +52,7 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #0071e3; 
+  border-color: #0071e3;
   background-color: #fff;
   box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
 }
@@ -74,7 +74,7 @@
   color: inherit;
   text-decoration: none;
   cursor: pointer;
-  position: relative; 
+  position: relative;
   padding-bottom: 2px;
   transition: color 0.2s ease;
 }
@@ -85,7 +85,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 0; 
+  width: 0;
   height: 1px;
   background-color: #0077ed;
   transition: width 0.3s ease;
@@ -112,7 +112,7 @@
   background: linear-gradient(180deg, #0071e3 0%, #0066cc 100%);
   color: #ffffff;
   border: none;
-  border-radius: 12px; 
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -132,9 +132,9 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    90deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    rgba(255, 255, 255, 0.05) 50%, 
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
     rgba(255, 255, 255, 0) 100%
   );
   opacity: 0;
@@ -173,18 +173,18 @@
   .collect-form {
     padding: 32px 16px;
   }
-  
+
   .page-title {
     font-size: 22px;
     margin-bottom: 24px;
   }
-  
+
   .form-group input,
   .form-group textarea {
     padding: 12px 14px;
     font-size: 15px;
   }
-  
+
   .submit-btn {
     padding: 12px 0;
     font-size: 15px;
@@ -350,7 +350,7 @@
   padding: 16px;
   max-width: 900px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px; 
+  gap: 12px;
   border-radius: 16px;
   -webkit-backdrop-filter: blur(0.625em);
   backdrop-filter: blur(0.625em);
@@ -359,16 +359,16 @@
 
 .pool-card {
   border-radius: 12px;
-  padding: 16px 12px; 
+  padding: 16px 12px;
   box-shadow: 0 0 0.5em var(--theme-shadow-base);
-  transition: all 0.2s ease;  
+  transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
-  height: 140px; 
+  height: 140px;
 }
 
 .pool-card:hover {
-  transform: translateY(-1px); 
+  transform: translateY(-1px);
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
 }
 
@@ -400,7 +400,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-top: auto; 
+  margin-top: auto;
 }
 .stat-item {
   display: flex;
@@ -417,7 +417,7 @@
 }
 
 .pool-card--limited {
-  border-left: 5px solid #FFF132; 
+  border-left: 5px solid #FFF132;
 }
 .pool-card--permanent {
   border-left: 5px solid #3b95f6;
@@ -431,7 +431,7 @@
   padding: 16px;
   max-width: 1500px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px; 
+  gap: 12px;
   border-radius: 16px;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -446,8 +446,8 @@
   align-items: center;
   width: 80%;
   max-width: 900px;
-  gap: 8px; 
-  margin-bottom: 16px; 
+  gap: 8px;
+  margin-bottom: 16px;
   padding: 0 2px;
 }
 
@@ -460,14 +460,14 @@
   font-size: 0.9rem !important;
   transition: all 0.2s ease !important;
   border: 1px solid transparent !important;
-  background-color: rgba(255, 255, 255, 0.6) !important; 
+  background-color: rgba(255, 255, 255, 0.6) !important;
   -webkit-backdrop-filter: blur(8px) !important;
   backdrop-filter: blur(8px) !important;
 
 }
 
 .pool-selector__btn:not(.pool-selector__btn--active):nth-child(1) {
-  color: #f9d120 !important; 
+  color: #f9d120 !important;
 }
 .pool-selector__btn:not(.pool-selector__btn--active):nth-child(2) {
   color: #1e88e5 !important;
@@ -526,11 +526,11 @@
   height: 28px;
   border-radius: 4px;
   position: relative;
-  overflow: visible; 
+  overflow: visible;
 }
 
 .gacha-drawer-container .mt-2 {
-  margin-top: 4px !important; 
+  margin-top: 4px !important;
 }
 
 
@@ -546,12 +546,12 @@
   align-items: center;
   cursor: pointer;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .gacha-bar:hover {
-  transform: scaleX(1.02); 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+  transform: scaleX(1.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
 }
 
@@ -574,7 +574,7 @@
 }
 
 .gacha-bar.gacha-lucky {
-  background: 
+  background:
     repeating-linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.2),
@@ -597,7 +597,7 @@
 }
 
 .gacha-bar.gacha-unlucky {
-  background: 
+  background:
     repeating-linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.15),
@@ -609,7 +609,7 @@
 }
 
 .gacha-bar.gacha-unlucky:hover {
-  background: 
+  background:
     repeating-linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.2),
@@ -624,7 +624,7 @@
   background:
     repeating-linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.2), 
+      rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2) 4px,
       rgba(255, 255, 255, 0.1) 4px,
       rgba(255, 255, 255, 0.1) 8px
@@ -632,11 +632,11 @@
     linear-gradient(
       90deg,
       #3bc4e8,
-      #68f0e8,  
-      #82ffae, 
-      #fef060,  
-      #fdb852,   
-      #f75e00  
+      #68f0e8,
+      #82ffae,
+      #fef060,
+      #fdb852,
+      #f75e00
     );
 }
 
@@ -686,7 +686,7 @@
     gap: 12px;
     margin: 0 auto;
     width: 100%;
-    max-width: 380px; 
+    max-width: 380px;
   }
 
   .avatar-img {
@@ -704,7 +704,7 @@
     margin-top: 8px;
   }
   .pool-cards{
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
 
   /* 卡池分布/角色TOP3 优化 */
@@ -796,4 +796,290 @@
 .clear-btn {
   background-color: #ff6b6b;
   color: white;
+}
+
+.chart-container {
+  width: 100%;
+  border-radius: 8px;
+  padding: 20px;
+  /* 移除背景色和阴影，完全透明 */
+  background-color: transparent;
+  box-shadow: none;
+  color: inherit; /* 继承父级文字颜色 */
+  transition: color 0.3s;
+}
+
+.header-panel {
+  margin-bottom: 20px;
+}
+
+.title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.title-section h2 {
+  margin: 0;
+  margin-top: 20px;
+  font-size: 24px;
+  /* 金色保持，或改为 currentColor 以跟随父级 */
+  color: #f1c40f;
+}
+
+.toggle-group {
+  display: flex;
+  gap: 8px;
+  /* 背景透明，仅保留间距 */
+  background: transparent;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: 1px solid transparent; /* 默认无边框 */
+  color: inherit; /* 继承父级颜色，通常带透明度 */
+  opacity: 0.7;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  opacity: 1;
+  background: rgba(128, 128, 128, 0.1); /* 轻微悬停效果 */
+}
+
+.toggle-btn.active {
+  background: #f1c40f;
+  color: #000;
+  opacity: 1;
+  font-weight: bold;
+  border-color: #f1c40f;
+}
+.gacha-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: transparent;
+  padding: 12px 0; /* 上下留白，左右无背景 */
+  border-radius: 6px;
+  border-left: 4px solid #f1c40f; /* 保留左侧金色装饰线 */
+  transition: all 0.3s;
+}
+
+/* 每一行统计项 */
+.gacha-stat-row {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px; /* 防止换行太碎 */
+  margin-left: 5px;
+}
+
+/* 标签文字 (如 "概率峰值:") */
+.stat-label {
+  font-size: 12px;
+  color: inherit; /* 继承父级颜色 */
+  opacity: 0.6;   /* 降低透明度以区分层级 */
+  margin-bottom: 4px;
+}
+
+/* 数值文字 */
+.stat-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: inherit;
+  opacity: 0.9;
+  display: flex;
+  align-items: baseline; /* 确保数字和单位对齐 */
+  gap: 2px;
+}
+
+/* 特殊高亮：主数值 (期望) */
+.stat-value.primary {
+  color: #f1c40f; /* 金色 */
+  font-size: 18px;
+  opacity: 1;
+}
+
+/* 特殊高亮：峰值 */
+.stat-value.highlight {
+  color: #f1c40f;
+  font-size: 16px;
+  opacity: 1;
+}
+
+/* 未计算时的占位提示 */
+.gacha-stat-placeholder {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  color: inherit;
+  opacity: 0.5;
+  font-size: 14px;
+}
+
+/* CountTo 数字组件样式修正 */
+.count-text {
+  display: inline-block;
+  font-weight: inherit;
+  color: inherit;
+  font-variant-numeric: tabular-nums; /* 等宽数字，防止滚动时抖动 */
+}
+.action-bar {
+  margin-top: 15px;
+}
+
+.content-area {
+  min-height: 400px;
+  position: relative;
+}
+
+.echarts-canvas {
+  width: 100%;
+  height: 400px;
+  /* 确保 canvas 本身透明 */
+  background: transparent;
+}
+
+/* 表格样式：透明背景 */
+.data-table-wrapper {
+  max-height: 450px;
+  overflow-y: auto;
+  /* 移除边框和背景 */
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.gacha-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: inherit;
+}
+
+.gacha-table th,
+.gacha-table td {
+  padding: 10px 12px;
+  text-align: left;
+  /* 仅保留底部极淡的分隔线，或使用透明边框 */
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  background: transparent;
+}
+
+.gacha-table th {
+  /* 表头透明，文字金色 */
+  background: transparent;
+  color: #f1c40f;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* 可选：给表头加一点毛玻璃背景以防文字重叠看不清 */
+  /* backdrop-filter: blur(4px); */
+}
+
+.gacha-table tr:hover {
+  /* 悬停时轻微高亮 */
+  background: rgba(128, 128, 128, 0.05);
+}
+
+.gacha-table .highlight-row {
+  background: rgba(241, 196, 15, 0.1);
+  border-left: 3px solid #f1c40f;
+}
+
+.gacha-table .badge {
+  display: inline-block;
+  background: #f1c40f;
+  color: #000;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  font-weight: bold;
+}
+
+.prob-cell {
+  color: #4ecdc4; /* 青色保持，或改为 inherit */
+  font-family: monospace;
+}
+
+.dim-text {
+  opacity: 0.4;
+}
+
+.table-footer {
+  padding: 10px;
+  font-size: 12px;
+  opacity: 0.5;
+  text-align: center;
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+  background: transparent;
+}
+
+/* 滚动条：极简透明风格 */
+.data-table-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.data-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+.data-table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 4px;
+}
+.data-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.5);
+}
+
+/* 按钮样式：透明底，金色字/边 */
+.calc-btn,
+.reset-btn {
+  background: transparent;
+  color: #f1c40f;
+  border: 1px solid #f1c40f;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calc-btn:hover,
+.reset-btn:hover {
+  background: rgba(241, 196, 15, 0.1);
+  opacity: 1;
+}
+
+.reset-btn {
+  color: inherit;
+  border-color: rgba(128, 128, 128, 0.5);
+  opacity: 0.7;
+}
+.reset-btn:hover {
+  border-color: inherit;
+  opacity: 1;
+}
+
+.empty-state {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  opacity: 0.5;
+  background: transparent;
+  border: 2px dashed rgba(128, 128, 128, 0.3);
+  border-radius: 8px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
 }
