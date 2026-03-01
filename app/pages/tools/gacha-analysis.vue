@@ -1352,23 +1352,6 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
 
 // ========== UI 相关 ==========
 
-// 横向条形图排序、分组
-const sortedData = computed(() => [...sixStarRecordsWithCount.value]);
-
-const consecutiveGroups = computed(() => {
-  const groups: Array<{ poolName: string; records: SixStarEntry[] }> = [];
-  let currentGroup: { poolName: string; records: SixStarEntry[] } | null = null;
-
-  for (const record of sortedData.value) {
-    if (!currentGroup || currentGroup.poolName !== record.poolName) {
-      currentGroup = { poolName: record.poolName, records: [] };
-      groups.push(currentGroup);
-    }
-    currentGroup.records.push(record);
-  }
-  return groups;
-});
-
 
 
 function getBarWidth (count: number) {
