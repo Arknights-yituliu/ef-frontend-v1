@@ -703,7 +703,9 @@
     gap: 8px;
     margin-top: 8px;
   }
-
+  .pool-cards{
+    grid-template-columns: 1fr; 
+  }
 
   /* 卡池分布/角色TOP3 优化 */
   .d-flex.flex-wrap {
