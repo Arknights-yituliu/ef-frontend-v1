@@ -60,6 +60,13 @@
         "nameKey": "menu.batterySplitCalculator",
         "routePath": "/tools/power-calc",
         "vuetifyIcon": "mdi-battery"
+      },
+
+      {
+        "i18nKey": "gachaAnalysis",
+        "nameKey": "menu.gachaAnalysis",
+        "routePath": "/tools/gacha-analysis",
+        "vuetifyIcon": "mdi-chart-bar"
       }
     ]
   },

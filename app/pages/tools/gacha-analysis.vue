@@ -9,7 +9,6 @@
 <template>
 
   <div style=" border-radius: 16px; padding: 24px;">
-    <h2>锐意开发中···</h2>
     <!-- 数据收集 -->
     <div v-if="viewMode === 'collect'" class="collect-form">
       <header class="page-title">导入抽卡记录</header>
@@ -260,30 +259,46 @@
                 <!-- 条形图区域 -->
                 <div class="gacha-drawer-container" style="flex: 1;">
                   <div class="gacha-bar-container" style="position: relative; height: 32px; display: flex; align-items: center;">
-                  <div
-                    class="gacha-bar"
-                    :class="getBarType(record)"
-                    :style="{ width: (Math.min(getBarWidth(record.count), 100) + '%'), height: '100%', borderRadius: '4px', transition: 'width 0.5s ease' }"
-                  >
-                    <div class="pull-count" style="width: 60px; text-align: right; padding-right: 12px; color: #000; font-weight: bold; font-size: 0.9rem;">
-                      {{ record.count }} 抽
+                    <div
+                      class="gacha-bar"
+                      :class="getBarType(record)"
+                      :style="{ width: (Math.min(getBarWidth(record.count), 100) + '%'), height: '100%', borderRadius: '4px', transition: 'width 0.5s ease' }"
+                    >
+                      <div class="pull-count" style="width: 60px; text-align: right; padding-right: 12px; color: #000; font-weight: bold; font-size: 0.9rem;">
+                        {{ record.count }} 抽
+                      </div>
                     </div>
-                  </div>
-                    
-                    <!-- 条形图标签 -->
+
+                    <div 
+                      v-if="!isVirtualRecord(record.character) && selectedPool === 'limited'" 
+                      style="position: absolute; right: 8px; display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;"
+                    >
+                      <template v-if="getProbabilityInfo(record, group.records)">
+                        <span :style="{ 
+                          fontSize: '0.75rem', 
+                          fontWeight: 'bold', 
+                          color: getProbabilityInfo(record, group.records)!.isBig ? '#d97706' : '#374151',
+                          backgroundColor: getProbabilityInfo(record, group.records)!.isBig ? '#fef3c7' : 'transparent',
+                          padding: getProbabilityInfo(record, group.records)!.isBig ? '2px 4px' : '0',
+                          borderRadius: '4px'
+                        }">
+                          {{ getProbabilityInfo(record, group.records)!.label }}
+                        </span>
+                        <span :style="{ fontSize: '0.65rem', color: isOnBanner(record) ? '#d97706' : '#ef4444' }">
+                          {{ getProbabilityInfo(record, group.records)!.subLabel }}
+                        </span>
+                      </template>
+                    </div>
 
                     <span v-if="record.character === '已垫'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">当前垫抽</span>
                     <span v-if="record.character === '赠送十连'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">赠送十连</span>
-
                   </div>
 
-                  <!-- 展开的五星详情 -->
                   <div 
                     v-if="expandedSeqId === record.seqId && record.fiveStars?.length" 
                     class="mt-2 ml-2 p-2"
                     style="background-color: #f9fafb; border-radius: 6px;"
                   >
-
                     <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                       <div
                         v-for="(item, i) in countFiveStars(record.fiveStars || [])"
@@ -304,8 +319,10 @@
                     </div>
                   </div>
                   
-                  <!-- 名称显示 (可选，如果想直接显示名字) -->
-                  <div v-if="record.character !== '已垫'&& record.character !== '赠送十连'" style="margin-top: 4px; font-size: 0.85rem; color: #374151; font-weight: 500;">
+                  <div 
+                    v-if="!isVirtualRecord(record.character) && expandedSeqId !== record.seqId" 
+                    style="margin-top: 4px; font-size: 0.85rem; color: #374151; font-weight: 500;"
+                  >
                     {{ record.character }}
                     <span v-if="isOnBanner(record)" style="color: #d97706; font-size: 0.75rem; margin-left: 4px;">(UP)</span>
                     <span v-if="isOffPool(record)" style="color: #ef4444; font-size: 0.75rem; margin-left: 4px;">(歪)</span>
@@ -332,7 +349,7 @@
         </div>
       </div>
 
-      <div style=" margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
+      <div style=" margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;" v-if="USE_DEBUG_DATA">
         <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
 
         <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -369,10 +386,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-// 提交并验证（含缓存合并
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
-
-
 
 
 // ========== 加载/缓存数据相关 ==========
@@ -488,9 +502,9 @@ function parseSeqId(seqId: string): number {
 const CACHE_KEY = 'endfield_gacha_records_v2';
 const LAST_ROLE_ID_KEY = 'endfield_last_role_id';
 
-/**
- * 从本地缓存读取数据（适配物理隔离结构）
- */
+
+//从本地缓存读取数据（适配物理隔离结构）
+
 function loadCachedRecords(roleId: string): { chars: GachaRecord[], weps: GachaRecord[] } {
   const CACHE_KEY = 'endfield_gacha_records_v2';
   const localData = localStorage.getItem(CACHE_KEY);
@@ -1090,15 +1104,15 @@ const gachaTags = computed(() => {
   const graduateAverage = poolSummary.value.limited.graduateAverage;
   // 2. 添加平均出货数对应的等级标签
   if (graduateAverage > 0) {
-    if (graduateAverage <= 30) {
+  if (graduateAverage <= 40) {
       tags.push({ name: '至尊欧皇', type: 'lucky' });
-    } else if (graduateAverage <= 40) {
+    } else if (graduateAverage <= 65) { 
       tags.push({ name: '欧皇', type: 'lucky' });
-    } else if (graduateAverage <= 60) {
+    } else if (graduateAverage <= 85) {
       tags.push({ name: '路过的欧洲人', type: 'lucky' });
-    } else if (graduateAverage <= 76) {
+    } else if (graduateAverage <= 105) {
       tags.push({ name: '小非酋', type: 'unlucky' });
-    } else { // >75
+    } else { 
       tags.push({ name: '血统纯正的非酋', type: 'unlucky' });
     }
   }
@@ -1175,6 +1189,62 @@ const gachaTags = computed(() => {
 });
 
 
+// 1. 判断虚拟记录的辅助函数
+const isVirtualRecord = (name: string) => name === '已垫' || name === '赠送十连';
+
+/**
+ * 核心逻辑：获取显示所需的概率和保底状态
+ */
+function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
+  if (isVirtualRecord(current.character)) return null;
+
+  let isBigPity = false;
+  let debugPulls = 0; 
+
+  const sortedRecords = [...allInGroup].sort((a, b) => parseInt(a.seqId) - parseInt(b.seqId));
+  const currentIndex = sortedRecords.findIndex(r => r.seqId === current.seqId);
+  
+  if (currentIndex !== -1) {
+    // --- 核心修复：向上追溯直到遇到“上一个 UP” ---
+    for (let i = currentIndex; i >= 0; i--) {
+      const r = sortedRecords[i];
+      
+      if (r!.character !== '赠送十连') {
+        debugPulls += r!.count;
+      }
+
+      // 如果不是当前这条记录，且这条记录是“六星”
+      if (i !== currentIndex) {
+        // 判断这只六星是不是 UP 角色
+        // 如果是 UP，说明保底序列在这里重置了，停止累加
+        if (isOnBanner(r!)) {
+          break;
+        }
+        // 如果是“歪”了，循环不会 break，会继续向上加更早的抽数
+      }
+    }
+
+    if (isOnBanner(current) && debugPulls >= 120) {
+      isBigPity = true;
+    }
+  }
+
+  // --- 返回显示对象 ---
+  if (isBigPity) {
+    return { label: '大保底', subLabel: '100% 不歪', isBig: true };
+  }
+
+  let prob = 0.8;
+  if (current.count > 65) {
+    prob = 0.8 + (current.count - 65) * 5;
+  }
+  
+  return {
+    label: `${Math.min(prob, 100).toFixed(1)}%`,
+    subLabel: isOnBanner(current) ? '50% 不歪' : '50% 歪',
+    isBig: false
+  };
+}
 
 
 
@@ -1238,6 +1308,7 @@ function isOnBanner(record: SixStarEntry): boolean {
   const upChar = upCharMap.get(record.poolId);
   return !!upChar && record.character === upChar;
 }
+
 const selectedPool = ref<'limited' | 'permanent' | 'weapon'>('limited');
 function selectPool (pool: 'limited' | 'permanent' | 'weapon') {
   selectedPool.value = pool;
@@ -1264,11 +1335,11 @@ function toggleExpand(seqId: string) {
 // 获取头像 URL 
 function getAvatarUrl(id: string, isWeapon: boolean = false): string {
   if (id === 'padded') {
-    return `https://cos.yituliu.cn/endfield/other/dian.webp`; 
+    return `https://cos.yituliu.cn/endfield/other/blank.webp `; 
   }
   
   if (id === 'free_bundle') {
-    return `https://cos.yituliu.cn/endfield/other/zheng.webp`;
+    return `https://cos.yituliu.cn/endfield/other/blank.webp `;
   }
 
   if (isWeapon) {
