@@ -46,6 +46,7 @@ import {
   beginnerSignInTaskReward,
   etchSpaceSalvageReward,
   newHorizonsTaskReward,
+  beginnerTicketgachaSpecialSingleTaskReward,
   valleyIVTaskRewardTable,
   wulingTaskRewardTable,
 } from '@/custom/core/gacha/permanentReward';
@@ -880,6 +881,21 @@ watch(
   { deep: true },
 );
 
+
+watch(
+  beginnerTicketgachaSpecialSingleTaskReward,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
+    }
+
+    permanentRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
+
+
 watch(
   valleyIVTaskRewardTable,
   (newValue) => {
@@ -937,6 +953,7 @@ function permanentRewardStatistics(): void {
   };
   addReward(result, beginnerSignInTaskReward.value);
   addReward(result, newHorizonsTaskReward.value);
+  addReward(result, beginnerTicketgachaSpecialSingleTaskReward.value);
   addReward(result, valleyIVTaskRewardTable.value);
   addReward(result, wulingTaskRewardTable.value);
 
@@ -1387,6 +1404,7 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, intelArchiveReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, newHorizonsTaskReward);
+        _setButtonGroupActive(localConfig.buttonGroupActive, beginnerTicketgachaSpecialSingleTaskReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, otherRewardTable);
 
         gachaCalculatorUserConfig.value.buttonGroupActive = localConfig.buttonGroupActive;
@@ -1517,6 +1535,7 @@ function clearOrSelectAllLevelModule(action: boolean) {
 function clearOrSelectAllOtherPermanentModule(action: boolean) {
   clearOrSelectAll(action, 'rangeSlider', beginnerCheckInTaskProgress, [0, 14]);
   clearOrSelectAll(action, 'button', newHorizonsTaskReward);
+  clearOrSelectAll(action, 'button', beginnerTicketgachaSpecialSingleTaskReward);
 }
 
 function clearOrSelectAllPermanentValleyIVTaskModule(action: boolean) {
@@ -2510,6 +2529,14 @@ function checkRewardIsValid(reward: Reward): boolean {
               <!--启程任务-->
               <GachaCalculatorResourceSingleBtn
                 v-for="item in newHorizonsTaskReward"
+                :key="item.id"
+                v-bind="item"
+                @click="item.active = !item.active"
+              />
+
+              <!--启程任务-->
+              <GachaCalculatorResourceSingleBtn
+                v-for="item in beginnerTicketgachaSpecialSingleTaskReward"
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"

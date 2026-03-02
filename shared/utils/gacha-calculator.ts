@@ -107,7 +107,7 @@ function countTuesdaysBetweenV2(
 
   for (let i = startTimestamp; i <= endTimestamp; i++) {
     const date = new Date(i);
-    if (date.getDay() === 2) {
+    if (date.getDay() === 3) {
       week++;
     }
     i += oneDayTimestamp;

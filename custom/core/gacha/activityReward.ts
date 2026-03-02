@@ -206,7 +206,7 @@ function createNewPoolActivity() {
         },
         start: new Date(time),
         end: new Date(item.end),
-        type: '通用',
+        type: item.version,
         module: '活动',
         active: true,
         version: item.version,
