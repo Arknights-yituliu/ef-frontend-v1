@@ -194,8 +194,7 @@ function createNewPoolActivity() {
       },
     };
 
-    activityReward.value.push(reward1);
-    activityReward.value.push(reward2);
+    activityReward.value.push(reward1, reward2);
 
     let i = 1;
     for (const time of item.signInTime) {
