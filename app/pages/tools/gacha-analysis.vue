@@ -569,7 +569,8 @@
 
 <script setup lang="ts">
 import * as echarts from 'echarts';
-import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'; // 合并所有 vue 引用
+import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
+import { CountTo } from 'vue3-count-to';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 // ========== 获取、加载抽卡数据==========
@@ -1662,7 +1663,7 @@ const displayUid = computed(() => {
 
 
 const chartRef = ref<HTMLElement | null>(null);
-let myChart: echarts.ECharts | null = null;
+let myChart: ReturnType<typeof echarts.init> | null = null;
 const viewType = ref<'chart' | 'table'>('chart'); // 默认显示图表
 
 const isCalculated = ref(false);
@@ -1854,7 +1855,7 @@ function renderChart() {
       lineStyle: { color: '#f1c40f', width: 3 },
       itemStyle: { color: '#f1c40f' },
       areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+        color: new (echarts as any).graphic.LinearGradient(0, 0, 0, 1, [
           { offset: 0, color: 'rgba(241, 196, 15, 0.3)' },
           { offset: 1, color: 'transparent' }
         ])
