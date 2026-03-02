@@ -64,33 +64,33 @@ import {
 } from '@/custom/core/gacha/wulingRegionalReward';
 
 
-const version1Reward = ref<Reward[]>([]);
+const versionReward = ref<Reward[]>([]);
 
 calculatorDailyReward(new Date('2026/01/22 12:00:00'),new Date('2026/03/12 12:00:00'))
 
-version1Reward.value.push(dailyReward.value, weekTaskReward.value)
+versionReward.value.push(dailyReward.value, weekTaskReward.value)
 
 for (const reward of AICQuotaReward.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
 
 
 for (const reward of activityReward.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
 for (const reward of otherRewardTable.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
-version1Reward.value.push(factoryManualReward.value);
+versionReward.value.push(factoryManualReward.value);
 
 for (const reward of intelArchiveReward.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
-version1Reward.value.push(valleyIVAuryleneCollectReward.value,
+versionReward.value.push(valleyIVAuryleneCollectReward.value,
   valleyIVCrateReward.value,
   valleyIVBattleCrateReward.value,
   valleyIVDeltaBotReward.value,
@@ -99,74 +99,89 @@ version1Reward.value.push(valleyIVAuryleneCollectReward.value,
   valleyIVSimulationReward.value,
 );
 for (const reward of valleyIVDefenseConstructionReward.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
-version1Reward.value.push(wulingAuryleneCollectReward.value,
+versionReward.value.push(wulingAuryleneCollectReward.value,
   wulingCrateReward.value,
   wulingDeltaBotReward.value,
   wulingRegionalDevelopmentReward.value,
   wulingRegionalStockBillStoreReward.value,
   wulingSimulationReward.value, wulingBattleCrateReward.value);
 for (const reward of wulingDefenseConstructionReward.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
 for (const reward of authorityLevelTaskRewards.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
-version1Reward.value.push(authorityLevelUpReward.value, worldLevelReward.value, beginnerSignInTaskReward.value);
+versionReward.value.push(authorityLevelUpReward.value, worldLevelReward.value, beginnerSignInTaskReward.value);
 
 for (const reward of newHorizonsTaskReward.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
 for (const reward of etchSpaceSalvageReward.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
 for (const reward of valleyIVTaskRewardTable.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
 for (const reward of wulingTaskRewardTable.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
 for (const reward of operationalManualReward.value) {
-  version1Reward.value.push(reward);
+  versionReward.value.push(reward);
 }
 
-version1Reward.value.push(operationalManualNodeReward.value);
+versionReward.value.push(operationalManualNodeReward.value);
 
-const version1RewardTotal:Reward =  {
-  id: 'total',
-  name: {
-    zh: `总和`,
-    en: ''
-  },
-  start: '2026/01/22 12:00:00',
-  end: '2099/12/31 12:00:00',
-  type: '通用',
-  module: '总和',
-  active: true,version: "零号委托",
-  content: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
+
+const currentVersionReward = ref<Reward[]>([]);
+
+function filterRewardByVersion(){
+
+  currentVersionReward.value = []
+
+  for(const reward of versionReward.value){
+    if("新潮起·故渊离"===reward.version){
+      currentVersionReward.value.push(reward);
+    }
   }
+
+  const currentVersionRewardTotal:Reward =  {
+    id: 'total',
+    name: {
+      zh: `总和`,
+      en: ''
+    },
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '总和',
+    active: true,version: "零号委托",
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0
+    }
+  }
+
+  for (const reward of currentVersionReward.value) {
+    currentVersionRewardTotal.content.originiumRecharge+=reward.content.originiumRecharge;
+    currentVersionRewardTotal.content.diamond+=reward.content.diamond;
+    currentVersionRewardTotal.content.ticketgachaStandardSingle+=reward.content.ticketgachaStandardSingle;
+    currentVersionRewardTotal.content.ticketgachaSpecialSingle+=reward.content.ticketgachaSpecialSingle;
+  }
+  currentVersionReward.value.push(currentVersionRewardTotal)
 }
 
-for (const reward of version1Reward.value) {
-  version1RewardTotal.content.originiumRecharge+=reward.content.originiumRecharge;
-  version1RewardTotal.content.diamond+=reward.content.diamond;
-  version1RewardTotal.content.ticketgachaStandardSingle+=reward.content.ticketgachaStandardSingle;
-  version1RewardTotal.content.ticketgachaSpecialSingle+=reward.content.ticketgachaSpecialSingle;
-}
-version1Reward.value.push(version1RewardTotal)
-
+filterRewardByVersion()
 
 </script>
 <template>
@@ -207,7 +222,7 @@ version1Reward.value.push(version1RewardTotal)
       </tr>
     </thead>
     <tbody>
-      <tr v-for="reward in version1Reward">
+      <tr v-for="reward in currentVersionReward">
         <td>{{reward.name.zh}}</td>
         <td>{{reward.type}}</td>
         <td>{{reward.module}}</td>
