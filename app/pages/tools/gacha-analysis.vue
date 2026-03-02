@@ -1675,21 +1675,28 @@ function startCalculation() {
 // ================= 核心算法：计算分布与期望 =================
 const probabilityData = computed(() => {
   const xAxis: number[] = [];
-  const probValues: number[] = []; // 恰好在此抽出金的概率 (%)
+  const probValues: number[] = [];
 
   let pNotPullingBefore = 1;
   const BASE_RATE = 0.008;
   const SOFT_PITY_START = 65;
   const RATE_INCREMENT = 0.05;
+  const HARD_PITY = 80;
 
-  for (let n = 1; n <= 80; n++) {
+  for (let n = 1; n <= HARD_PITY; n++) {
     xAxis.push(n);
 
     let rateAtN = BASE_RATE;
-    if (n > SOFT_PITY_START) {
+
+    if (n > SOFT_PITY_START && n < HARD_PITY) {
       rateAtN = BASE_RATE + (n - SOFT_PITY_START) * RATE_INCREMENT;
     }
-    rateAtN = Math.min(rateAtN, 1);
+
+    if (n === HARD_PITY) {
+      rateAtN = 1;
+    } else {
+      rateAtN = Math.min(rateAtN, 1);
+    }
 
     const exactChance = pNotPullingBefore * rateAtN;
 
@@ -1697,7 +1704,9 @@ const probabilityData = computed(() => {
 
     pNotPullingBefore *= (1 - rateAtN);
 
-    if (rateAtN >= 1 && pNotPullingBefore < 1e-9) break;
+    if (rateAtN >= 1 || pNotPullingBefore < 1e-9) {
+      break;
+    }
   }
 
   return { xAxis, probValues };
@@ -1711,6 +1720,7 @@ const peakInfo = computed(() => {
   const index = probValues.indexOf(maxVal);
   return { n: index + 1, chance: maxVal };
 });
+
 const animatedPeakInfo = computed(() => {
   if (!isCalculated.value) {
     return { n: 0, chance: 0 };
@@ -1718,7 +1728,6 @@ const animatedPeakInfo = computed(() => {
   return peakInfo.value;
 });
 
-// 【新增】计算期望值和详细列表
 const expectationResult = computed(() => {
   if (!isCalculated.value) {
     return {
@@ -1741,36 +1750,44 @@ const expectationResult = computed(() => {
   const BASE_RATE = 0.008;
   const SOFT_PITY_START = 65;
   const RATE_INCREMENT = 0.05;
+  const HARD_PITY = 80;
 
-  // 计算到 100 抽以确保覆盖硬保底
-  for (let n = 1; n <= 100; n++) {
+  for (let n = 1; n <= HARD_PITY; n++) {
     let rateAtN = BASE_RATE;
-    if (n > SOFT_PITY_START) {
+
+    if (n > SOFT_PITY_START && n < HARD_PITY) {
       rateAtN = BASE_RATE + (n - SOFT_PITY_START) * RATE_INCREMENT;
     }
-    rateAtN = Math.min(rateAtN, 1);
+
+    if (n === HARD_PITY) {
+      rateAtN = 1;
+    } else {
+      rateAtN = Math.min(rateAtN, 1);
+    }
 
     const exactChance = pNotPullingBefore * rateAtN;
     const contribution = n * exactChance;
 
     expectedValue += contribution;
 
-    // 只记录前 80 抽或概率显著的数据，避免表格过长
     if (n <= 80 || exactChance > 0.0001) {
       detailList.push({
         n,
         rate: rateAtN,
         exactChance,
-        cumulativeFail: pNotPullingBefore * (1 - rateAtN), // 更新后的累积失败
+        cumulativeFail: pNotPullingBefore * (1 - rateAtN),
         contribution
       });
     }
 
     pNotPullingBefore *= (1 - rateAtN);
 
-    if (rateAtN >= 1 && pNotPullingBefore < 1e-9) break;
+    if (rateAtN >= 1 || pNotPullingBefore < 1e-9) {
+      break;
+    }
   }
 
+  // 期望值
   const overallRate = expectedValue > 0 ? (1 / expectedValue) * 100 : 0;
 
   return {
