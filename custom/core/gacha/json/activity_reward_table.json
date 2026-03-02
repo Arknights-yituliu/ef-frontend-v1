@@ -1,5 +1,4 @@
 [
-
   {
     "id": "离群之狼",
     "name": {
@@ -243,6 +242,120 @@
     "content": {
       "originiumRecharge": 0,
       "diamond": 360,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "引入活动",
+    "name": {
+      "zh": "引入活动",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "物资供给·开拓节",
+    "name": {
+      "zh": "物资供给·开拓节",
+      "en": ""
+    },
+    "start": "2026/03/19 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "影拓丰碑·灼痛疤痕",
+    "name": {
+      "zh": "影拓丰碑·灼痛疤痕",
+      "en": ""
+    },
+    "start": "2026/03/26 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "净流涤尘",
+    "name": {
+      "zh": "净流涤尘",
+      "en": ""
+    },
+    "start": "2026/03/29 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "密境行者·行探险窟",
+    "name": {
+      "zh": "密境行者·行探险窟",
+      "en": ""
+    },
+    "start": "2026/03/29 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "生存特训",
+    "name": {
+      "zh": "生存特训",
+      "en": ""
+    },
+    "start": "2026/03/29 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }

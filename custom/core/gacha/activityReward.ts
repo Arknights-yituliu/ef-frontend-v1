@@ -72,7 +72,7 @@ const springFestivalSignIn = [
   },
 ];
 
-createNewPoolActivity()
+
 
 for (const item of springFestivalSignIn) {
   const reward = {
@@ -222,3 +222,4 @@ function createNewPoolActivity() {
     }
   }
 }
+createNewPoolActivity()
