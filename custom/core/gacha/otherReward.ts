@@ -46,7 +46,7 @@ const factoryManualReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '简制手册',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: factoryManualCountReward,

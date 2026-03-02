@@ -25,7 +25,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '权限等阶提升活动',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -43,7 +43,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
-    active: true,version: "零号协议",
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 1000,
@@ -61,7 +61,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
-    active: true,version: "零号协议",
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 1000,
@@ -79,7 +79,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
-    active: true,version: "零号协议",
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 1000,
@@ -97,7 +97,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
-    active: true,version: "零号协议",
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 1000,
@@ -117,7 +117,7 @@ export const authorityLevelUpReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '权限等阶提升',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 4500,
@@ -136,7 +136,7 @@ export const worldLevelReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '探索等级',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 0,

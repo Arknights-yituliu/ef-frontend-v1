@@ -150,7 +150,7 @@ const version1RewardTotal:Reward =  {
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '总和',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 0,

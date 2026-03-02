@@ -14,7 +14,7 @@ const valleyIVRegionalStockBillStoreReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区建设',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -33,7 +33,7 @@ const valleyIVRegionalDevelopmentReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区建设',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 2200,
@@ -52,7 +52,7 @@ const valleyIVAuryleneCollectReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 43,
     diamond: 0,
@@ -73,7 +73,7 @@ const valleyIVCrateReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: valleyIVCrateRewardMax,
@@ -94,7 +94,7 @@ const valleyIVBattleCrateReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: valleyIVBattleCrateRewardMax,
     diamond: 0,
@@ -115,7 +115,7 @@ const valleyIVDeltaBotReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: valleyIVDeltaBotRewardMax,
@@ -134,7 +134,7 @@ const valleyIVSimulationReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区建设',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 26 * 25,
@@ -154,7 +154,7 @@ const valleyIVDefenseConstructionReward = ref<Reward[]>([
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '地区建设',
-    active: true,version: "零号协议",
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 240,
@@ -172,7 +172,7 @@ const valleyIVDefenseConstructionReward = ref<Reward[]>([
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '地区建设',
-    active: true,version: "零号协议",
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 320,

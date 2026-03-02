@@ -14,7 +14,7 @@ const wulingRegionalStockBillStoreReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区建设',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -33,7 +33,7 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区建设',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 1000,
@@ -52,7 +52,7 @@ const wulingAuryleneCollectReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 17,
     diamond: 0,
@@ -73,7 +73,7 @@ const wulingCrateReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: wulingCrateRewardMax,
@@ -95,7 +95,7 @@ const wulingBattleCrateReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: wulingBattleCrateRewardMax,
     diamond: 0,
@@ -116,7 +116,7 @@ const wulingDeltaBotReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: wulingDeltaBotRewardMax,
@@ -135,7 +135,7 @@ const wulingSimulationReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区建设',
-  active: true,version: "零号协议",
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 9 * 25,
@@ -155,7 +155,7 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '地区建设',
-    active: true,version: "零号协议",
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 160,

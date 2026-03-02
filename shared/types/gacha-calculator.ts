@@ -57,6 +57,7 @@ export interface Reward {
   regional?:string;
   active: boolean;
   version?:string;
+  isLimited?: boolean;
   content: {
     /** 衍质源石 */
     originiumRecharge: number;
