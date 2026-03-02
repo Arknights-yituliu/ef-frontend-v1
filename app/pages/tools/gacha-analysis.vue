@@ -570,7 +570,6 @@
 <script setup lang="ts">
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'; // 合并所有 vue 引用
-import { CountTo } from 'vue3-count-to';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
 // ========== 获取、加载抽卡数据==========
