@@ -32,6 +32,7 @@
     "unhead": "^2.1.2",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3",
+    "vue3-count-to": "^1.1.2",
     "vuetify": "^3.11.0"
   },
   "devDependencies": {
