@@ -18,7 +18,7 @@ const beginnerSignInTaskReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '常驻活动',
-  active: true,
+  active: true,version: "零号协议",
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -39,7 +39,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '常驻活动',
-    active: true,
+    active: true,version: "零号协议",
     content: {
       originiumRecharge: 0,
       diamond: 0,
@@ -57,7 +57,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '常驻活动',
-    active: true,
+    active: true,version: "零号协议",
     content: {
       originiumRecharge: 0,
       diamond: 0,
@@ -75,7 +75,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '常驻活动',
-    active: true,
+    active: true,version: "零号协议",
     content: {
       originiumRecharge: 0,
       diamond: 0,
@@ -93,7 +93,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '常驻活动',
-    active: true,
+    active: true,version: "零号协议",
     content: {
       originiumRecharge: 0,
       diamond: 0,

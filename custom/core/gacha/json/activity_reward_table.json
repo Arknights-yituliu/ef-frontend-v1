@@ -9,7 +9,7 @@
     "end": "2099/02/07 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
@@ -27,7 +27,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "通用",
     "module": "个人故事",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 600,
@@ -45,7 +45,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "通用",
     "module": "个人故事",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 600,
@@ -63,7 +63,7 @@
     "end": "2026/02/04 12:00:00",
     "type": "熔火灼痕",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -81,7 +81,7 @@
     "end": "2026/02/04 12:00:00",
     "type": "熔火灼痕",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -99,7 +99,7 @@
     "end": "2026/02/04 12:00:00",
     "type": "熔火灼痕",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -117,7 +117,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
@@ -135,7 +135,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 600,
@@ -153,7 +153,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "轻飘飘的信使",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -171,7 +171,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "轻飘飘的信使",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -189,7 +189,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "轻飘飘的信使",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -207,7 +207,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
@@ -225,7 +225,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 600,
@@ -243,7 +243,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "热烈色彩",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -261,7 +261,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "热烈色彩",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -279,7 +279,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "热烈色彩",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -297,7 +297,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -315,7 +315,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -333,7 +333,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -351,7 +351,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -369,7 +369,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -387,7 +387,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -405,7 +405,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -423,7 +423,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 1200,
@@ -441,7 +441,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 1200,
@@ -459,7 +459,7 @@
     "end": "2026/03/12 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 1200,
@@ -477,7 +477,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 1800,
@@ -495,7 +495,7 @@
     "end": "2026/03/03 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": true,
+    "active": true,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 360,

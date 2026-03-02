@@ -17,7 +17,7 @@ const dailyReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '日常奖励',
-  active: true,
+  active: true,version: "零号协议",
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -36,7 +36,7 @@ const weekTaskReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '日常奖励',
-  active: true,
+  active: true,version: "零号协议",
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -84,7 +84,7 @@ for(const poolInfo of poolInfos) {
       end: new Date(poolInfo.end),
       type: poolInfo.name,
       module: '集成配额商店兑换',
-      active: true,
+      active: true,version: "零号协议",
       content: {
         originiumRecharge: 0,
         diamond: 0,

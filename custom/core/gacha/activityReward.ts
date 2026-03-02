@@ -83,8 +83,8 @@ for(const item of springFestivalSignIn) {
     start: new Date(item.start),
     end: new Date(item.end),
     type: '通用',
-    module: '集成配额商店兑换',
-    active: true,
+    module: '活动',
+    active: true,version: "零号协议",
     content: {
       originiumRecharge: 0,
       diamond: item.diamond,

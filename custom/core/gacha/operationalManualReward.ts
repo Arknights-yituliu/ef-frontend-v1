@@ -16,7 +16,7 @@ const operationalManualNodeReward = ref<Reward>(
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '节点手册',
-    active: true,
+    active: true,version: "零号协议",
     content: {
       originiumRecharge: 0,
       diamond: 9000,

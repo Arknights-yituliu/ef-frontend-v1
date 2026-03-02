@@ -1,5 +1,23 @@
 [
   {
+    "id": "开发者日志节目奖励",
+    "name": {
+      "zh": "开发者日志节目奖励",
+      "en": ""
+    },
+    "start": "2026/03/01 12:00:00",
+    "end": "2026/03/14 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,"version": "零号协议",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
     "id": "游戏预约里程碑",
     "name": {
       "zh": "游戏预约里程碑",
@@ -9,7 +27,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "活动",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -27,7 +45,7 @@
     "end": "2026/02/24 12:00:00",
     "type": "通用",
     "module": "其他",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -45,7 +63,7 @@
     "end": "2026/01/29 12:00:00",
     "type": "通用",
     "module": "问卷",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -63,7 +81,7 @@
     "end": "2026/01/31 12:00:00",
     "type": "通用",
     "module": "问卷",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -81,7 +99,7 @@
     "end": "2026/02/04 12:00:00",
     "type": "通用",
     "module": "问卷",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -99,7 +117,7 @@
     "end": "2026/02/21 12:00:00",
     "type": "通用",
     "module": "问卷",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -117,7 +135,7 @@
     "end": "2026/03/05 12:00:00",
     "type": "通用",
     "module": "问卷",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -135,7 +153,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "森空岛",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 300,
@@ -153,7 +171,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "森空岛",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 120,
@@ -172,7 +190,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "森空岛",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 90,
@@ -190,7 +208,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "森空岛",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 90,
@@ -208,7 +226,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "兑换码",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 500,
@@ -226,7 +244,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "兑换码",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 1500,
@@ -244,7 +262,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "兑换码",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -262,7 +280,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "其他",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
@@ -280,7 +298,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "其他",
-    "active": false,
+    "active": false,"version": "零号协议",
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
