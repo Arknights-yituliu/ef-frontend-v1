@@ -27,8 +27,8 @@ import {
 
 import {
   beginnerSignInTaskReward,
-  etchSpaceSalvageReward,
   beginnerTicketgachaSpecialSingleTaskReward,
+  etchSpaceSalvageReward,
   newHorizonsTaskReward,
   valleyIVTaskRewardTable,
   wulingTaskRewardTable,

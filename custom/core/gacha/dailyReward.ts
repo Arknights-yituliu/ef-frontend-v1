@@ -74,7 +74,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
       type: '通用',
       module: '日常奖励',
       active: true,
-      version: version,
+      version,
       content: {
         originiumRecharge: 0,
         diamond: numberRound(remainingDays, 0) * 200,
@@ -93,7 +93,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
       type: '通用',
       module: '日常奖励',
       active: true,
-      version: version,
+      version,
       content: {
         originiumRecharge: 0,
         diamond: numberRound(remainingWeek, 0) * 500,
@@ -160,4 +160,4 @@ for (const poolInfo of poolInfos) {
   });
 }
 
-export { AICQuotaReward, calculatorDailyReward, dailyReward, weekTaskReward,createVersionDailyReward };
+export { AICQuotaReward, calculatorDailyReward, createVersionDailyReward, dailyReward,weekTaskReward };

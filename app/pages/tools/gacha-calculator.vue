@@ -44,9 +44,9 @@ import {
 
 import {
   beginnerSignInTaskReward,
+  beginnerTicketgachaSpecialSingleTaskReward,
   etchSpaceSalvageReward,
   newHorizonsTaskReward,
-  beginnerTicketgachaSpecialSingleTaskReward,
   valleyIVTaskRewardTable,
   wulingTaskRewardTable,
 } from '@/custom/core/gacha/permanentReward';
