@@ -44,6 +44,7 @@ import {
 
 import {
   beginnerSignInTaskReward,
+  beginnerTicketgachaSpecialSingleTaskReward,
   etchSpaceSalvageReward,
   newHorizonsTaskReward,
   valleyIVTaskRewardTable,
@@ -98,27 +99,27 @@ const poolOptions = ref<PoolOption[]>([
     color: '#FA5B81',
     start: new Date('2026/02/24 12:00:00'),
     end: new Date('2026/03/12 12:00:00'),
-    dateText: '02.24——未知',
+    dateText: '02.24——3.12',
     type: '热烈色彩',
     disabled: false,
   },
   {
-    name: '汤汤卡池',
-    color: '#B60129',
+    name: '清波静流',
+    color: '#0084F4',
     start: new Date('2026/03/12 12:00:00'),
-    end: new Date('2026/03/28 12:00:00'),
-    dateText: '',
-    type: '1111',
-    disabled: true,
+    end: new Date('2026/03/29 12:00:00'),
+    dateText: '3.12-3.29',
+    type: '清波静流',
+    disabled: false,
   },
   {
-    name: '敬请期待',
-    color: '#B60129',
-    start: new Date('2026/03/12 12:00:00'),
-    end: new Date('2026/03/28 12:00:00'),
-    dateText: '',
-    type: '1111',
-    disabled: true,
+    name: '狼群瑰宝',
+    color: '#C91A26',
+    start: new Date('2026/03/29 12:00:00'),
+    end: new Date('2026/04/16 12:00:00'),
+    dateText: '3.29-版本末',
+    type: '清波静流',
+    disabled: false,
   },
 ]);
 
@@ -880,6 +881,21 @@ watch(
   { deep: true },
 );
 
+
+watch(
+  beginnerTicketgachaSpecialSingleTaskReward,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
+    }
+
+    permanentRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
+
+
 watch(
   valleyIVTaskRewardTable,
   (newValue) => {
@@ -937,6 +953,7 @@ function permanentRewardStatistics(): void {
   };
   addReward(result, beginnerSignInTaskReward.value);
   addReward(result, newHorizonsTaskReward.value);
+  addReward(result, beginnerTicketgachaSpecialSingleTaskReward.value);
   addReward(result, valleyIVTaskRewardTable.value);
   addReward(result, wulingTaskRewardTable.value);
 
@@ -1387,6 +1404,7 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, intelArchiveReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, newHorizonsTaskReward);
+        _setButtonGroupActive(localConfig.buttonGroupActive, beginnerTicketgachaSpecialSingleTaskReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, otherRewardTable);
 
         gachaCalculatorUserConfig.value.buttonGroupActive = localConfig.buttonGroupActive;
@@ -1517,6 +1535,7 @@ function clearOrSelectAllLevelModule(action: boolean) {
 function clearOrSelectAllOtherPermanentModule(action: boolean) {
   clearOrSelectAll(action, 'rangeSlider', beginnerCheckInTaskProgress, [0, 14]);
   clearOrSelectAll(action, 'button', newHorizonsTaskReward);
+  clearOrSelectAll(action, 'button', beginnerTicketgachaSpecialSingleTaskReward);
 }
 
 function clearOrSelectAllPermanentValleyIVTaskModule(action: boolean) {
@@ -2510,6 +2529,14 @@ function checkRewardIsValid(reward: Reward): boolean {
               <!--启程任务-->
               <GachaCalculatorResourceSingleBtn
                 v-for="item in newHorizonsTaskReward"
+                :key="item.id"
+                v-bind="item"
+                @click="item.active = !item.active"
+              />
+
+              <!--启程任务-->
+              <GachaCalculatorResourceSingleBtn
+                v-for="item in beginnerTicketgachaSpecialSingleTaskReward"
                 :key="item.id"
                 v-bind="item"
                 @click="item.active = !item.active"

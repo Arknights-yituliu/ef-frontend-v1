@@ -9,7 +9,7 @@
     "end": "2026/02/28 12:00:00",
     "type": "通用",
     "module": "维护",
-    "active": true,"version": "零号协议",
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -27,7 +27,7 @@
     "end": "2026/02/28 12:00:00",
     "type": "通用",
     "module": "维护",
-    "active": true,"version": "零号协议",
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 500,
@@ -45,7 +45,7 @@
     "end": "2026/03/01 12:00:00",
     "type": "通用",
     "module": "维护",
-    "active": true,"version": "零号协议",
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -63,7 +63,7 @@
     "end": "2026/03/16 12:00:00",
     "type": "通用",
     "module": "维护",
-    "active": true,"version": "零号协议",
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
