@@ -58,16 +58,19 @@ export interface Reward {
   active: boolean;
   version?:string;
   isLimited?: boolean;
-  content: {
-    /** 衍质源石 */
-    originiumRecharge: number;
-    /** 嵌晶玉数量 */
-    diamond: number;
-    /**  基础寻访凭证 */
-    ticketgachaStandardSingle: number;
-    /** 特许寻访凭证 */
-    ticketgachaSpecialSingle: number;
-  };
+  content: RewardContent;
+  tips?:string[];
+}
+
+export interface RewardContent{
+  /** 衍质源石 */
+  originiumRecharge: number;
+  /** 嵌晶玉数量 */
+  diamond: number;
+  /**  基础寻访凭证 */
+  ticketgachaStandardSingle: number;
+  /** 特许寻访凭证 */
+  ticketgachaSpecialSingle: number;
 }
 
 export interface CurrentVersionRemainingTime {

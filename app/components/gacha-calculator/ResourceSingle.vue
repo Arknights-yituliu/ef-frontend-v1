@@ -7,17 +7,16 @@ const props = defineProps<Reward>();
  *
  */
 function getImageUrl(itemId: string): string {
-  if(itemIdDict[itemId]){
+  if (itemIdDict[itemId]) {
     return `https://cos.yituliu.cn/endfield/unpack-images/items/item_${itemIdDict[itemId]}.webp`;
-  }else {
-    return  `https://cos.yituliu.cn/endfield/unpack-images/items/item_1.webp`
+  } else {
+    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_1.webp`;
   }
-
 }
 </script>
 
 <template>
-
+  <div>
     <div class="gacha-calculator-resource-single">
       <div class="gacha-calculator-resource-single-title">
         {{ props.name.zh }}
@@ -28,18 +27,18 @@ function getImageUrl(itemId: string): string {
         :key="`${props.id}-${name}`"
         class="gacha-calculator-resource-single-content"
       >
-        <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" >
+        <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
         X {{ reward }}
       </div>
     </div>
-
+    <div class="gacha-calculator-resource-single-version">版本：{{ props.version }}</div>
+  </div>
 </template>
 
 <style scoped>
 .gacha-calculator-gacha-item-icon {
   width: 36px;
   height: 36px;
-
 }
 .gacha-calculator-resource-single-btn {
   margin: 4px 0px;
@@ -67,9 +66,14 @@ function getImageUrl(itemId: string): string {
   padding: 0 4px;
 }
 
-@media screen and (max-width: 600px) {
+.gacha-calculator-resource-single-version {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.7rem;
+}
 
-  .gacha-calculator-resource-single{
+@media screen and (max-width: 600px) {
+  .gacha-calculator-resource-single {
     font-size: 0.8rem;
   }
 
@@ -78,5 +82,4 @@ function getImageUrl(itemId: string): string {
     text-align: start;
   }
 }
-
 </style>

@@ -118,7 +118,7 @@ const poolOptions = ref<PoolOption[]>([
     start: new Date('2026/03/29 12:00:00'),
     end: new Date('2026/04/16 12:00:00'),
     dateText: '3.29-版本末',
-    type: '清波静流',
+    type: '狼群瑰宝',
     disabled: false,
   },
 ]);
@@ -551,7 +551,9 @@ watch(
 watch(
   wulingRegionalStockBillStoreReward,
   (newValue) => {
-    saveUserConfig(newValue.id, newValue.active, 'buttonActive');
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
+    }
 
     wulingRegionalRewardStatistics();
     allRewardStatisticsV2();
@@ -1388,7 +1390,7 @@ function loadingUserConfig() {
 
       if (localConfig.buttonActive) {
         _setButtonActive(localConfig.buttonActive, valleyIVRegionalStockBillStoreReward);
-        _setButtonActive(localConfig.buttonActive, wulingRegionalStockBillStoreReward);
+        _setButtonGroupActive(localConfig.buttonActive, wulingRegionalStockBillStoreReward);
         gachaCalculatorUserConfig.value.buttonActive = localConfig.buttonActive;
       }
 
@@ -2067,9 +2069,6 @@ function checkRewardIsValid(reward: Reward): boolean {
                 v-bind="item"
                 @click="item.active = !item.active"
               />
-
-
-
             </v-expansion-panel-text>
           </v-expansion-panel>
 
@@ -2298,11 +2297,10 @@ function checkRewardIsValid(reward: Reward): boolean {
 
               <GachaCalculatorModuleTitle title="武陵地区" />
               <GachaCalculatorResourceSingleBtn
-                v-bind="wulingRegionalStockBillStoreReward"
-                @click="
-                  wulingRegionalStockBillStoreReward.active =
-                    !wulingRegionalStockBillStoreReward.active
-                "
+                v-for="item in wulingRegionalStockBillStoreReward"
+                :key="item.id"
+                v-bind="item"
+                @click="item.active = !item.active"
               />
               <v-divider style="margin: 1rem 0" />
               <v-card>
@@ -2360,7 +2358,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                   储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5合成玉
                 </v-card-text>
               </v-card>
-
+              <v-divider style="margin: 1rem 0" />
               <v-card>
                 <v-card-text>
                   <GachaCalculatorResourceSingle v-bind="wulingBattleCrateReward" />

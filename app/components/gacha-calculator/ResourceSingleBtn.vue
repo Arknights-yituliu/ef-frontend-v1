@@ -7,43 +7,44 @@ const props = defineProps<Reward>();
  *
  */
 function getImageUrl(itemId: string): string {
-  if(itemIdDict[itemId]){
+  if (itemIdDict[itemId]) {
     return `https://cos.yituliu.cn/endfield/unpack-images/items/item_${itemIdDict[itemId]}.webp`;
-  }else {
-    return  `https://cos.yituliu.cn/endfield/unpack-images/items/item_1.webp`
+  } else {
+    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_1.webp`;
   }
-
 }
 </script>
 
 <template>
-  <v-btn
-    :active="props.active"
-    class="gacha-calculator-resource-btn"
-    :class="{ 'btn-active': props.active }"
-  >
-    <div class="gacha-calculator-resource-btn-content">
-      <div class="gacha-calculator-resource-btn-content-title">
-        {{ props.name.zh }}
+  <div>
+    <v-btn
+      :active="props.active"
+      class="gacha-calculator-resource-btn"
+      :class="{ 'btn-active': props.active }"
+    >
+      <div class="gacha-calculator-resource-btn-content">
+        <div class="gacha-calculator-resource-btn-content-title">
+          {{ props.name.zh }}
+        </div>
+        <div
+          v-for="(reward, name) in props.content"
+          v-show="reward > 0"
+          :key="`${props.id}-${name}`"
+          class="gacha-calculator-resource-btn-content-content"
+        >
+          <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
+          X {{ reward }}
+        </div>
       </div>
-      <div
-        v-for="(reward, name) in props.content"
-        v-show="reward > 0"
-        :key="`${props.id}-${name}`"
-        class="gacha-calculator-resource-btn-content-content"
-      >
-        <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" >
-        X {{ reward }}
-      </div>
-    </div>
-  </v-btn>
+    </v-btn>
+    <div class="gacha-calculator-resource-btn-version">版本：{{ props.version }}</div>
+  </div>
 </template>
 
 <style scoped>
 .gacha-calculator-gacha-item-icon {
   width: 36px;
   height: 36px;
-
 }
 .gacha-calculator-resource-btn {
   margin: 4px 0px;
@@ -54,11 +55,11 @@ function getImageUrl(itemId: string): string {
 }
 
 .gacha-calculator-resource-btn.btn-active {
-  border-bottom: 3px solid #FFD700 !important;
+  border-bottom: 3px solid #ffd700 !important;
 }
 
-.gacha-calculator-resource-btn:deep([aria-pressed="true"]) {
-  border-bottom: 3px solid #FFD700 !important;
+.gacha-calculator-resource-btn:deep([aria-pressed='true']) {
+  border-bottom: 3px solid #ffd700 !important;
 }
 
 .gacha-calculator-resource-btn-content {
@@ -66,7 +67,6 @@ function getImageUrl(itemId: string): string {
   display: flex;
   font-size: 1rem;
   align-items: center;
-
 }
 .gacha-calculator-resource-btn-content-title {
   width: 300px;
@@ -79,6 +79,12 @@ function getImageUrl(itemId: string): string {
   padding: 0 4px;
 }
 
+.gacha-calculator-resource-btn-version {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.7rem;
+}
+
 @media screen and (max-width: 600px) {
   .gacha-calculator-resource-btn-content {
     width: 300px;
@@ -88,7 +94,5 @@ function getImageUrl(itemId: string): string {
   .gacha-calculator-resource-btn-content-title {
     width: 150px;
   }
-
 }
-
 </style>

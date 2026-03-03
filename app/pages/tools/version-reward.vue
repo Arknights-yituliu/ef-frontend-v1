@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
+import { createReward } from '#shared/utils/gacha-calculator';
+
 import { nextTick, onMounted, ref, watch } from 'vue';
 
 import { activityReward } from '@/custom/core/gacha/activityReward';
@@ -56,6 +58,7 @@ import {
   wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
+  wulingCrateRewardV1_0,
   wulingDefenseConstructionReward,
   wulingDeltaBotReward,
   wulingDeltaBotRewardMax,
@@ -111,19 +114,57 @@ versionReward.value.push(
   valleyIVRegionalStockBillStoreReward.value,
   valleyIVSimulationReward.value,
 );
+
 for (const reward of valleyIVDefenseConstructionReward.value) {
   versionReward.value.push(reward);
 }
+
+versionReward.value.push(
+  createReward(
+    '武陵储藏箱',
+    {
+      originiumRecharge: 0,
+      diamond: wulingCrateRewardV1_0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+    '通用',
+    '常驻',
+    '零号委托',
+  ),
+);
+
+versionReward.value.push(
+  createReward(
+    '武陵储藏箱',
+    {
+      originiumRecharge: 0,
+      diamond: wulingCrateRewardV1_0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+    '通用',
+    '常驻',
+    '零号委托',
+  ),
+);
 
 versionReward.value.push(
   wulingAuryleneCollectReward.value,
   wulingCrateReward.value,
   wulingDeltaBotReward.value,
   wulingRegionalDevelopmentReward.value,
-  wulingRegionalStockBillStoreReward.value,
+
   wulingSimulationReward.value,
   wulingBattleCrateReward.value,
 );
+
+for (const reward of wulingRegionalStockBillStoreReward.value) {
+  versionReward.value.push(reward);
+}
+
+
+
 for (const reward of wulingDefenseConstructionReward.value) {
   versionReward.value.push(reward);
 }
@@ -145,7 +186,6 @@ for (const reward of newHorizonsTaskReward.value) {
 for (const reward of beginnerTicketgachaSpecialSingleTaskReward.value) {
   versionReward.value.push(reward);
 }
-
 
 for (const reward of etchSpaceSalvageReward.value) {
   versionReward.value.push(reward);

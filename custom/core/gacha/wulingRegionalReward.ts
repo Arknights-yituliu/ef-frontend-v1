@@ -4,24 +4,46 @@ import stageTable from './json/wuling_aurylene_stage_table.json';
 
 const wulingAuryleneCollectStageTable: CollectReward[] = stageTable as CollectReward[];
 
-const wulingRegionalStockBillStoreReward = ref<Reward>({
-  id: 'wuling_regional_stock_bill_store_reward',
-  name: {
-    zh: `调度券商店`,
-    en: '',
+const wulingRegionalStockBillStoreReward = ref<Reward[]>([
+  {
+    id: 'wuling_regional_stock_bill_store_reward',
+    name: {
+      zh: `调度券商店`,
+      en: '',
+    },
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    version: '零号委托',
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 2,
+      ticketgachaSpecialSingle: 0,
+    },
   },
-  start: '2026/01/22 12:00:00',
-  end: '2099/12/31 12:00:00',
-  type: '通用',
-  module: '地区建设',
-  active: true,version: "零号委托",
-  content: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 2,
-    ticketgachaSpecialSingle: 0,
+  {
+    id: 'wuling_regional_stock_bill_store_reward_v1_1',
+    name: {
+      zh: `调度券商店`,
+      en: '',
+    },
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    version: '新潮起·故渊离',
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 2,
+      ticketgachaSpecialSingle: 0,
+    },
   },
-});
+]);
 
 const wulingRegionalDevelopmentReward = ref<Reward>({
   id: 'wuling_regional_development_reward',
@@ -33,7 +55,8 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区建设',
-  active: true,version: "零号委托",
+  active: true,
+  version: '零号委托',
   content: {
     originiumRecharge: 0,
     diamond: 1000,
@@ -52,7 +75,8 @@ const wulingAuryleneCollectReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号委托",
+  active: true,
+  version: '零号委托',
   content: {
     originiumRecharge: 17,
     diamond: 0,
@@ -61,7 +85,10 @@ const wulingAuryleneCollectReward = ref<Reward>({
   },
 });
 
-const wulingCrateRewardMax: number = 94 * 15 + 68 * 30 + 34 * 60 + 26 * 100 + 15 * 150;
+const wulingCrateRewardV1_0: number = 94 * 15 + 68 * 30 + 34 * 60 + 26 * 100 + 15 * 150;
+const wulingCrateRewardV1_1: number = 32 * 50;
+
+const wulingCrateRewardMax: number = wulingCrateRewardV1_0 + wulingCrateRewardV1_1;
 
 const wulingCrateReward = ref<Reward>({
   id: 'wuling_crate_reward',
@@ -73,15 +100,19 @@ const wulingCrateReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号委托",
+  active: true,
+  version: '零号委托',
   content: {
     originiumRecharge: 0,
     diamond: wulingCrateRewardMax,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
+  tips: [
+    `零号委托版本奖励为：${wulingCrateRewardV1_0}嵌晶玉`,
+    `新潮起·故渊离版本奖励为：${wulingCrateRewardV1_1}嵌晶玉`,
+  ],
 });
-
 
 const wulingBattleCrateRewardMax = 7;
 
@@ -95,7 +126,8 @@ const wulingBattleCrateReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号委托",
+  active: true,
+  version: '零号委托',
   content: {
     originiumRecharge: wulingBattleCrateRewardMax,
     diamond: 0,
@@ -116,7 +148,8 @@ const wulingDeltaBotReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区探索',
-  active: true,version: "零号委托",
+  active: true,
+  version: '零号委托',
   content: {
     originiumRecharge: 0,
     diamond: wulingDeltaBotRewardMax,
@@ -135,7 +168,8 @@ const wulingSimulationReward = ref<Reward>({
   end: '2099/12/31 12:00:00',
   type: '通用',
   module: '地区建设',
-  active: true,version: "零号委托",
+  active: true,
+  version: '零号委托',
   content: {
     originiumRecharge: 0,
     diamond: 9 * 25,
@@ -155,7 +189,8 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
     end: '2099/12/31 12:00:00',
     type: '通用',
     module: '地区建设',
-    active: true,version: "零号委托",
+    active: true,
+    version: '零号委托',
     content: {
       originiumRecharge: 0,
       diamond: 160,
@@ -178,4 +213,6 @@ export {
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
   wulingSimulationReward,
+  wulingCrateRewardV1_0,
+  wulingCrateRewardV1_1,
 };
