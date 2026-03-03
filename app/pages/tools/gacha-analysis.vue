@@ -312,7 +312,7 @@
                     >
                       <template v-if="getProbabilityInfo(record, group.records)">
                         <span
-:style="{
+                          :style="{
                           fontSize: '0.75rem',
                           fontWeight: 'bold',
                           color: getProbabilityInfo(record, group.records)!.isBig ? '#d97706' : '#374151',
@@ -512,11 +512,12 @@
                 <tr
                   v-for="row in expectationResult.detailList"
                   :key="row.n"
-                  :class="{ 'highlight-row': row.n === Math.round(expectationResult.average) }"
+                  :class="{ 'highlight-row': row.n === Math.round(expectationResult.average) || row.n === 80 }"
                 >
                   <td>
                     <strong>{{ row.n }}</strong>
                     <span v-if="row.n === Math.round(expectationResult.average)" class="badge">期望附近</span>
+                    <span v-if="row.n === 80" class="badge">小保底</span>
                   </td>
                   <td>{{ (row.rate * 100).toFixed(2) }}%</td>
                   <td class="prob-cell">{{ (row.exactChance * 100).toFixed(4) }}%</td>
@@ -657,7 +658,7 @@ function getPoolType(poolId: string): 'limited' | 'permanent' | 'weapon' {
 const DISPLAY_NAMES: Record<'limited' | 'permanent' | 'weapon', string> = {
   limited: '限定',
   permanent: '常驻',
-  weapon: '武库配额',
+  weapon: '武库申领',
 };
 
 function getDisplayName(key: 'limited' | 'permanent' | 'weapon'): string {

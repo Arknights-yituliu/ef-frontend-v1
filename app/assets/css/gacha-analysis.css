@@ -1,3 +1,4 @@
+/* 收集表单基础样式 */
 .collect-form {
     max-width: 500px;
     width: 100%;
@@ -8,299 +9,286 @@
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-
 /* 表单组容器 */
 .form-group {
-  margin-bottom: 24px;
+    margin-bottom: 24px;
 }
 
 .form-group label {
-  display: block;
-  font-size: 14px;
-  color: #86868b;
-  margin-bottom: 8px;
-  padding-left: 2px;
+    display: block;
+    font-size: 14px;
+    color: #86868b;
+    margin-bottom: 8px;
+    padding-left: 2px;
 }
 
-.form-group input {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  background-color: #f5f5f7;
-  font-size: 16px;
-  color: #1d1d1f;
-  box-sizing: border-box;
-  transition: all 0.2s ease;
-  outline: none;
+/* 输入框和文本域共享样式 */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    background-color: #f5f5f7;
+    font-size: 16px;
+    color: #1d1d1f;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    outline: none;
 }
 
 .form-group textarea {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  background-color: #f5f5f7;
-  font-size: 16px;
-  color: #1d1d1f;
-  box-sizing: border-box;
-  resize: none; /* 禁止拉伸 */
-  transition: all 0.2s ease;
-  outline: none;
-  font-family: inherit;
+    resize: none;
+    font-family: inherit;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #0071e3;
-  background-color: #fff;
-  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+    border-color: #0071e3;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
 }
 
 .form-group input:disabled,
 .form-group textarea:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  background-color: #f8f8fa;
+    opacity: 0.7;
+    cursor: not-allowed;
+    background-color: #f8f8fa;
 }
 
 .help-text {
-  margin: 8px 0 0 2px;
-  font-size: 13px;
-  color: #0071e3;
+    margin: 8px 0 0 2px;
+    font-size: 13px;
+    color: #0071e3;
 }
 
 .help-text a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  position: relative;
-  padding-bottom: 2px;
-  transition: color 0.2s ease;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.2s ease;
 }
 
-
 .help-text a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 1px;
-  background-color: #0077ed;
-  transition: width 0.3s ease;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: #0077ed;
+    transition: width 0.3s ease;
 }
 
 .help-text a:hover {
-  color: #0077ed;
+    color: #0077ed;
 }
 
 .help-text a:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
 .error-text {
-  color: #ff3b30;
-  font-size: 14px;
-  text-align: center;
-  margin: -8px 0 20px 0;
-  min-height: 20px;
-}
-.submit-btn {
-  width: 100%;
-  padding: 14px 0;
-  background: linear-gradient(180deg, #0071e3 0%, #0066cc 100%);
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  letter-spacing: 0.5px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04);
+    color: #ff3b30;
+    font-size: 14px;
+    text-align: center;
+    margin: -8px 0 20px 0;
+    min-height: 20px;
 }
 
+/* 提交按钮样式 */
+.submit-btn {
+    width: 100%;
+    padding: 14px 0;
+    background: linear-gradient(180deg, #0071e3 0%, #0066cc 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04);
+}
 
 .submit-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .submit-btn:not(:disabled):hover {
-  background: linear-gradient(180deg, #0077ed 0%, #0066cc 100%);
-  transform: translateY(-1px) scale(1.01);
-  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
+    background: linear-gradient(180deg, #0077ed 0%, #0066cc 100%);
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
 }
 
 .submit-btn:not(:disabled):hover::before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .submit-btn:not(:disabled):active {
-  transform: translateY(0) scale(0.995);
-  box-shadow: 0 2px 6px rgba(0, 113, 227, 0.15);
+    transform: translateY(0) scale(0.995);
+    box-shadow: 0 2px 6px rgba(0, 113, 227, 0.15);
 }
 
 .submit-btn:disabled {
-  background: #dcdce0;
-  color: #86868b;
-  cursor: not-allowed;
-  box-shadow: none;
-  transform: none;
+    background: #dcdce0;
+    color: #86868b;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 .submit-btn:disabled::before {
-  opacity: 0;
+    opacity: 0;
 }
 
+/* 响应式设计 */
 @media (max-width: 480px) {
-  .collect-form {
-    padding: 32px 16px;
-  }
+    .collect-form {
+        padding: 32px 16px;
+    }
 
-  .page-title {
-    font-size: 22px;
-    margin-bottom: 24px;
-  }
+    .form-group input,
+    .form-group textarea {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
 
-  .form-group input,
-  .form-group textarea {
-    padding: 12px 14px;
-    font-size: 15px;
-  }
-
-  .submit-btn {
-    padding: 12px 0;
-    font-size: 15px;
-  }
+    .submit-btn {
+        padding: 12px 0;
+        font-size: 15px;
+    }
 }
 
-/* 分析页面 */
+/* 抽卡概览页面 */
 .gacha-overview {
-  padding: 16px;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+    padding: 16px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .section-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 16px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
 }
 
-
 .gacha-overview-left {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  border-radius: 16px;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 0.75em var(--theme-shadow-base);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 0.75em var(--theme-shadow-base);
 }
 
 .gacha-overview-right {
-  flex: 1;
+    flex: 1;
+    min-width: 0;
 }
 
-/* 用户名片样式 */
+/* 用户卡片样式 */
 .user-card {
     padding: 20px;
     width: 320px;
-
-
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
+
 .user-avatar {
     display: flex;
     justify-content: center;
 }
 
 .avatar-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #f5f5f5;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .user-info {
-  text-align: center;
+    text-align: center;
 }
 
 .user-name {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 0 0 4px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
 }
 
 .user-uid {
-  font-size: 0.7rem;
-  color: #6b7280;
-  margin: 0 0 8px 0;
+    font-size: 0.7rem;
+    color: #6b7280;
+    margin: 0 0 8px 0;
 }
 
 .user-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 8px;
-  border-top: 1px solid #f0f0f0;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
+    justify-content: center;
 }
 
+/* 抽卡标签样式 */
 .gacha-tag {
-  padding: 4px 12px;
-  border-radius: 5px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
 }
 
 .gacha-tag--lucky {
-  background: linear-gradient(135deg, #4ccdf5, #79fff5);
+    background: linear-gradient(135deg, #4ccdf5, #79fff5);
 }
 
 .gacha-tag--normal {
-  background: linear-gradient(135deg, #FFF132, #fdfa80);
-  color: #333;
+    background: linear-gradient(135deg, #FFF132, #fdfa80);
+    color: #333;
 }
 
 .gacha-tag--unlucky {
-  background: linear-gradient(135deg, #fb8238, #fdc675);
+    background: linear-gradient(135deg, #fb8238, #fdc675);
 }
 
 .gacha-tag:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .no-tags {
-  font-size: 0.85rem;
-  color: #9ca3af;
-  padding: 4px 12px;
+    font-size: 0.85rem;
+    color: #9ca3af;
+    padding: 4px 12px;
 }
 
 .user-stats-basic {
@@ -312,774 +300,750 @@
 }
 
 .user-stats-basic .stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
 }
 
 .user-stats-basic .stat-label {
-  font-size: 0.8rem;
-  color: #6b7280;
+    font-size: 0.8rem;
+    color: #6b7280;
 }
 
 .user-stats-basic .stat-value {
-  font-size: 1rem;
-  font-weight: 700;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 .stat-block {
-  text-align: center;
+    text-align: center;
 }
 
 .stat-value {
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1.2;
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .stat-label {
-  font-size: 0.8rem;
-  color: #6b7280;
+    font-size: 0.8rem;
+    color: #6b7280;
 }
 
-
+/* 卡池卡片样式 */
 .pool-cards {
-  display: grid;
-  padding: 16px;
-  max-width: 900px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  border-radius: 16px;
-  -webkit-backdrop-filter: blur(0.625em);
-  backdrop-filter: blur(0.625em);
+    display: grid;
+    padding: 16px;
+    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    border-radius: 16px;
+    -webkit-backdrop-filter: blur(0.625em);
+    backdrop-filter: blur(0.625em);
 }
-
 
 .pool-card {
-  border-radius: 12px;
-  padding: 16px 12px;
-  box-shadow: 0 0 0.5em var(--theme-shadow-base);
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  height: 140px;
+    border-radius: 12px;
+    padding: 16px 12px;
+    box-shadow: 0 0 0.5em var(--theme-shadow-base);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 140px;
 }
 
 .pool-card:hover {
-  transform: translateY(-1px);
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+    transform: translateY(-1px);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
 }
 
 .pool-card-header {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
+
 .pool-card-name {
-  font-weight: 600;
-  font-size: 0.95rem;
+    font-weight: 600;
+    font-size: 0.95rem;
 }
 
 .pool-card-core {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 12px;
 }
+
 .total-gacha-count {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
 }
+
 .core-label {
-  font-size: 0.85rem;
-  color: #6b7280;
+    font-size: 0.85rem;
+    color: #6b7280;
 }
 
 .stats {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto;
 }
+
 .stat-item {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  line-height: 1.2;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    line-height: 1.2;
 }
+
 .label {
-  color: #6b7280;
-  font-weight: 400;
+    color: #6b7280;
+    font-weight: 400;
 }
+
 .value {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 .pool-card--limited {
-  border-left: 5px solid #FFF132;
+    border-left: 5px solid #FFF132;
 }
+
 .pool-card--permanent {
-  border-left: 5px solid #3b95f6;
+    border-left: 5px solid #3b95f6;
 }
+
 .pool-card--weapon {
-  border-left: 5px solid #8b5cf6;
+    border-left: 5px solid #8b5cf6;
 }
 
-.gacha-dashboard{
-  margin-top: 10px;
-  padding: 16px;
-  max-width: 1500px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  border-radius: 16px;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+.gacha-dashboard {
+    margin-top: 10px;
+    padding: 16px;
+    max-width: 1500px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    border-radius: 16px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
 }
 
-
-
-
-
+/* 卡池选择器 */
 .pool-selector {
-  display: flex;
-  align-items: center;
-  width: 80%;
-  max-width: 900px;
-  gap: 8px;
-  margin-bottom: 16px;
-  padding: 0 2px;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    max-width: 900px;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 0 2px;
 }
 
 .pool-selector__btn {
-  flex: 1;
-  min-width: 100px;
-  padding: 8px 16px !important;
-  border-radius: 12px !important;
-  font-weight: 500 !important;
-  font-size: 0.9rem !important;
-  transition: all 0.2s ease !important;
-  border: 1px solid transparent !important;
-  background-color: rgba(255, 255, 255, 0.6) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  backdrop-filter: blur(8px) !important;
-
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    background-color: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 .pool-selector__btn:not(.pool-selector__btn--active):nth-child(1) {
-  color: #f9d120 !important;
+    color: #f9d120;
 }
+
 .pool-selector__btn:not(.pool-selector__btn--active):nth-child(2) {
-  color: #1e88e5 !important;
+    color: #1e88e5;
 }
+
 .pool-selector__btn:not(.pool-selector__btn--active):nth-child(3) {
-  color: #8e24aa !important;
+    color: #8e24aa;
 }
 
 .pool-selector__btn--active {
-  color: white !important;
-  border-color: transparent !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .pool-selector__btn--active:nth-child(1) {
-  background-color: #FFF132 !important; /* 限定池-金黄 */
-  color: black !important;
+    background-color: #FFF132;
+    color: black;
 }
+
 .pool-selector__btn--active:nth-child(2) {
-  background-color: #1e88e5 !important; /* 常驻池-天蓝 */
+    background-color: #1e88e5;
 }
+
 .pool-selector__btn--active:nth-child(3) {
-  background-color: #8e24aa !important; /* 武器池-深紫 */
+    background-color: #8e24aa;
 }
 
 .pool-selector__btn:hover:not(.pool-selector__btn--active) {
-  background-color: rgba(245, 245, 247, 0.8) !important;
-  border-color: rgba(0, 0, 0, 0.05) !important;
-  transform: translateY(-1px);
+    background-color: rgba(245, 245, 247, 0.8);
+    border-color: rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
 }
 
+/* 自定义抽卡项目 */
 .custom-gacha-item {
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
 }
 
 .character-name,
 .pull-count {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .gacha-drawer-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* 垂直居中对齐内容（可选） */
-  flex: 1;
-  min-height: 28px; /* 至少和进度条一样高 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-height: 28px;
 }
 
 .gacha-bar-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 28px;
-  border-radius: 4px;
-  position: relative;
-  overflow: visible;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 28px;
+    border-radius: 4px;
+    position: relative;
+    overflow: visible;
 }
 
 .gacha-drawer-container .mt-2 {
-  margin-top: 4px !important;
+    margin-top: 4px !important;
 }
 
-
-.custom-gacha-list{
-    border-bottom: 2px solid #eee
+.custom-gacha-list {
+    border-bottom: 2px solid #eee;
 }
 
+/* 抽卡进度条样式 */
 .gacha-bar {
-  display: flex;
-  height: 100%;
-  border-radius: 4px;
-  transition: all 0.5s ease;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+    display: flex;
+    height: 100%;
+    border-radius: 4px;
+    transition: all 0.5s ease;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .gacha-bar:hover {
-  transform: scaleX(1.02);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
+    transform: scaleX(1.02);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
 }
 
-
 .gacha-bar::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .gacha-bar:hover::after {
-  opacity: 1;
+    opacity: 1;
 }
 
 .gacha-bar.gacha-lucky {
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2) 4px,
-      rgba(255, 255, 255, 0.1) 4px,
-      rgba(255, 255, 255, 0.1) 8px
-    ),
-    #7ee1ff;
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.2) 4px,
+            rgba(255, 255, 255, 0.1) 4px,
+            rgba(255, 255, 255, 0.1) 8px
+        ),
+        #7ee1ff;
 }
+
 .gacha-bar.gacha-normal {
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 102, 0.8),
-      rgba(255, 255, 102, 0.8) 4px,
-      rgba(255, 255, 102, 0.4) 4px,
-      rgba(255, 255, 102, 0.4) 8px
-    ),
-    #FFF132;
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 102, 0.8),
+            rgba(255, 255, 102, 0.8) 4px,
+            rgba(255, 255, 102, 0.4) 4px,
+            rgba(255, 255, 102, 0.4) 8px
+        ),
+        #FFF132;
 }
 
 .gacha-bar.gacha-unlucky {
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.15) 4px,
-      rgba(255, 255, 255, 0.05) 4px,
-      rgba(255, 255, 255, 0.05) 8px
-    ),
-    #fb8238;
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.15),
+            rgba(255, 255, 255, 0.15) 4px,
+            rgba(255, 255, 255, 0.05) 4px,
+            rgba(255, 255, 255, 0.05) 8px
+        ),
+        #fb8238;
 }
 
 .gacha-bar.gacha-unlucky:hover {
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2) 4px,
-      rgba(255, 255, 255, 0.1) 4px,
-      rgba(255, 255, 255, 0.1) 8px
-    ),
-    #f86a14;
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.2) 4px,
+            rgba(255, 255, 255, 0.1) 4px,
+            rgba(255, 255, 255, 0.1) 8px
+        ),
+        #f86a14;
 }
 
 .gacha-bar.gacha-on-banner {
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2) 4px,
-      rgba(255, 255, 255, 0.1) 4px,
-      rgba(255, 255, 255, 0.1) 8px
-    ),
-    linear-gradient(
-      90deg,
-      #3bc4e8,
-      #68f0e8,
-      #82ffae,
-      #fef060,
-      #fdb852,
-      #f75e00
-    );
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.2) 4px,
+            rgba(255, 255, 255, 0.1) 4px,
+            rgba(255, 255, 255, 0.1) 8px
+        ),
+        linear-gradient(
+            90deg,
+            #3bc4e8,
+            #68f0e8,
+            #82ffae,
+            #fef060,
+            #fdb852,
+            #f75e00
+        );
 }
 
-
-
-
 .off-label {
-  margin-left: 8px;
-  height: 80%;
-  font-size: 12px;
-  font-weight: bold;
-  color: #e74c3c;
-  background: #f9d5d5;
-  padding: 2px 6px;
-  border-radius: 3px;
-  white-space: nowrap;
+    margin-left: 8px;
+    height: 80%;
+    font-size: 12px;
+    font-weight: bold;
+    color: #e74c3c;
+    background: #f9d5d5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
 }
 
 .lucky-label {
-  margin-left: 8px;
-  height: 80%;
-  color: black;
-  font-size: 12px;
-  font-weight: bold;
-  background: rgb(253, 250, 38);
-  padding: 2px 6px;
-  border-radius: 3px;
+    margin-left: 8px;
+    height: 80%;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    background: rgb(253, 250, 38);
+    padding: 2px 6px;
+    border-radius: 3px;
 }
 
-
-
+/* 移动端响应式 */
 @media (max-width: 768px) {
-  .gacha-overview {
-    padding: 8px;
-    flex-direction: column;
-    gap: 12px;
-  }
+    .gacha-overview {
+        padding: 8px;
+        flex-direction: column;
+        gap: 12px;
+    }
 
-  .gacha-overview-left {
-    max-width: 100%;
-    width: 100%;
-  }
+    .gacha-overview-left {
+        max-width: 100%;
+        width: 100%;
+    }
 
-  .user-card {
-    padding: 16px 12px;
-    display: flex;
-    gap: 12px;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 380px;
-  }
+    .user-card {
+        padding: 16px 12px;
+        display: flex;
+        gap: 12px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 380px;
+    }
 
-  .avatar-img {
-    width: 80px;
-    height: 80px;
-  }
+    .avatar-img {
+        width: 80px;
+        height: 80px;
+    }
 
-  .user-name {
-    font-size: 1.1rem;
-  }
+    .user-name {
+        font-size: 1.1rem;
+    }
 
-  .user-stats-basic {
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  .pool-cards{
-    grid-template-columns: 1fr;
-  }
+    .user-stats-basic {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 8px;
+    }
 
-  /* 卡池分布/角色TOP3 优化 */
-  .d-flex.flex-wrap {
-    gap: 4px !important;
-  }
+    .pool-cards {
+        grid-template-columns: 1fr;
+    }
 
-  .v-chip {
-    font-size: 0.75rem !important;
-    padding: 4px 8px !important;
-    margin-bottom: 4px !important;
-  }
+    .user-tags {
+        gap: 6px;
+    }
 
-  /* 抽卡标签适配 */
-  .user-tags {
-    gap: 6px;
-  }
+    .gacha-tag {
+        padding: 3px 10px;
+        font-size: 0.8rem;
+    }
 
-  .gacha-tag {
-    padding: 3px 10px;
-    font-size: 0.8rem;
-  }
+    .pool-selector {
+        width: 100%;
+        flex-direction: column;
+        gap: 6px;
+    }
 
-  /* 按钮适配 */
-  .pool-selector {
-    width: 100%;
-    flex-direction: column; /* 移动端按钮竖排 */
-    gap: 6px;
-  }
+    .pool-selector__btn {
+        width: 100%;
+        min-width: unset;
+        padding: 6px 12px;
+    }
 
-  .pool-selector__btn {
-    width: 100%;
-    min-width: unset;
-    padding: 6px 12px !important;
-  }
+    .gacha-bar-container {
+        height: 24px;
+    }
 
-  /* 进度条适配 */
-  .gacha-bar-container {
-    height: 24px;
-  }
-
-  .off-label, .lucky-label {
-    font-size: 10px;
-    padding: 1px 4px;
-    margin-left: 4px;
-  }
-}
-
-.gacha-overview-right {
-  min-width: 0;
+    .off-label, .lucky-label {
+        font-size: 10px;
+        padding: 1px 4px;
+        margin-left: 4px;
+    }
 }
 
 .pool-name, .character-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.action-buttons-container{
+.action-buttons-container {
     display: flex;
     justify-content: end;
 }
+
 .action-buttons {
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  gap: 12px;
-  z-index: 1000;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    z-index: 1000;
 }
 
 .btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: opacity 0.2s;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s;
 }
 
 .btn:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
 
 .update-btn {
-  background-color: #4a90e2;
-  color: white;
+    background-color: #4a90e2;
+    color: white;
 }
 
 .clear-btn {
-  background-color: #ff6b6b;
-  color: white;
+    background-color: #ff6b6b;
+    color: white;
 }
 
+/* 图表容器 */
 .chart-container {
-  width: 100%;
-  border-radius: 8px;
-  padding: 20px;
-  /* 移除背景色和阴影，完全透明 */
-  background-color: transparent;
-  box-shadow: none;
-  color: inherit; /* 继承父级文字颜色 */
-  transition: color 0.3s;
+    width: 100%;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: transparent;
+    box-shadow: none;
+    color: inherit;
+    transition: color 0.3s;
 }
 
 .header-panel {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .title-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .title-section h2 {
-  margin: 0;
-  margin-top: 20px;
-  font-size: 24px;
-  /* 金色保持，或改为 currentColor 以跟随父级 */
-  color: #f1c40f;
+    margin: 0;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #f1c40f;
 }
 
 .toggle-group {
-  display: flex;
-  gap: 8px;
-  /* 背景透明，仅保留间距 */
-  background: transparent;
-  padding: 4px;
-  border-radius: 6px;
+    display: flex;
+    gap: 8px;
+    background: transparent;
+    padding: 4px;
+    border-radius: 6px;
 }
 
 .toggle-btn {
-  background: transparent;
-  border: 1px solid transparent; /* 默认无边框 */
-  color: inherit; /* 继承父级颜色，通常带透明度 */
-  opacity: 0.7;
-  padding: 6px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 13px;
-  transition: all 0.2s;
+    background: transparent;
+    border: 1px solid transparent;
+    color: inherit;
+    opacity: 0.7;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: all 0.2s;
 }
 
 .toggle-btn:hover {
-  opacity: 1;
-  background: rgba(128, 128, 128, 0.1); /* 轻微悬停效果 */
+    opacity: 1;
+    background: rgba(128, 128, 128, 0.1);
 }
 
 .toggle-btn.active {
-  background: #f1c40f;
-  color: #000;
-  opacity: 1;
-  font-weight: bold;
-  border-color: #f1c40f;
+    background: #f1c40f;
+    color: #000;
+    opacity: 1;
+    font-weight: bold;
+    border-color: #f1c40f;
 }
+
 .gacha-stats {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  background: transparent;
-  padding: 12px 0; /* 上下留白，左右无背景 */
-  border-radius: 6px;
-  border-left: 4px solid #f1c40f; /* 保留左侧金色装饰线 */
-  transition: all 0.3s;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: transparent;
+    padding: 12px 0;
+    border-radius: 6px;
+    border-left: 4px solid #f1c40f;
+    transition: all 0.3s;
 }
 
-/* 每一行统计项 */
 .gacha-stat-row {
-  display: flex;
-  flex-direction: column;
-  min-width: 120px; /* 防止换行太碎 */
-  margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+    margin-left: 5px;
 }
 
-/* 标签文字 (如 "概率峰值:") */
 .stat-label {
-  font-size: 12px;
-  color: inherit; /* 继承父级颜色 */
-  opacity: 0.6;   /* 降低透明度以区分层级 */
-  margin-bottom: 4px;
+    font-size: 12px;
+    color: inherit;
+    opacity: 0.6;
+    margin-bottom: 4px;
 }
 
-/* 数值文字 */
 .stat-value {
-  font-size: 16px;
-  font-weight: bold;
-  color: inherit;
-  opacity: 0.9;
-  display: flex;
-  align-items: baseline; /* 确保数字和单位对齐 */
-  gap: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    color: inherit;
+    opacity: 0.9;
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
 }
 
-/* 特殊高亮：主数值 (期望) */
 .stat-value.primary {
-  color: #f1c40f; /* 金色 */
-  font-size: 18px;
-  opacity: 1;
+    color: #f1c40f;
+    font-size: 18px;
+    opacity: 1;
 }
 
-/* 特殊高亮：峰值 */
 .stat-value.highlight {
-  color: #f1c40f;
-  font-size: 16px;
-  opacity: 1;
+    color: #f1c40f;
+    font-size: 16px;
+    opacity: 1;
 }
 
-/* 未计算时的占位提示 */
 .gacha-stat-placeholder {
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  color: inherit;
-  opacity: 0.5;
-  font-size: 14px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: inherit;
+    opacity: 0.5;
+    font-size: 14px;
 }
 
-/* CountTo 数字组件样式修正 */
 .count-text {
-  display: inline-block;
-  font-weight: inherit;
-  color: inherit;
-  font-variant-numeric: tabular-nums; /* 等宽数字，防止滚动时抖动 */
+    display: inline-block;
+    font-weight: inherit;
+    color: inherit;
+    font-variant-numeric: tabular-nums;
 }
+
 .action-bar {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .content-area {
-  min-height: 400px;
-  position: relative;
+    min-height: 400px;
+    position: relative;
 }
 
 .echarts-canvas {
-  width: 100%;
-  height: 400px;
-  /* 确保 canvas 本身透明 */
-  background: transparent;
+    width: 100%;
+    height: 400px;
+    background: transparent;
 }
 
-/* 表格样式：透明背景 */
 .data-table-wrapper {
-  max-height: 450px;
-  overflow-y: auto;
-  /* 移除边框和背景 */
-  border: none;
-  border-radius: 6px;
-  background: transparent;
+    max-height: 450px;
+    overflow-y: auto;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
 }
 
 .gacha-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  color: inherit;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    color: inherit;
 }
 
 .gacha-table th,
 .gacha-table td {
-  padding: 10px 12px;
-  text-align: left;
-  /* 仅保留底部极淡的分隔线，或使用透明边框 */
-  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
-  background: transparent;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    background: transparent;
 }
 
 .gacha-table th {
-  /* 表头透明，文字金色 */
-  background: transparent;
-  color: #f1c40f;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  /* 可选：给表头加一点毛玻璃背景以防文字重叠看不清 */
-  /* backdrop-filter: blur(4px); */
+    background: transparent;
+    color: #f1c40f;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .gacha-table tr:hover {
-  /* 悬停时轻微高亮 */
-  background: rgba(128, 128, 128, 0.05);
+    background: rgba(128, 128, 128, 0.05);
 }
 
 .gacha-table .highlight-row {
-  background: rgba(241, 196, 15, 0.1);
-  border-left: 3px solid #f1c40f;
+    background: rgba(241, 196, 15, 0.1);
+    border-left: 3px solid #f1c40f;
 }
 
 .gacha-table .badge {
-  display: inline-block;
-  background: #f1c40f;
-  color: #000;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-left: 6px;
-  font-weight: bold;
+    display: inline-block;
+    background: #f1c40f;
+    color: #000;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    font-weight: bold;
 }
 
 .prob-cell {
-  color: #4ecdc4; /* 青色保持，或改为 inherit */
-  font-family: monospace;
+    color: #4ecdc4;
+    font-family: monospace;
 }
 
 .dim-text {
-  opacity: 0.4;
+    opacity: 0.4;
 }
 
 .table-footer {
-  padding: 10px;
-  font-size: 12px;
-  opacity: 0.5;
-  text-align: center;
-  border-top: 1px solid rgba(128, 128, 128, 0.2);
-  background: transparent;
+    padding: 10px;
+    font-size: 12px;
+    opacity: 0.5;
+    text-align: center;
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    background: transparent;
 }
 
-/* 滚动条：极简透明风格 */
 .data-table-wrapper::-webkit-scrollbar {
-  width: 6px;
-}
-.data-table-wrapper::-webkit-scrollbar-track {
-  background: transparent;
-}
-.data-table-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(128, 128, 128, 0.3);
-  border-radius: 4px;
-}
-.data-table-wrapper::-webkit-scrollbar-thumb:hover {
-  background: rgba(128, 128, 128, 0.5);
+    width: 6px;
 }
 
-/* 按钮样式：透明底，金色字/边 */
+.data-table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.data-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.3);
+    border-radius: 4px;
+}
+
+.data-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 0.5);
+}
+
 .calc-btn,
 .reset-btn {
-  background: transparent;
-  color: #f1c40f;
-  border: 1px solid #f1c40f;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
+    background: transparent;
+    color: #f1c40f;
+    border: 1px solid #f1c40f;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .calc-btn:hover,
 .reset-btn:hover {
-  background: rgba(241, 196, 15, 0.1);
-  opacity: 1;
+    background: rgba(241, 196, 15, 0.1);
+    opacity: 1;
 }
 
 .reset-btn {
-  color: inherit;
-  border-color: rgba(128, 128, 128, 0.5);
-  opacity: 0.7;
+    color: inherit;
+    border-color: rgba(128, 128, 128, 0.5);
+    opacity: 0.7;
 }
+
 .reset-btn:hover {
-  border-color: inherit;
-  opacity: 1;
+    border-color: inherit;
+    opacity: 1;
 }
 
 .empty-state {
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: inherit;
-  opacity: 0.5;
-  background: transparent;
-  border: 2px dashed rgba(128, 128, 128, 0.3);
-  border-radius: 8px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: inherit;
+    opacity: 0.5;
+    background: transparent;
+    border: 2px dashed rgba(128, 128, 128, 0.3);
+    border-radius: 8px;
 }
 
 .empty-icon {
-  font-size: 48px;
-  margin-bottom: 10px;
+    font-size: 48px;
+    margin-bottom: 10px;
 }
