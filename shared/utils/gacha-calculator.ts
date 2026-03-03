@@ -174,10 +174,10 @@ function createReward(name:string,content:RewardContent,type:string,module:strin
       type: '通用',
       module: '地区探索',
       active: true,
-      version: version,
-      content: content,
+      version,
+      content,
     }
 }
 
-export { addReward, calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2,getRewardPull,getRewardsPull,createReward };
+export { addReward, calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2,createReward,getRewardPull,getRewardsPull };
 

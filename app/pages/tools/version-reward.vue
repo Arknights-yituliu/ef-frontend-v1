@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 import { createReward } from '#shared/utils/gacha-calculator';
+import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 
 import { nextTick, onMounted, ref, watch } from 'vue';
 
@@ -146,10 +146,7 @@ versionReward.value.push(
     '通用',
     '常驻',
     '零号委托',
-  ),
-);
-
-versionReward.value.push(
+  ), 
   wulingAuryleneCollectReward.value,
   wulingCrateReward.value,
   wulingDeltaBotReward.value,
@@ -157,6 +154,7 @@ versionReward.value.push(
 
   wulingSimulationReward.value,
   wulingBattleCrateReward.value,
+
 );
 
 for (const reward of wulingRegionalStockBillStoreReward.value) {
