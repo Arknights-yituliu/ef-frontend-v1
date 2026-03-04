@@ -1,7 +1,7 @@
 import type {  Reward } from '#shared/types/gacha-calculator.ts';
-import { ref } from 'vue';
-import { wulingCrateRewardTable,wulingAuryleneCollectStageTable } from '@/custom/core/gacha/data/wuling_regional_reward_table';
 import { groupAndMergeRewardsByVersion } from '#shared/utils/gacha-calculator';
+import { ref } from 'vue';
+import { wulingAuryleneCollectStageTable,wulingCrateRewardTable } from '@/custom/core/gacha/data/wuling_regional_reward_table';
 
 
 const wulingRegionalStockBillStoreReward = ref<Reward[]>([
@@ -216,7 +216,7 @@ for(const reward of auryleneCollectRewards) {
 
 export {
   wulingAuryleneCollectReward,
-  wulingAuryleneCollectStageTable,
+  
   wulingBattleCrateReward,
   wulingBattleCrateRewardMax,
   wulingCrateReward,
@@ -228,3 +228,5 @@ export {
   wulingRegionalStockBillStoreReward,
   wulingSimulationReward,
 };
+
+export {wulingAuryleneCollectStageTable} from '@/custom/core/gacha/data/wuling_regional_reward_table';
