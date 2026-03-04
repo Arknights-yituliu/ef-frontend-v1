@@ -252,5 +252,5 @@ const wulingAuryleneCollectStageTable: Reward[] = [
   },
 ];
 
-export { wulingCrateRewardTable, wulingAuryleneCollectStageTable };
+export { wulingAuryleneCollectStageTable, wulingCrateRewardTable };
 

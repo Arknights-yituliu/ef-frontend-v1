@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import * as echarts from 'echarts';
 import type {
   GachaCalculatorUserConfig,
   PieChartData,
@@ -13,6 +12,7 @@ import {
   getRewardsPull,
 } from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
+import * as echarts from 'echarts';
 import { nextTick, onMounted, ref, watch } from 'vue';
 import { activityReward} from '@/custom/core/gacha/activityReward';
 
