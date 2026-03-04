@@ -2,7 +2,7 @@ import type { Reward } from '#shared/types/gacha-calculator';
 
 import { ref } from 'vue';
 
-import ActivityRewardTable from './json/activity_reward_table.json';
+import ActivityRewardTable from '@/custom/core/gacha/data/activity_reward_table.json';
 
 const activityReward = ref<Reward[]>([]);
 

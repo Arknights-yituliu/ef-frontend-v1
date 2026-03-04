@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import * as echarts from 'echarts';
 import type {
   GachaCalculatorUserConfig,
-  ModuleSelectedStatus,
   PieChartData,
   PoolOption,
   RewardStatisticsResultDetail,
@@ -9,12 +9,10 @@ import type {
 } from '@/shared/types/gacha-calculator';
 import {
   addReward,
-  calculateDaysDifference,
-  countTuesdaysBetweenV2,
   getRewardPull,
   getRewardsPull,
 } from '#shared/utils/gacha-calculator';
-import { numberFloor, numberRound } from '#shared/utils/numberUtil';
+import { numberFloor } from '#shared/utils/numberUtil';
 import { nextTick, onMounted, ref, watch } from 'vue';
 import { activityReward} from '@/custom/core/gacha/activityReward';
 
@@ -590,16 +588,21 @@ watch(
 );
 
 // 武陵醚质收集奖励
-const wulingAuryleneCollectProgress = ref<number[]>([0, 11]);
+const wulingAuryleneCollectProgress = ref<number[]>([0, 8]);
 // 武陵醚质收集奖励进度
 watch(
   wulingAuryleneCollectProgress,
   (newVal) => {
     let originiumRecharge: number = 0;
     for (let i = newVal[0]!; i < newVal[1]!; i++) {
+      let index = i
+      if(i-1<0){
+        index = 0
+      }
+
       const stageReward = wulingAuryleneCollectStageTable[i];
       if (stageReward !== undefined) {
-        originiumRecharge += stageReward.originiumRecharge || 0;
+        originiumRecharge += stageReward.content.originiumRecharge || 0;
       }
     }
 
@@ -1367,7 +1370,7 @@ const rangeSliderMap: Record<string, Ref<number[]>> = {
   factory_manual_reward: factoryManualProgress,
 };
 
-const buttonMap: Record<string, Ref<Reward>> = {};
+
 
 function loadingUserConfig() {
   const localConfigStr = localStorage.getItem('Gacha_Calculator_User_Config');
@@ -1465,30 +1468,18 @@ function loadingUserConfig() {
 
 onMounted(() => {
   loadingUserConfig();
-  myChart = echarts.init(document.querySelector('#gacha-calculator-pie-chart'));
+  const gachaCalculatorPieChart:HTMLElement | null = document.querySelector('#gacha-calculator-pie-chart');
+  if(gachaCalculatorPieChart){
+    myChart = echarts.init(gachaCalculatorPieChart);
+  }
+
   setPieChart(pieChartData);
   if (poolOptions.value[0] !== undefined) {
     selectedPool(poolOptions.value[0]);
   }
 });
 
-const moduleSelectedStatus: ModuleSelectedStatus = {
-  activity: {
-    selectAll: true,
-  },
-  other: {
-    selectAll: true,
-  },
-  regional: {
-    selectAll: true,
-  },
-  level: {
-    selectAll: true,
-  },
-  permanent: {
-    selectAll: true,
-  },
-};
+
 
 function clearOrSelectAllActivityModule(action: boolean) {
   clearOrSelectAll(action, 'button', activityReward);
@@ -1518,7 +1509,7 @@ function clearOrSelectAllWulingRegionalModule(action: boolean) {
 
   clearOrSelectAll(action, 'button', wulingRegionalStockBillStoreReward);
   clearOrSelectAll(action, 'rangeSlider', wulingRegionalDevelopmentProgress, [0, 6]);
-  clearOrSelectAll(action, 'rangeSlider', wulingAuryleneCollectProgress, [0, 18]);
+  clearOrSelectAll(action, 'rangeSlider', wulingAuryleneCollectProgress, [0, 8]);
   clearOrSelectAll(action, 'rangeSlider', wulingCrateRewardProgress, [0, wulingCrateRewardMax]);
   clearOrSelectAll(action,'rangeSlider', wulingBattleCrateRewardProgress, [0, wulingBattleCrateRewardMax]);
   clearOrSelectAll(action, 'rangeSlider', wulingDeltaBotProgress, [0, wulingDeltaBotRewardMax]);
@@ -1764,6 +1755,7 @@ function checkRewardIsValid(reward: Reward): boolean {
               <v-btn-group class="gacha-calculator-pool-btn-group-pc">
                 <v-btn
                   v-for="option in poolOptions"
+                  :key="option.name"
                   class="gacha-calculator-pool-btn-pc"
                   :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
                   :disabled  = "option.disabled"
@@ -2331,7 +2323,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                     v-model="wulingAuryleneCollectProgress"
                     class="v-range-slider"
                     hide-details="auto"
-                    max="10"
+                    max="8"
                     show-ticks="always"
                     step="1"
                     thumb-label="always"

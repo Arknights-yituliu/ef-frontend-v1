@@ -1,9 +1,8 @@
 import type { Reward } from '#shared/types/gacha-calculator';
 import { ref } from 'vue';
-import etchSpaceSalvageRewardJson from './json/etch_space_salvage_reward.json';
-import valleyIVTaskTable from './json/valley_IV_task_table.json';
-
-import wulingTaskTable from './json/wuling_task_table.json';
+import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salvage_reward.json';
+import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
+import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
 
 const beginnerSignInTaskReward = ref<Reward>({
   id: 'beginner_sign_in_task',

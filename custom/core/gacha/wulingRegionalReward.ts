@@ -1,8 +1,7 @@
-import type { CollectReward, Reward } from '#shared/types/gacha-calculator.ts';
+import type {  Reward } from '#shared/types/gacha-calculator.ts';
 import { ref } from 'vue';
-import stageTable from './json/wuling_aurylene_stage_table.json';
+import { wulingCrateRewardTable,wulingAuryleneCollectStageTable } from '@/custom/core/gacha/data/wuling_regional_reward_table';
 
-const wulingAuryleneCollectStageTable: CollectReward[] = stageTable as CollectReward[];
 
 const wulingRegionalStockBillStoreReward = ref<Reward[]>([
   {
@@ -65,6 +64,8 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
   },
 });
 
+
+
 const wulingAuryleneCollectReward = ref<Reward>({
   id: 'wuling_aurylene_collect_reward',
   name: {
@@ -85,10 +86,7 @@ const wulingAuryleneCollectReward = ref<Reward>({
   },
 });
 
-const wulingCrateRewardV1_0: number = 94 * 15 + 68 * 30 + 34 * 60 + 26 * 100 + 15 * 150;
-const wulingCrateRewardV1_1: number = 32 * 50;
-
-const wulingCrateRewardMax: number = wulingCrateRewardV1_0 + wulingCrateRewardV1_1;
+let wulingCrateRewardMax: number = 0;
 
 const wulingCrateReward = ref<Reward>({
   id: 'wuling_crate_reward',
@@ -104,15 +102,20 @@ const wulingCrateReward = ref<Reward>({
   version: '零号委托',
   content: {
     originiumRecharge: 0,
-    diamond: wulingCrateRewardMax,
+    diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
-  tips: [
-    `零号委托版本奖励为：${wulingCrateRewardV1_0}嵌晶玉`,
-    `新潮起·故渊离版本奖励为：${wulingCrateRewardV1_1}嵌晶玉`,
-  ],
+  tips: [],
 });
+
+for (const reward of wulingCrateRewardTable) {
+  wulingCrateRewardMax += reward.content.diamond;
+  wulingCrateReward.value.content.diamond += reward.content.diamond;
+  wulingCrateReward.value.tips?.push(
+    `${reward.version}版本奖励为：${reward.content.diamond}嵌晶玉`,
+  );
+}
 
 const wulingBattleCrateRewardMax = 7;
 
@@ -200,6 +203,16 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
   },
 ]);
 
+const wulingRegionalRewardTable: Reward[] = [];
+
+for (const reward of wulingRegionalStockBillStoreReward.value) {
+  wulingRegionalRewardTable.push(reward);
+}
+
+for(const reward in wulingAuryleneCollectStageTable){
+
+}
+
 export {
   wulingAuryleneCollectReward,
   wulingAuryleneCollectStageTable,
@@ -207,8 +220,6 @@ export {
   wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
-  wulingCrateRewardV1_0,
-  wulingCrateRewardV1_1,
   wulingDefenseConstructionReward,
   wulingDeltaBotReward,
   wulingDeltaBotRewardMax,

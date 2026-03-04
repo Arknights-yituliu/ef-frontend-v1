@@ -1,8 +1,8 @@
-import type { CollectReward, Reward } from '#shared/types/gacha-calculator.ts';
+import type {  Reward } from '#shared/types/gacha-calculator.ts';
 import { ref } from 'vue';
-import stageTable from './json/valley_IV_aurylene_stage_table.json';
+import stageTable from '@/custom/core/gacha/data/valley_IV_aurylene_stage_table.json';
 
-const valleyIVAuryleneCollectStageTable: CollectReward[] = stageTable as CollectReward[];
+const valleyIVAuryleneCollectStageTable = stageTable;
 
 const valleyIVRegionalStockBillStoreReward = ref<Reward>({
   id: 'valley_IV_regional_stock_bill_store_reward',

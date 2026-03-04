@@ -26,13 +26,13 @@ function getImageUrl(itemId: string): string {
         {{ props.reward.name.zh }}
       </div>
       <div
-        v-for="(reward, name) in props.reward.content"
-        v-show="reward > 0"
+        v-for="(item, name) in props.reward.content"
+        v-show="item > 0"
         :key="`${props.reward.id}-${name}`"
         class="gacha-calculator-resource-single-content"
       >
         <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" >
-        X {{ reward }}
+        X {{ item }}
       </div>
     </div>
   <v-range-slider
