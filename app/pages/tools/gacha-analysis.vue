@@ -85,6 +85,9 @@
       >
         {{ isSubmitting ? '分析中...' : '开始分析' }}
       </button>
+      <span style="color: #9ca3af; font-size: 0.75rem; line-height: 1.5; font-weight: 400; letter-spacing: 0.02em;">
+        *抽卡数据均保留在本地，切勿泄露账号敏感信息
+      </span>
     </div>
 
     <!-- 分析页面 -->
@@ -472,7 +475,7 @@
 
               <template v-else>
                 <div class="gacha-stat-placeholder">
-                  点击上方按钮开始计算详细数据...
+                  点击按钮开始计算详细数据...
                 </div>
               </template>
             </div>
