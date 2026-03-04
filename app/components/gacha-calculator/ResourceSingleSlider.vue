@@ -21,6 +21,7 @@ function getImageUrl(itemId: string): string {
 </script>
 
 <template>
+  <div>
     <div class="gacha-calculator-resource-single">
       <div class="gacha-calculator-resource-single-title">
         {{ props.reward.name.zh }}
@@ -47,6 +48,13 @@ v-model="props.sliderValue"
     <!--                  {{ `第` }} {{ modelValue }} {{ `日` }}-->
     <!--                </template>-->
   </v-range-slider>
+ <template v-if="props.reward.tips">
+      <div v-for="tip in props.reward.tips" :key="tip" class="gacha-calculator-resource-btn-tip">
+        {{ tip }}
+      </div>
+    </template>
+
+  </div>
 </template>
 
 <style scoped>
@@ -75,5 +83,9 @@ v-model="props.sliderValue"
 .gacha-calculator-resource-single-content {
   display: flex;
   align-items: center;
+}
+
+.gacha-calculator-resource-single-tip {
+  font-size: 0.7rem;
 }
 </style>

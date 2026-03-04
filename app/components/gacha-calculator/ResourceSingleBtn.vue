@@ -38,6 +38,11 @@ function getImageUrl(itemId: string): string {
       </div>
     </v-btn>
     <div class="gacha-calculator-resource-btn-version">版本：{{ props.version }}</div>
+    <template v-if="props.tips">
+      <div v-for="tip in props.tips" :key="tip" class="gacha-calculator-resource-btn-tip">
+        {{ tip }}
+      </div>
+    </template>
   </div>
 </template>
 
@@ -82,6 +87,9 @@ function getImageUrl(itemId: string): string {
 .gacha-calculator-resource-btn-version {
   display: flex;
   justify-content: flex-end;
+  font-size: 0.7rem;
+}
+.gacha-calculator-resource-btn-tip {
   font-size: 0.7rem;
 }
 
