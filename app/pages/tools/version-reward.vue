@@ -58,7 +58,6 @@ import {
   wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
-  wulingCrateRewardV1_0,
   wulingDefenseConstructionReward,
   wulingDeltaBotReward,
   wulingDeltaBotRewardMax,
@@ -119,43 +118,7 @@ for (const reward of valleyIVDefenseConstructionReward.value) {
   versionReward.value.push(reward);
 }
 
-versionReward.value.push(
-  createReward(
-    '武陵储藏箱',
-    {
-      originiumRecharge: 0,
-      diamond: wulingCrateRewardV1_0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-    },
-    '通用',
-    '常驻',
-    '零号委托',
-  ),
-);
 
-versionReward.value.push(
-  createReward(
-    '武陵储藏箱',
-    {
-      originiumRecharge: 0,
-      diamond: wulingCrateRewardV1_0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-    },
-    '通用',
-    '常驻',
-    '零号委托',
-  ), 
-  wulingAuryleneCollectReward.value,
-  wulingCrateReward.value,
-  wulingDeltaBotReward.value,
-  wulingRegionalDevelopmentReward.value,
-
-  wulingSimulationReward.value,
-  wulingBattleCrateReward.value,
-
-);
 
 for (const reward of wulingRegionalStockBillStoreReward.value) {
   versionReward.value.push(reward);
