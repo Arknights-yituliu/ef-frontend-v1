@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
+
 import { numberFloor } from '#shared/utils/numberUtil';
 
 import { ref } from 'vue';
@@ -49,9 +51,7 @@ import {
   valleyIVRegionalStockBillStoreReward,
   valleyIVSimulationReward,
 } from '@/custom/core/gacha/valleyIVRegionalReward';
-
 import { wulingRegionalAllRewardTable } from '@/custom/core/gacha/wulingRegionalReward';
-import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
 
 const versionReward = ref<Reward[]>([]);
 
@@ -261,8 +261,8 @@ filterRewardByVersion();
         <td >
              <div class="version-reward-table-reward-single-group">
           <div
-            class="version-reward-table-reward-single"
             v-show="reward.content.originiumRecharge > 0"
+            class="version-reward-table-reward-single"
           >
             <img
               alt="existing"
@@ -272,7 +272,7 @@ filterRewardByVersion();
             {{ reward.content.originiumRecharge }}
           </div>
 
-          <div class="version-reward-table-reward-single" v-show="reward.content.diamond > 0">
+          <div v-show="reward.content.diamond > 0" class="version-reward-table-reward-single">
             <img
               alt="existing"
               class="version-reward-table-icon"
@@ -281,8 +281,8 @@ filterRewardByVersion();
           </div>
 
           <div
-            class="version-reward-table-reward-single"
             v-show="reward.content.ticketgachaStandardSingle > 0"
+            class="version-reward-table-reward-single"
           >
             <img
               alt="existing"
@@ -292,8 +292,8 @@ filterRewardByVersion();
           </div>
 
           <div
-            class="version-reward-table-reward-single"
             v-show="reward.content.ticketgachaSpecialSingle > 0"
+            class="version-reward-table-reward-single"
           >
             <img
               alt="existing"
@@ -312,8 +312,8 @@ filterRewardByVersion();
            
           > 总计</div>
           <div
-            class="version-reward-table-reward-single"
             v-show="currentVersionRewardTotal.originiumRecharge > 0"
+            class="version-reward-table-reward-single"
           >
             <img
               alt="existing"
@@ -326,8 +326,8 @@ filterRewardByVersion();
           </div>
 
           <div
-            class="version-reward-table-reward-single"
             v-show="currentVersionRewardTotal.diamond > 0"
+            class="version-reward-table-reward-single"
           >
             <img
               alt="existing"
@@ -339,8 +339,8 @@ filterRewardByVersion();
           </div>
 
           <div
-            class="version-reward-table-reward-single"
             v-show="currentVersionRewardTotal.ticketgachaStandardSingle > 0"
+            class="version-reward-table-reward-single"
           >
             <img
               alt="existing"
@@ -350,8 +350,8 @@ filterRewardByVersion();
           </div>
 
           <div
-            class="version-reward-table-reward-single"
             v-show="currentVersionRewardTotal.ticketgachaSpecialSingle > 0"
+            class="version-reward-table-reward-single"
           >
             <img
               alt="existing"

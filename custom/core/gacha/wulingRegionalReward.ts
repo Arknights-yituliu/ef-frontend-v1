@@ -221,23 +221,23 @@ for(const reward of regionalDevelopmentRewards) {
   wulingRegionalAllRewardTable.push(reward);
 }
 
-wulingRegionalAllRewardTable.push(wulingBattleCrateReward.value);
-wulingRegionalAllRewardTable.push(wulingSimulationReward.value);
-wulingRegionalAllRewardTable.push(...wulingDefenseConstructionReward.value);
+wulingRegionalAllRewardTable.push(wulingBattleCrateReward.value, wulingSimulationReward.value, ...wulingDefenseConstructionReward.value);
 
 
 
 export {
   wulingAuryleneCollectReward,
+  
   wulingBattleCrateReward,
   wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,
+  wulingRegionalAllRewardTable,
   wulingRegionalDevelopmentReward,
+  
   wulingRegionalStockBillStoreReward,
-  wulingSimulationReward,
-  wulingAuryleneCollectStageTable,
-  wulingRegionalDevelopmentRewardTable,
-  wulingRegionalAllRewardTable
+  wulingSimulationReward
 };
+
+export {wulingAuryleneCollectStageTable, wulingRegionalDevelopmentRewardTable} from '@/custom/core/gacha/data/wulingRegionalRewardTable';
