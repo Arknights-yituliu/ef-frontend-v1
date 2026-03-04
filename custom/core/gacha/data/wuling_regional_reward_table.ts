@@ -1,4 +1,5 @@
 import type { Reward } from '#shared/types/gacha-calculator';
+import { wulingRegionalDevelopmentReward } from '@/custom/core/gacha/wulingRegionalReward';
 const wulingCrateRewardTable = [
   {
     id: 'wuling_crate_reward_v1_0',
@@ -39,6 +40,29 @@ const wulingCrateRewardTable = [
     },
   },
 ];
+
+
+const wulingRegionalDevelopmentRewardTable = [
+  {
+    id: 'wuling_regional_development_reward_1',
+    name: {
+      zh: '地区建设等级1',
+      en: '',
+    },
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    version: '零号委托',
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+]
 
 const wulingAuryleneCollectStageTable: Reward[] = [
   {

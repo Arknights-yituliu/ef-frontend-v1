@@ -179,5 +179,59 @@ function createReward(name:string,content:RewardContent,type:string,module:strin
     }
 }
 
-export { addReward, calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2,createReward,getRewardPull,getRewardsPull };
+/**
+ * 根据version对Reward数组进行分类，并将每组内的元素合并为一个Reward对象
+ * @param name
+ * @param rewards Reward类型数组
+ * @returns 按version分类后的合并结果对象
+ */
+function groupAndMergeRewardsByVersion(name:string,rewards: Reward[]): Reward[] {
+  // 按version分组
+  const groupedRewards: Record<string, Reward[]> = {};
+
+  for (const reward of rewards) {
+    const version = reward.version || 'default';
+    if (!groupedRewards[version]) {
+      groupedRewards[version] = [];
+    }
+    groupedRewards[version].push(reward);
+  }
+
+  // 合并每组内的元素
+  const mergedRewards: Reward[] = [];
+
+  for (const [version, rewardGroup] of Object.entries(groupedRewards)) {
+    if (rewardGroup.length === 0) continue;
+
+    // 使用第一个元素的属性作为基础
+    const firstReward = rewardGroup[0] as Reward;
+    const mergedReward: Reward = {
+      ...firstReward,
+      name: {
+        zh: name,
+        en: ``
+      },
+      content: {
+        originiumRecharge: 0,
+        diamond: 0,
+        ticketgachaStandardSingle: 0,
+        ticketgachaSpecialSingle: 0
+      }
+    };
+
+    // 合并content属性
+    for (const reward of rewardGroup) {
+      mergedReward.content.originiumRecharge += reward.content.originiumRecharge;
+      mergedReward.content.diamond += reward.content.diamond;
+      mergedReward.content.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
+      mergedReward.content.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+    }
+
+    mergedRewards.push(mergedReward);
+  }
+
+  return mergedRewards;
+}
+
+export { addReward, calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, createReward, getRewardPull, getRewardsPull, groupAndMergeRewardsByVersion };
 
