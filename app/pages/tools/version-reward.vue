@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
 
+import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
+
 import { numberFloor } from '#shared/utils/numberUtil';
 
 import { ref } from 'vue';
@@ -8,8 +10,6 @@ import { ref } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
 import { AICQuotaReward, createVersionDailyReward } from '@/custom/core/gacha/dailyReward';
-
-import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
 
 import {
   authorityLevelTaskRewards,
