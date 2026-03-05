@@ -90,7 +90,7 @@ const rightPartPanel = ref<string[]>(['regional']);
 
 const poolOptions = ref<PoolOption[]>([
   {
-    name: '热烈色彩',
+    name: '伊冯卡池',
     color: '#FA5B81',
     start: new Date('2026/02/24 12:00:00'),
     end: new Date('2026/03/12 12:00:00'),
@@ -99,21 +99,21 @@ const poolOptions = ref<PoolOption[]>([
     disabled: false,
   },
   {
-    name: '清波静流',
+    name: '汤汤卡池',
     color: '#0084F4',
     start: new Date('2026/03/12 12:00:00'),
     end: new Date('2026/03/29 12:00:00'),
     dateText: '3.12-3.29',
-    type: '清波静流',
+    type: '汤汤',
     disabled: false,
   },
   {
-    name: '狼群瑰宝',
+    name: '洛茜卡池',
     color: '#C91A26',
     start: new Date('2026/03/29 12:00:00'),
     end: new Date('2026/04/16 12:00:00'),
     dateText: '3.29-版本末',
-    type: '狼群瑰宝',
+    type: '洛茜',
     disabled: false,
   },
 ]);
@@ -1743,7 +1743,7 @@ function checkRewardIsValid(reward: Reward): boolean {
             </v-btn>
 
             <div class="gacha-calculator-warning">
-              攒抽计算器尚在测试与更新中，目前可能bug较多，资源不全，结果仅供参考，切勿轻信本站！
+              《新潮起·故渊离》资源尚在测试与更新中，结果仅供参考，切勿轻信本站！
             </div>
 
             <div class="gacha-calculator-chart-and-table">
