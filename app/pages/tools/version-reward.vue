@@ -157,7 +157,7 @@ function filterRewardByVersion(version: any) {
   currentVersionRewardTotal.value = [];
   currentVersionReward.value = [];
   const result1: RewardStatisticsResultDetail = {
-    name: '零氪抽卡资源总计',
+    name: '零氪玩家总计',
     originiumRecharge: 3,
     diamond: 0,
     ticketgachaStandardSingle: 0,
@@ -166,7 +166,7 @@ function filterRewardByVersion(version: any) {
   };
 
   const result2: RewardStatisticsResultDetail = {
-    name: '小月卡抽卡资源总计',
+    name: '小月卡玩家总计',
     originiumRecharge: 3,
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
@@ -175,7 +175,7 @@ function filterRewardByVersion(version: any) {
   };
 
   const result3: RewardStatisticsResultDetail = {
-    name: '大小月卡抽卡资源总计',
+    name: '大小月卡玩家总计',
     originiumRecharge: 3 + 36,
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
@@ -219,170 +219,163 @@ function filterRewardByVersion(version: any) {
 filterRewardByVersion(versionTime[1]);
 </script>
 <template>
- <div class="version-reward-container">
-    <v-table class="version-reward-table" >
-      <thead>
-        <tr>
-          <th style="font-weight: bolder">奖励名称</th>
-          <th style="font-weight: bolder">是否通用</th>
-          <th style="font-weight: bolder">来源</th>
-          <th>抽卡资源</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="reward in currentVersionReward">
-          <td>{{ reward.name.zh }}</td>
-          <td>{{ reward.type }}</td>
-          <td>{{ reward.module }}</td>
-          <td>
-            <div class="version-reward-table-reward-single-group">
-              <div
-                v-show="reward.content.originiumRecharge > 0"
-                class="version-reward-table-reward-single"
-              >
-                <img
-                  alt="existing"
-                  class="version-reward-table-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-                />X
-                {{ reward.content.originiumRecharge }}
-              </div>
+  <div class="version-reward-bg">
+    <img
+      src="https://cos.yituliu.cn/endfield/other/kv-v1.1.jpg"
+      alt=""
+      class="version-reward-bg-kv"
+    />
 
-              <div v-show="reward.content.diamond > 0" class="version-reward-table-reward-single">
-                <img
-                  alt="existing"
-                  class="version-reward-table-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-                />X{{ reward.content.diamond }}
-              </div>
+    <img
+      src="https://cos.yituliu.cn/endfield/other/1111.png"
+      alt=""
+      class="version-reward-title-image"
+    />
 
-              <div
-                v-show="reward.content.ticketgachaStandardSingle > 0"
-                class="version-reward-table-reward-single"
-              >
-                <img
-                  alt="existing"
-                  class="version-reward-table-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-                />X{{ reward.content.ticketgachaStandardSingle }}
-              </div>
+    <div style="height: 180px; width: 100%"></div>
+    <div style="text-align: end; width: 100%; font-weight: bolder; padding-right: 40px">
+      更新日期：2026-03-05
+    </div>
+     <div style="text-align: end; width: 100%; font-weight: bolder; padding-right: 40px">
+      部分资源为估算，仅供参考
+    </div>
+    <div class="version-reward-item-group">
+      <div class="version-reward-item" v-for="reward in currentVersionReward">
+        <div>
+          <!-- <div class="version-reward-item-bar red-bar"></div> -->
+          <div class="version-reward-item-bar yellow-bar"></div>
+          <!-- <div class="version-reward-item-bar blue-bar"></div> -->
+        </div>
+        <span class="version-reward-item-name">{{ reward.name.zh }}</span>
+        <div class="version-reward-item-content" v-show="reward.content.originiumRecharge > 0">
+          <img
+            alt="existing"
+            class="version-reward-item-icon"
+            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+          />X
+          {{ reward.content.originiumRecharge }}
+        </div>
+        <div class="version-reward-item-content" v-show="reward.content.diamond > 0">
+          <img
+            alt="existing"
+            class="version-reward-item-icon"
+            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+          />X
+          {{ reward.content.diamond }}
+        </div>
+        <div
+          class="version-reward-item-content"
+          v-show="reward.content.ticketgachaStandardSingle > 0"
+        >
+          <img
+            alt="existing"
+            class="version-reward-item-icon"
+            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+          />X
+          {{ reward.content.ticketgachaStandardSingle }}
+        </div>
+        <div
+          class="version-reward-item-content"
+          v-show="reward.content.ticketgachaSpecialSingle > 0"
+        >
+          <img
+            alt="existing"
+            class="version-reward-item-icon"
+            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+          />X
+          {{ reward.content.ticketgachaSpecialSingle }}
+        </div>
+      </div>
+    </div>
+    <div class="version-reward-result-group">
+      <div v-for="result in currentVersionRewardTotal" class="version-reward-result">
+        <div>
+          <div class="version-reward-result-color-border red-bg"></div>
+          <div class="version-reward-result-color-border yellow-bg"></div>
+          <div class="version-reward-result-color-border blue-bg"></div>
+        </div>
+        <div>
+          <div class="version-reward-result-name">{{ result.name }}</div>
+          <div>特许寻访{{ numberFloor(result.totalPulls) - 20 }}抽</div>
+          <div>限时寻访20抽</div>
+          <div>基础寻访{{ result.ticketgachaStandardSingle }}抽</div>
 
-              <div
-                v-show="reward.content.ticketgachaSpecialSingle > 0"
-                class="version-reward-table-reward-single"
-              >
-                <img
-                  alt="existing"
-                  class="version-reward-table-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-                />X{{ reward.content.ticketgachaSpecialSingle }}
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
-
-    <v-table class="version-reward-table-result">
-      <tbody>
-        <tr v-for="result in currentVersionRewardTotal">
-          <td>
-            <div class="version-reward-table-reward-single">{{ result.name }}</div>
-          </td>
-          <td>
-            <div class="version-reward-table-reward-single">
-              特许寻访{{ numberFloor(result.totalPulls) }}抽
-            </div>
-          </td>
-          <td>
-            <div class="version-reward-table-reward-single">
-              基础寻访{{ result.ticketgachaStandardSingle }}抽
-            </div>
-          </td>
-          <td>
-            <div v-show="result.originiumRecharge > 0" class="version-reward-table-reward-single">
+          <div class="version-reward-result-content">
+            <div class="version-reward-result-content-item">
               <img
                 alt="existing"
-                class="version-reward-table-icon"
+                class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
               />X
               {{ result.originiumRecharge }}
-
-              （{{ numberFloor(result.originiumRecharge * 0.15) }}抽）
             </div>
-          </td>
-          <td>
-            <div v-show="result.diamond > 0" class="version-reward-table-reward-single">
+            <div class="version-reward-result-content-item">
               <img
                 alt="existing"
-                class="version-reward-table-icon"
+                class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
               />X{{ result.diamond }}
-
-              （{{ numberFloor(result.diamond / 500) }}抽）
             </div>
-          </td>
-          <td>
-            <div
-              v-show="result.ticketgachaStandardSingle > 0"
-              class="version-reward-table-reward-single"
-            >
+            <div class="version-reward-result-content-item">
               <img
                 alt="existing"
-                class="version-reward-table-icon"
+                class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
               />X{{ result.ticketgachaStandardSingle }}
             </div>
-          </td>
-          <td>
-            <div
-              v-show="result.ticketgachaSpecialSingle > 0"
-              class="version-reward-table-reward-single"
-            >
+            <div class="version-reward-result-content-item">
               <img
                 alt="existing"
-                class="version-reward-table-icon"
+                class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
               />X{{ result.ticketgachaSpecialSingle }}
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
-
+          </div>
+        </div>
+      </div>
+    </div>
+   <div class="version-reward-footer">
+    <div>
+     <div>数据来源：明日方舟一图流 https://ef.yituliu.cn/</div>
+      <div>数据整理：逻辑元LogicalByte@Bilibili</div>
+      </div>
+      <img
+        alt="existing"
+        style="width: 100px;height: 100px;"
+        src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png"
+      />
    </div>
+  </div>
 </template>
 
 <style>
-.version-reward-container {
-  width: 1200px;
+.version-reward-bg {
+  background:
+    linear-gradient(to bottom, rgba(255, 250, 0, 1) 450px, rgba(50, 50, 50, 0.1) 700px),
+    url('https://cos.yituliu.cn/endfield/other/bg-1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 1000px;
   margin: auto;
+  min-height: 1400px;
+  font-size: 18px;
+  overflow: hidden;
+  position: relative;
 }
 
-.version-reward-table-icon {
-  width: 36px;
-  height: 36px;
+.version-reward-bg-kv {
+  width: 1000px;
 }
 
-.version-reward-table {
-  display: none;
-  margin: auto;
+.version-reward-title-image {
+  width: 700px;
+  position: absolute;
+  top: 440px;
+  right: 0;
 }
 
-.version-reward-table-result {
-  display: none;
-  margin: auto;
-}
-
-.version-reward-table-reward-single-group {
-  display: flex;
-}
-
-.version-reward-table-reward-single {
-  padding: 0 12px 0 0;
-  display: flex;
-  align-items: center;
-}
 .version-reward-bg-bottom-bar {
   display: flex;
 }
@@ -412,28 +405,109 @@ filterRewardByVersion(versionTime[1]);
   width: 50%;
   height: 10px;
 }
+.version-reward-item-group {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 1100px;
+  align-items: center;
+
+}
+
+.version-reward-item-icon {
+  width: 32px;
+  height: 32px;
+}
 
 .version-reward-item {
   height: 36px;
-  width: 200px;
+  width: 450px;
+  display: flex;
+  align-items: center;
   padding: 0 4px;
-  background: linear-gradient(to right, rgba(189, 189, 189, 1), rgb(243, 243, 243));
+  margin: 8px;
+  /* background: linear-gradient(to right, rgba(189, 189, 189, 1), rgb(243, 243, 243)); */
+  background-color: rgb(49, 49, 49);
+  color: white;
+  .version-reward-item-name {
+    padding: 0 8px;
+    width: 250px;
+  }
+
+  .version-reward-item-content {
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+  }
+
   .version-reward-item-bar {
-    height: 12px;
+    height: 24px;
     width: 4px;
   }
 }
 
-.yellow-bar {
+.version-reward-result-group {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.version-reward-result {
+  width: 290px;
+  text-align: center;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  line-height: 2;
+  height: 240px;
+  display: flex;
+  margin: 20px 0;
+  
+  .version-reward-result-color-border {
+    height: 80px;
+    width: 4px;
+  }
+
+  .version-reward-result-name {
+    font-size: 22px;
+    font-weight: bolder;
+  }
+
+  .version-reward-result-content {
+    margin: 12px 0 0 0;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .version-reward-result-content-item {
+    width: 100px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.version-reward-footer {
+  padding-left:12px ;
+ background: linear-gradient(to right, rgba(255, 250, 0, 0.8), rgba(255, 250, 0, 0.3));
+  font-size: 22px;
+  line-height: 2;
+ color: black;
+ display: flex;
+ justify-content: space-between;
+}
+
+.yellow-bg {
   background-color: #fffa00;
 }
-.green-bar {
+.green-bg {
   background-color: #00ffa2;
 }
-.blue-bar {
+.blue-bg {
   background-color: #00ffff;
 }
-.red-bar {
+.red-bg {
   background-color: #f44336;
 }
 </style>
