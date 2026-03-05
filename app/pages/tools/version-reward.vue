@@ -221,7 +221,7 @@ filterRewardByVersion(versionTime[1]);
 <template>
   <div class="version-reward-bg">
     <img
-      src="https://cos.yituliu.cn/endfield/other/kv-v1.1.jpg"
+      src="https://cos.yituliu.cn/endfield/other/kv-v1.1.webp"
       alt=""
       class="version-reward-bg-kv"
     />
@@ -232,7 +232,7 @@ filterRewardByVersion(versionTime[1]);
       class="version-reward-title-image"
     />
 
-    <div style="height: 180px; width: 100%"></div>
+  
     <div style="text-align: end; width: 100%; font-weight: bolder; padding-right: 40px">
       更新日期：2026-03-05
     </div>
@@ -246,7 +246,7 @@ filterRewardByVersion(versionTime[1]);
           <div class="version-reward-item-bar yellow-bar"></div>
           <!-- <div class="version-reward-item-bar blue-bar"></div> -->
         </div>
-        <span class="version-reward-item-name">{{ reward.name.zh }}</span>
+        <div class="version-reward-item-name">{{ reward.name.zh }}</div>
         <div class="version-reward-item-content" v-show="reward.content.originiumRecharge > 0">
           <img
             alt="existing"
@@ -351,28 +351,30 @@ filterRewardByVersion(versionTime[1]);
 <style>
 .version-reward-bg {
   background:
-    linear-gradient(to bottom, rgba(255, 250, 0, 1) 450px, rgba(50, 50, 50, 0.1) 700px),
+    linear-gradient(to bottom, rgba(255, 250, 0, 1) 100px, rgba(50, 50, 50, 0.1) 600px),
     url('https://cos.yituliu.cn/endfield/other/bg-1.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
+  padding-top:400px;
   width: 1000px;
   margin: auto;
   min-height: 1400px;
-  font-size: 18px;
+  font-size: 24px;
   overflow: hidden;
   position: relative;
 }
 
 .version-reward-bg-kv {
   width: 1000px;
+   position: absolute;
+  top: 0;
 }
 
 .version-reward-title-image {
   width: 700px;
   position: absolute;
-  top: 440px;
+  top: 180px;
   right: 0;
 }
 
@@ -409,7 +411,7 @@ filterRewardByVersion(versionTime[1]);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 1100px;
+  height: 1240px;
   align-items: center;
 
 }
@@ -420,22 +422,27 @@ filterRewardByVersion(versionTime[1]);
 }
 
 .version-reward-item {
-  height: 36px;
-  width: 450px;
+  height: 42px;
+  width: 490px;
   display: flex;
   align-items: center;
   padding: 0 4px;
-  margin: 8px;
+  margin: 8px 0;
   /* background: linear-gradient(to right, rgba(189, 189, 189, 1), rgb(243, 243, 243)); */
   background-color: rgb(49, 49, 49);
   color: white;
+
+
   .version-reward-item-name {
-    padding: 0 8px;
-    width: 250px;
+    padding: 0 4px;
+    width: 260px;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .version-reward-item-content {
-    padding: 0 8px;
+   
+    padding: 0 4px;
     display: flex;
     align-items: center;
   }
@@ -458,24 +465,24 @@ filterRewardByVersion(versionTime[1]);
   text-align: center;
   background-color: rgb(49, 49, 49);
   color: white;
-  line-height: 2;
-  height: 240px;
+  line-height: 1.8;
+  height: 270px;
   display: flex;
   margin: 20px 0;
   font-size: 22px;
   
   .version-reward-result-color-border {
-    height: 80px;
+    height: 90px;
     width: 4px;
   }
 
   .version-reward-result-name {
-    font-size: 26px;
+    font-size: 32px;
     font-weight: bolder;
   }
 
   .version-reward-result-content {
-    margin: 12px 0 0 0;
+  
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
