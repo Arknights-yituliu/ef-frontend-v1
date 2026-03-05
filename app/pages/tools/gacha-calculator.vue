@@ -1119,7 +1119,6 @@ function rechargeResourceStatistics(): void {
           switch (item.itemId) {
             case 'item_originium_recharge': {
               result.originiumRecharge += item.quantity * quantity;
-
               break;
             }
             case 'item_diamond': {
@@ -1683,7 +1682,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   }
 
   // 活动开始时间在当前池子结束时间之后，活动未开始
-  if (reward.start > currentPoolValue.end) {
+  if (reward.start >= currentPoolValue.end) {
     console.log(reward.name.zh, '过期');
     display = false;
   }
