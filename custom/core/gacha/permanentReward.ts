@@ -147,7 +147,7 @@ const tempTasksReward:Reward[] = [{
   active: true,
   version: '新潮起·故渊离',
   content: {
-    originiumRecharge: 15,
+    originiumRecharge: 10,
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,

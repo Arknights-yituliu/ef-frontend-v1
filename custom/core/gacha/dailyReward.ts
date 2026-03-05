@@ -66,7 +66,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
     {
       id: 'day_reward',
       name: {
-        zh: `${version}日常奖励X${numberRound(remainingDays, 0)}天`,
+        zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
         en: '',
       },
       start: '2026/01/22 12:00:00',
@@ -85,7 +85,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
     {
       id: 'week_task_reward',
       name: {
-        zh: `${version}周常奖励X${numberRound(remainingWeek, 0)}周`,
+        zh: `周常奖励X${numberRound(remainingWeek, 0)}周`,
         en: '',
       },
       start: '2026/01/22 12:00:00',

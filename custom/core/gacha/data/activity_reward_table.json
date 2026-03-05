@@ -113,6 +113,25 @@
       "ticketgachaSpecialSingle": 0
     }
   },
+   {
+    "id": "清波将起签到",
+    "name": {
+      "zh": "清波将起签到",
+      "en": ""
+    },
+    "start": "2026/03/05 12:00:00",
+    "end": "2026/03/12 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
   {
     "id": "密境行者·密境初显",
     "name": {
