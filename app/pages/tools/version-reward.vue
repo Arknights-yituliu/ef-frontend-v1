@@ -9,6 +9,8 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 
 import { AICQuotaReward, createVersionDailyReward } from '@/custom/core/gacha/dailyReward';
 
+import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
+
 import {
   authorityLevelTaskRewards,
   authorityLevelUpReward,
@@ -55,13 +57,7 @@ import { wulingRegionalAllRewardTable } from '@/custom/core/gacha/wulingRegional
 
 const versionReward = ref<Reward[]>([]);
 
-const currentVersionRewardTotal = ref<RewardStatisticsResultDetail>({
-  name: '总计',
-  originiumRecharge: 0,
-  diamond: 0,
-  ticketgachaStandardSingle: 0,
-  ticketgachaSpecialSingle: 0,
-});
+const currentVersionRewardTotal = ref<RewardStatisticsResultDetail[]>([]);
 
 const versionTime = [
   {
@@ -155,14 +151,36 @@ versionReward.value.push(operationalManualNodeReward.value);
 
 const currentVersionReward = ref<Reward[]>([]);
 
-function filterRewardByVersion() {
+function filterRewardByVersion(version: any) {
+  const daysDiff = calculateDaysDifference(version.start, version.end);
+
+  currentVersionRewardTotal.value = [];
   currentVersionReward.value = [];
-  currentVersionRewardTotal.value = {
-    name: '总计',
-    originiumRecharge: 0,
+  const result1: RewardStatisticsResultDetail = {
+    name: '零氪抽卡资源总计',
+    originiumRecharge: 3,
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    totalPulls: 0,
+  };
+
+  const result2: RewardStatisticsResultDetail = {
+    name: '小月卡抽卡资源总计',
+    originiumRecharge: 3,
+    diamond: numberFloor(daysDiff) * 200,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    totalPulls: 0,
+  };
+
+  const result3: RewardStatisticsResultDetail = {
+    name: '大小月卡抽卡资源总计',
+    originiumRecharge: 3 + 36,
+    diamond: numberFloor(daysDiff) * 200,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    totalPulls: 0,
   };
 
   for (const reward of versionReward.value) {
@@ -171,19 +189,34 @@ function filterRewardByVersion() {
     }
   }
 
-
-
   for (const reward of currentVersionReward.value) {
-    currentVersionRewardTotal.value.originiumRecharge += reward.content.originiumRecharge;
-    currentVersionRewardTotal.value.diamond += reward.content.diamond;
-    currentVersionRewardTotal.value.ticketgachaStandardSingle +=
-      reward.content.ticketgachaStandardSingle;
-    currentVersionRewardTotal.value.ticketgachaSpecialSingle +=
-      reward.content.ticketgachaSpecialSingle;
+    result1.originiumRecharge += reward.content.originiumRecharge;
+    result1.diamond += reward.content.diamond;
+    result1.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
+    result1.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
   }
+
+  result2.originiumRecharge += result1.originiumRecharge;
+  result2.diamond += result1.diamond;
+  result2.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
+  result2.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
+
+  result3.originiumRecharge += result1.originiumRecharge;
+  result3.diamond += result1.diamond;
+  result3.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
+  result3.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
+
+  result1.totalPulls =
+    result1.originiumRecharge * 0.15 + result1.diamond / 500 + result1.ticketgachaSpecialSingle;
+  result2.totalPulls =
+    result2.originiumRecharge * 0.15 + result2.diamond / 500 + result2.ticketgachaSpecialSingle;
+  result3.totalPulls =
+    result3.originiumRecharge * 0.15 + result3.diamond / 500 + result3.ticketgachaSpecialSingle;
+
+  currentVersionRewardTotal.value.push(result1, result2, result3);
 }
 
-filterRewardByVersion();
+filterRewardByVersion(versionTime[1]);
 </script>
 <template>
   <v-table class="version-reward-table">
@@ -200,112 +233,161 @@ filterRewardByVersion();
         <td>{{ reward.name.zh }}</td>
         <td>{{ reward.type }}</td>
         <td>{{ reward.module }}</td>
-        <td >
-             <div class="version-reward-table-reward-single-group">
-          <div
-            v-show="reward.content.originiumRecharge > 0"
-            class="version-reward-table-reward-single"
-          >
-            <img
-              alt="existing"
-              class="version-reward-table-icon"
-              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-            />X
-            {{ reward.content.originiumRecharge }}
-          </div>
+        <td>
+          <div class="version-reward-table-reward-single-group">
+            <div
+              v-show="reward.content.originiumRecharge > 0"
+              class="version-reward-table-reward-single"
+            >
+              <img
+                alt="existing"
+                class="version-reward-table-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+              />X
+              {{ reward.content.originiumRecharge }}
+            </div>
 
-          <div v-show="reward.content.diamond > 0" class="version-reward-table-reward-single">
-            <img
-              alt="existing"
-              class="version-reward-table-icon"
-              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-            />X{{ reward.content.diamond }}
-          </div>
+            <div v-show="reward.content.diamond > 0" class="version-reward-table-reward-single">
+              <img
+                alt="existing"
+                class="version-reward-table-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+              />X{{ reward.content.diamond }}
+            </div>
 
-          <div
-            v-show="reward.content.ticketgachaStandardSingle > 0"
-            class="version-reward-table-reward-single"
-          >
-            <img
-              alt="existing"
-              class="version-reward-table-icon"
-              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-            />X{{ reward.content.ticketgachaStandardSingle }}
-          </div>
+            <div
+              v-show="reward.content.ticketgachaStandardSingle > 0"
+              class="version-reward-table-reward-single"
+            >
+              <img
+                alt="existing"
+                class="version-reward-table-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+              />X{{ reward.content.ticketgachaStandardSingle }}
+            </div>
 
-          <div
-            v-show="reward.content.ticketgachaSpecialSingle > 0"
-            class="version-reward-table-reward-single"
-          >
-            <img
-              alt="existing"
-              class="version-reward-table-icon"
-              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-            />X{{ reward.content.ticketgachaSpecialSingle }}
+            <div
+              v-show="reward.content.ticketgachaSpecialSingle > 0"
+              class="version-reward-table-reward-single"
+            >
+              <img
+                alt="existing"
+                class="version-reward-table-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+              />X{{ reward.content.ticketgachaSpecialSingle }}
+            </div>
           </div>
-        </div>
         </td>
       </tr>
-      <tr>
-        <td  colspan="4">
+      <tr v-for="result in currentVersionRewardTotal">
+        <td>{{ result.name }}</td>
+        <td colspan="3">
           <div class="version-reward-table-reward-single-group">
-             <div
-            class="version-reward-table-reward-single"
+            <div v-show="result.originiumRecharge > 0" class="version-reward-table-reward-single">
+              <img
+                alt="existing"
+                class="version-reward-table-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+              />X
+              {{ result.originiumRecharge }}
 
-          > 总计</div>
-          <div
-            v-show="currentVersionRewardTotal.originiumRecharge > 0"
-            class="version-reward-table-reward-single"
-          >
-            <img
-              alt="existing"
-              class="version-reward-table-icon"
-              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-            />X
-            {{ currentVersionRewardTotal.originiumRecharge }}
+              （{{ numberFloor(result.originiumRecharge * 0.15) }}抽）
+            </div>
 
-            （{{ numberFloor(currentVersionRewardTotal.originiumRecharge * 0.15) }}抽）
-          </div>
+            <div v-show="result.diamond > 0" class="version-reward-table-reward-single">
+              <img
+                alt="existing"
+                class="version-reward-table-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+              />X{{ result.diamond }}
 
-          <div
-            v-show="currentVersionRewardTotal.diamond > 0"
-            class="version-reward-table-reward-single"
-          >
-            <img
-              alt="existing"
-              class="version-reward-table-icon"
-              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-            />X{{ currentVersionRewardTotal.diamond }}
+              （{{ numberFloor(result.diamond / 500) }}抽）
+            </div>
 
-            （{{ numberFloor(currentVersionRewardTotal.diamond / 500) }}抽）
-          </div>
+            <div
+              v-show="result.ticketgachaStandardSingle > 0"
+              class="version-reward-table-reward-single"
+            >
+              <img
+                alt="existing"
+                class="version-reward-table-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+              />X{{ result.ticketgachaStandardSingle }}
+            </div>
 
-          <div
-            v-show="currentVersionRewardTotal.ticketgachaStandardSingle > 0"
-            class="version-reward-table-reward-single"
-          >
-            <img
-              alt="existing"
-              class="version-reward-table-icon"
-              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-            />X{{ currentVersionRewardTotal.ticketgachaStandardSingle }}
-          </div>
-
-          <div
-            v-show="currentVersionRewardTotal.ticketgachaSpecialSingle > 0"
-            class="version-reward-table-reward-single"
-          >
-            <img
-              alt="existing"
-              class="version-reward-table-icon"
-              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-            />X{{ currentVersionRewardTotal.ticketgachaSpecialSingle }}
-          </div>
+            <div
+              v-show="result.ticketgachaSpecialSingle > 0"
+              class="version-reward-table-reward-single"
+            >
+              <img
+                alt="existing"
+                class="version-reward-table-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+              />X{{ result.ticketgachaSpecialSingle }}
+            </div>
           </div>
         </td>
       </tr>
     </tbody>
   </v-table>
+
+  <v-table class="version-reward-table-result">
+    <tbody>
+      <tr v-for="result in currentVersionRewardTotal">
+        <td>
+          <div class="version-reward-table-reward-single">{{ result.name }}</div>
+        </td>
+        <td><div class="version-reward-table-reward-single">特许寻访{{ numberFloor(result.totalPulls) }}抽</div></td>
+        <td><div class="version-reward-table-reward-single">基础寻访{{ result.ticketgachaStandardSingle }}抽</div></td>
+        <td>
+          <div v-show="result.originiumRecharge > 0" class="version-reward-table-reward-single">
+            <img
+              alt="existing"
+              class="version-reward-table-icon"
+              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+            />X
+            {{ result.originiumRecharge }}
+
+            （{{ numberFloor(result.originiumRecharge * 0.15) }}抽）
+          </div>
+        </td>
+        <td>
+          <div v-show="result.diamond > 0" class="version-reward-table-reward-single">
+            <img
+              alt="existing"
+              class="version-reward-table-icon"
+              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+            />X{{ result.diamond }}
+
+            （{{ numberFloor(result.diamond / 500) }}抽）
+          </div>
+        </td>
+        <td>
+          <div
+            v-show="result.ticketgachaStandardSingle > 0"
+            class="version-reward-table-reward-single"
+          >
+            <img
+              alt="existing"
+              class="version-reward-table-icon"
+              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+            />X{{ result.ticketgachaStandardSingle }}
+          </div>
+        </td>
+        <td>
+          <div v-show="result.ticketgachaSpecialSingle > 0" class="version-reward-table-reward-single">
+            <img
+              alt="existing"
+              class="version-reward-table-icon"
+              src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+            />X{{ result.ticketgachaSpecialSingle }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </v-table>
+
+  
 </template>
 
 <style>
@@ -319,13 +401,19 @@ filterRewardByVersion();
   margin: auto;
 }
 
-.version-reward-table-reward-single-group {
+.version-reward-table-result {
+   width: 1000px;
+  margin: auto;
+}
 
+
+
+.version-reward-table-reward-single-group {
   display: flex;
 }
 
 .version-reward-table-reward-single {
-  padding: 0 12px 0 0 ;
+  padding: 0 12px 0 0;
   display: flex;
   align-items: center;
 }

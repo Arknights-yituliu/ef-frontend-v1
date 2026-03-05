@@ -25,6 +25,7 @@ export type RewardStatisticsResultDetail ={
   ticketgachaStandardSingle: number;
   /** 特许寻访凭证 */
   ticketgachaSpecialSingle: number;
+  totalPulls?: number;
 }
 
 export interface TotalPullsSingle {
