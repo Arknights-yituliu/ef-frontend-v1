@@ -370,21 +370,30 @@
       "couponStrategy": {
         "title": "弹性需求物资交易策略",
         "subtitle": "根据弹性需求物资最低价的变化规律，优化每日购买额度的使用策略",
-        "todayStrategy": "今日最优策略",
+        "todayStrategy": "今日进货参考价",
         "refreshCountdown": "距离下次价格刷新：",
-        "wuling": "武陵",
+        "wuling": "武陵购入参考价",
         "fourValley": "四号谷地",
         "lowestPriceBelow": "当最低价低于 {price} 时",
         "lowestPriceAbove": "当最低价高于 {price} 时",
         "priceBetween": "当最低价在 {price1} 到 {price2} 之间时",
         "buyAll": "全部购买",
-        "buyHalfQuota": "买到还剩1/2配额",
-        "buyOneThirdQuota": "买到还剩1/3配额",
-        "buyTwoThirdsQuota": "买到还剩2/3配额",
+        "buyHalfQuota": "买到剩1/2配额",
+        "buyOneThirdQuota": "买到剩1/3配额",
+        "buyTwoThirdsQuota": "买到剩2/3配额",
         "strategyTable": "策略速查表",
         "weekday": "星期",
         "wulingStrategyTable": "武陵",
-        "fourValleyStrategyTable": "四号谷地"
+        "fourValleyStrategyTable": "四号谷地",
+        "goodsTable": "货品列表",
+        "goodsName": "货品名称",
+        "correctionValue": "购入价格修正值",
+        "referencePrice": "出售参考价",
+        "explanation": {
+          "title": "使用说明",
+          "priceFluctuation": "购入的参考价格随星期一~星期日有波动，具体可查阅下方的策略速查表",
+          "correctionValue": "不同物品出售价的期望不同，故而购入的参考价格需要叠加修正值"
+        }
       }
     },
     "tools": {

@@ -383,7 +383,16 @@
         "strategyTable": "Strategy Reference Table",
         "weekday": "Weekday",
         "wulingStrategyTable": "Wuling Strategy Table",
-        "fourValleyStrategyTable": "Four Valley Strategy Table"
+        "fourValleyStrategyTable": "Four Valley Strategy Table",
+        "goodsTable": "Goods List",
+        "goodsName": "Goods Name",
+        "correctionValue": "Correction Value",
+        "referencePrice": "Reference Price",
+        "explanation": {
+          "title": "Usage Guide",
+          "priceFluctuation": "Purchase reference prices fluctuate from Monday to Sunday, see Strategy Reference Table below for details",
+          "correctionValue": "Different items have different expected selling prices, so purchase reference prices need to include correction values"
+        }
       }
     },
     "tools": {
