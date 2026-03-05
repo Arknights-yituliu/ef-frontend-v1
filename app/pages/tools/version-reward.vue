@@ -221,15 +221,15 @@ filterRewardByVersion(versionTime[1]);
 <template>
   <div class="version-reward-bg">
     <img
-      src="https://cos.yituliu.cn/endfield/other/kv-v1.1.webp"
       alt=""
       class="version-reward-bg-kv"
+      src="https://cos.yituliu.cn/endfield/other/kv-v1.1.webp"
     />
 
     <img
-      src="https://cos.yituliu.cn/endfield/other/1111.png"
       alt=""
       class="version-reward-title-image"
+      src="https://cos.yituliu.cn/endfield/other/1111.png"
     />
 
   
@@ -240,14 +240,14 @@ filterRewardByVersion(versionTime[1]);
       部分资源为估算，仅供参考
     </div>
     <div class="version-reward-item-group">
-      <div class="version-reward-item" v-for="reward in currentVersionReward">
+      <div v-for="reward in currentVersionReward" class="version-reward-item">
         <div>
           <!-- <div class="version-reward-item-bar red-bar"></div> -->
           <div class="version-reward-item-bar yellow-bar"></div>
           <!-- <div class="version-reward-item-bar blue-bar"></div> -->
         </div>
         <div class="version-reward-item-name">{{ reward.name.zh }}</div>
-        <div class="version-reward-item-content" v-show="reward.content.originiumRecharge > 0">
+        <div v-show="reward.content.originiumRecharge > 0" class="version-reward-item-content">
           <img
             alt="existing"
             class="version-reward-item-icon"
@@ -255,7 +255,7 @@ filterRewardByVersion(versionTime[1]);
           />X
           {{ reward.content.originiumRecharge }}
         </div>
-        <div class="version-reward-item-content" v-show="reward.content.diamond > 0">
+        <div v-show="reward.content.diamond > 0" class="version-reward-item-content">
           <img
             alt="existing"
             class="version-reward-item-icon"
@@ -264,8 +264,8 @@ filterRewardByVersion(versionTime[1]);
           {{ reward.content.diamond }}
         </div>
         <div
-          class="version-reward-item-content"
           v-show="reward.content.ticketgachaStandardSingle > 0"
+          class="version-reward-item-content"
         >
           <img
             alt="existing"
@@ -275,8 +275,8 @@ filterRewardByVersion(versionTime[1]);
           {{ reward.content.ticketgachaStandardSingle }}
         </div>
         <div
-          class="version-reward-item-content"
           v-show="reward.content.ticketgachaSpecialSingle > 0"
+          class="version-reward-item-content"
         >
           <img
             alt="existing"
@@ -341,8 +341,8 @@ filterRewardByVersion(versionTime[1]);
       </div>
       <img
         alt="existing"
-        style="width: 100px;height: 100px;"
         src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png"
+        style="width: 100px;height: 100px;"
       />
    </div>
   </div>
