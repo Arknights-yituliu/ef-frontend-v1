@@ -47,7 +47,7 @@
               <div class="goods-card-content">
                 <div class="goods-card-left">
                   <div class="goods-card-image-wrapper">
-                    <img :src="item.imageUrl" :alt="item.name" class="goods-card-image" @error="handleImageError" />
+                    <img :alt="item.name" class="goods-card-image" :src="item.imageUrl" @error="handleImageError" />
                   </div>
                   <div class="goods-card-name">
                     <div class="name-decoration wuling-decoration"></div>
@@ -57,7 +57,8 @@
                 <div class="goods-card-minitable">
                   <div class="minitable-row correction-row">
                     <span class="minitable-label">修正值</span>
-                    <span class="minitable-value correction"
+                    <span
+class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
                     </span>
@@ -92,7 +93,7 @@
               <div class="goods-card-content">
                 <div class="goods-card-left">
                   <div class="goods-card-image-wrapper">
-                    <img :src="item.imageUrl" :alt="item.name" class="goods-card-image" @error="handleImageError" />
+                    <img :alt="item.name" class="goods-card-image" :src="item.imageUrl" @error="handleImageError" />
                   </div>
                   <div class="goods-card-name">
                     <div class="name-decoration four-valley-decoration"></div>
@@ -102,7 +103,8 @@
                 <div class="goods-card-minitable">
                   <div class="minitable-row correction-row">
                     <span class="minitable-label">修正值</span>
-                    <span class="minitable-value correction"
+                    <span
+class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
                     </span>
@@ -145,8 +147,9 @@
                   <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.wulingStrategyTable') }}</span>
                 </div>
-                <v-data-table class="elevation-0" density="compact" :headers="wulingTableHeaders" hide-default-footer
-                  :items="wulingTableItems" disable-sort>
+                <v-data-table
+class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
+                  hide-default-footer :items="wulingTableItems">
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
@@ -159,8 +162,9 @@
                 </v-data-table>
 
                 <!-- 武陵货品列表表格 -->
-                <v-data-table class="elevation-0 mt-4" density="compact" :headers="wulingGoodsTableHeaders"
-                  hide-default-footer :items="wulingGoodsItems" :items-per-page="100" disable-sort>
+                <v-data-table
+class="elevation-0 mt-4" density="compact" disable-sort
+                  :headers="wulingGoodsTableHeaders" hide-default-footer :items="wulingGoodsItems" :items-per-page="100">
                   <template #item.correctionValue="{ item }">
                     <span
                       :class="item.correctionValue > 100 ? 'correction-positive' : item.correctionValue < -100 ? 'correction-negative' : 'correction-zero'">
@@ -182,8 +186,9 @@
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValleyStrategyTable')
                   }}</span>
                 </div>
-                <v-data-table class="elevation-0" density="compact" :headers="fourValleyTableHeaders"
-                  hide-default-footer :items="fourValleyTableItems" disable-sort>
+                <v-data-table
+class="elevation-0" density="compact" disable-sort
+                  :headers="fourValleyTableHeaders" hide-default-footer :items="fourValleyTableItems">
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
@@ -199,8 +204,9 @@
                 </v-data-table>
 
                 <!-- 四号谷地货品列表表格 -->
-                <v-data-table class="elevation-0 mt-4" density="compact" :headers="fourValleyGoodsTableHeaders"
-                  hide-default-footer :items="goodsItems" :items-per-page="100" disable-sort>
+                <v-data-table
+class="elevation-0 mt-4" density="compact" disable-sort
+                  :headers="fourValleyGoodsTableHeaders" hide-default-footer :items="goodsItems" :items-per-page="100">
                   <template #item.correctionValue="{ item }">
                     <span
                       :class="item.correctionValue > 100 ? 'correction-positive' : item.correctionValue < -100 ? 'correction-negative' : 'correction-zero'">
