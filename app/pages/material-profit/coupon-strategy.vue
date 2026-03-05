@@ -31,10 +31,10 @@
               </div>
             </div>
           </div>
-
         </v-card-text>
       </v-card>
 
+      <!-- 武陵 -->
       <v-card class="mb-4">
         <v-card-title class="text-h6">
           <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
@@ -45,6 +45,7 @@
           <div class="goods-cards-grid wuling-cards-grid">
             <div v-for="(item, index) in wulingGoodsItems" :key="`wuling-${index}`" class="goods-card">
               <div class="goods-card-content">
+                <!-- 图片文字区 -->
                 <div class="goods-card-left">
                   <div class="goods-card-image-wrapper">
                     <img :alt="item.name" class="goods-card-image" :src="item.imageUrl" @error="handleImageError" />
@@ -54,15 +55,20 @@
                     <span class="name-text">{{ item.name }}</span>
                   </div>
                 </div>
-                <div class="goods-card-minitable">
-                  <div class="minitable-row correction-row">
-                    <span class="minitable-label">修正值</span>
-                    <span
-class="minitable-value correction"
+                <!-- 参考区 -->
+                <div class="goods-item-data">
+                  <div>参考出售价 <span class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
-                      {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
+                      {{ item.referencePrice }}
                     </span>
                   </div>
+                  <div>进价修正值 <span class="minitable-value correction"
+                      :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
+                      {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
+                    </span></div>
+                </div>
+                <!-- 策略区 -->
+                <div class="goods-card-minitable">
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩1/2配额</span>
                     <span class="minitable-value">>{{ wulingPrices[currentDayIndex] + item.correctionValue
@@ -80,12 +86,12 @@ class="minitable-value correction"
         </v-card-text>
       </v-card>
 
+      <!-- 四号谷地 -->
       <v-card class="mb-4">
         <v-card-title class="text-h6">
           <v-icon class="mr-2" color="light-green">mdi-map-marker</v-icon>
           <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValley') }}</span>
           <v-spacer />
-
         </v-card-title>
         <v-card-text>
           <div class="goods-cards-grid">
@@ -100,15 +106,20 @@ class="minitable-value correction"
                     <span class="name-text">{{ item.name }}</span>
                   </div>
                 </div>
-                <div class="goods-card-minitable">
-                  <div class="minitable-row correction-row">
-                    <span class="minitable-label">修正值</span>
-                    <span
-class="minitable-value correction"
+
+                <!-- 参考区 -->
+                <div class="goods-item-data">
+                  <div>参考出售价 <span class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
-                      {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
+                      {{ item.referencePrice }}
                     </span>
                   </div>
+                  <div>进价修正值 <span class="minitable-value correction"
+                      :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
+                      {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
+                    </span></div>
+                </div>
+                <div class="goods-card-minitable">
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩1/3配额</span>
                     <span class="minitable-value">>{{ fourValleySecondPrices[currentDayIndex] +
@@ -132,7 +143,7 @@ class="minitable-value correction"
         </v-card-text>
       </v-card>
 
-      <!-- 第二个大卡片：策略速查表 -->
+      <!-- 策略速查表 -->
       <v-card class="mb-4">
         <v-card-title class="text-h6">
           <v-icon class="mr-2">mdi-table</v-icon>
@@ -147,8 +158,7 @@ class="minitable-value correction"
                   <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.wulingStrategyTable') }}</span>
                 </div>
-                <v-data-table
-class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
+                <v-data-table class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
                   hide-default-footer :items="wulingTableItems">
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
@@ -162,9 +172,8 @@ class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
                 </v-data-table>
 
                 <!-- 武陵货品列表表格 -->
-                <v-data-table
-class="elevation-0 mt-4" density="compact" disable-sort
-                  :headers="wulingGoodsTableHeaders" hide-default-footer :items="wulingGoodsItems" :items-per-page="100">
+                <v-data-table class="elevation-0 mt-4" density="compact" disable-sort :headers="wulingGoodsTableHeaders"
+                  hide-default-footer :items="wulingGoodsItems" :items-per-page="100">
                   <template #item.correctionValue="{ item }">
                     <span
                       :class="item.correctionValue > 100 ? 'correction-positive' : item.correctionValue < -100 ? 'correction-negative' : 'correction-zero'">
@@ -186,9 +195,8 @@ class="elevation-0 mt-4" density="compact" disable-sort
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValleyStrategyTable')
                   }}</span>
                 </div>
-                <v-data-table
-class="elevation-0" density="compact" disable-sort
-                  :headers="fourValleyTableHeaders" hide-default-footer :items="fourValleyTableItems">
+                <v-data-table class="elevation-0" density="compact" disable-sort :headers="fourValleyTableHeaders"
+                  hide-default-footer :items="fourValleyTableItems">
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
@@ -204,8 +212,7 @@ class="elevation-0" density="compact" disable-sort
                 </v-data-table>
 
                 <!-- 四号谷地货品列表表格 -->
-                <v-data-table
-class="elevation-0 mt-4" density="compact" disable-sort
+                <v-data-table class="elevation-0 mt-4" density="compact" disable-sort
                   :headers="fourValleyGoodsTableHeaders" hide-default-footer :items="goodsItems" :items-per-page="100">
                   <template #item.correctionValue="{ item }">
                     <span
@@ -470,12 +477,12 @@ onUnmounted(() => {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--theme-text-primary);
 }
 
 .page-subtitle {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--theme-text-secondary);
   margin-bottom: 2rem;
 }
 
@@ -490,7 +497,7 @@ onUnmounted(() => {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 16px;
-  color: #333;
+  color: var(--theme-text-primary);
 }
 
 .explanation-items {
@@ -516,25 +523,9 @@ onUnmounted(() => {
 
 .explanation-text {
   font-size: 1rem;
-  color: #555;
+  color: var(--theme-text-secondary);
   line-height: 1.6;
   flex: 1;
-}
-
-/* 暗色主题适配 */
-@media (prefers-color-scheme: dark) {
-  .explanation-title {
-    color: #e0e0e0;
-  }
-
-  .explanation-item {
-    background: rgba(102, 126, 234, 0.15);
-    border-left-color: #7c3aed;
-  }
-
-  .explanation-text {
-    color: #b0b0b0;
-  }
 }
 
 [data-theme='dark'] .explanation-title {
@@ -553,9 +544,9 @@ onUnmounted(() => {
 .region-section,
 .table-section {
   padding: 16px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--theme-border);
   border-radius: 8px;
-  background: #fafafa;
+  background: var(--theme-bg-secondary);
 }
 
 .region-header {
@@ -563,12 +554,13 @@ onUnmounted(() => {
   align-items: center;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--theme-border);
 }
 
 .region-title {
   font-size: 1.3rem;
   font-weight: 700;
+  color: var(--theme-text-primary);
 }
 
 .strategy-display {
@@ -762,25 +754,6 @@ onUnmounted(() => {
   font-weight: 600;
 }
 
-/* 暗色主题下的修正值颜色 */
-@media (prefers-color-scheme: dark) {
-  .correction-positive {
-    color: #66bb6a;
-  }
-
-  .correction-negative {
-    color: #ef5350;
-  }
-
-  .correction-zero {
-    color: #ffa726;
-  }
-
-  .reference-price {
-    color: #b0b0b0;
-  }
-}
-
 [data-theme='dark'] .correction-positive {
   color: #66bb6a;
 }
@@ -880,6 +853,7 @@ onUnmounted(() => {
   gap: 6px;
   max-width: 144px;
   width: fit-content;
+  font-size: 1rem;
 }
 
 /* 名称装饰条 */
@@ -888,6 +862,14 @@ onUnmounted(() => {
   height: 22px;
   border-radius: 2px;
   flex-shrink: 0;
+}
+
+.goods-item-data{
+
+  margin-top: 4px;
+  padding: 0px 12px;
+  border-radius: 8px;
+  background-color: #80808020;
 }
 
 /* 武陵装饰条 */
@@ -902,18 +884,6 @@ onUnmounted(() => {
   box-shadow: 0 0 8px rgba(139, 195, 74, 0.4);
 }
 
-/* 名称文字 */
-.name-text {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #333;
-  line-height: 1.4;
-  flex: 1;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 /* 货组卡片图片 */
 .goods-card-image {
@@ -956,7 +926,7 @@ onUnmounted(() => {
 /* 迷你表格标签 */
 .minitable-label {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--theme-text-secondary);
   text-align: left;
 }
 
@@ -964,8 +934,8 @@ onUnmounted(() => {
 .minitable-value {
   font-size: 1rem;
   font-weight: 700;
-  color: #333;
   text-align: left;
+  color: var(--theme-text-secondary);
 }
 
 /* 修正值颜色类 */
@@ -978,7 +948,7 @@ onUnmounted(() => {
 }
 
 .minitable-value.correction.zero {
-  color: #ffc107;
+  color: #ff9900;
 }
 
 /* 武陵价格主题 */
@@ -1042,115 +1012,6 @@ onUnmounted(() => {
   }
 }
 
-/* 暗色主题适配 */
-@media (prefers-color-scheme: dark) {
-  .goods-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  .goods-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .goods-card.selected {
-    background: rgba(156, 204, 101, 0.15);
-    border-color: #9ccc65;
-    box-shadow: 0 2px 6px rgba(156, 204, 101, 0.3);
-  }
-
-  .goods-card.selected:hover {
-    background: rgba(156, 204, 101, 0.2);
-  }
-
-  .goods-cards-container {
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .goods-card-text {
-    color: #e0e0e0;
-  }
-
-  .goods-card-correction-left {
-    background: rgba(102, 126, 234, 0.15);
-    border-color: #7c3aed;
-  }
-
-  .goods-card-correction {
-    background: rgba(30, 30, 30, 0.9);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  .correction-value {
-    color: #e0e0e0;
-  }
-
-  .price-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-left-color: #7c3aed;
-  }
-
-  .price-label {
-    color: #b0b0b0;
-  }
-
-  .price-value {
-    color: #e0e0e0;
-  }
-
-  .minitable-label {
-    color: #b0b0b0;
-  }
-
-  .minitable-value {
-    color: #e0e0e0;
-  }
-
-  .minitable-value.correction.positive {
-    color: #66bb6a;
-  }
-
-  .minitable-value.correction.negative {
-    color: #ef5350;
-  }
-
-  .minitable-value.correction.zero {
-    color: #ffa726;
-  }
-
-  .goods-card-info {
-    border-top-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .wuling-price {
-    color: #26c6da;
-  }
-
-  .four-valley-price {
-    color: #9ccc65;
-  }
-
-  /* 名称文字暗色主题 */
-  .name-text {
-    color: #e0e0e0;
-  }
-
-  /* 武陵装饰条暗色主题 */
-  .wuling-decoration {
-    background: linear-gradient(180deg, #26c6da 0%, #4dd0e1 100%);
-    box-shadow: 0 0 12px rgba(38, 198, 218, 0.6);
-  }
-
-  /* 四号谷地装饰条暗色主题 */
-  .four-valley-decoration {
-    background: linear-gradient(180deg, #9ccc65 0%, #aed581 100%);
-    box-shadow: 0 0 12px rgba(156, 204, 101, 0.6);
-  }
-}
-
 [data-theme='dark'] .goods-card {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
@@ -1188,64 +1049,6 @@ onUnmounted(() => {
 
 [data-theme='dark'] .correction-value {
   color: #e0e0e0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .page-title {
-    color: #e0e0e0;
-  }
-
-  .page-subtitle {
-    color: #b0b0b0;
-  }
-
-  .region-section,
-  .table-section {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .region-header {
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .strategy-item {
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  .strategy-label {
-    color: #b0b0b0;
-  }
-
-  .wuling-buy-all {
-    color: #26c6da;
-  }
-
-  .wuling-buy-just {
-    color: #78909c;
-  }
-
-  .four-valley-buy-all {
-    color: #9ccc65;
-  }
-
-  .four-valley-buy-middle {
-    color: #d0e157;
-  }
-
-  .four-valley-buy-just {
-    color: #ffb74d;
-  }
-
-  .refresh-countdown {
-    color: #b0b0b0;
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .countdown-label {
-    color: #b0b0b0;
-  }
 }
 
 [data-theme='dark'] .page-title {
