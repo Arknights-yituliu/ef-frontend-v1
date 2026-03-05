@@ -171,46 +171,7 @@ function filterRewardByVersion() {
     }
   }
 
-  currentVersionReward.value.push(
-    {
-      id: '新潮起·故渊离版本主线',
-      name: {
-        zh: `新潮起·故渊离版本主线`,
-        en: '',
-      },
-      start: '2026/03/12 12:00:00',
-      end: '2099/12/31 12:00:00',
-      type: '通用',
-      module: '任务',
-      active: true,
-      version: '零号委托',
-      content: {
-        originiumRecharge: 15,
-        diamond: 0,
-        ticketgachaStandardSingle: 0,
-        ticketgachaSpecialSingle: 0,
-      },
-    },
-    {
-      id: '新潮起·故渊离版本支线',
-      name: {
-        zh: `新潮起·故渊离版本支线`,
-        en: '',
-      },
-      start: '2026/03/12 12:00:00',
-      end: '2099/12/31 12:00:00',
-      type: '通用',
-      module: '任务',
-      active: true,
-      version: '零号委托',
-      content: {
-        originiumRecharge: 0,
-        diamond: 500,
-        ticketgachaStandardSingle: 0,
-        ticketgachaSpecialSingle: 0,
-      },
-    }
-  );
+
 
   for (const reward of currentVersionReward.value) {
     currentVersionRewardTotal.value.originiumRecharge += reward.content.originiumRecharge;
