@@ -41,7 +41,16 @@
     "noData": "暂无数据",
     "close": "关闭",
     "copySuccess": "已复制",
-    "copyFailed": "复制失败"
+    "copyFailed": "复制失败",
+    "weekday": {
+      "monday": "星期一",
+      "tuesday": "星期二",
+      "wednesday": "星期三",
+      "thursday": "星期四",
+      "friday": "星期五",
+      "saturday": "星期六",
+      "sunday": "星期日"
+    }
   },
   "layout": {
     "theme": "主题",
@@ -373,18 +382,18 @@
         "todayStrategy": "今日最优策略",
         "refreshCountdown": "距离下次价格刷新：",
         "wuling": "武陵",
-        "fourValley": "四号谷地",
+        "valleyIV": "四号谷地",
         "lowestPriceBelow": "当最低价低于 {price} 时",
         "lowestPriceAbove": "当最低价高于 {price} 时",
         "priceBetween": "当最低价在 {price1} 到 {price2} 之间时",
         "buyAll": "全部购买",
-        "buyHalfQuota": "买到还剩1/2配额",
-        "buyOneThirdQuota": "买到还剩1/3配额",
-        "buyTwoThirdsQuota": "买到还剩2/3配额",
+        "buyHalfQuota": "买到还剩 1/2 配额",
+        "buyOneThirdQuota": "买到还剩 1/3 配额",
+        "buyTwoThirdsQuota": "买到还剩 2/3 配额",
         "strategyTable": "策略速查表",
         "weekday": "星期",
         "wulingStrategyTable": "武陵",
-        "fourValleyStrategyTable": "四号谷地"
+        "valleyIVStrategyTable": "四号谷地"
       }
     },
     "tools": {

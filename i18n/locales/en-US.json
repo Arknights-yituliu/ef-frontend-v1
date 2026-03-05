@@ -40,7 +40,16 @@
     "noData": "No data available",
     "close": "Close",
     "copySuccess": "Copied",
-    "copyFailed": "Copy failed"
+    "copyFailed": "Copy failed",
+    "weekday": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
   },
   "layout": {
     "theme": "Theme",
@@ -372,7 +381,7 @@
         "todayStrategy": "Today's Best Strategy",
         "refreshCountdown": "Time to Refresh: ",
         "wuling": "Wuling",
-        "fourValley": "Four Valley",
+        "valleyIV": "Valley IV",
         "lowestPriceBelow": "When price is below {price}",
         "lowestPriceAbove": "When price is above {price}",
         "priceBetween": "When price is between {price1} and {price2}",
@@ -383,7 +392,7 @@
         "strategyTable": "Strategy Reference Table",
         "weekday": "Weekday",
         "wulingStrategyTable": "Wuling Strategy Table",
-        "fourValleyStrategyTable": "Four Valley Strategy Table"
+        "valleyIVStrategyTable": "Valley IV Strategy Table"
       }
     },
     "tools": {
