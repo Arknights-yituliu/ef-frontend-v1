@@ -373,7 +373,7 @@
         "todayStrategy": "今日进货参考价",
         "refreshCountdown": "距离下次价格刷新：",
         "wuling": "武陵购入参考价",
-        "fourValley": "四号谷地",
+        "fourValley": "四号谷地购入参考价",
         "lowestPriceBelow": "当最低价低于 {price} 时",
         "lowestPriceAbove": "当最低价高于 {price} 时",
         "priceBetween": "当最低价在 {price1} 到 {price2} 之间时",
@@ -387,12 +387,12 @@
         "fourValleyStrategyTable": "四号谷地",
         "goodsTable": "货品列表",
         "goodsName": "货品名称",
-        "correctionValue": "购入价格修正值",
+        "correctionValue": "相对均价修正值",
         "referencePrice": "出售参考价",
         "explanation": {
           "title": "使用说明",
           "priceFluctuation": "购入的参考价格随星期一~星期日有波动，具体可查阅下方的策略速查表",
-          "correctionValue": "不同物品出售价的期望不同，故而购入的参考价格需要叠加修正值"
+          "correctionValue": "由于不同货物出售价的期望不同，因此购入的参考价格=平均值+修正值"
         }
       }
     },

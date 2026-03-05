@@ -15,6 +15,10 @@
             </div>
             <div class="explanation-items">
               <div class="explanation-item">
+                <v-icon class="explanation-icon" color="blue-grey darken-1">mdi-information</v-icon>
+                <span class="explanation-text">通过合理规划购买策略，可以降低弹性需求物资的购买成本，提高调度券的收入，本页面用于查询不同价格下应采取的策略</span>
+              </div>
+              <div class="explanation-item">
                 <v-icon class="explanation-icon" color="blue-grey darken-1">mdi-calendar</v-icon>
                 <span class="explanation-text">{{ t('page.materialProfit.couponStrategy.explanation.priceFluctuation')
                 }}</span>
@@ -57,17 +61,16 @@
                 </div>
                 <!-- 参考区 -->
                 <div class="goods-item-data">
-                  <div>参考出售价 <span
-class="minitable-value correction"
+                  <div>参考出售价 <span class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.referencePrice }}
                     </span>
                   </div>
-                  <div>进价修正值 <span
-class="minitable-value correction"
+                  <!-- <div>进价修正值 <span class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
-                    </span></div>
+                    </span>
+                  </div> -->
                 </div>
                 <!-- 策略区 -->
                 <div class="goods-card-minitable">
@@ -111,17 +114,16 @@ class="minitable-value correction"
 
                 <!-- 参考区 -->
                 <div class="goods-item-data">
-                  <div>参考出售价 <span
-class="minitable-value correction"
+                  <div>参考出售价 <span class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.referencePrice }}
                     </span>
                   </div>
-                  <div>进价修正值 <span
-class="minitable-value correction"
+                  <!-- <div>进价修正值 <span class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
-                    </span></div>
+                    </span>
+                  </div> -->
                 </div>
                 <div class="goods-card-minitable">
                   <div class="minitable-row">
@@ -162,8 +164,7 @@ class="minitable-value correction"
                   <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.wulingStrategyTable') }}</span>
                 </div>
-                <v-data-table
-class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
+                <v-data-table class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
                   hide-default-footer :items="wulingTableItems">
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
@@ -177,8 +178,7 @@ class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
                 </v-data-table>
 
                 <!-- 武陵货品列表表格 -->
-                <v-data-table
-class="elevation-0 mt-4" density="compact" disable-sort :headers="wulingGoodsTableHeaders"
+                <v-data-table class="elevation-0 mt-4" density="compact" disable-sort :headers="wulingGoodsTableHeaders"
                   hide-default-footer :items="wulingGoodsItems" :items-per-page="100">
                   <template #item.correctionValue="{ item }">
                     <span
@@ -201,8 +201,7 @@ class="elevation-0 mt-4" density="compact" disable-sort :headers="wulingGoodsTab
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValleyStrategyTable')
                   }}</span>
                 </div>
-                <v-data-table
-class="elevation-0" density="compact" disable-sort :headers="fourValleyTableHeaders"
+                <v-data-table class="elevation-0" density="compact" disable-sort :headers="fourValleyTableHeaders"
                   hide-default-footer :items="fourValleyTableItems">
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
@@ -219,8 +218,7 @@ class="elevation-0" density="compact" disable-sort :headers="fourValleyTableHead
                 </v-data-table>
 
                 <!-- 四号谷地货品列表表格 -->
-                <v-data-table
-class="elevation-0 mt-4" density="compact" disable-sort
+                <v-data-table class="elevation-0 mt-4" density="compact" disable-sort
                   :headers="fourValleyGoodsTableHeaders" hide-default-footer :items="goodsItems" :items-per-page="100">
                   <template #item.correctionValue="{ item }">
                     <span
@@ -872,7 +870,7 @@ onUnmounted(() => {
   flex-shrink: 0;
 }
 
-.goods-item-data{
+.goods-item-data {
 
   margin-top: 4px;
   padding: 0px 12px;
@@ -933,17 +931,17 @@ onUnmounted(() => {
 
 /* 迷你表格标签 */
 .minitable-label {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--theme-text-secondary);
   text-align: left;
 }
 
 /* 迷你表格值 */
 .minitable-value {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   text-align: left;
-  color: var(--theme-text-secondary);
+  color: var(--theme-text-primary);
 }
 
 /* 修正值颜色类 */
