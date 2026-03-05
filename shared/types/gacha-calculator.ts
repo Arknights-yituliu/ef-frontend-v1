@@ -60,7 +60,7 @@ export interface Reward {
   module: string;
   regional?:string;
   active: boolean;
-  version?:string;
+  version:string;
   isLimited?: boolean;
   content: RewardContent;
   tips?:string[];

@@ -1,7 +1,7 @@
 import type {  Reward } from '#shared/types/gacha-calculator.ts';
 import {  ref } from 'vue';
 import FactoryManualTable from '@/custom/core/gacha/data/factory_manual_table.json';
-import GameMaintenance from '@/custom/core/gacha/data/game_maintenance.json'
+
 import IntelArchiveRewardJson from '@/custom/core/gacha/data/intel_archive_reward.json';
 import OtherRewardTableJson from '@/custom/core/gacha/data/other.json';
 
@@ -13,11 +13,6 @@ for(const reward of OtherRewardTableJson as Reward[]){
   otherRewardTable.value.push(reward);
 }
 
-for(const reward of GameMaintenance as Reward[]){
-  reward.start = new Date(reward.start)
-  reward.end = new Date(reward.end)
-  otherRewardTable.value.push(reward);
-}
 
 
 

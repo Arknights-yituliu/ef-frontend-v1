@@ -209,26 +209,7 @@ function filterRewardByVersion() {
         ticketgachaStandardSingle: 0,
         ticketgachaSpecialSingle: 0,
       },
-    },
-    {
-      id: '维护、问卷、签到等杂项',
-      name: {
-        zh: `维护、问卷等杂项`,
-        en: '',
-      },
-      start: '2026/03/12 12:00:00',
-      end: '2099/12/31 12:00:00',
-      type: '通用',
-      module: '其他',
-      active: true,
-      version: '零号委托',
-      content: {
-        originiumRecharge: 0,
-        diamond: 3000,
-        ticketgachaStandardSingle: 0,
-        ticketgachaSpecialSingle: 0,
-      },
-    },
+    }
   );
 
   for (const reward of currentVersionReward.value) {
@@ -309,7 +290,7 @@ filterRewardByVersion();
           <div class="version-reward-table-reward-single-group">
              <div
             class="version-reward-table-reward-single"
-           
+
           > 总计</div>
           <div
             v-show="currentVersionRewardTotal.originiumRecharge > 0"
@@ -378,7 +359,7 @@ filterRewardByVersion();
 }
 
 .version-reward-table-reward-single-group {
-  
+
   display: flex;
 }
 
