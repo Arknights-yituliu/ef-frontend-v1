@@ -48,7 +48,7 @@ const newPoolActivity = [
     version: '零号委托',
   },
   {
-    poolName: '清波静流',
+    poolName: '汤汤',
     character: '汤汤',
     start: '2026/03/12 12:00:00',
     end: '2026/03/29 12:00:00',
@@ -57,7 +57,7 @@ const newPoolActivity = [
     version: '新潮起·故渊离',
   },
   {
-    poolName: '狼群瑰宝',
+    poolName: '洛茜',
     character: '洛茜',
     start: '2026/03/29 12:00:00',
     end: '2026/04/16 12:00:00',
