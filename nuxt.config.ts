@@ -34,13 +34,6 @@ export default defineNuxtConfig({
     head: {
       title: '终末地一图流',
       titleTemplate: '%s',
-
-      script: [
-        {
-          src: 'https://cos.yituliu.cn/echarts.min.20241028.js',
-          type: 'text/javascript'
-        },
-      ],
       link: [
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },

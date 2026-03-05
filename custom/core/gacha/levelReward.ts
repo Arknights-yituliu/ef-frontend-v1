@@ -148,4 +148,4 @@ export const worldLevelReward = ref<Reward>({
 
 
 
-export {default as authorityLevelUpRewardTable} from './json/authority_level_up_reward_table.json'
+export {default as authorityLevelUpRewardTable} from '@/custom/core/gacha/data/authority_level_up_reward_table.json'

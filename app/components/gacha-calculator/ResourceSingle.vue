@@ -17,6 +17,7 @@ function getImageUrl(itemId: string): string {
 
 <template>
   <div>
+  <div>
     <div class="gacha-calculator-resource-single">
       <div class="gacha-calculator-resource-single-title">
         {{ props.name.zh }}
@@ -33,6 +34,12 @@ function getImageUrl(itemId: string): string {
     </div>
     <div class="gacha-calculator-resource-single-version">版本：{{ props.version }}</div>
   </div>
+  <template v-if="props.tips">
+      <div v-for="tip in props.tips" :key="tip" class="gacha-calculator-resource-single-tip">
+        {{ tip }}
+      </div>
+    </template>
+    </div>
 </template>
 
 <style scoped>
@@ -71,6 +78,12 @@ function getImageUrl(itemId: string): string {
   justify-content: flex-end;
   font-size: 0.7rem;
 }
+
+.gacha-calculator-resource-single-tip {
+  font-size: 0.7rem;
+}
+
+
 
 @media screen and (max-width: 600px) {
   .gacha-calculator-resource-single {

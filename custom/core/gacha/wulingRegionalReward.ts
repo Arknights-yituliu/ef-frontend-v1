@@ -1,8 +1,11 @@
-import type { CollectReward, Reward } from '#shared/types/gacha-calculator.ts';
+import type { Reward } from '#shared/types/gacha-calculator.ts';
+import { groupAndMergeRewardsByVersion } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
-import stageTable from './json/wuling_aurylene_stage_table.json';
-
-const wulingAuryleneCollectStageTable: CollectReward[] = stageTable as CollectReward[];
+import {
+  wulingAuryleneCollectStageTable,
+  wulingCrateRewardTable,
+  wulingRegionalDevelopmentRewardTable,
+} from '@/custom/core/gacha/data/wulingRegionalRewardTable';
 
 const wulingRegionalStockBillStoreReward = ref<Reward[]>([
   {
@@ -63,6 +66,11 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
     ticketgachaStandardSingle: 5,
     ticketgachaSpecialSingle: 0,
   },
+  tips: [
+    '通过滑块调节当前地区建设等级',
+    '零号协议版本武陵地区建设等级最高为6级',
+    '新潮起·故渊离版本武陵地区建设等级最高为*级',
+  ],
 });
 
 const wulingAuryleneCollectReward = ref<Reward>({
@@ -83,12 +91,14 @@ const wulingAuryleneCollectReward = ref<Reward>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
+  tips: [
+    '通过滑块调节当前醚质收集阶段',
+    '零号协议版本醚质收集阶段最高为8级',
+    '新潮起·故渊离版本醚质收集阶段最高为*级',
+  ],
 });
 
-const wulingCrateRewardV1_0: number = 94 * 15 + 68 * 30 + 34 * 60 + 26 * 100 + 15 * 150;
-const wulingCrateRewardV1_1: number = 32 * 50;
-
-const wulingCrateRewardMax: number = wulingCrateRewardV1_0 + wulingCrateRewardV1_1;
+let wulingCrateRewardMax: number = 0;
 
 const wulingCrateReward = ref<Reward>({
   id: 'wuling_crate_reward',
@@ -104,15 +114,20 @@ const wulingCrateReward = ref<Reward>({
   version: '零号委托',
   content: {
     originiumRecharge: 0,
-    diamond: wulingCrateRewardMax,
+    diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
-  tips: [
-    `零号委托版本奖励为：${wulingCrateRewardV1_0}嵌晶玉`,
-    `新潮起·故渊离版本奖励为：${wulingCrateRewardV1_1}嵌晶玉`,
-  ],
+  tips: ['储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5合成玉'],
 });
+
+for (const reward of wulingCrateRewardTable) {
+  wulingCrateRewardMax += reward.content.diamond;
+  wulingCrateReward.value.content.diamond += reward.content.diamond;
+  wulingCrateReward.value.tips?.push(
+    `${reward.version}版本奖励为：${reward.content.diamond}嵌晶玉`,
+  );
+}
 
 const wulingBattleCrateRewardMax = 7;
 
@@ -136,27 +151,6 @@ const wulingBattleCrateReward = ref<Reward>({
   },
 });
 
-const wulingDeltaBotRewardMax: number = 25 * 20;
-
-const wulingDeltaBotReward = ref<Reward>({
-  id: 'wuling_delta_bot_reward',
-  name: {
-    zh: `维修Delta机器人`,
-    en: '',
-  },
-  start: '2026/01/22 12:00:00',
-  end: '2099/12/31 12:00:00',
-  type: '通用',
-  module: '地区探索',
-  active: true,
-  version: '零号委托',
-  content: {
-    originiumRecharge: 0,
-    diamond: wulingDeltaBotRewardMax,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-  },
-});
 
 const wulingSimulationReward = ref<Reward>({
   id: 'wuling_simulation_reward',
@@ -200,19 +194,50 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
   },
 ]);
 
+const wulingRegionalAllRewardTable: Reward[] = [];
+
+for (const reward of wulingRegionalStockBillStoreReward.value) {
+  wulingRegionalAllRewardTable.push(reward);
+}
+const auryleneCollectRewards: Reward[] = groupAndMergeRewardsByVersion(
+  '醚质收集',
+  wulingAuryleneCollectStageTable,
+);
+
+for (const reward of auryleneCollectRewards) {
+  wulingRegionalAllRewardTable.push(reward);
+}
+
+for(const reward of wulingCrateRewardTable) {
+  wulingRegionalAllRewardTable.push(reward);
+}
+
+const regionalDevelopmentRewards: Reward[] = groupAndMergeRewardsByVersion(
+  '地区等级建设',
+  wulingRegionalDevelopmentRewardTable,
+);
+
+for(const reward of regionalDevelopmentRewards) {
+  wulingRegionalAllRewardTable.push(reward);
+}
+
+wulingRegionalAllRewardTable.push(wulingBattleCrateReward.value, wulingSimulationReward.value, ...wulingDefenseConstructionReward.value);
+
+
+
 export {
   wulingAuryleneCollectReward,
-  wulingAuryleneCollectStageTable,
+  
   wulingBattleCrateReward,
   wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
-  wulingCrateRewardV1_0,
-  wulingCrateRewardV1_1,
   wulingDefenseConstructionReward,
-  wulingDeltaBotReward,
-  wulingDeltaBotRewardMax,
+  wulingRegionalAllRewardTable,
   wulingRegionalDevelopmentReward,
+  
   wulingRegionalStockBillStoreReward,
-  wulingSimulationReward,
+  wulingSimulationReward
 };
+
+export {wulingAuryleneCollectStageTable, wulingRegionalDevelopmentRewardTable} from '@/custom/core/gacha/data/wulingRegionalRewardTable';

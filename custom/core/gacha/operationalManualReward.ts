@@ -1,7 +1,7 @@
 import type { Reward } from '#shared/types/gacha-calculator';
 import { ref } from 'vue';
-import OperationalManualIndexTable from './json/operational_manual_index_table.json';
-import OperationalManualTrainingTable from './json/operational_manual_training_table.json';
+import OperationalManualIndexTable from '@/custom/core/gacha/data/operational_manual_index_table.json';
+import OperationalManualTrainingTable from '@/custom/core/gacha/data/operational_manual_training_table.json';
 
 
 

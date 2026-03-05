@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+
 
 export interface PieChartData {
   value: number;
@@ -7,7 +7,11 @@ export interface PieChartData {
 
 export type ItemDict = Record<string, string>
 
-export type CollectReward  = Record<string, number>
+export type CollectReward  = {
+  originiumRecharge:number;
+  stage: number;
+  version: string;
+}
 
 
 

@@ -12,7 +12,7 @@ function formatNumber (num: number, acc = 2) {
 
 function numberRound(number: number, decimalPlaces: number = 2) {
   // 参数验证
-  if (isNaN(number)) {
+  if (Number.isNaN(number)) {
     throw new TypeError('第一个参数必须是有效的数字');
   }
 
@@ -31,7 +31,7 @@ function numberRound(number: number, decimalPlaces: number = 2) {
 
 function numberFloor(number: any, decimalPlaces: number = 2) {
   // 参数验证
-  if (isNaN(number)) {
+  if (Number.isNaN(number)) {
     console.log('第一个参数必须是有效的数字，传入参数：'+number)
     // throw new Error('第一个参数必须是有效的数字，传入参数：'+number);
   }
