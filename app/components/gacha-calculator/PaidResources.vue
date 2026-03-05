@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
 import { computed } from 'vue';
 import { packs } from '@/custom/core/packs';
-import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
 
 const props = defineProps<{
   modelValue: {
