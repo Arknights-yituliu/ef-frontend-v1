@@ -57,12 +57,14 @@
                 </div>
                 <!-- 参考区 -->
                 <div class="goods-item-data">
-                  <div>参考出售价 <span class="minitable-value correction"
+                  <div>参考出售价 <span
+class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.referencePrice }}
                     </span>
                   </div>
-                  <div>进价修正值 <span class="minitable-value correction"
+                  <div>进价修正值 <span
+class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
                     </span></div>
@@ -109,12 +111,14 @@
 
                 <!-- 参考区 -->
                 <div class="goods-item-data">
-                  <div>参考出售价 <span class="minitable-value correction"
+                  <div>参考出售价 <span
+class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.referencePrice }}
                     </span>
                   </div>
-                  <div>进价修正值 <span class="minitable-value correction"
+                  <div>进价修正值 <span
+class="minitable-value correction"
                       :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
                       {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
                     </span></div>
@@ -158,7 +162,8 @@
                   <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.wulingStrategyTable') }}</span>
                 </div>
-                <v-data-table class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
+                <v-data-table
+class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
                   hide-default-footer :items="wulingTableItems">
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
@@ -172,7 +177,8 @@
                 </v-data-table>
 
                 <!-- 武陵货品列表表格 -->
-                <v-data-table class="elevation-0 mt-4" density="compact" disable-sort :headers="wulingGoodsTableHeaders"
+                <v-data-table
+class="elevation-0 mt-4" density="compact" disable-sort :headers="wulingGoodsTableHeaders"
                   hide-default-footer :items="wulingGoodsItems" :items-per-page="100">
                   <template #item.correctionValue="{ item }">
                     <span
@@ -195,7 +201,8 @@
                   <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValleyStrategyTable')
                   }}</span>
                 </div>
-                <v-data-table class="elevation-0" density="compact" disable-sort :headers="fourValleyTableHeaders"
+                <v-data-table
+class="elevation-0" density="compact" disable-sort :headers="fourValleyTableHeaders"
                   hide-default-footer :items="fourValleyTableItems">
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
@@ -212,7 +219,8 @@
                 </v-data-table>
 
                 <!-- 四号谷地货品列表表格 -->
-                <v-data-table class="elevation-0 mt-4" density="compact" disable-sort
+                <v-data-table
+class="elevation-0 mt-4" density="compact" disable-sort
                   :headers="fourValleyGoodsTableHeaders" hide-default-footer :items="goodsItems" :items-per-page="100">
                   <template #item.correctionValue="{ item }">
                     <span
