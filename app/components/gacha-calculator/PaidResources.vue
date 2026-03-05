@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { packs } from '@/custom/core/packs';
+import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
 
 const props = defineProps<{
   modelValue: {
@@ -38,16 +39,17 @@ const protocolCustomizationActive = computed({
   set: (val) => emit('update:modelValue', { ...props.modelValue, protocolCustomization: val })
 });
 
+
 // 计算月卡天数（自动根据当前日期和池子结束日期计算）
 const monthlyPassDays = computed(() => {
   if (!props.currentPool) {
     return 30;
   }
-  const startDate: Date = new Date();
   const endDate: Date = props.currentPool.end;
-  const daysDiff = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24);
-  return Math.max(1, Math.min(30, Math.floor(daysDiff)));
+  const daysDiff = calculateDaysDifference(new Date(),endDate)
+  return numberFloor(daysDiff);
 });
+
 
 // 计算月卡资源（从packs.ts获取）
 const monthlyPassResources = computed(() => {
@@ -56,7 +58,7 @@ const monthlyPassResources = computed(() => {
   const oneTimeDiamond = monthlyPack ? 6000 : 0; // 一次性6000玉
   const dailyDiamond = monthlyPassDays.value * 200; // 每天200玉
   const totalDiamond = oneTimeDiamond + dailyDiamond;
-  const price = monthlyPack ? monthlyPack.price : 0;
+  const price = Math.ceil(monthlyPassDays.value / 30) *30;
   const pulls = (originiumRecharge * 75 + totalDiamond) / 500;
 
   return {
@@ -159,24 +161,24 @@ function calculatePackPulls(pack: any): number {
     case 'item_originium_recharge': {
       // 1源石 = 75嵌晶玉
       totalDiamonds += item.quantity * 75;
-    
+
     break;
     }
     case 'item_diamond': {
       totalDiamonds += item.quantity;
-    
+
     break;
     }
     case 'item_ticketgacha_special_single': {
       // 特许寻访凭证直接算作抽数
       totalPulls += item.quantity;
-    
+
     break;
     }
     case 'item_ticketgacha_standard_single': {
       // 基础寻访凭证直接算作抽数
       totalPulls += item.quantity;
-    
+
     break;
     }
     default: { if (item.itemId.includes('ticketgacha_special_ten')) {
