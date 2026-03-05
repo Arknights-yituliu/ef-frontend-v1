@@ -9,11 +9,6 @@ on:
   # 允许手动触发工作流
   workflow_dispatch:
 
-# 环境变量配置（所有 job 共享）
-env:
-  # Nuxt 应用的基础 URL，设置为仓库名称路径（用于 GitHub Pages 子路径部署）
-  NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
-
 # 并发控制配置
 concurrency:
   # 并发组名称：同一个 workflow 和同一个分支的多个运行实例会被分组
