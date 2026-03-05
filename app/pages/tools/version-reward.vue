@@ -336,7 +336,7 @@ filterRewardByVersion(versionTime[1]);
     </div>
    <div class="version-reward-footer">
     <div>
-     <div>数据来源：明日方舟一图流 https://ef.yituliu.cn/</div>
+     <div>数据来源：终末地一图流攒抽计算器 https://ef.yituliu.cn/tools/gacha-calculator/</div>
       <div>数据整理：逻辑元LogicalByte@Bilibili</div>
       </div>
       <img
@@ -462,6 +462,7 @@ filterRewardByVersion(versionTime[1]);
   height: 240px;
   display: flex;
   margin: 20px 0;
+  font-size: 22px;
   
   .version-reward-result-color-border {
     height: 80px;
@@ -469,7 +470,7 @@ filterRewardByVersion(versionTime[1]);
   }
 
   .version-reward-result-name {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: bolder;
   }
 
