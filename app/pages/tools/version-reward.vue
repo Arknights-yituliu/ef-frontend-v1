@@ -240,22 +240,26 @@ filterRewardByVersion(versionTime[1]);
         </div>
         <div class="version-reward-item-name">{{ reward.name.zh }}</div>
         <div v-show="reward.content.originiumRecharge > 0" class="version-reward-item-content">
-          <img alt="existing" class="version-reward-item-icon"
+          <img
+alt="existing" class="version-reward-item-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />X
           {{ reward.content.originiumRecharge }}
         </div>
         <div v-show="reward.content.diamond > 0" class="version-reward-item-content">
-          <img alt="existing" class="version-reward-item-icon"
+          <img
+alt="existing" class="version-reward-item-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />X
           {{ reward.content.diamond }}
         </div>
         <div v-show="reward.content.ticketgachaStandardSingle > 0" class="version-reward-item-content">
-          <img alt="existing" class="version-reward-item-icon"
+          <img
+alt="existing" class="version-reward-item-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />X
           {{ reward.content.ticketgachaStandardSingle }}
         </div>
         <div v-show="reward.content.ticketgachaSpecialSingle > 0" class="version-reward-item-content">
-          <img alt="existing" class="version-reward-item-icon"
+          <img
+alt="existing" class="version-reward-item-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />X
           {{ reward.content.ticketgachaSpecialSingle }}
         </div>
@@ -276,21 +280,25 @@ filterRewardByVersion(versionTime[1]);
 
           <div class="version-reward-result-content">
             <div class="version-reward-result-content-item">
-              <img alt="existing" class="version-reward-item-icon"
+              <img
+alt="existing" class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />X
               {{ result.originiumRecharge }}
             </div>
             <div class="version-reward-result-content-item">
-              <img alt="existing" class="version-reward-item-icon"
+              <img
+alt="existing" class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />X{{ result.diamond }}
             </div>
             <div class="version-reward-result-content-item">
-              <img alt="existing" class="version-reward-item-icon"
+              <img
+alt="existing" class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />X{{
                   result.ticketgachaStandardSingle }}
             </div>
             <div class="version-reward-result-content-item">
-              <img alt="existing" class="version-reward-item-icon"
+              <img
+alt="existing" class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />X{{
                   result.ticketgachaSpecialSingle }}
             </div>
@@ -303,7 +311,8 @@ filterRewardByVersion(versionTime[1]);
         <div>数据来源：终末地一图流攒抽计算器 https://ef.yituliu.cn/tools/gacha-calculator/</div>
         <div>数据整理：逻辑元LogicalByte@Bilibili</div>
       </div>
-      <img alt="existing" src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png"
+      <img
+alt="existing" src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png"
         style="width: 100px;height: 100px;" />
     </div>
   </div>

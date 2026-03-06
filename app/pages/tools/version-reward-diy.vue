@@ -5,7 +5,7 @@ import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/g
 
 import { numberFloor } from '#shared/utils/numberUtil';
 
-import { ref, onMounted, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
@@ -79,7 +79,7 @@ onMounted(() => {
             if (hasImage) {
                 console.log('更新kvImage');
                 controlPanel.value.kvImage = hasImage;
-                console.log('当前kvImage值的前50个字符:', controlPanel.value.kvImage.substring(0, 50));
+                console.log('当前kvImage值的前50个字符:', controlPanel.value.kvImage.slice(0, 50));
             } else {
                 console.log('localStorage中没有保存的图片，使用默认图片');
             }
@@ -111,8 +111,8 @@ onMounted(() => {
                 console.log('读取到其他说明:', savedOtherInfo);
                 controlPanel.value.otherInfo = savedOtherInfo;
             }
-        } catch (err) {
-            console.error('从localStorage读取数据失败:', err);
+        } catch (error) {
+            console.error('从localStorage读取数据失败:', error);
         }
     } else {
         console.warn('localStorage 不可用');
@@ -127,8 +127,8 @@ watch(() => controlPanel.value.title, (newValue) => {
         try {
             localStorage.setItem('version-reward-title', newValue);
             console.log('✓ 标题已保存到localStorage');
-        } catch (err) {
-            console.error('✗ 保存标题到localStorage失败:', err);
+        } catch (error) {
+            console.error('✗ 保存标题到localStorage失败:', error);
         }
     }
 });
@@ -138,8 +138,8 @@ watch(() => controlPanel.value.versionName, (newValue) => {
         try {
             localStorage.setItem('version-reward-version-name', newValue);
             console.log('✓ 版本名称已保存到localStorage');
-        } catch (err) {
-            console.error('✗ 保存版本名称到localStorage失败:', err);
+        } catch (error) {
+            console.error('✗ 保存版本名称到localStorage失败:', error);
         }
     }
 });
@@ -149,8 +149,8 @@ watch(() => controlPanel.value.updateDate, (newValue) => {
         try {
             localStorage.setItem('version-reward-update-date', newValue);
             console.log('✓ 更新日期已保存到localStorage');
-        } catch (err) {
-            console.error('✗ 保存更新日期到localStorage失败:', err);
+        } catch (error) {
+            console.error('✗ 保存更新日期到localStorage失败:', error);
         }
     }
 });
@@ -160,8 +160,8 @@ watch(() => controlPanel.value.otherInfo, (newValue) => {
         try {
             localStorage.setItem('version-reward-other-info', newValue);
             console.log('✓ 其他说明已保存到localStorage');
-        } catch (err) {
-            console.error('✗ 保存其他说明到localStorage失败:', err);
+        } catch (error) {
+            console.error('✗ 保存其他说明到localStorage失败:', error);
         }
     }
 });
@@ -181,7 +181,7 @@ function handleImageUpload(event: Event) {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
-        img.onload = () => {
+        img.addEventListener('load', () => {
             console.log('图片加载成功，开始压缩');
             console.log('原始图片尺寸:', img.width, 'x', img.height);
 
@@ -223,11 +223,11 @@ function handleImageUpload(event: Event) {
                 if (saved) {
                     console.log('保存的数据长度:', saved.length);
                 }
-            } catch (err: any) {
-                console.error('✗ 保存图片到localStorage失败:', err.message);
+            } catch (error: any) {
+                console.error('✗ 保存图片到localStorage失败:', error.message);
 
                 // 如果压缩后还是太大，尝试更低的压缩率
-                if (err.name === 'QuotaExceededError') {
+                if (error.name === 'QuotaExceededError') {
                     console.log('尝试更低的压缩率（0.5）...');
                     try {
                         const lowerQuality = canvas.toDataURL('image/jpeg', 0.5);
@@ -235,13 +235,13 @@ function handleImageUpload(event: Event) {
                         localStorage.setItem('version-reward-kv-image', lowerQuality);
                         console.log('✓ 图片已保存到localStorage（低质量）');
                         controlPanel.value.kvImage = lowerQuality;
-                    } catch (err2: any) {
-                        console.error('✗ 低质量压缩也失败了:', err2.message);
+                    } catch (error: any) {
+                        console.error('✗ 低质量压缩也失败了:', error.message);
                         alert('图片太大，无法保存到localStorage。请使用小于2MB的图片。');
                     }
                 }
             }
-        };
+        });
 
         img.onerror = () => {
             console.error('图片加载失败');
@@ -461,22 +461,26 @@ filterRewardByVersion(versionTime[1]);
                         </div>
                         <div class="version-reward-item-name">{{ reward.name.zh }}</div>
                         <div v-show="reward.content.originiumRecharge > 0" class="version-reward-item-content">
-                            <img alt="existing" class="version-reward-item-icon"
+                            <img
+alt="existing" class="version-reward-item-icon"
                                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />X
                             {{ reward.content.originiumRecharge }}
                         </div>
                         <div v-show="reward.content.diamond > 0" class="version-reward-item-content">
-                            <img alt="existing" class="version-reward-item-icon"
+                            <img
+alt="existing" class="version-reward-item-icon"
                                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />X
                             {{ reward.content.diamond }}
                         </div>
                         <div v-show="reward.content.ticketgachaStandardSingle > 0" class="version-reward-item-content">
-                            <img alt="existing" class="version-reward-item-icon"
+                            <img
+alt="existing" class="version-reward-item-icon"
                                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />X
                             {{ reward.content.ticketgachaStandardSingle }}
                         </div>
                         <div v-show="reward.content.ticketgachaSpecialSingle > 0" class="version-reward-item-content">
-                            <img alt="existing" class="version-reward-item-icon"
+                            <img
+alt="existing" class="version-reward-item-icon"
                                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />X
                             {{ reward.content.ticketgachaSpecialSingle }}
                         </div>
@@ -494,22 +498,26 @@ filterRewardByVersion(versionTime[1]);
                             <div class="version-reward-result-name">{{ result.name }}</div>
                             <div class="version-reward-result-content">
                                 <div class="version-reward-result-content-item">
-                                    <img alt="existing" class="version-reward-item-icon"
+                                    <img
+alt="existing" class="version-reward-item-icon"
                                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />×
                                     {{ result.originiumRecharge }}
                                 </div>
                                 <div class="version-reward-result-content-item">
-                                    <img alt="existing" class="version-reward-item-icon"
+                                    <img
+alt="existing" class="version-reward-item-icon"
                                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />×
                                     {{ result.diamond }}
                                 </div>
                                 <div class="version-reward-result-content-item">
-                                    <img alt="existing" class="version-reward-item-icon"
+                                    <img
+alt="existing" class="version-reward-item-icon"
                                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />×
                                     {{ result.ticketgachaStandardSingle }}
                                 </div>
                                 <div class="version-reward-result-content-item">
-                                    <img alt="existing" class="version-reward-item-icon"
+                                    <img
+alt="existing" class="version-reward-item-icon"
                                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />×
                                     {{ result.ticketgachaSpecialSingle }}
                                 </div>
@@ -559,22 +567,22 @@ filterRewardByVersion(versionTime[1]);
             <!-- 图片上传 -->
             <div class="control-item">
                 <label>头图上传 (KV)</label>
-                <input type="file" accept="image/*" @change="handleImageUpload" />
+                <input accept="image/*" type="file" @change="handleImageUpload" />
                 <div v-if="controlPanel.kvImage" class="preview-image">
-                    <img :src="controlPanel.kvImage" alt="预览" />
+                    <img alt="预览" :src="controlPanel.kvImage" />
                 </div>
             </div>
 
             <!-- 标题输入 -->
             <div class="control-item">
                 <label>标题</label>
-                <input v-model="controlPanel.title" type="text" placeholder="请输入标题" />
+                <input v-model="controlPanel.title" placeholder="请输入标题" type="text" />
             </div>
 
             <!-- 版本名称输入 -->
             <div class="control-item">
                 <label>版本名称</label>
-                <input v-model="controlPanel.versionName" type="text" placeholder="请输入版本名称" />
+                <input v-model="controlPanel.versionName" placeholder="请输入版本名称" type="text" />
             </div>
 
             <!-- 更新日期输入 -->
@@ -586,7 +594,7 @@ filterRewardByVersion(versionTime[1]);
             <!-- 其他说明输入 -->
             <div class="control-item">
                 <label>其他说明</label>
-                <textarea v-model="controlPanel.otherInfo" rows="4" placeholder="请输入其他说明"></textarea>
+                <textarea v-model="controlPanel.otherInfo" placeholder="请输入其他说明" rows="4"></textarea>
             </div>
         </div>
     </div>
