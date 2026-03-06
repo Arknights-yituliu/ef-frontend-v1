@@ -135,7 +135,7 @@ const mergedWulingTasks = groupAndMergeTasksByVersionAndModule('武陵',wulingTa
 const wulingTaskRewardTable = ref<Reward[]>(mergedWulingTasks);
 
 const tempTasksReward:Reward[] = [{
-  id: '主线任务-新潮起·故渊离版本',
+  id: '武陵-主线任务-新潮起·故渊离版本',
   name: {
     zh: `主线任务-新潮起·故渊离版本`,
     en: '',
@@ -154,7 +154,7 @@ const tempTasksReward:Reward[] = [{
   },
 },
   {
-    id: '支线任务-新潮起·故渊离版本',
+    id: '武陵-支线任务-新潮起·故渊离版本',
     name: {
       zh: `支线任务-新潮起·故渊离版本`,
       en: '',
