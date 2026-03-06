@@ -220,23 +220,15 @@ filterRewardByVersion(versionTime[1]);
 </script>
 <template>
   <div class="version-reward-bg">
-    <img
-      alt=""
-      class="version-reward-bg-kv"
-      src="https://cos.yituliu.cn/endfield/other/kv-v1.1.webp"
-    />
+    <img alt="" class="version-reward-bg-kv" src="https://cos.yituliu.cn/endfield/other/kv-v1.1.webp" />
 
-    <img
-      alt=""
-      class="version-reward-title-image"
-      src="https://cos.yituliu.cn/endfield/other/1111.png"
-    />
+    <img alt="" class="version-reward-title-image" src="https://cos.yituliu.cn/endfield/other/1111.png" />
 
-  
+
     <div style="text-align: end; width: 100%; font-weight: bolder; padding-right: 40px">
       更新日期：2026-03-05
     </div>
-     <div style="text-align: end; width: 100%; font-weight: bolder; padding-right: 40px">
+    <div style="text-align: end; width: 100%; font-weight: bolder; padding-right: 40px">
       部分资源为估算，仅供参考
     </div>
     <div class="version-reward-item-group">
@@ -248,41 +240,23 @@ filterRewardByVersion(versionTime[1]);
         </div>
         <div class="version-reward-item-name">{{ reward.name.zh }}</div>
         <div v-show="reward.content.originiumRecharge > 0" class="version-reward-item-content">
-          <img
-            alt="existing"
-            class="version-reward-item-icon"
-            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-          />X
+          <img alt="existing" class="version-reward-item-icon"
+            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />X
           {{ reward.content.originiumRecharge }}
         </div>
         <div v-show="reward.content.diamond > 0" class="version-reward-item-content">
-          <img
-            alt="existing"
-            class="version-reward-item-icon"
-            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-          />X
+          <img alt="existing" class="version-reward-item-icon"
+            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />X
           {{ reward.content.diamond }}
         </div>
-        <div
-          v-show="reward.content.ticketgachaStandardSingle > 0"
-          class="version-reward-item-content"
-        >
-          <img
-            alt="existing"
-            class="version-reward-item-icon"
-            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-          />X
+        <div v-show="reward.content.ticketgachaStandardSingle > 0" class="version-reward-item-content">
+          <img alt="existing" class="version-reward-item-icon"
+            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />X
           {{ reward.content.ticketgachaStandardSingle }}
         </div>
-        <div
-          v-show="reward.content.ticketgachaSpecialSingle > 0"
-          class="version-reward-item-content"
-        >
-          <img
-            alt="existing"
-            class="version-reward-item-icon"
-            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-          />X
+        <div v-show="reward.content.ticketgachaSpecialSingle > 0" class="version-reward-item-content">
+          <img alt="existing" class="version-reward-item-icon"
+            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />X
           {{ reward.content.ticketgachaSpecialSingle }}
         </div>
       </div>
@@ -302,49 +276,36 @@ filterRewardByVersion(versionTime[1]);
 
           <div class="version-reward-result-content">
             <div class="version-reward-result-content-item">
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-              />X
+              <img alt="existing" class="version-reward-item-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />X
               {{ result.originiumRecharge }}
             </div>
             <div class="version-reward-result-content-item">
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-              />X{{ result.diamond }}
+              <img alt="existing" class="version-reward-item-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />X{{ result.diamond }}
             </div>
             <div class="version-reward-result-content-item">
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-              />X{{ result.ticketgachaStandardSingle }}
+              <img alt="existing" class="version-reward-item-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />X{{
+                  result.ticketgachaStandardSingle }}
             </div>
             <div class="version-reward-result-content-item">
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-              />X{{ result.ticketgachaSpecialSingle }}
+              <img alt="existing" class="version-reward-item-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />X{{
+                  result.ticketgachaSpecialSingle }}
             </div>
           </div>
         </div>
       </div>
     </div>
-   <div class="version-reward-footer">
-    <div>
-     <div>数据来源：终末地一图流攒抽计算器 https://ef.yituliu.cn/tools/gacha-calculator/</div>
-      <div>数据整理：逻辑元LogicalByte@Bilibili</div>
+    <div class="version-reward-footer">
+      <div>
+        <div>数据来源：终末地一图流攒抽计算器 https://ef.yituliu.cn/tools/gacha-calculator/</div>
+        <div>数据整理：逻辑元LogicalByte@Bilibili</div>
       </div>
-      <img
-        alt="existing"
-        src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png"
-        style="width: 100px;height: 100px;"
-      />
-   </div>
+      <img alt="existing" src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png"
+        style="width: 100px;height: 100px;" />
+    </div>
   </div>
 </template>
 
@@ -356,8 +317,8 @@ filterRewardByVersion(versionTime[1]);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top:400px;
-  width: 1000px;
+  padding-top: 400px;
+  width: 1080px;
   margin: auto;
   min-height: 1400px;
   font-size: 24px;
@@ -366,9 +327,10 @@ filterRewardByVersion(versionTime[1]);
 }
 
 .version-reward-bg-kv {
-  width: 1000px;
-   position: absolute;
+  width: 1080px;
+  position: absolute;
   top: 0;
+
 }
 
 .version-reward-title-image {
@@ -387,26 +349,31 @@ filterRewardByVersion(versionTime[1]);
   width: 20%;
   height: 10px;
 }
+
 .version-reward-bg-bottom-bar-2 {
   background-color: #ff00f0;
   width: 10%;
   height: 10px;
 }
+
 .version-reward-bg-bottom-bar-3 {
   background-color: #fffa00;
   width: 10%;
   height: 10px;
 }
+
 .version-reward-bg-bottom-bar-4 {
   background-color: #00ffa2;
   width: 10%;
   height: 10px;
 }
+
 .version-reward-bg-bottom-bar-5 {
   background-color: #bfbfbf;
   width: 50%;
   height: 10px;
 }
+
 .version-reward-item-group {
   display: flex;
   flex-direction: column;
@@ -441,7 +408,7 @@ filterRewardByVersion(versionTime[1]);
   }
 
   .version-reward-item-content {
-   
+
     padding: 0 4px;
     display: flex;
     align-items: center;
@@ -470,7 +437,7 @@ filterRewardByVersion(versionTime[1]);
   display: flex;
   margin: 20px 0;
   font-size: 22px;
-  
+
   .version-reward-result-color-border {
     height: 90px;
     width: 4px;
@@ -482,7 +449,7 @@ filterRewardByVersion(versionTime[1]);
   }
 
   .version-reward-result-content {
-  
+
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
@@ -497,24 +464,27 @@ filterRewardByVersion(versionTime[1]);
 }
 
 .version-reward-footer {
-  padding-left:12px ;
- background: linear-gradient(to right, rgba(255, 250, 0, 0.8), rgba(255, 250, 0, 0.3));
+  padding-left: 12px;
+  background: linear-gradient(to right, rgba(255, 250, 0, 0.8), rgba(255, 250, 0, 0.3));
   font-size: 22px;
   line-height: 2;
- color: black;
- display: flex;
- justify-content: space-between;
+  color: black;
+  display: flex;
+  justify-content: space-between;
 }
 
 .yellow-bg {
   background-color: #fffa00;
 }
+
 .green-bg {
   background-color: #00ffa2;
 }
+
 .blue-bg {
   background-color: #00ffff;
 }
+
 .red-bg {
   background-color: #f44336;
 }
