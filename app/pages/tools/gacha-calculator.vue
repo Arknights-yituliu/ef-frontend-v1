@@ -86,7 +86,7 @@ const { t } = useI18n();
 //
 const leftPartPanel = ref<string[]>(['statisticalResult', 'detail']);
 // 'existing', 'daily', 'level', 'activity,'regional','permanent'
-const rightPartPanel = ref<string[]>(['regional']);
+const rightPartPanel = ref<string[]>([]);
 
 const poolOptions = ref<PoolOption[]>([
   {
@@ -2616,6 +2616,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   justify-content: space-between;
   flex-wrap: wrap;
   width: 1280px;
+  margin: auto;
 }
 
 .gacha-calculator-container-left {
