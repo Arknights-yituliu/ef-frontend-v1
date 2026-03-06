@@ -556,7 +556,8 @@ alt="existing" class="version-reward-item-icon"
                         <td>逻辑元LogicalByte@Bilibili</td>
                     </tr>
                 </table>
-                <img alt="existing"
+                <img
+alt="existing"
                     src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png" />
             </div>
         </div>
