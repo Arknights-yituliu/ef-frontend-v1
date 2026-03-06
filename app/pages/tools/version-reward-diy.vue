@@ -424,6 +424,10 @@ filterRewardByVersion(versionTime[1]);
         <div class="canvas-area">
             <!-- 头图 -->
             <img alt="" class="version-reward-bg-kv" :src="controlPanel.kvImage" />
+            <!-- 等高线背景 -->
+            <div class="contour-bg">
+                <img alt="Map Background" src="~/assets/svg/map-bg.svg">
+            </div>
             <!-- 内容区 -->
             <div id="rewards-area">
                 <div id="title-area">
@@ -497,17 +501,17 @@ filterRewardByVersion(versionTime[1]);
                                 <div class="version-reward-result-content-item">
                                     <img alt="existing" class="version-reward-item-icon"
                                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />×
-                                        {{ result.diamond }}
+                                    {{ result.diamond }}
                                 </div>
                                 <div class="version-reward-result-content-item">
                                     <img alt="existing" class="version-reward-item-icon"
                                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />×
-                                        {{ result.ticketgachaStandardSingle }}
+                                    {{ result.ticketgachaStandardSingle }}
                                 </div>
                                 <div class="version-reward-result-content-item">
                                     <img alt="existing" class="version-reward-item-icon"
                                         src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />×
-                                        {{ result.ticketgachaSpecialSingle }}
+                                    {{ result.ticketgachaSpecialSingle }}
                                 </div>
                             </div>
                             <div class="version-reward-result-type">
@@ -525,16 +529,27 @@ filterRewardByVersion(versionTime[1]);
                             </div>
                         </div>
                     </div>
+                    <div id="shield">数据由攒抽计算器自动生成，以实际发放为准，可根据个人情况使用攒抽计算器自行调整</div>
                 </div>
             </div>
             <!-- 页脚区 -->
             <div id="version-reward-footer">
-                <div>
-                    <div>数据来源：终末地一图流攒抽计算器 https://ef.yituliu.cn/tools/gacha-calculator/</div>
-                    <div>数据整理：逻辑元LogicalByte@Bilibili</div>
-                </div>
-                <img alt="existing" src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png"
-                    style="width: 100px;height: 100px;" />
+                <table class="footer-table">
+                    <tr>
+                        <td>数据来源：</td>
+                        <td>终末地一图流·攒抽计算器</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>https://ef.yituliu.cn/tools/gacha-calculator/</td>
+                    </tr>
+                    <tr>
+                        <td>信息发布：</td>
+                        <td>逻辑元LogicalByte@Bilibili</td>
+                    </tr>
+                </table>
+                <img alt="existing"
+                    src="https://cos.yituliu.cn/endfield/QR/httpsef.yituliu.cntoolsgacha-calculator.png" />
             </div>
         </div>
         <!-- 右侧控制台 -->
@@ -609,6 +624,24 @@ filterRewardByVersion(versionTime[1]);
     object-position: top;
 }
 
+/* ========== 2.1.1 等高线背景 ========== */
+.contour-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1080px;
+    height: 1600px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contour-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(150%) contrast(80%);
+}
+
 /* ========== 2.2 内容区 ========== */
 #rewards-area {
     position: relative;
@@ -616,7 +649,8 @@ filterRewardByVersion(versionTime[1]);
     background: linear-gradient(to bottom,
             rgba(255, 250, 0, 0) 0%,
             rgba(255, 250, 0, 1) 320px,
-            rgba(50, 50, 50, 0.1) 720px);
+            rgba(216, 216, 216, 0.8) 720px,
+            rgba(216, 216, 216, 0));
 }
 
 /* ========== 2.2.1 标题区 ========== */
@@ -717,14 +751,14 @@ filterRewardByVersion(versionTime[1]);
     align-items: center;
     padding: 0 4px;
     margin-bottom: 12px;
-    background-color: rgb(49, 49, 49);
+    background-color: rgb(32, 32, 32, 0.85);
     color: white;
     break-inside: avoid;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .version-reward-item-name {
-    padding: 0 4px;
+    padding: 0px 0px 0px 12px;
     width: 260px;
     overflow: hidden;
     white-space: nowrap;
@@ -752,16 +786,23 @@ filterRewardByVersion(versionTime[1]);
     flex-wrap: wrap;
     width: 100%;
     justify-content: space-around;
+
+    #shield {
+        font-size: 20px;
+        background-color: #ffffff80;
+        padding: 4px 12px;
+        margin-bottom: 8px;
+    }
 }
 
 /* ========== 2.2.3.1 单个结果 ========== */
 .version-reward-result {
     width: 330px;
-    background-color: rgb(49, 49, 49);
+    background-color: rgb(32, 32, 32, 0.85);
     color: white;
-    height: 270px;
+    height: 288px;
     display: flex;
-    margin: 20px 0;
+    margin: 12px 0;
     font-size: 24px;
 
     .version-reward-result-color-border {
@@ -770,7 +811,7 @@ filterRewardByVersion(versionTime[1]);
     }
 
     .blue-bg.version-reward-result-color-border {
-        height: 150px;
+        height: 168px;
     }
 
     .version-reward-result-name {
@@ -779,11 +820,11 @@ filterRewardByVersion(versionTime[1]);
     }
 
     .reward-result-text {
-        padding: 8px 20px;
+        padding: 12px 20px;
 
         .version-reward-result-type {
             width: 270px;
-            padding-left: 12px;
+            padding: 2px 12px;
 
             .version-reward-result-number {
                 display: inline-block;
@@ -791,6 +832,8 @@ filterRewardByVersion(versionTime[1]);
             }
         }
     }
+
+
 }
 
 .version-reward-result-content {
@@ -807,13 +850,48 @@ filterRewardByVersion(versionTime[1]);
 
 /* ========== 2.3 页脚区 ========== */
 #version-reward-footer {
-    padding-left: 12px;
+    position: relative;
+    z-index: 1;
+    height: 144px;
     background: linear-gradient(to right, rgba(255, 250, 0, 0.8), rgba(255, 250, 0, 0.3));
-    font-size: 22px;
-    line-height: 2;
+    font-size: 28px;
+    font-weight: 600;
     color: black;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-table {
+    margin: 12px 32px 0px;
+    flex: 1;
+    /* height: 100%; */
+    border-collapse: collapse;
+    line-height: 1;
+}
+
+.footer-table tr:nth-child(1) {
+    height: 36px;
+}
+
+.footer-table tr:nth-child(2) {
+    height: 36px;
+}
+
+.footer-table tr:nth-child(3) {
+    height: 60px;
+}
+
+.footer-table td:first-child {
+    width: 96px;
+}
+
+.footer-table td:last-child {
+    width: 480px;
+}
+
+#version-reward-footer img {
+    width: 144px;
+    height: 144px;
 }
 
 /* ========== 3. 右侧控制台 ========== */
