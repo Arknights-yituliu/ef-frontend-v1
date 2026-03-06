@@ -524,7 +524,7 @@ alt="existing" class="version-reward-item-icon"
                             </div>
                             <div class="version-reward-result-type">
                                 特许寻访
-                                <div class="version-reward-result-number">{{ numberFloor(result.totalPulls) - 20 }}抽
+                                <div class="version-reward-result-number">{{ numberFloor(result.totalPulls as number - 20)  }}抽
                                 </div>
                             </div>
                             <div class="version-reward-result-type">
