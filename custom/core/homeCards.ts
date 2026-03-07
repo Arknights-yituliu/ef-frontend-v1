@@ -245,15 +245,6 @@ export const homeCards: CardData[] = [
         target: true,
         icon: 'mdi-open-in-new',
       },
-      {
-        i18nKey: 'buttons.prepOrders',
-        buttonType: ButtonType.Link,
-        action: ButtonActionType.Link,
-        actionData:
-          'https://endfield.hypergryph.com/activity/final-prep-orders?source_from=yituliu',
-        target: true,
-        icon: 'mdi-open-in-new',
-      },
     ],
   },
   {

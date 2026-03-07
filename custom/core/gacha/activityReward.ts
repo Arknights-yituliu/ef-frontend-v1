@@ -15,8 +15,6 @@ for (const reward of ActivityRewardTable as Reward[]) {
   activityReward.value.push(reward);
 }
 
-
-
 export { activityReward };
 
 const newPoolActivity = [
@@ -89,40 +87,42 @@ function createNewPoolActivity() {
         ticketgachaSpecialSingle: 0,
       },
     };
-
-    const reward2: Reward = {
-      id: `干员叙事·${item.character}`,
-      name: {
-        zh: `干员叙事·${item.character}`,
-        en: '',
-      },
-      start: startDate,
-      end: new Date(item.versionEnd),
-      type: '通用',
-      module: '活动',
-      active: true,
-      version: item.version,
-      content: {
-        originiumRecharge: 0,
-        diamond: 600,
-        ticketgachaStandardSingle: 0,
-        ticketgachaSpecialSingle: 0,
-      },
-    };
-
-    activityReward.value.push(reward1, reward2);
+    activityReward.value.push(reward1);
+    
+    if (item.character !== '汤汤') {
+      const reward2: Reward = {
+        id: `干员叙事·${item.character}`,
+        name: {
+          zh: `干员叙事·${item.character}`,
+          en: '',
+        },
+        start: startDate,
+        end: new Date(item.versionEnd),
+        type: '通用',
+        module: '活动',
+        active: true,
+        version: item.version,
+        content: {
+          originiumRecharge: 0,
+          diamond: 600,
+          ticketgachaStandardSingle: 0,
+          ticketgachaSpecialSingle: 0,
+        },
+      };
+      activityReward.value.push( reward2);
+    }
 
     let i = 1;
     for (const time of item.signInTime) {
       const reward3: Reward = {
-        id: `${item.poolName}签到·${i}`,
+        id: `${item.poolName}卡池签到·${i}`,
         name: {
-          zh: `${item.poolName}签到·${i}`,
+          zh: `${item.poolName}卡池签到·${i}`,
           en: '',
         },
         start: new Date(time),
         end: new Date(item.end),
-        type: item.version,
+        type: item.character,
         module: '活动',
         active: true,
         version: item.version,
@@ -139,7 +139,7 @@ function createNewPoolActivity() {
   }
 }
 
-function  createActivityReward() :void{
+function createActivityReward(): void {
   const springFestivalSignIn = [
     {
       name: '连连乐·好运款2.15',
@@ -197,8 +197,6 @@ function  createActivityReward() :void{
     },
   ];
 
-
-
   for (const item of springFestivalSignIn) {
     const reward = {
       id: `${item.name}`,
@@ -227,5 +225,5 @@ function  createActivityReward() :void{
   }
 }
 
-createNewPoolActivity()
-createActivityReward()
+createNewPoolActivity();
+createActivityReward();

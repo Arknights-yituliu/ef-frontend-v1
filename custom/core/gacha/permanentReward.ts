@@ -129,13 +129,13 @@ for (let i = 1; i <= 5; i++) {
 }
 
 
-const mergedValleyIVTasks = groupAndMergeTasksByVersionAndModule(valleyIVTaskTable);
+const mergedValleyIVTasks = groupAndMergeTasksByVersionAndModule('四号谷地',valleyIVTaskTable);
 const valleyIVTaskRewardTable = ref<Reward[]>(mergedValleyIVTasks);
-const mergedWulingTasks = groupAndMergeTasksByVersionAndModule(wulingTaskTable);
+const mergedWulingTasks = groupAndMergeTasksByVersionAndModule('武陵',wulingTaskTable);
 const wulingTaskRewardTable = ref<Reward[]>(mergedWulingTasks);
 
 const tempTasksReward:Reward[] = [{
-  id: '主线任务-新潮起·故渊离版本',
+  id: '武陵-主线任务-新潮起·故渊离版本',
   name: {
     zh: `主线任务-新潮起·故渊离版本`,
     en: '',
@@ -154,7 +154,7 @@ const tempTasksReward:Reward[] = [{
   },
 },
   {
-    id: '支线任务-新潮起·故渊离版本',
+    id: '武陵-支线任务-新潮起·故渊离版本',
     name: {
       zh: `支线任务-新潮起·故渊离版本`,
       en: '',
@@ -195,10 +195,11 @@ export {
 
 /**
  * 根据version和module对wuling_task_table.json的数据进行分组和合并
+ * @param regional 区域
  * @param tasks 任务数据数组
  * @returns 按version和module分组并合并后的结果
  */
-function groupAndMergeTasksByVersionAndModule(tasks: Reward[]): Reward[] {
+function groupAndMergeTasksByVersionAndModule(regional:string,tasks: Reward[]): Reward[] {
   // 按version分组
   const versionGroups: Record<string, Reward[]> = {};
 
@@ -238,7 +239,7 @@ function groupAndMergeTasksByVersionAndModule(tasks: Reward[]): Reward[] {
       }
       const mergedTask: Reward = {
         ...firstTask,
-        id: `merged_${version}_${module}`,
+        id: `${regional}_${version}_${module}`,
         name: {
           zh: `${firstTask.module}-${firstTask.version}`,
           en: ``
