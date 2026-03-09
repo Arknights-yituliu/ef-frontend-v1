@@ -1,9 +1,9 @@
 import type { Reward } from '#shared/types/gacha-calculator';
 import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salvage_reward.json';
+import { etchSpaceSalvageCrateRewardTable } from '@/custom/core/gacha/data/etchSpaceSalvageRewardTable';
 import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
-import { etchSpaceSalvageCrateRewardTable } from '@/custom/core/gacha/data/etchSpaceSalvageRewardTable';
 const beginnerSignInTaskReward = ref<Reward>({
   id: 'beginner_sign_in_task',
   name: {
@@ -211,26 +211,19 @@ const etchSpaceSalvageCrateReward = ref<Reward>({
 
 
 
-const permanentAllReward: Reward[] = [];
-permanentAllReward.push(beginnerSignInTaskReward.value);
-permanentAllReward.push(...beginnerTicketgachaSpecialSingleTaskReward.value);
-permanentAllReward.push(...etchSpaceSalvageReward.value);
-permanentAllReward.push(...etchSpaceSalvageCrateRewardTable);
-permanentAllReward.push(...newHorizonsTaskReward.value);
-permanentAllReward.push(...valleyIVTaskRewardTable.value);
-permanentAllReward.push(...wulingTaskRewardTable.value);
+const permanentAllReward: Reward[] = [ beginnerSignInTaskReward.value, ...beginnerTicketgachaSpecialSingleTaskReward.value, ...etchSpaceSalvageReward.value, ...etchSpaceSalvageCrateRewardTable, ...newHorizonsTaskReward.value, ...valleyIVTaskRewardTable.value, ...wulingTaskRewardTable.value];
 
 
 export {
   beginnerSignInTaskReward,
   beginnerTicketgachaSpecialSingleTaskReward,
-  etchSpaceSalvageReward,
-  newHorizonsTaskReward,
-  valleyIVTaskRewardTable,
-  wulingTaskRewardTable,
   etchSpaceSalvageCrateReward,
   etchSpaceSalvageCrateRewardMax,
+  etchSpaceSalvageReward,
+  newHorizonsTaskReward,
   permanentAllReward,
+  valleyIVTaskRewardTable,
+  wulingTaskRewardTable,
 };
 
 /**

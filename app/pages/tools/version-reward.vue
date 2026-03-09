@@ -11,8 +11,8 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 
 import {
   AICQuotaReward,
-  createVersionDailyReward,
   bpTrackFreeReward,
+  createVersionDailyReward,
 } from '@/custom/core/gacha/dailyReward';
 
 import {
@@ -302,9 +302,7 @@ for (const reward of activityReward.value) {
   versionReward.value.push(reward);
 }
 
-versionReward.value.push(...otherAllRewardTable.value);
-
-versionReward.value.push(
+versionReward.value.push(...otherAllRewardTable.value, 
   valleyIVAuryleneCollectReward.value,
   valleyIVCrateReward.value,
   valleyIVBattleCrateReward.value,
@@ -326,9 +324,7 @@ for (const reward of authorityLevelTaskRewards.value) {
   versionReward.value.push(reward);
 }
 
-versionReward.value.push(authorityLevelUpReward.value, worldLevelReward.value);
-
-versionReward.value.push(...permanentAllReward);
+versionReward.value.push(authorityLevelUpReward.value, worldLevelReward.value, ...permanentAllReward);
 
 for (const reward of operationalManualReward.value) {
   versionReward.value.push(reward);
@@ -341,7 +337,7 @@ const currentVersionReward = ref<Reward[]>([]);
 // 计算版本奖励组的高度
 function calculateRewardItemGroupHeight() {
   const height = (currentVersionReward.value.length / 2) * 76 + 80;
-  const rewardItemGroup = document.getElementById('version-reward-item-group');
+  const rewardItemGroup = document.querySelector('#version-reward-item-group');
   console.log('版本奖励组元素:', rewardItemGroup);
   if (rewardItemGroup === null) {
     console.error('未找到版本奖励组元素');
@@ -464,7 +460,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div class="version-reward-item-group" id="version-reward-item-group">
+        <div id="version-reward-item-group" class="version-reward-item-group">
           <div v-for="reward in currentVersionReward" class="version-reward-item">
             <div>
               <!-- <div class="version-reward-item-bar red-bar"></div> -->

@@ -242,10 +242,10 @@ export {
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,
+  wulingRegionalAllRewardTable,
   wulingRegionalDevelopmentReward,
   wulingRegionalStockBillStoreReward,
   wulingSimulationReward,
-  wulingRegionalAllRewardTable,
 };
 
 export {

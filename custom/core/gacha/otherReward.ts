@@ -70,6 +70,6 @@ export {
   factoryManualReward,
   factoryManualRewardMax,
   intelArchiveReward,
-  otherRewardTable,
   otherAllRewardTable,
+  otherRewardTable,
 }

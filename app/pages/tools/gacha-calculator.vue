@@ -45,13 +45,15 @@ import {
 import {
   beginnerSignInTaskReward,
   beginnerTicketgachaSpecialSingleTaskReward,
+  etchSpaceSalvageCrateReward,
+  etchSpaceSalvageCrateRewardMax,
   etchSpaceSalvageReward,
   newHorizonsTaskReward,
   valleyIVTaskRewardTable,
   wulingTaskRewardTable,
-  etchSpaceSalvageCrateReward,
-  etchSpaceSalvageCrateRewardMax,
 } from '@/custom/core/gacha/permanentReward';
+
+import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
 import {
   valleyIVAuryleneCollectReward,
@@ -79,8 +81,6 @@ import {
   wulingRegionalStockBillStoreReward,
   wulingSimulationReward,
 } from '@/custom/core/gacha/wulingRegionalReward';
-
-import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
 import { packs } from '@/custom/core/packs';
 
@@ -1902,7 +1902,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                 </div>
               </div>
             </div>
-            <v-btn @click="clearOrSelectAllCurrentVersion('新潮起·故渊离')" color="blue"
+            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('新潮起·故渊离')"
               >仅选择[新潮起·故渊离]版本内奖励，其他取消</v-btn
             >
           </v-expansion-panel-text>
