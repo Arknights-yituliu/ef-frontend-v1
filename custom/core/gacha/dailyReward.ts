@@ -74,7 +74,7 @@ const weekTaskReward = ref<Reward>({
   type: '通用',
   module: '日常奖励',
   active: true,
-  version: '零号委托',
+  version: '新潮起·故渊离',
   content: {
     originiumRecharge: 0,
     diamond: 0,
