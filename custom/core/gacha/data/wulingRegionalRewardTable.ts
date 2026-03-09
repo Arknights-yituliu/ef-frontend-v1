@@ -34,7 +34,7 @@ const wulingCrateRewardTable = [
     version: '新潮起·故渊离',
     content: {
       originiumRecharge: 0,
-      diamond: 12 * 15 + 15 * 30 + 10 * 60 + 4 * 100 + 4 * 150 + 5 * 20,
+      diamond: 14 * 15 + 16 * 30 + 10 * 60 + 5 * 100 + 4 * 150 + 5 * 20,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     },
@@ -607,10 +607,52 @@ const wulingAuryleneCollectStageTable: Reward[] = [
     type: '通用',
     module: '地区建设',
     active: true,
-    version: '新潮起· 故渊离',
+    version: '未来版本',
     content: {
       originiumRecharge: 5,
       diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+];
+
+
+const wulingSimulationRewardTable = [
+  {
+    id: 'wuling_simulation_reward_1',
+    name: {
+      zh: '模拟奖励1',
+      en: '',
+    },
+    start: '2026/03/12 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '模拟奖励',
+    active: true,
+    version: '零号委托',
+    content: {
+      originiumRecharge: 0,
+      diamond: 9 * 25,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  },
+  {
+    id: 'wuling_simulation_reward_2',
+    name: {
+      zh: '模拟奖励2',
+      en: '',
+    },
+    start: '2026/03/12 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '模拟奖励',
+    active: true,
+    version: '新潮起· 故渊离',
+    content: {
+      originiumRecharge: 0,
+      diamond: 4 * 25,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     },
@@ -621,4 +663,5 @@ export {
   wulingAuryleneCollectStageTable,
   wulingCrateRewardTable,
   wulingRegionalDevelopmentRewardTable,
+  wulingSimulationRewardTable,
 };

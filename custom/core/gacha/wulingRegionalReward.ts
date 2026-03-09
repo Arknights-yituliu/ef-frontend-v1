@@ -5,6 +5,7 @@ import {
   wulingAuryleneCollectStageTable,
   wulingCrateRewardTable,
   wulingRegionalDevelopmentRewardTable,
+  wulingSimulationRewardTable,
 } from '@/custom/core/gacha/data/wulingRegionalRewardTable';
 
 const wulingRegionalStockBillStoreReward = ref<Reward[]>([
@@ -166,11 +167,21 @@ const wulingSimulationReward = ref<Reward>({
   version: '零号委托',
   content: {
     originiumRecharge: 0,
-    diamond: 9 * 25,
+    diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
+  tips: [
+    '通过滑块调节奖励总量',
+  ],
 });
+
+for (const reward of wulingSimulationRewardTable) {
+  wulingSimulationReward.value.content.diamond += reward.content.diamond;
+  wulingSimulationReward.value.tips?.push(
+    `${reward.version}版本奖励为：${reward.content.diamond}嵌晶玉`,
+  );
+}
 
 const wulingDefenseConstructionReward = ref<Reward[]>([
   {
