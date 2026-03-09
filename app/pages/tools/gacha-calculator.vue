@@ -15,6 +15,7 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 // 奖励引入
 import {
   AICQuotaReward,
+  bpTrackFreeReward,
   calculatorDailyReward,
   dailyReward,
   weekTaskReward,
@@ -233,6 +234,21 @@ watch(
   { deep: true },
 );
 
+watch(
+  bpTrackFreeReward,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
+    }
+
+    dailyRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
+
+
+
 let dailyRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '活动奖励',
   originiumRecharge: 0,
@@ -253,6 +269,12 @@ function dailyRewardStatistics(): void {
   addReward(result, dailyReward.value);
   addReward(result, weekTaskReward.value);
   for (const reward of AICQuotaReward.value) {
+    if (checkRewardIsValid(reward)) {
+      addReward(result, reward);
+    }
+  }
+
+  for (const reward of bpTrackFreeReward.value) {
     if (checkRewardIsValid(reward)) {
       addReward(result, reward);
     }
@@ -1368,6 +1390,7 @@ function loadingUserConfig() {
 
       if (localConfig.buttonGroupActive) {
         _setButtonGroupActive(localConfig.buttonGroupActive, AICQuotaReward);
+        _setButtonGroupActive(localConfig.buttonGroupActive, bpTrackFreeReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, authorityLevelTaskRewards);
         _setButtonGroupActive(localConfig.buttonGroupActive, valleyIVTaskRewardTable);
         _setButtonGroupActive(localConfig.buttonGroupActive, valleyIVDefenseConstructionReward);
@@ -2026,6 +2049,13 @@ function checkRewardIsValid(reward: Reward): boolean {
             <GachaCalculatorModuleTitle title="集成配额交易" />
             <GachaCalculatorResourceSingleBtn
               v-for="item in AICQuotaReward"
+              v-show="checkRewardIsValid(item)"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
+            <GachaCalculatorResourceSingleBtn
+              v-for="item in bpTrackFreeReward"
               v-show="checkRewardIsValid(item)"
               :key="item.id"
               v-bind="item"

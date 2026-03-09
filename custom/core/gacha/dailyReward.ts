@@ -3,6 +3,46 @@ import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/g
 import { numberRound } from '#shared/utils/numberUtil';
 import { ref } from 'vue';
 
+const bpTrackFreeReward = ref<Reward[]>([{
+  id: 'bp_track_free_1',
+  name: {
+    zh: `基础配给·第一期`,
+    en: '',
+  },
+  start: '2026/01/22 12:00:00',
+  end: '2026/03/12 12:00:00',
+  type: '通用',
+  module: '日常奖励',
+  active: true,
+  version: '零号委托',
+  content: {
+    originiumRecharge: 0,
+    diamond: 600,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+},
+{
+  id: 'bp_track_free_2',
+  name: {
+    zh: `基础配给·第二期`,
+    en: '',
+  },
+  start: '2026/03/12 12:00:00',
+  end: '2026/04/16 12:00:00',
+  type: '通用',
+  module: '日常奖励',
+  active: true,
+  version: '零号委托',
+  content: {
+    originiumRecharge: 0,
+    diamond: 600,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+}]);
+
+
 const dailyReward = ref<Reward>({
   id: 'day_reward',
   name: {
@@ -160,4 +200,4 @@ for (const poolInfo of poolInfos) {
   });
 }
 
-export { AICQuotaReward, calculatorDailyReward, createVersionDailyReward, dailyReward,weekTaskReward };
+export { AICQuotaReward,bpTrackFreeReward, calculatorDailyReward, createVersionDailyReward, dailyReward,weekTaskReward };
