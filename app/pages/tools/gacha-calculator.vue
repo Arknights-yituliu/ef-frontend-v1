@@ -2143,10 +2143,12 @@ function checkRewardIsValid(reward: Reward): boolean {
         </v-expansion-panel>
 
         <!--地区奖励-->
-        <v-expansion-panel value="regional">
+         <!-- 武陵-->
+
+             <v-expansion-panel value="regional">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              地区奖励
+              地区奖励-武陵，总计
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.regional?.ticketgachaSpecialSingle,
@@ -2154,6 +2156,126 @@ function checkRewardIsValid(reward: Reward): boolean {
                 )
               }}
               {{ t('page.tools.gachaCalculator.pulls') }}
+            </div>
+          </v-expansion-panel-title>
+
+          <v-expansion-panel-text>
+
+            <GachaCalculatorModuleTitle title="武陵地区" />
+            <GachaCalculatorResourceSingleBtn
+              v-for="item in wulingRegionalStockBillStoreReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
+            <v-divider style="margin: 1rem 0" />
+            <v-card>
+              <v-card-text>
+                <GachaCalculatorResourceSingle v-bind="wulingRegionalDevelopmentReward" />
+                <div style="height: 36px" />
+                <v-range-slider
+                  v-model="wulingRegionalDevelopmentProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="12"
+                  min="1"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
+
+              </v-card-text>
+            </v-card>
+
+            <v-divider style="margin: 1rem 0" />
+            <v-card>
+              <v-card-text>
+                <GachaCalculatorResourceSingle v-bind="wulingAuryleneCollectReward" />
+                <div style="height: 36px" />
+                <v-range-slider
+                  v-model="wulingAuryleneCollectProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="18"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
+
+              </v-card-text>
+            </v-card>
+
+            <v-divider style="margin: 1rem 0" />
+            <v-card>
+              <v-card-text>
+                <GachaCalculatorResourceSingle v-bind="wulingCrateReward" />
+                <div style="height: 36px" />
+                <v-range-slider
+                  v-model="wulingCrateRewardProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="wulingCrateRewardMax"
+                  step="5"
+                  thumb-label="always"
+                  tick-size="4"
+                />
+              </v-card-text>
+            </v-card>
+            <v-divider style="margin: 1rem 0" />
+            <v-card>
+              <v-card-text>
+                <GachaCalculatorResourceSingle v-bind="wulingBattleCrateReward" />
+                <div style="height: 36px" />
+                <v-range-slider
+                  v-model="wulingBattleCrateRewardProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="wulingBattleCrateRewardMax"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
+                在地图上的处理险情点位可获得1源石的宝箱
+              </v-card-text>
+            </v-card>
+
+            <v-divider style="margin: 1rem 0" />
+
+
+            <v-divider style="margin: 1rem 0" />
+            <v-card>
+              <v-card-text>
+                <GachaCalculatorResourceSingle v-bind="wulingSimulationReward" />
+                <div style="height: 36px" />
+                <v-range-slider
+                  v-model="wulingSimulationProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="9"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
+              </v-card-text>
+            </v-card>
+
+            <GachaCalculatorResourceSingleBtn
+              v-for="item in wulingDefenseConstructionReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+
+<!-- 四号谷地-->
+   <v-expansion-panel value="regional-valleyIV">
+          <v-expansion-panel-title class="gacha-calculator-card-title">
+            <div>
+              地区奖励-四号谷地
             </div>
           </v-expansion-panel-title>
 
@@ -2287,115 +2409,9 @@ function checkRewardIsValid(reward: Reward): boolean {
               @click="item.active = !item.active"
             />
 
-            <GachaCalculatorModuleTitle title="武陵地区" />
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in wulingRegionalStockBillStoreReward"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingRegionalDevelopmentReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingRegionalDevelopmentProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="12"
-                  min="1"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingAuryleneCollectReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingAuryleneCollectProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="18"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingCrateReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingCrateRewardProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  :max="wulingCrateRewardMax"
-                  step="5"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-              </v-card-text>
-            </v-card>
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingBattleCrateReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingBattleCrateRewardProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  :max="wulingBattleCrateRewardMax"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-                在地图上的处理险情点位可获得1源石的宝箱
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingSimulationReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingSimulationProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="9"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-              </v-card-text>
-            </v-card>
-
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in wulingDefenseConstructionReward"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
-          </v-expansion-panel-text>
+    </v-expansion-panel-text>
         </v-expansion-panel>
+
 
         <!--等级奖励-->
         <v-expansion-panel value="level">
@@ -2465,7 +2481,7 @@ function checkRewardIsValid(reward: Reward): boolean {
         <v-expansion-panel value="permanent">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              常驻奖励-其他，以下常驻总计
+              常驻奖励-其他，常驻总计
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.permanent?.ticketgachaSpecialSingle,
