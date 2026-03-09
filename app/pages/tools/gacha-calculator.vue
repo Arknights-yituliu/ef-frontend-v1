@@ -87,7 +87,7 @@ const { t } = useI18n();
 //
 const leftPartPanel = ref<string[]>(['statisticalResult', 'detail']);
 // 'existing', 'daily', 'level', 'activity,'regional','permanent'
-const rightPartPanel = ref<string[]>([]);
+const rightPartPanel = ref<string[]>(['existing','daily','activity','regional','permanent']);
 
 const poolOptions = ref<PoolOption[]>([
   {
@@ -1722,7 +1722,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 <template>
   <section class="gacha-calculator-container">
     <div class="gacha-calculator-container-left">
-      <v-expansion-panels v-model="leftPartPanel" multiple variant="popout">
+      <v-expansion-panels v-model="leftPartPanel" multiple >
         <v-expansion-panel value="statisticalResult">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
@@ -1947,7 +1947,7 @@ function checkRewardIsValid(reward: Reward): boolean {
       <v-alert style="margin-bottom: 8px" type="info">
         基础寻访次数仅在总计模块显示，各模块不再单独显示
       </v-alert>
-      <v-expansion-panels v-model="rightPartPanel" multiple variant="popout">
+      <v-expansion-panels v-model="rightPartPanel" multiple >
         <!--库存-->
         <v-expansion-panel value="existing">
           <v-expansion-panel-title class="gacha-calculator-card-title">
@@ -2046,6 +2046,14 @@ function checkRewardIsValid(reward: Reward): boolean {
             <GachaCalculatorResourceSingle v-bind="dailyReward" />
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
             <v-divider style="margin: 1rem 0" />
+             <GachaCalculatorModuleTitle title="通行证" />
+             <GachaCalculatorResourceSingleBtn
+              v-for="item in bpTrackFreeReward"
+              v-show="checkRewardIsValid(item)"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
             <GachaCalculatorModuleTitle title="集成配额交易" />
             <GachaCalculatorResourceSingleBtn
               v-for="item in AICQuotaReward"
@@ -2054,13 +2062,7 @@ function checkRewardIsValid(reward: Reward): boolean {
               v-bind="item"
               @click="item.active = !item.active"
             />
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in bpTrackFreeReward"
-              v-show="checkRewardIsValid(item)"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
+           
           </v-expansion-panel-text>
         </v-expansion-panel>
 
