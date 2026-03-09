@@ -5,7 +5,6 @@ import type {
   TotalPullsSingle,
 } from '#shared/types/gacha-calculator';
 
-
 /**
  * 计算排期开始与结束日期的天数差
  * @param {Date|string|number} startDate 开始日期
@@ -14,7 +13,7 @@ import type {
  */
 function calculateDaysDifference(
   startDate: Date | string | number,
-  endDate: Date | string | number
+  endDate: Date | string | number,
 ): number {
   // 转换为时间戳
   const startTimestamp = typeof startDate === 'number' ? startDate : new Date(startDate).getTime();
@@ -22,7 +21,6 @@ function calculateDaysDifference(
   // 计算天数差
   return (endTimestamp - startTimestamp) / (1000 * 60 * 60 * 24);
 }
-
 
 /**
  * 计算两个时间之间有多少个周二
@@ -32,7 +30,7 @@ function calculateDaysDifference(
  */
 function countTuesdaysBetween(
   startDate: Date | string | number,
-  endDate: Date | string | number
+  endDate: Date | string | number,
 ): number {
   // 将输入转换为Date对象
   const start = new Date(startDate);
@@ -76,7 +74,7 @@ function countTuesdaysBetween(
 
   // 计算两个周二之间的天数差
   const daysBetween = Math.round(
-    (lastTuesday.getTime() - firstTuesday.getTime()) / (1000 * 60 * 60 * 24)
+    (lastTuesday.getTime() - firstTuesday.getTime()) / (1000 * 60 * 60 * 24),
   );
 
   // 计算周二的数量
@@ -87,7 +85,7 @@ function countTuesdaysBetween(
 
 function countTuesdaysBetweenV2(
   startDate: Date | string | number,
-  endDate: Date | string | number
+  endDate: Date | string | number,
 ): number {
   // 将输入转换为Date对象
   const start = new Date(startDate);
@@ -100,7 +98,7 @@ function countTuesdaysBetweenV2(
   if (start.getDay() < 2) {
     week++;
   }
-  if(start.getDay() >2) {
+  if (start.getDay() > 2) {
     week++;
   }
 
@@ -137,16 +135,15 @@ function addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward
   }
 }
 
-function getRewardsPull(reward: RewardStatisticsResultDetail[]): TotalPullsSingle{
+function getRewardsPull(reward: RewardStatisticsResultDetail[]): TotalPullsSingle {
   const result: TotalPullsSingle = {
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle:0
+    ticketgachaSpecialSingle: 0,
   };
-  for(const item of reward) {
-    result.ticketgachaStandardSingle+=item.ticketgachaStandardSingle;
-    result.ticketgachaSpecialSingle+=( item.diamond / 500 +
-      (item.originiumRecharge * 75) / 500 +
-      item.ticketgachaSpecialSingle);
+  for (const item of reward) {
+    result.ticketgachaStandardSingle += item.ticketgachaStandardSingle;
+    result.ticketgachaSpecialSingle +=
+      item.diamond / 500 + (item.originiumRecharge * 75) / 500 + item.ticketgachaSpecialSingle;
   }
 
   return result;
@@ -158,25 +155,31 @@ function getRewardPull(reward: RewardStatisticsResultDetail): TotalPullsSingle {
     ticketgachaSpecialSingle:
       reward.diamond / 500 +
       (reward.originiumRecharge * 75) / 500 +
-      reward.ticketgachaSpecialSingle
+      reward.ticketgachaSpecialSingle,
   };
 }
 
-function createReward(name:string,content:RewardContent,type:string,module:string,version:string):Reward{
-    return  {
-      id: name,
-      name: {
-        zh: name,
-        en: '',
-      },
-      start: '2026/01/22 12:00:00',
-      end: '2099/12/31 12:00:00',
-      type: '通用',
-      module: '地区探索',
-      active: true,
-      version,
-      content,
-    }
+function createReward(
+  name: string,
+  content: RewardContent,
+  type: string,
+  module: string,
+  version: string,
+): Reward {
+  return {
+    id: name,
+    name: {
+      zh: name,
+      en: '',
+    },
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '地区探索',
+    active: true,
+    version,
+    content,
+  };
 }
 
 /**
@@ -185,7 +188,7 @@ function createReward(name:string,content:RewardContent,type:string,module:strin
  * @param rewards Reward类型数组
  * @returns 按version分类后的合并结果对象
  */
-function groupAndMergeRewardsByVersion(name:string,rewards: Reward[]): Reward[] {
+function groupAndMergeRewardsByVersion(name: string, rewards: Reward[]): Reward[] {
   // 按version分组
   const groupedRewards: Record<string, Reward[]> = {};
 
@@ -208,15 +211,15 @@ function groupAndMergeRewardsByVersion(name:string,rewards: Reward[]): Reward[] 
     const mergedReward: Reward = {
       ...firstReward,
       name: {
-        zh: name,
-        en: ``
+        zh: `${name}-${version}`,
+        en: '',
       },
       content: {
         originiumRecharge: 0,
         diamond: 0,
         ticketgachaStandardSingle: 0,
-        ticketgachaSpecialSingle: 0
-      }
+        ticketgachaSpecialSingle: 0,
+      },
     };
 
     // 合并content属性
@@ -233,5 +236,13 @@ function groupAndMergeRewardsByVersion(name:string,rewards: Reward[]): Reward[] 
   return mergedRewards;
 }
 
-export { addReward, calculateDaysDifference, countTuesdaysBetween, countTuesdaysBetweenV2, createReward, getRewardPull, getRewardsPull, groupAndMergeRewardsByVersion };
-
+export {
+  addReward,
+  calculateDaysDifference,
+  countTuesdaysBetween,
+  countTuesdaysBetweenV2,
+  createReward,
+  getRewardPull,
+  getRewardsPull,
+  groupAndMergeRewardsByVersion,
+};

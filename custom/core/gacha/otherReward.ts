@@ -47,12 +47,29 @@ const factoryManualReward = ref<Reward>({
     diamond: factoryManualCountReward,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0
-  }
+  },
+  tips: [
+    '通过滑块调节当前简制手册奖励阶段',
+  ]
 });
+
+
+const factoryManualMergeRewards: Reward[] = groupAndMergeRewardsByVersion(
+  '简制手册奖励',
+  FactoryManualTable,
+);
+
+
+
+console.log(factoryManualMergeRewards);
+
+const otherAllRewardTable = ref<Reward[]>([]);
+otherAllRewardTable.value.push(...otherRewardTable.value, ...intelArchiveReward.value, ...factoryManualMergeRewards);
 
 export {
   factoryManualReward,
   factoryManualRewardMax,
   intelArchiveReward,
   otherRewardTable,
+  otherAllRewardTable,
 }

@@ -190,82 +190,6 @@
     }
   },
   {
-    "id": "etch_space_salvage_60000_reward",
-    "name": {
-      "zh": "蚀像寻遗刻度60000",
-      "en": ""
-    },
-    "start": "2026/03/12 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "蚀像寻遗",
-    "active": true,
-    "version": "新潮起·故渊离",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 400,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
-    }
-  },
-  {
-    "id": "etch_space_salvage_70000_reward",
-    "name": {
-      "zh": "蚀像寻遗刻度70000",
-      "en": ""
-    },
-    "start": "2026/03/12 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "蚀像寻遗",
-    "active": true,
-    "version": "新潮起·故渊离",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 2,
-      "ticketgachaSpecialSingle": 0
-    }
-  },
-  {
-    "id": "etch_space_salvage_80000_reward",
-    "name": {
-      "zh": "蚀像寻遗刻度80000",
-      "en": ""
-    },
-    "start": "2026/03/12 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "蚀像寻遗",
-    "active": true,
-    "version": "新潮起·故渊离",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 400,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
-    }
-  },
-  {
-    "id": "etch_space_salvage_90000_reward",
-    "name": {
-      "zh": "蚀像寻遗刻度90000",
-      "en": ""
-    },
-    "start": "2026/03/12 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "蚀像寻遗",
-    "active": true,
-    "version": "新潮起·故渊离",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 2,
-      "ticketgachaSpecialSingle": 0
-    }
-  },
-  {
     "id": "像差探索计划I",
     "name": {
       "zh": "像差探索计划I",
@@ -288,6 +212,25 @@
     "id": "像差探索计划II",
     "name": {
       "zh": "像差探索计划II",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "像差探索计划Ⅲ",
+    "name": {
+      "zh": "像差探索计划Ⅲ",
       "en": ""
     },
     "start": "2026/01/22 12:00:00",
@@ -587,7 +530,103 @@
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
-  },{
+  },
+  {
+    "id": "etch_space_salvage_60000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度60000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_70000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度70000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_80000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度80000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_90000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度90000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "像差探索计划Ⅳ",
+    "name": {
+      "zh": "像差探索计划Ⅳ",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
     "id": "研发任务",
     "name": {
       "zh": "研发任务",

@@ -152,7 +152,6 @@ const wulingBattleCrateReward = ref<Reward>({
   },
 });
 
-
 const wulingSimulationReward = ref<Reward>({
   id: 'wuling_simulation_reward',
   name: {
@@ -171,9 +170,7 @@ const wulingSimulationReward = ref<Reward>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
-  tips: [
-    '通过滑块调节奖励总量',
-  ],
+  tips: ['通过滑块调节奖励总量'],
 });
 
 for (const reward of wulingSimulationRewardTable) {
@@ -219,7 +216,7 @@ for (const reward of auryleneCollectRewards) {
   wulingRegionalAllRewardTable.push(reward);
 }
 
-for(const reward of wulingCrateRewardTable) {
+for (const reward of wulingCrateRewardTable) {
   wulingRegionalAllRewardTable.push(reward);
 }
 
@@ -228,27 +225,30 @@ const regionalDevelopmentRewards: Reward[] = groupAndMergeRewardsByVersion(
   wulingRegionalDevelopmentRewardTable,
 );
 
-for(const reward of regionalDevelopmentRewards) {
+for (const reward of regionalDevelopmentRewards) {
   wulingRegionalAllRewardTable.push(reward);
 }
 
-wulingRegionalAllRewardTable.push(wulingBattleCrateReward.value, wulingSimulationReward.value, ...wulingDefenseConstructionReward.value);
-
-
+wulingRegionalAllRewardTable.push(
+  wulingBattleCrateReward.value,
+  wulingSimulationReward.value,
+  ...wulingDefenseConstructionReward.value,
+);
 
 export {
   wulingAuryleneCollectReward,
-  
   wulingBattleCrateReward,
   wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,
-  wulingRegionalAllRewardTable,
   wulingRegionalDevelopmentReward,
-  
   wulingRegionalStockBillStoreReward,
-  wulingSimulationReward
+  wulingSimulationReward,
+  wulingRegionalAllRewardTable,
 };
 
-export {wulingAuryleneCollectStageTable, wulingRegionalDevelopmentRewardTable} from '@/custom/core/gacha/data/wulingRegionalRewardTable';
+export {
+  wulingAuryleneCollectStageTable,
+  wulingRegionalDevelopmentRewardTable,
+} from '@/custom/core/gacha/data/wulingRegionalRewardTable';

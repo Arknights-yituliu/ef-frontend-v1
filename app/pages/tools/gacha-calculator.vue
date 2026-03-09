@@ -10,6 +10,8 @@ import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-ca
 import { numberFloor } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { nextTick, onMounted, ref, watch } from 'vue';
+
+
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
 // 奖励引入
@@ -47,9 +49,9 @@ import {
   newHorizonsTaskReward,
   valleyIVTaskRewardTable,
   wulingTaskRewardTable,
+  etchSpaceSalvageCrateReward,
+  etchSpaceSalvageCrateRewardMax,
 } from '@/custom/core/gacha/permanentReward';
-
-import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
 import {
   valleyIVAuryleneCollectReward,
@@ -59,8 +61,6 @@ import {
   valleyIVCrateReward,
   valleyIVCrateRewardMax,
   valleyIVDefenseConstructionReward,
-  valleyIVDeltaBotReward,
-  valleyIVDeltaBotRewardMax,
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
   valleyIVSimulationReward,
@@ -80,14 +80,16 @@ import {
   wulingSimulationReward,
 } from '@/custom/core/gacha/wulingRegionalReward';
 
+import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
+
 import { packs } from '@/custom/core/packs';
 
 const { t } = useI18n();
 
 //
-const leftPartPanel = ref<string[]>(['statisticalResult', 'detail']);
+const leftPartPanel = ref<string[]>(['statisticalResult']);
 // 'existing', 'daily', 'level', 'activity,'regional','permanent'
-const rightPartPanel = ref<string[]>(['existing','daily','activity','regional','permanent']);
+const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity', 'regional', 'permanent']);
 
 const poolOptions = ref<PoolOption[]>([
   {
@@ -246,8 +248,6 @@ watch(
   },
   { deep: true },
 );
-
-
 
 let dailyRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '活动奖励',
@@ -481,10 +481,10 @@ watch(
 );
 
 // 四号谷地地区储藏箱开启进度
-const valleyIVCrateRewardProgress = ref<number[]>([0, valleyIVCrateRewardMax]);
+const valleyIVCrateProgress = ref<number[]>([0, valleyIVCrateRewardMax]);
 
 watch(
-  valleyIVCrateRewardProgress,
+  valleyIVCrateProgress,
   (newVal) => {
     valleyIVCrateReward.value.content.diamond = newVal[1]! - newVal[0]!;
     saveUserConfig(valleyIVCrateReward.value.id, newVal, 'rangeSlider');
@@ -503,21 +503,6 @@ watch(
   (newVal) => {
     valleyIVBattleCrateReward.value.content.originiumRecharge = newVal[1]! - newVal[0]!;
     saveUserConfig(valleyIVBattleCrateReward.value.id, newVal, 'rangeSlider');
-
-    valleyIVRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 四号谷地Delta机器人修复
-const valleyIVDeltaBotProgress = ref<number[]>([0, valleyIVDeltaBotRewardMax]);
-
-watch(
-  valleyIVDeltaBotProgress,
-  (newVal) => {
-    valleyIVDeltaBotReward.value.content.diamond = newVal[1]! - newVal[0]!;
-    saveUserConfig(valleyIVDeltaBotReward.value.id, newVal, 'rangeSlider');
 
     valleyIVRegionalRewardStatistics();
     allRewardStatisticsV2();
@@ -623,10 +608,10 @@ watch(
 );
 
 // 武陵储藏箱奖励
-const wulingCrateRewardProgress = ref<number[]>([0, wulingCrateRewardMax]);
+const wulingCrateProgress = ref<number[]>([0, wulingCrateRewardMax]);
 // 武陵储藏箱奖励进度
 watch(
-  wulingCrateRewardProgress,
+  wulingCrateProgress,
   (newVal) => {
     wulingCrateReward.value.content.diamond = newVal[1]! - newVal[0]!;
     saveUserConfig(wulingCrateReward.value.id, newVal, 'rangeSlider');
@@ -651,8 +636,6 @@ watch(
   },
   { deep: true },
 );
-
-
 
 // 武陵模拟空间奖励
 const wulingSimulationProgress = ref<number[]>([0, 9]);
@@ -716,7 +699,7 @@ function valleyIVRegionalRewardStatistics(): void {
   addReward(result, valleyIVAuryleneCollectReward.value);
   addReward(result, valleyIVCrateReward.value);
   addReward(result, valleyIVBattleCrateReward.value);
-  addReward(result, valleyIVDeltaBotReward.value);
+
   addReward(result, valleyIVSimulationReward.value);
   addReward(result, valleyIVDefenseConstructionReward.value);
 
@@ -840,10 +823,10 @@ function levelRewardStatistics(): void {
 /**
  * 常驻奖励计算相关代码起始
  */
-const beginnerCheckInTaskProgress = ref<number[]>([1, 14]);
+const beginnerSignInTaskProgress = ref<number[]>([1, 14]);
 
 watch(
-  beginnerCheckInTaskProgress,
+  beginnerSignInTaskProgress,
   (newVal) => {
     let result = newVal[1]! - newVal[0]!;
 
@@ -933,6 +916,20 @@ watch(
   { deep: true },
 );
 
+const etchSpaceSalvageCrateProgress = ref<number[]>([0, etchSpaceSalvageCrateRewardMax]);
+
+watch(
+  etchSpaceSalvageCrateProgress,
+  (newVal) => {
+    etchSpaceSalvageCrateReward.value.content.diamond = newVal[1]! - newVal[0]!;
+    saveUserConfig(etchSpaceSalvageCrateReward.value.id, newVal, 'rangeSlider');
+
+    permanentRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
+
 let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '常驻奖励',
   originiumRecharge: 0,
@@ -954,7 +951,7 @@ function permanentRewardStatistics(): void {
   addReward(result, beginnerTicketgachaSpecialSingleTaskReward.value);
   addReward(result, valleyIVTaskRewardTable.value);
   addReward(result, wulingTaskRewardTable.value);
-
+  addReward(result, etchSpaceSalvageCrateReward.value);
   addReward(result, etchSpaceSalvageReward.value);
 
   permanentRewardStatisticsResultDetail = result;
@@ -1344,21 +1341,21 @@ watch(
 );
 
 const rangeSliderMap: Record<string, Ref<number[]>> = {
-  beginner_sign_in_task: beginnerCheckInTaskProgress,
+  beginner_sign_in_task: beginnerSignInTaskProgress,
   operational_manual_node_reward: operationalManualNodeProgress,
   authority_level_up_reward: authorityLevelProgress,
   world_level_reward: worldLevelProgress,
   valley_IV_regional_development_reward: valleyIVRegionalDevelopmentProgress,
   valley_IV_aurylene_collect_reward: valleyIVAuryleneCollectProgress,
-  valley_IV_crate_reward: valleyIVCrateRewardProgress,
+  valley_IV_crate_reward: valleyIVCrateProgress,
   valley_IV_battle_crate_reward: valleyIVBattleCrateRewardProgress,
-  valley_IV_delta_bot_reward: valleyIVDeltaBotProgress,
+
   valley_IV_simulation_reward: valleyIVSimulationProgress,
   wuling_regional_development_reward: wulingRegionalDevelopmentProgress,
   wuling_aurylene_collect_reward: wulingAuryleneCollectProgress,
-  wuling_crate_reward: wulingCrateRewardProgress,
+  wuling_crate_reward: wulingCrateProgress,
   wuling_battle_crate_reward: wulingBattleCrateRewardProgress,
-
+  etch_space_salvage_crate_reward: etchSpaceSalvageCrateProgress,
   wuling_simulation_reward: wulingSimulationProgress,
   factory_manual_reward: factoryManualProgress,
 };
@@ -1397,6 +1394,7 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, wulingTaskRewardTable);
         _setButtonGroupActive(localConfig.buttonGroupActive, wulingDefenseConstructionReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, etchSpaceSalvageReward);
+
         _setButtonGroupActive(localConfig.buttonGroupActive, operationalManualReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
         _setButtonGroupActive(localConfig.buttonGroupActive, intelArchiveReward);
@@ -1490,12 +1488,12 @@ function clearOrSelectAllValleyIVRegionalModule(action: boolean) {
   clearOrSelectAll(action, 'button', valleyIVRegionalStockBillStoreReward);
   clearOrSelectAll(action, 'rangeSlider', valleyIVRegionalDevelopmentProgress, [1, 12]);
   clearOrSelectAll(action, 'rangeSlider', valleyIVAuryleneCollectProgress, [0, 18]);
-  clearOrSelectAll(action, 'rangeSlider', valleyIVCrateRewardProgress, [0, valleyIVCrateRewardMax]);
+  clearOrSelectAll(action, 'rangeSlider', valleyIVCrateProgress, [0, valleyIVCrateRewardMax]);
   clearOrSelectAll(action, 'rangeSlider', valleyIVBattleCrateRewardProgress, [
     0,
     valleyIVBattleCrateRewardMax,
   ]);
-  clearOrSelectAll(action, 'rangeSlider', valleyIVDeltaBotProgress, [0, valleyIVDeltaBotRewardMax]);
+
   clearOrSelectAll(action, 'rangeSlider', valleyIVSimulationProgress, [0, 26]);
   clearOrSelectAll(action, 'button', valleyIVDefenseConstructionReward);
 }
@@ -1504,7 +1502,7 @@ function clearOrSelectAllWulingRegionalModule(action: boolean) {
   clearOrSelectAll(action, 'button', wulingRegionalStockBillStoreReward);
   clearOrSelectAll(action, 'rangeSlider', wulingRegionalDevelopmentProgress, [0, 6]);
   clearOrSelectAll(action, 'rangeSlider', wulingAuryleneCollectProgress, [0, 8]);
-  clearOrSelectAll(action, 'rangeSlider', wulingCrateRewardProgress, [0, wulingCrateRewardMax]);
+  clearOrSelectAll(action, 'rangeSlider', wulingCrateProgress, [0, wulingCrateRewardMax]);
   clearOrSelectAll(action, 'rangeSlider', wulingBattleCrateRewardProgress, [
     0,
     wulingBattleCrateRewardMax,
@@ -1520,7 +1518,7 @@ function clearOrSelectAllLevelModule(action: boolean) {
 }
 
 function clearOrSelectAllOtherPermanentModule(action: boolean) {
-  clearOrSelectAll(action, 'rangeSlider', beginnerCheckInTaskProgress, [0, 14]);
+  clearOrSelectAll(action, 'rangeSlider', beginnerSignInTaskProgress, [0, 14]);
   clearOrSelectAll(action, 'button', newHorizonsTaskReward);
   clearOrSelectAll(action, 'button', beginnerTicketgachaSpecialSingleTaskReward);
 }
@@ -1535,11 +1533,81 @@ function clearOrSelectAllPermanentWulingTaskModule(action: boolean) {
 
 function clearOrSelectAllPermanentEtchSpaceSalvageTaskModule(action: boolean) {
   clearOrSelectAll(action, 'button', etchSpaceSalvageReward);
+  clearOrSelectAll(action, 'rangeSlider', etchSpaceSalvageCrateProgress, [
+    0,
+    etchSpaceSalvageCrateRewardMax,
+  ]);
 }
 
 function clearOrSelectAllOperationalManualModule(action: boolean) {
   clearOrSelectAll(action, 'button', operationalManualReward);
   clearOrSelectAll(action, 'rangeSlider', operationalManualNodeProgress, [0, 12]);
+}
+
+function clearOrSelectAllCurrentVersion(version: string) {
+   _filterByVersion(activityReward, version);
+  _filterByVersion(AICQuotaReward, version);
+  _filterByVersion(bpTrackFreeReward, version);
+  _filterByVersion(authorityLevelTaskRewards, version);
+  _filterByVersion(worldLevelReward, version);
+  authorityLevelProgress.value = [50, 60];
+  operationalManualNodeProgress.value = [12, 12];
+  _filterByVersion(operationalManualReward, version);
+  factoryManualProgress.value = [0, 540];
+  _filterByVersion(intelArchiveReward, version);
+  _filterByVersion(otherRewardTable, version);
+  beginnerSignInTaskProgress.value = [14, 14];
+  _filterByVersion(etchSpaceSalvageReward, version);
+  _filterByVersion(newHorizonsTaskReward, version);
+  _filterByVersion(valleyIVTaskRewardTable, version);
+  _filterByVersion(wulingTaskRewardTable, version);
+  etchSpaceSalvageCrateProgress.value = [0, 540];
+  valleyIVAuryleneCollectProgress.value = [18, 18];
+  valleyIVBattleCrateRewardProgress.value = [0, 0];
+  valleyIVCrateProgress.value = [0, 0];
+  _filterByVersion(valleyIVDefenseConstructionReward, version);
+  valleyIVRegionalDevelopmentProgress.value = [12, 12];
+  _filterByVersion(valleyIVRegionalStockBillStoreReward, version);
+  valleyIVSimulationProgress.value = [0, 26];
+
+  wulingAuryleneCollectProgress.value = [8, 11];
+
+  wulingBattleCrateRewardProgress.value = [0, 1];
+  wulingCrateProgress.value = [0, 2450];
+  _filterByVersion(wulingDefenseConstructionReward, version);
+  wulingRegionalDevelopmentProgress.value = [6, 9];
+
+  _filterByVersion(wulingRegionalStockBillStoreReward, version);
+  wulingSimulationProgress.value = [0, 9];
+
+  function _filterByVersion(
+    reward: Ref<Reward> | Ref<Reward[]> | Ref<number[]>,
+
+    version: string,
+  ) {
+    const value = reward.value;
+    if (Array.isArray(value)) {
+      // 处理 Ref<Reward[]> 类型
+      for (const item of value) {
+        if (typeof item === 'object' && item !== null && 'active' in item) {
+          console.log('item', item.name.zh, item.version, version === item.version);
+          if (version === item.version) {
+            item.active = true;
+          } else {
+            item.active = false;
+          }
+        }
+      }
+    } else if (typeof value === 'object' && value !== null && 'active' in value) {
+      // 处理 Ref<Reward> 类型
+       console.log('item', value.name.zh, value.version, version === value.version);
+      if (version === value.version) {
+        value.active = true;
+      } else {
+        value.active = false;
+      }
+    }
+  }
 }
 
 function clearOrSelectAll(
@@ -1700,13 +1768,13 @@ function checkRewardIsValid(reward: Reward): boolean {
 
   // 活动结束时间在当前池子开始时间之前，活动已结束
   if (reward.end <= startDate) {
-    console.log(reward.name.zh, '过期');
+    // console.log(reward.name.zh, '过期');
     display = false;
   }
 
   // 活动开始时间在当前池子结束时间之后，活动未开始
   if (reward.start >= currentPoolValue.end) {
-    console.log(reward.name.zh, '过期');
+    // console.log(reward.name.zh, '过期');
     display = false;
   }
 
@@ -1722,7 +1790,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 <template>
   <section class="gacha-calculator-container">
     <div class="gacha-calculator-container-left">
-      <v-expansion-panels v-model="leftPartPanel" multiple >
+      <v-expansion-panels v-model="leftPartPanel" multiple>
         <v-expansion-panel value="statisticalResult">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
@@ -1834,6 +1902,9 @@ function checkRewardIsValid(reward: Reward): boolean {
                 </div>
               </div>
             </div>
+            <v-btn @click="clearOrSelectAllCurrentVersion('新潮起·故渊离')" color="blue"
+              >仅选择[新潮起·故渊离]版本内奖励，其他取消</v-btn
+            >
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -1947,7 +2018,7 @@ function checkRewardIsValid(reward: Reward): boolean {
       <v-alert style="margin-bottom: 8px" type="info">
         基础寻访次数仅在总计模块显示，各模块不再单独显示
       </v-alert>
-      <v-expansion-panels v-model="rightPartPanel" multiple >
+      <v-expansion-panels v-model="rightPartPanel" multiple>
         <!--库存-->
         <v-expansion-panel value="existing">
           <v-expansion-panel-title class="gacha-calculator-card-title">
@@ -2046,8 +2117,8 @@ function checkRewardIsValid(reward: Reward): boolean {
             <GachaCalculatorResourceSingle v-bind="dailyReward" />
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
             <v-divider style="margin: 1rem 0" />
-             <GachaCalculatorModuleTitle title="通行证" />
-             <GachaCalculatorResourceSingleBtn
+            <GachaCalculatorModuleTitle title="通行证" />
+            <GachaCalculatorResourceSingleBtn
               v-for="item in bpTrackFreeReward"
               v-show="checkRewardIsValid(item)"
               :key="item.id"
@@ -2062,7 +2133,6 @@ function checkRewardIsValid(reward: Reward): boolean {
               v-bind="item"
               @click="item.active = !item.active"
             />
-           
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2108,16 +2178,6 @@ function checkRewardIsValid(reward: Reward): boolean {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in otherRewardTable"
-              v-show="checkRewardIsValid(item)"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
-
-            <v-divider style="margin: 1rem 0" />
-
             <v-card>
               <v-card-text>
                 <GachaCalculatorResourceSingle v-bind="factoryManualReward" />
@@ -2130,7 +2190,6 @@ function checkRewardIsValid(reward: Reward): boolean {
                   thumb-label="always"
                   tick-size="4"
                 />
-                因手册奖励过于零散，只能通过滑块大致计算
               </v-card-text>
             </v-card>
             <v-divider style="margin: 1rem 0" />
@@ -2141,13 +2200,23 @@ function checkRewardIsValid(reward: Reward): boolean {
               v-bind="item"
               @click="item.active = !item.active"
             />
+
+            <v-divider style="margin: 1rem 0" />
+
+            <GachaCalculatorResourceSingleBtn
+              v-for="item in otherRewardTable"
+              v-show="checkRewardIsValid(item)"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
         <!--地区奖励-->
-         <!-- 武陵-->
+        <!-- 武陵-->
 
-             <v-expansion-panel value="regional">
+        <v-expansion-panel value="regional">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               地区奖励-武陵，总计
@@ -2162,7 +2231,6 @@ function checkRewardIsValid(reward: Reward): boolean {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-
             <GachaCalculatorModuleTitle title="武陵地区" />
             <GachaCalculatorResourceSingleBtn
               v-for="item in wulingRegionalStockBillStoreReward"
@@ -2186,7 +2254,6 @@ function checkRewardIsValid(reward: Reward): boolean {
                   thumb-label="always"
                   tick-size="4"
                 />
-
               </v-card-text>
             </v-card>
 
@@ -2205,7 +2272,6 @@ function checkRewardIsValid(reward: Reward): boolean {
                   thumb-label="always"
                   tick-size="4"
                 />
-
               </v-card-text>
             </v-card>
 
@@ -2215,7 +2281,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                 <GachaCalculatorResourceSingle v-bind="wulingCrateReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-                  v-model="wulingCrateRewardProgress"
+                  v-model="wulingCrateProgress"
                   class="v-range-slider"
                   hide-details="auto"
                   :max="wulingCrateRewardMax"
@@ -2245,7 +2311,6 @@ function checkRewardIsValid(reward: Reward): boolean {
 
             <v-divider style="margin: 1rem 0" />
 
-
             <v-divider style="margin: 1rem 0" />
             <v-card>
               <v-card-text>
@@ -2273,12 +2338,10 @@ function checkRewardIsValid(reward: Reward): boolean {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-<!-- 四号谷地-->
-   <v-expansion-panel value="regional-valleyIV">
+        <!-- 四号谷地-->
+        <v-expansion-panel value="regional-valleyIV">
           <v-expansion-panel-title class="gacha-calculator-card-title">
-            <div>
-              地区奖励-四号谷地
-            </div>
+            <div>地区奖励-四号谷地</div>
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
@@ -2335,7 +2398,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                 <GachaCalculatorResourceSingle v-bind="valleyIVCrateReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-                  v-model="valleyIVCrateRewardProgress"
+                  v-model="valleyIVCrateProgress"
                   class="v-range-slider"
                   hide-details="auto"
                   :max="valleyIVCrateRewardMax"
@@ -2369,24 +2432,6 @@ function checkRewardIsValid(reward: Reward): boolean {
             <v-divider style="margin: 1rem 0" />
             <v-card>
               <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="valleyIVDeltaBotReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="valleyIVDeltaBotProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  :max="valleyIVDeltaBotRewardMax"
-                  step="5"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-                滑块拖动每格为5合成玉
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
                 <GachaCalculatorResourceSingle v-bind="valleyIVSimulationReward" />
                 <div style="height: 36px" />
                 <v-range-slider
@@ -2410,10 +2455,8 @@ function checkRewardIsValid(reward: Reward): boolean {
               v-bind="item"
               @click="item.active = !item.active"
             />
-
-    </v-expansion-panel-text>
+          </v-expansion-panel-text>
         </v-expansion-panel>
-
 
         <!--等级奖励-->
         <v-expansion-panel value="level">
@@ -2503,7 +2546,7 @@ function checkRewardIsValid(reward: Reward): boolean {
                 />
                 <div style="height: 36px" />
                 <v-range-slider
-                  v-model="beginnerCheckInTaskProgress"
+                  v-model="beginnerSignInTaskProgress"
                   class="v-range-slider"
                   hide-details="auto"
                   max="14"
@@ -2578,6 +2621,19 @@ function checkRewardIsValid(reward: Reward): boolean {
               v-bind="item"
               @click="item.active = !item.active"
             />
+            <v-card>
+              <v-card-text>
+                <GachaCalculatorResourceSingle v-bind="etchSpaceSalvageCrateReward" />
+                <div style="height: 36px" />
+                <v-range-slider
+                  v-model="etchSpaceSalvageCrateProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="etchSpaceSalvageCrateRewardMax"
+                  step="15"
+                  thumb-label="always"
+                /> </v-card-text
+            ></v-card>
           </v-expansion-panel-text>
         </v-expansion-panel>
 

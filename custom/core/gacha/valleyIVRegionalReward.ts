@@ -61,12 +61,13 @@ const valleyIVAuryleneCollectReward = ref<Reward>({
   },
 });
 
-const valleyIVCrateRewardMax: number = 93 * 15 + 91 * 30 + 81 * 60 + 11 * 100 + 12 * 150;
+const valleyIVDeltaBotRewardMax: number = 42 * 20;
+const valleyIVCrateRewardMax: number = 93 * 15 + 91 * 30 + 81 * 60 + 11 * 100 + 12 * 150 + valleyIVDeltaBotRewardMax;
 
 const valleyIVCrateReward = ref<Reward>({
   id: 'valley_IV_crate_reward',
   name: {
-    zh: `储藏箱奖励`,
+    zh: `储藏箱+机器人奖励`,
     en: '',
   },
   start: '2026/01/22 12:00:00',
@@ -103,26 +104,8 @@ const valleyIVBattleCrateReward = ref<Reward>({
   },
 });
 
-const valleyIVDeltaBotRewardMax: number = 42 * 20;
 
-const valleyIVDeltaBotReward = ref<Reward>({
-  id: 'valley_IV_delta_bot_reward',
-  name: {
-    zh: `维修Delta机器人`,
-    en: '',
-  },
-  start: '2026/01/22 12:00:00',
-  end: '2099/12/31 12:00:00',
-  type: '通用',
-  module: '地区探索',
-  active: true,version: "零号委托",
-  content: {
-    originiumRecharge: 0,
-    diamond: valleyIVDeltaBotRewardMax,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-  },
-});
+
 
 const valleyIVSimulationReward = ref<Reward>({
   id: 'valley_IV_simulation_reward',
@@ -190,8 +173,7 @@ export {
   valleyIVCrateReward,
   valleyIVCrateRewardMax,
   valleyIVDefenseConstructionReward,
-  valleyIVDeltaBotReward,
-  valleyIVDeltaBotRewardMax,
+
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
   valleyIVSimulationReward,

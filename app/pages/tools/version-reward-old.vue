@@ -41,14 +41,13 @@ import {
 
 import {
   valleyIVAuryleneCollectReward,
-  valleyIVAuryleneCollectStageTable,
+  
   valleyIVBattleCrateReward,
-  valleyIVBattleCrateRewardMax,
+  
   valleyIVCrateReward,
-  valleyIVCrateRewardMax,
+  
   valleyIVDefenseConstructionReward,
-  valleyIVDeltaBotReward,
-  valleyIVDeltaBotRewardMax,
+
   valleyIVRegionalDevelopmentReward,
   valleyIVRegionalStockBillStoreReward,
   valleyIVSimulationReward,
@@ -99,7 +98,7 @@ versionReward.value.push(
   valleyIVAuryleneCollectReward.value,
   valleyIVCrateReward.value,
   valleyIVBattleCrateReward.value,
-  valleyIVDeltaBotReward.value,
+ 
   valleyIVRegionalDevelopmentReward.value,
   valleyIVRegionalStockBillStoreReward.value,
   valleyIVSimulationReward.value,

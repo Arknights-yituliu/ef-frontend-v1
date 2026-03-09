@@ -21,6 +21,24 @@ const bpTrackFreeReward = ref<Reward[]>([{
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
+},{
+  id: 'bp_track_originium_1',
+  name: {
+    zh: `源石配给·第一期`,
+    en: '',
+  },
+  start: '2026/01/22 12:00:00',
+  end: '2026/03/12 12:00:00',
+  type: '通用',
+  module: '日常奖励',
+  active: true,
+  version: '零号委托',
+  content: {
+    originiumRecharge: 3,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
 },
 {
   id: 'bp_track_free_2',
@@ -33,14 +51,32 @@ const bpTrackFreeReward = ref<Reward[]>([{
   type: '通用',
   module: '日常奖励',
   active: true,
-  version: '零号委托',
+  version: '新潮起·故渊离',
   content: {
     originiumRecharge: 0,
     diamond: 600,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+  }},{
+  id: 'bp_track_originium_2',
+  name: {
+    zh: `源石配给·第二期`,
+    en: '',
   },
-}]);
+  start: '2026/03/12 12:00:00',
+  end: '2026/04/16 12:00:00',
+  type: '通用',
+  module: '日常奖励',
+  active: true,
+  version: '新潮起·故渊离',
+  content: {
+    originiumRecharge: 3,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+}
+]);
 
 
 const dailyReward = ref<Reward>({
