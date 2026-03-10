@@ -627,9 +627,9 @@
     }
   },
   {
-    "id": "研发任务",
+    "id": "探索研发·协议稳定7",
     "name": {
-      "zh": "研发任务",
+      "zh": "探索研发·协议稳定7",
       "en": ""
     },
     "start": "2026/03/12 12:00:00",
@@ -640,7 +640,64 @@
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 300,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定8",
+    "name": {
+      "zh": "探索研发·协议稳定8",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容6",
+    "name": {
+      "zh": "探索研发·封装扩容6",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·蓄能爆发",
+    "name": {
+      "zh": "探索研发·蓄能爆发",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
