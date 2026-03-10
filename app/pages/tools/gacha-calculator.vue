@@ -1550,7 +1550,7 @@ function clearOrSelectAllCurrentVersion(version: string) {
   _filterByVersion(bpTrackFreeReward, version);
   _filterByVersion(authorityLevelTaskRewards, version);
   _filterByVersion(worldLevelReward, version);
-  authorityLevelProgress.value = [50, 60];
+  authorityLevelProgress.value = [60, 60];
   operationalManualNodeProgress.value = [12, 12];
   _filterByVersion(operationalManualReward, version);
   factoryManualProgress.value = [0, 540];
@@ -2526,7 +2526,7 @@ function checkRewardIsValid(reward: Reward): boolean {
         <v-expansion-panel value="permanent">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              常驻奖励-其他，常驻总计
+              常驻奖励-其他，以下常驻总计
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.permanent?.ticketgachaSpecialSingle,
