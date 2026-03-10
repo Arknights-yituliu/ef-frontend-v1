@@ -337,7 +337,7 @@ const currentVersionReward = ref<Reward[]>([]);
 // 计算版本奖励组的高度
 function calculateRewardItemGroupHeight() {
   const height = (currentVersionReward.value.length / 2) * 76 + 80;
-  const rewardItemGroup = document.querySelector('#version-reward-item-group');
+  const rewardItemGroup  = document.querySelector('#version-reward-item-group') as HTMLElement;
   console.log('版本奖励组元素:', rewardItemGroup);
   if (rewardItemGroup === null) {
     console.error('未找到版本奖励组元素');
@@ -355,7 +355,7 @@ function filterRewardByVersion(version: any) {
   currentVersionReward.value = [];
   const result1: RewardStatisticsResultDetail = {
     name: '零氪',
-    originiumRecharge: 3,
+    originiumRecharge:0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
