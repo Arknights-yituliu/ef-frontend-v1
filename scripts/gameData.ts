@@ -108,49 +108,56 @@ function getItemName(itemId: string, language: string): string {
 }
 
 function makeItemTableSimplified() {
-  const itemTableSimplified: Record<string, Record<string, any>> = {};
-  for (const [itemId, itemData] of Object.entries(itemTable)) {
-    itemTableSimplified[itemId] = {
-      id: itemId,
-      name: getLocalizedValue(itemData.name),
-      rarity: itemData.rarity,
-      type: itemData.type,
-      typeName: getLocalizedValue(itemTypeTable[String(itemData.type)]!.name),
-      iconId: itemData.iconId,
+  const itemTableSimplified: Record<string, Record<string, any>> = Object.fromEntries(
+    Object.keys(itemTable)
+      .toSorted() // 按字典序排序，保证 diff 最小
+      .map((itemId) => {
+        const itemData = itemTable[itemId];
+        return [
+          itemId,
+          {
+            id: itemId,
+            name: getLocalizedValue(itemData.name),
+            rarity: itemData.rarity,
+            type: itemData.type,
+            typeName: getLocalizedValue(itemTypeTable[String(itemData.type)]!.name),
+            iconId: itemData.iconId,
 
-      // backpackCanDiscard: itemData.backpackCanDiscard,
-      // decoDesc: getLocalizedValue(itemData.decoDesc),
-      // desc: getLocalizedValue(itemData.desc),
-      // iconCompositeId: itemData.iconCompositeId,
-      // maxBackpackStackCount: itemData.maxBackpackStackCount,
-      // maxStackCount: itemData.maxStackCount,
-      // modelKey: itemData.modelKey,
-      // noObtainWayHint: getLocalizedValue(itemData.noObtainWayHint),
-      // showAllDepotCount: itemData.showAllDepotCount,
-      // showingType: itemData.showingType,
-      // sortId1: itemData.sortId1,
-      // sortId2: itemData.sortId2,
-      // valuableTabType: itemData.valuableTabType,
-      // iconUrl: `~/assets/images/items/${itemName}.png`,
-    };
-  }
+            // backpackCanDiscard: itemData.backpackCanDiscard,
+            // decoDesc: getLocalizedValue(itemData.decoDesc),
+            // desc: getLocalizedValue(itemData.desc),
+            // iconCompositeId: itemData.iconCompositeId,
+            // maxBackpackStackCount: itemData.maxBackpackStackCount,
+            // maxStackCount: itemData.maxStackCount,
+            // modelKey: itemData.modelKey,
+            // noObtainWayHint: getLocalizedValue(itemData.noObtainWayHint),
+            // showAllDepotCount: itemData.showAllDepotCount,
+            // showingType: itemData.showingType,
+            // sortId1: itemData.sortId1,
+            // sortId2: itemData.sortId2,
+            // valuableTabType: itemData.valuableTabType,
+            // iconUrl: `~/assets/images/items/${itemName}.png`,
+          },
+        ];
+      }),
+  );
 
-  const itemTypeTableSheet: Map<string, any> = new Map();
-  for (const [itemTypeId, itemTypeData] of Object.entries(itemTypeTable)) {
-    itemTypeTableSheet.set(itemTypeId, {
-      itemType: itemTypeData.itemType,
-      itemTypeName: getTranslation(itemTypeData.name, 'CN'),
-      barkWhenGot: itemTypeData.barkWhenGot,
-      bgType: itemTypeData.bgType,
-      hideItemInBagToast: itemTypeData.hideItemInBagToast,
-      hideNewToast: itemTypeData.hideNewToast,
-      showCount: itemTypeData.showCount,
-      showCountInTips: itemTypeData.showCountInTips,
-      storageSpace: itemTypeData.storageSpace,
-      unlockSystemType: itemTypeData.unlockSystemType,
-      valuableTabType: itemTypeData.valuableTabType,
-    });
-  }
+  // const itemTypeTableSheet: Map<string, any> = new Map();
+  // for (const [itemTypeId, itemTypeData] of Object.entries(itemTypeTable)) {
+  //   itemTypeTableSheet.set(itemTypeId, {
+  //     itemType: itemTypeData.itemType,
+  //     itemTypeName: getTranslation(itemTypeData.name, 'CN'),
+  //     barkWhenGot: itemTypeData.barkWhenGot,
+  //     bgType: itemTypeData.bgType,
+  //     hideItemInBagToast: itemTypeData.hideItemInBagToast,
+  //     hideNewToast: itemTypeData.hideNewToast,
+  //     showCount: itemTypeData.showCount,
+  //     showCountInTips: itemTypeData.showCountInTips,
+  //     storageSpace: itemTypeData.storageSpace,
+  //     unlockSystemType: itemTypeData.unlockSystemType,
+  //     valuableTabType: itemTypeData.valuableTabType,
+  //   });
+  // }
 
   fs.writeFileSync('custom/core/items.json', JSON.stringify(itemTableSimplified, null, 2), 'utf-8');
 }
@@ -240,21 +247,23 @@ function makeWeapons() {
       stats: EssenceStat;
     }
   > = Object.fromEntries(
-    Object.keys(weaponBasicTable).map((weaponId) => [
-      weaponId,
-      {
+    Object.keys(weaponBasicTable)
+      .toSorted() // 按字典序排序，保证 diff 最小
+      .map((weaponId) => [
         weaponId,
-        weaponName: getItemName(weaponId, 'CN'),
-        weaponType: getWeaponTypeName(weaponId),
-        rarity: weaponBasicTable[weaponId].rarity,
-        stats: getStatsForWeapon(weaponId, 'CN'),
-      },
-    ]),
+        {
+          weaponId,
+          weaponName: getItemName(weaponId, 'CN'),
+          weaponType: getWeaponTypeName(weaponId),
+          rarity: weaponBasicTable[weaponId].rarity,
+          stats: getStatsForWeapon(weaponId, 'CN'),
+        },
+      ]),
   );
 
   console.log(JSON.stringify(statsForWeapon, null, 2));
 }
 
 // main
-// makeItemTableSimplified();
-makeWeapons();
+makeItemTableSimplified();
+// makeWeapons();
