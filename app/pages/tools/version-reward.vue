@@ -302,11 +302,12 @@ for (const reward of activityReward.value) {
   versionReward.value.push(reward);
 }
 
-versionReward.value.push(...otherAllRewardTable.value, 
+versionReward.value.push(
+  ...otherAllRewardTable.value,
   valleyIVAuryleneCollectReward.value,
   valleyIVCrateReward.value,
   valleyIVBattleCrateReward.value,
-  
+
   valleyIVRegionalDevelopmentReward.value,
   valleyIVRegionalStockBillStoreReward.value,
   valleyIVSimulationReward.value,
@@ -324,7 +325,11 @@ for (const reward of authorityLevelTaskRewards.value) {
   versionReward.value.push(reward);
 }
 
-versionReward.value.push(authorityLevelUpReward.value, worldLevelReward.value, ...permanentAllReward);
+versionReward.value.push(
+  authorityLevelUpReward.value,
+  worldLevelReward.value,
+  ...permanentAllReward,
+);
 
 for (const reward of operationalManualReward.value) {
   versionReward.value.push(reward);
@@ -337,7 +342,7 @@ const currentVersionReward = ref<Reward[]>([]);
 // 计算版本奖励组的高度
 function calculateRewardItemGroupHeight() {
   const height = (currentVersionReward.value.length / 2) * 76 + 80;
-  const rewardItemGroup  = document.querySelector('#version-reward-item-group') as HTMLElement;
+  const rewardItemGroup = document.querySelector('#version-reward-item-group') as HTMLElement;
   console.log('版本奖励组元素:', rewardItemGroup);
   if (rewardItemGroup === null) {
     console.error('未找到版本奖励组元素');
@@ -355,7 +360,7 @@ function filterRewardByVersion(version: any) {
   currentVersionReward.value = [];
   const result1: RewardStatisticsResultDetail = {
     name: '零氪',
-    originiumRecharge:0,
+    originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
@@ -386,7 +391,7 @@ function filterRewardByVersion(version: any) {
     }
   }
 
-  const list = []
+  const list = [];
   for (const reward of currentVersionReward.value) {
     result1.originiumRecharge += reward.content.originiumRecharge;
     list.push(reward.content.diamond);
@@ -395,7 +400,7 @@ function filterRewardByVersion(version: any) {
     result1.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
   }
 
-  console.log(11,JSON.stringify(list));
+  console.log(11, JSON.stringify(list));
 
   result2.originiumRecharge += result1.originiumRecharge;
   result2.diamond += result1.diamond;
@@ -570,9 +575,10 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <div id="shield" style="text-align: center;">
-            数据由攒抽计算器自动生成，非当前版本完整数据，可能有错漏资源，欢迎反馈<br />
-            资源以实际发放为准，攒抽计算器将持续修订更新资源，图片时效性较低，可根据个人情况使用攒抽计算器自行调整
+          <div id="shield" style="padding: 12px">
+            <p>数据由攒抽计算器自动生成，非当前版本完整数据</p>
+            <p>资源以实际发放为准，攒抽计算器也将会持续修订更新资源，可能有错漏资源，欢迎反馈</p>
+            <p>图片时效性较低，建议关注网站更新，也可根据个人情况使用攒抽计算器自行调整</p>
           </div>
         </div>
       </div>
@@ -847,7 +853,7 @@ onMounted(() => {
 
   #shield {
     font-size: 20px;
-    background-color: #ffffff80;
+    background-color: #ffffff90;
     padding: 4px 12px;
     margin-bottom: 8px;
   }

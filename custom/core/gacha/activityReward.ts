@@ -89,7 +89,7 @@ function createNewPoolActivity() {
     };
     activityReward.value.push(reward1);
     
-    if (item.character !== '汤汤') {
+  
       const reward2: Reward = {
         id: `干员叙事·${item.character}`,
         name: {
@@ -110,7 +110,7 @@ function createNewPoolActivity() {
         },
       };
       activityReward.value.push( reward2);
-    }
+      if (item.character !== '汤汤') {}
 
     let i = 1;
     for (const time of item.signInTime) {

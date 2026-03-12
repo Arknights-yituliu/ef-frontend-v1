@@ -455,7 +455,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
     type: '通用',
     module: '地区建设',
     active: true,
-    version: '新潮起·故渊离',
+    version: '未来版本',
     content: {
       originiumRecharge: 3,
       diamond: 0,
@@ -474,7 +474,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
     type: '通用',
     module: '地区建设',
     active: true,
-    version: '新潮起·故渊离',
+    version: '未来版本',
     content: {
       originiumRecharge: 3,
       diamond: 0,
