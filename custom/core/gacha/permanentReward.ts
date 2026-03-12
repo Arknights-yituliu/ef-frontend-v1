@@ -135,25 +135,6 @@ const wulingTaskRewardTable = ref<Reward[]>(mergedWulingTasks);
 
 const tempTasksReward: Reward[] = [
   {
-    id: '武陵-主线任务-新潮起·故渊离版本',
-    name: {
-      zh: `主线任务-新潮起·故渊离版本`,
-      en: '',
-    },
-    start: '2026/03/12 12:00:00',
-    end: '2099/12/31 12:00:00',
-    type: '通用',
-    module: '主线任务',
-    active: true,
-    version: '新潮起·故渊离',
-    content: {
-      originiumRecharge: 10,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-    },
-  },
-  {
     id: '武陵-支线任务-新潮起·故渊离版本',
     name: {
       zh: `支线任务-新潮起·故渊离版本`,
