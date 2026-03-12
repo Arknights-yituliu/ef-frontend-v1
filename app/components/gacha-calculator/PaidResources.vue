@@ -47,7 +47,7 @@ const monthlyPassDays = computed(() => {
   }
   const endDate: Date = props.currentPool.end;
   const daysDiff = calculateDaysDifference(new Date(),endDate)
-  return numberFloor(daysDiff);
+  return numberFloor(daysDiff,0);
 });
 
 
@@ -319,7 +319,7 @@ function getImageUrl(itemId: string): string {
             class="gacha-calculator-gacha-item-icon"
             src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
           >
-          X {{ monthlyPassResources ? monthlyPassDays * 200 : 0 }}
+          X {{ monthlyPassResources ? monthlyPassDays * 200 : 0  }}
         </div>
         <div class="gacha-calculator-resource-single-content">
           ¥{{ monthlyPassResources ? monthlyPassResources.price : 0 }}
