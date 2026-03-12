@@ -1,11 +1,11 @@
 [
   {
-    "id": "序章",
+    "id": "意外来袭",
     "name": {
-      "zh": "序章",
+      "zh": "意外来袭",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -18,13 +18,14 @@
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
-  },{
+  },
+  {
     "id": "深入迷局",
     "name": {
       "zh": "深入迷局",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -37,13 +38,14 @@
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
-  },{
+  },
+  {
     "id": "分道扬镳",
     "name": {
       "zh": "分道扬镳",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -56,13 +58,14 @@
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
-  },{
+  },
+  {
     "id": "旧泉涸处新潮生",
     "name": {
       "zh": "旧泉涸处新潮生",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -75,13 +78,14 @@
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
-  },{
+  },
+  {
     "id": "风平水不静",
     "name": {
       "zh": "风平水不静",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -94,13 +98,14 @@
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
-  },{
+  },
+  {
     "id": "又是一波起",
     "name": {
       "zh": "又是一波起",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -113,13 +118,14 @@
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
-  },{
+  },
+  {
     "id": "逐波向水中",
     "name": {
       "zh": "逐波向水中",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -139,7 +145,7 @@
       "zh": "水清顽石现",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -153,13 +159,13 @@
       "ticketgachaSpecialSingle": 0
     }
   },
- {
+  {
     "id": "共饮一江水",
     "name": {
       "zh": "共饮一江水",
       "en": ""
     },
-    "start": "2026/01/22 12:00:00",
+    "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
@@ -169,6 +175,180 @@
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "蚀像寻遗·新潮起·故渊离",
+    "name": {
+      "zh": "蚀像寻遗·新潮起·故渊离",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 300,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "据点建设·天王坪援建点·二",
+    "name": {
+      "zh": "据点建设·天王坪援建点·二",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "泉中客·其一",
+    "name": {
+      "zh": "泉中客·其一",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "regional": "武陵",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "泉中客·其二",
+    "name": {
+      "zh": "泉中客·其二",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "regional": "武陵",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },{
+    "id": "泉中客·其三",
+    "name": {
+      "zh": "泉中客·其三",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "regional": "武陵",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "夺宝奇兵·其一",
+    "name": {
+      "zh": "夺宝奇兵·其一",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "regional": "武陵",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },{
+    "id": "夺宝奇兵·其二",
+    "name": {
+      "zh": "夺宝奇兵·其二",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "regional": "武陵",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },{
+    "id": "夺宝奇兵·其三",
+    "name": {
+      "zh": "夺宝奇兵·其三",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "regional": "武陵",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "侵蚀中的呼救",
+    "name": {
+      "zh": "侵蚀中的呼救",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "次要任务",
+    "regional": "武陵",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
