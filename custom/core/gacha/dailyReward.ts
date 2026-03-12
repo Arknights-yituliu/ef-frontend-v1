@@ -55,7 +55,7 @@ const bpTrackFreeReward = ref<Reward[]>([{
   content: {
     originiumRecharge: 0,
     diamond: 600,
-    ticketgachaStandardSingle: 0,
+    ticketgachaStandardSingle: 2,
     ticketgachaSpecialSingle: 0,
   }},{
   id: 'bp_track_originium_2',
@@ -72,7 +72,7 @@ const bpTrackFreeReward = ref<Reward[]>([{
   content: {
     originiumRecharge: 3,
     diamond: 0,
-    ticketgachaStandardSingle: 0,
+    ticketgachaStandardSingle: 4,
     ticketgachaSpecialSingle: 0,
   },
 }
