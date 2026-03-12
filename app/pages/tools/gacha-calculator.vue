@@ -132,9 +132,10 @@ const currentPool = ref<PoolOption>({
 });
 
 const startDate: Date = new Date();
-
+let remainingDays: number =  0 
 function selectedPool(option: PoolOption): void {
   currentPool.value = option;
+  remainingDays  =  calculateDaysDifference(startDate, option.end);
   calculatorDailyReward(startDate, option.end);
   existingRewardStatistics();
   dailyRewardStatistics();
@@ -1115,7 +1116,7 @@ function rechargeResourceStatistics(): void {
     const monthlyPack = packs['月卡'];
     if (monthlyPack) {
       result.originiumRecharge += 12; // 一次性12源石
-      result.diamond += rechargeResources.value.monthlyPassDays * 200; // 每天200嵌晶玉
+      result.diamond += remainingDays * 200; // 每天200嵌晶玉
     }
   }
 
