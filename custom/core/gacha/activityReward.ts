@@ -9,9 +9,9 @@ const activityReward = ref<Reward[]>([]);
 for (const reward of ActivityRewardTable as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
-  // if (reward.start < new Date()) {
-  //   reward.active = false;
-  // }
+  if (reward.start < new Date()) {
+    reward.active = false;
+  }
   activityReward.value.push(reward);
 }
 
@@ -88,29 +88,29 @@ function createNewPoolActivity() {
       },
     };
     activityReward.value.push(reward1);
-    
-  
-      const reward2: Reward = {
-        id: `干员叙事·${item.character}`,
-        name: {
-          zh: `干员叙事·${item.character}`,
-          en: '',
-        },
-        start: startDate,
-        end: new Date(item.versionEnd),
-        type: '通用',
-        module: '活动',
-        active: true,
-        version: item.version,
-        content: {
-          originiumRecharge: 0,
-          diamond: 600,
-          ticketgachaStandardSingle: 0,
-          ticketgachaSpecialSingle: 0,
-        },
-      };
-      activityReward.value.push( reward2);
-      if (item.character !== '汤汤') {}
+
+    const reward2: Reward = {
+      id: `干员叙事·${item.character}`,
+      name: {
+        zh: `干员叙事·${item.character}`,
+        en: '',
+      },
+      start: startDate,
+      end: '2099/12/31 12:00:00',
+      type: '通用',
+      module: '活动',
+      active: true,
+      version: item.version,
+      content: {
+        originiumRecharge: 0,
+        diamond: 600,
+        ticketgachaStandardSingle: 0,
+        ticketgachaSpecialSingle: 0,
+      },
+    };
+    activityReward.value.push(reward2);
+    if (item.character !== '汤汤') {
+    }
 
     let i = 1;
     for (const time of item.signInTime) {
