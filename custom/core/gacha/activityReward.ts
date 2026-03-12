@@ -9,9 +9,9 @@ const activityReward = ref<Reward[]>([]);
 for (const reward of ActivityRewardTable as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
-  if (reward.start < new Date()) {
-    reward.active = false;
-  }
+  // if (reward.start < new Date()) {
+  //   reward.active = false;
+  // }
   activityReward.value.push(reward);
 }
 
