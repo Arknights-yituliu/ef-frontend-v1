@@ -34,7 +34,7 @@ const wulingCrateRewardTable = [
     version: '新潮起·故渊离',
     content: {
       originiumRecharge: 0,
-      diamond: 14 * 15 + 16 * 30 + 10 * 60 + 5 * 100 + 4 * 150 + 5 * 20,
+      diamond: 14 * 15 + 12 * 30 + 5 * 60 + 5 * 100 + 4 * 150 + 5 * 20,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     },
