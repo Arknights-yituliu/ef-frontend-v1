@@ -41,7 +41,7 @@ export function getItemIconUrl(itemId: string): string | undefined {
   if (iconId === undefined) {
     return undefined;
   }
-  return `https://cos.yituliu.cn/endfield/unpack-images/items/${iconId}.webp`;
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${iconId}.webp`;
 }
 
 export function getItemRarity(itemId: string): number | undefined {
