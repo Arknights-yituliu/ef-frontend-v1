@@ -42,13 +42,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
   // 即：从非文档页面跳转到文档页面时
   if (import.meta.client && !cameFromDocs) {
     // 获取目标路由的完整路径（包含查询参数和哈希）
-    let targetUrl = to.fullPath || to.path;
+    const targetUrl = to.fullPath || to.path;
     if (targetUrl) {
-      // 对 github.io 链接进行特殊处理，如果当前 url 路径中包含 github.io ，在 url 前追加 /ef-frontend-v1 （先写死）
-      if (targetUrl.includes('github.io')) {
-        targetUrl = targetUrl.replace('github.io', 'github.io/ef-frontend-v1');
-      }
-
       // 在新窗口打开文档页面
       window.open(targetUrl, '_blank', 'noopener noreferrer');
     }
