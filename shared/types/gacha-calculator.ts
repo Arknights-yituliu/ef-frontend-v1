@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+
 
 export interface PieChartData {
   value: number;
@@ -7,7 +7,11 @@ export interface PieChartData {
 
 export type ItemDict = Record<string, string>
 
-export type CollectReward  = Record<string, number>
+export type CollectReward  = {
+  originiumRecharge:number;
+  stage: number;
+  version: string;
+}
 
 
 
@@ -21,9 +25,15 @@ export type RewardStatisticsResultDetail ={
   ticketgachaStandardSingle: number;
   /** 特许寻访凭证 */
   ticketgachaSpecialSingle: number;
+  totalPulls?: number;
 }
 
-export type TotalPullsSingle = Record<string, number>
+export interface TotalPullsSingle {
+  /** 基础寻访凭证 */
+  ticketgachaStandardSingle: number;
+  /** 特许寻访凭证 */
+  ticketgachaSpecialSingle: number;
+}
 
 
 // export type ResourceStatisticsResultDetail =  Record<string,{
@@ -51,16 +61,21 @@ export interface Reward {
   module: string;
   regional?:string;
   active: boolean;
-  content: {
-    /** 衍质源石 */
-    originiumRecharge: number;
-    /** 嵌晶玉数量 */
-    diamond: number;
-    /**  基础寻访凭证 */
-    ticketgachaStandardSingle: number;
-    /** 特许寻访凭证 */
-    ticketgachaSpecialSingle: number;
-  };
+  version:string;
+  isLimited?: boolean;
+  content: RewardContent;
+  tips?:string[];
+}
+
+export interface RewardContent{
+  /** 衍质源石 */
+  originiumRecharge: number;
+  /** 嵌晶玉数量 */
+  diamond: number;
+  /**  基础寻访凭证 */
+  ticketgachaStandardSingle: number;
+  /** 特许寻访凭证 */
+  ticketgachaSpecialSingle: number;
 }
 
 export interface CurrentVersionRemainingTime {

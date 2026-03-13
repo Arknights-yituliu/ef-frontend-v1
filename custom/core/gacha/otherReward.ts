@@ -1,20 +1,24 @@
 import type {  Reward } from '#shared/types/gacha-calculator.ts';
-import otherRewardTableJson from './json/other.json';
 import {  ref } from 'vue';
-import intelArchiveRewardJson from './json/intel_archive_reward.json';
-import FactoryManualTable from './json/factory_manual_table.json';
+import FactoryManualTable from '@/custom/core/gacha/data/factory_manual_table.json';
+
+import IntelArchiveRewardJson from '@/custom/core/gacha/data/intel_archive_reward.json';
+import OtherRewardTableJson from '@/custom/core/gacha/data/other.json';
 
 const otherRewardTable= ref<Reward[]>([]);
 
-for(const reward of otherRewardTableJson as Reward[]){
+for(const reward of OtherRewardTableJson as Reward[]){
   reward.start = new Date(reward.start)
   reward.end = new Date(reward.end)
   otherRewardTable.value.push(reward);
 }
 
+
+
+
 const intelArchiveReward = ref<Reward[]>([]);
 
-for (const reward of intelArchiveRewardJson) {
+for (const reward of IntelArchiveRewardJson) {
   intelArchiveReward.value.push(reward);
 }
 
@@ -33,22 +37,39 @@ const factoryManualReward = ref<Reward>({
     zh: `简制手册奖励`,
     en: ''
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '简制手册',
-  active: true,
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: factoryManualCountReward,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0
-  }
+  },
+  tips: [
+    '通过滑块调节当前简制手册奖励阶段',
+  ]
 });
+
+
+const factoryManualMergeRewards: Reward[] = groupAndMergeRewardsByVersion(
+  '简制手册奖励',
+  FactoryManualTable,
+);
+
+
+
+console.log(factoryManualMergeRewards);
+
+const otherAllRewardTable = ref<Reward[]>([]);
+otherAllRewardTable.value.push(...otherRewardTable.value, ...intelArchiveReward.value, ...factoryManualMergeRewards);
 
 export {
   factoryManualReward,
   factoryManualRewardMax,
   intelArchiveReward,
+  otherAllRewardTable,
   otherRewardTable,
 }

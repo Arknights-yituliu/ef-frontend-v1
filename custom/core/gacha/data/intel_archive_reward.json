@@ -5,11 +5,11 @@
       "zh": "档案采集·天使",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -23,11 +23,11 @@
       "zh": "档案采集·裂地者谋杀案",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -41,11 +41,11 @@
       "zh": "档案采集·方兴衢",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -59,11 +59,11 @@
       "zh": "档案采集·景玉谷交通",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -77,11 +77,11 @@
       "zh": "档案采集·旧日梦魇",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -95,11 +95,11 @@
       "zh": "档案采集·超域试验场的起源",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
@@ -112,11 +112,11 @@
     "zh": "档案采集·基建前站搜救信息",
     "en": ""
   },
-  "start": "2026/01/22 10:00:00",
-  "end": "2099/12/31 10:00:00",
+  "start": "2026/01/22 12:00:00",
+  "end": "2099/12/31 12:00:00",
   "type": "通用",
   "module": "情报档案库",
-  "active": true,
+  "active": true,"version": "零号委托",
   "content": {
     "originiumRecharge": 0,
     "diamond": 200,
@@ -129,11 +129,11 @@
     "zh": "档案采集·碾骨氏族",
     "en": ""
   },
-  "start": "2026/01/22 10:00:00",
-  "end": "2099/12/31 10:00:00",
+  "start": "2026/01/22 12:00:00",
+  "end": "2099/12/31 12:00:00",
   "type": "通用",
   "module": "情报档案库",
-  "active": true,
+  "active": true,"version": "零号委托",
   "content": {
     "originiumRecharge": 0,
     "diamond": 200,

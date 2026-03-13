@@ -7,11 +7,11 @@
       <h2 class="page-sub-title">{{ shop.shopName }}</h2>
       <v-card>
         <v-data-table
+          class="mb-4"
           :headers="headers"
           :hover="true"
           :items="getTableItems(shop.shopItems)"
           :items-per-page="25"
-          class="mb-4"
         >
           <template #item.itemName="{ item }">
             {{ item.itemName }}

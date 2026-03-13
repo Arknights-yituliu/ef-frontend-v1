@@ -15,9 +15,10 @@
     "shopValue": "商店性价比",
     "packageValue": "礼包性价比",
     "itemValueTable": "物品价值表",
+    "couponStrategy": "最优倒货策略",
     "tools": "一图流工具箱",
     "gachaCalculator": "攒抽计算器",
-    "essenceCalculator": "基质计算器",
+    "essenceCalculator": "基质规划器",
     "quantitativeCalculator": "产线量化计算器",
     "resources": "资源下载",
     "essenceRecognizer": "基质识别工具",
@@ -86,7 +87,7 @@
         "packageValue": "礼包性价比",
         "itemValueTable": "物品价值表",
         "gachaCalculator": "攒抽计算器",
-        "essenceCalculator": "基质计算器",
+        "essenceCalculator": "基质规划器",
         "quantitativeCalculator": "量化计算器",
         "batterySplitCalculator": "分流计算器",
         "essenceRecognizer": "基质识别工具",
@@ -169,7 +170,7 @@
           "tag": "一图流",
           "linkText": "工具箱",
           "linkIcon": "mdi-toolbox",
-          "description": "包含攒抽计算器、基质计算器和抽卡分析等实用工具"
+          "description": "包含攒抽计算器、基质规划器和抽卡分析等实用工具"
         },
         "dige": {
           "title": "D.I.G.E. - 终末地热能池规划器",
@@ -365,11 +366,39 @@
         "sortRarity": "稀有度",
         "sortAsc": "升序",
         "sortDesc": "降序"
+      },
+      "couponStrategy": {
+        "title": "弹性需求物资交易策略",
+        "subtitle": "根据弹性需求物资最低价的变化规律，优化每日购买额度的使用策略",
+        "todayStrategy": "今日进货参考价",
+        "refreshCountdown": "距离下次价格刷新：",
+        "wuling": "武陵购入参考价",
+        "fourValley": "四号谷地购入参考价",
+        "lowestPriceBelow": "当最低价低于 {price} 时",
+        "lowestPriceAbove": "当最低价高于 {price} 时",
+        "priceBetween": "当最低价在 {price1} 到 {price2} 之间时",
+        "buyAll": "全部购买",
+        "buyHalfQuota": "买到剩1/2配额",
+        "buyOneThirdQuota": "买到剩1/3配额",
+        "buyTwoThirdsQuota": "买到剩2/3配额",
+        "strategyTable": "策略速查表",
+        "weekday": "星期",
+        "wulingStrategyTable": "武陵",
+        "fourValleyStrategyTable": "四号谷地",
+        "goodsTable": "货品列表",
+        "goodsName": "货品名称",
+        "correctionValue": "相对均价修正值",
+        "referencePrice": "出售参考价",
+        "explanation": {
+          "title": "使用说明",
+          "priceFluctuation": "购入的参考价格随星期一~星期日有波动，具体可查阅下方的策略速查表",
+          "correctionValue": "由于不同货物出售价的期望不同，因此购入的参考价格=平均值+修正值"
+        }
       }
     },
     "tools": {
       "essenceCalculator": {
-        "title": "基质计算器",
+        "title": "基质规划器",
         "demandSet": "需求设定",
         "demandSetDescription1": "在此设定想要刷取的武器基质，顺序不会影响结果。",
         "demandSetDescription2": "点击“+”按钮添加新的基质条目。",
@@ -384,8 +413,8 @@
         "farmLocation": "刷取地点",
         "preEngraveStats": "预刻写方案",
         "selectAttributeStats": "选择基础属性",
-        "selectSecondaryAttribute": "选择附加属性",
-        "selectSkillAttribute": "选择技能属性",
+        "selectSecondaryStats": "选择附加属性",
+        "selectSkillStats": "选择技能属性",
         "noValidDemand": "请在“需求设定”中至少添加一个有效的基质需求。",
         "debugInput": "调试输入",
         "debugOutput": "调试输出",
@@ -419,7 +448,10 @@
         "operationalManual": "行动手册",
         "regional": "地区",
         "pieChartName": "攒抽占比",
-        "pieChartTooltip": "{seriesName} {name} : {value}抽,占 ({percent}%)"
+        "pieChartTooltip": "{seriesName} {name} : {value}抽,占 ({percent}%)",
+        "countWithPulls": "{count}（{pulls} 抽）",
+        "calculationDetail": "计算详情",
+        "shortcutActions": "一键全选或清空"
       }
     },
     "others": {

@@ -9,13 +9,13 @@
       </div>
       <div class="flex-1" />
       <v-btn
-        :text="$t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite')"
         append-icon="mdi-open-in-new"
         color="primary"
+        href="https://endfield.hypergryph.com/checkAccess"
         prepend-icon="mdi-open-in-new"
         size="small"
-        href="https://endfield.hypergryph.com/checkAccess"
         target="_blank"
+        :text="$t('component.home.checkAccess.checkAccessOnEndfieldOfficialSite')"
       />
     </div>
     <div class="home-card-content">

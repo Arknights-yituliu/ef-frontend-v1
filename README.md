@@ -141,6 +141,7 @@ docker build -t ef-frontend-v1 .
 ```
 
 > 💡 **提示：** 如果构建时拉取 node 和 nginx 镜像失败，可以手动拉取：
+>
 > ```bash
 > docker pull node:20-alpine
 > docker pull nginx:1.28-alpine-slim
@@ -163,14 +164,6 @@ docker run -d -p 80:80 ef-frontend-v1
 - [路由设置指南](./content/introduction/route-setting-zh.md) - 学习如何配置和管理路由
 - [文档编写指南](./content/introduction/docs-setting-zh.md) - 学习如何为项目编写新的文档
 - [常见问题解答](./content/introduction/common-questions-zh.md) - 解决开发过程中的常见问题
-
-### AI 开发辅助
-
-- [AI Agent 开发指南](./agent.md) - 专为 AI 生成代码时参考的知识文档，包含项目开发流程和规范
-
-### 系统说明
-
-- [Design.md](./Design.md) - 网站设计风格文档
 
 ### 相关资源
 

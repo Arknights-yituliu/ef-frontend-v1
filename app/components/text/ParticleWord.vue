@@ -3,9 +3,9 @@
     <div class="particle-word-wrapper">
       <canvas
         ref="canvasRef"
+        class="particle-canvas"
         :height="CANVAS_HEIGHT"
         :width="CANVAS_WIDTH"
-        class="particle-canvas"
       />
       <div v-if="!isLoaded" class="particle-loading">
         {{ $t('component.particleWord.loading') }}
@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-import Color from 'color';
 import type { ColorInstance } from 'color';
+import Color from 'color';
 const { t } = useI18n();
 
 // 画布尺寸
@@ -77,11 +77,11 @@ class Particle {
     if (mouseX !== undefined && mouseY !== undefined && mouseX > 0 && mouseY > 0) {
       const dx = mouseX - this.x;
       const dy = mouseY - this.y;
-      const distance = Math.sqrt(dx ** 2 + dy ** 2);
+      const distance = Math.hypot(dx, dy);
 
       if (distance < RADIUS) {
         let disPercent = RADIUS / distance;
-        disPercent = disPercent > 7 ? 7 : disPercent;
+        disPercent = Math.min(disPercent, 7);
 
         const angle = Math.atan2(dy, dx);
         const cos = Math.cos(angle);
@@ -103,7 +103,7 @@ class Particle {
   isSettled(): boolean {
     const dx = Math.abs(this.x - this.totalX);
     const dy = Math.abs(this.y - this.totalY);
-    const speed = Math.sqrt(this.vx ** 2 + this.vy ** 2);
+    const speed = Math.hypot(this.vx, this.vy);
     return dx < 0.5 && dy < 0.5 && speed < VELOCITY_THRESHOLD && this.opacity >= 1;
   }
 }
@@ -215,7 +215,7 @@ class ParticleCanvas {
 
     let allSettled = true;
 
-    this.particles.forEach((particle) => {
+    for (const particle of this.particles) {
       particle.update(this.mouseX, this.mouseY);
       particle.draw(this.ctx);
       
@@ -223,7 +223,7 @@ class ParticleCanvas {
       if (!particle.isSettled()) {
         allSettled = false;
       }
-    });
+    }
 
     // 如果鼠标不在活动状态且所有粒子都已稳定，停止动画
     if (!this.mouseActive && allSettled) {
@@ -249,7 +249,7 @@ const canvasRef = ref<HTMLCanvasElement | null>(null);
 const particleCanvasRef = ref<ParticleCanvas | null>(null);
 const isLoaded = ref(false);
 
-const initParticleCanvas = () => {
+function initParticleCanvas () {
   if (canvasRef.value) {
     if (particleCanvasRef.value) {
       particleCanvasRef.value.destroy();
@@ -262,7 +262,7 @@ const initParticleCanvas = () => {
     particleCanvasRef.value.startAnimation();
     isLoaded.value = true;
   }
-};
+}
 
 onMounted(() => {
   initParticleCanvas();

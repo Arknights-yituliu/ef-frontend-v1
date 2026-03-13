@@ -1,7 +1,7 @@
-import { ref } from 'vue';
 import type {
   GachaResourceStatisticsResult
 } from '#shared/types/gacha-calculator';
+import { ref } from 'vue';
 
 
 export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>({

@@ -44,25 +44,30 @@ const cardData = computed(() => {
 /**
  * 根据标签类型获取对应的颜色
  */
-const getTagColor = (tagType: CardTagType): string => {
+function getTagColor (tagType: CardTagType): string {
   switch (tagType) {
-    case 'official':
-      return '#FFC107'; // 黄色
-    case 'yituliu':
-      return '#00BCD4'; // 青色
-    case 'yituliu3rd':
-      return '#00BCD4'; // 青色
-    case 'thirdparty':
-      return '#F44336'; // 红色
-    default:
-      return '#9E9E9E'; // 灰色
+    case 'official': {
+      return '#FFC107';
+    } // 黄色
+    case 'yituliu': {
+      return '#00BCD4';
+    } // 青色
+    case 'yituliu3rd': {
+      return '#00BCD4';
+    } // 青色
+    case 'thirdparty': {
+      return '#F44336';
+    } // 红色
+    default: {
+      return '#9E9E9E';
+    } // 灰色
   }
-};
+}
 
 /**
  * 处理卡片点击事件
  */
-const handleCardClick = () => {
+function handleCardClick () {
   if (!cardData.value.actionButton) return;
   
   const button = cardData.value.actionButton;
@@ -74,12 +79,12 @@ const handleCardClick = () => {
     // 复制文本
     copyToClipboard(button.actionData, t('common.copySuccess'));
   }
-};
+}
 
 /**
  * 复制文本到剪贴板
  */
-const copyToClipboard = async (text: string, successMessage: string) => {
+async function copyToClipboard (text: string, successMessage: string) {
   try {
     await navigator.clipboard.writeText(text);
     alert(successMessage);
@@ -87,13 +92,13 @@ const copyToClipboard = async (text: string, successMessage: string) => {
     console.error('复制失败:', error);
     alert(t('common.copyFailed'));
   }
-};
+}
 </script>
 
 <template>
   <div class="home-small-card" @click="handleCardClick">
     <div class="home-small-card-header">
-      <img v-if="cardData.icon" :alt="cardData.title" :src="cardData.icon" class="home-small-card-logo" >
+      <img v-if="cardData.icon" :alt="cardData.title" class="home-small-card-logo" :src="cardData.icon" >
       <div class="home-small-card-title">
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-small-card-tags">

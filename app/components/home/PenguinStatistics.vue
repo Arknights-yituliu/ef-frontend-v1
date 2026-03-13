@@ -13,13 +13,13 @@
       </div>
       <div class="flex-1" />
       <v-btn
-        :text="$t('component.home.penguinStatistics.penguinStatistics')"
         append-icon="mdi-open-in-new"
         color="primary"
+        href="https://penguin-stats.cn/"
         prepend-icon="mdi-web"
         size="small"
-        href="https://penguin-stats.cn/"
         target="_blank"
+        :text="$t('component.home.penguinStatistics.penguinStatistics')"
       />
     </div>
     <div class="home-card-content">

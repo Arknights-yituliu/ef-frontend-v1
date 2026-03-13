@@ -24,8 +24,8 @@
             <img
               v-if="link.icon_url"
               :alt="getLocalizedValue(link.localized_name)"
-              :src="link.icon_url"
               class="link-icon"
+              :src="link.icon_url"
               @error="handleImageError"
             >
             <h3 class="link-name">{{ getLocalizedValue(link.localized_name) }}</h3>
@@ -38,7 +38,7 @@
           <p class="link-slogan">{{ getLocalizedValue(link.localized_slogan) }}</p>
 
           <!-- 标签 -->
-          <div v-if="getLocalizedArray(link.localized_tags).length" class="link-tags">
+          <div v-if="getLocalizedArray(link.localized_tags).length > 0" class="link-tags">
             <span
               v-for="(tag, index) in getLocalizedArray(link.localized_tags)"
               :key="index"
@@ -53,9 +53,9 @@
             <a
               v-for="linkItem in getFilteredLinks(link.links)"
               :key="linkItem.url"
+              class="link-button"
               :class="{ primary: linkItem.primary }"
               :href="linkItem.url"
-              class="link-button"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -142,41 +142,41 @@ const friendLinks = computed(() => {
 });
 
 // 获取本地化字符串值
-const getLocalizedValue = (localized: LocalizedValue | undefined): string | undefined => {
+function getLocalizedValue (localized: LocalizedValue | undefined): string | undefined {
   if (!localized) return undefined;
 
   // 将 locale 从 'zh-CN' 转换为 'zh_CN'，'en-US' 转换为 'en_US'
   const localeKey = locale.value === 'zh-CN' ? 'zh_CN' : 'en_US';
 
   return localized[localeKey as keyof LocalizedValue] as string;
-};
+}
 
 // 获取本地化数组值
-const getLocalizedArray = (localized: LocalizedArray | undefined): string[] => {
+function getLocalizedArray (localized: LocalizedArray | undefined): string[] {
   if (!localized) return [];
 
   // 将 locale 从 'zh-CN' 转换为 'zh_CN'，'en-US' 转换为 'en_US'
   const localeKey = locale.value === 'zh-CN' ? 'zh_CN' : 'en_US';
 
   return (localized[localeKey as keyof LocalizedArray] as string[]) || [];
-};
+}
 
 // 过滤链接（根据区域性和主要链接）
-const getFilteredLinks = (links: LinkItem[]): LinkItem[] => {
+function getFilteredLinks (links: LinkItem[]): LinkItem[] {
   // 优先显示主要链接，然后是其他链接
   const primaryLinks = links.filter((link) => link.primary);
   const otherLinks = links.filter((link) => !link.primary);
 
   // 可以在这里添加区域过滤逻辑，但为了简单起见，显示所有链接
   return [...primaryLinks, ...otherLinks];
-};
+}
 
 // 处理图片加载错误
-const handleImageError = (event: Event) => {
+function handleImageError (event: Event) {
   const img = event.target as HTMLImageElement;
   // 可以设置一个默认图标
   img.style.display = 'none';
-};
+}
 
 // SEO 配置
 const siteName = computed(() => t('layout.siteName'));

@@ -45,19 +45,22 @@
         "i18nKey": "quantitativeCalculator",
         "nameKey": "menu.quantitativeCalculator",
         "routePath": "https://factory.ef.yituliu.cn/aef?v=11",
-        "vuetifyIcon": "mdi-calculator"
+        "vuetifyIcon": "mdi-calculator",
+        "showJumpHint": true
       },
-      {
-        "i18nKey": "gachaAnalysis",
-        "nameKey": "menu.gachaAnalysis",
-        "routePath": "/tools/gacha-analysis",
-        "vuetifyIcon": "mdi-chart-bar"
-      },
+
       {
         "i18nKey": "batterySplitCalculator",
         "nameKey": "menu.batterySplitCalculator",
         "routePath": "/tools/power-calc",
         "vuetifyIcon": "mdi-battery"
+      },
+
+      {
+        "i18nKey": "gachaAnalysis",
+        "nameKey": "menu.gachaAnalysis",
+        "routePath": "/tools/gacha-analysis",
+        "vuetifyIcon": "mdi-chart-bar"
       }
     ]
   },
@@ -103,7 +106,8 @@
         "nameKey": "menu.projectStructure",
         "routePath": "/introduction/project-structure",
         "vuetifyIcon": "mdi-file-tree",
-        "isDocs": true
+        "isDocs": true,
+        "showJumpHint": true
       }
     ]
   },
@@ -117,13 +121,15 @@
         "i18nKey": "infrastructureLayoutGuide",
         "nameKey": "menu.infrastructureLayoutGuide",
         "routePath": "/operations/infrastructure-layout-guide",
-        "vuetifyIcon": "mdi-view-grid"
+        "vuetifyIcon": "mdi-view-grid",
+        "showJumpHint": true
       },
       {
         "i18nKey": "how2getgachadurl",
         "nameKey": "menu.how2getgachadurl",
         "routePath": "/operations/how2get-gacha-url-en",
-        "vuetifyIcon": "mdi-link"
+        "vuetifyIcon": "mdi-link",
+        "showJumpHint": true
       }
     ]
   }

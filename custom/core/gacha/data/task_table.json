@@ -5,11 +5,11 @@
       "zh": "世代摇篮",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -23,11 +23,11 @@
       "zh": "消失的爱人",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -41,11 +41,11 @@
       "zh": "风雨欲来·枢纽区",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -59,11 +59,11 @@
       "zh": "基地解围",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 3,
       "diamond": 0,
@@ -77,11 +77,11 @@
       "zh": "机械救星",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -95,11 +95,11 @@
       "zh": "古董无人机",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 50,
@@ -113,11 +113,11 @@
       "zh": "风雨欲来·终",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -131,11 +131,11 @@
       "zh": "再访基地",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -149,11 +149,11 @@
       "zh": "金子总会发光",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -167,11 +167,11 @@
       "zh": "修复大型起重机",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -185,11 +185,11 @@
       "zh": "希望与代价·其二",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -203,11 +203,11 @@
       "zh": "矿脉断章",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -221,11 +221,11 @@
       "zh": "诡楼寻踪",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 4,
       "diamond": 0,
@@ -239,11 +239,11 @@
       "zh": "开拓前路",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 3,
       "diamond": 0,
@@ -257,11 +257,11 @@
       "zh": "园区穿行",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -275,11 +275,11 @@
       "zh": "酝酿反击",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -293,11 +293,11 @@
       "zh": "能量清淤",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -311,11 +311,11 @@
       "zh": "山道下行",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -329,11 +329,11 @@
       "zh": "风雨欲来·阿伯莉采石场",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -347,11 +347,11 @@
       "zh": "烙铁灼痕",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -365,11 +365,11 @@
       "zh": "三脚架之家",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 30,
@@ -383,11 +383,11 @@
       "zh": "深层管理区救援",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -401,11 +401,11 @@
       "zh": "建立据点",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 3,
       "diamond": 0,
@@ -419,11 +419,11 @@
       "zh": "紧急救助",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -437,11 +437,11 @@
       "zh": "重整旗鼓",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 4,
       "diamond": 0,
@@ -455,11 +455,11 @@
       "zh": "高空救援",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 50,
@@ -473,11 +473,11 @@
       "zh": "好人难寻",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -491,11 +491,11 @@
       "zh": "风雨欲来·矿脉源区",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -509,11 +509,11 @@
       "zh": "庇护之所",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -527,11 +527,11 @@
       "zh": "帝江号升级维护·一",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -545,11 +545,11 @@
       "zh": "商路难走",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -563,11 +563,11 @@
       "zh": "漏网之虫",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 50,
@@ -581,11 +581,11 @@
       "zh": "神秘信号",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 3,
       "diamond": 0,
@@ -599,11 +599,11 @@
       "zh": "初入终局",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -617,11 +617,11 @@
       "zh": "尘封旧档",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -635,11 +635,11 @@
       "zh": "踏足矿脉",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -653,11 +653,11 @@
       "zh": "未熄火种",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -671,11 +671,11 @@
       "zh": "初探武陵",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -689,11 +689,11 @@
       "zh": "重启地区物资调度·其一",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 50,
@@ -707,11 +707,11 @@
       "zh": "希望与代价·其一",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -725,11 +725,11 @@
       "zh": "生意难做",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -743,11 +743,11 @@
       "zh": "环带来客·其一",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -761,11 +761,11 @@
       "zh": "余波暂平",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -779,11 +779,11 @@
       "zh": "前线奔袭",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -797,11 +797,11 @@
       "zh": "幻觉",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -815,11 +815,11 @@
       "zh": "稼穑不易",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 40,
@@ -833,11 +833,11 @@
       "zh": "谷地重启",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -851,11 +851,11 @@
       "zh": "修缮进展",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -869,11 +869,11 @@
       "zh": "再度启程",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -887,11 +887,11 @@
       "zh": "照常升起",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 50,
@@ -905,11 +905,11 @@
       "zh": "无色印记·发现",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -923,11 +923,11 @@
       "zh": "生产工业爆炸物",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -941,11 +941,11 @@
       "zh": "西行入谷",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -959,11 +959,11 @@
       "zh": "职责所在",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -977,11 +977,11 @@
       "zh": "维修总动员",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -995,11 +995,11 @@
       "zh": "风雨欲来·供能高地",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 25,
@@ -1013,11 +1013,11 @@
       "zh": "要塞决战",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -1031,11 +1031,11 @@
       "zh": "爆破救援",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 50,
@@ -1049,11 +1049,11 @@
       "zh": "前往武陵城",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -1067,11 +1067,11 @@
       "zh": "推开园门",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -1085,11 +1085,11 @@
       "zh": "穿越研究园",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -1103,11 +1103,11 @@
       "zh": "踏破雾火",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 3,
       "diamond": 0,
@@ -1121,11 +1121,11 @@
       "zh": "误入清波寨",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 2,
       "diamond": 0,
@@ -1139,11 +1139,11 @@
       "zh": "驰援采石场",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -1157,11 +1157,11 @@
       "zh": "临战休整",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 1,
       "diamond": 0,
@@ -1175,11 +1175,11 @@
       "zh": "紧急救助",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "任务奖励",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,

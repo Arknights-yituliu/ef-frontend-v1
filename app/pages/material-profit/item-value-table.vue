@@ -7,10 +7,10 @@
     <section class="filter-container">
       <v-text-field
         v-model="searchQuery"
-        :placeholder="$t('page.materialProfit.itemValueTable.searchPlaceholder')"
         class="filter-search"
         density="compact"
         hide-details
+        :placeholder="$t('page.materialProfit.itemValueTable.searchPlaceholder')"
         variant="outlined"
       />
       <div class="filter-sort">
@@ -23,26 +23,26 @@
           inline
         >
           <v-radio
-            :label="$t('page.materialProfit.itemValueTable.sortValue')"
             density="compact"
+            :label="$t('page.materialProfit.itemValueTable.sortValue')"
             value="value"
           />
           <v-radio
-            :label="$t('page.materialProfit.itemValueTable.sortRarity')"
             density="compact"
+            :label="$t('page.materialProfit.itemValueTable.sortRarity')"
             value="rarity"
           />
         </v-radio-group>
       </div>
       <v-btn
+        class="sort-order-btn"
+        density="compact"
+        size="large"
         :title="
           sortOrder === 'asc'
             ? $t('page.materialProfit.itemValueTable.sortAsc')
             : $t('page.materialProfit.itemValueTable.sortDesc')
         "
-        class="sort-order-btn"
-        density="compact"
-        size="large"
         variant="outlined"
         @click="toggleSortOrder"
       >
@@ -154,17 +154,20 @@ const filteredAndSortedItemIdList = computed(() => {
     let valueB: number;
 
     switch (sortField.value) {
-      case 'value':
+      case 'value': {
         valueA = getItemValue(a);
         valueB = getItemValue(b);
         break;
-      case 'rarity':
+      }
+      case 'rarity': {
         valueA = getItemRarity(a) ?? 0;
         valueB = getItemRarity(b) ?? 0;
         break;
-      default:
+      }
+      default: {
         valueA = getItemValue(a);
         valueB = getItemValue(b);
+      }
     }
 
     if (sortOrder.value === 'asc') {

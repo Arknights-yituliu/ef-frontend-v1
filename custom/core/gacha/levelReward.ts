@@ -1,6 +1,6 @@
 import type { ItemDict, Reward } from '#shared/types/gacha-calculator.ts';
-import authorityLevelUpRewardTable from './json/authority_level_up_reward_table.json'
 import { ref } from 'vue';
+
 
 
 export const itemIdDict: ItemDict = {
@@ -21,11 +21,11 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     zh: `权限等阶8奖励`,
     en: ''
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '权限等阶提升活动',
-  active: true,
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -39,11 +39,11 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       zh: `权限等阶15奖励`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
-    active: true,
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 1000,
@@ -57,11 +57,11 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       zh: `权限等阶20奖励`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
-    active: true,
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 1000,
@@ -75,11 +75,11 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       zh: `权限等阶30奖励`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
-    active: true,
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 1000,
@@ -93,11 +93,11 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       zh: `权限等阶45奖励`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
     module: '权限等阶提升活动',
-    active: true,
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 1000,
@@ -113,11 +113,11 @@ export const authorityLevelUpReward = ref<Reward>({
     zh: `权限等级提升奖励`,
     en: ''
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '权限等阶提升',
-  active: true,
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 4500,
@@ -132,11 +132,11 @@ export const worldLevelReward = ref<Reward>({
     zh: `探索等级奖励`,
     en: ''
   },
-  start: '2026/01/22 10:00:00',
-  end: '2099/12/31 10:00:00',
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
   type: '通用',
   module: '探索等级',
-  active: true,
+  active: true,version: "零号委托",
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -145,7 +145,7 @@ export const worldLevelReward = ref<Reward>({
   }
 });
 
-export{
-  authorityLevelUpRewardTable
-}
 
+
+
+export {default as authorityLevelUpRewardTable} from '@/custom/core/gacha/data/authority_level_up_reward_table.json'

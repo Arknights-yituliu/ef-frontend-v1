@@ -6,14 +6,14 @@ const props = defineProps<{title:string}>();
 
 <template>
   <div class="gacha-calculator-module-title">
-    <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+    <svg height="36" viewBox="0 0 36 36" width="36" xmlns="http://www.w3.org/2000/svg">
       <!-- 倒三角形 -->
       <polygon
-        points="18,30 36,6 0,6"
         fill="#ffffff"
+        points="18,30 36,6 0,6"
         stroke="#C92A2A"
-        stroke-width="0"
         stroke-linejoin="round"
+        stroke-width="0"
       />
     </svg>
     <div class="gacha-calculator-module-title-icon"/>

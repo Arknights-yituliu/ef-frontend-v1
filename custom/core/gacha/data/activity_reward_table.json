@@ -1,0 +1,382 @@
+[
+  {
+    "id": "生存特训",
+    "name": {
+      "zh": "生存特训",
+      "en": ""
+    },
+    "start": "2026/04/09 12:00:00",
+    "end": "2026/04/30 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1600,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "净流涤尘",
+    "name": {
+      "zh": "净流涤尘",
+      "en": ""
+    },
+    "start": "2026/03/29 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "密境行者·行探险窟",
+    "name": {
+      "zh": "密境行者·行探险窟",
+      "en": ""
+    },
+    "start": "2026/03/29 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "影拓丰碑·灼痛疤痕",
+    "name": {
+      "zh": "影拓丰碑·灼痛疤痕",
+      "en": ""
+    },
+    "start": "2026/03/26 12:00:00",
+    "end": "2026/04/09 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "物资供给·开拓节",
+    "name": {
+      "zh": "物资供给·开拓节",
+      "en": ""
+    },
+    "start": "2026/03/19 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "泉流无声",
+    "name": {
+      "zh": "泉流无声",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2026/04/16 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+   {
+    "id": "清波将起签到",
+    "name": {
+      "zh": "清波将起签到",
+      "en": ""
+    },
+    "start": "2026/03/05 12:00:00",
+    "end": "2026/03/12 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "密境行者·密境初显",
+    "name": {
+      "zh": "密境行者·密境初显",
+      "en": ""
+    },
+    "start": "2026/02/24 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1800,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "2026暖笺贺春",
+    "name": {
+      "zh": "2026暖笺贺春",
+      "en": ""
+    },
+    "start": "2026/02/14 12:00:00",
+    "end": "2026/03/03 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 360,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "卡莉的谷地童话day7",
+    "name": {
+      "zh": "卡莉的谷地童话day7",
+      "en": ""
+    },
+    "start": "2026/02/13 12:00:00",
+    "end": "2026/02/24 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 300,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "卡莉的谷地童话day6",
+    "name": {
+      "zh": "卡莉的谷地童话day6",
+      "en": ""
+    },
+    "start": "2026/02/12 12:00:00",
+    "end": "2026/02/24 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "影拓丰碑·大地的弃子",
+    "name": {
+      "zh": "影拓丰碑·大地的弃子",
+      "en": ""
+    },
+    "start": "2026/02/12 12:00:00",
+    "end": "2026/03/12 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "影拓丰碑·无机造物",
+    "name": {
+      "zh": "影拓丰碑·无机造物",
+      "en": ""
+    },
+    "start": "2026/02/12 12:00:00",
+    "end": "2026/03/12 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "卡莉的谷地童话day5",
+    "name": {
+      "zh": "卡莉的谷地童话day5",
+      "en": ""
+    },
+    "start": "2026/02/11 12:00:00",
+    "end": "2026/02/24 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "卡莉的谷地童话day4",
+    "name": {
+      "zh": "卡莉的谷地童话day4",
+      "en": ""
+    },
+    "start": "2026/02/10 12:00:00",
+    "end": "2026/02/24 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "卡莉的谷地童话day3",
+    "name": {
+      "zh": "卡莉的谷地童话day3",
+      "en": ""
+    },
+    "start": "2026/02/09 12:00:00",
+    "end": "2026/02/24 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "卡莉的谷地童话day2",
+    "name": {
+      "zh": "卡莉的谷地童话day2",
+      "en": ""
+    },
+    "start": "2026/02/08 12:00:00",
+    "end": "2026/02/24 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "卡莉的谷地童话day1",
+    "name": {
+      "zh": "卡莉的谷地童话day1",
+      "en": ""
+    },
+    "start": "2026/02/07 12:00:00",
+    "end": "2026/02/24 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "烟光武陵",
+    "name": {
+      "zh": "烟光武陵",
+      "en": ""
+    },
+    "start": "2026/02/07 12:00:00",
+    "end": "2026/02/24 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "离群之狼",
+    "name": {
+      "zh": "离群之狼",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "个人故事",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }
+]

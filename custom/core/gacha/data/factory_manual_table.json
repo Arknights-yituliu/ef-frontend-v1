@@ -1,0 +1,671 @@
+[
+  {
+    "id": "竹林虫蛹",
+    "name": {
+      "zh": "竹林虫蛹",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "淸波竹铃",
+    "name": {
+      "zh": "淸波竹铃",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "荞花",
+    "name": {
+      "zh": "荞花",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "映火荞花",
+    "name": {
+      "zh": "映火荞花",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "柑实",
+    "name": {
+      "zh": "柑实",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "黯银柑实",
+    "name": {
+      "zh": "黯银柑实",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "酮化灌木",
+    "name": {
+      "zh": "酮化灌木",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "锦草",
+    "name": {
+      "zh": "锦草",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 255,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "针芽",
+    "name": {
+      "zh": "针芽",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 255,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "蓬茸锦草",
+    "name": {
+      "zh": "蓬茸锦草",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "荆刺针芽",
+    "name": {
+      "zh": "荆刺针芽",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "苦叶椒",
+    "name": {
+      "zh": "苦叶椒",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "琼叶参",
+    "name": {
+      "zh": "琼叶参",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "金石稻",
+    "name": {
+      "zh": "金石稻",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "萤壳虫",
+    "name": {
+      "zh": "萤壳虫",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "灼壳虫",
+    "name": {
+      "zh": "灼壳虫",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "坚硬异香石",
+    "name": {
+      "zh": "坚硬异香石",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "高能异香石",
+    "name": {
+      "zh": "高能异香石",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "草籽干粉",
+    "name": {
+      "zh": "草籽干粉",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 130,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "刺鼻干肉",
+    "name": {
+      "zh": "刺鼻干肉",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "新笋",
+    "name": {
+      "zh": "新笋",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "兽肉",
+    "name": {
+      "zh": "兽肉",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "虫肉",
+    "name": {
+      "zh": "虫肉",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "苦涩麦粉",
+    "name": {
+      "zh": "苦涩麦粉",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "中空异香石",
+    "name": {
+      "zh": "中空异香石",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "坚韧的水",
+    "name": {
+      "zh": "坚韧的水",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "天然气泡水",
+    "name": {
+      "zh": "天然气泡水",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "水灯虫的灯坠",
+    "name": {
+      "zh": "水灯虫的灯坠",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "虬兽的须",
+    "name": {
+      "zh": "虬兽的须",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "软骨碎屑",
+    "name": {
+      "zh": "软骨碎屑",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "异色油脂",
+    "name": {
+      "zh": "异色油脂",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "甜腻黑水",
+    "name": {
+      "zh": "甜腻黑水",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "球刺兽的肝脏",
+    "name": {
+      "zh": "球刺兽的肝脏",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "崩碎斧刃",
+    "name": {
+      "zh": "崩碎斧刃",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "浸雾大弩",
+    "name": {
+      "zh": "浸雾大弩",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "大斧角",
+    "name": {
+      "zh": "大斧角",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }, {
+    "id": "彪兽的长绒",
+    "name": {
+      "zh": "彪兽的长绒",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  }
+]

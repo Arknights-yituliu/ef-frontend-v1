@@ -34,7 +34,9 @@
               :class="{ active: selectedBattery === key }"
               @click="selectBattery(key as keyof typeof batteryConfig)"
             >
-              <div class="battery-icon">🔋</div>
+              <div class="battery-icon">
+                <img :alt="config.name" :src="config.image" />
+              </div>
               <div class="battery-info">
                 <div class="battery-name">{{ config.name }}</div>
                 <div class="battery-specs">{{ config.time }}秒, {{ config.power }}电力</div>
@@ -48,22 +50,22 @@
             <v-col cols="12" sm="4">
               <v-text-field
                 v-model.number="initialRate"
-                label="电池输出速度 (个/分钟)"
-                type="number"
-                min="1"
-                variant="outlined"
                 density="compact"
+                label="电池输出速度 (个/分钟)"
+                min="1"
+                type="number"
+                variant="outlined"
                 @input="handleInputChange"
               />
             </v-col>
             <v-col cols="12" sm="4">
               <v-text-field
                 v-model.number="otherPower"
-                label="现有其他来源电力 (⚡)"
-                type="number"
-                min="0"
-                variant="outlined"
                 density="compact"
+                label="现有其他来源电力 (⚡)"
+                min="0"
+                type="number"
+                variant="outlined"
                 @input="handleInputChange"
               />
             </v-col>
@@ -82,33 +84,33 @@
                 <g v-for="(line, index) in flowLines" :key="`line-${index}`">
                   <!-- 连接线 -->
                   <line
-                    :x1="line.x1"
-                    :y1="line.y1"
-                    :x2="line.x2"
-                    :y2="line.y2"
+                    class="flow-line"
                     :stroke="line.color"
                     :stroke-width="line.width"
-                    class="flow-line"
+                    :x1="line.x1"
+                    :x2="line.x2"
+                    :y1="line.y1"
+                    :y2="line.y2"
                   />
                   <!-- 箭头（只在showArrow为true时显示） -->
                   <polygon
                     v-if="line.showArrow"
-                    :points="calculateArrowPoints(line.x1, line.y1, line.x2, line.y2)"
-                    fill="#999"
                     class="arrow-head"
+                    fill="#999"
+                    :points="calculateArrowPoints(line.x1, line.y1, line.x2, line.y2)"
                   />
                 </g>
               </g>
             </svg>
 
             <NodeCard
-              :node="outputNode"
-              :depth="0"
-              :power-per-battery="powerPerBattery"
               :burn-time-seconds="burnTimeSeconds"
-              :on-remove="removeNode"
-              :on-node-click="handleNodeClick"
+              :depth="0"
               :is-mobile="isMobile"
+              :node="outputNode"
+              :on-node-click="handleNodeClick"
+              :on-remove="removeNode"
+              :power-per-battery="powerPerBattery"
             />
           </div>
 
@@ -172,11 +174,11 @@
             class="action-buttons"
           >
             <button class="action-button splitter-btn" @click="addChildToSelected('splitter')">
-              <span class="btn-icon">🔀</span>
+              <img alt="分流器" class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" />
               <span class="btn-text">添加分流器</span>
             </button>
             <button class="action-button thermal-btn" @click="addChildToSelected('thermal')">
-              <span class="btn-icon">🔥</span>
+              <img alt="热能池" class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" />
               <span class="btn-text">添加热能池</span>
             </button>
           </div>
@@ -202,7 +204,7 @@
           draggable="true"
           @dragstart="onToolDragStart($event, 'splitter')"
         >
-          <span class="sidebar-tool-icon">🔀</span>
+          <img alt="分流器" class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" />
           <span class="sidebar-tool-name">分流器</span>
         </div>
         <div
@@ -210,7 +212,7 @@
           draggable="true"
           @dragstart="onToolDragStart($event, 'thermal')"
         >
-          <span class="sidebar-tool-icon">🔥</span>
+          <img alt="热能池" class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" />
           <span class="sidebar-tool-name">热能池</span>
         </div>
       </div>
@@ -237,10 +239,8 @@ const burnTimeSeconds = ref(8);
 const selectedBattery = ref('source');
 
 // 简单的防抖函数
-const debounce = <T extends (...args: any[]) => any>(
-  func: T,
-  duration: number = 500,
-): ((...args: Parameters<T>) => void) => {
+function debounce <T extends (...args: any[]) => any>(func: T,
+  duration: number = 500): ((...args: Parameters<T>) => void) {
   let timeout: any = 0;
   return function (this: any, ...args: Parameters<T>) {
     clearTimeout(timeout);
@@ -248,20 +248,20 @@ const debounce = <T extends (...args: any[]) => any>(
       func.apply(this, args);
     }, duration);
   };
-};
+}
 
 // 移动端检测
 const isMobile = ref(false);
 
 // 检测是否为移动设备（基于设备类型，而非屏幕宽度）
-const checkIsMobile = () => {
+function checkIsMobile () {
   if (typeof navigator === 'undefined') return false;
   const userAgent = navigator.userAgent || navigator.vendor || '';
   // 精确的移动设备检测，iPad始终被视为移动设备
   const mobileRegex =
     /android(?!.*mobile)|iphone|ipod|ipad|blackberry|iemobile|opera mini|windows phone|kindle|silk/i;
   return mobileRegex.test(userAgent);
-};
+}
 
 if (typeof window !== 'undefined') {
   isMobile.value = checkIsMobile();
@@ -281,21 +281,21 @@ if (typeof window !== 'undefined') {
 
 // 电池类型配置
 const batteryConfig = {
-  source: { power: 50, time: 8, name: '源矿' },
-  'low-gu': { power: 220, time: 40, name: '低容谷地电池' },
-  'mid-gu': { power: 420, time: 40, name: '中容谷地电池' },
-  'high-gu': { power: 1100, time: 40, name: '高容谷地电池' },
-  'low-wu': { power: 1600, time: 40, name: '低容武陵电池' },
+  source: { power: 50, time: 8, name: '源矿', image: 'https://cos.yituliu.cn/endfield/items/item_originium_ore.webp' },
+  'low-gu': { power: 220, time: 40, name: '低容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_1.webp' },
+  'mid-gu': { power: 420, time: 40, name: '中容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_2.webp' },
+  'high-gu': { power: 1100, time: 40, name: '高容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_3.webp' },
+  'low-wu': { power: 1600, time: 40, name: '低容武陵电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_4.webp' },
 };
 
 // 选择电池类型
-const selectBattery = (key: keyof typeof batteryConfig) => {
+function selectBattery (key: keyof typeof batteryConfig) {
   selectedBattery.value = key;
   const config = batteryConfig[key];
   powerPerBattery.value = config.power;
   burnTimeSeconds.value = config.time;
   handleInputChange();
-};
+}
 const storageCount = ref(0);
 const burnedCount = ref(0);
 const simultaneousBurning = ref(0);
@@ -372,7 +372,7 @@ interface FlowLine {
 }
 
 // 计算箭头的三个顶点坐标
-const calculateArrowPoints = (x1: number, y1: number, x2: number, y2: number): string => {
+function calculateArrowPoints (x1: number, y1: number, x2: number, y2: number): string {
   const arrowSize = 8; // 箭头大小
   const angle = Math.atan2(y2 - y1, x2 - x1);
 
@@ -392,13 +392,13 @@ const calculateArrowPoints = (x1: number, y1: number, x2: number, y2: number): s
   const rightY = tipY + arrowSize * Math.sin(rightAngle);
 
   return `${tipX},${tipY} ${leftX},${leftY} ${rightX},${rightY}`;
-};
+}
 
 // 使用ref存储连接线，而不是computed，以便在DOM更新后手动更新
 const flowLines = ref<FlowLine[]>([]);
 
 // 计算连接线的函数
-const calculateFlowLines = () => {
+function calculateFlowLines () {
   const lines: FlowLine[] = [];
 
   // 如果容器还没渲染，返回空数组
@@ -412,11 +412,11 @@ const calculateFlowLines = () => {
 
   const collectConnections = (node: Node) => {
     if ((node.type === 'output' || node.type === 'splitter') && node.children) {
-      node.children.forEach((child) => {
+      for (const child of node.children) {
         connections.push({ parentNode: node, childNode: child });
         // 递归处理子节点
         collectConnections(child);
-      });
+      }
     }
   };
 
@@ -433,14 +433,14 @@ const calculateFlowLines = () => {
     }
 
     if (node.children) {
-      node.children.forEach((child) => traverse(child, depth + 1, node.id));
+      for (const child of node.children) traverse(child, depth + 1, node.id);
     }
   };
 
   traverse(outputNode.value, 0);
 
   // 为每个连接生成简单的垂直线
-  connections.forEach(({ parentNode, childNode }) => {
+  for (const { parentNode, childNode } of connections) {
     const parentElement = nodesWithPositions.get(parentNode.id);
     const childElement = nodesWithPositions.get(childNode.id);
 
@@ -476,24 +476,24 @@ const calculateFlowLines = () => {
         });
       }
     }
-  });
+  }
 
   flowLines.value = lines;
-};
+}
 
 // 生成唯一ID
-const generateId = () => Math.random().toString(36).substr(2, 9);
+const generateId = () => Math.random().toString(36).slice(2, 11);
 
 // 处理节点点击（移动端）
-const handleNodeClick = (node: Node) => {
+function handleNodeClick (node: Node) {
   if (isMobile.value) {
     selectedNode.value = node;
     showMobileActionPanel.value = true;
   }
-};
+}
 
 // 添加子节点到选中节点
-const addChildToSelected = async (toolType: Node['type']) => {
+async function addChildToSelected (toolType: Node['type']) {
   if (
     selectedNode.value &&
     (selectedNode.value.type === 'output' || selectedNode.value.type === 'splitter')
@@ -519,24 +519,24 @@ const addChildToSelected = async (toolType: Node['type']) => {
 
     showMobileActionPanel.value = false;
   }
-};
+}
 
 // 删除选中的节点
-const deleteSelectedNode = () => {
+function deleteSelectedNode () {
   if (selectedNode.value) {
     removeNode(selectedNode.value.id);
     showMobileActionPanel.value = false;
   }
-};
+}
 
 // 关闭操作面板
-const closeActionPanel = () => {
+function closeActionPanel () {
   showMobileActionPanel.value = false;
   selectedNode.value = null;
-};
+}
 
 // 删除节点
-const removeNode = (nodeId: string) => {
+function removeNode (nodeId: string) {
   const findAndRemove = (node: Node): boolean => {
     if (node.children) {
       const index = node.children.findIndex((child) => child.id === nodeId);
@@ -556,44 +556,44 @@ const removeNode = (nodeId: string) => {
   findAndRemove(outputNode.value);
   recalculateRates();
   calculatePower();
-};
+}
 
 // 拖拽工具开始
-const onToolDragStart = (event: DragEvent, toolType: string) => {
+function onToolDragStart (event: DragEvent, toolType: string) {
   draggedTool.value = toolType as Node['type'];
   if (event.dataTransfer) {
     event.dataTransfer.effectAllowed = 'copy';
     event.dataTransfer.setData('text/plain', toolType);
   }
-};
+}
 
 // 重置配置
-const resetTree = () => {
+function resetTree () {
   outputNode.value.children = [];
   outputNode.value.rate = initialRate.value;
   recalculateRates();
   calculatePower();
-};
+}
 
 // 重新计算所有节点的流量
-const recalculateRates = () => {
+function recalculateRates () {
   outputNode.value.rate = initialRate.value;
 
   const calculateNodeRate = (node: Node) => {
     if (node.children && node.children.length > 0) {
       const outputRate = node.rate / node.children.length;
-      node.children.forEach((child) => {
+      for (const child of node.children) {
         child.rate = outputRate;
         calculateNodeRate(child);
-      });
+      }
     }
   };
 
   calculateNodeRate(outputNode.value);
-};
+}
 
 // 计算电力
-const calculatePower = () => {
+function calculatePower () {
   let storage = 0;
   let burned = 0;
   let hasThermal = false;
@@ -609,7 +609,7 @@ const calculatePower = () => {
     }
 
     if (node.children) {
-      node.children.forEach((child) => traverseNode(child));
+      for (const child of node.children) traverseNode(child);
     }
   };
 
@@ -644,13 +644,13 @@ const calculatePower = () => {
     // 总电力 = 平均输出功率 + 其他来源电力
     totalPowerWithOther.value = powerPerSecond.value + otherPower.value;
   }
-};
+}
 
 // 处理输入变化
-const handleInputChange = () => {
+function handleInputChange () {
   recalculateRates();
   calculatePower();
-};
+}
 
 // 监听outputNode的children变化，自动重新计算流量、电力和连接线
 watch(
@@ -808,7 +808,18 @@ handleInputChange();
 }
 
 .battery-icon {
-  font-size: 2.5rem;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.battery-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .battery-info {
@@ -1118,7 +1129,9 @@ handleInputChange();
 }
 
 .sidebar-tool-icon {
-  font-size: 2rem;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
 .sidebar-tool-name {
@@ -1285,7 +1298,9 @@ handleInputChange();
 }
 
 .btn-icon {
-  font-size: 1.3rem;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 
 .btn-text {
@@ -1366,7 +1381,8 @@ body.is-mobile-device .power-calc-page .battery-button {
 }
 
 body.is-mobile-device .power-calc-page .battery-icon {
-  font-size: 2rem;
+  width: 48px;
+  height: 48px;
 }
 
 body.is-mobile-device .power-calc-page .battery-name {
@@ -1427,7 +1443,8 @@ body.is-mobile-device .power-calc-page .fixed-sidebar-tools {
   }
 
   body.is-desktop-device .power-calc-page .sidebar-tool-icon {
-    font-size: 1.5rem;
+    width: 56px;
+    height: 56px;
   }
 
   body.is-desktop-device .power-calc-page .sidebar-tool-name {

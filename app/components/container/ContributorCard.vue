@@ -157,17 +157,17 @@ onBeforeUnmount(() => {
           <span aria-hidden="true" class="card__media-backdrop stripe-pattern" />
           <img
             :alt="t('component.contributorCard.avatarAlt', { name: contributor.name })"
-            :src="props.contributor.avatarImg"
             class="card__avatar"
             loading="lazy"
+            :src="props.contributor.avatarImg"
           >
         </div>
         <div class="card__content">
           <div class="card__meta">
             <a
               v-if="contributor.link"
-              :href="contributor.link"
               class="card__profile-link"
+              :href="contributor.link"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -182,7 +182,7 @@ onBeforeUnmount(() => {
             {{ localizedInfo.position }}
           </p>
           <div aria-hidden="true" class="card__divider" />
-          <div v-if="tags.length" class="card__tags-wrap">
+          <div v-if="tags.length > 0" class="card__tags-wrap">
             <span class="card__tags-label">
               {{ t('component.contributorCard.tagsLabel') }}
             </span>

@@ -1,7 +1,7 @@
-import { ref } from 'vue';
 import type { Reward } from '#shared/types/gacha-calculator';
-import OperationalManualTrainingTable from './json/operational_manual_training_table.json';
-import OperationalManualIndexTable from './json/operational_manual_index_table.json';
+import { ref } from 'vue';
+import OperationalManualIndexTable from '@/custom/core/gacha/data/operational_manual_index_table.json';
+import OperationalManualTrainingTable from '@/custom/core/gacha/data/operational_manual_training_table.json';
 
 
 
@@ -12,11 +12,11 @@ const operationalManualNodeReward = ref<Reward>(
       zh: `节点奖励`,
       en: ''
     },
-    start: '2026/01/22 10:00:00',
-    end: '2099/12/31 10:00:00',
+    start: '2026/01/22 12:00:00',
+    end: '2099/12/31 12:00:00',
     type: '通用',
-    module: '权限等阶提升活动',
-    active: true,
+    module: '节点手册',
+    active: true,version: "零号委托",
     content: {
       originiumRecharge: 0,
       diamond: 9000,

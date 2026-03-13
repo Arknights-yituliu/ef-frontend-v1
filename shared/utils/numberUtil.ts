@@ -4,16 +4,16 @@
  * @param {number} acc 位数
  * @returns {string} 格式化后的数字
  */
-const formatNumber = (num: number, acc = 2) => {
-  acc = typeof acc !== 'undefined' ? acc : 2;
-  if (typeof num === 'undefined') return '';
-  return parseFloat(num?.toString()).toFixed(acc);
-};
+function formatNumber (num: number, acc = 2) {
+  acc = acc !== undefined ? acc : 2;
+  if (num === undefined) return '';
+  return Number.parseFloat(num?.toString()).toFixed(acc);
+}
 
 function numberRound(number: number, decimalPlaces: number = 2) {
   // 参数验证
-  if (isNaN(number)) {
-    throw new Error('第一个参数必须是有效的数字');
+  if (Number.isNaN(number)) {
+    throw new TypeError('第一个参数必须是有效的数字');
   }
 
   if (!Number.isInteger(decimalPlaces) || decimalPlaces < 0) {
@@ -31,7 +31,7 @@ function numberRound(number: number, decimalPlaces: number = 2) {
 
 function numberFloor(number: any, decimalPlaces: number = 2) {
   // 参数验证
-  if (isNaN(number)) {
+  if (Number.isNaN(number)) {
     console.log('第一个参数必须是有效的数字，传入参数：'+number)
     // throw new Error('第一个参数必须是有效的数字，传入参数：'+number);
   }
@@ -51,4 +51,4 @@ function numberFloor(number: any, decimalPlaces: number = 2) {
   return Math.floor(number * factor) / factor;
 }
 
-export { numberRound, numberFloor };
+export { numberFloor, numberRound };

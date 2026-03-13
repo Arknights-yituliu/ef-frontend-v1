@@ -5,28 +5,31 @@
       "zh": "蚀像寻遗刻度50",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 400,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }
-  },{
+  },
+  {
     "id": "etch_space_salvage_300_reward",
     "name": {
       "zh": "蚀像寻遗刻度300",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -40,11 +43,12 @@
       "zh": "蚀像寻遗刻度1200",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 400,
@@ -58,11 +62,12 @@
       "zh": "蚀像寻遗刻度2500",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -76,11 +81,12 @@
       "zh": "蚀像寻遗刻度5000",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 400,
@@ -94,11 +100,12 @@
       "zh": "蚀像寻遗刻度10000",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -112,11 +119,12 @@
       "zh": "蚀像寻遗刻度20000",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 400,
@@ -130,11 +138,12 @@
       "zh": "蚀像寻遗刻度30000",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -148,11 +157,12 @@
       "zh": "蚀像寻遗刻度40000",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 400,
@@ -166,11 +176,12 @@
       "zh": "蚀像寻遗刻度50000",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -184,11 +195,12 @@
       "zh": "像差探索计划I",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -202,11 +214,31 @@
       "zh": "像差探索计划II",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "像差探索计划Ⅲ",
+    "name": {
+      "zh": "像差探索计划Ⅲ",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
@@ -220,11 +252,12 @@
       "zh": "探索研发·协议稳定2",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 30,
@@ -238,11 +271,12 @@
       "zh": "探索研发·协议稳定3",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -256,11 +290,12 @@
       "zh": "探索研发·协议稳定4",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 30,
@@ -274,11 +309,12 @@
       "zh": "探索研发·协议稳定5",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -292,11 +328,12 @@
       "zh": "探索研发·协议稳定6",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 30,
@@ -310,11 +347,12 @@
       "zh": "探索研发·封装扩容2",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 30,
@@ -328,11 +366,12 @@
       "zh": "探索研发·封装扩容3",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -346,11 +385,12 @@
       "zh": "探索研发·封装扩容4",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 30,
@@ -364,11 +404,12 @@
       "zh": "探索研发·封装扩容5",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -382,11 +423,12 @@
       "zh": "作战研发·碎片化医疗",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -400,11 +442,12 @@
       "zh": "作战研发·战术节奏",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -418,11 +461,12 @@
       "zh": "探索研发·爆炸物携行2",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -436,11 +480,12 @@
       "zh": "探索研发·装甲镀层",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -454,11 +499,12 @@
       "zh": "探索研发·紊乱耐受1",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -472,14 +518,204 @@
       "zh": "转化研发·结核精炼1",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "蚀像寻遗",
     "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_60000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度60000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_70000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度70000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_80000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度80000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_90000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度90000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0
+    }
+  },{
+    "id": "etch_space_salvage_100000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度100000",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "像差探索计划Ⅳ",
+    "name": {
+      "zh": "像差探索计划Ⅳ",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定7",
+    "name": {
+      "zh": "探索研发·协议稳定7",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定8",
+    "name": {
+      "zh": "探索研发·协议稳定8",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容6",
+    "name": {
+      "zh": "探索研发·封装扩容6",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·蓄能爆发",
+    "name": {
+      "zh": "探索研发·蓄能爆发",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0
     }

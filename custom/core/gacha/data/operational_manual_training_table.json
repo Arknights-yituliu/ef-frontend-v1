@@ -5,11 +5,11 @@
       "zh": "基础训练-通用战术",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
@@ -23,11 +23,11 @@
       "zh": "基础训练-物理异常",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 80,
@@ -41,11 +41,11 @@
       "zh": "基础训练-法术异常",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
@@ -59,11 +59,11 @@
       "zh": "干员教学·骏卫",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -77,11 +77,11 @@
       "zh": "干员教学·莱万汀",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -95,11 +95,11 @@
       "zh": "干员教学·佩丽卡",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -113,11 +113,11 @@
       "zh": "干员教学·弧光",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -131,11 +131,11 @@
       "zh": "干员教学·伊冯",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -149,11 +149,11 @@
       "zh": "干员教学·狼卫",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -167,11 +167,11 @@
       "zh": "干员教学·洁尔佩塔",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -185,11 +185,11 @@
       "zh": "干员教学·艾尔黛拉",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -203,11 +203,11 @@
       "zh": "干员教学·昼雪",
       "en": ""
     },
-    "start": "2026/01/22 10:00:00",
-    "end": "2099/12/31 10:00:00",
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·训练",
-    "active": true,
+    "active": true,"version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,

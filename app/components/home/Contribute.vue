@@ -2,14 +2,14 @@
 const groupNumber = '696486169';
 const snackbar = ref(false);
 
-const copyGroupNumber = async () => {
+async function copyGroupNumber () {
   try {
     await navigator.clipboard.writeText(groupNumber);
     snackbar.value = true;
-  } catch (err) {
-    console.error('Failed to copy:', err);
+  } catch (error) {
+    console.error('Failed to copy:', error);
   }
-};
+}
 </script>
 
 <template>
@@ -25,13 +25,13 @@ const copyGroupNumber = async () => {
       </div>
       <div class="flex-1" />
       <v-btn
-        :text="$t('component.home.contribute.goToFrontendRepo')"
         append-icon="mdi-open-in-new"
         color="primary"
+        href="https://github.com/Arknights-yituliu/ef-frontend-v1"
         prepend-icon="mdi-github"
         size="small"
-        href="https://github.com/Arknights-yituliu/ef-frontend-v1"
         target="_blank"
+        :text="$t('component.home.contribute.goToFrontendRepo')"
       />
     </div>
     <div class="home-card-content">
@@ -86,7 +86,7 @@ const copyGroupNumber = async () => {
     </div>
   </v-card>
 
-  <v-snackbar v-model="snackbar" :timeout="2000" color="success" location="bottom">
+  <v-snackbar v-model="snackbar" color="success" location="bottom" :timeout="2000">
     {{ $t('component.home.contribute.copySuccess') }}
     <template #actions>
       <v-btn variant="text" @click="snackbar = false">
