@@ -168,6 +168,23 @@ export const energyAlluviums: Record<string, EnergyAlluvium> = {
     ],
     skillStats: ['强攻', '粉碎', '残暴', '医疗', '切骨', '迸发', '夜幕', '流转'],
   },
+  '重度能量淤积点·清波寨': {
+    battleId: '重度能量淤积点·清波寨',
+    battleName: '重度能量淤积点·清波寨',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.webp',
+    secondaryStats: [
+      '生命提升',
+      '物理伤害提升',
+      '电磁伤害提升',
+      '寒冷伤害提升',
+      '源石技艺提升',
+      '终结技效率提升',
+      '法术伤害提升',
+      '治疗效率提升',
+    ],
+    skillStats: ['压制', '粉碎', '昂扬', '巧技', '医疗', '切骨', '迸发', '夜幕'],
+  },
 };
 
 /** 武器类型 */
@@ -196,17 +213,6 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '压制',
     },
   },
-  wpn_funnel_0009: {
-    weaponId: 'wpn_funnel_0009',
-    weaponName: '遗忘',
-    weaponType: '施术单元',
-    rarity: 6,
-    stats: {
-      attribute: '智识提升',
-      secondary: '法术伤害提升',
-      skill: '夜幕',
-    },
-  },
   wpn_claym_0004: {
     weaponId: 'wpn_claym_0004',
     weaponName: '典范',
@@ -216,17 +222,6 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '主能力提升',
       secondary: '攻击提升',
       skill: '压制',
-    },
-  },
-  wpn_claym_0008: {
-    weaponId: 'wpn_claym_0008',
-    weaponName: '破碎君王',
-    weaponType: '双手剑',
-    rarity: 6,
-    stats: {
-      attribute: '力量提升',
-      secondary: '暴击率提升',
-      skill: '粉碎',
     },
   },
   wpn_claym_0006: {
@@ -251,15 +246,15 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '医疗',
     },
   },
-  wpn_pistol_0006: {
-    weaponId: 'wpn_pistol_0006',
-    weaponName: '作品：众生',
-    weaponType: '手铳',
-    rarity: 5,
+  wpn_claym_0008: {
+    weaponId: 'wpn_claym_0008',
+    weaponName: '破碎君王',
+    weaponType: '双手剑',
+    rarity: 6,
     stats: {
-      attribute: '敏捷提升',
-      secondary: '法术伤害提升',
-      skill: '附术',
+      attribute: '力量提升',
+      secondary: '暴击率提升',
+      skill: '粉碎',
     },
   },
   wpn_claym_0009: {
@@ -273,17 +268,6 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '粉碎',
     },
   },
-  wpn_funnel_0010: {
-    weaponId: 'wpn_funnel_0010',
-    weaponName: '骑士精神',
-    weaponType: '施术单元',
-    rarity: 6,
-    stats: {
-      attribute: '意志提升',
-      secondary: '生命提升',
-      skill: '医疗',
-    },
-  },
   wpn_claym_0010: {
     weaponId: 'wpn_claym_0010',
     weaponName: '达尔霍夫7',
@@ -293,17 +277,6 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '主能力提升',
       secondary: null,
       skill: '强攻',
-    },
-  },
-  wpn_sword_0013: {
-    weaponId: 'wpn_sword_0013',
-    weaponName: '显赫声名',
-    weaponType: '单手剑',
-    rarity: 6,
-    stats: {
-      attribute: '主能力提升',
-      secondary: '物理伤害提升',
-      skill: '残暴',
     },
   },
   wpn_claym_0011: {
@@ -328,28 +301,6 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '医疗',
     },
   },
-  wpn_lance_0008: {
-    weaponId: 'wpn_lance_0008',
-    weaponName: '天使杀手',
-    weaponType: '长柄武器',
-    rarity: 4,
-    stats: {
-      attribute: '意志提升',
-      secondary: '法术伤害提升',
-      skill: '压制',
-    },
-  },
-  wpn_sword_0011: {
-    weaponId: 'wpn_sword_0011',
-    weaponName: '扶摇',
-    weaponType: '单手剑',
-    rarity: 6,
-    stats: {
-      attribute: '主能力提升',
-      secondary: '暴击率提升',
-      skill: '夜幕',
-    },
-  },
   wpn_claym_0013: {
     weaponId: 'wpn_claym_0013',
     weaponName: '赫拉芬格',
@@ -361,39 +312,6 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '迸发',
     },
   },
-  wpn_funnel_0006: {
-    weaponId: 'wpn_funnel_0006',
-    weaponName: '作品：蚀迹',
-    weaponType: '施术单元',
-    rarity: 6,
-    stats: {
-      attribute: '意志提升',
-      secondary: '自然伤害提升',
-      skill: '压制',
-    },
-  },
-  wpn_lance_0009: {
-    weaponId: 'wpn_lance_0009',
-    weaponName: '奥佩罗77',
-    weaponType: '长柄武器',
-    rarity: 3,
-    stats: {
-      attribute: '主能力提升',
-      secondary: null,
-      skill: '强攻',
-    },
-  },
-  wpn_sword_0010: {
-    weaponId: 'wpn_sword_0010',
-    weaponName: '黯色火炬',
-    weaponType: '单手剑',
-    rarity: 6,
-    stats: {
-      attribute: '智识提升',
-      secondary: '灼热伤害提升',
-      skill: '附术',
-    },
-  },
   wpn_claym_0014: {
     weaponId: 'wpn_claym_0014',
     weaponName: '古渠',
@@ -403,17 +321,6 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '力量提升',
       secondary: '源石技艺提升',
       skill: '残暴',
-    },
-  },
-  wpn_funnel_0003: {
-    weaponId: 'wpn_funnel_0003',
-    weaponName: '荧光雷羽',
-    weaponType: '施术单元',
-    rarity: 4,
-    stats: {
-      attribute: '意志提升',
-      secondary: '攻击提升',
-      skill: '压制',
     },
   },
   wpn_claym_0015: {
@@ -449,15 +356,15 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '强攻',
     },
   },
-  wpn_sword_0007: {
-    weaponId: 'wpn_sword_0007',
-    weaponName: '坚城铸造者',
-    weaponType: '单手剑',
-    rarity: 5,
+  wpn_funnel_0003: {
+    weaponId: 'wpn_funnel_0003',
+    weaponName: '荧光雷羽',
+    weaponType: '施术单元',
+    rarity: 4,
     stats: {
-      attribute: '智识提升',
-      secondary: '终结技效率提升',
-      skill: '昂扬',
+      attribute: '意志提升',
+      secondary: '攻击提升',
+      skill: '压制',
     },
   },
   wpn_funnel_0004: {
@@ -468,17 +375,6 @@ export const weapons: Record<string, WeaponPreset> = {
     stats: {
       attribute: '智识提升',
       secondary: '电磁伤害提升',
-      skill: '附术',
-    },
-  },
-  wpn_sword_0018: {
-    weaponId: 'wpn_sword_0018',
-    weaponName: '十二问',
-    weaponType: '单手剑',
-    rarity: 5,
-    stats: {
-      attribute: '敏捷提升',
-      secondary: '攻击提升',
       skill: '附术',
     },
   },
@@ -493,6 +389,17 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '夜幕',
     },
   },
+  wpn_funnel_0006: {
+    weaponId: 'wpn_funnel_0006',
+    weaponName: '作品：蚀迹',
+    weaponType: '施术单元',
+    rarity: 6,
+    stats: {
+      attribute: '意志提升',
+      secondary: '自然伤害提升',
+      skill: '压制',
+    },
+  },
   wpn_funnel_0007: {
     weaponId: 'wpn_funnel_0007',
     weaponName: '莫奈何',
@@ -504,28 +411,6 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '昂扬',
     },
   },
-  wpn_sword_0008: {
-    weaponId: 'wpn_sword_0008',
-    weaponName: '应急手段',
-    weaponType: '单手剑',
-    rarity: 4,
-    stats: {
-      attribute: '敏捷提升',
-      secondary: '物理伤害提升',
-      skill: '压制',
-    },
-  },
-  wpn_sword_0020: {
-    weaponId: 'wpn_sword_0020',
-    weaponName: '逐鳞3.0',
-    weaponType: '单手剑',
-    rarity: 5,
-    stats: {
-      attribute: '力量提升',
-      secondary: '寒冷伤害提升',
-      skill: '压制',
-    },
-  },
   wpn_funnel_0008: {
     weaponId: 'wpn_funnel_0008',
     weaponName: '爆破单元',
@@ -535,6 +420,28 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '主能力提升',
       secondary: '源石技艺提升',
       skill: '迸发',
+    },
+  },
+  wpn_funnel_0009: {
+    weaponId: 'wpn_funnel_0009',
+    weaponName: '遗忘',
+    weaponType: '施术单元',
+    rarity: 6,
+    stats: {
+      attribute: '智识提升',
+      secondary: '法术伤害提升',
+      skill: '夜幕',
+    },
+  },
+  wpn_funnel_0010: {
+    weaponId: 'wpn_funnel_0010',
+    weaponName: '骑士精神',
+    weaponType: '施术单元',
+    rarity: 6,
+    stats: {
+      attribute: '意志提升',
+      secondary: '生命提升',
+      skill: '医疗',
     },
   },
   wpn_funnel_0011: {
@@ -557,17 +464,6 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '意志提升',
       secondary: '治疗效率提升',
       skill: '医疗',
-    },
-  },
-  wpn_lance_0006: {
-    weaponId: 'wpn_lance_0006',
-    weaponName: '向心之引',
-    weaponType: '长柄武器',
-    rarity: 5,
-    stats: {
-      attribute: '意志提升',
-      secondary: '电磁伤害提升',
-      skill: '压制',
     },
   },
   wpn_funnel_0013: {
@@ -614,6 +510,39 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '残暴',
     },
   },
+  wpn_lance_0006: {
+    weaponId: 'wpn_lance_0006',
+    weaponName: '向心之引',
+    weaponType: '长柄武器',
+    rarity: 5,
+    stats: {
+      attribute: '意志提升',
+      secondary: '电磁伤害提升',
+      skill: '压制',
+    },
+  },
+  wpn_lance_0008: {
+    weaponId: 'wpn_lance_0008',
+    weaponName: '天使杀手',
+    weaponType: '长柄武器',
+    rarity: 4,
+    stats: {
+      attribute: '意志提升',
+      secondary: '法术伤害提升',
+      skill: '压制',
+    },
+  },
+  wpn_lance_0009: {
+    weaponId: 'wpn_lance_0009',
+    weaponName: '奥佩罗77',
+    weaponType: '长柄武器',
+    rarity: 3,
+    stats: {
+      attribute: '主能力提升',
+      secondary: null,
+      skill: '强攻',
+    },
+  },
   wpn_lance_0010: {
     weaponId: 'wpn_lance_0010',
     weaponName: '骁勇',
@@ -645,17 +574,6 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '敏捷提升',
       secondary: '物理伤害提升',
       skill: '效益',
-    },
-  },
-  wpn_pistol_0010: {
-    weaponId: 'wpn_pistol_0010',
-    weaponName: '艺术暴君',
-    weaponType: '手铳',
-    rarity: 6,
-    stats: {
-      attribute: '智识提升',
-      secondary: '暴击率提升',
-      skill: '切骨',
     },
   },
   wpn_lance_0013: {
@@ -702,17 +620,6 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '追袭',
     },
   },
-  wpn_sword_0014: {
-    weaponId: 'wpn_sword_0014',
-    weaponName: '白夜新星',
-    weaponType: '单手剑',
-    rarity: 6,
-    stats: {
-      attribute: '主能力提升',
-      secondary: '源石技艺提升',
-      skill: '附术',
-    },
-  },
   wpn_pistol_0004: {
     weaponId: 'wpn_pistol_0004',
     weaponName: '理性告别',
@@ -735,6 +642,28 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '附术',
     },
   },
+  wpn_pistol_0006: {
+    weaponId: 'wpn_pistol_0006',
+    weaponName: '作品：众生',
+    weaponType: '手铳',
+    rarity: 5,
+    stats: {
+      attribute: '敏捷提升',
+      secondary: '法术伤害提升',
+      skill: '附术',
+    },
+  },
+  wpn_pistol_0007: {
+    weaponId: 'wpn_pistol_0007',
+    weaponName: '望乡',
+    weaponType: '手铳',
+    rarity: 6,
+    stats: {
+      attribute: '敏捷提升',
+      secondary: '寒冷伤害提升',
+      skill: '压制',
+    },
+  },
   wpn_pistol_0008: {
     weaponId: 'wpn_pistol_0008',
     weaponName: '楔子',
@@ -744,17 +673,6 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '主能力提升',
       secondary: '暴击率提升',
       skill: '附术',
-    },
-  },
-  wpn_sword_0006: {
-    weaponId: 'wpn_sword_0006',
-    weaponName: '熔铸火焰',
-    weaponType: '单手剑',
-    rarity: 6,
-    stats: {
-      attribute: '智识提升',
-      secondary: '攻击提升',
-      skill: '夜幕',
     },
   },
   wpn_pistol_0009: {
@@ -768,15 +686,26 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '附术',
     },
   },
-  wpn_sword_0016: {
-    weaponId: 'wpn_sword_0016',
-    weaponName: '不知归',
-    weaponType: '单手剑',
+  wpn_pistol_0010: {
+    weaponId: 'wpn_pistol_0010',
+    weaponName: '艺术暴君',
+    weaponType: '手铳',
     rarity: 6,
     stats: {
-      attribute: '意志提升',
+      attribute: '智识提升',
+      secondary: '暴击率提升',
+      skill: '切骨',
+    },
+  },
+  wpn_pistol_0011: {
+    weaponId: 'wpn_pistol_0011',
+    weaponName: '落草',
+    weaponType: '手铳',
+    rarity: 6,
+    stats: {
+      attribute: '敏捷提升',
       secondary: '攻击提升',
-      skill: '流转',
+      skill: '迸发',
     },
   },
   wpn_pistol_0012: {
@@ -812,6 +741,39 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '巧技',
     },
   },
+  wpn_sword_0006: {
+    weaponId: 'wpn_sword_0006',
+    weaponName: '熔铸火焰',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: {
+      attribute: '智识提升',
+      secondary: '攻击提升',
+      skill: '夜幕',
+    },
+  },
+  wpn_sword_0007: {
+    weaponId: 'wpn_sword_0007',
+    weaponName: '坚城铸造者',
+    weaponType: '单手剑',
+    rarity: 5,
+    stats: {
+      attribute: '智识提升',
+      secondary: '终结技效率提升',
+      skill: '昂扬',
+    },
+  },
+  wpn_sword_0008: {
+    weaponId: 'wpn_sword_0008',
+    weaponName: '显锋',
+    weaponType: '单手剑',
+    rarity: 4,
+    stats: {
+      attribute: '敏捷提升',
+      secondary: '物理伤害提升',
+      skill: '压制',
+    },
+  },
   wpn_sword_0009: {
     weaponId: 'wpn_sword_0009',
     weaponName: '浪潮',
@@ -821,6 +783,28 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '智识提升',
       secondary: '攻击提升',
       skill: '追袭',
+    },
+  },
+  wpn_sword_0010: {
+    weaponId: 'wpn_sword_0010',
+    weaponName: '黯色火炬',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: {
+      attribute: '智识提升',
+      secondary: '灼热伤害提升',
+      skill: '附术',
+    },
+  },
+  wpn_sword_0011: {
+    weaponId: 'wpn_sword_0011',
+    weaponName: '扶摇',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: {
+      attribute: '主能力提升',
+      secondary: '暴击率提升',
+      skill: '夜幕',
     },
   },
   wpn_sword_0012: {
@@ -834,6 +818,28 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '流转',
     },
   },
+  wpn_sword_0013: {
+    weaponId: 'wpn_sword_0013',
+    weaponName: '显赫声名',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: {
+      attribute: '主能力提升',
+      secondary: '物理伤害提升',
+      skill: '残暴',
+    },
+  },
+  wpn_sword_0014: {
+    weaponId: 'wpn_sword_0014',
+    weaponName: '白夜新星',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: {
+      attribute: '主能力提升',
+      secondary: '源石技艺提升',
+      skill: '附术',
+    },
+  },
   wpn_sword_0015: {
     weaponId: 'wpn_sword_0015',
     weaponName: '仰止',
@@ -845,6 +851,39 @@ export const weapons: Record<string, WeaponPreset> = {
       skill: '夜幕',
     },
   },
+  wpn_sword_0016: {
+    weaponId: 'wpn_sword_0016',
+    weaponName: '不知归',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: {
+      attribute: '意志提升',
+      secondary: '攻击提升',
+      skill: '流转',
+    },
+  },
+  wpn_sword_0017: {
+    weaponId: 'wpn_sword_0017',
+    weaponName: '光荣记忆',
+    weaponType: '单手剑',
+    rarity: 6,
+    stats: {
+      attribute: '敏捷提升',
+      secondary: '暴击率提升',
+      skill: '夜幕',
+    },
+  },
+  wpn_sword_0018: {
+    weaponId: 'wpn_sword_0018',
+    weaponName: '十二问',
+    weaponType: '单手剑',
+    rarity: 5,
+    stats: {
+      attribute: '敏捷提升',
+      secondary: '攻击提升',
+      skill: '附术',
+    },
+  },
   wpn_sword_0019: {
     weaponId: 'wpn_sword_0019',
     weaponName: 'O.B.J.轻芒',
@@ -854,6 +893,17 @@ export const weapons: Record<string, WeaponPreset> = {
       attribute: '敏捷提升',
       secondary: '攻击提升',
       skill: '流转',
+    },
+  },
+  wpn_sword_0020: {
+    weaponId: 'wpn_sword_0020',
+    weaponName: '逐鳞3.0',
+    weaponType: '单手剑',
+    rarity: 5,
+    stats: {
+      attribute: '力量提升',
+      secondary: '寒冷伤害提升',
+      skill: '压制',
     },
   },
   wpn_sword_0021: {
