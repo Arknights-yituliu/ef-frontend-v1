@@ -168,6 +168,23 @@ export const energyAlluviums: Record<string, EnergyAlluvium> = {
     ],
     skillStats: ['强攻', '粉碎', '残暴', '医疗', '切骨', '迸发', '夜幕', '流转'],
   },
+  '重度能量淤积点·清波寨': {
+    battleId: '重度能量淤积点·清波寨',
+    battleName: '重度能量淤积点·清波寨',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.webp',
+    secondaryStats: [
+      '生命提升',
+      '物理伤害提升',
+      '电磁伤害提升',
+      '寒冷伤害提升',
+      '源石技艺提升',
+      '终结技效率提升',
+      '法术伤害提升',
+      '治疗效率提升',
+    ],
+    skillStats: ['压制', '粉碎', '昂扬', '巧技', '医疗', '切骨', '迸发', '夜幕'],
+  },
 };
 
 /** 武器类型 */
