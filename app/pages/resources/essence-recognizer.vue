@@ -3,38 +3,49 @@
     <h1>终末地基质小助手</h1>
 
     <div class="d-flex flex-row flex-wrap ga-4 my-4">
-      <v-btn append-icon="mdi-open-in-new" color="primary" @click="downloadLatestVersion"
-        >下载最新版（国内）</v-btn
-      >
+      <v-btn append-icon="mdi-open-in-new" color="primary" @click="downloadLatestVersion">
+        下载最新版（国内）
+      </v-btn>
       <v-btn
         append-icon="mdi-open-in-new"
         href="https://github.com/Logical-Byte/endfield-essence-recognizer/releases/latest"
         rel="noopener noreferrer"
         target="_blank"
-        >下载最新版（GitHub）</v-btn
       >
+        下载最新版（GitHub）
+      </v-btn>
       <v-btn
         append-icon="mdi-open-in-new"
         href="https://github.com/Logical-Byte/endfield-essence-recognizer"
         rel="noopener noreferrer"
         target="_blank"
-        >项目地址</v-btn
       >
+        项目地址
+      </v-btn>
       <v-btn
         href="https://qm.qq.com/cgi-bin/qm/qr?k=1xqRp7JwQHwGswa-8_SMFuAsRYYRnF8J"
         prepend-icon="mdi-qqchat"
         rel="noopener noreferrer"
         target="_blank"
-        >反馈交流①群：486622964</v-btn
       >
+        反馈交流①群：486622964
+      </v-btn>
       <v-btn
-        color="primary"
         href="https://qm.qq.com/cgi-bin/qm/qr?k=qAmvmHCc3HuESiJhZVe6Ytgj7foOxXx9"
         prepend-icon="mdi-qqchat"
         rel="noopener noreferrer"
         target="_blank"
-        >反馈交流②群：1082880855</v-btn
       >
+        反馈交流②群：1082880855
+      </v-btn>
+      <v-btn
+        href="https://qm.qq.com/cgi-bin/qm/qr?k=-GykJWhnZEN5F2aZ1nrVd3xs9RGkMBI2"
+        prepend-icon="mdi-qqchat"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        反馈交流③群：1042417974
+      </v-btn>
     </div>
 
     <v-row class="my-4">
@@ -85,7 +96,7 @@
       <li>
         按
         <v-hotkey inline keys="]" variant="flat" />
-        键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br >
+        键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br />
         基质扫描过程中再次按 <v-hotkey inline keys="]" variant="flat" /> 键中断扫描
       </li>
 
@@ -195,7 +206,7 @@
         target="_blank"
         ><strong>在 GitHub 上提 Issue</strong></a
       >，或者加入反馈交流群：<v-chip
-        class="mr-1"
+        class="mx-1"
         href="https://qm.qq.com/cgi-bin/qm/qr?k=1xqRp7JwQHwGswa-8_SMFuAsRYYRnF8J"
         prepend-icon="mdi-qqchat"
         rel="noopener noreferrer"
@@ -204,13 +215,22 @@
         ①群：486622964
       </v-chip>
       <v-chip
-        color="primary"
+        class="mx-1"
         href="https://qm.qq.com/cgi-bin/qm/qr?k=qAmvmHCc3HuESiJhZVe6Ytgj7foOxXx9"
         prepend-icon="mdi-qqchat"
         rel="noopener noreferrer"
         target="_blank"
       >
         ②群：1082880855
+      </v-chip>
+      <v-chip
+        class="mx-1"
+        href="https://qm.qq.com/cgi-bin/qm/qr?k=-GykJWhnZEN5F2aZ1nrVd3xs9RGkMBI2"
+        prepend-icon="mdi-qqchat"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        ③群：1042417974
       </v-chip>
     </p>
 
