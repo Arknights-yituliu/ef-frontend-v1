@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
 
-import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
 import { dateFormat } from '#shared/utils/dateUtil';
+import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
 
 import { onMounted, ref, watch } from 'vue';
