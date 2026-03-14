@@ -43,7 +43,7 @@ const wulingRegionalStockBillStoreReward = ref<Reward[]>([
     content: {
       originiumRecharge: 0,
       diamond: 0,
-      ticketgachaStandardSingle: 2,
+      ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
     },
   },
