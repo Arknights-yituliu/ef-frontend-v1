@@ -2,52 +2,15 @@ import type { Reward } from '#shared/types/gacha-calculator.ts';
 import { groupAndMergeRewardsByVersion } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
 import {
+  wulingRegionalStockBillStoreRewardTable,
   wulingAuryleneCollectStageTable,
   wulingCrateRewardTable,
   wulingRegionalDevelopmentRewardTable,
   wulingSimulationRewardTable,
+  wulingBattleCrateRewardTable,
 } from '@/custom/core/gacha/data/wulingRegionalRewardTable';
 
-const wulingRegionalStockBillStoreReward = ref<Reward[]>([
-  {
-    id: 'wuling_regional_stock_bill_store_reward',
-    name: {
-      zh: `调度券商店`,
-      en: '',
-    },
-    start: '2026/01/22 12:00:00',
-    end: '2099/12/31 12:00:00',
-    type: '通用',
-    module: '地区建设',
-    active: true,
-    version: '零号委托',
-    content: {
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 2,
-      ticketgachaSpecialSingle: 0,
-    },
-  },
-  {
-    id: 'wuling_regional_stock_bill_store_reward_v1_1',
-    name: {
-      zh: `调度券商店`,
-      en: '',
-    },
-    start: '2026/01/22 12:00:00',
-    end: '2099/12/31 12:00:00',
-    type: '通用',
-    module: '地区建设',
-    active: true,
-    version: '新潮起·故渊离',
-    content: {
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 1,
-      ticketgachaSpecialSingle: 0,
-    },
-  },
-]);
+const wulingRegionalStockBillStoreReward = ref<Reward[]>(wulingRegionalStockBillStoreRewardTable);
 
 const wulingRegionalDevelopmentReward = ref<Reward>({
   id: 'wuling_regional_development_reward',
@@ -99,6 +62,8 @@ const wulingAuryleneCollectReward = ref<Reward>({
   ],
 });
 
+
+
 let wulingCrateRewardMax: number = 0;
 
 const wulingCrateReward = ref<Reward>({
@@ -130,7 +95,7 @@ for (const reward of wulingCrateRewardTable) {
   );
 }
 
-const wulingBattleCrateRewardMax = 7;
+let wulingBattleCrateRewardMax: number = 7;
 
 const wulingBattleCrateReward = ref<Reward>({
   id: 'wuling_battle_crate_reward',
@@ -145,12 +110,25 @@ const wulingBattleCrateReward = ref<Reward>({
   active: true,
   version: '零号委托',
   content: {
-    originiumRecharge: wulingBattleCrateRewardMax,
+    originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
 });
+
+for (const reward of wulingBattleCrateRewardTable) {
+  wulingBattleCrateRewardMax += reward.content.originiumRecharge;
+  wulingCrateReward.value.content.originiumRecharge += reward.content.originiumRecharge;
+  wulingCrateReward.value.tips?.push(
+    `${reward.version}版本奖励为：${reward.content.originiumRecharge}衍质源石`,
+  );
+}
+
+
+
+
+
 
 const wulingSimulationReward = ref<Reward>({
   id: 'wuling_simulation_reward',
@@ -199,38 +177,57 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
     },
-  },
+  },{
+    id: 'wuling_defense_construction_reward_2',
+    name: {
+      zh: `景玉谷据点防御`,
+      en: '',
+    },
+    start: '2026/03/12 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    version: '新潮起· 故渊离',
+    content: {
+      originiumRecharge: 0,
+      diamond: 80,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+    },
+  }
 ]);
 
 const wulingRegionalAllRewardTable: Reward[] = [];
 
-for (const reward of wulingRegionalStockBillStoreReward.value) {
-  wulingRegionalAllRewardTable.push(reward);
-}
-const auryleneCollectRewards: Reward[] = groupAndMergeRewardsByVersion(
+const wulingAuryleneCollectRewardsGroupByVersion: Reward[] = groupAndMergeRewardsByVersion(
   '醚质收集',
   wulingAuryleneCollectStageTable,
 );
 
-for (const reward of auryleneCollectRewards) {
-  wulingRegionalAllRewardTable.push(reward);
-}
 
-for (const reward of wulingCrateRewardTable) {
-  wulingRegionalAllRewardTable.push(reward);
-}
-
-const regionalDevelopmentRewards: Reward[] = groupAndMergeRewardsByVersion(
+const wulingRegionalDevelopmentRewardsGroupByVersion: Reward[] = groupAndMergeRewardsByVersion(
   '地区等级建设',
   wulingRegionalDevelopmentRewardTable,
 );
 
-for (const reward of regionalDevelopmentRewards) {
-  wulingRegionalAllRewardTable.push(reward);
-}
+
+// 地区建设奖励包含：
+//  调度券商店
+//  地区建设等级
+//  醚质收集
+//  储藏箱+机器人
+//  处理险情
+//  模拟空间
+//  景玉谷据点防御奖励
+
 
 wulingRegionalAllRewardTable.push(
-  wulingBattleCrateReward.value,
+  ...wulingRegionalStockBillStoreReward.value,
+  ...wulingRegionalDevelopmentRewardsGroupByVersion,
+  ...wulingAuryleneCollectRewardsGroupByVersion,
+  ...wulingCrateRewardTable,
+  ...wulingBattleCrateRewardTable,
   wulingSimulationReward.value,
   ...wulingDefenseConstructionReward.value,
 );
@@ -248,7 +245,4 @@ export {
   wulingSimulationReward,
 };
 
-export {
-  wulingAuryleneCollectStageTable,
-  wulingRegionalDevelopmentRewardTable,
-} from '@/custom/core/gacha/data/wulingRegionalRewardTable';
+
