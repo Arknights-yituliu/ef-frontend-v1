@@ -2,12 +2,12 @@ import type { Reward } from '#shared/types/gacha-calculator.ts';
 import { groupAndMergeRewardsByVersion } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
 import {
-  wulingRegionalStockBillStoreRewardTable,
   wulingAuryleneCollectStageTable,
+  wulingBattleCrateRewardTable,
   wulingCrateRewardTable,
   wulingRegionalDevelopmentRewardTable,
+  wulingRegionalStockBillStoreRewardTable,
   wulingSimulationRewardTable,
-  wulingBattleCrateRewardTable,
 } from '@/custom/core/gacha/data/wulingRegionalRewardTable';
 
 const wulingRegionalStockBillStoreReward = ref<Reward[]>(wulingRegionalStockBillStoreRewardTable);

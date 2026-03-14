@@ -740,10 +740,10 @@ const wulingSimulationRewardTable = [
 ];
 
 export {
-  wulingRegionalStockBillStoreRewardTable,
   wulingAuryleneCollectStageTable,
+  wulingBattleCrateRewardTable,
   wulingCrateRewardTable,
   wulingRegionalDevelopmentRewardTable,
+  wulingRegionalStockBillStoreRewardTable,
   wulingSimulationRewardTable,
-  wulingBattleCrateRewardTable,
 };

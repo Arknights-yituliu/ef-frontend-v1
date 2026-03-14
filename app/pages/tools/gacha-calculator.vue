@@ -24,6 +24,11 @@ import {
 } from '@/custom/core/gacha/dailyReward';
 
 import {
+  wulingAuryleneCollectStageTable,
+  wulingRegionalDevelopmentRewardTable,
+} from '@/custom/core/gacha/data/wulingRegionalRewardTable';
+
+import {
   authorityLevelTaskRewards,
   authorityLevelUpReward,
   authorityLevelUpRewardTable,
@@ -67,11 +72,6 @@ import {
   valleyIVRegionalStockBillStoreReward,
   valleyIVSimulationReward,
 } from '@/custom/core/gacha/valleyIVRegionalReward';
-
-import {
-  wulingAuryleneCollectStageTable,
-  wulingRegionalDevelopmentRewardTable,
-} from '@/custom/core/gacha/data/wulingRegionalRewardTable';
 
 import {
   wulingAuryleneCollectReward,
