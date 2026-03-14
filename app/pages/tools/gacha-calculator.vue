@@ -68,7 +68,7 @@ import {
   valleyIVSimulationReward,
 } from '@/custom/core/gacha/valleyIVRegionalReward';
 
-export {
+import {
   wulingAuryleneCollectStageTable,
   wulingRegionalDevelopmentRewardTable,
 } from '@/custom/core/gacha/data/wulingRegionalRewardTable';

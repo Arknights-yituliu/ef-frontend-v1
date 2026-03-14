@@ -33,7 +33,7 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
   tips: [
     '通过滑块调节当前地区建设等级',
     '零号协议版本武陵地区建设等级最高为6级',
-    '新潮起·故渊离版本武陵地区建设等级最高为*级',
+    '新潮起·故渊离版本武陵地区建设等级最高为9级',
   ],
 });
 
@@ -58,7 +58,7 @@ const wulingAuryleneCollectReward = ref<Reward>({
   tips: [
     '通过滑块调节当前醚质收集阶段',
     '零号协议版本醚质收集阶段最高为8级',
-    '新潮起·故渊离版本醚质收集阶段最高为*级',
+    '新潮起·故渊离版本醚质收集阶段最高为9级',
   ],
 });
 
@@ -84,7 +84,7 @@ const wulingCrateReward = ref<Reward>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
-  tips: ['储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5合成玉'],
+  tips: ['储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5嵌晶玉'],
 });
 
 for (const reward of wulingCrateRewardTable) {
@@ -95,7 +95,7 @@ for (const reward of wulingCrateRewardTable) {
   );
 }
 
-let wulingBattleCrateRewardMax: number = 7;
+let wulingBattleCrateRewardMax: number = 0;
 
 const wulingBattleCrateReward = ref<Reward>({
   id: 'wuling_battle_crate_reward',
@@ -115,12 +115,13 @@ const wulingBattleCrateReward = ref<Reward>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
   },
+  tips: ['滑块拖动每格为1衍质源石'],
 });
 
 for (const reward of wulingBattleCrateRewardTable) {
   wulingBattleCrateRewardMax += reward.content.originiumRecharge;
-  wulingCrateReward.value.content.originiumRecharge += reward.content.originiumRecharge;
-  wulingCrateReward.value.tips?.push(
+  wulingBattleCrateReward.value.content.originiumRecharge += reward.content.originiumRecharge;
+  wulingBattleCrateReward.value.tips?.push(
     `${reward.version}版本奖励为：${reward.content.originiumRecharge}衍质源石`,
   );
 }
