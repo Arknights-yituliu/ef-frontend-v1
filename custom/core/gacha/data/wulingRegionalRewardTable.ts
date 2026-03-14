@@ -18,6 +18,7 @@ const wulingRegionalStockBillStoreRewardTable:Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 2,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -37,6 +38,7 @@ const wulingRegionalStockBillStoreRewardTable:Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
 ]
@@ -59,6 +61,7 @@ const wulingCrateRewardTable:Reward[] = [
       diamond: 94 * 15 + 68 * 30 + 34 * 60 + 26 * 100 + 15 * 150 + 25 * 20,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -78,6 +81,7 @@ const wulingCrateRewardTable:Reward[] = [
       diamond: 15 * 15 + 14 * 30 + 4 * 60 + 1 * 100 + 2 * 150 + 3 * 25,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
 ];
@@ -100,6 +104,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -119,6 +124,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -138,6 +144,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -157,6 +164,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -176,6 +184,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -195,6 +204,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -214,6 +224,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -233,6 +244,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -252,6 +264,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 1,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -271,6 +284,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 2,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -290,6 +304,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 2,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -309,6 +324,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
       diamond: 200,
       ticketgachaStandardSingle: 2,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
 ];
@@ -331,6 +347,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -350,6 +367,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -369,6 +387,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -388,6 +407,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -407,6 +427,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -426,6 +447,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -445,6 +467,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -464,6 +487,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -483,6 +507,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -502,6 +527,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -521,6 +547,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -540,6 +567,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -559,6 +587,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -578,6 +607,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -597,6 +627,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -616,6 +647,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -635,6 +667,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -654,6 +687,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
 ];
@@ -676,6 +710,7 @@ const wulingBattleCrateRewardTable:Reward[] = [
      diamond: 0,
      ticketgachaStandardSingle: 0,
      ticketgachaSpecialSingle: 0,
+     ticketgachaLimitedSingle: 0,
    },
  },{
    id: 'wuling_battle_crate_reward',
@@ -694,6 +729,7 @@ const wulingBattleCrateRewardTable:Reward[] = [
      diamond: 0,
      ticketgachaStandardSingle: 0,
      ticketgachaSpecialSingle: 0,
+     ticketgachaLimitedSingle: 0,
    },
  }
 ]
@@ -716,6 +752,7 @@ const wulingSimulationRewardTable = [
       diamond: 9 * 25,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -735,6 +772,7 @@ const wulingSimulationRewardTable = [
       diamond: 4 * 25,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
 ];

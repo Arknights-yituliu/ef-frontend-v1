@@ -3,6 +3,7 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import { ref } from 'vue';
 
 import ActivityRewardTable from '@/custom/core/gacha/data/activity_reward_table.json';
+import PoolInfo from '@/custom/core/gacha/data/pool_info.json';
 
 const activityReward = ref<Reward[]>([]);
 
@@ -17,57 +18,10 @@ for (const reward of ActivityRewardTable as Reward[]) {
 
 export { activityReward };
 
-const newPoolActivity = [
-  {
-    poolName: '熔火灼痕',
-    character: '莱万汀',
-    start: '2026/01/22 12:00:00',
-    end: '2026/02/07 12:00:00',
-    signInTime: ['2026/01/22 12:00:00', '2026/01/25 12:00:00', '2026/01/28 12:00:00'],
-    versionEnd: '2026/03/12 12:00:00',
-    version: '零号委托',
-  },
-  {
-    poolName: '轻飘飘的信使',
-    character: '洁尔佩塔',
-    start: '2026/02/07 12:00:00',
-    end: '2026/02/24 12:00:00',
-    signInTime: ['2026/02/07 12:00:00', '2026/02/10 12:00:00', '2026/02/13 12:00:00'],
-    versionEnd: '2026/03/12 12:00:00',
-    version: '零号委托',
-  },
-  {
-    poolName: '热烈色彩',
-    character: '伊冯',
-    start: '2026/02/24 12:00:00',
-    end: '2026/03/12 12:00:00',
-    signInTime: ['2026/02/24 12:00:00', '2026/03/27 12:00:00', '2026/03/02 12:00:00'],
-    versionEnd: '2026/03/12 12:00:00',
-    version: '零号委托',
-  },
-  {
-    poolName: '汤汤',
-    character: '汤汤',
-    start: '2026/03/12 12:00:00',
-    end: '2026/03/29 12:00:00',
-    signInTime: ['2026/03/12 12:00:00', '2026/03/15 12:00:00', '2026/03/18 12:00:00'],
-    versionEnd: '2026/04/16 12:00:00',
-    version: '新潮起·故渊离',
-  },
-  {
-    poolName: '洛茜',
-    character: '洛茜',
-    start: '2026/03/29 12:00:00',
-    end: '2026/04/16 12:00:00',
-    signInTime: ['2026/03/29 12:00:00', '2026/04/01 12:00:00', '2026/04/03 12:00:00'],
-    versionEnd: '2026/04/16 12:00:00',
-    version: '新潮起·故渊离',
-  },
-];
 
 function createNewPoolActivity() {
-  for (const item of newPoolActivity) {
-    const startDate = new Date(item.start);
+  for (const item of PoolInfo) {
+    const startDate = new Date(item.poolStart);
     const reward1: Reward = {
       id: `作战演练·${item.character}`,
       name: {
@@ -85,31 +39,33 @@ function createNewPoolActivity() {
         diamond: 100,
         ticketgachaStandardSingle: 0,
         ticketgachaSpecialSingle: 0,
+        ticketgachaLimitedSingle: 0,
       },
     };
     activityReward.value.push(reward1);
-
-    const reward2: Reward = {
-      id: `干员叙事·${item.character}`,
-      name: {
-        zh: `干员叙事·${item.character}`,
-        en: '',
-      },
-      start: startDate,
-      end: '2099/12/31 12:00:00',
-      type: '通用',
-      module: '活动',
-      active: true,
-      version: item.version,
-      content: {
-        originiumRecharge: 0,
-        diamond: 600,
-        ticketgachaStandardSingle: 0,
-        ticketgachaSpecialSingle: 0,
-      },
-    };
-    activityReward.value.push(reward2);
+    
     if (item.character !== '汤汤') {
+      const reward2: Reward = {
+        id: `干员叙事·${item.character}`,
+        name: {
+          zh: `干员叙事·${item.character}`,
+          en: '',
+        },
+        start: startDate,
+        end: '2099/12/31 12:00:00',
+        type: '通用',
+        module: '活动',
+        active: true,
+        version: item.version,
+        content: {
+          originiumRecharge: 0,
+          diamond: 600,
+          ticketgachaStandardSingle: 0,
+          ticketgachaSpecialSingle: 0,
+          ticketgachaLimitedSingle: 0,
+        },
+      };
+      activityReward.value.push(reward2);
     }
 
     let i = 1;
@@ -121,7 +77,7 @@ function createNewPoolActivity() {
           en: '',
         },
         start: new Date(time),
-        end: new Date(item.end),
+        end: new Date(item.poolEnd),
         type: item.character,
         module: '活动',
         active: true,
@@ -130,7 +86,8 @@ function createNewPoolActivity() {
           originiumRecharge: 0,
           diamond: 0,
           ticketgachaStandardSingle: 0,
-          ticketgachaSpecialSingle: i === 1 ? 1 : 2,
+          ticketgachaSpecialSingle:0 ,
+          ticketgachaLimitedSingle: i === 1 ? 1 : 2,
         },
       };
       activityReward.value.push(reward3);
@@ -215,6 +172,7 @@ function createActivityReward(): void {
         diamond: item.diamond,
         ticketgachaStandardSingle: 0,
         ticketgachaSpecialSingle: 0,
+        ticketgachaLimitedSingle: 0,
       },
     };
 

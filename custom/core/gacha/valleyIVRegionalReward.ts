@@ -20,6 +20,7 @@ const valleyIVRegionalStockBillStoreReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 9,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
 });
 
@@ -39,6 +40,7 @@ const valleyIVRegionalDevelopmentReward = ref<Reward>({
     diamond: 2200,
     ticketgachaStandardSingle: 14,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
 });
 
@@ -58,6 +60,7 @@ const valleyIVAuryleneCollectReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
 });
 
@@ -80,6 +83,7 @@ const valleyIVCrateReward = ref<Reward>({
     diamond: valleyIVCrateRewardMax,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
 });
 
@@ -101,6 +105,7 @@ const valleyIVBattleCrateReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
 });
 
@@ -123,6 +128,7 @@ const valleyIVSimulationReward = ref<Reward>({
     diamond: 26 * 25,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
 });
 
@@ -143,6 +149,7 @@ const valleyIVDefenseConstructionReward = ref<Reward[]>([
       diamond: 240,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -161,6 +168,7 @@ const valleyIVDefenseConstructionReward = ref<Reward[]>([
       diamond: 320,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
 ]);

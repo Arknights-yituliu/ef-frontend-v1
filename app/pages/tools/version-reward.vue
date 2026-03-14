@@ -2,7 +2,7 @@
 import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
 
 import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
-
+import { dateFormat } from '#shared/utils/dateUtil';
 import { numberFloor } from '#shared/utils/numberUtil';
 
 import { onMounted, ref, watch } from 'vue';
@@ -45,10 +45,13 @@ import { wulingRegionalAllRewardTable } from '@/custom/core/gacha/wulingRegional
 const controlPanel = ref({
   title: '',
   versionName: '新潮起·故渊离',
-  updateDate: '2026-03-05',
+  updateDate: dateFormat(new Date()),
   otherInfo: '部分资源为估算，仅供参考',
   kvImage: 'https://cos.yituliu.cn/endfield/other/kv-v1.1.webp',
 });
+
+
+
 
 // 组件挂载时从localStorage读取保存的数据
 onMounted(() => {
@@ -88,11 +91,11 @@ onMounted(() => {
       }
 
       // 读取更新日期
-      const savedUpdateDate = localStorage.getItem('version-reward-update-date');
-      if (savedUpdateDate) {
-        console.log('读取到更新日期:', savedUpdateDate);
-        controlPanel.value.updateDate = savedUpdateDate;
-      }
+      // const savedUpdateDate = localStorage.getItem('version-reward-update-date');
+      // if (savedUpdateDate) {
+      //   console.log('读取到更新日期:', savedUpdateDate);
+      //   controlPanel.value.updateDate = savedUpdateDate;
+      // }
 
       // 读取其他说明
       const savedOtherInfo = localStorage.getItem('version-reward-other-info');
@@ -139,19 +142,19 @@ watch(
   },
 );
 
-watch(
-  () => controlPanel.value.updateDate,
-  (newValue) => {
-    if (typeof localStorage !== 'undefined') {
-      try {
-        localStorage.setItem('version-reward-update-date', newValue);
-        console.log('✓ 更新日期已保存到localStorage');
-      } catch (error) {
-        console.error('✗ 保存更新日期到localStorage失败:', error);
-      }
-    }
-  },
-);
+// watch(
+//   () => controlPanel.value.updateDate,
+//   (newValue) => {
+//     if (typeof localStorage !== 'undefined') {
+//       try {
+//         localStorage.setItem('version-reward-update-date', newValue);
+//         console.log('✓ 更新日期已保存到localStorage');
+//       } catch (error) {
+//         console.error('✗ 保存更新日期到localStorage失败:', error);
+//       }
+//     }
+//   },
+// );
 
 watch(
   () => controlPanel.value.otherInfo,
@@ -364,6 +367,7 @@ function filterRewardByVersion(version: any) {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
     totalPulls: 0,
   };
 
@@ -373,6 +377,7 @@ function filterRewardByVersion(version: any) {
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
     totalPulls: 0,
   };
 
@@ -382,6 +387,7 @@ function filterRewardByVersion(version: any) {
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
     totalPulls: 0,
   };
 
@@ -398,6 +404,7 @@ function filterRewardByVersion(version: any) {
     result1.diamond += reward.content.diamond;
     result1.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
     result1.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+    result1.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
   }
 
   console.log(11, JSON.stringify(list));
@@ -406,11 +413,13 @@ function filterRewardByVersion(version: any) {
   result2.diamond += result1.diamond;
   result2.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
   result2.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
+  result2.ticketgachaLimitedSingle += result1.ticketgachaLimitedSingle;
 
   result3.originiumRecharge += result1.originiumRecharge;
   result3.diamond += result1.diamond;
   result3.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
   result3.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
+  result3.ticketgachaLimitedSingle += result1.ticketgachaLimitedSingle;
 
   result1.totalPulls =
     result1.originiumRecharge * 0.15 + result1.diamond / 500 + result1.ticketgachaSpecialSingle;
@@ -457,7 +466,7 @@ onMounted(() => {
 
           <!-- 其他文本（更新日期和说明） -->
           <div class="info-section">
-            <div v-if="controlPanel.updateDate" class="info-item">
+            <div  class="info-item">
               更新日期：{{ controlPanel.updateDate }}
             </div>
             <div v-if="controlPanel.otherInfo" class="info-item">
@@ -514,6 +523,64 @@ onMounted(() => {
           </div>
         </div>
         <!-- 统计区 -->
+         <!-- <v-table>
+              <thead>
+                <tr>
+                  <th>氪度</th>
+                  <th colspan="5">资源</th>
+                  <th>基础寻访</th>
+                  <th>特许寻访</th>
+                  <th>限时特许寻访</th>
+                  <th>特许寻访+限时特许寻访</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="result in currentVersionRewardTotal">
+                 <td>{{ result.name }}</td>
+                 <td>
+                  <div class="version-reward-result-content">
+                <div class="version-reward-result-content-item">
+                  <img
+                    alt="existing"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                  />×
+                  {{ result.originiumRecharge }}
+                </div>
+                <div class="version-reward-result-content-item">
+                  <img
+                    alt="existing"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                  />×
+                  {{ result.diamond }}
+                </div>
+                <div class="version-reward-result-content-item">
+                  <img
+                    alt="existing"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                  />×
+                  {{ result.ticketgachaStandardSingle }}
+                </div>
+                <div class="version-reward-result-content-item">
+                  <img
+                    alt="existing"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                  />×
+                  {{ result.ticketgachaSpecialSingle }}
+                </div>
+              </div>
+                 </td>
+                 <td>{{ result.ticketgachaStandardSingle }}</td>
+                 <td>{{ result.ticketgachaSpecialSingle }}</td>
+                 <td>{{ result.ticketgachaLimitedSingle }}</td>
+                 <td>{{ result.totalPulls }}</td>
+                </tr>
+                
+              </tbody>
+      </v-table> -->
         <div class="version-reward-result-group">
           <div v-for="result in currentVersionRewardTotal" class="version-reward-result">
             <div class="reward-result-border">
@@ -560,12 +627,12 @@ onMounted(() => {
               <div class="version-reward-result-type">
                 特许寻访
                 <div class="version-reward-result-number">
-                  {{ numberFloor((result.totalPulls as number) - 20) }}抽
+                  {{ numberFloor((result.totalPulls as number)) }}抽
                 </div>
               </div>
               <div class="version-reward-result-type">
                 限时寻访
-                <div class="version-reward-result-number">20抽</div>
+                <div class="version-reward-result-number"> {{ result.ticketgachaLimitedSingle }}抽</div>
               </div>
               <div class="version-reward-result-type">
                 基础寻访
@@ -585,6 +652,7 @@ onMounted(() => {
       <!-- 页脚区 -->
       <div id="version-reward-footer">
         <table class="footer-table">
+          <tbody>
           <tr>
             <td>数据来源：</td>
             <td>终末地一图流·攒抽计算器</td>
@@ -597,6 +665,7 @@ onMounted(() => {
             <td>信息发布：</td>
             <td>逻辑元LogicalByte@Bilibili</td>
           </tr>
+          </tbody>
         </table>
         <img
           alt="existing"
@@ -630,10 +699,10 @@ onMounted(() => {
       </div>
 
       <!-- 更新日期输入 -->
-      <div class="control-item">
+      <!-- <div class="control-item">
         <label>更新日期</label>
         <input v-model="controlPanel.updateDate" type="date" />
-      </div>
+      </div> -->
 
       <!-- 其他说明输入 -->
       <div class="control-item">
@@ -641,6 +710,9 @@ onMounted(() => {
         <textarea v-model="controlPanel.otherInfo" placeholder="请输入其他说明" rows="4"></textarea>
       </div>
     </div>
+  </div>
+  <div>
+   
   </div>
 </template>
 

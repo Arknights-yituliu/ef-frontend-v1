@@ -123,6 +123,7 @@ function addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward
         result.diamond += item.content.diamond;
         result.ticketgachaStandardSingle += item.content.ticketgachaStandardSingle;
         result.ticketgachaSpecialSingle += item.content.ticketgachaSpecialSingle;
+        result.ticketgachaLimitedSingle += item.content.ticketgachaLimitedSingle;
       }
     }
   } else {
@@ -131,14 +132,17 @@ function addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward
       result.diamond += reward.content.diamond;
       result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
       result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+      result.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
     }
   }
+  console.log(result.name,result.ticketgachaLimitedSingle);
 }
 
 function getRewardsPull(reward: RewardStatisticsResultDetail[]): TotalPullsSingle {
   const result: TotalPullsSingle = {
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
   for (const item of reward) {
     result.ticketgachaStandardSingle += item.ticketgachaStandardSingle;
@@ -156,6 +160,7 @@ function getRewardPull(reward: RewardStatisticsResultDetail): TotalPullsSingle {
       reward.diamond / 500 +
       (reward.originiumRecharge * 75) / 500 +
       reward.ticketgachaSpecialSingle,
+    ticketgachaLimitedSingle: reward.ticketgachaLimitedSingle,
   };
 }
 
@@ -219,6 +224,7 @@ function groupAndMergeRewardsByVersion(name: string, rewards: Reward[]): Reward[
         diamond: 0,
         ticketgachaStandardSingle: 0,
         ticketgachaSpecialSingle: 0,
+        ticketgachaLimitedSingle: 0,
       },
     };
 

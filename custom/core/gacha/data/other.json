@@ -13,9 +13,10 @@
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 900,
+      "diamond": 500,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },{
     "id": "问题修复补偿3.12",
@@ -33,7 +34,8 @@
       "originiumRecharge": 0,
       "diamond": 900,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
    {
@@ -52,7 +54,8 @@
       "originiumRecharge": 0,
       "diamond": 900,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -71,7 +74,8 @@
       "originiumRecharge": 0,
       "diamond": 1000,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -90,7 +94,8 @@
       "originiumRecharge": 0,
       "diamond": 300,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -109,7 +114,8 @@
       "originiumRecharge": 0,
       "diamond": 300,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -128,7 +134,8 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -147,7 +154,8 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -166,7 +174,8 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -185,7 +194,8 @@
       "originiumRecharge": 0,
       "diamond": 500,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -204,7 +214,8 @@
       "originiumRecharge": 0,
       "diamond": 150,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -223,7 +234,8 @@
       "originiumRecharge": 0,
       "diamond": 300,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -242,7 +254,8 @@
       "originiumRecharge": 0,
       "diamond": 120,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -261,7 +274,8 @@
       "originiumRecharge": 0,
       "diamond": 90,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -280,7 +294,8 @@
       "originiumRecharge": 0,
       "diamond": 90,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -299,7 +314,8 @@
       "originiumRecharge": 0,
       "diamond": 300,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -318,7 +334,8 @@
       "originiumRecharge": 0,
       "diamond": 0,
       "ticketgachaStandardSingle": 20,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -356,7 +373,8 @@
       "originiumRecharge": 0,
       "diamond": 300,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -375,7 +393,8 @@
       "originiumRecharge": 0,
       "diamond": 500,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -394,7 +413,8 @@
       "originiumRecharge": 0,
       "diamond": 1500,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -413,7 +433,8 @@
       "originiumRecharge": 0,
       "diamond": 150,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -432,7 +453,8 @@
       "originiumRecharge": 0,
       "diamond": 100,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -451,7 +473,8 @@
       "originiumRecharge": 0,
       "diamond": 100,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   }
 ]

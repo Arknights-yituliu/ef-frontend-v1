@@ -14,7 +14,7 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -32,7 +32,7 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -50,7 +50,7 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -68,7 +68,7 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -86,7 +86,7 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -104,7 +104,7 @@
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },{
   "id": "档案采集·基建前站搜救信息",
@@ -121,7 +121,7 @@
     "originiumRecharge": 0,
     "diamond": 200,
     "ticketgachaStandardSingle": 0,
-    "ticketgachaSpecialSingle": 0
+    "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
   }
 },{
   "id": "档案采集·碾骨氏族",
@@ -138,7 +138,7 @@
     "originiumRecharge": 0,
     "diamond": 200,
     "ticketgachaStandardSingle": 0,
-    "ticketgachaSpecialSingle": 0
+    "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
   }
 }
 ]

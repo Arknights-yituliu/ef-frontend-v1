@@ -29,6 +29,7 @@ const wulingRegionalDevelopmentReward = ref<Reward>({
     diamond: 1000,
     ticketgachaStandardSingle: 5,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
   tips: [
     '通过滑块调节当前地区建设等级',
@@ -54,6 +55,7 @@ const wulingAuryleneCollectReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
   tips: [
     '通过滑块调节当前醚质收集阶段',
@@ -83,6 +85,7 @@ const wulingCrateReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
   tips: ['储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5嵌晶玉'],
 });
@@ -114,6 +117,7 @@ const wulingBattleCrateReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
   tips: ['滑块拖动每格为1衍质源石'],
 });
@@ -148,6 +152,7 @@ const wulingSimulationReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
   tips: ['通过滑块调节奖励总量'],
 });
@@ -177,6 +182,7 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
       diamond: 160,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },{
     id: 'wuling_defense_construction_reward_2',
@@ -195,6 +201,7 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
       diamond: 80,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   }
 ]);
