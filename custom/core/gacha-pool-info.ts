@@ -41,6 +41,27 @@ const gachaPools: GachaPool[] = [
     poolName: "迅行申领",
     upCharName: "使命必达",
   },
+  {
+    poolId: "special_1_0_4",
+    poolName: "河流的女儿",
+    upCharName: "汤汤",
+  },
+  {
+    poolId: "weponbox_1_0_4",
+    poolName: "新芽申领",
+    upCharName: "落草",
+  },
+  {
+    poolId: "special_1_0_5",
+    poolName: "狼珀",
+    upCharName: "洛茜",
+  },
+  {
+    poolId: "weponbox_1_0_5",
+    poolName: "绯珀申领",
+    upCharName: "（待补充）",
+  },
+
 ];
 
 export { gachaPools };
