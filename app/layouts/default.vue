@@ -33,6 +33,7 @@
       <v-app-bar-nav-icon @click="() => (drawer = !drawer)" />
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
       <div class="header-controls">
+        <LayoutFeedbackToggle />
         <LayoutThemeToggle />
         <div class="control-divider" />
         <LayoutLanguageToggle />
