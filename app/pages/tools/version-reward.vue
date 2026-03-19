@@ -50,9 +50,6 @@ const controlPanel = ref({
   kvImage: 'https://cos.yituliu.cn/endfield/other/kv-v1.1.webp',
 });
 
-
-
-
 // 组件挂载时从localStorage读取保存的数据
 onMounted(() => {
   console.log('=== onMounted 开始执行 ===');
@@ -466,9 +463,7 @@ onMounted(() => {
 
           <!-- 其他文本（更新日期和说明） -->
           <div class="info-section">
-            <div  class="info-item">
-              更新日期：{{ controlPanel.updateDate }}
-            </div>
+            <div class="info-item">更新日期：{{ controlPanel.updateDate }}</div>
             <div v-if="controlPanel.otherInfo" class="info-item">
               {{ controlPanel.otherInfo }}
             </div>
@@ -520,68 +515,81 @@ onMounted(() => {
               />X
               {{ reward.content.ticketgachaSpecialSingle }}
             </div>
+            <div
+              v-show="reward.content.ticketgachaLimitedSingle > 0"
+              class="version-reward-item-content"
+            >
+              <img
+                alt="existing"
+                class="version-reward-item-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+              />X
+              {{ reward.content.ticketgachaLimitedSingle }}
+            </div>
           </div>
         </div>
         <!-- 统计区 -->
-         <!-- <v-table>
-              <thead>
-                <tr>
-                  <th>氪度</th>
-                  <th colspan="5">资源</th>
-                  <th>基础寻访</th>
-                  <th>特许寻访</th>
-                  <th>限时特许寻访</th>
-                  <th>特许寻访+限时特许寻访</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="result in currentVersionRewardTotal">
-                 <td>{{ result.name }}</td>
-                 <td>
-                  <div class="version-reward-result-content">
-                <div class="version-reward-result-content-item">
-                  <img
-                    alt="existing"
-                    class="version-reward-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-                  />×
-                  {{ result.originiumRecharge }}
-                </div>
-                <div class="version-reward-result-content-item">
-                  <img
-                    alt="existing"
-                    class="version-reward-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-                  />×
-                  {{ result.diamond }}
-                </div>
-                <div class="version-reward-result-content-item">
-                  <img
-                    alt="existing"
-                    class="version-reward-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-                  />×
-                  {{ result.ticketgachaStandardSingle }}
-                </div>
-                <div class="version-reward-result-content-item">
-                  <img
-                    alt="existing"
-                    class="version-reward-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-                  />×
-                  {{ result.ticketgachaSpecialSingle }}
-                </div>
-              </div>
-                 </td>
-                 <td>{{ result.ticketgachaStandardSingle }}</td>
-                 <td>{{ result.ticketgachaSpecialSingle }}</td>
-                 <td>{{ result.ticketgachaLimitedSingle }}</td>
-                 <td>{{ result.totalPulls }}</td>
-                </tr>
-                
-              </tbody>
-      </v-table> -->
-        <div class="version-reward-result-group">
+        <v-table class="version-reward-result-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                />
+              </th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                />
+              </th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                />
+              </th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                />
+              </th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                />
+              </th>
+              <th>特许寻访</th>
+              <th>特许寻访+专属寻访</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="result in currentVersionRewardTotal">
+              <td>{{ result.name }}</td>
+              <td>
+                {{ result.originiumRecharge }}
+              </td>
+              <td>{{ result.diamond }}</td>
+              <td>{{ result.ticketgachaStandardSingle }}</td>
+              <td>{{ result.ticketgachaSpecialSingle }}</td>
+              <td>{{ result.ticketgachaLimitedSingle }}</td>
+              <td>{{ numberFloor(result.totalPulls as number) }}抽</td>
+              <td>
+                {{ numberFloor((result.totalPulls as number) + result.ticketgachaLimitedSingle) }}抽
+              </td>
+            </tr>
+          </tbody>
+        </v-table>
+        <div class="version-reward-result-group" style="display: none">
           <div v-for="result in currentVersionRewardTotal" class="version-reward-result">
             <div class="reward-result-border">
               <div class="version-reward-result-color-border red-bg"></div>
@@ -627,12 +635,14 @@ onMounted(() => {
               <div class="version-reward-result-type">
                 特许寻访
                 <div class="version-reward-result-number">
-                  {{ numberFloor((result.totalPulls as number)) }}抽
+                  {{ numberFloor(result.totalPulls as number) }}抽
                 </div>
               </div>
               <div class="version-reward-result-type">
                 限时寻访
-                <div class="version-reward-result-number"> {{ result.ticketgachaLimitedSingle }}抽</div>
+                <div class="version-reward-result-number">
+                  {{ result.ticketgachaLimitedSingle }}抽
+                </div>
               </div>
               <div class="version-reward-result-type">
                 基础寻访
@@ -644,8 +654,10 @@ onMounted(() => {
           </div>
           <div id="shield" style="padding: 12px">
             <p>数据由攒抽计算器自动生成，非当前版本完整数据</p>
-            <p>资源以实际发放为准，攒抽计算器也将会持续修订更新资源，可能有错漏资源，欢迎反馈</p>
-            <p>图片时效性较低，建议关注网站更新，也可根据个人情况使用攒抽计算器自行调整</p>
+            <p>
+              资源以实际发放为准，本图片时效性较低，攒抽计算器将会持续修订更新资源，可能有错漏资源，欢迎反馈
+            </p>
+            <p>计算器可根据个人情况使用攒抽计算器自行调整</p>
           </div>
         </div>
       </div>
@@ -653,18 +665,18 @@ onMounted(() => {
       <div id="version-reward-footer">
         <table class="footer-table">
           <tbody>
-          <tr>
-            <td>数据来源：</td>
-            <td>终末地一图流·攒抽计算器</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>https://ef.yituliu.cn/tools/gacha-calculator/</td>
-          </tr>
-          <tr>
-            <td>信息发布：</td>
-            <td>逻辑元LogicalByte@Bilibili</td>
-          </tr>
+            <tr>
+              <td>数据来源：</td>
+              <td>终末地一图流·攒抽计算器</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>https://ef.yituliu.cn/tools/gacha-calculator/</td>
+            </tr>
+            <tr>
+              <td>信息发布：</td>
+              <td>逻辑元LogicalByte@Bilibili</td>
+            </tr>
           </tbody>
         </table>
         <img
@@ -711,9 +723,7 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div>
-   
-  </div>
+  <div></div>
 </template>
 
 <style>
@@ -917,6 +927,23 @@ onMounted(() => {
 }
 
 /* ========== 2.2.3 结果组 ========== */
+
+.version-reward-result-table {
+  background: rgba(32, 32, 32, 0.85) !important;
+  color: white !important;
+  width: 96%;
+  margin: 20px auto;
+   
+  th,
+  td {
+     text-align: center ;
+    border: 1px solid white;
+    font-size: 24px;
+  }
+
+ 
+}
+
 .version-reward-result-group {
   display: flex;
   flex-wrap: wrap;
