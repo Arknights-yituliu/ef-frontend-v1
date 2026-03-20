@@ -33,7 +33,7 @@
       <v-app-bar-nav-icon @click="() => (drawer = !drawer)" />
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
       <div class="header-controls">
-        <LayoutFeedbackToggle />
+        <LayoutFeedbackToggle @click="handleFeedbackClick" />
         <LayoutThemeToggle />
         <div class="control-divider" />
         <LayoutLanguageToggle />
@@ -62,6 +62,10 @@
         @click="scrollToTop"
       />
     </v-fade-transition>
+    <LayoutFeedbackModal
+      v-model="isFeedbackOpen"
+      @submit="handleFeedbackSubmit"
+    />
   </v-app>
 </template>
 
@@ -127,6 +131,35 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
 });
+
+
+interface FeedbackData {
+  type: string;
+  content: string;
+  email?: string;
+}
+
+// 2. 控制弹窗显示的状态
+const isFeedbackOpen = ref(false);
+
+// 3. 控制成功提示 (Snackbar) 的状态
+const showSuccessSnackbar = ref(false);
+
+// 4. 打开弹窗
+function handleFeedbackClick() {
+  isFeedbackOpen.value = true;
+}
+
+// 5. 处理提交成功回调
+function handleFeedbackSubmit (data: FeedbackData) {
+  console.log('反馈已提交:', data);
+
+  // 关闭弹窗 (通常由子组件内部关闭，但双重保险也可以在这里关)
+  isFeedbackOpen.value = false;
+
+  // 显示成功提示
+  showSuccessSnackbar.value = true;
+}
 </script>
 
 <style scoped>

@@ -42,11 +42,9 @@ defineEmits<{
   justify-content: center;
   gap: 0.5rem;
   box-shadow: 0 0 0.25rem var(--theme-shadow-base);
-  /* 不需要 text-transform: uppercase，因为中文不需要 */
   letter-spacing: 0.05em;
 }
 
-/* 背景斜纹动画 (完全复用) */
 .feedback-btn::before {
   content: '';
   position: absolute;
@@ -99,7 +97,6 @@ defineEmits<{
   z-index: 1;
 }
 
-/* 悬停效果 (完全复用) */
 .feedback-btn:hover {
   background-color: var(--theme-bg-tertiary);
   border-color: var(--theme-accent-color);
@@ -112,7 +109,6 @@ defineEmits<{
   box-shadow: 0 0 0.5rem var(--theme-accent-color);
 }
 
-/* 激活/点击效果 (模拟 active 状态，或者可以用 :active 伪类) */
 .feedback-btn:active {
   transform: translateX(0.05rem) scale(0.98);
   box-shadow: 0 0 0.5rem var(--theme-shadow-accent-hover);
