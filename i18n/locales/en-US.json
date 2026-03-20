@@ -510,5 +510,40 @@
     "search": "Search",
     "searchPlaceholder": "Enter keywords to search documents...",
     "noResults": "No documents found"
+  },
+  "feedback": {
+    "modal": {
+      "title": "Feedback & Suggestions",
+      "actionBtn": "Go"
+    },
+    "table": {
+      "header": {
+        "method": "Method",
+        "description": "Description",
+        "action": "Action"
+      }
+    },
+    "list": {
+      "qq": {
+        "title": "Feedback QQ: 3831811497",
+        "desc": "Dedicated QQ for Yituliu bug reports"
+      },
+      "github": {
+        "title": "Github Issues",
+        "desc": "Slightly slower access in China"
+      },
+      "bilibili": {
+        "title": "Bilibili LogicalByte",
+        "desc": "Send a direct message"
+      },
+      "fanGroup": {
+        "title": "Fan Group: 539600566",
+        "desc": "Join group and contact '山桜', or other admin"
+      },
+      "devGroup": {
+        "title": "Dev Group: 938710832",
+        "desc": "For those capable of solving issues themselves"
+      }
+    }
   }
 }

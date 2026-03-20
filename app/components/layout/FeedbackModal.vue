@@ -6,7 +6,6 @@
   >
     <v-card class="feedback-modal-card">
 
-      <!-- 顶部标题栏 -->
       <v-card-title class="feedback-modal-title d-flex justify-space-between align-center">
         <span class="text-h6 font-weight-bold"></span>
         <v-btn
@@ -18,7 +17,6 @@
         />
       </v-card-title>
 
-      <!-- 表格内容区域 -->
       <v-card-text class="feedback-modal-content pa-0">
         <v-data-table
           class="feedback-modal-table elevation-0"
@@ -27,7 +25,15 @@
           hide-default-footer
           :items="feedbackChannels"
         >
-          <!-- 自定义“操作”列渲染 -->
+          <!-- 动态渲染：反馈方式 -->
+          <template #[`item.method`]="{ item }">
+            {{ t(item.method) }}
+          </template>
+
+          <template #[`item.description`]="{ item }">
+            {{ t(item.description) }}
+          </template>
+
           <template #[`item.action`]="{ item }">
             <v-btn
               class="feedback-action-btn"
@@ -35,7 +41,7 @@
               size="small"
               @click="handleAction(item)"
             >
-              点击前往
+              {{ t('feedback.modal.actionBtn') }}
             </v-btn>
           </template>
         </v-data-table>
@@ -45,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { modelValue } = defineProps<{
@@ -58,48 +64,45 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 
-// 定义表头
-const headers = [
-  { title: '反馈方式', key: 'method', align: 'start' as const, sortable: false  },
-  { title: '说明', key: 'description', align: 'start' as const, sortable: false  },
-  { title: '操作', key: 'action', align: 'center' as const, sortable: false },
-] as const;
+const headers = computed(() => [
+  { title: t('feedback.table.header.method'), key: 'method', align: 'start' as const, sortable: false },
+  { title: t('feedback.table.header.description'), key: 'description', align: 'start' as const, sortable: false },
+  { title: t('feedback.table.header.action'), key: 'action', align: 'center' as const, sortable: false },
+]);
 
-// 定义反馈渠道数据
 const feedbackChannels = ref([
   {
-    method: '反馈QQ：3831811497',
-    description: '一图流问题反馈专用QQ',
+    method: 'feedback.list.qq.title',
+    description: 'feedback.list.qq.desc',
     actionType: 'link',
     url: 'tencent://message/?uin=3831811497&Site=&Menu=yes',
   },
   {
-    method: 'Github issues',
-    description: '国内访问体验稍差一点',
+    method: 'feedback.list.github.title',
+    description: 'feedback.list.github.desc',
     actionType: 'link',
     url: 'https://github.com/Arknights-yituliu/ef-frontend-v1/issues/new',
   },
   {
-    method: 'B站@逻辑元 LogicalByte',
-    description: '直接私信反馈',
+    method: 'feedback.list.bilibili.title',
+    description: 'feedback.list.bilibili.desc',
     actionType: 'link',
     url: 'https://space.bilibili.com/688411531?spm_id_from=333.337.0.0',
   },
   {
-    method: '粉丝群539600566',
-    description: '进群@山桉反馈，如果不在找管理员',
+    method: 'feedback.list.fanGroup.title',
+    description: 'feedback.list.fanGroup.desc',
     actionType: 'link',
     url: 'tencent://group/?code=539600566',
   },
   {
-    method: '开发群938710832',
-    description: '如果有能力自己解决问题，可以加开发群',
+    method: 'feedback.list.devGroup.title',
+    description: 'feedback.list.devGroup.desc',
     actionType: 'link',
     url: '',
   },
 ]);
 
-// 处理点击动作
 function handleAction(item: any) {
   if (item.url) {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -109,7 +112,6 @@ function handleAction(item: any) {
   }
 }
 
-// 关闭弹窗
 function closeModal() {
   emit('update:modelValue', false);
 }
@@ -126,7 +128,6 @@ function closeModal() {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   background-color: #fafafa;
 }
-
 
 .feedback-modal-table :deep(th) {
   font-weight: bold !important;
