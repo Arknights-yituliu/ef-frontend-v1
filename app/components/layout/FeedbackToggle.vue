@@ -2,6 +2,7 @@
   <button class="feedback-btn" @click="$emit('click')">
     <div class="btn-bg" />
     <div class="btn-left-border" />
+    <!-- <span class="btn-text">{{ $t('common.feedback') }}</span> -->
     <svg
       class="btn-icon"
       fill="none"

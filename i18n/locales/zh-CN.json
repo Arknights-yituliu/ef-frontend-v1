@@ -41,7 +41,8 @@
     "noData": "暂无数据",
     "close": "关闭",
     "copySuccess": "已复制",
-    "copyFailed": "复制失败"
+    "copyFailed": "复制失败",
+    "feedback": "反馈"
   },
   "layout": {
     "theme": "主题",

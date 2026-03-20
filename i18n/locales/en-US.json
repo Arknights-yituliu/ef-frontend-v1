@@ -41,7 +41,8 @@
     "noData": "No data available",
     "close": "Close",
     "copySuccess": "Copied",
-    "copyFailed": "Copy failed"
+    "copyFailed": "Copy failed",
+    "feedback": "Feedback"
   },
   "layout": {
     "theme": "Theme",
