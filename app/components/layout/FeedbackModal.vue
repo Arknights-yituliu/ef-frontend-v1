@@ -25,7 +25,6 @@
           hide-default-footer
           :items="feedbackChannels"
         >
-          <!-- 动态渲染：反馈方式 -->
           <template #[`item.method`]="{ item }">
             {{ t(item.method) }}
           </template>
@@ -37,11 +36,11 @@
           <template #[`item.action`]="{ item }">
             <v-btn
               class="feedback-action-btn"
-              color="success"
-              size="small"
+              :color="item.actionType === 'copy' ? '#F4D03F' : '#3b95f6'"               size="small"
+              variant="tonal"
               @click="handleAction(item)"
             >
-              {{ t('feedback.modal.actionBtn') }}
+              {{ item.actionType === 'copy' ? t('feedback.modal.copyBtn') : t('feedback.modal.actionBtn') }}
             </v-btn>
           </template>
         </v-data-table>
@@ -74,8 +73,8 @@ const feedbackChannels = ref([
   {
     method: 'feedback.list.qq.title',
     description: 'feedback.list.qq.desc',
-    actionType: 'link',
-    url: 'tencent://message/?uin=3831811497&Site=&Menu=yes',
+    actionType: 'copy',
+    url: '3831811497',
   },
   {
     method: 'feedback.list.github.title',
@@ -93,25 +92,51 @@ const feedbackChannels = ref([
     method: 'feedback.list.fanGroup.title',
     description: 'feedback.list.fanGroup.desc',
     actionType: 'link',
-    url: 'tencent://group/?code=1023465475',
+    url: 'https://qm.qq.com/q/EdjQZADudW',
   },
   {
     method: 'feedback.list.devGroup.title',
     description: 'feedback.list.devGroup.desc',
-    actionType: 'link',
-    url: '',
+    actionType: 'copy',
+    url: '696486169',
   },
 ]);
 
+async function copyToClipboard (text: string) {
+
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+  } else {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    document.body.append(textarea);
+    textarea.focus();
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+  }
+
+}
 function handleAction(item: any) {
-  if (item.url) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    item.url.startsWith('http')
-      ? window.open(item.url, '_blank')
-      : window.location.href = item.url;
+  if (!item.url) {
+    console.warn('No URL or content provided for action');
+    return;
+  }
+
+  if (item.actionType === 'copy') {
+    copyToClipboard(item.url);
+  } else if (item.actionType === 'link') {
+    if (item.url.startsWith('http')) {
+      window.open(item.url, '_blank');
+    } else {
+      window.location.href = item.url;
+    }
+  } else {
+    console.warn(`Unknown actionType: ${item.actionType}`);
   }
 }
-
 function closeModal() {
   emit('update:modelValue', false);
 }

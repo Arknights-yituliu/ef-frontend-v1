@@ -516,7 +516,8 @@
   "feedback": {
     "modal": {
       "title": "Feedback & Suggestions",
-      "actionBtn": "Go"
+      "actionBtn": "Go",
+      "copyBtn": "Copy"
     },
     "table": {
       "header": {

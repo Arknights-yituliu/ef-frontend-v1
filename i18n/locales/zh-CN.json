@@ -518,7 +518,8 @@
   "feedback": {
     "modal": {
       "title": "反馈与建议",
-      "actionBtn": "点击前往"
+      "actionBtn": "点击前往",
+      "copyBtn": "点击复制" 
     },
     "table": {
       "header": {
