@@ -519,7 +519,8 @@
     "modal": {
       "title": "反馈与建议",
       "actionBtn": "点击前往",
-      "copyBtn": "点击复制" 
+      "copyBtn": "点击复制" ,
+      "copied": "复制成功"
     },
     "table": {
       "header": {
