@@ -93,7 +93,7 @@ const feedbackChannels = ref([
     method: 'feedback.list.fanGroup.title',
     description: 'feedback.list.fanGroup.desc',
     actionType: 'link',
-    url: 'tencent://group/?code=539600566',
+    url: 'tencent://group/?code=1023465475',
   },
   {
     method: 'feedback.list.devGroup.title',
