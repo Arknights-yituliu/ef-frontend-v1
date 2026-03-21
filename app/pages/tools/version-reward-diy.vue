@@ -528,6 +528,9 @@ onMounted(() => {
             </div>
           </div>
         </div>
+
+        
+
         <!-- 统计区 -->
         <v-table class="version-reward-result-table">
           <thead>
@@ -589,6 +592,15 @@ onMounted(() => {
             </tr>
           </tbody>
         </v-table>
+
+         <div id="shield" style="padding: 12px">
+            <p>数据由攒抽计算器自动生成，非当前版本完整奖励数据</p>
+            <p>
+              资源以实际发放为准，本图片时效性较低，攒抽计算器将会持续修订更新资源，可能有错漏资源，欢迎反馈
+            </p>
+            <p>通行证循环等级获得的合成玉与保障配额交易未计入，可在攒抽计算器上根据个人情况自行调整</p>
+          </div>
+
         <div class="version-reward-result-group" style="display: none">
           <div v-for="result in currentVersionRewardTotal" class="version-reward-result">
             <div class="reward-result-border">
@@ -652,13 +664,7 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <div id="shield" style="padding: 12px">
-            <p>数据由攒抽计算器自动生成，非当前版本完整数据</p>
-            <p>
-              资源以实际发放为准，本图片时效性较低，攒抽计算器将会持续修订更新资源，可能有错漏资源，欢迎反馈
-            </p>
-            <p>计算器可根据个人情况使用攒抽计算器自行调整</p>
-          </div>
+         
         </div>
       </div>
       <!-- 页脚区 -->
@@ -944,18 +950,21 @@ onMounted(() => {
  
 }
 
+ #shield {
+    font-size: 20px;
+    width: 96%;
+    background-color: #ffffff90;
+    padding: 4px 12px;
+    margin: 0 auto 8px;
+  }
+
 .version-reward-result-group {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-around;
 
-  #shield {
-    font-size: 20px;
-    background-color: #ffffff90;
-    padding: 4px 12px;
-    margin-bottom: 8px;
-  }
+ 
 }
 
 /* ========== 2.2.3.1 单个结果 ========== */
