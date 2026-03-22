@@ -18,6 +18,7 @@
     "tools": "Tools",
     "gachaCalculator": "Gacha Calculator",
     "essenceCalculator": "Essence Planner",
+    "giftCalculator": "Gift Search",
     "quantitativeCalculator": "Production Line Quantitative Calculator",
     "batterySplitCalculator": "Battery Split Calculator",
     "gachaAnalysis": "Gacha Analysis",
@@ -451,6 +452,48 @@
         "countWithPulls": "{count} ({pulls} pulls)",
         "calculationDetail": "Calculation Detail",
         "shortcutActions": "Select All or Clear"
+      },
+      "giftCalculator": {
+        "hot": "Popular",
+        "filterGiftCategory": "Source",
+        "filterGiftHobby": "Hobby",
+        "switchMobileHelper": "Mobile Assist Tap Mode",
+        "allGifts": "Gifts",
+        "allGiftsCanSelect": "Tap the Gift to reverse search the operators. Highlighted icons indicate matching preferences.",
+        "allGiftsExpiring": "Expiring",
+        "allOperators": "Operators",
+        "allOperatorsInfo": "Highlighed operators have the gift source as their preference. Result does not count Popular Preference. Tap the operator to search the gifts.",
+        "giftExplain": {
+          "title1":"About Gift and Trust",
+          "text1-1":"Endministrator can find, talk and offer gifts to operators on O.M.V. Dijiang by going to the Infrastructure Cabins / Central Ring, or use the Operator Contact Panel at the Central Ring to contact.",
+          "text1-2":"Operators will increase Trust when receiving gifts. This will unlock Main Attribute Talents Nodes in Ability Matrix. Profile and voices are also can be unlocked by increasing Trust. The gifts from the operator will also change.",
+          "text1-3":"The offering has certain limits with following rules:",
+          "title2":"Operator Hobbies",
+          "text2-1":"Each operator has two Hobbies that can be confirmed in their profile.",
+          "text2-2":"When offering gifts, the gift's Hobby must match at least one of the operator's, otherwise it cannot be given.",
+          "title3":"Operator Preferences",
+          "text3-1":"Operators also have specific Preferences for certain sources of gifts. The Preference can only be confirmed at the time of offering.",
+          "text3-2":"If the source of the offered gift matches the operator's preference, a large amount of Trust can be gained additionally.",
+          "title4":"Popular Gifts",
+          "text4-1":"Some gifts will become Popular among operators at certain times.",
+          "text4-2":"All operators love Popular Gifts. Therefore, even if the gift's source is not the operator's preferred, it can still be offered and provide same boost to Trust.",
+          "text4-3":"However, as time passes, Popular Gifts may fall out of favor, and the gift's Popular tag will display a countdown.",
+          "text4-4":"In such cases, please pay attention to inventory and timing to avoid missing the optimal opportunity for gifting.",
+          "title5": "Other Ways to increase Trust",
+          "text5-1": "Operators assigned to the Control Nexus will gain Trust in the Endministrator with time. This method is not limited by Hobbies or Preferences.",
+          "text5-2": "Accumulated Trust will be added when the Endministrator returns to Dijiang."
+        },
+        "howToUseExplain": {
+          "title": "How to Use",
+          "text1": "There are three ways to use the searcher:",
+          "textl-1": "Gift to Operator Lookup",
+          "textl-1-d": "Tap on a gift to see which operators like it.",
+          "textl-2": "Operator to Gift Lookup",
+          "textl-2-d": "Tap on an operator to see which gifts they like.",
+          "textl-3": "Source / Hobby Query",
+          "textl-3-d": "Tap on the top filter to view gifts and operators that match these sources/hobbies.",
+          "text2": "When looking up by gift or operator, if the operator and gift's source match, both the operator and source icons will be highlighted. This indicates that giving this gift to this operator can yield a large amount of Trust due to the preference boost."
+        }
       }
     },
     "others": {

@@ -1,0 +1,534 @@
+{
+  "giftProps": {
+    "category": {
+      "tag_giftperfer_tundra_1": {
+        "zh-CN": "谷地·协议严选",
+        "en-US": "Valley Protocol"
+      },
+      "tag_giftperfer_tundra_2": {
+        "zh-CN": "谷地·工业严选",
+        "en-US": "Valley Industry"
+      },
+      "tag_giftperfer_wuling_1": {
+        "zh-CN": "武陵·跑者严选",
+        "en-US": "Wuling Runners"
+      },
+      "tag_giftperfer_wuling_2": {
+        "zh-CN": "武陵·游商严选",
+        "en-US": "Wuling Merchants"
+      }
+    },
+    "hobby": {
+      "tag_hobby_charity": {
+        "zh-CN": "公益",
+        "en-US": "Charity"
+      },
+      "tag_hobby_creativity": {
+        "zh-CN": "创意",
+        "en-US": "Creative"
+      },
+      "tag_hobby_fashion": {
+        "zh-CN": "时尚",
+        "en-US": "Fashion"
+      },
+      "tag_hobby_art": {
+        "zh-CN": "艺术",
+        "en-US": "Fine Arts"
+      },
+      "tag_hobby_culture": {
+        "zh-CN": "文化",
+        "en-US": "Culture"
+      },
+      "tag_hobby_life": {
+        "zh-CN": "生活",
+        "en-US": "Lifestyle"
+      },
+      "tag_hobby_exercise": {
+        "zh-CN": "运动",
+        "en-US": "Sports"
+      },
+      "tag_hobby_knowledge": {
+        "zh-CN": "益智",
+        "en-US": "Mind Honing"
+      },
+      "tag_hobby_nature": {
+        "zh-CN": "自然",
+        "en-US": "Nature"
+      },
+      "tag_hobby_tech": {
+        "zh-CN": "科技",
+        "en-US": "Technology"
+      }
+    }
+  },
+  "gift": {
+    "item_gift_jinlong_1": {
+      "id": "item_gift_jinlong_1",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": true,
+      "favorCategory": "tag_giftperfer_wuling_1",
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_culture"
+      ]
+    },
+    "item_gift_jinlong_2": {
+      "id": "item_gift_jinlong_2",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": true,
+      "favorCategory": "tag_giftperfer_wuling_1",
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_nature"
+      ]
+    },
+    "item_gift_jinlong_3": {
+      "id": "item_gift_jinlong_3",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_2",
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_knowledge"
+      ]
+    },
+    "item_gift_jinlong_4": {
+      "id": "item_gift_jinlong_4",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_2",
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_life"
+      ]
+    },
+    "item_gift_tundra_1": {
+      "id": "item_gift_tundra_1",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_tundra_2",
+      "favorHobby": [
+        "tag_hobby_tech",
+        "tag_hobby_nature"
+      ]
+    },
+    "item_gift_tundra_2": {
+      "id": "item_gift_tundra_2",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_tundra_2",
+      "favorHobby": [
+        "tag_hobby_knowledge",
+        "tag_hobby_culture"
+      ]
+    },
+    "item_gift_tundra_3": {
+      "id": "item_gift_tundra_3",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_tundra_1",
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_art"
+      ]
+    },
+    "item_gift_tundra_4": {
+      "id": "item_gift_tundra_4",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_tundra_1",
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_fashion"
+      ]
+    },
+    "item_gift_tundra_5": {
+      "id": "item_gift_tundra_5",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_tundra_1",
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_culture"
+      ]
+    },
+    "item_gift_tundra_6": {
+      "id": "item_gift_tundra_6",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_tundra_2",
+      "favorHobby": [
+        "tag_hobby_art",
+        "tag_hobby_life"
+      ]
+    },
+    "item_gift_tundra_7": {
+      "id": "item_gift_tundra_7",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_tundra_1",
+      "favorHobby": [
+        "tag_hobby_tech",
+        "tag_hobby_charity"
+      ]
+    }
+  },
+  "operator": {
+    "chr_0009_azrila": {
+      "id": "chr_0009_azrila",
+      "name": {
+        "zh-CN": "余烬",
+        "en-US": "Ember"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_tech"
+      ]
+    },
+    "chr_0013_aglina": {
+      "id": "chr_0013_aglina",
+      "name": {
+        "zh-CN": "洁尔佩塔",
+        "en-US": "Gilberta"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_fashion",
+        "tag_hobby_culture"
+      ]
+    },
+    "chr_0015_lifeng": {
+      "id": "chr_0015_lifeng",
+      "name": {
+        "zh-CN": "黎风",
+        "en-US": "Lifeng"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_nature"
+      ]
+    },
+    "chr_0016_laevat": {
+      "id": "chr_0016_laevat",
+      "name": {
+        "zh-CN": "莱万汀",
+        "en-US": "Laevatain"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_life"
+      ]
+    },
+    "chr_0017_yvonne": {
+      "id": "chr_0017_yvonne",
+      "name": {
+        "zh-CN": "伊冯",
+        "en-US": "Yvonne"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_fashion",
+        "tag_hobby_tech"
+      ]
+    },
+    "chr_0025_ardelia": {
+      "id": "chr_0025_ardelia",
+      "name": {
+        "zh-CN": "艾尔黛拉",
+        "en-US": "Ardelia"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_nature"
+      ]
+    },
+    "chr_0026_lastrite": {
+      "id": "chr_0026_lastrite",
+      "name": {
+        "zh-CN": "别礼",
+        "en-US": "Last Rite"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_knowledge",
+        "tag_hobby_charity"
+      ]
+    },
+    "chr_0029_pograni": {
+      "id": "chr_0029_pograni",
+      "name": {
+        "zh-CN": "骏卫",
+        "en-US": "Pogranichnik"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_culture",
+        "tag_hobby_knowledge"
+      ]
+    },
+    "chr_0027_tangtang": {
+      "id": "chr_0027_tangtang",
+      "name": {
+        "zh-CN": "汤汤",
+        "en-US": "Tangtang"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_creativity"
+      ]
+    },
+    "chr_0004_pelica": {
+      "id": "chr_0004_pelica",
+      "name": {
+        "zh-CN": "佩丽卡",
+        "en-US": "Perlica"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_creativity"
+      ]
+    },
+    "chr_0005_chen": {
+      "id": "chr_0005_chen",
+      "name": {
+        "zh-CN": "陈千语",
+        "en-US": "Chen Qianyu"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_wuling_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_culture",
+        "tag_hobby_charity"
+      ]
+    },
+    "chr_0006_wolfgd": {
+      "id": "chr_0006_wolfgd",
+      "name": {
+        "zh-CN": "狼卫",
+        "en-US": "Wulfgard"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_creativity"
+      ]
+    },
+    "chr_0007_ikut": {
+      "id": "chr_0007_ikut",
+      "name": {
+        "zh-CN": "弧光",
+        "en-US": "Arclight"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_exercise"
+      ]
+    },
+    "chr_0011_seraph": {
+      "id": "chr_0011_seraph",
+      "name": {
+        "zh-CN": "赛希",
+        "en-US": "Xaihi"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_tech",
+        "tag_hobby_knowledge"
+      ]
+    },
+    "chr_0012_avywen": {
+      "id": "chr_0012_avywen",
+      "name": {
+        "zh-CN": "艾维文娜",
+        "en-US": "Avywenna"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_fashion"
+      ]
+    },
+    "chr_0014_aurora": {
+      "id": "chr_0014_aurora",
+      "name": {
+        "zh-CN": "昼雪",
+        "en-US": "Snowshine"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_charity"
+      ]
+    },
+    "chr_0018_dapan": {
+      "id": "chr_0018_dapan",
+      "name": {
+        "zh-CN": "大潘",
+        "en-US": "Da Pan"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_wuling_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_charity"
+      ]
+    },
+    "chr_0024_deepfin": {
+      "id": "chr_0024_deepfin",
+      "name": {
+        "zh-CN": "阿列什",
+        "en-US": "Alesh"
+      },
+      "rarity": 5,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_culture",
+        "tag_hobby_exercise"
+      ]
+    },
+    "chr_0019_karin": {
+      "id": "chr_0019_karin",
+      "name": {
+        "zh-CN": "秋栗",
+        "en-US": "Akekuri"
+      },
+      "rarity": 4,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_charity",
+        "tag_hobby_exercise"
+      ]
+    },
+    "chr_0020_meurs": {
+      "id": "chr_0020_meurs",
+      "name": {
+        "zh-CN": "卡契尔",
+        "en-US": "Catcher"
+      },
+      "rarity": 4,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_exercise"
+      ]
+    },
+    "chr_0021_whiten": {
+      "id": "chr_0021_whiten",
+      "name": {
+        "zh-CN": "埃特拉",
+        "en-US": "Estella"
+      },
+      "rarity": 4,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_art",
+        "tag_hobby_knowledge"
+      ]
+    },
+    "chr_0022_bounda": {
+      "id": "chr_0022_bounda",
+      "name": {
+        "zh-CN": "萤石",
+        "en-US": "Fluorite"
+      },
+      "rarity": 4,
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_creativity"
+      ]
+    },
+    "chr_0023_antal": {
+      "id": "chr_0023_antal",
+      "name": {
+        "zh-CN": "安塔尔",
+        "en-US": "Antal"
+      },
+      "rarity": 4,
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_knowledge",
+        "tag_hobby_creativity"
+      ]
+    }
+  }
+}
