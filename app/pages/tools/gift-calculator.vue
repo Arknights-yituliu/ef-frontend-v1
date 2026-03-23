@@ -70,8 +70,12 @@
     </v-expansion-panels>
     <v-card class="mt-2 mb-2 pa-3">
       <div class="d-flex align-center">
-        <div class="font-weight-bold mr-2">
-          {{ $t('page.tools.giftCalculator.filterGiftCategory') }}
+        <div class="d-flex align-center flex-column flex-md-row filter-name">
+          <div class="font-weight-bold mr-0 mr-md-1">
+            {{ $t('page.tools.giftCalculator.filterGiftCategory') }}
+          </div>
+          <v-btn color="red-darken-1" size="x-small" icon="mdi-delete" @click="clearSelect('category')">
+          </v-btn>
         </div>
         <div>
           <v-chip
@@ -90,8 +94,12 @@
         </div>
       </div>
       <div class="d-flex align-center">
-        <div class="font-weight-bold mr-2">
-          {{ $t('page.tools.giftCalculator.filterGiftHobby') }}
+        <div class="d-flex align-center flex-column flex-md-row filter-name">
+          <div class="font-weight-bold mr-0 mr-md-1">
+            {{ $t('page.tools.giftCalculator.filterGiftHobby') }}
+          </div>
+          <v-btn  color="red-darken-1" size="x-small" icon="mdi-delete" @click="clearSelect('hobby')">
+          </v-btn>
         </div>
         <div>
           <v-chip
@@ -305,6 +313,14 @@ const checkForceSelectItem = (type: 'operator' | 'gift', id: string) => {
   return currentForceSelectItem.value.type === type && currentForceSelectItem.value.id === id;
 }
 
+const clearSelect = (type: 'category' | 'hobby') => {
+  selectedTags.value[type] = [];
+  currentForceSelectItem.value = {
+    type: '',
+    id: '',
+  }
+}
+
 const mobileHelperEnabled = ref(false);
 
 const filtedOperators = computed(() => {
@@ -361,6 +377,10 @@ const filtedGifts = computed(() => {
 <style scoped>
 .page-container {
   --weapon-icon-size: clamp(2.5rem, 16.4vw, 5rem);
+}
+
+.filter-name {
+  min-width: 3em;
 }
 
 .gift-grid {
