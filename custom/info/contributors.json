@@ -51,6 +51,19 @@
         "position": "核心算法研发",
         "tags": ["算法", "前端"]
       }
+    },
+    {
+      "name": "Yanstory",
+      "avatarImg": "https://github.com/Yanstory.png",
+      "link": "https://github.com/Yanstory",
+      "english": {
+        "position": "Gift Search Developer",
+        "tags": ["Frontend", "UI"]
+      },
+      "chinese": {
+        "position": "礼物查询器开发",
+        "tags": ["前端", "UI"]
+      }
     }
   ]
 }

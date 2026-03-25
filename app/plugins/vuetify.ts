@@ -6,6 +6,9 @@ import { en, zhHans } from 'vuetify/locale';
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/styles';
 
+// 自定义图标
+import EssenceIcon from '~/components/icon/EssenceIcon.vue';
+
 export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
     locale: {
@@ -14,6 +17,12 @@ export default defineNuxtPlugin((app) => {
       messages: {
         en,
         zhHans,
+      },
+    },
+    icons: {
+      defaultSet: 'mdi',
+      aliases: {
+        essence: EssenceIcon,
       },
     },
   });
