@@ -3,7 +3,7 @@
     <v-expansion-panels variant="accordion">
       <v-expansion-panel color="grey-darken-1">
         <template #title>
-          <v-icon icon="mdi-information-variant-circle" class="mr-1"/>
+          <v-icon class="mr-1" icon="mdi-information-variant-circle"/>
           <b>{{ $t('page.tools.giftCalculator.giftExplain.title1') }}</b>
         </template>
         <template #text>
@@ -16,23 +16,23 @@
             <p class="text-subtitle-1 font-weight-bold">{{ $t('page.tools.giftCalculator.giftExplain.title2') }}</p>
             <div class="mb-3">
               <p>{{ $t('page.tools.giftCalculator.giftExplain.text2-1') }}</p>
-              <v-img :src="getLocaleImg('hobby_check')" width="500" class="mr-1" />
+              <v-img class="mr-1" :src="getLocaleImg('hobby_check')" width="500" />
               <p>{{ $t('page.tools.giftCalculator.giftExplain.text2-2') }}</p>
-              <v-img :src="getLocaleImg('good_gift')" width="650" class="mr-1" />
+              <v-img class="mr-1" :src="getLocaleImg('good_gift')" width="650" />
             </div>
             <p class="text-subtitle-1 font-weight-bold">{{ $t('page.tools.giftCalculator.giftExplain.title3') }}</p>
             <div class="mb-3">
               <p>{{ $t('page.tools.giftCalculator.giftExplain.text3-1') }}</p>
               <p>{{ $t('page.tools.giftCalculator.giftExplain.text3-2') }}</p>
-              <v-img :src="getLocaleImg('prefer_gift')" width="650" class="mr-1" />
+              <v-img class="mr-1" :src="getLocaleImg('prefer_gift')" width="650" />
             </div>
             <p class="text-subtitle-1 font-weight-bold">{{ $t('page.tools.giftCalculator.giftExplain.title4') }}</p>
             <div class="mb-3">
               <p>{{ $t('page.tools.giftCalculator.giftExplain.text4-1') }}</p>
-              <v-img :src="getLocaleImg('hot_gift')" width="450" class="mr-1" />
+              <v-img class="mr-1" :src="getLocaleImg('hot_gift')" width="450" />
               <p>{{ $t('page.tools.giftCalculator.giftExplain.text4-2') }}</p>
               <p>{{ $t('page.tools.giftCalculator.giftExplain.text4-3') }}</p>
-              <v-img :src="getLocaleImg('hot_gift_limit')" width="350" class="mr-1" />
+              <v-img class="mr-1" :src="getLocaleImg('hot_gift_limit')" width="350" />
               <p>{{ $t('page.tools.giftCalculator.giftExplain.text4-4') }}</p>
             </div>
             <p class="text-subtitle-1 font-weight-bold">{{ $t('page.tools.giftCalculator.giftExplain.title5') }}</p>
@@ -45,7 +45,7 @@
       </v-expansion-panel>
       <v-expansion-panel color="yellow-lighten-1">
         <template #title>
-          <v-icon icon="mdi-help-circle" class="mr-1"/>
+          <v-icon class="mr-1" icon="mdi-help-circle"/>
           <b>{{ $t('page.tools.giftCalculator.howToUseExplain.title') }}</b>
         </template>
         <template #text>
@@ -57,8 +57,8 @@
               <v-list-item
                 v-for="n in 3"
                 :key="n"
-                :title="$t(`page.tools.giftCalculator.howToUseExplain.textl-${n}`)"
                 :subtitle="$t(`page.tools.giftCalculator.howToUseExplain.textl-${n}-d`)"
+                :title="$t(`page.tools.giftCalculator.howToUseExplain.textl-${n}`)"
               ></v-list-item>
             </v-list>
             <div>
@@ -74,7 +74,7 @@
           <div class="font-weight-bold mr-0 mr-md-1">
             {{ $t('page.tools.giftCalculator.filterGiftCategory') }}
           </div>
-          <v-btn color="red-darken-1" size="x-small" icon="mdi-delete" @click="clearSelect('category')">
+          <v-btn color="red-darken-1" icon="mdi-delete" size="x-small" @click="clearSelect('category')">
           </v-btn>
         </div>
         <div>
@@ -85,10 +85,11 @@
             label variant="elevated"
             @click="selectTag('category', cateId)"
           >
-            <v-img :src="getCategoryIcon(cateId)" width="16" height="16" :class="[
+            <v-img
+:class="[
               'mr-1',
               'reverse-img'
-            ]" />
+            ]" height="16" :src="getCategoryIcon(cateId)" width="16" />
             {{ getLocaleText(cate) }}
           </v-chip>
         </div>
@@ -98,7 +99,7 @@
           <div class="font-weight-bold mr-0 mr-md-1">
             {{ $t('page.tools.giftCalculator.filterGiftHobby') }}
           </div>
-          <v-btn  color="red-darken-1" size="x-small" icon="mdi-delete" @click="clearSelect('hobby')">
+          <v-btn  color="red-darken-1" icon="mdi-delete" size="x-small" @click="clearSelect('hobby')">
           </v-btn>
         </div>
         <div>
@@ -113,14 +114,14 @@
           </v-chip>
         </div>
       </div>
-      <v-switch hide-details color="#fffa00" density="compact" class="pl-2 d-md-none" v-model="mobileHelperEnabled">
+      <v-switch v-model="mobileHelperEnabled" class="pl-2 d-md-none" color="#fffa00" density="compact" hide-details>
         <template #label>
           {{ $t('page.tools.giftCalculator.switchMobileHelper') }}
         </template>
       </v-switch>
     </v-card>
     <v-card class="mb-2" prepend-icon="mdi-hand-heart">
-      <template v-slot:title>
+      <template #title>
         <span class="font-weight-black">
           {{ $t('page.tools.giftCalculator.allGifts') }}
         </span>
@@ -135,25 +136,26 @@
             v-for="giftId in Object.keys(filtedGifts)" :key="giftId"
             class="gift-icon-wrapper gift-item position-relative"
           >
-            <v-badge :model-value="gifts.gift[giftId]?.isHot" location="top right" offset-x="26" offset-y="2" color="#0000">
+            <v-badge color="#0000" location="top right" :model-value="gifts.gift[giftId]?.isHot" offset-x="26" offset-y="2">
               <template #badge>
-                <v-chip variant="outlined" density="compact" color="#0000" class="pa-0">
+                <v-chip class="pa-0" color="#0000" density="compact" variant="outlined">
                   <v-img :src="hotIcon" width="32"/>
                 </v-chip>
               </template>
-              <v-badge location="top right" offset-x="42" offset-y="3" color="#0000">
+              <v-badge color="#0000" location="top right" offset-x="42" offset-y="3">
                 <template #badge>
-                  <v-chip v-if="gifts.gift[giftId]?.isHotExpiring" size="x-small" variant="elevated" density="compact" color="#f33e3a" class="pa-2" label>
-                    <v-icon size="14" color="#fff">mdi-clock-alert-outline</v-icon>
+                  <v-chip v-if="gifts.gift[giftId]?.isHotExpiring" class="pa-2" color="#f33e3a" density="compact" label size="x-small" variant="elevated">
+                    <v-icon color="#fff" size="14">mdi-clock-alert-outline</v-icon>
                   </v-chip>
                 </template>
                 <div class="position-relative" @click="giftSelectTag(giftId)">
                   <ContainerItemIcon :item-id="giftId" show-item-name />
-                  <v-img :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)" width="16" height="16" :class="[
+                  <v-img
+:class="[
                     'mr-1 position-absolute position-cateicon-on-itemicon',
                     theme== 'dark' ? '' : 'reverse-img',
                     filtedGifts[giftId] ? (theme === 'dark' ? 'hilight-prefer-gift-dark' : 'hilight-prefer-gift-light') : ''
-                  ]"/>
+                  ]" height="16" :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)" width="16"/>
                 </div>
               </v-badge>
             </v-badge>
@@ -163,25 +165,27 @@
             >
               <div class="d-flex flex-column align-center">
                 <div class="d-flex font-weight-bold align-center">
-                  <v-img :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)" width="16" height="16" class="mr-1"
-                  :class="theme== 'dark' ? 'reverse-img' : ''"/>
+                  <v-img
+class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)"
+                  width="16"/>
                   {{ getLocaleText(gifts.giftProps.category[gifts.gift[giftId]?.favorCategory || ''] || {}) }}
                 </div>
-                <v-chip v-if="gifts.gift[giftId]?.isHot" color="#f33e3a" variant="elevated" size="small" density="compact" class="mb-1">
+                <v-chip v-if="gifts.gift[giftId]?.isHot" class="mb-1" color="#f33e3a" density="compact" size="small" variant="elevated">
                   <span v-if="gifts.gift[giftId]?.isHotExpiring" class="pr-1 d-flex align-center">
-                    <v-icon color="white" size="16" class="pr-2">mdi-clock-alert-outline</v-icon>
+                    <v-icon class="pr-2" color="white" size="16">mdi-clock-alert-outline</v-icon>
                     {{ $t('page.tools.giftCalculator.allGiftsExpiring') }}
                   </span> 
                   <span class="font-weight-bold">{{ $t('page.tools.giftCalculator.hot') }}</span>
                 </v-chip>
                 <div class="d-flex ga-1">
-                  <v-chip v-for="hobby in gifts.gift[giftId]?.favorHobby" :key="hobby" variant="outlined" size="small" density="compact">
+                  <v-chip v-for="hobby in gifts.gift[giftId]?.favorHobby" :key="hobby" density="compact" size="small" variant="outlined">
                     {{ getLocaleText(gifts.giftProps.hobby[hobby] || {}) }}
                   </v-chip>
                 </div>
               </div>
             </v-tooltip>
-            <div v-if="checkForceSelectItem('gift', giftId)"
+            <div
+v-if="checkForceSelectItem('gift', giftId)"
               class="position-absolute hilight-selection">
             </div>
           </div>
@@ -189,7 +193,7 @@
       </v-card-text>
     </v-card>
     <v-card prepend-icon="mdi-account-group">
-      <template v-slot:title>
+      <template #title>
         <span class="font-weight-black">
           {{ $t('page.tools.giftCalculator.allOperators') }}
         </span>
@@ -224,18 +228,20 @@
               >
                 <div class="d-flex flex-column align-center">
                   <div v-for="cate in gifts.operator[opId]?.favorCategory" class="d-flex font-weight-bold align-center">
-                    <v-img :src="getCategoryIcon(cate)" width="16" height="16" class="mr-1"
-                    :class="theme== 'dark' ? 'reverse-img' : ''"/>
+                    <v-img
+class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getCategoryIcon(cate)"
+                    width="16"/>
                     {{ getLocaleText(gifts.giftProps.category[cate] || {}) }}
                   </div>
                   <div class="d-flex ga-1">
-                    <v-chip v-for="hobby in gifts.operator[opId]?.favorHobby" :key="hobby" variant="outlined" size="small" density="compact">
+                    <v-chip v-for="hobby in gifts.operator[opId]?.favorHobby" :key="hobby" density="compact" size="small" variant="outlined">
                       {{ getLocaleText(gifts.giftProps.hobby[hobby] || {}) }}
                     </v-chip>
                   </div>
                 </div>
               </v-tooltip>
-              <div v-if="checkForceSelectItem('operator', opId)"
+              <div
+v-if="checkForceSelectItem('operator', opId)"
                 class="position-absolute hilight-selection-op">
               </div>
             </div>
@@ -247,16 +253,16 @@
 </template>
 
 <script lang="ts" setup>
-import type { GiftTag, OpName, Gift } from '@/custom/core/gifts';
-import { getCategoryIcon, getOperatorIcon, hotIcon, gifts } from '@/custom/core/gifts';
+import type { Gift, GiftTag, OpName } from '@/custom/core/gifts';
+import { getCategoryIcon, getOperatorIcon, gifts, hotIcon } from '@/custom/core/gifts';
 const { theme } = useTheme();
 const { locale } = useI18n();
 
-const getLocaleText = (textGroup: GiftTag | OpName | undefined) => {
+function getLocaleText (textGroup: GiftTag | OpName | undefined) {
   return textGroup?.[locale.value]
 }
 
-const getLocaleImg = (img: string) => {
+function getLocaleImg (img: string) {
   return `/images/giftCalculator/${img}_${locale.value}.png`;
 }
 
@@ -265,7 +271,7 @@ const selectedTags = ref({
   hobby: [] as string[],
 });
 
-const selectTag = (type: 'category' | 'hobby', tag: string) => {
+function selectTag (type: 'category' | 'hobby', tag: string) {
   const index = selectedTags.value[type].indexOf(tag);
   if (index === -1) {
     selectedTags.value[type].push(tag);
@@ -278,7 +284,7 @@ const selectTag = (type: 'category' | 'hobby', tag: string) => {
   }
 }
 
-const giftSelectTag = (giftId: string) => {
+function giftSelectTag (giftId: string) {
   if (mobileHelperEnabled.value) {return}
   const gift = gifts.gift[giftId];
   if (gift) {
@@ -291,7 +297,7 @@ const giftSelectTag = (giftId: string) => {
   }
 }
 
-const operatorSelectTag = (opId: string) => {
+function operatorSelectTag (opId: string) {
   if (mobileHelperEnabled.value) {return}
   const operator = gifts.operator[opId];
   if (operator) {
@@ -309,11 +315,11 @@ const currentForceSelectItem = ref({
     id: '',
 })
 
-const checkForceSelectItem = (type: 'operator' | 'gift', id: string) => {
+function checkForceSelectItem (type: 'operator' | 'gift', id: string) {
   return currentForceSelectItem.value.type === type && currentForceSelectItem.value.id === id;
 }
 
-const clearSelect = (type: 'category' | 'hobby') => {
+function clearSelect (type: 'category' | 'hobby') {
   selectedTags.value[type] = [];
   currentForceSelectItem.value = {
     type: '',
@@ -324,8 +330,8 @@ const clearSelect = (type: 'category' | 'hobby') => {
 const mobileHelperEnabled = ref(false);
 
 const filtedOperators = computed(() => {
-  let res: Record<string, boolean> = {}
-  let filted = Object.entries(gifts.operator)
+  const res: Record<string, boolean> = {}
+  const filted = Object.entries(gifts.operator)
     .filter(([_, operator]) => {
       if (selectedTags.value.hobby.length === 0) {
         if (selectedTags.value.category.length === 0) {
@@ -343,15 +349,15 @@ const filtedOperators = computed(() => {
         }
       }
     })
-  filted.forEach(([opId, operator]) => {
+  for (const [opId, operator] of filted) {
     res[opId] = operator.favorCategory.some(cate => selectedTags.value.category.includes(cate));
-  })
+  }
   return res;
 })
 
 const filtedGifts = computed(() => {
-  let res: Record<string, boolean> = {}
-  let filted = Object.entries(gifts.gift).filter(([_, gift]) => {
+  const res: Record<string, boolean> = {}
+  const filted = Object.entries(gifts.gift).filter(([_, gift]) => {
     if (selectedTags.value.hobby.length === 0) {
       if (selectedTags.value.category.length === 0) {
         return true;
@@ -366,9 +372,9 @@ const filtedGifts = computed(() => {
       }
     }
   })
-  filted.forEach(([giftId, gift]) => {
+  for (const [giftId, gift] of filted) {
     res[giftId] = selectedTags.value.category.includes(gift.favorCategory)
-  })
+  }
   return res;
 })
 
