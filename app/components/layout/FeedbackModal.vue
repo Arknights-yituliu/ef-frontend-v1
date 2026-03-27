@@ -6,8 +6,6 @@
   >
     <v-card class="feedback-modal-card" style="position: relative; overflow: visible;">
 
-      <!-- ✅ 移除了之前的独立 Toast 弹窗代码 -->
-
       <v-card-title class="feedback-modal-title d-flex justify-space-between align-center">
         <span class="text-h6 font-weight-bold"></span>
         <v-btn
@@ -43,7 +41,6 @@
               variant="tonal"
               @click="handleAction(item)"
             >
-              <!-- ✅ 核心修改：根据 isCopied 状态动态显示文字 -->
               <v-icon v-if="item.isCopied" size="x-small" start>mdi-check</v-icon>
               {{ item.isCopied ? (t('feedback.modal.copied')) : (item.actionType === 'copy' ? t('feedback.modal.copyBtn') : t('feedback.modal.actionBtn')) }}
             </v-btn>
@@ -63,7 +60,7 @@ interface ChannelItem {
   description: string;
   actionType: 'copy' | 'link';
   url: string;
-  isCopied?: boolean; // 用于标记复制状态
+  isCopied?: boolean;
 }
 
 const { modelValue } = defineProps<{
