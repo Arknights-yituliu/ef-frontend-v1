@@ -59,7 +59,7 @@ const gachaPools: GachaPool[] = [
   {
     poolId: "weponbox_1_0_5",
     poolName: "绯珀申领",
-    upCharName: "（待补充）",
+    upCharName: "白夜新星",
   },
 
 ];
