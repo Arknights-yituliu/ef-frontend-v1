@@ -1,5 +1,25 @@
 [
   {
+    "id": "档案采集·清波寨",
+    "name": {
+      "zh": "档案采集·清波寨",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "情报档案库",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "档案采集·天使",
     "name": {
       "zh": "档案采集·天使",
@@ -9,12 +29,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -27,12 +49,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -45,12 +69,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -63,12 +89,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -81,12 +109,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -99,46 +129,54 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  },{
-  "id": "档案采集·基建前站搜救信息",
-  "name": {
-    "zh": "档案采集·基建前站搜救信息",
-    "en": ""
   },
-  "start": "2026/01/22 12:00:00",
-  "end": "2099/12/31 12:00:00",
-  "type": "通用",
-  "module": "情报档案库",
-  "active": true,"version": "零号委托",
-  "content": {
-    "originiumRecharge": 0,
-    "diamond": 200,
-    "ticketgachaStandardSingle": 0,
-    "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
-  }
-},{
-  "id": "档案采集·碾骨氏族",
-  "name": {
-    "zh": "档案采集·碾骨氏族",
-    "en": ""
+  {
+    "id": "档案采集·基建前站搜救信息",
+    "name": {
+      "zh": "档案采集·基建前站搜救信息",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "情报档案库",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
   },
-  "start": "2026/01/22 12:00:00",
-  "end": "2099/12/31 12:00:00",
-  "type": "通用",
-  "module": "情报档案库",
-  "active": true,"version": "零号委托",
-  "content": {
-    "originiumRecharge": 0,
-    "diamond": 200,
-    "ticketgachaStandardSingle": 0,
-    "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+  {
+    "id": "档案采集·碾骨氏族",
+    "name": {
+      "zh": "档案采集·碾骨氏族",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "情报档案库",
+    "active": true,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
   }
-}
 ]

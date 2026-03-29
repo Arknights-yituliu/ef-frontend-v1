@@ -1,5 +1,24 @@
 [
   {
+    "id": "维护补偿3.29",
+    "name": {
+      "zh": "维护补偿3.29",
+      "en": ""
+    },
+    "start": "2026/03/29 12:00:00",
+    "end": "2026/04/07 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
     "id": "问题修复补偿3.17",
     "name": {
       "zh": "问题修复补偿3.17",
