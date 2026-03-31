@@ -87,7 +87,7 @@ function createNewPoolActivity() {
           diamond: 0,
           ticketgachaStandardSingle: 0,
           ticketgachaSpecialSingle:0 ,
-          ticketgachaLimitedSingle: i === 1 ? 1 : 2,
+          ticketgachaLimitedSingle: i === 3 ? 1 : 2,
         },
       };
       activityReward.value.push(reward3);

@@ -95,15 +95,6 @@ const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity', 'regional
 
 const poolOptions = ref<PoolOption[]>([
   {
-    name: '汤汤卡池',
-    color: '#0084F4',
-    start: new Date('2026/03/12 12:00:00'),
-    end: new Date('2026/03/29 12:00:00'),
-    dateText: '3.12-3.29',
-    type: '汤汤',
-    disabled: false,
-  },
-  {
     name: '洛茜卡池',
     color: '#C91A26',
     start: new Date('2026/03/29 12:00:00'),
@@ -121,7 +112,26 @@ const poolOptions = ref<PoolOption[]>([
     type: '热烈色彩',
     disabled: true,
   },
+  {
+    name: '待定',
+    color: '#FA5B81',
+    start: new Date('2026/02/24 12:00:00'),
+    end: new Date('2026/03/12 12:00:00'),
+    dateText: '',
+    type: '热烈色彩',
+    disabled: true,
+  }
 ]);
+
+//  {
+//     name: '待定',
+//     color: '#FA5B81',
+//     start: new Date('2026/02/24 12:00:00'),
+//     end: new Date('2026/03/12 12:00:00'),
+//     dateText: '',
+//     type: '热烈色彩',
+//     disabled: true,
+//   },
 
 const currentPool = ref<PoolOption>({
   name: '轻飘飘的信使',
@@ -1813,12 +1823,12 @@ function checkRewardIsValid(reward: Reward): boolean {
   return display;
 }
 
-function getSpecialAndLimitedPulls() {
+function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
   let pulls = 0;
-  if (gachaResourceStatisticsResult.value.totalPulls !== undefined) {
-    pulls += gachaResourceStatisticsResult.value.totalPulls.total?.ticketgachaSpecialSingle || 0;
-    pulls += gachaResourceStatisticsResult.value.totalPulls.total?.ticketgachaLimitedSingle || 0;
-  }
+
+  pulls += pullsSignle?.ticketgachaSpecialSingle || 0;
+  pulls += pullsSignle?.ticketgachaLimitedSingle || 0;
+
   return numberFloor(pulls, 0);
 }
 </script>
@@ -1833,7 +1843,7 @@ function getSpecialAndLimitedPulls() {
               {{ t('page.tools.gachaCalculator.total') }}
               {{ gachaResourceStatisticsResult.totalPulls.total?.ticketgachaStandardSingle }}
               {{ t('page.tools.gachaCalculator.standard')
-              }}{{ t('page.tools.gachaCalculator.ticketgacha') }} {{ getSpecialAndLimitedPulls() }}
+              }}{{ t('page.tools.gachaCalculator.ticketgacha') }} {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.total) }}
               {{ t('page.tools.gachaCalculator.special')
               }}{{ t('page.tools.gachaCalculator.ticketgacha') }}
               {{ t('page.tools.gachaCalculator.rechargeAmount') }}
@@ -1985,7 +1995,7 @@ function getSpecialAndLimitedPulls() {
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                     />
                   </th>
-                   <th>
+                  <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
@@ -2013,8 +2023,8 @@ function getSpecialAndLimitedPulls() {
                       })
                     }}
                   </td> -->
-                   <td>{{ item.originiumRecharge }}</td>
-                    <td>{{ item.diamond }}</td>
+                  <td>{{ item.originiumRecharge }}</td>
+                  <td>{{ item.diamond }}</td>
                   <td>{{ item.ticketgachaStandardSingle }}</td>
                   <td>{{ item.ticketgachaSpecialSingle }}</td>
                   <td>{{ item.ticketgachaLimitedSingle }}</td>
@@ -2153,12 +2163,7 @@ function getSpecialAndLimitedPulls() {
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               日常积累
-              {{
-                numberFloor(
-                  gachaResourceStatisticsResult.totalPulls.daily?.ticketgachaSpecialSingle,
-                  1,
-                )
-              }}
+              {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.daily)}}
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
           </v-expansion-panel-title>
@@ -2191,12 +2196,7 @@ function getSpecialAndLimitedPulls() {
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               活动奖励
-              {{
-                numberFloor(
-                  gachaResourceStatisticsResult.totalPulls.activity?.ticketgachaSpecialSingle,
-                  1,
-                )
-              }}
+              {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.activity)}}
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
           </v-expansion-panel-title>
@@ -2269,7 +2269,7 @@ function getSpecialAndLimitedPulls() {
         <v-expansion-panel value="regional">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              地区奖励-武陵，总计
+              地区奖励-武陵，以下地区奖励总计
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.regional?.ticketgachaSpecialSingle,
