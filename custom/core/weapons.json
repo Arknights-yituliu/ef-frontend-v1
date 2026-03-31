@@ -713,5 +713,16 @@
       "secondary": "攻击提升",
       "skill": "附术"
     }
+  },
+  "wpn_sword_0022": {
+    "weaponId": "wpn_sword_0022",
+    "weaponName": "狼之绯",
+    "weaponType": "单手剑",
+    "rarity": 6,
+    "stats": {
+      "attribute": "敏捷提升",
+      "secondary": "暴击率提升",
+      "skill": "切骨"
+    }
   }
 }

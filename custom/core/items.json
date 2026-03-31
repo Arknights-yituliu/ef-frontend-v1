@@ -811,6 +811,62 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_event_clean_2": {
+    "id": "achv_event_clean_2",
+    "name": {
+      "zh-CN": "“诸尘皆净”",
+      "en-US": "\"Totally Cleansed and Rinsed\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_clean_2_plate": {
+    "id": "achv_event_clean_2_plate",
+    "name": {
+      "zh-CN": "“诸尘皆净”",
+      "en-US": "\"Totally Cleansed and Rinsed\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_dungfight_2": {
+    "id": "achv_event_dungfight_2",
+    "name": {
+      "zh-CN": "“生存专家”",
+      "en-US": "\"Expert Survivor\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_dungfight_2_plate": {
+    "id": "achv_event_dungfight_2_plate",
+    "name": {
+      "zh-CN": "“生存专家”",
+      "en-US": "\"Expert Survivor\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_event_tundra_challenge_dung_2": {
     "id": "achv_event_tundra_challenge_dung_2",
     "name": {
@@ -830,6 +886,34 @@
     "name": {
       "zh-CN": "“于谷地的密境中”",
       "en-US": "\"In the Cryptics of the Valley\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_wuling_challenge_dung_2": {
+    "id": "achv_event_wuling_challenge_dung_2",
+    "name": {
+      "zh-CN": "“平步险窟”",
+      "en-US": "\"Delver of the Grottoes\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_wuling_challenge_dung_2_plate": {
+    "id": "achv_event_wuling_challenge_dung_2_plate",
+    "name": {
+      "zh-CN": "“平步险窟”",
+      "en-US": "\"Delver of the Grottoes\""
     },
     "rarity": 1,
     "type": 100,
@@ -1777,6 +1861,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_quest_wulfa_2": {
+    "id": "achv_quest_wulfa_2",
+    "name": {
+      "zh-CN": "“红骑士”",
+      "en-US": "\"The Red Knight\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_quest_yvonne_2": {
     "id": "achv_quest_yvonne_2",
     "name": {
@@ -2140,6 +2238,20 @@
       "en-US": "Profile Theme"
     },
     "iconId": "item_topic_chr_0027_tangtang"
+  },
+  "business_card_topic_chr_0028_wulfa": {
+    "id": "business_card_topic_chr_0028_wulfa",
+    "name": {
+      "zh-CN": "笔尖的世界",
+      "en-US": "A World at the Tip of the Pen"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_chr_0028_wulfa"
   },
   "business_card_topic_chr_0029_pograni": {
     "id": "business_card_topic_chr_0029_pograni",
@@ -2532,6 +2644,20 @@
       "en-US": "Employment Contract"
     },
     "iconId": "item_chr_0027_tangtang"
+  },
+  "chr_0028_wulfa": {
+    "id": "chr_0028_wulfa",
+    "name": {
+      "zh-CN": "洛茜",
+      "en-US": "Rossi"
+    },
+    "rarity": 6,
+    "type": 4,
+    "typeName": {
+      "zh-CN": "招聘合同",
+      "en-US": "Employment Contract"
+    },
+    "iconId": "item_chr_0028_wulfa"
   },
   "chr_0029_pograni": {
     "id": "chr_0029_pograni",
@@ -6481,6 +6607,20 @@
     },
     "iconId": "item_case_wpn_selfselect_gahca_1_1"
   },
+  "item_case_wpn_selfselect_gahca_1_1_2": {
+    "id": "item_case_wpn_selfselect_gahca_1_1_2",
+    "name": {
+      "zh-CN": "补充武库箱·绯珀",
+      "en-US": "Arms OC: Scarlet Pearl"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_1_2"
+  },
   "item_case_wpn_selfselect_gahca_c_1": {
     "id": "item_case_wpn_selfselect_gahca_c_1",
     "name": {
@@ -7152,6 +7292,20 @@
       "en-US": "Operator Token"
     },
     "iconId": "item_charpotentialup_chr_0027_tangtang"
+  },
+  "item_charpotentialup_chr_0028_wulfa": {
+    "id": "item_charpotentialup_chr_0028_wulfa",
+    "name": {
+      "zh-CN": "洛茜的信物",
+      "en-US": "Rossi's Token"
+    },
+    "rarity": 6,
+    "type": 42,
+    "typeName": {
+      "zh-CN": "干员信物",
+      "en-US": "Operator Token"
+    },
+    "iconId": "item_charpotentialup_chr_0028_wulfa"
   },
   "item_charpotentialup_chr_0029_pograni": {
     "id": "item_charpotentialup_chr_0029_pograni",
@@ -18955,6 +19109,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0028_wulfa": {
+    "id": "item_pic_1_chr_0028_wulfa",
+    "name": {
+      "zh-CN": "掌心的宝物",
+      "en-US": "Cherished Little Perl"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_0029_pograni": {
     "id": "item_pic_1_chr_0029_pograni",
     "name": {
@@ -19319,6 +19487,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_3_chr_0028_wulfa": {
+    "id": "item_pic_3_chr_0028_wulfa",
+    "name": {
+      "zh-CN": "无限的未来",
+      "en-US": "Unlimited Future"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_3_chr_0029_pograni": {
     "id": "item_pic_3_chr_0029_pograni",
     "name": {
@@ -19674,6 +19856,20 @@
     "name": {
       "zh-CN": "当家令如山",
       "en-US": "Supreme Chief's Orders are Supreme"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_5_chr_0028_wulfa": {
+    "id": "item_pic_5_chr_0028_wulfa",
+    "name": {
+      "zh-CN": "笔尖的世界",
+      "en-US": "A World at the Tip of the Pen"
     },
     "rarity": 5,
     "type": 76,
@@ -23295,6 +23491,20 @@
     },
     "iconId": "item_shot_sticker_mkting_2"
   },
+  "item_shot_sticker_mkting_5": {
+    "id": "item_shot_sticker_mkting_5",
+    "name": {
+      "zh-CN": "贴纸·吉豚屋",
+      "en-US": "Sticker: Katsuya"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_mkting_5"
+  },
   "item_slimeml_1_agrange_1_moss_2_1": {
     "id": "item_slimeml_1_agrange_1_moss_2_1",
     "name": {
@@ -24359,6 +24569,20 @@
     },
     "iconId": "item_chr_0027_tangtang"
   },
+  "item_user_avatar_chr_0028_wulfa": {
+    "id": "item_user_avatar_chr_0028_wulfa",
+    "name": {
+      "zh-CN": "洛茜",
+      "en-US": "Rossi"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_chr_0028_wulfa"
+  },
   "item_user_avatar_chr_0029_pograni": {
     "id": "item_user_avatar_chr_0029_pograni",
     "name": {
@@ -24498,6 +24722,20 @@
       "en-US": "Portrait Frame"
     },
     "iconId": "item_user_avatar_frame_channel_5"
+  },
+  "item_user_avatar_frame_channel_6": {
+    "id": "item_user_avatar_frame_channel_6",
+    "name": {
+      "zh-CN": "舒适生活",
+      "en-US": "Comfy Lifestyle"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_channel_6"
   },
   "item_user_avatar_frame_endfield_1": {
     "id": "item_user_avatar_frame_endfield_1",
@@ -28027,6 +28265,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_1_1"
   },
+  "ticketgacha_special_single_lt_1_1_2": {
+    "id": "ticketgacha_special_single_lt_1_1_2",
+    "name": {
+      "zh-CN": "狼群瑰宝寻访凭证",
+      "en-US": "Pearl of the Pack HH Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_1_2"
+  },
   "ticketgacha_special_ten_lt_1_0_1": {
     "id": "ticketgacha_special_ten_lt_1_0_1",
     "name": {
@@ -28082,6 +28334,20 @@
       "en-US": "LTO Valuable"
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_1_1"
+  },
+  "ticketgacha_special_ten_lt_1_1_2": {
+    "id": "ticketgacha_special_ten_lt_1_1_2",
+    "name": {
+      "zh-CN": "狼群瑰宝十连凭证",
+      "en-US": "Pearl of the Pack 10×Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_1_2"
   },
   "wpn_claym_0003": {
     "id": "wpn_claym_0003",
@@ -28992,5 +29258,19 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0021"
+  },
+  "wpn_sword_0022": {
+    "id": "wpn_sword_0022",
+    "name": {
+      "zh-CN": "狼之绯",
+      "en-US": "Lupine Scarlet"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_sword_0022"
   }
 }
