@@ -25,6 +25,8 @@ export type RewardStatisticsResultDetail ={
   ticketgachaStandardSingle: number;
   /** 特许寻访凭证 */
   ticketgachaSpecialSingle: number;
+  /** 限时寻访凭证 */
+  ticketgachaLimitedSingle: number;
   totalPulls?: number;
 }
 
@@ -33,6 +35,8 @@ export interface TotalPullsSingle {
   ticketgachaStandardSingle: number;
   /** 特许寻访凭证 */
   ticketgachaSpecialSingle: number;
+  /** 限时寻访凭证 */
+  ticketgachaLimitedSingle: number;
 }
 
 
@@ -62,7 +66,6 @@ export interface Reward {
   regional?:string;
   active: boolean;
   version:string;
-  isLimited?: boolean;
   content: RewardContent;
   tips?:string[];
 }
@@ -76,6 +79,8 @@ export interface RewardContent{
   ticketgachaStandardSingle: number;
   /** 特许寻访凭证 */
   ticketgachaSpecialSingle: number;
+
+  ticketgachaLimitedSingle: number;
 }
 
 export interface CurrentVersionRemainingTime {
@@ -93,6 +98,7 @@ export interface GachaResourceStatisticsResult {
   diamond: number;
   ticketgachaStandardSingle: number;
   ticketgachaSpecialSingle: number;
+  ticketgachaLimitedSingle: number;
 }
 
 export interface GachaCalculatorUserConfig {

@@ -18,6 +18,7 @@ const etchSpaceSalvageCrateRewardTable:Reward[] = [
     diamond: 1590,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
 },
 {
@@ -37,6 +38,7 @@ const etchSpaceSalvageCrateRewardTable:Reward[] = [
     diamond: 540,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
 }
 ];

@@ -2,8 +2,11 @@ import { createVuetify } from 'vuetify';
 
 // 导入Vuetify语言包（用于切换时更新）
 import { en, zhHans } from 'vuetify/locale';
+// 自定义图标
+import EssenceIcon from '~/components/icon/EssenceIcon.vue';
 // 在下载`@mdi/font`包之后再引入
 import '@mdi/font/css/materialdesignicons.css';
+
 import 'vuetify/styles';
 
 export default defineNuxtPlugin((app) => {
@@ -14,6 +17,12 @@ export default defineNuxtPlugin((app) => {
       messages: {
         en,
         zhHans,
+      },
+    },
+    icons: {
+      defaultSet: 'mdi',
+      aliases: {
+        essence: EssenceIcon,
       },
     },
   });

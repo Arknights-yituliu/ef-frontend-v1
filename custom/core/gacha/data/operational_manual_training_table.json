@@ -14,7 +14,8 @@
       "originiumRecharge": 0,
       "diamond": 60,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -32,7 +33,7 @@
       "originiumRecharge": 0,
       "diamond": 80,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -50,7 +51,7 @@
       "originiumRecharge": 0,
       "diamond": 100,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -68,7 +69,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -86,7 +87,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -104,7 +105,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -122,7 +123,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -140,7 +141,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -158,7 +159,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -176,7 +177,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -194,7 +195,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -212,7 +213,7 @@
       "originiumRecharge": 0,
       "diamond": 20,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
   }
 ]

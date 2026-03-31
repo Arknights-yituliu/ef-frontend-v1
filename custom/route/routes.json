@@ -39,7 +39,13 @@
         "i18nKey": "essenceCalculator",
         "nameKey": "menu.essenceCalculator",
         "routePath": "/tools/essence-calculator",
-        "vuetifyIcon": "mdi-pokeball"
+        "vuetifyIcon": "$essence"
+      },
+      {
+        "i18nKey": "giftCalculator",
+        "nameKey": "menu.giftCalculator",
+        "routePath": "/tools/gift-calculator",
+        "vuetifyIcon": "mdi-hand-heart"
       },
       {
         "i18nKey": "quantitativeCalculator",

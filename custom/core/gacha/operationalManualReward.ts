@@ -21,7 +21,8 @@ const operationalManualNodeReward = ref<Reward>(
       originiumRecharge: 0,
       diamond: 9000,
       ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0
     }
   }
 );

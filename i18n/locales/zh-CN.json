@@ -19,6 +19,7 @@
     "tools": "一图流工具箱",
     "gachaCalculator": "攒抽计算器",
     "essenceCalculator": "基质规划器",
+    "giftCalculator": "礼物查询器",
     "quantitativeCalculator": "产线量化计算器",
     "resources": "资源下载",
     "essenceRecognizer": "基质识别工具",
@@ -41,7 +42,8 @@
     "noData": "暂无数据",
     "close": "关闭",
     "copySuccess": "已复制",
-    "copyFailed": "复制失败"
+    "copyFailed": "复制失败",
+    "feedback": "反馈"
   },
   "layout": {
     "theme": "主题",
@@ -452,6 +454,48 @@
         "countWithPulls": "{count}（{pulls} 抽）",
         "calculationDetail": "计算详情",
         "shortcutActions": "一键全选或清空"
+      },
+      "giftCalculator": {
+        "hot": "流行品",
+        "filterGiftCategory": "来源",
+        "filterGiftHobby": "爱好",
+        "switchMobileHelper": "移动端辅助点击模式",
+        "allGifts": "礼物列表",
+        "allGiftsCanSelect": "点击礼物以反查对应干员；来源图标高亮代表该礼物符合喜好",
+        "allGiftsExpiring": "即将过气",
+        "allOperators": "干员列表",
+        "allOperatorsInfo": "高亮代表该干员有该礼物来源喜好；过滤结果不计算【流行品】；点击干员以查询对应礼物",
+        "giftExplain": {
+          "title1": "关于礼物与信赖度",
+          "text1-1": "当管理员位于O.M.V.帝江号上时，可通过前往基建舱室/中央环厅寻找，或使用中央环厅的干员联络台呼叫干员来与干员对话，并赠送礼物。",
+          "text1-2": "赠送礼物可增加干员的信赖度，以解锁天赋阵列中的主属性节点、档案、语音等，且该干员的赠礼也会发生变化。",
+          "text1-3": "礼物赠送具有一定限制，分为下列两种：",
+          "title2": "干员爱好",
+          "text2-1": "每位干员均有两种爱好，可在其档案中确认。",
+          "text2-2": "赠送礼物时，礼物的爱好属性必须有至少一条符合干员的爱好，否则无法送出。",
+          "title3": "干员喜好",
+          "text3-1": "除爱好外，干员还会特别喜欢某些特定来源的礼物。该喜好只能在赠送时确认。",
+          "text3-2": "若赠送礼物的来源与干员的喜好一致，则可额外获得大量信赖度。",
+          "title4": "流行品",
+          "text4-1": "某些礼物会在当下变为干员间热门的流行品。",
+          "text4-2": "所有干员都会喜好流行品。因此即使礼物来源并非该干员的喜好，也可以额外增加大量信赖度。",
+          "text4-3": "但随着时间的推移，流行品也会过气，此时该礼物的流行品标签上会显示倒计时。",
+          "text4-4": "这种情况下请务必注意备货量和时间，以免错过赠送的最佳时机。",
+          "title5": "其它增加信赖的方式",
+          "text5-1": "将干员安排到总控中枢也可以增加其信赖度，且该方式不受爱好和喜好的限制随时间固定增量。",
+          "text5-2": "在管理员下次返回帝江号后，即可自动更新以该方式获得的信赖度。"
+        },
+        "howToUseExplain": {
+          "title": "如何使用",
+          "text1": "有三种使用方式：",
+          "textl-1": "礼物反查干员",
+          "textl-1-d": "点击礼物，查看哪些干员喜欢这个礼物。",
+          "textl-2": "干员查询礼物",
+          "textl-2-d": "点击干员，查看TA喜欢哪些礼物。",
+          "textl-3": "来源/爱好查询",
+          "textl-3-d": "点击顶部过滤器，查看匹配这些来源/爱好的礼物和干员。",
+          "text2": "通常情况下，通过礼物反查/干员查询时，干员和来源图标均高亮，即代表将该礼物赠送给该干员时，可以获得由喜好加成带来的大量信赖度。"
+        }
       }
     },
     "others": {
@@ -513,5 +557,43 @@
     "search": "搜索",
     "searchPlaceholder": "输入关键词搜索文档...",
     "noResults": "未找到相关文档"
+  },
+  "feedback": {
+    "modal": {
+      "title": "反馈与建议",
+      "actionBtn": "点击前往",
+      "copyBtn": "点击复制" ,
+      "copied": "复制成功"
+    },
+    "table": {
+      "header": {
+        "method": "反馈方式",
+        "description": "说明",
+        "action": "操作"
+      }
+    },
+    "list": {
+      "qq": {
+        "title": "反馈QQ：3831811497",
+        "desc": "一图流问题反馈专用QQ"
+      },
+      "github": {
+        "title": "Github issues",
+        "desc": "国内访问体验稍差一点"
+      },
+      "bilibili": {
+        "title": "B站 逻辑元 LogicalByte", 
+        "desc": "直接私信反馈"
+      },
+      "fanGroup": {
+        "title": "粉丝群 1023465475",
+        "desc": "进群找山桜反馈，如果不在找管理员"
+      },
+      "devGroup": {
+        "title": "开发群 696486169",
+        "desc": "如果有能力自己解决问题，可以加开发群"
+      }
+    }
   }
+
 }

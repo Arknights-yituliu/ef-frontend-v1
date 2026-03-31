@@ -1,0 +1,602 @@
+[
+  {
+    "id": "森空岛签到3.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/03/04 12:00:00", 
+    "end": "2026/03/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到3.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2026/03/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到3.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/03/20 12:00:00",
+    "end": "2026/03/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到4.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/04/04 12:00:00",
+    "end": "2026/04/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到4.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/04/12 12:00:00",
+    "end": "2026/04/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到4.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/04/20 12:00:00",
+    "end": "2026/04/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到5.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/05/04 12:00:00",
+    "end": "2026/05/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到5.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/05/12 12:00:00",
+    "end": "2026/05/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到5.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/05/20 12:00:00",
+    "end": "2026/05/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到6.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/06/04 12:00:00",
+    "end": "2026/06/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到6.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/06/12 12:00:00",
+    "end": "2026/06/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到6.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/06/20 12:00:00",
+    "end": "2026/06/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到7.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/07/04 12:00:00",
+    "end": "2026/07/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到7.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/07/12 12:00:00",
+    "end": "2026/07/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到7.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/07/20 12:00:00",
+    "end": "2026/07/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到8.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/08/04 12:00:00",
+    "end": "2026/08/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到8.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/08/12 12:00:00",
+    "end": "2026/08/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到8.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/08/20 12:00:00",
+    "end": "2026/08/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到9.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/09/04 12:00:00",
+    "end": "2026/09/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到9.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/09/12 12:00:00",
+    "end": "2026/09/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到9.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/09/20 12:00:00",
+    "end": "2026/09/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到10.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/10/04 12:00:00",
+    "end": "2026/10/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到10.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/10/12 12:00:00",
+    "end": "2026/10/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到10.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/10/20 12:00:00",
+    "end": "2026/10/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到11.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/11/04 12:00:00",
+    "end": "2026/11/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到11.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/11/12 12:00:00",
+    "end": "2026/11/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到11.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/11/20 12:00:00",
+    "end": "2026/11/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到12.4",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/12/04 12:00:00",
+    "end": "2026/12/04 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到12.12",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/12/12 12:00:00",
+    "end": "2026/12/12 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "森空岛签到12.20",
+    "name": {
+      "zh": "森空岛签到",
+      "en": ""
+    },
+    "start": "2026/12/20 12:00:00",
+    "end": "2026/12/20 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "未来版本",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  }
+]

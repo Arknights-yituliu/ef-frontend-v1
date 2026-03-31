@@ -7,7 +7,8 @@ export const itemIdDict: ItemDict = {
   originiumRecharge: 'originium_recharge',
   diamond: 'diamond',
   ticketgachaStandardSingle: 'ticketgacha_standard_single',
-  ticketgachaSpecialSingle: 'ticketgacha_special_single'
+  ticketgachaSpecialSingle: 'ticketgacha_special_single',
+  ticketgachaLimitedSingle: 'ticketgacha_special_single_lt_1_0_1',
 };
 
 
@@ -30,7 +31,8 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 10,
-    ticketgachaSpecialSingle: 0
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0
   }
 },
   {
@@ -48,7 +50,8 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       originiumRecharge: 0,
       diamond: 1000,
       ticketgachaStandardSingle: 10,
-      ticketgachaSpecialSingle: 0
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0
     }
   },
   {
@@ -66,7 +69,8 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       originiumRecharge: 0,
       diamond: 1000,
       ticketgachaStandardSingle: 10,
-      ticketgachaSpecialSingle: 0
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0
     }
   },
   {
@@ -84,7 +88,8 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       originiumRecharge: 0,
       diamond: 1000,
       ticketgachaStandardSingle: 10,
-      ticketgachaSpecialSingle: 0
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0
     }
   },
   {
@@ -102,7 +107,8 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
       originiumRecharge: 0,
       diamond: 1000,
       ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0
     }
   }
 ]);
@@ -122,7 +128,8 @@ export const authorityLevelUpReward = ref<Reward>({
     originiumRecharge: 0,
     diamond: 4500,
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0
   }
 });
 
@@ -141,7 +148,8 @@ export const worldLevelReward = ref<Reward>({
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 12,
-    ticketgachaSpecialSingle: 0
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0
   }
 });
 

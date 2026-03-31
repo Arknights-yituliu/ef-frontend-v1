@@ -21,6 +21,7 @@ const beginnerSignInTaskReward = ref<Reward>({
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 11,
+    ticketgachaLimitedSingle: 0,
   },
 });
 
@@ -42,6 +43,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
       diamond: 0,
       ticketgachaStandardSingle: 10,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -61,6 +63,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
       diamond: 0,
       ticketgachaStandardSingle: 10,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -80,6 +83,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
       diamond: 0,
       ticketgachaStandardSingle: 10,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
   {
@@ -99,6 +103,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
       diamond: 0,
       ticketgachaStandardSingle: 10,
       ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
     },
   },
 ]);
@@ -123,6 +128,7 @@ for (let i = 1; i <= 5; i++) {
       diamond: 0,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 2,
+      ticketgachaLimitedSingle: 0,
     },
   };
   beginnerTicketgachaSpecialSingleTaskReward.value.push(reward);
@@ -168,6 +174,7 @@ const etchSpaceSalvageCrateReward = ref<Reward>({
     diamond:etchSpaceSalvageCrateRewardMax,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   },
   tips: ['通过滑块调节蚀像寻遗储藏箱奖励数量'],
 });
@@ -243,6 +250,7 @@ function groupAndMergeTasksByVersionAndModule(regional: string, tasks: Reward[])
           diamond: 0,
           ticketgachaStandardSingle: 0,
           ticketgachaSpecialSingle: 0,
+          ticketgachaLimitedSingle: 0,
         },
       };
 

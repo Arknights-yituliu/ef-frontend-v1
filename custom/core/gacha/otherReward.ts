@@ -46,7 +46,8 @@ const factoryManualReward = ref<Reward>({
     originiumRecharge: 0,
     diamond: factoryManualCountReward,
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0
   },
   tips: [
     '通过滑块调节当前简制手册奖励阶段',

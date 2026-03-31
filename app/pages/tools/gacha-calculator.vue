@@ -11,7 +11,6 @@ import { numberFloor } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { nextTick, onMounted, ref, watch } from 'vue';
 
-
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
 // 奖励引入
@@ -22,6 +21,11 @@ import {
   dailyReward,
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
+
+import {
+  wulingAuryleneCollectStageTable,
+  wulingRegionalDevelopmentRewardTable,
+} from '@/custom/core/gacha/data/wulingRegionalRewardTable';
 
 import {
   authorityLevelTaskRewards,
@@ -70,14 +74,12 @@ import {
 
 import {
   wulingAuryleneCollectReward,
-  wulingAuryleneCollectStageTable,
   wulingBattleCrateReward,
   wulingBattleCrateRewardMax,
   wulingCrateReward,
   wulingCrateRewardMax,
   wulingDefenseConstructionReward,
   wulingRegionalDevelopmentReward,
-  wulingRegionalDevelopmentRewardTable,
   wulingRegionalStockBillStoreReward,
   wulingSimulationReward,
 } from '@/custom/core/gacha/wulingRegionalReward';
@@ -92,15 +94,6 @@ const leftPartPanel = ref<string[]>(['statisticalResult']);
 const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity', 'regional', 'permanent']);
 
 const poolOptions = ref<PoolOption[]>([
-  {
-    name: '伊冯卡池',
-    color: '#FA5B81',
-    start: new Date('2026/02/24 12:00:00'),
-    end: new Date('2026/03/12 12:00:00'),
-    dateText: '02.24——3.12',
-    type: '热烈色彩',
-    disabled: false,
-  },
   {
     name: '汤汤卡池',
     color: '#0084F4',
@@ -119,6 +112,15 @@ const poolOptions = ref<PoolOption[]>([
     type: '洛茜',
     disabled: false,
   },
+  {
+    name: '待定',
+    color: '#FA5B81',
+    start: new Date('2026/02/24 12:00:00'),
+    end: new Date('2026/03/12 12:00:00'),
+    dateText: '',
+    type: '热烈色彩',
+    disabled: true,
+  },
 ]);
 
 const currentPool = ref<PoolOption>({
@@ -132,10 +134,10 @@ const currentPool = ref<PoolOption>({
 });
 
 const startDate: Date = new Date();
-let remainingDays: number =  0 
+let remainingDays: number = 0;
 function selectedPool(option: PoolOption): void {
   currentPool.value = option;
-  remainingDays  =  calculateDaysDifference(startDate, option.end);
+  remainingDays = calculateDaysDifference(startDate, option.end);
   calculatorDailyReward(startDate, option.end);
   existingRewardStatistics();
   dailyRewardStatistics();
@@ -173,6 +175,7 @@ const existingResource = ref<RewardStatisticsResultDetail>({
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 });
 
 watch(
@@ -201,6 +204,7 @@ let existingRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function existingRewardStatistics(): void {
@@ -210,6 +214,7 @@ function existingRewardStatistics(): void {
     diamond: existingResource.value.diamond / 1,
     ticketgachaStandardSingle: existingResource.value.ticketgachaStandardSingle / 1,
     ticketgachaSpecialSingle: existingResource.value.ticketgachaSpecialSingle / 1,
+    ticketgachaLimitedSingle: 0,
   };
 
   existingRewardStatisticsResultDetail = result;
@@ -256,6 +261,7 @@ let dailyRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function dailyRewardStatistics(): void {
@@ -265,6 +271,7 @@ function dailyRewardStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   addReward(result, dailyReward.value);
@@ -311,6 +318,7 @@ let activityRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function activityRewardStatistics(): void {
@@ -320,6 +328,7 @@ function activityRewardStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   for (const reward of activityReward.value) {
@@ -382,6 +391,7 @@ let otherRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function otherRewardStatistics(): void {
@@ -391,6 +401,7 @@ function otherRewardStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   for (const reward of otherRewardTable.value) {
@@ -676,6 +687,7 @@ let valleyIVRegionalRewardStatisticsResultDetail: RewardStatisticsResultDetail =
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 let wulingRegionalRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
@@ -684,6 +696,7 @@ let wulingRegionalRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function valleyIVRegionalRewardStatistics(): void {
@@ -693,6 +706,7 @@ function valleyIVRegionalRewardStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   addReward(result, valleyIVRegionalStockBillStoreReward.value);
@@ -718,6 +732,7 @@ function wulingRegionalRewardStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   addReward(result, wulingRegionalStockBillStoreReward.value);
@@ -798,6 +813,7 @@ let levelRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function levelRewardStatistics(): void {
@@ -807,6 +823,7 @@ function levelRewardStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   addReward(result, authorityLevelTaskRewards.value);
@@ -937,6 +954,7 @@ let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function permanentRewardStatistics(): void {
@@ -946,6 +964,7 @@ function permanentRewardStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
   addReward(result, beginnerSignInTaskReward.value);
   addReward(result, newHorizonsTaskReward.value);
@@ -1000,6 +1019,7 @@ let operationalManualRewardStatisticsResultDetail: RewardStatisticsResultDetail 
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function operationalManualRewardStatistics(): void {
@@ -1009,6 +1029,7 @@ function operationalManualRewardStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   addReward(result, operationalManualNodeReward.value);
@@ -1100,6 +1121,7 @@ let rechargeResourceStatisticsResultDetail: RewardStatisticsResultDetail = {
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 };
 
 function rechargeResourceStatistics(): void {
@@ -1109,6 +1131,7 @@ function rechargeResourceStatistics(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   // 计算月卡
@@ -1195,6 +1218,7 @@ const totalResourceStatisticsResultDetail = ref<RewardStatisticsResultDetail>({
   diamond: 0,
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
 });
 
 function allRewardStatisticsV2(): void {
@@ -1217,6 +1241,7 @@ function allRewardStatisticsV2(): void {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
   };
 
   for (const item of list) {
@@ -1224,6 +1249,7 @@ function allRewardStatisticsV2(): void {
     result.diamond += item.diamond;
     result.ticketgachaStandardSingle += item.ticketgachaStandardSingle;
     result.ticketgachaSpecialSingle += item.ticketgachaSpecialSingle;
+    result.ticketgachaLimitedSingle += item.ticketgachaLimitedSingle;
   }
 
   totalResourceStatisticsResultDetail.value = result;
@@ -1546,7 +1572,7 @@ function clearOrSelectAllOperationalManualModule(action: boolean) {
 }
 
 function clearOrSelectAllCurrentVersion(version: string) {
-   _filterByVersion(activityReward, version);
+  _filterByVersion(activityReward, version);
   _filterByVersion(AICQuotaReward, version);
   _filterByVersion(bpTrackFreeReward, version);
   _filterByVersion(authorityLevelTaskRewards, version);
@@ -1601,7 +1627,7 @@ function clearOrSelectAllCurrentVersion(version: string) {
       }
     } else if (typeof value === 'object' && value !== null && 'active' in value) {
       // 处理 Ref<Reward> 类型
-       console.log('item', value.name.zh, value.version, version === value.version);
+      console.log('item', value.name.zh, value.version, version === value.version);
       if (version === value.version) {
         value.active = true;
       } else {
@@ -1786,6 +1812,15 @@ function checkRewardIsValid(reward: Reward): boolean {
 
   return display;
 }
+
+function getSpecialAndLimitedPulls() {
+  let pulls = 0;
+  if (gachaResourceStatisticsResult.value.totalPulls !== undefined) {
+    pulls += gachaResourceStatisticsResult.value.totalPulls.total?.ticketgachaSpecialSingle || 0;
+    pulls += gachaResourceStatisticsResult.value.totalPulls.total?.ticketgachaLimitedSingle || 0;
+  }
+  return numberFloor(pulls, 0);
+}
 </script>
 
 <template>
@@ -1798,18 +1833,11 @@ function checkRewardIsValid(reward: Reward): boolean {
               {{ t('page.tools.gachaCalculator.total') }}
               {{ gachaResourceStatisticsResult.totalPulls.total?.ticketgachaStandardSingle }}
               {{ t('page.tools.gachaCalculator.standard')
-              }}{{ t('page.tools.gachaCalculator.ticketgacha') }}，
-              {{
-                numberFloor(
-                  gachaResourceStatisticsResult.totalPulls.total?.ticketgachaSpecialSingle,
-                  0,
-                )
-              }}
+              }}{{ t('page.tools.gachaCalculator.ticketgacha') }} {{ getSpecialAndLimitedPulls() }}
               {{ t('page.tools.gachaCalculator.special')
-              }}{{ t('page.tools.gachaCalculator.ticketgacha') }}，
+              }}{{ t('page.tools.gachaCalculator.ticketgacha') }}
               {{ t('page.tools.gachaCalculator.rechargeAmount') }}
-              {{ paidResourcesTotalPrice.toFixed(2) }}
-              {{ t('page.tools.gachaCalculator.yuan') }}
+              {{ paidResourcesTotalPrice.toFixed(2) }} {{ t('page.tools.gachaCalculator.yuan') }}
             </div>
           </v-expansion-panel-title>
 
@@ -1901,6 +1929,17 @@ function checkRewardIsValid(reward: Reward): boolean {
                     {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
                   </span>
                 </div>
+
+                <div class="gacha-calculator-statistics-result-item">
+                  <img
+                    alt="existing"
+                    class="gacha-calculator-gacha-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                  />
+                  <span class="gacha-calculator-statistics-result-item-text">
+                    {{ totalResourceStatisticsResultDetail.ticketgachaLimitedSingle }}
+                  </span>
+                </div>
               </div>
             </div>
             <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('新潮起·故渊离')"
@@ -1946,12 +1985,19 @@ function checkRewardIsValid(reward: Reward): boolean {
                       src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
                     />
                   </th>
+                   <th>
+                    <img
+                      alt="existing"
+                      class="gacha-calculator-result-detail-table-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                    />
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in resourceStatisticsResultDetailList">
                   <td>{{ item.name }}</td>
-                  <td>
+                  <!-- <td>
                     {{
                       t('page.tools.gachaCalculator.countWithPulls', {
                         count: item.originiumRecharge,
@@ -1966,9 +2012,12 @@ function checkRewardIsValid(reward: Reward): boolean {
                         pulls: numberFloor(item.diamond / 500),
                       })
                     }}
-                  </td>
+                  </td> -->
+                   <td>{{ item.originiumRecharge }}</td>
+                    <td>{{ item.diamond }}</td>
                   <td>{{ item.ticketgachaStandardSingle }}</td>
                   <td>{{ item.ticketgachaSpecialSingle }}</td>
+                  <td>{{ item.ticketgachaLimitedSingle }}</td>
                 </tr>
               </tbody>
             </v-table>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
 
+import { dateFormat } from '#shared/utils/dateUtil';
 import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
-
 import { numberFloor } from '#shared/utils/numberUtil';
 
 import { onMounted, ref, watch } from 'vue';
@@ -45,7 +45,7 @@ import { wulingRegionalAllRewardTable } from '@/custom/core/gacha/wulingRegional
 const controlPanel = ref({
   title: '',
   versionName: '新潮起·故渊离',
-  updateDate: '2026-03-05',
+  updateDate: dateFormat(new Date()),
   otherInfo: '部分资源为估算，仅供参考',
   kvImage: 'https://cos.yituliu.cn/endfield/other/kv-v1.1.webp',
 });
@@ -88,11 +88,11 @@ onMounted(() => {
       }
 
       // 读取更新日期
-      const savedUpdateDate = localStorage.getItem('version-reward-update-date');
-      if (savedUpdateDate) {
-        console.log('读取到更新日期:', savedUpdateDate);
-        controlPanel.value.updateDate = savedUpdateDate;
-      }
+      // const savedUpdateDate = localStorage.getItem('version-reward-update-date');
+      // if (savedUpdateDate) {
+      //   console.log('读取到更新日期:', savedUpdateDate);
+      //   controlPanel.value.updateDate = savedUpdateDate;
+      // }
 
       // 读取其他说明
       const savedOtherInfo = localStorage.getItem('version-reward-other-info');
@@ -139,19 +139,19 @@ watch(
   },
 );
 
-watch(
-  () => controlPanel.value.updateDate,
-  (newValue) => {
-    if (typeof localStorage !== 'undefined') {
-      try {
-        localStorage.setItem('version-reward-update-date', newValue);
-        console.log('✓ 更新日期已保存到localStorage');
-      } catch (error) {
-        console.error('✗ 保存更新日期到localStorage失败:', error);
-      }
-    }
-  },
-);
+// watch(
+//   () => controlPanel.value.updateDate,
+//   (newValue) => {
+//     if (typeof localStorage !== 'undefined') {
+//       try {
+//         localStorage.setItem('version-reward-update-date', newValue);
+//         console.log('✓ 更新日期已保存到localStorage');
+//       } catch (error) {
+//         console.error('✗ 保存更新日期到localStorage失败:', error);
+//       }
+//     }
+//   },
+// );
 
 watch(
   () => controlPanel.value.otherInfo,
@@ -364,6 +364,7 @@ function filterRewardByVersion(version: any) {
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
     totalPulls: 0,
   };
 
@@ -373,6 +374,7 @@ function filterRewardByVersion(version: any) {
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
     totalPulls: 0,
   };
 
@@ -382,6 +384,7 @@ function filterRewardByVersion(version: any) {
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
     totalPulls: 0,
   };
 
@@ -398,6 +401,7 @@ function filterRewardByVersion(version: any) {
     result1.diamond += reward.content.diamond;
     result1.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
     result1.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+    result1.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
   }
 
   console.log(11, JSON.stringify(list));
@@ -406,11 +410,13 @@ function filterRewardByVersion(version: any) {
   result2.diamond += result1.diamond;
   result2.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
   result2.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
+  result2.ticketgachaLimitedSingle += result1.ticketgachaLimitedSingle;
 
   result3.originiumRecharge += result1.originiumRecharge;
   result3.diamond += result1.diamond;
   result3.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
   result3.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
+  result3.ticketgachaLimitedSingle += result1.ticketgachaLimitedSingle;
 
   result1.totalPulls =
     result1.originiumRecharge * 0.15 + result1.diamond / 500 + result1.ticketgachaSpecialSingle;
@@ -457,9 +463,7 @@ onMounted(() => {
 
           <!-- 其他文本（更新日期和说明） -->
           <div class="info-section">
-            <div v-if="controlPanel.updateDate" class="info-item">
-              更新日期：{{ controlPanel.updateDate }}
-            </div>
+            <div class="info-item">更新日期：{{ controlPanel.updateDate }}</div>
             <div v-if="controlPanel.otherInfo" class="info-item">
               {{ controlPanel.otherInfo }}
             </div>
@@ -511,10 +515,93 @@ onMounted(() => {
               />X
               {{ reward.content.ticketgachaSpecialSingle }}
             </div>
+            <div
+              v-show="reward.content.ticketgachaLimitedSingle > 0"
+              class="version-reward-item-content"
+            >
+              <img
+                alt="existing"
+                class="version-reward-item-icon"
+                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+              />X
+              {{ reward.content.ticketgachaLimitedSingle }}
+            </div>
           </div>
         </div>
+
+        
+
         <!-- 统计区 -->
-        <div class="version-reward-result-group">
+        <v-table class="version-reward-result-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                />
+              </th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                />
+              </th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                />
+              </th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                />
+              </th>
+              <th>
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                />
+              </th>
+              <th>特许寻访</th>
+              <th>特许寻访+专属寻访</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="result in currentVersionRewardTotal">
+              <td>{{ result.name }}</td>
+              <td>
+                {{ result.originiumRecharge }}
+              </td>
+              <td>{{ result.diamond }}</td>
+              <td>{{ result.ticketgachaStandardSingle }}</td>
+              <td>{{ result.ticketgachaSpecialSingle }}</td>
+              <td>{{ result.ticketgachaLimitedSingle }}</td>
+              <td>{{ numberFloor(result.totalPulls as number) }}抽</td>
+              <td>
+                {{ numberFloor((result.totalPulls as number) + result.ticketgachaLimitedSingle) }}抽
+              </td>
+            </tr>
+          </tbody>
+        </v-table>
+
+         <div id="shield" style="padding: 12px">
+            <p>数据由攒抽计算器自动生成，非当前版本完整奖励数据</p>
+            <p>
+              资源以实际发放为准，本图片时效性较低，攒抽计算器将会持续修订更新资源，可能有错漏资源，欢迎反馈
+            </p>
+            <p>通行证循环等级获得的合成玉与保障配额交易未计入，可在攒抽计算器上根据个人情况自行调整</p>
+          </div>
+
+        <div class="version-reward-result-group" style="display: none">
           <div v-for="result in currentVersionRewardTotal" class="version-reward-result">
             <div class="reward-result-border">
               <div class="version-reward-result-color-border red-bg"></div>
@@ -560,12 +647,14 @@ onMounted(() => {
               <div class="version-reward-result-type">
                 特许寻访
                 <div class="version-reward-result-number">
-                  {{ numberFloor((result.totalPulls as number) - 20) }}抽
+                  {{ numberFloor(result.totalPulls as number) }}抽
                 </div>
               </div>
               <div class="version-reward-result-type">
                 限时寻访
-                <div class="version-reward-result-number">20抽</div>
+                <div class="version-reward-result-number">
+                  {{ result.ticketgachaLimitedSingle }}抽
+                </div>
               </div>
               <div class="version-reward-result-type">
                 基础寻访
@@ -575,28 +664,26 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <div id="shield" style="padding: 12px">
-            <p>数据由攒抽计算器自动生成，非当前版本完整数据</p>
-            <p>资源以实际发放为准，攒抽计算器也将会持续修订更新资源，可能有错漏资源，欢迎反馈</p>
-            <p>图片时效性较低，建议关注网站更新，也可根据个人情况使用攒抽计算器自行调整</p>
-          </div>
+         
         </div>
       </div>
       <!-- 页脚区 -->
       <div id="version-reward-footer">
         <table class="footer-table">
-          <tr>
-            <td>数据来源：</td>
-            <td>终末地一图流·攒抽计算器</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>https://ef.yituliu.cn/tools/gacha-calculator/</td>
-          </tr>
-          <tr>
-            <td>信息发布：</td>
-            <td>逻辑元LogicalByte@Bilibili</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>数据来源：</td>
+              <td>终末地一图流·攒抽计算器</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>https://ef.yituliu.cn/tools/gacha-calculator/</td>
+            </tr>
+            <tr>
+              <td>信息发布：</td>
+              <td>逻辑元LogicalByte@Bilibili</td>
+            </tr>
+          </tbody>
         </table>
         <img
           alt="existing"
@@ -630,10 +717,10 @@ onMounted(() => {
       </div>
 
       <!-- 更新日期输入 -->
-      <div class="control-item">
+      <!-- <div class="control-item">
         <label>更新日期</label>
         <input v-model="controlPanel.updateDate" type="date" />
-      </div>
+      </div> -->
 
       <!-- 其他说明输入 -->
       <div class="control-item">
@@ -642,6 +729,7 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <div></div>
 </template>
 
 <style>
@@ -845,18 +933,38 @@ onMounted(() => {
 }
 
 /* ========== 2.2.3 结果组 ========== */
+
+.version-reward-result-table {
+  background: rgba(32, 32, 32, 0.85) !important;
+  color: white !important;
+  width: 96%;
+  margin: 20px auto;
+   
+  th,
+  td {
+     text-align: center ;
+    border: 1px solid white;
+    font-size: 24px;
+  }
+
+ 
+}
+
+ #shield {
+    font-size: 20px;
+    width: 96%;
+    background-color: #ffffff90;
+    padding: 4px 12px;
+    margin: 0 auto 8px;
+  }
+
 .version-reward-result-group {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-around;
 
-  #shield {
-    font-size: 20px;
-    background-color: #ffffff90;
-    padding: 4px 12px;
-    margin-bottom: 8px;
-  }
+ 
 }
 
 /* ========== 2.2.3.1 单个结果 ========== */
