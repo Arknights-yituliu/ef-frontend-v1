@@ -4,8 +4,7 @@
     :model-value="modelValue"
     @update:model-value="emit('update:modelValue', $event)"
   >
-    <v-card class="feedback-modal-card" style="position: relative; overflow: visible;">
-
+    <v-card class="feedback-modal-card" style="position: relative; overflow: visible">
       <v-card-title class="feedback-modal-title d-flex justify-space-between align-center">
         <span class="text-h6 font-weight-bold"></span>
         <v-btn
@@ -42,7 +41,13 @@
               @click="handleAction(item)"
             >
               <v-icon v-if="item.isCopied" size="x-small" start>mdi-check</v-icon>
-              {{ item.isCopied ? (t('feedback.modal.copied')) : (item.actionType === 'copy' ? t('feedback.modal.copyBtn') : t('feedback.modal.actionBtn')) }}
+              {{
+                item.isCopied
+                  ? t('feedback.modal.copied')
+                  : item.actionType === 'copy'
+                    ? t('feedback.modal.copyBtn')
+                    : t('feedback.modal.actionBtn')
+              }}
             </v-btn>
           </template>
         </v-data-table>
@@ -74,9 +79,24 @@ const emit = defineEmits<{
 const { t } = useI18n();
 
 const headers = computed(() => [
-  { title: t('feedback.table.header.method'), key: 'method', align: 'start' as const, sortable: false },
-  { title: t('feedback.table.header.description'), key: 'description', align: 'start' as const, sortable: false },
-  { title: t('feedback.table.header.action'), key: 'action', align: 'center' as const, sortable: false },
+  {
+    title: t('feedback.table.header.method'),
+    key: 'method',
+    align: 'start' as const,
+    sortable: false,
+  },
+  {
+    title: t('feedback.table.header.description'),
+    key: 'description',
+    align: 'start' as const,
+    sortable: false,
+  },
+  {
+    title: t('feedback.table.header.action'),
+    key: 'action',
+    align: 'center' as const,
+    sortable: false,
+  },
 ]);
 
 const feedbackChannels = ref<ChannelItem[]>([
@@ -141,7 +161,6 @@ async function copyToClipboard(text: string, item: ChannelItem) {
     }
 
     item.isCopied = true;
-
   } catch (error) {
     console.error('Failed to copy:', error);
   }
