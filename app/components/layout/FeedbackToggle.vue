@@ -1,53 +1,52 @@
 <template>
-  <button class="feedback-btn" @click="$emit('click')">
-    <div class="btn-bg" />
-    <div class="btn-left-border" />
-    <!-- <span class="btn-text">{{ $t('common.feedback') }}</span> -->
-    <svg
-      class="btn-icon"
-      fill="none"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-    >
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-    </svg>
+  <button :aria-label="$t('feedback.modal.title')" class="feedback-btn">
+    <div class="toggle-bg" />
+    <v-icon class="feedback-icon" icon="mdi-comment-multiple-outline" />
+    <div class="toggle-glow" />
   </button>
 </template>
 
-<script lang="ts" setup>
-defineEmits<{
-  click: []
-}>();
-</script>
-
 <style scoped>
 .feedback-btn {
-  min-width: 3rem;
+  width: 2.75rem;
   height: 2.75rem;
-  padding: 0 0.875rem;
-  border: 1px solid var(--theme-border);
   border-radius: var(--radius-sm);
+  border: 1px solid var(--theme-border);
   background-color: var(--theme-bg-secondary);
   color: var(--theme-text-primary);
   cursor: pointer;
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  transition: all var(--transition-fast);
-  position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  box-shadow: 0 0 0.25rem var(--theme-shadow-base);
-  letter-spacing: 0.05em;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0.5rem var(--theme-shadow-base);
 }
 
 .feedback-btn::before {
   content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.375rem;
+  height: 100%;
+  background-color: transparent;
+  transition: all var(--transition-base);
+}
+
+.feedback-btn:hover {
+  border-color: var(--theme-accent-color);
+  transform: scale(1.05);
+  box-shadow: 0 0 1rem var(--theme-shadow-accent-strong);
+}
+
+.feedback-btn:hover::before {
+  background-color: var(--theme-accent-color);
+  box-shadow: 0 0 0.5rem var(--theme-accent-color);
+}
+
+.toggle-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -69,98 +68,36 @@ defineEmits<{
   background-size: 0.5rem 0.5rem;
   opacity: 0;
   transition: opacity var(--transition-fast);
-  z-index: 0;
 }
 
-.feedback-btn:hover::before {
+.feedback-btn:hover .toggle-bg {
   opacity: 1;
 }
 
-.btn-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-  transition: all var(--transition-fast);
-  z-index: 0;
+.feedback-icon {
+  font-size: 1.25rem;
 }
 
-.btn-left-border {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0.25rem;
-  background-color: transparent;
-  transition: all var(--transition-fast);
-  z-index: 1;
-}
-
-.feedback-btn:hover {
-  background-color: var(--theme-bg-tertiary);
-  border-color: var(--theme-accent-color);
-  transform: translateX(0.125rem);
-  box-shadow: 0 0 0.75rem var(--theme-shadow-accent);
-}
-
-.feedback-btn:hover .btn-left-border {
-  background-color: var(--theme-accent-color);
-  box-shadow: 0 0 0.5rem var(--theme-accent-color);
-}
-
-.feedback-btn:active {
-  transform: translateX(0.05rem) scale(0.98);
-  box-shadow: 0 0 0.5rem var(--theme-shadow-accent-hover);
-}
-
-.feedback-btn:active .btn-left-border {
-  background-color: var(--theme-text-primary);
-  width: 0.375rem;
-  box-shadow: none;
-}
-
-.feedback-btn:active .btn-bg {
-  background-color: var(--theme-text-primary);
-  opacity: 0.1;
-}
-
-.feedback-btn:active::before {
-  opacity: 0.3;
-  background-image: linear-gradient(
-    -45deg,
-    transparent,
-    transparent 13.9512529279%,
-    var(--theme-decorative-overlay) 0,
-    var(--theme-decorative-overlay) 36.0487470721%,
-    transparent 0,
-    transparent 63.9512529279%,
-    var(--theme-decorative-overlay) 0,
-    var(--theme-decorative-overlay) 86.0487470721%,
-    transparent 0,
-    transparent
-  );
-}
-
-.btn-text {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.btn-icon {
-  width: 1rem;
-  height: 1rem;
+.feedback-btn:hover .feedback-icon {
   color: var(--theme-text-primary);
-  position: relative;
-  z-index: 2;
-  transition: transform var(--transition-fast);
+  filter: drop-shadow(0 0 0.25rem var(--theme-accent-color));
 }
 
-.feedback-btn:hover .btn-icon {
-  transform: translateY(-1px);
+.toggle-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--theme-shadow-accent-strong) 0%, transparent 70%);
+  transition: all var(--transition-base);
+  pointer-events: none;
+}
+
+.feedback-btn:active .toggle-glow {
+  width: 4rem;
+  height: 4rem;
 }
 </style>
