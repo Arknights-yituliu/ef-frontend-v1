@@ -1,15 +1,9 @@
 <template>
   <v-dialog v-model="model" max-width="600px">
-    <v-card class="feedback-modal-card">
+    <v-card>
       <v-card-title class="d-flex justify-space-between align-center">
         <span class="text-h6 font-weight-bold">{{ t('feedback.modal.title') }}</span>
-        <v-btn
-          class="feedback-modal-close-btn"
-          icon="mdi-close"
-          size="small"
-          variant="text"
-          @click="model = false"
-        />
+        <v-btn icon="mdi-close" size="small" variant="text" @click="model = false" />
       </v-card-title>
 
       <v-card-text class="px-0">
@@ -105,5 +99,3 @@ const feedbackChannels = ref<ChannelItem[]>([
   },
 ]);
 </script>
-
-<style scoped></style>

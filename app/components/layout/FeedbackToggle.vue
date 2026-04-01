@@ -1,7 +1,7 @@
 <template>
-  <button :aria-label="$t('layout.theme')" class="feedback-btn">
+  <button :aria-label="$t('feedback.modal.title')" class="feedback-btn">
     <div class="toggle-bg" />
-    <v-icon class="theme-icon" icon="mdi-comment-multiple-outline" />
+    <v-icon class="feedback-icon" icon="mdi-comment-multiple-outline" />
     <div class="toggle-glow" />
   </button>
 </template>
@@ -74,48 +74,13 @@
   opacity: 1;
 }
 
-.theme-icon {
+.feedback-icon {
   font-size: 1.25rem;
-  position: relative;
-  z-index: 1;
-  transition: all var(--transition-base);
 }
 
-.feedback-btn:hover .theme-icon {
+.feedback-btn:hover .feedback-icon {
   color: var(--theme-text-primary);
   filter: drop-shadow(0 0 0.25rem var(--theme-accent-color));
-}
-
-.theme-icon.dark {
-  animation: moonRotate 0.6s ease-in-out;
-}
-
-@keyframes moonRotate {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.2);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-.sun-icon {
-  animation: sunRotate 0.6s ease-in-out;
-}
-
-@keyframes sunRotate {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(-180deg) scale(1.2);
-  }
-  100% {
-    transform: rotate(-360deg) scale(1);
-  }
 }
 
 .toggle-glow {
