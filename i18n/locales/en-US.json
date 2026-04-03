@@ -491,8 +491,8 @@
           "textl-2": "Operator to Gift Lookup",
           "textl-2-d": "Tap on an operator to see which gifts they like.",
           "textl-3": "Source / Hobby Query",
-          "textl-3-d": "Tap on the top filter to view gifts and operators that match these sources/hobbies.",
-          "text2": "When looking up by gift or operator, if the operator and gift's source match, both the operator and source icons will be highlighted. This indicates that giving this gift to this operator can yield a large amount of Trust due to the preference boost."
+          "textl-3-d": "Tap on the top filter to view gifts and operators that match these sources / hobbies.",
+          "text2": "When looking up by gift or operator, if the operator and gift's source match, both the operator and source icons will be highlighted. This indicates that giving the gift(s) to this operator can yield a large amount of Trust due to the preference boost."
         }
       }
     },
