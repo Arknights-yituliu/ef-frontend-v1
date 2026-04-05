@@ -3,16 +3,11 @@
     <h1>终末地基质小助手</h1>
 
     <div class="d-flex flex-row flex-wrap ga-4 my-4">
-      <v-btn append-icon="mdi-open-in-new" color="primary" @click="downloadLatestVersion">
-        下载最新版（国内）
+      <v-btn append-icon="mdi-open-in-new" color="primary" @click="downloadLatestVersion('global')">
+        下载最新版（主线）
       </v-btn>
-      <v-btn
-        append-icon="mdi-open-in-new"
-        href="https://github.com/Logical-Byte/endfield-essence-recognizer/releases/latest"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        下载最新版（GitHub）
+      <v-btn append-icon="mdi-open-in-new" @click="downloadLatestVersion('cn')">
+        下载最新版（备用）
       </v-btn>
       <v-btn
         append-icon="mdi-open-in-new"
@@ -257,6 +252,19 @@
 </template>
 
 <script lang="ts" setup>
+interface Mirror {
+  downloadUrl: string;
+}
+
+interface VersionInfo {
+  latestVersion: string;
+  downloadUrl: string;
+  mirrors: {
+    global: Mirror;
+    cn: Mirror;
+  };
+}
+
 // 使用默认布局
 definePageMeta({
   layout: 'default',
@@ -267,20 +275,19 @@ const showError = ref(false);
 const errorMessage = ref('');
 
 // 下载最新版本
-async function downloadLatestVersion() {
+async function downloadLatestVersion(mirror: 'global' | 'cn') {
   try {
     // 获取当前时间戳
     const timestamp = Date.now();
 
     // 请求版本信息
-    const versionInfo = await $fetch<{
-      latestVersion: string;
-      downloadUrl: string;
-    }>(`https://cos.yituliu.cn/endfield/endfield-essence-recognizer/version.json?t=${timestamp}`);
+    const versionInfo = await $fetch<VersionInfo>(
+      `https://cos.yituliu.cn/endfield/endfield-essence-recognizer/version.json?t=${timestamp}`,
+    );
 
     // 下载最新版本
-    if (versionInfo.downloadUrl) {
-      window.location.href = versionInfo.downloadUrl;
+    if (versionInfo.mirrors[mirror]?.downloadUrl) {
+      window.location.href = versionInfo.mirrors[mirror].downloadUrl;
     } else {
       errorMessage.value = '无法获取下载链接，请稍后重试';
       showError.value = true;
