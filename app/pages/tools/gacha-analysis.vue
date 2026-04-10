@@ -286,14 +286,19 @@
 
               >
                 <!-- 头像区域 -->
-                <div class="character-avatar" style="width: 50px; height: 50px; flex-shrink: 0; margin-right: 12px;">
+                <div class="character-avatar" style="width: 50px; height: 50px; flex-shrink: 0; margin-right: 12px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                   <img
-                    v-if="record.charId"
+                    v-if="record.charId && record.charId !== 'padded' && record.charId !== 'free_bundle'"
                     :alt="record.character"
+                    :class="{ 'avatar-error': imageLoadFailed[record.seqId] }"
                     :src="getAvatarUrl(record.charId, getPoolType(record.poolId) === 'weapon')"
-                    style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; border: 1px solid #e5e7eb;"
-                    @error="handleImageError"
+                    style="width: 100%; height: 100%; object-fit: cover; border: 1px solid #e5e7eb;"
+                    @error="() => handleAvatarError(record.seqId)"
+                    @load="() => { imageLoadFailed[record.seqId] = false }"
                   />
+                  <span v-else-if="record.charId === 'padded'" class="avatar-text avatar-padded">垫</span>
+                  <span v-else-if="record.charId === 'free_bundle'" class="avatar-text avatar-free">赠</span>
+                  <span v-if="imageLoadFailed[record.seqId] && record.charId && record.charId !== 'padded' && record.charId !== 'free_bundle'" class="avatar-name">{{ record.character?.slice(0, 2) }}</span>
                 </div>
 
                 <!-- 条形图区域 -->
@@ -331,7 +336,7 @@
                       </template>
                     </div>
 
-                    <span v-if="record.character === '已垫'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">当前垫抽</span>
+                    <span v-if="record.character === '已垫'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">垫抽</span>
                     <span v-if="record.character === '赠送十连'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">赠送十连</span>
                   </div>
 
@@ -1583,25 +1588,24 @@ function toggleExpand(seqId: string) {
 
 // 获取头像 URL
 function getAvatarUrl(id: string, isWeapon: boolean = false): string {
-  if (id === 'padded') {
-    return `https://cos.yituliu.cn/endfield/other/blank.webp `;
-  }
-
-  if (id === 'free_bundle') {
-    return `https://cos.yituliu.cn/endfield/other/blank.webp `;
-  }
-
   if (isWeapon) {
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/${id}.webp`;
+    return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${id}.webp`;
   }
 
-  return `https://cos.yituliu.cn/endfield/unpack-images/characters/icon_${id}.webp`;
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${id}.webp`;
 }
 
 // 图片加载失败时
 function handleImageError(e: Event) {
   const img = e.target as HTMLImageElement;
   img.style.opacity = '0.5';
+}
+
+// 头像加载失败状态追踪
+const imageLoadFailed = ref<Record<string, boolean>>({});
+
+function handleAvatarError(seqId: string) {
+  imageLoadFailed.value[seqId] = true;
 }
 
 // ===== 导出数据文件 =====

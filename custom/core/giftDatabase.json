@@ -19,6 +19,10 @@
       }
     },
     "hobby": {
+      "tag_hobby_art": {
+        "zh-CN": "艺术",
+        "en-US": "Fine Arts"
+      },
       "tag_hobby_charity": {
         "zh-CN": "公益",
         "en-US": "Charity"
@@ -27,29 +31,25 @@
         "zh-CN": "创意",
         "en-US": "Creative"
       },
-      "tag_hobby_fashion": {
-        "zh-CN": "时尚",
-        "en-US": "Fashion"
-      },
-      "tag_hobby_art": {
-        "zh-CN": "艺术",
-        "en-US": "Fine Arts"
-      },
       "tag_hobby_culture": {
         "zh-CN": "文化",
         "en-US": "Culture"
-      },
-      "tag_hobby_life": {
-        "zh-CN": "生活",
-        "en-US": "Lifestyle"
       },
       "tag_hobby_exercise": {
         "zh-CN": "运动",
         "en-US": "Sports"
       },
+      "tag_hobby_fashion": {
+        "zh-CN": "时尚",
+        "en-US": "Fashion"
+      },
       "tag_hobby_knowledge": {
         "zh-CN": "益智",
         "en-US": "Mind Honing"
+      },
+      "tag_hobby_life": {
+        "zh-CN": "生活",
+        "en-US": "Lifestyle"
       },
       "tag_hobby_nature": {
         "zh-CN": "自然",
@@ -62,28 +62,6 @@
     }
   },
   "gift": {
-    "item_gift_jinlong_1": {
-      "id": "item_gift_jinlong_1",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_1",
-      "favorHobby": [
-        "tag_hobby_life",
-        "tag_hobby_culture"
-      ]
-    },
-    "item_gift_jinlong_2": {
-      "id": "item_gift_jinlong_2",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_1",
-      "favorHobby": [
-        "tag_hobby_exercise",
-        "tag_hobby_nature"
-      ]
-    },
     "item_gift_jinlong_3": {
       "id": "item_gift_jinlong_3",
       "rarity": 5,
@@ -104,6 +82,28 @@
       "favorHobby": [
         "tag_hobby_exercise",
         "tag_hobby_life"
+      ]
+    },
+    "item_gift_jinlong_1": {
+      "id": "item_gift_jinlong_1",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_1",
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_culture"
+      ]
+    },
+    "item_gift_jinlong_2": {
+      "id": "item_gift_jinlong_2",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_1",
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_nature"
       ]
     },
     "item_gift_tundra_1": {
@@ -318,6 +318,21 @@
       "favorHobby": [
         "tag_hobby_nature",
         "tag_hobby_creativity"
+      ]
+    },
+    "chr_0028_wulfa": {
+      "id": "chr_0028_wulfa",
+      "name": {
+        "zh-CN": "洛茜",
+        "en-US": "Rossi"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_exercise"
       ]
     },
     "chr_0004_pelica": {

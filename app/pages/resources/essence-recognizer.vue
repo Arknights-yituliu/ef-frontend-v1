@@ -3,16 +3,11 @@
     <h1>终末地基质小助手</h1>
 
     <div class="d-flex flex-row flex-wrap ga-4 my-4">
-      <v-btn append-icon="mdi-open-in-new" color="primary" @click="downloadLatestVersion">
-        下载最新版（国内）
+      <v-btn append-icon="mdi-open-in-new" color="primary" @click="downloadLatestVersion('global')">
+        下载最新版（主线）
       </v-btn>
-      <v-btn
-        append-icon="mdi-open-in-new"
-        href="https://github.com/Logical-Byte/endfield-essence-recognizer/releases/latest"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        下载最新版（GitHub）
+      <v-btn append-icon="mdi-open-in-new" @click="downloadLatestVersion('cn')">
+        下载最新版（备用）
       </v-btn>
       <v-btn
         append-icon="mdi-open-in-new"
@@ -75,7 +70,13 @@
           <li>
             若您的显示器分辨率为 1920×1080，请将终末地的分辨率更改为 1920×1080 全屏后按下
             <strong class="text-primary">
-              <v-hotkey color="primary" inline keys="Alt+Enter" variant="flat" />
+              <v-hotkey
+                color="primary"
+                display-mode="text"
+                inline
+                keys="Alt+Enter"
+                variant="flat"
+              />
               切换为窗口模式</strong
             >
           </li>
@@ -83,7 +84,8 @@
       </li>
       <li>请确保终末地的整个窗口都位于屏幕范围内且未被性能监控工具等任何其他内容遮挡</li>
       <li>
-        请按 <v-hotkey inline keys="N" variant="flat" /> 键打开终末地<strong class="text-primary"
+        请按 <v-hotkey display-mode="text" inline keys="N" variant="flat" /> 键打开终末地<strong
+          class="text-primary"
           >贵重品库</strong
         >并切换到<strong class="text-primary">武器基质</strong>页面
       </li>
@@ -92,15 +94,20 @@
 
     <h2>功能介绍</h2>
     <ul>
-      <li>按 <v-hotkey inline keys="[" variant="flat" /> 键识别当前选中的基质是宝藏还是养成材料</li>
       <li>
         按
-        <v-hotkey inline keys="]" variant="flat" />
+        <v-hotkey display-mode="text" inline keys="[" variant="flat" />
+        键识别当前选中的基质是宝藏还是养成材料
+      </li>
+      <li>
+        按
+        <v-hotkey display-mode="text" inline keys="]" variant="flat" />
         键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br />
-        基质扫描过程中再次按 <v-hotkey inline keys="]" variant="flat" /> 键中断扫描
+        基质扫描过程中再次按
+        <v-hotkey display-mode="text" inline keys="]" variant="flat" /> 键中断扫描
       </li>
 
-      <li>按 <v-hotkey inline keys="Alt+DELETE" variant="flat" /> 退出程序</li>
+      <li>按 <v-hotkey display-mode="text" inline keys="Alt+DELETE" variant="flat" /> 退出程序</li>
     </ul>
 
     <p>
@@ -141,14 +148,27 @@
       </li>
       <li>
         如果电脑上没安装其他解压软件，则请右键点击 zip
-        压缩包，点击"属性"，然后把"解除锁定"勾上，点击"确定"，再解压即可。
+        压缩包，点击“属性”，然后把“解除锁定”勾上，点击“确定”，再解压即可。
       </li>
     </ol>
 
     <h3>界面窗口能打开，但是白屏</h3>
-    <p>白屏问题比较复杂，请参考以下临时解决方法。</p>
+    <p>白屏问题比较复杂，请参考以下解决方法。</p>
     <p>
-      <strong class="text-primary">方法一：</strong>请参考
+      <strong class="text-primary">方法一：</strong>
+      如果白屏界面右侧能看到一条矩形的滚动条，说明您未安装 WebView2 运行时，请前往
+      <a
+        class="text-primary text-decoration-none"
+        href="https://developer.microsoft.com/zh-CN/microsoft-edge/webview2"
+        rel="noopener noreferrer"
+        target="_blank"
+        >https://developer.microsoft.com/zh-CN/microsoft-edge/webview2</a
+      >
+      下载并安装 WebView2 运行时。<br />
+      选择“常青引导程序”或者“常青独立安装程序”均可。如果遇到网络问题无法下载，可以加群，在群文件里获取安装包。
+    </p>
+    <p>
+      <strong class="text-primary">方法二：</strong> 请参考
       <a
         class="text-primary text-decoration-none"
         href="https://github.com/Logical-Byte/endfield-essence-recognizer/issues/24#issuecomment-3830421851"
@@ -158,7 +178,7 @@
       >
     </p>
     <p>
-      <strong class="text-primary">方法二：</strong>请保持工具打开状态，用浏览器访问
+      <strong class="text-primary">方法三：</strong> 请保持工具打开状态，用浏览器访问
       <a
         class="text-primary text-decoration-none"
         href="http://127.0.0.1:325/"
@@ -168,9 +188,9 @@
       >
     </p>
     <p>
-      <strong class="text-primary">方法三：</strong
-      >如果以上方法仍然解决不了，那就先凑合用。界面看不见没关系的，只要终末地在前台，按
-      <v-hotkey inline keys="]" variant="flat" /> 键是可以正常使用的。
+      <strong class="text-primary">方法四：</strong>
+      如果以上方法仍然解决不了，那就先凑合用。界面看不见没关系的，只要终末地在前台，按
+      <v-hotkey display-mode="text" inline keys="]" variant="flat" /> 键是可以正常使用的。
     </p>
 
     <h3>明明是 1920×1080 窗口，依然提示分辨率错误</h3>
@@ -192,7 +212,7 @@
       <strong class="text-primary">1920×1080 窗口</strong>。若您的显示器分辨率为
       1920×1080，请将终末地的分辨率更改为 1920×1080 全屏后按下
       <strong class="text-primary">
-        <v-hotkey color="primary" inline keys="Alt+Enter" variant="flat" />
+        <v-hotkey color="primary" display-mode="text" inline keys="Alt+Enter" variant="flat" />
         切换为窗口模式</strong
       >。
     </p>
@@ -245,18 +265,23 @@
       <li>使用者需承担因使用本工具产生的任何风险、损失或责任。</li>
       <li>使用本工具即意味着您同意以上全部内容。</li>
     </ul>
-
-    <!-- 错误提示 Snackbar -->
-    <v-snackbar v-model="showError" color="error" location="top">
-      {{ errorMessage }}
-      <template #actions>
-        <v-btn variant="text" @click="showError = false">关闭</v-btn>
-      </template>
-    </v-snackbar>
   </v-container>
 </template>
 
 <script lang="ts" setup>
+interface Mirror {
+  downloadUrl: string;
+}
+
+interface VersionInfo {
+  latestVersion: string;
+  downloadUrl: string;
+  mirrors: {
+    global: Mirror;
+    cn: Mirror;
+  };
+}
+
 // 使用默认布局
 definePageMeta({
   layout: 'default',
@@ -267,20 +292,19 @@ const showError = ref(false);
 const errorMessage = ref('');
 
 // 下载最新版本
-async function downloadLatestVersion() {
+async function downloadLatestVersion(mirror: 'global' | 'cn') {
   try {
     // 获取当前时间戳
     const timestamp = Date.now();
 
     // 请求版本信息
-    const versionInfo = await $fetch<{
-      latestVersion: string;
-      downloadUrl: string;
-    }>(`https://cos.yituliu.cn/endfield/endfield-essence-recognizer/version.json?t=${timestamp}`);
+    const versionInfo = await $fetch<VersionInfo>(
+      `https://cos.yituliu.cn/endfield/endfield-essence-recognizer/version.json?t=${timestamp}`,
+    );
 
     // 下载最新版本
-    if (versionInfo.downloadUrl) {
-      window.location.href = versionInfo.downloadUrl;
+    if (versionInfo.mirrors[mirror]?.downloadUrl) {
+      window.location.href = versionInfo.mirrors[mirror].downloadUrl;
     } else {
       errorMessage.value = '无法获取下载链接，请稍后重试';
       showError.value = true;

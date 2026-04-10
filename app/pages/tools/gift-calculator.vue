@@ -53,7 +53,7 @@
             <div>
               <p>{{ $t('page.tools.giftCalculator.howToUseExplain.text1') }}</p>
             </div>
-            <v-list lines="one">
+            <v-list :lines="false">
               <v-list-item
                 v-for="n in 3"
                 :key="n"
@@ -80,7 +80,7 @@
         <div>
           <v-chip
             v-for="[cateId, cate] in Object.entries(gifts.giftProps.category)"
-            class="ma-1"
+            class="ma-1 px-2"
             :color="selectedTags.category.includes(cateId) ? '#fffa00' : 'grey-lighten-2'"
             label variant="elevated"
             @click="selectTag('category', cateId)"
@@ -253,7 +253,7 @@ v-if="checkForceSelectItem('operator', opId)"
 </template>
 
 <script lang="ts" setup>
-import type { Gift, GiftTag, OpName } from '@/custom/core/gifts';
+import type { GiftTag, OpName } from '@/custom/core/gifts';
 import { getCategoryIcon, getOperatorIcon, gifts, hotIcon } from '@/custom/core/gifts';
 const { theme } = useTheme();
 const { locale } = useI18n();

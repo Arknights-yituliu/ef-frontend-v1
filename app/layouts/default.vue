@@ -33,7 +33,7 @@
       <v-app-bar-nav-icon @click="() => (drawer = !drawer)" />
       <v-app-bar-title class="app-bar-title">{{ pageTitle }}</v-app-bar-title>
       <div class="header-controls">
-        <LayoutFeedbackToggle @click="handleFeedbackClick" />
+        <LayoutFeedbackToggle @click="isFeedbackOpen = true" />
         <LayoutThemeToggle />
         <div class="control-divider" />
         <LayoutLanguageToggle />
@@ -62,10 +62,7 @@
         @click="scrollToTop"
       />
     </v-fade-transition>
-    <LayoutFeedbackModal
-      v-model="isFeedbackOpen"
-      @submit="handleFeedbackSubmit"
-    />
+    <LayoutFeedbackModal v-model="isFeedbackOpen" />
   </v-app>
 </template>
 
@@ -84,12 +81,15 @@ const loadingDuration =
   typeof initialLoaderConfig.loadingDuration === 'number'
     ? initialLoaderConfig.loadingDuration
     : 3000;
-function handleInitialLoaderComplete () {
+function handleInitialLoaderComplete() {
   isInitialLoading.value = false;
 }
 
 /** 边栏是否展开 */
 const drawer = ref(true);
+
+/** 反馈组件是否打开 */
+const isFeedbackOpen = ref(false);
 
 // 根据当前路由查找对应的页面名称
 const pageTitle = computed(() => {
@@ -113,11 +113,11 @@ useHead(() => ({
 const showBackToTop = ref(false);
 const scrollThreshold = 300; // 滚动超过300px时显示按钮
 
-function handleScroll () {
+function handleScroll() {
   showBackToTop.value = window.scrollY > scrollThreshold;
 }
 
-function scrollToTop () {
+function scrollToTop() {
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
@@ -131,35 +131,6 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
 });
-
-
-interface FeedbackData {
-  type: string;
-  content: string;
-  email?: string;
-}
-
-// 2. 控制弹窗显示的状态
-const isFeedbackOpen = ref(false);
-
-// 3. 控制成功提示 (Snackbar) 的状态
-const showSuccessSnackbar = ref(false);
-
-// 4. 打开弹窗
-function handleFeedbackClick() {
-  isFeedbackOpen.value = true;
-}
-
-// 5. 处理提交成功回调
-function handleFeedbackSubmit (data: FeedbackData) {
-  console.log('反馈已提交:', data);
-
-  // 关闭弹窗 (通常由子组件内部关闭，但双重保险也可以在这里关)
-  isFeedbackOpen.value = false;
-
-  // 显示成功提示
-  showSuccessSnackbar.value = true;
-}
 </script>
 
 <style scoped>
