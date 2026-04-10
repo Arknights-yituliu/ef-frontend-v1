@@ -1588,19 +1588,11 @@ function toggleExpand(seqId: string) {
 
 // 获取头像 URL
 function getAvatarUrl(id: string, isWeapon: boolean = false): string {
-  if (id === 'padded') {
-    return `https://cos.yituliu.cn/endfield/other/blank.webp `;
-  }
-
-  if (id === 'free_bundle') {
-    return `https://cos.yituliu.cn/endfield/other/blank.webp `;
-  }
-
   if (isWeapon) {
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/${id}.webp`;
+    return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${id}.webp`;
   }
 
-  return `https://cos.yituliu.cn/endfield/unpack-images/characters/icon_${id}.webp`;
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${id}.webp`;
 }
 
 // 图片加载失败时
