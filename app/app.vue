@@ -1,4 +1,6 @@
 <template>
+  <!-- 页面访问记录 -->
+  <ToolsPageTracker />
   <NuxtRouteAnnouncer />
   <NuxtLayout>
     <NuxtPage />
