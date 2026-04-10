@@ -501,13 +501,6 @@
     padding: 8px 0;
 }
 
-.character-name,
-.pull-count {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .character-avatar {
     background-color: #f3f4f6;
     position: relative;
@@ -582,6 +575,13 @@
 }
 
 /* 抽卡进度条样式 */
+.pull-count {
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: unset;
+}
+
 .gacha-bar {
     display: flex;
     height: 100%;
@@ -590,7 +590,8 @@
     align-items: center;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    min-width: 0;
 }
 
 .gacha-bar:hover {

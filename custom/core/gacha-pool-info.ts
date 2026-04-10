@@ -26,7 +26,7 @@ const gachaPools: GachaPool[] = [
     upCharName: "伊冯",
   },
   {
-    poolId: "weponbox_1_0_3",
+    poolId: "weponbox_1_0_2",
     poolName: "绘涂申领",
     upCharName: "艺术暴君",
   },
@@ -42,26 +42,26 @@ const gachaPools: GachaPool[] = [
     upCharName: "使命必达",
   },
   {
-    poolId: "special_1_0_4",
+    poolId: "special_1_1_1",
     poolName: "河流的女儿",
     upCharName: "汤汤",
   },
   {
-    poolId: "weponbox_1_0_4",
+    poolId: "weponbox_1_1_1",
     poolName: "新芽申领",
     upCharName: "落草",
   },
   {
-    poolId: "special_1_0_5",
+    poolId: "special_1_1_2",
     poolName: "狼珀",
     upCharName: "洛茜",
   },
   {
-    poolId: "weponbox_1_0_5",
+    poolId: "weponbox_1_1_2",
     poolName: "绯珀申领",
     upCharName: "狼之绯",
   },
 
 ];
-
+// 卡池命名逻辑 special_「大版本号」_「小版本号」_「第n个卡池」
 export { gachaPools };
