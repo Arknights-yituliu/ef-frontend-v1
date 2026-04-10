@@ -508,6 +508,53 @@
     text-overflow: ellipsis;
 }
 
+.character-avatar {
+    background-color: #f3f4f6;
+    position: relative;
+}
+
+.avatar-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.avatar-padded {
+    background: #f3f4f6;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+    font-size: 18px;
+    color: #6b7280;
+}
+
+.avatar-free {
+    background:  #fef3c7;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+    font-size: 18px;
+    color: #d97706;
+}
+
+.avatar-name {
+    position: absolute;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-align: center;
+    width: 100%;
+    padding: 0 2px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.avatar-error {
+    display: none;
+}
+
 .gacha-drawer-container {
     display: flex;
     flex-direction: column;
@@ -725,6 +772,17 @@
     .gacha-bar-container {
         height: 24px;
     }
+
+    .character-avatar {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .avatar-text {
+        font-size: 15px;
+    }
+
+
 
     .off-label, .lucky-label {
         font-size: 10px;
