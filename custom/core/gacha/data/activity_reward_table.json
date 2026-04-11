@@ -38,6 +38,25 @@
     }
   },
   {
+    "id": "长耳兔之旅",
+    "name": {
+      "zh": "长耳兔之旅",
+      "en": ""
+    },
+    "start": "2026/04/01 12:00:00",
+    "end": "2026/04/07 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 300,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "密境行者·行探险窟",
     "name": {
       "zh": "密境行者·行探险窟",

@@ -9,12 +9,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·索引",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 200,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -27,12 +29,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·索引",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -45,12 +49,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·索引",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 150,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -63,12 +69,14 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·索引",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 250,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -81,12 +89,53 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "节点手册·索引",
-    "active": true,"version": "零号委托",
+    "active": true,
+    "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 125,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  }, {
+    "id": "能量淤积点首通",
+    "name": {
+      "zh": "能量淤积点首通",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "节点手册·索引",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "危境再现·阮一",
+    "name": {
+      "zh": "危境再现·阮一",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "节点手册·索引",
+    "active": true,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   }
 ]

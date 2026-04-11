@@ -491,7 +491,7 @@ onMounted(() => {
                 class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
               />X
-              {{ reward.content.diamond }}
+              {{ numberFloor( reward.content.diamond,0) }}
             </div>
             <div
               v-show="reward.content.ticketgachaStandardSingle > 0"
