@@ -1,9 +1,9 @@
 import type {  Reward } from '#shared/types/gacha-calculator.ts';
 import {  ref } from 'vue';
 import FactoryManualTable from '@/custom/core/gacha/data/factory_manual_table.json';
-
 import IntelArchiveRewardJson from '@/custom/core/gacha/data/intel_archive_reward.json';
 import OtherRewardTableJson from '@/custom/core/gacha/data/other.json';
+import { groupAndMergeRewardsByVersion } from '#shared/utils/gacha-calculator.ts';
 
 const otherRewardTable= ref<Reward[]>([]);
 
@@ -12,9 +12,6 @@ for(const reward of OtherRewardTableJson as Reward[]){
   reward.end = new Date(reward.end)
   otherRewardTable.value.push(reward);
 }
-
-
-
 
 const intelArchiveReward = ref<Reward[]>([]);
 
@@ -62,7 +59,7 @@ const factoryManualMergeRewards: Reward[] = groupAndMergeRewardsByVersion(
 
 
 
-console.log(factoryManualMergeRewards);
+
 
 const otherAllRewardTable = ref<Reward[]>([]);
 otherAllRewardTable.value.push(...otherRewardTable.value, ...intelArchiveReward.value, ...factoryManualMergeRewards);

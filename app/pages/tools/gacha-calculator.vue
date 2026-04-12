@@ -20,6 +20,7 @@ import {
   calculatorDailyReward,
   dailyReward,
   weekTaskReward,
+  freeMonthlyPass,
 } from '@/custom/core/gacha/dailyReward';
 
 import {
@@ -98,7 +99,7 @@ const poolOptions = ref<PoolOption[]>([
     name: '洛茜卡池',
     color: '#C91A26',
     start: new Date('2026/03/29 12:00:00'),
-    end: new Date('2026/04/16 12:00:00'),
+    end: new Date('2026/04/17 12:00:00'),
     dateText: '3.29-版本末',
     type: '洛茜',
     disabled: false,
@@ -286,6 +287,7 @@ function dailyRewardStatistics(): void {
 
   addReward(result, dailyReward.value);
   addReward(result, weekTaskReward.value);
+  addReward(result, freeMonthlyPass.value);
   for (const reward of AICQuotaReward.value) {
     if (checkRewardIsValid(reward)) {
       addReward(result, reward);
@@ -2171,6 +2173,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingle v-bind="dailyReward" />
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
+             <GachaCalculatorResourceSingle v-bind="freeMonthlyPass" />
             <v-divider style="margin: 1rem 0" />
             <GachaCalculatorModuleTitle title="通行证" />
             <GachaCalculatorResourceSingleBtn

@@ -4,6 +4,9 @@ import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salv
 import { etchSpaceSalvageCrateRewardTable } from '@/custom/core/gacha/data/etchSpaceSalvageRewardTable';
 import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
+import { groupAndMergeTasksByVersionAndModule } from '#shared/utils/gacha-calculator.ts';
+
+
 const beginnerSignInTaskReward = ref<Reward>({
   id: 'beginner_sign_in_task',
   name: {
@@ -139,17 +142,80 @@ const valleyIVTaskRewardTable = ref<Reward[]>(mergedValleyIVTasks);
 const mergedWulingTasks = groupAndMergeTasksByVersionAndModule('武陵', wulingTaskTable);
 const wulingTaskRewardTable = ref<Reward[]>(mergedWulingTasks);
 
+console.log(mergedWulingTasks);
+
 const tempTasksReward: Reward[] = [
-  
+  {
+    id: '武陵_春晓时_主线任务',
+    name: {
+      zh: '主线任务',
+      en: '',
+    },
+    start: '2026/04/17 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '主线任务',
+    active: true,
+    version: '春晓时',
+    content: {
+      originiumRecharge: 20,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  },
+  {
+    id: '武陵_春晓时_重要任务',
+    name: {
+      zh: '重要任务',
+      en: '',
+    },
+    start: '2026/04/17 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '重要任务',
+    active: true,
+    version: '春晓时',
+    content: {
+      originiumRecharge:0,
+      diamond: 1000,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  },
+  {
+    id: '武陵_春晓时_次要任务',
+    name: {
+      zh: '次要任务',
+      en: '',
+    },
+    start: '2026/04/17 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '次要任务',
+    active: true,
+    version: '春晓时',
+    content: {
+      originiumRecharge:0,
+      diamond: 150,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  }
 ];
 
 wulingTaskRewardTable.value.push(...tempTasksReward);
 
 const etchSpaceSalvageReward = ref<Reward[]>([]);
 
-for (const reward of etchSpaceSalvageRewardJson) {
-  etchSpaceSalvageReward.value.push(reward);
-}
+const mergedEtchSpaceSalvageRewards = groupAndMergeTasksByVersionAndModule('蚀像寻遗', etchSpaceSalvageRewardJson);
+
+
+
+etchSpaceSalvageReward.value.push(...mergedEtchSpaceSalvageRewards);
 
 let etchSpaceSalvageCrateRewardMax: number = 0;
 for (const reward of etchSpaceSalvageCrateRewardTable) {
@@ -196,74 +262,3 @@ export {
   wulingTaskRewardTable,
 };
 
-/**
- * 根据version和module对wuling_task_table.json的数据进行分组和合并
- * @param regional 区域
- * @param tasks 任务数据数组
- * @returns 按version和module分组并合并后的结果
- */
-function groupAndMergeTasksByVersionAndModule(regional: string, tasks: Reward[]): Reward[] {
-  // 按version分组
-  const versionGroups: Record<string, Reward[]> = {};
-
-  for (const task of tasks) {
-    const version = task.version || 'default';
-    if (!versionGroups[version]) {
-      versionGroups[version] = [];
-    }
-    versionGroups[version].push(task);
-  }
-
-  // 对每个version组，按module分组并合并
-
-  const result: Reward[] = [];
-  for (const [version, versionTasks] of Object.entries(versionGroups)) {
-    // 按module分组
-    const moduleGroups: Record<string, Reward[]> = {};
-
-    for (const task of versionTasks) {
-      const module = task.module || 'default';
-      if (!moduleGroups[module]) {
-        moduleGroups[module] = [];
-      }
-      moduleGroups[module].push(task);
-    }
-
-    // 合并每个module组
-    for (const [module, moduleTasks] of Object.entries(moduleGroups)) {
-      if (moduleTasks.length === 0) continue;
-
-      // 使用第一个任务的属性作为基础
-      const firstTask = moduleTasks[0];
-      if (!firstTask) {
-        continue;
-      }
-      const mergedTask: Reward = {
-        ...firstTask,
-        id: `${regional}_${version}_${module}`,
-        name: {
-          zh: `${firstTask.module}-${firstTask.version}`,
-          en: ``,
-        },
-        content: {
-          originiumRecharge: 0,
-          diamond: 0,
-          ticketgachaStandardSingle: 0,
-          ticketgachaSpecialSingle: 0,
-          ticketgachaLimitedSingle: 0,
-        },
-      };
-
-      // 合并content属性
-      for (const task of moduleTasks) {
-        mergedTask.content.originiumRecharge += task.content.originiumRecharge;
-        mergedTask.content.diamond += task.content.diamond;
-        mergedTask.content.ticketgachaStandardSingle += task.content.ticketgachaStandardSingle;
-        mergedTask.content.ticketgachaSpecialSingle += task.content.ticketgachaSpecialSingle;
-      }
-      result.push(mergedTask);
-    }
-  }
-
-  return result;
-}

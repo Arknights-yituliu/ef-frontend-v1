@@ -1,5 +1,24 @@
 [
   {
+    "id": "档案采集·",
+    "name": {
+      "zh": "档案采集·",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "情报档案库",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
     "id": "档案采集·清波寨",
     "name": {
       "zh": "档案采集·清波寨",
@@ -18,8 +37,7 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },
-  {
+  },{
     "id": "档案采集·天使",
     "name": {
       "zh": "档案采集·天使",

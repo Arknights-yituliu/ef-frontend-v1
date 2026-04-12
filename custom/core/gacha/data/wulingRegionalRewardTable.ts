@@ -22,7 +22,7 @@ const wulingRegionalStockBillStoreRewardTable:Reward[] = [
     },
   },
   {
-    id: 'wuling_regional_stock_bill_store_reward_v1_1',
+    id: 'wuling_regional_stock_bill_store_reward_20260312',
     name: {
       zh: `调度券商店`,
       en: '',
@@ -41,11 +41,31 @@ const wulingRegionalStockBillStoreRewardTable:Reward[] = [
       ticketgachaLimitedSingle: 0,
     },
   },
+  {
+    id: 'wuling_regional_stock_bill_store_reward_20260417',
+    name: {
+      zh: `调度券商店`,
+      en: '',
+    },
+    start: '2026/04/17 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    version: '春晓时',
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 2,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  }
 ]
 
 const wulingCrateRewardTable:Reward[] = [
   {
-    id: 'wuling_crate_reward_v1_0',
+    id: 'wuling_crate_reward_20260122',
     name: {
       zh: `储藏箱+机器人维修`,
       en: '',
@@ -65,7 +85,7 @@ const wulingCrateRewardTable:Reward[] = [
     },
   },
   {
-    id: 'wuling_crate_reward_v1_1',
+    id: 'wuling_crate_reward_20260312',
     name: {
       zh: `储藏箱+机器人维修`,
       en: '',
@@ -79,6 +99,26 @@ const wulingCrateRewardTable:Reward[] = [
     content: {
       originiumRecharge: 0,
       diamond: 15 * 15 + 14 * 30 + 4 * 60 + 1 * 100 + 2 * 150 + 3 * 25,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  },
+  {
+    id: 'wuling_crate_reward_20260417',
+    name: {
+      zh: `储藏箱+机器人维修`,
+      en: '',
+    },
+    start: '2026/04/17 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    version: '春晓时',
+    content: {
+      originiumRecharge: 0,
+      diamond: 35 * 15 + 32 * 30 + 8 * 60 + 3 * 100 + 4 * 150 + 6 * 25,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
@@ -278,7 +318,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
     type: '通用',
     module: '地区建设',
     active: true,
-    version: '未来版本',
+    version: '春晓时',
     content: {
       originiumRecharge: 0,
       diamond: 200,
@@ -298,7 +338,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
     type: '通用',
     module: '地区建设',
     active: true,
-    version: '未来版本',
+    version: '春晓时',
     content: {
       originiumRecharge: 0,
       diamond: 200,
@@ -318,7 +358,7 @@ const wulingRegionalDevelopmentRewardTable:Reward[] = [
     type: '通用',
     module: '地区建设',
     active: true,
-    version: '未来版本',
+    version: '春晓时',
     content: {
       originiumRecharge: 0,
       diamond: 200,
@@ -521,7 +561,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
     type: '通用',
     module: '地区建设',
     active: true,
-    version: '未来版本',
+    version: '春晓时',
     content: {
       originiumRecharge: 3,
       diamond: 0,
@@ -541,7 +581,7 @@ const wulingAuryleneCollectStageTable: Reward[] = [
     type: '通用',
     module: '地区建设',
     active: true,
-    version: '未来版本',
+    version: '春晓时',
     content: {
       originiumRecharge: 3,
       diamond: 0,

@@ -188,6 +188,79 @@ function createReward(
 }
 
 /**
+ * 根据version和module对wuling_task_table.json的数据进行分组和合并
+ * @param moduleId 模块名称
+ * @param tasks 任务数据数组
+ * @returns 按version和module分组并合并后的结果
+ */
+function groupAndMergeTasksByVersionAndModule(moduleId: string, tasks: Reward[]): Reward[] {
+  // 按version分组
+  const versionGroups: Record<string, Reward[]> = {};
+
+  for (const task of tasks) {
+    const version = task.version || 'default';
+    if (!versionGroups[version]) {
+      versionGroups[version] = [];
+    }
+    versionGroups[version].push(task);
+  }
+
+  // 对每个version组，按module分组并合并
+
+  const result: Reward[] = [];
+  for (const [version, versionTasks] of Object.entries(versionGroups)) {
+    // 按module分组
+    const moduleGroups: Record<string, Reward[]> = {};
+
+    for (const task of versionTasks) {
+      const module = task.module || 'default';
+      if (!moduleGroups[module]) {
+        moduleGroups[module] = [];
+      }
+      moduleGroups[module].push(task);
+    }
+
+    // 合并每个module组
+    for (const [module, moduleTasks] of Object.entries(moduleGroups)) {
+      if (moduleTasks.length === 0) continue;
+
+      // 使用第一个任务的属性作为基础
+      const firstTask = moduleTasks[0];
+      if (!firstTask) {
+        continue;
+      }
+      const mergedTask: Reward = {
+        ...firstTask,
+        id: `${moduleId}_${version}_${module}`,
+        name: {
+          zh: firstTask.module,
+          en: ``,
+        },
+        content: {
+          originiumRecharge: 0,
+          diamond: 0,
+          ticketgachaStandardSingle: 0,
+          ticketgachaSpecialSingle: 0,
+          ticketgachaLimitedSingle: 0,
+        },
+      };
+
+      // 合并content属性
+      for (const task of moduleTasks) {
+        mergedTask.content.originiumRecharge += task.content.originiumRecharge;
+        mergedTask.content.diamond += task.content.diamond;
+        mergedTask.content.ticketgachaStandardSingle += task.content.ticketgachaStandardSingle;
+        mergedTask.content.ticketgachaSpecialSingle += task.content.ticketgachaSpecialSingle;
+      }
+      result.push(mergedTask);
+    }
+  }
+
+  return result;
+}
+
+
+/**
  * 根据version对Reward数组进行分类，并将每组内的元素合并为一个Reward对象
  * @param name
  * @param rewards Reward类型数组
@@ -216,7 +289,7 @@ function groupAndMergeRewardsByVersion(name: string, rewards: Reward[]): Reward[
     const mergedReward: Reward = {
       ...firstReward,
       name: {
-        zh: `${name}-${version}`,
+        zh: `${name}`,
         en: '',
       },
       content: {
@@ -251,4 +324,5 @@ export {
   getRewardPull,
   getRewardsPull,
   groupAndMergeRewardsByVersion,
+  groupAndMergeTasksByVersionAndModule,
 };

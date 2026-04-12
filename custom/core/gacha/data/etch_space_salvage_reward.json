@@ -8,7 +8,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -28,7 +28,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -48,7 +48,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -68,7 +68,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -88,7 +88,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -108,7 +108,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -128,7 +128,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -148,7 +148,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -168,7 +168,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -188,7 +188,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -208,7 +208,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -228,7 +228,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -248,7 +248,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -268,7 +268,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -288,7 +288,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -308,7 +308,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -328,7 +328,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -348,7 +348,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -368,7 +368,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -388,7 +388,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -408,7 +408,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -428,7 +428,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -448,7 +448,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -468,7 +468,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -488,7 +488,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -508,7 +508,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -528,7 +528,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -548,7 +548,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "零号委托",
     "content": {
@@ -568,7 +568,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -588,7 +588,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -608,7 +608,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -628,7 +628,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -648,7 +648,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗刻度",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -668,7 +668,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -688,7 +688,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -708,7 +708,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -728,7 +728,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
@@ -748,12 +748,332 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "蚀像寻遗",
+    "module": "蚀像寻遗探索任务",
     "active": true,
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
       "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_110000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度110000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_120000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度120000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_130000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度130000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_140000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度140000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_150000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度150000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_160000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度160000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_170000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度170000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_180000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度180000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_190000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度190000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "etch_space_salvage_200000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度200000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "像差探索计划Ⅴ",
+    "name": {
+      "zh": "像差探索计划Ⅴ",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+   {
+    "id": "像差探索计划Ⅵ",
+    "name": {
+      "zh": "像差探索计划Ⅵ",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定9",
+    "name": {
+      "zh": "探索研发·协议稳定9",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·协议稳定10",
+    "name": {
+      "zh": "探索研发·协议稳定10",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容7",
+    "name": {
+      "zh": "探索研发·封装扩容7",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "探索研发·封装扩容8",
+    "name": {
+      "zh": "探索研发·封装扩容8",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 30,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0

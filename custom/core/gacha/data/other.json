@@ -1,5 +1,105 @@
 [
   {
+    "id": "玩家调研问卷",
+    "name": {
+      "zh": "玩家调研问卷",
+      "en": ""
+    },
+    "start": "2026/05/12 12:00:00",
+    "end": "2026/05/19 12:00:00",
+    "type": "通用",
+    "module": "问卷",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 300,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "问题修复补偿(不确定)",
+    "name": {
+      "zh": "问题修复补偿(不确定)",
+      "en": ""
+    },
+    "start": "2026/04/21 12:00:00",
+    "end": "2026/05/21 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 900,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "问题修复补偿4.17",
+    "name": {
+      "zh": "问题修复补偿4.17",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2026/05/17 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 900,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "版本更新4.17",
+    "name": {
+      "zh": "版本更新4.17",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2026/05/17 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 900,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "版本前瞻直播奖励",
+    "name": {
+      "zh": "版本前瞻直播奖励",
+      "en": ""
+    },
+    "start": "2026/04/12 12:00:00",
+    "end": "2026/04/19 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "玩家调研问卷4.7",
     "name": {
       "zh": "玩家调研问卷4.7",
@@ -18,7 +118,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "维护补偿3.29",
     "name": {
       "zh": "维护补偿3.29",
@@ -37,7 +138,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "问题修复补偿3.17",
     "name": {
       "zh": "问题修复补偿3.17",
@@ -84,7 +186,7 @@
       "en": ""
     },
     "start": "2026/03/12 12:00:00",
-    "end": "2026/04/16 12:00:00",
+    "end": "2026/04/17 12:00:00",
     "type": "通用",
     "module": "维护",
     "active": true,
@@ -104,7 +206,7 @@
       "en": ""
     },
     "start": "2026/03/12 12:00:00",
-    "end": "2026/04/16 12:00:00",
+    "end": "2026/04/17 12:00:00",
     "type": "通用",
     "module": "维护",
     "active": true,

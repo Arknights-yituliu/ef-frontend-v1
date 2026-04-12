@@ -13,6 +13,7 @@ import {
   AICQuotaReward,
   bpTrackFreeReward,
   createVersionDailyReward,
+  freeMonthlyPass,
 } from '@/custom/core/gacha/dailyReward';
 
 import {
@@ -44,9 +45,9 @@ import { wulingRegionalAllRewardTable } from '@/custom/core/gacha/wulingRegional
 // 控制台数据 - 初始化时使用默认图片
 const controlPanel = ref({
   title: '',
-  versionName: '新潮起·故渊离',
+  versionName: '春晓时',
   updateDate: dateFormat(new Date()),
-  otherInfo: '部分资源为估算，仅供参考',
+  otherInfo: '部分资源为保守估算，仅供参考',
   kvImage: 'https://cos.yituliu.cn/endfield/other/kv-v1.1.webp',
 });
 
@@ -280,8 +281,12 @@ const versionTime = [
   },
   {
     start: new Date('2026/03/12 12:00:00'),
-    end: new Date('2026/04/16 12:00:00'),
+    end: new Date('2026/04/17 12:00:00'),
     version: '新潮起·故渊离',
+  },{
+    start: new Date('2026/04/17 12:00:00'),
+    end: new Date('2026/05/22 12:00:00'),
+    version: '春晓时',
   },
 ];
 
@@ -289,6 +294,10 @@ for (const item of versionTime) {
   const rewards = createVersionDailyReward(item.start, item.end, item.version);
   versionReward.value.push(rewards[0] as Reward, rewards[1] as Reward);
 }
+
+versionReward.value.push(freeMonthlyPass.value);
+
+
 
 for (const reward of bpTrackFreeReward.value) {
   versionReward.value.push(reward);
@@ -430,7 +439,7 @@ function filterRewardByVersion(version: any) {
   // 计算并设置高度
 }
 
-filterRewardByVersion(versionTime[1]);
+filterRewardByVersion(versionTime[2]);
 
 // 在组件挂载后计算高度
 onMounted(() => {
@@ -898,7 +907,7 @@ onMounted(() => {
 .version-reward-item {
   font-size: 26px;
   height: 64px;
-  width: 492px;
+  width: 500px;
   display: flex;
   align-items: center;
   padding: 0 4px;
@@ -911,7 +920,7 @@ onMounted(() => {
 
 .version-reward-item-name {
   padding: 0px 0px 0px 12px;
-  width: 260px;
+  width: 240px;
   overflow: hidden;
   white-space: nowrap;
 }

@@ -55,7 +55,7 @@ const bpTrackFreeReward = ref<Reward[]>([
       en: '',
     },
     start: '2026/03/12 12:00:00',
-    end: '2026/04/16 12:00:00',
+    end: '2026/04/17 12:00:00',
     type: '通用',
     module: '日常奖励',
     active: true,
@@ -75,7 +75,7 @@ const bpTrackFreeReward = ref<Reward[]>([
       en: '',
     },
     start: '2026/03/12 12:00:00',
-    end: '2026/04/16 12:00:00',
+    end: '2026/04/17 12:00:00',
     type: '通用',
     module: '日常奖励',
     active: true,
@@ -88,7 +88,81 @@ const bpTrackFreeReward = ref<Reward[]>([
       ticketgachaLimitedSingle: 0,
     },
   },
+  {
+    id: 'bp_track_free_3',
+    name: {
+      zh: `基础配给·第三期`,
+      en: '',
+    },
+    start: '2026/04/17 12:00:00',
+    end: '2026/05/22 12:00:00',
+    type: '通用',
+    module: '日常奖励',
+    active: true,
+    version: '春晓时',
+    content: {
+      originiumRecharge: 0,
+      diamond: 600 + MediumExchangeCrate * 23,
+      ticketgachaStandardSingle: 2,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  },
+  {
+    id: 'bp_track_originium_3',
+    name: {
+      zh: `源石配给·第三期`,
+      en: '',
+    },
+    start: '2026/04/17 12:00:00',
+    end: '2026/05/22 12:00:00',
+    type: '通用',
+    module: '日常奖励',
+    active: true,
+    version: '春晓时',
+    content: {
+      originiumRecharge: 3,
+      diamond: 0,
+      ticketgachaStandardSingle: 4,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  },
 ]);
+
+const freeMonthlyPass = ref<Reward>({
+  id: 'free_monthly_pass_1',
+  name: {
+    zh: `焕新月卡赠礼`,
+    en: '',
+  },
+  start: '2026/04/17 12:00:00',
+  end: '2026/05/22 12:00:00',
+  type: '通用',
+  module: '日常奖励',
+  active: true,
+  version: '春晓时',
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  },
+});
+let freeMonthlyPassRemainingDays: number = calculateDaysDifference(
+  new Date(),
+  new Date('2026/05/22 12:00:00'),
+);
+
+if (freeMonthlyPassRemainingDays > 30) {
+  freeMonthlyPassRemainingDays = 30;
+}else{
+  freeMonthlyPassRemainingDays = numberRound(freeMonthlyPassRemainingDays, 0);
+}
+
+console.log('焕新月卡赠礼剩余天数:', freeMonthlyPassRemainingDays);
+freeMonthlyPass.value.content.diamond = 200 * freeMonthlyPassRemainingDays;
 
 const dailyReward = ref<Reward>({
   id: 'day_reward',
@@ -226,4 +300,5 @@ export {
   createVersionDailyReward,
   dailyReward,
   weekTaskReward,
+  freeMonthlyPass,
 };

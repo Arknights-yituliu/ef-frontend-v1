@@ -44,7 +44,7 @@ function createNewPoolActivity() {
     };
     activityReward.value.push(reward1);
     
-    if (item.character !== '汤汤') {
+    if (item.narrative) {
       const reward2: Reward = {
         id: `干员叙事·${item.character}`,
         name: {
