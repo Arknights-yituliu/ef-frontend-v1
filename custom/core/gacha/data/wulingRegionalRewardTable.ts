@@ -56,7 +56,7 @@ const wulingRegionalStockBillStoreRewardTable:Reward[] = [
     content: {
       originiumRecharge: 0,
       diamond: 0,
-      ticketgachaStandardSingle: 2,
+      ticketgachaStandardSingle: 3,
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },

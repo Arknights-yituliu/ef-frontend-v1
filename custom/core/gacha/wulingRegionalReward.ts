@@ -168,7 +168,7 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
   {
     id: 'wuling_defense_construction_reward_1',
     name: {
-      zh: `景玉谷据点防御`,
+      zh: `据点防御`,
       en: '',
     },
     start: '2026/01/22 12:00:00',
@@ -187,7 +187,7 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
   },{
     id: 'wuling_defense_construction_reward_2',
     name: {
-      zh: `景玉谷据点防御`,
+      zh: `据点防御`,
       en: '',
     },
     start: '2026/03/12 12:00:00',
@@ -199,6 +199,25 @@ const wulingDefenseConstructionReward = ref<Reward[]>([
     content: {
       originiumRecharge: 0,
       diamond: 80,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  },{
+    id: 'wuling_defense_construction_reward_3',
+    name: {
+      zh: `据点防御`,
+      en: '',
+    },
+    start: '2026/04/17 12:00:00',
+    end: '2099/12/31 12:00:00',
+    type: '通用',
+    module: '地区建设',
+    active: true,
+    version: '春晓时',
+    content: {
+      originiumRecharge: 0,
+      diamond: 160,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,

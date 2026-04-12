@@ -666,5 +666,79 @@
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
     }
+  },
+  {
+    "id": "新收集物1",
+    "name": {
+      "zh": "新收集物1",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "新收集物2",
+    "name": {
+      "zh": "新收集物2",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "新收集物3",
+    "name": {
+      "zh": "新收集物3",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "新收集物4",
+    "name": {
+      "zh": "新收集物4",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "春晓时",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+    }
   }
 ]

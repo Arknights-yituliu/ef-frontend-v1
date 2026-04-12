@@ -1,5 +1,25 @@
 [
   {
+    "id": "辉光庆时签到",
+    "name": {
+      "zh": "辉光庆时签到",
+      "en": ""
+    },
+    "start": "2026/05/14 12:00:00",
+    "end": "2026/05/22 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 5
+    }
+  },
+  {
     "id": "丰碑留名·秽流",
     "name": {
       "zh": "丰碑留名·秽流",

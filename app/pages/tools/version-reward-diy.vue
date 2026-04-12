@@ -794,11 +794,11 @@ onMounted(() => {
 /* ========== 2.2 内容区 ========== */
 #rewards-area {
   position: relative;
-  margin-top: 220px;
+  margin-top: 240px;
   background: linear-gradient(
     to bottom,
     rgba(255, 250, 0, 0) 0%,
-    rgba(255, 250, 0, 1) 320px,
+    rgba(87, 224, 210, 1)200px,
     rgba(216, 216, 216, 0.8) 720px,
     rgba(216, 216, 216, 0)
   );
@@ -1032,7 +1032,7 @@ onMounted(() => {
   position: relative;
   z-index: 1;
   height: 144px;
-  background: linear-gradient(to right, rgba(255, 250, 0, 0.8), rgba(255, 250, 0, 0.3));
+  background: linear-gradient(to right, rgba(87, 224, 210, 1), rgba(87, 224, 210,0.3));
   font-size: 28px;
   font-weight: 600;
   color: black;

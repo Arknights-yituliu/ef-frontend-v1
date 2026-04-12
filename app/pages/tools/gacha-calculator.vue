@@ -1875,7 +1875,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
             </v-btn>
 
             <div class="gacha-calculator-warning">
-              《新潮起·故渊离》资源尚在测试与更新中，结果仅供参考，切勿轻信本站！
+              《春晓时》资源尚在更新中，结果仅供参考，切勿轻信本站！
             </div>
 
             <div class="gacha-calculator-chart-and-table">
