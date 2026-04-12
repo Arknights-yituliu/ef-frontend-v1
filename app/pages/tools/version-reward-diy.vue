@@ -283,7 +283,8 @@ const versionTime = [
     start: new Date('2026/03/12 12:00:00'),
     end: new Date('2026/04/17 12:00:00'),
     version: '新潮起·故渊离',
-  },{
+  },
+  {
     start: new Date('2026/04/17 12:00:00'),
     end: new Date('2026/05/22 12:00:00'),
     version: '春晓时',
@@ -296,8 +297,6 @@ for (const item of versionTime) {
 }
 
 versionReward.value.push(freeMonthlyPass.value);
-
-
 
 for (const reward of bpTrackFreeReward.value) {
   versionReward.value.push(reward);
@@ -500,7 +499,7 @@ onMounted(() => {
                 class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
               />X
-              {{ numberFloor( reward.content.diamond,0) }}
+              {{ numberFloor(reward.content.diamond, 0) }}
             </div>
             <div
               v-show="reward.content.ticketgachaStandardSingle > 0"
@@ -538,7 +537,24 @@ onMounted(() => {
           </div>
         </div>
 
-        
+        <table style="display: none">
+          <tr>
+            <th>活动名称</th>
+            <th>衍质源石</th>
+            <th>嵌晶玉</th>
+            <th>标准寻访</th>
+            <th>特许寻访</th>
+            <th>限时特许寻访</th>
+          </tr>
+          <tr v-for="reward in currentVersionReward" :key="reward.id">
+            <td>{{ reward.name.zh }}</td>
+            <td>{{ reward.content.originiumRecharge }}</td>
+            <td>{{ reward.content.diamond }}</td>
+            <td>{{ reward.content.ticketgachaStandardSingle }}</td>
+            <td>{{ reward.content.ticketgachaSpecialSingle }}</td>
+            <td>{{ reward.content.ticketgachaLimitedSingle }}</td>
+          </tr>
+        </table>
 
         <!-- 统计区 -->
         <v-table class="version-reward-result-table">
@@ -602,19 +618,17 @@ onMounted(() => {
           </tbody>
         </v-table>
 
-         <div id="shield" style="padding: 12px">
-            <p>数据由攒抽计算器自动生成，非当前版本完整奖励数据</p>
-            <p>
-             主线与支线任务流程可能比上版本长，暂先保守计算
-            </p>
-            <p>
-             航天联动活动暂估1200玉，不保证正确
-            </p>
-            <p>
-              抽卡资源以实际发放为准，本图片时效性较低，攒抽计算器将会持续修订更新资源，可能有错漏资源，欢迎反馈
-            </p>
-            <p>通行证循环等级获得的合成玉与保障配额交易未计入，可在攒抽计算器上根据个人情况自行调整</p>
-          </div>
+        <div id="shield" style="padding: 12px">
+          <p>数据由攒抽计算器自动生成，非当前版本完整奖励数据</p>
+          <p>主线与支线任务流程可能比上版本长，暂先保守计算</p>
+          <p>航天联动活动暂估1200玉，不保证正确</p>
+          <p>
+            抽卡资源以实际发放为准，本图片时效性较低，攒抽计算器将会持续修订更新资源，可能有错漏资源，欢迎反馈
+          </p>
+          <p>
+            通行证循环等级获得的合成玉与保障配额交易未计入，可在攒抽计算器上根据个人情况自行调整
+          </p>
+        </div>
 
         <div class="version-reward-result-group" style="display: none">
           <div v-for="result in currentVersionRewardTotal" class="version-reward-result">
@@ -679,7 +693,6 @@ onMounted(() => {
               </div>
             </div>
           </div>
-         
         </div>
       </div>
       <!-- 页脚区 -->
@@ -804,7 +817,7 @@ onMounted(() => {
   background: linear-gradient(
     to bottom,
     rgba(255, 250, 0, 0) 0%,
-    rgba(87, 224, 210, 1)200px,
+    rgba(87, 224, 210, 1) 200px,
     rgba(216, 216, 216, 0.8) 720px,
     rgba(216, 216, 216, 0)
   );
@@ -954,32 +967,28 @@ onMounted(() => {
   color: white !important;
   width: 96%;
   margin: 20px auto;
-   
+
   th,
   td {
-     text-align: center ;
+    text-align: center;
     border: 1px solid white;
     font-size: 24px;
   }
-
- 
 }
 
- #shield {
-    font-size: 20px;
-    width: 96%;
-    background-color: #ffffff90;
-    padding: 4px 12px;
-    margin: 0 auto 8px;
-  }
+#shield {
+  font-size: 20px;
+  width: 96%;
+  background-color: #ffffff90;
+  padding: 4px 12px;
+  margin: 0 auto 8px;
+}
 
 .version-reward-result-group {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-around;
-
- 
 }
 
 /* ========== 2.2.3.1 单个结果 ========== */
@@ -1038,7 +1047,7 @@ onMounted(() => {
   position: relative;
   z-index: 1;
   height: 144px;
-  background: linear-gradient(to right, rgba(87, 224, 210, 1), rgba(87, 224, 210,0.3));
+  background: linear-gradient(to right, rgba(87, 224, 210, 1), rgba(87, 224, 210, 0.3));
   font-size: 28px;
   font-weight: 600;
   color: black;
