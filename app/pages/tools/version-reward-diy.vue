@@ -44,7 +44,7 @@ import { wulingRegionalAllRewardTable } from '@/custom/core/gacha/wulingRegional
 
 // 控制台数据 - 初始化时使用默认图片
 const controlPanel = ref({
-  title: '',
+  title: '版本资源估算',
   versionName: '春晓时',
   updateDate: dateFormat(new Date()),
   otherInfo: '部分资源为保守估算，仅供参考',
