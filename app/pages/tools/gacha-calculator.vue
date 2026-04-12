@@ -19,8 +19,8 @@ import {
   bpTrackFreeReward,
   calculatorDailyReward,
   dailyReward,
-  weekTaskReward,
   freeMonthlyPass,
+  weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
 
 import {
