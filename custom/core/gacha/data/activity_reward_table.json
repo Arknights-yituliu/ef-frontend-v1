@@ -20,6 +20,26 @@
     }
   },
   {
+    "id": "镌宇铭星",
+    "name": {
+      "zh": "刻宇铭星",
+      "en": ""
+    },
+    "start": "2026/04/24 12:00:00",
+    "end": "2026/05/22 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "丰碑留名·秽流",
     "name": {
       "zh": "丰碑留名·秽流",
@@ -100,7 +120,7 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-   {
+  {
     "id": "引入活动·镇绥蚀海",
     "name": {
       "zh": "引入活动·镇绥蚀海",
@@ -116,6 +136,26 @@
       "originiumRecharge": 0,
       "diamond": 1200,
       "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "潮起武陵签到",
+    "name": {
+      "zh": "潮起武陵签到",
+      "en": ""
+    },
+    "start": "2026/04/12 12:00:00",
+    "end": "2026/05/22 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 2,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
