@@ -47,7 +47,7 @@ const controlPanel = ref({
   title: '版本资源估算',
   versionName: '春晓时',
   updateDate: dateFormat(new Date()),
-  otherInfo: '部分资源为保守估算，仅供参考',
+  otherInfo: '施工中，非版本完整资源，部分资源为保守估算，仅供参考',
   kvImage: 'https://cos.yituliu.cn/endfield/other/kv-v1.1.webp',
 });
 
@@ -800,7 +800,7 @@ onMounted(() => {
 /* ========== 2.2 内容区 ========== */
 #rewards-area {
   position: relative;
-  margin-top: 240px;
+  margin-top: 280px;
   background: linear-gradient(
     to bottom,
     rgba(255, 250, 0, 0) 0%,
