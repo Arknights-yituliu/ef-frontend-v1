@@ -1,3 +1,3 @@
-const baseUrl = 'http://localhost:10010';
+const baseUrl = 'https://endfield.backend.yituliu.cn';
 
 export default baseUrl;
