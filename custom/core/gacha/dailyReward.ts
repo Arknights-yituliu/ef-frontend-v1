@@ -299,6 +299,6 @@ export {
   calculatorDailyReward,
   createVersionDailyReward,
   dailyReward,
-  weekTaskReward,
   freeMonthlyPass,
+  weekTaskReward,
 };
