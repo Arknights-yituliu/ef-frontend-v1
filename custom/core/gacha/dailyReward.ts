@@ -328,8 +328,7 @@ for (const version of VersionTable) {
     bpTrackOriginium.content.ticketgachaStandardSingle = 4;
   }
   
-  dailyAllRewardTable.value.push(bpTrackFree);
-  dailyAllRewardTable.value.push(bpTrackOriginium);
+  dailyAllRewardTable.value.push(bpTrackFree, bpTrackOriginium);
   bpTrackIndex++;
 }
 
@@ -369,8 +368,8 @@ export {
  
   calculatorDailyReward,
   createVersionDailyReward,
+  dailyAllRewardTable,
   dailyReward,
   freeMonthlyPass,
   weekTaskReward,
-  dailyAllRewardTable,
 };

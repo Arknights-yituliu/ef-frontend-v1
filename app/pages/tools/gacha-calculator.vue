@@ -17,10 +17,10 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 import {
  
   calculatorDailyReward,
+  dailyAllRewardTable,
   dailyReward,
   freeMonthlyPass,
   weekTaskReward,
-  dailyAllRewardTable,
 } from '@/custom/core/gacha/dailyReward';
 
 import {
@@ -259,7 +259,7 @@ function existingRewardStatistics(): void {
  * 日常奖励计算相关代码起始
  */
 
-//日常奖励重构
+// 日常奖励重构
 watch(
   dailyAllRewardTable,
   (newValue) => {
@@ -297,7 +297,7 @@ function dailyRewardStatistics(): void {
   addReward(result, dailyReward.value);
   addReward(result, weekTaskReward.value);
   addReward(result, freeMonthlyPass.value);
-  //日常奖励重构
+  // 日常奖励重构
   for (const item of dailyAllRewardTable.value) {
     if (item.active) {
       addReward(result, item);
@@ -1436,7 +1436,7 @@ function loadingUserConfig() {
       }
 
       if (localConfig.buttonGroupActive) {
-        //日常奖励重构
+        // 日常奖励重构
         _setButtonGroupActive(localConfig.buttonGroupActive, dailyAllRewardTable);
        
         _setButtonGroupActive(localConfig.buttonGroupActive, authorityLevelTaskRewards);
@@ -1610,7 +1610,7 @@ function clearOrSelectAllOperationalManualModule(action: boolean) {
 }
 
 function clearOrSelectAllCurrentVersion(version: string) {
-  //日常奖励重构
+  // 日常奖励重构
   _filterByVersion(dailyAllRewardTable, version);
   _filterByVersion(activityReward, version);
  

@@ -344,9 +344,9 @@ export {
   countTuesdaysBetween,
   countTuesdaysBetweenV2,
   createReward,
+  createRewardModuleTitle,
   getRewardPull,
   getRewardsPull,
   groupAndMergeRewardsByVersion,
   groupAndMergeTasksByVersionAndModule,
-  createRewardModuleTitle,
 };

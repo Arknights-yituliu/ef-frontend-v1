@@ -12,8 +12,8 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 import {
  
   createVersionDailyReward,
-  freeMonthlyPass,
   dailyAllRewardTable,
+  freeMonthlyPass,
 } from '@/custom/core/gacha/dailyReward';
 
 import {
