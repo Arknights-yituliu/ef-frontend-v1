@@ -31,8 +31,8 @@ function getImageUrl(itemId: string): string {
         <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
         X {{ reward }}
       </div>
+      <div class="gacha-calculator-resource-single-version">{{ props.version }}</div>
     </div>
-    <div class="gacha-calculator-resource-single-version">版本：{{ props.version }}</div>
   </div>
   <template v-if="props.tips">
       <div v-for="tip in props.tips" :key="tip" class="gacha-calculator-resource-single-tip">
@@ -53,30 +53,38 @@ function getImageUrl(itemId: string): string {
 }
 
 .gacha-calculator-resource-single {
+  position: relative;
   width: 100%;
   display: flex;
+  height: 42px;
   font-size: 1rem;
   align-items: center;
-  padding: 4px 4px;
+  padding: 0 4px;
   border-radius: 4px;
   margin: 4px 0;
   border: 1px solid var(--theme-border-secondary);
+  background-color: rgba(var(--v-theme-on-surface), 0.08);
 }
 .gacha-calculator-resource-single-title {
   width: 300px;
   text-align: start;
+  line-height: 42px;
+  padding-left: 4px;
 }
 
 .gacha-calculator-resource-single-content {
   display: flex;
   align-items: center;
   padding: 0 4px;
+  height: 42px;
 }
 
 .gacha-calculator-resource-single-version {
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
   font-size: 0.7rem;
+  opacity: 0.3;
 }
 
 .gacha-calculator-resource-single-tip {
