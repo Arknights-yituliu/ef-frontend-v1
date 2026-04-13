@@ -2795,6 +2795,11 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
   max-width: 620px;
 }
 
+.gacha-calculator-container-right .v-expansion-panel {
+  margin: 8px 0px;
+}
+
+
 .gacha-calculator-card-title {
   font-size: 1.2rem;
   font-weight: bolder;
@@ -2812,7 +2817,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 }
 
 .gacha-calculator-card-title[aria-expanded='true'] {
-  border-bottom: 3px solid var(--gacha-calculator-border);
+  border-bottom: 1px groove var(--gacha-calculator-border);
 }
 
 .gacha-calculator-pool-btn-group-pc {
