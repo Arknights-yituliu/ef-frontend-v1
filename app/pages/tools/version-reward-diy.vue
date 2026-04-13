@@ -2,7 +2,7 @@
 import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
 
 import { dateFormat } from '#shared/utils/dateUtil';
-import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
+import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
 
 import { onMounted, ref, watch } from 'vue';
@@ -10,7 +10,6 @@ import { onMounted, ref, watch } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
 import {
- 
   createVersionDailyReward,
   dailyAllRewardTable,
   freeMonthlyPass,
@@ -302,7 +301,6 @@ for (const reward of dailyAllRewardTable.value) {
   versionReward.value.push(reward);
 }
 
-
 for (const reward of activityReward.value) {
   versionReward.value.push(reward);
 }
@@ -475,7 +473,7 @@ onMounted(() => {
           </div>
         </div>
         <div id="version-reward-item-group" class="version-reward-item-group">
-          <div v-for="reward in currentVersionReward" class="version-reward-item">
+          <div v-for="reward in currentVersionReward" :key="reward.id" class="version-reward-item">
             <div>
               <!-- <div class="version-reward-item-bar red-bar"></div> -->
               <div class="version-reward-item-bar yellow-bar"></div>
@@ -487,16 +485,14 @@ onMounted(() => {
                 alt="existing"
                 class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-              />X
-              {{ reward.content.originiumRecharge }}
+              />× {{ reward.content.originiumRecharge }}
             </div>
             <div v-show="reward.content.diamond > 0" class="version-reward-item-content">
               <img
                 alt="existing"
                 class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-              />X
-              {{ numberFloor(reward.content.diamond, 0) }}
+              />× {{ numberFloor(reward.content.diamond, 0) }}
             </div>
             <div
               v-show="reward.content.ticketgachaStandardSingle > 0"
@@ -506,8 +502,7 @@ onMounted(() => {
                 alt="existing"
                 class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-              />X
-              {{ reward.content.ticketgachaStandardSingle }}
+              />× {{ reward.content.ticketgachaStandardSingle }}
             </div>
             <div
               v-show="reward.content.ticketgachaSpecialSingle > 0"
@@ -517,8 +512,7 @@ onMounted(() => {
                 alt="existing"
                 class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-              />X
-              {{ reward.content.ticketgachaSpecialSingle }}
+              />× {{ reward.content.ticketgachaSpecialSingle }}
             </div>
             <div
               v-show="reward.content.ticketgachaLimitedSingle > 0"
@@ -528,33 +522,36 @@ onMounted(() => {
                 alt="existing"
                 class="version-reward-item-icon"
                 src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
-              />X
-              {{ reward.content.ticketgachaLimitedSingle }}
+              />× {{ reward.content.ticketgachaLimitedSingle }}
             </div>
           </div>
         </div>
 
         <table style="display: none">
-          <tr>
-            <th>活动名称</th>
-            <th>衍质源石</th>
-            <th>嵌晶玉</th>
-            <th>标准寻访</th>
-            <th>特许寻访</th>
-            <th>限时特许寻访</th>
-          </tr>
-          <tr v-for="reward in currentVersionReward" :key="reward.id">
-            <td>{{ reward.name.zh }}</td>
-            <td>{{ reward.content.originiumRecharge }}</td>
-            <td>{{ reward.content.diamond }}</td>
-            <td>{{ reward.content.ticketgachaStandardSingle }}</td>
-            <td>{{ reward.content.ticketgachaSpecialSingle }}</td>
-            <td>{{ reward.content.ticketgachaLimitedSingle }}</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>活动名称</th>
+              <th>衍质源石</th>
+              <th>嵌晶玉</th>
+              <th>标准寻访</th>
+              <th>特许寻访</th>
+              <th>限时特许寻访</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="reward in currentVersionReward" :key="reward.id">
+              <td>{{ reward.name.zh }}</td>
+              <td>{{ reward.content.originiumRecharge }}</td>
+              <td>{{ reward.content.diamond }}</td>
+              <td>{{ reward.content.ticketgachaStandardSingle }}</td>
+              <td>{{ reward.content.ticketgachaSpecialSingle }}</td>
+              <td>{{ reward.content.ticketgachaLimitedSingle }}</td>
+            </tr>
+          </tbody>
         </table>
 
         <!-- 统计区 -->
-        <v-table class="version-reward-result-table">
+        <table class="version-reward-result-table">
           <thead>
             <tr>
               <th></th>
@@ -598,7 +595,7 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="result in currentVersionRewardTotal">
+            <tr v-for="result in currentVersionRewardTotal" :key="result.name">
               <td>{{ result.name }}</td>
               <td>
                 {{ result.originiumRecharge }}
@@ -613,7 +610,7 @@ onMounted(() => {
               </td>
             </tr>
           </tbody>
-        </v-table>
+        </table>
 
         <div id="shield" style="padding: 12px">
           <p>数据由攒抽计算器自动生成，非当前版本完整奖励数据</p>
@@ -626,8 +623,6 @@ onMounted(() => {
             通行证循环等级获得的合成玉与保障配额交易未计入，可在攒抽计算器上根据个人情况自行调整
           </p>
         </div>
-
-     
       </div>
       <!-- 页脚区 -->
       <div id="version-reward-footer">
@@ -691,7 +686,6 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div></div>
 </template>
 
 <style>
@@ -708,14 +702,13 @@ onMounted(() => {
 .canvas-area {
   width: 1080px;
   flex-shrink: 0;
-  font-family: 'Source Han Sans SC', 'Noto Sans SC', sans-serif;
+  font-family: 'HarmonyOS Sans SC', 'Source Han Sans SC', 'Noto Sans SC', sans-serif;
 
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
   position: relative;
- 
 }
 
 /* ========== 2.1 头图 ========== */
@@ -750,7 +743,7 @@ onMounted(() => {
 #rewards-area {
   position: relative;
   margin-top: 280px;
-  
+
   background: linear-gradient(
     to bottom,
     rgba(255, 250, 0, 0) 0%,
@@ -893,6 +886,7 @@ onMounted(() => {
 }
 
 .version-reward-item-icon {
+  display: block;
   width: 48px;
   height: 48px;
   margin: auto;
@@ -901,16 +895,18 @@ onMounted(() => {
 /* ========== 2.2.3 结果组 ========== */
 
 .version-reward-result-table {
-  background: rgba(32, 32, 32, 0.85) !important;
-  color: white !important;
+  font-size: 24px;
+  border-collapse: separate;
+  color: white;
   width: 96%;
   margin: 20px auto;
-  
+
   th,
   td {
-    text-align: center !important;
-    border: 1px solid white;
-    font-size: 24px;
+    background-color: rgba(32, 32, 32, 0.85);
+    padding: 6px;
+    text-align: center;
+    vertical-align: middle;
   }
 }
 
@@ -918,6 +914,7 @@ onMounted(() => {
   font-size: 20px;
   width: 96%;
   background-color: #ffffff90;
+  color: rgba(0, 0, 0, 0.87);
   padding: 4px 12px;
   margin: 0 auto 8px;
 }
