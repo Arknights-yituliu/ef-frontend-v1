@@ -510,11 +510,11 @@ v-for="stone in normalStones"  :key="stone.id"
 }
 
 .gacha-calculator-resource-single-btn.btn-active {
-  border-bottom: 3px solid #FFD700 !important;
+  border-bottom: 3px solid var(--gacha-calculator-border) !important;
 }
 
 .gacha-calculator-resource-single-btn:deep([aria-pressed="true"]) {
-  border-bottom: 3px solid #FFD700 !important;
+  border-bottom: 3px solid var(--gacha-calculator-border) !important;
 }
 
 .gacha-calculator-resource-single-btn-content {

@@ -97,7 +97,6 @@ const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity', 'regional
 const poolOptions = ref<PoolOption[]>([
   {
     name: '洛茜卡池',
-    color: '#C91A26',
     start: new Date('2026/03/29 12:00:00'),
     end: new Date('2026/04/17 12:00:00'),
     dateText: '3.29-版本末',
@@ -105,23 +104,21 @@ const poolOptions = ref<PoolOption[]>([
     disabled: false,
   },
   {
+    name: '庄方宜卡池',
+    start: new Date('2026/04/17 12:00:00'),
+    end: new Date('2026/05/22 12:00:00'),
+    dateText: '04.17——05.22',
+    type: '庄方宜',
+    disabled: false,
+  },
+  {
     name: '待定',
-    color: '#FA5B81',
     start: new Date('2026/02/24 12:00:00'),
     end: new Date('2026/03/12 12:00:00'),
     dateText: '',
     type: '热烈色彩',
     disabled: true,
   },
-  {
-    name: '待定',
-    color: '#FA5B81',
-    start: new Date('2026/02/24 12:00:00'),
-    end: new Date('2026/03/12 12:00:00'),
-    dateText: '',
-    type: '热烈色彩',
-    disabled: true,
-  }
 ]);
 
 //  {
@@ -136,7 +133,6 @@ const poolOptions = ref<PoolOption[]>([
 
 const currentPool = ref<PoolOption>({
   name: '轻飘飘的信使',
-  color: '#BE2F00',
   start: new Date('2026/02/07 12:00:00'),
   end: new Date('2026/02/24 12:00:00'),
   dateText: '02.07——02.24',
@@ -1508,8 +1504,11 @@ onMounted(() => {
   }
 
   setPieChart(pieChartData);
-  if (poolOptions.value[0] !== undefined) {
-    selectedPool(poolOptions.value[0]);
+  for (const option of poolOptions.value) {
+    if (option.end > new Date()) {
+      selectedPool(option);
+      break;
+    }
   }
 });
 
@@ -1608,13 +1607,12 @@ function clearOrSelectAllCurrentVersion(version: string) {
   valleyIVRegionalDevelopmentProgress.value = [12, 12];
   _filterByVersion(valleyIVRegionalStockBillStoreReward, version);
   valleyIVSimulationProgress.value = [0, 26];
-
-  wulingAuryleneCollectProgress.value = [8, 11];
+  wulingAuryleneCollectProgress.value = [9, 11];
+  wulingRegionalDevelopmentProgress.value = [9, 12];
 
   wulingBattleCrateRewardProgress.value = [0, 1];
-  wulingCrateProgress.value = [0, 2450];
+  wulingCrateProgress.value = [0, 3000];
   _filterByVersion(wulingDefenseConstructionReward, version);
-  wulingRegionalDevelopmentProgress.value = [6, 9];
 
   _filterByVersion(wulingRegionalStockBillStoreReward, version);
   wulingSimulationProgress.value = [0, 9];
@@ -1825,7 +1823,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   return display;
 }
 
-function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
+function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
   let pulls = 0;
 
   pulls += pullsSignle?.ticketgachaSpecialSingle || 0;
@@ -1845,7 +1843,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
               {{ t('page.tools.gachaCalculator.total') }}
               {{ gachaResourceStatisticsResult.totalPulls.total?.ticketgachaStandardSingle }}
               {{ t('page.tools.gachaCalculator.standard')
-              }}{{ t('page.tools.gachaCalculator.ticketgacha') }} {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.total) }}
+              }}{{ t('page.tools.gachaCalculator.ticketgacha') }}
+              {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.total) }}
               {{ t('page.tools.gachaCalculator.special')
               }}{{ t('page.tools.gachaCalculator.ticketgacha') }}
               {{ t('page.tools.gachaCalculator.rechargeAmount') }}
@@ -1859,7 +1858,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
                 v-for="option in poolOptions"
                 :key="option.name"
                 class="gacha-calculator-pool-btn-pc"
-                :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
+                color="rgb(33, 150, 243)"
+                :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'"
                 :disabled="option.disabled"
                 @click="selectedPool(option)"
                 >{{ option.name }}<br />{{ option.dateText }}
@@ -1868,7 +1868,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
             <v-btn
               v-for="option in poolOptions"
               class="gacha-calculator-pool-btn-phone"
-              :color="currentPool.name === option.name ? option.color : '#aaaaaa'"
+              color="rgb(33, 150, 243)"
+              :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'"
               :disabled="option.disabled"
               @click="selectedPool(option)"
               >{{ option.name }}<br />{{ option.dateText }}
@@ -1954,8 +1955,9 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
                 </div>
               </div>
             </div>
-            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('新潮起·故渊离')"
-              >仅选择[新潮起·故渊离]版本内奖励，其他取消</v-btn
+
+            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('春晓时')"
+              >仅选择[春晓时]版本内奖励，其他取消</v-btn
             >
           </v-expansion-panel-text>
         </v-expansion-panel>
@@ -2085,7 +2087,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
         <v-expansion-panel value="existing">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              库存
+              库存与自定义
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.existing?.ticketgachaSpecialSingle,
@@ -2165,7 +2167,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               日常积累
-              {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.daily)}}
+              {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.daily) }}
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
           </v-expansion-panel-title>
@@ -2173,7 +2175,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingle v-bind="dailyReward" />
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
-             <GachaCalculatorResourceSingle v-bind="freeMonthlyPass" />
+            <GachaCalculatorResourceSingle v-bind="freeMonthlyPass" />
             <v-divider style="margin: 1rem 0" />
             <GachaCalculatorModuleTitle title="通行证" />
             <GachaCalculatorResourceSingleBtn
@@ -2199,7 +2201,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               活动奖励
-              {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.activity)}}
+              {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.activity) }}
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
           </v-expansion-panel-title>
@@ -2810,7 +2812,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
 }
 
 .gacha-calculator-card-title[aria-expanded='true'] {
-  border-bottom: 3px solid #ffd700;
+  border-bottom: 3px solid var(--gacha-calculator-border);
 }
 
 .gacha-calculator-pool-btn-group-pc {
@@ -2821,10 +2823,16 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle|undefined) {
 
 .gacha-calculator-pool-btn-pc {
   width: 33%;
+  color: #ffffff;
+}
+
+.gacha-calculator-pool-btn {
+  opacity: 0.4;
 }
 
 .gacha-calculator-pool-btn-phone {
   display: none;
+  color: #ffffff;
 }
 
 .gacha-calculator-chart-and-table {

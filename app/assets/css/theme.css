@@ -62,8 +62,9 @@
   /* 侧边栏菜单项 hover 背景变量 */
   --sidebar-item-hover-bg: #d8d8d8;
 
-
-  --gacha-calculator-moudule-title-bg:#e3e3e3;
+  --gacha-calculator-border:  rgb(33, 150, 243);
+  --gacha-calculator-title-bg: rgb(33, 150, 243);
+  --gacha-calculator-title-color: #ffffff;
 }
 
 /* 暗色主题 */
@@ -126,5 +127,8 @@
   /* 侧边栏菜单项 hover 背景变量 */
   --sidebar-item-hover-bg: #3d3d3d;
 
-  --gacha-calculator-moudule-title-bg:#3d3d3d;
+  /* 页面自定义变量 */
+  --gacha-calculator-border:   #ffd700;
+  --gacha-calculator-title-bg: #ffd700;
+  --gacha-calculator-title-color: #2c2c2c;
 }

@@ -60,11 +60,11 @@ function getImageUrl(itemId: string): string {
 }
 
 .gacha-calculator-resource-btn.btn-active {
-  border-bottom: 3px solid #ffd700 !important;
+  border-bottom: 3px solid var(--gacha-calculator-border) !important;
 }
 
 .gacha-calculator-resource-btn:deep([aria-pressed='true']) {
-  border-bottom: 3px solid #ffd700 !important;
+  border-bottom: 3px solid var(--gacha-calculator-border) !important;
 }
 
 .gacha-calculator-resource-btn-content {

@@ -814,6 +814,7 @@ onMounted(() => {
 #rewards-area {
   position: relative;
   margin-top: 280px;
+  
   background: linear-gradient(
     to bottom,
     rgba(255, 250, 0, 0) 0%,

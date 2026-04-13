@@ -6,11 +6,11 @@ const props = defineProps<{title:string}>();
 
 <template>
   <div class="gacha-calculator-module-title">
-    <svg height="36" viewBox="0 0 36 36" width="36" xmlns="http://www.w3.org/2000/svg">
+    <svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
       <!-- 倒三角形 -->
       <polygon
-        fill="#ffffff"
-        points="18,30 36,6 0,6"
+        fill="var(--gacha-calculator-title-color)"
+        points="16,24 28,8 4,8"
         stroke="#C92A2A"
         stroke-linejoin="round"
         stroke-width="0"
@@ -27,9 +27,11 @@ const props = defineProps<{title:string}>();
   padding: 0 4px;
   width: 100%;
   font-size: 1.5rem;
-  background: var(--gacha-calculator-moudule-title-bg);
+  background: var(--gacha-calculator-title-bg);
+  color: var(--gacha-calculator-title-color);
+
   display: flex;
-  align-content: center;
+  align-items: center;
 }
 
 </style>

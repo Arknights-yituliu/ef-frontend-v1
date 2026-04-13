@@ -129,7 +129,6 @@ export type PoolOption = {
   name:string,
   start: Date,
   end: Date,
-  color:string,
   dateText:string,
   type:string,
   disabled: boolean
