@@ -64,8 +64,7 @@ for (const version of VersionTable) {
     bpTrackOriginium.content.ticketgachaStandardSingle = 4;
   }
   
-  bpTrackFreeReward.value.push(bpTrackFree);
-  bpTrackFreeReward.value.push(bpTrackOriginium);
+  bpTrackFreeReward.value.push(bpTrackFree, bpTrackOriginium);
   bpTrackIndex++;
 }
 
