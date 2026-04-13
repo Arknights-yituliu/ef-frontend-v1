@@ -15,12 +15,12 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 
 // 奖励引入
 import {
-  AICQuotaReward,
-  bpTrackFreeReward,
+ 
   calculatorDailyReward,
   dailyReward,
   freeMonthlyPass,
   weekTaskReward,
+  dailyAllRewardTable,
 } from '@/custom/core/gacha/dailyReward';
 
 import {
@@ -236,8 +236,9 @@ function existingRewardStatistics(): void {
  * 日常奖励计算相关代码起始
  */
 
+//日常奖励重构
 watch(
-  AICQuotaReward,
+  dailyAllRewardTable,
   (newValue) => {
     for (const item of newValue) {
       saveUserConfig(item.id, item.active, 'buttonGroupActive');
@@ -249,18 +250,7 @@ watch(
   { deep: true },
 );
 
-watch(
-  bpTrackFreeReward,
-  (newValue) => {
-    for (const item of newValue) {
-      saveUserConfig(item.id, item.active, 'buttonGroupActive');
-    }
 
-    dailyRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
 
 let dailyRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '活动奖励',
@@ -284,17 +274,14 @@ function dailyRewardStatistics(): void {
   addReward(result, dailyReward.value);
   addReward(result, weekTaskReward.value);
   addReward(result, freeMonthlyPass.value);
-  for (const reward of AICQuotaReward.value) {
-    if (checkRewardIsValid(reward)) {
-      addReward(result, reward);
+  //日常奖励重构
+  for (const item of dailyAllRewardTable.value) {
+    if (item.active) {
+      addReward(result, item);
     }
   }
 
-  for (const reward of bpTrackFreeReward.value) {
-    if (checkRewardIsValid(reward)) {
-      addReward(result, reward);
-    }
-  }
+  
 
   dailyRewardStatisticsResultDetail = result;
   gachaResourceStatisticsResult.value.totalPulls.daily = getRewardPull(result);
@@ -1421,8 +1408,9 @@ function loadingUserConfig() {
       }
 
       if (localConfig.buttonGroupActive) {
-        _setButtonGroupActive(localConfig.buttonGroupActive, AICQuotaReward);
-        _setButtonGroupActive(localConfig.buttonGroupActive, bpTrackFreeReward);
+        //日常奖励重构
+        _setButtonGroupActive(localConfig.buttonGroupActive, dailyAllRewardTable);
+       
         _setButtonGroupActive(localConfig.buttonGroupActive, authorityLevelTaskRewards);
         _setButtonGroupActive(localConfig.buttonGroupActive, valleyIVTaskRewardTable);
         _setButtonGroupActive(localConfig.buttonGroupActive, valleyIVDefenseConstructionReward);
@@ -1594,9 +1582,10 @@ function clearOrSelectAllOperationalManualModule(action: boolean) {
 }
 
 function clearOrSelectAllCurrentVersion(version: string) {
+  //日常奖励重构
+  _filterByVersion(dailyAllRewardTable, version);
   _filterByVersion(activityReward, version);
-  _filterByVersion(AICQuotaReward, version);
-  _filterByVersion(bpTrackFreeReward, version);
+ 
   _filterByVersion(authorityLevelTaskRewards, version);
   _filterByVersion(worldLevelReward, version);
   authorityLevelProgress.value = [60, 60];
@@ -2189,22 +2178,15 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
             <GachaCalculatorResourceSingle v-bind="freeMonthlyPass" />
             <v-divider style="margin: 1rem 0" />
-            <GachaCalculatorModuleTitle title="通行证" />
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in bpTrackFreeReward"
-              v-show="checkRewardIsValid(item)"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
-            <GachaCalculatorModuleTitle title="集成配额交易" />
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in AICQuotaReward"
-              v-show="checkRewardIsValid(item)"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
+          
+            <template v-for="item in dailyAllRewardTable">
+              <GachaCalculatorModuleTitle v-if="item.type === '标题'" :title="item.name.zh" />
+              <GachaCalculatorResourceSingleBtn
+                v-show="checkRewardIsValid(item)"
+                v-bind="item"
+                @click="item.active = !item.active"
+              />
+            </template>
           </v-expansion-panel-text>
         </v-expansion-panel>
 
