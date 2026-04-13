@@ -2041,17 +2041,17 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 <label class="gacha-calculator-arsenal-quota-label">基础凭证抽数</label>
                 <v-number-input
                   v-model="arsenalStandardPulls"
+                  class="gacha-calculator-arsenal-quota-input-field"
                   control-variant="hidden"
                   density="compact"
                   hide-details="auto"
                   variant="solo"
-                  class="gacha-calculator-arsenal-quota-input-field"
                 />
                 <v-btn
-                  size="small"
-                  color="primary"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="primary"
+                  size="small"
+                  variant="tonal"
                   @click="fillStandardPulls"
                 >
                   填入计算得到的抽数
@@ -2061,17 +2061,17 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 <label class="gacha-calculator-arsenal-quota-label">特许凭证抽数</label>
                 <v-number-input
                   v-model="arsenalSpecialPulls"
+                  class="gacha-calculator-arsenal-quota-input-field"
                   control-variant="hidden"
                   density="compact"
                   hide-details="auto"
                   variant="solo"
-                  class="gacha-calculator-arsenal-quota-input-field"
                 />
                 <v-btn
-                  size="small"
-                  color="primary"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="primary"
+                  size="small"
+                  variant="tonal"
                   @click="fillSpecialPulls"
                 >
                   填入计算得到的抽数
@@ -2081,26 +2081,26 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 <label class="gacha-calculator-arsenal-quota-label">武库配额系数</label>
                 <v-number-input
                   v-model="arsenalCoefficient"
+                  class="gacha-calculator-arsenal-quota-input-field"
                   control-variant="hidden"
                   density="compact"
                   hide-details="auto"
                   variant="solo"
-                  class="gacha-calculator-arsenal-quota-input-field"
                 />
                 <v-btn
-                  size="small"
-                  color="orange"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="orange"
+                  size="small"
+                  variant="tonal"
                   @click="arsenalCoefficient = 38"
                 >
                   保底值(38)
                 </v-btn>
                 <v-btn
-                  size="small"
-                  color="green"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="green"
+                  size="small"
+                  variant="tonal"
                   @click="arsenalCoefficient = 50"
                 >
                   期望值(50)
