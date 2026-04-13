@@ -1,5 +1,5 @@
 import type { Reward } from '#shared/types/gacha-calculator';
-import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
+import { calculateDaysDifference, countTuesdaysBetweenV2, createRewardModuleTitle } from '#shared/utils/gacha-calculator';
 import { numberRound } from '#shared/utils/numberUtil';
 import { ref } from 'vue';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
@@ -7,66 +7,7 @@ import VersionTable from '@/custom/core/gacha/data/version_table.json';
 const MediumExchangeCrate = 20 * 0.05 + 15 * 0.35 + 10 * 0.6;
 const LargeExchangeCrate = 30 * 0.05 + 25 * 0.35 + 20 * 0.6;
 
-const bpTrackFreeReward = ref<Reward[]>([])
 
-
-
-
-
-
-let bpTrackIndex = 1;
-for (const version of VersionTable) {
-
-  const bpTrackFree = {
-    id: `bp_track_free_${bpTrackIndex}`,
-    name: {
-      zh: `基础配给·${version.version}`,
-      en: '',
-    },
-    start: new Date(version.start),
-    end: new Date(version.end),
-    type: '通用',
-    module: '日常奖励',
-    active: true,
-    version: version.version,
-    content: {
-      originiumRecharge: 0,
-      diamond: 600 + MediumExchangeCrate * 23,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0,
-    },
-  }
-
-
-   const bpTrackOriginium = {
-    id: `bp_track_originium_${bpTrackIndex}`,
-    name: {
-      zh: `源石配给·${version.version}`,
-      en: '',
-    },
-    start: new Date(version.start),
-    end: new Date(version.end),
-    type: '通用',
-    module: '日常奖励',
-    active: true,
-    version: version.version,
-    content: {
-      originiumRecharge: 3,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0,
-    },
-  }
-
-  if(bpTrackIndex >1) {
-    bpTrackOriginium.content.ticketgachaStandardSingle = 4;
-  }
-  
-  bpTrackFreeReward.value.push(bpTrackFree, bpTrackOriginium);
-  bpTrackIndex++;
-}
 
 // const bpTrackFreeReward = ref<Reward[]>([
 //   {
@@ -330,9 +271,71 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
   ];
 }
 
-const AICQuotaReward = ref<Reward[]>([]);
+const dailyAllRewardTable = ref<Reward[]>([]);
+
+
+
+
+dailyAllRewardTable.value.push(createRewardModuleTitle('通行证'));
+
+let bpTrackIndex = 1;
+for (const version of VersionTable) {
+
+  const bpTrackFree = {
+    id: `bp_track_free_${bpTrackIndex}`,
+    name: {
+      zh: `基础配给·${version.version}`,
+      en: '',
+    },
+    start: new Date(version.start),
+    end: new Date(version.end),
+    type: '通用',
+    module: '日常奖励',
+    active: true,
+    version: version.version,
+    content: {
+      originiumRecharge: 0,
+      diamond: 600 + MediumExchangeCrate * 23,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  }
+
+
+   const bpTrackOriginium = {
+    id: `bp_track_originium_${bpTrackIndex}`,
+    name: {
+      zh: `源石配给·${version.version}`,
+      en: '',
+    },
+    start: new Date(version.start),
+    end: new Date(version.end),
+    type: '通用',
+    module: '日常奖励',
+    active: true,
+    version: version.version,
+    content: {
+      originiumRecharge: 3,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  }
+
+  if(bpTrackIndex >1) {
+    bpTrackOriginium.content.ticketgachaStandardSingle = 4;
+  }
+  
+  dailyAllRewardTable.value.push(bpTrackFree, bpTrackOriginium);
+  bpTrackIndex++;
+}
+
+dailyAllRewardTable.value.push(createRewardModuleTitle('集成配额商店兑换'));
+
 for (const poolInfo of PoolInfoTable) {
-  AICQuotaReward.value.push({
+  dailyAllRewardTable.value.push({
     id: `${poolInfo.character}卡池商店兑换寻访凭证`,
     name: {
       zh: `${poolInfo.character}卡池集成配额兑换`,
@@ -354,11 +357,18 @@ for (const poolInfo of PoolInfoTable) {
   });
 }
 
+
+
+
+
+
+
+
 export {
-  AICQuotaReward,
-  bpTrackFreeReward,
+ 
   calculatorDailyReward,
   createVersionDailyReward,
+  dailyAllRewardTable,
   dailyReward,
   freeMonthlyPass,
   weekTaskReward,

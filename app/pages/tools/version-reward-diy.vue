@@ -10,9 +10,9 @@ import { onMounted, ref, watch } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
 import {
-  AICQuotaReward,
-  bpTrackFreeReward,
+ 
   createVersionDailyReward,
+  dailyAllRewardTable,
   freeMonthlyPass,
 } from '@/custom/core/gacha/dailyReward';
 
@@ -298,13 +298,10 @@ for (const item of versionTime) {
 
 versionReward.value.push(freeMonthlyPass.value);
 
-for (const reward of bpTrackFreeReward.value) {
+for (const reward of dailyAllRewardTable.value) {
   versionReward.value.push(reward);
 }
 
-for (const reward of AICQuotaReward.value) {
-  versionReward.value.push(reward);
-}
 
 for (const reward of activityReward.value) {
   versionReward.value.push(reward);

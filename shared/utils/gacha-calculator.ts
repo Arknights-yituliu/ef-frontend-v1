@@ -260,6 +260,29 @@ function groupAndMergeTasksByVersionAndModule(moduleId: string, tasks: Reward[])
 }
 
 
+function createRewardModuleTitle(title: string): Reward {
+  return {
+    id: `${title}`,
+    name: {
+      zh: `${title}`,
+      en: '',
+    },
+    start: new Date('2025/12/31 12:00:00'),
+    end: new Date('2025/12/31 12:00:00'),
+    type: '标题',
+    module: '标题',
+    active: true,
+    version: 'default',
+    content: {
+      originiumRecharge: 0,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0,
+    },
+  };
+}
+
 /**
  * 根据version对Reward数组进行分类，并将每组内的元素合并为一个Reward对象
  * @param name
@@ -321,6 +344,7 @@ export {
   countTuesdaysBetween,
   countTuesdaysBetweenV2,
   createReward,
+  createRewardModuleTitle,
   getRewardPull,
   getRewardsPull,
   groupAndMergeRewardsByVersion,
