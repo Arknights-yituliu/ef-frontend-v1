@@ -18,7 +18,6 @@ for (const reward of ActivityRewardTable as Reward[]) {
 
 export { activityReward };
 
-
 function createNewPoolActivity() {
   for (const item of PoolInfo) {
     const startDate = new Date(item.poolStart);
@@ -43,7 +42,7 @@ function createNewPoolActivity() {
       },
     };
     activityReward.value.push(reward1);
-    
+
     if (item.narrative) {
       const reward2: Reward = {
         id: `干员叙事·${item.character}`,
@@ -68,31 +67,28 @@ function createNewPoolActivity() {
       activityReward.value.push(reward2);
     }
 
-    let i = 1;
-    for (const time of item.signInTime) {
-      const reward3: Reward = {
-        id: `${item.poolName}卡池签到·${i}`,
-        name: {
-          zh: `${item.poolName}卡池签到·${i}`,
-          en: '',
-        },
-        start: new Date(time),
-        end: new Date(item.poolEnd),
-        type: item.character,
-        module: '活动',
-        active: true,
-        version: item.version,
-        content: {
-          originiumRecharge: 0,
-          diamond: 0,
-          ticketgachaStandardSingle: 0,
-          ticketgachaSpecialSingle:0 ,
-          ticketgachaLimitedSingle: i === 3 ? 1 : 2,
-        },
-      };
-      activityReward.value.push(reward3);
-      i++;
-    }
+    const reward3: Reward = {
+      id: `${item.poolName}卡池签到`,
+      name: {
+        zh: `${item.poolName}卡池签到`,
+        en: '',
+      },
+      start: new Date(item.poolStart),
+      end: new Date(item.poolEnd),
+      type: item.character,
+      module: '活动',
+      active: true,
+      version: item.version,
+      content: {
+        originiumRecharge: 0,
+        diamond: 0,
+        ticketgachaStandardSingle: 0,
+        ticketgachaSpecialSingle: 0,
+        ticketgachaLimitedSingle: 5,
+      },
+    };
+    activityReward.value.push(reward3);
+    
   }
 }
 

@@ -1444,14 +1444,27 @@ function loadingUserConfig() {
       }
 
       if (localConfig.existingResource) {
+        console.log(1111, localConfig.existingResource.originiumRecharge);
         gachaCalculatorUserConfig.value.existingResource.originiumRecharge =
           localConfig.existingResource.originiumRecharge || 0;
+        existingResource.value.originiumRecharge =
+          localConfig.existingResource.originiumRecharge || 0;
+
         gachaCalculatorUserConfig.value.existingResource.diamond =
           localConfig.existingResource.diamond || 0;
+        existingResource.value.diamond =
+          localConfig.existingResource.diamond || 0;
+
         gachaCalculatorUserConfig.value.existingResource.ticketgachaStandardSingle =
           localConfig.existingResource.ticketgachaStandardSingle || 0;
+        existingResource.value.ticketgachaStandardSingle =
+          localConfig.existingResource.ticketgachaStandardSingle || 0;
+          
         gachaCalculatorUserConfig.value.existingResource.ticketgachaSpecialSingle =
           localConfig.existingResource.ticketgachaSpecialSingle || 0;
+        existingResource.value.ticketgachaSpecialSingle =
+          localConfig.existingResource.ticketgachaSpecialSingle || 0;
+        
       }
     } catch (error) {
       console.error('Failed to parse user config:', error);

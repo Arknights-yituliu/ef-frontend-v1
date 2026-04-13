@@ -606,7 +606,7 @@ onMounted(() => {
               <td>
                 {{ result.originiumRecharge }}
               </td>
-              <td>{{ result.diamond }}</td>
+              <td>{{ numberFloor(result.diamond, 0) }}</td>
               <td>{{ result.ticketgachaStandardSingle }}</td>
               <td>{{ result.ticketgachaSpecialSingle }}</td>
               <td>{{ result.ticketgachaLimitedSingle }}</td>
@@ -630,70 +630,7 @@ onMounted(() => {
           </p>
         </div>
 
-        <div class="version-reward-result-group" style="display: none">
-          <div v-for="result in currentVersionRewardTotal" class="version-reward-result">
-            <div class="reward-result-border">
-              <div class="version-reward-result-color-border red-bg"></div>
-              <div class="version-reward-result-color-border yellow-bg"></div>
-              <div class="version-reward-result-color-border blue-bg"></div>
-            </div>
-            <div class="reward-result-text">
-              <div class="version-reward-result-name">{{ result.name }}</div>
-              <div class="version-reward-result-content">
-                <div class="version-reward-result-content-item">
-                  <img
-                    alt="existing"
-                    class="version-reward-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-                  />×
-                  {{ result.originiumRecharge }}
-                </div>
-                <div class="version-reward-result-content-item">
-                  <img
-                    alt="existing"
-                    class="version-reward-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-                  />×
-                  {{ result.diamond }}
-                </div>
-                <div class="version-reward-result-content-item">
-                  <img
-                    alt="existing"
-                    class="version-reward-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-                  />×
-                  {{ result.ticketgachaStandardSingle }}
-                </div>
-                <div class="version-reward-result-content-item">
-                  <img
-                    alt="existing"
-                    class="version-reward-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-                  />×
-                  {{ result.ticketgachaSpecialSingle }}
-                </div>
-              </div>
-              <div class="version-reward-result-type">
-                特许寻访
-                <div class="version-reward-result-number">
-                  {{ numberFloor(result.totalPulls as number) }}抽
-                </div>
-              </div>
-              <div class="version-reward-result-type">
-                限时寻访
-                <div class="version-reward-result-number">
-                  {{ result.ticketgachaLimitedSingle }}抽
-                </div>
-              </div>
-              <div class="version-reward-result-type">
-                基础寻访
-                <div class="version-reward-result-number">
-                  {{ result.ticketgachaStandardSingle }}抽
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+     
       </div>
       <!-- 页脚区 -->
       <div id="version-reward-footer">
@@ -774,12 +711,14 @@ onMounted(() => {
 .canvas-area {
   width: 1080px;
   flex-shrink: 0;
+  font-family: 'Source Han Sans SC', 'Noto Sans SC', sans-serif;
 
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
   position: relative;
+ 
 }
 
 /* ========== 2.1 头图 ========== */
@@ -959,6 +898,7 @@ onMounted(() => {
 .version-reward-item-icon {
   width: 48px;
   height: 48px;
+  margin: auto;
 }
 
 /* ========== 2.2.3 结果组 ========== */
@@ -968,10 +908,10 @@ onMounted(() => {
   color: white !important;
   width: 96%;
   margin: 20px auto;
-
+  
   th,
   td {
-    text-align: center;
+    text-align: center !important;
     border: 1px solid white;
     font-size: 24px;
   }
@@ -1041,6 +981,7 @@ onMounted(() => {
   width: 139px;
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 /* ========== 2.3 页脚区 ========== */

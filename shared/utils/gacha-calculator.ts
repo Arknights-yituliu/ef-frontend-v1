@@ -135,7 +135,7 @@ function addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward
       result.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
     }
   }
-  console.log(result.name,result.ticketgachaLimitedSingle);
+  // console.log(result.name,result.ticketgachaLimitedSingle);
 }
 
 function getRewardsPull(reward: RewardStatisticsResultDetail[]): TotalPullsSingle {
