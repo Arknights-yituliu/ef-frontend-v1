@@ -1858,8 +1858,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 v-for="option in poolOptions"
                 :key="option.name"
                 class="gacha-calculator-pool-btn-pc"
-                color="rgb(33, 150, 243)"
                 :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'"
+                color="rgb(33, 150, 243)"
                 :disabled="option.disabled"
                 @click="selectedPool(option)"
                 >{{ option.name }}<br />{{ option.dateText }}
@@ -1868,8 +1868,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
             <v-btn
               v-for="option in poolOptions"
               class="gacha-calculator-pool-btn-phone"
-              color="rgb(33, 150, 243)"
               :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'"
+              color="rgb(33, 150, 243)"
               :disabled="option.disabled"
               @click="selectedPool(option)"
               >{{ option.name }}<br />{{ option.dateText }}
