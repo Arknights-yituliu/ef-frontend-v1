@@ -215,7 +215,6 @@ const seekIntelBook = ref({
   start: new Date('2026/01/01'),
   end: new Date('2099/12/31'),
   content: { originiumRecharge: 0, diamond: 0, ticketgachaStandardSingle: 0, ticketgachaSpecialSingle: 0, ticketgachaLimitedSingle: 10 },
-  tips: ['选中后增加10个限定寻访凭证'],
 });
 
 watch(
@@ -1299,7 +1298,9 @@ function allRewardStatisticsV2(): void {
     if (totalPullsSingle === undefined) {
       continue;
     }
-    const value: number = totalPullsSingle.ticketgachaSpecialSingle || 0;
+    const value: number =
+      (totalPullsSingle.ticketgachaSpecialSingle || 0) +
+      (totalPullsSingle.ticketgachaLimitedSingle || 0);
 
     if ('total' === key || value === 0) {
       continue;
@@ -2089,12 +2090,7 @@ class="gacha-calculator-shortcut-btn" color="blue" text="选中所有奖励"
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               库存与自定义
-              {{
-                numberFloor(
-                  gachaResourceStatisticsResult.totalPulls.existing?.ticketgachaSpecialSingle,
-                  1,
-                )
-              }}
+              {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.existing) }}
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
           </v-expansion-panel-title>
