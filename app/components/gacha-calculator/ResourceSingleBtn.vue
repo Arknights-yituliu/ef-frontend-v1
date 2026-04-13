@@ -20,7 +20,7 @@ function getImageUrl(itemId: string): string {
     <v-btn
       :active="props.active"
       class="gacha-calculator-resource-btn"
-      :class="{ 'btn-active': props.active }"
+      :class="{ 'btn-active': props.active }"      
     >
       <div class="gacha-calculator-resource-btn-content">
         <div class="gacha-calculator-resource-btn-content-title">
@@ -36,8 +36,8 @@ function getImageUrl(itemId: string): string {
           X {{ reward }}
         </div>
       </div>
+      <div class="gacha-calculator-resource-btn-version">{{ props.version }}</div>
     </v-btn>
-    <div class="gacha-calculator-resource-btn-version">版本：{{ props.version }}</div>
     <template v-if="props.tips">
       <div v-for="tip in props.tips" :key="tip" class="gacha-calculator-resource-btn-tip">
         {{ tip }}
@@ -48,23 +48,25 @@ function getImageUrl(itemId: string): string {
 
 <style scoped>
 .gacha-calculator-gacha-item-icon {
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
 }
 .gacha-calculator-resource-btn {
+  position: relative;
   margin: 4px 0px;
   width: 100%;
+  min-height: 42px;
   transition: all 0.2s ease;
   border: 1px solid var(--theme-border-secondary);
-  border-bottom: 3px solid transparent;
+  border-left: 3px solid transparent;
 }
 
 .gacha-calculator-resource-btn.btn-active {
-  border-bottom: 3px solid var(--gacha-calculator-border) !important;
+  border-left: 6px solid var(--gacha-calculator-border) !important;
 }
 
 .gacha-calculator-resource-btn:deep([aria-pressed='true']) {
-  border-bottom: 3px solid var(--gacha-calculator-border) !important;
+  border-left: 6px solid var(--gacha-calculator-border) !important;
 }
 
 .gacha-calculator-resource-btn-content {
@@ -76,6 +78,7 @@ function getImageUrl(itemId: string): string {
 .gacha-calculator-resource-btn-content-title {
   width: 300px;
   text-align: start;
+  padding-left: 4px;
 }
 
 .gacha-calculator-resource-btn-content-content {
@@ -85,9 +88,12 @@ function getImageUrl(itemId: string): string {
 }
 
 .gacha-calculator-resource-btn-version {
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  bottom: 0;
+  right: 4px;
   font-size: 0.7rem;
+  line-height: 1;
+  opacity: 0.3;
 }
 .gacha-calculator-resource-btn-tip {
   font-size: 0.7rem;
