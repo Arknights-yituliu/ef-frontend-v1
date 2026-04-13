@@ -1988,10 +1988,6 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 </div>
               </div>
             </div>
-
-            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('春晓时')"
-              >仅选择[春晓时]版本内奖励，其他取消</v-btn
-            >
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2071,11 +2067,14 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel>
+        <v-expansion-panel style="display:none;">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
+            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('春晓时')"
+              >一键选择[春晓时]版本内奖励，并取消选择旧版本奖励</v-btn
+            >
             <v-table class="gacha-calculator-shortcut-btn-table">
               <thead>
                 <tr>
