@@ -1452,19 +1452,17 @@ function loadingUserConfig() {
 
         gachaCalculatorUserConfig.value.existingResource.diamond =
           localConfig.existingResource.diamond || 0;
-        existingResource.value.diamond =
-          localConfig.existingResource.diamond || 0;
+        existingResource.value.diamond = localConfig.existingResource.diamond || 0;
 
         gachaCalculatorUserConfig.value.existingResource.ticketgachaStandardSingle =
           localConfig.existingResource.ticketgachaStandardSingle || 0;
         existingResource.value.ticketgachaStandardSingle =
           localConfig.existingResource.ticketgachaStandardSingle || 0;
-          
+
         gachaCalculatorUserConfig.value.existingResource.ticketgachaSpecialSingle =
           localConfig.existingResource.ticketgachaSpecialSingle || 0;
         existingResource.value.ticketgachaSpecialSingle =
           localConfig.existingResource.ticketgachaSpecialSingle || 0;
-        
       }
     } catch (error) {
       console.error('Failed to parse user config:', error);
@@ -1828,8 +1826,9 @@ function checkRewardIsValid(reward: Reward): boolean {
     display = false;
   }
 
-  // console.log(currentPool.value.start, currentPoolValue.end);
-  // console.log(reward.name.zh,reward.start,reward.end);
+  console.log(reward.name.zh, reward.end, startDate);
+  console.log(reward.name.zh, reward.start, currentPoolValue.end);
+  console.log(reward.name.zh, reward.start, reward.end);
   // 判断奖励类型是否可以被计入
   // 通用类型都可以计入，特殊类型需要与当前池子类型匹配
 
@@ -2811,7 +2810,6 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 .gacha-calculator-container-right .v-expansion-panel {
   margin: 8px 0px;
 }
-
 
 .gacha-calculator-card-title {
   font-size: 1.2rem;

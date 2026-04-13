@@ -2,24 +2,33 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
 import { numberRound } from '#shared/utils/numberUtil';
 import { ref } from 'vue';
-import PoolInfo from '@/custom/core/gacha/data/pool_info.json';
-
+import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
+import VersionTable from '@/custom/core/gacha/data/version_table.json';
 const MediumExchangeCrate = 20 * 0.05 + 15 * 0.35 + 10 * 0.6;
 const LargeExchangeCrate = 30 * 0.05 + 25 * 0.35 + 20 * 0.6;
 
-const bpTrackFreeReward = ref<Reward[]>([
-  {
-    id: 'bp_track_free_1',
+const bpTrackFreeReward = ref<Reward[]>([])
+
+
+
+
+
+
+let bpTrackIndex = 1;
+for (const version of VersionTable) {
+
+  const bpTrackFree = {
+    id: `bp_track_free_${bpTrackIndex}`,
     name: {
-      zh: `基础配给·第一期`,
+      zh: `基础配给·${version.version}`,
       en: '',
     },
-    start: '2026/01/22 12:00:00',
-    end: '2026/03/12 12:00:00',
+    start: new Date(version.start),
+    end: new Date(version.end),
     type: '通用',
     module: '日常奖励',
     active: true,
-    version: '零号委托',
+    version: version.version,
     content: {
       originiumRecharge: 0,
       diamond: 600 + MediumExchangeCrate * 23,
@@ -27,19 +36,21 @@ const bpTrackFreeReward = ref<Reward[]>([
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-  },
-  {
-    id: 'bp_track_originium_1',
+  }
+
+
+   const bpTrackOriginium = {
+    id: `bp_track_originium_${bpTrackIndex}`,
     name: {
-      zh: `源石配给·第一期`,
+      zh: `源石配给·${version.version}`,
       en: '',
     },
-    start: '2026/01/22 12:00:00',
-    end: '2026/03/12 12:00:00',
+    start: new Date(version.start),
+    end: new Date(version.end),
     type: '通用',
     module: '日常奖励',
     active: true,
-    version: '零号委托',
+    version: version.version,
     content: {
       originiumRecharge: 3,
       diamond: 0,
@@ -47,88 +58,139 @@ const bpTrackFreeReward = ref<Reward[]>([
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-  },
-  {
-    id: 'bp_track_free_2',
-    name: {
-      zh: `基础配给·第二期`,
-      en: '',
-    },
-    start: '2026/03/12 12:00:00',
-    end: '2026/04/17 12:00:00',
-    type: '通用',
-    module: '日常奖励',
-    active: true,
-    version: '新潮起·故渊离',
-    content: {
-      originiumRecharge: 0,
-      diamond: 600 + MediumExchangeCrate * 23,
-      ticketgachaStandardSingle: 2,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0,
-    },
-  },
-  {
-    id: 'bp_track_originium_2',
-    name: {
-      zh: `源石配给·第二期`,
-      en: '',
-    },
-    start: '2026/03/12 12:00:00',
-    end: '2026/04/17 12:00:00',
-    type: '通用',
-    module: '日常奖励',
-    active: true,
-    version: '新潮起·故渊离',
-    content: {
-      originiumRecharge: 3,
-      diamond: 0,
-      ticketgachaStandardSingle: 4,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0,
-    },
-  },
-  {
-    id: 'bp_track_free_3',
-    name: {
-      zh: `基础配给·第三期`,
-      en: '',
-    },
-    start: '2026/04/17 12:00:00',
-    end: '2026/05/22 12:00:00',
-    type: '通用',
-    module: '日常奖励',
-    active: true,
-    version: '春晓时',
-    content: {
-      originiumRecharge: 0,
-      diamond: 600 + MediumExchangeCrate * 23,
-      ticketgachaStandardSingle: 2,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0,
-    },
-  },
-  {
-    id: 'bp_track_originium_3',
-    name: {
-      zh: `源石配给·第三期`,
-      en: '',
-    },
-    start: '2026/04/17 12:00:00',
-    end: '2026/05/22 12:00:00',
-    type: '通用',
-    module: '日常奖励',
-    active: true,
-    version: '春晓时',
-    content: {
-      originiumRecharge: 3,
-      diamond: 0,
-      ticketgachaStandardSingle: 4,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0,
-    },
-  },
-]);
+  }
+
+  if(bpTrackIndex >1) {
+    bpTrackOriginium.content.ticketgachaStandardSingle = 4;
+  }
+  
+  bpTrackFreeReward.value.push(bpTrackFree);
+  bpTrackFreeReward.value.push(bpTrackOriginium);
+  bpTrackIndex++;
+}
+
+// const bpTrackFreeReward = ref<Reward[]>([
+//   {
+//     id: 'bp_track_free_1',
+//     name: {
+//       zh: `基础配给·第一期`,
+//       en: '',
+//     },
+//     start: '2026/01/22 12:00:00',
+//     end: '2026/03/12 12:00:00',
+//     type: '通用',
+//     module: '日常奖励',
+//     active: true,
+//     version: '零号委托',
+//     content: {
+//       originiumRecharge: 0,
+//       diamond: 600 + MediumExchangeCrate * 23,
+//       ticketgachaStandardSingle: 0,
+//       ticketgachaSpecialSingle: 0,
+//       ticketgachaLimitedSingle: 0,
+//     },
+//   },
+//   {
+//     id: 'bp_track_originium_1',
+//     name: {
+//       zh: `源石配给·第一期`,
+//       en: '',
+//     },
+//     start: '2026/01/22 12:00:00',
+//     end: '2026/03/12 12:00:00',
+//     type: '通用',
+//     module: '日常奖励',
+//     active: true,
+//     version: '零号委托',
+//     content: {
+//        originiumRecharge: 3,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 4,
+//       ticketgachaSpecialSingle: 0,
+//       ticketgachaLimitedSingle: 0,
+//     },
+//   },
+//   {
+//     id: 'bp_track_free_2',
+//     name: {
+//       zh: `基础配给·第二期`,
+//       en: '',
+//     },
+//     start: '2026/03/12 12:00:00',
+//     end: '2026/04/17 12:00:00',
+//     type: '通用',
+//     module: '日常奖励',
+//     active: true,
+//     version: '新潮起·故渊离',
+//     content: {
+//       originiumRecharge: 0,
+//       diamond: 600 + MediumExchangeCrate * 23,
+//       ticketgachaStandardSingle: 2,
+//       ticketgachaSpecialSingle: 0,
+//       ticketgachaLimitedSingle: 0,
+//     },
+//   },
+//   {
+//     id: 'bp_track_originium_2',
+//     name: {
+//       zh: `源石配给·第二期`,
+//       en: '',
+//     },
+//     start: '2026/03/12 12:00:00',
+//     end: '2026/04/17 12:00:00',
+//     type: '通用',
+//     module: '日常奖励',
+//     active: true,
+//     version: '新潮起·故渊离',
+//     content: {
+//       originiumRecharge: 3,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 4,
+//       ticketgachaSpecialSingle: 0,
+//       ticketgachaLimitedSingle: 0,
+//     },
+//   },
+//   {
+//     id: 'bp_track_free_3',
+//     name: {
+//       zh: `基础配给·第三期`,
+//       en: '',
+//     },
+//     start: '2026/04/17 12:00:00',
+//     end: '2026/05/22 12:00:00',
+//     type: '通用',
+//     module: '日常奖励',
+//     active: true,
+//     version: '春晓时',
+//     content: {
+//       originiumRecharge: 0,
+//       diamond: 600 + MediumExchangeCrate * 23,
+//       ticketgachaStandardSingle: 2,
+//       ticketgachaSpecialSingle: 0,
+//       ticketgachaLimitedSingle: 0,
+//     },
+//   },
+//   {
+//     id: 'bp_track_originium_3',
+//     name: {
+//       zh: `源石配给·第三期`,
+//       en: '',
+//     },
+//     start: '2026/04/17 12:00:00',
+//     end: '2026/05/22 12:00:00',
+//     type: '通用',
+//     module: '日常奖励',
+//     active: true,
+//     version: '春晓时',
+//     content: {
+//       originiumRecharge: 3,
+//       diamond: 0,
+//       ticketgachaStandardSingle: 4,
+//       ticketgachaSpecialSingle: 0,
+//       ticketgachaLimitedSingle: 0,
+//     },
+//   },
+// ]);
 
 const freeMonthlyPass = ref<Reward>({
   id: 'free_monthly_pass_1',
@@ -136,8 +198,8 @@ const freeMonthlyPass = ref<Reward>({
     zh: `焕新月卡赠礼`,
     en: '',
   },
-  start: '2026/04/17 12:00:00',
-  end: '2026/05/22 12:00:00',
+  start: new Date('2026/04/17 12:00:00'),
+  end: new Date('2026/05/22 12:00:00'),
   type: '通用',
   module: '日常奖励',
   active: true,
@@ -170,8 +232,8 @@ const dailyReward = ref<Reward>({
     zh: `日常奖励X0天`,
     en: '',
   },
-  start: '2026/01/22 12:00:00',
-  end: '2099/12/31 12:00:00',
+  start: new Date('2026/01/22 12:00:00'),
+  end: new Date('2099/12/31 12:00:00'),
   type: '通用',
   module: '日常奖励',
   active: true,
@@ -191,8 +253,8 @@ const weekTaskReward = ref<Reward>({
     zh: `周常奖励X0周`,
     en: '',
   },
-  start: '2026/01/22 12:00:00',
-  end: '2099/12/31 12:00:00',
+  start: new Date('2026/01/22 12:00:00'),
+  end: new Date('2099/12/31 12:00:00'),
   type: '通用',
   module: '日常奖励',
   active: true,
@@ -232,8 +294,8 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
         zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
         en: '',
       },
-      start: '2026/01/22 12:00:00',
-      end: '2099/12/31 12:00:00',
+      start: new Date('2026/01/22 12:00:00'),
+      end: new Date('2099/12/31 12:00:00'),
       type: '通用',
       module: '日常奖励',
       active: true,
@@ -252,8 +314,8 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
         zh: `周常奖励X${numberRound(remainingWeek, 0)}周`,
         en: '',
       },
-      start: '2026/01/22 12:00:00',
-      end: '2099/12/31 12:00:00',
+      start: new Date('2026/01/22 12:00:00'),
+      end: new Date('2099/12/31 12:00:00'), 
       type: '通用',
       module: '日常奖励',
       active: true,
@@ -270,7 +332,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
 }
 
 const AICQuotaReward = ref<Reward[]>([]);
-for (const poolInfo of PoolInfo) {
+for (const poolInfo of PoolInfoTable) {
   AICQuotaReward.value.push({
     id: `${poolInfo.character}卡池商店兑换寻访凭证`,
     name: {
