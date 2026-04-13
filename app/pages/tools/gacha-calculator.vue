@@ -15,7 +15,6 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 
 // 奖励引入
 import {
- 
   calculatorDailyReward,
   dailyAllRewardTable,
   dailyReward,
@@ -214,7 +213,13 @@ const seekIntelBook = ref({
   version: '通用',
   start: new Date('2026/01/01'),
   end: new Date('2099/12/31'),
-  content: { originiumRecharge: 0, diamond: 0, ticketgachaStandardSingle: 0, ticketgachaSpecialSingle: 0, ticketgachaLimitedSingle: 10 },
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 10,
+  },
 });
 
 watch(
@@ -272,8 +277,6 @@ watch(
   { deep: true },
 );
 
-
-
 let dailyRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '活动奖励',
   originiumRecharge: 0,
@@ -297,13 +300,11 @@ function dailyRewardStatistics(): void {
   addReward(result, weekTaskReward.value);
   addReward(result, freeMonthlyPass.value);
   // 日常奖励重构
-  for (const item of dailyAllRewardTable.value) {
-    if (item.active) {
-      addReward(result, item);
+  for (const reward of dailyAllRewardTable.value) {
+    if (checkRewardIsValid(reward)) {
+      addReward(result, reward);
     }
   }
-
-  
 
   dailyRewardStatisticsResultDetail = result;
   gachaResourceStatisticsResult.value.totalPulls.daily = getRewardPull(result);
@@ -1439,7 +1440,7 @@ function loadingUserConfig() {
       if (localConfig.buttonGroupActive) {
         // 日常奖励重构
         _setButtonGroupActive(localConfig.buttonGroupActive, dailyAllRewardTable);
-       
+
         _setButtonGroupActive(localConfig.buttonGroupActive, authorityLevelTaskRewards);
         _setButtonGroupActive(localConfig.buttonGroupActive, valleyIVTaskRewardTable);
         _setButtonGroupActive(localConfig.buttonGroupActive, valleyIVDefenseConstructionReward);
@@ -1614,7 +1615,7 @@ function clearOrSelectAllCurrentVersion(version: string) {
   // 日常奖励重构
   _filterByVersion(dailyAllRewardTable, version);
   _filterByVersion(activityReward, version);
- 
+
   _filterByVersion(authorityLevelTaskRewards, version);
   _filterByVersion(worldLevelReward, version);
   authorityLevelProgress.value = [60, 60];
@@ -1832,15 +1833,17 @@ function checkRewardIsValid(reward: Reward): boolean {
 
   let display = reward.type === '通用' || reward.type === currentPoolValue.type;
 
+  console.log(reward.name.zh, reward.type, currentPoolValue.type);
+
   // 活动结束时间在当前池子开始时间之前，活动已结束
   if (reward.end <= startDate) {
-    // console.log(reward.name.zh, '过期');
+    console.log(reward.name.zh, '过期');
     display = false;
   }
 
   // 活动开始时间在当前池子结束时间之后，活动未开始
   if (reward.start >= currentPoolValue.end) {
-    // console.log(reward.name.zh, '过期');
+    console.log(reward.name.zh, '过期');
     display = false;
   }
 
@@ -1849,7 +1852,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   console.log(reward.name.zh, reward.start, reward.end);
   // 判断奖励类型是否可以被计入
   // 通用类型都可以计入，特殊类型需要与当前池子类型匹配
-
+  console.log(reward.name.zh, display);
   return display;
 }
 
@@ -1885,15 +1888,24 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           <v-expansion-panel-text>
             <v-btn-group class="gacha-calculator-pool-btn-group-pc">
               <v-btn
-v-for="option in poolOptions" :key="option.name" class="gacha-calculator-pool-btn-pc"
-                :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'" color="rgb(33, 150, 243)"
-                :disabled="option.disabled" @click="selectedPool(option)">{{ option.name }}<br />{{ option.dateText }}
+                v-for="option in poolOptions"
+                :key="option.name"
+                class="gacha-calculator-pool-btn-pc"
+                :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'"
+                color="rgb(33, 150, 243)"
+                :disabled="option.disabled"
+                @click="selectedPool(option)"
+                >{{ option.name }}<br />{{ option.dateText }}
               </v-btn>
             </v-btn-group>
             <v-btn
-v-for="option in poolOptions" class="gacha-calculator-pool-btn-phone"
-              :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'" color="rgb(33, 150, 243)"
-              :disabled="option.disabled" @click="selectedPool(option)">{{ option.name }}<br />{{ option.dateText }}
+              v-for="option in poolOptions"
+              class="gacha-calculator-pool-btn-phone"
+              :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'"
+              color="rgb(33, 150, 243)"
+              :disabled="option.disabled"
+              @click="selectedPool(option)"
+              >{{ option.name }}<br />{{ option.dateText }}
             </v-btn>
 
             <div class="gacha-calculator-warning">
@@ -1902,14 +1914,18 @@ v-for="option in poolOptions" class="gacha-calculator-pool-btn-phone"
 
             <div class="gacha-calculator-chart-and-table">
               <div
-id="gacha-calculator-pie-chart" ref="gacha-calculator-pie-chart"
-                class="gacha-calculator-pie-chart" />
+                id="gacha-calculator-pie-chart"
+                ref="gacha-calculator-pie-chart"
+                class="gacha-calculator-pie-chart"
+              />
 
               <div class="gacha-calculator-statistics-result">
                 <div class="gacha-calculator-statistics-result-item">
                   <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />
+                    alt="existing"
+                    class="gacha-calculator-gacha-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                  />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{
                       t('page.tools.gachaCalculator.countWithPulls', {
@@ -1924,8 +1940,10 @@ alt="existing" class="gacha-calculator-gacha-item-icon"
 
                 <div class="gacha-calculator-statistics-result-item">
                   <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />
+                    alt="existing"
+                    class="gacha-calculator-gacha-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                  />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{
                       t('page.tools.gachaCalculator.countWithPulls', {
@@ -1938,8 +1956,10 @@ alt="existing" class="gacha-calculator-gacha-item-icon"
 
                 <div class="gacha-calculator-statistics-result-item">
                   <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />
+                    alt="existing"
+                    class="gacha-calculator-gacha-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                  />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
                   </span>
@@ -1947,8 +1967,10 @@ alt="existing" class="gacha-calculator-gacha-item-icon"
 
                 <div class="gacha-calculator-statistics-result-item">
                   <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />
+                    alt="existing"
+                    class="gacha-calculator-gacha-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                  />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
                   </span>
@@ -1956,8 +1978,10 @@ alt="existing" class="gacha-calculator-gacha-item-icon"
 
                 <div class="gacha-calculator-statistics-result-item">
                   <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp" />
+                    alt="existing"
+                    class="gacha-calculator-gacha-item-icon"
+                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                  />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaLimitedSingle }}
                   </span>
@@ -1965,7 +1989,9 @@ alt="existing" class="gacha-calculator-gacha-item-icon"
               </div>
             </div>
 
-            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('春晓时')">仅选择[春晓时]版本内奖励，其他取消</v-btn>
+            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('春晓时')"
+              >仅选择[春晓时]版本内奖励，其他取消</v-btn
+            >
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -1980,28 +2006,38 @@ alt="existing" class="gacha-calculator-gacha-item-icon"
                   <th style="font-weight: bolder">奖励来源</th>
                   <th>
                     <img
-alt="existing" class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />
+                      alt="existing"
+                      class="gacha-calculator-result-detail-table-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                    />
                   </th>
                   <th>
                     <img
-alt="existing" class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />
+                      alt="existing"
+                      class="gacha-calculator-result-detail-table-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                    />
                   </th>
                   <th>
                     <img
-alt="existing" class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />
+                      alt="existing"
+                      class="gacha-calculator-result-detail-table-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                    />
                   </th>
                   <th>
                     <img
-alt="existing" class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />
+                      alt="existing"
+                      class="gacha-calculator-result-detail-table-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                    />
                   </th>
                   <th>
                     <img
-alt="existing" class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp" />
+                      alt="existing"
+                      class="gacha-calculator-result-detail-table-icon"
+                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                    />
                   </th>
                 </tr>
               </thead>
@@ -2052,11 +2088,17 @@ alt="existing" class="gacha-calculator-result-detail-table-icon"
                   <td>{{ action.text }}</td>
                   <td>
                     <v-btn
-class="gacha-calculator-shortcut-btn" color="red" text="清空所有选中奖励"
-                      @click="action.func(false)" />
+                      class="gacha-calculator-shortcut-btn"
+                      color="red"
+                      text="清空所有选中奖励"
+                      @click="action.func(false)"
+                    />
                     <v-btn
-class="gacha-calculator-shortcut-btn" color="blue" text="选中所有奖励"
-                      @click="action.func(true)" />
+                      class="gacha-calculator-shortcut-btn"
+                      color="blue"
+                      text="选中所有奖励"
+                      @click="action.func(true)"
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -2087,35 +2129,59 @@ class="gacha-calculator-shortcut-btn" color="blue" text="选中所有奖励"
             <div class="gacha-calculator-existing-resource-grid">
               <div class="gacha-calculator-existing-resource-input">
                 <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp" />
+                  alt="existing"
+                  class="gacha-calculator-gacha-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                />
                 <v-number-input
-v-model="existingResource.originiumRecharge" control-variant="hidden" density="compact" hide-details="auto"
-                  variant="solo" />
+                  v-model="existingResource.originiumRecharge"
+                  control-variant="hidden"
+                  density="compact"
+                  hide-details="auto"
+                  variant="solo"
+                />
               </div>
               <div class="gacha-calculator-existing-resource-input">
                 <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp" />
+                  alt="existing"
+                  class="gacha-calculator-gacha-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                />
                 <v-number-input
-v-model="existingResource.diamond" control-variant="hidden" density="compact" hide-details="auto"
-                  variant="solo" />
+                  v-model="existingResource.diamond"
+                  control-variant="hidden"
+                  density="compact"
+                  hide-details="auto"
+                  variant="solo"
+                />
               </div>
               <div class="gacha-calculator-existing-resource-input">
                 <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp" />
+                  alt="existing"
+                  class="gacha-calculator-gacha-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                />
                 <v-number-input
-v-model="existingResource.ticketgachaStandardSingle" control-variant="hidden" density="compact" hide-details="auto"
-                  variant="solo" />
+                  v-model="existingResource.ticketgachaStandardSingle"
+                  control-variant="hidden"
+                  density="compact"
+                  hide-details="auto"
+                  variant="solo"
+                />
               </div>
               <div class="gacha-calculator-existing-resource-input">
                 <img
-alt="existing" class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp" />
+                  alt="existing"
+                  class="gacha-calculator-gacha-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                />
                 <v-number-input
-v-model="existingResource.ticketgachaSpecialSingle" control-variant="hidden" density="compact" hide-details="auto"
-                  variant="solo" />
+                  v-model="existingResource.ticketgachaSpecialSingle"
+                  control-variant="hidden"
+                  density="compact"
+                  hide-details="auto"
+                  variant="solo"
+                />
               </div>
             </div>
             <GachaCalculatorResourceSingleBtn
@@ -2140,7 +2206,7 @@ v-model="existingResource.ticketgachaSpecialSingle" control-variant="hidden" den
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
             <GachaCalculatorResourceSingle v-bind="freeMonthlyPass" />
             <v-divider style="margin: 1rem 0" />
-          
+
             <template v-for="item in dailyAllRewardTable">
               <GachaCalculatorModuleTitle v-if="item.type === '标题'" :title="item.name.zh" />
               <GachaCalculatorResourceSingleBtn
@@ -2164,8 +2230,12 @@ v-model="existingResource.ticketgachaSpecialSingle" control-variant="hidden" den
 
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingleBtn
-v-for="item in activityReward" v-show="checkRewardIsValid(item)"
-              :key="item.id" v-bind="item" @click="item.active = !item.active" />
+              v-for="item in activityReward"
+              v-show="checkRewardIsValid(item)"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2189,21 +2259,34 @@ v-for="item in activityReward" v-show="checkRewardIsValid(item)"
               <v-card-text>
                 <GachaCalculatorResourceSingle v-bind="factoryManualReward" />
                 <v-range-slider
-v-model="factoryManualProgress" class="v-range-slider" hide-details="auto"
-                  :max="factoryManualRewardMax" step="5" thumb-label="always" tick-size="4" />
+                  v-model="factoryManualProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="factoryManualRewardMax"
+                  step="5"
+                  thumb-label="always"
+                  tick-size="4"
+                />
               </v-card-text>
             </v-card>
             <v-divider style="margin: 1rem 0" />
 
             <GachaCalculatorResourceSingleBtn
-v-for="item in intelArchiveReward" :key="item.id" v-bind="item"
-              @click="item.active = !item.active" />
+              v-for="item in intelArchiveReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
 
             <v-divider style="margin: 1rem 0" />
 
             <GachaCalculatorResourceSingleBtn
-v-for="item in otherRewardTable" v-show="checkRewardIsValid(item)"
-              :key="item.id" v-bind="item" @click="item.active = !item.active" />
+              v-for="item in otherRewardTable"
+              v-show="checkRewardIsValid(item)"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2227,16 +2310,27 @@ v-for="item in otherRewardTable" v-show="checkRewardIsValid(item)"
           <v-expansion-panel-text>
             <GachaCalculatorModuleTitle title="武陵地区" />
             <GachaCalculatorResourceSingleBtn
-v-for="item in wulingRegionalStockBillStoreReward" :key="item.id"
-              v-bind="item" @click="item.active = !item.active" />
+              v-for="item in wulingRegionalStockBillStoreReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
             <v-divider style="margin: 1rem 0" />
             <v-card>
               <v-card-text>
                 <GachaCalculatorResourceSingle v-bind="wulingRegionalDevelopmentReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="wulingRegionalDevelopmentProgress" class="v-range-slider" hide-details="auto"
-                  max="12" min="1" show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="wulingRegionalDevelopmentProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="12"
+                  min="1"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
               </v-card-text>
             </v-card>
 
@@ -2246,8 +2340,15 @@ v-model="wulingRegionalDevelopmentProgress" class="v-range-slider" hide-details=
                 <GachaCalculatorResourceSingle v-bind="wulingAuryleneCollectReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="wulingAuryleneCollectProgress" class="v-range-slider" hide-details="auto"
-                  max="18" show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="wulingAuryleneCollectProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="18"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
               </v-card-text>
             </v-card>
 
@@ -2257,8 +2358,14 @@ v-model="wulingAuryleneCollectProgress" class="v-range-slider" hide-details="aut
                 <GachaCalculatorResourceSingle v-bind="wulingCrateReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="wulingCrateProgress" class="v-range-slider" hide-details="auto"
-                  :max="wulingCrateRewardMax" step="5" thumb-label="always" tick-size="4" />
+                  v-model="wulingCrateProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="wulingCrateRewardMax"
+                  step="5"
+                  thumb-label="always"
+                  tick-size="4"
+                />
               </v-card-text>
             </v-card>
             <v-divider style="margin: 1rem 0" />
@@ -2267,8 +2374,14 @@ v-model="wulingCrateProgress" class="v-range-slider" hide-details="auto"
                 <GachaCalculatorResourceSingle v-bind="wulingBattleCrateReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="wulingBattleCrateRewardProgress" class="v-range-slider" hide-details="auto"
-                  :max="wulingBattleCrateRewardMax" step="1" thumb-label="always" tick-size="4" />
+                  v-model="wulingBattleCrateRewardProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="wulingBattleCrateRewardMax"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
                 在地图上的处理险情点位可获得1源石的宝箱
               </v-card-text>
             </v-card>
@@ -2281,14 +2394,24 @@ v-model="wulingBattleCrateRewardProgress" class="v-range-slider" hide-details="a
                 <GachaCalculatorResourceSingle v-bind="wulingSimulationReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="wulingSimulationProgress" class="v-range-slider" hide-details="auto" max="9"
-                  show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="wulingSimulationProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="9"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
               </v-card-text>
             </v-card>
 
             <GachaCalculatorResourceSingleBtn
-v-for="item in wulingDefenseConstructionReward" :key="item.id"
-              v-bind="item" @click="item.active = !item.active" />
+              v-for="item in wulingDefenseConstructionReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2301,18 +2424,28 @@ v-for="item in wulingDefenseConstructionReward" :key="item.id"
           <v-expansion-panel-text>
             <GachaCalculatorModuleTitle title="四号谷地地区" />
             <GachaCalculatorResourceSingleBtn
-v-bind="valleyIVRegionalStockBillStoreReward" @click="
-              valleyIVRegionalStockBillStoreReward.active =
-              !valleyIVRegionalStockBillStoreReward.active
-              " />
+              v-bind="valleyIVRegionalStockBillStoreReward"
+              @click="
+                valleyIVRegionalStockBillStoreReward.active =
+                  !valleyIVRegionalStockBillStoreReward.active
+              "
+            />
             <v-divider style="margin: 1rem 0" />
             <v-card>
               <v-card-text>
                 <GachaCalculatorResourceSingle v-bind="valleyIVRegionalDevelopmentReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="valleyIVRegionalDevelopmentProgress" class="v-range-slider" hide-details="auto"
-                  max="12" min="1" show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="valleyIVRegionalDevelopmentProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="12"
+                  min="1"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
                 通过滑块调节当前地区建设等级
               </v-card-text>
             </v-card>
@@ -2323,8 +2456,15 @@ v-model="valleyIVRegionalDevelopmentProgress" class="v-range-slider" hide-detail
                 <GachaCalculatorResourceSingle v-bind="valleyIVAuryleneCollectReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="valleyIVAuryleneCollectProgress" class="v-range-slider" hide-details="auto"
-                  max="18" show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="valleyIVAuryleneCollectProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="18"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
                 通过滑块调节当前醚质收集阶段
               </v-card-text>
             </v-card>
@@ -2335,8 +2475,14 @@ v-model="valleyIVAuryleneCollectProgress" class="v-range-slider" hide-details="a
                 <GachaCalculatorResourceSingle v-bind="valleyIVCrateReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="valleyIVCrateProgress" class="v-range-slider" hide-details="auto"
-                  :max="valleyIVCrateRewardMax" step="5" thumb-label="always" tick-size="4" />
+                  v-model="valleyIVCrateProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="valleyIVCrateRewardMax"
+                  step="5"
+                  thumb-label="always"
+                  tick-size="4"
+                />
                 储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5合成玉
               </v-card-text>
             </v-card>
@@ -2348,8 +2494,14 @@ v-model="valleyIVCrateProgress" class="v-range-slider" hide-details="auto"
                 <GachaCalculatorResourceSingle v-bind="valleyIVBattleCrateReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="valleyIVBattleCrateRewardProgress" class="v-range-slider" hide-details="auto"
-                  :max="valleyIVBattleCrateRewardMax" step="1" thumb-label="always" tick-size="4" />
+                  v-model="valleyIVBattleCrateRewardProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="valleyIVBattleCrateRewardMax"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
                 在地图上的处理险情点位可获得1源石的宝箱
               </v-card-text>
             </v-card>
@@ -2360,16 +2512,26 @@ v-model="valleyIVBattleCrateRewardProgress" class="v-range-slider" hide-details=
                 <GachaCalculatorResourceSingle v-bind="valleyIVSimulationReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="valleyIVSimulationProgress" class="v-range-slider" hide-details="auto" max="26"
-                  show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="valleyIVSimulationProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="26"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
               </v-card-text>
             </v-card>
 
             <v-divider style="margin: 1rem 0" />
 
             <GachaCalculatorResourceSingleBtn
-v-for="item in valleyIVDefenseConstructionReward" :key="item.id"
-              v-bind="item" @click="item.active = !item.active" />
+              v-for="item in valleyIVDefenseConstructionReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2394,16 +2556,27 @@ v-for="item in valleyIVDefenseConstructionReward" :key="item.id"
                 <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="authorityLevelProgress" class="v-range-slider" hide-details="auto" max="60"
-                  min="1" show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="authorityLevelProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="60"
+                  min="1"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
               </v-card-text>
             </v-card>
             <v-divider style="margin: 1rem 0" />
 
             <GachaCalculatorModuleTitle title="权限等阶提升任务" />
             <GachaCalculatorResourceSingleBtn
-v-for="item in authorityLevelTaskRewards" :key="item.id" v-bind="item"
-              @click="item.active = !item.active" />
+              v-for="item in authorityLevelTaskRewards"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
             <v-divider style="margin: 1rem 0" />
 
             <v-card>
@@ -2411,8 +2584,16 @@ v-for="item in authorityLevelTaskRewards" :key="item.id" v-bind="item"
                 <GachaCalculatorResourceSingle v-bind="worldLevelReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="worldLevelProgress" class="v-range-slider" hide-details="auto" max="7" min="3"
-                  show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="worldLevelProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="7"
+                  min="3"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
               </v-card-text>
             </v-card>
           </v-expansion-panel-text>
@@ -2437,12 +2618,21 @@ v-model="worldLevelProgress" class="v-range-slider" hide-details="auto" max="7" 
             <v-card>
               <v-card-text>
                 <GachaCalculatorResourceSingle
-v-bind="beginnerSignInTaskReward"
-                  @click="beginnerSignInTaskReward.active = !beginnerSignInTaskReward.active" />
+                  v-bind="beginnerSignInTaskReward"
+                  @click="beginnerSignInTaskReward.active = !beginnerSignInTaskReward.active"
+                />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="beginnerSignInTaskProgress" class="v-range-slider" hide-details="auto" max="14"
-                  show-ticks="always" step="1" strict thumb-label="always" tick-size="4" />
+                  v-model="beginnerSignInTaskProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="14"
+                  show-ticks="always"
+                  step="1"
+                  strict
+                  thumb-label="always"
+                  tick-size="4"
+                />
                 刻度在1表示第一日签到已完成，不再加入第一日
               </v-card-text>
             </v-card>
@@ -2450,13 +2640,19 @@ v-model="beginnerSignInTaskProgress" class="v-range-slider" hide-details="auto" 
 
             <!--启程任务-->
             <GachaCalculatorResourceSingleBtn
-v-for="item in newHorizonsTaskReward" :key="item.id" v-bind="item"
-              @click="item.active = !item.active" />
+              v-for="item in newHorizonsTaskReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
 
             <!--启程任务-->
             <GachaCalculatorResourceSingleBtn
-v-for="item in beginnerTicketgachaSpecialSingleTaskReward" :key="item.id"
-              v-bind="item" @click="item.active = !item.active" />
+              v-for="item in beginnerTicketgachaSpecialSingleTaskReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2467,8 +2663,11 @@ v-for="item in beginnerTicketgachaSpecialSingleTaskReward" :key="item.id"
           <v-expansion-panel-text>
             <!--任务列表-->
             <GachaCalculatorResourceSingleBtn
-v-for="item in valleyIVTaskRewardTable" :key="item.id" v-bind="item"
-              @click="item.active = !item.active" />
+              v-for="item in valleyIVTaskRewardTable"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2479,8 +2678,11 @@ v-for="item in valleyIVTaskRewardTable" :key="item.id" v-bind="item"
           <v-expansion-panel-text>
             <!--任务列表-->
             <GachaCalculatorResourceSingleBtn
-v-for="item in wulingTaskRewardTable" :key="item.id" v-bind="item"
-              @click="item.active = !item.active" />
+              v-for="item in wulingTaskRewardTable"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2491,16 +2693,24 @@ v-for="item in wulingTaskRewardTable" :key="item.id" v-bind="item"
           <v-expansion-panel-text>
             <!--搜打撤-->
             <GachaCalculatorResourceSingleBtn
-v-for="item in etchSpaceSalvageReward" :key="item.id" v-bind="item"
-              @click="item.active = !item.active" />
+              v-for="item in etchSpaceSalvageReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
             <v-card>
               <v-card-text>
                 <GachaCalculatorResourceSingle v-bind="etchSpaceSalvageCrateReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="etchSpaceSalvageCrateProgress" class="v-range-slider" hide-details="auto"
-                  :max="etchSpaceSalvageCrateRewardMax" step="15" thumb-label="always" />
-              </v-card-text></v-card>
+                  v-model="etchSpaceSalvageCrateProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  :max="etchSpaceSalvageCrateRewardMax"
+                  step="15"
+                  thumb-label="always"
+                /> </v-card-text
+            ></v-card>
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2521,16 +2731,26 @@ v-model="etchSpaceSalvageCrateProgress" class="v-range-slider" hide-details="aut
           </v-expansion-panel-title>
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingleBtn
-v-for="item in operationalManualReward" :key="item.id" v-bind="item"
-              @click="item.active = !item.active" />
+              v-for="item in operationalManualReward"
+              :key="item.id"
+              v-bind="item"
+              @click="item.active = !item.active"
+            />
             <v-divider style="margin: 1rem 0" />
             <v-card>
               <v-card-text>
                 <GachaCalculatorResourceSingle v-bind="operationalManualNodeReward" />
                 <div style="height: 36px" />
                 <v-range-slider
-v-model="operationalManualNodeProgress" class="v-range-slider" hide-details="auto"
-                  max="12" show-ticks="always" step="1" thumb-label="always" tick-size="4" />
+                  v-model="operationalManualNodeProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="12"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
                 共计12节点，每节点750嵌晶玉
               </v-card-text>
             </v-card>
