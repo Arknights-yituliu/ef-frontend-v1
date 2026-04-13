@@ -205,6 +205,29 @@ watch(
   { deep: true },
 );
 
+const seekIntelBook = ref({
+  id: 'seek_intel_book',
+  name: { zh: '寻访情报书', en: 'Seek Intel Book' },
+  active: false,
+  type: '通用',
+  module: '库存',
+  version: '通用',
+  start: new Date('2026/01/01'),
+  end: new Date('2099/12/31'),
+  content: { originiumRecharge: 0, diamond: 0, ticketgachaStandardSingle: 0, ticketgachaSpecialSingle: 0, ticketgachaLimitedSingle: 10 },
+  tips: ['选中后增加10个限定寻访凭证'],
+});
+
+watch(
+  seekIntelBook,
+  (newValue) => {
+    saveUserConfig(newValue.id, newValue.active, 'buttonActive');
+    existingRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
+
 let existingRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '库存',
   originiumRecharge: 0,
@@ -221,7 +244,7 @@ function existingRewardStatistics(): void {
     diamond: existingResource.value.diamond / 1,
     ticketgachaStandardSingle: existingResource.value.ticketgachaStandardSingle / 1,
     ticketgachaSpecialSingle: existingResource.value.ticketgachaSpecialSingle / 1,
-    ticketgachaLimitedSingle: 0,
+    ticketgachaLimitedSingle: seekIntelBook.value.active ? 10 : 0,
   };
 
   existingRewardStatisticsResultDetail = result;
@@ -1418,6 +1441,11 @@ function loadingUserConfig() {
         _setButtonActive(localConfig.buttonActive, valleyIVRegionalStockBillStoreReward);
         _setButtonGroupActive(localConfig.buttonActive, wulingRegionalStockBillStoreReward);
         gachaCalculatorUserConfig.value.buttonActive = localConfig.buttonActive;
+
+        // 加载寻访情报书状态
+        if (localConfig.buttonActive['seek_intel_book'] !== undefined) {
+          seekIntelBook.value.active = localConfig.buttonActive['seek_intel_book'] || false;
+        }
       }
 
       if (localConfig.buttonGroupActive) {
@@ -2082,6 +2110,10 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                   control-variant="hidden" />
               </div>
             </div>
+            <GachaCalculatorResourceSingleBtn
+              v-bind="seekIntelBook"
+              @click="seekIntelBook.active = !seekIntelBook.active"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
