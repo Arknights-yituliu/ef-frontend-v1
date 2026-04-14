@@ -7,7 +7,7 @@ import type {
   TotalPullsSingle,
 } from '@/shared/types/gacha-calculator';
 import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-calculator';
-import { numberFloor } from '#shared/utils/numberUtil';
+import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
@@ -1329,7 +1329,7 @@ function setPieChart(data: PieChartData[]) {
           <div>
             <div> ${param.name || ''}</div>
             <div>${param.seriesName || ''}</div>
-            <div> ${(param.percent || 0).toFixed(1)}%</div>
+            <div> ${numberRound(param.percent || 0, 1)}%</div>
           </div>
         `;
       },
@@ -1462,25 +1462,26 @@ function loadingUserConfig() {
       }
 
       if (localConfig.existingResource) {
-        console.log(1111, localConfig.existingResource.originiumRecharge);
+        const localExistingResource = localConfig.existingResource;
+        
         gachaCalculatorUserConfig.value.existingResource.originiumRecharge =
-          localConfig.existingResource.originiumRecharge || 0;
+          stringToNumber(localExistingResource.originiumRecharge) 
         existingResource.value.originiumRecharge =
-          localConfig.existingResource.originiumRecharge || 0;
+          stringToNumber(localExistingResource.originiumRecharge) ;
 
         gachaCalculatorUserConfig.value.existingResource.diamond =
-          localConfig.existingResource.diamond || 0;
-        existingResource.value.diamond = localConfig.existingResource.diamond || 0;
+          stringToNumber(localExistingResource.diamond) ;
+        existingResource.value.diamond = stringToNumber(localExistingResource.diamond) ;
 
         gachaCalculatorUserConfig.value.existingResource.ticketgachaStandardSingle =
-          localConfig.existingResource.ticketgachaStandardSingle || 0;
+          stringToNumber(localExistingResource.ticketgachaStandardSingle) ;
         existingResource.value.ticketgachaStandardSingle =
-          localConfig.existingResource.ticketgachaStandardSingle || 0;
+          stringToNumber(localExistingResource.ticketgachaStandardSingle) ;
 
         gachaCalculatorUserConfig.value.existingResource.ticketgachaSpecialSingle =
-          localConfig.existingResource.ticketgachaSpecialSingle || 0;
+          stringToNumber(localExistingResource.ticketgachaSpecialSingle) ;
         existingResource.value.ticketgachaSpecialSingle =
-          localConfig.existingResource.ticketgachaSpecialSingle || 0;
+          stringToNumber(localExistingResource.ticketgachaSpecialSingle) ;
       }
     } catch (error) {
       console.error('Failed to parse user config:', error);
@@ -1921,7 +1922,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
               {{ t('page.tools.gachaCalculator.special')
               }}{{ t('page.tools.gachaCalculator.ticketgacha') }}
               {{ t('page.tools.gachaCalculator.rechargeAmount') }}
-              {{ paidResourcesTotalPrice.toFixed(2) }} {{ t('page.tools.gachaCalculator.yuan') }}
+              {{ numberFloor(paidResourcesTotalPrice, 2) }}
+              {{ t('page.tools.gachaCalculator.yuan') }}
             </div>
           </v-expansion-panel-title>
 
@@ -1967,14 +1969,9 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
-                    {{
-                      t('page.tools.gachaCalculator.countWithPulls', {
-                        count: totalResourceStatisticsResultDetail.originiumRecharge,
-                        pulls: numberFloor(
-                          totalResourceStatisticsResultDetail.originiumRecharge * 0.15,
-                        ),
-                      })
-                    }}
+                    {{ totalResourceStatisticsResultDetail.originiumRecharge }}
+                    ({{ numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15) }}
+                    {{ t('page.tools.gachaCalculator.pulls') }})
                   </span>
                 </div>
 
@@ -1985,12 +1982,10 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
-                    {{
-                      t('page.tools.gachaCalculator.countWithPulls', {
-                        count: numberFloor(totalResourceStatisticsResultDetail.diamond, 0),
-                        pulls: numberFloor(totalResourceStatisticsResultDetail.diamond / 500),
-                      })
-                    }}
+                    {{ totalResourceStatisticsResultDetail.diamond }}
+                    ({{ numberFloor(totalResourceStatisticsResultDetail.diamond / 500) }}
+                    {{ t('page.tools.gachaCalculator.pulls') }})
+                 
                   </span>
                 </div>
 
@@ -2041,17 +2036,17 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 <label class="gacha-calculator-arsenal-quota-label">基础凭证抽数</label>
                 <v-number-input
                   v-model="arsenalStandardPulls"
+                  class="gacha-calculator-arsenal-quota-input-field"
                   control-variant="hidden"
                   density="compact"
                   hide-details="auto"
                   variant="solo"
-                  class="gacha-calculator-arsenal-quota-input-field"
                 />
                 <v-btn
-                  size="small"
-                  color="primary"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="primary"
+                  size="small"
+                  variant="tonal"
                   @click="fillStandardPulls"
                 >
                   填入计算得到的抽数
@@ -2061,17 +2056,17 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 <label class="gacha-calculator-arsenal-quota-label">特许凭证抽数</label>
                 <v-number-input
                   v-model="arsenalSpecialPulls"
+                  class="gacha-calculator-arsenal-quota-input-field"
                   control-variant="hidden"
                   density="compact"
                   hide-details="auto"
                   variant="solo"
-                  class="gacha-calculator-arsenal-quota-input-field"
                 />
                 <v-btn
-                  size="small"
-                  color="primary"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="primary"
+                  size="small"
+                  variant="tonal"
                   @click="fillSpecialPulls"
                 >
                   填入计算得到的抽数
@@ -2081,17 +2076,17 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 <label class="gacha-calculator-arsenal-quota-label">武库配额系数</label>
                 <v-number-input
                   v-model="arsenalCoefficient"
+                  class="gacha-calculator-arsenal-quota-input-field"
                   control-variant="hidden"
                   density="compact"
                   hide-details="auto"
                   variant="solo"
-                  class="gacha-calculator-arsenal-quota-input-field"
                 />
                 <v-btn
-                  size="small"
-                  color="orange"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="orange"
+                  size="small"
+                  variant="tonal"
                   @click="arsenalCoefficient = 38"
                 >
                   保底值(38)
@@ -2099,8 +2094,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 <v-btn
                   size="small"
                   color="blue"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  variant="tonal"
                   @click="arsenalCoefficient = 50"
                 >
                   期望值(50)
@@ -2188,22 +2183,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
               <tbody>
                 <tr v-for="item in resourceStatisticsResultDetailList">
                   <td>{{ item.name }}</td>
-                  <!-- <td>
-                    {{
-                      t('page.tools.gachaCalculator.countWithPulls', {
-                        count: item.originiumRecharge,
-                        pulls: numberFloor(item.originiumRecharge * 0.15),
-                      })
-                    }}
-                  </td>
-                  <td>
-                    {{
-                      t('page.tools.gachaCalculator.countWithPulls', {
-                        count: item.diamond,
-                        pulls: numberFloor(item.diamond / 500),
-                      })
-                    }}
-                  </td> -->
+                
                   <td>{{ item.originiumRecharge }}</td>
                   <td>{{ item.diamond }}</td>
                   <td>{{ item.ticketgachaStandardSingle }}</td>
@@ -2215,7 +2195,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel style="display:none;">
+        <v-expansion-panel style="display: none">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
           </v-expansion-panel-title>

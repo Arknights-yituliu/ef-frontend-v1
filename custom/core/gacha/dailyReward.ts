@@ -325,6 +325,7 @@ for (const version of VersionTable) {
   }
 
   if(bpTrackIndex >1) {
+    bpTrackFree.content.ticketgachaStandardSingle = 2;
     bpTrackOriginium.content.ticketgachaStandardSingle = 4;
   }
   

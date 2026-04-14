@@ -3,7 +3,7 @@ import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculato
 
 import { dateFormat } from '#shared/utils/dateUtil';
 import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
-import { numberFloor } from '#shared/utils/numberUtil';
+import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 
 import { onMounted, ref, watch } from 'vue';
 
@@ -213,7 +213,7 @@ function handleImageUpload(event: Event) {
         '压缩后数据长度:',
         compressedDataUrl.length,
         '约',
-        (compressedDataUrl.length / 1024 / 1024).toFixed(2),
+        numberRound(compressedDataUrl.length / 1024 / 1024,2),
         'MB',
       );
 
@@ -242,7 +242,7 @@ function handleImageUpload(event: Event) {
               '更低保真压缩后数据长度:',
               lowerQuality.length,
               '约',
-              (lowerQuality.length / 1024 / 1024).toFixed(2),
+              numberRound(lowerQuality.length / 1024 / 1024,2),
               'MB',
             );
             localStorage.setItem('version-reward-kv-image', lowerQuality);

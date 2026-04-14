@@ -75,7 +75,7 @@
           <div style="width: 34px" />
           <div class="item-info-content flex-1">
             <div class="item-label">{{ getItemName(itemId) }}</div>
-            <div class="item-value">{{ getItemValue(itemId).toFixed(3) }}</div>
+            <div class="item-value">{{ numberRound(getItemValue(itemId),3) }}</div>
           </div>
         </div>
       </div>
@@ -98,9 +98,9 @@
 </template>
 
 <script lang="ts" setup>
+import { numberRound } from '#shared/utils/numberUtil';
 import { itemValueMap } from '@/custom/core/itemValue';
 import { getItemRarity } from '@/shared/utils/gameData/item';
-
 definePageMeta({
   layout: 'default',
 });
