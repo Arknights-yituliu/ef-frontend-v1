@@ -1921,7 +1921,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
               {{ t('page.tools.gachaCalculator.special')
               }}{{ t('page.tools.gachaCalculator.ticketgacha') }}
               {{ t('page.tools.gachaCalculator.rechargeAmount') }}
-              {{ numberFloor(paidResourcesTotalPrice, 2) }} {{ t('page.tools.gachaCalculator.yuan') }}
+              {{ numberFloor(paidResourcesTotalPrice, 2) }}
+              {{ t('page.tools.gachaCalculator.yuan') }}
             </div>
           </v-expansion-panel-title>
 
@@ -1967,14 +1968,9 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
-                    {{
-                      t('page.tools.gachaCalculator.countWithPulls', {
-                        count: totalResourceStatisticsResultDetail.originiumRecharge,
-                        pulls: numberFloor(
-                          totalResourceStatisticsResultDetail.originiumRecharge * 0.15,
-                        ),
-                      })
-                    }}
+                    {{ totalResourceStatisticsResultDetail.originiumRecharge }}
+                    ({{ numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15) }}
+                    {{ t('page.tools.gachaCalculator.pulls') }})
                   </span>
                 </div>
 
@@ -1985,12 +1981,10 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
-                    {{
-                      t('page.tools.gachaCalculator.countWithPulls', {
-                        count: numberFloor(totalResourceStatisticsResultDetail.diamond, 0),
-                        pulls: numberFloor(totalResourceStatisticsResultDetail.diamond / 500),
-                      })
-                    }}
+                    {{ totalResourceStatisticsResultDetail.diamond }}
+                    ({{ numberFloor(totalResourceStatisticsResultDetail.diamond / 500) }}
+                    {{ t('page.tools.gachaCalculator.pulls') }})
+                 
                   </span>
                 </div>
 
@@ -2179,22 +2173,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
               <tbody>
                 <tr v-for="item in resourceStatisticsResultDetailList">
                   <td>{{ item.name }}</td>
-                  <!-- <td>
-                    {{
-                      t('page.tools.gachaCalculator.countWithPulls', {
-                        count: item.originiumRecharge,
-                        pulls: numberFloor(item.originiumRecharge * 0.15),
-                      })
-                    }}
-                  </td>
-                  <td>
-                    {{
-                      t('page.tools.gachaCalculator.countWithPulls', {
-                        count: item.diamond,
-                        pulls: numberFloor(item.diamond / 500),
-                      })
-                    }}
-                  </td> -->
+                
                   <td>{{ item.originiumRecharge }}</td>
                   <td>{{ item.diamond }}</td>
                   <td>{{ item.ticketgachaStandardSingle }}</td>
@@ -2206,7 +2185,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel style="display:none;">
+        <v-expansion-panel style="display: none">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
           </v-expansion-panel-title>

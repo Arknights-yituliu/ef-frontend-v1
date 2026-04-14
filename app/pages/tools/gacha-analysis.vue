@@ -164,11 +164,11 @@
                 </div>
                 <div v-if="type !== 'limited'" class="stat-item">
                   <span class="label">{{ '平均出货数' }}：</span>
-                  <span class="value">{{ info.average.toFixed(1) }}</span>
+                  <span class="value">{{ numberRound(info.average,1) }}</span>
                 </div>
                 <div v-if="type === 'limited'" class="stat-item">
                   <span class="label">{{ '毕业平均' }}：</span>
-                  <span class="value">{{ info.graduateAverage.toFixed(1) }}</span>
+                  <span class="value">{{ numberRound(info.graduateAverage,1) }}</span>
                 </div>
               </div>
             </div>
@@ -527,10 +527,10 @@
                     <span v-if="row.n === Math.round(expectationResult.average)" class="badge">期望附近</span>
                     <span v-if="row.n === 80" class="badge">小保底</span>
                   </td>
-                  <td>{{ (row.rate * 100).toFixed(2) }}%</td>
-                  <td class="prob-cell">{{ (row.exactChance * 100).toFixed(4) }}%</td>
-                  <td class="dim-text">{{ (row.cumulativeFail * 100).toFixed(4) }}%</td>
-                  <td>{{ row.contribution.toFixed(6) }}</td>
+                  <td>{{ numberRound(row.rate * 100,2) }}%</td>
+                  <td class="prob-cell">{{ numberRound(row.exactChance * 100,4) }}%</td>
+                  <td class="dim-text">{{ numberRound(row.cumulativeFail * 100,4) }}%</td>
+                  <td>{{ numberRound(row.contribution,6) }}</td>
                 </tr>
               </tbody>
             </table>
@@ -582,6 +582,7 @@ import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import { CountTo } from 'vue3-count-to';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
+import { numberRound } from '#shared/utils/numberUtil';
 // ========== 获取、加载抽卡数据==========
 
 // 调试开关
@@ -1518,7 +1519,7 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
 
   return {
     // 转换为百分比并保留两位小数，例如 "1.49%"
-    label: `${(chanceOfExactPull * 100).toFixed(2)}%`,
+    label: `${numberRound(chanceOfExactPull * 100,2)}%`,
     subLabel: `事件概率`,
     isBig: false
   };
@@ -1853,7 +1854,7 @@ function renderChart() {
       formatter: (params: any) => {
         const n = params[0].name;
         const val = params[0].data as number;
-        return `<b>第 ${n} 抽</b><br/>出金概率: <b>${val.toFixed(4)}%</b>`;
+        return `<b>第 ${n} 抽</b><br/>出金概率: <b>${numberRound(val,4)}%</b>`;
       }
     },
     grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },

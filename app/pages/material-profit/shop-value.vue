@@ -23,10 +23,10 @@
             {{ item.currentPrice }}
           </template>
           <template #item.totalValue="{ item }">
-            {{ item.totalValue.toFixed(2) }}
+            {{ numberRound(item.totalValue,2) }}
           </template>
           <template #item.costPerformance="{ item }">
-            {{ item.costPerformance.toFixed(4) }}
+            {{ numberRound(item.costPerformance,4) }}
           </template>
         </v-data-table>
       </v-card>
@@ -37,6 +37,8 @@
 <script lang="ts" setup>
 import type { ShopItem } from '@/custom/core/shops';
 import { shops } from '@/custom/core/shops';
+import { numberRound } from '#shared/utils/numberUtil';
+import { getItemName, getItemValue } from '@/shared/utils/gameData/item';
 
 const { t } = useI18n();
 

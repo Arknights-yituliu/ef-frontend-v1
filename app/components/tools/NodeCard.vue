@@ -30,7 +30,7 @@
               }}
             </span>
           </div>
-          <div class="node-rate">{{ node.rate.toFixed(2) }}/min</div>
+          <div class="node-rate">{{ numberRound(node.rate,2) }}/min</div>
         </div>
         <div v-if="isDraggingOver && (node.type === 'output' || node.type === 'splitter')" class="drop-hint">
           松开以添加工具
@@ -39,9 +39,9 @@
       
       <template v-else>
         <div class="child-node-content">
-          <div class="child-rate">{{ node.rate.toFixed(2) }}/min</div>
+          <div class="child-rate">{{ numberRound(node.rate,2) }}/min</div>
           <div v-if="powerPerMinute" class="child-power">
-            {{ powerPerMinute.toFixed(0) }} ⚡
+            {{ numberRound(powerPerMinute,0) }} ⚡
           </div>
         </div>
         <div class="child-delete-button" @click.stop="removeNode">
@@ -74,6 +74,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, watch } from 'vue';
+import { numberRound } from '#shared/utils/numberUtil';
 
 interface Node {
   id: string;
