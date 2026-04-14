@@ -44,7 +44,7 @@ function numberFloor(number: any, decimalPlaces: number = 2) {
 function stringToNumber(str: string | number | undefined): number {
   if (str === undefined || str === null) return 0;
   if (typeof str === 'number') return str;
-  const num = parseFloat(str.replace(/[^\d.-]/g, ''));
+  const num = Number.parseFloat(str.replace(/[^\d.-]/g, ''));
   return isNaN(num) ? 0 : num;
 }
 
