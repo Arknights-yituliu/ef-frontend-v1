@@ -1329,7 +1329,7 @@ function setPieChart(data: PieChartData[]) {
           <div>
             <div> ${param.name || ''}</div>
             <div>${param.seriesName || ''}</div>
-            <div> ${(param.percent || 0).toFixed(1)}%</div>
+            <div> ${numberRound(param.percent || 0, 1)}%</div>
           </div>
         `;
       },
@@ -1881,7 +1881,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
               {{ t('page.tools.gachaCalculator.special')
               }}{{ t('page.tools.gachaCalculator.ticketgacha') }}
               {{ t('page.tools.gachaCalculator.rechargeAmount') }}
-              {{ paidResourcesTotalPrice.toFixed(2) }} {{ t('page.tools.gachaCalculator.yuan') }}
+              {{ numberFloor(paidResourcesTotalPrice, 2) }} {{ t('page.tools.gachaCalculator.yuan') }}
             </div>
           </v-expansion-panel-title>
 
