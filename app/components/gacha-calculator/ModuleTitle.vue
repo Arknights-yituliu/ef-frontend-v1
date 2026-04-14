@@ -5,7 +5,7 @@ const props = defineProps<{title:string}>();
 </script>
 
 <template>
-  <div class="gacha-calculator-module-title">
+  <div class="gacha-calculator-module-title"  style="display:none;">
     <svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
       <!-- 倒三角形 -->
       <polygon

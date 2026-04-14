@@ -9,7 +9,7 @@ import type {
 import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
-import { nextTick, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
@@ -1856,6 +1856,46 @@ function checkRewardIsValid(reward: Reward): boolean {
   return display;
 }
 
+// 武库配额计算
+const arsenalStandardPulls = ref<number>(0);
+const arsenalSpecialPulls = ref<number>(0);
+const arsenalCoefficient = ref<number>(50);
+
+// 实际抽数 = 基础 + 特许，如果特许>30则额外+10
+const arsenalActualPulls = computed(() => {
+  let pulls = arsenalStandardPulls.value + arsenalSpecialPulls.value;
+  if (arsenalSpecialPulls.value > 30) {
+    pulls += 10;
+  }
+  return pulls;
+});
+
+// 武库配额 = 实际抽数 × 系数
+const arsenalQuotaResult = computed(() => arsenalActualPulls.value * arsenalCoefficient.value);
+
+// 监听总计数据变化，自动填入武库配额
+watch(
+  () => gachaResourceStatisticsResult.value.totalPulls.total,
+  () => {
+    fillStandardPulls();
+    fillSpecialPulls();
+  },
+  { deep: true, immediate: true },
+);
+
+// 填入计算得到的基础凭证抽数
+function fillStandardPulls() {
+  arsenalStandardPulls.value =
+    gachaResourceStatisticsResult.value.totalPulls.total?.ticketgachaStandardSingle || 0;
+}
+
+// 填入计算得到的特许凭证抽数
+function fillSpecialPulls() {
+  arsenalSpecialPulls.value = getSpecialAndLimitedPulls(
+    gachaResourceStatisticsResult.value.totalPulls.total,
+  );
+}
+
 function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
   let pulls = 0;
 
@@ -1988,10 +2028,105 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 </div>
               </div>
             </div>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
 
-            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('春晓时')"
-              >仅选择[春晓时]版本内奖励，其他取消</v-btn
-            >
+        <v-expansion-panel value="arsenalQuota">
+          <v-expansion-panel-title class="gacha-calculator-card-title">
+            <div>武库配额估算</div>
+          </v-expansion-panel-title>
+          <v-expansion-panel-text>
+            <div class="gacha-calculator-arsenal-quota">
+              <div class="gacha-calculator-arsenal-quota-row">
+                <label class="gacha-calculator-arsenal-quota-label">基础凭证抽数</label>
+                <v-number-input
+                  v-model="arsenalStandardPulls"
+                  class="gacha-calculator-arsenal-quota-input-field"
+                  control-variant="hidden"
+                  density="compact"
+                  hide-details="auto"
+                  variant="solo"
+                />
+                <v-btn
+                  class="gacha-calculator-arsenal-quota-btn"
+                  color="primary"
+                  size="small"
+                  variant="tonal"
+                  @click="fillStandardPulls"
+                >
+                  填入计算得到的抽数
+                </v-btn>
+              </div>
+              <div class="gacha-calculator-arsenal-quota-row">
+                <label class="gacha-calculator-arsenal-quota-label">特许凭证抽数</label>
+                <v-number-input
+                  v-model="arsenalSpecialPulls"
+                  class="gacha-calculator-arsenal-quota-input-field"
+                  control-variant="hidden"
+                  density="compact"
+                  hide-details="auto"
+                  variant="solo"
+                />
+                <v-btn
+                  class="gacha-calculator-arsenal-quota-btn"
+                  color="primary"
+                  size="small"
+                  variant="tonal"
+                  @click="fillSpecialPulls"
+                >
+                  填入计算得到的抽数
+                </v-btn>
+              </div>
+              <div class="gacha-calculator-arsenal-quota-row">
+                <label class="gacha-calculator-arsenal-quota-label">武库配额系数</label>
+                <v-number-input
+                  v-model="arsenalCoefficient"
+                  class="gacha-calculator-arsenal-quota-input-field"
+                  control-variant="hidden"
+                  density="compact"
+                  hide-details="auto"
+                  variant="solo"
+                />
+                <v-btn
+                  class="gacha-calculator-arsenal-quota-btn"
+                  color="orange"
+                  size="small"
+                  variant="tonal"
+                  @click="arsenalCoefficient = 38"
+                >
+                  保底值(38)
+                </v-btn>
+                <v-btn
+                  class="gacha-calculator-arsenal-quota-btn"
+                  color="green"
+                  size="small"
+                  variant="tonal"
+                  @click="arsenalCoefficient = 50"
+                >
+                  期望值(50)
+                </v-btn>
+              </div>
+              <v-divider style="margin: 0.5rem 0" />
+              <div class="gacha-calculator-arsenal-quota-formula">
+                <span>实际抽数 × 武库配额系数 = 武库配额</span>
+              </div>
+              <div class="gacha-calculator-arsenal-quota-formula-detail">
+                <span class="gacha-calculator-arsenal-quota-formula-num">
+                  {{ arsenalActualPulls }}
+                </span>
+                <span class="gacha-calculator-arsenal-quota-formula-op"> × </span>
+                <span class="gacha-calculator-arsenal-quota-formula-num">
+                  {{ arsenalCoefficient }}
+                </span>
+                <span class="gacha-calculator-arsenal-quota-formula-op"> = </span>
+                <span class="gacha-calculator-arsenal-quota-result-value">
+                  {{ arsenalQuotaResult }}
+                </span>
+              </div>
+              <div class="gacha-calculator-arsenal-quota-formula">
+                <span>*特许凭证抽数>30时，实际抽数会增加赠送的10连</span>
+              </div>
+            </div>
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2071,11 +2206,14 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel>
+        <v-expansion-panel style="display:none;">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
+            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('春晓时')"
+              >一键选择[春晓时]版本内奖励，并取消选择旧版本奖励</v-btn
+            >
             <v-table class="gacha-calculator-shortcut-btn-table">
               <thead>
                 <tr>
@@ -2914,6 +3052,67 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
   width: 36px;
   height: 36px;
   margin: 0 12px 0 0;
+}
+
+.gacha-calculator-arsenal-quota {
+  padding: 0.5rem 0;
+}
+
+.gacha-calculator-arsenal-quota-row {
+  display: flex;
+  align-items: center;
+  margin: 0.75rem 0;
+  gap: 8px;
+}
+
+.gacha-calculator-arsenal-quota-label {
+  min-width: 100px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.gacha-calculator-arsenal-quota-input-field {
+  flex: 1;
+  min-width: 60px;
+}
+
+.gacha-calculator-arsenal-quota-btn {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  margin-left: 4px;
+}
+
+.gacha-calculator-arsenal-quota-formula {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.gacha-calculator-arsenal-quota-formula-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.gacha-calculator-arsenal-quota-formula-num {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.gacha-calculator-arsenal-quota-formula-op {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+.gacha-calculator-arsenal-quota-result-value {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: rgb(33, 150, 243);
+  margin-left: 4px;
 }
 
 .placeholder-block {
