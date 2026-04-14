@@ -98,9 +98,9 @@
 </template>
 
 <script lang="ts" setup>
+import { numberRound } from '#shared/utils/numberUtil';
 import { itemValueMap } from '@/custom/core/itemValue';
 import { getItemRarity } from '@/shared/utils/gameData/item';
-import { numberRound } from '#shared/utils/numberUtil';
 definePageMeta({
   layout: 'default',
 });

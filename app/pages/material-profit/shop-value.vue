@@ -36,8 +36,8 @@
 
 <script lang="ts" setup>
 import type { ShopItem } from '@/custom/core/shops';
-import { shops } from '@/custom/core/shops';
 import { numberRound } from '#shared/utils/numberUtil';
+import { shops } from '@/custom/core/shops';
 import { getItemName, getItemValue } from '@/shared/utils/gameData/item';
 
 const { t } = useI18n();

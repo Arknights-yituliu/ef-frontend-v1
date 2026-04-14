@@ -577,12 +577,12 @@
 </template>
 
 <script setup lang="ts">
+import { numberRound } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import { CountTo } from 'vue3-count-to';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
-import { numberRound } from '#shared/utils/numberUtil';
 // ========== 获取、加载抽卡数据==========
 
 // 调试开关
