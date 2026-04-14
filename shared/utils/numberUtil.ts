@@ -1,14 +1,4 @@
-/**
- * 格式化数字
- * @param {Object} num 数字
- * @param {number} acc 位数
- * @returns {string} 格式化后的数字
- */
-function formatNumber (num: number, acc = 2) {
-  acc = acc !== undefined ? acc : 2;
-  if (num === undefined) return '';
-  return Number.parseFloat(num?.toString()).toFixed(acc);
-}
+
 
 function numberRound(number: number, decimalPlaces: number = 2) {
   // 参数验证
