@@ -1859,7 +1859,7 @@ function checkRewardIsValid(reward: Reward): boolean {
 // 武库配额计算
 const arsenalStandardPulls = ref<number>(0);
 const arsenalSpecialPulls = ref<number>(0);
-const arsenalCoefficient = ref<number>(50);
+const arsenalCoefficient = ref<number>(80);
 
 // 实际抽数 = 基础 + 特许，如果特许>30则额外+10
 const arsenalActualPulls = computed(() => {
@@ -2098,12 +2098,21 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 </v-btn>
                 <v-btn
                   size="small"
-                  color="green"
+                  color="blue"
                   variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
                   @click="arsenalCoefficient = 50"
                 >
                   期望值(50)
+                </v-btn>
+                                <v-btn
+                  size="small"
+                  color="green"
+                  variant="tonal"
+                  class="gacha-calculator-arsenal-quota-btn"
+                  @click="arsenalCoefficient = 80"
+                >
+                  统计值(80)
                 </v-btn>
               </div>
               <v-divider style="margin: 0.5rem 0" />
