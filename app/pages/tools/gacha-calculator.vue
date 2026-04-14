@@ -2092,19 +2092,19 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                   保底值(38)
                 </v-btn>
                 <v-btn
-                  size="small"
-                  color="blue"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="blue"
+                  size="small"
                   variant="tonal"
                   @click="arsenalCoefficient = 50"
                 >
                   期望值(50)
                 </v-btn>
                                 <v-btn
-                  size="small"
-                  color="green"
-                  variant="tonal"
                   class="gacha-calculator-arsenal-quota-btn"
+                  color="green"
+                  size="small"
+                  variant="tonal"
                   @click="arsenalCoefficient = 80"
                 >
                   统计值(80)
