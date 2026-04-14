@@ -7,7 +7,7 @@ import type {
   TotalPullsSingle,
 } from '@/shared/types/gacha-calculator';
 import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-calculator';
-import { numberFloor } from '#shared/utils/numberUtil';
+import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
@@ -1462,25 +1462,26 @@ function loadingUserConfig() {
       }
 
       if (localConfig.existingResource) {
-        console.log(1111, localConfig.existingResource.originiumRecharge);
+        const localExistingResource = localConfig.existingResource;
+        
         gachaCalculatorUserConfig.value.existingResource.originiumRecharge =
-          localConfig.existingResource.originiumRecharge || 0;
+          stringToNumber(localExistingResource.originiumRecharge) 
         existingResource.value.originiumRecharge =
-          localConfig.existingResource.originiumRecharge || 0;
+          stringToNumber(localExistingResource.originiumRecharge) ;
 
         gachaCalculatorUserConfig.value.existingResource.diamond =
-          localConfig.existingResource.diamond || 0;
-        existingResource.value.diamond = localConfig.existingResource.diamond || 0;
+          stringToNumber(localExistingResource.diamond) ;
+        existingResource.value.diamond = stringToNumber(localExistingResource.diamond) ;
 
         gachaCalculatorUserConfig.value.existingResource.ticketgachaStandardSingle =
-          localConfig.existingResource.ticketgachaStandardSingle || 0;
+          stringToNumber(localExistingResource.ticketgachaStandardSingle) ;
         existingResource.value.ticketgachaStandardSingle =
-          localConfig.existingResource.ticketgachaStandardSingle || 0;
+          stringToNumber(localExistingResource.ticketgachaStandardSingle) ;
 
         gachaCalculatorUserConfig.value.existingResource.ticketgachaSpecialSingle =
-          localConfig.existingResource.ticketgachaSpecialSingle || 0;
+          stringToNumber(localExistingResource.ticketgachaSpecialSingle) ;
         existingResource.value.ticketgachaSpecialSingle =
-          localConfig.existingResource.ticketgachaSpecialSingle || 0;
+          stringToNumber(localExistingResource.ticketgachaSpecialSingle) ;
       }
     } catch (error) {
       console.error('Failed to parse user config:', error);
