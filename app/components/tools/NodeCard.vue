@@ -73,8 +73,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, watch } from 'vue';
 import { numberRound } from '#shared/utils/numberUtil';
+import { computed, nextTick, watch } from 'vue';
 
 interface Node {
   id: string;
