@@ -40,7 +40,7 @@ import {
   otherRewardTable,
 } from '@/custom/core/gacha/otherReward';
 
-import { permanentRewardTable, authorityLevelUpReward ,authorityLevelUpRewardTable} from '@/custom/core/gacha/permanentRewardV2';
+import { authorityLevelUpReward, authorityLevelUpRewardTable ,permanentRewardTable} from '@/custom/core/gacha/permanentRewardV2';
 
 
 
@@ -1279,10 +1279,10 @@ function loadingUserConfig() {
         // 日常奖励重构
         _setButtonGroupActive(localConfig.buttonGroupActive, dailyAllRewardTable);
 
-        //常驻奖励重构
+        // 常驻奖励重构
         _setButtonGroupActive(localConfig.buttonGroupActive, permanentRewardTable);
 
-        //活动奖励
+        // 活动奖励
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
 
         

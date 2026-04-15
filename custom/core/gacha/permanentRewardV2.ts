@@ -2,9 +2,9 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import { groupAndMergeTasksByVersionAndModule } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salvage_reward.json';
+import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
-import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 
 
 const authorityLevelUpReward = ref<Reward>({
@@ -122,6 +122,6 @@ permanentRewardTable.value.sort((a: { start: string | number | Date; }, b: { sta
   return new Date(b.start).getTime() - new Date(a.start).getTime();
 });
 
-export { permanentRewardTable, authorityLevelUpReward };
+export { authorityLevelUpReward, permanentRewardTable };
 
 export { default as authorityLevelUpRewardTable } from '@/custom/core/gacha/data/authority_level_up_reward_table.json';

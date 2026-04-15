@@ -1,6 +1,6 @@
 import type {
-  Reward,
   ItemDict,
+  Reward,
   RewardContent,
   RewardStatisticsResultDetail,
   TotalPullsSingle,

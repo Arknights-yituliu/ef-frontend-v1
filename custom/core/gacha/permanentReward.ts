@@ -3,9 +3,9 @@ import { groupAndMergeTasksByVersionAndModule } from '#shared/utils/gacha-calcul
 import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salvage_reward.json';
 import { etchSpaceSalvageCrateRewardTable } from '@/custom/core/gacha/data/etchSpaceSalvageRewardTable';
+import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
-import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 
 const permanentRewardTable = ref<Reward[]>([]);
 for (const reward of permanentRewardTableJson) {
@@ -286,7 +286,6 @@ const permanentAllReward: Reward[] = [
 
 export {
   authorityLevelUpReward,
-  permanentRewardTable,
   beginnerSignInTaskReward,
   beginnerTicketgachaSpecialSingleTaskReward,
   etchSpaceSalvageCrateReward,
@@ -294,6 +293,7 @@ export {
   etchSpaceSalvageReward,
   newHorizonsTaskReward,
   permanentAllReward,
+  permanentRewardTable,
   valleyIVTaskRewardTable,
   wulingTaskRewardTable,
 };
