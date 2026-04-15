@@ -4,13 +4,23 @@ import { ref } from 'vue';
 
 import ActivityRewardTable from '@/custom/core/gacha/data/activity_reward_table.json';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
+import OtherRewardTableJson from '@/custom/core/gacha/data/other_reward_table.json';
 
 const activityReward = ref<Reward[]>([]);
 
 for (const reward of ActivityRewardTable as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
-  if (reward.start < new Date()) {
+  if (reward.end < new Date()) {
+    reward.active = false;
+  }
+  activityReward.value.push(reward);
+}
+
+for (const reward of OtherRewardTableJson as Reward[]) {
+  reward.start = new Date(reward.start);
+  reward.end = new Date(reward.end);
+  if (reward.end < new Date()) {
     reward.active = false;
   }
   activityReward.value.push(reward);

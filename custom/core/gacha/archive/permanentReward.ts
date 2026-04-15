@@ -1,14 +1,31 @@
 import type { Reward } from '#shared/types/gacha-calculator';
-import { groupAndMergeTasksByVersionAndModule } from '#shared/utils/gacha-calculator';
+import { groupAndMergeTasksByVersionAndModule, getActiveTasksByVersionAndModule } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salvage_reward.json';
-import { etchSpaceSalvageCrateRewardTable } from '@/custom/core/gacha/data/etchSpaceSalvageRewardTable';
+import { etchSpaceSalvageCrateRewardTable } from '@/custom/core/gacha/archive/etchSpaceSalvageRewardTable';
 import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
+import FactoryManualTableJson from '@/custom/core/gacha/data/factory_manual_table.json';
+import IntelArchiveRewardJson from '@/custom/core/gacha/data/intel_archive_reward.json';
 
 const permanentRewardTable = ref<Reward[]>([]);
+
+
 for (const reward of permanentRewardTableJson) {
+  reward.start = new Date(reward.start)
+  reward.end = new Date(reward.end)
+  permanentRewardTable.value.push(reward);
+}
+
+const factoryManualMergeRewards: Reward[] = groupAndMergeRewardsByVersion(
+  '简制手册奖励',
+  FactoryManualTableJson,
+);
+
+for(const reward of factoryManualMergeRewards){
+  reward.start = new Date(reward.start)
+  reward.end = new Date(reward.end)
   permanentRewardTable.value.push(reward);
 }
 

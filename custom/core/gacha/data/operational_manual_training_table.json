@@ -1,5 +1,187 @@
 [
   {
+    "id": "能量淤积点首通",
+    "name": {
+      "zh": "能量淤积点首通",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "危境再现·聂菲斯",
+    "name": {
+      "zh": "危境再现·聂菲斯",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "危境再现·罗丹",
+    "name": {
+      "zh": "危境再现·罗丹",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "危境再现·三位一体",
+    "name": {
+      "zh": "危境再现·三位一体",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "危境再现·白垩界卫",
+    "name": {
+      "zh": "危境再现·白垩界卫",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "协议空间·高阶培养Ⅰ-Ⅴ",
+    "name": {
+      "zh": "协议空间·高阶培养Ⅰ-Ⅴ",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 250,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "能量淤积点首通",
+    "name": {
+      "zh": "能量淤积点首通",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 125,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "能量淤积点首通",
+    "name": {
+      "zh": "能量淤积点首通",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+
+  {
+    "id": "危境再现·阮一",
+    "name": {
+      "zh": "危境再现·阮一",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+
+  {
     "id": "基础训练-通用战术",
     "name": {
       "zh": "基础训练-通用战术",
@@ -8,8 +190,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -28,8 +210,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -48,8 +230,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -68,8 +250,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -88,8 +270,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -108,8 +290,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -128,8 +310,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -148,8 +330,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -168,8 +350,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -188,8 +370,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -208,8 +390,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -228,8 +410,8 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -248,8 +430,8 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -268,12 +450,252 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "节点手册·训练",
-    "active": true,
+    "module": "行动手册",
+    "active": false,
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·1",
+    "name": {
+      "zh": "节点奖励·1",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·2",
+    "name": {
+      "zh": "节点奖励·2",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·3",
+    "name": {
+      "zh": "节点奖励·3",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·4",
+    "name": {
+      "zh": "节点奖励·4",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·5",
+    "name": {
+      "zh": "节点奖励·5",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·6",
+    "name": {
+      "zh": "节点奖励·6",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·7",
+    "name": {
+      "zh": "节点奖励·7",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·8",
+    "name": {
+      "zh": "节点奖励·8",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·9",
+    "name": {
+      "zh": "节点奖励·9",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·10",
+    "name": {
+      "zh": "节点奖励·10",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·11",
+    "name": {
+      "zh": "节点奖励·11",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "节点奖励·12",
+    "name": {
+      "zh": "节点奖励·12",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 750,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0

@@ -15,20 +15,16 @@ import {
   freeMonthlyPass,
 } from '@/custom/core/gacha/dailyReward';
 
-import {
-  authorityLevelTaskRewards,
-  authorityLevelUpReward,
-  worldLevelReward,
-} from '@/custom/core/gacha/levelReward';
+
 
 import {
   operationalManualNodeReward,
   operationalManualReward,
 } from '@/custom/core/gacha/operationalManualReward';
 
-import { otherAllRewardTable } from '@/custom/core/gacha/otherReward';
 
-import { permanentAllReward } from '@/custom/core/gacha/permanentReward';
+
+import { authorityLevelUpReward, permanentRewardTable } from '@/custom/core/gacha/permanentRewardV2';
 
 import {
   valleyIVAuryleneCollectReward,
@@ -39,6 +35,7 @@ import {
   valleyIVRegionalStockBillStoreReward,
   valleyIVSimulationReward,
 } from '@/custom/core/gacha/valleyIVRegionalReward';
+
 import { wulingRegionalAllRewardTable } from '@/custom/core/gacha/wulingRegionalReward';
 
 // 控制台数据 - 初始化时使用默认图片
@@ -285,7 +282,7 @@ const versionTime = [
   },
   {
     start: new Date('2026/04/17 12:00:00'),
-    end: new Date('2026/05/22 12:00:00'),
+    end: new Date('2026/06/05 12:00:00'),
     version: '春晓时',
   },
 ];
@@ -306,7 +303,7 @@ for (const reward of activityReward.value) {
 }
 
 versionReward.value.push(
-  ...otherAllRewardTable.value,
+  
   valleyIVAuryleneCollectReward.value,
   valleyIVCrateReward.value,
   valleyIVBattleCrateReward.value,
@@ -324,15 +321,12 @@ for (const reward of wulingRegionalAllRewardTable) {
   versionReward.value.push(reward);
 }
 
-for (const reward of authorityLevelTaskRewards.value) {
-  versionReward.value.push(reward);
-}
-
 versionReward.value.push(
   authorityLevelUpReward.value,
-  worldLevelReward.value,
-  ...permanentAllReward,
+  ...permanentRewardTable.value,
 );
+
+
 
 for (const reward of operationalManualReward.value) {
   versionReward.value.push(reward);

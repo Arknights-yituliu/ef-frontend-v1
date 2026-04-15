@@ -238,6 +238,7 @@ function groupAndMergeTasksByVersionAndModule(moduleId: string, tasks: Reward[])
       if (!firstTask) {
         continue;
       }
+     
       
       const mergedTask: Reward = {
         ...firstTask,

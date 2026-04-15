@@ -5,6 +5,9 @@ import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salv
 import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
+import operationalManualTrainingTableJson from '@/custom/core/gacha/data/operational_manual_training_table.json';
+import FactoryManualTableJson from '@/custom/core/gacha/data/factory_manual_table.json';
+import IntelArchiveRewardJson from '@/custom/core/gacha/data/intel_archive_reward.json';
 
 
 const authorityLevelUpReward = ref<Reward>({
@@ -29,18 +32,84 @@ const authorityLevelUpReward = ref<Reward>({
 });
 
 const permanentRewardTable = ref<Reward[]>([]);
-for (const reward of permanentRewardTableJson) {
+
+
+
+let operatorTotal = 0;
+
+for (const reward of operationalManualTrainingTableJson as Reward[]) {
+  if(reward.id.includes('干员教学')){
+   operatorTotal++
+  }else{
+    reward.start = new Date(reward.start)
+    reward.end = new Date(reward.end)
+    permanentRewardTable.value.push(reward);
+  }
+}
+
+const operatorTraining =  {
+  id: 'operator_training',
+  name: {
+    zh: `干员教学`,
+    en: '',
+  },
+  start: new Date('2026/01/22 12:00:00'),
+  end: new Date('2099/12/31 12:00:00'),
+  type: '通用',
+  module: '权限等阶提升',
+  active: false,
+  version: '零号委托',
+  content: {
+    originiumRecharge: 0,
+    diamond: operatorTotal * 20,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  },
+}
+
+permanentRewardTable.value.push(operatorTraining);
+
+const factoryManualMergeRewards: Reward[] = groupAndMergeRewardsByVersion(
+  '简制手册奖励',
+  FactoryManualTableJson,
+);
+
+for (const reward of permanentRewardTableJson as Reward[]) {
+  reward.start = new Date(reward.start)
+  reward.end = new Date(reward.end)
+  permanentRewardTable.value.push(reward);
+}
+
+for (const reward of factoryManualMergeRewards as Reward[]) {
+  reward.start = new Date(reward.start)
+  reward.end = new Date(reward.end)
   permanentRewardTable.value.push(reward);
 }
 
 
 
+
+
+
 const mergedValleyIVTasks = groupAndMergeTasksByVersionAndModule('四号谷地', valleyIVTaskTable);
-permanentRewardTable.value.push(...mergedValleyIVTasks);
+for (const reward of mergedValleyIVTasks as Reward[]) {
+  reward.start = new Date(reward.start)
+  reward.end = new Date(reward.end)
+  permanentRewardTable.value.push(reward);
+}
+
 
 
 const mergedWulingTasks = groupAndMergeTasksByVersionAndModule('武陵', wulingTaskTable);
-permanentRewardTable.value.push(...mergedWulingTasks);
+for (const reward of mergedWulingTasks as Reward[]) {
+  reward.start = new Date(reward.start)
+  reward.end = new Date(reward.end)
+  permanentRewardTable.value.push(reward);
+}
+
+
+
 
 
 
@@ -51,8 +120,8 @@ const tempTasksReward: Reward[] = [
       zh: '主线任务',
       en: '',
     },
-    start: '2026/04/17 12:00:00',
-    end: '2099/12/31 12:00:00',
+    start: new Date('2026/04/17 12:00:00'),
+    end: new Date('2099/12/31 12:00:00'),
     type: '通用',
     module: '武陵·主线任务',
     active: true,
@@ -71,8 +140,8 @@ const tempTasksReward: Reward[] = [
       zh: '重要任务',
       en: '',
     },
-    start: '2026/04/17 12:00:00',
-    end: '2099/12/31 12:00:00',
+    start: new Date('2026/04/17 12:00:00'),
+    end: new Date('2099/12/31 12:00:00'),
     type: '通用',
     module: '武陵·重要任务',
     active: true,
@@ -91,8 +160,8 @@ const tempTasksReward: Reward[] = [
       zh: '次要任务',
       en: '',
     },
-    start: '2026/04/17 12:00:00',
-    end: '2099/12/31 12:00:00',
+    start: new Date('2026/04/17 12:00:00'),
+    end: new Date('2099/12/31 12:00:00'),
     type: '通用',
     module: '武陵·次要任务',
     active: true,
@@ -116,10 +185,18 @@ const mergedEtchSpaceSalvageRewards = groupAndMergeTasksByVersionAndModule(
   etchSpaceSalvageRewardJson,
 );
 
-permanentRewardTable.value.push(...mergedEtchSpaceSalvageRewards);
+for (const reward of mergedEtchSpaceSalvageRewards as Reward[]) {
+  reward.start = new Date(reward.start)
+  reward.end = new Date(reward.end)
+  permanentRewardTable.value.push(reward);
+}
 
-permanentRewardTable.value.sort((a: { start: string | number | Date; }, b: { start: string | number | Date; }) => {
-  return new Date(b.start).getTime() - new Date(a.start).getTime();
+
+
+permanentRewardTable.value.sort((a: { start: string | Date; }, b: { start: string |  Date; }) => {
+  const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();
+  const bTime = typeof b.start === 'string' ? new Date(b.start).getTime() : b.start.getTime();
+  return bTime - aTime;
 });
 
 export { authorityLevelUpReward, permanentRewardTable };
