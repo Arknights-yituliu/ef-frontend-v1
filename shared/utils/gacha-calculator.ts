@@ -1,9 +1,18 @@
 import type {
   Reward,
+  ItemDict,
   RewardContent,
   RewardStatisticsResultDetail,
   TotalPullsSingle,
 } from '#shared/types/gacha-calculator';
+
+export const itemIdDict: ItemDict = {
+  originiumRecharge: 'originium_recharge',
+  diamond: 'diamond',
+  ticketgachaStandardSingle: 'ticketgacha_standard_single',
+  ticketgachaSpecialSingle: 'ticketgacha_special_single',
+  ticketgachaLimitedSingle: 'ticketgacha_special_single_lt_1_0_1',
+};
 
 /**
  * 计算排期开始与结束日期的天数差
@@ -229,11 +238,12 @@ function groupAndMergeTasksByVersionAndModule(moduleId: string, tasks: Reward[])
       if (!firstTask) {
         continue;
       }
+      
       const mergedTask: Reward = {
         ...firstTask,
         id: `${moduleId}_${version}_${module}`,
         name: {
-          zh: firstTask.module,
+          zh: `${firstTask.regional || ''}-${firstTask.module}`,
           en: ``,
         },
         content: {

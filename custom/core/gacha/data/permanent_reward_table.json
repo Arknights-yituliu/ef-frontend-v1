@@ -1,0 +1,242 @@
+[
+  {
+    "id": "新手特许赠礼",
+    "name": {
+      "zh": "新手特许赠礼",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "常驻活动",
+    "active": false,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 10,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "唤醒签到",
+    "name": {
+      "zh": "唤醒签到",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "常驻活动",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 12,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "于此启程任务",
+    "name": {
+      "zh": "于此启程任务",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "常驻活动",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 40,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "authority_level_8_task_rewards",
+    "name": {
+      "zh": "权限等阶8奖励",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "权限等阶提升活动",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 10,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "authority_level_15_task_rewards",
+    "name": {
+      "zh": "权限等阶15奖励",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "权限等阶提升活动",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 10,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "authority_level_20_task_rewards",
+    "name": {
+      "zh": "权限等阶20奖励",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "权限等阶提升活动",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 10,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "authority_level_30_task_rewards",
+    "name": {
+      "zh": "权限等阶30奖励",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "权限等阶提升活动",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 10,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "authority_level_45_task_rewards",
+    "name": {
+      "zh": "权限等阶45奖励",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "权限等阶提升活动",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "探索等级4",
+    "name": {
+      "zh": "探索等级4",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "世界等级提升",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "探索等级5",
+    "name": {
+      "zh": "探索等级5",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "世界等级提升",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "探索等级6",
+    "name": {
+      "zh": "探索等级6",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "世界等级提升",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "探索等级7",
+    "name": {
+      "zh": "探索等级7",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "世界等级提升",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  }
+]

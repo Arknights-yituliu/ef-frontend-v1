@@ -1,11 +1,40 @@
 import type { Reward } from '#shared/types/gacha-calculator';
-import { groupAndMergeTasksByVersionAndModule } from '#shared/utils/gacha-calculator.ts';
+import { groupAndMergeTasksByVersionAndModule } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salvage_reward.json';
 import { etchSpaceSalvageCrateRewardTable } from '@/custom/core/gacha/data/etchSpaceSalvageRewardTable';
 import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
+import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 
+const permanentRewardTable = ref<Reward[]>([]);
+for (const reward of permanentRewardTableJson) {
+  permanentRewardTable.value.push(reward);
+}
+
+
+
+
+const authorityLevelUpReward = ref<Reward>({
+  id: 'authority_level_up_reward',
+  name: {
+    zh: `权限等级提升奖励`,
+    en: '',
+  },
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
+  type: '通用',
+  module: '权限等阶提升',
+  active: true,
+  version: '零号委托',
+  content: {
+    originiumRecharge: 0,
+    diamond: 4500,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  },
+});
 
 const beginnerSignInTaskReward = ref<Reward>({
   id: 'beginner_sign_in_task',
@@ -23,16 +52,16 @@ const beginnerSignInTaskReward = ref<Reward>({
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 11,
+    ticketgachaSpecialSingle: 12,
     ticketgachaLimitedSingle: 0,
   },
 });
 
 const newHorizonsTaskReward = ref<Reward[]>([
   {
-    id: 'new_horizons_task_reward_1',
+    id: 'new_horizons_task_reward',
     name: {
-      zh: `于此启程任务·1`,
+      zh: `于此启程任务`,
       en: '',
     },
     start: '2026/01/22 12:00:00',
@@ -44,7 +73,7 @@ const newHorizonsTaskReward = ref<Reward[]>([
     content: {
       originiumRecharge: 0,
       diamond: 0,
-      ticketgachaStandardSingle: 10,
+      ticketgachaStandardSingle: 40,
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
@@ -178,7 +207,7 @@ const tempTasksReward: Reward[] = [
     active: true,
     version: '春晓时',
     content: {
-      originiumRecharge:0,
+      originiumRecharge: 0,
       diamond: 1000,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
@@ -198,28 +227,28 @@ const tempTasksReward: Reward[] = [
     active: true,
     version: '春晓时',
     content: {
-      originiumRecharge:0,
+      originiumRecharge: 0,
       diamond: 150,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-  }
+  },
 ];
 
 wulingTaskRewardTable.value.push(...tempTasksReward);
 
 const etchSpaceSalvageReward = ref<Reward[]>([]);
 
-const mergedEtchSpaceSalvageRewards = groupAndMergeTasksByVersionAndModule('蚀像寻遗', etchSpaceSalvageRewardJson);
-
-
+const mergedEtchSpaceSalvageRewards = groupAndMergeTasksByVersionAndModule(
+  '蚀像寻遗',
+  etchSpaceSalvageRewardJson,
+);
 
 etchSpaceSalvageReward.value.push(...mergedEtchSpaceSalvageRewards);
 
 let etchSpaceSalvageCrateRewardMax: number = 0;
 for (const reward of etchSpaceSalvageCrateRewardTable) {
-
   etchSpaceSalvageCrateRewardMax += reward.content.diamond;
 }
 
@@ -237,7 +266,7 @@ const etchSpaceSalvageCrateReward = ref<Reward>({
   version: '零号委托',
   content: {
     originiumRecharge: 0,
-    diamond:etchSpaceSalvageCrateRewardMax,
+    diamond: etchSpaceSalvageCrateRewardMax,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,
@@ -245,12 +274,19 @@ const etchSpaceSalvageCrateReward = ref<Reward>({
   tips: ['通过滑块调节蚀像寻遗储藏箱奖励数量'],
 });
 
-
-
-const permanentAllReward: Reward[] = [ beginnerSignInTaskReward.value, ...beginnerTicketgachaSpecialSingleTaskReward.value, ...etchSpaceSalvageReward.value, ...etchSpaceSalvageCrateRewardTable, ...newHorizonsTaskReward.value, ...valleyIVTaskRewardTable.value, ...wulingTaskRewardTable.value];
-
+const permanentAllReward: Reward[] = [
+  beginnerSignInTaskReward.value,
+  ...beginnerTicketgachaSpecialSingleTaskReward.value,
+  ...etchSpaceSalvageReward.value,
+  ...etchSpaceSalvageCrateRewardTable,
+  ...newHorizonsTaskReward.value,
+  ...valleyIVTaskRewardTable.value,
+  ...wulingTaskRewardTable.value,
+];
 
 export {
+  authorityLevelUpReward,
+  permanentRewardTable,
   beginnerSignInTaskReward,
   beginnerTicketgachaSpecialSingleTaskReward,
   etchSpaceSalvageCrateReward,
@@ -262,3 +298,4 @@ export {
   wulingTaskRewardTable,
 };
 
+export { default as authorityLevelUpRewardTable } from '@/custom/core/gacha/data/authority_level_up_reward_table.json';

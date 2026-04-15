@@ -3,13 +3,7 @@ import { ref } from 'vue';
 
 
 
-export const itemIdDict: ItemDict = {
-  originiumRecharge: 'originium_recharge',
-  diamond: 'diamond',
-  ticketgachaStandardSingle: 'ticketgacha_standard_single',
-  ticketgachaSpecialSingle: 'ticketgacha_special_single',
-  ticketgachaLimitedSingle: 'ticketgacha_special_single_lt_1_0_1',
-};
+
 
 
 
@@ -113,25 +107,7 @@ export const authorityLevelTaskRewards = ref<Reward[]>([{
   }
 ]);
 
-export const authorityLevelUpReward = ref<Reward>({
-  id: 'authority_level_up_reward',
-  name: {
-    zh: `权限等级提升奖励`,
-    en: ''
-  },
-  start: '2026/01/22 12:00:00',
-  end: '2099/12/31 12:00:00',
-  type: '通用',
-  module: '权限等阶提升',
-  active: true,version: "零号委托",
-  content: {
-    originiumRecharge: 0,
-    diamond: 4500,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0
-  }
-});
+
 
 export const worldLevelReward = ref<Reward>({
   id: 'world_level_reward',
@@ -156,4 +132,3 @@ export const worldLevelReward = ref<Reward>({
 
 
 
-export {default as authorityLevelUpRewardTable} from '@/custom/core/gacha/data/authority_level_up_reward_table.json'

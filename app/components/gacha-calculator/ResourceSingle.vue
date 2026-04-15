@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Reward } from '#shared/types/gacha-calculator';
-import { itemIdDict } from '@/custom/core/gacha/levelReward';
+import { itemIdDict } from '#shared/utils/gacha-calculator';
 const props = defineProps<Reward>();
 
 /**
