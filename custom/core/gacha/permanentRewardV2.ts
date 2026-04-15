@@ -2,12 +2,12 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import { groupAndMergeTasksByVersionAndModule } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/etch_space_salvage_reward.json';
+import FactoryManualTableJson from '@/custom/core/gacha/data/factory_manual_table.json';
+import IntelArchiveRewardJson from '@/custom/core/gacha/data/intel_archive_reward.json';
+import operationalManualTrainingTableJson from '@/custom/core/gacha/data/operational_manual_training_table.json';
 import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 import valleyIVTaskTable from '@/custom/core/gacha/data/valley_IV_task_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/wuling_task_table.json';
-import operationalManualTrainingTableJson from '@/custom/core/gacha/data/operational_manual_training_table.json';
-import FactoryManualTableJson from '@/custom/core/gacha/data/factory_manual_table.json';
-import IntelArchiveRewardJson from '@/custom/core/gacha/data/intel_archive_reward.json';
 
 
 const authorityLevelUpReward = ref<Reward>({
