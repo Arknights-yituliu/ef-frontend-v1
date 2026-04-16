@@ -28,10 +28,10 @@ import {
 } from '@/custom/core/gacha/data/wulingRegionalRewardTable';
 
 import {
+  archivePermanentRewardTable,
   authorityLevelUpReward,
   authorityLevelUpRewardTable,
   permanentRewardTable,
-  archivePermanentRewardTable,
 } from '@/custom/core/gacha/permanentRewardV2';
 
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';

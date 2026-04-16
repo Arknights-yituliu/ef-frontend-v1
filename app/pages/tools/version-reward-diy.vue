@@ -24,7 +24,7 @@ import {
 
 
 
-import { authorityLevelUpReward, permanentRewardTable, archivePermanentRewardTable } from '@/custom/core/gacha/permanentRewardV2';
+import { archivePermanentRewardTable, authorityLevelUpReward, permanentRewardTable } from '@/custom/core/gacha/permanentRewardV2';
 
 import {
   valleyIVAuryleneCollectReward,

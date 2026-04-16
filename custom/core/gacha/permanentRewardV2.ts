@@ -234,6 +234,6 @@ permanentRewardTable.value.sort((a: { start: string | Date; }, b: { start: strin
   return bTime - aTime;
 });
 
-export { authorityLevelUpReward, permanentRewardTable, archivePermanentRewardTable };
+export { archivePermanentRewardTable, authorityLevelUpReward, permanentRewardTable };
 
 export { default as authorityLevelUpRewardTable } from '@/custom/core/gacha/data/authority_level_up_reward_table.json';
