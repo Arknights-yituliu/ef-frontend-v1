@@ -5,8 +5,8 @@ import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 
 import { onMounted, ref, watch } from 'vue';
 import {
-  currentVersionRewardTotal,
   currentVersionReward,
+  currentVersionRewardTotal,
   filterRewardByVersion,
   versionTable,
 } from '@/custom/core/gacha/versionReward';
