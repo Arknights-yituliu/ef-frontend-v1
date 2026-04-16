@@ -49,7 +49,7 @@ function createNewPoolActivity() {
       end: new Date(item.versionEnd),
       type: '通用',
       module: '活动',
-      active: false,
+      active: currentVersion === item.version,
       version: item.version,
       content: {
         originiumRecharge: 0,
@@ -72,7 +72,7 @@ function createNewPoolActivity() {
         end: new Date(item.versionEnd),
         type: '通用',
         module: '活动',
-        active: false,
+        active: currentVersion === item.version,
         version: item.version,
         content: {
           originiumRecharge: 0,
@@ -95,7 +95,7 @@ function createNewPoolActivity() {
       end: new Date(item.poolEnd),
       type: item.character,
       module: '活动',
-      active: false,
+      active: currentVersion === item.version,
       version: item.version,
       content: {
         originiumRecharge: 0,

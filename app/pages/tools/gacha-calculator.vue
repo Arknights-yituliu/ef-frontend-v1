@@ -312,7 +312,7 @@ function activityRewardStatistics(): void {
  * 常驻奖励计算相关代码起始
  */
 
-const authorityLevelProgress = ref<number[]>([1, 60]);
+const authorityLevelProgress = ref<number[]>([60, 60]);
 
 watch(
   authorityLevelProgress,
@@ -1193,7 +1193,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
-                    {{ totalResourceStatisticsResultDetail.diamond }}
+                    {{ numberFloor(totalResourceStatisticsResultDetail.diamond,0) }}
                     ({{ numberFloor(totalResourceStatisticsResultDetail.diamond / 500,0) }}
                     {{ t('page.tools.gachaCalculator.pulls') }})
                   </span>
