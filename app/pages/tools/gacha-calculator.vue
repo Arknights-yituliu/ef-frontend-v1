@@ -276,7 +276,7 @@ watch(
 );
 
 let activityRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '活动奖励',
+  name: '版本限时活动',
   originiumRecharge: 0,
   diamond: 0,
   ticketgachaStandardSingle: 0,
@@ -286,7 +286,7 @@ let activityRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
 
 function activityRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
-    name: '活动奖励',
+    name: '版本限时活动',
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
@@ -360,7 +360,7 @@ watch(
 );
 
 let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '常驻奖励·新版本',
+  name: '版本新增常驻奖励',
   originiumRecharge: 0,
   diamond: 0,
   ticketgachaStandardSingle: 0,
@@ -369,7 +369,7 @@ let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
 };
 
 let archivePermanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '常驻奖励·旧版本',
+  name: '往期版本常驻奖励',
   originiumRecharge: 0,
   diamond: 0,
   ticketgachaStandardSingle: 0,
@@ -379,7 +379,7 @@ let archivePermanentRewardStatisticsResultDetail: RewardStatisticsResultDetail =
 
 function permanentRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
-    name: '常驻奖励·新版本',
+    name: '版本新增常驻奖励',
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
@@ -395,7 +395,7 @@ function permanentRewardStatistics(): void {
 
 function aprchivePermanentRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
-    name: '常驻奖励·旧版本',
+    name: '往期版本常驻奖励',
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
