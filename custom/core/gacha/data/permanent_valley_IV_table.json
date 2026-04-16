@@ -1,0 +1,206 @@
+[
+  {
+    "id": "四号谷地·调度券商店",
+    "name": {
+      "zh": "四号谷地·调度券商店",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区建设",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 9,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·地图探索",
+    "name": {
+      "zh": "四号谷地·地图探索",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区建设",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 20,
+      "diamond": 12725,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips":[ "包含储藏箱、机器人和处理险情"]
+  },
+  {
+    "id": "四号谷地·地区建设等级1-4",
+    "name": {
+      "zh": "四号谷地·地区建设等级1-4",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区建设",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·地区建设等级5-8",
+    "name": {
+      "zh": "四号谷地·地区建设等级5-8",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区建设",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 800,
+      "ticketgachaStandardSingle": 4,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·地区建设等级9-12",
+    "name": {
+      "zh": "四号谷地·地区建设等级9-12",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区建设",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 800,
+      "ticketgachaStandardSingle": 7,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·醚质阶段1-6",
+    "name": {
+      "zh": "四号谷地·醚质阶段1-6",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地图收集",
+    "regional": "四号谷地",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 9,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·醚质阶段7-12",
+    "name": {
+      "zh": "四号谷地·醚质阶段7-12",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地图收集",
+    "regional": "四号谷地",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 16,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·醚质阶段13-18",
+    "name": {
+      "zh": "四号谷地·醚质阶段13-18",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地图收集",
+    "regional": "四号谷地",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 18,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·模拟空间",
+    "name": {
+      "zh": "四号谷地·模拟空间",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区建设",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 650,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "四号谷地·据点防御",
+    "name": {
+      "zh": "四号谷地·据点防御",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区建设",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 560,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  }
+]

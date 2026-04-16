@@ -1,5 +1,68 @@
 [
   {
+    "id": "武陵_春晓时_主线任务",
+    "name": {
+      "zh": "主线任务",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 22,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "武陵_春晓时_重要任务",
+    "name": {
+      "zh": "重要任务",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "武陵_春晓时_次要任务",
+    "name": {
+      "zh": "次要任务",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "次要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "意外来袭",
     "name": {
       "zh": "意外来袭",
@@ -9,8 +72,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
@@ -30,8 +93,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
@@ -51,8 +114,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 3,
@@ -72,8 +135,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
@@ -93,8 +156,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
@@ -114,8 +177,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
@@ -135,8 +198,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
@@ -156,8 +219,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
@@ -177,8 +240,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 1,
@@ -198,8 +261,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -219,8 +282,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -240,8 +303,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -261,8 +324,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -282,8 +345,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -303,8 +366,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -324,8 +387,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -345,8 +408,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -366,8 +429,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "次要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -387,8 +450,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 2,
@@ -408,9 +471,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "四号谷地",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 2,
@@ -430,8 +492,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 2,
@@ -451,8 +513,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 2,
@@ -472,8 +534,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 2,
@@ -493,8 +555,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "主线任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 2,
@@ -514,8 +576,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "功能任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -535,8 +597,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -556,8 +618,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -577,8 +639,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -598,8 +660,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -619,8 +681,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -640,8 +702,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -661,8 +723,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "重要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -682,8 +744,8 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "次要任务",
-    "regional": "武陵",
     "active": false,
+    "regional": "武陵",
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,

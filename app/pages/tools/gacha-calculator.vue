@@ -22,10 +22,7 @@ import {
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
 
-import {
-  wulingAuryleneCollectStageTable,
-  wulingRegionalDevelopmentRewardTable,
-} from '@/custom/core/gacha/data/wulingRegionalRewardTable';
+
 
 import {
   archivePermanentRewardTable,
@@ -36,30 +33,6 @@ import {
 
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
-import {
-  valleyIVAuryleneCollectReward,
-  valleyIVAuryleneCollectStageTable,
-  valleyIVBattleCrateReward,
-  valleyIVBattleCrateRewardMax,
-  valleyIVCrateReward,
-  valleyIVCrateRewardMax,
-  valleyIVDefenseConstructionReward,
-  valleyIVRegionalDevelopmentReward,
-  valleyIVRegionalStockBillStoreReward,
-  valleyIVSimulationReward,
-} from '@/custom/core/gacha/valleyIVRegionalReward';
-
-import {
-  wulingAuryleneCollectReward,
-  wulingBattleCrateReward,
-  wulingBattleCrateRewardMax,
-  wulingCrateReward,
-  wulingCrateRewardMax,
-  wulingDefenseConstructionReward,
-  wulingRegionalDevelopmentReward,
-  wulingRegionalStockBillStoreReward,
-  wulingSimulationReward,
-} from '@/custom/core/gacha/wulingRegionalReward';
 
 import { packs } from '@/custom/core/packs';
 
@@ -126,9 +99,7 @@ function selectedPool(option: PoolOption): void {
   dailyRewardStatistics();
   activityRewardStatistics();
 
-  valleyIVRegionalRewardStatistics();
-  wulingRegionalRewardStatistics();
-
+ 
   permanentRewardStatistics();
 
   rechargeResourceStatistics();
@@ -340,343 +311,8 @@ function activityRewardStatistics(): void {
  * 活动奖励计算相关代码结尾
  */
 
-/**
- * 地区奖励计算相关代码起始
- */
 
-/**
- * 四号谷地地区奖励起始
- */
 
-// 四号谷地调度商店
-watch(
-  valleyIVRegionalStockBillStoreReward,
-  (newValue) => {
-    saveUserConfig(newValue.id, newValue.active, 'buttonActive');
-
-    valleyIVRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 四号谷地地区建设等级进度
-const valleyIVRegionalDevelopmentProgress = ref<number[]>([1, 12]);
-
-watch(
-  valleyIVRegionalDevelopmentProgress,
-  (newVal) => {
-    let diamond: number = 0;
-    let ticketgachaStandardSingle: number = 0;
-    for (let i = newVal[0]! + 1; i <= newVal[1]!; i++) {
-      if (i < 10) {
-        diamond += 200;
-        ticketgachaStandardSingle++;
-        continue;
-      }
-      diamond += 200;
-      ticketgachaStandardSingle += 2;
-    }
-    valleyIVRegionalDevelopmentReward.value.content.diamond = diamond;
-    valleyIVRegionalDevelopmentReward.value.content.ticketgachaStandardSingle =
-      ticketgachaStandardSingle;
-    saveUserConfig(valleyIVRegionalDevelopmentReward.value.id, newVal, 'rangeSlider');
-
-    valleyIVRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 四号谷地地区醚质收集进度
-const valleyIVAuryleneCollectProgress = ref<number[]>([0, 18]);
-
-watch(
-  valleyIVAuryleneCollectProgress,
-  (newVal) => {
-    let originiumRecharge: number = 0;
-    for (let i = newVal[0]!; i < newVal[1]!; i++) {
-      const stageReward = valleyIVAuryleneCollectStageTable[i];
-      if (stageReward !== undefined) {
-        originiumRecharge += stageReward.originiumRecharge || 0;
-      }
-    }
-
-    valleyIVAuryleneCollectReward.value.content.originiumRecharge = originiumRecharge;
-    saveUserConfig(valleyIVAuryleneCollectReward.value.id, newVal, 'rangeSlider');
-
-    valleyIVRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 四号谷地地区储藏箱开启进度
-const valleyIVCrateProgress = ref<number[]>([0, valleyIVCrateRewardMax]);
-
-watch(
-  valleyIVCrateProgress,
-  (newVal) => {
-    valleyIVCrateReward.value.content.diamond = newVal[1]! - newVal[0]!;
-    saveUserConfig(valleyIVCrateReward.value.id, newVal, 'rangeSlider');
-
-    valleyIVRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 四号谷地地区淤积点宝箱
-const valleyIVBattleCrateRewardProgress = ref<number[]>([0, valleyIVBattleCrateRewardMax]);
-
-watch(
-  valleyIVBattleCrateRewardProgress,
-  (newVal) => {
-    valleyIVBattleCrateReward.value.content.originiumRecharge = newVal[1]! - newVal[0]!;
-    saveUserConfig(valleyIVBattleCrateReward.value.id, newVal, 'rangeSlider');
-
-    valleyIVRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 四号谷地模拟
-const valleyIVSimulationProgress = ref<number[]>([0, 26]);
-watch(
-  valleyIVSimulationProgress,
-  (newVal) => {
-    valleyIVSimulationReward.value.content.diamond = (newVal[1]! - newVal[0]!) * 25;
-    saveUserConfig(valleyIVSimulationReward.value.id, newVal, 'rangeSlider');
-
-    valleyIVRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 四号谷地据点防御
-watch(
-  valleyIVDefenseConstructionReward,
-  (newValue) => {
-    for (const item of newValue) {
-      saveUserConfig(item.id, item.active, 'buttonGroupActive');
-    }
-    valleyIVRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-/**
- * 四号谷地地区奖励结尾
- */
-
-/**
- * 武陵地区奖励起始
- */
-
-watch(
-  wulingRegionalStockBillStoreReward,
-  (newValue) => {
-    for (const item of newValue) {
-      saveUserConfig(item.id, item.active, 'buttonGroupActive');
-    }
-
-    wulingRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 武陵地区建设奖励
-const wulingRegionalDevelopmentProgress = ref<number[]>([1, 6]);
-
-watch(
-  wulingRegionalDevelopmentProgress,
-  (newVal) => {
-    let diamond: number = 0;
-    let ticketgachaStandardSingle: number = 0;
-    for (let i = newVal[0]!; i < newVal[1]!; i++) {
-      const stageReward = wulingRegionalDevelopmentRewardTable[i];
-      if (stageReward !== undefined) {
-        diamond += stageReward.content.diamond || 0;
-        ticketgachaStandardSingle += stageReward.content.ticketgachaStandardSingle || 0;
-      }
-    }
-    wulingRegionalDevelopmentReward.value.content.diamond = diamond;
-    wulingRegionalDevelopmentReward.value.content.ticketgachaStandardSingle =
-      ticketgachaStandardSingle;
-    saveUserConfig(wulingRegionalDevelopmentReward.value.id, newVal, 'rangeSlider');
-
-    wulingRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 武陵醚质收集奖励
-const wulingAuryleneCollectProgress = ref<number[]>([0, 8]);
-// 武陵醚质收集奖励进度
-watch(
-  wulingAuryleneCollectProgress,
-  (newVal) => {
-    let originiumRecharge: number = 0;
-    for (let i = newVal[0]!; i < newVal[1]!; i++) {
-      const stageReward = wulingAuryleneCollectStageTable[i];
-      if (stageReward !== undefined) {
-        originiumRecharge += stageReward.content.originiumRecharge || 0;
-      }
-    }
-
-    wulingAuryleneCollectReward.value.content.originiumRecharge = originiumRecharge;
-    saveUserConfig(wulingAuryleneCollectReward.value.id, newVal, 'rangeSlider');
-
-    wulingRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 武陵储藏箱奖励
-const wulingCrateProgress = ref<number[]>([0, wulingCrateRewardMax]);
-// 武陵储藏箱奖励进度
-watch(
-  wulingCrateProgress,
-  (newVal) => {
-    wulingCrateReward.value.content.diamond = newVal[1]! - newVal[0]!;
-    saveUserConfig(wulingCrateReward.value.id, newVal, 'rangeSlider');
-
-    wulingRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 武陵地区淤积点宝箱
-const wulingBattleCrateRewardProgress = ref<number[]>([0, wulingBattleCrateRewardMax]);
-
-watch(
-  wulingBattleCrateRewardProgress,
-  (newVal) => {
-    wulingBattleCrateReward.value.content.originiumRecharge = newVal[1]! - newVal[0]!;
-    saveUserConfig(wulingBattleCrateReward.value.id, newVal, 'rangeSlider');
-
-    wulingRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 武陵模拟空间奖励
-const wulingSimulationProgress = ref<number[]>([0, 9]);
-// 武陵模拟空间奖励进度
-watch(
-  wulingSimulationProgress,
-  (newVal) => {
-    wulingSimulationReward.value.content.diamond = (newVal[1]! - newVal[0]!) * 25;
-    saveUserConfig(wulingSimulationReward.value.id, newVal, 'rangeSlider');
-
-    wulingRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-// 武陵据点防御
-watch(
-  wulingDefenseConstructionReward,
-  (newValue) => {
-    for (const item of newValue) {
-      saveUserConfig(item.id, item.active, 'buttonGroupActive');
-    }
-    wulingRegionalRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
-
-/**
- * 武陵地区奖励计算结尾
- */
-
-let valleyIVRegionalRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '四号谷地地区奖励',
-  originiumRecharge: 0,
-  diamond: 0,
-  ticketgachaStandardSingle: 0,
-  ticketgachaSpecialSingle: 0,
-  ticketgachaLimitedSingle: 0,
-};
-
-let wulingRegionalRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '武陵地区奖励',
-  originiumRecharge: 0,
-  diamond: 0,
-  ticketgachaStandardSingle: 0,
-  ticketgachaSpecialSingle: 0,
-  ticketgachaLimitedSingle: 0,
-};
-
-function valleyIVRegionalRewardStatistics(): void {
-  const result: RewardStatisticsResultDetail = {
-    name: '四号谷地地区奖励',
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-  };
-
-  addReward(result, valleyIVRegionalStockBillStoreReward.value);
-  addReward(result, valleyIVRegionalDevelopmentReward.value);
-  addReward(result, valleyIVAuryleneCollectReward.value);
-  addReward(result, valleyIVCrateReward.value);
-  addReward(result, valleyIVBattleCrateReward.value);
-
-  addReward(result, valleyIVSimulationReward.value);
-  addReward(result, valleyIVDefenseConstructionReward.value);
-
-  valleyIVRegionalRewardStatisticsResultDetail = result;
-  gachaResourceStatisticsResult.value.totalPulls.regional = getRewardsPull([
-    valleyIVRegionalRewardStatisticsResultDetail,
-    wulingRegionalRewardStatisticsResultDetail,
-  ]);
-}
-
-function wulingRegionalRewardStatistics(): void {
-  const result: RewardStatisticsResultDetail = {
-    name: '武陵地区奖励',
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-  };
-
-  addReward(result, wulingRegionalStockBillStoreReward.value);
-  addReward(result, wulingRegionalDevelopmentReward.value);
-  addReward(result, wulingAuryleneCollectReward.value);
-  addReward(result, wulingCrateReward.value);
-  addReward(result, wulingBattleCrateReward.value);
-
-  addReward(result, wulingSimulationReward.value);
-  addReward(result, wulingDefenseConstructionReward.value);
-
-  wulingRegionalRewardStatisticsResultDetail = result;
-  gachaResourceStatisticsResult.value.totalPulls.regional = getRewardsPull([
-    valleyIVRegionalRewardStatisticsResultDetail,
-    wulingRegionalRewardStatisticsResultDetail,
-  ]);
-}
-
-/**
- * 地区奖励计算相关代码结尾
- */
-
-/**
- * 等级奖励计算相关代码结尾
- */
 
 /**
  * 常驻奖励计算相关代码起始
@@ -972,8 +608,7 @@ function allRewardStatisticsV2(): void {
     dailyRewardStatisticsResultDetail,
     activityRewardStatisticsResultDetail,
 
-    valleyIVRegionalRewardStatisticsResultDetail,
-    wulingRegionalRewardStatisticsResultDetail,
+  
     archivePermanentRewardStatisticsResultDetail,
     permanentRewardStatisticsResultDetail,
 
@@ -1116,19 +751,6 @@ watch(
 
 const rangeSliderMap: Record<string, Ref<number[]>> = {
   authority_level_up_reward: authorityLevelProgress,
-
-  valley_IV_regional_development_reward: valleyIVRegionalDevelopmentProgress,
-  valley_IV_aurylene_collect_reward: valleyIVAuryleneCollectProgress,
-  valley_IV_crate_reward: valleyIVCrateProgress,
-  valley_IV_battle_crate_reward: valleyIVBattleCrateRewardProgress,
-
-  valley_IV_simulation_reward: valleyIVSimulationProgress,
-  wuling_regional_development_reward: wulingRegionalDevelopmentProgress,
-  wuling_aurylene_collect_reward: wulingAuryleneCollectProgress,
-  wuling_crate_reward: wulingCrateProgress,
-  wuling_battle_crate_reward: wulingBattleCrateRewardProgress,
-
-  wuling_simulation_reward: wulingSimulationProgress,
 };
 
 function loadingUserConfig() {
@@ -1151,8 +773,7 @@ function loadingUserConfig() {
       }
 
       if (localConfig.buttonActive) {
-        _setButtonActive(localConfig.buttonActive, valleyIVRegionalStockBillStoreReward);
-        _setButtonGroupActive(localConfig.buttonActive, wulingRegionalStockBillStoreReward);
+       
         gachaCalculatorUserConfig.value.buttonActive = localConfig.buttonActive;
 
         // 加载寻访情报书状态
@@ -1172,9 +793,7 @@ function loadingUserConfig() {
         // 活动奖励
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
 
-        _setButtonGroupActive(localConfig.buttonGroupActive, valleyIVDefenseConstructionReward);
-
-        _setButtonGroupActive(localConfig.buttonGroupActive, wulingDefenseConstructionReward);
+      
 
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
 
@@ -1273,32 +892,7 @@ function clearOrSelectAllActivityModule(action: boolean) {
   clearOrSelectAll(action, 'button', activityReward);
 }
 
-function clearOrSelectAllValleyIVRegionalModule(action: boolean) {
-  clearOrSelectAll(action, 'button', valleyIVRegionalStockBillStoreReward);
-  clearOrSelectAll(action, 'rangeSlider', valleyIVRegionalDevelopmentProgress, [1, 12]);
-  clearOrSelectAll(action, 'rangeSlider', valleyIVAuryleneCollectProgress, [0, 18]);
-  clearOrSelectAll(action, 'rangeSlider', valleyIVCrateProgress, [0, valleyIVCrateRewardMax]);
-  clearOrSelectAll(action, 'rangeSlider', valleyIVBattleCrateRewardProgress, [
-    0,
-    valleyIVBattleCrateRewardMax,
-  ]);
 
-  clearOrSelectAll(action, 'rangeSlider', valleyIVSimulationProgress, [0, 26]);
-  clearOrSelectAll(action, 'button', valleyIVDefenseConstructionReward);
-}
-
-function clearOrSelectAllWulingRegionalModule(action: boolean) {
-  clearOrSelectAll(action, 'button', wulingRegionalStockBillStoreReward);
-  clearOrSelectAll(action, 'rangeSlider', wulingRegionalDevelopmentProgress, [0, 6]);
-  clearOrSelectAll(action, 'rangeSlider', wulingAuryleneCollectProgress, [0, 8]);
-  clearOrSelectAll(action, 'rangeSlider', wulingCrateProgress, [0, wulingCrateRewardMax]);
-  clearOrSelectAll(action, 'rangeSlider', wulingBattleCrateRewardProgress, [
-    0,
-    wulingBattleCrateRewardMax,
-  ]);
-  clearOrSelectAll(action, 'rangeSlider', wulingSimulationProgress, [0, 9]);
-  clearOrSelectAll(action, 'button', wulingDefenseConstructionReward);
-}
 
 function clearOrSelectAllCurrentVersion(version: string) {
   // 日常奖励重构
@@ -1307,22 +901,7 @@ function clearOrSelectAllCurrentVersion(version: string) {
 
   authorityLevelProgress.value = [60, 60];
 
-  valleyIVAuryleneCollectProgress.value = [18, 18];
-  valleyIVBattleCrateRewardProgress.value = [0, 0];
-  valleyIVCrateProgress.value = [0, 0];
-  _filterByVersion(valleyIVDefenseConstructionReward, version);
-  valleyIVRegionalDevelopmentProgress.value = [12, 12];
-  _filterByVersion(valleyIVRegionalStockBillStoreReward, version);
-  valleyIVSimulationProgress.value = [0, 26];
-  wulingAuryleneCollectProgress.value = [9, 11];
-  wulingRegionalDevelopmentProgress.value = [9, 12];
-
-  wulingBattleCrateRewardProgress.value = [0, 1];
-  wulingCrateProgress.value = [0, 3000];
-  _filterByVersion(wulingDefenseConstructionReward, version);
-
-  _filterByVersion(wulingRegionalStockBillStoreReward, version);
-  wulingSimulationProgress.value = [0, 9];
+ 
 
   function _filterByVersion(
     reward: Ref<Reward> | Ref<Reward[]> | Ref<number[]>,
@@ -1390,16 +969,7 @@ const clearBtnGroup = [
   {
     text: '活动奖励',
     func: clearOrSelectAllActivityModule,
-  },
-
-  {
-    text: '四号谷地-地区奖励',
-    func: clearOrSelectAllValleyIVRegionalModule,
-  },
-  {
-    text: '武陵地区奖励',
-    func: clearOrSelectAllWulingRegionalModule,
-  },
+  }
 ];
 
 // 工具函数
@@ -2014,250 +1584,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <!--地区奖励-->
-        <!-- 武陵-->
 
-        <v-expansion-panel value="regional">
-          <v-expansion-panel-title class="gacha-calculator-card-title">
-            <div>
-              地区奖励-武陵，以下地区奖励总计
-              {{
-                numberFloor(
-                  gachaResourceStatisticsResult.totalPulls.regional?.ticketgachaSpecialSingle,
-                  1,
-                )
-              }}
-              {{ t('page.tools.gachaCalculator.pulls') }}
-            </div>
-          </v-expansion-panel-title>
-
-          <v-expansion-panel-text>
-            <GachaCalculatorModuleTitle title="武陵地区" />
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in wulingRegionalStockBillStoreReward"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingRegionalDevelopmentReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingRegionalDevelopmentProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="12"
-                  min="1"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingAuryleneCollectReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingAuryleneCollectProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="18"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingCrateReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingCrateProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  :max="wulingCrateRewardMax"
-                  step="5"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-              </v-card-text>
-            </v-card>
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingBattleCrateReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingBattleCrateRewardProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  :max="wulingBattleCrateRewardMax"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-                在地图上的处理险情点位可获得1源石的宝箱
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="wulingSimulationReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="wulingSimulationProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="9"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-              </v-card-text>
-            </v-card>
-
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in wulingDefenseConstructionReward"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-
-        <!-- 四号谷地-->
-        <v-expansion-panel value="regional-valleyIV">
-          <v-expansion-panel-title class="gacha-calculator-card-title">
-            <div>地区奖励-四号谷地</div>
-          </v-expansion-panel-title>
-
-          <v-expansion-panel-text>
-            <GachaCalculatorModuleTitle title="四号谷地地区" />
-            <GachaCalculatorResourceSingleBtn
-              v-bind="valleyIVRegionalStockBillStoreReward"
-              @click="
-                valleyIVRegionalStockBillStoreReward.active =
-                  !valleyIVRegionalStockBillStoreReward.active
-              "
-            />
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="valleyIVRegionalDevelopmentReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="valleyIVRegionalDevelopmentProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="12"
-                  min="1"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-                通过滑块调节当前地区建设等级
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="valleyIVAuryleneCollectReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="valleyIVAuryleneCollectProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="18"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-                通过滑块调节当前醚质收集阶段
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="valleyIVCrateReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="valleyIVCrateProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  :max="valleyIVCrateRewardMax"
-                  step="5"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-                储藏箱因数量和种类较多，不提供具体选项，滑块拖动每格为5合成玉
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="valleyIVBattleCrateReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="valleyIVBattleCrateRewardProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  :max="valleyIVBattleCrateRewardMax"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-                在地图上的处理险情点位可获得1源石的宝箱
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="valleyIVSimulationReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="valleyIVSimulationProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="26"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-              </v-card-text>
-            </v-card>
-
-            <v-divider style="margin: 1rem 0" />
-
-            <GachaCalculatorResourceSingleBtn
-              v-for="item in valleyIVDefenseConstructionReward"
-              :key="item.id"
-              v-bind="item"
-              @click="item.active = !item.active"
-            />
-          </v-expansion-panel-text>
-        </v-expansion-panel>
 
         <!--常驻奖励重构-->
         <v-expansion-panel value="permanent-re">

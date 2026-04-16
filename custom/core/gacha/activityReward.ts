@@ -3,7 +3,7 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import { ref } from 'vue';
 
 import ActivityRewardTable from '@/custom/core/gacha/data/activity_reward_table.json';
-import OtherRewardTableJson from '@/custom/core/gacha/data/other_reward_table.json';
+import OtherRewardTableJson from '@/custom/core/gacha/data/activity_other_reward_table.json';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 
 const activityReward = ref<Reward[]>([]);
@@ -28,6 +28,16 @@ for (const reward of OtherRewardTableJson as Reward[]) {
 
 export { activityReward };
 
+
+
+createNewPoolActivity();
+
+activityReward.value.sort((a: { start: string | Date; }, b: { start: string |  Date; }) => {
+  const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();
+  const bTime = typeof b.start === 'string' ? new Date(b.start).getTime() : b.start.getTime();
+  return bTime - aTime;
+});
+
 function createNewPoolActivity() {
   for (const item of PoolInfoTable) {
     const startDate = new Date(item.poolStart);
@@ -41,7 +51,7 @@ function createNewPoolActivity() {
       end: new Date(item.versionEnd),
       type: '通用',
       module: '活动',
-      active: true,
+      active: false,
       version: item.version,
       content: {
         originiumRecharge: 0,
@@ -61,10 +71,10 @@ function createNewPoolActivity() {
           en: '',
         },
         start: startDate,
-        end: '2099/12/31 12:00:00',
+        end: new Date(item.versionEnd),
         type: '通用',
         module: '活动',
-        active: true,
+        active: false,
         version: item.version,
         content: {
           originiumRecharge: 0,
@@ -87,7 +97,7 @@ function createNewPoolActivity() {
       end: new Date(item.poolEnd),
       type: item.character,
       module: '活动',
-      active: true,
+      active: false,
       version: item.version,
       content: {
         originiumRecharge: 0,
@@ -101,8 +111,3 @@ function createNewPoolActivity() {
     
   }
 }
-
-
-
-createNewPoolActivity();
-

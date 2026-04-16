@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Reward } from '#shared/types/gacha-calculator';
 import { itemIdDict } from '#shared/utils/gacha-calculator';
+import { dateFormat } from '#shared/utils/dateUtil';
 const props = defineProps<Reward>();
 
 /**
@@ -24,7 +25,8 @@ function getImageUrl(itemId: string): string {
     >
       <div class="gacha-calculator-resource-btn-content">
         <div class="gacha-calculator-resource-btn-content-title">
-          {{ props.name.zh }}
+          {{ props.name.zh }} 
+          <!-- {{ dateFormat(props.start) }} -->
         </div>
         <div
           v-for="(reward, name) in props.content"
