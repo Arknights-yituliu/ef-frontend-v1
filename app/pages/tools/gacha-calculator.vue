@@ -1181,7 +1181,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.originiumRecharge }}
-                    ({{ numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15) }}
+                    ({{ numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15,0) }}
                     {{ t('page.tools.gachaCalculator.pulls') }})
                   </span>
                 </div>
@@ -1194,7 +1194,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.diamond }}
-                    ({{ numberFloor(totalResourceStatisticsResultDetail.diamond / 500) }}
+                    ({{ numberFloor(totalResourceStatisticsResultDetail.diamond / 500,0) }}
                     {{ t('page.tools.gachaCalculator.pulls') }})
                   </span>
                 </div>
