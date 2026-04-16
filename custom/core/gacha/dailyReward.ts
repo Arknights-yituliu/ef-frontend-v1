@@ -9,128 +9,6 @@ const LargeExchangeCrate = 30 * 0.05 + 25 * 0.35 + 20 * 0.6;
 
 
 
-// const bpTrackFreeReward = ref<Reward[]>([
-//   {
-//     id: 'bp_track_free_1',
-//     name: {
-//       zh: `基础配给·第一期`,
-//       en: '',
-//     },
-//     start: '2026/01/22 12:00:00',
-//     end: '2026/03/12 12:00:00',
-//     type: '通用',
-//     module: '日常奖励',
-//     active: true,
-//     version: '零号委托',
-//     content: {
-//       originiumRecharge: 0,
-//       diamond: 600 + MediumExchangeCrate * 23,
-//       ticketgachaStandardSingle: 0,
-//       ticketgachaSpecialSingle: 0,
-//       ticketgachaLimitedSingle: 0,
-//     },
-//   },
-//   {
-//     id: 'bp_track_originium_1',
-//     name: {
-//       zh: `源石配给·第一期`,
-//       en: '',
-//     },
-//     start: '2026/01/22 12:00:00',
-//     end: '2026/03/12 12:00:00',
-//     type: '通用',
-//     module: '日常奖励',
-//     active: true,
-//     version: '零号委托',
-//     content: {
-//        originiumRecharge: 3,
-//       diamond: 0,
-//       ticketgachaStandardSingle: 4,
-//       ticketgachaSpecialSingle: 0,
-//       ticketgachaLimitedSingle: 0,
-//     },
-//   },
-//   {
-//     id: 'bp_track_free_2',
-//     name: {
-//       zh: `基础配给·第二期`,
-//       en: '',
-//     },
-//     start: '2026/03/12 12:00:00',
-//     end: '2026/04/17 12:00:00',
-//     type: '通用',
-//     module: '日常奖励',
-//     active: true,
-//     version: '新潮起·故渊离',
-//     content: {
-//       originiumRecharge: 0,
-//       diamond: 600 + MediumExchangeCrate * 23,
-//       ticketgachaStandardSingle: 2,
-//       ticketgachaSpecialSingle: 0,
-//       ticketgachaLimitedSingle: 0,
-//     },
-//   },
-//   {
-//     id: 'bp_track_originium_2',
-//     name: {
-//       zh: `源石配给·第二期`,
-//       en: '',
-//     },
-//     start: '2026/03/12 12:00:00',
-//     end: '2026/04/17 12:00:00',
-//     type: '通用',
-//     module: '日常奖励',
-//     active: true,
-//     version: '新潮起·故渊离',
-//     content: {
-//       originiumRecharge: 3,
-//       diamond: 0,
-//       ticketgachaStandardSingle: 4,
-//       ticketgachaSpecialSingle: 0,
-//       ticketgachaLimitedSingle: 0,
-//     },
-//   },
-//   {
-//     id: 'bp_track_free_3',
-//     name: {
-//       zh: `基础配给·第三期`,
-//       en: '',
-//     },
-//     start: '2026/04/17 12:00:00',
-//     end: '2026/05/22 12:00:00',
-//     type: '通用',
-//     module: '日常奖励',
-//     active: true,
-//     version: '春晓时',
-//     content: {
-//       originiumRecharge: 0,
-//       diamond: 600 + MediumExchangeCrate * 23,
-//       ticketgachaStandardSingle: 2,
-//       ticketgachaSpecialSingle: 0,
-//       ticketgachaLimitedSingle: 0,
-//     },
-//   },
-//   {
-//     id: 'bp_track_originium_3',
-//     name: {
-//       zh: `源石配给·第三期`,
-//       en: '',
-//     },
-//     start: '2026/04/17 12:00:00',
-//     end: '2026/05/22 12:00:00',
-//     type: '通用',
-//     module: '日常奖励',
-//     active: true,
-//     version: '春晓时',
-//     content: {
-//       originiumRecharge: 3,
-//       diamond: 0,
-//       ticketgachaStandardSingle: 4,
-//       ticketgachaSpecialSingle: 0,
-//       ticketgachaLimitedSingle: 0,
-//     },
-//   },
-// ]);
 
 const freeMonthlyPass = ref<Reward>({
   id: 'free_monthly_pass_1',
@@ -141,7 +19,7 @@ const freeMonthlyPass = ref<Reward>({
   start: new Date('2026/04/17 12:00:00'),
   end: new Date('2026/05/22 12:00:00'),
   type: '通用',
-  module: '日常奖励',
+  module: '日常',
   active: true,
   version: '春晓时',
   content: {
@@ -169,13 +47,13 @@ freeMonthlyPass.value.content.diamond = 200 * freeMonthlyPassRemainingDays;
 const dailyReward = ref<Reward>({
   id: 'day_reward',
   name: {
-    zh: `日常奖励X0天`,
+    zh: `日常X0天`,
     en: '',
   },
   start: new Date('2026/01/22 12:00:00'),
   end: new Date('2099/12/31 12:00:00'),
   type: '通用',
-  module: '日常奖励',
+  module: '日常',
   active: true,
   version: '零号委托',
   content: {
@@ -196,7 +74,7 @@ const weekTaskReward = ref<Reward>({
   start: new Date('2026/01/22 12:00:00'),
   end: new Date('2099/12/31 12:00:00'),
   type: '通用',
-  module: '日常奖励',
+  module: '日常',
   active: true,
   version: '新潮起·故渊离',
   content: {
@@ -211,7 +89,7 @@ const weekTaskReward = ref<Reward>({
 function calculatorDailyReward(start: Date, end: Date): void {
   const remainingDays: number = calculateDaysDifference(start, end);
   dailyReward.value.name = {
-    zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
+    zh: `日常X${numberRound(remainingDays, 0)}天`,
     en: '',
   };
   dailyReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
@@ -231,13 +109,13 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
     {
       id: 'day_reward',
       name: {
-        zh: `日常奖励X${numberRound(remainingDays, 0)}天`,
+        zh: `日常X${numberRound(remainingDays, 0)}天`,
         en: '',
       },
       start: new Date('2026/01/22 12:00:00'),
       end: new Date('2099/12/31 12:00:00'),
       type: '通用',
-      module: '日常奖励',
+      module: '日常',
       active: true,
       version,
       content: {
@@ -257,7 +135,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
       start: new Date('2026/01/22 12:00:00'),
       end: new Date('2099/12/31 12:00:00'), 
       type: '通用',
-      module: '日常奖励',
+      module: '日常',
       active: true,
       version,
       content: {
@@ -290,7 +168,7 @@ for (const version of VersionTable) {
     start: new Date(version.start),
     end: new Date(version.end),
     type: '通用',
-    module: '日常奖励',
+    module: '日常',
     active: true,
     version: version.version,
     content: {
@@ -312,7 +190,7 @@ for (const version of VersionTable) {
     start: new Date(version.start),
     end: new Date(version.end),
     type: '通用',
-    module: '日常奖励',
+    module: '日常',
     active: true,
     version: version.version,
     content: {
@@ -345,7 +223,7 @@ for (const poolInfo of PoolInfoTable) {
     start: new Date(poolInfo.poolStart),
     end: new Date(poolInfo.poolEnd),
     type: poolInfo.character,
-    module: '集成配额商店兑换',
+    module: '日常',
     active: true,
     version: poolInfo.version,
     content: {

@@ -73,7 +73,7 @@ const wulingCrateRewardTable:Reward[] = [
     start: '2026/01/22 12:00:00',
     end: '2099/12/31 12:00:00',
     type: '通用',
-    module: '地图探索',
+    module: '地区探索与建设',
     active: true,
     version: '零号委托',
     content: {

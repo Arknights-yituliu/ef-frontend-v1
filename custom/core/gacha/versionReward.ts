@@ -1,0 +1,152 @@
+import { onMounted, ref, watch } from 'vue';
+import type { Reward } from '#shared/types/gacha-calculator';
+import { numberFloor } from '#shared/utils/numberUtil';
+import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
+import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
+import { activityReward } from '@/custom/core/gacha/activityReward';
+import {
+  createVersionDailyReward,
+  dailyAllRewardTable,
+  freeMonthlyPass,
+} from '@/custom/core/gacha/dailyReward';
+import {
+  archivePermanentRewardTable,
+  authorityLevelUpReward,
+  permanentRewardTable,
+} from '@/custom/core/gacha/permanentRewardV2';
+
+const versionReward: Reward[] = [];
+
+const currentVersionRewardTotal = ref<RewardStatisticsResultDetail[]>([]);
+
+const versionTable = [
+  {
+    start: new Date('2026/01/22 12:00:00'),
+    end: new Date('2026/03/12 12:00:00'),
+    version: '零号委托',
+  },
+  {
+    start: new Date('2026/03/12 12:00:00'),
+    end: new Date('2026/04/17 12:00:00'),
+    version: '新潮起·故渊离',
+  },
+  {
+    start: new Date('2026/04/17 12:00:00'),
+    end: new Date('2026/05/22 12:00:00'),
+    version: '春晓时',
+  },
+];
+
+// for (const item of versionTable) {
+//   const rewards = createVersionDailyReward(item.start, item.end, item.version);
+//   versionReward.push(rewards[0] as Reward, rewards[1] as Reward);
+// }
+
+versionReward.push(freeMonthlyPass.value);
+
+for (const reward of dailyAllRewardTable.value) {
+  versionReward.push(reward);
+}
+
+for (const reward of activityReward.value) {
+  versionReward.push(reward);
+}
+
+versionReward.push(
+  authorityLevelUpReward.value,
+  ...permanentRewardTable.value,
+  ...archivePermanentRewardTable.value,
+);
+
+const currentVersionReward = ref<Reward[]>([]);
+
+function filterRewardByVersion(type: string, version: any) {
+  const daysDiff = calculateDaysDifference(version.start, version.end);
+
+  currentVersionRewardTotal.value = [];
+  currentVersionReward.value = [];
+
+  const rewards = createVersionDailyReward(version.start, version.end, version.version);
+  currentVersionReward.value.push(rewards[0] as Reward, rewards[1] as Reward);
+
+  const result1: RewardStatisticsResultDetail = {
+    name: '零氪',
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+    totalPulls: 0,
+  };
+
+  const result2: RewardStatisticsResultDetail = {
+    name: '月卡',
+    originiumRecharge: 12,
+    diamond: numberFloor(daysDiff) * 200,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+    totalPulls: 0,
+  };
+
+  const result3: RewardStatisticsResultDetail = {
+    name: '月卡+通行证',
+    originiumRecharge: 12 + 36,
+    diamond: numberFloor(daysDiff) * 200,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+    totalPulls: 0,
+  };
+
+  if ('version' === type) {
+    for (const reward of versionReward) {
+      if (version.version === reward.version) {
+        currentVersionReward.value.push(reward);
+      }
+    }
+  } else {
+    for (const reward of versionReward) {
+      const rewardTime =
+        typeof reward.end === 'string' ? new Date(reward.end).getTime() : reward.end.getTime();
+      if (rewardTime > version.start.getTime()) {
+        currentVersionReward.value.push(reward);
+      }
+    }
+  }
+
+  const list = [];
+  for (const reward of currentVersionReward.value) {
+    result1.originiumRecharge += reward.content.originiumRecharge;
+    list.push(reward.content.diamond);
+    result1.diamond += reward.content.diamond;
+    result1.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
+    result1.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+    result1.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
+  }
+
+  result2.originiumRecharge += result1.originiumRecharge;
+  result2.diamond += result1.diamond;
+  result2.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
+  result2.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
+  result2.ticketgachaLimitedSingle += result1.ticketgachaLimitedSingle;
+
+  result3.originiumRecharge += result1.originiumRecharge;
+  result3.diamond += result1.diamond;
+  result3.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
+  result3.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
+  result3.ticketgachaLimitedSingle += result1.ticketgachaLimitedSingle;
+
+  result1.totalPulls =
+    result1.originiumRecharge * 0.15 + result1.diamond / 500 + result1.ticketgachaSpecialSingle;
+  result2.totalPulls =
+    result2.originiumRecharge * 0.15 + result2.diamond / 500 + result2.ticketgachaSpecialSingle;
+  result3.totalPulls =
+    result3.originiumRecharge * 0.15 + result3.diamond / 500 + result3.ticketgachaSpecialSingle;
+
+  currentVersionRewardTotal.value.push(result1, result2, result3);
+
+  // 计算并设置高度
+}
+
+export { currentVersionRewardTotal, currentVersionReward, filterRewardByVersion, versionTable };

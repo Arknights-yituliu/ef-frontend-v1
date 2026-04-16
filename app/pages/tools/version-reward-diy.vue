@@ -1,30 +1,14 @@
 <script setup lang="ts">
-import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
+
 
 import { dateFormat } from '#shared/utils/dateUtil';
-import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
+
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 
 import { onMounted, ref, watch } from 'vue';
+import { currentVersionRewardTotal, currentVersionReward,filterRewardByVersion,versionTable } from '@/custom/core/gacha/versionReward';
 
-import { activityReward } from '@/custom/core/gacha/activityReward';
-
-import {
-  createVersionDailyReward,
-  dailyAllRewardTable,
-  freeMonthlyPass,
-} from '@/custom/core/gacha/dailyReward';
-
-
-
-
-
-
-
-import { archivePermanentRewardTable, authorityLevelUpReward, permanentRewardTable } from '@/custom/core/gacha/permanentRewardV2';
-
-
-
+filterRewardByVersion('version',versionTable[2]);
 
 // 控制台数据 - 初始化时使用默认图片
 const controlPanel = ref({
@@ -253,56 +237,6 @@ function handleImageUpload(event: Event) {
   console.log('=== handleImageUpload 执行结束 ===');
 }
 
-const versionReward = ref<Reward[]>([]);
-
-const currentVersionRewardTotal = ref<RewardStatisticsResultDetail[]>([]);
-
-const versionTime = [
-  {
-    start: new Date('2026/01/22 12:00:00'),
-    end: new Date('2026/03/12 12:00:00'),
-    version: '零号委托',
-  },
-  {
-    start: new Date('2026/03/12 12:00:00'),
-    end: new Date('2026/04/17 12:00:00'),
-    version: '新潮起·故渊离',
-  },
-  {
-    start: new Date('2026/04/17 12:00:00'),
-    end: new Date('2026/05/22 12:00:00'),
-    version: '春晓时',
-  },
-];
-
-for (const item of versionTime) {
-  const rewards = createVersionDailyReward(item.start, item.end, item.version);
-  versionReward.value.push(rewards[0] as Reward, rewards[1] as Reward);
-}
-
-versionReward.value.push(freeMonthlyPass.value);
-
-for (const reward of dailyAllRewardTable.value) {
-  versionReward.value.push(reward);
-}
-
-for (const reward of activityReward.value) {
-  versionReward.value.push(reward);
-}
-
-
-
-versionReward.value.push(
-  authorityLevelUpReward.value,
-  ...permanentRewardTable.value,
-  ...archivePermanentRewardTable.value,
-);
-
-
-
-
-const currentVersionReward = ref<Reward[]>([]);
-
 // 计算版本奖励组的高度
 function calculateRewardItemGroupHeight() {
   const height = (currentVersionReward.value.length / 2) * 76 + 80;
@@ -316,85 +250,6 @@ function calculateRewardItemGroupHeight() {
 
   rewardItemGroup.style.height = `${height}px`;
 }
-
-function filterRewardByVersion(version: any) {
-  const daysDiff = calculateDaysDifference(version.start, version.end);
-
-  currentVersionRewardTotal.value = [];
-  currentVersionReward.value = [];
-  const result1: RewardStatisticsResultDetail = {
-    name: '零氪',
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-    totalPulls: 0,
-  };
-
-  const result2: RewardStatisticsResultDetail = {
-    name: '月卡',
-    originiumRecharge: 12,
-    diamond: numberFloor(daysDiff) * 200,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-    totalPulls: 0,
-  };
-
-  const result3: RewardStatisticsResultDetail = {
-    name: '月卡+通行证',
-    originiumRecharge: 12 + 36,
-    diamond: numberFloor(daysDiff) * 200,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-    totalPulls: 0,
-  };
-
-  for (const reward of versionReward.value) {
-    if (controlPanel.value.versionName === reward.version) {
-      currentVersionReward.value.push(reward);
-    }
-  }
-
-  const list = [];
-  for (const reward of currentVersionReward.value) {
-    result1.originiumRecharge += reward.content.originiumRecharge;
-    list.push(reward.content.diamond);
-    result1.diamond += reward.content.diamond;
-    result1.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
-    result1.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
-    result1.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
-  }
-
-  console.log(11, JSON.stringify(list));
-
-  result2.originiumRecharge += result1.originiumRecharge;
-  result2.diamond += result1.diamond;
-  result2.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
-  result2.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
-  result2.ticketgachaLimitedSingle += result1.ticketgachaLimitedSingle;
-
-  result3.originiumRecharge += result1.originiumRecharge;
-  result3.diamond += result1.diamond;
-  result3.ticketgachaStandardSingle += result1.ticketgachaStandardSingle;
-  result3.ticketgachaSpecialSingle += result1.ticketgachaSpecialSingle;
-  result3.ticketgachaLimitedSingle += result1.ticketgachaLimitedSingle;
-
-  result1.totalPulls =
-    result1.originiumRecharge * 0.15 + result1.diamond / 500 + result1.ticketgachaSpecialSingle;
-  result2.totalPulls =
-    result2.originiumRecharge * 0.15 + result2.diamond / 500 + result2.ticketgachaSpecialSingle;
-  result3.totalPulls =
-    result3.originiumRecharge * 0.15 + result3.diamond / 500 + result3.ticketgachaSpecialSingle;
-
-  currentVersionRewardTotal.value.push(result1, result2, result3);
-
-  // 计算并设置高度
-}
-
-filterRewardByVersion(versionTime[2]);
 
 // 在组件挂载后计算高度
 onMounted(() => {

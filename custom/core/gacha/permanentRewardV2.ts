@@ -91,7 +91,7 @@ const operatorTraining = {
   start: new Date('2026/01/22 12:00:00'),
   end: new Date('2099/12/31 12:00:00'),
   type: '通用',
-  module: '权限等阶提升',
+  module: '行动手册',
   active: true,
   version: `零号委托——${currentVersion}`,
   content: {
