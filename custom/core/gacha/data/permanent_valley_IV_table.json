@@ -20,25 +20,130 @@
     }
   },
   {
-    "id": "四号谷地·地图探索",
+    "id": "枢纽区",
     "name": {
-      "zh": "四号谷地·地图探索",
+      "zh": "枢纽区",
       "en": ""
     },
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "地区建设",
+    "module": "地图探索",
     "active": false,
     "version": "零号委托",
     "content": {
-      "originiumRecharge": 20,
-      "diamond": 12725,
+      "originiumRecharge": 7,
+      "diamond": 4385,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     },
-    "tips":[ "包含储藏箱、机器人和处理险情"]
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },
+  {
+    "id": "谷地通道",
+    "name": {
+      "zh": "谷地通道",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地图探索",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },
+  {
+    "id": "阿伯莉采石场",
+    "name": {
+      "zh": "阿伯莉采石场",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地图探索",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 1350,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },
+  {
+    "id": "源石研究园",
+    "name": {
+      "zh": "源石研究园",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地图探索",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 1895,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },
+  {
+    "id": "矿脉源区",
+    "name": {
+      "zh": "矿脉源区",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地图探索",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 3210,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },
+  {
+    "id": "供能高地",
+    "name": {
+      "zh": "供能高地",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地图探索",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 1455,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
   },
   {
     "id": "四号谷地·地区建设等级1-4",
