@@ -59,12 +59,12 @@ const poolOptions = ref<PoolOption[]>([
     disabled: false,
   },
   {
-    name: '待定',
+    name: '辉光庆时',
     start: new Date('2026/02/24 12:00:00'),
-    end: new Date('2026/03/12 12:00:00'),
-    dateText: '',
-    type: '热烈色彩',
-    disabled: true,
+    end: new Date('2026/06/05 12:00:00'),
+    dateText: '05.14-版本末',
+    type: '辉光庆时',
+    disabled: false,
   },
 ]);
 
@@ -1234,7 +1234,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
               </div>
             </div>
            
-            <div>
+            <div v-show="'辉光庆时' !== currentPool.name">
               拿到卡池UP干员的概率：{{ numberFloor(gachaProbability * 100) }}%
             </div>
           </v-expansion-panel-text>
@@ -1743,6 +1743,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 
 .gacha-calculator-pool-btn {
   opacity: 0.4;
+  
 }
 
 .gacha-calculator-pool-btn-phone {
