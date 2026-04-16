@@ -26,11 +26,7 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-    potential: {
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0,
-    },
+  
     recharge: {
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
@@ -41,7 +37,7 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-    level:{
+    archivePermanent: {
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
@@ -51,17 +47,8 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-    other: {
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0,
-    },
-    operationalManual:{
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-     
-      ticketgachaLimitedSingle: 0,
-    }
+   
+    
   },
   rechargeAmount: 0,
   originiumRecharge: 0,

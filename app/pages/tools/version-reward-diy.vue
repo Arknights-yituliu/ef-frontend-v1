@@ -24,7 +24,7 @@ import {
 
 
 
-import { authorityLevelUpReward, permanentRewardTable } from '@/custom/core/gacha/permanentRewardV2';
+import { authorityLevelUpReward, permanentRewardTable, archivePermanentRewardTable } from '@/custom/core/gacha/permanentRewardV2';
 
 import {
   valleyIVAuryleneCollectReward,
@@ -324,6 +324,7 @@ for (const reward of wulingRegionalAllRewardTable) {
 versionReward.value.push(
   authorityLevelUpReward.value,
   ...permanentRewardTable.value,
+  ...archivePermanentRewardTable.value,
 );
 
 

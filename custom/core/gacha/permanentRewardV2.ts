@@ -32,8 +32,19 @@ const authorityLevelUpReward = ref<Reward>({
 });
 
 const permanentRewardTable = ref<Reward[]>([]);
+const archivePermanentRewardTable = ref<Reward[]>([]);
 
+const currentVersion = '春晓时';
 
+for(const reward of IntelArchiveRewardJson as Reward[]){
+  reward.start = new Date(reward.start)
+  reward.end = new Date(reward.end)
+  if(currentVersion === reward.version){
+    permanentRewardTable.value.push(reward);
+  }else{
+    archivePermanentRewardTable.value.push(reward);
+  }
+}
 
 let operatorTotal = 0;
 
@@ -43,7 +54,11 @@ for (const reward of operationalManualTrainingTableJson as Reward[]) {
   }else{
     reward.start = new Date(reward.start)
     reward.end = new Date(reward.end)
-    permanentRewardTable.value.push(reward);
+    if(currentVersion === reward.version){
+      permanentRewardTable.value.push(reward);
+    }else{
+      archivePermanentRewardTable.value.push(reward);
+    }
   }
 }
 
@@ -57,8 +72,8 @@ const operatorTraining =  {
   end: new Date('2099/12/31 12:00:00'),
   type: '通用',
   module: '权限等阶提升',
-  active: false,
-  version: '零号委托',
+  active: true,
+  version: `零号委托——${currentVersion}`,
   content: {
     originiumRecharge: 0,
     diamond: operatorTotal * 20,
@@ -78,13 +93,21 @@ const factoryManualMergeRewards: Reward[] = groupAndMergeRewardsByVersion(
 for (const reward of permanentRewardTableJson as Reward[]) {
   reward.start = new Date(reward.start)
   reward.end = new Date(reward.end)
-  permanentRewardTable.value.push(reward);
+  if(currentVersion === reward.version){
+    permanentRewardTable.value.push(reward);
+  }else{
+    archivePermanentRewardTable.value.push(reward);
+  }
 }
 
 for (const reward of factoryManualMergeRewards as Reward[]) {
   reward.start = new Date(reward.start)
   reward.end = new Date(reward.end)
-  permanentRewardTable.value.push(reward);
+  if(currentVersion === reward.version){
+    permanentRewardTable.value.push(reward);
+  }else{
+    archivePermanentRewardTable.value.push(reward);
+  }
 }
 
 
@@ -96,7 +119,11 @@ const mergedValleyIVTasks = groupAndMergeTasksByVersionAndModule('四号谷地',
 for (const reward of mergedValleyIVTasks as Reward[]) {
   reward.start = new Date(reward.start)
   reward.end = new Date(reward.end)
-  permanentRewardTable.value.push(reward);
+  if(currentVersion === reward.version){
+    permanentRewardTable.value.push(reward);
+  }else{
+    archivePermanentRewardTable.value.push(reward);
+  }
 }
 
 
@@ -105,7 +132,11 @@ const mergedWulingTasks = groupAndMergeTasksByVersionAndModule('武陵', wulingT
 for (const reward of mergedWulingTasks as Reward[]) {
   reward.start = new Date(reward.start)
   reward.end = new Date(reward.end)
-  permanentRewardTable.value.push(reward);
+  if(currentVersion === reward.version){
+    permanentRewardTable.value.push(reward);
+  }else{
+    archivePermanentRewardTable.value.push(reward);
+  }
 }
 
 
@@ -188,7 +219,11 @@ const mergedEtchSpaceSalvageRewards = groupAndMergeTasksByVersionAndModule(
 for (const reward of mergedEtchSpaceSalvageRewards as Reward[]) {
   reward.start = new Date(reward.start)
   reward.end = new Date(reward.end)
-  permanentRewardTable.value.push(reward);
+  if(currentVersion === reward.version){
+    permanentRewardTable.value.push(reward);
+  }else{
+    archivePermanentRewardTable.value.push(reward);
+  }
 }
 
 
@@ -199,6 +234,6 @@ permanentRewardTable.value.sort((a: { start: string | Date; }, b: { start: strin
   return bTime - aTime;
 });
 
-export { authorityLevelUpReward, permanentRewardTable };
+export { authorityLevelUpReward, permanentRewardTable, archivePermanentRewardTable };
 
 export { default as authorityLevelUpRewardTable } from '@/custom/core/gacha/data/authority_level_up_reward_table.json';

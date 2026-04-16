@@ -28,7 +28,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
@@ -47,7 +47,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -67,7 +67,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -87,7 +87,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -107,7 +107,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -127,7 +127,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -147,7 +147,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -167,7 +167,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
@@ -187,7 +187,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "情报档案库",
-    "active": true,
+    "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,

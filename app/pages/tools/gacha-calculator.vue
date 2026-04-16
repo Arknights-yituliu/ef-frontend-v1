@@ -27,14 +27,12 @@ import {
   wulingRegionalDevelopmentRewardTable,
 } from '@/custom/core/gacha/data/wulingRegionalRewardTable';
 
-
-
-
-
-
-import { authorityLevelUpReward, authorityLevelUpRewardTable ,permanentRewardTable} from '@/custom/core/gacha/permanentRewardV2';
-
-
+import {
+  authorityLevelUpReward,
+  authorityLevelUpRewardTable,
+  permanentRewardTable,
+  archivePermanentRewardTable,
+} from '@/custom/core/gacha/permanentRewardV2';
 
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
@@ -70,7 +68,7 @@ const { t } = useI18n();
 //
 const leftPartPanel = ref<string[]>(['statisticalResult']);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'
-const rightPartPanel = ref<string[]>(['permanent1','permanent2']);
+const rightPartPanel = ref<string[]>(['permanent' ,'archivePermanent']);
 
 const poolOptions = ref<PoolOption[]>([
   {
@@ -132,7 +130,7 @@ function selectedPool(option: PoolOption): void {
   wulingRegionalRewardStatistics();
 
   permanentRewardStatistics();
- 
+
   rechargeResourceStatistics();
   allRewardStatisticsV2();
 }
@@ -341,9 +339,6 @@ function activityRewardStatistics(): void {
 /**
  * 活动奖励计算相关代码结尾
  */
-
-
-
 
 /**
  * 地区奖励计算相关代码起始
@@ -679,8 +674,6 @@ function wulingRegionalRewardStatistics(): void {
  * 地区奖励计算相关代码结尾
  */
 
-
-
 /**
  * 等级奖励计算相关代码结尾
  */
@@ -688,7 +681,6 @@ function wulingRegionalRewardStatistics(): void {
 /**
  * 常驻奖励计算相关代码起始
  */
-
 
 const authorityLevelProgress = ref<number[]>([1, 60]);
 
@@ -711,9 +703,6 @@ watch(
   { deep: true },
 );
 
-
-
-
 watch(
   permanentRewardTable,
   (newValue) => {
@@ -727,10 +716,30 @@ watch(
   { deep: true },
 );
 
+watch(
+  archivePermanentRewardTable,
+  (newValue) => {
+    for (const item of newValue) {
+      saveUserConfig(item.id, item.active, 'buttonGroupActive');
+    }
 
+    aprchivePermanentRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
 
 let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '常驻奖励',
+  name: '常驻奖励·新版本',
+  originiumRecharge: 0,
+  diamond: 0,
+  ticketgachaStandardSingle: 0,
+  ticketgachaSpecialSingle: 0,
+  ticketgachaLimitedSingle: 0,
+};
+
+let archivePermanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
+  name: '常驻奖励·旧版本',
   originiumRecharge: 0,
   diamond: 0,
   ticketgachaStandardSingle: 0,
@@ -740,7 +749,7 @@ let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
 
 function permanentRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
-    name: '常驻奖励',
+    name: '常驻奖励·新版本',
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
@@ -754,11 +763,25 @@ function permanentRewardStatistics(): void {
   gachaResourceStatisticsResult.value.totalPulls.permanent = getRewardPull(result);
 }
 
+function aprchivePermanentRewardStatistics(): void {
+  const result: RewardStatisticsResultDetail = {
+    name: '常驻奖励·旧版本',
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  };
+
+  addReward(result, archivePermanentRewardTable.value);
+
+  archivePermanentRewardStatisticsResultDetail = result;
+  gachaResourceStatisticsResult.value.totalPulls.archivePermanent = getRewardPull(result);
+}
+
 /**
  * 常驻奖励计算相关代码结尾
  */
-
-
 
 /**
  * 行动手册奖励计算相关代码结尾
@@ -948,11 +971,12 @@ function allRewardStatisticsV2(): void {
     existingRewardStatisticsResultDetail,
     dailyRewardStatisticsResultDetail,
     activityRewardStatisticsResultDetail,
-   
+
     valleyIVRegionalRewardStatisticsResultDetail,
     wulingRegionalRewardStatisticsResultDetail,
+    archivePermanentRewardStatisticsResultDetail,
     permanentRewardStatisticsResultDetail,
-  
+
     rechargeResourceStatisticsResultDetail,
   ];
 
@@ -1091,8 +1115,6 @@ watch(
 );
 
 const rangeSliderMap: Record<string, Ref<number[]>> = {
-
- 
   authority_level_up_reward: authorityLevelProgress,
 
   valley_IV_regional_development_reward: valleyIVRegionalDevelopmentProgress,
@@ -1105,9 +1127,8 @@ const rangeSliderMap: Record<string, Ref<number[]>> = {
   wuling_aurylene_collect_reward: wulingAuryleneCollectProgress,
   wuling_crate_reward: wulingCrateProgress,
   wuling_battle_crate_reward: wulingBattleCrateRewardProgress,
- 
+
   wuling_simulation_reward: wulingSimulationProgress,
- 
 };
 
 function loadingUserConfig() {
@@ -1146,20 +1167,17 @@ function loadingUserConfig() {
 
         // 常驻奖励重构
         _setButtonGroupActive(localConfig.buttonGroupActive, permanentRewardTable);
+        _setButtonGroupActive(localConfig.buttonGroupActive, archivePermanentRewardTable);
 
         // 活动奖励
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
 
-        
-       
         _setButtonGroupActive(localConfig.buttonGroupActive, valleyIVDefenseConstructionReward);
-       
-        _setButtonGroupActive(localConfig.buttonGroupActive, wulingDefenseConstructionReward);
-      
 
-       
+        _setButtonGroupActive(localConfig.buttonGroupActive, wulingDefenseConstructionReward);
+
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
-      
+
         gachaCalculatorUserConfig.value.buttonGroupActive = localConfig.buttonGroupActive;
       }
 
@@ -1255,8 +1273,6 @@ function clearOrSelectAllActivityModule(action: boolean) {
   clearOrSelectAll(action, 'button', activityReward);
 }
 
-
-
 function clearOrSelectAllValleyIVRegionalModule(action: boolean) {
   clearOrSelectAll(action, 'button', valleyIVRegionalStockBillStoreReward);
   clearOrSelectAll(action, 'rangeSlider', valleyIVRegionalDevelopmentProgress, [1, 12]);
@@ -1284,19 +1300,13 @@ function clearOrSelectAllWulingRegionalModule(action: boolean) {
   clearOrSelectAll(action, 'button', wulingDefenseConstructionReward);
 }
 
-
-
-
-
 function clearOrSelectAllCurrentVersion(version: string) {
   // 日常奖励重构
   _filterByVersion(dailyAllRewardTable, version);
   _filterByVersion(activityReward, version);
 
-  
   authorityLevelProgress.value = [60, 60];
- 
-  
+
   valleyIVAuryleneCollectProgress.value = [18, 18];
   valleyIVBattleCrateRewardProgress.value = [0, 0];
   valleyIVCrateProgress.value = [0, 0];
@@ -1381,7 +1391,7 @@ const clearBtnGroup = [
     text: '活动奖励',
     func: clearOrSelectAllActivityModule,
   },
-  
+
   {
     text: '四号谷地-地区奖励',
     func: clearOrSelectAllValleyIVRegionalModule,
@@ -1390,7 +1400,6 @@ const clearBtnGroup = [
     text: '武陵地区奖励',
     func: clearOrSelectAllWulingRegionalModule,
   },
- 
 ];
 
 // 工具函数
@@ -2005,7 +2014,6 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-     
         <!--地区奖励-->
         <!-- 武陵-->
 
@@ -2251,13 +2259,11 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
- 
-
         <!--常驻奖励重构-->
         <v-expansion-panel value="permanent-re">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              常驻奖励
+              常驻奖励·新版本
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.permanent?.ticketgachaSpecialSingle,
@@ -2267,8 +2273,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
           </v-expansion-panel-title>
-          <v-expansion-panel-text> 
-             <v-card>
+          <v-expansion-panel-text>
+            <v-card>
               <v-card-text>
                 <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
                 <div style="height: 36px" />
@@ -2285,20 +2291,39 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 />
               </v-card-text>
             </v-card>
-            <v-divider style="margin: 1rem 0" />
+
             <template v-for="reward in permanentRewardTable">
-              <GachaCalculatorResourceSingleBtn 
-              v-bind="reward"
-              @click="reward.active = !reward.active"
-               />
+              <GachaCalculatorResourceSingleBtn
+                v-bind="reward"
+                @click="reward.active = !reward.active"
+              />
             </template>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
 
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-      
-
-    
+        <!--常驻奖励重构-->
+        <v-expansion-panel value="archivePermanent">
+          <v-expansion-panel-title class="gacha-calculator-card-title">
+            <div>
+              常驻奖励·旧版本
+              {{
+                numberFloor(
+                  gachaResourceStatisticsResult.totalPulls.archivePermanent?.ticketgachaSpecialSingle,
+                  1,
+                )
+              }}
+              {{ t('page.tools.gachaCalculator.pulls') }}
+            </div>
+          </v-expansion-panel-title>
+          <v-expansion-panel-text>
+            <template v-for="reward in archivePermanentRewardTable">
+              <GachaCalculatorResourceSingleBtn
+                v-bind="reward"
+                @click="reward.active = !reward.active"
+              />
+            </template>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
 
         <!--氪金资源-->
         <v-expansion-panel value="recharge">
@@ -2422,7 +2447,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
   display: flex;
   align-items: center;
   min-width: 80px;
-  margin: 20px 0;
+  margin: 16px 0;
 }
 
 .gacha-calculator-statistics-result-item-text {
