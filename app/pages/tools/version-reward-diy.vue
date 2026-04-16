@@ -6,7 +6,7 @@ import { dateFormat } from '#shared/utils/dateUtil';
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 
 import { onMounted, ref, watch } from 'vue';
-import { currentVersionRewardTotal, currentVersionReward,filterRewardByVersion,versionTable } from '@/custom/core/gacha/versionReward';
+import { currentVersionReward, currentVersionRewardTotal,filterRewardByVersion,versionTable } from '@/custom/core/gacha/versionReward';
 
 filterRewardByVersion('version',versionTable[2]);
 

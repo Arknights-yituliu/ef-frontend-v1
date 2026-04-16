@@ -1,8 +1,7 @@
-import { onMounted, ref, watch } from 'vue';
-import type { Reward } from '#shared/types/gacha-calculator';
-import { numberFloor } from '#shared/utils/numberUtil';
-import type { RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
+import type { Reward, RewardStatisticsResultDetail  } from '#shared/types/gacha-calculator';
 import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
+import { numberFloor } from '#shared/utils/numberUtil';
+import { onMounted, ref, watch } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 import {
   createVersionDailyReward,
@@ -149,4 +148,4 @@ function filterRewardByVersion(type: string, version: any) {
   // 计算并设置高度
 }
 
-export { currentVersionRewardTotal, currentVersionReward, filterRewardByVersion, versionTable };
+export { currentVersionReward, currentVersionRewardTotal, filterRewardByVersion, versionTable };
