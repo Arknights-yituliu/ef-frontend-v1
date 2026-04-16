@@ -2,8 +2,8 @@ import type { Reward } from '#shared/types/gacha-calculator';
 
 import { ref } from 'vue';
 
-import ActivityRewardTable from '@/custom/core/gacha/data/activity_reward_table.json';
 import OtherRewardTableJson from '@/custom/core/gacha/data/activity_other_reward_table.json';
+import ActivityRewardTable from '@/custom/core/gacha/data/activity_reward_table.json';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 
 const activityReward = ref<Reward[]>([]);

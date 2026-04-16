@@ -1,7 +1,7 @@
 import type { Reward } from '#shared/types/gacha-calculator';
 import {
-  groupAndMergeTasksByVersionAndModule,
   groupAndMergeRewardsByVersion,
+  groupAndMergeTasksByVersionAndModule,
 } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/permanent_etch_space_salvage_reward.json';
@@ -10,10 +10,10 @@ import IntelArchiveRewardJson from '@/custom/core/gacha/data/permanent_intel_arc
 import operationalManualTrainingTableJson from '@/custom/core/gacha/data/permanent_operational_manual_training_table.json';
 
 import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
-import valleyIVTaskTable from '@/custom/core/gacha/data/permanent_valley_IV_task_table.json';
-import wulingTaskTable from '@/custom/core/gacha/data/permanent_wuling_task_table.json';
 import valleyIVTableJson from '@/custom/core/gacha/data/permanent_valley_IV_table.json';
+import valleyIVTaskTable from '@/custom/core/gacha/data/permanent_valley_IV_task_table.json';
 import wulingTableJson from '@/custom/core/gacha/data/permanent_wuling_table.json';
+import wulingTaskTable from '@/custom/core/gacha/data/permanent_wuling_task_table.json';
 
 
 
@@ -111,7 +111,7 @@ permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string
   return bTime - aTime;
 });
 
-//这是一个独立的常驻奖励，使用滑块组件
+// 这是一个独立的常驻奖励，使用滑块组件
 const authorityLevelUpReward = ref<Reward>({
   id: 'authority_level_up_reward',
   name: {

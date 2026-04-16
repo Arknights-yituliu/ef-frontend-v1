@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Reward } from '#shared/types/gacha-calculator';
-import { itemIdDict } from '#shared/utils/gacha-calculator';
 import { dateFormat } from '#shared/utils/dateUtil';
+import { itemIdDict } from '#shared/utils/gacha-calculator';
 const props = defineProps<Reward>();
 
 /**
