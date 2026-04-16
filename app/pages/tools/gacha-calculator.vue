@@ -10,8 +10,6 @@ import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-ca
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
-import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
-
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
 // 奖励引入
@@ -22,6 +20,8 @@ import {
   freeMonthlyPass,
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
+
+import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
 
 import {
   archivePermanentRewardTable,
