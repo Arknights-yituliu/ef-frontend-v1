@@ -6,33 +6,31 @@ import OtherRewardTableJson from '@/custom/core/gacha/data/activity_other_reward
 import ActivityRewardTable from '@/custom/core/gacha/data/activity_reward_table.json';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 
+const currentVersion = '春晓时';
+
 const activityReward = ref<Reward[]>([]);
 
 for (const reward of ActivityRewardTable as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
-  if (reward.end < new Date()) {
-    reward.active = false;
-  }
+
+  reward.active = currentVersion === reward.version;
+
   activityReward.value.push(reward);
 }
 
 for (const reward of OtherRewardTableJson as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
-  if (reward.end < new Date()) {
-    reward.active = false;
-  }
+  reward.active = currentVersion === reward.version;
   activityReward.value.push(reward);
 }
 
 export { activityReward };
 
-
-
 createNewPoolActivity();
 
-activityReward.value.sort((a: { start: string | Date; }, b: { start: string |  Date; }) => {
+activityReward.value.sort((a: { start: string | Date }, b: { start: string | Date }) => {
   const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();
   const bTime = typeof b.start === 'string' ? new Date(b.start).getTime() : b.start.getTime();
   return bTime - aTime;
@@ -108,6 +106,5 @@ function createNewPoolActivity() {
       },
     };
     activityReward.value.push(reward3);
-    
   }
 }

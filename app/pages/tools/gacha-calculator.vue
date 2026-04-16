@@ -10,6 +10,7 @@ import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-ca
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
 
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
@@ -22,8 +23,6 @@ import {
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
 
-
-
 import {
   archivePermanentRewardTable,
   authorityLevelUpReward,
@@ -33,7 +32,6 @@ import {
 
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
-
 import { packs } from '@/custom/core/packs';
 
 const { t } = useI18n();
@@ -41,7 +39,7 @@ const { t } = useI18n();
 //
 const leftPartPanel = ref<string[]>(['statisticalResult']);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'
-const rightPartPanel = ref<string[]>(['permanent' ,'archivePermanent']);
+const rightPartPanel = ref<string[]>(['permanent', 'archivePermanent']);
 
 const poolOptions = ref<PoolOption[]>([
   {
@@ -99,7 +97,6 @@ function selectedPool(option: PoolOption): void {
   dailyRewardStatistics();
   activityRewardStatistics();
 
- 
   permanentRewardStatistics();
 
   rechargeResourceStatistics();
@@ -310,9 +307,6 @@ function activityRewardStatistics(): void {
 /**
  * 活动奖励计算相关代码结尾
  */
-
-
-
 
 /**
  * 常驻奖励计算相关代码起始
@@ -602,16 +596,15 @@ const totalResourceStatisticsResultDetail = ref<RewardStatisticsResultDetail>({
   ticketgachaLimitedSingle: 0,
 });
 
+const gachaProbability = ref(0);
+
 function allRewardStatisticsV2(): void {
   const list: RewardStatisticsResultDetail[] = [
     existingRewardStatisticsResultDetail,
     dailyRewardStatisticsResultDetail,
     activityRewardStatisticsResultDetail,
-
-  
     archivePermanentRewardStatisticsResultDetail,
     permanentRewardStatisticsResultDetail,
-
     rechargeResourceStatisticsResultDetail,
   ];
 
@@ -661,6 +654,14 @@ function allRewardStatisticsV2(): void {
     });
   }
 
+  const totalPulls = numberFloor(getSpecialAndLimitedPulls(gachaResourceStatisticsResult.value.totalPulls.total), 0);
+  if(totalPulls>119){
+    gachaProbability.value = 1;
+  }else{
+    console.log(totalPulls)
+    console.log(gachaProbabilityTable[totalPulls])
+    gachaProbability.value = gachaProbabilityTable[totalPulls] as number;
+  }
   setPieChart(pieChartData);
 }
 
@@ -773,7 +774,6 @@ function loadingUserConfig() {
       }
 
       if (localConfig.buttonActive) {
-       
         gachaCalculatorUserConfig.value.buttonActive = localConfig.buttonActive;
 
         // 加载寻访情报书状态
@@ -791,10 +791,6 @@ function loadingUserConfig() {
         _setButtonGroupActive(localConfig.buttonGroupActive, archivePermanentRewardTable);
 
         // 活动奖励
-        _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
-
-      
-
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
 
         gachaCalculatorUserConfig.value.buttonGroupActive = localConfig.buttonGroupActive;
@@ -892,16 +888,12 @@ function clearOrSelectAllActivityModule(action: boolean) {
   clearOrSelectAll(action, 'button', activityReward);
 }
 
-
-
 function clearOrSelectAllCurrentVersion(version: string) {
   // 日常奖励重构
   _filterByVersion(dailyAllRewardTable, version);
   _filterByVersion(activityReward, version);
 
   authorityLevelProgress.value = [60, 60];
-
- 
 
   function _filterByVersion(
     reward: Ref<Reward> | Ref<Reward[]> | Ref<number[]>,
@@ -969,7 +961,7 @@ const clearBtnGroup = [
   {
     text: '活动奖励',
     func: clearOrSelectAllActivityModule,
-  }
+  },
 ];
 
 // 工具函数
@@ -1240,6 +1232,10 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                   </span>
                 </div>
               </div>
+            </div>
+           
+            <div>
+              拿到卡池UP干员的概率：{{ numberFloor(gachaProbability * 100) }}%
             </div>
           </v-expansion-panel-text>
         </v-expansion-panel>
@@ -1567,7 +1563,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
         <v-expansion-panel value="activity">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              活动奖励
+              版本限时活动
               {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.activity) }}
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
@@ -1583,14 +1579,11 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
             />
           </v-expansion-panel-text>
         </v-expansion-panel>
-
-
-
         <!--常驻奖励重构-->
         <v-expansion-panel value="permanent-re">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              常驻奖励·新版本
+              版本新增常驻奖励
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.permanent?.ticketgachaSpecialSingle,
@@ -1632,10 +1625,11 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
         <v-expansion-panel value="archivePermanent">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              常驻奖励·旧版本
+              往期版本常驻奖励
               {{
                 numberFloor(
-                  gachaResourceStatisticsResult.totalPulls.archivePermanent?.ticketgachaSpecialSingle,
+                  gachaResourceStatisticsResult.totalPulls.archivePermanent
+                    ?.ticketgachaSpecialSingle,
                   1,
                 )
               }}
@@ -1774,7 +1768,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
   display: flex;
   align-items: center;
   min-width: 80px;
-  margin: 16px 0;
+  margin: 12px 0;
 }
 
 .gacha-calculator-statistics-result-item-text {
