@@ -61,7 +61,16 @@ const gachaPools: GachaPool[] = [
     poolName: "绯珀申领",
     upCharName: "狼之绯",
   },
-
+  {
+    poolId: "special_1_2_1",
+    poolName: "春雷动，万物生",
+    upCharName: "庄方宜",
+  },
+  {
+    poolId: "weponbox_1_2_1",
+    poolName: "行舟申领",
+    upCharName: "孤舟",
+  },
 ];
 // 卡池命名逻辑 special_「大版本号」_「小版本号」_「第n个卡池」
 export { gachaPools };
