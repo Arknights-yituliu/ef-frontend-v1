@@ -187,6 +187,23 @@ export const energyAlluviums: Record<string, EnergyAlluvium> = {
     ],
     skillStats: ['压制', '粉碎', '昂扬', '巧技', '医疗', '切骨', '迸发', '夜幕'],
   },
+  '重度能量淤积点·首墩': {
+    battleId: '重度能量淤积点·首墩',
+    battleName: '重度能量淤积点·首墩',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.webp',
+    secondaryStats: [
+      '攻击提升',
+      '物理伤害提升',
+      '灼热伤害提升',
+      '电磁伤害提升',
+      '自然伤害提升',
+      '暴击率提升',
+      '终结技效率提升',
+      '法术伤害提升',
+    ],
+    skillStats: ['强攻', '追袭', '昂扬', '残暴', '附术', '夜幕', '流转', '效益'],
+  },
 };
 
 /** 武器类型 */

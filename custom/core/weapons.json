@@ -83,7 +83,7 @@
     "rarity": 5,
     "stats": {
       "attribute": "力量提升",
-      "secondary": "终结技效率提升",
+      "secondary": "终结技充能效率提升",
       "skill": "迸发"
     }
   },
@@ -204,7 +204,7 @@
     "rarity": 5,
     "stats": {
       "attribute": "意志提升",
-      "secondary": "终结技效率提升",
+      "secondary": "终结技充能效率提升",
       "skill": "昂扬"
     }
   },
@@ -248,7 +248,7 @@
     "rarity": 6,
     "stats": {
       "attribute": "意志提升",
-      "secondary": "终结技效率提升",
+      "secondary": "终结技充能效率提升",
       "skill": "追袭"
     }
   },
@@ -285,6 +285,28 @@
       "skill": "追袭"
     }
   },
+  "wpn_funnel_0015": {
+    "weaponId": "wpn_funnel_0015",
+    "weaponName": "孤舟",
+    "weaponType": "施术单元",
+    "rarity": 6,
+    "stats": {
+      "attribute": "意志提升",
+      "secondary": "攻击提升",
+      "skill": "压制"
+    }
+  },
+  "wpn_funnel_0017": {
+    "weaponId": "wpn_funnel_0017",
+    "weaponName": "雾中微光",
+    "weaponType": "施术单元",
+    "rarity": 6,
+    "stats": {
+      "attribute": "意志提升",
+      "secondary": "电磁伤害提升",
+      "skill": "效益"
+    }
+  },
   "wpn_lance_0003": {
     "weaponId": "wpn_lance_0003",
     "weaponName": "寻路者道标",
@@ -303,7 +325,7 @@
     "rarity": 5,
     "stats": {
       "attribute": "力量提升",
-      "secondary": "终结技效率提升",
+      "secondary": "终结技充能效率提升",
       "skill": "残暴"
     }
   },
@@ -512,7 +534,7 @@
     "rarity": 5,
     "stats": {
       "attribute": "敏捷提升",
-      "secondary": "终结技效率提升",
+      "secondary": "终结技充能效率提升",
       "skill": "迸发"
     }
   },
@@ -556,7 +578,7 @@
     "rarity": 5,
     "stats": {
       "attribute": "智识提升",
-      "secondary": "终结技效率提升",
+      "secondary": "终结技充能效率提升",
       "skill": "昂扬"
     }
   },
