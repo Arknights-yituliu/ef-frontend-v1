@@ -209,6 +209,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_adv_wuling_box_1_3_plate": {
+    "id": "achv_adv_wuling_box_1_3_plate",
+    "name": {
+      "zh-CN": "武陵储藏家奖章·Ⅰ",
+      "en-US": "Wuling Crate Master Ⅰ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_adv_wuling_campfire_1_1": {
     "id": "achv_adv_wuling_campfire_1_1",
     "name": {
@@ -265,6 +279,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_adv_wuling_ether_1_3_plate": {
+    "id": "achv_adv_wuling_ether_1_3_plate",
+    "name": {
+      "zh-CN": "“碎片的重聚”·Ⅰ",
+      "en-US": "\"Re-Congregated Fragments\" Ⅰ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_adv_wuling_floor_1_1": {
     "id": "achv_adv_wuling_floor_1_1",
     "name": {
@@ -284,6 +312,20 @@
     "name": {
       "zh-CN": "“击股传虫”",
       "en-US": "\"Swat the Lanky and Pass the Bug\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_watergun_1_1": {
+    "id": "achv_adv_wuling_watergun_1_1",
+    "name": {
+      "zh-CN": "“轨道激流”",
+      "en-US": "\"Track Sprayer\""
     },
     "rarity": 1,
     "type": 100,
@@ -326,6 +368,20 @@
     "name": {
       "zh-CN": "熟练截击奖章",
       "en-US": "Master Interceptor"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_charged_hsbear_2": {
+    "id": "achv_bat_charged_hsbear_2",
+    "name": {
+      "zh-CN": "“截雷”",
+      "en-US": "\"Interceptor of Thunder\""
     },
     "rarity": 1,
     "type": 100,
@@ -396,6 +452,62 @@
     "name": {
       "zh-CN": "“星体的残肢”",
       "en-US": "\"Broken Remains of Astarron\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_defeat_ethillu_2": {
+    "id": "achv_bat_defeat_ethillu_2",
+    "name": {
+      "zh-CN": "“不稳定表象”",
+      "en-US": "\"Unstable Æthillu\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_defeat_hsbear_2": {
+    "id": "achv_bat_defeat_hsbear_2",
+    "name": {
+      "zh-CN": "“偃旗息鼓”",
+      "en-US": "\"Silencing the Drum\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_defeat_nefarp_3": {
+    "id": "achv_bat_defeat_nefarp_3",
+    "name": {
+      "zh-CN": "“征服者的遗恨”",
+      "en-US": "\"Conqueror's Grief\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_defeat_nefarp_3_plate": {
+    "id": "achv_bat_defeat_nefarp_3_plate",
+    "name": {
+      "zh-CN": "“征服者的遗恨”",
+      "en-US": "\"Conqueror's Grief\""
     },
     "rarity": 1,
     "type": 100,
@@ -713,6 +825,34 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_bat_hard_4_2": {
+    "id": "achv_bat_hard_4_2",
+    "name": {
+      "zh-CN": "“浊流具现”",
+      "en-US": "\"Turbidity Manifest\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_hard_4_2_plate": {
+    "id": "achv_bat_hard_4_2_plate",
+    "name": {
+      "zh-CN": "“浊流具现”",
+      "en-US": "\"Turbidity Manifest\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_bat_magical_AS_1": {
     "id": "achv_bat_magical_AS_1",
     "name": {
@@ -858,6 +998,34 @@
     "name": {
       "zh-CN": "“生存专家”",
       "en-US": "\"Expert Survivor\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_formula_2": {
+    "id": "achv_event_formula_2",
+    "name": {
+      "zh-CN": "“掌中大救星”",
+      "en-US": "\"Palm Top Deliverer\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_formula_2_plate": {
+    "id": "achv_event_formula_2_plate",
+    "name": {
+      "zh-CN": "“掌中大救星”",
+      "en-US": "\"Palm Top Deliverer\""
     },
     "rarity": 1,
     "type": 100,
@@ -1035,6 +1203,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_fac_coupon_wuling_3_3": {
+    "id": "achv_fac_coupon_wuling_3_3",
+    "name": {
+      "zh-CN": "武陵调度专家奖章·Ⅲ",
+      "en-US": "Wuling Stock Redistributor Ⅲ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_fac_domain_depot_2": {
     "id": "achv_fac_domain_depot_2",
     "name": {
@@ -1105,6 +1287,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_fac_kite_station_2_plate": {
+    "id": "achv_fac_kite_station_2_plate",
+    "name": {
+      "zh-CN": "环境监测奖章",
+      "en-US": "Environment Monitor"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_fac_recycle_station_1": {
     "id": "achv_fac_recycle_station_1",
     "name": {
@@ -1138,6 +1334,34 @@
     "name": {
       "zh-CN": "谷地据点开拓奖章",
       "en-US": "Valley Outpost Builder"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_settlement_wuling_1_2": {
+    "id": "achv_fac_settlement_wuling_1_2",
+    "name": {
+      "zh-CN": "武陵据点开拓奖章·Ⅰ",
+      "en-US": "Wuling Outpost Builder Ⅰ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_settlement_wuling_1_2_plate": {
+    "id": "achv_fac_settlement_wuling_1_2_plate",
+    "name": {
+      "zh-CN": "武陵据点开拓奖章·Ⅰ",
+      "en-US": "Wuling Outpost Builder Ⅰ"
     },
     "rarity": 1,
     "type": 100,
@@ -1264,6 +1488,20 @@
     "name": {
       "zh-CN": "武陵工业先驱奖章·Ⅱ",
       "en-US": "Wuling Factory Pioneer Ⅱ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_techtree_jinlong_3_1": {
+    "id": "achv_fac_techtree_jinlong_3_1",
+    "name": {
+      "zh-CN": "武陵工业先驱奖章·Ⅲ",
+      "en-US": "Wuling Factory Pioneer Ⅲ"
     },
     "rarity": 1,
     "type": 100,
@@ -1623,11 +1861,39 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_hide_paralyze_2": {
+    "id": "achv_hide_paralyze_2",
+    "name": {
+      "zh-CN": "“全位显现”",
+      "en-US": "\"Fully Revealed\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_hide_rebellious_2": {
     "id": "achv_hide_rebellious_2",
     "name": {
       "zh-CN": "“人造南墙”",
       "en-US": "\"We Built the Southern Bastion\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_hide_root_1": {
+    "id": "achv_hide_root_1",
+    "name": {
+      "zh-CN": "“寓于枯荣”",
+      "en-US": "\"Dwelling Upon Wilted Glory\""
     },
     "rarity": 1,
     "type": 100,
@@ -1712,6 +1978,20 @@
     "name": {
       "zh-CN": "“苏醒”",
       "en-US": "\"Awaken\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_quest_e10m3_3": {
+    "id": "achv_quest_e10m3_3",
+    "name": {
+      "zh-CN": "“轻舟已过”",
+      "en-US": "\"Gently Down the Stream\""
     },
     "rarity": 1,
     "type": 100,
@@ -1824,6 +2104,34 @@
     "name": {
       "zh-CN": "“溺水”",
       "en-US": "\"Drowning in Water\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_quest_e8m4_3": {
+    "id": "achv_quest_e8m4_3",
+    "name": {
+      "zh-CN": "“我最后侍奉的王”",
+      "en-US": "\"The Final Lord I Served\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_quest_e9m3_3": {
+    "id": "achv_quest_e9m3_3",
+    "name": {
+      "zh-CN": "“征服者之死”",
+      "en-US": "\"Conqueror's Fall\""
     },
     "rarity": 1,
     "type": 100,
@@ -2127,6 +2435,20 @@
     },
     "iconId": "item_topic_bp_1_1"
   },
+  "business_card_topic_bp_1_2": {
+    "id": "business_card_topic_bp_1_2",
+    "name": {
+      "zh-CN": "山水墨成",
+      "en-US": "Shanshui Painting"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_bp_1_2"
+  },
   "business_card_topic_chr_0009_azrila": {
     "id": "business_card_topic_chr_0009_azrila",
     "name": {
@@ -2267,6 +2589,20 @@
     },
     "iconId": "item_topic_chr_0029_pograni"
   },
+  "business_card_topic_chr_0030_zhuangfy": {
+    "id": "business_card_topic_chr_0030_zhuangfy",
+    "name": {
+      "zh-CN": "大局已定",
+      "en-US": "Forged and Finalized"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_chr_0030_zhuangfy"
+  },
   "business_card_topic_normal_1": {
     "id": "business_card_topic_normal_1",
     "name": {
@@ -2308,6 +2644,20 @@
       "en-US": "Profile Theme"
     },
     "iconId": "item_topic_normal_3"
+  },
+  "business_card_topic_normal_4": {
+    "id": "business_card_topic_normal_4",
+    "name": {
+      "zh-CN": "行至武陵",
+      "en-US": "Arriving at Wuling"
+    },
+    "rarity": 5,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_normal_4"
   },
   "chr_0002_endminm": {
     "id": "chr_0002_endminm",
@@ -2672,6 +3022,20 @@
       "en-US": "Employment Contract"
     },
     "iconId": "item_chr_0029_pograni"
+  },
+  "chr_0030_zhuangfy": {
+    "id": "chr_0030_zhuangfy",
+    "name": {
+      "zh-CN": "庄方宜",
+      "en-US": "Zhuang Fangyi"
+    },
+    "rarity": 6,
+    "type": 4,
+    "typeName": {
+      "zh-CN": "招聘合同",
+      "en-US": "Employment Contract"
+    },
+    "iconId": "item_chr_0030_zhuangfy"
   },
   "common_2x3_l": {
     "id": "common_2x3_l",
@@ -3403,6 +3767,62 @@
   },
   "gem_funnel_0014_663": {
     "id": "gem_funnel_0014_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_funnel_0015_442": {
+    "id": "gem_funnel_0015_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_funnel_0015_663": {
+    "id": "gem_funnel_0015_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_funnel_0017_442": {
+    "id": "gem_funnel_0017_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_funnel_0017_663": {
+    "id": "gem_funnel_0017_663",
     "name": {
       "zh-CN": "无瑕基质",
       "en-US": "Flawless Essence"
@@ -4801,6 +5221,174 @@
     },
     "iconId": "item_read_note"
   },
+  "item_activity_formula_xiranite_enr_hulu": {
+    "id": "item_activity_formula_xiranite_enr_hulu",
+    "name": {
+      "zh-CN": "息壤玉葫芦设计稿",
+      "en-US": "Xiranite Jade Gourd Design Draft"
+    },
+    "rarity": 3,
+    "type": 39,
+    "typeName": {
+      "zh-CN": "配方解锁",
+      "en-US": "Formula Unlock"
+    },
+    "iconId": "item_activity_formula_xiranite_enr_hulu"
+  },
+  "item_activity_formula_xiranite_hulu": {
+    "id": "item_activity_formula_xiranite_hulu",
+    "name": {
+      "zh-CN": "息壤葫芦设计稿",
+      "en-US": "Xiranite Gourd Design Draft"
+    },
+    "rarity": 3,
+    "type": 39,
+    "typeName": {
+      "zh-CN": "配方解锁",
+      "en-US": "Formula Unlock"
+    },
+    "iconId": "item_activity_formula_xiranite_hulu"
+  },
+  "item_activity_relief_coupon": {
+    "id": "item_activity_relief_coupon",
+    "name": {
+      "zh-CN": "援助成果券",
+      "en-US": "Fruits of Altruism Certs"
+    },
+    "rarity": 5,
+    "type": 3,
+    "typeName": {
+      "zh-CN": "活动代币",
+      "en-US": "Event Currency"
+    },
+    "iconId": "item_activity_relief_coupon"
+  },
+  "item_activity_sample_xiranite_enr_hulu": {
+    "id": "item_activity_sample_xiranite_enr_hulu",
+    "name": {
+      "zh-CN": "息壤玉葫芦样品",
+      "en-US": "Xiranite Jade Gourd Sample"
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_activity_xiranite_enr_hulu"
+  },
+  "item_activity_sample_xiranite_hulu": {
+    "id": "item_activity_sample_xiranite_hulu",
+    "name": {
+      "zh-CN": "息壤葫芦样品",
+      "en-US": "Xiranite Gourd Sample"
+    },
+    "rarity": 4,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_activity_xiranite_hulu"
+  },
+  "item_activity_xiranite_bottle": {
+    "id": "item_activity_xiranite_bottle",
+    "name": {
+      "zh-CN": "实验息壤瓶",
+      "en-US": "Experimental Xiranite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_activity_xiranite_bottle"
+  },
+  "item_activity_xiranite_cmpt": {
+    "id": "item_activity_xiranite_cmpt",
+    "name": {
+      "zh-CN": "实验息壤零件",
+      "en-US": "Experimental Xiranite Part"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_activity_xiranite_cmpt"
+  },
+  "item_activity_xiranite_enr_bottle": {
+    "id": "item_activity_xiranite_enr_bottle",
+    "name": {
+      "zh-CN": "实验重息壤瓶",
+      "en-US": "Experimental Heavy Xiranite Bottle"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_activity_xiranite_enr_bottle"
+  },
+  "item_activity_xiranite_enr_cmpt": {
+    "id": "item_activity_xiranite_enr_cmpt",
+    "name": {
+      "zh-CN": "实验重息壤零件",
+      "en-US": "Experimental Heavy Xiranite Part"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_activity_xiranite_enr_cmpt"
+  },
+  "item_activity_xiranite_enr_hulu": {
+    "id": "item_activity_xiranite_enr_hulu",
+    "name": {
+      "zh-CN": "息壤玉葫芦",
+      "en-US": "Xiranite Jade Gourd"
+    },
+    "rarity": 5,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_activity_xiranite_enr_hulu"
+  },
+  "item_activity_xiranite_enr_tool": {
+    "id": "item_activity_xiranite_enr_tool",
+    "name": {
+      "zh-CN": "实验玉铜发散器",
+      "en-US": "Experimental Xiran-Hue Atomizer"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_activity_xiranite_enr_tool"
+  },
+  "item_activity_xiranite_hulu": {
+    "id": "item_activity_xiranite_hulu",
+    "name": {
+      "zh-CN": "息壤葫芦",
+      "en-US": "Xiranite Gourd"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_activity_xiranite_hulu"
+  },
   "item_add_endurance": {
     "id": "item_add_endurance",
     "name": {
@@ -5052,6 +5640,20 @@
       "en-US": "Sanity Meds"
     },
     "iconId": "item_ap_supply_springfes_3"
+  },
+  "item_ap_supply_universe": {
+    "id": "item_ap_supply_universe",
+    "name": {
+      "zh-CN": "轨道羽兽翅",
+      "en-US": "Orbital Wings"
+    },
+    "rarity": 5,
+    "type": 22,
+    "typeName": {
+      "zh-CN": "理智药剂",
+      "en-US": "Sanity Meds"
+    },
+    "iconId": "item_ap_supply_universe"
   },
   "item_ap_take_out": {
     "id": "item_ap_take_out",
@@ -5473,6 +6075,20 @@
     },
     "iconId": "item_port_battle_cannon_2"
   },
+  "item_bp_battle_debuff_1": {
+    "id": "item_bp_battle_debuff_1",
+    "name": {
+      "zh-CN": "“酸洗”MK-Ⅰ模板",
+      "en-US": "Acid Soaker Mk I Template"
+    },
+    "rarity": 5,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_port_battle_debuff_1"
+  },
   "item_bp_battle_fog_1": {
     "id": "item_bp_battle_fog_1",
     "name": {
@@ -5529,6 +6145,20 @@
     },
     "iconId": "item_port_battle_laser_1"
   },
+  "item_bp_battle_laser_2": {
+    "id": "item_bp_battle_laser_2",
+    "name": {
+      "zh-CN": "高能射线塔模板",
+      "en-US": "Hyper Beam Tower Template"
+    },
+    "rarity": 5,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_port_battle_laser_2"
+  },
   "item_bp_battle_lightning_1": {
     "id": "item_bp_battle_lightning_1",
     "name": {
@@ -5556,6 +6186,20 @@
       "en-US": "Standard Template Assembly"
     },
     "iconId": "item_port_battle_medic_1"
+  },
+  "item_bp_battle_rocket_1": {
+    "id": "item_bp_battle_rocket_1",
+    "name": {
+      "zh-CN": "重锤迫击炮模板",
+      "en-US": "Sledgehammer Mortar Template"
+    },
+    "rarity": 5,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_port_battle_rocket_1"
   },
   "item_bp_battle_shockwave_1": {
     "id": "item_bp_battle_shockwave_1",
@@ -5795,6 +6439,20 @@
     },
     "iconId": "item_port_dismantler_1"
   },
+  "item_bp_liquid_purifier_1": {
+    "id": "item_bp_liquid_purifier_1",
+    "name": {
+      "zh-CN": "提纯机模板",
+      "en-US": "Purification Unit Template"
+    },
+    "rarity": 4,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_port_liquid_purifier_1"
+  },
   "item_bp_liquid_storager_1": {
     "id": "item_bp_liquid_storager_1",
     "name": {
@@ -5948,6 +6606,20 @@
       "en-US": "Standard Template Assembly"
     },
     "iconId": "item_bp_mix_pool_1_unlock"
+  },
+  "item_bp_mix_pool_2": {
+    "id": "item_bp_mix_pool_2",
+    "name": {
+      "zh-CN": "扩容反应池模板",
+      "en-US": "Expanded Crucible Template"
+    },
+    "rarity": 3,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_port_mix_pool_2"
   },
   "item_bp_planter_1": {
     "id": "item_bp_planter_1",
@@ -6215,11 +6887,11 @@
     },
     "iconId": "item_port_udpipe_loader_1"
   },
-  "item_bp_udpipe_unloader_1": {
-    "id": "item_bp_udpipe_unloader_1",
+  "item_bp_udpipe_loader_2": {
+    "id": "item_bp_udpipe_loader_2",
     "name": {
-      "zh-CN": "暗管出口模板",
-      "en-US": "Conduit Outlet Template"
+      "zh-CN": "多口暗管入口模板",
+      "en-US": "Conduit Inlet Manifold Template"
     },
     "rarity": 4,
     "type": 12,
@@ -6227,7 +6899,35 @@
       "zh-CN": "STA协议模板",
       "en-US": "Standard Template Assembly"
     },
+    "iconId": "item_port_udpipe_loader_2"
+  },
+  "item_bp_udpipe_unloader_1": {
+    "id": "item_bp_udpipe_unloader_1",
+    "name": {
+      "zh-CN": "暗管出口模板",
+      "en-US": "Conduit Outlet Template"
+    },
+    "rarity": 3,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
     "iconId": "item_port_udpipe_unloader_1"
+  },
+  "item_bp_udpipe_unloader_2": {
+    "id": "item_bp_udpipe_unloader_2",
+    "name": {
+      "zh-CN": "多口暗管出口模板",
+      "en-US": "Conduit Outlet Manifold Template"
+    },
+    "rarity": 4,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_port_udpipe_unloader_2"
   },
   "item_bp_unloader_1": {
     "id": "item_bp_unloader_1",
@@ -6397,6 +7097,34 @@
     },
     "iconId": "item_case_bp_random_3"
   },
+  "item_case_bp_random_new_2": {
+    "id": "item_case_bp_random_new_2",
+    "name": {
+      "zh-CN": "中号循环惊喜箱",
+      "en-US": "Cycling Crate-o-Surprise [M]"
+    },
+    "rarity": 4,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_bp_random_new_2"
+  },
+  "item_case_bp_random_new_3": {
+    "id": "item_case_bp_random_new_3",
+    "name": {
+      "zh-CN": "大号循环惊喜箱",
+      "en-US": "Cycling Crate-o-Surprise [L]"
+    },
+    "rarity": 5,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_bp_random_new_3"
+  },
   "item_case_bp_selfselect_break": {
     "id": "item_case_bp_selfselect_break",
     "name": {
@@ -6523,6 +7251,20 @@
     },
     "iconId": "item_case_wpn_selfselect_bp_2"
   },
+  "item_case_wpn_selfselect_bp_3": {
+    "id": "item_case_wpn_selfselect_bp_3",
+    "name": {
+      "zh-CN": "武器补给·怒潮",
+      "en-US": "Weapon Supply: Wrothful Tide"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_bp_3"
+  },
   "item_case_wpn_selfselect_common_advlevel": {
     "id": "item_case_wpn_selfselect_common_advlevel",
     "name": {
@@ -6620,6 +7362,48 @@
       "en-US": "Crate"
     },
     "iconId": "item_case_wpn_selfselect_gahca_1_2"
+  },
+  "item_case_wpn_selfselect_gahca_1_2_1": {
+    "id": "item_case_wpn_selfselect_gahca_1_2_1",
+    "name": {
+      "zh-CN": "补充武库箱·行舟",
+      "en-US": "Arms OC: Drifting Raft"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_2_1"
+  },
+  "item_case_wpn_selfselect_gahca_1_2_2": {
+    "id": "item_case_wpn_selfselect_gahca_1_2_2",
+    "name": {
+      "zh-CN": "补充武库箱·熔灼",
+      "en-US": "Arms OC: Smelting Fire"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_0_1"
+  },
+  "item_case_wpn_selfselect_gahca_1_2_3": {
+    "id": "item_case_wpn_selfselect_gahca_1_2_3",
+    "name": {
+      "zh-CN": "补充武库箱·疾行",
+      "en-US": "Arms OC: Swift Walker"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_0_3"
   },
   "item_case_wpn_selfselect_gahca_c_1": {
     "id": "item_case_wpn_selfselect_gahca_c_1",
@@ -6802,6 +7586,20 @@
       "en-US": "Sanity Meds"
     },
     "iconId": "item_char_ap_supply_yvonne"
+  },
+  "item_char_ap_supply_zhuangfy": {
+    "id": "item_char_ap_supply_zhuangfy",
+    "name": {
+      "zh-CN": "油焖整笋罐头",
+      "en-US": "Wholly-Braised Sprout [can]"
+    },
+    "rarity": 5,
+    "type": 22,
+    "typeName": {
+      "zh-CN": "理智药剂",
+      "en-US": "Sanity Meds"
+    },
+    "iconId": "item_char_ap_supply_zhuangfy"
   },
   "item_char_break_stage_1_2": {
     "id": "item_char_break_stage_1_2",
@@ -7321,6 +8119,20 @@
     },
     "iconId": "item_charpotentialup_chr_0029_pograni"
   },
+  "item_charpotentialup_chr_0030_zhuangfy": {
+    "id": "item_charpotentialup_chr_0030_zhuangfy",
+    "name": {
+      "zh-CN": "庄方宜的信物",
+      "en-US": "Zhuang Fangyi's Token"
+    },
+    "rarity": 6,
+    "type": 42,
+    "typeName": {
+      "zh-CN": "干员信物",
+      "en-US": "Operator Token"
+    },
+    "iconId": "item_charpotentialup_chr_0030_zhuangfy"
+  },
   "item_charpotentialup_chr_9000_endmin": {
     "id": "item_charpotentialup_chr_9000_endmin",
     "name": {
@@ -7418,6 +8230,48 @@
       "en-US": "Material"
     },
     "iconId": "item_copper_cmpt"
+  },
+  "item_copper_enr": {
+    "id": "item_copper_enr",
+    "name": {
+      "zh-CN": "赫铜块",
+      "en-US": "Hetonite"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr"
+  },
+  "item_copper_enr_bottle": {
+    "id": "item_copper_enr_bottle",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle"
+  },
+  "item_copper_enr_cmpt": {
+    "id": "item_copper_enr_cmpt",
+    "name": {
+      "zh-CN": "赫铜零件",
+      "en-US": "Hetonite Part"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_cmpt"
   },
   "item_copper_nugget": {
     "id": "item_copper_nugget",
@@ -7685,6 +8539,20 @@
     },
     "iconId": "item_dog_1_slimeml_1_1"
   },
+  "item_dog_hsmob_corp_1": {
+    "id": "item_dog_hsmob_corp_1",
+    "name": {
+      "zh-CN": "烂肉面",
+      "en-US": "Braised Meat Noodles"
+    },
+    "rarity": 4,
+    "type": 48,
+    "typeName": {
+      "zh-CN": "战术物品",
+      "en-US": "Tactical"
+    },
+    "iconId": "item_dog_hsmob_corp_1"
+  },
   "item_domain_jinlong_coupon": {
     "id": "item_domain_jinlong_coupon",
     "name": {
@@ -7810,6 +8678,62 @@
       "en-US": "Elastic Goods"
     },
     "iconId": "item_domainshop_cargo_jinlong_5"
+  },
+  "item_domainshop_cargo_jinlong_6": {
+    "id": "item_domainshop_cargo_jinlong_6",
+    "name": {
+      "zh-CN": "息壤色烟花货组",
+      "en-US": "Xiran-Hue Fireworks [pkg]"
+    },
+    "rarity": 2,
+    "type": 56,
+    "typeName": {
+      "zh-CN": "弹性需求物资",
+      "en-US": "Elastic Goods"
+    },
+    "iconId": "item_domainshop_cargo_jinlong_6"
+  },
+  "item_domainshop_cargo_jinlong_7": {
+    "id": "item_domainshop_cargo_jinlong_7",
+    "name": {
+      "zh-CN": "息壤净水芯货组",
+      "en-US": "Xiranite Filter Cores [pkg]"
+    },
+    "rarity": 2,
+    "type": 56,
+    "typeName": {
+      "zh-CN": "弹性需求物资",
+      "en-US": "Elastic Goods"
+    },
+    "iconId": "item_domainshop_cargo_jinlong_7"
+  },
+  "item_domainshop_cargo_jinlong_8": {
+    "id": "item_domainshop_cargo_jinlong_8",
+    "name": {
+      "zh-CN": "清波筏货组",
+      "en-US": "Qingbo Rafts [pkg]"
+    },
+    "rarity": 2,
+    "type": 56,
+    "typeName": {
+      "zh-CN": "弹性需求物资",
+      "en-US": "Elastic Goods"
+    },
+    "iconId": "item_domainshop_cargo_jinlong_8"
+  },
+  "item_domainshop_cargo_jinlong_9": {
+    "id": "item_domainshop_cargo_jinlong_9",
+    "name": {
+      "zh-CN": "飞天迎宾员货组",
+      "en-US": "Aerial Receptionists [pkg]"
+    },
+    "rarity": 2,
+    "type": 56,
+    "typeName": {
+      "zh-CN": "弹性需求物资",
+      "en-US": "Elastic Goods"
+    },
+    "iconId": "item_domainshop_cargo_jinlong_9"
   },
   "item_domainshop_cargo_tundra_1": {
     "id": "item_domainshop_cargo_tundra_1",
@@ -8091,6 +9015,20 @@
     },
     "iconId": "item_drop_erhound_1"
   },
+  "item_drop_ethillu_1": {
+    "id": "item_drop_ethillu_1",
+    "name": {
+      "zh-CN": "回响尘埃",
+      "en-US": "Echoing Dust"
+    },
+    "rarity": 1,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_drop_ethillu_1"
+  },
   "item_drop_firebat_1": {
     "id": "item_drop_firebat_1",
     "name": {
@@ -8104,6 +9042,20 @@
       "en-US": "Material"
     },
     "iconId": "item_drop_firebat_1"
+  },
+  "item_drop_hsbear_1": {
+    "id": "item_drop_hsbear_1",
+    "name": {
+      "zh-CN": "咆兽的辫束",
+      "en-US": "Howlerbeast Braid"
+    },
+    "rarity": 5,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_drop_hsbear_1"
   },
   "item_drop_hscrane_1": {
     "id": "item_drop_hscrane_1",
@@ -8510,6 +9462,20 @@
       "en-US": "Material"
     },
     "iconId": "item_equip_script_4_1"
+  },
+  "item_equip_script_4_2": {
+    "id": "item_equip_script_4_2",
+    "name": {
+      "zh-CN": "赫铜装备原件",
+      "en-US": "Hetonite Component"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_equip_script_4_2"
   },
   "item_equip_t0_parts_tundra01_body_01": {
     "id": "item_equip_t0_parts_tundra01_body_01",
@@ -10037,6 +11003,20 @@
     },
     "iconId": "item_equip_t4_suit_atb01_edc_05"
   },
+  "item_equip_t4_suit_atb01_edc_06": {
+    "id": "item_equip_t4_suit_atb01_edc_06",
+    "name": {
+      "zh-CN": "拓荒增量供氧栓·壹型",
+      "en-US": "Frontiers Extra O2 Tube T1"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_atb01_edc_06"
+  },
   "item_equip_t4_suit_atb01_hand_01": {
     "id": "item_equip_t4_suit_atb01_hand_01",
     "name": {
@@ -10064,6 +11044,20 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_atb01_hand_02"
+  },
+  "item_equip_t4_suit_atb01_hand_03": {
+    "id": "item_equip_t4_suit_atb01_hand_03",
+    "name": {
+      "zh-CN": "拓荒纤维手套·壹型",
+      "en-US": "Frontiers Fiber Gloves T1"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_atb01_hand_03"
   },
   "item_equip_t4_suit_atk02_body_01": {
     "id": "item_equip_t4_suit_atk02_body_01",
@@ -10289,6 +11283,20 @@
     },
     "iconId": "item_equip_t4_suit_attri01_body_05"
   },
+  "item_equip_t4_suit_attri01_edc_02": {
+    "id": "item_equip_t4_suit_attri01_edc_02",
+    "name": {
+      "zh-CN": "碾骨小雕像·贰型",
+      "en-US": "Bonekrusha Figurine T2"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_attri01_edc_02"
+  },
   "item_equip_t4_suit_attri01_edc_03": {
     "id": "item_equip_t4_suit_attri01_edc_03",
     "name": {
@@ -10387,6 +11395,20 @@
     },
     "iconId": "item_equip_t4_suit_attri01_hand_02"
   },
+  "item_equip_t4_suit_attri01_hand_03": {
+    "id": "item_equip_t4_suit_attri01_hand_03",
+    "name": {
+      "zh-CN": "碾骨手套",
+      "en-US": "Bonekrusha Gloves"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_attri01_hand_03"
+  },
   "item_equip_t4_suit_burst01_body_01": {
     "id": "item_equip_t4_suit_burst01_body_01",
     "name": {
@@ -10442,6 +11464,104 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_burst01_hand_01"
+  },
+  "item_equip_t4_suit_combo_cd01_body_01": {
+    "id": "item_equip_t4_suit_combo_cd01_body_01",
+    "name": {
+      "zh-CN": "清波重甲",
+      "en-US": "Qingbo Heavy Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_body_01"
+  },
+  "item_equip_t4_suit_combo_cd01_body_02": {
+    "id": "item_equip_t4_suit_combo_cd01_body_02",
+    "name": {
+      "zh-CN": "清波轻甲",
+      "en-US": "Qingbo Light Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_body_02"
+  },
+  "item_equip_t4_suit_combo_cd01_edc_01": {
+    "id": "item_equip_t4_suit_combo_cd01_edc_01",
+    "name": {
+      "zh-CN": "清波定位仪",
+      "en-US": "Qingbo Positioning Kit"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_edc_01"
+  },
+  "item_equip_t4_suit_combo_cd01_edc_02": {
+    "id": "item_equip_t4_suit_combo_cd01_edc_02",
+    "name": {
+      "zh-CN": "清波竹刃",
+      "en-US": "Qingbo Bamboo Cutter"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_edc_02"
+  },
+  "item_equip_t4_suit_combo_cd01_edc_03": {
+    "id": "item_equip_t4_suit_combo_cd01_edc_03",
+    "name": {
+      "zh-CN": "清波水罐",
+      "en-US": "Qingbo Cask"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_edc_03"
+  },
+  "item_equip_t4_suit_combo_cd01_hand_01": {
+    "id": "item_equip_t4_suit_combo_cd01_hand_01",
+    "name": {
+      "zh-CN": "清波手甲",
+      "en-US": "Qingbo Gauntlets"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_hand_01"
+  },
+  "item_equip_t4_suit_combo_cd01_hand_02": {
+    "id": "item_equip_t4_suit_combo_cd01_hand_02",
+    "name": {
+      "zh-CN": "清波护手",
+      "en-US": "Qingbo Gloves"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_hand_02"
   },
   "item_equip_t4_suit_criti01_body_01": {
     "id": "item_equip_t4_suit_criti01_body_01",
@@ -10652,6 +11772,48 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_criti01_hand_04"
+  },
+  "item_equip_t4_suit_expend_spell01_body_02": {
+    "id": "item_equip_t4_suit_expend_spell01_body_02",
+    "name": {
+      "zh-CN": "壤流轻甲",
+      "en-US": "Xiranflow Light Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_expend_spell01_body_02"
+  },
+  "item_equip_t4_suit_expend_spell01_edc_02": {
+    "id": "item_equip_t4_suit_expend_spell01_edc_02",
+    "name": {
+      "zh-CN": "壤流短棍",
+      "en-US": "Xiranflow Baton"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_expend_spell01_edc_02"
+  },
+  "item_equip_t4_suit_expend_spell01_hand_02": {
+    "id": "item_equip_t4_suit_expend_spell01_hand_02",
+    "name": {
+      "zh-CN": "壤流护手",
+      "en-US": "Xiranflow Gloves"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_expend_spell01_hand_02"
   },
   "item_equip_t4_suit_fire_natr01_body_01": {
     "id": "item_equip_t4_suit_fire_natr01_body_01",
@@ -10919,6 +12081,20 @@
     },
     "iconId": "item_equip_t4_suit_phy01_body_02"
   },
+  "item_equip_t4_suit_phy01_body_03": {
+    "id": "item_equip_t4_suit_phy01_body_03",
+    "name": {
+      "zh-CN": "点剑重装甲·壹型",
+      "en-US": "Swordmancer Heavy Armor T1"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_phy01_body_03"
+  },
   "item_equip_t4_suit_phy01_edc_01": {
     "id": "item_equip_t4_suit_phy01_edc_01",
     "name": {
@@ -10961,6 +12137,20 @@
     },
     "iconId": "item_equip_t4_suit_phy01_edc_03"
   },
+  "item_equip_t4_suit_phy01_edc_04": {
+    "id": "item_equip_t4_suit_phy01_edc_04",
+    "name": {
+      "zh-CN": "点剑短刃",
+      "en-US": "Swordmancer Dagger"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_phy01_edc_04"
+  },
   "item_equip_t4_suit_phy01_hand_01": {
     "id": "item_equip_t4_suit_phy01_hand_01",
     "name": {
@@ -10988,6 +12178,20 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_phy01_hand_02"
+  },
+  "item_equip_t4_suit_phy01_hand_03": {
+    "id": "item_equip_t4_suit_phy01_hand_03",
+    "name": {
+      "zh-CN": "点剑战术手甲·壹型",
+      "en-US": "Swordmancer TAC Gauntlets T1"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_phy01_hand_03"
   },
   "item_equip_t4_suit_poise01_body_01": {
     "id": "item_equip_t4_suit_poise01_body_01",
@@ -11254,6 +12458,20 @@
       "en-US": "Consumable"
     },
     "iconId": "item_erhound_1_agmelee_1_moss_1_1"
+  },
+  "item_ethillu_1_wgslime_1_wgthorns_1_1": {
+    "id": "item_ethillu_1_wgslime_1_wgthorns_1_1",
+    "name": {
+      "zh-CN": "回响秘剂",
+      "en-US": "Echoing Remedy"
+    },
+    "rarity": 3,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_ethillu_1_wgslime_1_wgthorns_1_1"
   },
   "item_expcard_stage1_high": {
     "id": "item_expcard_stage1_high",
@@ -11535,6 +12753,90 @@
     },
     "iconId": "item_factech_wuling_oven_amount_2"
   },
+  "item_factech_wuling_oven_amount_3": {
+    "id": "item_factech_wuling_oven_amount_3",
+    "name": {
+      "zh-CN": "洪炉扩容III",
+      "en-US": "Forge Expansion III"
+    },
+    "rarity": 3,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_factech_wuling_oven_amount_3"
+  },
+  "item_factech_wuling_oven_amount_4": {
+    "id": "item_factech_wuling_oven_amount_4",
+    "name": {
+      "zh-CN": "洪炉扩容IV",
+      "en-US": "Forge Expansion IV"
+    },
+    "rarity": 3,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_factech_wuling_oven_amount_4"
+  },
+  "item_factech_wuling_xiranite_enr_formula": {
+    "id": "item_factech_wuling_xiranite_enr_formula",
+    "name": {
+      "zh-CN": "重息壤",
+      "en-US": "Heavy Xiranite"
+    },
+    "rarity": 3,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_factech_wuling_xiranite_enr_formula"
+  },
+  "item_fbottle_copper_acid": {
+    "id": "item_fbottle_copper_acid",
+    "name": {
+      "zh-CN": "赤铜瓶",
+      "en-US": "Cuprium Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_bottle_liquid"
+  },
+  "item_fbottle_copper_copper": {
+    "id": "item_fbottle_copper_copper",
+    "name": {
+      "zh-CN": "赤铜瓶",
+      "en-US": "Cuprium Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_bottle_liquid"
+  },
+  "item_fbottle_copper_copper_enr": {
+    "id": "item_fbottle_copper_copper_enr",
+    "name": {
+      "zh-CN": "赤铜瓶",
+      "en-US": "Cuprium Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_bottle_liquid"
+  },
   "item_fbottle_copper_grass_1": {
     "id": "item_fbottle_copper_grass_1",
     "name": {
@@ -11605,6 +12907,20 @@
     },
     "iconId": "item_copper_bottle_liquid"
   },
+  "item_fbottle_copper_xiranite_enr": {
+    "id": "item_fbottle_copper_xiranite_enr",
+    "name": {
+      "zh-CN": "赤铜瓶",
+      "en-US": "Cuprium Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_bottle_liquid"
+  },
   "item_fbottle_copper_xiranite_lowpoly": {
     "id": "item_fbottle_copper_xiranite_lowpoly",
     "name": {
@@ -11632,6 +12948,202 @@
       "en-US": "Material"
     },
     "iconId": "item_copper_bottle_liquid"
+  },
+  "item_fbottle_copperenr_acid": {
+    "id": "item_fbottle_copperenr_acid",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_copper": {
+    "id": "item_fbottle_copperenr_copper",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_copper_enr": {
+    "id": "item_fbottle_copperenr_copper_enr",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_grass_1": {
+    "id": "item_fbottle_copperenr_grass_1",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_grass_2": {
+    "id": "item_fbottle_copperenr_grass_2",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_sewage": {
+    "id": "item_fbottle_copperenr_sewage",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_water": {
+    "id": "item_fbottle_copperenr_water",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_xiranite": {
+    "id": "item_fbottle_copperenr_xiranite",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_xiranite_enr": {
+    "id": "item_fbottle_copperenr_xiranite_enr",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_xiranite_lowpoly": {
+    "id": "item_fbottle_copperenr_xiranite_lowpoly",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_copperenr_xiranite_poly": {
+    "id": "item_fbottle_copperenr_xiranite_poly",
+    "name": {
+      "zh-CN": "赫铜瓶",
+      "en-US": "Hetonite Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_copper_enr_bottle_liquid"
+  },
+  "item_fbottle_glass_acid": {
+    "id": "item_fbottle_glass_acid",
+    "name": {
+      "zh-CN": "紫晶质瓶",
+      "en-US": "Amethyst Bottle"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_glass_bottle_liquid"
+  },
+  "item_fbottle_glass_copper": {
+    "id": "item_fbottle_glass_copper",
+    "name": {
+      "zh-CN": "紫晶质瓶",
+      "en-US": "Amethyst Bottle"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_glass_bottle_liquid"
+  },
+  "item_fbottle_glass_copper_enr": {
+    "id": "item_fbottle_glass_copper_enr",
+    "name": {
+      "zh-CN": "紫晶质瓶",
+      "en-US": "Amethyst Bottle"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_glass_bottle_liquid"
   },
   "item_fbottle_glass_grass_1": {
     "id": "item_fbottle_glass_grass_1",
@@ -11703,6 +13215,20 @@
     },
     "iconId": "item_glass_bottle_liquid"
   },
+  "item_fbottle_glass_xiranite_enr": {
+    "id": "item_fbottle_glass_xiranite_enr",
+    "name": {
+      "zh-CN": "紫晶质瓶",
+      "en-US": "Amethyst Bottle"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_glass_bottle_liquid"
+  },
   "item_fbottle_glass_xiranite_lowpoly": {
     "id": "item_fbottle_glass_xiranite_lowpoly",
     "name": {
@@ -11730,6 +13256,48 @@
       "en-US": "Material"
     },
     "iconId": "item_glass_bottle_liquid"
+  },
+  "item_fbottle_glassenr_acid": {
+    "id": "item_fbottle_glassenr_acid",
+    "name": {
+      "zh-CN": "高晶质瓶",
+      "en-US": "Cryston Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_galss_enr_bottle_liquid"
+  },
+  "item_fbottle_glassenr_copper": {
+    "id": "item_fbottle_glassenr_copper",
+    "name": {
+      "zh-CN": "高晶质瓶",
+      "en-US": "Cryston Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_galss_enr_bottle_liquid"
+  },
+  "item_fbottle_glassenr_copper_enr": {
+    "id": "item_fbottle_glassenr_copper_enr",
+    "name": {
+      "zh-CN": "高晶质瓶",
+      "en-US": "Cryston Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_galss_enr_bottle_liquid"
   },
   "item_fbottle_glassenr_grass_1": {
     "id": "item_fbottle_glassenr_grass_1",
@@ -11801,6 +13369,20 @@
     },
     "iconId": "item_galss_enr_bottle_liquid"
   },
+  "item_fbottle_glassenr_xiranite_enr": {
+    "id": "item_fbottle_glassenr_xiranite_enr",
+    "name": {
+      "zh-CN": "高晶质瓶",
+      "en-US": "Cryston Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_galss_enr_bottle_liquid"
+  },
   "item_fbottle_glassenr_xiranite_lowpoly": {
     "id": "item_fbottle_glassenr_xiranite_lowpoly",
     "name": {
@@ -11828,6 +13410,48 @@
       "en-US": "Material"
     },
     "iconId": "item_galss_enr_bottle_liquid"
+  },
+  "item_fbottle_iron_acid": {
+    "id": "item_fbottle_iron_acid",
+    "name": {
+      "zh-CN": "蓝铁瓶",
+      "en-US": "Ferrium Bottle"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_iron_bottle_liquid"
+  },
+  "item_fbottle_iron_copper": {
+    "id": "item_fbottle_iron_copper",
+    "name": {
+      "zh-CN": "蓝铁瓶",
+      "en-US": "Ferrium Bottle"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_iron_bottle_liquid"
+  },
+  "item_fbottle_iron_copper_enr": {
+    "id": "item_fbottle_iron_copper_enr",
+    "name": {
+      "zh-CN": "蓝铁瓶",
+      "en-US": "Ferrium Bottle"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_iron_bottle_liquid"
   },
   "item_fbottle_iron_grass_1": {
     "id": "item_fbottle_iron_grass_1",
@@ -11899,6 +13523,20 @@
     },
     "iconId": "item_iron_bottle_liquid"
   },
+  "item_fbottle_iron_xiranite_enr": {
+    "id": "item_fbottle_iron_xiranite_enr",
+    "name": {
+      "zh-CN": "蓝铁瓶",
+      "en-US": "Ferrium Bottle"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_iron_bottle_liquid"
+  },
   "item_fbottle_iron_xiranite_lowpoly": {
     "id": "item_fbottle_iron_xiranite_lowpoly",
     "name": {
@@ -11926,6 +13564,48 @@
       "en-US": "Material"
     },
     "iconId": "item_iron_bottle_liquid"
+  },
+  "item_fbottle_ironenr_acid": {
+    "id": "item_fbottle_ironenr_acid",
+    "name": {
+      "zh-CN": "钢质瓶",
+      "en-US": "Steel Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_iron_enr_bottle_liquid"
+  },
+  "item_fbottle_ironenr_copper": {
+    "id": "item_fbottle_ironenr_copper",
+    "name": {
+      "zh-CN": "钢质瓶",
+      "en-US": "Steel Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_iron_enr_bottle_liquid"
+  },
+  "item_fbottle_ironenr_copper_enr": {
+    "id": "item_fbottle_ironenr_copper_enr",
+    "name": {
+      "zh-CN": "钢质瓶",
+      "en-US": "Steel Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_iron_enr_bottle_liquid"
   },
   "item_fbottle_ironenr_grass_1": {
     "id": "item_fbottle_ironenr_grass_1",
@@ -11997,6 +13677,20 @@
     },
     "iconId": "item_iron_enr_bottle_liquid"
   },
+  "item_fbottle_ironenr_xiranite_enr": {
+    "id": "item_fbottle_ironenr_xiranite_enr",
+    "name": {
+      "zh-CN": "钢质瓶",
+      "en-US": "Steel Bottle"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_iron_enr_bottle_liquid"
+  },
   "item_fbottle_ironenr_xiranite_lowpoly": {
     "id": "item_fbottle_ironenr_xiranite_lowpoly",
     "name": {
@@ -12024,6 +13718,20 @@
       "en-US": "Material"
     },
     "iconId": "item_iron_enr_bottle_liquid"
+  },
+  "item_fbottle_xiranenr_grass_2": {
+    "id": "item_fbottle_xiranenr_grass_2",
+    "name": {
+      "zh-CN": "实验重息壤瓶",
+      "en-US": "Experimental Heavy Xiranite Bottle"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_activity_xiranite_enr_bottle"
   },
   "item_fertilize_1": {
     "id": "item_fertilize_1",
@@ -13593,6 +15301,20 @@
     },
     "iconId": "item_equip_t4_suit_atb01_edc_05"
   },
+  "item_formu_t4_suit_atb01_edc_06": {
+    "id": "item_formu_t4_suit_atb01_edc_06",
+    "name": {
+      "zh-CN": "拓荒增量供氧栓·壹型",
+      "en-US": "Frontiers Extra O2 Tube T1"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_atb01_edc_06"
+  },
   "item_formu_t4_suit_atb01_hand_01": {
     "id": "item_formu_t4_suit_atb01_hand_01",
     "name": {
@@ -13620,6 +15342,20 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_atb01_hand_02"
+  },
+  "item_formu_t4_suit_atb01_hand_03": {
+    "id": "item_formu_t4_suit_atb01_hand_03",
+    "name": {
+      "zh-CN": "拓荒纤维手套·壹型",
+      "en-US": "Frontiers Fiber Gloves T1"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_atb01_hand_03"
   },
   "item_formu_t4_suit_atk02_body_01": {
     "id": "item_formu_t4_suit_atk02_body_01",
@@ -13845,6 +15581,20 @@
     },
     "iconId": "item_equip_t4_suit_attri01_body_05"
   },
+  "item_formu_t4_suit_attri01_edc_02": {
+    "id": "item_formu_t4_suit_attri01_edc_02",
+    "name": {
+      "zh-CN": "碾骨小雕像·贰型",
+      "en-US": "Bonekrusha Figurine T2"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_attri01_edc_02"
+  },
   "item_formu_t4_suit_attri01_edc_03": {
     "id": "item_formu_t4_suit_attri01_edc_03",
     "name": {
@@ -13943,6 +15693,20 @@
     },
     "iconId": "item_equip_t4_suit_attri01_hand_02"
   },
+  "item_formu_t4_suit_attri01_hand_03": {
+    "id": "item_formu_t4_suit_attri01_hand_03",
+    "name": {
+      "zh-CN": "碾骨手套",
+      "en-US": "Bonekrusha Gloves"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_attri01_hand_03"
+  },
   "item_formu_t4_suit_burst01_body_01": {
     "id": "item_formu_t4_suit_burst01_body_01",
     "name": {
@@ -13998,6 +15762,104 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_burst01_hand_01"
+  },
+  "item_formu_t4_suit_combo_cd01_body_01": {
+    "id": "item_formu_t4_suit_combo_cd01_body_01",
+    "name": {
+      "zh-CN": "清波重甲",
+      "en-US": "Qingbo Heavy Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_body_01"
+  },
+  "item_formu_t4_suit_combo_cd01_body_02": {
+    "id": "item_formu_t4_suit_combo_cd01_body_02",
+    "name": {
+      "zh-CN": "清波轻甲",
+      "en-US": "Qingbo Light Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_body_02"
+  },
+  "item_formu_t4_suit_combo_cd01_edc_01": {
+    "id": "item_formu_t4_suit_combo_cd01_edc_01",
+    "name": {
+      "zh-CN": "清波定位仪",
+      "en-US": "Qingbo Positioning Kit"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_edc_01"
+  },
+  "item_formu_t4_suit_combo_cd01_edc_02": {
+    "id": "item_formu_t4_suit_combo_cd01_edc_02",
+    "name": {
+      "zh-CN": "清波竹刃",
+      "en-US": "Qingbo Bamboo Cutter"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_edc_02"
+  },
+  "item_formu_t4_suit_combo_cd01_edc_03": {
+    "id": "item_formu_t4_suit_combo_cd01_edc_03",
+    "name": {
+      "zh-CN": "清波水罐",
+      "en-US": "Qingbo Cask"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_edc_03"
+  },
+  "item_formu_t4_suit_combo_cd01_hand_01": {
+    "id": "item_formu_t4_suit_combo_cd01_hand_01",
+    "name": {
+      "zh-CN": "清波手甲",
+      "en-US": "Qingbo Gauntlets"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_hand_01"
+  },
+  "item_formu_t4_suit_combo_cd01_hand_02": {
+    "id": "item_formu_t4_suit_combo_cd01_hand_02",
+    "name": {
+      "zh-CN": "清波护手",
+      "en-US": "Qingbo Gloves"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_hand_02"
   },
   "item_formu_t4_suit_criti01_body_01": {
     "id": "item_formu_t4_suit_criti01_body_01",
@@ -14208,6 +16070,48 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_criti01_hand_04"
+  },
+  "item_formu_t4_suit_expend_spell01_body_02": {
+    "id": "item_formu_t4_suit_expend_spell01_body_02",
+    "name": {
+      "zh-CN": "壤流轻甲",
+      "en-US": "Xiranflow Light Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_expend_spell01_body_02"
+  },
+  "item_formu_t4_suit_expend_spell01_edc_02": {
+    "id": "item_formu_t4_suit_expend_spell01_edc_02",
+    "name": {
+      "zh-CN": "壤流短棍",
+      "en-US": "Xiranflow Baton"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_expend_spell01_edc_02"
+  },
+  "item_formu_t4_suit_expend_spell01_hand_02": {
+    "id": "item_formu_t4_suit_expend_spell01_hand_02",
+    "name": {
+      "zh-CN": "壤流护手",
+      "en-US": "Xiranflow Gloves"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_expend_spell01_hand_02"
   },
   "item_formu_t4_suit_fire_natr01_body_01": {
     "id": "item_formu_t4_suit_fire_natr01_body_01",
@@ -14475,6 +16379,20 @@
     },
     "iconId": "item_equip_t4_suit_phy01_body_02"
   },
+  "item_formu_t4_suit_phy01_body_03": {
+    "id": "item_formu_t4_suit_phy01_body_03",
+    "name": {
+      "zh-CN": "点剑重装甲·壹型",
+      "en-US": "Swordmancer Heavy Armor T1"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_phy01_body_03"
+  },
   "item_formu_t4_suit_phy01_edc_01": {
     "id": "item_formu_t4_suit_phy01_edc_01",
     "name": {
@@ -14517,6 +16435,20 @@
     },
     "iconId": "item_equip_t4_suit_phy01_edc_03"
   },
+  "item_formu_t4_suit_phy01_edc_04": {
+    "id": "item_formu_t4_suit_phy01_edc_04",
+    "name": {
+      "zh-CN": "点剑短刃",
+      "en-US": "Swordmancer Dagger"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_phy01_edc_04"
+  },
   "item_formu_t4_suit_phy01_hand_01": {
     "id": "item_formu_t4_suit_phy01_hand_01",
     "name": {
@@ -14544,6 +16476,20 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_phy01_hand_02"
+  },
+  "item_formu_t4_suit_phy01_hand_03": {
+    "id": "item_formu_t4_suit_phy01_hand_03",
+    "name": {
+      "zh-CN": "点剑战术手甲·壹型",
+      "en-US": "Swordmancer TAC Gauntlets T1"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_phy01_hand_03"
   },
   "item_formu_t4_suit_poise01_body_01": {
     "id": "item_formu_t4_suit_poise01_body_01",
@@ -15497,6 +17443,20 @@
     },
     "iconId": "item_dog_1_slimeml_1_1"
   },
+  "item_formula_dog_hsmob_corp_1": {
+    "id": "item_formula_dog_hsmob_corp_1",
+    "name": {
+      "zh-CN": "烂肉面配方",
+      "en-US": "Formula: Braised Meat Noodles"
+    },
+    "rarity": 4,
+    "type": 39,
+    "typeName": {
+      "zh-CN": "配方解锁",
+      "en-US": "Formula Unlock"
+    },
+    "iconId": "item_dog_hsmob_corp_1"
+  },
   "item_formula_ebl_corp2_1": {
     "id": "item_formula_ebl_corp2_1",
     "name": {
@@ -15650,6 +17610,20 @@
       "en-US": "Formula Unlock"
     },
     "iconId": "item_erosions_grass2_1"
+  },
+  "item_formula_ethillu_1_wgslime_1_wgthorns_1_1": {
+    "id": "item_formula_ethillu_1_wgslime_1_wgthorns_1_1",
+    "name": {
+      "zh-CN": "回响秘剂配方",
+      "en-US": "Formula: Echoing Remedy"
+    },
+    "rarity": 3,
+    "type": 39,
+    "typeName": {
+      "zh-CN": "配方解锁",
+      "en-US": "Formula Unlock"
+    },
+    "iconId": "item_ethillu_1_wgslime_1_wgthorns_1_1"
   },
   "item_formula_field_bbflower_1": {
     "id": "item_formula_field_bbflower_1",
@@ -16139,7 +18113,7 @@
       "zh-CN": "配方解锁",
       "en-US": "Formula Unlock"
     },
-    "iconId": ""
+    "iconId": "item_formula_proc_bomb_1"
   },
   "item_formula_slimeml_1_agrange_1_moss_2_1": {
     "id": "item_formula_slimeml_1_agrange_1_moss_2_1",
@@ -16311,6 +18285,20 @@
   },
   "item_gacha_introletter_1_1_2": {
     "id": "item_gacha_introletter_1_1_2",
+    "name": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "rarity": 6,
+    "type": 83,
+    "typeName": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "iconId": "item_gacha_introletter"
+  },
+  "item_gacha_introletter_1_2_1": {
+    "id": "item_gacha_introletter_1_2_1",
     "name": {
       "zh-CN": "寻访情报书",
       "en-US": "Headhunting Dossier"
@@ -16700,6 +18688,20 @@
       "en-US": "Gift"
     },
     "iconId": "item_gift_jinlong_4"
+  },
+  "item_gift_jinlong_5": {
+    "id": "item_gift_jinlong_5",
+    "name": {
+      "zh-CN": "龙泡泡·方兴纪念",
+      "en-US": "Chubby Lung: Fangxing Memorabilia"
+    },
+    "rarity": 5,
+    "type": 33,
+    "typeName": {
+      "zh-CN": "礼物",
+      "en-US": "Gift"
+    },
+    "iconId": "item_gift_jinlong_5"
   },
   "item_gift_tundra_1": {
     "id": "item_gift_tundra_1",
@@ -17807,6 +19809,48 @@
     },
     "iconId": "item_wgslime_1_wgthorns_1_1"
   },
+  "item_liquid_acid": {
+    "id": "item_liquid_acid",
+    "name": {
+      "zh-CN": "沉积酸",
+      "en-US": "Precipitation Acid"
+    },
+    "rarity": 1,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_liquid_acid"
+  },
+  "item_liquid_copper": {
+    "id": "item_liquid_copper",
+    "name": {
+      "zh-CN": "赤铜溶液",
+      "en-US": "Cuprium Solution"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_liquid_copper"
+  },
+  "item_liquid_copper_enr": {
+    "id": "item_liquid_copper_enr",
+    "name": {
+      "zh-CN": "赫铜溶液",
+      "en-US": "Hetonite Solution"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_liquid_copper_enr"
+  },
   "item_liquid_plant_grass_1": {
     "id": "item_liquid_plant_grass_1",
     "name": {
@@ -17877,6 +19921,20 @@
     },
     "iconId": "item_liquid_xiranite"
   },
+  "item_liquid_xiranite_enr": {
+    "id": "item_liquid_xiranite_enr",
+    "name": {
+      "zh-CN": "液化重息壤",
+      "en-US": "Liquid Heavy Xiranite"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_liquid_xiranite_enr"
+  },
   "item_liquid_xiranite_lowpoly": {
     "id": "item_liquid_xiranite_lowpoly",
     "name": {
@@ -17904,6 +19962,20 @@
       "en-US": "Material"
     },
     "iconId": "item_liquid_xiranite_poly"
+  },
+  "item_liquidpoint_acid": {
+    "id": "item_liquidpoint_acid",
+    "name": {
+      "zh-CN": "沉积酸存放点",
+      "en-US": "Precipitation Acid Storage"
+    },
+    "rarity": 1,
+    "type": 41,
+    "typeName": {
+      "zh-CN": "液体存放点",
+      "en-US": "Fluid Storage"
+    },
+    "iconId": "item_liquid_acid"
   },
   "item_liquidpoint_plant_grass_1": {
     "id": "item_liquidpoint_plant_grass_1",
@@ -17974,6 +20046,20 @@
       "en-US": "Fluid Storage"
     },
     "iconId": "item_liquid_xiranite"
+  },
+  "item_liquidpoint_xiranite_enr": {
+    "id": "item_liquidpoint_xiranite_enr",
+    "name": {
+      "zh-CN": "液化重息壤存放点",
+      "en-US": "Liquid Heavy Xiranite Storage"
+    },
+    "rarity": 1,
+    "type": 41,
+    "typeName": {
+      "zh-CN": "液体存放点",
+      "en-US": "Fluid Storage"
+    },
+    "iconId": "item_liquid_xiranite_enr"
   },
   "item_log_belt_01": {
     "id": "item_log_belt_01",
@@ -18479,6 +20565,76 @@
     },
     "iconId": "item_mission_e5m3_tangtangquan02"
   },
+  "item_mission_e9m2_xiranite": {
+    "id": "item_mission_e9m2_xiranite",
+    "name": {
+      "zh-CN": "特制重息壤",
+      "en-US": "Custom Heavy Xiranite"
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_xiranite_enr_powder"
+  },
+  "item_mission_f1m19d1_pic1": {
+    "id": "item_mission_f1m19d1_pic1",
+    "name": {
+      "zh-CN": "影像·龙泡泡",
+      "en-US": "Photo: Chubby Lung"
+    },
+    "rarity": 2,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_f1m19d1_pic01"
+  },
+  "item_mission_f1m19d1_pic2": {
+    "id": "item_mission_f1m19d1_pic2",
+    "name": {
+      "zh-CN": "影像·迁徙的羽兽",
+      "en-US": "Photo: Migrating Fowlbeasts"
+    },
+    "rarity": 2,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_f1m19d1_pic02"
+  },
+  "item_mission_f1m19d1_pic3": {
+    "id": "item_mission_f1m19d1_pic3",
+    "name": {
+      "zh-CN": "影像·天师考校挂幅",
+      "en-US": "Photo: Academy Banners"
+    },
+    "rarity": 2,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_f1m19d1_pic03"
+  },
+  "item_mission_f1m19d1_pic4": {
+    "id": "item_mission_f1m19d1_pic4",
+    "name": {
+      "zh-CN": "影像·苦恼的天师",
+      "en-US": "Photo: The Perplexed Tianshi"
+    },
+    "rarity": 2,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_f1m19d1_pic04"
+  },
   "item_mission_gm02m10_key": {
     "id": "item_mission_gm02m10_key",
     "name": {
@@ -18577,6 +20733,20 @@
     },
     "iconId": "item_mission_sm1l6m2_brokenmedicinebox"
   },
+  "item_mission_sm2l2m2_collection": {
+    "id": "item_mission_sm2l2m2_collection",
+    "name": {
+      "zh-CN": "竹林虫笋",
+      "en-US": "Grove Nymphsprout"
+    },
+    "rarity": 1,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_sm2l2m2_bugshoot"
+  },
   "item_mission_tianshi_talisman": {
     "id": "item_mission_tianshi_talisman",
     "name": {
@@ -18645,7 +20815,7 @@
       "zh-CN": "音乐",
       "en-US": "Music"
     },
-    "iconId": ""
+    "iconId": "item_spaceship_music"
   },
   "item_originium_enr_powder": {
     "id": "item_originium_enr_powder",
@@ -19137,11 +21307,39 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0030_zhuangfy": {
+    "id": "item_pic_1_chr_0030_zhuangfy",
+    "name": {
+      "zh-CN": "总相宜",
+      "en-US": "Complete Sync"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_9000_endmin": {
     "id": "item_pic_1_chr_9000_endmin",
     "name": {
       "zh-CN": "记忆网纸",
       "en-US": "Memory Mesh"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_1_ex01_chr_0004_pelica": {
+    "id": "item_pic_1_ex01_chr_0004_pelica",
+    "name": {
+      "zh-CN": "启明",
+      "en-US": "The Revelation"
     },
     "rarity": 5,
     "type": 76,
@@ -19506,6 +21704,20 @@
     "name": {
       "zh-CN": "王与骑士",
       "en-US": "The King and the Knight"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_3_chr_0030_zhuangfy": {
+    "id": "item_pic_3_chr_0030_zhuangfy",
+    "name": {
+      "zh-CN": "雨停的瞬间",
+      "en-US": "Moment of Rain Held Back"
     },
     "rarity": 5,
     "type": 76,
@@ -19884,6 +22096,20 @@
     "name": {
       "zh-CN": "将军",
       "en-US": "Checkmate"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_5_chr_0030_zhuangfy": {
+    "id": "item_pic_5_chr_0030_zhuangfy",
+    "name": {
+      "zh-CN": "大局已定",
+      "en-US": "Forged and Finalized"
     },
     "rarity": 5,
     "type": 76,
@@ -20929,6 +23155,20 @@
     },
     "iconId": "item_plant_tundra_wood"
   },
+  "item_port_air_dancer_1": {
+    "id": "item_port_air_dancer_1",
+    "name": {
+      "zh-CN": "充气教授",
+      "en-US": "Tube Professor"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_air_dancer_1"
+  },
   "item_port_battle_cannon_1": {
     "id": "item_port_battle_cannon_1",
     "name": {
@@ -20956,6 +23196,20 @@
       "en-US": "Miscellaneous"
     },
     "iconId": "item_port_battle_cannon_2"
+  },
+  "item_port_battle_debuff_1": {
+    "id": "item_port_battle_debuff_1",
+    "name": {
+      "zh-CN": "“酸洗”MK-Ⅰ",
+      "en-US": "Acid Soaker Mk I"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_battle_debuff_1"
   },
   "item_port_battle_fog_1": {
     "id": "item_port_battle_fog_1",
@@ -21013,6 +23267,20 @@
     },
     "iconId": "item_port_battle_laser_1"
   },
+  "item_port_battle_laser_2": {
+    "id": "item_port_battle_laser_2",
+    "name": {
+      "zh-CN": "高能射线塔",
+      "en-US": "Hyper Beam Tower"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_battle_laser_2"
+  },
   "item_port_battle_lightning_1": {
     "id": "item_port_battle_lightning_1",
     "name": {
@@ -21040,6 +23308,20 @@
       "en-US": "Miscellaneous"
     },
     "iconId": "item_port_battle_medic_1"
+  },
+  "item_port_battle_rocket_1": {
+    "id": "item_port_battle_rocket_1",
+    "name": {
+      "zh-CN": "重锤迫击炮",
+      "en-US": "Sledgehammer Mortar"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_battle_rocket_1"
   },
   "item_port_battle_shockwave_1": {
     "id": "item_port_battle_shockwave_1",
@@ -21125,6 +23407,20 @@
     },
     "iconId": "item_port_carrier_1"
   },
+  "item_port_chubby_lung_stone_1": {
+    "id": "item_port_chubby_lung_stone_1",
+    "name": {
+      "zh-CN": "龙泡泡石墩",
+      "en-US": "Chubby Lung Bollard"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_chubby_lung_stone_1"
+  },
   "item_port_cmpt_mc_1": {
     "id": "item_port_cmpt_mc_1",
     "name": {
@@ -21145,7 +23441,7 @@
       "zh-CN": "拆解机",
       "en-US": "Separating Unit"
     },
-    "rarity": 4,
+    "rarity": 3,
     "type": 9,
     "typeName": {
       "zh-CN": "普通设备",
@@ -21250,6 +23546,20 @@
       "en-US": "Basic Facility"
     },
     "iconId": "item_port_liquid_cleaner_1"
+  },
+  "item_port_liquid_purifier_1": {
+    "id": "item_port_liquid_purifier_1",
+    "name": {
+      "zh-CN": "提纯机",
+      "en-US": "Purification Unit"
+    },
+    "rarity": 4,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_liquid_purifier_1"
   },
   "item_port_liquid_storager_1": {
     "id": "item_port_liquid_storager_1",
@@ -21405,6 +23715,34 @@
     },
     "iconId": "item_port_mix_pool_1"
   },
+  "item_port_mix_pool_2": {
+    "id": "item_port_mix_pool_2",
+    "name": {
+      "zh-CN": "扩容反应池",
+      "en-US": "Expanded Crucible"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_mix_pool_2"
+  },
+  "item_port_pear_blossom_bonsai_1": {
+    "id": "item_port_pear_blossom_bonsai_1",
+    "name": {
+      "zh-CN": "山樆小景",
+      "en-US": "Miniature Tree on a Hill"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_pear_blossom_bonsai_1"
+  },
   "item_port_planter_1": {
     "id": "item_port_planter_1",
     "name": {
@@ -21530,6 +23868,20 @@
       "en-US": "Miscellaneous"
     },
     "iconId": "item_port_pump_1"
+  },
+  "item_port_pump_2": {
+    "id": "item_port_pump_2",
+    "name": {
+      "zh-CN": "二型耐酸水泵",
+      "en-US": "Acid Resistant Pump Mk II"
+    },
+    "rarity": 3,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_pump_2"
   },
   "item_port_seedcol_1": {
     "id": "item_port_seedcol_1",
@@ -21951,6 +24303,20 @@
     },
     "iconId": "item_port_udpipe_loader_1"
   },
+  "item_port_udpipe_loader_2": {
+    "id": "item_port_udpipe_loader_2",
+    "name": {
+      "zh-CN": "多口暗管入口",
+      "en-US": "Conduit Inlet Manifold"
+    },
+    "rarity": 4,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_udpipe_loader_2"
+  },
   "item_port_udpipe_unloader_1": {
     "id": "item_port_udpipe_unloader_1",
     "name": {
@@ -21964,6 +24330,20 @@
       "en-US": "Miscellaneous"
     },
     "iconId": "item_port_udpipe_unloader_1"
+  },
+  "item_port_udpipe_unloader_2": {
+    "id": "item_port_udpipe_unloader_2",
+    "name": {
+      "zh-CN": "多口暗管出口",
+      "en-US": "Conduit Outlet Manifold"
+    },
+    "rarity": 4,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_udpipe_unloader_2"
   },
   "item_port_unloader_1": {
     "id": "item_port_unloader_1",
@@ -22460,6 +24840,34 @@
     "name": {
       "zh-CN": "可收集拼块Map2L1",
       "en-US": "Collectible Puzzle Piece Map2L1"
+    },
+    "rarity": 5,
+    "type": 32,
+    "typeName": {
+      "zh-CN": "拼块玩法道具",
+      "en-US": "Puzzle Item"
+    },
+    "iconId": "item_equip_endrpg_top"
+  },
+  "item_puzzle_m2l2": {
+    "id": "item_puzzle_m2l2",
+    "name": {
+      "zh-CN": "可收集拼块Map2L2",
+      "en-US": "Collectible Puzzle Piece Map2L2"
+    },
+    "rarity": 5,
+    "type": 32,
+    "typeName": {
+      "zh-CN": "拼块玩法道具",
+      "en-US": "Puzzle Item"
+    },
+    "iconId": "item_equip_endrpg_top"
+  },
+  "item_puzzle_m2l5": {
+    "id": "item_puzzle_m2l5",
+    "name": {
+      "zh-CN": "可收集拼块Map2L5",
+      "en-US": "Collectible Puzzle Piece Map2L5"
     },
     "rarity": 5,
     "type": 32,
@@ -23337,6 +25745,34 @@
     },
     "iconId": "item_shot_filter_nm_5"
   },
+  "item_shot_filter_nm_6": {
+    "id": "item_shot_filter_nm_6",
+    "name": {
+      "zh-CN": "滤镜·春",
+      "en-US": "Filter: Spring"
+    },
+    "rarity": 4,
+    "type": 58,
+    "typeName": {
+      "zh-CN": "拍照滤镜",
+      "en-US": "Camera Filter"
+    },
+    "iconId": "item_shot_filter_nm_6"
+  },
+  "item_shot_filter_nm_7": {
+    "id": "item_shot_filter_nm_7",
+    "name": {
+      "zh-CN": "滤镜·文艺",
+      "en-US": "Filter: Thespian"
+    },
+    "rarity": 4,
+    "type": 58,
+    "typeName": {
+      "zh-CN": "拍照滤镜",
+      "en-US": "Camera Filter"
+    },
+    "iconId": "item_shot_filter_nm_7"
+  },
   "item_shot_filter_sp_1": {
     "id": "item_shot_filter_sp_1",
     "name": {
@@ -23364,6 +25800,20 @@
       "en-US": "Camera Filter"
     },
     "iconId": "item_shot_filter_sp_2"
+  },
+  "item_shot_filter_sp_3": {
+    "id": "item_shot_filter_sp_3",
+    "name": {
+      "zh-CN": "滤镜·苍白",
+      "en-US": "Filter: Pale"
+    },
+    "rarity": 5,
+    "type": 58,
+    "typeName": {
+      "zh-CN": "拍照滤镜",
+      "en-US": "Camera Filter"
+    },
+    "iconId": "item_shot_filter_sp_3"
   },
   "item_shot_sticker_1": {
     "id": "item_shot_sticker_1",
@@ -23407,6 +25857,20 @@
     },
     "iconId": "item_shot_sticker_3"
   },
+  "item_shot_sticker_4": {
+    "id": "item_shot_sticker_4",
+    "name": {
+      "zh-CN": "贴纸·爆炸",
+      "en-US": "Sticker: Explosion"
+    },
+    "rarity": 4,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_4"
+  },
   "item_shot_sticker_5": {
     "id": "item_shot_sticker_5",
     "name": {
@@ -23421,6 +25885,20 @@
     },
     "iconId": "item_shot_sticker_5"
   },
+  "item_shot_sticker_6": {
+    "id": "item_shot_sticker_6",
+    "name": {
+      "zh-CN": "贴纸·工程中心",
+      "en-US": "Sticker: Engineering Division"
+    },
+    "rarity": 4,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_6"
+  },
   "item_shot_sticker_activity_1": {
     "id": "item_shot_sticker_activity_1",
     "name": {
@@ -23434,6 +25912,20 @@
       "en-US": "Photograph Sticker"
     },
     "iconId": "item_shot_sticker_activity_1"
+  },
+  "item_shot_sticker_activity_4": {
+    "id": "item_shot_sticker_activity_4",
+    "name": {
+      "zh-CN": "贴纸·启明",
+      "en-US": "Sticker: Qiming"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_activity_4"
   },
   "item_shot_sticker_bp_1": {
     "id": "item_shot_sticker_bp_1",
@@ -23463,6 +25955,20 @@
     },
     "iconId": "item_shot_sticker_bp_2"
   },
+  "item_shot_sticker_bp_3": {
+    "id": "item_shot_sticker_bp_3",
+    "name": {
+      "zh-CN": "贴纸·巨兽心脏",
+      "en-US": "Sticker: Feranmut Heart"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_bp_3"
+  },
   "item_shot_sticker_mkting_1": {
     "id": "item_shot_sticker_mkting_1",
     "name": {
@@ -23490,6 +25996,20 @@
       "en-US": "Photograph Sticker"
     },
     "iconId": "item_shot_sticker_mkting_2"
+  },
+  "item_shot_sticker_mkting_4": {
+    "id": "item_shot_sticker_mkting_4",
+    "name": {
+      "zh-CN": "贴纸·Happy Lemon",
+      "en-US": "Sticker: Happy Lemon"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_mkting_4"
   },
   "item_shot_sticker_mkting_5": {
     "id": "item_shot_sticker_mkting_5",
@@ -23771,6 +26291,20 @@
     },
     "iconId": "item_spaceship_exhibits_jinlong_2"
   },
+  "item_spaceship_exhibits_jinlong_3": {
+    "id": "item_spaceship_exhibits_jinlong_3",
+    "name": {
+      "zh-CN": "臻品龙泡泡",
+      "en-US": "Deluxe Chubby Lung"
+    },
+    "rarity": 5,
+    "type": 69,
+    "typeName": {
+      "zh-CN": "帝江号陈列品",
+      "en-US": "Dijiang: Display Items"
+    },
+    "iconId": "item_spaceship_exhibits_jinlong_3"
+  },
   "item_spaceship_exhibits_tundra_1": {
     "id": "item_spaceship_exhibits_tundra_1",
     "name": {
@@ -23826,6 +26360,20 @@
       "en-US": "Dijiang: Display Items"
     },
     "iconId": "item_spaceship_exhibits_tundra_4"
+  },
+  "item_spaceship_exhibits_universe": {
+    "id": "item_spaceship_exhibits_universe",
+    "name": {
+      "zh-CN": "启明驻留平台模型",
+      "en-US": "Qiming Station Model"
+    },
+    "rarity": 5,
+    "type": 69,
+    "typeName": {
+      "zh-CN": "帝江号陈列品",
+      "en-US": "Dijiang: Display Items"
+    },
+    "iconId": "item_spaceship_exhibits_universe"
   },
   "item_spaceship_intelligence": {
     "id": "item_spaceship_intelligence",
@@ -24023,6 +26571,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_1_2"
   },
+  "item_ticketgacha_special_single_lt_1_2_1": {
+    "id": "item_ticketgacha_special_single_lt_1_2_1",
+    "name": {
+      "zh-CN": "春雷醒物寻访凭证",
+      "en-US": "Blitz of Verdance HH Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_2_1"
+  },
   "item_ticketgacha_special_ten": {
     "id": "item_ticketgacha_special_ten",
     "name": {
@@ -24107,6 +26669,20 @@
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_1_2"
   },
+  "item_ticketgacha_special_ten_lt_1_2_1": {
+    "id": "item_ticketgacha_special_ten_lt_1_2_1",
+    "name": {
+      "zh-CN": "春雷醒物十连凭证",
+      "en-US": "Blitz of Verdance 10×Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_2_1"
+  },
   "item_ticketgacha_standard_single": {
     "id": "item_ticketgacha_standard_single",
     "name": {
@@ -24134,6 +26710,34 @@
       "en-US": "Valuable"
     },
     "iconId": "item_ticketgacha_weaponbox_constant_2"
+  },
+  "item_ticketgacha_weaponbox_lt_1_2_2": {
+    "id": "item_ticketgacha_weaponbox_lt_1_2_2",
+    "name": {
+      "zh-CN": "融火于风申领凭证",
+      "en-US": "Blaze in the Winds Issue Cert"
+    },
+    "rarity": 6,
+    "type": 94,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_weaponbox_1_2_2"
+  },
+  "item_ticketweaponbox_ten_1_lt": {
+    "id": "item_ticketweaponbox_ten_1_lt",
+    "name": {
+      "zh-CN": "限时武器宝箱十连券",
+      "en-US": "LTO Weapon Crate 10×Cert"
+    },
+    "rarity": 6,
+    "type": 94,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten"
   },
   "item_tundra_detector_coin_3": {
     "id": "item_tundra_detector_coin_3",
@@ -24205,6 +26809,34 @@
     },
     "iconId": "item_user_avatar_activity_3"
   },
+  "item_user_avatar_activity_4": {
+    "id": "item_user_avatar_activity_4",
+    "name": {
+      "zh-CN": "掌中巧物",
+      "en-US": "Palm-Top Curio"
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_4"
+  },
+  "item_user_avatar_activity_6": {
+    "id": "item_user_avatar_activity_6",
+    "name": {
+      "zh-CN": "寻星旅者",
+      "en-US": "Starseeker"
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_6"
+  },
   "item_user_avatar_bp_1_0": {
     "id": "item_user_avatar_bp_1_0",
     "name": {
@@ -24232,6 +26864,20 @@
       "en-US": "Portrait"
     },
     "iconId": "item_user_avatar_bp_1_1"
+  },
+  "item_user_avatar_bp_1_2": {
+    "id": "item_user_avatar_bp_1_2",
+    "name": {
+      "zh-CN": "心枢",
+      "en-US": "Cardiac Nexus"
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_bp_1_2"
   },
   "item_user_avatar_chr_0002_endminm": {
     "id": "item_user_avatar_chr_0002_endminm",
@@ -24597,6 +27243,20 @@
     },
     "iconId": "item_chr_0029_pograni"
   },
+  "item_user_avatar_chr_0030_zhuangfy": {
+    "id": "item_user_avatar_chr_0030_zhuangfy",
+    "name": {
+      "zh-CN": "庄方宜",
+      "en-US": "Zhuang Fangyi"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_chr_0030_zhuangfy"
+  },
   "item_user_avatar_frame_activity_1": {
     "id": "item_user_avatar_frame_activity_1",
     "name": {
@@ -24625,6 +27285,20 @@
     },
     "iconId": "item_user_avatar_frame_activity_2"
   },
+  "item_user_avatar_frame_activity_4": {
+    "id": "item_user_avatar_frame_activity_4",
+    "name": {
+      "zh-CN": "铭星",
+      "en-US": "Cosmic Etchings"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_activity_4"
+  },
   "item_user_avatar_frame_bp_1_0": {
     "id": "item_user_avatar_frame_bp_1_0",
     "name": {
@@ -24652,6 +27326,20 @@
       "en-US": "Portrait Frame"
     },
     "iconId": "item_user_avatar_frame_bp_1_1"
+  },
+  "item_user_avatar_frame_bp_1_2": {
+    "id": "item_user_avatar_frame_bp_1_2",
+    "name": {
+      "zh-CN": "展卷",
+      "en-US": "Scroll Unfurled"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_bp_1_2"
   },
   "item_user_avatar_frame_channel_1": {
     "id": "item_user_avatar_frame_channel_1",
@@ -27383,6 +30071,48 @@
     },
     "iconId": "item_wuling_detector_trchest_3"
   },
+  "item_wuling_oven_amount_4_unlock": {
+    "id": "item_wuling_oven_amount_4_unlock",
+    "name": {
+      "zh-CN": "天有洪炉研究记录",
+      "en-US": "Forge of the Sky Research Log"
+    },
+    "rarity": 3,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_wuling_oven_amount_4_unlock"
+  },
+  "item_wuling_xiranite_enr_unlock": {
+    "id": "item_wuling_xiranite_enr_unlock",
+    "name": {
+      "zh-CN": "重息壤研究记录",
+      "en-US": "Heavy Xiranite Research Log"
+    },
+    "rarity": 3,
+    "type": 12,
+    "typeName": {
+      "zh-CN": "STA协议模板",
+      "en-US": "Standard Template Assembly"
+    },
+    "iconId": "item_wuling_xiranite_enr_unlock"
+  },
+  "item_xiranite_enr_powder": {
+    "id": "item_xiranite_enr_powder",
+    "name": {
+      "zh-CN": "重息壤",
+      "en-US": "Heavy Xiranite"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_xiranite_enr_powder"
+  },
   "item_xiranite_lowpoly": {
     "id": "item_xiranite_lowpoly",
     "name": {
@@ -28083,6 +30813,20 @@
     },
     "iconId": "item_copper_cmpt"
   },
+  "sysbp_wuling_copper_enr_cmpt_1": {
+    "id": "sysbp_wuling_copper_enr_cmpt_1",
+    "name": {
+      "zh-CN": "赫铜零件",
+      "en-US": "Hetonite Part"
+    },
+    "rarity": 2,
+    "type": 64,
+    "typeName": {
+      "zh-CN": "系统蓝图",
+      "en-US": "System Blueprint"
+    },
+    "iconId": "item_copper_enr_cmpt"
+  },
   "sysbp_wuling_equip_script_4_1_1": {
     "id": "sysbp_wuling_equip_script_4_1_1",
     "name": {
@@ -28096,6 +30840,34 @@
       "en-US": "System Blueprint"
     },
     "iconId": "item_equip_script_4_1"
+  },
+  "sysbp_wuling_equip_script_4_2_1": {
+    "id": "sysbp_wuling_equip_script_4_2_1",
+    "name": {
+      "zh-CN": "赫铜装备原件",
+      "en-US": "Hetonite Component"
+    },
+    "rarity": 2,
+    "type": 64,
+    "typeName": {
+      "zh-CN": "系统蓝图",
+      "en-US": "System Blueprint"
+    },
+    "iconId": "item_equip_script_4_2"
+  },
+  "sysbp_wuling_liquid_copper_enr_1": {
+    "id": "sysbp_wuling_liquid_copper_enr_1",
+    "name": {
+      "zh-CN": "赫铜溶液",
+      "en-US": "Hetonite Solution"
+    },
+    "rarity": 2,
+    "type": 64,
+    "typeName": {
+      "zh-CN": "系统蓝图",
+      "en-US": "System Blueprint"
+    },
+    "iconId": "item_liquid_copper_enr"
   },
   "sysbp_wuling_liquid_grass_1": {
     "id": "sysbp_wuling_liquid_grass_1",
@@ -28180,6 +30952,20 @@
       "en-US": "System Blueprint"
     },
     "iconId": "item_port_planter_1"
+  },
+  "sysbp_wuling_xiranite_enr_powder_1": {
+    "id": "sysbp_wuling_xiranite_enr_powder_1",
+    "name": {
+      "zh-CN": "重息壤",
+      "en-US": "Heavy Xiranite"
+    },
+    "rarity": 2,
+    "type": 64,
+    "typeName": {
+      "zh-CN": "系统蓝图",
+      "en-US": "System Blueprint"
+    },
+    "iconId": "item_xiranite_enr_powder"
   },
   "sysbp_wuling_xiranite_poly_1": {
     "id": "sysbp_wuling_xiranite_poly_1",
@@ -28279,6 +31065,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_1_2"
   },
+  "ticketgacha_special_single_lt_1_2_1": {
+    "id": "ticketgacha_special_single_lt_1_2_1",
+    "name": {
+      "zh-CN": "春雷醒物寻访凭证",
+      "en-US": "Blitz of Verdance HH Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_2_1"
+  },
   "ticketgacha_special_ten_lt_1_0_1": {
     "id": "ticketgacha_special_ten_lt_1_0_1",
     "name": {
@@ -28348,6 +31148,34 @@
       "en-US": "LTO Valuable"
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_1_2"
+  },
+  "ticketgacha_special_ten_lt_1_2_1": {
+    "id": "ticketgacha_special_ten_lt_1_2_1",
+    "name": {
+      "zh-CN": "春雷醒物十连凭证",
+      "en-US": "Blitz of Verdance 10×Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_2_1"
+  },
+  "ticketweaponbox_ten_1_lt": {
+    "id": "ticketweaponbox_ten_1_lt",
+    "name": {
+      "zh-CN": "限时武器宝箱十连券",
+      "en-US": "LTO Weapon Crate 10×Cert"
+    },
+    "rarity": 6,
+    "type": 93,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten"
   },
   "wpn_claym_0003": {
     "id": "wpn_claym_0003",
@@ -28712,6 +31540,34 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_funnel_0014"
+  },
+  "wpn_funnel_0015": {
+    "id": "wpn_funnel_0015",
+    "name": {
+      "zh-CN": "孤舟",
+      "en-US": "Lone Barge"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_funnel_0015"
+  },
+  "wpn_funnel_0017": {
+    "id": "wpn_funnel_0017",
+    "name": {
+      "zh-CN": "雾中微光",
+      "en-US": "Flickers in the Mist"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_funnel_0017"
   },
   "wpn_lance_0003": {
     "id": "wpn_lance_0003",
