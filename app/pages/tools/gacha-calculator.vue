@@ -39,7 +39,7 @@ const { t } = useI18n();
 //
 const leftPartPanel = ref<string[]>(['statisticalResult']);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'
-const rightPartPanel = ref<string[]>(['permanent', 'archivePermanent']);
+const rightPartPanel = ref<string[]>([ 'existing', 'daily','activity','archivePermanent']);
 
 const poolOptions = ref<PoolOption[]>([
   {

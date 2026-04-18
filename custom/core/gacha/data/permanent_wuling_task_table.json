@@ -1,8 +1,8 @@
 [
   {
-    "id": "武陵_春晓时_主线任务",
+    "id": "水火不容",
     "name": {
-      "zh": "主线任务",
+      "zh": "水火不容",
       "en": ""
     },
     "start": "2026/04/17 12:00:00",
@@ -13,7 +13,154 @@
     "regional": "武陵",
     "version": "春晓时",
     "content": {
-      "originiumRecharge": 22,
+      "originiumRecharge": 3,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "致命邀约",
+    "name": {
+      "zh": "致命邀约",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "自由意志",
+    "name": {
+      "zh": "自由意志",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "浪白风初起",
+    "name": {
+      "zh": "浪白风初起",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "阵外潮起声犹震",
+    "name": {
+      "zh": "阵外潮起声犹震",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "墙崩因隙",
+    "name": {
+      "zh": "墙崩因隙",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "大器晚成",
+    "name": {
+      "zh": "大器晚成",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "志同道合",
+    "name": {
+      "zh": "志同道合",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 3,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,

@@ -15,6 +15,9 @@ for (const reward of ActivityRewardTable as Reward[]) {
   reward.end = new Date(reward.end);
 
   reward.active = currentVersion === reward.version;
+  if (reward.start.getTime() < Date.now()) {
+    reward.active = false;
+  }
 
   activityReward.value.push(reward);
 }
@@ -23,6 +26,9 @@ for (const reward of OtherRewardTableJson as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
   reward.active = currentVersion === reward.version;
+  if (reward.start.getTime() < Date.now()) {
+    reward.active = false;
+  }
   activityReward.value.push(reward);
 }
 

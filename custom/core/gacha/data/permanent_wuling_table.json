@@ -223,9 +223,9 @@
     }
   },
   {
-    "id": "武陵·醚质阶段10-11",
+    "id": "武陵·醚质阶段10-12",
     "name": {
-      "zh": "武陵·醚质阶段10-11",
+      "zh": "武陵·醚质阶段10-12",
       "en": ""
     },
     "start": "2026/03/12 12:00:00",
@@ -235,7 +235,7 @@
     "active": false,
     "version": "春晓时",
     "content": {
-      "originiumRecharge": 6,
+      "originiumRecharge": 9,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
