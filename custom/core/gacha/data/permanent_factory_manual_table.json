@@ -673,12 +673,12 @@
       "zh": "新收集物1",
       "en": ""
     },
-    "start": "2026/04/17 12:00:00",
+    "start": "2026/12/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "简制手册",
     "active": true,
-    "version": "春晓时",
+    "version": "春晓时待定",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -691,12 +691,12 @@
       "zh": "新收集物2",
       "en": ""
     },
-    "start": "2026/04/17 12:00:00",
+    "start": "2026/12/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "简制手册",
     "active": true,
-    "version": "春晓时",
+    "version": "春晓时待定",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -709,12 +709,12 @@
       "zh": "新收集物3",
       "en": ""
     },
-    "start": "2026/04/17 12:00:00",
+    "start": "2026/12/17 12:00:00",   
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "简制手册",
     "active": true,
-    "version": "春晓时",
+    "version": "春晓时待定",
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
@@ -728,12 +728,12 @@
       "zh": "新收集物4",
       "en": ""
     },
-    "start": "2026/04/17 12:00:00",
+    "start": "2026/12/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "春晓时",
+    "module": "简制手册",
     "active": true,
-    "version": "春晓时",
+    "version": "春晓时待定",
     "content": {
       "originiumRecharge": 0,
       "diamond": 155,

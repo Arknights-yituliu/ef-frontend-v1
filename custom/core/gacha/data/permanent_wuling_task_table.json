@@ -168,9 +168,9 @@
     }
   },
   {
-    "id": "武陵_春晓时_重要任务",
+    "id": "重逢故人·其一",
     "name": {
-      "zh": "重要任务",
+      "zh": "重逢故人·其一",
       "en": ""
     },
     "start": "2026/04/17 12:00:00",
@@ -182,16 +182,216 @@
     "version": "春晓时",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 1000,
+      "diamond": 75,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
   },
   {
-    "id": "武陵_春晓时_次要任务",
+    "id": "重逢故人·其二",
     "name": {
-      "zh": "次要任务",
+      "zh": "重逢故人·其二",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "同袍·无名",
+    "name": {
+      "zh": "同袍·无名",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "同袍·追忆",
+    "name": {
+      "zh": "同袍·追忆",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "同袍·纪念",
+    "name": {
+      "zh": "同袍·纪念",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "街角的商店·其一",
+    "name": {
+      "zh": "街角的商店·其一",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "街角的商店·其二",
+    "name": {
+      "zh": "街角的商店·其二",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "街角的商店·其三",
+    "name": {
+      "zh": "街角的商店·其三",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "老人与潮·其一",
+    "name": {
+      "zh": "老人与潮·其一",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 175,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "老人与潮·其二",
+    "name": {
+      "zh": "老人与潮·其二",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "蚀像寻遗",
+    "name": {
+      "zh": "蚀像寻遗",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 300,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "粉丝见面会",
+    "name": {
+      "zh": "粉丝见面会",
       "en": ""
     },
     "start": "2026/04/17 12:00:00",
@@ -203,12 +403,33 @@
     "version": "春晓时",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 150,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "致后来人",
+    "name": {
+      "zh": "致后来人",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "次要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
   },
+  
   {
     "id": "意外来袭",
     "name": {
@@ -399,9 +620,9 @@
     }
   },
   {
-    "id": "蚀像寻遗·新潮起·故渊离",
+    "id": "蚀像寻遗",
     "name": {
-      "zh": "蚀像寻遗·新潮起·故渊离",
+      "zh": "蚀像寻遗",
       "en": ""
     },
     "start": "2026/03/12 12:00:00",

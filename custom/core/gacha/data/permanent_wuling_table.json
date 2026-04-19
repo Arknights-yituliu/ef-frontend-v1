@@ -60,9 +60,9 @@
     }
   },
   {
-    "id": "武陵城+景玉谷地图",
+    "id": "武陵城地图",
     "name": {
-      "zh": "武陵城+景玉谷地图",
+      "zh": "武陵城地图",
       "en": ""
     },
     "start": "2026/01/22 12:00:00",
@@ -72,8 +72,28 @@
     "active": false,
     "version": "零号委托",
     "content": {
-      "originiumRecharge": 7,
-      "diamond": 10390,
+      "originiumRecharge": 5,
+      "diamond": 8555,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  }, {
+    "id": "景玉谷地图",
+    "name": {
+      "zh": "景玉谷地图",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 2105,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -94,7 +114,7 @@
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
-      "diamond": 1360,
+      "diamond": 1315,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -102,9 +122,29 @@
     "tips": ["包含储藏箱、机器人和处理险情"]
   },
   {
-    "id": "首墩+试验园区地图",
+    "id": "首墩地图",
     "name": {
-      "zh": "首墩+试验园区地图",
+      "zh": "首墩地图",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 3,
+      "diamond": 2480,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },{
+    "id": "试验园区地图",
+    "name": {
+      "zh": "试验园区地图",
       "en": ""
     },
     "start": "2026/04/17 12:00:00",
@@ -115,7 +155,27 @@
     "version": "春晓时",
     "content": {
       "originiumRecharge": 2,
-      "diamond": 3100,
+      "diamond": 1345,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },{
+    "id": "武陵城地图追加",
+    "name": {
+      "zh": "武陵城地图追加",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 320,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -348,12 +408,12 @@
       "zh": "武陵·据点防御",
       "en": ""
     },
-    "start": "2026/04/17 12:00:00",
+    "start": "2026/12/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "地区探索与建设",
     "active": false,
-    "version": "春晓时",
+    "version": "春晓时待定",
     "content": {
       "originiumRecharge": 0,
       "diamond": 160,

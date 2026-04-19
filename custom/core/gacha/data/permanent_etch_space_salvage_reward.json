@@ -778,7 +778,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "蚀像寻遗储藏箱",
     "name": {
       "zh": "蚀像寻遗储藏箱",
@@ -799,49 +800,9 @@
     }
   },
   {
-    "id": "etch_space_salvage_110000_reward",
-    "name": {
-      "zh": "蚀像寻遗刻度110000",
-      "en": ""
-    },
-    "start": "2026/04/17 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "蚀像寻遗刻度",
-    "active": true,
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 2,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
     "id": "etch_space_salvage_120000_reward",
     "name": {
       "zh": "蚀像寻遗刻度120000",
-      "en": ""
-    },
-    "start": "2026/04/17 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "蚀像寻遗刻度",
-    "active": true,
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 400,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "etch_space_salvage_130000_reward",
-    "name": {
-      "zh": "蚀像寻遗刻度130000",
       "en": ""
     },
     "start": "2026/04/17 12:00:00",
@@ -879,49 +840,9 @@
     }
   },
   {
-    "id": "etch_space_salvage_150000_reward",
-    "name": {
-      "zh": "蚀像寻遗刻度150000",
-      "en": ""
-    },
-    "start": "2026/04/17 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "蚀像寻遗刻度",
-    "active": true,
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 2,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
     "id": "etch_space_salvage_160000_reward",
     "name": {
       "zh": "蚀像寻遗刻度160000",
-      "en": ""
-    },
-    "start": "2026/04/17 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "蚀像寻遗刻度",
-    "active": true,
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 400,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "etch_space_salvage_170000_reward",
-    "name": {
-      "zh": "蚀像寻遗刻度170000",
       "en": ""
     },
     "start": "2026/04/17 12:00:00",
@@ -959,6 +880,26 @@
     }
   },
   {
+    "id": "etch_space_salvage_200000_reward",
+    "name": {
+      "zh": "蚀像寻遗刻度200000",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗刻度",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "像差探索计划Ⅴ",
     "name": {
       "zh": "像差探索计划Ⅴ",
@@ -978,7 +919,7 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-   {
+  {
     "id": "像差探索计划Ⅵ",
     "name": {
       "zh": "像差探索计划Ⅵ",
@@ -1052,7 +993,7 @@
     "version": "春晓时",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 60,
+      "diamond": 30,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -1072,13 +1013,91 @@
     "version": "春晓时",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 30,
+      "diamond": 60,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  }
-  ,
+  },
+  {
+    "id": "探索研发·紊乱耐受2",
+    "name": {
+      "zh": "探索研发·紊乱耐受2",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": true,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "作战研发·能量捕获",
+    "name": {
+      "zh": "作战研发·能量捕获",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "作战研发·应力反馈",
+    "name": {
+      "zh": "作战研发·应力反馈",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 60,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },{
+    "id": "转化研发·结核精炼2",
+    "name": {
+      "zh": "转化研发·结核精炼2",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "蚀像寻遗探索任务",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
   {
     "id": "蚀像寻遗储藏箱",
     "name": {
