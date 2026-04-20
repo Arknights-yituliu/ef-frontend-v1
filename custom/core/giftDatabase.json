@@ -16,6 +16,10 @@
       "tag_giftperfer_wuling_2": {
         "zh-CN": "武陵·游商严选",
         "en-US": "Wuling Merchants"
+      },
+      "tag_giftperfer_wuling_3": {
+        "zh-CN": "武陵·天师府严选",
+        "en-US": "Wuling Tianshi Bureau"
       }
     },
     "hobby": {
@@ -66,7 +70,7 @@
       "id": "item_gift_jinlong_3",
       "rarity": 5,
       "isHot": true,
-      "isHotExpiring": false,
+      "isHotExpiring": true,
       "favorCategory": "tag_giftperfer_wuling_2",
       "favorHobby": [
         "tag_hobby_creativity",
@@ -77,33 +81,22 @@
       "id": "item_gift_jinlong_4",
       "rarity": 5,
       "isHot": true,
-      "isHotExpiring": false,
+      "isHotExpiring": true,
       "favorCategory": "tag_giftperfer_wuling_2",
       "favorHobby": [
         "tag_hobby_exercise",
         "tag_hobby_life"
       ]
     },
-    "item_gift_jinlong_1": {
-      "id": "item_gift_jinlong_1",
+    "item_gift_jinlong_5": {
+      "id": "item_gift_jinlong_5",
       "rarity": 5,
-      "isHot": false,
+      "isHot": true,
       "isHotExpiring": false,
-      "favorCategory": "tag_giftperfer_wuling_1",
+      "favorCategory": "tag_giftperfer_wuling_3",
       "favorHobby": [
-        "tag_hobby_life",
-        "tag_hobby_culture"
-      ]
-    },
-    "item_gift_jinlong_2": {
-      "id": "item_gift_jinlong_2",
-      "rarity": 5,
-      "isHot": false,
-      "isHotExpiring": false,
-      "favorCategory": "tag_giftperfer_wuling_1",
-      "favorHobby": [
-        "tag_hobby_exercise",
-        "tag_hobby_nature"
+        "tag_hobby_culture",
+        "tag_hobby_charity"
       ]
     },
     "item_gift_tundra_1": {
@@ -181,6 +174,28 @@
       "favorHobby": [
         "tag_hobby_tech",
         "tag_hobby_charity"
+      ]
+    },
+    "item_gift_jinlong_1": {
+      "id": "item_gift_jinlong_1",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_1",
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_culture"
+      ]
+    },
+    "item_gift_jinlong_2": {
+      "id": "item_gift_jinlong_2",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_1",
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_nature"
       ]
     }
   },
@@ -333,6 +348,21 @@
       "favorHobby": [
         "tag_hobby_nature",
         "tag_hobby_exercise"
+      ]
+    },
+    "chr_0030_zhuangfy": {
+      "id": "chr_0030_zhuangfy",
+      "name": {
+        "zh-CN": "庄方宜",
+        "en-US": "Zhuang Fangyi"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_3"
+      ],
+      "favorHobby": [
+        "tag_hobby_charity",
+        "tag_hobby_culture"
       ]
     },
     "chr_0004_pelica": {

@@ -1,14 +1,40 @@
 <template>
+  <v-sheet
+    class="mx-auto"
+  >
+    <v-slide-group>
+      <v-slide-group-item>
+        <v-img
+          src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_0.webp"
+          :min-width="500"
+        />
+      </v-slide-group-item>
+      <v-slide-group-item>
+        <v-img
+          src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_1.webp"
+          :min-width="500"
+        />
+      </v-slide-group-item>
+    </v-slide-group>
+  </v-sheet>
   <v-container>
-    <h1>终末地基质小助手</h1>
+    <h1 class="my-0">终末地基质小助手</h1>
 
     <div class="d-flex flex-row flex-wrap ga-4 my-4">
-      <v-btn append-icon="mdi-open-in-new" color="primary" @click="downloadLatestVersion('global')">
-        下载最新版（主线）
-      </v-btn>
-      <v-btn append-icon="mdi-open-in-new" @click="downloadLatestVersion('cn')">
-        下载最新版（备用）
-      </v-btn>
+      <v-btn-group divided elevation="3" density="compact">
+        <v-btn
+          color="primary" @click="downloadLatestVersion('global')"
+          prepend-icon="mdi-download"
+        >
+          主线下载
+        </v-btn>
+        <v-btn
+          color="primary"
+          @click="downloadLatestVersion('cn')"
+        >
+          备用下载
+        </v-btn>
+      </v-btn-group>
       <v-btn
         append-icon="mdi-open-in-new"
         href="https://github.com/Logical-Byte/endfield-essence-recognizer"
@@ -17,79 +43,65 @@
       >
         项目地址
       </v-btn>
-      <v-btn
-        href="https://qm.qq.com/cgi-bin/qm/qr?k=1xqRp7JwQHwGswa-8_SMFuAsRYYRnF8J"
-        prepend-icon="mdi-qqchat"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        反馈交流①群：486622964
-      </v-btn>
-      <v-btn
-        href="https://qm.qq.com/cgi-bin/qm/qr?k=qAmvmHCc3HuESiJhZVe6Ytgj7foOxXx9"
-        prepend-icon="mdi-qqchat"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        反馈交流②群：1082880855
-      </v-btn>
-      <v-btn
-        href="https://qm.qq.com/cgi-bin/qm/qr?k=-GykJWhnZEN5F2aZ1nrVd3xs9RGkMBI2"
-        prepend-icon="mdi-qqchat"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        反馈交流③群：1042417974
-      </v-btn>
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn
+            prepend-icon="mdi-qqchat"
+            color="#18a6bd"
+            v-bind="props"
+          >
+            <template #append>
+              <v-icon icon="mdi-dots-vertical"></v-icon>
+            </template>
+            反馈交流群
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(btn, i) in qqg" :key="i" :value="i"
+            prepend-gap="10"
+            :href="btn.link" rel="noopener noreferrer" target="_blank"
+            >
+            <template #prepend>
+              <v-icon :icon="btn.icon" />
+            </template>
+            <v-list-item-title>
+              {{ btn.text }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </div>
 
-    <v-row class="my-4">
-      <v-col cols="12" md="6">
-        <v-img
-          src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_0.webp"
-        />
-      </v-col>
-      <v-col cols="12" md="6">
-        <v-img
-          src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_1.webp"
-        />
-      </v-col>
-    </v-row>
-
-    <h2>使用前准备</h2>
+    <h2>使用须知</h2>
     <ul>
+      <li>请在 Windows 的屏幕设置中<strong class="text-primary">关闭 HDR</strong></li>
       <li>
         请使用<strong class="text-primary">管理员权限</strong
         ><span class="text-secondary">（是 Windows 管理员，不是终末地管理员）</span>运行本工具
       </li>
-      <li>请在 Windows 屏幕设置中<strong class="text-primary">关闭 HDR</strong></li>
-      <li>请将终末地的界面语言更改为<strong class="text-primary">简体中文</strong></li>
-      <li>
-        请将终末地的分辨率更改为 <strong class="text-primary">1920×1080 窗口</strong>
+      <li>请修改终末地的游戏设置如下：
         <ul>
+          <li>界面语言：<strong class="text-primary">简体中文</strong></li>
           <li>
-            若您的显示器分辨率为 1920×1080，请将终末地的分辨率更改为 1920×1080 全屏后按下
-            <strong class="text-primary">
-              <v-hotkey
-                color="primary"
-                display-mode="text"
-                inline
-                keys="Alt+Enter"
-                variant="flat"
-              />
-              切换为窗口模式</strong
-            >
+            分辨率：<strong class="text-primary">1920×1080（或同样16:9比例的分辨率）</strong>
+          </li>
+          <li>
+            全屏模式：<strong class="text-primary">窗口</strong>
           </li>
         </ul>
       </li>
-      <li>请确保终末地的整个窗口都位于屏幕范围内且未被性能监控工具等任何其他内容遮挡</li>
       <li>
-        请按 <v-hotkey display-mode="text" inline keys="N" variant="flat" /> 键打开终末地<strong
-          class="text-primary"
-          >贵重品库</strong
-        >并切换到<strong class="text-primary">武器基质</strong>页面
+        请在终末地中，按 <v-hotkey color="primary" inline keys="N" variant="flat" /> 键打开<strong class="text-primary">贵重品库</strong
+        >，并切换到<strong class="text-primary">武器基质</strong>页面<br />
+        <v-icon icon="mdi-information" size="small" class="mr-1"/>
+        也可以按下 <v-hotkey color="primary" inline keys="esc" variant="flat" :key-map="{
+          escape: {default: {text: 'ESC'}},
+        }" class="mx-1"/> 打开协议同步器（主菜单），在右侧找到<strong class="text-primary"
+        >贵重品库</strong>进入
       </li>
-      <li>在运行过程中，请确保终末地窗口<strong class="text-primary">置于前台</strong></li>
+      <li>请确保终末地的整个窗口都位于屏幕范围内且未被性能监控工具等任何其他内容遮挡</li>
+      <li>在识别工具的运行过程中，请确保终末地窗口<strong class="text-primary">置于前台</strong></li>
     </ul>
 
     <h2>功能介绍</h2>
@@ -97,12 +109,12 @@
       <li>
         按
         <v-hotkey display-mode="text" inline keys="[" variant="flat" />
-        键识别当前选中的基质是宝藏还是养成材料
+        键识别当前选中的基质（仅识别不操作）
       </li>
       <li>
         按
         <v-hotkey display-mode="text" inline keys="]" variant="flat" />
-        键扫描所有基质，并根据<strong>设置</strong>，自动锁定或者解锁基质<br />
+        键逐个扫描所有基质，并根据<strong>设置</strong>，自动锁定、解锁或弃用基质<br />
         基质扫描过程中再次按
         <v-hotkey display-mode="text" inline keys="]" variant="flat" /> 键中断扫描
       </li>
@@ -111,148 +123,165 @@
     </ul>
 
     <p>
-      <strong class="text-primary">宝藏基质和养成材料：</strong
-      >可以在<strong>设置</strong>界面自定义。默认情况下，如果这个基质和任何一把武器能对上<span
-        class="text-secondary"
-        >（基质的所有属性与至少 1 件已实装武器的属性完全相同）</span
-      >，则是宝藏，否则是养成材料。
+      <strong class="text-primary">宝藏基质和养成材料：</strong>
+      默认情况下，如果这个基质和任何一把武器能对上
+      <span class="text-secondary">（基质的所有属性与至少 1 件已实装武器的属性完全相同）</span>
+      ，则是宝藏，否则是养成材料。<br />
+      可以在<strong>设置</strong>界面自定义判别基准及扫描后操作。
     </p>
 
     <h2>常见问题</h2>
-    <h3>双击运行时遇到“Unhandled exception in script”弹窗报错</h3>
-    <v-img
-      alt="遇到报错解决方法"
-      src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/遇到报错解决方法.webp"
-    />
-    <p>这大概率是由于 Windows 自带的解压导致的。</p>
-    <p>有两种解决办法：</p>
-    <ol>
-      <li>
-        改用
-        <a
-          class="text-primary text-decoration-none"
-          href="https://www.7-zip.org/"
-          rel="noopener noreferrer"
-          target="_blank"
-          >7zip</a
-        >
-        或者
-        <a
-          class="text-primary text-decoration-none"
-          href="https://www.win-rar.com/"
-          rel="noopener noreferrer"
-          target="_blank"
-          >WinRAR</a
-        >
-        解压即可解决（其他解压软件也可以试试）。
-      </li>
-      <li>
-        如果电脑上没安装其他解压软件，则请右键点击 zip
-        压缩包，点击“属性”，然后把“解除锁定”勾上，点击“确定”，再解压即可。
-      </li>
-    </ol>
+    <v-expansion-panels variant="accordion">
+      <v-expansion-panel title="双击运行时遇到“Unhandled exception in script”弹窗报错">
+        <template #text>
+          <v-card-text class="text-body-2 pa-0">
+            <v-img
+              alt="遇到报错解决方法"
+              src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/遇到报错解决方法.webp"
+            />
+            <p>这大概率是由于 Windows 自带的解压导致的。</p>
+            <p>有两种解决办法：</p>
+            <ol>
+              <li>
+                改用
+                <a
+                  class="text-primary text-decoration-none"
+                  href="https://www.7-zip.org/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >7zip</a
+                >
+                或者
+                <a
+                  class="text-primary text-decoration-none"
+                  href="https://www.win-rar.com/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >WinRAR</a
+                >
+                解压即可解决（其他解压软件也可以试试）。
+              </li>
+              <li>
+                如果电脑上没安装其他解压软件，则请右键点击 zip
+                压缩包，点击“属性”，然后把“解除锁定”勾上，点击“确定”，再解压即可。
+              </li>
+            </ol>
+          </v-card-text>
+        </template>
+      </v-expansion-panel>
+      <v-expansion-panel title="界面窗口能打开，但是白屏">
+        <template #text>
+          <v-card-text class="text-body-2 pa-0">
+            <p>白屏问题比较复杂，请参考以下解决方法。</p>
+            <ol>
+              <li>
+                如果白屏界面右侧能看到一条矩形的滚动条，说明您未安装 WebView2 运行时。<br/>
+                请前往
+                <a
+                  class="text-primary text-decoration-none"
+                  href="https://developer.microsoft.com/zh-CN/microsoft-edge/webview2"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >https://developer.microsoft.com/zh-CN/microsoft-edge/webview2</a
+                >
+                下载并安装 WebView2 运行时。<br />
+                选择“常青引导程序”或者“常青独立安装程序”均可。如果遇到网络问题无法下载，可以加群，在群文件里获取安装包。
+              </li>
+              <li>
+                请参考
+                <a
+                  class="text-primary text-decoration-none"
+                  href="https://github.com/Logical-Byte/endfield-essence-recognizer/issues/24#issuecomment-3830421851"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >https://github.com/Logical-Byte/endfield-essence-recognizer/issues/24#issuecomment-3830421851</a
+                >
+              </li>
+              <li>
+                保持工具运行，用浏览器访问
+                <a
+                  class="text-primary text-decoration-none"
+                  href="http://127.0.0.1:325/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >http://127.0.0.1:325/</a
+                >
+              </li>
+              <li>
+                如果以上方法仍然解决不了，那就先凑合用。界面看不见没关系的，只要终末地在前台，按
+                <v-hotkey display-mode="text" inline keys="]" variant="flat" /> 键是可以正常使用的。
+              </li>
+            </ol>
+          </v-card-text>
+        </template>
+      </v-expansion-panel>
+      <v-expansion-panel title="明明是 1920×1080（或其它16:9比例）窗口，依然提示分辨率错误">
+        <template #text>
+          <v-card-text class="text-body-2 pa-0">
+            请尝试：将所有显示器的缩放都更改为100%，然后重启电脑，把本工具和终末地窗口都放在主显示器上，再试一次。
+          </v-card-text>
+        </template>
+      </v-expansion-panel>
+      <v-expansion-panel title="出现大面积识别错误">
+        <template #text>
+          <v-card-text class="text-body-2 pa-0">
+            <ul>
+              <li>请在 Windows 屏幕设置中<strong class="text-primary">关闭 HDR</strong></li>
+              <li>请将终末地的界面语言更改为<strong class="text-primary">简体中文</strong></li>
+              <li>请确保终末地的整个窗口都位于屏幕范围内且未被性能监控工具等任何其他内容遮挡</li>
+            </ul>
+          </v-card-text>
+        </template>
+      </v-expansion-panel>
+      <v-expansion-panel title="识别到的基质始终是同一个">
+        <template #text>
+          <v-card-text class="text-body-2 pa-0">
+            <p>
+              请确保终末地的分辨率为
+              <strong class="text-primary">1920×1080（或其它16:9比例）</strong>且全屏模式为<strong class="text-primary">窗口</strong>。
+            </p>
+          </v-card-text>
+        </template>
+      </v-expansion-panel>
+    </v-expansion-panels>
 
-    <h3>界面窗口能打开，但是白屏</h3>
-    <p>白屏问题比较复杂，请参考以下解决方法。</p>
-    <p>
-      <strong class="text-primary">方法一：</strong>
-      如果白屏界面右侧能看到一条矩形的滚动条，说明您未安装 WebView2 运行时，请前往
-      <a
-        class="text-primary text-decoration-none"
-        href="https://developer.microsoft.com/zh-CN/microsoft-edge/webview2"
-        rel="noopener noreferrer"
-        target="_blank"
-        >https://developer.microsoft.com/zh-CN/microsoft-edge/webview2</a
-      >
-      下载并安装 WebView2 运行时。<br />
-      选择“常青引导程序”或者“常青独立安装程序”均可。如果遇到网络问题无法下载，可以加群，在群文件里获取安装包。
-    </p>
-    <p>
-      <strong class="text-primary">方法二：</strong> 请参考
-      <a
-        class="text-primary text-decoration-none"
-        href="https://github.com/Logical-Byte/endfield-essence-recognizer/issues/24#issuecomment-3830421851"
-        rel="noopener noreferrer"
-        target="_blank"
-        >https://github.com/Logical-Byte/endfield-essence-recognizer/issues/24#issuecomment-3830421851</a
-      >
-    </p>
-    <p>
-      <strong class="text-primary">方法三：</strong> 请保持工具打开状态，用浏览器访问
-      <a
-        class="text-primary text-decoration-none"
-        href="http://127.0.0.1:325/"
-        rel="noopener noreferrer"
-        target="_blank"
-        >http://127.0.0.1:325/</a
-      >
-    </p>
-    <p>
-      <strong class="text-primary">方法四：</strong>
-      如果以上方法仍然解决不了，那就先凑合用。界面看不见没关系的，只要终末地在前台，按
-      <v-hotkey display-mode="text" inline keys="]" variant="flat" /> 键是可以正常使用的。
-    </p>
-
-    <h3>明明是 1920×1080 窗口，依然提示分辨率错误</h3>
-    <p>
-      请尝试：将所有显示器的缩放都更改为
-      100%，然后重启电脑，把本工具和终末地窗口都放在主显示器上，再试一次。
-    </p>
-
-    <h3>出现大面积识别错误</h3>
-    <ul>
-      <li>请在 Windows 屏幕设置中<strong class="text-primary">关闭 HDR</strong></li>
-      <li>请将终末地的界面语言更改为<strong class="text-primary">简体中文</strong></li>
-      <li>请确保终末地的整个窗口都位于屏幕范围内且未被性能监控工具等任何其他内容遮挡</li>
-    </ul>
-
-    <h3>识别到的基质始终是同一个</h3>
-    <p>
-      请确保终末地的分辨率为
-      <strong class="text-primary">1920×1080 窗口</strong>。若您的显示器分辨率为
-      1920×1080，请将终末地的分辨率更改为 1920×1080 全屏后按下
-      <strong class="text-primary">
-        <v-hotkey color="primary" display-mode="text" inline keys="Alt+Enter" variant="flat" />
-        切换为窗口模式</strong
-      >。
-    </p>
 
     <h2>联系我们</h2>
-    <p>
+    <div>
       如果在使用过程中遇到任何问题，或是想提出建议，欢迎<a
         class="text-primary text-decoration-none"
         href="https://github.com/Logical-Byte/endfield-essence-recognizer"
         rel="noopener noreferrer"
         target="_blank"
         ><strong>在 GitHub 上提 Issue</strong></a
-      >，或者加入反馈交流群：<v-chip
-        class="mx-1"
-        href="https://qm.qq.com/cgi-bin/qm/qr?k=1xqRp7JwQHwGswa-8_SMFuAsRYYRnF8J"
-        prepend-icon="mdi-qqchat"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        ①群：486622964
-      </v-chip>
-      <v-chip
-        class="mx-1"
-        href="https://qm.qq.com/cgi-bin/qm/qr?k=qAmvmHCc3HuESiJhZVe6Ytgj7foOxXx9"
-        prepend-icon="mdi-qqchat"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        ②群：1082880855
-      </v-chip>
-      <v-chip
-        class="mx-1"
-        href="https://qm.qq.com/cgi-bin/qm/qr?k=-GykJWhnZEN5F2aZ1nrVd3xs9RGkMBI2"
-        prepend-icon="mdi-qqchat"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        ③群：1042417974
-      </v-chip>
-    </p>
+      >，或者加入
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn
+            prepend-icon="mdi-qqchat"
+            color="#18a6bd"
+            v-bind="props"
+            density="comfortable"
+          >
+            反馈交流群
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(btn, i) in qqg" :key="i" :value="i"
+            prepend-gap="10"
+            :href="btn.link" rel="noopener noreferrer" target="_blank"
+            >
+            <template #prepend>
+              <v-icon :icon="btn.icon" />
+            </template>
+            <v-list-item-title>
+              {{ btn.text }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
 
     <h2>说明</h2>
     <ul>
@@ -291,6 +320,25 @@ definePageMeta({
 const showError = ref(false);
 const errorMessage = ref('');
 
+// 交流群
+const qqg = ref([
+  {
+    icon: 'mdi-numeric-1-box-outline',
+    text: '486622964',
+    link: 'https://qm.qq.com/cgi-bin/qm/qr?k=1xqRp7JwQHwGswa-8_SMFuAsRYYRnF8J',
+  },
+  {
+    icon: 'mdi-numeric-2-box-outline',
+    text: '1082880855',
+    link: 'https://qm.qq.com/cgi-bin/qm/qr?k=qAmvmHCc3HuESiJhZVe6Ytgj7foOxXx9',
+  },
+  {
+    icon: 'mdi-numeric-3-box-outline',
+    text: '1042417974',
+    link: 'https://qm.qq.com/cgi-bin/qm/qr?k=-GykJWhnZEN5F2aZ1nrVd3xs9RGkMBI2',
+  },
+]);
+
 // 下载最新版本
 async function downloadLatestVersion(mirror: 'global' | 'cn') {
   try {
@@ -315,6 +363,7 @@ async function downloadLatestVersion(mirror: 'global' | 'cn') {
     showError.value = true;
   }
 }
+
 </script>
 
 <style scoped>
