@@ -5,14 +5,14 @@
     <v-slide-group>
       <v-slide-group-item>
         <v-img
-          src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_0.webp"
           :min-width="500"
+          src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_0.webp"
         />
       </v-slide-group-item>
       <v-slide-group-item>
         <v-img
-          src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_1.webp"
           :min-width="500"
+          src="https://cos.yituliu.cn/endfield/endfield-essence-recognizer/assets/终末地基质小助手展示_1.webp"
         />
       </v-slide-group-item>
     </v-slide-group>
@@ -21,10 +21,10 @@
     <h1 class="my-0">终末地基质小助手</h1>
 
     <div class="d-flex flex-row flex-wrap ga-4 my-4">
-      <v-btn-group divided elevation="3" density="compact">
+      <v-btn-group density="compact" divided elevation="3">
         <v-btn
-          color="primary" @click="downloadLatestVersion('global')"
-          prepend-icon="mdi-download"
+          color="primary" prepend-icon="mdi-download"
+          @click="downloadLatestVersion('global')"
         >
           主线下载
         </v-btn>
@@ -44,10 +44,10 @@
         项目地址
       </v-btn>
       <v-menu>
-        <template v-slot:activator="{ props }">
+        <template #activator="{ props }">
           <v-btn
-            prepend-icon="mdi-qqchat"
             color="#18a6bd"
+            prepend-icon="mdi-qqchat"
             v-bind="props"
           >
             <template #append>
@@ -58,9 +58,9 @@
         </template>
         <v-list>
           <v-list-item
-            v-for="(btn, i) in qqg" :key="i" :value="i"
+            v-for="(btn, i) in qqg" :key="i" :href="btn.link"
             prepend-gap="10"
-            :href="btn.link" rel="noopener noreferrer" target="_blank"
+            rel="noopener noreferrer" target="_blank" :value="i"
             >
             <template #prepend>
               <v-icon :icon="btn.icon" />
@@ -94,10 +94,11 @@
       <li>
         请在终末地中，按 <v-hotkey color="primary" inline keys="N" variant="flat" /> 键打开<strong class="text-primary">贵重品库</strong
         >，并切换到<strong class="text-primary">武器基质</strong>页面<br />
-        <v-icon icon="mdi-information" size="small" class="mr-1"/>
-        也可以按下 <v-hotkey color="primary" inline keys="esc" variant="flat" :key-map="{
+        <v-icon class="mr-1" icon="mdi-information" size="small"/>
+        也可以按下 <v-hotkey
+class="mx-1" color="primary" inline :key-map="{
           escape: {default: {text: 'ESC'}},
-        }" class="mx-1"/> 打开协议同步器（主菜单），在右侧找到<strong class="text-primary"
+        }" keys="esc" variant="flat"/> 打开协议同步器（主菜单），在右侧找到<strong class="text-primary"
         >贵重品库</strong>进入
       </li>
       <li>请确保终末地的整个窗口都位于屏幕范围内且未被性能监控工具等任何其他内容遮挡</li>
@@ -256,21 +257,21 @@
         ><strong>在 GitHub 上提 Issue</strong></a
       >，或者加入
       <v-menu>
-        <template v-slot:activator="{ props }">
+        <template #activator="{ props }">
           <v-btn
-            prepend-icon="mdi-qqchat"
             color="#18a6bd"
             v-bind="props"
             density="comfortable"
+            prepend-icon="mdi-qqchat"
           >
             反馈交流群
           </v-btn>
         </template>
         <v-list>
           <v-list-item
-            v-for="(btn, i) in qqg" :key="i" :value="i"
+            v-for="(btn, i) in qqg" :key="i" :href="btn.link"
             prepend-gap="10"
-            :href="btn.link" rel="noopener noreferrer" target="_blank"
+            rel="noopener noreferrer" target="_blank" :value="i"
             >
             <template #prepend>
               <v-icon :icon="btn.icon" />
