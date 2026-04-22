@@ -42,14 +42,7 @@ const leftPartPanel = ref<string[]>(['statisticalResult']);
 const rightPartPanel = ref<string[]>([ 'existing', 'daily','activity','archivePermanent']);
 
 const poolOptions = ref<PoolOption[]>([
-  {
-    name: '洛茜卡池',
-    start: new Date('2026/03/29 12:00:00'),
-    end: new Date('2026/04/17 12:00:00'),
-    dateText: '3.29-版本末',
-    type: '洛茜',
-    disabled: false,
-  },
+ 
   {
     name: '庄方宜卡池',
     start: new Date('2026/04/17 12:00:00'),
@@ -60,11 +53,19 @@ const poolOptions = ref<PoolOption[]>([
   },
   {
     name: '辉光庆时',
-    start: new Date('2026/02/24 12:00:00'),
+    start: new Date('2026/05/14 12:00:00'),
     end: new Date('2026/06/05 12:00:00'),
     dateText: '05.14-版本末',
     type: '辉光庆时',
     disabled: false,
+  },
+   {
+    name: '敬请期待',
+    start: new Date('2026/06/05 12:00:00'),
+    end: new Date('2026/06/23 12:00:00'),
+    dateText: '',
+    type: '敬请期待',
+    disabled: true,
   },
 ]);
 
