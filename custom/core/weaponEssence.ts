@@ -191,7 +191,7 @@ export const energyAlluviums: Record<string, EnergyAlluvium> = {
     battleId: '重度能量淤积点·首墩',
     battleName: '重度能量淤积点·首墩',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.webp',
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv004_1.webp',
     secondaryStats: [
       '攻击提升',
       '物理伤害提升',
