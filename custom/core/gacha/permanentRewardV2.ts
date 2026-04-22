@@ -111,6 +111,12 @@ permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string
   return bTime - aTime;
 });
 
+archivePermanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string | Date }) => {
+  const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();
+  const bTime = typeof b.start === 'string' ? new Date(b.start).getTime() : b.start.getTime();
+  return bTime - aTime;
+});
+
 // 这是一个独立的常驻奖励，使用滑块组件
 const authorityLevelUpReward = ref<Reward>({
   id: 'authority_level_up_reward',
