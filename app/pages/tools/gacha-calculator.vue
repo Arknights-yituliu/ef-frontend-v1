@@ -6,12 +6,14 @@ import type {
   RewardStatisticsResultDetail,
   TotalPullsSingle,
 } from '@/shared/types/gacha-calculator';
+import { dateFormat } from '#shared/utils/dateUtil';
 import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-calculator';
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+
 import { activityReward } from '@/custom/core/gacha/activityReward';
-import { dateFormat } from '#shared/utils/dateUtil';
 
 // 奖励引入
 import {
@@ -34,8 +36,6 @@ import {
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
 import { packs } from '@/custom/core/packs';
-
-import { useRoute } from 'vue-router';
 
 // 当前路由
 const route = useRoute();
@@ -1456,7 +1456,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel value="dev" v-show="'dev' === currentMode">
+        <v-expansion-panel v-show="'dev' === currentMode" value="dev">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             开发模式
           </v-expansion-panel-title>
@@ -1464,10 +1464,10 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           <v-expansion-panel-text>
             <v-date-picker
               v-model="devStartDate"
-              type="date"
-              @update:modelValue="startDateDebug"
-              label="开发日期"
               color="primary"
+              label="开发日期"
+              type="date"
+              @update:model-value="startDateDebug"
             ></v-date-picker>
             {{ startDate }}
           </v-expansion-panel-text>
