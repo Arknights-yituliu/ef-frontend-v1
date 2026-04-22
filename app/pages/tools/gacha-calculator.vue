@@ -1125,7 +1125,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 
 const versionOptions = ref<string[]>([]);
 
-const selectedVersion = ref<string>('');
+const selectedVersion = ref<string>('all');
 
 for (const version of VersionTable) {
   versionOptions.value.push(version.version);
