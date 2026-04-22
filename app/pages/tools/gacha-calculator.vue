@@ -11,6 +11,7 @@ import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
+import { dateFormat } from '#shared/utils/dateUtil';
 
 // 奖励引入
 import {
@@ -34,15 +35,19 @@ import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStati
 
 import { packs } from '@/custom/core/packs';
 
+import { useRoute } from 'vue-router';
+
+// 当前路由
+const route = useRoute();
+
 const { t } = useI18n();
 
 //
 const leftPartPanel = ref<string[]>(['statisticalResult']);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'
-const rightPartPanel = ref<string[]>([ 'existing', 'daily','activity','archivePermanent']);
+const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity']);
 
 const poolOptions = ref<PoolOption[]>([
- 
   {
     name: '庄方宜卡池',
     start: new Date('2026/04/17 12:00:00'),
@@ -59,7 +64,7 @@ const poolOptions = ref<PoolOption[]>([
     type: '辉光庆时',
     disabled: false,
   },
-   {
+  {
     name: '敬请期待',
     start: new Date('2026/06/05 12:00:00'),
     end: new Date('2026/06/23 12:00:00'),
@@ -88,18 +93,29 @@ const currentPool = ref<PoolOption>({
   disabled: false,
 });
 
-const startDate: Date = new Date();
-let remainingDays: number = 0;
+let startDate: Date = new Date();
+
+const devStartDate = ref(new Date());
+
+const currentMode = ref('normal');
+
+function startDateDebug() {
+  console.log(devStartDate.value);
+  startDate = devStartDate.value;
+  calc();
+}
+
 function selectedPool(option: PoolOption): void {
   currentPool.value = option;
-  remainingDays = calculateDaysDifference(startDate, option.end);
-  calculatorDailyReward(startDate, option.end);
+  calc();
+}
+
+function calc() {
+  calculatorDailyReward(startDate, currentPool.value.end);
   existingRewardStatistics();
   dailyRewardStatistics();
   activityRewardStatistics();
-
   permanentRewardStatistics();
-
   rechargeResourceStatistics();
   allRewardStatisticsV2();
 }
@@ -501,6 +517,8 @@ let rechargeResourceStatisticsResultDetail: RewardStatisticsResultDetail = {
 };
 
 function rechargeResourceStatistics(): void {
+  const remainingDays = calculateDaysDifference(startDate, currentPool.value.end);
+
   const result: RewardStatisticsResultDetail = {
     name: '氪金资源',
     originiumRecharge: 0,
@@ -655,12 +673,15 @@ function allRewardStatisticsV2(): void {
     });
   }
 
-  const totalPulls = numberFloor(getSpecialAndLimitedPulls(gachaResourceStatisticsResult.value.totalPulls.total), 0);
-  if(totalPulls>119){
+  const totalPulls = numberFloor(
+    getSpecialAndLimitedPulls(gachaResourceStatisticsResult.value.totalPulls.total),
+    0,
+  );
+  if (totalPulls > 119) {
     gachaProbability.value = 1;
-  }else{
-    console.log(totalPulls)
-    console.log(gachaProbabilityTable[totalPulls])
+  } else {
+    console.log(totalPulls);
+    console.log(gachaProbabilityTable[totalPulls]);
     gachaProbability.value = gachaProbabilityTable[totalPulls] as number;
   }
   setPieChart(pieChartData);
@@ -883,10 +904,25 @@ onMounted(() => {
       break;
     }
   }
+
+  currentMode.value = route.query.mode as string;
 });
 
 function clearOrSelectAllActivityModule(action: boolean) {
   clearOrSelectAll(action, 'button', activityReward);
+}
+
+function clearOrSelectAllPermanentRewardModule(action: boolean) {
+  if (action) {
+    authorityLevelProgress.value = [1, 60];
+  } else {
+     authorityLevelProgress.value = [60, 60];
+  }
+  clearOrSelectAll(action, 'button', permanentRewardTable);
+}
+
+function clearOrSelectAllArchivePermanentRewardModule(action: boolean) {
+  clearOrSelectAll(action, 'button', archivePermanentRewardTable);
 }
 
 function clearOrSelectAllCurrentVersion(version: string) {
@@ -960,8 +996,16 @@ function clearOrSelectAll(
 
 const clearBtnGroup = [
   {
-    text: '活动奖励',
+    text: '版本限时活动奖励',
     func: clearOrSelectAllActivityModule,
+  },
+  {
+    text: '版本新增常驻奖励',
+    func: clearOrSelectAllPermanentRewardModule,
+  },
+  {
+    text: '往期版本常驻奖励',
+    func: clearOrSelectAllArchivePermanentRewardModule,
   },
 ];
 
@@ -1046,26 +1090,26 @@ function checkRewardIsValid(reward: Reward): boolean {
 
   let display = reward.type === '通用' || reward.type === currentPoolValue.type;
 
-  console.log(reward.name.zh, reward.type, currentPoolValue.type);
+  // console.log(reward.name.zh, reward.type, currentPoolValue.type);
 
   // 活动结束时间在当前池子开始时间之前，活动已结束
   if (reward.end <= startDate) {
-    console.log(reward.name.zh, '过期');
+    // console.log(reward.name.zh, '过期');
     display = false;
   }
 
   // 活动开始时间在当前池子结束时间之后，活动未开始
   if (reward.start >= currentPoolValue.end) {
-    console.log(reward.name.zh, '过期');
+    // console.log(reward.name.zh, '过期');
     display = false;
   }
 
-  console.log(reward.name.zh, reward.end, startDate);
-  console.log(reward.name.zh, reward.start, currentPoolValue.end);
-  console.log(reward.name.zh, reward.start, reward.end);
+  // console.log(reward.name.zh, reward.end, startDate);
+  // console.log(reward.name.zh, reward.start, currentPoolValue.end);
+  // console.log(reward.name.zh, reward.start, reward.end);
   // 判断奖励类型是否可以被计入
   // 通用类型都可以计入，特殊类型需要与当前池子类型匹配
-  console.log(reward.name.zh, display);
+  // console.log(reward.name.zh, display);
   return display;
 }
 
@@ -1182,7 +1226,9 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.originiumRecharge }}
-                    ({{ numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15,0) }}
+                    ({{
+                      numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15, 0)
+                    }}
                     {{ t('page.tools.gachaCalculator.pulls') }})
                   </span>
                 </div>
@@ -1194,8 +1240,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                     src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
-                    {{ numberFloor(totalResourceStatisticsResultDetail.diamond,0) }}
-                    ({{ numberFloor(totalResourceStatisticsResultDetail.diamond / 500,0) }}
+                    {{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}
+                    ({{ numberFloor(totalResourceStatisticsResultDetail.diamond / 500, 0) }}
                     {{ t('page.tools.gachaCalculator.pulls') }})
                   </span>
                 </div>
@@ -1234,7 +1280,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
                 </div>
               </div>
             </div>
-           
+
             <div v-show="'辉光庆时' !== currentPool.name">
               拿到卡池UP干员的概率：{{ numberFloor(gachaProbability * 100) }}%
             </div>
@@ -1410,7 +1456,24 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel style="display: none">
+        <v-expansion-panel value="dev" v-show="'dev' === currentMode">
+          <v-expansion-panel-title class="gacha-calculator-card-title">
+            开发模式
+          </v-expansion-panel-title>
+
+          <v-expansion-panel-text>
+            <v-date-picker
+              v-model="devStartDate"
+              type="date"
+              @update:modelValue="startDateDebug"
+              label="开发日期"
+              color="primary"
+            ></v-date-picker>
+            {{ startDate }}
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+
+        <v-expansion-panel v-show="'dev' === currentMode">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
           </v-expansion-panel-title>
@@ -1744,7 +1807,6 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 
 .gacha-calculator-pool-btn {
   opacity: 0.4;
-  
 }
 
 .gacha-calculator-pool-btn-phone {
@@ -1877,6 +1939,10 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 @media screen and (max-width: 1400px) {
   .gacha-calculator-container {
     width: 800px;
+  }
+  .gacha-calculator-container-left {
+    position: static;
+    max-height: max-content;
   }
 }
 

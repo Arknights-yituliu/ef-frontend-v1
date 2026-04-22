@@ -126,7 +126,7 @@ const authorityLevelUpReward = ref<Reward>({
   version: '零号委托',
   content: {
     originiumRecharge: 0,
-    diamond: 4500,
+    diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,
