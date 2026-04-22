@@ -946,18 +946,14 @@ function clearOrSelectAll(
     if (Array.isArray(value)) {
       // 处理 Ref<Reward[]> 类型
       for (const item of value) {
-        if (typeof item === 'object' && item !== null && 'active' in item) {
-          if (selectedVersion.value === 'all' || selectedVersion.value === item.version) {
+        if (typeof item === 'object' && item !== null && 'active' in item && (selectedVersion.value === 'all' || selectedVersion.value === item.version)) {
             item.active = action;
           }
-        }
       }
-    } else if (typeof value === 'object' && value !== null && 'active' in value) {
-      // 处理 Ref<Reward> 类型
-      if (selectedVersion.value === 'all' || selectedVersion.value === value.version) {
+    } else if (typeof value === 'object' && value !== null && 'active' in value && // 处理 Ref<Reward> 类型
+      (selectedVersion.value === 'all' || selectedVersion.value === value.version)) {
         value.active = action;
       }
-    }
     // 忽略 Ref<number[]> 类型
   }
 
@@ -1152,7 +1148,7 @@ function selectDisplayPoolOptions(poolName: string) {
  */
 function toggleStringInArray(str: string, arr: string[]): string[] {
   const index = arr.indexOf(str);
-  if (index > -1) {
+  if (index !== -1) {
     // 字符串存在，删除它
     arr.splice(index, 1);
   } else {
