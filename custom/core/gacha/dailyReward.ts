@@ -149,7 +149,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
   ];
 }
 
-const dailyAllRewardTable = ref<Reward[]>([]);
+const dailyAllRewardTable = ref<Reward[]>([freeMonthlyPass.value]);
 
 
 
@@ -249,6 +249,6 @@ export {
   createVersionDailyReward,
   dailyAllRewardTable,
   dailyReward,
-  freeMonthlyPass,
+ 
   weekTaskReward,
 };

@@ -18,7 +18,6 @@ import {
   calculatorDailyReward,
   dailyAllRewardTable,
   dailyReward,
-  freeMonthlyPass,
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
 
@@ -269,7 +268,7 @@ function dailyRewardStatistics(): void {
 
   addReward(result, dailyReward.value);
   addReward(result, weekTaskReward.value);
-  addReward(result, freeMonthlyPass.value);
+ 
   // 日常奖励重构
   for (const reward of dailyAllRewardTable.value) {
     if (checkRewardIsValid(reward)) {
@@ -1638,7 +1637,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingle v-bind="dailyReward" />
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
-            <GachaCalculatorResourceSingle v-bind="freeMonthlyPass" />
+          
             <v-divider style="margin: 1rem 0" />
 
             <template v-for="item in dailyAllRewardTable">
