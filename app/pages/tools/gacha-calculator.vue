@@ -12,9 +12,7 @@ import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import { activityReward } from '@/custom/core/gacha/activityReward';
-
 // 奖励引入
 import {
   calculatorDailyReward,
@@ -25,6 +23,8 @@ import {
 } from '@/custom/core/gacha/dailyReward';
 
 import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
+
+import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 
 import {
   archivePermanentRewardTable,
@@ -1186,8 +1186,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
             <v-btn-group class="gacha-calculator-pool-btn-group-pc">
               <v-btn
                 v-for="option in poolOptions"
-                :key="option.name"
                 v-show="displayPoolOptions.includes(option.name)"
+                :key="option.name"
                 class="gacha-calculator-pool-btn-pc"
                 :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn-enabled'"
                 color="rgb(33, 150, 243)"
@@ -1197,8 +1197,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
             </v-btn-group>
             <v-btn
               v-for="option in poolOptions"
-               :key="option.name"
-                v-show="displayPoolOptions.includes(option.name)"
+               v-show="displayPoolOptions.includes(option.name)"
+                :key="option.name"
               class="gacha-calculator-pool-btn-phone"
               :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn-enabled'"
               color="rgb(33, 150, 243)"
