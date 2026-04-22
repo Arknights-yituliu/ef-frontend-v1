@@ -12,7 +12,7 @@ import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-
+import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 
 // 奖励引入
@@ -47,32 +47,40 @@ const leftPartPanel = ref<string[]>(['statisticalResult']);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'
 const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity']);
 
-const poolOptions = ref<PoolOption[]>([
-  {
-    name: '庄方宜卡池',
-    start: new Date('2026/04/17 12:00:00'),
-    end: new Date('2026/05/22 12:00:00'),
-    dateText: '04.17——05.22',
-    type: '庄方宜',
-    disabled: false,
-  },
-  {
-    name: '辉光庆时',
-    start: new Date('2026/05/14 12:00:00'),
-    end: new Date('2026/06/05 12:00:00'),
-    dateText: '05.14-版本末',
-    type: '辉光庆时',
-    disabled: false,
-  },
-  {
-    name: '敬请期待',
-    start: new Date('2026/06/05 12:00:00'),
-    end: new Date('2026/06/23 12:00:00'),
-    dateText: '',
-    type: '敬请期待',
-    disabled: true,
-  },
-]);
+const poolOptions = ref<PoolOption[]>([]);
+
+const displayPoolOptions = ref<string[]>([]);
+function initPoolOptions() {
+  for (const pool of PoolInfoTable) {
+    const poolOption: PoolOption = {
+      name: `${pool.poolName}卡池`,
+      start: new Date(pool.poolStart),
+      end: new Date(pool.poolEnd),
+      dateText: pool.poolDateStr,
+      type: pool.poolName,
+      disabled: false,
+    };
+    poolOptions.value.push(poolOption);
+    if(poolOption.end.getTime() > Date.now()) {
+      displayPoolOptions.value.push(poolOption.name);
+    }
+  }
+
+ 
+    const poolOption: PoolOption = {
+      name: '敬请期待',
+      start: new Date('2026/06/05 12:00:00'),
+      end: new Date('2026/06/23 12:00:00'),
+      dateText: '',
+      type: '敬请期待',
+      disabled: true,
+    }
+    displayPoolOptions.value.push(poolOption.name);
+    poolOptions.value.push(poolOption);
+  
+}
+
+
 
 //  {
 //     name: '待定',
@@ -100,12 +108,14 @@ const devStartDate = ref(new Date());
 const currentMode = ref('normal');
 
 function startDateDebug() {
-  console.log(devStartDate.value);
   startDate = devStartDate.value;
   calc();
 }
 
 function selectedPool(option: PoolOption): void {
+  if ('敬请期待' === option.name) {
+    return;
+  }
   currentPool.value = option;
   calc();
 }
@@ -116,6 +126,7 @@ function calc() {
   dailyRewardStatistics();
   activityRewardStatistics();
   permanentRewardStatistics();
+  aprchivePermanentRewardStatistics();
   rechargeResourceStatistics();
   allRewardStatisticsV2();
 }
@@ -680,8 +691,8 @@ function allRewardStatisticsV2(): void {
   if (totalPulls > 119) {
     gachaProbability.value = 1;
   } else {
-    console.log(totalPulls);
-    console.log(gachaProbabilityTable[totalPulls]);
+    // console.log(totalPulls);
+    // console.log(gachaProbabilityTable[totalPulls]);
     gachaProbability.value = gachaProbabilityTable[totalPulls] as number;
   }
   setPieChart(pieChartData);
@@ -889,6 +900,7 @@ function loadingUserConfig() {
 }
 
 onMounted(() => {
+  initPoolOptions();
   loadingUserConfig();
   const gachaCalculatorPieChart: HTMLElement | null = document.querySelector(
     '#gacha-calculator-pie-chart',
@@ -916,7 +928,7 @@ function clearOrSelectAllPermanentRewardModule(action: boolean) {
   if (action) {
     authorityLevelProgress.value = [1, 60];
   } else {
-     authorityLevelProgress.value = [60, 60];
+    authorityLevelProgress.value = [60, 60];
   }
   clearOrSelectAll(action, 'button', permanentRewardTable);
 }
@@ -929,20 +941,17 @@ function clearOrSelectAllCurrentVersion(version: string) {
   // 日常奖励重构
   _filterByVersion(dailyAllRewardTable, version);
   _filterByVersion(activityReward, version);
-
+  _filterByVersion(permanentRewardTable, version);
+  _filterByVersion(archivePermanentRewardTable, version);
   authorityLevelProgress.value = [60, 60];
 
-  function _filterByVersion(
-    reward: Ref<Reward> | Ref<Reward[]> | Ref<number[]>,
-
-    version: string,
-  ) {
+  function _filterByVersion(reward: Ref<Reward> | Ref<Reward[]> | Ref<number[]>, version: string) {
     const value = reward.value;
     if (Array.isArray(value)) {
       // 处理 Ref<Reward[]> 类型
       for (const item of value) {
         if (typeof item === 'object' && item !== null && 'active' in item) {
-          console.log('item', item.name.zh, item.version, version === item.version);
+          // console.log('item', item.name.zh, item.version, version === item.version);
           if (version === item.version) {
             item.active = true;
           } else {
@@ -952,7 +961,7 @@ function clearOrSelectAllCurrentVersion(version: string) {
       }
     } else if (typeof value === 'object' && value !== null && 'active' in value) {
       // 处理 Ref<Reward> 类型
-      console.log('item', value.name.zh, value.version, version === value.version);
+      // console.log('item', value.name.zh, value.version, version === value.version);
       if (version === value.version) {
         value.active = true;
       } else {
@@ -1044,17 +1053,6 @@ function saveUserConfig(
     }
     gachaCalculatorUserConfig.value.rangeSlider[key] = value;
   }
-
-  // if ('slider' === type) {
-  //   if (typeof value !== 'number') {
-  //     console.log('传入配置非数字类型');
-  //     return;
-  //   }
-  //   if (gachaCalculatorUserConfig.value.slider === undefined) {
-  //     gachaCalculatorUserConfig.value.slider = {};
-  //   }
-  //   gachaCalculatorUserConfig.value.slider[key] = value;
-  // }
 
   if ('buttonActive' === type) {
     if (typeof value !== 'boolean') {
@@ -1184,24 +1182,26 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
+            {{ displayPoolOptions }}
             <v-btn-group class="gacha-calculator-pool-btn-group-pc">
               <v-btn
                 v-for="option in poolOptions"
                 :key="option.name"
+                v-show="displayPoolOptions.includes(option.name)"
                 class="gacha-calculator-pool-btn-pc"
-                :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'"
+                :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn-enabled'"
                 color="rgb(33, 150, 243)"
-                :disabled="option.disabled"
                 @click="selectedPool(option)"
                 >{{ option.name }}<br />{{ option.dateText }}
               </v-btn>
             </v-btn-group>
             <v-btn
               v-for="option in poolOptions"
+               :key="option.name"
+                v-show="displayPoolOptions.includes(option.name)"
               class="gacha-calculator-pool-btn-phone"
-              :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn'"
+              :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn-enabled'"
               color="rgb(33, 150, 243)"
-              :disabled="option.disabled"
               @click="selectedPool(option)"
               >{{ option.name }}<br />{{ option.dateText }}
             </v-btn>
@@ -1805,8 +1805,9 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
   color: #ffffff;
 }
 
-.gacha-calculator-pool-btn {
-  opacity: 0.4;
+.gacha-calculator-pool-btn-enabled {
+  background-color: rgba(33, 150, 243, 0.2) !important;
+  color: rgb(33, 150, 243) !important;
 }
 
 .gacha-calculator-pool-btn-phone {

@@ -5,6 +5,7 @@ import type {
   RewardStatisticsResultDetail,
   TotalPullsSingle,
 } from '#shared/types/gacha-calculator';
+import { numberFloor } from './numberUtil';
 
 export const itemIdDict: ItemDict = {
   originiumRecharge: 'originium_recharge',
@@ -99,26 +100,12 @@ function countTuesdaysBetweenV2(
   // 将输入转换为Date对象
   const start = new Date(startDate);
   const end = new Date(endDate);
-
+  const oneDayTimestamp = 1000 * 60 * 60 * 24;
   const startTimestamp = start.getTime();
   const endTimestamp = end.getTime();
-  let week = 0;
-
-  if (start.getDay() < 2) {
+  let week = numberFloor((endTimestamp - startTimestamp) / oneDayTimestamp / 7, 0);
+  if(start.getDay() !== 1) {
     week++;
-  }
-  if (start.getDay() > 2) {
-    week++;
-  }
-
-  const oneDayTimestamp = 1000 * 60 * 60 * 24;
-
-  for (let i = startTimestamp; i <= endTimestamp; i++) {
-    const date = new Date(i);
-    if (date.getDay() === 3) {
-      week++;
-    }
-    i += oneDayTimestamp;
   }
 
   return week;
@@ -238,8 +225,7 @@ function groupAndMergeTasksByVersionAndModule(moduleId: string, tasks: Reward[])
       if (!firstTask) {
         continue;
       }
-     
-      
+
       const mergedTask: Reward = {
         ...firstTask,
         id: `${moduleId}_${version}_${module}`,
@@ -269,7 +255,6 @@ function groupAndMergeTasksByVersionAndModule(moduleId: string, tasks: Reward[])
 
   return result;
 }
-
 
 function createRewardModuleTitle(title: string): Reward {
   return {

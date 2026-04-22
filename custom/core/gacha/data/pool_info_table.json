@@ -4,10 +4,11 @@
     "character": "莱万汀",
     "poolStart": "2026/01/22 12:00:00",
     "poolEnd": "2026/02/07 12:00:00",
-    "signInTime": ["2026/01/22 12:00:00", "2026/01/25 12:00:00", "2026/01/28 12:00:00"],
+    "poolDateStr": "0122-0207",
     "versionStart": "2026/01/22 12:00:00",
     "versionEnd": "2026/03/12 12:00:00",
     "version": "零号委托",
+    "combatDrills": true,
     "narrative": true
   },
   {
@@ -15,10 +16,11 @@
     "character": "洁尔佩塔",
     "poolStart": "2026/02/07 12:00:00",
     "poolEnd": "2026/02/24 12:00:00",
-    "signInTime": ["2026/02/07 12:00:00", "2026/02/10 12:00:00", "2026/02/13 12:00:00"],
+    "poolDateStr": "0207-0224",
     "versionStart": "2026/01/22 12:00:00",
     "versionEnd": "2026/03/12 12:00:00",
     "version": "零号委托",
+    "combatDrills": true,
     "narrative": true
   },
   {
@@ -26,10 +28,11 @@
     "character": "伊冯",
     "poolStart": "2026/02/24 12:00:00",
     "poolEnd": "2026/03/12 12:00:00",
-    "signInTime": ["2026/02/24 12:00:00", "2026/02/27 12:00:00", "2026/03/02 12:00:00"],
+    "poolDateStr": "0224-0312",
     "versionStart": "2026/01/22 12:00:00",
     "versionEnd": "2026/03/12 12:00:00",
     "version": "零号委托",
+    "combatDrills": true,
     "narrative": true
   },
   {
@@ -37,10 +40,11 @@
     "character": "汤汤",
     "poolStart": "2026/03/12 12:00:00",
     "poolEnd": "2026/03/29 12:00:00",
-    "signInTime": ["2026/03/12 12:00:00", "2026/03/13 12:00:00", "2026/03/14 12:00:00"],
+    "poolDateStr": "0312-0329",
     "versionStart": "2026/03/12 12:00:00",
     "versionEnd": "2026/04/17 12:00:00",
     "version": "新潮起·故渊离",
+    "combatDrills": true,
     "narrative": false
   },
   {
@@ -48,10 +52,11 @@
     "character": "洛茜",
     "poolStart": "2026/03/29 12:00:00",
     "poolEnd": "2026/04/17 12:00:00",
-    "signInTime": ["2026/03/29 12:00:00", "2026/03/30 12:00:00", "2026/03/31 12:00:00"],
+    "poolDateStr": "0329-0417",
     "versionStart": "2026/03/29 12:00:00",
     "versionEnd": "2026/04/17 12:00:00",
     "version": "新潮起·故渊离",
+    "combatDrills": true,
     "narrative": true
   },
   {
@@ -59,10 +64,23 @@
     "character": "庄方宜",
     "poolStart": "2026/04/17 12:00:00",
     "poolEnd": "2026/05/22 12:00:00",
-    "signInTime": ["2026/04/17 12:00:00", "2026/04/18 12:00:00", "2026/04/19 12:00:00"],
+    "poolDateStr": "0417-0522",
     "versionStart": "2026/04/17 12:00:00",
     "versionEnd": "2026/05/22 12:00:00",
     "version": "春晓时",
+    "combatDrills": true,
+    "narrative": false
+  },
+  {
+    "poolName": "辉光庆时",
+    "character": "辉光庆时",
+    "poolStart": "2026/05/14 12:00:00",
+    "poolEnd": "2026/06/05 12:00:00",
+    "poolDateStr": "0514-0605",
+    "versionStart": "2026/05/14 12:00:00",
+    "versionEnd": "2026/06/05 12:00:00",
+    "version": "辉光庆时",
+    "combatDrills": false,
     "narrative": false
   }
 ]

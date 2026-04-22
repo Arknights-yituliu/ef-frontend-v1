@@ -45,27 +45,29 @@ activityReward.value.sort((a: { start: string | Date }, b: { start: string | Dat
 function createNewPoolActivity() {
   for (const item of PoolInfoTable) {
     const startDate = new Date(item.poolStart);
-    const reward1: Reward = {
-      id: `作战演练·${item.character}`,
-      name: {
-        zh: `作战演练·${item.character}`,
-        en: '',
-      },
-      start: startDate,
-      end: new Date(item.versionEnd),
-      type: '通用',
-      module: '活动',
-      active: currentVersion === item.version,
-      version: item.version,
-      content: {
-        originiumRecharge: 0,
-        diamond: 100,
-        ticketgachaStandardSingle: 0,
-        ticketgachaSpecialSingle: 0,
-        ticketgachaLimitedSingle: 0,
-      },
-    };
-    activityReward.value.push(reward1);
+    if (item.combatDrills) {
+      const reward1: Reward = {
+        id: `作战演练·${item.character}`,
+        name: {
+          zh: `作战演练·${item.character}`,
+          en: '',
+        },
+        start: startDate,
+        end: new Date(item.versionEnd),
+        type: '通用',
+        module: '活动',
+        active: currentVersion === item.version,
+        version: item.version,
+        content: {
+          originiumRecharge: 0,
+          diamond: 100,
+          ticketgachaStandardSingle: 0,
+          ticketgachaSpecialSingle: 0,
+          ticketgachaLimitedSingle: 0,
+        },
+      };
+      activityReward.value.push(reward1);
+    }
 
     if (item.narrative) {
       const reward2: Reward = {
