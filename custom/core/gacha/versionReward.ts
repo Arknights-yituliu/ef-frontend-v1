@@ -6,7 +6,7 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 import {
   createVersionDailyReward,
   dailyAllRewardTable,
-  freeMonthlyPass,
+
 } from '@/custom/core/gacha/dailyReward';
 import {
   archivePermanentRewardTable,
@@ -41,7 +41,7 @@ const versionTable = [
 //   versionReward.push(rewards[0] as Reward, rewards[1] as Reward);
 // }
 
-versionReward.push(freeMonthlyPass.value);
+
 
 for (const reward of dailyAllRewardTable.value) {
   versionReward.push(reward);

@@ -12,19 +12,19 @@ import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import { activityReward } from '@/custom/core/gacha/activityReward';
-
 // 奖励引入
 import {
   calculatorDailyReward,
   dailyAllRewardTable,
   dailyReward,
-  freeMonthlyPass,
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
 
 import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
+
+import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
+import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
 import {
   archivePermanentRewardTable,
@@ -43,13 +43,14 @@ const route = useRoute();
 const { t } = useI18n();
 
 //
-const leftPartPanel = ref<string[]>(['statisticalResult']);
+const leftPartPanel = ref<string[]>(['statisticalResult', 'dev']);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'
 const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity']);
 
 const poolOptions = ref<PoolOption[]>([]);
 
 const displayPoolOptions = ref<string[]>([]);
+
 function initPoolOptions() {
   for (const pool of PoolInfoTable) {
     const poolOption: PoolOption = {
@@ -61,26 +62,22 @@ function initPoolOptions() {
       disabled: false,
     };
     poolOptions.value.push(poolOption);
-    if(poolOption.end.getTime() > Date.now()) {
+    if (poolOption.end.getTime() > Date.now()) {
       displayPoolOptions.value.push(poolOption.name);
     }
   }
 
- 
-    const poolOption: PoolOption = {
-      name: '敬请期待',
-      start: new Date('2026/06/05 12:00:00'),
-      end: new Date('2026/06/23 12:00:00'),
-      dateText: '',
-      type: '敬请期待',
-      disabled: true,
-    }
-    displayPoolOptions.value.push(poolOption.name);
-    poolOptions.value.push(poolOption);
-  
+  const poolOption: PoolOption = {
+    name: '敬请期待',
+    start: new Date('2026/06/05 12:00:00'),
+    end: new Date('2026/06/23 12:00:00'),
+    dateText: '',
+    type: '敬请期待',
+    disabled: true,
+  };
+  displayPoolOptions.value.push(poolOption.name);
+  poolOptions.value.push(poolOption);
 }
-
-
 
 //  {
 //     name: '待定',
@@ -271,7 +268,7 @@ function dailyRewardStatistics(): void {
 
   addReward(result, dailyReward.value);
   addReward(result, weekTaskReward.value);
-  addReward(result, freeMonthlyPass.value);
+ 
   // 日常奖励重构
   for (const reward of dailyAllRewardTable.value) {
     if (checkRewardIsValid(reward)) {
@@ -937,40 +934,6 @@ function clearOrSelectAllArchivePermanentRewardModule(action: boolean) {
   clearOrSelectAll(action, 'button', archivePermanentRewardTable);
 }
 
-function clearOrSelectAllCurrentVersion(version: string) {
-  // 日常奖励重构
-  _filterByVersion(dailyAllRewardTable, version);
-  _filterByVersion(activityReward, version);
-  _filterByVersion(permanentRewardTable, version);
-  _filterByVersion(archivePermanentRewardTable, version);
-  authorityLevelProgress.value = [60, 60];
-
-  function _filterByVersion(reward: Ref<Reward> | Ref<Reward[]> | Ref<number[]>, version: string) {
-    const value = reward.value;
-    if (Array.isArray(value)) {
-      // 处理 Ref<Reward[]> 类型
-      for (const item of value) {
-        if (typeof item === 'object' && item !== null && 'active' in item) {
-          // console.log('item', item.name.zh, item.version, version === item.version);
-          if (version === item.version) {
-            item.active = true;
-          } else {
-            item.active = false;
-          }
-        }
-      }
-    } else if (typeof value === 'object' && value !== null && 'active' in value) {
-      // 处理 Ref<Reward> 类型
-      // console.log('item', value.name.zh, value.version, version === value.version);
-      if (version === value.version) {
-        value.active = true;
-      } else {
-        value.active = false;
-      }
-    }
-  }
-}
-
 function clearOrSelectAll(
   action: boolean,
   type: string,
@@ -982,14 +945,14 @@ function clearOrSelectAll(
     if (Array.isArray(value)) {
       // 处理 Ref<Reward[]> 类型
       for (const item of value) {
-        if (typeof item === 'object' && item !== null && 'active' in item) {
-          item.active = action;
-        }
+        if (typeof item === 'object' && item !== null && 'active' in item && (selectedVersion.value === 'all' || selectedVersion.value === item.version)) {
+            item.active = action;
+          }
       }
-    } else if (typeof value === 'object' && value !== null && 'active' in value) {
-      // 处理 Ref<Reward> 类型
-      value.active = action;
-    }
+    } else if (typeof value === 'object' && value !== null && 'active' in value && // 处理 Ref<Reward> 类型
+      (selectedVersion.value === 'all' || selectedVersion.value === value.version)) {
+        value.active = action;
+      }
     // 忽略 Ref<number[]> 类型
   }
 
@@ -1159,6 +1122,40 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 
   return numberFloor(pulls, 0);
 }
+
+const versionOptions = ref<string[]>([]);
+
+const selectedVersion = ref<string>('all');
+
+for (const version of VersionTable) {
+  versionOptions.value.push(version.version);
+}
+
+function selectVersionOptions(version: string) {
+  selectedVersion.value = selectedVersion.value === version ? 'all' : version;
+}
+
+function selectDisplayPoolOptions(poolName: string) {
+  displayPoolOptions.value = toggleStringInArray(poolName, displayPoolOptions.value);
+}
+
+/**
+ * 处理字符串在数组中的存在性判断和插入/删除操作
+ * @param str 要处理的字符串
+ * @param arr 目标数组
+ * @returns 更新后的数组
+ */
+function toggleStringInArray(str: string, arr: string[]): string[] {
+  const index = arr.indexOf(str);
+  if (index !== -1) {
+    // 字符串存在，删除它
+    arr.splice(index, 1);
+  } else {
+    // 字符串不存在，添加它
+    arr.push(str);
+  }
+  return arr;
+}
 </script>
 
 <template>
@@ -1182,12 +1179,11 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            {{ displayPoolOptions }}
             <v-btn-group class="gacha-calculator-pool-btn-group-pc">
               <v-btn
                 v-for="option in poolOptions"
-                :key="option.name"
                 v-show="displayPoolOptions.includes(option.name)"
+                :key="option.name"
                 class="gacha-calculator-pool-btn-pc"
                 :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn-enabled'"
                 color="rgb(33, 150, 243)"
@@ -1197,8 +1193,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
             </v-btn-group>
             <v-btn
               v-for="option in poolOptions"
-               :key="option.name"
-                v-show="displayPoolOptions.includes(option.name)"
+              v-show="displayPoolOptions.includes(option.name)"
+              :key="option.name"
               class="gacha-calculator-pool-btn-phone"
               :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn-enabled'"
               color="rgb(33, 150, 243)"
@@ -1462,6 +1458,8 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
+            <h3>选择卡池的起始时间</h3>
+            {{ startDate }}
             <v-date-picker
               v-model="devStartDate"
               color="primary"
@@ -1469,7 +1467,24 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
               type="date"
               @update:model-value="startDateDebug"
             ></v-date-picker>
-            {{ startDate }}
+
+            <h3>选择显示的卡池</h3>
+            {{ displayPoolOptions }}
+            <div>
+              <v-btn
+                v-for="option in poolOptions"
+                :key="option.name"
+                class="gacha-calculator-pool-btn-dev"
+                :class="
+                  displayPoolOptions.includes(option.name)
+                    ? ''
+                    : 'gacha-calculator-pool-btn-enabled'
+                "
+                color="rgb(33, 150, 243)"
+                @click="selectDisplayPoolOptions(option.name)"
+                >{{ option.name }}<br />{{ option.dateText }}
+              </v-btn>
+            </div>
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -1478,9 +1493,18 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
             <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <v-btn color="blue" @click="clearOrSelectAllCurrentVersion('春晓时')"
-              >一键选择[春晓时]版本内奖励，并取消选择旧版本奖励</v-btn
-            >
+            <v-btn
+              v-for="option in versionOptions"
+              :key="option"
+              class="gacha-calculator-pool-btn-dev"
+              :class="selectedVersion === option ? '' : 'gacha-calculator-pool-btn-enabled'"
+              color="rgb(33, 150, 243)"
+              @click="selectVersionOptions(option)"
+              >{{ option }}
+            </v-btn>
+            <v-alert style="margin-bottom: 8px" type="warning">
+              上方版本未选择时，下方操作默认对所有版本生效
+            </v-alert>
             <v-table class="gacha-calculator-shortcut-btn-table">
               <thead>
                 <tr>
@@ -1609,7 +1633,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingle v-bind="dailyReward" />
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
-            <GachaCalculatorResourceSingle v-bind="freeMonthlyPass" />
+          
             <v-divider style="margin: 1rem 0" />
 
             <template v-for="item in dailyAllRewardTable">
@@ -1935,6 +1959,12 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
   width: 100%;
   height: 80px;
   display: block;
+}
+
+.gacha-calculator-pool-btn-dev {
+  margin: 1%;
+  display: inline-grid;
+  width: 47%;
 }
 
 @media screen and (max-width: 1400px) {

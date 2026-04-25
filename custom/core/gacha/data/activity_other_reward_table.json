@@ -515,7 +515,8 @@
       "originiumRecharge": 0,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 10
+      "ticketgachaSpecialSingle": 10,
+       "ticketgachaLimitedSingle": 0
     }
   },
   {
