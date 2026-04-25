@@ -11,7 +11,7 @@ import VersionTable from '@/custom/core/gacha/data/version_table.json';
 const MediumExchangeCrate = 20 * 0.05 + 15 * 0.35 + 10 * 0.6;
 const LargeExchangeCrate = 30 * 0.05 + 25 * 0.35 + 20 * 0.6;
 
-const freeMonthlyPassEnd: Reward = {
+const freeMonthlyPass= ref<Reward>({
   id: 'free_monthly_pass_1',
   name: {
     zh: `焕新月卡赠礼`,
@@ -25,67 +25,30 @@ const freeMonthlyPassEnd: Reward = {
   version: '春晓时',
   content: {
     originiumRecharge: 0,
-    diamond: 0,
+    diamond: 6000,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,
-  },
-  tips:[
-    '按4.22-5.22计算,以卡池结束前能领多少天计算',
-  ]
-};
+  }
+});
 
-let freeMonthlyPassEndRemainingDays: number = calculateDaysDifference(
-  new Date(),
-  new Date('2026/05/22 12:00:00'),
-);
 
-if (freeMonthlyPassEndRemainingDays > 30) {
-  freeMonthlyPassEndRemainingDays = 30;
-} else {
-  freeMonthlyPassEndRemainingDays = numberRound(freeMonthlyPassEndRemainingDays, 0);
-}
 
-console.log('按活动结束时间焕新月卡赠礼剩余天数:', freeMonthlyPassEndRemainingDays);
-freeMonthlyPassEnd.content.diamond = 200 * freeMonthlyPassEndRemainingDays;
-
-const freeMonthlyPassStart: Reward = {
-  id: 'free_monthly_pass_start_1',
-  name: {
-    zh: `焕新月卡赠礼`,
-    en: '',
-  },
-  start: new Date('2026/04/17 12:00:00'),
-  end: new Date('2026/05/22 12:00:00'),
-  type: '通用',
-  module: '日常',
-  active: false,
-  version: '春晓时',
-  content: {
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-  },
-  tips:[
-    '按4.17-5.17计算,以卡池开始后能领取多少天计算',
-  ]
-};
-
-let freeMonthlyPassStartRemainingDays: number = calculateDaysDifference(
+let freeMonthlyPassRemainingDays: number = calculateDaysDifference(
   new Date('2026/04/17 12:00:00'),
   new Date(),
 );
 
-if (freeMonthlyPassStartRemainingDays > 30) {
-  freeMonthlyPassStartRemainingDays = 30;
+if (freeMonthlyPassRemainingDays > 30) {
+  freeMonthlyPassRemainingDays = 30;
 } else {
-  freeMonthlyPassStartRemainingDays = numberRound(freeMonthlyPassStartRemainingDays, 0);
+  freeMonthlyPassRemainingDays = numberRound(freeMonthlyPassRemainingDays, 0);
 }
 
-console.log('按活动开始时间焕新月卡赠礼剩余天数:', freeMonthlyPassStartRemainingDays);
-freeMonthlyPassStart.content.diamond = 200 * (30 - freeMonthlyPassStartRemainingDays);
+console.log('按活动结束时间焕新月卡赠礼剩余天数:', freeMonthlyPassRemainingDays);
+freeMonthlyPass.value.content.diamond = 200 * (30-freeMonthlyPassRemainingDays);
+
+
 
 const dailyReward = ref<Reward>({
   id: 'day_reward',
@@ -192,7 +155,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
   ];
 }
 
-const dailyAllRewardTable = ref<Reward[]>([freeMonthlyPassEnd,freeMonthlyPassStart]);
+const dailyAllRewardTable = ref<Reward[]>([freeMonthlyPass.value]);
 
 dailyAllRewardTable.value.push(createRewardModuleTitle('通行证'));
 
