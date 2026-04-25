@@ -1623,8 +1623,8 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               </div>
             </div>
             <GachaCalculatorResourceSingleBtn
+              :hide-version="true"
               :reward="seekIntelBook"
-              :hideVersion="true"
               @click="seekIntelBook.active = !seekIntelBook.active"
             />
           </v-expansion-panel-text>
