@@ -268,7 +268,7 @@ function dailyRewardStatistics(): void {
 
   addReward(result, dailyReward.value);
   addReward(result, weekTaskReward.value);
- 
+
   // 日常奖励重构
   for (const reward of dailyAllRewardTable.value) {
     if (checkRewardIsValid(reward)) {
@@ -945,14 +945,23 @@ function clearOrSelectAll(
     if (Array.isArray(value)) {
       // 处理 Ref<Reward[]> 类型
       for (const item of value) {
-        if (typeof item === 'object' && item !== null && 'active' in item && (selectedVersion.value === 'all' || selectedVersion.value === item.version)) {
-            item.active = action;
-          }
+        if (
+          typeof item === 'object' &&
+          item !== null &&
+          'active' in item &&
+          (selectedVersion.value === 'all' || selectedVersion.value === item.version)
+        ) {
+          item.active = action;
+        }
       }
-    } else if (typeof value === 'object' && value !== null && 'active' in value && // 处理 Ref<Reward> 类型
-      (selectedVersion.value === 'all' || selectedVersion.value === value.version)) {
-        value.active = action;
-      }
+    } else if (
+      typeof value === 'object' &&
+      value !== null &&
+      'active' in value && // 处理 Ref<Reward> 类型
+      (selectedVersion.value === 'all' || selectedVersion.value === value.version)
+    ) {
+      value.active = action;
+    }
     // 忽略 Ref<number[]> 类型
   }
 
@@ -1614,7 +1623,8 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               </div>
             </div>
             <GachaCalculatorResourceSingleBtn
-              v-bind="seekIntelBook"
+              :reward="seekIntelBook"
+              :hideVersion="true"
               @click="seekIntelBook.active = !seekIntelBook.active"
             />
           </v-expansion-panel-text>
@@ -1633,14 +1643,14 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingle v-bind="dailyReward" />
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
-          
+
             <v-divider style="margin: 1rem 0" />
 
             <template v-for="item in dailyAllRewardTable">
               <GachaCalculatorModuleTitle v-if="item.type === '标题'" :title="item.name.zh" />
               <GachaCalculatorResourceSingleBtn
                 v-show="checkRewardIsValid(item)"
-                v-bind="item"
+                :reward="item"
                 @click="item.active = !item.active"
               />
             </template>
@@ -1662,7 +1672,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               v-for="item in activityReward"
               v-show="checkRewardIsValid(item)"
               :key="item.id"
-              v-bind="item"
+              :reward="item"
               @click="item.active = !item.active"
             />
           </v-expansion-panel-text>
@@ -1702,7 +1712,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
             <template v-for="reward in permanentRewardTable">
               <GachaCalculatorResourceSingleBtn
-                v-bind="reward"
+                :reward="reward"
                 @click="reward.active = !reward.active"
               />
             </template>
@@ -1727,7 +1737,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           <v-expansion-panel-text>
             <template v-for="reward in archivePermanentRewardTable">
               <GachaCalculatorResourceSingleBtn
-                v-bind="reward"
+                :reward="reward"
                 @click="reward.active = !reward.active"
               />
             </template>

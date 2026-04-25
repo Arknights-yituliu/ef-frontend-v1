@@ -1,5 +1,9 @@
 import type { Reward } from '#shared/types/gacha-calculator';
-import { calculateDaysDifference, countTuesdaysBetweenV2, createRewardModuleTitle } from '#shared/utils/gacha-calculator';
+import {
+  calculateDaysDifference,
+  countTuesdaysBetweenV2,
+  createRewardModuleTitle,
+} from '#shared/utils/gacha-calculator';
 import { numberRound } from '#shared/utils/numberUtil';
 import { ref } from 'vue';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
@@ -7,10 +11,7 @@ import VersionTable from '@/custom/core/gacha/data/version_table.json';
 const MediumExchangeCrate = 20 * 0.05 + 15 * 0.35 + 10 * 0.6;
 const LargeExchangeCrate = 30 * 0.05 + 25 * 0.35 + 20 * 0.6;
 
-
-
-
-const freeMonthlyPass = ref<Reward>({
+const freeMonthlyPassEnd: Reward = {
   id: 'free_monthly_pass_1',
   name: {
     zh: `焕新月卡赠礼`,
@@ -29,20 +30,62 @@ const freeMonthlyPass = ref<Reward>({
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,
   },
-});
-let freeMonthlyPassRemainingDays: number = calculateDaysDifference(
+  tips:[
+    '按4.22-5.22计算,以卡池结束前能领多少天计算',
+  ]
+};
+
+let freeMonthlyPassEndRemainingDays: number = calculateDaysDifference(
   new Date(),
   new Date('2026/05/22 12:00:00'),
 );
 
-if (freeMonthlyPassRemainingDays > 30) {
-  freeMonthlyPassRemainingDays = 30;
-}else{
-  freeMonthlyPassRemainingDays = numberRound(freeMonthlyPassRemainingDays, 0);
+if (freeMonthlyPassEndRemainingDays > 30) {
+  freeMonthlyPassEndRemainingDays = 30;
+} else {
+  freeMonthlyPassEndRemainingDays = numberRound(freeMonthlyPassEndRemainingDays, 0);
 }
 
-console.log('焕新月卡赠礼剩余天数:', freeMonthlyPassRemainingDays);
-freeMonthlyPass.value.content.diamond = 200 * freeMonthlyPassRemainingDays;
+console.log('按活动结束时间焕新月卡赠礼剩余天数:', freeMonthlyPassEndRemainingDays);
+freeMonthlyPassEnd.content.diamond = 200 * freeMonthlyPassEndRemainingDays;
+
+const freeMonthlyPassStart: Reward = {
+  id: 'free_monthly_pass_start_1',
+  name: {
+    zh: `焕新月卡赠礼`,
+    en: '',
+  },
+  start: new Date('2026/04/17 12:00:00'),
+  end: new Date('2026/05/22 12:00:00'),
+  type: '通用',
+  module: '日常',
+  active: false,
+  version: '春晓时',
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  },
+  tips:[
+    '按4.17-5.17计算,以卡池开始后能领取多少天计算',
+  ]
+};
+
+let freeMonthlyPassStartRemainingDays: number = calculateDaysDifference(
+  new Date('2026/04/17 12:00:00'),
+  new Date(),
+);
+
+if (freeMonthlyPassStartRemainingDays > 30) {
+  freeMonthlyPassStartRemainingDays = 30;
+} else {
+  freeMonthlyPassStartRemainingDays = numberRound(freeMonthlyPassStartRemainingDays, 0);
+}
+
+console.log('按活动开始时间焕新月卡赠礼剩余天数:', freeMonthlyPassStartRemainingDays);
+freeMonthlyPassStart.content.diamond = 200 * (30 - freeMonthlyPassStartRemainingDays);
 
 const dailyReward = ref<Reward>({
   id: 'day_reward',
@@ -133,7 +176,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
         en: '',
       },
       start: new Date('2026/01/22 12:00:00'),
-      end: new Date('2099/12/31 12:00:00'), 
+      end: new Date('2099/12/31 12:00:00'),
       type: '通用',
       module: '日常',
       active: true,
@@ -149,16 +192,12 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
   ];
 }
 
-const dailyAllRewardTable = ref<Reward[]>([freeMonthlyPass.value]);
-
-
-
+const dailyAllRewardTable = ref<Reward[]>([freeMonthlyPassEnd,freeMonthlyPassStart]);
 
 dailyAllRewardTable.value.push(createRewardModuleTitle('通行证'));
 
 let bpTrackIndex = 1;
 for (const version of VersionTable) {
-
   const bpTrackFree = {
     id: `bp_track_free_${bpTrackIndex}`,
     name: {
@@ -178,10 +217,9 @@ for (const version of VersionTable) {
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-  }
+  };
 
-
-   const bpTrackOriginium = {
+  const bpTrackOriginium = {
     id: `bp_track_originium_${bpTrackIndex}`,
     name: {
       zh: `源石配给·${version.version}`,
@@ -200,13 +238,13 @@ for (const version of VersionTable) {
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-  }
+  };
 
-  if(bpTrackIndex >1) {
+  if (bpTrackIndex > 1) {
     bpTrackFree.content.ticketgachaStandardSingle = 2;
     bpTrackOriginium.content.ticketgachaStandardSingle = 4;
   }
-  
+
   dailyAllRewardTable.value.push(bpTrackFree, bpTrackOriginium);
   bpTrackIndex++;
 }
@@ -236,19 +274,10 @@ for (const poolInfo of PoolInfoTable) {
   });
 }
 
-
-
-
-
-
-
-
 export {
- 
   calculatorDailyReward,
   createVersionDailyReward,
   dailyAllRewardTable,
   dailyReward,
- 
   weekTaskReward,
 };

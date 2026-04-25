@@ -2,7 +2,10 @@
 import type { Reward } from '#shared/types/gacha-calculator';
 import { dateFormat } from '#shared/utils/dateUtil';
 import { itemIdDict } from '#shared/utils/gacha-calculator';
-const props = defineProps<Reward>();
+const props = defineProps<{
+  reward:Reward,
+  hideVersion?:boolean
+}>();
 
 /**
  *
@@ -19,29 +22,29 @@ function getImageUrl(itemId: string): string {
 <template>
   <div>
     <v-btn
-      :active="props.active"
+      :active="props.reward.active"
       class="gacha-calculator-resource-btn"
-      :class="{ 'btn-active': props.active }"      
+      :class="{ 'btn-active': props.reward.active }"      
     >
       <div class="gacha-calculator-resource-btn-content">
         <div class="gacha-calculator-resource-btn-content-title">
-          {{ props.name.zh }} 
-          <!-- {{ dateFormat(props.start) }} -->
+          {{ props.reward.name.zh }} 
+          <!-- {{ dateFormat(props.reward.start) }} -->
         </div>
         <div
-          v-for="(reward, name) in props.content"
+          v-for="(reward, name) in props.reward.content"
           v-show="reward > 0"
-          :key="`${props.id}-${name}`"
+          :key="`${props.reward.id}-${name}`"
           class="gacha-calculator-resource-btn-content-content"
         >
           <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
           X {{ reward }}
         </div>
       </div>
-      <div class="gacha-calculator-resource-btn-version">{{ props.version }}</div>
+      <div v-if="!props.hideVersion" class="gacha-calculator-resource-btn-version">{{ props.reward.version }}</div>
     </v-btn>
-    <template v-if="props.tips">
-      <div v-for="tip in props.tips" :key="tip" class="gacha-calculator-resource-btn-tip">
+    <template v-if="props.reward.tips">
+      <div v-for="tip in props.reward.tips" :key="tip" class="gacha-calculator-resource-btn-tip">
         {{ tip }}
       </div>
     </template>
