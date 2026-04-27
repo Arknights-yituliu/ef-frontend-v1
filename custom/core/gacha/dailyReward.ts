@@ -11,7 +11,9 @@ import VersionTable from '@/custom/core/gacha/data/version_table.json';
 const MediumExchangeCrate = 20 * 0.05 + 15 * 0.35 + 10 * 0.6;
 const LargeExchangeCrate = 30 * 0.05 + 25 * 0.35 + 20 * 0.6;
 
-const freeMonthlyPass= ref<Reward>({
+const poolStartDate = ref(new Date());
+
+const freeMonthlyPass = ref<Reward>({
   id: 'free_monthly_pass_1',
   name: {
     zh: `焕新月卡赠礼`,
@@ -29,26 +31,24 @@ const freeMonthlyPass= ref<Reward>({
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,
-  }
+  },
 });
 
+watch(poolStartDate, (newVal) => {
+  updateFreeMonthlyPass();
+});
 
+updateFreeMonthlyPass();
+function updateFreeMonthlyPass() {
+  // 计算焕新月卡赠礼剩余天数
+  const freeMonthlyPassRemainingDays = Math.min(
+    numberRound(calculateDaysDifference(new Date('2026/04/17 12:00:00'), poolStartDate.value), 0),
+    30,
+  );
 
-let freeMonthlyPassRemainingDays: number = calculateDaysDifference(
-  new Date('2026/04/17 12:00:00'),
-  new Date(),
-);
-
-if (freeMonthlyPassRemainingDays > 30) {
-  freeMonthlyPassRemainingDays = 30;
-} else {
-  freeMonthlyPassRemainingDays = numberRound(freeMonthlyPassRemainingDays, 0);
+  console.log('按活动结束时间焕新月卡赠礼剩余天数:', freeMonthlyPassRemainingDays);
+  freeMonthlyPass.value.content.diamond = 200 * (30 - freeMonthlyPassRemainingDays);
 }
-
-console.log('按活动结束时间焕新月卡赠礼剩余天数:', freeMonthlyPassRemainingDays);
-freeMonthlyPass.value.content.diamond = 200 * (30-freeMonthlyPassRemainingDays);
-
-
 
 const dailyReward = ref<Reward>({
   id: 'day_reward',
@@ -241,6 +241,7 @@ export {
   calculatorDailyReward,
   createVersionDailyReward,
   dailyAllRewardTable,
+  poolStartDate,
   dailyReward,
   weekTaskReward,
 };

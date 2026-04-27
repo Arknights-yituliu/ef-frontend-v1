@@ -18,6 +18,7 @@ import {
   calculatorDailyReward,
   dailyAllRewardTable,
   dailyReward,
+  poolStartDate,
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
 
@@ -75,8 +76,19 @@ function initPoolOptions() {
     type: '敬请期待',
     disabled: true,
   };
+
+  const allVersionOption: PoolOption = {
+    name: '所有版本',
+    start: new Date('2026/01/22 12:00:00'),
+    end: new Date('2026/12/31 12:00:00'),
+    dateText: '',
+    type: '所有版本',
+    disabled: true,
+  };
+
   displayPoolOptions.value.push(poolOption.name);
   poolOptions.value.push(poolOption);
+  poolOptions.value.push(allVersionOption);
 }
 
 //  {
@@ -98,14 +110,17 @@ const currentPool = ref<PoolOption>({
   disabled: false,
 });
 
-let startDate: Date = new Date();
+// let startDate: Date = new Date();
 
 const devStartDate = ref(new Date());
 
 const currentMode = ref('normal');
 
 function startDateDebug() {
-  startDate = devStartDate.value;
+  const newDate = new Date(devStartDate.value);
+  newDate.setHours(12, 0, 0, 0);
+
+  poolStartDate.value = newDate;
   calc();
 }
 
@@ -118,12 +133,12 @@ function selectedPool(option: PoolOption): void {
 }
 
 function calc() {
-  calculatorDailyReward(startDate, currentPool.value.end);
+  calculatorDailyReward(poolStartDate.value, currentPool.value.end);
   existingRewardStatistics();
   dailyRewardStatistics();
   activityRewardStatistics();
   permanentRewardStatistics();
-  aprchivePermanentRewardStatistics();
+  archivePermanentRewardStatistics();
   rechargeResourceStatistics();
   allRewardStatisticsV2();
 }
@@ -352,7 +367,7 @@ watch(
     authorityLevelUpReward.value.content.diamond = result;
     saveUserConfig(authorityLevelUpReward.value.id, newVal, 'rangeSlider');
 
-    permanentRewardStatistics();
+    archivePermanentRewardStatistics();
     allRewardStatisticsV2();
   },
   { deep: true },
@@ -378,7 +393,7 @@ watch(
       saveUserConfig(item.id, item.active, 'buttonGroupActive');
     }
 
-    aprchivePermanentRewardStatistics();
+    archivePermanentRewardStatistics();
     allRewardStatisticsV2();
   },
   { deep: true },
@@ -412,13 +427,12 @@ function permanentRewardStatistics(): void {
     ticketgachaLimitedSingle: 0,
   };
   addReward(result, permanentRewardTable.value);
-  addReward(result, authorityLevelUpReward.value);
 
   permanentRewardStatisticsResultDetail = result;
   gachaResourceStatisticsResult.value.totalPulls.permanent = getRewardPull(result);
 }
 
-function aprchivePermanentRewardStatistics(): void {
+function archivePermanentRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
     name: '往期版本常驻奖励',
     originiumRecharge: 0,
@@ -429,7 +443,7 @@ function aprchivePermanentRewardStatistics(): void {
   };
 
   addReward(result, archivePermanentRewardTable.value);
-
+  addReward(result, authorityLevelUpReward.value);
   archivePermanentRewardStatisticsResultDetail = result;
   gachaResourceStatisticsResult.value.totalPulls.archivePermanent = getRewardPull(result);
 }
@@ -525,7 +539,7 @@ let rechargeResourceStatisticsResultDetail: RewardStatisticsResultDetail = {
 };
 
 function rechargeResourceStatistics(): void {
-  const remainingDays = calculateDaysDifference(startDate, currentPool.value.end);
+  const remainingDays = calculateDaysDifference(poolStartDate.value, currentPool.value.end);
 
   const result: RewardStatisticsResultDetail = {
     name: '氪金资源',
@@ -630,8 +644,8 @@ function allRewardStatisticsV2(): void {
     existingRewardStatisticsResultDetail,
     dailyRewardStatisticsResultDetail,
     activityRewardStatisticsResultDetail,
-    archivePermanentRewardStatisticsResultDetail,
     permanentRewardStatisticsResultDetail,
+    archivePermanentRewardStatisticsResultDetail,
     rechargeResourceStatisticsResultDetail,
   ];
 
@@ -922,15 +936,15 @@ function clearOrSelectAllActivityModule(action: boolean) {
 }
 
 function clearOrSelectAllPermanentRewardModule(action: boolean) {
+  clearOrSelectAll(action, 'button', permanentRewardTable);
+}
+
+function clearOrSelectAllArchivePermanentRewardModule(action: boolean) {
   if (action) {
     authorityLevelProgress.value = [1, 60];
   } else {
     authorityLevelProgress.value = [60, 60];
   }
-  clearOrSelectAll(action, 'button', permanentRewardTable);
-}
-
-function clearOrSelectAllArchivePermanentRewardModule(action: boolean) {
   clearOrSelectAll(action, 'button', archivePermanentRewardTable);
 }
 
@@ -1055,15 +1069,23 @@ function saveUserConfig(
   );
 }
 
+/**
+ * 检查奖励是否在当前池子期间内有效
+ * @param reward 奖励对象
+ * @returns 是否有效
+ */
 function checkRewardIsValid(reward: Reward): boolean {
+  // 将当前卡池信息复制到临时变量
   const currentPoolValue = currentPool.value;
 
-  let display = reward.type === '通用' || reward.type === currentPoolValue.type;
+  //如果奖励为通用或者是当前池子类型匹配设为true
+  let display =
+    '通用' === reward.type || reward.type === currentPoolValue.type || '所有版本' === reward.type;
 
   // console.log(reward.name.zh, reward.type, currentPoolValue.type);
 
   // 活动结束时间在当前池子开始时间之前，活动已结束
-  if (reward.end <= startDate) {
+  if (reward.end <= poolStartDate.value) {
     // console.log(reward.name.zh, '过期');
     display = false;
   }
@@ -1468,7 +1490,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
           <v-expansion-panel-text>
             <h3>选择卡池的起始时间</h3>
-            {{ startDate }}
+            {{ poolStartDate }}
             <v-date-picker
               v-model="devStartDate"
               color="primary"
@@ -1692,24 +1714,6 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
             </div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="authorityLevelProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="60"
-                  min="1"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
-                />
-              </v-card-text>
-            </v-card>
-
             <template v-for="reward in permanentRewardTable">
               <GachaCalculatorResourceSingleBtn
                 :reward="reward"
@@ -1735,6 +1739,23 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
             </div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
+            <v-card>
+              <v-card-text>
+                <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
+                <div style="height: 36px" />
+                <v-range-slider
+                  v-model="authorityLevelProgress"
+                  class="v-range-slider"
+                  hide-details="auto"
+                  max="60"
+                  min="1"
+                  show-ticks="always"
+                  step="1"
+                  thumb-label="always"
+                  tick-size="4"
+                />
+              </v-card-text>
+            </v-card>
             <template v-for="reward in archivePermanentRewardTable">
               <GachaCalculatorResourceSingleBtn
                 :reward="reward"
