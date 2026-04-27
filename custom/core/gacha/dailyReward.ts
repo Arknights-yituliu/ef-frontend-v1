@@ -241,7 +241,7 @@ export {
   calculatorDailyReward,
   createVersionDailyReward,
   dailyAllRewardTable,
-  poolStartDate,
   dailyReward,
+  poolStartDate,
   weekTaskReward,
 };

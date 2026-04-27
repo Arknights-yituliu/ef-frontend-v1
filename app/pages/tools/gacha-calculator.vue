@@ -87,8 +87,7 @@ function initPoolOptions() {
   };
 
   displayPoolOptions.value.push(poolOption.name);
-  poolOptions.value.push(poolOption);
-  poolOptions.value.push(allVersionOption);
+  poolOptions.value.push(poolOption, allVersionOption);
 }
 
 //  {
@@ -1078,7 +1077,7 @@ function checkRewardIsValid(reward: Reward): boolean {
   // 将当前卡池信息复制到临时变量
   const currentPoolValue = currentPool.value;
 
-  //如果奖励为通用或者是当前池子类型匹配设为true
+  // 如果奖励为通用或者是当前池子类型匹配设为true
   let display =
     '通用' === reward.type || reward.type === currentPoolValue.type || '所有版本' === reward.type;
 
