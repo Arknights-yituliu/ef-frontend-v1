@@ -26305,6 +26305,20 @@
     },
     "iconId": "item_spaceship_exhibits_jinlong_3"
   },
+  "item_spaceship_exhibits_shanshantu": {
+    "id": "item_spaceship_exhibits_shanshantu",
+    "name": {
+      "zh-CN": "同行者的小雕像",
+      "en-US": "Companions Figurine"
+    },
+    "rarity": 5,
+    "type": 69,
+    "typeName": {
+      "zh-CN": "帝江号陈列品",
+      "en-US": "Dijiang: Display Items"
+    },
+    "iconId": "item_spaceship_exhibits_shanshantu"
+  },
   "item_spaceship_exhibits_tundra_1": {
     "id": "item_spaceship_exhibits_tundra_1",
     "name": {
@@ -26822,6 +26836,34 @@
       "en-US": "Portrait"
     },
     "iconId": "item_user_avatar_activity_4"
+  },
+  "item_user_avatar_activity_5": {
+    "id": "item_user_avatar_activity_5",
+    "name": {
+      "zh-CN": "“同行”",
+      "en-US": "\"Fellow Travelers\""
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_5"
+  },
+  "item_user_avatar_activity_5_1": {
+    "id": "item_user_avatar_activity_5_1",
+    "name": {
+      "zh-CN": "“相庆”",
+      "en-US": "\"Festive Companions\""
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_5_1"
   },
   "item_user_avatar_activity_6": {
     "id": "item_user_avatar_activity_6",
