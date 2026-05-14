@@ -245,6 +245,11 @@
                   </v-btn>
                 </div>
               </template>
+              <template v-else-if="noResultDueToFilter">
+                <v-alert border="start" type="warning" variant="tonal">
+                  {{ t('page.tools.essenceCalculator.noResultDueToFilter') }}
+                </v-alert>
+              </template>
               <template v-else>
                 <v-alert border="start" type="info" variant="tonal">
                   {{ t('page.tools.essenceCalculator.noValidDemand') }}
@@ -265,6 +270,24 @@
               <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
               <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
               <div class="mb-8" />
+
+              <!-- 能量淤积点开关 -->
+              <div class="d-flex align-center mb-3 mt-4 ga-2">
+                <v-icon>mdi-map-marker-multiple</v-icon>
+                <h3>{{ t('page.tools.essenceCalculator.battleLocationFilter') }}</h3>
+              </div>
+              <div class="d-flex flex-wrap ga-2 mb-6">
+                <v-chip
+                  v-for="(alluvium, battleId) in energyAlluviums"
+                  :key="battleId"
+                  :color="isBattleEnabled(battleId) ? 'primary' : 'default'"
+                  :prepend-icon="isBattleEnabled(battleId) ? 'mdi-check' : 'mdi-close'"
+                  variant="flat"
+                  @click="toggleBattle(battleId)"
+                >
+                  {{ alluvium.battleName }}
+                </v-chip>
+              </div>
               <v-card
                 v-for="(stat, index) in requiredEssenceStats"
                 :key="index"
@@ -487,6 +510,27 @@ function getEssenceStatDescription(stat: EssenceStat): string {
   }
 }
 
+/** 被关闭的能量淤积点 ID 列表（不在列表中的默认开启） */
+const disabledBattles = useLocalStorage<string[]>('essence-calculator-disabled-battles', [], {
+  writeDefaults: false,
+  listenToStorageChanges: false,
+});
+
+/** 判断能量淤积点是否开启 */
+function isBattleEnabled(battleId: string): boolean {
+  return !disabledBattles.value.includes(battleId);
+}
+
+/** 切换能量淤积点开关 */
+function toggleBattle(battleId: string) {
+  const index = disabledBattles.value.indexOf(battleId);
+  if (index === -1) {
+    disabledBattles.value.push(battleId);
+  } else {
+    disabledBattles.value.splice(index, 1);
+  }
+}
+
 const battleChoices = computed(() => {
   const result: BattleChoice[] = [];
   // 枚举所有能量淤积点
@@ -601,19 +645,20 @@ const SHOW_MORE_COUNT = 15;
 /** 当前展示的方案数 */
 const displayCount = ref(INITIAL_DISPLAY_COUNT);
 
-// 需求变化时重置展示方案数，避免性能问题
+// 需求或开关变化时重置展示方案数，避免性能问题
 watch(
-  requiredEssenceStats,
+  [requiredEssenceStats, disabledBattles],
   () => {
     displayCount.value = INITIAL_DISPLAY_COUNT;
   },
   { deep: true },
 );
 
-/** 所有排序后的可行方案 */
+/** 所有排序后的可行方案（同时按开关过滤） */
 const allSortedChoices = computed(() => {
   const result = battleChoices.value.filter(
-    ({ matchedSelectedIndices }) => matchedSelectedIndices.length > 0,
+    ({ battleId, matchedSelectedIndices }) =>
+      matchedSelectedIndices.length > 0 && isBattleEnabled(battleId),
   );
   result.sort((a, b) => {
     // First, sort by matchedSelectedIndices.length (descending)
@@ -629,6 +674,11 @@ const allSortedChoices = computed(() => {
 /** 当前展示的方案 */
 const bestChoices = computed(() => {
   return allSortedChoices.value.slice(0, displayCount.value);
+});
+
+/** 是否因过滤选项导致无方案展示（本来有方案，被过滤掉了） */
+const noResultDueToFilter = computed(() => {
+  return battleChoices.value.length > 0 && bestChoices.value.length === 0;
 });
 
 /** 是否还有更多方案可展示 */
