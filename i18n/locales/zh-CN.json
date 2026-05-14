@@ -425,7 +425,8 @@
         "weaponsMatched": "武器匹配",
         "planDescription": "该方案可满足 {count} 个需求，并且能匹配 {weaponCount} 件已实装武器。",
         "satisfiedRequirements": "满足的需求",
-        "matchedWeapons": "匹配的武器"
+        "matchedWeapons": "匹配的武器",
+        "showMorePlans": "显示更多方案（{count} 个）"
       },
       "gachaCalculator": {
         "standard": "基础",
@@ -563,7 +564,7 @@
     "modal": {
       "title": "反馈与建议",
       "actionBtn": "点击前往",
-      "copyBtn": "点击复制" ,
+      "copyBtn": "点击复制",
       "copied": "复制成功"
     },
     "table": {
@@ -583,7 +584,7 @@
         "desc": "国内访问体验稍差一点"
       },
       "bilibili": {
-        "title": "B站 逻辑元 LogicalByte", 
+        "title": "B站 逻辑元 LogicalByte",
         "desc": "直接私信反馈"
       },
       "fanGroup": {
@@ -596,5 +597,4 @@
       }
     }
   }
-
 }

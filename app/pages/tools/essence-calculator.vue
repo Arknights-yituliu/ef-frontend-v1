@@ -230,6 +230,20 @@
                     </v-card-text>
                   </v-card>
                 </div>
+
+                <!-- 显示更多方案按钮 -->
+                <div v-if="hasMoreChoices" class="text-center mt-4">
+                  <v-btn
+                    color="primary"
+                    prepend-icon="mdi-chevron-double-down"
+                    variant="tonal"
+                    @click="showMoreChoices"
+                  >
+                    {{
+                      t('page.tools.essenceCalculator.showMorePlans', { count: SHOW_MORE_COUNT })
+                    }}
+                  </v-btn>
+                </div>
               </template>
               <template v-else>
                 <v-alert border="start" type="info" variant="tonal">
@@ -392,6 +406,7 @@
 <script lang="ts" setup>
 import type { BattleChoice, EssenceStat } from '@/custom/core/weaponEssence';
 import { useLocalStorage } from '@vueuse/core';
+import { watch } from 'vue';
 import {
   allAttributeStats,
   allSecondaryStats,
@@ -577,7 +592,26 @@ const battleChoices = computed(() => {
   return result;
 });
 
-const bestChoices = computed(() => {
+/** 初始展示方案数 */
+const INITIAL_DISPLAY_COUNT = 5;
+
+/** 每次点击增加的方案数 */
+const SHOW_MORE_COUNT = 15;
+
+/** 当前展示的方案数 */
+const displayCount = ref(INITIAL_DISPLAY_COUNT);
+
+// 需求变化时重置展示方案数，避免性能问题
+watch(
+  requiredEssenceStats,
+  () => {
+    displayCount.value = INITIAL_DISPLAY_COUNT;
+  },
+  { deep: true },
+);
+
+/** 所有排序后的可行方案 */
+const allSortedChoices = computed(() => {
   const result = battleChoices.value.filter(
     ({ matchedSelectedIndices }) => matchedSelectedIndices.length > 0,
   );
@@ -589,8 +623,23 @@ const bestChoices = computed(() => {
     // Then, sort by matchedWeaponIds.length (descending)
     return b.matchedWeaponIds.length - a.matchedWeaponIds.length;
   });
-  return result.slice(0, 5);
+  return result;
 });
+
+/** 当前展示的方案 */
+const bestChoices = computed(() => {
+  return allSortedChoices.value.slice(0, displayCount.value);
+});
+
+/** 是否还有更多方案可展示 */
+const hasMoreChoices = computed(() => {
+  return allSortedChoices.value.length > displayCount.value;
+});
+
+/** 点击"显示更多方案"时增加展示数量 */
+function showMoreChoices() {
+  displayCount.value += SHOW_MORE_COUNT;
+}
 </script>
 
 <style scoped>
