@@ -97,6 +97,27 @@
     "regional": "武陵",
     "version": "春晓时",
     "content": {
+      "originiumRecharge":1,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "当时携手处",
+    "name": {
+      "zh": "当时携手处",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
       "originiumRecharge": 2,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
@@ -208,7 +229,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "同袍·无名",
     "name": {
       "zh": "同袍·无名",
@@ -228,7 +250,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "同袍·追忆",
     "name": {
       "zh": "同袍·追忆",
@@ -248,7 +271,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "同袍·纪念",
     "name": {
       "zh": "同袍·纪念",
@@ -268,7 +292,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "街角的商店·其一",
     "name": {
       "zh": "街角的商店·其一",
@@ -288,7 +313,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "街角的商店·其二",
     "name": {
       "zh": "街角的商店·其二",
@@ -308,7 +334,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "街角的商店·其三",
     "name": {
       "zh": "街角的商店·其三",
@@ -328,7 +355,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "老人与潮·其一",
     "name": {
       "zh": "老人与潮·其一",
@@ -348,7 +376,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "老人与潮·其二",
     "name": {
       "zh": "老人与潮·其二",
@@ -368,7 +397,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "蚀像寻遗",
     "name": {
       "zh": "蚀像寻遗",
@@ -388,7 +418,113 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
+    "id": "净水节点",
+    "name": {
+      "zh": "净水节点",
+      "en": ""
+    },
+    "start": "2026/05/14 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "重要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "分忧解难",
+    "name": {
+      "zh": "分忧解难",
+      "en": ""
+    },
+    "start": "2026/05/14 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "次要任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "再引春来·其一",
+    "name": {
+      "zh": "再引春来·其一",
+      "en": ""
+    },
+    "start": "2026/05/14 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "功能任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 90,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "再引春来·其二",
+    "name": {
+      "zh": "再引春来·其二",
+      "en": ""
+    },
+    "start": "2026/05/14 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "功能任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "再引春来·其三",
+    "name": {
+      "zh": "再引春来·其三",
+      "en": ""
+    },
+    "start": "2026/05/14 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "功能任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 25,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "粉丝见面会",
     "name": {
       "zh": "粉丝见面会",
@@ -408,7 +544,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "致后来人",
     "name": {
       "zh": "致后来人",
@@ -429,7 +566,7 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-  
+
   {
     "id": "意外来袭",
     "name": {

@@ -1,0 +1,202 @@
+{
+  "world_energy_point_group01": {
+    "battleId": "world_energy_point_group01",
+    "battleName": "重度能量淤积点·枢纽区",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv001_1.webp",
+    "secondaryStats": [
+      "攻击提升",
+      "灼热伤害提升",
+      "电磁伤害提升",
+      "寒冷伤害提升",
+      "自然伤害提升",
+      "源石技艺提升",
+      "终结技充能效率提升",
+      "法术伤害提升"
+    ],
+    "skillStats": [
+      "强攻",
+      "压制",
+      "追袭",
+      "粉碎",
+      "巧技",
+      "迸发",
+      "流转",
+      "效益"
+    ]
+  },
+  "world_energy_point_group02": {
+    "battleId": "world_energy_point_group02",
+    "battleName": "重度能量淤积点·源石研究园",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv005_1.webp",
+    "secondaryStats": [
+      "攻击提升",
+      "物理伤害提升",
+      "电磁伤害提升",
+      "寒冷伤害提升",
+      "自然伤害提升",
+      "暴击率提升",
+      "终结技充能效率提升",
+      "法术伤害提升"
+    ],
+    "skillStats": [
+      "压制",
+      "追袭",
+      "昂扬",
+      "巧技",
+      "附术",
+      "医疗",
+      "切骨",
+      "效益"
+    ]
+  },
+  "world_energy_point_group03": {
+    "battleId": "world_energy_point_group03",
+    "battleName": "重度能量淤积点·矿脉源区",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv006_1.webp",
+    "secondaryStats": [
+      "生命提升",
+      "物理伤害提升",
+      "灼热伤害提升",
+      "寒冷伤害提升",
+      "自然伤害提升",
+      "暴击率提升",
+      "源石技艺提升",
+      "治疗效率提升"
+    ],
+    "skillStats": [
+      "强攻",
+      "压制",
+      "巧技",
+      "残暴",
+      "附术",
+      "迸发",
+      "夜幕",
+      "效益"
+    ]
+  },
+  "world_energy_point_group04": {
+    "battleId": "world_energy_point_group04",
+    "battleName": "重度能量淤积点·供能高地",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv007_1.webp",
+    "secondaryStats": [
+      "攻击提升",
+      "生命提升",
+      "物理伤害提升",
+      "灼热伤害提升",
+      "自然伤害提升",
+      "暴击率提升",
+      "源石技艺提升",
+      "治疗效率提升"
+    ],
+    "skillStats": [
+      "追袭",
+      "粉碎",
+      "昂扬",
+      "残暴",
+      "附术",
+      "医疗",
+      "切骨",
+      "流转"
+    ]
+  },
+  "world_energy_point_group05": {
+    "battleId": "world_energy_point_group05",
+    "battleName": "重度能量淤积点·武陵城",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv002_1.webp",
+    "secondaryStats": [
+      "攻击提升",
+      "生命提升",
+      "电磁伤害提升",
+      "寒冷伤害提升",
+      "暴击率提升",
+      "终结技充能效率提升",
+      "法术伤害提升",
+      "治疗效率提升"
+    ],
+    "skillStats": [
+      "强攻",
+      "粉碎",
+      "残暴",
+      "医疗",
+      "切骨",
+      "迸发",
+      "夜幕",
+      "流转"
+    ]
+  },
+  "world_energy_point_group06": {
+    "battleId": "world_energy_point_group06",
+    "battleName": "重度能量淤积点·清波寨",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.webp",
+    "secondaryStats": [
+      "生命提升",
+      "物理伤害提升",
+      "电磁伤害提升",
+      "寒冷伤害提升",
+      "源石技艺提升",
+      "终结技充能效率提升",
+      "法术伤害提升",
+      "治疗效率提升"
+    ],
+    "skillStats": [
+      "压制",
+      "粉碎",
+      "昂扬",
+      "巧技",
+      "医疗",
+      "切骨",
+      "迸发",
+      "夜幕"
+    ]
+  },
+  "world_energy_point_group07": {
+    "battleId": "world_energy_point_group07",
+    "battleName": "重度能量淤积点·首墩",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv004_1.webp",
+    "secondaryStats": [
+      "攻击提升",
+      "物理伤害提升",
+      "灼热伤害提升",
+      "电磁伤害提升",
+      "自然伤害提升",
+      "暴击率提升",
+      "终结技充能效率提升",
+      "法术伤害提升"
+    ],
+    "skillStats": [
+      "强攻",
+      "追袭",
+      "昂扬",
+      "残暴",
+      "附术",
+      "夜幕",
+      "流转",
+      "效益"
+    ]
+  },
+  "world_energy_point_group08": {
+    "battleId": "world_energy_point_group08",
+    "battleName": "重度能量淤积点·试验园区",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv005_1.webp",
+    "secondaryStats": [
+      "生命提升",
+      "灼热伤害提升",
+      "电磁伤害提升",
+      "寒冷伤害提升",
+      "自然伤害提升",
+      "源石技艺提升",
+      "终结技充能效率提升",
+      "治疗效率提升"
+    ],
+    "skillStats": [
+      "压制",
+      "粉碎",
+      "巧技",
+      "残暴",
+      "附术",
+      "切骨",
+      "夜幕",
+      "流转"
+    ]
+  }
+}

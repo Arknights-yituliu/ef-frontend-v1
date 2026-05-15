@@ -92,7 +92,7 @@ const operatorTraining = {
   end: new Date('2099/12/31 12:00:00'),
   type: '通用',
   module: '行动手册',
-  active: true,
+  active: false,
   version: `零号委托——${currentVersion}`,
   content: {
     originiumRecharge: 0,
@@ -103,7 +103,7 @@ const operatorTraining = {
   },
 };
 
-permanentRewardTable.value.push(operatorTraining);
+archivePermanentRewardTable.value.push(operatorTraining);
 
 permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string | Date }) => {
   const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();

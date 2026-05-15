@@ -87,6 +87,7 @@ export const itemListByTypeTable: ItemListByTypeTable = readJSONWithBigInt(
 );
 export const itemTable: ItemTable = readJSONWithBigInt('TableCfg/ItemTable.json');
 export const itemTypeTable: ItemTypeTable = readJSONWithBigInt('TableCfg/ItemTypeTable.json');
+export const levelLoadingTable = readJSONWithBigInt('TableCfg/LevelLoadingTable.json');
 export const skillPatchTable = readJSONWithBigInt('TableCfg/SkillPatchTable.json');
 export const textTable = readJSONWithBigInt('TableCfg/TextTable.json');
 export const weaponBasicTable = readJSONWithBigInt('TableCfg/WeaponBasicTable.json');

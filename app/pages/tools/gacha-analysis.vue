@@ -105,7 +105,7 @@
 
             <div class="user-info">
               <div >
-                <h3 class="user-name">{{ '管理员' }}</h3>
+                <h3 class="user-name">{{ userNickName || '管理员' }}</h3>
                 <p class="user-uid">UID: {{ displayUid }}</p>
               </div>
               <div class="user-stats-basic">
@@ -589,6 +589,7 @@ import { gachaPools } from '@/custom/core/gacha-pool-info';
 const USE_DEBUG_DATA = false;
 
 const viewMode = ref<'collect' | 'analyze'>('collect');
+const userNickName = ref('');
 
 const inputCredential = ref('');
 const isSubmitting = ref(false);
@@ -765,6 +766,9 @@ async function submitAndVerify() {
       const checkData = await checkRes.json();
       if (checkData.code === 200 && checkData.data?.roleId) {
         roleId = checkData.data.roleId;
+        if (checkData.data.nickName) {
+          userNickName.value = checkData.data.nickName;
+        }
         break;
       }
     }
