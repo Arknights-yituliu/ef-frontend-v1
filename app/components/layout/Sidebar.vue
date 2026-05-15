@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <!-- Logo 区域 -->
     <div class="logo-area" @click="navigateToHome">
-      <img alt="Logo" class="logo-img" src="/android-chrome-512x512.png" >
+      <img alt="Logo" class="logo-img" src="/android-chrome-512x512.png" />
       <div class="logo-text">{{ $t('layout.siteName') }}</div>
     </div>
 
@@ -28,14 +28,19 @@
         <!-- 二级菜单 -->
         <div class="secondary-items">
           <NuxtLink
-            v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(item => !item.isHidden)"
+            v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(
+              (item) => !item.isHidden,
+            )"
             :key="secondaryIndex"
             :ref="
               (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
             "
             class="secondary-item"
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
-            :style="{ '--item-color': getSectionColor(primaryItem.i18nKey),'--current-active-color':currentActiveColor }"
+            :style="{
+              '--item-color': getSectionColor(primaryItem.i18nKey),
+              '--current-active-color': currentActiveColor,
+            }"
             :to="secondaryItem.routePath"
           >
             <!-- 左侧装饰条 -->
@@ -65,11 +70,7 @@
             </svg>
             <span class="secondary-text">{{ $t(`menu.${secondaryItem.i18nKey}`) }}</span>
             <!-- 跳转提示图标 -->
-            <v-icon
-              v-if="secondaryItem.showJumpHint"
-              class="jump-hint-icon"
-              size="20"
-            >
+            <v-icon v-if="secondaryItem.showJumpHint" class="jump-hint-icon" size="20">
               mdi-open-in-new
             </v-icon>
           </NuxtLink>
@@ -97,7 +98,7 @@
 </template>
 
 <script lang="ts" setup>
-import {gsap} from 'gsap';
+import { gsap } from 'gsap';
 
 // 菜单项类型
 interface SecondaryMenuItem {
@@ -116,7 +117,7 @@ interface PrimaryMenuItem {
   iconPath?: string;
   vuetifyIcon?: string;
   isDocs?: boolean;
-  isHidden?:boolean;
+  isHidden?: boolean;
   children: SecondaryMenuItem[];
 }
 
@@ -129,22 +130,23 @@ const menuItems = appConfig.menu.routes as PrimaryMenuItem[];
 
 // 定义 CMYK 四色
 const cmykColors = {
-  cyan: '#00FFFF',   // 青色 (Cyan)
+  cyan: '#00FFFF', // 青色 (Cyan)
   magenta: '#FF00FF', // 洋红色 (Magenta)
-  yellow: '#FFFF00',  // 黄色 (Yellow)
-  key: '#000000',    // 黑色 (Key)
+  yellow: '#FFFF00', // 黄色 (Yellow)
+  key: '#000000', // 黑色 (Key)
 };
 
 // 定义section到CMYK颜色的映射
 const sectionColors = {
-  materialProfit: cmykColors.cyan,    // 青色 - 材料收益
-  tools: cmykColors.magenta,        // 洋红色 - 一图流工具箱
-  resources: cmykColors.yellow,        // 黄色 - 资源下载
-  others: cmykColors.key,             // 黑色 - 其它（包括开发指南、功能操作指南）
+  materialProfit: cmykColors.cyan, // 青色 - 材料收益
+  tools: cmykColors.magenta, // 洋红色 - 一图流工具箱
+  aic: '#00E676', // 绿色 - 集成工业
+  resources: cmykColors.yellow, // 黄色 - 资源下载
+  others: cmykColors.key, // 黑色 - 其它（包括开发指南、功能操作指南）
 };
 
 // 获取section对应的颜色
-function getSectionColor (i18nKey: string) {
+function getSectionColor(i18nKey: string) {
   if (sectionColors[i18nKey as keyof typeof sectionColors]) {
     return sectionColors[i18nKey as keyof typeof sectionColors];
   }
@@ -156,9 +158,7 @@ const currentActiveColor = computed(() => {
   const activePath = route.path;
   // 遍历菜单项找到对应的颜色
   for (const primaryItem of menuItems) {
-    const secondaryItem = primaryItem.children.find(
-      (item) => item.routePath === activePath,
-    );
+    const secondaryItem = primaryItem.children.find((item) => item.routePath === activePath);
     if (secondaryItem) {
       return getSectionColor(primaryItem.i18nKey);
     }
@@ -167,7 +167,7 @@ const currentActiveColor = computed(() => {
 });
 
 // 点击 Logo 跳转到首页
-function navigateToHome () {
+function navigateToHome() {
   if (route.path !== '/') {
     router.push('/');
   }
@@ -186,10 +186,7 @@ const secondaryHighlightTop = ref(0);
 const secondaryHighlightHeight = ref(0);
 
 // 设置二级菜单项 ref
-function setSecondaryItemRef (el: any,
-  primaryIndex: number,
-  secondaryIndex: number,
-  path: string) {
+function setSecondaryItemRef(el: any, primaryIndex: number, secondaryIndex: number, path: string) {
   if (el) {
     secondaryItemRefs.value.set(path, el);
   } else {
@@ -198,7 +195,7 @@ function setSecondaryItemRef (el: any,
 }
 
 // 设置二级菜单图标 ref
-function setSecondaryIconRef (el: any, path: string) {
+function setSecondaryIconRef(el: any, path: string) {
   if (el) {
     secondaryIconRefs.value.set(path, el);
   } else {
@@ -207,14 +204,14 @@ function setSecondaryIconRef (el: any, path: string) {
 }
 
 // 计算元素相对于容器的位置
-function getRelativeTop (element: HTMLElement, container: HTMLElement): number {
+function getRelativeTop(element: HTMLElement, container: HTMLElement): number {
   const elementRect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
   return elementRect.top - containerRect.top;
 }
 
 // 更新二级菜单高亮位置
-function updateSecondaryHighlight () {
+function updateSecondaryHighlight() {
   nextTick(() => {
     const activePath = route.path;
     const activeSecondaryRef = secondaryItemRefs.value.get(activePath);
@@ -232,12 +229,12 @@ function updateSecondaryHighlight () {
   });
 }
 
-function isActiveRoute (path: string) {
+function isActiveRoute(path: string) {
   return route.path === path;
 }
 
 // 旋转二级菜单图标动画（顺时针旋转一圈）
-function rotateSecondaryIcon (path: string) {
+function rotateSecondaryIcon(path: string) {
   const iconRef = secondaryIconRefs.value.get(path);
   if (!iconRef) return;
 
@@ -269,7 +266,7 @@ function rotateSecondaryIcon (path: string) {
 }
 
 // 重置二级菜单图标（移除旋转动画效果）
-function resetSecondaryIcon (path: string) {
+function resetSecondaryIcon(path: string) {
   const existingAnimation = activeRotateAnimations.value.get(path);
   if (existingAnimation) {
     existingAnimation.kill();
@@ -288,7 +285,6 @@ function resetSecondaryIcon (path: string) {
   }
 }
 
-
 // 监听路由变化，更新二级菜单高亮
 watch(
   () => route.path,
@@ -299,14 +295,14 @@ watch(
 );
 
 // 监听窗口大小变化和滚动（用于响应式）
-function handleResize () {
+function handleResize() {
   setTimeout(() => {
     updateSecondaryHighlight();
   }, 400);
 }
 
 let scrollFrame: number | null = null;
-function handleScroll () {
+function handleScroll() {
   if (scrollFrame !== null) {
     cancelAnimationFrame(scrollFrame);
   }
@@ -434,7 +430,7 @@ onUnmounted(() => {
   padding: 0 1rem;
   background-color: var(--theme-bg-tertiary);
   font-size: calc(var(--font-size-sm) * 0.8);
-  color:var(--theme-text-primary);
+  color: var(--theme-text-primary);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -497,14 +493,9 @@ onUnmounted(() => {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    var(--current-active-color) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, var(--current-active-color) 0%, transparent 100%);
   opacity: 0.1;
 }
-
 
 .secondary-item::before {
   content: '';

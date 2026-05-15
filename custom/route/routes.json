@@ -25,6 +25,19 @@
     ]
   },
   {
+    "i18nKey": "aic",
+    "nameKey": "menu.aic",
+    "vuetifyIcon": "mdi-factory",
+    "children": [
+      {
+        "i18nKey": "blueprints",
+        "nameKey": "menu.blueprints",
+        "routePath": "/aic/blueprint",
+        "vuetifyIcon": "mdi-factory"
+      }
+    ]
+  },
+  {
     "i18nKey": "tools",
     "nameKey": "menu.tools",
     "vuetifyIcon": "mdi-toolbox",
