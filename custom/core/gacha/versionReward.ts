@@ -1,13 +1,9 @@
-import type { Reward, RewardStatisticsResultDetail  } from '#shared/types/gacha-calculator';
+import type { Reward, RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
 import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
 import { onMounted, ref, watch } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
-import {
-  createVersionDailyReward,
-  dailyAllRewardTable,
-
-} from '@/custom/core/gacha/dailyReward';
+import { createVersionDailyReward, dailyAllRewardTable } from '@/custom/core/gacha/dailyReward';
 import {
   archivePermanentRewardTable,
   authorityLevelUpReward,
@@ -41,8 +37,6 @@ const versionTable = [
 //   versionReward.push(rewards[0] as Reward, rewards[1] as Reward);
 // }
 
-
-
 for (const reward of dailyAllRewardTable.value) {
   versionReward.push(reward);
 }
@@ -64,8 +58,12 @@ function filterRewardByVersion(type: string, version: any) {
 
   currentVersionRewardTotal.value = [];
   currentVersionReward.value = [];
-
-  const rewards = createVersionDailyReward(version.start, version.end, version.version);
+  let rewards: Reward[] = [];
+  if ('version' === type) {
+    rewards = createVersionDailyReward(version.start, version.end, version.version);
+  } else {
+    rewards = createVersionDailyReward(new Date('2026/01/22 12:00:00'), version.end, '自开服以来');
+  }
   currentVersionReward.value.push(rewards[0] as Reward, rewards[1] as Reward);
 
   const result1: RewardStatisticsResultDetail = {
@@ -106,11 +104,7 @@ function filterRewardByVersion(type: string, version: any) {
     }
   } else {
     for (const reward of versionReward) {
-      const rewardTime =
-        typeof reward.end === 'string' ? new Date(reward.end).getTime() : reward.end.getTime();
-      if (rewardTime > version.start.getTime()) {
-        currentVersionReward.value.push(reward);
-      }
+      currentVersionReward.value.push(reward);
     }
   }
 

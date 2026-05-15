@@ -11,7 +11,7 @@ import {
   versionTable,
 } from '@/custom/core/gacha/versionReward';
 
-filterRewardByVersion('date', versionTable[2]);
+filterRewardByVersion('all', versionTable[2]);
 </script>
 
 <template>
@@ -42,6 +42,20 @@ filterRewardByVersion('date', versionTable[2]);
           <td>{{ dateFormat(reward.start) }}</td>
           <td>{{ dateFormat(reward.end) }}</td>
         </tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <td>氪度</td>
+        <td>衍质源石</td>
+        <td>嵌晶玉</td>
+        <td>基准寻访</td>
+        <td>特许寻访</td>
+        <td>限时寻访</td>
+        <td>特训寻访(包含衍质源石嵌晶玉)</td>
+        <td>特训寻访+限时寻访</td>
+      </thead>
+      <tbody>
         <tr v-for="reward in currentVersionRewardTotal" :key="reward.name">
           <td>{{ reward.name }}</td>
           <td>{{ reward.originiumRecharge }}</td>
@@ -49,6 +63,10 @@ filterRewardByVersion('date', versionTable[2]);
           <td>{{ reward.ticketgachaStandardSingle }}</td>
           <td>{{ reward.ticketgachaSpecialSingle }}</td>
           <td>{{ reward.ticketgachaLimitedSingle }}</td>
+          <td>{{ numberFloor(reward.totalPulls as number) }}抽</td>
+          <td>
+            {{ numberFloor((reward.totalPulls as number) + reward.ticketgachaLimitedSingle) }}抽
+          </td>
         </tr>
       </tbody>
     </table>
