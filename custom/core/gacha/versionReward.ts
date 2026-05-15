@@ -6,7 +6,6 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 import {
   createVersionDailyReward,
   dailyAllRewardTable,
-
 } from '@/custom/core/gacha/dailyReward';
 import {
   archivePermanentRewardTable,
@@ -31,7 +30,7 @@ const versionTable = [
   },
   {
     start: new Date('2026/04/17 12:00:00'),
-    end: new Date('2026/05/22 12:00:00'),
+    end: new Date('2026/06/05 12:00:00'),
     version: '春晓时',
   },
 ];
@@ -114,11 +113,13 @@ function filterRewardByVersion(type: string, version: any) {
     }
   }
 
-  const list = [];
+  
   for (const reward of currentVersionReward.value) {
     result1.originiumRecharge += reward.content.originiumRecharge;
-    list.push(reward.content.diamond);
+    const tmp = result1.diamond+1;
     result1.diamond += reward.content.diamond;
+    
+    console.log("增加前", tmp, "增加",reward.name.zh, reward.content.diamond, "增加后", result1.diamond);
     result1.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
     result1.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
     result1.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;

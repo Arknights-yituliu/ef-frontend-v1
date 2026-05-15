@@ -55,7 +55,7 @@ const etchSpaceSalvageCrateRewardTable:Reward[] = [
   version: '春晓时',
   content: {
     originiumRecharge: 0,
-    diamond: 1000,
+    diamond: 750,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,

@@ -18,6 +18,7 @@ import {
   calculatorDailyReward,
   dailyAllRewardTable,
   dailyReward,
+  updateFreeMonthlyPass,
   poolStartDate,
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
@@ -246,7 +247,7 @@ function existingRewardStatistics(): void {
 /**
  * 日常奖励计算相关代码起始
  */
-
+updateFreeMonthlyPass();
 // 日常奖励重构
 watch(
   dailyAllRewardTable,

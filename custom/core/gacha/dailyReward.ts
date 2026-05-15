@@ -38,7 +38,7 @@ watch(poolStartDate, (newVal) => {
   updateFreeMonthlyPass();
 });
 
-updateFreeMonthlyPass();
+
 function updateFreeMonthlyPass() {
   // 计算焕新月卡赠礼剩余天数
   const freeMonthlyPassRemainingDays = Math.min(
@@ -240,6 +240,7 @@ for (const poolInfo of PoolInfoTable) {
 export {
   calculatorDailyReward,
   createVersionDailyReward,
+  updateFreeMonthlyPass,
   dailyAllRewardTable,
   dailyReward,
   poolStartDate,
