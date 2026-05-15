@@ -4,6 +4,7 @@ import {
   gemTagIdTable,
   getTranslation,
   itemTable,
+  levelLoadingTable,
   skillPatchTable,
   weaponBasicTable,
   worldEnergyPointGroupTable,
@@ -116,4 +117,66 @@ export function makeWeapons(): Record<string, Weapon> {
   );
 }
 
+export interface EnergyAlluvium {
+  battleId: string;
+  battleName: string;
+  imageUrl: string;
+  secondaryStats: string[];
+  skillStats: string[];
+}
+
+/**
+ * 从 WorldEnergyPointGroupTable 中自动生成能量淤积点数据。
+ * 每个 group 取其最高世界等级对应的 gameName 作为 battleName，
+ * 并将其 secAttrTermIds / skillTermIds 通过 GemTable 翻译为中文。
+ */
+export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
+  const result: Record<string, EnergyAlluvium> = {};
+
+  // 按 group ID 排序，保证输出稳定
+  const groupIds = Object.keys(worldEnergyPointGroupTable).toSorted();
+
+  for (const groupId of groupIds) {
+    const group = worldEnergyPointGroupTable[groupId]!;
+    const worldLevelMap = group.worldLevel2GameMechanicsIdMap;
+
+    // 取最高世界等级对应的 mechanicsId，其 gameName 即为"重度能量淤积点·xxx"
+    const maxWorldLevel = Math.max(...Object.keys(worldLevelMap).map(Number));
+    const lastMechanicsId = worldLevelMap[String(maxWorldLevel)]!;
+    const energyPoint = worldEnergyPointTable[lastMechanicsId]!;
+    const battleName = getTranslation(energyPoint.gameName, 'CN');
+
+    // 翻译附加属性词条
+    const secondaryStats = group.secAttrTermIds.map((termId: string) =>
+      getGemTagName(termId, 'CN'),
+    );
+
+    // 翻译技能属性词条
+    const skillStats = group.skillTermIds.map((termId: string) => getGemTagName(termId, 'CN'));
+
+    // 通过 levelId 从 LevelLoadingTable 获取背景图文件名
+    const levelId = energyPoint.levelId;
+    const loadingEntry = levelLoadingTable[levelId];
+    const bgName = loadingEntry?.bgNameGroup?.[0] ?? '';
+    const imageUrl = bgName
+      ? `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/${bgName}.webp`
+      : '';
+
+    result[groupId] = {
+      battleId: groupId,
+      battleName,
+      imageUrl,
+      secondaryStats,
+      skillStats,
+    };
+  }
+
+  return result;
+}
+
 fs.writeFileSync('custom/core/weapons.json', JSON.stringify(makeWeapons(), null, 2), 'utf8');
+fs.writeFileSync(
+  'custom/core/energyAlluviums.json',
+  JSON.stringify(makeEnergyAlluviums(), null, 2),
+  'utf8',
+);

@@ -1,3 +1,4 @@
+import rawEnergyAlluviums from '@/custom/core/energyAlluviums.json';
 import rawWeapons from '@/custom/core/weapons.json';
 
 export interface EssenceStat {
@@ -83,128 +84,8 @@ export const allSkillStats = [
   '效益',
 ];
 
-/** 能量淤积点信息 */
-export const energyAlluviums: Record<string, EnergyAlluvium> = {
-  '重度能量淤积点·枢纽区': {
-    battleId: '重度能量淤积点·枢纽区',
-    battleName: '重度能量淤积点·枢纽区',
-    imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv001_1.webp',
-    secondaryStats: [
-      '攻击提升',
-      '灼热伤害提升',
-      '电磁伤害提升',
-      '寒冷伤害提升',
-      '自然伤害提升',
-      '源石技艺提升',
-      '终结技充能效率提升',
-      '法术伤害提升',
-    ],
-    skillStats: ['强攻', '压制', '追袭', '粉碎', '巧技', '迸发', '流转', '效益'],
-  },
-  '重度能量淤积点·源石研究园': {
-    battleId: '重度能量淤积点·源石研究园',
-    battleName: '重度能量淤积点·源石研究园',
-    imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv005_1.webp',
-    secondaryStats: [
-      '攻击提升',
-      '物理伤害提升',
-      '电磁伤害提升',
-      '寒冷伤害提升',
-      '自然伤害提升',
-      '暴击率提升',
-      '终结技充能效率提升',
-      '法术伤害提升',
-    ],
-    skillStats: ['压制', '追袭', '昂扬', '巧技', '附术', '医疗', '切骨', '效益'],
-  },
-  '重度能量淤积点·矿脉源区': {
-    battleId: '重度能量淤积点·矿脉源区',
-    battleName: '重度能量淤积点·矿脉源区',
-    imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv006_1.webp',
-    secondaryStats: [
-      '生命提升',
-      '物理伤害提升',
-      '灼热伤害提升',
-      '寒冷伤害提升',
-      '自然伤害提升',
-      '暴击率提升',
-      '源石技艺提升',
-      '治疗效率提升',
-    ],
-    skillStats: ['强攻', '压制', '巧技', '残暴', '附术', '迸发', '夜幕', '效益'],
-  },
-  '重度能量淤积点·供能高地': {
-    battleId: '重度能量淤积点·供能高地',
-    battleName: '重度能量淤积点·供能高地',
-    imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv007_1.webp',
-    secondaryStats: [
-      '攻击提升',
-      '生命提升',
-      '物理伤害提升',
-      '灼热伤害提升',
-      '自然伤害提升',
-      '暴击率提升',
-      '源石技艺提升',
-      '治疗效率提升',
-    ],
-    skillStats: ['追袭', '粉碎', '昂扬', '残暴', '附术', '医疗', '切骨', '流转'],
-  },
-  '重度能量淤积点·武陵城': {
-    battleId: '重度能量淤积点·武陵城',
-    battleName: '重度能量淤积点·武陵城',
-    imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv002_1.webp',
-    secondaryStats: [
-      '攻击提升',
-      '生命提升',
-      '电磁伤害提升',
-      '寒冷伤害提升',
-      '暴击率提升',
-      '终结技充能效率提升',
-      '法术伤害提升',
-      '治疗效率提升',
-    ],
-    skillStats: ['强攻', '粉碎', '残暴', '医疗', '切骨', '迸发', '夜幕', '流转'],
-  },
-  '重度能量淤积点·清波寨': {
-    battleId: '重度能量淤积点·清波寨',
-    battleName: '重度能量淤积点·清波寨',
-    imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.webp',
-    secondaryStats: [
-      '生命提升',
-      '物理伤害提升',
-      '电磁伤害提升',
-      '寒冷伤害提升',
-      '源石技艺提升',
-      '终结技充能效率提升',
-      '法术伤害提升',
-      '治疗效率提升',
-    ],
-    skillStats: ['压制', '粉碎', '昂扬', '巧技', '医疗', '切骨', '迸发', '夜幕'],
-  },
-  '重度能量淤积点·首墩': {
-    battleId: '重度能量淤积点·首墩',
-    battleName: '重度能量淤积点·首墩',
-    imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv004_1.webp',
-    secondaryStats: [
-      '攻击提升',
-      '物理伤害提升',
-      '灼热伤害提升',
-      '电磁伤害提升',
-      '自然伤害提升',
-      '暴击率提升',
-      '终结技充能效率提升',
-      '法术伤害提升',
-    ],
-    skillStats: ['强攻', '追袭', '昂扬', '残暴', '附术', '夜幕', '流转', '效益'],
-  },
-};
+/** 能量淤积点信息（由 scripts/makeWeapons.ts 自动生成） */
+export const energyAlluviums: Record<string, EnergyAlluvium> = rawEnergyAlluviums;
 
 /** 武器类型 */
 export const weaponTypes = ['单手剑', '双手剑', '长柄武器', '手铳', '施术单元'];
@@ -219,5 +100,5 @@ export const weaponTypeToGroupIconId: Record<string, string> = {
 /** 武器稀有度 */
 export const rarityLevels = [3, 4, 5, 6];
 
-/** 武器预设 */
+/** 武器预设（由 scripts/makeWeapons.ts 自动生成） */
 export const weapons: Record<string, WeaponPreset> = rawWeapons;
