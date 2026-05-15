@@ -240,9 +240,9 @@ for (const poolInfo of PoolInfoTable) {
 export {
   calculatorDailyReward,
   createVersionDailyReward,
-  updateFreeMonthlyPass,
   dailyAllRewardTable,
   dailyReward,
   poolStartDate,
+  updateFreeMonthlyPass,
   weekTaskReward,
 };
