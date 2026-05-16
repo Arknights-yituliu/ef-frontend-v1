@@ -78,7 +78,7 @@ function filterRewardByVersion(type: string, version: any) {
 
   const result2: RewardStatisticsResultDetail = {
     name: '月卡',
-    originiumRecharge: 12,
+    originiumRecharge:numberFloor( (12/30) * daysDiff,0),
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
@@ -88,7 +88,7 @@ function filterRewardByVersion(type: string, version: any) {
 
   const result3: RewardStatisticsResultDetail = {
     name: '月卡+通行证',
-    originiumRecharge: 12 + 36,
+    originiumRecharge:numberFloor( (12/30) * daysDiff,0) + 36,
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
