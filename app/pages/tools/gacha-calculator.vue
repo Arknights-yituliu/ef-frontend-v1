@@ -554,8 +554,8 @@ function rechargeResourceStatistics(): void {
   if (rechargeResources.value.monthlyPass) {
     const monthlyPack = packs['月卡'];
     if (monthlyPack) {
-      result.originiumRecharge += 12; // 一次性12源石
-      result.diamond += remainingDays * 200; // 每天200嵌晶玉
+      result.originiumRecharge += numberFloor( (12/30) * remainingDays,0); // 一次性12源石
+      result.diamond += numberFloor( remainingDays,0) * 200; // 每天200嵌晶玉
     }
   }
 
@@ -1233,6 +1233,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               >{{ option.name }}<br />{{ option.dateText }}
             </v-btn>
 
+            当前时间：{{ dateFormat(poolStartDate) }}
             <div class="gacha-calculator-warning">
               《春晓时》资源尚在更新中，结果仅供参考，切勿轻信本站！
             </div>
