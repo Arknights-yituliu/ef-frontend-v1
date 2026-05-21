@@ -44,7 +44,7 @@ filterRewardByVersion('all', versionTable[2]);
         </tr>
       </tbody>
     </table>
-    <table>
+    <table class="version-reward-result-table">
       <thead>
         <td>氪度</td>
         <td>衍质源石</td>
@@ -80,6 +80,15 @@ filterRewardByVersion('all', versionTable[2]);
   border-collapse: collapse;
   td {
     padding: 4px 8px;
+  }
+}
+
+.version-reward-result-table {
+  margin: auto;
+  border-collapse: collapse;
+
+  td,th {
+    border: 1px solid #000;
   }
 }
 </style>

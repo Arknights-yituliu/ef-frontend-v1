@@ -78,7 +78,7 @@ function filterRewardByVersion(type: string, version: any) {
 
   const result2: RewardStatisticsResultDetail = {
     name: '月卡',
-    originiumRecharge:numberFloor( (12/30) * daysDiff,0),
+    originiumRecharge: numberFloor((12 / 30) * daysDiff, 0),
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
@@ -88,7 +88,7 @@ function filterRewardByVersion(type: string, version: any) {
 
   const result3: RewardStatisticsResultDetail = {
     name: '月卡+通行证',
-    originiumRecharge:numberFloor( (12/30) * daysDiff,0) + 36,
+    originiumRecharge: numberFloor((12 / 30) * daysDiff, 0) + 36,
     diamond: numberFloor(daysDiff) * 200,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
@@ -108,13 +108,9 @@ function filterRewardByVersion(type: string, version: any) {
     }
   }
 
-  
   for (const reward of currentVersionReward.value) {
     result1.originiumRecharge += reward.content.originiumRecharge;
-    const tmp = result1.diamond+1;
     result1.diamond += reward.content.diamond;
-    
-    console.log("增加前", tmp, "增加",reward.name.zh, reward.content.diamond, "增加后", result1.diamond);
     result1.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
     result1.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
     result1.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
@@ -144,4 +140,87 @@ function filterRewardByVersion(type: string, version: any) {
   // 计算并设置高度
 }
 
-export { currentVersionReward, currentVersionRewardTotal, filterRewardByVersion, versionTable };
+
+const passPack:Reward = {
+    id: 'pass_pack',
+    name: {
+      zh: '通行证',
+      en: ''
+    },
+    start: new Date(),
+    end: new Date('2099/12/31 00:00:00'),
+    type: '通用',
+    module: '通行证',
+    active: true,
+    version: '',
+    content: {
+      originiumRecharge: 36,
+      diamond: 0,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0
+    }
+  };
+
+// 月卡奖励模板（需传入天数差使用）
+function createMonthlyPackReward(daysDiff: number): Reward {
+  return {
+    id: 'monthly_pack',
+    name: {
+      zh: '月卡',
+      en: ''
+    },
+    start: new Date(),
+    end: new Date('2099/12/31 00:00:00'),
+    type: '通用',
+    module: '月卡',
+    active: true,
+    version: '',
+    content: {
+      originiumRecharge: numberFloor((12 / 30) * daysDiff, 0),
+      diamond: numberFloor(daysDiff) * 200,
+      ticketgachaStandardSingle: 0,
+      ticketgachaSpecialSingle: 0,
+      ticketgachaLimitedSingle: 0
+    }
+  };
+}
+
+function rewardTotalCalc(rewardList: Reward[], rechargeReward: Reward[], name: string) {
+  const result: RewardStatisticsResultDetail = {
+    name: name,
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+    totalPulls: 0,
+  };
+
+  // 合并rewardList和rechargeReward
+  const mergedRewards = [...rewardList, ...rechargeReward];
+
+  // 遍历合并后的奖励列表进行计算
+  for (const reward of mergedRewards) {
+    result.originiumRecharge += reward.content.originiumRecharge;
+    result.diamond += reward.content.diamond;
+    result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
+    result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
+    result.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
+  }
+}
+
+const allVersionReward = ref<Reward[]>([]);
+for (const reward of versionReward) {
+  if (reward.module !== '标题') {
+    allVersionReward.value.push(reward);
+  }
+}
+
+export {
+  currentVersionReward,
+  currentVersionRewardTotal,
+  allVersionReward,
+  filterRewardByVersion,
+  versionTable,
+};

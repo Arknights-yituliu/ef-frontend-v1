@@ -58,6 +58,25 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
+  }, {
+    "id": "wuling_regional_stock_bill_store_reward_20260417",
+    "name": {
+      "zh": "武陵·调度券商店",
+      "en": ""
+    },
+    "start": "2026/05/14 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 1,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
   },
   {
     "id": "武陵城地图",
@@ -73,7 +92,7 @@
     "version": "零号委托",
     "content": {
       "originiumRecharge": 5,
-      "diamond": 8555,
+      "diamond": 7655,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -94,7 +113,7 @@
     "version": "零号委托",
     "content": {
       "originiumRecharge": 2,
-      "diamond": 2105,
+      "diamond": 2005,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -115,7 +134,7 @@
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 2,
-      "diamond": 1315,
+      "diamond": 1265,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
