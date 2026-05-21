@@ -188,7 +188,7 @@ function createMonthlyPackReward(daysDiff: number): Reward {
 
 function rewardTotalCalc(rewardList: Reward[], rechargeReward: Reward[], name: string) {
   const result: RewardStatisticsResultDetail = {
-    name: name,
+    name,
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
@@ -218,9 +218,9 @@ for (const reward of versionReward) {
 }
 
 export {
+  allVersionReward,
   currentVersionReward,
   currentVersionRewardTotal,
-  allVersionReward,
   filterRewardByVersion,
   versionTable,
 };
