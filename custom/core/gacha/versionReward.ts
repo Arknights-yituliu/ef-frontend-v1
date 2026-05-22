@@ -93,7 +93,7 @@ for (const reward of activityReward.value) {
   }
 }
 
-let sklandRewardGroupByVersion = groupAndMergeRewardsByVersion('森空岛签到',sklandRewards);
+const sklandRewardGroupByVersion = groupAndMergeRewardsByVersion('森空岛签到',sklandRewards);
 console.log(sklandRewardGroupByVersion);
 for (const reward of sklandRewardGroupByVersion) {
   versionReward.push(reward);
