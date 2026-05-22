@@ -16,6 +16,14 @@ import {
 const currentVersion = ref<VersionTableItem>(versionTable[3] as VersionTableItem);
 filterRewardByVersion('version', currentVersion.value);
 
+const rewardItemGroupHeightMin = 800;
+const rewardItemGroupHeightMax = 2600;
+const rewardItemGroupHeightStep = 20;
+
+function getDefaultRewardItemGroupHeight() {
+  return Math.ceil((currentVersionReward.value.length / 2) * 80 + 3 * 80 + 80);
+}
+
 /**
  * 生成 #rewards-area 的动态背景样式
  * 根据 currentVersion.primaryColor 动态设置渐变的第二个颜色
@@ -103,7 +111,12 @@ const controlPanel = ref({
   updateDate: dateFormat(new Date()),
   otherInfo: '施工中，非版本完整资源，部分资源为保守估算，仅供参考',
   kvImage: 'https://cos.yituliu.cn/endfield/other/kv-v1.1.webp',
+  rewardItemGroupHeight: getDefaultRewardItemGroupHeight(),
 });
+
+const rewardItemGroupStyle = computed(() => ({
+  height: `${controlPanel.value.rewardItemGroupHeight}px`,
+}));
 
 // 组件挂载时从localStorage读取保存的数据
 onMounted(() => {
@@ -154,6 +167,14 @@ onMounted(() => {
       if (savedOtherInfo) {
         console.log('读取到其他说明:', savedOtherInfo);
         controlPanel.value.otherInfo = savedOtherInfo;
+      }
+
+      const savedRewardItemGroupHeight = Number(
+        localStorage.getItem('version-reward-item-group-height'),
+      );
+      if (Number.isFinite(savedRewardItemGroupHeight) && savedRewardItemGroupHeight > 0) {
+        console.log('读取到奖励项区域高度:', savedRewardItemGroupHeight);
+        controlPanel.value.rewardItemGroupHeight = savedRewardItemGroupHeight;
       }
     } catch (error) {
       console.error('从localStorage读取数据失败:', error);
@@ -221,6 +242,24 @@ watch(
     }
   },
 );
+
+watch(
+  () => controlPanel.value.rewardItemGroupHeight,
+  (newValue) => {
+    if (typeof localStorage !== 'undefined') {
+      try {
+        localStorage.setItem('version-reward-item-group-height', String(newValue));
+        console.log('✓ 奖励项区域高度已保存到localStorage');
+      } catch (error) {
+        console.error('✗ 保存奖励项区域高度到localStorage失败:', error);
+      }
+    }
+  },
+);
+
+function resetRewardItemGroupHeight() {
+  controlPanel.value.rewardItemGroupHeight = getDefaultRewardItemGroupHeight();
+}
 
 // 图片上传处理
 function handleImageUpload(event: Event) {
@@ -311,10 +350,10 @@ function handleImageUpload(event: Event) {
       }
     });
 
-    img.onerror = () => {
+    img.addEventListener('error', () => {
       console.error('图片加载失败');
       alert('图片加载失败，请尝试其他图片。');
-    };
+    });
 
     img.src = URL.createObjectURL(file);
   } else {
@@ -323,24 +362,6 @@ function handleImageUpload(event: Event) {
   console.log('=== handleImageUpload 执行结束 ===');
 }
 
-// 计算版本奖励组的高度
-function calculateRewardItemGroupHeight() {
-  const height = (currentVersionReward.value.length / 2) * 80 + 3 * 80 + 80;
-  const rewardItemGroup = document.querySelector('#version-reward-item-group') as HTMLElement;
-  console.log('版本奖励组元素:', rewardItemGroup);
-  if (rewardItemGroup === null) {
-    console.error('未找到版本奖励组元素');
-    return;
-  }
-  console.log('计算高度:', height);
-
-  rewardItemGroup.style.height = `${height}px`;
-}
-
-// 在组件挂载后计算高度
-onMounted(() => {
-  calculateRewardItemGroupHeight();
-});
 </script>
 <template>
   <div class="version-reward-diy-container">
@@ -374,7 +395,11 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div id="version-reward-item-group" class="version-reward-item-group">
+        <div
+          id="version-reward-item-group"
+          class="version-reward-item-group"
+          :style="rewardItemGroupStyle"
+        >
           <template v-for="(rewards, module) in groupedRewards" :key="module">
             <!-- 分组标题 -->
             <div class="version-reward-module-title">{{ module }}</div>
@@ -593,6 +618,30 @@ onMounted(() => {
       <div class="control-item">
         <label>其他说明</label>
         <textarea v-model="controlPanel.otherInfo" placeholder="请输入其他说明" rows="4"></textarea>
+      </div>
+
+      <div class="control-item">
+        <label>奖励项区域高度</label>
+        <div class="height-control">
+          <input
+            v-model.number="controlPanel.rewardItemGroupHeight"
+            :max="rewardItemGroupHeightMax"
+            :min="rewardItemGroupHeightMin"
+            :step="rewardItemGroupHeightStep"
+            type="range"
+          />
+          <div class="height-control-row">
+            <input
+              v-model.number="controlPanel.rewardItemGroupHeight"
+              :max="rewardItemGroupHeightMax"
+              :min="rewardItemGroupHeightMin"
+              :step="rewardItemGroupHeightStep"
+              type="number"
+            />
+            <span class="height-unit">px</span>
+            <button type="button" @click="resetRewardItemGroupHeight">自动高度</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1000,6 +1049,7 @@ onMounted(() => {
 
 .control-item input[type='text'],
 .control-item input[type='date'],
+.control-item input[type='number'],
 .control-item textarea {
   width: 100%;
   padding: 10px;
@@ -1033,6 +1083,42 @@ onMounted(() => {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.height-control {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.height-control input[type='range'] {
+  width: 100%;
+}
+
+.height-control-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.height-unit {
+  color: #555;
+  font-size: 14px;
+}
+
+.height-control button {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fffa00;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.height-control button:hover {
+  border-color: #333;
 }
 
 /* ========== 4. 颜色工具类 ========== */
