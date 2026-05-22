@@ -14,25 +14,6 @@
         <span class="title-text">{{ $t('docs.siteTitle') }}</span>
       </header>
 
-      <!-- 扫描线 SVG 动画 -->
-      <svg class="header-scanline" preserveAspectRatio="none" viewBox="0 0 100 100">
-        <defs>
-          <linearGradient id="scanline-gradient-docs" x1="0%" x2="0%" y1="0%" y2="100%">
-            <stop offset="0%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
-            <stop offset="50%" style="stop-color: var(--theme-accent-color); stop-opacity: 0.3" />
-            <stop offset="100%" style="stop-color: var(--theme-accent-color); stop-opacity: 0" />
-          </linearGradient>
-        </defs>
-        <rect
-          class="scanline-rect"
-          fill="url(#scanline-gradient-docs)"
-          height="2"
-          width="100"
-          x="0"
-          y="0"
-        />
-      </svg>
-
       <!-- 移动端菜单按钮（左侧） -->
       <button
         :aria-label="$t('docs.toggleSidebar')"
@@ -332,40 +313,6 @@ onUnmounted(() => {
     transparent
   );
   background-size: 0.5rem 0.5rem;
-}
-
-/* SVG 扫描线动画 */
-.header-scanline {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: visible;
-}
-
-.scanline-rect {
-  animation: scanlineMove 3s ease-in-out infinite;
-  transform-origin: center;
-}
-
-@keyframes scanlineMove {
-  0% {
-    y: -2;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    y: 100;
-    opacity: 0;
-  }
 }
 
 /* 移动端菜单按钮 */
