@@ -48,7 +48,7 @@
     "start": "2026/03/20 12:00:00",
     "end": "2026/03/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "新潮起·故渊离",
     "content": {
@@ -108,7 +108,7 @@
     "start": "2026/04/20 12:00:00",
     "end": "2026/04/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "春晓时",
     "content": {
@@ -168,7 +168,7 @@
     "start": "2026/05/20 12:00:00",
     "end": "2026/05/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "春晓时",
     "content": {
@@ -228,7 +228,7 @@
     "start": "2026/06/20 12:00:00",
     "end": "2026/06/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "寻遗散记",
     "content": {
@@ -288,7 +288,7 @@
     "start": "2026/07/20 12:00:00",
     "end": "2026/07/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "未来版本",
     "content": {
@@ -348,7 +348,7 @@
     "start": "2026/08/20 12:00:00",
     "end": "2026/08/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "未来版本",
     "content": {
@@ -408,7 +408,7 @@
     "start": "2026/09/20 12:00:00",
     "end": "2026/09/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "未来版本",
     "content": {
@@ -468,7 +468,7 @@
     "start": "2026/10/20 12:00:00",
     "end": "2026/10/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "未来版本",
     "content": {
@@ -528,7 +528,7 @@
     "start": "2026/11/20 12:00:00",
     "end": "2026/11/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "未来版本",
     "content": {
@@ -588,7 +588,7 @@
     "start": "2026/12/20 12:00:00",
     "end": "2026/12/20 12:00:00",
     "type": "通用",
-    "module": "维护",
+    "module": "其他",
     "active": false,
     "version": "未来版本",
     "content": {
