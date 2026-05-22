@@ -80,7 +80,22 @@ for (const reward of dailyAllRewardTable.value) {
   versionReward.push(reward);
 }
 
+/**
+ * 临时保存 id 包含"森空岛"的奖励，暂不插入 versionReward
+ */
+const sklandRewards: Reward[] = [];
+
 for (const reward of activityReward.value) {
+  if (reward.id.includes('森空岛签到')) {
+    sklandRewards.push(reward);
+  } else {
+    versionReward.push(reward);
+  }
+}
+
+let sklandRewardGroupByVersion = groupAndMergeRewardsByVersion('森空岛签到',sklandRewards);
+console.log(sklandRewardGroupByVersion);
+for (const reward of sklandRewardGroupByVersion) {
   versionReward.push(reward);
 }
 
