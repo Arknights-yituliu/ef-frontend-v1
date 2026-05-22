@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { dateFormat } from '#shared/utils/dateUtil';
 import type { Reward } from '#shared/types/gacha-calculator';
+import { dateFormat } from '#shared/utils/dateUtil';
 
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 
-import { onMounted, ref, watch, computed } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import {
   currentVersionReward,
   currentVersionRewardTotal,
