@@ -1,5 +1,5 @@
 import type { Reward, RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
-import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
+import { calculateDaysDifference, groupAndMergeRewardsByVersion} from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
 import { onMounted, ref, watch } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
@@ -10,25 +10,64 @@ import {
   permanentRewardTable,
 } from '@/custom/core/gacha/permanentRewardV2';
 
+
+
 const versionReward: Reward[] = [];
 
 const currentVersionRewardTotal = ref<RewardStatisticsResultDetail[]>([]);
 
-const versionTable = [
+
+
+/**
+ * 版本表条目类型
+ */
+export interface VersionTableItem {
+  /** 版本开始日期 */
+  start: Date;
+  /** 版本结束日期 */
+  end: Date;
+  /** 主题色（rgba 格式） */
+  primaryColor: string;
+  /** 主题色半透明版（rgba 格式，用于渐变等场景） */
+  colorOpacity: string;
+  /** 重颜色（rgba 格式，比主题色更深的版本） */
+  heavyColor: string;
+  /** 版本名称 */
+  version: string;
+}
+
+const versionTable: VersionTableItem[] = [
   {
     start: new Date('2026/01/22 12:00:00'),
     end: new Date('2026/03/12 12:00:00'),
+    primaryColor: 'rgba(87, 224, 210,  1)',
+    colorOpacity: 'rgba(187, 224, 210,  0.3)',
+    heavyColor: 'rgba(57, 146, 137, 1)',
     version: '零号委托',
   },
   {
     start: new Date('2026/03/12 12:00:00'),
     end: new Date('2026/04/17 12:00:00'),
+    primaryColor: 'rgba(87, 224, 210,  1)',
+    colorOpacity: 'rgba(187, 224, 210,  0.3)',
+    heavyColor: 'rgba(57, 146, 137, 1)',
     version: '新潮起·故渊离',
   },
   {
     start: new Date('2026/04/17 12:00:00'),
     end: new Date('2026/06/05 12:00:00'),
+    primaryColor: 'rgba(87, 224, 210,  1)',
+    colorOpacity: 'rgba(187, 224, 210,  0.3)',
+    heavyColor: 'rgba(57, 146, 137, 1)',
     version: '春晓时',
+  },
+  {
+    start: new Date('2026/06/05 12:00:00'),
+    end: new Date('2026/07/17 12:00:00'),
+    primaryColor: 'rgba(193, 56, 89, 1)',
+    colorOpacity: 'rgba(193, 56, 89,  0.3)',
+    heavyColor: 'rgba(255, 215, 0, 1)',
+    version: '寻遗散记',
   },
 ];
 
@@ -53,7 +92,7 @@ versionReward.push(
 
 const currentVersionReward = ref<Reward[]>([]);
 
-function filterRewardByVersion(type: string, version: any) {
+function filterRewardByVersion(type: string, version: VersionTableItem) {
   const daysDiff = calculateDaysDifference(version.start, version.end);
 
   currentVersionRewardTotal.value = [];
@@ -140,27 +179,26 @@ function filterRewardByVersion(type: string, version: any) {
   // 计算并设置高度
 }
 
-
-const passPack:Reward = {
-    id: 'pass_pack',
-    name: {
-      zh: '通行证',
-      en: ''
-    },
-    start: new Date(),
-    end: new Date('2099/12/31 00:00:00'),
-    type: '通用',
-    module: '通行证',
-    active: true,
-    version: '',
-    content: {
-      originiumRecharge: 36,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0
-    }
-  };
+const passPack: Reward = {
+  id: 'pass_pack',
+  name: {
+    zh: '通行证',
+    en: '',
+  },
+  start: new Date(),
+  end: new Date('2099/12/31 00:00:00'),
+  type: '通用',
+  module: '通行证',
+  active: true,
+  version: '',
+  content: {
+    originiumRecharge: 36,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  },
+};
 
 // 月卡奖励模板（需传入天数差使用）
 function createMonthlyPackReward(daysDiff: number): Reward {
@@ -168,7 +206,7 @@ function createMonthlyPackReward(daysDiff: number): Reward {
     id: 'monthly_pack',
     name: {
       zh: '月卡',
-      en: ''
+      en: '',
     },
     start: new Date(),
     end: new Date('2099/12/31 00:00:00'),
@@ -181,8 +219,8 @@ function createMonthlyPackReward(daysDiff: number): Reward {
       diamond: numberFloor(daysDiff) * 200,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
-      ticketgachaLimitedSingle: 0
-    }
+      ticketgachaLimitedSingle: 0,
+    },
   };
 }
 

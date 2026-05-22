@@ -5,10 +5,111 @@
       "zh": "玩家调研问卷",
       "en": ""
     },
+    "start": "2026/07/01 12:00:00",
+    "end": "2026/07/07 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 300,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "维护补偿",
+    "name": {
+      "zh": "维护补偿",
+      "en": ""
+    },
+    "start": "2026/06/26 12:00:00",
+    "end": "2026/07/01 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  
+  {
+    "id": "问题修复补偿6.5",
+    "name": {
+      "zh": "问题修复补偿6.5",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2026/06/17 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 900,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "版本更新6.5",
+    "name": {
+      "zh": "版本更新6.5",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2026/07/17 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": true,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 900,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "版本前瞻直播奖励",
+    "name": {
+      "zh": "版本前瞻直播奖励",
+      "en": ""
+    },
+    "start": "2026/05/22 12:00:00",
+    "end": "2026/05/29 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "玩家调研问卷",
+    "name": {
+      "zh": "玩家调研问卷",
+      "en": ""
+    },
     "start": "2026/05/12 12:00:00",
     "end": "2026/05/19 12:00:00",
     "type": "通用",
-    "module": "问卷",
+    "module": "其他",
     "active": false,
     "version": "春晓时",
     "content": {
@@ -39,7 +140,7 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-   {
+  {
     "id": "维护补偿",
     "name": {
       "zh": "维护补偿",
@@ -128,7 +229,7 @@
     "start": "2026/04/07 12:00:00",
     "end": "2026/04/14 12:00:00",
     "type": "通用",
-    "module": "问卷",
+    "module": "其他",
     "active": false,
     "version": "新潮起·故渊离",
     "content": {
@@ -268,7 +369,7 @@
     "start": "2026/02/26 12:00:00",
     "end": "2026/03/05 12:00:00",
     "type": "通用",
-    "module": "问卷",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -288,7 +389,7 @@
     "start": "2026/02/14 12:00:00",
     "end": "2026/02/21 12:00:00",
     "type": "通用",
-    "module": "问卷",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -388,7 +489,7 @@
     "start": "2026/01/28 12:00:00",
     "end": "2026/02/04 12:00:00",
     "type": "通用",
-    "module": "问卷",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -488,7 +589,7 @@
     "start": "2026/01/24 12:00:00",
     "end": "2026/01/31 12:00:00",
     "type": "通用",
-    "module": "问卷",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -536,7 +637,7 @@
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 10,
-       "ticketgachaLimitedSingle": 0
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -548,7 +649,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2026/01/29 12:00:00",
     "type": "通用",
-    "module": "问卷",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {

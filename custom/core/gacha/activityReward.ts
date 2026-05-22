@@ -5,8 +5,9 @@ import { ref } from 'vue';
 import OtherRewardTableJson from '@/custom/core/gacha/data/activity_other_reward_table.json';
 import ActivityRewardTable from '@/custom/core/gacha/data/activity_reward_table.json';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
+import sklandSignInTable from '@/custom/core/gacha/data/skland_sign_in_table.json';
 
-const currentVersion = '春晓时';
+const currentVersion = '寻遗散记';
 
 const activityReward = ref<Reward[]>([]);
 
@@ -31,6 +32,17 @@ for (const reward of OtherRewardTableJson as Reward[]) {
   }
   activityReward.value.push(reward);
 }
+
+for (const reward of sklandSignInTable as Reward[]) {
+  reward.start = new Date(reward.start);
+  reward.end = new Date(reward.end);
+  reward.active = currentVersion === reward.version;
+  if (reward.start.getTime() < Date.now()) {
+    reward.active = false;
+  }
+  activityReward.value.push(reward);
+}
+
 
 export { activityReward };
 

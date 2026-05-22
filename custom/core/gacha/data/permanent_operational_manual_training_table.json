@@ -1,5 +1,25 @@
 [
   {
+    "id": "危境碎片",
+    "name": {
+      "zh": "危境碎片",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册",
+    "active": true,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "能量淤积点首通20260417",
     "name": {
       "zh": "能量淤积点首通",

@@ -82,5 +82,29 @@
     "version": "春晓时",
     "combatDrills": false,
     "narrative": false
+  },
+  {
+    "poolName": "弭弗",
+    "character": "消弗",
+    "poolStart": "2026/06/05 12:00:00",
+    "poolEnd": "2026/06/26 12:00:00",
+    "poolDateStr": "0605-0626",
+    "versionStart": "2026/06/05 12:00:00",
+    "versionEnd": "2026/07/17 12:00:00",
+    "version": "寻遗散记",
+    "combatDrills": true,
+    "narrative": true
+  },
+  {
+    "poolName": "卡缪",
+    "character": "卡缪",
+    "poolStart": "2026/06/26 12:00:00",
+    "poolEnd": "2026/07/17 12:00:00",
+    "poolDateStr": "0626-0717",
+    "versionStart": "2026/06/26 12:00:00",
+    "versionEnd": "2026/07/17 12:00:00",
+    "version": "寻遗散记",
+    "combatDrills": true,
+    "narrative": true
   }
 ]

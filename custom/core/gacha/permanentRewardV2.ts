@@ -17,7 +17,7 @@ import wulingTaskTable from '@/custom/core/gacha/data/permanent_wuling_task_tabl
 
 
 
-const currentVersion = '春晓时';
+const currentVersion = '寻遗散记';
 
 const permanentRewardTable = ref<Reward[]>([]);
 const archivePermanentRewardTable = ref<Reward[]>([]);

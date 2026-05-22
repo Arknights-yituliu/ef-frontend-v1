@@ -58,7 +58,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "wuling_regional_stock_bill_store_reward_20260417",
     "name": {
       "zh": "武陵·调度券商店",
@@ -70,6 +71,26 @@
     "module": "地区探索与建设",
     "active": false,
     "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 1,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+   {
+    "id": "wuling_regional_stock_bill_store_reward_20260605",
+    "name": {
+      "zh": "武陵·调度券商店",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "寻遗散记",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -205,6 +226,27 @@
     "tips": ["包含储藏箱、机器人和处理险情"]
   },
   {
+    "id": "藏剑谷地图（预估）",
+    "name": {
+      "zh": "藏剑谷地图（预估）",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 1400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },
+  {
     "id": "武陵·地区建设等级1-6",
     "name": {
       "zh": "武陵·地区建设等级1-6",
@@ -283,6 +325,25 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
+  }, {
+    "id": "武陵·地区建设等级15-18",
+    "name": {
+      "zh": "武陵·地区建设等级15-18",
+      "en": ""
+    },
+    "start": "2026/05/14 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
   },
   {
     "id": "武陵·醚质阶段1-8",
@@ -338,6 +399,26 @@
     "version": "春晓时",
     "content": {
       "originiumRecharge": 12,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "武陵·醚质阶段14",
+    "name": {
+      "zh": "武陵·醚质阶段14",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 3,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,

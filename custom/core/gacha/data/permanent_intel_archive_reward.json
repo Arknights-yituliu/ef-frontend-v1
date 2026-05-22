@@ -1,5 +1,25 @@
 [
-   {
+  {
+    "id": "档案采集",
+    "name": {
+      "zh": "档案采集",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": true,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "档案采集·首墩环境",
     "name": {
       "zh": "档案采集·首墩环境",
@@ -8,7 +28,7 @@
     "start": "2026/04/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": true,
     "version": "春晓时",
     "content": {
@@ -18,7 +38,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "档案采集·“打潮鞭”项目调查报告",
     "name": {
       "zh": "档案采集·“打潮鞭”项目调查报告",
@@ -27,7 +48,7 @@
     "start": "2026/04/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": true,
     "version": "春晓时",
     "content": {
@@ -37,7 +58,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "档案采集·清波寨",
     "name": {
       "zh": "档案采集·清波寨",
@@ -46,7 +68,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "新潮起·故渊离",
     "content": {
@@ -56,7 +78,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "档案采集·天使",
     "name": {
       "zh": "档案采集·天使",
@@ -65,7 +88,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -85,7 +108,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -105,7 +128,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -125,7 +148,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -145,7 +168,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -165,7 +188,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -185,7 +208,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -205,7 +228,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "情报档案库",
+    "module": "其他",
     "active": false,
     "version": "零号委托",
     "content": {

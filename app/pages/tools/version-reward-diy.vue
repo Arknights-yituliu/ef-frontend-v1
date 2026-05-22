@@ -1,14 +1,100 @@
 <script setup lang="ts">
-
-
 import { dateFormat } from '#shared/utils/dateUtil';
+import type { Reward } from '#shared/types/gacha-calculator';
 
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
 
-import { onMounted, ref, watch } from 'vue';
-import { currentVersionReward, currentVersionRewardTotal,filterRewardByVersion,versionTable } from '@/custom/core/gacha/versionReward';
+import { onMounted, ref, watch, computed } from 'vue';
+import {
+  currentVersionReward,
+  currentVersionRewardTotal,
+  filterRewardByVersion,
+  versionTable,
+  type VersionTableItem,
+} from '@/custom/core/gacha/versionReward';
 
-filterRewardByVersion('version',versionTable[2]);
+const currentVersion = ref<VersionTableItem>(versionTable[3] as VersionTableItem);
+filterRewardByVersion('version', currentVersion.value);
+
+/**
+ * 生成 #rewards-area 的动态背景样式
+ * 根据 currentVersion.primaryColor 动态设置渐变的第二个颜色
+ */
+const rewardsAreaStyle = computed(() => {
+  const secondColor = currentVersion.value.primaryColor || 'rgba(87, 224, 210, 1)';
+  return {
+    background: `linear-gradient(
+      to bottom,
+      rgba(255, 250, 0, 0) 0%,
+      ${secondColor} 200px,
+      rgba(216, 216, 216, 0.8) 720px,
+      rgba(216, 216, 216, 0)
+    )`,
+  };
+});
+
+/**
+ * 生成 #version-reward-footer 的动态背景样式
+ * 根据 currentVersion.primaryColor 和 currentVersion.colorOpacity 动态设置渐变
+ */
+const footerStyle = computed(() => {
+  const primaryColor = currentVersion.value.primaryColor || 'rgba(121, 13, 26, 1)';
+  const opacityColor = currentVersion.value.colorOpacity || 'rgba(121, 13, 26, 0.3)';
+  return {
+    background: `linear-gradient(to right, ${primaryColor}, ${opacityColor})`,
+  };
+});
+
+/**
+ * 模块分组显示顺序
+ * 按数组顺序排列，未列出的模块自动追加到末尾
+ */
+const moduleOrder = ref([
+  '日常',
+  '活动',
+  '地区探索与建设',
+  '主线任务',
+  '重要任务',
+  '次要任务',
+  '支线任务',
+  '通行证',
+  '月卡',
+  '权限等阶提升',
+  '行动手册',
+  '常驻活动',
+  '蚀刻空间',
+  '地区建设',
+  '地区探索',
+  '模拟奖励',
+  '探索等级',
+  '节点手册',
+]);
+
+/**
+ * 按 module 分组 currentVersionReward，并按 moduleOrder 排序
+ */
+const groupedRewards = computed(() => {
+  const groups: Record<string, Reward[]> = {};
+  for (const reward of currentVersionReward.value) {
+    const module = reward.module || '其他';
+    if (!groups[module]) {
+      groups[module] = [];
+    }
+    groups[module]!.push(reward);
+  }
+  const sorted: Record<string, Reward[]> = {};
+  for (const key of moduleOrder.value) {
+    if (groups[key]) {
+      sorted[key] = groups[key];
+    }
+  }
+  for (const key of Object.keys(groups)) {
+    if (!moduleOrder.value.includes(key)) {
+      sorted[key] = groups[key] || [];
+    }
+  }
+  return sorted;
+});
 
 // 控制台数据 - 初始化时使用默认图片
 const controlPanel = ref({
@@ -182,7 +268,7 @@ function handleImageUpload(event: Event) {
         '压缩后数据长度:',
         compressedDataUrl.length,
         '约',
-        numberRound(compressedDataUrl.length / 1024 / 1024,2),
+        numberRound(compressedDataUrl.length / 1024 / 1024, 2),
         'MB',
       );
 
@@ -211,7 +297,7 @@ function handleImageUpload(event: Event) {
               '更低保真压缩后数据长度:',
               lowerQuality.length,
               '约',
-              numberRound(lowerQuality.length / 1024 / 1024,2),
+              numberRound(lowerQuality.length / 1024 / 1024, 2),
               'MB',
             );
             localStorage.setItem('version-reward-kv-image', lowerQuality);
@@ -239,7 +325,7 @@ function handleImageUpload(event: Event) {
 
 // 计算版本奖励组的高度
 function calculateRewardItemGroupHeight() {
-  const height = (currentVersionReward.value.length / 2) * 76 + 80;
+  const height = (currentVersionReward.value.length / 2) * 80 + 3 * 80 + 80;
   const rewardItemGroup = document.querySelector('#version-reward-item-group') as HTMLElement;
   console.log('版本奖励组元素:', rewardItemGroup);
   if (rewardItemGroup === null) {
@@ -267,7 +353,7 @@ onMounted(() => {
         <img alt="Map Background" src="~/assets/svg/map-bg.svg" />
       </div>
       <!-- 内容区 -->
-      <div id="rewards-area">
+      <div id="rewards-area" :style="rewardsAreaStyle">
         <div id="title-area">
           <!-- 大标题 -->
           <div class="title-background"></div>
@@ -289,58 +375,66 @@ onMounted(() => {
           </div>
         </div>
         <div id="version-reward-item-group" class="version-reward-item-group">
-          <div v-for="reward in currentVersionReward" :key="reward.id" class="version-reward-item">
-            <div>
-              <!-- <div class="version-reward-item-bar red-bar"></div> -->
-              <div class="version-reward-item-bar yellow-bar"></div>
-              <!-- <div class="version-reward-item-bar blue-bar"></div> -->
+          <template v-for="(rewards, module) in groupedRewards" :key="module">
+            <!-- 分组标题 -->
+            <div class="version-reward-module-title">{{ module }}</div>
+            <!-- 分组内的奖励项 -->
+            <div v-for="reward in rewards" :key="reward.id" class="version-reward-item">
+              <div>
+                <!-- <div class="version-reward-item-bar red-bar"></div> -->
+                <div class="version-reward-item-bar yellow-bar"></div>
+                <!-- <div class="version-reward-item-bar blue-bar"></div> -->
+              </div>
+              <div class="version-reward-item-name">{{ reward.name.zh }}</div>
+              <div
+                v-show="reward.content.originiumRecharge > 0"
+                class="version-reward-item-content"
+              >
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                />× {{ reward.content.originiumRecharge }}
+              </div>
+              <div v-show="reward.content.diamond > 0" class="version-reward-item-content">
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                />× {{ numberFloor(reward.content.diamond, 0) }}
+              </div>
+              <div
+                v-show="reward.content.ticketgachaStandardSingle > 0"
+                class="version-reward-item-content"
+              >
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                />× {{ reward.content.ticketgachaStandardSingle }}
+              </div>
+              <div
+                v-show="reward.content.ticketgachaSpecialSingle > 0"
+                class="version-reward-item-content"
+              >
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                />× {{ reward.content.ticketgachaSpecialSingle }}
+              </div>
+              <div
+                v-show="reward.content.ticketgachaLimitedSingle > 0"
+                class="version-reward-item-content"
+              >
+                <img
+                  alt="existing"
+                  class="version-reward-item-icon"
+                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                />× {{ reward.content.ticketgachaLimitedSingle }}
+              </div>
             </div>
-            <div class="version-reward-item-name">{{ reward.name.zh }}</div>
-            <div v-show="reward.content.originiumRecharge > 0" class="version-reward-item-content">
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-              />× {{ reward.content.originiumRecharge }}
-            </div>
-            <div v-show="reward.content.diamond > 0" class="version-reward-item-content">
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-              />× {{ numberFloor(reward.content.diamond, 0) }}
-            </div>
-            <div
-              v-show="reward.content.ticketgachaStandardSingle > 0"
-              class="version-reward-item-content"
-            >
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
-              />× {{ reward.content.ticketgachaStandardSingle }}
-            </div>
-            <div
-              v-show="reward.content.ticketgachaSpecialSingle > 0"
-              class="version-reward-item-content"
-            >
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
-              />× {{ reward.content.ticketgachaSpecialSingle }}
-            </div>
-            <div
-              v-show="reward.content.ticketgachaLimitedSingle > 0"
-              class="version-reward-item-content"
-            >
-              <img
-                alt="existing"
-                class="version-reward-item-icon"
-                src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
-              />× {{ reward.content.ticketgachaLimitedSingle }}
-            </div>
-          </div>
+          </template>
         </div>
 
         <table style="display: none">
@@ -429,7 +523,9 @@ onMounted(() => {
         </table>
 
         <div id="shield" style="padding: 12px">
-          <p>数据由攒抽计算器自动生成，非当前版本完整奖励数据</p>
+          <p>
+            数据由攒抽计算器自动生成，非当前版本完整奖励数据，以往期版本经验来看版本末总结会再多5到10抽
+          </p>
           <p>
             抽卡资源以实际发放为准，本图片时效性较低，攒抽计算器将会持续修订更新资源，可能有错漏资源，欢迎反馈
           </p>
@@ -439,7 +535,7 @@ onMounted(() => {
         </div>
       </div>
       <!-- 页脚区 -->
-      <div id="version-reward-footer">
+      <div id="version-reward-footer" :style="footerStyle">
         <table class="footer-table">
           <tbody>
             <tr>
@@ -503,6 +599,13 @@ onMounted(() => {
 </template>
 
 <style>
+:root {
+  /* 深红褐色 */
+  --color-primary-red: #790d1a;
+  --color-primary-red-rgb: 121, 13, 26;
+  --color-primary-red-rgba: rgba(121, 13, 26, 1);
+}
+
 /* ========== 1. 容器 ========== */
 .version-reward-diy-container {
   display: flex;
@@ -666,6 +769,22 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
+/* 模块分组标题 */
+.version-reward-module-title {
+  font-size: 32px;
+  height: 64px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 12px;
+  background-color: rgb(32, 32, 32, 0.85);
+  color: #fffa00;
+  border-left: 8px solid #fffa00;
+  break-inside: avoid;
+  border-radius: 8px;
+}
+
 /* ========== 2.2.2.1 单个奖励项 ========== */
 .version-reward-item {
   font-size: 26px;
@@ -792,12 +911,24 @@ onMounted(() => {
   text-align: center;
 }
 
+#version-reward-footer-12 {
+  position: relative;
+  z-index: 1;
+  height: 144px;
+  background: linear-gradient(to right, rgba(87, 224, 210, 1), rgba(87, 224, 210, 0.3));
+  font-size: 28px;
+  font-weight: 600;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
 /* ========== 2.3 页脚区 ========== */
 #version-reward-footer {
   position: relative;
   z-index: 1;
   height: 144px;
-  background: linear-gradient(to right, rgba(87, 224, 210, 1), rgba(87, 224, 210, 0.3));
+  background: linear-gradient(to right, rgba(121, 13, 26, 1), rgba(121, 13, 26, 0.3));
   font-size: 28px;
   font-weight: 600;
   color: black;
