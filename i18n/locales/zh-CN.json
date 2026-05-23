@@ -404,8 +404,7 @@
       "essenceCalculator": {
         "title": "基质规划器",
         "demandSet": "需求设定",
-        "demandSetDescription1": "在此设定想要刷取的武器基质，顺序不会影响结果。",
-        "demandSetDescription2": "点击“+”按钮添加新的基质条目。",
+        "demandSetDescription": "需求的顺序不会影响结果。如果您想要优先刷取特定基质，请仅添加该基质的需求。",
         "attributeStats": "基础属性",
         "secondaryStats": "附加属性",
         "skillStats": "技能属性",
@@ -427,10 +426,11 @@
         "plan": "方案",
         "requirementsMet": "需求满足",
         "weaponsMatched": "武器匹配",
-        "planDescription": "该方案可满足 {count} 个需求，并且能匹配 {weaponCount} 件已实装武器。",
         "satisfiedRequirements": "满足的需求",
         "matchedWeapons": "匹配的武器",
-        "showMorePlans": "显示更多方案（{count} 个）"
+        "showMorePlans": "显示更多方案（{count} 个）",
+        "showCharWeapon": "显示干员专武",
+        "charWeaponTooltip": "来自游戏内武器推荐，取“技能适配”的首件武器，仅供参考"
       },
       "gachaCalculator": {
         "standard": "基础",

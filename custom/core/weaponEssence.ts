@@ -1,5 +1,6 @@
 import rawEnergyAlluviums from '@/custom/core/energyAlluviums.json';
 import rawWeapons from '@/custom/core/weapons.json';
+import rawWeaponToChars from '@/custom/core/weaponToChars.json';
 
 export interface EssenceStat {
   isCustom: boolean;
@@ -102,3 +103,6 @@ export const rarityLevels = [3, 4, 5, 6];
 
 /** 武器预设（由 scripts/makeWeapons.ts 自动生成） */
 export const weapons: Record<string, WeaponPreset> = rawWeapons;
+
+/** 武器推荐干员（由 scripts/makeWeaponToChars.ts 自动生成） */
+export const weaponToChars: Record<string, string[]> = rawWeaponToChars;

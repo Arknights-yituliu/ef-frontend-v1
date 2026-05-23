@@ -13,7 +13,7 @@
     "format": "prettier --write \"**/*.{vue,ts,js,json}\"",
     "format:check": "prettier --check \"**/*.{vue,ts,js,json}\"",
     "lint:format": "eslint . --fix && prettier --write \"**/*.{vue,ts,js,json}\"",
-    "makedata": "node scripts/makeItems.ts && node scripts/makeWeapons.ts"
+    "makedata": "node scripts/makeItems.ts && node scripts/makeWeapons.ts && node scripts/makeWeaponToChars.ts"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",

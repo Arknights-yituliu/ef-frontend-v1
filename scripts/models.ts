@@ -46,3 +46,12 @@ export type ItemTable = Record<string, Item>;
 export type ItemListByTypeTable = Record<string, { list: string[] }>;
 export type I18nTextTable = Record<string, string>;
 export type ItemTypeTable = Record<string, ItemType>;
+
+export interface CharWpnRecommend {
+  charId: string;
+  weaponIds1: string[];
+  weaponIds2: string[];
+  weaponIds3: string[];
+}
+
+export type CharWpnRecommendTable = Record<string, CharWpnRecommend>;
