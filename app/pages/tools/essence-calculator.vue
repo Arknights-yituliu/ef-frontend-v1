@@ -410,7 +410,11 @@
                         toggleWeaponPreset({ ...weapon.stats, isCustom: false, weaponId })
                       "
                     >
-                      <ContainerItemIcon :item-id="weaponId" show-item-name />
+                      <ContainerItemIcon
+                        :char-id="weaponToCharId(weaponId)"
+                        :item-id="weaponId"
+                        show-item-name
+                      />
                       <div v-if="selectedWeaponIds.has(weaponId)" class="weapon-selected-overlay">
                         <v-icon color="white" size="large">mdi-check-circle</v-icon>
                       </div>
@@ -428,7 +432,7 @@
 
 <script lang="ts" setup>
 import type { BattleChoice, EssenceStat } from '@/custom/core/weaponEssence';
-import { useLocalStorage } from '@vueuse/core';
+import { useInterval, useLocalStorage } from '@vueuse/core';
 import { watch } from 'vue';
 import {
   allAttributeStats,
@@ -437,10 +441,26 @@ import {
   emptyStat,
   energyAlluviums,
   weapons,
+  weaponToChars,
   weaponTypes,
   weaponTypeToGroupIconId,
 } from '@/custom/core/weaponEssence';
 const { t } = useI18n();
+
+/** 全局旋转索引，每 1 秒递增，用于轮流展示干员头像 */
+const rotationIndex = useInterval(1000);
+
+/**
+ * 获取武器对应的当前展示干员 ID。
+ * 若武器有多位推荐干员，则每 1 秒轮换一位。
+ */
+function weaponToCharId(weaponId: string): string | undefined {
+  const charIds = weaponToChars[weaponId];
+  if (!charIds || charIds.length === 0) {
+    return undefined;
+  }
+  return charIds[rotationIndex.value % charIds.length];
+}
 
 /** 需求的基质属性 */
 const requiredEssenceStats = useLocalStorage<EssenceStat[]>(

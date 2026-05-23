@@ -1,26 +1,33 @@
 <template>
   <div ref="itemIconPlaceholderRef" class="item-icon-placeholder">
-    <img :alt="itemName" class="item-icon-img" :src="getItemIconUrl(props.itemId)" >
+    <img :alt="itemName" class="item-icon-img" :src="getItemIconUrl(props.itemId)" />
     <div class="item-gradient-overlay" />
     <div class="item-tier-bar" />
     <div v-if="props.showItemName" ref="itemNameRef" class="item-name">
       {{ itemName }}
     </div>
+    <div v-if="props.charId" class="char-avatar-badge">
+      <img :alt="props.charId" class="char-avatar-img" :src="getCharAvatarUrl(props.charId)" />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { getCharAvatarUrl } from '@/shared/utils/gameData/item';
+
 const { locale } = useI18n();
 
 interface Props {
   itemId: string;
   itemName?: string;
   showItemName?: boolean;
+  charId?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   itemName: undefined,
   showItemName: false,
+  charId: undefined,
 });
 
 const itemIconPlaceholderRef = useTemplateRef<HTMLDivElement>('itemIconPlaceholderRef');
@@ -120,5 +127,27 @@ watch([props, itemNameRef, locale], () => {
   font-size: 1rem;
   text-shadow: 0 0 4px var(--theme-bg-primary);
   pointer-events: none;
+}
+
+.char-avatar-badge {
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  border: 0.125rem solid var(--theme-bg-primary);
+  background-color: var(--theme-bg-tertiary);
+  box-shadow:
+    0 0 0 0.0625rem rgba(255, 255, 255, 0.15),
+    0 0.125rem 0.5rem rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.char-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 </style>
