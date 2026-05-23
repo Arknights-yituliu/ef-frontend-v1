@@ -16,7 +16,7 @@
 
       <!-- 菜单组 -->
       <div
-        v-for="(primaryItem, primaryIndex) in menuItems.filter(isItemVisible)"
+        v-for="(primaryItem, primaryIndex) in menuItems.filter(isPrimaryItemVisible)"
         :key="`${primaryIndex}-${primaryItem.nameKey}`"
         class="menu-group"
       >
@@ -32,7 +32,9 @@
         <!-- 二级菜单 -->
         <div class="secondary-items">
           <NuxtLink
-            v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(isItemVisible)"
+            v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(
+              isSecondaryItemVisible,
+            )"
             :key="`${secondaryIndex}-${secondaryItem.nameKey}`"
             class="secondary-item"
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
@@ -98,7 +100,6 @@ interface PrimaryMenuItem {
   vuetifyIcon?: string;
   isDocs?: boolean;
   isHidden?: boolean;
-  visibleBefore?: string;
   children: SecondaryMenuItem[];
 }
 
@@ -110,20 +111,29 @@ const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes as PrimaryMenuItem[];
 
 /**
- * 判断菜单项是否可见
- * @param item 菜单项
+ * 判断一级菜单项是否可见
  */
-function isItemVisible(item: PrimaryMenuItem | SecondaryMenuItem): boolean {
-  if (item.isHidden) return false;
+function isPrimaryItemVisible(item: PrimaryMenuItem): boolean {
+  if (item.isHidden) {
+    return false;
+  }
+
+  // 如果一级菜单下没有任何可见的二级菜单，则一级菜单也不可见
+  const hasVisibleSecondary = item.children.some((item) => isSecondaryItemVisible(item));
+  return hasVisibleSecondary;
+}
+
+/**
+ * 判断二级菜单项是否可见
+ */
+function isSecondaryItemVisible(item: SecondaryMenuItem): boolean {
+  if (item.isHidden) {
+    return false;
+  }
 
   if (item.visibleBefore) {
     const expiryDate = new Date(item.visibleBefore);
     return expiryDate > new Date();
-  }
-
-  // 如果是一级菜单，且有子菜单，则检查是否有任何可见的子菜单
-  if ('children' in item && item.children && item.children.length > 0) {
-    return item.children.some((child) => isItemVisible(child));
   }
 
   return true;
