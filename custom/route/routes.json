@@ -33,7 +33,8 @@
         "i18nKey": "blueprints",
         "nameKey": "menu.blueprints",
         "routePath": "/aic/blueprint",
-        "vuetifyIcon": "mdi-factory"
+        "vuetifyIcon": "mdi-factory",
+        "visibleBefore": "2026-06-05 06:00:00+0800"
       }
     ]
   },
