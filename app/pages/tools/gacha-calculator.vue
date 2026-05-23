@@ -87,7 +87,6 @@ function initPoolOptions() {
     disabled: true,
   };
 
-  displayPoolOptions.value.push(poolOption.name);
   poolOptions.value.push(poolOption, allVersionOption);
 }
 
@@ -1210,7 +1209,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            <v-btn-group class="gacha-calculator-pool-btn-group-pc">
+            <div class="gacha-calculator-pool-btn-group-pc">
               <v-btn
                 v-for="option in poolOptions"
                 v-show="displayPoolOptions.includes(option.name)"
@@ -1221,7 +1220,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 @click="selectedPool(option)"
                 >{{ option.name }}<br />{{ option.dateText }}
               </v-btn>
-            </v-btn-group>
+            </div>
             <v-btn
               v-for="option in poolOptions"
               v-show="displayPoolOptions.includes(option.name)"
@@ -1852,6 +1851,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-pool-btn-group-pc {
   display: flex;
+  flex-wrap: wrap;
   margin: 8px auto;
   width: 100%;
 }
