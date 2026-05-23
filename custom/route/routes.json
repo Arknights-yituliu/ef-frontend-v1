@@ -3,7 +3,7 @@
     "i18nKey": "materialProfit",
     "nameKey": "menu.materialProfit",
     "vuetifyIcon": "mdi-chart-bar",
-    "color": "#00FFFF",
+    "color": "#ff1aac",
     "children": [
       {
         "i18nKey": "shopValue",
@@ -29,7 +29,7 @@
     "i18nKey": "aic",
     "nameKey": "menu.aic",
     "vuetifyIcon": "mdi-factory",
-    "color": "#00E676",
+    "color": "#00ffa2",
     "children": [
       {
         "i18nKey": "blueprints",
@@ -57,7 +57,7 @@
     "i18nKey": "tools",
     "nameKey": "menu.tools",
     "vuetifyIcon": "mdi-toolbox",
-    "color": "#FF00FF",
+    "color": "#fffa00",
     "children": [
       {
         "i18nKey": "gachaCalculator",
@@ -89,7 +89,7 @@
     "i18nKey": "resources",
     "nameKey": "menu.resources",
     "vuetifyIcon": "mdi-download",
-    "color": "#FFFF00",
+    "color": "#00ffff",
     "children": [
       {
         "i18nKey": "essenceRecognizer",
@@ -125,34 +125,11 @@
         "vuetifyIcon": "mdi-account-heart"
       },
       {
-        "i18nKey": "projectStructure",
-        "nameKey": "menu.projectStructure",
+        "i18nKey": "documentation",
+        "nameKey": "menu.documentation",
         "routePath": "/introduction/project-structure",
-        "vuetifyIcon": "mdi-file-tree",
+        "vuetifyIcon": "mdi-book",
         "isDocs": true,
-        "external": true
-      }
-    ]
-  },
-  {
-    "i18nKey": "operations",
-    "nameKey": "menu.operations",
-    "vuetifyIcon": "mdi-cog",
-    "isDocs": true,
-    "color": "#000000",
-    "children": [
-      {
-        "i18nKey": "infrastructureLayoutGuide",
-        "nameKey": "menu.infrastructureLayoutGuide",
-        "routePath": "/operations/infrastructure-layout-guide",
-        "vuetifyIcon": "mdi-view-grid",
-        "external": true
-      },
-      {
-        "i18nKey": "how2getgachadurl",
-        "nameKey": "menu.how2getgachadurl",
-        "routePath": "/operations/how2get-gacha-url-en",
-        "vuetifyIcon": "mdi-link",
         "external": true
       }
     ]
