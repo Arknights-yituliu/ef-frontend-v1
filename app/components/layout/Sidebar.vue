@@ -17,7 +17,7 @@
       <!-- 菜单组 -->
       <div
         v-for="(primaryItem, primaryIndex) in menuItems.filter(isItemVisible)"
-        :key="primaryIndex"
+        :key="`${primaryIndex}-${primaryItem.nameKey}`"
         class="menu-group"
       >
         <!-- 小标题 -->
@@ -33,7 +33,7 @@
         <div class="secondary-items">
           <NuxtLink
             v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(isItemVisible)"
-            :key="secondaryIndex"
+            :key="`${secondaryIndex}-${secondaryItem.nameKey}`"
             :ref="
               (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
             "
