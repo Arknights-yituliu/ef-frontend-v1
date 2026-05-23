@@ -122,21 +122,6 @@
 
                         <!-- Right Column: Results -->
                         <v-col cols="12" md="7">
-                          <div class="d-flex align-center mb-3">
-                            <v-icon
-                              class="mr-2"
-                              color="success"
-                              icon="mdi-check-circle-outline"
-                              size="small"
-                            />
-                            <span class="text-subtitle-1 font-weight-bold">{{
-                              t('page.tools.essenceCalculator.planDescription', {
-                                count: choice.matchedSelectedIndices.length,
-                                weaponCount: choice.matchedWeaponIds.length,
-                              })
-                            }}</span>
-                          </div>
-
                           <div class="pl-1">
                             <!-- Satisfied Requirements -->
                             <div class="mb-4">
@@ -196,7 +181,7 @@
 
                             <!-- Matched Weapons -->
                             <div>
-                              <div class="mb-1" text-medium-emphasis>
+                              <div class="mb-1 text-medium-emphasis">
                                 {{ t('page.tools.essenceCalculator.matchedWeapons') }}
                               </div>
                               <div class="d-flex flex-wrap ga-2">
@@ -267,16 +252,11 @@
       </v-col>
 
       <v-col cols="12" lg="6">
-        <v-expansion-panels model-value="需求设定">
-          <v-expansion-panel value="需求设定">
-            <v-expansion-panel-title>{{
-              t('page.tools.essenceCalculator.demandSet')
-            }}</v-expansion-panel-title>
+        <v-expansion-panels :model-value="['设置', '需求设定']" multiple>
+          <!-- 设置 -->
+          <v-expansion-panel value="设置">
+            <v-expansion-panel-title>设置</v-expansion-panel-title>
             <v-expansion-panel-text>
-              <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
-              <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
-              <div class="mb-8" />
-
               <!-- 干员专武开关 -->
               <div class="d-flex align-center mb-6 mt-4 ga-2">
                 <v-switch
@@ -313,6 +293,17 @@
                   {{ alluvium.battleName }}
                 </v-chip>
               </div>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
+          <!-- 需求设定 -->
+          <v-expansion-panel value="需求设定">
+            <v-expansion-panel-title>{{
+              t('page.tools.essenceCalculator.demandSet')
+            }}</v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <p>{{ t('page.tools.essenceCalculator.demandSetDescription') }}</p>
+              <div class="mb-8" />
               <v-card
                 v-for="(stat, index) in requiredEssenceStats"
                 :key="index"
