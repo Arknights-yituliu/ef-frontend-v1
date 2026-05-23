@@ -1209,28 +1209,20 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            <div class="gacha-calculator-pool-btn-group-pc">
+            <div class="gacha-calculator-pool-selector">
               <v-btn
                 v-for="option in poolOptions"
                 v-show="displayPoolOptions.includes(option.name)"
                 :key="option.name"
-                class="gacha-calculator-pool-btn-pc"
-                :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn-enabled'"
+                class="gacha-calculator-pool-btn"
+                :class="{ 'gacha-calculator-pool-btn-active': currentPool.name === option.name }"
                 color="rgb(33, 150, 243)"
                 @click="selectedPool(option)"
-                >{{ option.name }}<br />{{ option.dateText }}
+                >
+                <span class="gacha-calculator-pool-btn-name">{{ option.name }}</span>
+                <span class="gacha-calculator-pool-btn-date">{{ option.dateText }}</span>
               </v-btn>
             </div>
-            <v-btn
-              v-for="option in poolOptions"
-              v-show="displayPoolOptions.includes(option.name)"
-              :key="option.name"
-              class="gacha-calculator-pool-btn-phone"
-              :class="currentPool.name === option.name ? '' : 'gacha-calculator-pool-btn-enabled'"
-              color="rgb(33, 150, 243)"
-              @click="selectedPool(option)"
-              >{{ option.name }}<br />{{ option.dateText }}
-            </v-btn>
 
             当前时间：{{ dateFormat(poolStartDate) }}
             <div class="gacha-calculator-warning">
@@ -1834,8 +1826,29 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px !important;
+  padding: 0 16px 0 0 !important;
+  box-shadow: inset 0 -1px transparent;
   font-size: 1.2rem;
   font-weight: bolder;
+  transition: box-shadow 0.2s ease !important;
+}
+
+.gacha-calculator-card-title:deep(.v-expansion-panel-title__icon) {
+  margin-inline-start: auto;
+}
+
+.gacha-calculator-card-title::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 16px 0 16px 16px;
+  border-radius: 3px;
+  background: var(--gacha-calculator-border);
 }
 
 .gacha-calculator-warning {
@@ -1850,29 +1863,60 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-card-title[aria-expanded='true'] {
-  border-bottom: 1px groove var(--gacha-calculator-border);
+  box-shadow: inset 0 -1px var(--gacha-calculator-border);
 }
 
-.gacha-calculator-pool-btn-group-pc {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px auto;
+.gacha-calculator-pool-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 8px;
+  margin: 8px auto 12px;
   width: 100%;
 }
 
-.gacha-calculator-pool-btn-pc {
-  flex: 1 1 160px;
-  color: #ffffff;
+.gacha-calculator-pool-btn {
+  min-width: 0;
+  min-height: 54px;
+  color: rgb(33, 150, 243) !important;
+  background: rgba(33, 150, 243, 0.12) !important;
+  border: 1px solid rgba(33, 150, 243, 0.35);
+}
+
+.gacha-calculator-pool-btn:deep(.v-btn__content) {
+  width: 100%;
+  display: grid;
+  gap: 2px;
+  line-height: 1.15;
+  text-align: left;
+  justify-items: start;
+}
+
+.gacha-calculator-pool-btn-active {
+  color: #ffffff !important;
+  background: rgb(33, 150, 243) !important;
+  border-color: rgb(33, 150, 243);
+}
+
+.gacha-calculator-pool-btn-name,
+.gacha-calculator-pool-btn-date {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gacha-calculator-pool-btn-name {
+  font-weight: 700;
+}
+
+.gacha-calculator-pool-btn-date {
+  opacity: 0.78;
+  font-size: 0.78rem;
 }
 
 .gacha-calculator-pool-btn-enabled {
   background-color: rgba(33, 150, 243, 0.2) !important;
   color: rgb(33, 150, 243) !important;
-}
-
-.gacha-calculator-pool-btn-phone {
-  display: none;
-  color: #ffffff;
 }
 
 .gacha-calculator-chart-and-table {
@@ -2047,14 +2091,9 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
     font-size: 0.8rem;
   }
 
-  .gacha-calculator-pool-btn-group-pc {
-    display: none;
-  }
-
-  .gacha-calculator-pool-btn-phone {
-    margin: 1%;
-    display: inline-grid;
-    width: 47%;
+  .gacha-calculator-pool-selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .gacha-calculator-chart-and-table {

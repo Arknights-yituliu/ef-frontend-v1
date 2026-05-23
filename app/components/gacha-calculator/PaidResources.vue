@@ -520,9 +520,8 @@ v-for="stone in normalStones"  :key="stone.id"
 }
 
 .gacha-calculator-resource-single-btn-content {
-  width: 100%;
+  width: 560px;
   display: flex;
-  gap: 8px;
   box-sizing: border-box;
   font-size: 1rem;
   align-items: center;
@@ -530,9 +529,8 @@ v-for="stone in normalStones"  :key="stone.id"
 }
 
 .gacha-calculator-resource-single{
-  width: 100%;
+  width: 560px;
   display: flex;
-  gap: 8px;
   box-sizing: border-box;
   font-size: 1rem;
   align-items: center;
@@ -544,18 +542,13 @@ v-for="stone in normalStones"  :key="stone.id"
 }
 
 .gacha-calculator-resource-single-title {
-  flex: 1 1 180px;
-  min-width: 0;
+  width: 200px;
   text-align: start;
   padding-left: 4px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .gacha-calculator-resource-single-content {
   display: flex;
-  flex: 0 0 auto;
   align-items: center;
   padding: 0 4px;
 }
@@ -568,15 +561,17 @@ v-for="stone in normalStones"  :key="stone.id"
 
 @media screen and (max-width: 600px) {
   .gacha-calculator-resource-single-btn-content {
+    width: 300px;
     font-size: 0.8rem;
   }
 
   .gacha-calculator-resource-single {
+    width: 300px;
     font-size: 0.8rem;
   }
 
   .gacha-calculator-resource-single-title {
-    flex-basis: 120px;
+    width: 120px;
   }
 
 }
