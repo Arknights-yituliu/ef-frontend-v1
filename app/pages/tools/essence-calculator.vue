@@ -181,6 +181,9 @@
                                   </v-card>
                                   <ContainerItemIcon
                                     v-else
+                                    :char-id="
+                                      weaponToCharId(requiredEssenceStats[index]!.weaponId!)
+                                    "
                                     class="weapon-item"
                                     :item-id="requiredEssenceStats[index]!.weaponId!"
                                     show-item-name
@@ -191,7 +194,7 @@
 
                             <!-- Matched Weapons -->
                             <div>
-                              <div class="text-medium-emphasis mb-1">
+                              <div class="mb-1" text-medium-emphasis>
                                 {{ t('page.tools.essenceCalculator.matchedWeapons') }}
                               </div>
                               <div class="d-flex flex-wrap ga-2">
@@ -206,6 +209,7 @@
                                   :key="weaponId"
                                 >
                                   <ContainerItemIcon
+                                    :char-id="weaponToCharId(weaponId)"
                                     class="weapon-item"
                                     :item-id="weaponId"
                                     show-item-name
