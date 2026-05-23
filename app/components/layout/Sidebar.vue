@@ -38,6 +38,7 @@
             :key="`${secondaryIndex}-${secondaryItem.nameKey}`"
             class="secondary-item"
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
+            :target="secondaryItem.external ? '_blank' : undefined"
             :to="secondaryItem.routePath"
           >
             <!-- 左侧装饰条 -->
@@ -64,7 +65,7 @@
             </svg>
             <span class="secondary-text">{{ $t(`menu.${secondaryItem.i18nKey}`) }}</span>
             <!-- 跳转提示图标 -->
-            <v-icon v-if="secondaryItem.showJumpHint" class="jump-hint-icon" size="20">
+            <v-icon v-if="secondaryItem.external" class="jump-hint-icon" size="20">
               mdi-open-in-new
             </v-icon>
           </NuxtLink>
@@ -103,7 +104,7 @@ interface SecondaryMenuItem {
   vuetifyIcon?: string;
   isHidden?: boolean;
   visibleBefore?: string;
-  showJumpHint?: boolean;
+  external?: boolean;
 }
 
 const route = useRoute();
