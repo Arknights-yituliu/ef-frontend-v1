@@ -36,6 +36,10 @@ export function getItemPulls(itemId: string): number {
   return gachaItemMap[itemId]?.pulls ?? 0;
 }
 
+export function getCharAvatarUrl(charId: string): string {
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${charId}.webp`;
+}
+
 export function getItemIconUrl(itemId: string): string | undefined {
   const iconId = items[itemId]?.iconId;
   if (iconId === undefined) {
