@@ -95,7 +95,7 @@
         "i18nKey": "essenceRecognizer",
         "nameKey": "menu.essenceRecognizer",
         "routePath": "/resources/essence-recognizer",
-        "vuetifyIcon": "mdi-chart-line"
+        "vuetifyIcon": "mdi-cube-scan"
       }
     ]
   },
