@@ -430,7 +430,9 @@
         "planDescription": "This plan can satisfy {count} requirements and match {weaponCount} weapons.",
         "satisfiedRequirements": "Satisfied Requirements",
         "matchedWeapons": "Matched Weapons",
-        "showMorePlans": "Show More Plans ({count})"
+        "showMorePlans": "Show More Plans ({count})",
+        "showCharWeapon": "Show Character's Recommended Weapon",
+        "charWeaponTooltip": "From in-game weapon recommendations, based on the first item in 'Skill Fitting'. For reference only."
       },
       "gachaCalculator": {
         "standard": "Standard",

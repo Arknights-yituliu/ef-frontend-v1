@@ -182,7 +182,9 @@
                                   <ContainerItemIcon
                                     v-else
                                     :char-id="
-                                      weaponToCharId(requiredEssenceStats[index]!.weaponId!)
+                                      showCharAvatar
+                                        ? weaponToCharId(requiredEssenceStats[index]!.weaponId!)
+                                        : undefined
                                     "
                                     class="weapon-item"
                                     :item-id="requiredEssenceStats[index]!.weaponId!"
@@ -209,7 +211,7 @@
                                   :key="weaponId"
                                 >
                                   <ContainerItemIcon
-                                    :char-id="weaponToCharId(weaponId)"
+                                    :char-id="showCharAvatar ? weaponToCharId(weaponId) : undefined"
                                     class="weapon-item"
                                     :item-id="weaponId"
                                     show-item-name
@@ -274,6 +276,25 @@
               <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
               <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
               <div class="mb-8" />
+
+              <!-- 干员专武开关 -->
+              <div class="d-flex align-center mb-6 mt-4 ga-2">
+                <v-switch
+                  v-model="showCharAvatar"
+                  color="primary"
+                  density="comfortable"
+                  hide-details
+                  :label="t('page.tools.essenceCalculator.showCharWeapon')"
+                />
+                <v-tooltip location="bottom" max-width="300">
+                  <template #activator="{ props }">
+                    <v-icon v-bind="props" color="text-secondary" size="small">
+                      mdi-information-outline
+                    </v-icon>
+                  </template>
+                  <span>{{ t('page.tools.essenceCalculator.charWeaponTooltip') }}</span>
+                </v-tooltip>
+              </div>
 
               <!-- 能量淤积点开关 -->
               <div class="d-flex align-center mb-3 mt-4 ga-2">
@@ -415,7 +436,7 @@
                       "
                     >
                       <ContainerItemIcon
-                        :char-id="weaponToCharId(weaponId)"
+                        :char-id="showCharAvatar ? weaponToCharId(weaponId) : undefined"
                         :item-id="weaponId"
                         show-item-name
                       />
@@ -450,6 +471,12 @@ import {
   weaponTypeToGroupIconId,
 } from '@/custom/core/weaponEssence';
 const { t } = useI18n();
+
+/** 是否显示干员专武头像 */
+const showCharAvatar = useLocalStorage('essence-calculator-show-char-avatar', true, {
+  writeDefaults: false,
+  listenToStorageChanges: false,
+});
 
 /** 全局旋转索引，每 1 秒递增，用于轮流展示干员头像 */
 const rotationIndex = useInterval(1000);

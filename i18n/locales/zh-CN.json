@@ -430,7 +430,9 @@
         "planDescription": "该方案可满足 {count} 个需求，并且能匹配 {weaponCount} 件已实装武器。",
         "satisfiedRequirements": "满足的需求",
         "matchedWeapons": "匹配的武器",
-        "showMorePlans": "显示更多方案（{count} 个）"
+        "showMorePlans": "显示更多方案（{count} 个）",
+        "showCharWeapon": "显示干员专武",
+        "charWeaponTooltip": "来自游戏内武器推荐，取“技能适配”的首件武器，仅供参考"
       },
       "gachaCalculator": {
         "standard": "基础",
