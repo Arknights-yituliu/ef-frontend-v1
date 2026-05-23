@@ -347,8 +347,8 @@ function isActiveRoute(path: string) {
   color: var(--theme-text-primary);
   font-weight: 600;
   box-shadow:
-    inset 0 0 0.5rem rgba(0, 255, 255, 0.1),
-    inset 1px 0 0 rgba(0, 255, 255, 0.2);
+    inset 0 0 0.5rem color-mix(in srgb, var(--current-active-color), transparent 90%),
+    inset 1px 0 0 color-mix(in srgb, var(--current-active-color), transparent 80%);
 }
 
 .secondary-icon {
