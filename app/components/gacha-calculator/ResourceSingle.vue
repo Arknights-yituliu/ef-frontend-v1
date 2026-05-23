@@ -56,6 +56,7 @@ function getImageUrl(itemId: string): string {
   position: relative;
   width: 100%;
   display: flex;
+  gap: 8px;
   height: 42px;
   font-size: 1rem;
   align-items: center;
@@ -66,14 +67,19 @@ function getImageUrl(itemId: string): string {
   background-color: rgba(var(--v-theme-on-surface), 0.08);
 }
 .gacha-calculator-resource-single-title {
-  width: 300px;
+  flex: 1 1 220px;
+  min-width: 0;
   text-align: start;
   line-height: 42px;
   padding-left: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .gacha-calculator-resource-single-content {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   padding: 0 4px;
   height: 42px;
@@ -99,7 +105,7 @@ function getImageUrl(itemId: string): string {
   }
 
   .gacha-calculator-resource-single-title {
-    width: 150px;
+    flex-basis: 130px;
     text-align: start;
   }
 }

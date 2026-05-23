@@ -1234,7 +1234,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
             当前时间：{{ dateFormat(poolStartDate) }}
             <div class="gacha-calculator-warning">
-              《春晓时》资源尚在更新中，结果仅供参考，切勿轻信本站！
+              《寻遗散记》资源尚在更新中，结果仅供参考，切勿轻信本站！
             </div>
 
             <div class="gacha-calculator-chart-and-table">
@@ -1801,28 +1801,32 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 <style scoped>
 .gacha-calculator-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 1280px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  width: min(100%, 1280px);
+  box-sizing: border-box;
   margin: auto;
+  padding: 0 12px;
+  align-items: start;
 }
 
 .gacha-calculator-container-left {
-  min-width: 600px;
-  max-width: 620px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
   padding: 4px;
   position: sticky;
   top: 72px;
   max-height: calc(100vh - 140px);
   z-index: 1003;
   overflow-y: auto;
-  flex: 3;
 }
 
 .gacha-calculator-container-right {
-  min-width: 600px;
-  max-width: 620px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .gacha-calculator-container-right .v-expansion-panel {
@@ -1857,7 +1861,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-pool-btn-pc {
-  width: 33%;
+  flex: 1 1 160px;
   color: #ffffff;
 }
 
@@ -1874,15 +1878,20 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 .gacha-calculator-chart-and-table {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .gacha-calculator-pie-chart {
-  width: 300px;
+  width: min(300px, 100%);
   height: 240px;
+  flex: 1 1 230px;
+  min-width: 220px;
 }
 
 .gacha-calculator-statistics-result {
-  width: 230px;
+  flex: 1 1 150px;
+  min-width: 150px;
 }
 
 .gacha-calculator-statistics-result-item {
@@ -1999,9 +2008,9 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   width: 47%;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1100px) {
   .gacha-calculator-container {
-    width: 800px;
+    grid-template-columns: 1fr;
   }
   .gacha-calculator-container-left {
     position: static;
@@ -2012,19 +2021,18 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 @media screen and (max-width: 600px) {
   .gacha-calculator-container {
     width: 100%;
+    padding: 0 8px;
   }
 
   .gacha-calculator-container-left {
-    max-width: 350px;
-    min-width: 320px;
+    width: 100%;
     position: static;
     max-height: max-content;
     z-index: auto;
   }
 
   .gacha-calculator-container-right {
-    max-width: 350px;
-    min-width: 320px;
+    width: 100%;
   }
 
   .gacha-calculator-card-title {
