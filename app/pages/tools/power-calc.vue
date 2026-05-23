@@ -286,6 +286,7 @@ const batteryConfig = {
   'mid-gu': { power: 420, time: 40, name: '中容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_2.webp' },
   'high-gu': { power: 1100, time: 40, name: '高容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_3.webp' },
   'low-wu': { power: 1600, time: 40, name: '低容武陵电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_4.webp' },
+  'mid-wu': { power: 3200, time: 40, name: '中容武陵电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_5.webp' },
 };
 
 // 选择电池类型
@@ -425,7 +426,7 @@ function calculateFlowLines () {
   // 收集所有节点及其位置信息
   const nodesWithPositions = new Map<string, HTMLElement>();
 
-  const traverse = (node: Node, depth: number, parentId?: string) => {
+  const traverse = (node: Node, depth: number, _parentId?: string) => {
     const nodeElements = treeContainerRef.value?.querySelectorAll(`[data-node-id="${node.id}"]`);
     if (nodeElements && nodeElements.length > 0) {
       const element = nodeElements[0] as HTMLElement;
@@ -464,7 +465,7 @@ function calculateFlowLines () {
       const lineWidth = Math.max(2, baseWidth * ratio); // 最小2px
 
       // 确保坐标是有效的
-      if (!isNaN(childX) && !isNaN(parentY) && !isNaN(childY)) {
+      if (!Number.isNaN(childX) && !Number.isNaN(parentY) && !Number.isNaN(childY)) {
         lines.push({
           x1: childX,
           y1: parentY,
@@ -594,14 +595,14 @@ function recalculateRates () {
 
 // 计算电力
 function calculatePower () {
-  let storage = 0;
+  let _storage = 0;
   let burned = 0;
   let hasThermal = false;
   let hasStorage = false;
 
   const traverseNode = (node: Node) => {
     if (node.type === 'storage') {
-      storage += node.rate;
+      _storage += node.rate;
       hasStorage = true;
     } else if (node.type === 'thermal') {
       burned += node.rate;
