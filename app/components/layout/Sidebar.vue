@@ -15,7 +15,11 @@
       </NuxtLink>
 
       <!-- 菜单组 -->
-      <div v-for="(primaryItem, primaryIndex) in menuItems" :key="primaryIndex" class="menu-group">
+      <div
+        v-for="(primaryItem, primaryIndex) in menuItems.filter(isItemVisible)"
+        :key="primaryIndex"
+        class="menu-group"
+      >
         <!-- 小标题 -->
         <div class="section-header">
           <!-- isDocs 标识图标 -->
@@ -28,9 +32,7 @@
         <!-- 二级菜单 -->
         <div class="secondary-items">
           <NuxtLink
-            v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(
-              (item) => !item.isHidden,
-            )"
+            v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(isItemVisible)"
             :key="secondaryIndex"
             :ref="
               (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
@@ -108,6 +110,7 @@ interface SecondaryMenuItem {
   iconPath?: string;
   vuetifyIcon?: string;
   isHidden?: boolean;
+  visibleBefore?: string;
   showJumpHint?: boolean;
 }
 
@@ -118,6 +121,7 @@ interface PrimaryMenuItem {
   vuetifyIcon?: string;
   isDocs?: boolean;
   isHidden?: boolean;
+  visibleBefore?: string;
   children: SecondaryMenuItem[];
 }
 
@@ -127,6 +131,26 @@ const router = useRouter();
 // 获取路由配置
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes as PrimaryMenuItem[];
+
+/**
+ * 判断菜单项是否可见
+ * @param item 菜单项
+ */
+function isItemVisible(item: PrimaryMenuItem | SecondaryMenuItem): boolean {
+  if (item.isHidden) return false;
+
+  if (item.visibleBefore) {
+    const expiryDate = new Date(item.visibleBefore);
+    return expiryDate > new Date();
+  }
+
+  // 如果是一级菜单，且有子菜单，则检查是否有任何可见的子菜单
+  if ('children' in item && item.children && item.children.length > 0) {
+    return item.children.some((child) => isItemVisible(child));
+  }
+
+  return true;
+}
 
 // 定义 CMYK 四色
 const cmykColors = {
