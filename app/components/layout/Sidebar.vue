@@ -38,14 +38,13 @@
             :key="`${secondaryIndex}-${secondaryItem.nameKey}`"
             class="secondary-item"
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
-            :style="{
-              '--item-color': getSectionColor(primaryItem.i18nKey),
-              '--current-active-color': currentActiveColor,
-            }"
             :to="secondaryItem.routePath"
           >
             <!-- 左侧装饰条 -->
-            <div class="item-decoration-bar" />
+            <div
+              class="item-decoration-bar"
+              :style="{ backgroundColor: getPrimaryItemColor(primaryItem).hex() }"
+            />
             <!-- 二级菜单图标 -->
             <v-icon v-if="secondaryItem.vuetifyIcon" class="secondary-icon" size="20">
               {{ secondaryItem.vuetifyIcon }}
@@ -81,7 +80,21 @@
 </template>
 
 <script lang="ts" setup>
+import type { ColorInstance } from 'color';
+import Color from 'color';
+
 // 菜单项类型
+interface PrimaryMenuItem {
+  i18nKey: string;
+  nameKey: string;
+  iconPath?: string;
+  vuetifyIcon?: string;
+  isDocs?: boolean;
+  isHidden?: boolean;
+  color?: string;
+  children: SecondaryMenuItem[];
+}
+
 interface SecondaryMenuItem {
   i18nKey: string;
   nameKey: string;
@@ -91,16 +104,6 @@ interface SecondaryMenuItem {
   isHidden?: boolean;
   visibleBefore?: string;
   showJumpHint?: boolean;
-}
-
-interface PrimaryMenuItem {
-  i18nKey: string;
-  nameKey: string;
-  iconPath?: string;
-  vuetifyIcon?: string;
-  isDocs?: boolean;
-  isHidden?: boolean;
-  children: SecondaryMenuItem[];
 }
 
 const route = useRoute();
@@ -139,42 +142,24 @@ function isSecondaryItemVisible(item: SecondaryMenuItem): boolean {
   return true;
 }
 
-// 定义 CMYK 四色
-const cmykColors = {
-  cyan: '#00FFFF', // 青色 (Cyan)
-  magenta: '#FF00FF', // 洋红色 (Magenta)
-  yellow: '#FFFF00', // 黄色 (Yellow)
-  key: '#000000', // 黑色 (Key)
-};
+const defaultPrimaryColor = Color('#000000');
 
-// 定义section到CMYK颜色的映射
-const sectionColors = {
-  materialProfit: cmykColors.cyan, // 青色 - 材料收益
-  tools: cmykColors.magenta, // 洋红色 - 一图流工具箱
-  aic: '#00E676', // 绿色 - 集成工业
-  resources: cmykColors.yellow, // 黄色 - 资源下载
-  others: cmykColors.key, // 黑色 - 其它（包括开发指南、功能操作指南）
-};
-
-// 获取section对应的颜色
-function getSectionColor(i18nKey: string) {
-  if (sectionColors[i18nKey as keyof typeof sectionColors]) {
-    return sectionColors[i18nKey as keyof typeof sectionColors];
-  }
-  return cmykColors.key; // 默认返回黑色
+// 获取一级菜单的主题颜色
+function getPrimaryItemColor(item: PrimaryMenuItem): ColorInstance {
+  return item.color ? Color(item.color) : defaultPrimaryColor;
 }
 
 // 获取当前激活项对应的颜色
-const currentActiveColor = computed(() => {
+const currentActiveColor = computed<ColorInstance>(() => {
   const activePath = route.path;
   // 遍历菜单项找到对应的颜色
   for (const primaryItem of menuItems) {
     const secondaryItem = primaryItem.children.find((item) => item.routePath === activePath);
     if (secondaryItem) {
-      return getSectionColor(primaryItem.i18nKey);
+      return getPrimaryItemColor(primaryItem);
     }
   }
-  return cmykColors.key; // 默认返回黑色
+  return defaultPrimaryColor;
 });
 
 // 点击 Logo 跳转到首页
@@ -314,7 +299,6 @@ function isActiveRoute(path: string) {
   top: 0;
   bottom: 0;
   width: 0.25rem;
-  background-color: var(--item-color);
   transition:
     width var(--transition-base),
     box-shadow var(--transition-base),
@@ -328,7 +312,7 @@ function isActiveRoute(path: string) {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--current-active-color) 0%, transparent 100%);
+  background: linear-gradient(90deg, v-bind('currentActiveColor.hex()') 0%, transparent 100%);
   opacity: 0.1;
 }
 
@@ -357,8 +341,8 @@ function isActiveRoute(path: string) {
   color: var(--theme-text-primary);
   font-weight: 600;
   box-shadow:
-    inset 0 0 0.5rem color-mix(in srgb, var(--current-active-color), transparent 90%),
-    inset 1px 0 0 color-mix(in srgb, var(--current-active-color), transparent 80%);
+    inset 0 0 0.5rem color-mix(in srgb, v-bind('currentActiveColor.hex()'), transparent 90%),
+    inset 1px 0 0 color-mix(in srgb, v-bind('currentActiveColor.hex()'), transparent 80%);
 }
 
 .secondary-icon {
