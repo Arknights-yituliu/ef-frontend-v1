@@ -1224,7 +1224,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               </v-btn>
             </div>
 
-            当前时间：{{ dateFormat(poolStartDate) }}
+            <!-- 当前时间：{{ dateFormat(poolStartDate) }} -->
             <div class="gacha-calculator-warning">
               《寻遗散记》资源尚在更新中，结果仅供参考，切勿轻信本站！
             </div>
@@ -1572,7 +1572,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
         <v-expansion-panel value="existing">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              库存与自定义
+              库存与寻访情报书
               {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.existing) }}
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
@@ -1807,12 +1807,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
-  padding: 4px;
+  padding: 0;
   position: sticky;
-  top: 72px;
-  max-height: calc(100vh - 140px);
+  top: 64px;
+  max-height: none;
   z-index: 1003;
-  overflow-y: auto;
+  overflow-y: visible;
 }
 
 .gacha-calculator-container-right {
@@ -1821,8 +1821,14 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   box-sizing: border-box;
 }
 
+.gacha-calculator-container-left .v-expansion-panel,
 .gacha-calculator-container-right .v-expansion-panel {
   margin: 8px 0px;
+  border-radius: 4px !important;
+}
+
+.gacha-calculator-container .v-expansion-panel:deep(.v-expansion-panel__shadow) {
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
 .gacha-calculator-card-title {
