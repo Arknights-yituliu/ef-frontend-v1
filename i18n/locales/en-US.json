@@ -2,7 +2,7 @@
   "menu": {
     "home": "Home",
     "introduction": "Introduction",
-    "projectStructure": "Development Guide",
+    "documentation": "Documentation",
     "routeSetting": "Route Setting",
     "docsSetting": "Writing Docs",
     "contributorSetting": "Contributor Setting",
