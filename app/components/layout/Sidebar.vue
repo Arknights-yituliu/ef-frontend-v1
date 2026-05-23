@@ -6,8 +6,8 @@
       <div class="logo-text">{{ $t('layout.siteName') }}</div>
     </div>
 
-    <!-- 菜单容器（用于高亮区域的定位） -->
-    <nav ref="menuContainerRef" class="menu-container hide-scrollbar">
+    <!-- 菜单容器 -->
+    <nav class="menu-container hide-scrollbar">
       <!-- 主页链接 -->
       <NuxtLink class="secondary-item home-link" :class="{ active: route.path === '/' }" to="/">
         <v-icon class="secondary-icon" size="20">mdi-home</v-icon>
@@ -34,9 +34,6 @@
           <NuxtLink
             v-for="(secondaryItem, secondaryIndex) in primaryItem.children.filter(isItemVisible)"
             :key="`${secondaryIndex}-${secondaryItem.nameKey}`"
-            :ref="
-              (el) => setSecondaryItemRef(el, primaryIndex, secondaryIndex, secondaryItem.routePath)
-            "
             class="secondary-item"
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
             :style="{
@@ -48,17 +45,11 @@
             <!-- 左侧装饰条 -->
             <div class="item-decoration-bar" />
             <!-- 二级菜单图标 -->
-            <v-icon
-              v-if="secondaryItem.vuetifyIcon"
-              :ref="(el) => setSecondaryIconRef(el, secondaryItem.routePath)"
-              class="secondary-icon"
-              size="20"
-            >
+            <v-icon v-if="secondaryItem.vuetifyIcon" class="secondary-icon" size="20">
               {{ secondaryItem.vuetifyIcon }}
             </v-icon>
             <svg
               v-else-if="secondaryItem.iconPath"
-              :ref="(el) => setSecondaryIconRef(el, secondaryItem.routePath)"
               class="secondary-icon"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -78,18 +69,6 @@
           </NuxtLink>
         </div>
       </div>
-
-      <!-- 二级菜单高亮区域 -->
-      <div
-        class="secondary-highlight"
-        :style="{
-          transform: `translateY(${secondaryHighlightTop}px)`,
-          height: `${secondaryHighlightHeight}px`,
-          opacity: secondaryHighlightHeight > 0 ? 1 : 0,
-          backgroundColor: currentActiveColor,
-          boxShadow: `0 0 0.75rem ${currentActiveColor}, 0 0 1.5rem ${currentActiveColor}66`,
-        }"
-      />
     </nav>
 
     <!-- 底部装饰 -->
@@ -100,8 +79,6 @@
 </template>
 
 <script lang="ts" setup>
-import { gsap } from 'gsap';
-
 // 菜单项类型
 interface SecondaryMenuItem {
   i18nKey: string;
@@ -197,169 +174,9 @@ function navigateToHome() {
   }
 }
 
-// 菜单项 ref 存储
-const secondaryItemRefs = ref<Map<string, HTMLElement>>(new Map());
-const secondaryIconRefs = ref<Map<string, HTMLElement | SVGSVGElement>>(new Map());
-const menuContainerRef = ref<HTMLElement | null>(null);
-
-// 旋转动画相关的 ref
-const activeRotateAnimations = ref<Map<string, gsap.core.Tween>>(new Map());
-
-// 二级菜单高亮位置
-const secondaryHighlightTop = ref(0);
-const secondaryHighlightHeight = ref(0);
-
-// 设置二级菜单项 ref
-function setSecondaryItemRef(el: any, primaryIndex: number, secondaryIndex: number, path: string) {
-  if (el) {
-    secondaryItemRefs.value.set(path, el);
-  } else {
-    secondaryItemRefs.value.delete(path);
-  }
-}
-
-// 设置二级菜单图标 ref
-function setSecondaryIconRef(el: any, path: string) {
-  if (el) {
-    secondaryIconRefs.value.set(path, el);
-  } else {
-    secondaryIconRefs.value.delete(path);
-  }
-}
-
-// 计算元素相对于容器的位置
-function getRelativeTop(element: HTMLElement, container: HTMLElement): number {
-  const elementRect = element.getBoundingClientRect();
-  const containerRect = container.getBoundingClientRect();
-  return elementRect.top - containerRect.top;
-}
-
-// 更新二级菜单高亮位置
-function updateSecondaryHighlight() {
-  nextTick(() => {
-    const activePath = route.path;
-    const activeSecondaryRef = secondaryItemRefs.value.get(activePath);
-    const menuContainerEl = menuContainerRef.value;
-
-    // 获取实际的 DOM 元素
-    const activeSecondaryEl = getDOMElement(activeSecondaryRef);
-
-    if (activeSecondaryEl && menuContainerEl) {
-      secondaryHighlightTop.value = getRelativeTop(activeSecondaryEl, menuContainerEl);
-      secondaryHighlightHeight.value = activeSecondaryEl.offsetHeight;
-    } else {
-      secondaryHighlightHeight.value = 0;
-    }
-  });
-}
-
 function isActiveRoute(path: string) {
   return route.path === path;
 }
-
-// 旋转二级菜单图标动画（顺时针旋转一圈）
-function rotateSecondaryIcon(path: string) {
-  const iconRef = secondaryIconRefs.value.get(path);
-  if (!iconRef) return;
-
-  // 清理之前的动画
-  const existingAnimation = activeRotateAnimations.value.get(path);
-  if (existingAnimation) {
-    existingAnimation.kill();
-  }
-
-  // 获取实际的 DOM 元素（v-icon 组件需要获取其根元素）
-  const iconElement = getDOMElement(iconRef) || iconRef;
-  if (!iconElement) return;
-
-  // 先重置到 0 度，然后旋转到 360 度
-  gsap.set(iconElement, {
-    rotation: 0,
-    transformOrigin: 'center center',
-  });
-
-  // 创建旋转动画（顺时针旋转 360 度）
-  const rotateAnimation = gsap.to(iconElement, {
-    rotation: 360,
-    duration: 0.6,
-    ease: 'power2.out',
-  });
-
-  // 保存动画引用
-  activeRotateAnimations.value.set(path, rotateAnimation);
-}
-
-// 重置二级菜单图标（移除旋转动画效果）
-function resetSecondaryIcon(path: string) {
-  const existingAnimation = activeRotateAnimations.value.get(path);
-  if (existingAnimation) {
-    existingAnimation.kill();
-    activeRotateAnimations.value.delete(path);
-  }
-
-  const iconRef = secondaryIconRefs.value.get(path);
-  if (!iconRef) return;
-
-  const iconElement = getDOMElement(iconRef) || iconRef;
-  if (iconElement) {
-    // 重置旋转角度
-    gsap.set(iconElement, {
-      rotation: 0,
-    });
-  }
-}
-
-// 监听路由变化，更新二级菜单高亮
-watch(
-  () => route.path,
-  () => {
-    updateSecondaryHighlight();
-  },
-  { immediate: true },
-);
-
-// 监听窗口大小变化和滚动（用于响应式）
-function handleResize() {
-  setTimeout(() => {
-    updateSecondaryHighlight();
-  }, 400);
-}
-
-let scrollFrame: number | null = null;
-function handleScroll() {
-  if (scrollFrame !== null) {
-    cancelAnimationFrame(scrollFrame);
-  }
-  scrollFrame = requestAnimationFrame(() => {
-    updateSecondaryHighlight();
-    scrollFrame = null;
-  });
-}
-
-let sidebarElement: HTMLElement | null = null;
-
-onMounted(() => {
-  sidebarElement = document.querySelector('.sidebar') as HTMLElement;
-
-  setTimeout(() => {
-    updateSecondaryHighlight();
-  }, 400);
-
-  window.addEventListener('resize', handleResize);
-
-  // 监听 sidebar 的滚动
-  if (sidebarElement) {
-    sidebarElement.addEventListener('scroll', handleScroll);
-  }
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize);
-
-  if (sidebarElement) {
-    sidebarElement.removeEventListener('scroll', handleScroll);
-  }
-});
 </script>
 
 <style scoped>
@@ -423,22 +240,6 @@ onUnmounted(() => {
 /* 菜单容器 */
 .menu-container {
   position: relative;
-}
-
-/* 二级菜单高亮区域（用于显示激活的菜单项） */
-.secondary-highlight {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0.5rem;
-  background-color: transparent;
-  box-shadow: none;
-  transition:
-    transform var(--transition-base),
-    height var(--transition-base),
-    opacity var(--transition-base);
-  pointer-events: none;
-  display: none;
 }
 
 .menu-group {
