@@ -69,8 +69,17 @@
       title="在售/即将开售的礼包"
       title-en="New Packs"
     />
-    <TransitionGroup v-if="seasonalPacks.length > 0" class="packs-container" name="list" tag="div">
-      <ContainerPackCard v-for="packId in seasonalPacks" :key="packId" v-bind="packs[packId]!" />
+    <TransitionGroup
+      v-if="categorizedPacks.seasonal.length > 0"
+      class="packs-container"
+      name="list"
+      tag="div"
+    >
+      <ContainerPackCard
+        v-for="packId in categorizedPacks.seasonal"
+        :key="packId"
+        v-bind="packs[packId]!"
+      />
     </TransitionGroup>
 
     <!-- <ModuleHeader
@@ -85,23 +94,59 @@
       title-en="Permanent Packs"
     />
     <h2 style="margin: 15px">新人礼包</h2>
-    <TransitionGroup v-if="newbiePacks.length > 0" class="packs-container" name="list" tag="div">
-      <ContainerPackCard v-for="packId in newbiePacks" :key="packId" v-bind="packs[packId]!" />
+    <TransitionGroup
+      v-if="categorizedPacks.newbie.length > 0"
+      class="packs-container"
+      name="list"
+      tag="div"
+    >
+      <ContainerPackCard
+        v-for="packId in categorizedPacks.newbie"
+        :key="packId"
+        v-bind="packs[packId]!"
+      />
     </TransitionGroup>
 
     <h2 style="margin: 15px">每月/每周礼包</h2>
-    <TransitionGroup v-if="periodicPacks.length > 0" class="packs-container" name="list" tag="div">
-      <ContainerPackCard v-for="packId in periodicPacks" :key="packId" v-bind="packs[packId]!" />
+    <TransitionGroup
+      v-if="categorizedPacks.periodic.length > 0"
+      class="packs-container"
+      name="list"
+      tag="div"
+    >
+      <ContainerPackCard
+        v-for="packId in categorizedPacks.periodic"
+        :key="packId"
+        v-bind="packs[packId]!"
+      />
     </TransitionGroup>
 
     <h2 style="margin: 15px">武库配额</h2>
-    <TransitionGroup v-if="weaponsPacks.length > 0" class="packs-container" name="list" tag="div">
-      <ContainerPackCard v-for="packId in weaponsPacks" :key="packId" v-bind="packs[packId]!" />
+    <TransitionGroup
+      v-if="categorizedPacks.weapon.length > 0"
+      class="packs-container"
+      name="list"
+      tag="div"
+    >
+      <ContainerPackCard
+        v-for="packId in categorizedPacks.weapon"
+        :key="packId"
+        v-bind="packs[packId]!"
+      />
     </TransitionGroup>
 
     <h2 style="margin: 15px">源石/首充源石</h2>
-    <TransitionGroup v-if="originium.length > 0" class="packs-container" name="list" tag="div">
-      <ContainerPackCard v-for="packId in originium" :key="packId" v-bind="packs[packId]!" />
+    <TransitionGroup
+      v-if="categorizedPacks.originium.length > 0"
+      class="packs-container"
+      name="list"
+      tag="div"
+    >
+      <ContainerPackCard
+        v-for="packId in categorizedPacks.originium"
+        :key="packId"
+        v-bind="packs[packId]!"
+      />
     </TransitionGroup>
 
     <!-- <ModuleHeader
@@ -139,14 +184,26 @@ const defaultSorting: Map<string, number> = new Map(
 );
 const packsIdFilteredAndSorted = ref<string[]>(Object.keys(packs));
 
-const seasonalPacks = ref<string[]>([]);
-const newbiePacks = ref<string[]>([]);
-const monthlyPacks = ref<string[]>([]);
-const weeklyPacks = ref<string[]>([]);
-const weaponsPacks = ref<string[]>([]);
-const monthlyCard = ref<string[]>([]);
-const originium = ref<string[]>([]);
-const periodicPacks = ref<string[]>([]);
+// 使用 computed 代替多个 ref 和繁琐的更新函数
+const categorizedPacks = computed(() => {
+  const ids = packsIdFilteredAndSorted.value;
+  return {
+    seasonal: ids.filter((id) => packs[id]?.category === 'seasonal'),
+    newbie: ids.filter((id) => packs[id]?.category === 'newbie'),
+    weapon: ids.filter((id) => packs[id]?.category === 'weapon'),
+    originium: ids.filter((id) => packs[id]?.category === 'originium'),
+    // 包含 月卡 和 BP 的逻辑
+    monthlyCardAndBp: ids.filter((id) => {
+      const cat = packs[id]?.category;
+      return cat === 'monthly_card' || cat === 'bp';
+    }),
+    // 周期性礼包：每月、每周、月卡、BP
+    periodic: ids.filter((id) => {
+      const cat = packs[id]?.category;
+      return cat && ['monthly', 'weekly', 'monthly_card', 'bp'].includes(cat);
+    }),
+  };
+});
 
 // 筛选和排序状态
 const searchQuery = ref('');
@@ -157,7 +214,7 @@ const sortOrder = ref<'asc' | 'desc'>('asc');
 /**
  * 应用筛选和排序
  */
-function applyFilterAndSort () {
+function applyFilterAndSort() {
   // 1. 搜索筛选
   const query = searchQuery.value.trim().toLowerCase();
   const result = Object.keys(packs).filter((packId) => {
@@ -213,54 +270,15 @@ function applyFilterAndSort () {
 /**
  * 切换排序方向
  */
-function toggleSortOrder () {
+function toggleSortOrder() {
   sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
 }
 
-function updateCategorylPacks () {
-  seasonalPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
-    packId.includes('seasonal_giftpack'),
-  );
-  newbiePacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
-    packId.includes('newbie_giftpack'),
-  );
-  monthlyPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
-    packId.includes('monthly_giftpack'),
-  );
-  weeklyPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
-    packId.includes('weekly_giftpack'),
-  );
-  weaponsPacks.value = packsIdFilteredAndSorted.value.filter((packId) =>
-    packId.includes('武库配额包'),
-  );
-  monthlyCard.value = packsIdFilteredAndSorted.value.filter(
-    (packId) =>
-      packId.includes('月卡') ||
-      packId.includes('bp_track_pay') ||
-      packId.includes('bp_track_originium'),
-  );
-  originium.value = packsIdFilteredAndSorted.value.filter(
-    (packId) => packId.includes('源石') && !packId.includes('bp_track_originium'),
-  );
-  periodicPacks.value = packsIdFilteredAndSorted.value.filter(
-    (packId) =>
-      packId.includes('monthly_giftpack') ||
-      packId.includes('weekly_giftpack') ||
-      packId.includes('月卡') ||
-      packId.includes('bp_track_pay') ||
-      packId.includes('bp_track_originium'),
-  );
-}
-
 // 监听搜索和排序变化
-watch([searchQuery, sortField, sortOrder], () => {
-  applyFilterAndSort();
-});
-
 watch(
-  packsIdFilteredAndSorted,
+  [searchQuery, sortField, sortOrder],
   () => {
-    updateCategorylPacks();
+    applyFilterAndSort();
   },
   { immediate: true },
 );
