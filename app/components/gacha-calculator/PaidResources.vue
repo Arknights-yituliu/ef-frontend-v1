@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { LocalizedText, PackData } from '@/shared/types/pack';
 import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { packs } from '@/custom/core/packs';
 
 const props = defineProps<{
@@ -21,6 +23,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'update:modelValue', value: any): void;
 }>();
+
+const { locale } = useI18n();
 
 // 月卡状态
 const monthlyPassActive = computed({
@@ -51,7 +55,7 @@ const monthlyPassDays = computed(() => {
 
 // 计算月卡资源（从packs.ts获取）
 const monthlyPassResources = computed(() => {
-  const monthlyPack = packs['月卡'];
+  const monthlyPack = packs['payshop_giftpack_monthlycard'];
   const originiumRecharge = monthlyPack ? 12 : 0; // 一次性12源石
   const oneTimeDiamond = monthlyPack ? 6000 : 0; // 一次性6000玉
   const dailyDiamond = monthlyPassDays.value * 200; // 每天200玉
@@ -87,7 +91,11 @@ function isGachaResource(itemId: string): boolean {
 const giftPacks = computed(() => {
   const packList = [];
   for (const [key, pack] of Object.entries(packs)) {
-    if (key.includes('月卡') || key.includes('bp_track') || key.includes('源石')) {
+    if (
+      pack.category === 'MCard' ||
+      pack.category === 'BP' ||
+      pack.category === 'originium_recharge'
+    ) {
       continue;
     }
 
@@ -113,39 +121,23 @@ const selectedPacks = computed({
 
 // 源石列表
 const firstRechargeStones = computed(() => {
-  const stoneList = [];
-  const stoneKeys = [
-    '6元双倍源石',
-    '30元双倍源石',
-    '98元双倍源石',
-    '198元双倍源石',
-    '328元双倍源石',
-    '648元双倍源石',
-  ];
-
-  for (const key of stoneKeys) {
-    if (packs[key as keyof typeof packs]) {
-      stoneList.push({
-        id: key,
-        ...packs[key as keyof typeof packs],
-      });
-    }
-  }
+  const stoneList: PackData[] = [];
+  // 这里暂时注释掉，因为 Key 变了，且解包数据中暂时分不清首充双倍
   return stoneList;
 });
 
 // 非首充源石列表（可重复购买）
 const normalStones = computed(() => {
-  const stoneList = [];
-  const stoneKeys = ['6元源石', '30元源石', '98元源石', '198元源石', '328元源石', '648元源石'];
+  const stoneList: (PackData & { id: string })[] = [];
+  const originiumRecharges = Object.values(packs).filter(
+    (p) => p.category === 'originium_recharge',
+  );
 
-  for (const key of stoneKeys) {
-    if (packs[key as keyof typeof packs]) {
-      stoneList.push({
-        id: key,
-        ...packs[key as keyof typeof packs],
-      });
-    }
+  for (const pack of originiumRecharges) {
+    stoneList.push({
+      id: pack.packId,
+      ...pack,
+    });
   }
   return stoneList;
 });
@@ -378,20 +370,20 @@ function getImageUrl(itemId: string): string {
     <div class="section-title">礼包</div>
     <v-btn
       v-for="pack in giftPacks"
-      :key="pack.id"
-      :active="selectedPacks[pack.id] > 0"
+      :key="pack.packId"
+      :active="(selectedPacks[pack.packId] || 0) > 0"
       class="gacha-calculator-resource-single-btn"
-      :class="{ 'btn-active': selectedPacks[pack.id] > 0 }"
-      @click="togglePack(pack.id)"
+      :class="{ 'btn-active': (selectedPacks[pack.packId] || 0) > 0 }"
+      @click="togglePack(pack.packId)"
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
-          {{ pack.packDisplayNameZH }}
+          {{ pack.displayName[locale as keyof LocalizedText] }}
         </div>
         <div
           v-for="item in pack.contents"
           v-show="isGachaResource(item.itemId)"
-          :key="`${pack.id}-${item.itemId}`"
+          :key="`${pack.packId}-${item.itemId}`"
           class="gacha-calculator-resource-single-content"
         >
           <img
@@ -411,20 +403,20 @@ function getImageUrl(itemId: string): string {
     <div class="section-title">首充源石</div>
     <v-btn
       v-for="stone in firstRechargeStones"
-      :key="stone.id"
-      :active="(selectedPacks[stone.id] || 0) > 0"
+      :key="stone.packId"
+      :active="(selectedPacks[stone.packId] || 0) > 0"
       class="gacha-calculator-resource-single-btn"
-      :class="{ 'btn-active': (selectedPacks[stone.id] || 0) > 0 }"
-      @click="togglePack(stone.id)"
+      :class="{ 'btn-active': (selectedPacks[stone.packId] || 0) > 0 }"
+      @click="togglePack(stone.packId)"
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
-          {{ stone.packDisplayNameZH }}
+          {{ stone.displayName[locale as keyof LocalizedText] }}
         </div>
         <div
           v-for="item in stone.contents"
           v-show="isGachaResource(item.itemId)"
-          :key="`${stone.id}-${item.itemId}`"
+          :key="`${stone.packId}-${item.itemId}`"
           class="gacha-calculator-resource-single-content"
         >
           <img
@@ -443,14 +435,14 @@ function getImageUrl(itemId: string): string {
     <!-- 普通源石 -->
     <div class="section-title">普通源石</div>
 
-    <div v-for="stone in normalStones" :key="stone.id" class="gacha-calculator-resource-single">
+    <div v-for="stone in normalStones" :key="stone.packId" class="gacha-calculator-resource-single">
       <div class="gacha-calculator-resource-single-title">
-        {{ stone.packDisplayNameZH }}
+        {{ stone.displayName[locale as keyof LocalizedText] }}
       </div>
       <div
         v-for="item in stone.contents"
         v-show="isGachaResource(item.itemId)"
-        :key="`${stone.id}-${item.itemId}`"
+        :key="`${stone.packId}-${item.itemId}`"
         class="gacha-calculator-resource-single-content"
       >
         <img alt="item" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(item.itemId)" />
