@@ -1,5 +1,4 @@
-import fs from 'node:fs';
-import { charWpnRecommendTable, weaponBasicTable } from './gameData.ts';
+import { charWpnRecommendTable, weaponBasicTable } from './gameData';
 
 // 没有头像的特殊干员 ID 列表，不包含在推荐中
 const noAvatarCharIds = new Set(['chr_9000_endmin']);
@@ -9,7 +8,7 @@ const noAvatarCharIds = new Set(['chr_9000_endmin']);
  * 仅取每位干员的第一推荐武器（weaponIds1[0]）。
  * 所有武器均会包含在结果中，无干员推荐的武器对应空列表。
  */
-function makeWeaponToChars(): Record<string, string[]> {
+export function makeWeaponToChars(): Record<string, string[]> {
   // 以 weaponBasicTable 为基底，确保所有武器都在结果中
   const weaponToChars: Map<string, string[]> = new Map(
     Object.keys(weaponBasicTable).map((weaponId) => [weaponId, []]),
@@ -56,9 +55,3 @@ function sortWeaponToChars(map: Map<string, string[]>): Record<string, string[]>
     .map(([weaponId, charIds]) => [weaponId, charIds.toSorted((a, b) => a.localeCompare(b))]); // 再对 charId 列表排序
   return Object.fromEntries(sortedEntries);
 }
-
-fs.writeFileSync(
-  'custom/core/weaponToChars.json',
-  JSON.stringify(makeWeaponToChars(), null, 2),
-  'utf8',
-);
