@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type {Reward} from '#shared/types/gacha-calculator';
-import { computed } from 'vue';
 import {itemIdDict} from '#shared/utils/gacha-calculator';
+import { computed } from 'vue';
 
 const props = defineProps<{
   reward:Reward,
