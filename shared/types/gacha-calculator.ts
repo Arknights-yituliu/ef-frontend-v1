@@ -117,6 +117,9 @@ export interface GachaCalculatorUserConfig {
   slider: {
     [key: string]: number;
   };
+  versionVisible?: {
+    [key: string]: boolean;
+  };
 }
 
 export type ModuleSelectedStatus = {

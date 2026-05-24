@@ -82,7 +82,7 @@ function getImageUrl(itemId: string): string {
 .gacha-calculator-resource-btn-content-title {
   width: 300px;
   text-align: start;
-  padding-left: 4px;
+  padding-left: 8px;
 }
 
 .gacha-calculator-resource-btn-content-content {
