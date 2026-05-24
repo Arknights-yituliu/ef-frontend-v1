@@ -331,7 +331,7 @@
       "zh": "武陵·地区建设等级15-18",
       "en": ""
     },
-    "start": "2026/05/14 12:00:00",
+    "start": "2026/06/05 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "地区探索与建设",
@@ -520,26 +520,6 @@
     "content": {
       "originiumRecharge": 0,
       "diamond": 80,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "武陵·据点防御",
-    "name": {
-      "zh": "武陵·据点防御",
-      "en": ""
-    },
-    "start": "2026/12/17 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "地区探索与建设",
-    "active": false,
-    "version": "春晓时待定",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 160,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0

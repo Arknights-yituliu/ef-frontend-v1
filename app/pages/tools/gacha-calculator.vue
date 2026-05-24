@@ -30,7 +30,7 @@ import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
 import {
-  archivePermanentRewardTable,
+ 
   authorityLevelUpReward,
   authorityLevelUpRewardTable,
   permanentRewardTable,
@@ -418,18 +418,7 @@ watch(
   { deep: true },
 );
 
-watch(
-  archivePermanentRewardTable,
-  (newValue) => {
-    for (const item of newValue) {
-      saveUserConfig(item.id, item.active, 'buttonGroupActive');
-    }
 
-    permanentRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
 
 let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '常驻奖励',
@@ -453,9 +442,7 @@ function permanentRewardStatistics(): void {
     addVisibleReward(result, reward);
   }
 
-  for (const reward of archivePermanentRewardTable.value) {
-    addVisibleReward(result, reward);
-  }
+
   addVisibleReward(result, authorityLevelUpReward.value);
 
   permanentRewardStatisticsResultDetail = result;
@@ -861,7 +848,7 @@ function loadingUserConfig() {
 
         // 常驻奖励重构
         _setButtonGroupActive(localConfig.buttonGroupActive, permanentRewardTable);
-        _setButtonGroupActive(localConfig.buttonGroupActive, archivePermanentRewardTable);
+      
 
         // 活动奖励
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
@@ -990,7 +977,7 @@ function clearOrSelectAllActivityModule(action: boolean) {
 
 function clearOrSelectAllPermanentRewardModule(action: boolean) {
   clearOrSelectAll(action, 'button', permanentRewardTable);
-  clearOrSelectAll(action, 'button', archivePermanentRewardTable);
+
   if (isRewardMatchedSelectedVersion(authorityLevelUpReward.value)) {
     if (action) {
       authorityLevelProgress.value = [1, 60];
@@ -1290,17 +1277,20 @@ function setVersionRewardsActive(version: string, active: boolean) {
   clearOrSelectAll(active, 'button', dailyAllRewardTable, [0, 0], version);
   clearOrSelectAll(active, 'button', activityReward, [0, 0], version);
   clearOrSelectAll(active, 'button', permanentRewardTable, [0, 0], version);
-  clearOrSelectAll(active, 'button', archivePermanentRewardTable, [0, 0], version);
+ 
 
   if (isRewardMatchedVersion(authorityLevelUpReward.value, version)) {
     authorityLevelProgress.value = active ? [1, 60] : [60, 60];
   }
 }
 
-const permanentRewardCategoryNames = ['地图资源', '任务', '档案采集', '醚质', '未分类'] as const;
+// 常驻奖励的分类名称列表，包含五个分类
+const permanentRewardCategoryNames = ['地图资源', '任务', '档案采集', '蚀像寻遗', '新手活动', '行动手册', '未分类'] as const;
 
+// 常驻奖励分类名称的类型定义，取permanentRewardCategoryNames数组元素的联合类型
 type PermanentRewardCategoryName = (typeof permanentRewardCategoryNames)[number];
 
+// 常驻奖励模块到分类名称的映射表，键为module字段值，值为对应的分类名
 const permanentRewardModuleCategoryMap: Record<string, PermanentRewardCategoryName> = {
   地区探索与建设: '地图资源',
   主线任务: '任务',
@@ -1309,32 +1299,40 @@ const permanentRewardModuleCategoryMap: Record<string, PermanentRewardCategoryNa
   次要任务: '任务',
   功能任务: '任务',
   其他: '档案采集',
-  蚀像寻遗刻度: '醚质',
-  蚀像寻遗储藏箱: '醚质',
-  蚀像寻遗探索任务: '醚质',
+  蚀像寻遗刻度: '蚀像寻遗',
+  蚀像寻遗储藏箱: '蚀像寻遗',
+  蚀像寻遗探索任务: '蚀像寻遗',
+  行动手册: '行动手册',
+  新手活动: '新手活动',
 };
 
+// 根据奖励对象的module字段返回对应的分类名称
 function getPermanentRewardCategory(reward: Reward): PermanentRewardCategoryName {
+  // 获取奖励的module字段并去除首尾空格
   const module = reward.module?.trim();
+  // 如果module为空，则返回"未分类"
   if (!module) {
     return '未分类';
   }
-
+  // 在映射表中查找对应的分类名称，找不到则返回"未分类"
   return permanentRewardModuleCategoryMap[module] ?? '未分类';
 }
 
+// 常驻奖励的分组计算结果，将奖励按分类名称分组
 const permanentRewardGroups = computed(() => {
+  // 合并常驻奖励表、权限等级奖励和归档常驻奖励表
   const rewards = [
     ...permanentRewardTable.value,
     authorityLevelUpReward.value,
-    ...archivePermanentRewardTable.value,
   ];
-
+  // 遍历分类名称列表，构建分组对象
   return permanentRewardCategoryNames
     .map((name) => ({
       name,
+      // 筛选出属于当前分类的奖励列表
       rewards: rewards.filter((reward) => getPermanentRewardCategory(reward) === name),
     }))
+    // 过滤掉没有奖励的分组
     .filter((group) => group.rewards.length > 0);
 });
 
