@@ -334,7 +334,7 @@ definePageMeta({
 }
 
 .category-title {
-  margin-block: var(--spacing-md);
+  margin-block: var(--spacing-lg) var(--spacing-md);
   color: var(--theme-text-primary);
   font-size: var(--font-size-md);
 }
