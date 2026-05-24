@@ -10,7 +10,7 @@
           loading="lazy"
           :src="props.imageUrl"
           @error="handleImageError"
-        >
+        />
         <div v-else class="image-placeholder">
           <span class="placeholder-icon">📦</span>
         </div>
@@ -33,13 +33,13 @@
           <div class="value-stone">
             {{ $t('component.packCard.equivalent') }}
             {{ getPackStoneEquivalent(props).toFixed(1) }} {{ $t('component.packCard.stone') }}
-            <br >
+            <br />
             ￥{{ getPackPricePerStone(props).toFixed(1) }} / {{ $t('component.packCard.stone') }}
           </div>
           <div v-if="getPackTotalPulls(props) > 0" class="value-pull">
             {{ $t('component.packCard.total') }} {{ getPackTotalPulls(props).toFixed(1) }}
             {{ $t('component.packCard.pulls') }}
-            <br >
+            <br />
             ￥{{ getPackPricePerPull(props).toFixed(1) }} / {{ $t('component.packCard.pull') }}
           </div>
         </div>
@@ -94,7 +94,7 @@
         </thead>
         <tbody>
           <tr v-for="(content, index) in props.contents" :key="index">
-            <td>{{ getItemName(content.itemId) }}</td>
+            <td>{{ content.name[locale] }}</td>
             <td>{{ content.quantity }}</td>
             <td>{{ getItemBundleValue(content).toFixed(2) }}</td>
             <td>{{ (getItemBundleValuePercentage(content, props) * 100).toFixed(2) }}%</td>
@@ -107,7 +107,6 @@
 
 <script lang="ts" setup>
 import type { PackData } from '@/shared/types/pack';
-import { getItemName } from '@/shared/utils/gameData/item';
 import {
   getItemBundleValue,
   getItemBundleValuePercentage,
@@ -126,11 +125,11 @@ const imageError = ref(false);
 const isExpanded = ref(false);
 
 const packDisplayName = computed(() => {
-  return locale.value === 'en-US' ? props.packDisplayNameEN : props.packDisplayNameZH;
+  return props.displayName[locale.value];
 });
 
 const packDescription = computed(() => {
-  return locale.value === 'en-US' ? props.descriptionEN : props.descriptionZH;
+  return props.description?.[locale.value];
 });
 
 // const countdownText = computed(() => {
@@ -145,29 +144,29 @@ const packDescription = computed(() => {
 //   return locale.value === 'en-US' ? bar.labelEN : bar.labelZH;
 // };
 
-function handleImageError () {
+function handleImageError() {
   imageError.value = true;
 }
 
-function toggleExpanded () {
+function toggleExpanded() {
   isExpanded.value = !isExpanded.value;
 }
 
-function getPackComparisonBars (pack: PackData) {
+function getPackComparisonBars(pack: PackData) {
   return [
-  {
-    barLabel: $t('component.packCard.packSanityEfficiency'),
-    percentage: getPackSanityEfficiency(pack),
-  },
-  {
-    barLabel: $t('component.packCard.packPullsEfficiency'),
-    percentage: getPackPullsEfficiency(pack),
-  },
-  {
-    barLabel: $t('component.packCard.648StoneEfficiency'),
-    percentage: 1,
-  },
-]
+    {
+      barLabel: $t('component.packCard.packSanityEfficiency'),
+      percentage: getPackSanityEfficiency(pack),
+    },
+    {
+      barLabel: $t('component.packCard.packPullsEfficiency'),
+      percentage: getPackPullsEfficiency(pack),
+    },
+    {
+      barLabel: $t('component.packCard.648StoneEfficiency'),
+      percentage: 1,
+    },
+  ];
 }
 </script>
 

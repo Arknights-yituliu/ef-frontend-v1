@@ -1,16 +1,20 @@
 {
   "BP": {
     "shopId": "BP",
-    "shopNameZH": "协议通行证",
-    "shopNameEN": "Protocol Pass",
+    "displayName": {
+      "zh-CN": "协议通行证",
+      "en-US": "Protocol Pass"
+    },
     "goodsIds": [
       "bp_pay_track"
     ]
   },
   "Newbie_pack": {
     "shopId": "Newbie_pack",
-    "shopNameZH": "启程组合包",
-    "shopNameEN": "Horizons Bundle",
+    "displayName": {
+      "zh-CN": "启程组合包",
+      "en-US": "Horizons Bundle"
+    },
     "goodsIds": [
       "newbie_giftpack_6_special",
       "newbie_giftpack_01",
@@ -19,16 +23,20 @@
   },
   "MCard": {
     "shopId": "MCard",
-    "shopNameZH": "月卡",
-    "shopNameEN": "Monthly Pass",
+    "displayName": {
+      "zh-CN": "月卡",
+      "en-US": "Monthly Pass"
+    },
     "goodsIds": [
       "payshop_giftpack_monthlycard"
     ]
   },
   "Permanent_pack": {
     "shopId": "Permanent_pack",
-    "shopNameZH": "标准组合包",
-    "shopNameEN": "Standard Bundle",
+    "displayName": {
+      "zh-CN": "标准组合包",
+      "en-US": "Standard Bundle"
+    },
     "goodsIds": [
       "monthly_giftpack_01",
       "weekly_giftpack_01"
@@ -36,8 +44,10 @@
   },
   "Seasonal_Rec_pack": {
     "shopId": "Seasonal_Rec_pack",
-    "shopNameZH": "限时组合包",
-    "shopNameEN": "Limited Bundle",
+    "displayName": {
+      "zh-CN": "限时组合包",
+      "en-US": "Limited Bundle"
+    },
     "goodsIds": [
       "seasonal_giftpack_combine",
       "seasonal_giftpack_lt_01",
@@ -51,8 +61,10 @@
   },
   "SP_weapon_supply": {
     "shopId": "SP_weapon_supply",
-    "shopNameZH": "武库组合包",
-    "shopNameEN": "Arsenal Bundle",
+    "displayName": {
+      "zh-CN": "武库组合包",
+      "en-US": "Arsenal Bundle"
+    },
     "goodsIds": [
       "weapon_giftpack_01",
       "weapon_giftpack_02",
@@ -62,8 +74,10 @@
   },
   "originium_recharge": {
     "shopId": "originium_recharge",
-    "shopNameZH": "源石交易所",
-    "shopNameEN": "Originium Exchange",
+    "displayName": {
+      "zh-CN": "源石交易所",
+      "en-US": "Originium Exchange"
+    },
     "goodsIds": [
       "recharge_originium_6",
       "recharge_originium_30",

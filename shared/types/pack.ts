@@ -1,6 +1,11 @@
+export interface LocalizedText {
+  'zh-CN': string;
+  'en-US': string;
+}
+
 export interface PackContent {
   itemId: string;
-  itemName?: string;
+  name: LocalizedText;
   quantity: number;
 }
 
@@ -8,11 +13,9 @@ export type PackCategory = string;
 
 export interface PackData {
   packId: string;
-  packDisplayNameZH: string;
-  packDisplayNameEN: string;
+  displayName: LocalizedText;
   category: PackCategory; // 这里存储 cashShopId (二级分类)
-  descriptionZH?: string;
-  descriptionEN?: string;
+  description?: LocalizedText;
   price: number;
   imageUrl: string;
   contents: PackContent[];
@@ -22,15 +25,13 @@ export interface PackData {
 
 export interface PackShopData {
   shopId: string;
-  shopNameZH: string;
-  shopNameEN: string;
+  displayName: LocalizedText;
   goodsIds: string[];
 }
 
 export interface PackGroupData {
   groupId: string;
-  groupNameZH: string;
-  groupNameEN: string;
+  displayName: LocalizedText;
   shopIds: string[];
 }
 
