@@ -2,11 +2,15 @@
   <NuxtLayout name="default">
     <div class="error-page-container" :data-theme="theme">
       <div class="error-content-wrapper">
-        <!-- 404 故障艺术效果 -->
+        <!-- 故障艺术效果 -->
         <div class="glitch-container">
-          <h1 class="status-code">404</h1>
-          <div class="glitch-layer primary" data-text="404">404</div>
-          <div class="glitch-layer secondary" data-text="404">404</div>
+          <h1 class="status-code">{{ errorInfo.code }}</h1>
+          <div aria-hidden class="glitch-layer primary" :data-text="errorInfo.code">
+            {{ errorInfo.code }}
+          </div>
+          <div aria-hidden class="glitch-layer secondary" :data-text="errorInfo.code">
+            {{ errorInfo.code }}
+          </div>
         </div>
 
         <!-- 核心文案区 -->
@@ -15,18 +19,15 @@
             <div class="header-line"></div>
             <div class="warning-tag">
               <v-icon class="mr-1" icon="mdi-alert-box" size="14" />
-              LOST CONNECTION / 链路中断
+              {{ errorInfo.warningTag }}
             </div>
           </div>
 
-          <h2 class="main-title">TERMINAL COMMUNICATION ERROR</h2>
-          <h3 class="sub-title">终端协议通讯异常</h3>
+          <h2 class="main-title">{{ errorInfo.mainTitle }}</h2>
+          <h3 class="sub-title">{{ errorInfo.subTitle }}</h3>
 
           <div class="description-box">
-            <p class="description-text">
-              由于环境辐射干扰或协议地址偏移，系统无法定位您请求的数据包目标。<br />
-              这可能是由于该坐标点尚未开放，或该协议已从当前版本中移除。
-            </p>
+            <p class="description-text" v-html="errorInfo.description"></p>
           </div>
 
           <div class="actions">
@@ -41,17 +42,17 @@
       </div>
 
       <!-- 装饰性元素 -->
-      <div class="side-decoration left d-none d-md-flex">
+      <div aria-hidden class="side-decoration left d-none d-md-flex">
         <div class="line"></div>
         <span class="label">PROTOCOL: ENDFIELD_V1</span>
       </div>
 
-      <div class="side-decoration right d-none d-md-flex">
+      <div aria-hidden class="side-decoration right d-none d-md-flex">
         <div class="line"></div>
         <span class="label">S-ERROR: 0x00325799</span>
       </div>
 
-      <div class="bottom-info">
+      <div aria-hidden class="bottom-info">
         <span class="pulse-icon"></span>
         <span class="system-status">SYSTEM STATUS: INTERRUPTED</span>
       </div>
@@ -60,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-const _props = defineProps({
+const props = defineProps({
   error: {
     type: Object,
     default: () => ({ statusCode: 404, statusMessage: 'Not Found' }),
@@ -69,13 +70,38 @@ const _props = defineProps({
 
 const { theme } = useTheme();
 
+// 根据错误码派生展示内容
+const errorInfo = computed(() => {
+  const code = props.error?.statusCode || 500;
+
+  if (code === 404) {
+    return {
+      code,
+      mainTitle: 'TERMINAL COMMUNICATION ERROR',
+      subTitle: '终端协议通讯异常',
+      description:
+        '由于环境辐射干扰或协议地址偏移，系统无法定位您请求的数据包目标。<br />这可能是由于该坐标点尚未开放，或该协议已从当前版本中移除。',
+      warningTag: 'LOST CONNECTION / 链路中断',
+    };
+  }
+
+  return {
+    code,
+    mainTitle: 'CORE SYSTEM FAILURE',
+    subTitle: props.error?.statusMessage || '核心系统运行故障',
+    description:
+      '检测到关键模块发生未预期的逻辑坍缩，核心服务暂时无法响应请求。<br />可能是由于服务器负载过载或后台数据处理异常，请稍后再试。',
+    warningTag: 'SYSTEM CRITICAL / 系统崩溃',
+  };
+});
+
 function handleBackHome() {
   clearError({ redirect: '/' });
 }
 
-// 404 页面标题
+// 动态页面标题
 useHead({
-  title: '404 - 终端通讯异常',
+  title: `${errorInfo.value.code} - ${errorInfo.value.subTitle}`,
 });
 </script>
 
@@ -341,6 +367,15 @@ useHead({
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch-layer.primary,
+  .glitch-layer.secondary,
+  .pulse-icon {
+    animation: none;
+    transform: none;
   }
 }
 </style>
