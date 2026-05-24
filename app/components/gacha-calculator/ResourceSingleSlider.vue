@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type {Reward} from '#shared/types/gacha-calculator';
-import {itemIdDict} from '#shared/utils/gacha-calculator';
+import type { Reward } from '#shared/types/gacha-calculator';
+import { itemIdDict } from '#shared/utils/gacha-calculator';
 import { computed } from 'vue';
 
 const props = defineProps<{
-  reward:Reward,
-  sliderValue:number[]
+  reward: Reward;
+  sliderValue: number[];
 }>();
 
 const emit = defineEmits<{
@@ -17,16 +17,8 @@ const sliderValue = computed({
   set: (value) => emit('update:sliderValue', value),
 });
 
-/**
- *
- */
 function getImageUrl(itemId: string): string {
-  if(itemIdDict[itemId]){
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_${itemIdDict[itemId]}.webp`;
-  }else {
-    return  `https://cos.yituliu.cn/endfield/unpack-images/items/item_1.webp`
-  }
-
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${itemIdDict[itemId]}.png`;
 }
 </script>
 
@@ -42,28 +34,29 @@ function getImageUrl(itemId: string): string {
         :key="`${props.reward.id}-${name}`"
         class="gacha-calculator-resource-single-content"
       >
-        <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" >
+        <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
         X {{ item }}
       </div>
     </div>
-  <v-range-slider
-v-model="sliderValue"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="14"
-                  show-ticks="always" step="1"
-                  thumb-label="always"
-                  tick-size="4">
-    <!--                <template v-slot:thumb-label="{ modelValue }">-->
-    <!--                  {{ `第` }} {{ modelValue }} {{ `日` }}-->
-    <!--                </template>-->
-  </v-range-slider>
- <template v-if="props.reward.tips">
+    <v-range-slider
+      v-model="sliderValue"
+      class="v-range-slider"
+      hide-details="auto"
+      max="14"
+      show-ticks="always"
+      step="1"
+      thumb-label="always"
+      tick-size="4"
+    >
+      <!--                <template v-slot:thumb-label="{ modelValue }">-->
+      <!--                  {{ `第` }} {{ modelValue }} {{ `日` }}-->
+      <!--                </template>-->
+    </v-range-slider>
+    <template v-if="props.reward.tips">
       <div v-for="tip in props.reward.tips" :key="tip" class="gacha-calculator-resource-btn-tip">
         {{ tip }}
       </div>
     </template>
-
   </div>
 </template>
 
@@ -83,7 +76,6 @@ v-model="sliderValue"
   display: flex;
   font-size: 1.25rem;
   align-items: center;
-
 }
 .gacha-calculator-resource-single-title {
   width: 200px;
