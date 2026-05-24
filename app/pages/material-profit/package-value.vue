@@ -64,110 +64,22 @@
       </v-btn>
     </section>
     <!-- 礼包卡片列表 -->
-    <ModuleHeader
-      :tips="['*在售/即将开售的限时礼包，常驻、半常驻礼包和源石请往下翻']"
-      title="在售/即将开售的礼包"
-      title-en="New Packs"
-    />
-    <TransitionGroup
-      v-if="categorizedPacks.seasonal.length > 0"
-      class="packs-container"
-      name="list"
-      tag="div"
-    >
-      <ContainerPackCard
-        v-for="packId in categorizedPacks.seasonal"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
-    </TransitionGroup>
+    <div v-if="displayGroups.length > 0">
+      <div v-for="group in displayGroups" :key="group.groupId" class="group-section">
+        <ModuleHeader :tips="[]" :title="group.groupNameZH" :title-en="group.groupNameEN" />
 
-    <!-- <ModuleHeader
-      title="半常驻礼包"
-      title-en="Semi-permanent Packs"
-      :tips="[123]"
-    ></ModuleHeader> -->
-
-    <ModuleHeader
-      :tips="['*每月/每周礼包、新人礼包、源石、武库配额']"
-      title="常驻礼包"
-      title-en="Permanent Packs"
-    />
-    <h2 class="category-title">新人礼包</h2>
-    <TransitionGroup
-      v-if="categorizedPacks.newbie.length > 0"
-      class="packs-container"
-      name="list"
-      tag="div"
-    >
-      <ContainerPackCard
-        v-for="packId in categorizedPacks.newbie"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
-    </TransitionGroup>
-
-    <h2 class="category-title">每月/每周礼包</h2>
-    <TransitionGroup
-      v-if="categorizedPacks.periodic.length > 0"
-      class="packs-container"
-      name="list"
-      tag="div"
-    >
-      <ContainerPackCard
-        v-for="packId in categorizedPacks.periodic"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
-    </TransitionGroup>
-
-    <h2 class="category-title">武库配额</h2>
-    <TransitionGroup
-      v-if="categorizedPacks.weapon.length > 0"
-      class="packs-container"
-      name="list"
-      tag="div"
-    >
-      <ContainerPackCard
-        v-for="packId in categorizedPacks.weapon"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
-    </TransitionGroup>
-
-    <h2 class="category-title">源石/首充源石</h2>
-    <TransitionGroup
-      v-if="categorizedPacks.originium.length > 0"
-      class="packs-container"
-      name="list"
-      tag="div"
-    >
-      <ContainerPackCard
-        v-for="packId in categorizedPacks.originium"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
-    </TransitionGroup>
-
-    <!-- <ModuleHeader
-      title="历史礼包"
-      title-en="Historical Packs"
-      :tips="[123]"
-    ></ModuleHeader> -->
-
-    <!-- 礼包卡片列表 -->
-    <!-- <TransitionGroup
-      v-if="packsIdFilteredAndSorted.length > 0"
-      name="list"
-      tag="div"
-      class="packs-container"
-    >
-      <ContainerPackCard
-        v-for="packId in packsIdFilteredAndSorted"
-        :key="packId"
-        v-bind="packs[packId]!"
-      />
-    </TransitionGroup> -->
+        <div v-for="shop in group.shops" :key="shop.shopId" class="shop-section">
+          <h2 class="category-title">{{ shop.shopNameZH }}</h2>
+          <TransitionGroup class="packs-container" name="list" tag="div">
+            <ContainerPackCard
+              v-for="packId in shop.goodsIds"
+              :key="packId"
+              v-bind="packs[packId]!"
+            />
+          </TransitionGroup>
+        </div>
+      </div>
+    </div>
 
     <div v-else class="no-data">
       <p>{{ $t('common.noData') }}</p>
@@ -177,95 +89,89 @@
 
 <script lang="ts" setup>
 import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
-import { packs } from '@/custom/core/packs';
-// 全局数据引用
+import { packGroups, packs, packShops } from '@/custom/core/packs';
+import { getPackPullsEfficiency, getPackSanityEfficiency } from '@/shared/utils/gameData/pack';
+
+// 全局数据引用-原始顺序（用于默认排序）
 const defaultSorting: Map<string, number> = new Map(
   Object.keys(packs).map((packId, index) => [packId, index]),
 );
-const packsIdFilteredAndSorted = ref<string[]>(Object.keys(packs));
-
-// 使用 computed 代替多个 ref 和繁琐的更新函数
-const categorizedPacks = computed(() => {
-  const ids = packsIdFilteredAndSorted.value;
-  return {
-    seasonal: ids.filter((id) => packs[id]?.category === 'seasonal'),
-    newbie: ids.filter((id) => packs[id]?.category === 'newbie'),
-    weapon: ids.filter((id) => packs[id]?.category === 'weapon'),
-    originium: ids.filter((id) => packs[id]?.category === 'originium'),
-    // 包含 月卡 和 BP 的逻辑
-    monthlyCardAndBp: ids.filter((id) => {
-      const cat = packs[id]?.category;
-      return cat === 'monthly_card' || cat === 'bp';
-    }),
-    // 周期性礼包：每月、每周、月卡、BP
-    periodic: ids.filter((id) => {
-      const cat = packs[id]?.category;
-      return cat && ['monthly', 'weekly', 'monthly_card', 'bp'].includes(cat);
-    }),
-  };
-});
 
 // 筛选和排序状态
 const searchQuery = ref('');
 const sortField = ref<'default' | 'price' | 'gachaOnly' | 'allItems'>('default');
 const sortOrder = ref<'asc' | 'desc'>('asc');
 
-// ====================== 筛选和排序逻辑 ======================
-/**
- * 应用筛选和排序
- */
-function applyFilterAndSort() {
-  // 1. 搜索筛选
+// 使用 computed 生成层级数据
+const displayGroups = computed(() => {
   const query = searchQuery.value.trim().toLowerCase();
-  const result = Object.keys(packs).filter((packId) => {
-    const nameZH = packs[packId]?.packDisplayNameZH.toLowerCase() ?? '';
-    const nameEN = packs[packId]?.packDisplayNameEN.toLowerCase() ?? '';
-    return nameZH.includes(query) || nameEN.includes(query);
+
+  // 1. 获取所有符合筛选条件的 packId
+  const filteredPackIds = new Set(
+    Object.keys(packs).filter((id) => {
+      const p = packs[id]!;
+      return (
+        p.packDisplayNameZH.toLowerCase().includes(query) ||
+        p.packDisplayNameEN.toLowerCase().includes(query)
+      );
+    }),
+  );
+
+  // 2. 构建并排序层级结构
+  const groups = Object.values(packGroups).map((group) => {
+    const shops = group.shopIds
+      .map((shopId) => packShops[shopId])
+      .filter((shop) => !!shop)
+      .map((shop) => {
+        // 过滤 goods
+        const goodsIds = shop.goodsIds.filter((id) => filteredPackIds.has(id));
+
+        // 对 goods 进行排序
+        goodsIds.sort((a, b) => {
+          const packA = packs[a]!;
+          const packB = packs[b]!;
+          let valueA: number;
+          let valueB: number;
+
+          switch (sortField.value) {
+            case 'default': {
+              valueA = defaultSorting.get(packA.packId) ?? 999;
+              valueB = defaultSorting.get(packB.packId) ?? 999;
+              break;
+            }
+            case 'price': {
+              valueA = packA.price;
+              valueB = packB.price;
+              break;
+            }
+            case 'gachaOnly': {
+              valueA = getPackPullsEfficiency(packA);
+              valueB = getPackPullsEfficiency(packB);
+              break;
+            }
+            case 'allItems': {
+              valueA = getPackSanityEfficiency(packA);
+              valueB = getPackSanityEfficiency(packB);
+              break;
+            }
+            default: {
+              valueA = 0;
+              valueB = 0;
+            }
+          }
+
+          return sortOrder.value === 'asc' ? valueA - valueB : valueB - valueA;
+        });
+
+        return { ...shop, goodsIds };
+      })
+      .filter((shop) => shop.goodsIds.length > 0);
+
+    return { ...group, shops };
   });
 
-  // 2. 排序
-  result.sort((a, b) => {
-    const packA = packs[a]!;
-    const packB = packs[b]!;
-    let valueA: number;
-    let valueB: number;
-
-    switch (sortField.value) {
-      case 'default': {
-        valueA = defaultSorting.get(packA.packId)!;
-        valueB = defaultSorting.get(packB.packId)!;
-        break;
-      }
-      case 'price': {
-        valueA = packA.price;
-        valueB = packB.price;
-        break;
-      }
-      case 'gachaOnly': {
-        valueA = getPackPullsEfficiency(packA);
-        valueB = getPackPullsEfficiency(packB);
-        break;
-      }
-      case 'allItems': {
-        valueA = getPackSanityEfficiency(packA);
-        valueB = getPackSanityEfficiency(packB);
-        break;
-      }
-      default: {
-        valueA = defaultSorting.get(packA.packId)!;
-        valueB = defaultSorting.get(packB.packId)!;
-      }
-    }
-
-    if (sortOrder.value === 'asc') {
-      return valueA - valueB;
-    } else {
-      return valueB - valueA;
-    }
-  });
-
-  packsIdFilteredAndSorted.value = result;
-}
+  return groups.filter((group) => group.shops.length > 0);
+});
 
 /**
  * 切换排序方向
@@ -273,15 +179,6 @@ function applyFilterAndSort() {
 function toggleSortOrder() {
   sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
 }
-
-// 监听搜索和排序变化
-watch(
-  [searchQuery, sortField, sortOrder],
-  () => {
-    applyFilterAndSort();
-  },
-  { immediate: true },
-);
 
 definePageMeta({
   layout: 'default',
@@ -329,7 +226,6 @@ definePageMeta({
   display: flex;
   flex-wrap: wrap;
   gap: clamp(20px, 6.66666666vw, 40px);
-  /* margin-top: var(--spacing-xl); */
   position: relative;
 }
 
@@ -343,6 +239,14 @@ definePageMeta({
   text-align: center;
   padding: var(--spacing-2xl);
   color: var(--theme-text-secondary);
+}
+
+.group-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.shop-section {
+  margin-bottom: var(--spacing-xl);
 }
 
 @media screen and (max-width: 600px) {

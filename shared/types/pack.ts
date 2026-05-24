@@ -4,21 +4,13 @@ export interface PackContent {
   quantity: number;
 }
 
-export type PackCategory =
-  | 'seasonal'
-  | 'newbie'
-  | 'monthly'
-  | 'weekly'
-  | 'weapon'
-  | 'monthly_card'
-  | 'bp'
-  | 'originium';
+export type PackCategory = string;
 
 export interface PackData {
   packId: string;
   packDisplayNameZH: string;
   packDisplayNameEN: string;
-  category: PackCategory;
+  category: PackCategory; // 这里存储 cashShopId (二级分类)
   descriptionZH?: string;
   descriptionEN?: string;
   price: number;
@@ -28,4 +20,20 @@ export interface PackData {
   endTimestamp?: number;
 }
 
+export interface PackShopData {
+  shopId: string;
+  shopNameZH: string;
+  shopNameEN: string;
+  goodsIds: string[];
+}
+
+export interface PackGroupData {
+  groupId: string;
+  groupNameZH: string;
+  groupNameEN: string;
+  shopIds: string[];
+}
+
 export type Packs = Record<string, PackData>;
+export type PackShops = Record<string, PackShopData>;
+export type PackGroups = Record<string, PackGroupData>;
