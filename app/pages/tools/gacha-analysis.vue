@@ -8,32 +8,22 @@
 <!-- 当卡池更新时请到/custom/core/gacha-pool-info.ts增加新卡池信息 -->
 <template>
 
-  <div style=" border-radius: 16px; padding: 24px;">
+  <div class="gacha-analysis-page">
     <!-- 数据收集 -->
     <div v-if="viewMode === 'collect'" class="collect-form">
       <header class="page-title">导入抽卡记录</header>
 
-      <div style="display: flex; background: #f3f4f6; padding: 4px; border-radius: 8px; margin-bottom: 24px;">
+      <div class="import-method-tabs">
         <button
-          style="flex: 1; padding: 8px; border-radius: 6px; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s;"
-          :style="{
-            backgroundColor: importMethod === 'online' ? '#fff' : 'transparent',
-            boxShadow: importMethod === 'online' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
-            fontWeight: importMethod === 'online' ? 'bold' : 'normal',
-            color: importMethod === 'online' ? '#3b82f6' : '#6b7280'
-          }"
+          class="import-method-btn"
+          :class="{ 'import-method-btn--active': importMethod === 'online' }"
           @click="importMethod = 'online'"
         >
           链接导入
         </button>
         <button
-          style="flex: 1; padding: 8px; border-radius: 6px; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s;"
-          :style="{
-            backgroundColor: importMethod === 'local' ? '#fff' : 'transparent',
-            boxShadow: importMethod === 'local' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
-            fontWeight: importMethod === 'local' ? 'bold' : 'normal',
-            color: importMethod === 'local' ? '#3b82f6' : '#6b7280'
-          }"
+          class="import-method-btn"
+          :class="{ 'import-method-btn--active': importMethod === 'local' }"
           @click="importMethod = 'local'"
         >
           本地文件
@@ -43,13 +33,13 @@
       <div v-show="importMethod === 'online'" class="form-group">
         <textarea
           v-model="inputCredential"
+          class="gacha-textarea"
           :disabled="isSubmitting"
           placeholder="请将查询链接内所有内容粘贴进来"
           rows="4"
-          style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; outline: none; resize: none;"
         />
-        <p class="help-text" style="margin-top: 8px;">
-          <a href="https://web-api.hypergryph.com/account/info/hg" style="color: #3b82f6; text-decoration: none;" target="_blank">
+        <p class="help-text">
+          <a href="https://web-api.hypergryph.com/account/info/hg" target="_blank">
             点击此处获取查询链接（需登陆鹰角通行证）
           </a>
         </p>
@@ -57,35 +47,33 @@
 
       <div
         v-show="importMethod === 'local'"
-        class="form-group"
-        style="padding: 24px; border: 2px dashed #e5e7eb; border-radius: 12px; background-color: #fafafa; text-align: center;"
+        class="form-group file-upload-area"
       >
-        <label style="display: block; margin-bottom: 12px; color: #374151; font-weight: 500;">上传 JSON 备份文件</label>
+        <label class="file-upload-label">上传 JSON 备份文件</label>
         <input
           accept=".json"
+          class="file-upload-input"
           :disabled="isSubmitting"
-          style="font-size: 14px; color: #6b7280;"
           type="file"
           @change="onFileSelected"
         />
-        <p v-if="selectedFileName" style="margin-top: 10px; font-size: 0.85rem; color: #10b981; font-weight: 500;">
+        <p v-if="selectedFileName" class="file-selected-text">
           已选中: {{ selectedFileName }}
         </p>
-        <p style="font-size: 0.75rem; color: #9ca3af; margin-top: 8px;">支持从本工具导出的 .json 格式文件</p>
+        <p class="file-upload-hint">支持从本工具导出的 .json 格式文件</p>
       </div>
 
-      <p v-if="collectError" class="error-text" style="color: #ef4444; font-size: 0.875rem; margin-top: 12px;">{{ collectError }}</p>
+      <p v-if="collectError" class="error-text">{{ collectError }}</p>
 
       <button
         class="submit-btn"
+        :class="{ 'submit-btn--disabled': isSubmitting || (importMethod === 'local' && !selectedFile) }"
         :disabled="isSubmitting || (importMethod === 'local' && !selectedFile)"
-        style="width: 100%; margin-top: 24px; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: opacity 0.2s;"
-        :style="{ opacity: (isSubmitting || (importMethod === 'local' && !selectedFile)) ? 0.6 : 1 }"
         @click="handleMainAction"
       >
         {{ isSubmitting ? '分析中...' : '开始分析' }}
       </button>
-      <span style="color: #9ca3af; font-size: 0.75rem; line-height: 1.5; font-weight: 400; letter-spacing: 0.02em;">
+      <span class="privacy-hint">
         *抽卡数据仅用作数据分析，切勿泄露账号敏感信息
       </span>
     </div>
@@ -180,10 +168,10 @@
                 <v-chip
                   v-for="([pool, item]) in Object.entries(poolDistribution).slice(0, 5)"
                   :key="pool"
+                  class="pool-distribution-chip"
                   :color="getPoolColor(pool)"
                   label
                   size="small"
-                  style="margin-right: 5px;"
                 >
                 {{ pool }}: {{ item.count }} ({{ Math.round(item.ratio * 100) }}%)
               </v-chip>
@@ -196,10 +184,10 @@
               <v-chip
                 v-for="(char, index) in topCharacters"
                 :key="char.name"
+                class="top-character-chip"
                 :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
                 label
                 size="small"
-                style="margin-right: 5px;"
               >
                 {{ char.name }} ×{{ char.times }}
               </v-chip>
@@ -211,8 +199,8 @@
 
       <div class="gacha-dashboard">
         <!-- 1. 卡池选择器 -->
-        <div style="display: flex; width: 100%; justify-content: center; margin-bottom: 20px;">
-          <div class="pool-selector" style="display: flex; gap: 8px;">
+        <div class="pool-selector-wrapper">
+          <div class="pool-selector">
             <v-btn
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'limited' }"
@@ -246,32 +234,29 @@
         <!-- 2. 空状态提示 -->
         <div
           v-if="!currentPoolGroup || currentPoolGroup.length === 0"
-          style="width: 100%; margin: 40px 0; text-align: center; padding: 48px 0; background: #f9fafb; border-radius: 8px;"
+          class="empty-state"
         >
-          <div style="font-size: 1rem; color: #6b7280; font-weight: 500;">
+          <div class="empty-state-text">
             暂无该卡池的抽卡数据
           </div>
         </div>
 
         <!-- 3. 数据列表渲染 -->
         <div v-for="group in currentPoolGroup" :key="group.poolId" class="mb-8">
-          <h2
-              class="text-h5 mb-3"
-              style="border-left: 4px solid currentColor; padding-left: 12px; display: flex; justify-content: space-between; align-items: center;"
-            >
+          <h2 class="text-h5 mb-3 pool-group-title">
               <span>{{ group.poolName }}</span>
 
-              <div style="font-size: 0.9rem; color: #6b7280; font-weight: normal; display: flex; align-items: baseline; gap: 4px;">
-                <span style="font-size: 0.8rem; opacity: 0.8;">共计</span>
-                <span style="font-size: 1.1rem; font-weight: bold; color: #374151;">
+              <div class="pool-total-pulls">
+                <span class="pool-total-label">共计</span>
+                <span class="pool-total-value">
                   {{ getPoolTotalPulls(group.records) }}
                 </span>
-                <span style="font-size: 0.8rem; opacity: 0.8;">抽</span>
+                <span class="pool-total-label">抽</span>
               </div>
             </h2>
 
           <div class="custom-gacha-list">
-            <div v-if="!group.records || group.records.length === 0" style="padding: 20px; color: #999; font-size: 0.9rem;">
+            <div v-if="!group.records || group.records.length === 0" class="no-records">
               该卡池暂无记录
             </div>
 
@@ -281,18 +266,16 @@
                 :key="`${group.poolId}-${record.seqId}`"
                 class="custom-gacha-item mb-2"
                 :class="{ 'on-banner': isOnBanner(record) }"
-                style="cursor: pointer; display: flex; align-items: center; padding: 8px; border-radius: 8px; transition: background 0.3s;"
                 @click="toggleExpand(record.seqId)"
-
               >
                 <!-- 头像区域 -->
-                <div class="character-avatar" style="width: 50px; height: 50px; flex-shrink: 0; margin-right: 12px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <div class="character-avatar">
                   <img
                     v-if="record.charId && record.charId !== 'padded' && record.charId !== 'free_bundle'"
                     :alt="record.character"
+                    class="character-avatar-img"
                     :class="{ 'avatar-error': imageLoadFailed[record.seqId] }"
                     :src="getAvatarUrl(record.charId, getPoolType(record.poolId) === 'weapon')"
-                    style="width: 100%; height: 100%; object-fit: cover; border: 1px solid #e5e7eb;"
                     @error="() => handleAvatarError(record.seqId)"
                     @load="() => { imageLoadFailed[record.seqId] = false }"
                   />
@@ -303,62 +286,55 @@
 
                 <!-- 条形图区域 -->
                 <div class="gacha-drawer-container" style="flex: 1;">
-                  <div class="gacha-bar-container" style="position: relative; height: 32px; display: flex; align-items: center;">
+                  <div class="gacha-bar-container">
                     <div
                       class="gacha-bar"
                       :class="getBarType(record)"
                       :style="{ width: (Math.min(getBarWidth(record.count), 100) + '%') }"
                     >
-                      <div class="pull-count" style="width: 60px; text-align: right; padding-right: 12px; color: #000; font-weight: bold; font-size: 0.9rem;">
+                      <div class="pull-count">
                         {{ record.count }} 抽
                       </div>
                     </div>
 
                     <div
                       v-if="!isVirtualRecord(record.character) && selectedPool === 'limited'"
-                      style="position: absolute; right: 8px; display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;"
+                      class="probability-info"
                     >
                       <template v-if="getProbabilityInfo(record, group.records)">
                         <span
-                          :style="{
-                          fontSize: '0.75rem',
-                          fontWeight: 'bold',
-                          color: getProbabilityInfo(record, group.records)!.isBig ? '#d97706' : '#374151',
-                          backgroundColor: getProbabilityInfo(record, group.records)!.isBig ? '#fef3c7' : 'transparent',
-                          padding: getProbabilityInfo(record, group.records)!.isBig ? '2px 4px' : '0',
-                          borderRadius: '4px'
-                        }">
+                           class="probability-label"
+                           :class="{ 'probability-label--big': getProbabilityInfo(record, group.records)!.isBig }"
+                         >
                           {{ getProbabilityInfo(record, group.records)!.label }}
                         </span>
-                        <span :style="{ fontSize: '0.65rem', color: '#d97706'}">
+                        <span class="probability-sublabel">
                           {{ getProbabilityInfo(record, group.records)!.subLabel }}
                         </span>
                       </template>
                     </div>
 
-                    <span v-if="record.character === '已垫'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">垫抽</span>
-                    <span v-if="record.character === '赠送十连'" style="position: absolute; right: 10px; font-size: 0.75rem; color: #6b7280; font-style: italic;">赠送十连</span>
+                    <span v-if="record.character === '已垫'" class="virtual-record-label">垫抽</span>
+                    <span v-if="record.character === '赠送十连'" class="virtual-record-label">赠送十连</span>
                   </div>
 
                   <div
                     v-if="expandedSeqId === record.seqId && record.fiveStars?.length"
-                    class="mt-2 ml-2 p-2"
-                    style=" border-radius: 6px;"
+                    class="mt-2 ml-2 p-2 expanded-five-stars"
                   >
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <div class="five-stars-list">
                       <div
                         v-for="(item, i) in countFiveStars(record.fiveStars || [])"
                         :key="i"
-                        class="d-flex flex-column align-center"
-                        style="width: 40px;"
+                        class="five-star-item"
                       >
                         <img
                           :alt="item.name"
+                          class="five-star-img"
                           :src="getAvatarUrl(item.name, getPoolType(record.poolId) === 'weapon')"
-                          style="width: 32px; height: 32px; object-fit: contain; background-color: #fff; border-radius: 4px; border: 1px solid #eee;"
                           @error="handleImageError"
                         />
-                        <span v-if="item.count > 1" style="font-size: 0.65rem; color: #0284c7; margin-top: 2px;">
+                        <span v-if="item.count > 1" class="five-star-count">
                           x{{ item.count }}
                         </span>
                       </div>
@@ -367,11 +343,11 @@
 
                   <div
                     v-if="!isVirtualRecord(record.character) && expandedSeqId !== record.seqId"
-                    style="margin-top: 4px; font-size: 0.85rem; color: #374151; font-weight: 500;"
+                    class="record-character"
                   >
                     {{ record.character }}
-                    <span v-if="isOnBanner(record)" style="color: #d97706; font-size: 0.75rem; margin-left: 4px;">(UP)</span>
-                    <span v-if="isOffPool(record)" style="color: #ef4444; font-size: 0.75rem; margin-left: 4px;">(歪)</span>
+                    <span v-if="isOnBanner(record)" class="record-tag record-tag--up">(UP)</span>
+                    <span v-if="isOffPool(record)" class="record-tag record-tag--off">(歪)</span>
                   </div>
                 </div>
               </div>
@@ -380,16 +356,16 @@
         </div>
 
         <!-- 底部按钮 -->
-        <div class="action-buttons-container" style="margin-top: 40px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-          <button class="btn update-btn" style="padding: 8px 24px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="goToUpdate">
+        <div class="action-buttons-container action-buttons-container--center">
+          <button class="btn update-btn" @click="goToUpdate">
             更新数据
           </button>
 
-          <button class="btn export-btn" style="padding: 8px 24px; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="exportDataToJson">
+          <button class="btn export-btn" @click="exportDataToJson">
             导出数据
           </button>
 
-          <button class="btn clear-btn" style="padding: 8px 24px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer;" @click="confirmClearCache">
+          <button class="btn clear-btn" @click="confirmClearCache">
             删除记录
           </button>
         </div>
@@ -419,7 +395,7 @@
             </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between ;">
+          <div class="header-panel-content">
 
             <div class="gacha-stats">
               <template v-if="isCalculated">
@@ -485,7 +461,7 @@
               </template>
             </div>
 
-            <div class="action-bar" style="margin-bottom: 15px; text-align: right;">
+            <div class="action-bar">
               <button
                 v-if="!isCalculated"
                 class="calc-btn"
@@ -541,34 +517,33 @@
 
 
 
-      <div v-if="USE_DEBUG_DATA" style=" margin: 20px auto; max-width: 800px; font-family: Arial, sans-serif;">
-        <h2 style="text-align: center; margin-bottom: 16px;">6星出货记录</h2>
+      <div v-if="USE_DEBUG_DATA" class="debug-data-section">
+        <h2 class="debug-data-title">6星出货记录</h2>
 
-        <table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <table class="debug-data-table">
           <thead>
-            <tr style="background-color: #f5f5f5;">
-              <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">卡池ID</th>
-              <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">卡池名称</th>
-              <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">角色</th>
-              <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">抽数</th>
+            <tr>
+              <th>卡池ID</th>
+              <th>卡池名称</th>
+              <th>角色</th>
+              <th>抽数</th>
             </tr>
           </thead>
           <tbody>
             <tr
               v-for="(row, index) in rollData"
               :key="index"
-              style="border-bottom: 1px solid #eee;"
             >
-              <td style="padding: 10px;">{{ row[0] }}</td>
-              <td style="padding: 10px;">{{ row[1] }}</td>
-              <td style="padding: 10px; font-weight: bold;">{{ row[2] }}</td>
-              <td style="padding: 10px; text-align: center; color: #e74c3c; font-weight: bold;">{{ row[3] }}</td>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td>
+              <td class="debug-char-name">{{ row[2] }}</td>
+              <td class="debug-pull-count">{{ row[3] }}</td>
             </tr>
             <tr v-if="rollData.length === 0">
-              <td colspan="4" style="padding: 20px; text-align: center; color: #999;">
-                暂无6星记录
-              </td>
-            </tr>
+               <td class="debug-no-data" colspan="4">
+                 暂无6星记录
+               </td>
+             </tr>
           </tbody>
         </table>
       </div>

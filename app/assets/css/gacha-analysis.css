@@ -201,6 +201,7 @@
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 0.75em var(--theme-shadow-base);
+    background: var(--theme-glass-bg);
 }
 
 .gacha-overview-right {
@@ -227,8 +228,8 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #f5f5f5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--theme-border-secondary);
+    box-shadow: 0 2px 4px var(--theme-shadow-base);
 }
 
 .user-info {
@@ -239,6 +240,7 @@
     font-size: 1.2rem;
     font-weight: 700;
     margin: 0 0 4px 0;
+    color: var(--theme-text-primary);
 }
 
 .user-uid {
@@ -430,6 +432,7 @@
     border-radius: 16px;
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
+    background: var(--theme-glass-bg);
 }
 
 /* 卡池选择器 */
@@ -502,7 +505,7 @@
 }
 
 .character-avatar {
-    background-color: #f3f4f6;
+    background-color: var(--theme-bg-tertiary);
     position: relative;
 }
 
@@ -519,14 +522,14 @@
 }
 
 .avatar-padded {
-    background: #f3f4f6;
-    box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+    background: var(--theme-bg-tertiary);
+    box-shadow: inset 0 1px 2px var(--theme-decorative-overlay-light);
     font-size: 18px;
-    color: #6b7280;
+    color: var(--theme-text-secondary);
 }
 
 .avatar-free {
-    background:  #fef3c7;
+    background: #fef3c7;
     box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
     font-size: 18px;
     color: #d97706;
@@ -536,7 +539,7 @@
     position: absolute;
     font-size: 1rem;
     font-weight: 600;
-    color: #6b7280;
+    color: var(--theme-text-secondary);
     text-align: center;
     width: 100%;
     padding: 0 2px;
@@ -571,7 +574,7 @@
 }
 
 .custom-gacha-list {
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid var(--theme-border-secondary);
 }
 
 /* 抽卡进度条样式 */
@@ -1105,4 +1108,535 @@
 .empty-icon {
     font-size: 48px;
     margin-bottom: 10px;
+}
+
+/* ============================================
+   主题适配样式 - 支持明暗色模式切换
+   ============================================ */
+
+/* 页面容器 */
+.gacha-analysis-page {
+    border-radius: 16px;
+    padding: 24px;
+    background-color: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
+}
+
+/* 导入方式选项卡 */
+.import-method-tabs {
+    display: flex;
+    background: var(--theme-bg-tertiary);
+    padding: 4px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.import-method-btn {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: transparent;
+    color: var(--theme-text-secondary);
+    font-weight: normal;
+}
+
+.import-method-btn--active {
+    background-color: var(--theme-bg-primary);
+    box-shadow: 0 2px 4px var(--theme-shadow-base);
+    font-weight: bold;
+    color: #3b82f6;
+}
+
+/* 文本域 */
+.gacha-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--theme-border);
+    border-radius: 8px;
+    outline: none;
+    resize: none;
+    background-color: var(--theme-bg-secondary);
+    color: var(--theme-text-primary);
+}
+
+.gacha-textarea:focus {
+    border-color: #3b82f6;
+}
+
+/* 帮助链接 */
+.help-text {
+    margin-top: 8px;
+}
+
+.help-text a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+/* 文件上传区域 */
+.file-upload-area {
+    padding: 24px;
+    border: 2px dashed var(--theme-border);
+    border-radius: 12px;
+    background-color: var(--theme-bg-secondary);
+    text-align: center;
+}
+
+.file-upload-label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--theme-text-primary);
+    font-weight: 500;
+}
+
+.file-upload-input {
+    font-size: 14px;
+    color: var(--theme-text-secondary);
+}
+
+.file-selected-text {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #10b981;
+    font-weight: 500;
+}
+
+.file-upload-hint {
+    font-size: 0.75rem;
+    color: var(--theme-text-tertiary);
+    margin-top: 8px;
+}
+
+/* 错误文本 */
+.error-text {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 12px;
+}
+
+/* 提交按钮 */
+.submit-btn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 12px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.submit-btn--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 隐私提示 */
+.privacy-hint {
+    color: var(--theme-text-tertiary);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* 抽卡分布芯片 */
+.pool-distribution-chip {
+    margin-right: 5px;
+}
+
+/* 角色抽取频次芯片 */
+.top-character-chip {
+    margin-right: 5px;
+}
+
+/* 卡池选择器 */
+.pool-selector-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.pool-selector {
+    display: flex;
+    gap: 8px;
+}
+
+/* 空状态 */
+.empty-state {
+    width: 100%;
+    margin: 40px 0;
+    text-align: center;
+    padding: 48px 0;
+    background: var(--theme-bg-secondary);
+    border-radius: 8px;
+}
+
+.empty-state-text {
+    font-size: 1rem;
+    color: var(--theme-text-secondary);
+    font-weight: 500;
+}
+
+/* 卡池组标题 */
+.pool-group-title {
+    border-left: 4px solid currentColor;
+    padding-left: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pool-total-pulls {
+    font-size: 0.9rem;
+    color: var(--theme-text-secondary);
+    font-weight: normal;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.pool-total-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.pool-total-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--theme-text-primary);
+}
+
+/* 无记录提示 */
+.no-records {
+    padding: 20px;
+    color: var(--theme-text-tertiary);
+    font-size: 0.9rem;
+}
+
+/* 自定义抽卡项 */
+.custom-gacha-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.custom-gacha-item:hover {
+    background: var(--theme-decorative-overlay-light);
+}
+
+/* 角色头像 */
+.character-avatar {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    margin-right: 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-bg-tertiary);
+}
+
+.character-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid var(--theme-border);
+}
+
+/* 抽卡条容器 */
+.gacha-bar-container {
+    position: relative;
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+/* 抽数显示 */
+.pull-count {
+    width: 60px;
+    text-align: right;
+    padding-right: 12px;
+    color: #000;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* 概率信息 */
+.probability-info {
+    position: absolute;
+    right: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
+}
+
+.probability-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--theme-text-primary);
+    background-color: transparent;
+    padding: 0;
+    border-radius: 4px;
+}
+
+.probability-label--big {
+    color: #d97706;
+    background-color: #fef3c7;
+    padding: 2px 4px;
+}
+
+.probability-sublabel {
+    font-size: 0.65rem;
+    color: #d97706;
+}
+
+/* 虚拟记录标签 */
+.virtual-record-label {
+    position: absolute;
+    right: 10px;
+    font-size: 0.75rem;
+    color: var(--theme-text-secondary);
+    font-style: italic;
+}
+
+/* 展开的五星列表 */
+.expanded-five-stars {
+    border-radius: 6px;
+}
+
+.five-stars-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.five-star-item {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.five-star-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    background-color: var(--theme-bg-primary);
+    border-radius: 4px;
+    border: 1px solid var(--theme-border);
+}
+
+.five-star-count {
+    font-size: 0.65rem;
+    color: #0284c7;
+    margin-top: 2px;
+}
+
+/* 记录角色 */
+.record-character {
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: var(--theme-text-primary);
+    font-weight: 500;
+}
+
+/* 记录标签 */
+.record-tag {
+    font-size: 0.75rem;
+    margin-left: 4px;
+}
+
+.record-tag--up {
+    color: #d97706;
+}
+
+.record-tag--off {
+    color: #ef4444;
+}
+
+/* 底部按钮容器 */
+.action-buttons-container--center {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.update-btn {
+    background: #3b82f6;
+    color: white;
+}
+
+.export-btn {
+    background: #10b981;
+    color: white;
+}
+
+.clear-btn {
+    background: #ef4444;
+    color: white;
+}
+
+/* 头部面板内容 */
+.header-panel-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 操作栏 */
+.action-bar {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+/* 调试数据区域 */
+.debug-data-section {
+    margin: 20px auto;
+    max-width: 800px;
+    font-family: Arial, sans-serif;
+}
+
+.debug-data-title {
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--theme-text-primary);
+}
+
+.debug-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px var(--theme-shadow-base);
+}
+
+.debug-data-table thead tr {
+    background-color: var(--theme-bg-tertiary);
+}
+
+.debug-data-table th,
+.debug-data-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.debug-data-table th:last-child,
+.debug-data-table td:last-child {
+    text-align: center;
+}
+
+.debug-data-table tbody tr {
+    border-bottom: 1px solid var(--theme-border-secondary);
+}
+
+.debug-char-name {
+    font-weight: bold;
+}
+
+.debug-pull-count {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.debug-no-data {
+    padding: 20px;
+    text-align: center;
+    color: var(--theme-text-tertiary);
+}
+
+/* 用户UID颜色适配 */
+.user-uid {
+    font-size: 0.7rem;
+    color: var(--theme-text-secondary);
+    margin: 0 0 8px 0;
+}
+
+/* 用户标签区域 */
+.user-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--theme-border-secondary);
+    justify-content: center;
+}
+
+/* 卡池卡片背景适配 */
+.pool-cards {
+    background: var(--theme-glass-bg);
+}
+
+.pool-card {
+    background: var(--theme-bg-secondary);
+}
+
+/* 卡池选择器按钮背景 */
+.pool-selector__btn {
+    background-color: var(--theme-glass-bg);
+}
+
+.pool-selector__btn:hover:not(.pool-selector__btn--active) {
+    background-color: var(--theme-glass-bg-hover);
+}
+
+/* 统计标签颜色 */
+.user-stats-basic .stat-label,
+.stat-label {
+    color: var(--theme-text-secondary);
+}
+
+.core-label {
+    color: var(--theme-text-secondary);
+}
+
+.pool-card .label {
+    color: var(--theme-text-secondary);
+}
+
+/* 无标签提示 */
+.no-tags {
+    font-size: 0.85rem;
+    color: var(--theme-text-tertiary);
+    padding: 4px 12px;
+}
+
+/* 统计值颜色 */
+.stat-value {
+    color: var(--theme-text-primary);
+}
+
+/* 用户统计基础 */
+.user-stats-basic {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--theme-border-secondary);
 }
