@@ -16,9 +16,9 @@
       "en-US": "Horizons Bundle"
     },
     "goodsIds": [
-      "newbie_giftpack_6_special",
       "newbie_giftpack_01",
-      "newbie_giftpack_02"
+      "newbie_giftpack_02",
+      "newbie_giftpack_6_special"
     ]
   },
   "MCard": {
@@ -49,14 +49,9 @@
       "en-US": "Limited Bundle"
     },
     "goodsIds": [
-      "seasonal_giftpack_combine",
-      "seasonal_giftpack_lt_01",
-      "seasonal_giftpack_lt_02",
-      "seasonal_giftpack_lt_03",
-      "seasonal_giftpack_lt_1_1_1",
-      "seasonal_giftpack_lt_1_1_2",
-      "seasonal_giftpack_lt_1_2_1",
-      "seasonal_crossover_lt_1_2_1"
+      "seasonal_crossover_lt_1_2_1",
+      "seasonal_giftpack",
+      "seasonal_giftpack_combine"
     ]
   },
   "SP_weapon_supply": {
@@ -78,19 +73,6 @@
       "zh-CN": "源石交易所",
       "en-US": "Originium Exchange"
     },
-    "goodsIds": [
-      "recharge_originium_6",
-      "recharge_originium_30",
-      "recharge_originium_98",
-      "recharge_originium_198",
-      "recharge_originium_328",
-      "recharge_originium_648",
-      "os_recharge_originium_6",
-      "os_recharge_originium_30",
-      "os_recharge_originium_98",
-      "os_recharge_originium_198",
-      "os_recharge_originium_328",
-      "os_recharge_originium_648"
-    ]
+    "goodsIds": []
   }
 }
