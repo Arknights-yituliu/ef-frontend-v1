@@ -32170,5 +32170,61 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0022"
+  },
+  "赤缨": {
+    "id": "赤缨",
+    "name": {
+      "zh-CN": "赤缨",
+      "en-US": "赤缨"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "赤缨"
+  },
+  "镀红祝福": {
+    "id": "镀红祝福",
+    "name": {
+      "zh-CN": "镀红祝福",
+      "en-US": "镀红祝福"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "镀红祝福"
+  },
+  "幻想苦痛": {
+    "id": "幻想苦痛",
+    "name": {
+      "zh-CN": "幻想苦痛",
+      "en-US": "幻想苦痛"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "幻想苦痛"
+  },
+  "灯火使命": {
+    "id": "灯火使命",
+    "name": {
+      "zh-CN": "灯火使命",
+      "en-US": "灯火使命"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "灯火使命"
   }
 }
