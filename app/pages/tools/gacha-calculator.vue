@@ -166,7 +166,6 @@ function calc() {
   dailyRewardStatistics();
   activityRewardStatistics();
   permanentRewardStatistics();
-  archivePermanentRewardStatistics();
   rechargeResourceStatistics();
   allRewardStatisticsV2();
 }
@@ -400,7 +399,7 @@ watch(
     authorityLevelUpReward.value.content.diamond = result;
     saveUserConfig(authorityLevelUpReward.value.id, newVal, 'rangeSlider');
 
-    archivePermanentRewardStatistics();
+    permanentRewardStatistics();
     allRewardStatisticsV2();
   },
   { deep: true },
@@ -426,23 +425,14 @@ watch(
       saveUserConfig(item.id, item.active, 'buttonGroupActive');
     }
 
-    archivePermanentRewardStatistics();
+    permanentRewardStatistics();
     allRewardStatisticsV2();
   },
   { deep: true },
 );
 
 let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '版本新增常驻奖励',
-  originiumRecharge: 0,
-  diamond: 0,
-  ticketgachaStandardSingle: 0,
-  ticketgachaSpecialSingle: 0,
-  ticketgachaLimitedSingle: 0,
-};
-
-let archivePermanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '往期版本常驻奖励',
+  name: '常驻奖励',
   originiumRecharge: 0,
   diamond: 0,
   ticketgachaStandardSingle: 0,
@@ -452,7 +442,7 @@ let archivePermanentRewardStatisticsResultDetail: RewardStatisticsResultDetail =
 
 function permanentRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
-    name: '版本新增常驻奖励',
+    name: '常驻奖励',
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
@@ -463,26 +453,18 @@ function permanentRewardStatistics(): void {
     addVisibleReward(result, reward);
   }
 
-  permanentRewardStatisticsResultDetail = result;
-  gachaResourceStatisticsResult.value.totalPulls.permanent = getRewardPull(result);
-}
-
-function archivePermanentRewardStatistics(): void {
-  const result: RewardStatisticsResultDetail = {
-    name: '往期版本常驻奖励',
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-  };
-
   for (const reward of archivePermanentRewardTable.value) {
     addVisibleReward(result, reward);
   }
   addVisibleReward(result, authorityLevelUpReward.value);
-  archivePermanentRewardStatisticsResultDetail = result;
-  gachaResourceStatisticsResult.value.totalPulls.archivePermanent = getRewardPull(result);
+
+  permanentRewardStatisticsResultDetail = result;
+  gachaResourceStatisticsResult.value.totalPulls.permanent = getRewardPull(result);
+  gachaResourceStatisticsResult.value.totalPulls.archivePermanent = {
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  };
 }
 
 /**
@@ -693,7 +675,6 @@ function allRewardStatisticsV2(): void {
     dailyRewardStatisticsResultDetail,
     activityRewardStatisticsResultDetail,
     permanentRewardStatisticsResultDetail,
-    archivePermanentRewardStatisticsResultDetail,
     rechargeResourceStatisticsResultDetail,
   ];
 
@@ -1009,9 +990,7 @@ function clearOrSelectAllActivityModule(action: boolean) {
 
 function clearOrSelectAllPermanentRewardModule(action: boolean) {
   clearOrSelectAll(action, 'button', permanentRewardTable);
-}
-
-function clearOrSelectAllArchivePermanentRewardModule(action: boolean) {
+  clearOrSelectAll(action, 'button', archivePermanentRewardTable);
   if (isRewardMatchedSelectedVersion(authorityLevelUpReward.value)) {
     if (action) {
       authorityLevelProgress.value = [1, 60];
@@ -1019,7 +998,6 @@ function clearOrSelectAllArchivePermanentRewardModule(action: boolean) {
       authorityLevelProgress.value = [60, 60];
     }
   }
-  clearOrSelectAll(action, 'button', archivePermanentRewardTable);
 }
 
 function clearOrSelectAll(
@@ -1074,12 +1052,8 @@ const clearBtnGroup = [
     func: clearOrSelectAllActivityModule,
   },
   {
-    text: '版本新增常驻奖励',
+    text: '常驻奖励',
     func: clearOrSelectAllPermanentRewardModule,
-  },
-  {
-    text: '往期版本常驻奖励',
-    func: clearOrSelectAllArchivePermanentRewardModule,
   },
 ];
 
@@ -1232,7 +1206,7 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 
 const versionOptions = ref<string[]>([]);
 
-const reversedVersionOptions = computed(() => [...versionOptions.value].reverse());
+const reversedVersionOptions = computed(() => versionOptions.value.toReversed());
 
 const selectedVersion = ref<string>('all');
 
@@ -1322,6 +1296,47 @@ function setVersionRewardsActive(version: string, active: boolean) {
     authorityLevelProgress.value = active ? [1, 60] : [60, 60];
   }
 }
+
+const permanentRewardCategoryNames = ['地图资源', '任务', '档案采集', '醚质', '未分类'] as const;
+
+type PermanentRewardCategoryName = (typeof permanentRewardCategoryNames)[number];
+
+const permanentRewardModuleCategoryMap: Record<string, PermanentRewardCategoryName> = {
+  地区探索与建设: '地图资源',
+  主线任务: '任务',
+  支线任务: '任务',
+  重要任务: '任务',
+  次要任务: '任务',
+  功能任务: '任务',
+  其他: '档案采集',
+  蚀像寻遗刻度: '醚质',
+  蚀像寻遗储藏箱: '醚质',
+  蚀像寻遗探索任务: '醚质',
+};
+
+function getPermanentRewardCategory(reward: Reward): PermanentRewardCategoryName {
+  const module = reward.module?.trim();
+  if (!module) {
+    return '未分类';
+  }
+
+  return permanentRewardModuleCategoryMap[module] ?? '未分类';
+}
+
+const permanentRewardGroups = computed(() => {
+  const rewards = [
+    ...permanentRewardTable.value,
+    authorityLevelUpReward.value,
+    ...archivePermanentRewardTable.value,
+  ];
+
+  return permanentRewardCategoryNames
+    .map((name) => ({
+      name,
+      rewards: rewards.filter((reward) => getPermanentRewardCategory(reward) === name),
+    }))
+    .filter((group) => group.rewards.length > 0);
+});
 
 function selectDisplayPoolOptions(poolName: string) {
   displayPoolOptions.value = toggleStringInArray(poolName, displayPoolOptions.value);
@@ -1683,7 +1698,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in resourceStatisticsResultDetailList">
+                <tr v-for="item in resourceStatisticsResultDetailList" :key="item.name">
                   <td>{{ item.name }}</td>
 
                   <td>{{ item.originiumRecharge }}</td>
@@ -1758,7 +1773,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="action in clearBtnGroup">
+                <tr v-for="action in clearBtnGroup" :key="action.text">
                   <td>{{ action.text }}</td>
                   <td>
                     <v-btn
@@ -1920,7 +1935,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
         <v-expansion-panel value="permanent-re">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              版本新增常驻奖励
+              常驻奖励
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.permanent?.ticketgachaSpecialSingle,
@@ -1931,56 +1946,41 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
             </div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <template v-for="reward in permanentRewardTable" :key="reward.id">
-              <GachaCalculatorResourceSingleBtn
-                v-show="isRewardVersionVisible(reward)"
-                :reward="reward"
-                @click="reward.active = !reward.active"
-              />
-            </template>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-
-        <!--常驻奖励重构-->
-        <v-expansion-panel value="archivePermanent">
-          <v-expansion-panel-title class="gacha-calculator-card-title">
-            <div>
-              往期版本常驻奖励
-              {{
-                numberFloor(
-                  gachaResourceStatisticsResult.totalPulls.archivePermanent
-                    ?.ticketgachaSpecialSingle,
-                  1,
-                )
-              }}
-              {{ t('page.tools.gachaCalculator.pulls') }}
-            </div>
-          </v-expansion-panel-title>
-          <v-expansion-panel-text>
-            <v-card v-show="isRewardVersionVisible(authorityLevelUpReward)">
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="authorityLevelProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="60"
-                  min="1"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
+            <section
+              v-for="group in permanentRewardGroups"
+              :key="group.name"
+              class="gacha-calculator-permanent-category"
+            >
+              <div class="gacha-calculator-permanent-category-title">{{ group.name }}</div>
+              <template v-for="reward in group.rewards" :key="reward.id">
+                <v-card
+                  v-if="reward.id === authorityLevelUpReward.id"
+                  v-show="isRewardVersionVisible(authorityLevelUpReward)"
+                >
+                  <v-card-text>
+                    <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
+                    <div style="height: 36px" />
+                    <v-range-slider
+                      v-model="authorityLevelProgress"
+                      class="v-range-slider"
+                      hide-details="auto"
+                      max="60"
+                      min="1"
+                      show-ticks="always"
+                      step="1"
+                      thumb-label="always"
+                      tick-size="4"
+                    />
+                  </v-card-text>
+                </v-card>
+                <GachaCalculatorResourceSingleBtn
+                  v-else
+                  v-show="isRewardVersionVisible(reward)"
+                  :reward="reward"
+                  @click="reward.active = !reward.active"
                 />
-              </v-card-text>
-            </v-card>
-            <template v-for="reward in archivePermanentRewardTable" :key="reward.id">
-              <GachaCalculatorResourceSingleBtn
-                v-show="isRewardVersionVisible(reward)"
-                :reward="reward"
-                @click="reward.active = !reward.active"
-              />
-            </template>
+              </template>
+            </section>
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -2254,6 +2254,21 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 .gacha-calculator-control-actions {
   display: flex;
   justify-content: flex-start;
+}
+
+.gacha-calculator-permanent-category {
+  margin: 0 0 12px;
+}
+
+.gacha-calculator-permanent-category-title {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 4px 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: rgba(128, 128, 128, 0.5);
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .gacha-calculator-shortcut-btn-table {
