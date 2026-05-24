@@ -5,7 +5,7 @@ import { onMounted, ref, watch } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 import { createVersionDailyReward, dailyAllRewardTable } from '@/custom/core/gacha/dailyReward';
 import {
-  archivePermanentRewardTable,
+ 
   authorityLevelUpReward,
   permanentRewardTable,
 } from '@/custom/core/gacha/permanentRewardV2';
@@ -102,7 +102,7 @@ for (const reward of sklandRewardGroupByVersion) {
 versionReward.push(
   authorityLevelUpReward.value,
   ...permanentRewardTable.value,
-  ...archivePermanentRewardTable.value,
+ 
 );
 
 const currentVersionReward = ref<Reward[]>([]);
