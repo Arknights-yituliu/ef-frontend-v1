@@ -33,21 +33,24 @@ if (!process.env.ENDFIELD_DATA_DIR) {
 }
 export const endfieldDataDir: string = process.env.ENDFIELD_DATA_DIR;
 
+export type I18nLanguage = (typeof i18nLanguages)[number];
+export type Locale = (typeof languageToLocaleMap)[I18nLanguage];
+
 /** 获取指定语言的国际化文本表路径 */
-export function getI18nTextTablePath(language: string) {
+export function getI18nTextTablePath(language: I18nLanguage): string {
   const I18nDir = path.join(endfieldDataDir, 'I18n');
   return path.join(I18nDir, `I18nTextTable_${language}.json`);
 }
 
 /** 解析带有大整数的 JSON 的辅助函数 */
-export function parseJSONWithBigInt(text: string) {
+export function parseJSONWithBigInt(text: string): any {
   // 将看起来像 ID 的数值（长整数）替换为字符串，避免 JSON.parse 时丢失精度
   // 目前的实现方法是简单地将所有 "id": <number> 替换为 "id": "<number>"
   const stringified = text.replace(/"id":\s*(-?\d+)/g, '"id": "$1"');
   return JSON.parse(stringified);
 }
 
-export function readJSONWithBigInt(relativePath: string) {
+export function readJSONWithBigInt(relativePath: string): any {
   const fullPath = path.join(endfieldDataDir, relativePath);
   const text = fs.readFileSync(fullPath, 'utf8');
   return parseJSONWithBigInt(text);
@@ -57,7 +60,7 @@ export function readJSONWithBigInt(relativePath: string) {
  * 获取指定语言的文本内容
  * 如果找不到翻译或翻译为空，返回原始文本
  */
-export function getTranslation({ id, text }: TranslationKey, language: string): string {
+export function getTranslation({ id, text }: TranslationKey, language: I18nLanguage): string {
   const translation = i18nTextTables.get(language)?.[String(id)];
   if (translation !== undefined) {
     return translation.trim();
@@ -72,10 +75,10 @@ export function getTranslation({ id, text }: TranslationKey, language: string): 
  * Input: { id: 114514, text: "" }
  * Output: { 'zh-CN': "测试文本", 'en-US': "Test Text", ... }
  */
-export function getLocalizedValue({ id, text }: TranslationKey): Record<string, string> {
-  const result: Record<string, string> = {};
+export function getLocalizedValue({ id, text }: TranslationKey): Record<Locale, string> {
+  const result: Record<Locale, string> = {} as Record<Locale, string>;
   for (const lang of usedLanguages) {
-    result[languageToLocaleMap[lang]] = getTranslation({ id, text }, lang);
+    result[languageToLocaleMap[lang]!] = getTranslation({ id, text }, lang);
   }
   return result;
 }
@@ -95,8 +98,8 @@ export const i18nLanguages = [
   'RU',
   'TH',
   'VN',
-];
-export const languageToLocaleMap: Record<string, string> = {
+] as const;
+export const languageToLocaleMap = {
   CN: 'zh-CN',
   TC: 'zh-TW',
   DE: 'de-DE',
@@ -111,9 +114,10 @@ export const languageToLocaleMap: Record<string, string> = {
   RU: 'ru-RU',
   TH: 'th-TH',
   VN: 'vi-VN',
-};
+} as const;
+
 // 一图流只使用中英双语
-export const usedLanguages = ['CN', 'EN'];
+export const usedLanguages = ['CN', 'EN'] as const;
 
 // 读取文件
 export const cashShopGoodsTable: CashShopGoodsTable = readJSONWithBigInt(

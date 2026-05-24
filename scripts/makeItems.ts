@@ -1,5 +1,4 @@
-import fs from 'node:fs';
-import { getLocalizedValue, itemTable, itemTypeTable } from './gameData.ts';
+import { getLocalizedValue, itemTable, itemTypeTable } from './gameData';
 
 export interface Item {
   id: string;
@@ -29,7 +28,7 @@ export function makeItems(): Record<string, Item> {
     Object.keys(itemTable)
       .toSorted() // 按字典序排序，保证 diff 最小
       .map((itemId) => {
-        const itemData = itemTable[itemId];
+        const itemData = itemTable[itemId]!;
         return [
           itemId,
           {
@@ -59,5 +58,3 @@ export function makeItems(): Record<string, Item> {
       }),
   );
 }
-
-fs.writeFileSync('custom/core/items.json', JSON.stringify(makeItems(), null, 2), 'utf8');

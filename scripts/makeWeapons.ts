@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import type { I18nLanguage } from './gameData';
 import {
   gemTable,
   gemTagIdTable,
@@ -9,7 +9,7 @@ import {
   weaponBasicTable,
   worldEnergyPointGroupTable,
   worldEnergyPointTable,
-} from './gameData.ts';
+} from './gameData';
 
 export interface EssenceStat {
   attribute: string | null;
@@ -25,7 +25,7 @@ export interface Weapon {
   stats: EssenceStat;
 }
 
-export function getItemName(itemId: string, language: string): string {
+export function getItemName(itemId: string, language: I18nLanguage): string {
   if (itemTable[itemId] === undefined) {
     throw new Error(`无法找到物品数据，itemId=${itemId}`);
   }
@@ -51,7 +51,7 @@ export function getEmptyStat(): EssenceStat {
   };
 }
 
-export function getGemTagName(gemTermId: string, language: string): string {
+export function getGemTagName(gemTermId: string, language: I18nLanguage): string {
   const gem = gemTable[gemTermId];
   if (gem === undefined) {
     return gemTermId;
@@ -70,7 +70,7 @@ export function getGameName(gameGroupId: string): string {
   return getTranslation(worldEnergyPoint.gameName, 'CN');
 }
 
-export function getStatsForWeapon(weaponId: string, language: string): EssenceStat {
+export function getStatsForWeapon(weaponId: string, language: I18nLanguage): EssenceStat {
   const weapon = weaponBasicTable[weaponId];
   if (!weapon) {
     throw new Error(`无法找到武器数据，weaponId=${weaponId}`);
@@ -110,7 +110,7 @@ export function makeWeapons(): Record<string, Weapon> {
           weaponId,
           weaponName: getItemName(weaponId, 'CN'),
           weaponType: getWeaponTypeName(weaponId),
-          rarity: weaponBasicTable[weaponId].rarity,
+          rarity: weaponBasicTable[weaponId]!.rarity,
           stats: getStatsForWeapon(weaponId, 'CN'),
         },
       ]),
@@ -173,10 +173,3 @@ export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
 
   return result;
 }
-
-fs.writeFileSync('custom/core/weapons.json', JSON.stringify(makeWeapons(), null, 2), 'utf8');
-fs.writeFileSync(
-  'custom/core/energyAlluviums.json',
-  JSON.stringify(makeEnergyAlluviums(), null, 2),
-  'utf8',
-);
