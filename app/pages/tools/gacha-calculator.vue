@@ -11,7 +11,7 @@ import { dateFormat } from '#shared/utils/dateUtil';
 import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-calculator';
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 // 奖励引入
@@ -789,8 +789,9 @@ function setPieChart(data: PieChartData[]) {
 
 // 由于expansion-panel折叠会销毁组件，需要监听 panel.value 变化, 当包含 statisticalResult 时, 初始化饼图
 watch(
-  () => leftPartPanel.value,
+  () => [...leftPartPanel.value],
   (newValue) => {
+    scheduleSummaryPanelHeightUpdates();
     if (newValue.includes('statisticalResult')) {
       // 等待组件渲染完成
       nextTick(() => {
@@ -939,6 +940,65 @@ function loadingUserConfig() {
   }
 }
 
+let summaryPanelResizeObserver: ResizeObserver | null = null;
+let summaryPanelHeightUpdateTimers: number[] = [];
+
+function updateSummaryPanelHeight() {
+  const container = document.querySelector<HTMLElement>('.gacha-calculator-container');
+  const summaryPanel = document.querySelector<HTMLElement>(
+    '.gacha-calculator-sticky-summary-panel',
+  );
+  if (!container || !summaryPanel) {
+    return;
+  }
+
+  const style = getComputedStyle(summaryPanel);
+  const verticalMargin =
+    Number.parseFloat(style.marginTop || '0') + Number.parseFloat(style.marginBottom || '0');
+  const summaryHeight = summaryPanel.getBoundingClientRect().height + verticalMargin;
+  container.style.setProperty('--gacha-calculator-summary-panel-height', `${summaryHeight}px`);
+}
+
+function clearSummaryPanelHeightUpdateTimers() {
+  for (const timer of summaryPanelHeightUpdateTimers) {
+    window.clearTimeout(timer);
+  }
+  summaryPanelHeightUpdateTimers = [];
+}
+
+function scheduleSummaryPanelHeightUpdates() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  clearSummaryPanelHeightUpdateTimers();
+  updateSummaryPanelHeight();
+  nextTick(() => {
+    updateSummaryPanelHeight();
+    for (const delay of [80, 180, 320]) {
+      summaryPanelHeightUpdateTimers.push(window.setTimeout(updateSummaryPanelHeight, delay));
+    }
+  });
+}
+
+function initSummaryPanelHeightObserver() {
+  nextTick(() => {
+    scheduleSummaryPanelHeightUpdates();
+    const summaryPanel = document.querySelector<HTMLElement>(
+      '.gacha-calculator-sticky-summary-panel',
+    );
+    if (!summaryPanel) {
+      return;
+    }
+
+    if (typeof ResizeObserver !== 'undefined') {
+      summaryPanelResizeObserver = new ResizeObserver(updateSummaryPanelHeight);
+      summaryPanelResizeObserver.observe(summaryPanel);
+    }
+    window.addEventListener('resize', updateSummaryPanelHeight);
+  });
+}
+
 onMounted(() => {
   initPoolOptions();
   loadingUserConfig();
@@ -958,6 +1018,13 @@ onMounted(() => {
   }
 
   syncCurrentModeFromRoute();
+  initSummaryPanelHeightObserver();
+});
+
+onUnmounted(() => {
+  summaryPanelResizeObserver?.disconnect();
+  clearSummaryPanelHeightUpdateTimers();
+  window.removeEventListener('resize', updateSummaryPanelHeight);
 });
 
 watch(
@@ -1363,7 +1430,10 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   <section class="gacha-calculator-container">
     <div class="gacha-calculator-container-left">
       <v-expansion-panels v-model="leftPartPanel" multiple>
-        <v-expansion-panel value="statisticalResult">
+        <v-expansion-panel
+          class="gacha-calculator-sticky-summary-panel"
+          value="statisticalResult"
+        >
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               {{ t('page.tools.gachaCalculator.total') }}
@@ -2019,6 +2089,8 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 <style scoped>
 .gacha-calculator-container {
   --gacha-calculator-column-height: calc(100vh - 72px);
+  --gacha-calculator-summary-panel-height: 0px;
+  --gacha-calculator-summary-fixed-top: 64px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px;
@@ -2037,7 +2109,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   position: sticky;
   top: 64px;
   max-height: var(--gacha-calculator-column-height);
-  z-index: 1003;
+  z-index: 2;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: none;
@@ -2063,10 +2135,24 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   display: none;
 }
 
+.gacha-calculator-container-left > .v-expansion-panels {
+  padding-bottom: 80px;
+}
+
+.gacha-calculator-container-left > .placeholder-block {
+  display: none;
+}
+
 .gacha-calculator-container-left .v-expansion-panel,
 .gacha-calculator-container-right .v-expansion-panel {
   margin: 8px 0px;
   border-radius: 4px !important;
+}
+
+.gacha-calculator-sticky-summary-panel {
+  position: sticky;
+  top: 8px;
+  z-index: 3;
 }
 
 .gacha-calculator-container .v-expansion-panel:deep(.v-expansion-panel__shadow) {
@@ -2375,16 +2461,37 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 @media screen and (max-width: 1100px) {
   .gacha-calculator-container {
     grid-template-columns: 1fr;
+    width: min(100%, 760px);
   }
   .gacha-calculator-container-left {
-    position: static;
+    position: relative;
+    top: 0;
     max-height: max-content;
+    padding-top: var(--gacha-calculator-summary-panel-height);
+    z-index: 2;
     overflow-y: visible;
   }
 
+  .gacha-calculator-container-left > .v-expansion-panels {
+    padding-bottom: 0;
+    z-index: 2;
+  }
+
+  .gacha-calculator-sticky-summary-panel {
+    position: fixed;
+    top: var(--gacha-calculator-summary-fixed-top);
+    left: 50%;
+    right: auto;
+    width: calc(min(100vw, 760px) - 40px);
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
   .gacha-calculator-container-right {
-    position: static;
+    position: relative;
+    top: 0;
     max-height: max-content;
+    z-index: 1;
     overflow-y: visible;
   }
 }
@@ -2398,17 +2505,26 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   .gacha-calculator-container-left {
     width: 100%;
     padding: 0 0 8px;
-    position: static;
+    padding-top: var(--gacha-calculator-summary-panel-height);
+    position: relative;
     max-height: max-content;
-    z-index: auto;
+    z-index: 2;
     overflow-y: visible;
+  }
+
+  .gacha-calculator-sticky-summary-panel {
+    left: 0;
+    right: auto;
+    width: 100vw;
+    transform: none;
   }
 
   .gacha-calculator-container-right {
     width: 100%;
     padding: 0 0 8px;
-    position: static;
+    position: relative;
     max-height: max-content;
+    z-index: 1;
     overflow-y: visible;
   }
 
@@ -2417,11 +2533,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
     font-weight: bolder;
   }
 
+  .gacha-calculator-pie-chart {
+    display: none;
+  }
+
   .gacha-calculator-warning {
-    border: 1px solid #ffc107;
-    border-radius: 8px;
-    padding: 4px 9px;
-    font-size: 0.8rem;
+    display: none;
   }
 
   .gacha-calculator-pool-selector {
