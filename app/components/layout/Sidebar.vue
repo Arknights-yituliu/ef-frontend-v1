@@ -38,13 +38,14 @@
             :key="`${secondaryIndex}-${secondaryItem.nameKey}`"
             class="secondary-item"
             :class="{ active: isActiveRoute(secondaryItem.routePath) }"
+            :rel="secondaryItem.external ? 'noopener noreferrer' : undefined"
             :target="secondaryItem.external ? '_blank' : undefined"
             :to="secondaryItem.routePath"
           >
             <!-- 左侧装饰条 -->
             <div
               class="item-decoration-bar"
-              :style="{ backgroundColor: getPrimaryItemColor(primaryItem).hex() }"
+              :style="{ backgroundColor: getPrimaryItemColor(primaryItem) }"
             />
             <!-- 二级菜单图标 -->
             <v-icon v-if="secondaryItem.vuetifyIcon" class="secondary-icon" size="20">
@@ -81,8 +82,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ColorInstance } from 'color';
-import Color from 'color';
+import { useNow } from '@vueuse/core';
 
 // 菜单项类型
 interface PrimaryMenuItem {
@@ -103,12 +103,16 @@ interface SecondaryMenuItem {
   iconPath?: string;
   vuetifyIcon?: string;
   isHidden?: boolean;
+  isDocs?: boolean;
   visibleBefore?: string;
   external?: boolean;
 }
 
 const route = useRoute();
 const router = useRouter();
+
+// 引入每秒更新一次的响应式时间，用于页面过期判断
+const now = useNow({ interval: 1000 });
 
 // 获取路由配置
 const appConfig = useAppConfig();
@@ -137,21 +141,25 @@ function isSecondaryItemVisible(item: SecondaryMenuItem): boolean {
 
   if (item.visibleBefore) {
     const expiryDate = new Date(item.visibleBefore);
-    return expiryDate > new Date();
+    if (Number.isNaN(expiryDate.getTime())) {
+      console.warn(`Invalid date format for visibleBefore: ${item.visibleBefore}`);
+      return true; // 如果日期格式无效，默认显示
+    }
+    return expiryDate > now.value;
   }
 
   return true;
 }
 
-const defaultPrimaryColor = Color('#000000');
+const defaultPrimaryColor = '#000000';
 
 // 获取一级菜单的主题颜色
-function getPrimaryItemColor(item: PrimaryMenuItem): ColorInstance {
-  return item.color ? Color(item.color) : defaultPrimaryColor;
+function getPrimaryItemColor(item: PrimaryMenuItem): string {
+  return item.color || defaultPrimaryColor;
 }
 
 // 获取当前激活项对应的颜色
-const currentActiveColor = computed<ColorInstance>(() => {
+const currentActiveColor = computed<string>(() => {
   const activePath = route.path;
   // 遍历菜单项找到对应的颜色
   for (const primaryItem of menuItems) {
@@ -313,7 +321,7 @@ function isActiveRoute(path: string) {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, v-bind('currentActiveColor.hex()') 0%, transparent 100%);
+  background: linear-gradient(90deg, v-bind(currentActiveColor) 0%, transparent 100%);
   opacity: 0.1;
 }
 
@@ -342,8 +350,8 @@ function isActiveRoute(path: string) {
   color: var(--theme-text-primary);
   font-weight: 600;
   box-shadow:
-    inset 0 0 0.5rem color-mix(in srgb, v-bind('currentActiveColor.hex()'), transparent 90%),
-    inset 1px 0 0 color-mix(in srgb, v-bind('currentActiveColor.hex()'), transparent 80%);
+    inset 0 0 0.5rem color-mix(in srgb, v-bind(currentActiveColor), transparent 90%),
+    inset 1px 0 0 color-mix(in srgb, v-bind(currentActiveColor), transparent 80%);
 }
 
 .secondary-icon {
