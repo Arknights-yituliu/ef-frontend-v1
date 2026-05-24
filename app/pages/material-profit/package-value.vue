@@ -93,7 +93,7 @@
       title="常驻礼包"
       title-en="Permanent Packs"
     />
-    <h2 style="margin: 15px">新人礼包</h2>
+    <h2 class="category-title">新人礼包</h2>
     <TransitionGroup
       v-if="categorizedPacks.newbie.length > 0"
       class="packs-container"
@@ -107,7 +107,7 @@
       />
     </TransitionGroup>
 
-    <h2 style="margin: 15px">每月/每周礼包</h2>
+    <h2 class="category-title">每月/每周礼包</h2>
     <TransitionGroup
       v-if="categorizedPacks.periodic.length > 0"
       class="packs-container"
@@ -121,7 +121,7 @@
       />
     </TransitionGroup>
 
-    <h2 style="margin: 15px">武库配额</h2>
+    <h2 class="category-title">武库配额</h2>
     <TransitionGroup
       v-if="categorizedPacks.weapon.length > 0"
       class="packs-container"
@@ -135,7 +135,7 @@
       />
     </TransitionGroup>
 
-    <h2 style="margin: 15px">源石/首充源石</h2>
+    <h2 class="category-title">源石/首充源石</h2>
     <TransitionGroup
       v-if="categorizedPacks.originium.length > 0"
       class="packs-container"
@@ -289,43 +289,6 @@ definePageMeta({
 </script>
 
 <style scoped>
-.module-header {
-  padding: 12px 0;
-  flex-wrap: wrap;
-  display: flex;
-  align-items: center;
-}
-
-.module-header :deep(.module-title) {
-  height: 60px;
-  position: relative;
-}
-
-.module-header :deep(.module-title h1) {
-  line-height: 1;
-  font-size: 36px;
-  padding: 0 4px 0 12px;
-  font-weight: bolder;
-  position: relative;
-  z-index: 1;
-}
-
-.module-header :deep(.module-title h4) {
-  padding: 12px 4px 0 4px;
-  margin-top: -8px;
-  background-color: #959595;
-  color: #ffffff;
-  border-left: 8px solid #fafb34;
-  font-size: 14px;
-}
-
-.module-header :deep(.module-tip) {
-  padding: 0 12px;
-  font-style: italic;
-  color: #00a1d6;
-  font-size: 14px;
-  line-height: 16px;
-}
 .filter-container {
   display: flex;
   align-items: center;
@@ -368,6 +331,12 @@ definePageMeta({
   gap: clamp(20px, 6.66666666vw, 40px);
   /* margin-top: var(--spacing-xl); */
   position: relative;
+}
+
+.category-title {
+  margin-block: var(--spacing-md);
+  color: var(--theme-text-primary);
+  font-size: var(--font-size-md);
 }
 
 .no-data {
