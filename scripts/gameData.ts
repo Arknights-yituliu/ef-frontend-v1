@@ -1,11 +1,24 @@
 import type {
+  CashShopGoodsTable,
+  CashShopGroupTable,
+  CashShopHideInGameTable,
+  CashShopTable,
   CharWpnRecommendTable,
+  GemTable,
+  GemTagIdTable,
   I18nTextTable,
   ItemListByTypeTable,
   ItemTable,
   ItemTypeTable,
+  LevelLoadingTable,
+  RewardTable,
+  SkillPatchTable,
+  TextTable,
   TranslationKey,
-} from './models.ts';
+  WeaponBasicTable,
+  WorldEnergyPointGroupTable,
+  WorldEnergyPointTable,
+} from './models';
 import * as fs from 'node:fs';
 import path from 'node:path';
 
@@ -67,37 +80,76 @@ export function getLocalizedValue({ id, text }: TranslationKey): Record<string, 
   return result;
 }
 
-export const i18nLanguages = ['CN', 'EN', 'JP', 'KR', 'MX', 'RU', 'TC'];
+export const i18nLanguages = [
+  'CN',
+  'TC',
+  'DE',
+  'EN',
+  'MX',
+  'FR',
+  'ID',
+  'IT',
+  'JP',
+  'KR',
+  'BR',
+  'RU',
+  'TH',
+  'VN',
+];
 export const languageToLocaleMap: Record<string, string> = {
   CN: 'zh-CN',
+  TC: 'zh-TW',
+  DE: 'de-DE',
   EN: 'en-US',
+  MX: 'es-MX',
+  FR: 'fr-FR',
+  ID: 'id-ID',
+  IT: 'it-IT',
   JP: 'ja-JP',
   KR: 'ko-KR',
-  MX: 'es-MX',
+  BR: 'pt-BR',
   RU: 'ru-RU',
-  TC: 'zh-TW',
+  TH: 'th-TH',
+  VN: 'vi-VN',
 };
 // 一图流只使用中英双语
 export const usedLanguages = ['CN', 'EN'];
 
 // 读取文件
-export const gemTable = readJSONWithBigInt('TableCfg/GemTable.json');
-export const gemTagIdTable = readJSONWithBigInt('TableCfg/GemTagIdTable.json');
+export const cashShopGoodsTable: CashShopGoodsTable = readJSONWithBigInt(
+  'TableCfg/CashShopGoodsTable.json',
+);
+export const cashShopGroupTable: CashShopGroupTable = readJSONWithBigInt(
+  'TableCfg/CashShopGroupTable.json',
+);
+export const cashShopHideInGameTable: CashShopHideInGameTable = readJSONWithBigInt(
+  'TableCfg/CashShopHideInGameTable.json',
+);
+export const cashShopTable: CashShopTable = readJSONWithBigInt('TableCfg/CashShopTable.json');
+export const charWpnRecommendTable: CharWpnRecommendTable = readJSONWithBigInt(
+  'TableCfg/CharWpnRecommendTable.json',
+);
+export const gemTable: GemTable = readJSONWithBigInt('TableCfg/GemTable.json');
+export const gemTagIdTable: GemTagIdTable = readJSONWithBigInt('TableCfg/GemTagIdTable.json');
 export const itemListByTypeTable: ItemListByTypeTable = readJSONWithBigInt(
   'TableCfg/ItemListByTypeTable.json',
 );
 export const itemTable: ItemTable = readJSONWithBigInt('TableCfg/ItemTable.json');
 export const itemTypeTable: ItemTypeTable = readJSONWithBigInt('TableCfg/ItemTypeTable.json');
-export const levelLoadingTable = readJSONWithBigInt('TableCfg/LevelLoadingTable.json');
-export const skillPatchTable = readJSONWithBigInt('TableCfg/SkillPatchTable.json');
-export const textTable = readJSONWithBigInt('TableCfg/TextTable.json');
-export const weaponBasicTable = readJSONWithBigInt('TableCfg/WeaponBasicTable.json');
-export const worldEnergyPointGroupTable = readJSONWithBigInt(
+export const levelLoadingTable: LevelLoadingTable = readJSONWithBigInt(
+  'TableCfg/LevelLoadingTable.json',
+);
+export const rewardTable: RewardTable = readJSONWithBigInt('TableCfg/RewardTable.json');
+export const skillPatchTable: SkillPatchTable = readJSONWithBigInt('TableCfg/SkillPatchTable.json');
+export const textTable: TextTable = readJSONWithBigInt('TableCfg/TextTable.json');
+export const weaponBasicTable: WeaponBasicTable = readJSONWithBigInt(
+  'TableCfg/WeaponBasicTable.json',
+);
+export const worldEnergyPointGroupTable: WorldEnergyPointGroupTable = readJSONWithBigInt(
   'TableCfg/WorldEnergyPointGroupTable.json',
 );
-export const worldEnergyPointTable = readJSONWithBigInt('TableCfg/WorldEnergyPointTable.json');
-export const charWpnRecommendTable: CharWpnRecommendTable = readJSONWithBigInt(
-  'TableCfg_Mapped/CharWpnRecommendTable.json',
+export const worldEnergyPointTable: WorldEnergyPointTable = readJSONWithBigInt(
+  'TableCfg/WorldEnergyPointTable.json',
 );
 
 export const i18nTextTables: Map<string, I18nTextTable> = new Map(
