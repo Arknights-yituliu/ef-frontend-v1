@@ -19,7 +19,7 @@ const props = defineProps<{
 
 <style scoped>
 .module-header {
-  padding: 12px 0;
+  margin-block: var(--spacing-2xl) var(--spacing-lg);
   flex-wrap: wrap;
   display: flex;
   align-items: center;
