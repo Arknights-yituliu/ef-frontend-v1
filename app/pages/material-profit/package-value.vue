@@ -63,13 +63,17 @@
         <span v-else>↓ {{ $t('page.materialProfit.packageValue.sortDesc') }}</span>
       </v-btn>
     </section>
-    <!-- 礼包卡片列表 -->
+    <!-- 礼包分类展示 -->
     <div v-if="displayGroups.length > 0">
       <div v-for="group in displayGroups" :key="group.groupId" class="group-section">
-        <ModuleHeader :tips="[]" :title="group.groupNameZH" :title-en="group.groupNameEN" />
+        <ModuleHeader
+          :tips="[]"
+          :title="group.displayName['zh-CN']"
+          :title-en="group.displayName['en-US']"
+        />
 
         <div v-for="shop in group.shops" :key="shop.shopId" class="shop-section">
-          <h2 class="category-title">{{ shop.shopNameZH }}</h2>
+          <h2 class="category-title">{{ shop.displayName[locale as keyof LocalizedText] }}</h2>
           <TransitionGroup class="packs-container" name="list" tag="div">
             <ContainerPackCard
               v-for="packId in shop.goodsIds"
@@ -88,6 +92,7 @@
 </template>
 
 <script lang="ts" setup>
+import type { LocalizedText } from '@/shared/types/pack';
 import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
 import { packGroups, packs, packShops } from '@/custom/core/packs';
 import { getPackPullsEfficiency, getPackSanityEfficiency } from '@/shared/utils/gameData/pack';
@@ -96,6 +101,8 @@ import { getPackPullsEfficiency, getPackSanityEfficiency } from '@/shared/utils/
 const defaultSorting: Map<string, number> = new Map(
   Object.keys(packs).map((packId, index) => [packId, index]),
 );
+
+const { locale } = useI18n();
 
 // 筛选和排序状态
 const searchQuery = ref('');
@@ -110,10 +117,8 @@ const displayGroups = computed(() => {
   const filteredPackIds = new Set(
     Object.keys(packs).filter((id) => {
       const p = packs[id]!;
-      return (
-        p.packDisplayNameZH.toLowerCase().includes(query) ||
-        p.packDisplayNameEN.toLowerCase().includes(query)
-      );
+      const name = p.displayName[locale.value as keyof LocalizedText] || '';
+      return name.toLowerCase().includes(query);
     }),
   );
 

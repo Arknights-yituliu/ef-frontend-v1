@@ -1,8 +1,10 @@
 {
   "shop_pay_gift_pack": {
     "groupId": "shop_pay_gift_pack",
-    "groupNameZH": "组合包",
-    "groupNameEN": "Bundles",
+    "displayName": {
+      "zh-CN": "组合包",
+      "en-US": "Bundles"
+    },
     "shopIds": [
       "Seasonal_Rec_pack",
       "Newbie_pack",
@@ -14,8 +16,10 @@
   },
   "shop_pay_originium_recharge": {
     "groupId": "shop_pay_originium_recharge",
-    "groupNameZH": "源石交易所",
-    "groupNameEN": "Originium Exchange",
+    "displayName": {
+      "zh-CN": "源石交易所",
+      "en-US": "Originium Exchange"
+    },
     "shopIds": [
       "originium_recharge"
     ]

@@ -1,605 +1,844 @@
 {
   "bp_pay_track": {
     "packId": "bp_pay_track",
-    "packDisplayNameZH": "协议定制",
-    "packDisplayNameEN": "Protocol Customized",
+    "displayName": {
+      "zh-CN": "协议定制",
+      "en-US": "Protocol Customized"
+    },
     "category": "BP",
     "price": 68,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/协议定制.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 20
       },
       {
         "itemId": "item_cbp_exp",
-        "itemName": "通行证经验",
+        "name": {
+          "zh-CN": "通行证经验",
+          "en-US": "Pass EXP"
+        },
         "quantity": 12000
       }
     ]
   },
   "os_recharge_originium_198": {
     "packId": "os_recharge_originium_198",
-    "packDisplayNameZH": "开采一袋衍质源石",
-    "packDisplayNameEN": "Mine a bag of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一袋衍质源石",
+      "en-US": "Mine a bag of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 135,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一袋衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 57
       }
     ]
   },
   "os_recharge_originium_328": {
     "packId": "os_recharge_originium_328",
-    "packDisplayNameZH": "开采一盒衍质源石",
-    "packDisplayNameEN": "Mine a box of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一盒衍质源石",
+      "en-US": "Mine a box of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 215,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一盒衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 92
       }
     ]
   },
   "recharge_originium_98": {
     "packId": "recharge_originium_98",
-    "packDisplayNameZH": "开采一堆衍质源石",
-    "packDisplayNameEN": "Mine a pile of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一堆衍质源石",
+      "en-US": "Mine a pile of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一堆衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 42
       }
     ]
   },
   "monthly_giftpack_01": {
     "packId": "monthly_giftpack_01",
-    "packDisplayNameZH": "每月素材组合包",
-    "packDisplayNameEN": "Monthly Materials Bundle",
+    "displayName": {
+      "zh-CN": "每月素材组合包",
+      "en-US": "Monthly Materials Bundle"
+    },
     "category": "Permanent_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/每月素材组合包.webp",
     "contents": [
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 100000
       },
       {
         "itemId": "item_expcard_stage2_high",
-        "itemName": "高级认知载体",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
         "quantity": 10
       },
       {
         "itemId": "item_weapon_expcard_high",
-        "itemName": "武器检查套组",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
         "quantity": 25
       },
       {
         "itemId": "item_char_break_stage_3_4",
-        "itemName": "协议圆盘组",
+        "name": {
+          "zh-CN": "协议圆盘组",
+          "en-US": "Protoset"
+        },
         "quantity": 20
       },
       {
         "itemId": "item_weapon_break_high",
-        "itemName": "重型强固模具",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
         "quantity": 20
       },
       {
         "itemId": "item_char_skill_level_7_12",
-        "itemName": "协议棱柱组",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
         "quantity": 50
       },
       {
         "itemId": "item_case_bp_selfselect_skillsp_1",
-        "itemName": "高阶培养自选箱Ⅰ",
+        "name": {
+          "zh-CN": "高阶培养自选箱Ⅰ",
+          "en-US": "Advanced Progression Selection Crate Ⅰ"
+        },
         "quantity": 20
       }
     ]
   },
   "newbie_giftpack_01": {
     "packId": "newbie_giftpack_01",
-    "packDisplayNameZH": "全面人才组合包",
-    "packDisplayNameEN": "All Rounder Bundle",
+    "displayName": {
+      "zh-CN": "全面人才组合包",
+      "en-US": "All Rounder Bundle"
+    },
     "category": "Newbie_pack",
     "price": 128,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/全面人才组合包.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_special_single",
-        "itemName": "特许寻访凭证",
+        "name": {
+          "zh-CN": "特许寻访凭证",
+          "en-US": "Chartered HH Permit"
+        },
         "quantity": 10
       },
       {
         "itemId": "item_gachabyproducts_weapongold",
-        "itemName": "武库配额",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
         "quantity": 2000
       }
     ]
   },
   "recharge_originium_328": {
     "packId": "recharge_originium_328",
-    "packDisplayNameZH": "开采一盒衍质源石",
-    "packDisplayNameEN": "Mine a box of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一盒衍质源石",
+      "en-US": "Mine a box of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 328,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一盒衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 141
       }
     ]
   },
   "weapon_giftpack_03": {
     "packId": "weapon_giftpack_03",
-    "packDisplayNameZH": "标准武库组合包",
-    "packDisplayNameEN": "Standard Arsenal Bundle",
+    "displayName": {
+      "zh-CN": "标准武库组合包",
+      "en-US": "Standard Arsenal Bundle"
+    },
     "category": "SP_weapon_supply",
     "price": 128,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/标准武库组合包.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
-        "itemName": "武库配额",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
         "quantity": 2000
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 30000
       },
       {
         "itemId": "item_weapon_break_high",
-        "itemName": "重型强固模具",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
         "quantity": 5
       },
       {
         "itemId": "item_weapon_expcard_mid",
-        "itemName": "武器检查装置",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
         "quantity": 200
       }
     ]
   },
   "newbie_giftpack_02": {
     "packId": "newbie_giftpack_02",
-    "packDisplayNameZH": "人事支援组合包",
-    "packDisplayNameEN": "HR Support Bundle",
+    "displayName": {
+      "zh-CN": "人事支援组合包",
+      "en-US": "HR Support Bundle"
+    },
     "category": "Newbie_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/人事支援组合包.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_standard_single",
-        "itemName": "基础寻访凭证",
+        "name": {
+          "zh-CN": "基础寻访凭证",
+          "en-US": "Basic HH Permit"
+        },
         "quantity": 10
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 100000
       }
     ]
   },
   "newbie_giftpack_6_special": {
     "packId": "newbie_giftpack_6_special",
-    "packDisplayNameZH": "宏愿兵装组合包",
-    "packDisplayNameEN": "Grand Vision Arsenal Bundle",
+    "displayName": {
+      "zh-CN": "宏愿兵装组合包",
+      "en-US": "Grand Vision Arsenal Bundle"
+    },
     "category": "Newbie_pack",
     "price": 6,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/宏愿兵装组合包.webp",
     "contents": [
       {
         "itemId": "wpn_sword_0021",
-        "itemName": "宏愿",
+        "name": {
+          "zh-CN": "宏愿",
+          "en-US": "Grand Vision"
+        },
         "quantity": 1
       },
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 6
       }
     ]
   },
   "os_recharge_originium_30": {
     "packId": "os_recharge_originium_30",
-    "packDisplayNameZH": "开采一组衍质源石",
-    "packDisplayNameEN": "Mine a set of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一组衍质源石",
+      "en-US": "Mine a set of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 55,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一组衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 21
       }
     ]
   },
   "os_recharge_originium_6": {
     "packId": "os_recharge_originium_6",
-    "packDisplayNameZH": "开采衍质源石",
-    "packDisplayNameEN": "Mine bits of Origeometry",
+    "displayName": {
+      "zh-CN": "开采衍质源石",
+      "en-US": "Mine bits of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 12,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 4
       }
     ]
   },
   "os_recharge_originium_648": {
     "packId": "os_recharge_originium_648",
-    "packDisplayNameZH": "开采一箱衍质源石",
-    "packDisplayNameEN": "Mine a crate of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一箱衍质源石",
+      "en-US": "Mine a crate of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 450,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一箱衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 194
       }
     ]
   },
   "os_recharge_originium_98": {
     "packId": "os_recharge_originium_98",
-    "packDisplayNameZH": "开采一堆衍质源石",
-    "packDisplayNameEN": "Mine a pile of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一堆衍质源石",
+      "en-US": "Mine a pile of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 80,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一堆衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 34
       }
     ]
   },
   "recharge_originium_198": {
     "packId": "recharge_originium_198",
-    "packDisplayNameZH": "开采一袋衍质源石",
-    "packDisplayNameEN": "Mine a bag of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一袋衍质源石",
+      "en-US": "Mine a bag of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 198,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一袋衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 85
       }
     ]
   },
   "seasonal_giftpack_combine": {
     "packId": "seasonal_giftpack_combine",
-    "packDisplayNameZH": "协议源流组合包",
-    "packDisplayNameEN": "Protocol Flow Bundle",
+    "displayName": {
+      "zh-CN": "协议源流组合包",
+      "en-US": "Protocol Flow Bundle"
+    },
     "category": "Seasonal_Rec_pack",
     "price": 198,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/协议源流组合包.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_special_single",
-        "itemName": "特许寻访凭证",
+        "name": {
+          "zh-CN": "特许寻访凭证",
+          "en-US": "Chartered HH Permit"
+        },
         "quantity": 10
       },
       {
         "itemId": "item_gachabyproducts_weapongold",
-        "itemName": "武库配额",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
         "quantity": 2000
       },
       {
         "itemId": "item_char_skill_crown",
-        "itemName": "存续的痕迹",
+        "name": {
+          "zh-CN": "存续的痕迹",
+          "en-US": "Mark of Perseverance"
+        },
         "quantity": 10
       }
     ]
   },
   "seasonal_giftpack_lt_01": {
     "packId": "seasonal_giftpack_lt_01",
-    "packDisplayNameZH": "行火寻访组合包",
-    "packDisplayNameEN": "Firewalker's Trail HH Bundle",
+    "displayName": {
+      "zh-CN": "行火寻访组合包",
+      "en-US": "Firewalker's Trail HH Bundle"
+    },
     "category": "Seasonal_Rec_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/行火寻访组合包.webp",
     "contents": [
       {
         "itemId": "ticketgacha_special_ten_lt_1_0_1",
-        "itemName": "行火留烬十连凭证",
+        "name": {
+          "zh-CN": "行火留烬十连凭证",
+          "en-US": "Firewalker's Trail 10×Permit"
+        },
         "quantity": 1
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 80000
       }
     ]
   },
   "recharge_originium_30": {
     "packId": "recharge_originium_30",
-    "packDisplayNameZH": "开采一组衍质源石",
-    "packDisplayNameEN": "Mine a set of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一组衍质源石",
+      "en-US": "Mine a set of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一组衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 12
       }
     ]
   },
   "payshop_giftpack_monthlycard": {
     "packId": "payshop_giftpack_monthlycard",
-    "packDisplayNameZH": "月卡",
-    "packDisplayNameEN": "Monthly Pass",
+    "displayName": {
+      "zh-CN": "月卡",
+      "en-US": "Monthly Pass"
+    },
     "category": "MCard",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/月卡.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 12
       }
     ]
   },
   "recharge_originium_6": {
     "packId": "recharge_originium_6",
-    "packDisplayNameZH": "开采衍质源石",
-    "packDisplayNameEN": "Mine bits of Origeometry",
+    "displayName": {
+      "zh-CN": "开采衍质源石",
+      "en-US": "Mine bits of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 6,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 2
       }
     ]
   },
   "seasonal_giftpack_lt_1_1_1": {
     "packId": "seasonal_giftpack_lt_1_1_1",
-    "packDisplayNameZH": "清波寻访组合包",
-    "packDisplayNameEN": "Qingbo HH Bundle",
+    "displayName": {
+      "zh-CN": "清波寻访组合包",
+      "en-US": "Qingbo HH Bundle"
+    },
     "category": "Seasonal_Rec_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/清波寻访组合包.webp",
     "contents": [
       {
         "itemId": "ticketgacha_special_ten_lt_1_1_1",
-        "itemName": "清波静流十连凭证",
+        "name": {
+          "zh-CN": "清波静流十连凭证",
+          "en-US": "Gently Flows Qingbo 10×Permit"
+        },
         "quantity": 1
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 80000
       }
     ]
   },
   "recharge_originium_648": {
     "packId": "recharge_originium_648",
-    "packDisplayNameZH": "开采一箱衍质源石",
-    "packDisplayNameEN": "Mine a crate of Origeometry",
+    "displayName": {
+      "zh-CN": "开采一箱衍质源石",
+      "en-US": "Mine a crate of Origeometry"
+    },
     "category": "originium_recharge",
     "price": 648,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/开采一箱衍质源石.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
-        "itemName": "衍质源石",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
         "quantity": 280
       }
     ]
   },
   "weapon_giftpack_04": {
     "packId": "weapon_giftpack_04",
-    "packDisplayNameZH": "满载武库组合包",
-    "packDisplayNameEN": "Loaded Arsenal Bundle",
+    "displayName": {
+      "zh-CN": "满载武库组合包",
+      "en-US": "Loaded Arsenal Bundle"
+    },
     "category": "SP_weapon_supply",
     "price": 328,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/满载武库组合包.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
-        "itemName": "武库配额",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
         "quantity": 5280
       },
       {
         "itemId": "item_case_bp_selfselect_skillsp_1",
-        "itemName": "高阶培养自选箱Ⅰ",
+        "name": {
+          "zh-CN": "高阶培养自选箱Ⅰ",
+          "en-US": "Advanced Progression Selection Crate Ⅰ"
+        },
         "quantity": 5
       },
       {
         "itemId": "item_weapon_break_high",
-        "itemName": "重型强固模具",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
         "quantity": 15
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 90000
       }
     ]
   },
   "seasonal_crossover_lt_1_2_1": {
     "packId": "seasonal_crossover_lt_1_2_1",
-    "packDisplayNameZH": "镌宇铭星组合包",
-    "packDisplayNameEN": "Etchings of Our Cosmic Dreams Pack",
+    "displayName": {
+      "zh-CN": "镌宇铭星组合包",
+      "en-US": "Etchings of Our Cosmic Dreams Pack"
+    },
     "category": "Seasonal_Rec_pack",
     "price": 6,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/镌宇铭星组合包.webp",
     "contents": [
       {
         "itemId": "item_user_avatar_activity_6",
-        "itemName": "寻星旅者",
+        "name": {
+          "zh-CN": "寻星旅者",
+          "en-US": "Starseeker"
+        },
         "quantity": 1
       },
       {
         "itemId": "item_ticketgacha_special_single",
-        "itemName": "特许寻访凭证",
+        "name": {
+          "zh-CN": "特许寻访凭证",
+          "en-US": "Chartered HH Permit"
+        },
         "quantity": 1
       }
     ]
   },
   "seasonal_giftpack_lt_02": {
     "packId": "seasonal_giftpack_lt_02",
-    "packDisplayNameZH": "异彩寻访组合包",
-    "packDisplayNameEN": "Spectral Splendor HH Bundle",
+    "displayName": {
+      "zh-CN": "异彩寻访组合包",
+      "en-US": "Spectral Splendor HH Bundle"
+    },
     "category": "Seasonal_Rec_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/异彩寻访组合包.webp",
     "contents": [
       {
         "itemId": "ticketgacha_special_ten_lt_1_0_2",
-        "itemName": "异彩斑斓十连凭证",
+        "name": {
+          "zh-CN": "异彩斑斓十连凭证",
+          "en-US": "Spectral Splendor 10×Permit"
+        },
         "quantity": 1
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 80000
       }
     ]
   },
   "seasonal_giftpack_lt_03": {
     "packId": "seasonal_giftpack_lt_03",
-    "packDisplayNameZH": "信使寻访组合包",
-    "packDisplayNameEN": "Messenger Express HH Bundle",
+    "displayName": {
+      "zh-CN": "信使寻访组合包",
+      "en-US": "Messenger Express HH Bundle"
+    },
     "category": "Seasonal_Rec_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/信使寻访组合包.webp",
     "contents": [
       {
         "itemId": "ticketgacha_special_ten_lt_1_0_3",
-        "itemName": "灵动信使十连凭证",
+        "name": {
+          "zh-CN": "灵动信使十连凭证",
+          "en-US": "Messenger Express 10×Permit"
+        },
         "quantity": 1
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 80000
       }
     ]
   },
   "seasonal_giftpack_lt_1_1_2": {
     "packId": "seasonal_giftpack_lt_1_1_2",
-    "packDisplayNameZH": "狼珀寻访组合包",
-    "packDisplayNameEN": "Wolf Pearl HH Bundle",
+    "displayName": {
+      "zh-CN": "狼珀寻访组合包",
+      "en-US": "Wolf Pearl HH Bundle"
+    },
     "category": "Seasonal_Rec_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/狼珀寻访组合包.webp",
     "contents": [
       {
         "itemId": "ticketgacha_special_ten_lt_1_1_2",
-        "itemName": "狼群瑰宝十连凭证",
+        "name": {
+          "zh-CN": "狼群瑰宝十连凭证",
+          "en-US": "Pearl of the Pack 10×Permit"
+        },
         "quantity": 1
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 80000
       }
     ]
   },
   "seasonal_giftpack_lt_1_2_1": {
     "packId": "seasonal_giftpack_lt_1_2_1",
-    "packDisplayNameZH": "醒物寻访组合包",
-    "packDisplayNameEN": "Verdance HH Bundle",
+    "displayName": {
+      "zh-CN": "醒物寻访组合包",
+      "en-US": "Verdance HH Bundle"
+    },
     "category": "Seasonal_Rec_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/醒物寻访组合包.webp",
     "contents": [
       {
         "itemId": "ticketgacha_special_single_lt_1_2_1",
-        "itemName": "春雷醒物寻访凭证",
+        "name": {
+          "zh-CN": "春雷醒物寻访凭证",
+          "en-US": "Blitz of Verdance HH Permit"
+        },
         "quantity": 10
       },
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 80000
       }
     ]
   },
   "weapon_giftpack_01": {
     "packId": "weapon_giftpack_01",
-    "packDisplayNameZH": "特惠武库配额包",
-    "packDisplayNameEN": "Value Arsenal Ticket Pack",
+    "displayName": {
+      "zh-CN": "特惠武库配额包",
+      "en-US": "Value Arsenal Ticket Pack"
+    },
     "category": "SP_weapon_supply",
     "price": 88,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/特惠武库配额包.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
-        "itemName": "武库配额",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
         "quantity": 2000
       }
     ]
   },
   "weapon_giftpack_02": {
     "packId": "weapon_giftpack_02",
-    "packDisplayNameZH": "优惠武库组合包",
-    "packDisplayNameEN": "Discount Arsenal Bundle",
+    "displayName": {
+      "zh-CN": "优惠武库组合包",
+      "en-US": "Discount Arsenal Bundle"
+    },
     "category": "SP_weapon_supply",
     "price": 108,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/优惠武库组合包.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
-        "itemName": "武库配额",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
         "quantity": 2000
       },
       {
         "itemId": "item_weapon_expcard_mid",
-        "itemName": "武器检查装置",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
         "quantity": 200
       }
     ]
   },
   "weekly_giftpack_01": {
     "packId": "weekly_giftpack_01",
-    "packDisplayNameZH": "每周素材组合包",
-    "packDisplayNameEN": "Weekly Materials Bundle",
+    "displayName": {
+      "zh-CN": "每周素材组合包",
+      "en-US": "Weekly Materials Bundle"
+    },
     "category": "Permanent_pack",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/每周素材组合包.webp",
     "contents": [
       {
         "itemId": "item_gold",
-        "itemName": "折金票",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
         "quantity": 30000
       },
       {
         "itemId": "item_expcard_stage2_low",
-        "itemName": "初级认知载体",
+        "name": {
+          "zh-CN": "初级认知载体",
+          "en-US": "Elementary Cognitive Carrier"
+        },
         "quantity": 120
       },
       {
         "itemId": "item_weapon_expcard_mid",
-        "itemName": "武器检查装置",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
         "quantity": 240
       }
     ]
