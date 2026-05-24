@@ -776,7 +776,7 @@
     "rarity": 6,
     "stats": {
       "attribute": "力量提升",
-      "secondary": "源石技艺强度提升",
+      "secondary": "源石技艺提升",
       "skill": "压制"
     }
   },
