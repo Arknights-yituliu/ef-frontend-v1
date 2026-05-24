@@ -5,7 +5,7 @@
  */
 import fs from 'node:fs';
 import { makeItems } from './makeItems';
-import { makePacks } from './makePacks';
+import { makePackGroups, makePacks, makePackShops } from './makePacks';
 import { makeEnergyAlluviums, makeWeapons } from './makeWeapons';
 import { makeWeaponToChars } from './makeWeaponToChars';
 
@@ -32,7 +32,9 @@ fs.writeFileSync(
 console.log('✓ custom/core/weaponToChars.json');
 
 // ---------- packs ----------
-const { packs, packShops, packGroups } = makePacks();
+const packs = makePacks();
+const packShops = makePackShops(packs);
+const packGroups = makePackGroups();
 fs.writeFileSync('custom/core/packs.json', JSON.stringify(packs, null, 2), 'utf8');
 fs.writeFileSync('custom/core/packShops.json', JSON.stringify(packShops, null, 2), 'utf8');
 fs.writeFileSync('custom/core/packGroups.json', JSON.stringify(packGroups, null, 2), 'utf8');
