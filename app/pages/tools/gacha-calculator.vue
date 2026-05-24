@@ -3,6 +3,7 @@ import type {
   GachaCalculatorUserConfig,
   PieChartData,
   PoolOption,
+  Reward,
   RewardStatisticsResultDetail,
   TotalPullsSingle,
 } from '@/shared/types/gacha-calculator';
@@ -10,8 +11,8 @@ import { dateFormat } from '#shared/utils/dateUtil';
 import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-calculator';
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 // 奖励引入
 import {
@@ -29,7 +30,7 @@ import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
 import {
-  archivePermanentRewardTable,
+ 
   authorityLevelUpReward,
   authorityLevelUpRewardTable,
   permanentRewardTable,
@@ -41,11 +42,12 @@ import { packs } from '@/custom/core/packs';
 
 // 当前路由
 const route = useRoute();
+const router = useRouter();
 
 const { t } = useI18n();
 
 //
-const leftPartPanel = ref<string[]>(['statisticalResult', 'dev']);
+const leftPartPanel = ref<string[]>(['statisticalResult', 'controlPanel', 'dev']);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'
 const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity']);
 
@@ -114,6 +116,33 @@ const currentPool = ref<PoolOption>({
 const devStartDate = ref(new Date());
 
 const currentMode = ref('normal');
+const devModeTriggerClicks = ref(0);
+const devModeTriggerThreshold = 8;
+
+function syncCurrentModeFromRoute() {
+  currentMode.value = route.query.mode === 'dev' ? 'dev' : 'normal';
+  if (currentMode.value !== 'dev') {
+    devModeTriggerClicks.value = 0;
+  }
+}
+
+function triggerDevModeByDailyReward() {
+  if (currentMode.value === 'dev') {
+    return;
+  }
+
+  devModeTriggerClicks.value += 1;
+  if (devModeTriggerClicks.value >= devModeTriggerThreshold) {
+    currentMode.value = 'dev';
+    void router.replace({
+      path: route.path,
+      query: {
+        ...route.query,
+        mode: 'dev',
+      },
+    });
+  }
+}
 
 function startDateDebug() {
   const newDate = new Date(devStartDate.value);
@@ -137,7 +166,6 @@ function calc() {
   dailyRewardStatistics();
   activityRewardStatistics();
   permanentRewardStatistics();
-  archivePermanentRewardStatistics();
   rechargeResourceStatistics();
   allRewardStatisticsV2();
 }
@@ -153,7 +181,15 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   buttonGroupActive: {},
   rangeSlider: {},
   slider: {},
+  versionVisible: {},
 });
+
+function saveGachaCalculatorUserConfig() {
+  localStorage.setItem(
+    'Gacha_Calculator_User_Config',
+    JSON.stringify(gachaCalculatorUserConfig.value),
+  );
+}
 
 /**
  * 库存计算相关代码起始
@@ -177,10 +213,7 @@ watch(
       newValue.ticketgachaStandardSingle;
     gachaCalculatorUserConfig.value.existingResource.ticketgachaSpecialSingle =
       newValue.ticketgachaSpecialSingle;
-    localStorage.setItem(
-      'Gacha_Calculator_User_Config',
-      JSON.stringify(gachaCalculatorUserConfig.value),
-    );
+    saveGachaCalculatorUserConfig();
 
     existingRewardStatistics();
     allRewardStatisticsV2();
@@ -285,7 +318,7 @@ function dailyRewardStatistics(): void {
 
   // 日常奖励重构
   for (const reward of dailyAllRewardTable.value) {
-    if (checkRewardIsValid(reward)) {
+    if (shouldCountReward(reward)) {
       addReward(result, reward);
     }
   }
@@ -334,7 +367,7 @@ function activityRewardStatistics(): void {
   };
 
   for (const reward of activityReward.value) {
-    if (checkRewardIsValid(reward)) {
+    if (shouldCountReward(reward)) {
       addReward(result, reward);
     }
   }
@@ -366,7 +399,7 @@ watch(
     authorityLevelUpReward.value.content.diamond = result;
     saveUserConfig(authorityLevelUpReward.value.id, newVal, 'rangeSlider');
 
-    archivePermanentRewardStatistics();
+    permanentRewardStatistics();
     allRewardStatisticsV2();
   },
   { deep: true },
@@ -385,30 +418,10 @@ watch(
   { deep: true },
 );
 
-watch(
-  archivePermanentRewardTable,
-  (newValue) => {
-    for (const item of newValue) {
-      saveUserConfig(item.id, item.active, 'buttonGroupActive');
-    }
 
-    archivePermanentRewardStatistics();
-    allRewardStatisticsV2();
-  },
-  { deep: true },
-);
 
 let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '版本新增常驻奖励',
-  originiumRecharge: 0,
-  diamond: 0,
-  ticketgachaStandardSingle: 0,
-  ticketgachaSpecialSingle: 0,
-  ticketgachaLimitedSingle: 0,
-};
-
-let archivePermanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
-  name: '往期版本常驻奖励',
+  name: '常驻奖励',
   originiumRecharge: 0,
   diamond: 0,
   ticketgachaStandardSingle: 0,
@@ -418,33 +431,27 @@ let archivePermanentRewardStatisticsResultDetail: RewardStatisticsResultDetail =
 
 function permanentRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
-    name: '版本新增常驻奖励',
+    name: '常驻奖励',
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,
   };
-  addReward(result, permanentRewardTable.value);
+  for (const reward of permanentRewardTable.value) {
+    addVisibleReward(result, reward);
+  }
+
+
+  addVisibleReward(result, authorityLevelUpReward.value);
 
   permanentRewardStatisticsResultDetail = result;
   gachaResourceStatisticsResult.value.totalPulls.permanent = getRewardPull(result);
-}
-
-function archivePermanentRewardStatistics(): void {
-  const result: RewardStatisticsResultDetail = {
-    name: '往期版本常驻奖励',
-    originiumRecharge: 0,
-    diamond: 0,
+  gachaResourceStatisticsResult.value.totalPulls.archivePermanent = {
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,
   };
-
-  addReward(result, archivePermanentRewardTable.value);
-  addReward(result, authorityLevelUpReward.value);
-  archivePermanentRewardStatisticsResultDetail = result;
-  gachaResourceStatisticsResult.value.totalPulls.archivePermanent = getRewardPull(result);
 }
 
 /**
@@ -536,6 +543,17 @@ let rechargeResourceStatisticsResultDetail: RewardStatisticsResultDetail = {
   ticketgachaSpecialSingle: 0,
   ticketgachaLimitedSingle: 0,
 };
+
+function resetRechargeResourcesKeepMonthlyPass() {
+  rechargeResources.value = {
+    monthlyPass: rechargeResources.value.monthlyPass,
+    battlePass: false,
+    protocolCustomization: false,
+    monthlyPassDays: rechargeResources.value.monthlyPassDays,
+    selectedPacks: {},
+    originiumStones: {},
+  };
+}
 
 function rechargeResourceStatistics(): void {
   const remainingDays = calculateDaysDifference(poolStartDate.value, currentPool.value.end);
@@ -644,7 +662,6 @@ function allRewardStatisticsV2(): void {
     dailyRewardStatisticsResultDetail,
     activityRewardStatisticsResultDetail,
     permanentRewardStatisticsResultDetail,
-    archivePermanentRewardStatisticsResultDetail,
     rechargeResourceStatisticsResultDetail,
   ];
 
@@ -772,8 +789,9 @@ function setPieChart(data: PieChartData[]) {
 
 // 由于expansion-panel折叠会销毁组件，需要监听 panel.value 变化, 当包含 statisticalResult 时, 初始化饼图
 watch(
-  () => leftPartPanel.value,
+  () => [...leftPartPanel.value],
   (newValue) => {
+    scheduleSummaryPanelHeightUpdates();
     if (newValue.includes('statisticalResult')) {
       // 等待组件渲染完成
       nextTick(() => {
@@ -831,12 +849,25 @@ function loadingUserConfig() {
 
         // 常驻奖励重构
         _setButtonGroupActive(localConfig.buttonGroupActive, permanentRewardTable);
-        _setButtonGroupActive(localConfig.buttonGroupActive, archivePermanentRewardTable);
+      
 
         // 活动奖励
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
 
         gachaCalculatorUserConfig.value.buttonGroupActive = localConfig.buttonGroupActive;
+      }
+
+      if (localConfig.versionVisible) {
+        for (const version of versionOptions.value) {
+          const visible = localConfig.versionVisible[version];
+          if (visible !== undefined) {
+            versionVisibleMap.value[version] = visible;
+          }
+        }
+        gachaCalculatorUserConfig.value.versionVisible = {
+          ...gachaCalculatorUserConfig.value.versionVisible,
+          ...localConfig.versionVisible,
+        };
       }
 
       if (localConfig.existingResource) {
@@ -909,6 +940,65 @@ function loadingUserConfig() {
   }
 }
 
+let summaryPanelResizeObserver: ResizeObserver | null = null;
+let summaryPanelHeightUpdateTimers: number[] = [];
+
+function updateSummaryPanelHeight() {
+  const container = document.querySelector<HTMLElement>('.gacha-calculator-container');
+  const summaryPanel = document.querySelector<HTMLElement>(
+    '.gacha-calculator-sticky-summary-panel',
+  );
+  if (!container || !summaryPanel) {
+    return;
+  }
+
+  const style = getComputedStyle(summaryPanel);
+  const verticalMargin =
+    Number.parseFloat(style.marginTop || '0') + Number.parseFloat(style.marginBottom || '0');
+  const summaryHeight = summaryPanel.getBoundingClientRect().height + verticalMargin;
+  container.style.setProperty('--gacha-calculator-summary-panel-height', `${summaryHeight}px`);
+}
+
+function clearSummaryPanelHeightUpdateTimers() {
+  for (const timer of summaryPanelHeightUpdateTimers) {
+    window.clearTimeout(timer);
+  }
+  summaryPanelHeightUpdateTimers = [];
+}
+
+function scheduleSummaryPanelHeightUpdates() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  clearSummaryPanelHeightUpdateTimers();
+  updateSummaryPanelHeight();
+  nextTick(() => {
+    updateSummaryPanelHeight();
+    for (const delay of [80, 180, 320]) {
+      summaryPanelHeightUpdateTimers.push(window.setTimeout(updateSummaryPanelHeight, delay));
+    }
+  });
+}
+
+function initSummaryPanelHeightObserver() {
+  nextTick(() => {
+    scheduleSummaryPanelHeightUpdates();
+    const summaryPanel = document.querySelector<HTMLElement>(
+      '.gacha-calculator-sticky-summary-panel',
+    );
+    if (!summaryPanel) {
+      return;
+    }
+
+    if (typeof ResizeObserver !== 'undefined') {
+      summaryPanelResizeObserver = new ResizeObserver(updateSummaryPanelHeight);
+      summaryPanelResizeObserver.observe(summaryPanel);
+    }
+    window.addEventListener('resize', updateSummaryPanelHeight);
+  });
+}
+
 onMounted(() => {
   initPoolOptions();
   loadingUserConfig();
@@ -927,8 +1017,26 @@ onMounted(() => {
     }
   }
 
-  currentMode.value = route.query.mode as string;
+  syncCurrentModeFromRoute();
+  initSummaryPanelHeightObserver();
 });
+
+onUnmounted(() => {
+  summaryPanelResizeObserver?.disconnect();
+  clearSummaryPanelHeightUpdateTimers();
+  window.removeEventListener('resize', updateSummaryPanelHeight);
+});
+
+watch(
+  () => route.query.mode,
+  () => {
+    syncCurrentModeFromRoute();
+  },
+);
+
+function clearOrSelectAllDailyRewardModule(action: boolean) {
+  clearOrSelectAll(action, 'button', dailyAllRewardTable);
+}
 
 function clearOrSelectAllActivityModule(action: boolean) {
   clearOrSelectAll(action, 'button', activityReward);
@@ -936,15 +1044,14 @@ function clearOrSelectAllActivityModule(action: boolean) {
 
 function clearOrSelectAllPermanentRewardModule(action: boolean) {
   clearOrSelectAll(action, 'button', permanentRewardTable);
-}
 
-function clearOrSelectAllArchivePermanentRewardModule(action: boolean) {
-  if (action) {
-    authorityLevelProgress.value = [1, 60];
-  } else {
-    authorityLevelProgress.value = [60, 60];
+  if (isRewardMatchedSelectedVersion(authorityLevelUpReward.value)) {
+    if (action) {
+      authorityLevelProgress.value = [1, 60];
+    } else {
+      authorityLevelProgress.value = [60, 60];
+    }
   }
-  clearOrSelectAll(action, 'button', archivePermanentRewardTable);
 }
 
 function clearOrSelectAll(
@@ -952,6 +1059,7 @@ function clearOrSelectAll(
   type: string,
   reward: Ref<Reward> | Ref<Reward[]> | Ref<number[]>,
   range: number[] = [0, 0],
+  targetVersion = selectedVersion.value,
 ) {
   if ('button' === type) {
     const value = reward.value;
@@ -962,7 +1070,7 @@ function clearOrSelectAll(
           typeof item === 'object' &&
           item !== null &&
           'active' in item &&
-          (selectedVersion.value === 'all' || selectedVersion.value === item.version)
+          isRewardMatchedVersion(item, targetVersion)
         ) {
           item.active = action;
         }
@@ -971,7 +1079,7 @@ function clearOrSelectAll(
       typeof value === 'object' &&
       value !== null &&
       'active' in value && // 处理 Ref<Reward> 类型
-      (selectedVersion.value === 'all' || selectedVersion.value === value.version)
+      isRewardMatchedVersion(value, targetVersion)
     ) {
       value.active = action;
     }
@@ -990,16 +1098,16 @@ function clearOrSelectAll(
 
 const clearBtnGroup = [
   {
+    text: '日常积累',
+    func: clearOrSelectAllDailyRewardModule,
+  },
+  {
     text: '版本限时活动奖励',
     func: clearOrSelectAllActivityModule,
   },
   {
-    text: '版本新增常驻奖励',
+    text: '常驻奖励',
     func: clearOrSelectAllPermanentRewardModule,
-  },
-  {
-    text: '往期版本常驻奖励',
-    func: clearOrSelectAllArchivePermanentRewardModule,
   },
 ];
 
@@ -1062,10 +1170,7 @@ function saveUserConfig(
     gachaCalculatorUserConfig.value.buttonGroupActive[key] = value;
   }
 
-  localStorage.setItem(
-    'Gacha_Calculator_User_Config',
-    JSON.stringify(gachaCalculatorUserConfig.value),
-  );
+  saveGachaCalculatorUserConfig();
 }
 
 /**
@@ -1155,15 +1260,148 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 
 const versionOptions = ref<string[]>([]);
 
+const reversedVersionOptions = computed(() => versionOptions.value.toReversed());
+
 const selectedVersion = ref<string>('all');
+
+const versionVisibleMap = ref<Record<string, boolean>>({});
 
 for (const version of VersionTable) {
   versionOptions.value.push(version.version);
+  versionVisibleMap.value[version.version] = true;
 }
 
 function selectVersionOptions(version: string) {
   selectedVersion.value = selectedVersion.value === version ? 'all' : version;
 }
+
+function normalizeVersionName(version?: string): string {
+  return (version ?? '').replace(/\s/g, '');
+}
+
+function getRewardVersionControlVersions(reward: Reward): string[] {
+  const rewardVersion = normalizeVersionName(reward.version);
+  if (!rewardVersion) {
+    return [];
+  }
+
+  return versionOptions.value.filter((version) => normalizeVersionName(version) === rewardVersion);
+}
+
+function isRewardMatchedVersion(reward: Reward, version: string): boolean {
+  if (version === 'all') {
+    return true;
+  }
+
+  return getRewardVersionControlVersions(reward).some(
+    (rewardVersion) => normalizeVersionName(rewardVersion) === normalizeVersionName(version),
+  );
+}
+
+function isRewardMatchedSelectedVersion(reward: Reward): boolean {
+  return isRewardMatchedVersion(reward, selectedVersion.value);
+}
+
+function isVersionVisible(version: string): boolean {
+  return versionVisibleMap.value[version] !== false;
+}
+
+function setVersionVisible(version: string, visible: boolean) {
+  versionVisibleMap.value[version] = visible;
+  if (!gachaCalculatorUserConfig.value.versionVisible) {
+    gachaCalculatorUserConfig.value.versionVisible = {};
+  }
+  gachaCalculatorUserConfig.value.versionVisible[version] = visible;
+  saveGachaCalculatorUserConfig();
+  calc();
+}
+
+function isRewardVersionVisible(reward: Reward): boolean {
+  const matchedVersions = getRewardVersionControlVersions(reward);
+
+  if (matchedVersions.length === 0) {
+    return true;
+  }
+
+  return matchedVersions.some((version) => isVersionVisible(version));
+}
+
+function shouldCountReward(reward: Reward): boolean {
+  return checkRewardIsValid(reward) && isRewardVersionVisible(reward);
+}
+
+function addVisibleReward(result: RewardStatisticsResultDetail, reward: Reward) {
+  if (isRewardVersionVisible(reward)) {
+    addReward(result, reward);
+  }
+}
+
+function shouldDisplayReward(reward: Reward): boolean {
+  return shouldCountReward(reward);
+}
+
+function setVersionRewardsActive(version: string, active: boolean) {
+  clearOrSelectAll(active, 'button', dailyAllRewardTable, [0, 0], version);
+  clearOrSelectAll(active, 'button', activityReward, [0, 0], version);
+  clearOrSelectAll(active, 'button', permanentRewardTable, [0, 0], version);
+ 
+
+  if (isRewardMatchedVersion(authorityLevelUpReward.value, version)) {
+    authorityLevelProgress.value = active ? [1, 60] : [60, 60];
+  }
+}
+
+// 常驻奖励的分类名称列表，包含五个分类
+const permanentRewardCategoryNames = ['地图资源', '任务', '档案采集', '蚀像寻遗', '新手活动', '行动手册', '未分类'] as const;
+
+// 常驻奖励分类名称的类型定义，取permanentRewardCategoryNames数组元素的联合类型
+type PermanentRewardCategoryName = (typeof permanentRewardCategoryNames)[number];
+
+// 常驻奖励模块到分类名称的映射表，键为module字段值，值为对应的分类名
+const permanentRewardModuleCategoryMap: Record<string, PermanentRewardCategoryName> = {
+  地区探索与建设: '地图资源',
+  主线任务: '任务',
+  支线任务: '任务',
+  重要任务: '任务',
+  次要任务: '任务',
+  功能任务: '任务',
+  其他: '档案采集',
+  蚀像寻遗刻度: '蚀像寻遗',
+  蚀像寻遗储藏箱: '蚀像寻遗',
+  蚀像寻遗探索任务: '蚀像寻遗',
+  行动手册: '行动手册',
+  新手活动: '新手活动',
+};
+
+// 根据奖励对象的module字段返回对应的分类名称
+function getPermanentRewardCategory(reward: Reward): PermanentRewardCategoryName {
+  // 获取奖励的module字段并去除首尾空格
+  const module = reward.module?.trim();
+  // 如果module为空，则返回"未分类"
+  if (!module) {
+    return '未分类';
+  }
+  // 在映射表中查找对应的分类名称，找不到则返回"未分类"
+  return permanentRewardModuleCategoryMap[module] ?? '未分类';
+}
+
+// 常驻奖励的分组计算结果，将奖励按分类名称分组
+const permanentRewardGroups = computed(() => {
+  // 合并常驻奖励表、权限等级奖励和归档常驻奖励表
+  const rewards = [
+    ...permanentRewardTable.value,
+    authorityLevelUpReward.value,
+  ];
+  // 遍历分类名称列表，构建分组对象
+  return permanentRewardCategoryNames
+    .map((name) => ({
+      name,
+      // 筛选出属于当前分类的奖励列表
+      rewards: rewards.filter((reward) => getPermanentRewardCategory(reward) === name),
+    }))
+    // 过滤掉没有奖励的分组
+    .filter((group) => group.rewards.length > 0);
+});
 
 function selectDisplayPoolOptions(poolName: string) {
   displayPoolOptions.value = toggleStringInArray(poolName, displayPoolOptions.value);
@@ -1192,7 +1430,10 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   <section class="gacha-calculator-container">
     <div class="gacha-calculator-container-left">
       <v-expansion-panels v-model="leftPartPanel" multiple>
-        <v-expansion-panel value="statisticalResult">
+        <v-expansion-panel
+          class="gacha-calculator-sticky-summary-panel"
+          value="statisticalResult"
+        >
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               {{ t('page.tools.gachaCalculator.total') }}
@@ -1218,13 +1459,13 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 :class="{ 'gacha-calculator-pool-btn-active': currentPool.name === option.name }"
                 color="rgb(33, 150, 243)"
                 @click="selectedPool(option)"
-                >
+              >
                 <span class="gacha-calculator-pool-btn-name">{{ option.name }}</span>
                 <span class="gacha-calculator-pool-btn-date">{{ option.dateText }}</span>
               </v-btn>
             </div>
 
-            当前时间：{{ dateFormat(poolStartDate) }}
+            <!-- 当前时间：{{ dateFormat(poolStartDate) }} -->
             <div class="gacha-calculator-warning">
               《寻遗散记》资源尚在更新中，结果仅供参考，切勿轻信本站！
             </div>
@@ -1414,7 +1655,71 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel value="detail">
+        <v-expansion-panel value="controlPanel">
+          <v-expansion-panel-title class="gacha-calculator-card-title">
+            <div>控制面板</div>
+          </v-expansion-panel-title>
+          <v-expansion-panel-text>
+            <div class="gacha-calculator-control-panel">
+              <section class="gacha-calculator-control-section">
+                <div class="gacha-calculator-control-section-title">氪金项目</div>
+                <div class="gacha-calculator-control-actions">
+                  <v-btn
+                    color="orange"
+                    prepend-icon="mdi-refresh"
+                    size="small"
+                    variant="tonal"
+                    @click="resetRechargeResourcesKeepMonthlyPass"
+                  >
+                    重置月卡以外的氪金项目
+                  </v-btn>
+                </div>
+              </section>
+              <section class="gacha-calculator-control-section">
+                <div class="gacha-calculator-control-section-title">版本筛选</div>
+                <div class="gacha-calculator-version-control-list">
+                  <div
+                    v-for="option in reversedVersionOptions"
+                    :key="option"
+                    class="gacha-calculator-version-control-row"
+                  >
+                    <v-switch
+                      class="gacha-calculator-version-control-switch"
+                      color="primary"
+                      density="compact"
+                      hide-details
+                      :label="option"
+                      :model-value="isVersionVisible(option)"
+                      @update:model-value="setVersionVisible(option, !!$event)"
+                    />
+                    <div class="gacha-calculator-version-control-actions">
+                      <v-btn
+                        class="gacha-calculator-version-action-btn"
+                        color="blue"
+                        size="small"
+                        variant="tonal"
+                        @click="setVersionRewardsActive(option, true)"
+                      >
+                        全选
+                      </v-btn>
+                      <v-btn
+                        class="gacha-calculator-version-action-btn"
+                        color="red"
+                        size="small"
+                        variant="tonal"
+                        @click="setVersionRewardsActive(option, false)"
+                      >
+                        全不选
+                      </v-btn>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+
+        <v-expansion-panel v-show="'dev' === currentMode" value="detail">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>{{ t('page.tools.gachaCalculator.calculationDetail') }}</div>
           </v-expansion-panel-title>
@@ -1461,7 +1766,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in resourceStatisticsResultDetailList">
+                <tr v-for="item in resourceStatisticsResultDetailList" :key="item.name">
                   <td>{{ item.name }}</td>
 
                   <td>{{ item.originiumRecharge }}</td>
@@ -1536,7 +1841,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="action in clearBtnGroup">
+                <tr v-for="action in clearBtnGroup" :key="action.text">
                   <td>{{ action.text }}</td>
                   <td>
                     <v-btn
@@ -1572,7 +1877,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
         <v-expansion-panel value="existing">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              库存与自定义
+              库存与寻访情报书
               {{ getSpecialAndLimitedPulls(gachaResourceStatisticsResult.totalPulls.existing) }}
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
@@ -1655,15 +1960,18 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            <GachaCalculatorResourceSingle v-bind="dailyReward" />
+            <div @click="triggerDevModeByDailyReward">
+              <GachaCalculatorResourceSingle v-bind="dailyReward" />
+            </div>
             <GachaCalculatorResourceSingle v-bind="weekTaskReward" />
 
             <v-divider style="margin: 1rem 0" />
 
-            <template v-for="item in dailyAllRewardTable">
+            <template v-for="item in dailyAllRewardTable" :key="item.id">
               <GachaCalculatorModuleTitle v-if="item.type === '标题'" :title="item.name.zh" />
               <GachaCalculatorResourceSingleBtn
-                v-show="checkRewardIsValid(item)"
+                v-else
+                v-show="shouldDisplayReward(item)"
                 :reward="item"
                 @click="item.active = !item.active"
               />
@@ -1684,7 +1992,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingleBtn
               v-for="item in activityReward"
-              v-show="checkRewardIsValid(item)"
+              v-show="shouldDisplayReward(item)"
               :key="item.id"
               :reward="item"
               @click="item.active = !item.active"
@@ -1695,7 +2003,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
         <v-expansion-panel value="permanent-re">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
-              版本新增常驻奖励
+              常驻奖励
               {{
                 numberFloor(
                   gachaResourceStatisticsResult.totalPulls.permanent?.ticketgachaSpecialSingle,
@@ -1706,54 +2014,41 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
             </div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <template v-for="reward in permanentRewardTable">
-              <GachaCalculatorResourceSingleBtn
-                :reward="reward"
-                @click="reward.active = !reward.active"
-              />
-            </template>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-
-        <!--常驻奖励重构-->
-        <v-expansion-panel value="archivePermanent">
-          <v-expansion-panel-title class="gacha-calculator-card-title">
-            <div>
-              往期版本常驻奖励
-              {{
-                numberFloor(
-                  gachaResourceStatisticsResult.totalPulls.archivePermanent
-                    ?.ticketgachaSpecialSingle,
-                  1,
-                )
-              }}
-              {{ t('page.tools.gachaCalculator.pulls') }}
-            </div>
-          </v-expansion-panel-title>
-          <v-expansion-panel-text>
-            <v-card>
-              <v-card-text>
-                <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
-                <div style="height: 36px" />
-                <v-range-slider
-                  v-model="authorityLevelProgress"
-                  class="v-range-slider"
-                  hide-details="auto"
-                  max="60"
-                  min="1"
-                  show-ticks="always"
-                  step="1"
-                  thumb-label="always"
-                  tick-size="4"
+            <section
+              v-for="group in permanentRewardGroups"
+              :key="group.name"
+              class="gacha-calculator-permanent-category"
+            >
+              <div class="gacha-calculator-permanent-category-title">{{ group.name }}</div>
+              <template v-for="reward in group.rewards" :key="reward.id">
+                <v-card
+                  v-if="reward.id === authorityLevelUpReward.id"
+                  v-show="isRewardVersionVisible(authorityLevelUpReward)"
+                >
+                  <v-card-text>
+                    <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
+                    <div style="height: 36px" />
+                    <v-range-slider
+                      v-model="authorityLevelProgress"
+                      class="v-range-slider"
+                      hide-details="auto"
+                      max="60"
+                      min="1"
+                      show-ticks="always"
+                      step="1"
+                      thumb-label="always"
+                      tick-size="4"
+                    />
+                  </v-card-text>
+                </v-card>
+                <GachaCalculatorResourceSingleBtn
+                  v-else
+                  v-show="isRewardVersionVisible(reward)"
+                  :reward="reward"
+                  @click="reward.active = !reward.active"
                 />
-              </v-card-text>
-            </v-card>
-            <template v-for="reward in archivePermanentRewardTable">
-              <GachaCalculatorResourceSingleBtn
-                :reward="reward"
-                @click="reward.active = !reward.active"
-              />
-            </template>
+              </template>
+            </section>
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -1777,7 +2072,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel value="debug">
+        <v-expansion-panel v-show="'dev' === currentMode" value="debug">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>debug</div>
           </v-expansion-panel-title>
@@ -1793,6 +2088,9 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 <style scoped>
 .gacha-calculator-container {
+  --gacha-calculator-column-height: calc(100vh - 72px);
+  --gacha-calculator-summary-panel-height: 0px;
+  --gacha-calculator-summary-fixed-top: 64px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px;
@@ -1807,22 +2105,58 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
-  padding: 4px;
+  padding: 0 8px 8px;
   position: sticky;
-  top: 72px;
-  max-height: calc(100vh - 140px);
-  z-index: 1003;
+  top: 64px;
+  max-height: var(--gacha-calculator-column-height);
+  z-index: 2;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .gacha-calculator-container-right {
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
+  padding: 0 8px 8px;
+  position: sticky;
+  top: 64px;
+  max-height: var(--gacha-calculator-column-height);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
+.gacha-calculator-container-left::-webkit-scrollbar,
+.gacha-calculator-container-right::-webkit-scrollbar {
+  display: none;
+}
+
+.gacha-calculator-container-left > .v-expansion-panels {
+  padding-bottom: 80px;
+}
+
+.gacha-calculator-container-left > .placeholder-block {
+  display: none;
+}
+
+.gacha-calculator-container-left .v-expansion-panel,
 .gacha-calculator-container-right .v-expansion-panel {
   margin: 8px 0px;
+  border-radius: 4px !important;
+}
+
+.gacha-calculator-sticky-summary-panel {
+  position: sticky;
+  top: 8px;
+  z-index: 3;
+}
+
+.gacha-calculator-container .v-expansion-panel:deep(.v-expansion-panel__shadow) {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 .gacha-calculator-card-title {
@@ -1949,6 +2283,78 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   padding: 0 0 4px 12px;
 }
 
+.gacha-calculator-control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gacha-calculator-control-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gacha-calculator-control-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.gacha-calculator-version-control-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gacha-calculator-version-control-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid var(--theme-border-secondary);
+  border-radius: 4px;
+  background: rgba(var(--v-theme-on-surface), 0.04);
+}
+
+.gacha-calculator-version-control-switch {
+  min-width: 0;
+}
+
+.gacha-calculator-version-control-switch:deep(.v-label) {
+  font-weight: 700;
+  opacity: 1;
+}
+
+.gacha-calculator-version-control-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.gacha-calculator-version-action-btn {
+  min-width: 64px;
+}
+
+.gacha-calculator-control-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.gacha-calculator-permanent-category {
+  margin: 0 0 12px;
+}
+
+.gacha-calculator-permanent-category-title {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 4px 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: rgba(128, 128, 128, 0.5);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
 .gacha-calculator-shortcut-btn-table {
   text-align: center;
 }
@@ -2055,28 +2461,71 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 @media screen and (max-width: 1100px) {
   .gacha-calculator-container {
     grid-template-columns: 1fr;
+    width: min(100%, 760px);
   }
   .gacha-calculator-container-left {
-    position: static;
+    position: relative;
+    top: 0;
     max-height: max-content;
+    padding-top: var(--gacha-calculator-summary-panel-height);
+    z-index: 2;
+    overflow-y: visible;
+  }
+
+  .gacha-calculator-container-left > .v-expansion-panels {
+    padding-bottom: 0;
+    z-index: 2;
+  }
+
+  .gacha-calculator-sticky-summary-panel {
+    position: fixed;
+    top: var(--gacha-calculator-summary-fixed-top);
+    left: 50%;
+    right: auto;
+    width: calc(min(100vw, 760px) - 40px);
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
+  .gacha-calculator-container-right {
+    position: relative;
+    top: 0;
+    max-height: max-content;
+    z-index: 1;
+    overflow-y: visible;
   }
 }
 
 @media screen and (max-width: 600px) {
   .gacha-calculator-container {
     width: 100%;
-    padding: 0 8px;
+    padding: 0;
   }
 
   .gacha-calculator-container-left {
     width: 100%;
-    position: static;
+    padding: 0 0 8px;
+    padding-top: var(--gacha-calculator-summary-panel-height);
+    position: relative;
     max-height: max-content;
-    z-index: auto;
+    z-index: 2;
+    overflow-y: visible;
+  }
+
+  .gacha-calculator-sticky-summary-panel {
+    left: 0;
+    right: auto;
+    width: 100vw;
+    transform: none;
   }
 
   .gacha-calculator-container-right {
     width: 100%;
+    padding: 0 0 8px;
+    position: relative;
+    max-height: max-content;
+    z-index: 1;
+    overflow-y: visible;
   }
 
   .gacha-calculator-card-title {
@@ -2084,11 +2533,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
     font-weight: bolder;
   }
 
+  .gacha-calculator-pie-chart {
+    display: none;
+  }
+
   .gacha-calculator-warning {
-    border: 1px solid #ffc107;
-    border-radius: 8px;
-    padding: 4px 9px;
-    font-size: 0.8rem;
+    display: none;
   }
 
   .gacha-calculator-pool-selector {
@@ -2121,6 +2571,15 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
   .gacha-calculator-statistics-result-item-text {
     padding: 0;
+  }
+
+  .gacha-calculator-version-control-row {
+    grid-template-columns: 1fr;
+  }
+
+  .gacha-calculator-version-control-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .gacha-calculator-shortcut-btn-table {

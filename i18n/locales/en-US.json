@@ -2,7 +2,7 @@
   "menu": {
     "home": "Home",
     "introduction": "Introduction",
-    "projectStructure": "Development Guide",
+    "documentation": "Documentation",
     "routeSetting": "Route Setting",
     "docsSetting": "Writing Docs",
     "contributorSetting": "Contributor Setting",
@@ -404,8 +404,7 @@
       "essenceCalculator": {
         "title": "Essence Planner",
         "demandSet": "Demand Set",
-        "demandSetDescription1": "Set the desired weapon essence to farm here. The order does not affect the result.",
-        "demandSetDescription2": "Click the '+' button to add a new essence entry.",
+        "demandSetDescription": "The order of demands does not affect the results. If you want to prioritize farming a specific essence, please only add demands for that essence.",
         "attributeStats": "Attribute Stats",
         "secondaryStats": "Secondary Stats",
         "skillStats": "Skill Stats",
@@ -427,10 +426,11 @@
         "plan": "Plan",
         "requirementsMet": "requirements",
         "weaponsMatched": "weapons",
-        "planDescription": "This plan can satisfy {count} requirements and match {weaponCount} weapons.",
         "satisfiedRequirements": "Satisfied Requirements",
         "matchedWeapons": "Matched Weapons",
-        "showMorePlans": "Show More Plans ({count})"
+        "showMorePlans": "Show More Plans ({count})",
+        "showCharWeapon": "Show Character's Recommended Weapon",
+        "charWeaponTooltip": "From in-game weapon recommendations, based on the first item in 'Skill Fitting'. For reference only."
       },
       "gachaCalculator": {
         "standard": "Standard",

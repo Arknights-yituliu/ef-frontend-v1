@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { calculateDaysDifference, countTuesdaysBetweenV2 } from '#shared/utils/gacha-calculator';
+import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
 import { computed } from 'vue';
 import { packs } from '@/custom/core/packs';
 
@@ -507,6 +507,9 @@ v-for="stone in normalStones"  :key="stone.id"
   margin: 4px 0px;
   width: 100%;
   min-height: 42px;
+  grid-template-areas: 'content' !important;
+  grid-template-columns: 1fr !important;
+  justify-content: stretch !important;
   border: 1px solid var(--theme-border-secondary);
   transition: all 0.2s ease;
 }
@@ -519,8 +522,15 @@ v-for="stone in normalStones"  :key="stone.id"
   border-left: 6px solid var(--gacha-calculator-border) !important;
 }
 
+.gacha-calculator-resource-single-btn:deep(.v-btn__content) {
+  width: 100%;
+  justify-content: flex-start;
+  justify-self: stretch;
+}
+
 .gacha-calculator-resource-single-btn-content {
-  width: 560px;
+  width: 100%;
+  min-width: 0;
   display: flex;
   box-sizing: border-box;
   font-size: 1rem;
@@ -561,7 +571,6 @@ v-for="stone in normalStones"  :key="stone.id"
 
 @media screen and (max-width: 600px) {
   .gacha-calculator-resource-single-btn-content {
-    width: 300px;
     font-size: 0.8rem;
   }
 

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { dateFormat } from '#shared/utils/dateUtil';
 
-import { numberFloor, numberRound } from '#shared/utils/numberUtil';
-
-import { onMounted, ref, watch } from 'vue';
+import { numberFloor } from '#shared/utils/numberUtil';
 import {
   currentVersionReward,
   currentVersionRewardTotal,
@@ -46,14 +44,16 @@ filterRewardByVersion('all', versionTable[2]);
     </table>
     <table class="version-reward-result-table">
       <thead>
-        <td>氪度</td>
-        <td>衍质源石</td>
-        <td>嵌晶玉</td>
-        <td>基准寻访</td>
-        <td>特许寻访</td>
-        <td>限时寻访</td>
-        <td>特训寻访(包含衍质源石嵌晶玉)</td>
-        <td>特训寻访+限时寻访</td>
+        <tr>
+          <th>氪度</th>
+          <th>衍质源石</th>
+          <th>嵌晶玉</th>
+          <th>基准寻访</th>
+          <th>特许寻访</th>
+          <th>限时寻访</th>
+          <th>特训寻访(包含衍质源石嵌晶玉)</th>
+          <th>特训寻访+限时寻访</th>
+        </tr>
       </thead>
       <tbody>
         <tr v-for="reward in currentVersionRewardTotal" :key="reward.name">
@@ -87,7 +87,8 @@ filterRewardByVersion('all', versionTable[2]);
   margin: auto;
   border-collapse: collapse;
 
-  td,th {
+  td,
+  th {
     border: 1px solid #000;
   }
 }

@@ -15,12 +15,10 @@ import valleyIVTaskTable from '@/custom/core/gacha/data/permanent_valley_IV_task
 import wulingTableJson from '@/custom/core/gacha/data/permanent_wuling_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/permanent_wuling_task_table.json';
 
-
-
 const currentVersion = '寻遗散记';
 
 const permanentRewardTable = ref<Reward[]>([]);
-const archivePermanentRewardTable = ref<Reward[]>([]);
+
 
 function mergeReward(rewards: Reward[]) {
   for (const reward of rewards) {
@@ -28,11 +26,11 @@ function mergeReward(rewards: Reward[]) {
     reward.end = new Date(reward.end);
     if (currentVersion === reward.version) {
       reward.active = true;
-      permanentRewardTable.value.push(reward);
     } else {
       reward.active = false;
-      archivePermanentRewardTable.value.push(reward);
     }
+
+    permanentRewardTable.value.push(reward);
   }
 }
 
@@ -74,11 +72,8 @@ for (const reward of operationalManualTrainingTableJson as Reward[]) {
   } else {
     reward.start = new Date(reward.start);
     reward.end = new Date(reward.end);
-    if (currentVersion === reward.version) {
-      permanentRewardTable.value.push(reward);
-    } else {
-      archivePermanentRewardTable.value.push(reward);
-    }
+     permanentRewardTable.value.push(reward);
+    
   }
 }
 
@@ -103,7 +98,7 @@ const operatorTraining = {
   },
 };
 
-archivePermanentRewardTable.value.push(operatorTraining);
+
 
 permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string | Date }) => {
   const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();
@@ -111,11 +106,7 @@ permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string
   return bTime - aTime;
 });
 
-archivePermanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string | Date }) => {
-  const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();
-  const bTime = typeof b.start === 'string' ? new Date(b.start).getTime() : b.start.getTime();
-  return bTime - aTime;
-});
+
 
 // 这是一个独立的常驻奖励，使用滑块组件
 const authorityLevelUpReward = ref<Reward>({
@@ -139,6 +130,6 @@ const authorityLevelUpReward = ref<Reward>({
   },
 });
 
-export { archivePermanentRewardTable, authorityLevelUpReward, permanentRewardTable };
+export {  authorityLevelUpReward, permanentRewardTable };
 
 export { default as authorityLevelUpRewardTable } from '@/custom/core/gacha/data/authority_level_up_reward_table.json';

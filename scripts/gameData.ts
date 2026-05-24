@@ -1,4 +1,5 @@
 import type {
+  CharWpnRecommendTable,
   I18nTextTable,
   ItemListByTypeTable,
   ItemTable,
@@ -95,6 +96,9 @@ export const worldEnergyPointGroupTable = readJSONWithBigInt(
   'TableCfg/WorldEnergyPointGroupTable.json',
 );
 export const worldEnergyPointTable = readJSONWithBigInt('TableCfg/WorldEnergyPointTable.json');
+export const charWpnRecommendTable: CharWpnRecommendTable = readJSONWithBigInt(
+  'TableCfg_Mapped/CharWpnRecommendTable.json',
+);
 
 export const i18nTextTables: Map<string, I18nTextTable> = new Map(
   i18nLanguages.map((lang) => [

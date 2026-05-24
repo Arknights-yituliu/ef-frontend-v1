@@ -122,21 +122,6 @@
 
                         <!-- Right Column: Results -->
                         <v-col cols="12" md="7">
-                          <div class="d-flex align-center mb-3">
-                            <v-icon
-                              class="mr-2"
-                              color="success"
-                              icon="mdi-check-circle-outline"
-                              size="small"
-                            />
-                            <span class="text-subtitle-1 font-weight-bold">{{
-                              t('page.tools.essenceCalculator.planDescription', {
-                                count: choice.matchedSelectedIndices.length,
-                                weaponCount: choice.matchedWeaponIds.length,
-                              })
-                            }}</span>
-                          </div>
-
                           <div class="pl-1">
                             <!-- Satisfied Requirements -->
                             <div class="mb-4">
@@ -181,6 +166,11 @@
                                   </v-card>
                                   <ContainerItemIcon
                                     v-else
+                                    :char-id="
+                                      showCharAvatar
+                                        ? weaponToCharId(requiredEssenceStats[index]!.weaponId!)
+                                        : undefined
+                                    "
                                     class="weapon-item"
                                     :item-id="requiredEssenceStats[index]!.weaponId!"
                                     show-item-name
@@ -191,7 +181,7 @@
 
                             <!-- Matched Weapons -->
                             <div>
-                              <div class="text-medium-emphasis mb-1">
+                              <div class="mb-1 text-medium-emphasis">
                                 {{ t('page.tools.essenceCalculator.matchedWeapons') }}
                               </div>
                               <div class="d-flex flex-wrap ga-2">
@@ -206,6 +196,7 @@
                                   :key="weaponId"
                                 >
                                   <ContainerItemIcon
+                                    :char-id="showCharAvatar ? weaponToCharId(weaponId) : undefined"
                                     class="weapon-item"
                                     :item-id="weaponId"
                                     show-item-name
@@ -261,15 +252,29 @@
       </v-col>
 
       <v-col cols="12" lg="6">
-        <v-expansion-panels model-value="需求设定">
-          <v-expansion-panel value="需求设定">
-            <v-expansion-panel-title>{{
-              t('page.tools.essenceCalculator.demandSet')
-            }}</v-expansion-panel-title>
+        <v-expansion-panels :model-value="['设置', '需求设定']" multiple>
+          <!-- 设置 -->
+          <v-expansion-panel value="设置">
+            <v-expansion-panel-title>设置</v-expansion-panel-title>
             <v-expansion-panel-text>
-              <p>{{ t('page.tools.essenceCalculator.demandSetDescription1') }}</p>
-              <p>{{ t('page.tools.essenceCalculator.demandSetDescription2') }}</p>
-              <div class="mb-8" />
+              <!-- 干员专武开关 -->
+              <div class="d-flex align-center mb-6 mt-4 ga-2">
+                <v-switch
+                  v-model="showCharAvatar"
+                  color="primary"
+                  density="comfortable"
+                  hide-details
+                  :label="t('page.tools.essenceCalculator.showCharWeapon')"
+                />
+                <v-tooltip location="bottom" max-width="300">
+                  <template #activator="{ props }">
+                    <v-icon v-bind="props" color="text-secondary" size="small">
+                      mdi-information-outline
+                    </v-icon>
+                  </template>
+                  <span>{{ t('page.tools.essenceCalculator.charWeaponTooltip') }}</span>
+                </v-tooltip>
+              </div>
 
               <!-- 能量淤积点开关 -->
               <div class="d-flex align-center mb-3 mt-4 ga-2">
@@ -288,6 +293,17 @@
                   {{ alluvium.battleName }}
                 </v-chip>
               </div>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
+          <!-- 需求设定 -->
+          <v-expansion-panel value="需求设定">
+            <v-expansion-panel-title>{{
+              t('page.tools.essenceCalculator.demandSet')
+            }}</v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <p>{{ t('page.tools.essenceCalculator.demandSetDescription') }}</p>
+              <div class="mb-8" />
               <v-card
                 v-for="(stat, index) in requiredEssenceStats"
                 :key="index"
@@ -410,7 +426,11 @@
                         toggleWeaponPreset({ ...weapon.stats, isCustom: false, weaponId })
                       "
                     >
-                      <ContainerItemIcon :item-id="weaponId" show-item-name />
+                      <ContainerItemIcon
+                        :char-id="showCharAvatar ? weaponToCharId(weaponId) : undefined"
+                        :item-id="weaponId"
+                        show-item-name
+                      />
                       <div v-if="selectedWeaponIds.has(weaponId)" class="weapon-selected-overlay">
                         <v-icon color="white" size="large">mdi-check-circle</v-icon>
                       </div>
@@ -428,7 +448,7 @@
 
 <script lang="ts" setup>
 import type { BattleChoice, EssenceStat } from '@/custom/core/weaponEssence';
-import { useLocalStorage } from '@vueuse/core';
+import { useInterval, useLocalStorage } from '@vueuse/core';
 import { watch } from 'vue';
 import {
   allAttributeStats,
@@ -437,10 +457,32 @@ import {
   emptyStat,
   energyAlluviums,
   weapons,
+  weaponToChars,
   weaponTypes,
   weaponTypeToGroupIconId,
 } from '@/custom/core/weaponEssence';
 const { t } = useI18n();
+
+/** 是否显示干员专武头像 */
+const showCharAvatar = useLocalStorage('essence-calculator-show-char-avatar', true, {
+  writeDefaults: false,
+  listenToStorageChanges: false,
+});
+
+/** 全局旋转索引，每 1 秒递增，用于轮流展示干员头像 */
+const rotationIndex = useInterval(1000);
+
+/**
+ * 获取武器对应的当前展示干员 ID。
+ * 若武器有多位推荐干员，则每 1 秒轮换一位。
+ */
+function weaponToCharId(weaponId: string): string | undefined {
+  const charIds = weaponToChars[weaponId];
+  if (!charIds || charIds.length === 0) {
+    return undefined;
+  }
+  return charIds[rotationIndex.value % charIds.length];
+}
 
 /** 需求的基质属性 */
 const requiredEssenceStats = useLocalStorage<EssenceStat[]>(

@@ -41,8 +41,8 @@
     },
     {
       "name": "Bio-Hazard",
-      "avatarImg": "https://cos.yituliu.cn/endfield/contributors/Bio-Hazard.jpg",
-      "link": "https://github.com/BiologyHazard",
+      "avatarImg": "https://cos.yituliu.cn/endfield/contributors/Bio-Hazard.svg",
+      "link": "https://space.bilibili.com/37179776",
       "english": {
         "position": "Core Algorithm Researcher",
         "tags": ["Algorithm", "Frontend"]
