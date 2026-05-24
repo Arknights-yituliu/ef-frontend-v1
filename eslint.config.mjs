@@ -16,6 +16,7 @@ export default withNuxt(
         'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ], // 允许未使用的变量（以 _ 开头的参数或变量）
+      'no-unused-vars': 'off', // 关闭 ESLint 的 no-unused-vars 规则，使用 @typescript-eslint/no-unused-vars 代替
       'unicorn/no-negated-condition': 'off', // 允许 if 条件语句使用否定条件
       'unicorn/prefer-ternary': 'off', // 允许 if-else 语句而不是三元表达式
       'vue/multi-word-component-names': 'off', // 允许单词组件名称
