@@ -1,0 +1,23 @@
+{
+  "shop_pay_gift_pack": {
+    "groupId": "shop_pay_gift_pack",
+    "groupNameZH": "组合包",
+    "groupNameEN": "Bundles",
+    "shopIds": [
+      "Seasonal_Rec_pack",
+      "Newbie_pack",
+      "Permanent_pack",
+      "SP_weapon_supply",
+      "MCard",
+      "BP"
+    ]
+  },
+  "shop_pay_originium_recharge": {
+    "groupId": "shop_pay_originium_recharge",
+    "groupNameZH": "源石交易所",
+    "groupNameEN": "Originium Exchange",
+    "shopIds": [
+      "originium_recharge"
+    ]
+  }
+}

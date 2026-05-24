@@ -1,0 +1,82 @@
+{
+  "BP": {
+    "shopId": "BP",
+    "shopNameZH": "协议通行证",
+    "shopNameEN": "Protocol Pass",
+    "goodsIds": [
+      "bp_pay_track"
+    ]
+  },
+  "Newbie_pack": {
+    "shopId": "Newbie_pack",
+    "shopNameZH": "启程组合包",
+    "shopNameEN": "Horizons Bundle",
+    "goodsIds": [
+      "newbie_giftpack_6_special",
+      "newbie_giftpack_01",
+      "newbie_giftpack_02"
+    ]
+  },
+  "MCard": {
+    "shopId": "MCard",
+    "shopNameZH": "月卡",
+    "shopNameEN": "Monthly Pass",
+    "goodsIds": [
+      "payshop_giftpack_monthlycard"
+    ]
+  },
+  "Permanent_pack": {
+    "shopId": "Permanent_pack",
+    "shopNameZH": "标准组合包",
+    "shopNameEN": "Standard Bundle",
+    "goodsIds": [
+      "monthly_giftpack_01",
+      "weekly_giftpack_01"
+    ]
+  },
+  "Seasonal_Rec_pack": {
+    "shopId": "Seasonal_Rec_pack",
+    "shopNameZH": "限时组合包",
+    "shopNameEN": "Limited Bundle",
+    "goodsIds": [
+      "seasonal_giftpack_combine",
+      "seasonal_giftpack_lt_01",
+      "seasonal_giftpack_lt_02",
+      "seasonal_giftpack_lt_03",
+      "seasonal_giftpack_lt_1_1_1",
+      "seasonal_giftpack_lt_1_1_2",
+      "seasonal_giftpack_lt_1_2_1",
+      "seasonal_crossover_lt_1_2_1"
+    ]
+  },
+  "SP_weapon_supply": {
+    "shopId": "SP_weapon_supply",
+    "shopNameZH": "武库组合包",
+    "shopNameEN": "Arsenal Bundle",
+    "goodsIds": [
+      "weapon_giftpack_01",
+      "weapon_giftpack_02",
+      "weapon_giftpack_03",
+      "weapon_giftpack_04"
+    ]
+  },
+  "originium_recharge": {
+    "shopId": "originium_recharge",
+    "shopNameZH": "源石交易所",
+    "shopNameEN": "Originium Exchange",
+    "goodsIds": [
+      "recharge_originium_6",
+      "recharge_originium_30",
+      "recharge_originium_98",
+      "recharge_originium_198",
+      "recharge_originium_328",
+      "recharge_originium_648",
+      "os_recharge_originium_6",
+      "os_recharge_originium_30",
+      "os_recharge_originium_98",
+      "os_recharge_originium_198",
+      "os_recharge_originium_328",
+      "os_recharge_originium_648"
+    ]
+  }
+}
