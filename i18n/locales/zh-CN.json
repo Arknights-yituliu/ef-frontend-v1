@@ -2,7 +2,7 @@
   "menu": {
     "home": "主页",
     "introduction": "开发指南",
-    "projectStructure": "开发指南",
+    "documentation": "文档",
     "routeSetting": "路由设置",
     "docsSetting": "文档编写",
     "contributorSetting": "贡献者设置",
