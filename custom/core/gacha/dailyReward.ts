@@ -7,7 +7,7 @@ import {
 
 
 import { numberRound } from '#shared/utils/numberUtil';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import VersionTable from '@/custom/core/gacha/data/version_table.json';
 const MediumExchangeCrate = 20 * 0.05 + 15 * 0.35 + 10 * 0.6;
@@ -36,7 +36,7 @@ const freeMonthlyPass = ref<Reward>({
   },
 });
 
-watch(poolStartDate, (newVal) => {
+watch(poolStartDate, () => {
   updateFreeMonthlyPass();
 });
 

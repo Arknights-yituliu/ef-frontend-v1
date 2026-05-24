@@ -1,11 +1,21 @@
 <script lang="ts" setup>
 import type {Reward} from '#shared/types/gacha-calculator';
+import { computed } from 'vue';
 import {itemIdDict} from '#shared/utils/gacha-calculator';
 
 const props = defineProps<{
   reward:Reward,
   sliderValue:number[]
 }>();
+
+const emit = defineEmits<{
+  'update:sliderValue': [value: number[]];
+}>();
+
+const sliderValue = computed({
+  get: () => props.sliderValue,
+  set: (value) => emit('update:sliderValue', value),
+});
 
 /**
  *
@@ -37,7 +47,7 @@ function getImageUrl(itemId: string): string {
       </div>
     </div>
   <v-range-slider
-v-model="props.sliderValue"
+v-model="sliderValue"
                   class="v-range-slider"
                   hide-details="auto"
                   max="14"

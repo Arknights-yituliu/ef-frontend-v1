@@ -1,7 +1,7 @@
 import type { Reward, RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
 import { calculateDaysDifference, groupAndMergeRewardsByVersion} from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
-import { onMounted, ref, watch } from 'vue';
+import { ref } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 import { createVersionDailyReward, dailyAllRewardTable } from '@/custom/core/gacha/dailyReward';
 import {
