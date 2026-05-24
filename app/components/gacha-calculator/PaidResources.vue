@@ -11,7 +11,7 @@ const props = defineProps<{
     monthlyPassDays: number;
     selectedPacks: Record<string, number>;
     originiumStones: Record<string, number>;
-  }
+  };
   currentPool?: {
     start: Date;
     end: Date;
@@ -25,20 +25,19 @@ const emit = defineEmits<{
 // 月卡状态
 const monthlyPassActive = computed({
   get: () => props.modelValue.monthlyPass,
-  set: (val) => emit('update:modelValue', { ...props.modelValue, monthlyPass: val })
+  set: (val) => emit('update:modelValue', { ...props.modelValue, monthlyPass: val }),
 });
 
 // 通行证状态
 const sourceRationActive = computed({
   get: () => props.modelValue.battlePass,
-  set: (val) => emit('update:modelValue', { ...props.modelValue, battlePass: val })
+  set: (val) => emit('update:modelValue', { ...props.modelValue, battlePass: val }),
 });
 
 const protocolCustomizationActive = computed({
   get: () => props.modelValue.protocolCustomization,
-  set: (val) => emit('update:modelValue', { ...props.modelValue, protocolCustomization: val })
+  set: (val) => emit('update:modelValue', { ...props.modelValue, protocolCustomization: val }),
 });
-
 
 // 计算月卡天数（自动根据当前日期和池子结束日期计算）
 const monthlyPassDays = computed(() => {
@@ -46,10 +45,9 @@ const monthlyPassDays = computed(() => {
     return 30;
   }
   const endDate: Date = props.currentPool.end;
-  const daysDiff = calculateDaysDifference(new Date(),endDate)
-  return numberFloor(daysDiff,0);
+  const daysDiff = calculateDaysDifference(new Date(), endDate);
+  return numberFloor(daysDiff, 0);
 });
-
 
 // 计算月卡资源（从packs.ts获取）
 const monthlyPassResources = computed(() => {
@@ -58,7 +56,7 @@ const monthlyPassResources = computed(() => {
   const oneTimeDiamond = monthlyPack ? 6000 : 0; // 一次性6000玉
   const dailyDiamond = monthlyPassDays.value * 200; // 每天200玉
   const totalDiamond = oneTimeDiamond + dailyDiamond;
-  const price = Math.ceil(monthlyPassDays.value / 30) *30;
+  const price = Math.ceil(monthlyPassDays.value / 30) * 30;
   const pulls = (originiumRecharge * 75 + totalDiamond) / 500;
 
   return {
@@ -69,7 +67,7 @@ const monthlyPassResources = computed(() => {
     ticketgachaSpecialSingle: 0,
     ticketgachaStandardSingle: 0,
     pulls,
-    price
+    price,
   };
 });
 
@@ -101,7 +99,7 @@ const giftPacks = computed(() => {
 
     packList.push({
       id: key,
-      ...pack
+      ...pack,
     });
   }
   return packList;
@@ -110,19 +108,26 @@ const giftPacks = computed(() => {
 // 礼包选择状态
 const selectedPacks = computed({
   get: () => props.modelValue.selectedPacks,
-  set: (val) => emit('update:modelValue', { ...props.modelValue, selectedPacks: val })
+  set: (val) => emit('update:modelValue', { ...props.modelValue, selectedPacks: val }),
 });
 
 // 源石列表
 const firstRechargeStones = computed(() => {
   const stoneList = [];
-  const stoneKeys = ['6元双倍源石', '30元双倍源石', '98元双倍源石', '198元双倍源石', '328元双倍源石', '648元双倍源石'];
+  const stoneKeys = [
+    '6元双倍源石',
+    '30元双倍源石',
+    '98元双倍源石',
+    '198元双倍源石',
+    '328元双倍源石',
+    '648元双倍源石',
+  ];
 
   for (const key of stoneKeys) {
     if (packs[key as keyof typeof packs]) {
       stoneList.push({
         id: key,
-        ...packs[key as keyof typeof packs]
+        ...packs[key as keyof typeof packs],
       });
     }
   }
@@ -138,7 +143,7 @@ const normalStones = computed(() => {
     if (packs[key as keyof typeof packs]) {
       stoneList.push({
         id: key,
-        ...packs[key as keyof typeof packs]
+        ...packs[key as keyof typeof packs],
       });
     }
   }
@@ -148,7 +153,7 @@ const normalStones = computed(() => {
 // 源石数量
 const originiumStoneQuantities = computed({
   get: () => props.modelValue.originiumStones,
-  set: (val) => emit('update:modelValue', { ...props.modelValue, originiumStones: val })
+  set: (val) => emit('update:modelValue', { ...props.modelValue, originiumStones: val }),
 });
 
 // 计算礼包的抽数
@@ -158,34 +163,35 @@ function calculatePackPulls(pack: any): number {
 
   for (const item of pack.contents) {
     switch (item.itemId) {
-    case 'item_originium_recharge': {
-      // 1源石 = 75嵌晶玉
-      totalDiamonds += item.quantity * 75;
+      case 'item_originium_recharge': {
+        // 1源石 = 75嵌晶玉
+        totalDiamonds += item.quantity * 75;
 
-    break;
-    }
-    case 'item_diamond': {
-      totalDiamonds += item.quantity;
+        break;
+      }
+      case 'item_diamond': {
+        totalDiamonds += item.quantity;
 
-    break;
-    }
-    case 'item_ticketgacha_special_single': {
-      // 特许寻访凭证直接算作抽数
-      totalPulls += item.quantity;
+        break;
+      }
+      case 'item_ticketgacha_special_single': {
+        // 特许寻访凭证直接算作抽数
+        totalPulls += item.quantity;
 
-    break;
-    }
-    case 'item_ticketgacha_standard_single': {
-      // 基础寻访凭证直接算作抽数
-      totalPulls += item.quantity;
+        break;
+      }
+      case 'item_ticketgacha_standard_single': {
+        // 基础寻访凭证直接算作抽数
+        totalPulls += item.quantity;
 
-    break;
-    }
-    default: { if (item.itemId.includes('ticketgacha_special_ten')) {
-      // 十连凭证算作10抽
-      totalPulls += item.quantity * 10;
-    }
-    }
+        break;
+      }
+      default: {
+        if (item.itemId.includes('ticketgacha_special_ten')) {
+          // 十连凭证算作10抽
+          totalPulls += item.quantity * 10;
+        }
+      }
     }
   }
 
@@ -198,21 +204,24 @@ function calculatePackPulls(pack: any): number {
 // 获取礼包的主要图标
 function getPackIcon(pack: any): string {
   for (const item of pack.contents) {
-    if (item.itemId === 'item_ticketgacha_special_single' || item.itemId.includes('ticketgacha_special_ten')) {
-      return 'https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp';
+    if (
+      item.itemId === 'item_ticketgacha_special_single' ||
+      item.itemId.includes('ticketgacha_special_ten')
+    ) {
+      return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png';
     }
     if (item.itemId === 'item_ticketgacha_standard_single') {
-      return 'https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp';
+      return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png';
     }
     if (item.itemId === 'item_originium_recharge') {
-      return 'https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp';
+      return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png';
     }
     if (item.itemId === 'item_diamond') {
-      return 'https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp';
+      return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png';
     }
   }
   // 默认使用特许寻访凭证图标
-  return 'https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp';
+  return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png';
 }
 
 // 计算总金额
@@ -250,8 +259,8 @@ function togglePack(packId: string) {
     ...props.modelValue,
     selectedPacks: {
       ...selectedPacks.value,
-      [packId]: newValue
-    }
+      [packId]: newValue,
+    },
   });
 }
 
@@ -261,8 +270,8 @@ function updateOriginiumQuantity(stoneId: string, value: number) {
     ...props.modelValue,
     originiumStones: {
       ...originiumStoneQuantities.value,
-      [stoneId]: Math.max(0, value)
-    }
+      [stoneId]: Math.max(0, value),
+    },
   });
 }
 
@@ -276,18 +285,7 @@ function getStoneQuantity(stone: any): number {
 
 // 获取图标URL
 function getImageUrl(itemId: string): string {
-  const itemIdDict: Record<string, string> = {
-    'item_originium_recharge': 'originium_recharge',
-    'item_diamond': 'diamond',
-    'item_ticketgacha_special_single': 'ticketgacha_special_single',
-    'item_ticketgacha_standard_single': 'ticketgacha_standard_single'
-  };
-
-  if (itemIdDict[itemId]) {
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_${itemIdDict[itemId]}.webp`;
-  } else {
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_1.webp`;
-  }
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${itemId}.png`;
 }
 </script>
 
@@ -302,24 +300,22 @@ function getImageUrl(itemId: string): string {
       @click="monthlyPassActive = !monthlyPassActive"
     >
       <div class="gacha-calculator-resource-single-btn-content">
-        <div class="gacha-calculator-resource-single-title">
-          月卡（{{ monthlyPassDays }}天）
-        </div>
+        <div class="gacha-calculator-resource-single-title">月卡（{{ monthlyPassDays }}天）</div>
         <div class="gacha-calculator-resource-single-content">
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-          >
-          X {{ monthlyPassResources?.originiumRecharge }}
+            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+          />
+          × {{ monthlyPassResources?.originiumRecharge }}
         </div>
         <div class="gacha-calculator-resource-single-content">
           <img
             alt="diamond"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
-          >
-          X {{ monthlyPassResources ? monthlyPassDays * 200 : 0  }}
+            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+          />
+          × {{ monthlyPassResources ? monthlyPassDays * 200 : 0 }}
         </div>
         <div class="gacha-calculator-resource-single-content">
           ¥{{ monthlyPassResources ? monthlyPassResources.price : 0 }}
@@ -333,20 +329,16 @@ function getImageUrl(itemId: string): string {
       @click="sourceRationActive = !sourceRationActive"
     >
       <div class="gacha-calculator-resource-single-btn-content">
-        <div class="gacha-calculator-resource-single-title">
-          源石配给
-        </div>
+        <div class="gacha-calculator-resource-single-title">源石配给</div>
         <div class="gacha-calculator-resource-single-content">
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-          >
-          X 3
+            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+          />
+          × 3
         </div>
-        <div class="gacha-calculator-resource-single-content">
-          ¥0
-        </div>
+        <div class="gacha-calculator-resource-single-content">¥0</div>
       </div>
     </v-btn>
     <v-btn
@@ -356,20 +348,16 @@ function getImageUrl(itemId: string): string {
       @click="protocolCustomizationActive = !protocolCustomizationActive"
     >
       <div class="gacha-calculator-resource-single-btn-content">
-        <div class="gacha-calculator-resource-single-title">
-          协议定制
-        </div>
+        <div class="gacha-calculator-resource-single-title">协议定制</div>
         <div class="gacha-calculator-resource-single-content">
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
-          >
-          X 36
+            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+          />
+          × 36
         </div>
-        <div class="gacha-calculator-resource-single-content">
-          ¥68
-        </div>
+        <div class="gacha-calculator-resource-single-content">¥68</div>
       </div>
     </v-btn>
 
@@ -380,9 +368,9 @@ function getImageUrl(itemId: string): string {
     <v-btn
       v-for="pack in giftPacks"
       :key="pack.id"
-      :active="selectedPacks[pack.id] > 0"
+      :active="selectedPacks[pack.id]! > 0"
       class="gacha-calculator-resource-single-btn"
-      :class="{ 'btn-active': selectedPacks[pack.id] > 0 }"
+      :class="{ 'btn-active': selectedPacks[pack.id]! > 0 }"
       @click="togglePack(pack.id)"
     >
       <div class="gacha-calculator-resource-single-btn-content">
@@ -395,12 +383,14 @@ function getImageUrl(itemId: string): string {
           :key="`${pack.id}-${item.itemId}`"
           class="gacha-calculator-resource-single-content"
         >
-          <img alt="item" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(item.itemId)">
-          X {{ item.quantity }}
+          <img
+            alt="item"
+            class="gacha-calculator-gacha-item-icon"
+            :src="getImageUrl(item.itemId)"
+          />
+          × {{ item.quantity }}
         </div>
-        <div class="gacha-calculator-resource-single-content">
-          ¥{{ pack.price }}
-        </div>
+        <div class="gacha-calculator-resource-single-content">¥{{ pack.price }}</div>
       </div>
     </v-btn>
 
@@ -426,12 +416,14 @@ function getImageUrl(itemId: string): string {
           :key="`${stone.id}-${item.itemId}`"
           class="gacha-calculator-resource-single-content"
         >
-          <img alt="item" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(item.itemId)">
-          X {{ item.quantity }}
+          <img
+            alt="item"
+            class="gacha-calculator-gacha-item-icon"
+            :src="getImageUrl(item.itemId)"
+          />
+          × {{ item.quantity }}
         </div>
-        <div class="gacha-calculator-resource-single-content">
-          ¥{{ stone.price }}
-        </div>
+        <div class="gacha-calculator-resource-single-content">¥{{ stone.price }}</div>
       </div>
     </v-btn>
 
@@ -440,45 +432,44 @@ function getImageUrl(itemId: string): string {
     <!-- 普通源石 -->
     <div class="section-title">普通源石</div>
 
-      <div
-v-for="stone in normalStones"  :key="stone.id"
-           class="gacha-calculator-resource-single">
-        <div class="gacha-calculator-resource-single-title">
-          {{ stone.packDisplayNameZH }}
-        </div>
-        <div
-          v-for="item in stone.contents"
-          v-show="isGachaResource(item.itemId)"
-          :key="`${stone.id}-${item.itemId}`"
-          class="gacha-calculator-resource-single-content"
-        >
-          <img alt="item" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(item.itemId)">
-          X {{ item.quantity }}
-        </div>
-        <div class="gacha-calculator-resource-single-content">
-          ¥{{ stone.price }}
-        </div>
-        <div class="gacha-calculator-resource-single-content">
-          <v-btn
-            density="compact"
-            size="small"
-            variant="outlined"
-            @click.stop="updateOriginiumQuantity(stone.id, (originiumStoneQuantities[stone.id] || 0) - 1)"
-          >
-            -
-          </v-btn>
-          <span class="stone-number">{{ originiumStoneQuantities[stone.id] || 0 }}</span>
-          <v-btn
-            density="compact"
-            size="small"
-            variant="outlined"
-            @click.stop="updateOriginiumQuantity(stone.id, (originiumStoneQuantities[stone.id] || 0) + 1)"
-          >
-            +
-          </v-btn>
-        </div>
+    <div v-for="stone in normalStones" :key="stone.id" class="gacha-calculator-resource-single">
+      <div class="gacha-calculator-resource-single-title">
+        {{ stone.packDisplayNameZH }}
       </div>
-
+      <div
+        v-for="item in stone.contents"
+        v-show="isGachaResource(item.itemId)"
+        :key="`${stone.id}-${item.itemId}`"
+        class="gacha-calculator-resource-single-content"
+      >
+        <img alt="item" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(item.itemId)" />
+        × {{ item.quantity }}
+      </div>
+      <div class="gacha-calculator-resource-single-content">¥{{ stone.price }}</div>
+      <div class="gacha-calculator-resource-single-content">
+        <v-btn
+          density="compact"
+          size="small"
+          variant="outlined"
+          @click.stop="
+            updateOriginiumQuantity(stone.id, (originiumStoneQuantities[stone.id] || 0) - 1)
+          "
+        >
+          -
+        </v-btn>
+        <span class="stone-number">{{ originiumStoneQuantities[stone.id] || 0 }}</span>
+        <v-btn
+          density="compact"
+          size="small"
+          variant="outlined"
+          @click.stop="
+            updateOriginiumQuantity(stone.id, (originiumStoneQuantities[stone.id] || 0) + 1)
+          "
+        >
+          +
+        </v-btn>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -512,13 +503,14 @@ v-for="stone in normalStones"  :key="stone.id"
   justify-content: stretch !important;
   border: 1px solid var(--theme-border-secondary);
   transition: all 0.2s ease;
+  letter-spacing: unset;
 }
 
 .gacha-calculator-resource-single-btn.btn-active {
   border-left: 6px solid var(--gacha-calculator-border) !important;
 }
 
-.gacha-calculator-resource-single-btn:deep([aria-pressed="true"]) {
+.gacha-calculator-resource-single-btn:deep([aria-pressed='true']) {
   border-left: 6px solid var(--gacha-calculator-border) !important;
 }
 
@@ -538,7 +530,7 @@ v-for="stone in normalStones"  :key="stone.id"
   border-radius: 4px;
 }
 
-.gacha-calculator-resource-single{
+.gacha-calculator-resource-single {
   width: 560px;
   display: flex;
   box-sizing: border-box;
@@ -548,7 +540,10 @@ v-for="stone in normalStones"  :key="stone.id"
   margin: 4px 0;
   padding: 4px 4px;
   border: 1px solid var(--theme-border-secondary);
-  box-shadow:  rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
+    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
+    rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
 }
 
 .gacha-calculator-resource-single-title {
@@ -568,7 +563,6 @@ v-for="stone in normalStones"  :key="stone.id"
   font-weight: 600;
 }
 
-
 @media screen and (max-width: 600px) {
   .gacha-calculator-resource-single-btn-content {
     font-size: 0.8rem;
@@ -582,7 +576,5 @@ v-for="stone in normalStones"  :key="stone.id"
   .gacha-calculator-resource-single-title {
     width: 120px;
   }
-
 }
-
 </style>

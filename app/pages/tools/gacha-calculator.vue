@@ -30,7 +30,6 @@ import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
 import {
- 
   authorityLevelUpReward,
   authorityLevelUpRewardTable,
   permanentRewardTable,
@@ -418,8 +417,6 @@ watch(
   { deep: true },
 );
 
-
-
 let permanentRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '常驻奖励',
   originiumRecharge: 0,
@@ -441,7 +438,6 @@ function permanentRewardStatistics(): void {
   for (const reward of permanentRewardTable.value) {
     addVisibleReward(result, reward);
   }
-
 
   addVisibleReward(result, authorityLevelUpReward.value);
 
@@ -571,8 +567,8 @@ function rechargeResourceStatistics(): void {
   if (rechargeResources.value.monthlyPass) {
     const monthlyPack = packs['月卡'];
     if (monthlyPack) {
-      result.originiumRecharge += numberFloor( (12/30) * remainingDays,0); // 一次性12源石
-      result.diamond += numberFloor( remainingDays,0) * 200; // 每天200嵌晶玉
+      result.originiumRecharge += numberFloor((12 / 30) * remainingDays, 0); // 一次性12源石
+      result.diamond += numberFloor(remainingDays, 0) * 200; // 每天200嵌晶玉
     }
   }
 
@@ -849,7 +845,6 @@ function loadingUserConfig() {
 
         // 常驻奖励重构
         _setButtonGroupActive(localConfig.buttonGroupActive, permanentRewardTable);
-      
 
         // 活动奖励
         _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
@@ -1344,7 +1339,6 @@ function setVersionRewardsActive(version: string, active: boolean) {
   clearOrSelectAll(active, 'button', dailyAllRewardTable, [0, 0], version);
   clearOrSelectAll(active, 'button', activityReward, [0, 0], version);
   clearOrSelectAll(active, 'button', permanentRewardTable, [0, 0], version);
- 
 
   if (isRewardMatchedVersion(authorityLevelUpReward.value, version)) {
     authorityLevelProgress.value = active ? [1, 60] : [60, 60];
@@ -1352,7 +1346,15 @@ function setVersionRewardsActive(version: string, active: boolean) {
 }
 
 // 常驻奖励的分类名称列表，包含五个分类
-const permanentRewardCategoryNames = ['地图资源', '任务', '档案采集', '蚀像寻遗', '新手活动', '行动手册', '未分类'] as const;
+const permanentRewardCategoryNames = [
+  '地图资源',
+  '任务',
+  '档案采集',
+  '蚀像寻遗',
+  '新手活动',
+  '行动手册',
+  '未分类',
+] as const;
 
 // 常驻奖励分类名称的类型定义，取permanentRewardCategoryNames数组元素的联合类型
 type PermanentRewardCategoryName = (typeof permanentRewardCategoryNames)[number];
@@ -1388,19 +1390,18 @@ function getPermanentRewardCategory(reward: Reward): PermanentRewardCategoryName
 // 常驻奖励的分组计算结果，将奖励按分类名称分组
 const permanentRewardGroups = computed(() => {
   // 合并常驻奖励表、权限等级奖励和归档常驻奖励表
-  const rewards = [
-    ...permanentRewardTable.value,
-    authorityLevelUpReward.value,
-  ];
+  const rewards = [...permanentRewardTable.value, authorityLevelUpReward.value];
   // 遍历分类名称列表，构建分组对象
-  return permanentRewardCategoryNames
-    .map((name) => ({
-      name,
-      // 筛选出属于当前分类的奖励列表
-      rewards: rewards.filter((reward) => getPermanentRewardCategory(reward) === name),
-    }))
-    // 过滤掉没有奖励的分组
-    .filter((group) => group.rewards.length > 0);
+  return (
+    permanentRewardCategoryNames
+      .map((name) => ({
+        name,
+        // 筛选出属于当前分类的奖励列表
+        rewards: rewards.filter((reward) => getPermanentRewardCategory(reward) === name),
+      }))
+      // 过滤掉没有奖励的分组
+      .filter((group) => group.rewards.length > 0)
+  );
 });
 
 function selectDisplayPoolOptions(poolName: string) {
@@ -1430,10 +1431,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   <section class="gacha-calculator-container">
     <div class="gacha-calculator-container-left">
       <v-expansion-panels v-model="leftPartPanel" multiple>
-        <v-expansion-panel
-          class="gacha-calculator-sticky-summary-panel"
-          value="statisticalResult"
-        >
+        <v-expansion-panel class="gacha-calculator-sticky-summary-panel" value="statisticalResult">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               {{ t('page.tools.gachaCalculator.total') }}
@@ -1482,7 +1480,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.originiumRecharge }}
@@ -1497,7 +1495,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}
@@ -1510,7 +1508,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
@@ -1521,7 +1519,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
@@ -1532,7 +1530,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaLimitedSingle }}
@@ -1732,35 +1730,35 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                     />
                   </th>
                   <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                     />
                   </th>
                   <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                     />
                   </th>
                   <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                     />
                   </th>
                   <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
                     />
                   </th>
                 </tr>
@@ -1888,7 +1886,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <img
                   alt="existing"
                   class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                 />
                 <v-number-input
                   v-model="existingResource.originiumRecharge"
@@ -1902,7 +1900,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <img
                   alt="existing"
                   class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                 />
                 <v-number-input
                   v-model="existingResource.diamond"
@@ -1916,7 +1914,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <img
                   alt="existing"
                   class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                 />
                 <v-number-input
                   v-model="existingResource.ticketgachaStandardSingle"
@@ -1930,7 +1928,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <img
                   alt="existing"
                   class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                 />
                 <v-number-input
                   v-model="existingResource.ticketgachaSpecialSingle"
@@ -2371,12 +2369,13 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 .gacha-calculator-existing-resource-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-block: 1rem;
 }
 
 .gacha-calculator-existing-resource-input {
   display: flex;
   align-items: center;
-  margin: 1rem 0;
 }
 
 .gacha-calculator-gacha-item-icon {

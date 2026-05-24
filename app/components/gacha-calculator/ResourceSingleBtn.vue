@@ -3,19 +3,15 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import { dateFormat } from '#shared/utils/dateUtil';
 import { itemIdDict } from '#shared/utils/gacha-calculator';
 const props = defineProps<{
-  reward:Reward,
-  hideVersion?:boolean
+  reward: Reward;
+  hideVersion?: boolean;
 }>();
 
 /**
  *
  */
 function getImageUrl(itemId: string): string {
-  if (itemIdDict[itemId]) {
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_${itemIdDict[itemId]}.webp`;
-  } else {
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_1.webp`;
-  }
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${itemIdDict[itemId]}.png`;
 }
 </script>
 
@@ -24,11 +20,11 @@ function getImageUrl(itemId: string): string {
     <v-btn
       :active="props.reward.active"
       class="gacha-calculator-resource-btn"
-      :class="{ 'btn-active': props.reward.active }"      
+      :class="{ 'btn-active': props.reward.active }"
     >
       <div class="gacha-calculator-resource-btn-content">
         <div class="gacha-calculator-resource-btn-content-title">
-          {{ props.reward.name.zh }} 
+          {{ props.reward.name.zh }}
           <!-- {{ dateFormat(props.reward.start) }} -->
         </div>
         <div
@@ -38,10 +34,12 @@ function getImageUrl(itemId: string): string {
           class="gacha-calculator-resource-btn-content-content"
         >
           <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
-          X {{ reward }}
+          × {{ reward }}
         </div>
       </div>
-      <div v-if="!props.hideVersion" class="gacha-calculator-resource-btn-version">{{ props.reward.version }}</div>
+      <div v-if="!props.hideVersion" class="gacha-calculator-resource-btn-version">
+        {{ props.reward.version }}
+      </div>
     </v-btn>
     <template v-if="props.reward.tips">
       <div v-for="tip in props.reward.tips" :key="tip" class="gacha-calculator-resource-btn-tip">
@@ -67,6 +65,7 @@ function getImageUrl(itemId: string): string {
   padding-left: 2px !important;
   transition: all 0.2s ease;
   border: 1px solid var(--theme-border-secondary);
+  letter-spacing: unset;
 }
 
 .gacha-calculator-resource-btn.btn-active {
