@@ -65,7 +65,6 @@ export interface Reward {
   module: string;
   regional?:string;
   active: boolean;
-  defaultActive?: boolean;
   version:string;
   content: RewardContent;
   tips?:string[];

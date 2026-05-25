@@ -1,5 +1,4 @@
 import type { Reward } from '#shared/types/gacha-calculator';
-import { markRewardDefaultActive } from '#shared/utils/gacha-calculator';
 
 import { ref } from 'vue';
 
@@ -21,7 +20,6 @@ for (const reward of ActivityRewardTable as Reward[]) {
     reward.active = false;
   }
 
-  markRewardDefaultActive(reward);
   activityReward.value.push(reward);
 }
 
@@ -32,7 +30,6 @@ for (const reward of OtherRewardTableJson as Reward[]) {
   if (reward.start.getTime() < Date.now()) {
     reward.active = false;
   }
-  markRewardDefaultActive(reward);
   activityReward.value.push(reward);
 }
 
@@ -43,7 +40,6 @@ for (const reward of sklandSignInTable as Reward[]) {
   if (reward.start.getTime() < Date.now()) {
     reward.active = false;
   }
-  markRewardDefaultActive(reward);
   activityReward.value.push(reward);
 }
 
@@ -82,7 +78,7 @@ function createNewPoolActivity() {
           ticketgachaLimitedSingle: 0,
         },
       };
-      activityReward.value.push(markRewardDefaultActive(reward1));
+      activityReward.value.push(reward1);
     }
 
     if (item.narrative) {
@@ -106,7 +102,7 @@ function createNewPoolActivity() {
           ticketgachaLimitedSingle: 0,
         },
       };
-      activityReward.value.push(markRewardDefaultActive(reward2));
+      activityReward.value.push(reward2);
     }
 
     const reward3: Reward = {
@@ -129,6 +125,6 @@ function createNewPoolActivity() {
         ticketgachaLimitedSingle: 5,
       },
     };
-    activityReward.value.push(markRewardDefaultActive(reward3));
+    activityReward.value.push(reward3);
   }
 }

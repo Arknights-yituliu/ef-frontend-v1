@@ -65,6 +65,9 @@ function initPoolOptions() {
       disabled: false,
     };
     poolOptions.value.push(poolOption);
+    if (poolOption.end.getTime() > Date.now()) {
+      displayPoolOptions.value.push(poolOption.name);
+    }
   }
 
   const poolOption: PoolOption = {
@@ -86,13 +89,6 @@ function initPoolOptions() {
   };
 
   poolOptions.value.push(poolOption, allVersionOption);
-  displayPoolOptions.value = createDefaultDisplayPoolOptions();
-}
-
-function createDefaultDisplayPoolOptions(): string[] {
-  return poolOptions.value
-    .filter((option) => !option.disabled && option.end.getTime() > Date.now())
-    .map((option) => option.name);
 }
 
 //  {
@@ -163,16 +159,6 @@ function selectedPool(option: PoolOption): void {
   calc();
 }
 
-function selectDefaultPool(): boolean {
-  const lastPoolOption = poolOptions.value.findLast((option) => !option.disabled);
-
-  if (lastPoolOption) {
-    selectedPool(lastPoolOption);
-    return true;
-  }
-  return false;
-}
-
 function calc() {
   calculatorDailyReward(poolStartDate.value, currentPool.value.end);
   existingRewardStatistics();
@@ -183,40 +169,25 @@ function calc() {
   allRewardStatisticsV2();
 }
 
-function createDefaultGachaCalculatorUserConfig(): GachaCalculatorUserConfig {
-  return {
-    existingResource: {
-      originiumRecharge: 0,
-      diamond: 0,
-      ticketgachaStandardSingle: 0,
-      ticketgachaSpecialSingle: 0,
-    },
-    buttonActive: {},
-    buttonGroupActive: {},
-    rangeSlider: {},
-    slider: {},
-    versionVisible: {},
-  };
-}
+const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
+  existingResource: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  },
+  buttonActive: {},
+  buttonGroupActive: {},
+  rangeSlider: {},
+  slider: {},
+  versionVisible: {},
+});
 
-const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>(
-  createDefaultGachaCalculatorUserConfig(),
-);
-
-let isResettingGachaCalculator = false;
-
-function writeGachaCalculatorUserConfig() {
+function saveGachaCalculatorUserConfig() {
   localStorage.setItem(
     'Gacha_Calculator_User_Config',
     JSON.stringify(gachaCalculatorUserConfig.value),
   );
-}
-
-function saveGachaCalculatorUserConfig() {
-  if (isResettingGachaCalculator) {
-    return;
-  }
-  writeGachaCalculatorUserConfig();
 }
 
 /**
@@ -253,7 +224,6 @@ const seekIntelBook = ref({
   id: 'seek_intel_book',
   name: { zh: '寻访情报书', en: 'Seek Intel Book' },
   active: false,
-  defaultActive: false,
   type: '通用',
   module: '库存',
   version: '通用',
@@ -493,28 +463,22 @@ function permanentRewardStatistics(): void {
  *
  */
 
-type RechargeResources = {
+// 氪金资源状态
+const rechargeResources = ref<{
   monthlyPass: boolean;
   battlePass: boolean;
   protocolCustomization: boolean;
   monthlyPassDays: number;
   selectedPacks: Record<string, number>;
   originiumStones: Record<string, number>;
-};
-
-function createDefaultRechargeResources(): RechargeResources {
-  return {
-    monthlyPass: false,
-    battlePass: false,
-    protocolCustomization: false,
-    monthlyPassDays: 30,
-    selectedPacks: {},
-    originiumStones: {},
-  };
-}
-
-// 氪金资源状态
-const rechargeResources = ref<RechargeResources>(createDefaultRechargeResources());
+}>({
+  monthlyPass: false,
+  battlePass: false,
+  protocolCustomization: false,
+  monthlyPassDays: 30,
+  selectedPacks: {},
+  originiumStones: {},
+});
 
 const resourceStatisticsResultDetailList = ref<RewardStatisticsResultDetail[]>([]);
 
@@ -847,12 +811,6 @@ const rangeSliderMap: Record<string, Ref<number[]>> = {
   authority_level_up_reward: authorityLevelProgress,
 };
 
-function resetRewardActiveToDefault(rewardList: Reward[]) {
-  for (const reward of rewardList) {
-    reward.active = reward.defaultActive ?? reward.active;
-  }
-}
-
 function loadingUserConfig() {
   const localConfigStr = localStorage.getItem('Gacha_Calculator_User_Config');
   if (localConfigStr) {
@@ -1047,7 +1005,12 @@ onMounted(() => {
   }
 
   setPieChart(pieChartData);
-  selectDefaultPool();
+  for (const option of poolOptions.value) {
+    if (option.end > new Date()) {
+      selectedPool(option);
+      break;
+    }
+  }
 
   syncCurrentModeFromRoute();
   initSummaryPanelHeightObserver();
@@ -1298,11 +1261,9 @@ const selectedVersion = ref<string>('all');
 
 const versionVisibleMap = ref<Record<string, boolean>>({});
 
-const defaultVisibleVersion = VersionTable.at(-1)?.version ?? '';
-
 for (const version of VersionTable) {
   versionOptions.value.push(version.version);
-  versionVisibleMap.value[version.version] = version.version === defaultVisibleVersion;
+  versionVisibleMap.value[version.version] = true;
 }
 
 function selectVersionOptions(version: string) {
@@ -1348,12 +1309,6 @@ function setVersionVisible(version: string, visible: boolean) {
   gachaCalculatorUserConfig.value.versionVisible[version] = visible;
   saveGachaCalculatorUserConfig();
   calc();
-}
-
-function resetVersionVisibleToDefault() {
-  for (const version of versionOptions.value) {
-    versionVisibleMap.value[version] = version === defaultVisibleVersion;
-  }
 }
 
 function isRewardVersionVisible(reward: Reward): boolean {
@@ -1448,42 +1403,6 @@ const permanentRewardGroups = computed(() => {
       .filter((group) => group.rewards.length > 0)
   );
 });
-
-async function resetGachaCalculator() {
-  isResettingGachaCalculator = true;
-  try {
-    gachaCalculatorUserConfig.value = createDefaultGachaCalculatorUserConfig();
-
-    existingResource.value.originiumRecharge = 0;
-    existingResource.value.diamond = 0;
-    existingResource.value.ticketgachaStandardSingle = 0;
-    existingResource.value.ticketgachaSpecialSingle = 0;
-    seekIntelBook.value.active = seekIntelBook.value.defaultActive ?? false;
-    displayPoolOptions.value = createDefaultDisplayPoolOptions();
-
-    resetRewardActiveToDefault(dailyAllRewardTable.value);
-    resetRewardActiveToDefault(permanentRewardTable.value);
-    resetRewardActiveToDefault(activityReward.value);
-
-    authorityLevelProgress.value = [60, 60];
-
-    selectedVersion.value = 'all';
-    resetVersionVisibleToDefault();
-
-    arsenalCoefficient.value = 80;
-    poolStartDate.value = new Date();
-    devStartDate.value = new Date(poolStartDate.value);
-    if (!selectDefaultPool()) {
-      calc();
-    }
-    fillStandardPulls();
-    fillSpecialPulls();
-    await nextTick();
-  } finally {
-    isResettingGachaCalculator = false;
-    writeGachaCalculatorUserConfig();
-  }
-}
 
 function selectDisplayPoolOptions(poolName: string) {
   displayPoolOptions.value = toggleStringInArray(poolName, displayPoolOptions.value);
@@ -1741,7 +1660,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           <v-expansion-panel-text>
             <div class="gacha-calculator-control-panel">
               <section class="gacha-calculator-control-section">
-                <div class="gacha-calculator-control-section-title">重置</div>
+                <div class="gacha-calculator-control-section-title">氪金项目</div>
                 <div class="gacha-calculator-control-actions">
                   <v-btn
                     color="orange"
@@ -1751,15 +1670,6 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                     @click="resetRechargeResourcesKeepMonthlyPass"
                   >
                     重置月卡以外的氪金项目
-                  </v-btn>
-                  <v-btn
-                    color="red"
-                    prepend-icon="mdi-restore"
-                    size="small"
-                    variant="tonal"
-                    @click="resetGachaCalculator"
-                  >
-                    重置攒抽计算器
                   </v-btn>
                 </div>
               </section>
@@ -2425,8 +2335,6 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-control-actions {
   display: flex;
-  gap: 8px;
-  align-items: center;
   justify-content: flex-start;
 }
 

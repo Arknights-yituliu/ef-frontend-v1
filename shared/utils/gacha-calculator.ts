@@ -134,11 +134,6 @@ function addReward(result: RewardStatisticsResultDetail, reward: Reward | Reward
   // console.log(result.name,result.ticketgachaLimitedSingle);
 }
 
-function markRewardDefaultActive<T extends Reward>(reward: T): T {
-  reward.defaultActive = reward.active;
-  return reward;
-}
-
 function getRewardsPull(reward: RewardStatisticsResultDetail[]): TotalPullsSingle {
   const result: TotalPullsSingle = {
     ticketgachaStandardSingle: 0,
@@ -350,5 +345,4 @@ export {
   getRewardsPull,
   groupAndMergeRewardsByVersion,
   groupAndMergeTasksByVersionAndModule,
-  markRewardDefaultActive,
 };

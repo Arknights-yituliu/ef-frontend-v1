@@ -3,7 +3,6 @@ import {
   calculateDaysDifference,
   countTuesdaysBetweenV2,
   createRewardModuleTitle,
-  markRewardDefaultActive,
 } from '#shared/utils/gacha-calculator';
 
 import { numberRound } from '#shared/utils/numberUtil';
@@ -236,10 +235,6 @@ for (const poolInfo of PoolInfoTable) {
       ticketgachaLimitedSingle: 5,
     },
   });
-}
-
-for (const reward of dailyAllRewardTable.value) {
-  markRewardDefaultActive(reward);
 }
 
 export {
