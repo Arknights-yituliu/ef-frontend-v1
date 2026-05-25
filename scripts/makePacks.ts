@@ -17,6 +17,7 @@ import {
   cashShopTable,
   getLocalizedValue,
   getTranslation,
+  giftpackCashShopGoodsDataTable,
   itemTable,
   rewardTable,
 } from './gameData';
@@ -84,6 +85,12 @@ export function makePacks(): Record<string, PackData> {
       category: goods.cashShopId,
       price: goods.priceCNY,
       imageUrl: `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/${goods.iconId}.webp`,
+      backgroundImageUrl: (() => {
+        const bg = giftpackCashShopGoodsDataTable[packId]?.bg;
+        return bg
+          ? `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/${bg}.webp`
+          : undefined;
+      })(),
       contents: reward.itemBundles.map((bundle: ItemBundle) => {
         const item = itemTable[bundle.id]!;
         return {
@@ -256,14 +263,14 @@ export function makePackShops(packs: Record<string, PackData>): Record<string, P
       // 拆分为首充/非首充两个商店
       packShops['first_originium_recharge'] = {
         shopId: 'first_originium_recharge',
-        displayName: { 'zh-CN': '首充源石', 'en-US': 'First Bonus Originium' },
+        displayName: { 'zh-CN': '首充源石', 'en-US': 'First Recharge Originium' },
         goodsIds: Object.values(packs)
           .filter((pack) => pack.category === 'first_originium_recharge')
           .map((pack) => pack.packId),
       };
       packShops['non_first_originium_recharge'] = {
         shopId: 'non_first_originium_recharge',
-        displayName: { 'zh-CN': '非首充源石', 'en-US': 'Originium' },
+        displayName: { 'zh-CN': '非首充源石', 'en-US': 'Non-First Recharge Originium' },
         goodsIds: Object.values(packs)
           .filter((pack) => pack.category === 'non_first_originium_recharge')
           .map((pack) => pack.packId),

@@ -10,6 +10,7 @@ import type {
   CharWpnRecommendTable,
   GemTable,
   GemTagIdTable,
+  GiftpackCashShopGoodsDataTable,
   I18nTextTable,
   ItemListByTypeTable,
   ItemTable,
@@ -164,6 +165,9 @@ export const battlePassSeasonTable: BattlePassSeasonTable = readJSONWithBigInt(
 );
 export const battlePassOverrideLevelTable: BattlePassOverrideLevelTable = readJSONWithBigInt(
   'TableCfg_Mapped/BattlePassOverrideLevelTable.json',
+);
+export const giftpackCashShopGoodsDataTable: GiftpackCashShopGoodsDataTable = readJSONWithBigInt(
+  'TableCfg_Mapped/GiftpackCashShopGoodsDataTable.json',
 );
 export const worldEnergyPointGroupTable: WorldEnergyPointGroupTable = readJSONWithBigInt(
   'TableCfg/WorldEnergyPointGroupTable.json',

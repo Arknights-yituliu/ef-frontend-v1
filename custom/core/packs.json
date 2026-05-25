@@ -1624,6 +1624,7 @@
     "category": "Permanent_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/monthly_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/monthly_giftpack_01_smallbg.webp",
     "contents": [
       {
         "itemId": "item_gold",
@@ -1692,6 +1693,7 @@
     "category": "Newbie_pack",
     "price": 128,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_01_smallbg.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_special_single",
@@ -1720,6 +1722,7 @@
     "category": "Newbie_pack",
     "price": 98,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_02_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_02_smallbg.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_standard_single",
@@ -1748,6 +1751,7 @@
     "category": "Newbie_pack",
     "price": 6,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_6_special_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_6_special_smallbg.webp",
     "contents": [
       {
         "itemId": "wpn_sword_0021",
@@ -1896,6 +1900,7 @@
     "category": "MCard",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/icon_shop_groupbagItem02.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/bg_shop_groupbagitem03.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
@@ -1916,6 +1921,7 @@
     "category": "Seasonal_Rec_pack",
     "price": 6,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_crossover_lt_1_2_1_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_crossover_lt_1_2_1_smallbg.webp",
     "contents": [
       {
         "itemId": "item_user_avatar_activity_6",
@@ -1972,6 +1978,7 @@
     "category": "Seasonal_Rec_pack",
     "price": 198,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_combine_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_combine_smallbg.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_special_single",
@@ -2008,6 +2015,7 @@
     "category": "SP_weapon_supply",
     "price": 88,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_01_smallbg.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -2028,6 +2036,7 @@
     "category": "SP_weapon_supply",
     "price": 108,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_02_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_02_smallbg.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -2056,6 +2065,7 @@
     "category": "SP_weapon_supply",
     "price": 128,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_03_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_03_smallbg.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -2100,6 +2110,7 @@
     "category": "SP_weapon_supply",
     "price": 328,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_04_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_04_smallbg.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -2144,6 +2155,7 @@
     "category": "Permanent_pack",
     "price": 30,
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weekly_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weekly_giftpack_01_smallbg.webp",
     "contents": [
       {
         "itemId": "item_gold",

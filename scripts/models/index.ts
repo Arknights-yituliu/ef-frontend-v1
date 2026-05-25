@@ -10,6 +10,10 @@ export type {
 } from './battlePassOverrideLevelTable';
 export type { BattlePassSeason, BattlePassSeasonTable } from './battlePassSeasonTable';
 export type { BattlePassTrack, BattlePassTrackTable } from './battlePassTrackTable';
+export type {
+  GiftpackCashShopGoodsData,
+  GiftpackCashShopGoodsDataTable,
+} from './giftpackCashShopGoodsDataTable';
 export type { CashShopGoods, CashShopGoodsTable } from './cashShopGoodsTable';
 export type { CashShopGroup, CashShopGroupTable } from './cashShopGroupTable';
 export type { CashShopHideInGame, CashShopHideInGameTable } from './cashShopHideInGameTable';
