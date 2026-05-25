@@ -1,39 +1,47 @@
 <template>
-  <article class="pack-card-container">
+  <div class="pack-card-container">
     <div class="pack-card-wrapper" @click="toggleExpanded">
-      <!-- 左侧：图片区域 -->
-      <div
-        class="pack-card-part-left"
-        :style="{
-          backgroundImage: `url(${props.backgroundImageUrl})`,
-        }"
-      >
-        <img
-          v-if="props.imageUrl && !imageError"
-          :alt="packDisplayName"
-          class="pack-image"
-          loading="lazy"
-          :src="props.imageUrl"
-          @error="handleImageError"
-        />
-        <div v-else class="image-placeholder">
-          <span class="placeholder-icon">📦</span>
+      <!-- 左侧：图片、价格和标题 -->
+      <div class="pack-card-left">
+        <!-- 背景图 - 铺满整个左侧区域 -->
+        <div class="pack-background-image-wrapper">
+          <img
+            v-if="props.backgroundImageUrl"
+            alt=""
+            class="pack-background-image"
+            :src="props.backgroundImageUrl"
+          />
         </div>
 
-        <!-- 价格角标 -->
-        <div class="pack-corner">
-          <div class="price-text">￥{{ props.price.toFixed(0) }}</div>
+        <!-- 左上：价格和前景图 -->
+        <div class="pack-card-left-top">
+          <img
+            v-if="props.imageUrl && !imageError"
+            :alt="packDisplayName"
+            class="pack-image"
+            loading="lazy"
+            :src="props.imageUrl"
+            @error="handleImageError"
+          />
+          <div v-else class="image-placeholder">
+            <span class="placeholder-icon">📦</span>
+          </div>
+
+          <!-- 价格角标 -->
+          <div class="pack-corner">
+            <div class="price-text">￥{{ props.price.toFixed(0) }}</div>
+          </div>
         </div>
 
-        <!-- 标题（底部覆盖） -->
-        <div class="pack-display-name">
+        <!-- 左下：组合包名称区域 -->
+        <div class="pack-card-left-bottom">
           <span>{{ packDisplayName }}</span>
         </div>
       </div>
 
       <!-- 右侧：信息区域 -->
-      <div class="pack-info">
-        <!-- 左侧：价值信息 -->
+      <div class="pack-card-right">
+        <!-- 价值信息 -->
         <div class="pack-info-text">
           <div class="value-stone">
             {{ $t('component.packCard.equivalent') }}
@@ -49,7 +57,7 @@
           </div>
         </div>
 
-        <!-- 右侧：对比条 -->
+        <!-- 对比条 -->
         <div class="pack-chart-line">
           <div
             v-for="(bar, index) in getPackComparisonBars(props)"
@@ -77,6 +85,7 @@
       </div>
     </div>
 
+    <!-- 描述 - 只在未展开时显示 -->
     <p v-if="packDescription && !isExpanded" class="pack-description">
       <span
         ><em>{{ packDescription }}</em></span
@@ -89,6 +98,12 @@
         <h3>{{ $t('component.packCard.contents') }}</h3>
       </div>
       <table class="contents-table">
+        <colgroup>
+          <col class="col-item-name" />
+          <col class="col-quantity" />
+          <col class="col-total-value" />
+          <col class="col-percentage" />
+        </colgroup>
         <thead>
           <tr>
             <th>{{ $t('component.packCard.itemName') }}</th>
@@ -107,7 +122,7 @@
         </tbody>
       </table>
     </div>
-  </article>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -185,13 +200,15 @@ function getPackComparisonBars(pack: PackData) {
   /* 屏幕宽 375px -> 字体大小 12px
      屏幕宽 600px -> 字体大小 16px */
   font-size: clamp(10px, calc(5.33333333px + 1.77777777vw), 16px);
+  line-height: 1;
 }
 
 .pack-card-wrapper {
+  isolation: isolate;
+  z-index: 1;
   display: flex;
   align-items: center;
   max-width: 100%;
-  z-index: 10;
   transition:
     transform var(--transition-base),
     filter var(--transition-base);
@@ -203,25 +220,47 @@ function getPackComparisonBars(pack: PackData) {
   filter: brightness(1.02);
 }
 
-/* 左侧图片区域 */
-.pack-card-part-left {
+/* 左侧列容器 */
+.pack-card-left {
+  position: relative;
+  isolation: isolate;
   height: 6.875em;
   width: 11.25em;
   flex-shrink: 2;
-  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
   overflow: hidden;
-  position: relative;
-  z-index: 11;
   box-shadow: 0 0 0.75em var(--theme-shadow-base);
-  background-size: cover;
-  background-position: center;
+  /* border: 0.0625em solid var(--theme-border); */
+  border-radius: 0.5em;
+}
+
+/* 背景图 - 铺满整个 left 区域 */
+.pack-background-image-wrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.pack-background-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+}
+
+/* 左上：价格和前景图 */
+.pack-card-left-top {
+  position: relative;
+  flex: 1;
+  min-height: 0;
 }
 
 .pack-image {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .image-placeholder {
@@ -251,7 +290,7 @@ function getPackComparisonBars(pack: PackData) {
     transparent 0,
     transparent
   );
-  background-size: 0.5rem 0.5rem;
+  background-size: 0.5em 0.5em;
   background-repeat: repeat;
   opacity: 0.3;
 }
@@ -259,21 +298,20 @@ function getPackComparisonBars(pack: PackData) {
 .placeholder-icon {
   font-size: 3em;
   opacity: 0.5;
-  z-index: 1;
 }
 
 /* 价格角标 */
 .pack-corner {
   background-color: var(--theme-glass-bg);
-  backdrop-filter: blur(0.625em);
-  -webkit-backdrop-filter: blur(0.625em);
+  /* 模糊效果和 transition 冲突了，暂时禁用模糊效果 */
+  /* backdrop-filter: blur(0.625em); */
+  /* -webkit-backdrop-filter: blur(0.625em); */
   position: absolute;
   text-align: center;
   left: -2.25em;
   top: 0.375em;
   transform: rotate(-40deg);
   width: 6.9375em;
-  z-index: 12;
   padding: 0.25em 0.5em;
   box-shadow: 0 0 0.5em var(--theme-shadow-accent);
   border: 0.0625em solid var(--theme-glass-border);
@@ -296,7 +334,7 @@ function getPackComparisonBars(pack: PackData) {
     transparent 0,
     transparent
   );
-  background-size: 0.5rem 0.5rem;
+  background-size: 0.5em 0.5em;
   background-repeat: repeat;
   border-radius: var(--radius-sm);
   pointer-events: none;
@@ -307,36 +345,29 @@ function getPackComparisonBars(pack: PackData) {
   font-weight: 700;
   color: var(--theme-text-primary);
   position: relative;
-  z-index: 1;
   text-shadow: 0 0.0625em 0.125em var(--theme-glass-text-shadow);
 }
 
-/* 标题（底部覆盖） */
-.pack-display-name {
-  background-color: var(--theme-glass-bg);
-  backdrop-filter: blur(0.625em);
-  -webkit-backdrop-filter: blur(0.625em);
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+/* 标题 */
+.pack-card-left-bottom {
   height: 1.5em;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 13;
-  border-top: 0.0625em solid var(--theme-decorative-overlay);
-  box-shadow: 0 -0.125em 0.5em var(--theme-glass-shadow);
+  background-color: var(--theme-glass-bg);
+  backdrop-filter: blur(0.625em);
 
   span {
     text-align: center;
     color: var(--theme-text-primary);
-    font-size: 0.75em;
+    font-size: 0.875em;
     font-weight: 600;
   }
 }
 
 /* 右侧信息区域 */
-.pack-info {
+.pack-card-right {
   position: relative;
   display: flex;
   height: 6.25em;
@@ -344,12 +375,11 @@ function getPackComparisonBars(pack: PackData) {
   background-color: var(--theme-bg-secondary);
   border-radius: 0.5em;
   box-shadow: 0 0 0.75em var(--theme-shadow-base);
-  z-index: 10;
   border: 0.0625em solid var(--theme-border);
   overflow: hidden;
 }
 
-.pack-info::before {
+.pack-card-right::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -366,7 +396,7 @@ function getPackComparisonBars(pack: PackData) {
     transparent 0,
     transparent
   );
-  background-size: 0.5rem 0.5rem;
+  background-size: 0.5em 0.5em;
   background-repeat: repeat;
   opacity: 0.15;
   pointer-events: none;
@@ -379,7 +409,6 @@ function getPackComparisonBars(pack: PackData) {
   justify-content: center;
   width: 8em;
   height: 100%;
-  z-index: 1;
   gap: 0.5em;
 
   div {
@@ -447,6 +476,9 @@ function getPackComparisonBars(pack: PackData) {
 
 .pack-chart-line-label {
   width: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 
   span {
@@ -496,7 +528,8 @@ function getPackComparisonBars(pack: PackData) {
 
 .pack-description {
   width: 100%;
-  padding-left: 0.75em;
+  margin-block-start: 0.25em;
+  margin-inline-start: 0.75em;
 
   span {
     color: var(--theme-text-secondary);
@@ -506,6 +539,7 @@ function getPackComparisonBars(pack: PackData) {
 
 /* 展开的内容表格 */
 .pack-contents-table {
+  isolation: isolate;
   display: block;
   width: 32em;
   max-width: 95%;
@@ -513,7 +547,7 @@ function getPackComparisonBars(pack: PackData) {
   margin-top: -0.75em;
   overflow: hidden;
   background-color: var(--theme-bg-secondary);
-  border-radius: 0;
+  border-radius: 0.5em;
   box-shadow: 0 0 0.75em var(--theme-shadow-base);
   border: 0.0625em solid var(--theme-border);
   opacity: 0;
@@ -521,8 +555,25 @@ function getPackComparisonBars(pack: PackData) {
 }
 
 .pack-contents-table.expanded {
-  height: auto;
+  height: unset;
   opacity: 1;
+}
+
+.col-item-name {
+  width: 40%;
+  padding: 1em;
+}
+
+.col-quantity {
+  width: 20%;
+}
+
+.col-total-value {
+  width: 20%;
+}
+
+.col-percentage {
+  width: 20%;
 }
 
 .pack-contents-header {
@@ -545,6 +596,7 @@ function getPackComparisonBars(pack: PackData) {
 
 .contents-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -553,8 +605,9 @@ function getPackComparisonBars(pack: PackData) {
 }
 
 .contents-table th {
-  padding: 0 1em;
-  text-align: left;
+  padding-block: 0.625em;
+  padding-inline: 1em;
+  text-align: center;
   font-size: 1em;
   font-weight: 600;
   color: var(--theme-text-primary);
@@ -562,10 +615,18 @@ function getPackComparisonBars(pack: PackData) {
 }
 
 .contents-table td {
-  padding: 0.625em 1em;
+  padding-block: 0.625em;
+  padding-inline: 1em;
   font-size: 1em;
   color: var(--theme-text-primary);
   border-bottom: 0.0625em solid var(--theme-border);
+}
+
+/* 数字列右对齐 */
+.contents-table td:nth-child(2),
+.contents-table td:nth-child(3),
+.contents-table td:nth-child(4) {
+  text-align: right;
 }
 
 .contents-table tbody tr:last-child td {
