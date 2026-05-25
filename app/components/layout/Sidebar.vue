@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useNow } from '@vueuse/core';
+import { useNow, useWindowSize } from '@vueuse/core';
 
 // 菜单项类型
 interface PrimaryMenuItem {
@@ -97,6 +97,13 @@ const now = useNow({ interval: 1000 });
 // 获取路由配置
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes as PrimaryMenuItem[];
+
+// 根据视口宽度计算侧边栏缩放比例（360px → 0.75, 1200px → 1.0）
+const { width: windowWidth } = useWindowSize();
+const sidebarScale = computed(() => {
+  const scale = 0.75 + ((windowWidth.value - 360) * 0.25) / 840;
+  return Math.min(1, Math.max(0.75, scale));
+});
 
 /**
  * 判断一级菜单项是否可见
@@ -169,7 +176,6 @@ function isActiveRoute(path: string) {
   flex-direction: column;
   min-height: 100%;
   width: 100%;
-  --sidebar-scale: clamp(0.6, calc(0.06vw / 1px + 0.384), 1);
 }
 
 /* Logo 区域 */
@@ -179,8 +185,8 @@ function isActiveRoute(path: string) {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: calc(1rem * var(--sidebar-scale)) 0;
-  gap: calc(1rem * var(--sidebar-scale));
+  padding: calc(1rem * v-bind(sidebarScale)) 0;
+  gap: calc(1rem * v-bind(sidebarScale));
   border-bottom: 2px solid var(--theme-accent-color);
   cursor: pointer;
   overflow: hidden;
@@ -192,18 +198,18 @@ function isActiveRoute(path: string) {
 }
 
 .logo-img {
-  width: calc(5rem * var(--sidebar-scale));
-  height: calc(5rem * var(--sidebar-scale));
+  width: calc(5rem * v-bind(sidebarScale));
+  height: calc(5rem * v-bind(sidebarScale));
   object-fit: contain;
 }
 
 .logo-text {
-  font-size: calc(var(--font-size-md) * var(--sidebar-scale));
+  font-size: calc(var(--font-size-md) * v-bind(sidebarScale));
   color: var(--theme-text-primary);
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
-  text-shadow: 0 0 calc(0.5rem * var(--sidebar-scale)) var(--theme-shadow-accent-hover);
+  text-shadow: 0 0 calc(0.5rem * v-bind(sidebarScale)) var(--theme-shadow-accent-hover);
 }
 
 /* 菜单容器 */
@@ -215,10 +221,10 @@ function isActiveRoute(path: string) {
 .section-header {
   display: flex;
   align-items: center;
-  min-height: calc(2.5rem * var(--sidebar-scale));
-  padding: 0 calc(1rem * var(--sidebar-scale));
+  min-height: calc(2.5rem * v-bind(sidebarScale));
+  padding: 0 calc(1rem * v-bind(sidebarScale));
   background-color: var(--theme-bg-tertiary);
-  font-size: calc(var(--font-size-sm) * 0.8 * var(--sidebar-scale));
+  font-size: calc(var(--font-size-sm) * 0.8 * v-bind(sidebarScale));
   color: var(--theme-text-primary);
   font-weight: 600;
   text-transform: uppercase;
@@ -249,13 +255,13 @@ function isActiveRoute(path: string) {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: calc(0.75rem * var(--sidebar-scale));
-  height: calc(3.5rem * var(--sidebar-scale));
-  padding-left: calc(2.2rem * var(--sidebar-scale));
-  padding-right: calc(1rem * var(--sidebar-scale));
+  gap: calc(0.75rem * v-bind(sidebarScale));
+  height: calc(3.5rem * v-bind(sidebarScale));
+  padding-left: calc(2.2rem * v-bind(sidebarScale));
+  padding-right: calc(1rem * v-bind(sidebarScale));
   color: var(--theme-text-secondary);
   text-decoration: none;
-  font-size: calc(var(--font-size-sm) * var(--sidebar-scale));
+  font-size: calc(var(--font-size-sm) * v-bind(sidebarScale));
   overflow: hidden;
   transition: background-color var(--transition-base);
 }
@@ -301,7 +307,7 @@ function isActiveRoute(path: string) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: calc(0.5rem * var(--sidebar-scale));
+  margin-left: calc(0.5rem * v-bind(sidebarScale));
 }
 
 .jump-hint-icon {
