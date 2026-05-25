@@ -37,37 +37,6 @@ html {
   overflow-x: hidden;
 }
 
-/* 滚动条样式重置 - 侧边栏和html共用 */
-.v-navigation-drawer__content,
-html {
-  /* Firefox 滚动条样式 */
-  scrollbar-width: thin;
-  scrollbar-color: var(--sidebar-scrollbar-thumb) transparent;
-}
-
-.v-navigation-drawer__content::-webkit-scrollbar,
-html::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
-}
-
-.v-navigation-drawer__content::-webkit-scrollbar-track,
-html::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.v-navigation-drawer__content::-webkit-scrollbar-thumb,
-html::-webkit-scrollbar-thumb {
-  background: var(--sidebar-scrollbar-thumb);
-  border-radius: 0;
-  transition: background-color var(--transition-base);
-}
-
-.v-navigation-drawer__content::-webkit-scrollbar-thumb:hover,
-html::-webkit-scrollbar-thumb:hover {
-  background: var(--sidebar-scrollbar-thumb-hover);
-}
-
 /* ============================================
    焦点样式
    ============================================ */

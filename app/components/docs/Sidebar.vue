@@ -1,9 +1,6 @@
 <template>
   <div class="docs-sidebar-wrapper" :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }">
-    <aside
-      class="docs-sidebar hide-scrollbar"
-      :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
-    >
+    <aside class="docs-sidebar" :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }">
       <!-- 装饰背景 -->
       <div class="sidebar-bg-decorator" />
 
@@ -110,11 +107,11 @@ let highlightUpdateTimer: ReturnType<typeof setTimeout> | null = null;
 const docNavigation = computed(() => docNavigationData);
 
 // 判断是否是当前激活路径
-function isActivePath (path: string) {
+function isActivePath(path: string) {
   return route.path === path;
 }
 
-function getDOMElement (el: Element | ComponentPublicInstance | null): HTMLElement | null {
+function getDOMElement(el: Element | ComponentPublicInstance | null): HTMLElement | null {
   if (!el) {
     return null;
   }
@@ -127,7 +124,7 @@ function getDOMElement (el: Element | ComponentPublicInstance | null): HTMLEleme
   return null;
 }
 
-function setLinkRef (el: Element | ComponentPublicInstance | null, path: string) {
+function setLinkRef(el: Element | ComponentPublicInstance | null, path: string) {
   const element = getDOMElement(el);
   if (!element) {
     linkRefs.value.delete(path);
@@ -136,13 +133,13 @@ function setLinkRef (el: Element | ComponentPublicInstance | null, path: string)
   linkRefs.value.set(path, element);
 }
 
-function getRelativeTop (element: HTMLElement, container: HTMLElement) {
+function getRelativeTop(element: HTMLElement, container: HTMLElement) {
   const elementRect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
   return elementRect.top - containerRect.top;
 }
 
-function updateHighlight () {
+function updateHighlight() {
   nextTick(() => {
     const activeEl = linkRefs.value.get(route.path);
     const container = sidebarNavRef.value;
@@ -158,7 +155,7 @@ function updateHighlight () {
 }
 
 // 延迟更新高亮
-function delayedUpdateHighlight () {
+function delayedUpdateHighlight() {
   if (highlightUpdateTimer) {
     clearTimeout(highlightUpdateTimer);
   }
@@ -169,7 +166,7 @@ function delayedUpdateHighlight () {
 }
 
 // 切换折叠状态
-function toggleCollapse () {
+function toggleCollapse() {
   isCollapsed.value = !isCollapsed.value;
   if (isCollapsed.value) {
     highlightHeight.value = 0;
@@ -180,13 +177,13 @@ function toggleCollapse () {
 }
 
 // 处理链接点击（移动端关闭侧边栏）
-function handleLinkClick () {
+function handleLinkClick() {
   if (props.isOpen) {
     emit('close');
   }
 }
 
-function handleResize () {
+function handleResize() {
   if (!isCollapsed.value) {
     updateHighlight();
   }

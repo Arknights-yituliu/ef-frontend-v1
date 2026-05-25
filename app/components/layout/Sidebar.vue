@@ -7,7 +7,7 @@
     </div>
 
     <!-- 菜单容器 -->
-    <nav class="menu-container hide-scrollbar">
+    <nav class="menu-container">
       <!-- 菜单组 -->
       <div
         v-for="(primaryItem, primaryIndex) in menuItems.filter(isPrimaryItemVisible)"
