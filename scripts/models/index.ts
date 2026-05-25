@@ -10,10 +10,6 @@ export type {
 } from './battlePassOverrideLevelTable';
 export type { BattlePassSeason, BattlePassSeasonTable } from './battlePassSeasonTable';
 export type { BattlePassTrack, BattlePassTrackTable } from './battlePassTrackTable';
-export type {
-  GiftpackCashShopGoodsData,
-  GiftpackCashShopGoodsDataTable,
-} from './giftpackCashShopGoodsDataTable';
 export type { CashShopGoods, CashShopGoodsTable } from './cashShopGoodsTable';
 export type { CashShopGroup, CashShopGroupTable } from './cashShopGroupTable';
 export type { CashShopHideInGame, CashShopHideInGameTable } from './cashShopHideInGameTable';
@@ -22,6 +18,10 @@ export type { CharWpnRecommend, CharWpnRecommendTable } from './charWpnRecommend
 export type { TranslationKey } from './common';
 export type { GemTable, Gem as GemTerm } from './gemTable';
 export type { GemTagIdTable } from './gemTagIdTable';
+export type {
+  GiftpackCashShopGoodsData,
+  GiftpackCashShopGoodsDataTable,
+} from './giftpackCashShopGoodsDataTable';
 export type { I18nTextTable } from './i18nTextTable';
 export type { ItemListByType, ItemListByTypeTable } from './itemListByTypeTable';
 export type { Item, ItemTable } from './itemTable';
