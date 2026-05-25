@@ -29,7 +29,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "行动手册",
-    "active": true,
+    "active": false,
     "version": "春晓时",
     "content": {
       "originiumRecharge": 0,
@@ -49,7 +49,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "行动手册",
-    "active": true,
+    "active": false,
     "version": "春晓时",
     "content": {
       "originiumRecharge": 0,

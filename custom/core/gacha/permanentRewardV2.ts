@@ -2,6 +2,7 @@ import type { Reward } from '#shared/types/gacha-calculator';
 import {
   groupAndMergeRewardsByVersion,
   groupAndMergeTasksByVersionAndModule,
+  markRewardDefaultActive,
 } from '#shared/utils/gacha-calculator';
 import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/permanent_etch_space_salvage_reward.json';
@@ -30,7 +31,7 @@ function mergeReward(rewards: Reward[]) {
       reward.active = false;
     }
 
-    permanentRewardTable.value.push(reward);
+    permanentRewardTable.value.push(markRewardDefaultActive(reward));
   }
 }
 
@@ -72,7 +73,7 @@ for (const reward of operationalManualTrainingTableJson as Reward[]) {
   } else {
     reward.start = new Date(reward.start);
     reward.end = new Date(reward.end);
-     permanentRewardTable.value.push(reward);
+    permanentRewardTable.value.push(markRewardDefaultActive(reward));
     
   }
 }
@@ -88,6 +89,7 @@ const operatorTraining = {
   type: '通用',
   module: '行动手册',
   active: false,
+  defaultActive: false,
   version: `零号委托——${currentVersion}`,
   content: {
     originiumRecharge: 0,
@@ -120,6 +122,7 @@ const authorityLevelUpReward = ref<Reward>({
   type: '通用',
   module: '权限等阶提升',
   active: true,
+  defaultActive: true,
   version: '零号委托',
   content: {
     originiumRecharge: 0,
