@@ -173,25 +173,30 @@ export const itemValueMap: ItemValueMap = {
     itemName: '行火留烬寻访凭证',
     value: (40 / 75) * 500,
   },
+  ticketgacha_special_single_lt_1_0_1: {
+    itemId: 'ticketgacha_special_single_lt_1_0_1',
+    itemName: '行火留烬寻访凭证',
+    value: (40 / 75) * 500,
+  },
   item_ticketgacha_special_ten_lt_1_0_1: {
     itemId: 'item_ticketgacha_special_ten_lt_1_0_1',
     itemName: '行火留烬十连凭证',
     value: (40 / 75) * 500 * 10,
   },
-  item_ticketgacha_special_ten_lt_1_0_2: {
-    itemId: 'item_ticketgacha_special_ten_lt_1_0_2',
-    itemName: '异彩斑斓十连凭证',
-    value: (40 / 75) * 500 * 10,
-  },
-  item_ticketgacha_special_ten_lt_1_0_3: {
-    itemId: 'item_ticketgacha_special_ten_lt_1_0_3',
-    itemName: '灵动信使十连凭证',
+  ticketgacha_special_ten_lt_1_0_1: {
+    itemId: 'ticketgacha_special_ten_lt_1_0_1',
+    itemName: '行火留烬十连凭证',
     value: (40 / 75) * 500 * 10,
   },
 
   // 理智物品
   item_ap_supply_lt_n: {
     itemId: 'item_ap_supply_lt_n',
+    itemName: '应急理智加强剂',
+    value: 40,
+  },
+  ap_supply_lt_n: {
+    itemId: 'ap_supply_lt_n',
     itemName: '应急理智加强剂',
     value: 40,
   },
@@ -208,6 +213,11 @@ export const itemValueMap: ItemValueMap = {
   item_char_ap_supply_aglina: {
     itemId: 'item_char_ap_supply_aglina',
     itemName: '栗花蜜',
+    value: 40,
+  },
+  item_char_ap_supply_zhuangfy: {
+    itemId: 'item_char_ap_supply_zhuangfy',
+    itemName: '油焖整笋罐头',
     value: 40,
   },
 
