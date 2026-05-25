@@ -26,8 +26,18 @@ export const gachaItemMap: GachaItemMap = {
     name: '行火留烬寻访凭证',
     pulls: 1,
   },
+  ticketgacha_special_single_lt_1_0_1: {
+    id: 'ticketgacha_special_single_lt_1_0_1',
+    name: '行火留烬寻访凭证',
+    pulls: 1,
+  },
   item_ticketgacha_special_ten_lt_1_0_1: {
     id: 'item_ticketgacha_special_ten_lt_1_0_1',
+    name: '行火留烬十连凭证',
+    pulls: 10,
+  },
+  ticketgacha_special_ten_lt_1_0_1: {
+    id: 'ticketgacha_special_ten_lt_1_0_1',
     name: '行火留烬十连凭证',
     pulls: 10,
   },
