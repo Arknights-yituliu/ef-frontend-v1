@@ -42,27 +42,12 @@
               :style="{ backgroundColor: getPrimaryItemColor(primaryItem) }"
             />
             <!-- 二级菜单图标 -->
-            <v-icon v-if="secondaryItem.vuetifyIcon" class="secondary-icon" size="20">
+            <v-icon v-if="secondaryItem.vuetifyIcon" class="secondary-icon">
               {{ secondaryItem.vuetifyIcon }}
             </v-icon>
-            <svg
-              v-else-if="secondaryItem.iconPath"
-              class="secondary-icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                class="secondary-icon-path"
-                :d="secondaryItem.iconPath"
-                fill="currentColor"
-                stroke="none"
-              />
-            </svg>
             <span class="secondary-text">{{ $t(`menu.${secondaryItem.i18nKey}`) }}</span>
             <!-- 跳转提示图标 -->
-            <v-icon v-if="secondaryItem.external" class="jump-hint-icon" size="20">
-              mdi-open-in-new
-            </v-icon>
+            <v-icon v-if="secondaryItem.external" class="jump-hint-icon" icon="mdi-open-in-new" />
           </NuxtLink>
         </div>
       </div>
@@ -318,7 +303,7 @@ function isActiveRoute(path: string) {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, v-bind(currentActiveColor) 0%, transparent 100%);
+  background: linear-gradient(90deg, v-bind('currentActiveColor') 0%, transparent 100%);
   opacity: 0.1;
 }
 
@@ -347,24 +332,14 @@ function isActiveRoute(path: string) {
   color: var(--theme-text-primary);
   font-weight: 600;
   box-shadow:
-    inset 0 0 0.5rem color-mix(in srgb, v-bind(currentActiveColor), transparent 90%),
-    inset 1px 0 0 color-mix(in srgb, v-bind(currentActiveColor), transparent 80%);
+    inset 0 0 0.5rem color-mix(in srgb, v-bind('currentActiveColor'), transparent 90%),
+    inset 1px 0 0 color-mix(in srgb, v-bind('currentActiveColor'), transparent 80%);
 }
 
 .secondary-icon {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
+  font-size: 1.2em;
   color: var(--theme-text-secondary);
   z-index: 1;
-}
-
-.secondary-icon-path {
-  fill: currentColor;
-  stroke: none;
 }
 
 .secondary-item:hover .secondary-icon,
@@ -383,6 +358,7 @@ function isActiveRoute(path: string) {
 }
 
 .jump-hint-icon {
+  font-size: 1.2em;
   opacity: 0.5;
   transition: opacity var(--transition-base);
 }
