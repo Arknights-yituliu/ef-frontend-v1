@@ -184,57 +184,35 @@ function isActiveRoute(path: string) {
   border-bottom: 2px solid var(--theme-accent-color);
   cursor: pointer;
   overflow: hidden;
+  transition: background-color var(--transition-base);
 }
 
-.logo-area::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.logo-area:hover {
   background-color: var(--sidebar-item-hover-bg);
-  opacity: 0;
-  transition: opacity var(--transition-base);
-  z-index: 0;
-}
-
-.logo-area:hover::before {
-  opacity: 1;
 }
 
 .logo-img {
-  position: relative;
   width: calc(5rem * var(--sidebar-scale));
   height: calc(5rem * var(--sidebar-scale));
   object-fit: contain;
-  transition: transform var(--transition-base);
-  z-index: 1;
 }
 
 .logo-text {
-  position: relative;
   font-size: calc(var(--font-size-md) * var(--sidebar-scale));
   color: var(--theme-text-primary);
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   text-shadow: 0 0 calc(0.5rem * var(--sidebar-scale)) var(--theme-shadow-accent-hover);
-  z-index: 1;
 }
 
 /* 菜单容器 */
-.menu-container {
-  position: relative;
-}
-
 .menu-group {
   border-bottom: 1px solid var(--theme-border);
 }
 
 /* 小标题样式 */
 .section-header {
-  position: relative;
   display: flex;
   align-items: center;
   min-height: calc(2.5rem * var(--sidebar-scale));
@@ -248,7 +226,6 @@ function isActiveRoute(path: string) {
 }
 
 .section-header .docs-indicator-icon {
-  position: relative;
   width: 1rem;
   height: 1rem;
   color: var(--theme-text-secondary);
@@ -258,7 +235,6 @@ function isActiveRoute(path: string) {
 }
 
 .section-header-text {
-  position: relative;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -281,6 +257,12 @@ function isActiveRoute(path: string) {
   text-decoration: none;
   font-size: calc(var(--font-size-sm) * var(--sidebar-scale));
   overflow: hidden;
+  transition: background-color var(--transition-base);
+}
+
+.secondary-item:hover {
+  background-color: var(--sidebar-item-hover-bg);
+  color: var(--theme-text-primary);
 }
 
 /* 左侧装饰条 */
@@ -290,11 +272,6 @@ function isActiveRoute(path: string) {
   top: 0;
   bottom: 0;
   width: 0.25rem;
-  transition:
-    width var(--transition-base),
-    box-shadow var(--transition-base),
-    background-color var(--transition-base),
-    opacity var(--transition-base);
   opacity: 0.6;
 }
 
@@ -307,27 +284,6 @@ function isActiveRoute(path: string) {
   opacity: 0.1;
 }
 
-.secondary-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--sidebar-item-hover-bg);
-  opacity: 0;
-  transition: opacity var(--transition-base);
-  z-index: 0;
-}
-
-.secondary-item:hover::before {
-  opacity: 1;
-}
-
-.secondary-item:hover {
-  color: var(--theme-text-primary);
-}
-
 .secondary-item.active {
   color: var(--theme-text-primary);
   font-weight: 600;
@@ -338,23 +294,14 @@ function isActiveRoute(path: string) {
 
 .secondary-icon {
   font-size: 1.2em;
-  color: var(--theme-text-secondary);
-  z-index: 1;
-}
-
-.secondary-item:hover .secondary-icon,
-.secondary-item.active .secondary-icon {
-  color: var(--theme-text-primary);
 }
 
 .secondary-text {
-  position: relative;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-left: calc(0.5rem * var(--sidebar-scale));
-  z-index: 1;
 }
 
 .jump-hint-icon {
@@ -371,7 +318,6 @@ function isActiveRoute(path: string) {
 .sidebar-footer {
   margin-top: auto;
   padding: 1rem;
-  position: relative;
 }
 
 .footer-decorator {
