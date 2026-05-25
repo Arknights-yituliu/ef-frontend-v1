@@ -1208,6 +1208,8 @@ function checkRewardIsValid(reward: Reward): boolean {
 const arsenalStandardPulls = ref<number>(0);
 const arsenalSpecialPulls = ref<number>(0);
 const arsenalCoefficient = ref<number>(80);
+const ARSENAL_ORIGINIUM_QUOTA_RATE = 25;
+const arsenalOriginiumExchange = ref<number | null>(0);
 
 // 实际抽数 = 基础 + 特许，如果特许>30则额外+10
 const arsenalActualPulls = computed(() => {
@@ -1218,8 +1220,41 @@ const arsenalActualPulls = computed(() => {
   return pulls;
 });
 
-// 武库配额 = 实际抽数 × 系数
-const arsenalQuotaResult = computed(() => arsenalActualPulls.value * arsenalCoefficient.value);
+const arsenalOriginiumExchangeValue = computed(() =>
+  normalizeArsenalOriginiumExchange(arsenalOriginiumExchange.value),
+);
+const arsenalOriginiumQuota = computed(
+  () => arsenalOriginiumExchangeValue.value * ARSENAL_ORIGINIUM_QUOTA_RATE,
+);
+const hasArsenalOriginiumExchange = computed(() => arsenalOriginiumExchangeValue.value > 0);
+
+// 武库配额 = 实际抽数 × 系数 + 源石数 × 25
+const arsenalQuotaResult = computed(
+  () => arsenalActualPulls.value * arsenalCoefficient.value + arsenalOriginiumQuota.value,
+);
+
+function setArsenalOriginiumExchange(value: number | null) {
+  arsenalOriginiumExchange.value = normalizeArsenalOriginiumExchange(value);
+}
+
+function normalizeArsenalOriginiumExchangeInput(event: Event) {
+  const input = event.target as HTMLInputElement | null;
+  const normalizedValue = normalizeArsenalOriginiumExchange(
+    input?.value ?? arsenalOriginiumExchange.value,
+  );
+  arsenalOriginiumExchange.value = normalizedValue;
+  if (input) {
+    input.value = String(normalizedValue);
+  }
+}
+
+function normalizeArsenalOriginiumExchange(value: number | string | null | undefined) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) {
+    return 0;
+  }
+  return Math.max(0, Math.floor(numericValue));
+}
 
 // 监听总计数据变化，自动填入武库配额
 watch(
@@ -1644,9 +1679,32 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   统计值(80)
                 </v-btn>
               </div>
+              <div class="gacha-calculator-arsenal-quota-row">
+                <label class="gacha-calculator-arsenal-quota-label">源石兑换武库配额</label>
+                <v-number-input
+                  class="gacha-calculator-arsenal-quota-input-field"
+                  control-variant="hidden"
+                  density="compact"
+                  hide-details="auto"
+                  :min="0"
+                  :model-value="arsenalOriginiumExchange"
+                  :precision="0"
+                  :step="1"
+                  variant="solo"
+                  @blur="normalizeArsenalOriginiumExchangeInput"
+                  @input="normalizeArsenalOriginiumExchangeInput"
+                  @update:model-value="setArsenalOriginiumExchange"
+                />
+              </div>
               <v-divider style="margin: 0.5rem 0" />
               <div class="gacha-calculator-arsenal-quota-formula">
-                <span>实际抽数 × 武库配额系数 = 武库配额</span>
+                <span>
+                  实际抽数 × 武库配额系数
+                  <template v-if="hasArsenalOriginiumExchange">
+                    + 源石数 × {{ ARSENAL_ORIGINIUM_QUOTA_RATE }}
+                  </template>
+                  = 武库配额
+                </span>
               </div>
               <div class="gacha-calculator-arsenal-quota-formula-detail">
                 <span class="gacha-calculator-arsenal-quota-formula-num">
@@ -1656,6 +1714,16 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <span class="gacha-calculator-arsenal-quota-formula-num">
                   {{ arsenalCoefficient }}
                 </span>
+                <template v-if="hasArsenalOriginiumExchange">
+                  <span class="gacha-calculator-arsenal-quota-formula-op"> + </span>
+                  <span class="gacha-calculator-arsenal-quota-formula-num">
+                    {{ arsenalOriginiumExchangeValue }}
+                  </span>
+                  <span class="gacha-calculator-arsenal-quota-formula-op"> × </span>
+                  <span class="gacha-calculator-arsenal-quota-formula-num">
+                    {{ ARSENAL_ORIGINIUM_QUOTA_RATE }}
+                  </span>
+                </template>
                 <span class="gacha-calculator-arsenal-quota-formula-op"> = </span>
                 <span class="gacha-calculator-arsenal-quota-result-value">
                   {{ arsenalQuotaResult }}
