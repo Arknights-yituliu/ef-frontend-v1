@@ -114,7 +114,7 @@
         </thead>
         <tbody>
           <tr v-for="(content, index) in props.contents" :key="index">
-            <td>{{ content.name[locale] }}</td>
+            <td>{{ getItemName(content.itemId) }}</td>
             <td>{{ content.quantity }}</td>
             <td>{{ getItemBundleValue(content).toFixed(2) }}</td>
             <td>{{ (getItemBundleValuePercentage(content, props) * 100).toFixed(2) }}%</td>

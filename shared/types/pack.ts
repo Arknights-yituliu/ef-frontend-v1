@@ -5,7 +5,7 @@ export interface LocalizedText {
 
 export interface PackContent {
   itemId: string;
-  name: LocalizedText;
+  name?: LocalizedText;
   quantity: number;
 }
 
