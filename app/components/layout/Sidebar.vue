@@ -8,12 +8,6 @@
 
     <!-- 菜单容器 -->
     <nav class="menu-container hide-scrollbar">
-      <!-- 主页链接 -->
-      <NuxtLink class="secondary-item home-link" :class="{ active: route.path === '/' }" to="/">
-        <v-icon class="secondary-icon" size="20">mdi-home</v-icon>
-        <span class="secondary-text">{{ $t('menu.home') }}</span>
-      </NuxtLink>
-
       <!-- 菜单组 -->
       <div
         v-for="(primaryItem, primaryIndex) in menuItems.filter(isPrimaryItemVisible)"
@@ -21,7 +15,7 @@
         class="menu-group"
       >
         <!-- 小标题 -->
-        <div class="section-header">
+        <div v-if="!primaryItem.hideHeader" class="section-header">
           <!-- isDocs 标识图标 -->
           <v-icon v-if="primaryItem.isDocs" class="docs-indicator-icon" size="16">
             mdi-book
@@ -92,6 +86,7 @@ interface PrimaryMenuItem {
   vuetifyIcon?: string;
   isDocs?: boolean;
   isHidden?: boolean;
+  hideHeader?: boolean;
   color?: string;
   children: SecondaryMenuItem[];
 }
@@ -188,6 +183,8 @@ function isActiveRoute(path: string) {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  width: 100%;
+  --sidebar-scale: clamp(0.6, calc(0.06vw / 1px + 0.384), 1);
 }
 
 /* Logo 区域 */
@@ -197,8 +194,8 @@ function isActiveRoute(path: string) {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
-  gap: 1rem;
+  padding: calc(1rem * var(--sidebar-scale)) 0;
+  gap: calc(1rem * var(--sidebar-scale));
   border-bottom: 2px solid var(--theme-accent-color);
   cursor: pointer;
   overflow: hidden;
@@ -223,8 +220,8 @@ function isActiveRoute(path: string) {
 
 .logo-img {
   position: relative;
-  width: 5rem;
-  height: 5rem;
+  width: calc(5rem * var(--sidebar-scale));
+  height: calc(5rem * var(--sidebar-scale));
   object-fit: contain;
   transition: transform var(--transition-base);
   z-index: 1;
@@ -232,12 +229,12 @@ function isActiveRoute(path: string) {
 
 .logo-text {
   position: relative;
-  font-size: var(--font-size-md);
+  font-size: calc(var(--font-size-md) * var(--sidebar-scale));
   color: var(--theme-text-primary);
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
-  text-shadow: 0 0 0.5rem var(--theme-shadow-accent-hover);
+  text-shadow: 0 0 calc(0.5rem * var(--sidebar-scale)) var(--theme-shadow-accent-hover);
   z-index: 1;
 }
 
@@ -255,10 +252,10 @@ function isActiveRoute(path: string) {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 2.5rem;
-  padding: 0 1rem;
+  min-height: calc(2.5rem * var(--sidebar-scale));
+  padding: 0 calc(1rem * var(--sidebar-scale));
   background-color: var(--theme-bg-tertiary);
-  font-size: calc(var(--font-size-sm) * 0.8);
+  font-size: calc(var(--font-size-sm) * 0.8 * var(--sidebar-scale));
   color: var(--theme-text-primary);
   font-weight: 600;
   text-transform: uppercase;
@@ -291,13 +288,13 @@ function isActiveRoute(path: string) {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.75rem;
-  height: 3.5rem;
-  padding-left: 2.2rem;
-  padding-right: 1rem;
+  gap: calc(0.75rem * var(--sidebar-scale));
+  height: calc(3.5rem * var(--sidebar-scale));
+  padding-left: calc(2.2rem * var(--sidebar-scale));
+  padding-right: calc(1rem * var(--sidebar-scale));
   color: var(--theme-text-secondary);
   text-decoration: none;
-  font-size: var(--font-size-sm);
+  font-size: calc(var(--font-size-sm) * var(--sidebar-scale));
   overflow: hidden;
 }
 
@@ -381,7 +378,7 @@ function isActiveRoute(path: string) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: 0.5rem;
+  margin-left: calc(0.5rem * var(--sidebar-scale));
   z-index: 1;
 }
 

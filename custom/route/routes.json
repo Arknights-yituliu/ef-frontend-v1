@@ -1,5 +1,18 @@
 [
   {
+    "i18nKey": "home",
+    "nameKey": "menu.home",
+    "hideHeader": true,
+    "children": [
+      {
+        "i18nKey": "home",
+        "nameKey": "menu.home",
+        "routePath": "/",
+        "vuetifyIcon": "mdi-home"
+      }
+    ]
+  },
+  {
     "i18nKey": "materialProfit",
     "nameKey": "menu.materialProfit",
     "vuetifyIcon": "mdi-chart-bar",
