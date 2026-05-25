@@ -67,7 +67,6 @@ import { useNow, useWindowSize } from '@vueuse/core';
 interface PrimaryMenuItem {
   i18nKey: string;
   nameKey: string;
-  iconPath?: string;
   vuetifyIcon?: string;
   isDocs?: boolean;
   isHidden?: boolean;
@@ -80,7 +79,6 @@ interface SecondaryMenuItem {
   i18nKey: string;
   nameKey: string;
   routePath: string;
-  iconPath?: string;
   vuetifyIcon?: string;
   isHidden?: boolean;
   isDocs?: boolean;
