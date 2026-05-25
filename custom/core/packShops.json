@@ -5,7 +5,11 @@
       "zh-CN": "协议通行证",
       "en-US": "Protocol Pass"
     },
-    "goodsIds": ["bp_track_free", "bp_track_originium", "bp_track_pay"]
+    "goodsIds": [
+      "bp_track_free",
+      "bp_track_originium",
+      "bp_track_pay"
+    ]
   },
   "Newbie_pack": {
     "shopId": "Newbie_pack",
@@ -13,7 +17,11 @@
       "zh-CN": "启程组合包",
       "en-US": "Horizons Bundle"
     },
-    "goodsIds": ["newbie_giftpack_01", "newbie_giftpack_02", "newbie_giftpack_6_special"]
+    "goodsIds": [
+      "newbie_giftpack_01",
+      "newbie_giftpack_02",
+      "newbie_giftpack_6_special"
+    ]
   },
   "MCard": {
     "shopId": "MCard",
@@ -21,7 +29,9 @@
       "zh-CN": "月卡",
       "en-US": "Monthly Pass"
     },
-    "goodsIds": ["payshop_giftpack_monthlycard"]
+    "goodsIds": [
+      "payshop_giftpack_monthlycard"
+    ]
   },
   "Permanent_pack": {
     "shopId": "Permanent_pack",
@@ -29,7 +39,10 @@
       "zh-CN": "标准组合包",
       "en-US": "Standard Bundle"
     },
-    "goodsIds": ["monthly_giftpack_01", "weekly_giftpack_01"]
+    "goodsIds": [
+      "monthly_giftpack_01",
+      "weekly_giftpack_01"
+    ]
   },
   "Seasonal_Rec_pack": {
     "shopId": "Seasonal_Rec_pack",
@@ -37,7 +50,11 @@
       "zh-CN": "限时组合包",
       "en-US": "Limited Bundle"
     },
-    "goodsIds": ["seasonal_crossover_lt_1_2_1", "seasonal_giftpack", "seasonal_giftpack_combine"]
+    "goodsIds": [
+      "seasonal_crossover_lt_1_2_1",
+      "seasonal_giftpack",
+      "seasonal_giftpack_combine"
+    ]
   },
   "SP_weapon_supply": {
     "shopId": "SP_weapon_supply",

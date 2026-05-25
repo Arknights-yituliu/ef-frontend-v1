@@ -18,6 +18,7 @@ export interface PackData {
   description?: LocalizedText;
   price: number;
   imageUrl: string;
+  backgroundImageUrl?: string;
   contents: PackContent[];
   startTimestamp?: number;
   endTimestamp?: number;
