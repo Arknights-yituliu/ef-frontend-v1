@@ -1345,6 +1345,21 @@ function setVersionRewardsActive(version: string, active: boolean) {
   }
 }
 
+function resetGachaCalculator() {
+  const lastVersion = versionOptions.value.at(-1);
+  if (!lastVersion) {
+    return;
+  }
+
+  for (const version of versionOptions.value) {
+    const active = version === lastVersion;
+    setVersionVisible(version, active);
+    setVersionRewardsActive(version, active);
+  }
+
+  calc();
+}
+
 // 常驻奖励的分类名称列表，包含五个分类
 const permanentRewardCategoryNames = [
   '地图资源',
@@ -1660,7 +1675,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           <v-expansion-panel-text>
             <div class="gacha-calculator-control-panel">
               <section class="gacha-calculator-control-section">
-                <div class="gacha-calculator-control-section-title">氪金项目</div>
+                <div class="gacha-calculator-control-section-title">重置</div>
                 <div class="gacha-calculator-control-actions">
                   <v-btn
                     color="orange"
@@ -1670,6 +1685,15 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                     @click="resetRechargeResourcesKeepMonthlyPass"
                   >
                     重置月卡以外的氪金项目
+                  </v-btn>
+                  <v-btn
+                    color="red"
+                    prepend-icon="mdi-restore"
+                    size="small"
+                    variant="tonal"
+                    @click="resetGachaCalculator"
+                  >
+                    重置攒抽计算器
                   </v-btn>
                 </div>
               </section>
@@ -2335,6 +2359,8 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-control-actions {
   display: flex;
+  gap: 8px;
+  align-items: center;
   justify-content: flex-start;
 }
 
