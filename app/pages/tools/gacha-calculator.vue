@@ -7,8 +7,7 @@ import type {
   RewardStatisticsResultDetail,
   TotalPullsSingle,
 } from '@/shared/types/gacha-calculator';
-import { dateFormat } from '#shared/utils/dateUtil';
-import { addReward, getRewardPull, getRewardsPull } from '#shared/utils/gacha-calculator';
+import { addReward, getRewardPull } from '#shared/utils/gacha-calculator';
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
@@ -488,7 +487,7 @@ const paidResourcesTotalPrice = computed(() => {
 
   // 月卡金额
   if (rechargeResources.value.monthlyPass) {
-    const monthlyPack = packs['月卡'];
+    const monthlyPack = packs['payshop_giftpack_monthlycard'];
     if (monthlyPack) {
       total += monthlyPack.price;
     }
@@ -565,7 +564,7 @@ function rechargeResourceStatistics(): void {
 
   // 计算月卡
   if (rechargeResources.value.monthlyPass) {
-    const monthlyPack = packs['月卡'];
+    const monthlyPack = packs['payshop_giftpack_monthlycard'];
     if (monthlyPack) {
       result.originiumRecharge += numberFloor((12 / 30) * remainingDays, 0); // 一次性12源石
       result.diamond += numberFloor(remainingDays, 0) * 200; // 每天200嵌晶玉
@@ -588,31 +587,23 @@ function rechargeResourceStatistics(): void {
       const pack = packs[packId as keyof typeof packs];
       if (pack && pack.contents) {
         for (const item of pack.contents) {
-          switch (item.itemId) {
-            case 'item_originium_recharge': {
-              result.originiumRecharge += item.quantity * quantity;
-              break;
-            }
-            case 'item_diamond': {
-              result.diamond += item.quantity * quantity;
-
-              break;
-            }
-            case 'item_ticketgacha_special_single': {
+          const itemId = item.itemId;
+          if (itemId === 'item_originium_recharge') {
+            result.originiumRecharge += item.quantity * quantity;
+          } else if (itemId === 'item_diamond') {
+            result.diamond += item.quantity * quantity;
+          } else if (itemId.includes('ticketgacha_special_single')) {
+            if (itemId.includes('_lt_')) {
+              result.ticketgachaLimitedSingle += item.quantity * quantity;
+            } else {
               result.ticketgachaSpecialSingle += item.quantity * quantity;
-
-              break;
             }
-            case 'item_ticketgacha_standard_single': {
-              result.ticketgachaStandardSingle += item.quantity * quantity;
-
-              break;
-            }
-            default: {
-              if (item.itemId.includes('ticketgacha_special_ten')) {
-                result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
-              }
-            }
+          } else if (itemId.includes('ticketgacha_standard_single')) {
+            result.ticketgachaStandardSingle += item.quantity * quantity;
+          } else if (itemId.includes('ticketgacha_special_ten')) {
+            result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
+          } else if (itemId.includes('ticketgacha_standard_ten')) {
+            result.ticketgachaStandardSingle += item.quantity * 10 * quantity;
           }
         }
       }
