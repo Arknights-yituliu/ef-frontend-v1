@@ -198,6 +198,11 @@ export function makePacks(): Record<string, PackData> {
       'en-US': 'Price is based on Originium conversion',
     },
   };
+  const imageUrlMap: Record<string, string> = {
+    bp_track_free: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/基础配给.webp',
+    bp_track_originium: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/源石配给.webp',
+    bp_track_pay: 'https://cos.yituliu.cn/endfield/screenshot-images/packs/协议定制.webp',
+  };
 
   // 添加 3 个协议通行证
   for (const track of Object.values(battlePassTrackTable)) {
@@ -247,7 +252,7 @@ export function makePacks(): Record<string, PackData> {
       category: 'BP',
       description: descriptionMap[track.trackId],
       price: priceMap[track.trackId]!,
-      imageUrl: '',
+      imageUrl: imageUrlMap[track.trackId] ?? '',
       contents,
     };
   }
