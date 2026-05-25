@@ -186,19 +186,6 @@
   flex: 1;
 }
 
-/* 隐藏滚动条 */
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari, Opera */
-}
-
 /* ============================================
    响应式工具类
    ============================================ */
@@ -319,12 +306,12 @@
   width: 4px;
   background: linear-gradient(
     to bottom,
-    #00FFFF 0%,
-    #00FFFF 25%,
-    #FF00FF 25%,
-    #FF00FF 50%,
-    #FFFF00 50%,
-    #FFFF00 75%,
+    #00ffff 0%,
+    #00ffff 25%,
+    #ff00ff 25%,
+    #ff00ff 50%,
+    #ffff00 50%,
+    #ffff00 75%,
     #808080 75%,
     #808080 100%
   );

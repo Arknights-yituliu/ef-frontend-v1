@@ -1,9 +1,6 @@
 <template>
   <div class="docs-toc-wrapper" :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }">
-    <aside
-      class="docs-toc hide-scrollbar"
-      :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }"
-    >
+    <aside class="docs-toc" :class="{ 'is-collapsed': isCollapsed, 'is-open': isOpen }">
       <!-- 装饰背景 -->
       <div class="toc-bg-decorator" />
 
@@ -139,7 +136,7 @@ let highlightUpdateTimer: ReturnType<typeof setTimeout> | null = null;
 // 监听滚动，更新激活的标题
 let scrollHandler: (() => void) | null = null;
 
-function getDOMElement (el: Element | ComponentPublicInstance | null): HTMLElement | null {
+function getDOMElement(el: Element | ComponentPublicInstance | null): HTMLElement | null {
   if (!el) {
     return null;
   }
@@ -152,7 +149,7 @@ function getDOMElement (el: Element | ComponentPublicInstance | null): HTMLEleme
   return null;
 }
 
-function setHeadingRef (el: Element | ComponentPublicInstance | null, id: string) {
+function setHeadingRef(el: Element | ComponentPublicInstance | null, id: string) {
   const element = getDOMElement(el);
   if (!element) {
     headingRefs.value.delete(id);
@@ -161,20 +158,20 @@ function setHeadingRef (el: Element | ComponentPublicInstance | null, id: string
   headingRefs.value.set(id, element);
 }
 
-function getRelativeTop (element: HTMLElement, container: HTMLElement) {
+function getRelativeTop(element: HTMLElement, container: HTMLElement) {
   const elementRect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
   return elementRect.top - containerRect.top;
 }
 
-function resolveActiveHeading () {
+function resolveActiveHeading() {
   if (activeHeading.value) {
     return activeHeading.value;
   }
   return props.headings[0]?.id || '';
 }
 
-function updateHighlight () {
+function updateHighlight() {
   nextTick(() => {
     const container = tocNavRef.value;
     if (!container || isCollapsed.value) {
@@ -196,7 +193,7 @@ function updateHighlight () {
 }
 
 // 延迟更新高亮
-function delayedUpdateHighlight () {
+function delayedUpdateHighlight() {
   if (highlightUpdateTimer) {
     clearTimeout(highlightUpdateTimer);
   }
@@ -207,7 +204,7 @@ function delayedUpdateHighlight () {
 }
 
 // 切换折叠状态
-function toggleCollapse () {
+function toggleCollapse() {
   isCollapsed.value = !isCollapsed.value;
   if (isCollapsed.value) {
     highlightHeight.value = 0;
@@ -218,7 +215,7 @@ function toggleCollapse () {
 }
 
 // 滚动到指定标题
-function scrollToHeading (id: string) {
+function scrollToHeading(id: string) {
   const element = document.getElementById(id);
   if (element) {
     const top = element.offsetTop - 80; // 减去顶部导航栏高度
