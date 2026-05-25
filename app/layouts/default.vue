@@ -7,7 +7,10 @@
     <!--    @complete="handleInitialLoaderComplete"-->
     <!--  />-->
     <v-navigation-drawer v-model="drawer" class="navigation-drawer" :width="280">
-      <LayoutSidebar />
+      <!-- 在侧边栏外面包一层，用于添加滚动条的 css -->
+      <div class="sidebar-scroll-wrapper">
+        <LayoutSidebar />
+      </div>
     </v-navigation-drawer>
 
     <v-app-bar class="app-bar" :elevation="0">
@@ -117,6 +120,12 @@ onUnmounted(() => {
 <style scoped>
 .navigation-drawer {
   border-right: 2px solid var(--theme-accent-color);
+}
+
+.sidebar-scroll-wrapper {
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .app-bar {
