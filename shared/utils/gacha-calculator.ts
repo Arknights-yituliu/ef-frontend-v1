@@ -8,11 +8,11 @@ import type {
 import { numberFloor } from './numberUtil';
 
 export const itemIdDict: ItemDict = {
-  originiumRecharge: 'originium_recharge',
-  diamond: 'diamond',
-  ticketgachaStandardSingle: 'ticketgacha_standard_single',
-  ticketgachaSpecialSingle: 'ticketgacha_special_single',
-  ticketgachaLimitedSingle: 'ticketgacha_special_single_lt_1_0_1',
+  originiumRecharge: 'item_originium_recharge',
+  diamond: 'item_diamond',
+  ticketgachaStandardSingle: 'item_ticketgacha_standard_single',
+  ticketgachaSpecialSingle: 'item_ticketgacha_special_single',
+  ticketgachaLimitedSingle: 'item_ticketgacha_special_single_lt',
 };
 
 /**
@@ -104,7 +104,7 @@ function countTuesdaysBetweenV2(
   const startTimestamp = start.getTime();
   const endTimestamp = end.getTime();
   let week = numberFloor((endTimestamp - startTimestamp) / oneDayTimestamp / 7, 0);
-  if(start.getDay() !== 1) {
+  if (start.getDay() !== 1) {
     week++;
   }
 

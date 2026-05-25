@@ -6,7 +6,6 @@ import {
   markRewardDefaultActive,
 } from '#shared/utils/gacha-calculator';
 
-
 import { numberRound } from '#shared/utils/numberUtil';
 import { ref, watch } from 'vue';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
@@ -40,7 +39,6 @@ const freeMonthlyPass = ref<Reward>({
 watch(poolStartDate, () => {
   updateFreeMonthlyPass();
 });
-
 
 function updateFreeMonthlyPass() {
   // 计算焕新月卡赠礼剩余天数
@@ -98,14 +96,14 @@ const weekTaskReward = ref<Reward>({
 function calculatorDailyReward(start: Date, end: Date): void {
   const remainingDays: number = calculateDaysDifference(start, end);
   dailyReward.value.name = {
-    zh: `日常X${numberRound(remainingDays, 0)}天`,
+    zh: `日常 × ${numberRound(remainingDays, 0)} 天`,
     en: '',
   };
   dailyReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
 
   const remainingWeek: number = countTuesdaysBetweenV2(start, end);
   weekTaskReward.value.name = {
-    zh: `周常奖励X${numberRound(remainingWeek, 0)}周`,
+    zh: `周常奖励 × ${numberRound(remainingWeek, 0)} 周`,
     en: '',
   };
   weekTaskReward.value.content.diamond = numberRound(remainingWeek, 0) * 500;
@@ -118,7 +116,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
     {
       id: 'day_reward',
       name: {
-        zh: `日常X${numberRound(remainingDays, 0)}天`,
+        zh: `日常 × ${numberRound(remainingDays, 0)} 天`,
         en: '',
       },
       start: new Date('2026/01/22 12:00:00'),
@@ -138,7 +136,7 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
     {
       id: 'week_task_reward',
       name: {
-        zh: `周常奖励X${numberRound(remainingWeek, 0)}周`,
+        zh: `周常奖励 × ${numberRound(remainingWeek, 0)} 周`,
         en: '',
       },
       start: new Date('2026/01/22 12:00:00'),

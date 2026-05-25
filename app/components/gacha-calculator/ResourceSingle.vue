@@ -7,39 +7,35 @@ const props = defineProps<Reward>();
  *
  */
 function getImageUrl(itemId: string): string {
-  if (itemIdDict[itemId]) {
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_${itemIdDict[itemId]}.webp`;
-  } else {
-    return `https://cos.yituliu.cn/endfield/unpack-images/items/item_1.webp`;
-  }
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${itemIdDict[itemId]}.png`;
 }
 </script>
 
 <template>
   <div>
-  <div>
-    <div class="gacha-calculator-resource-single">
-      <div class="gacha-calculator-resource-single-title">
-        {{ props.name.zh }}
+    <div>
+      <div class="gacha-calculator-resource-single">
+        <div class="gacha-calculator-resource-single-title">
+          {{ props.name.zh }}
+        </div>
+        <div
+          v-for="(reward, name) in props.content"
+          v-show="reward > 0"
+          :key="`${props.id}-${name}`"
+          class="gacha-calculator-resource-single-content"
+        >
+          <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
+          × {{ reward }}
+        </div>
+        <!-- <div class="gacha-calculator-resource-single-version">{{ props.version }}</div> -->
       </div>
-      <div
-        v-for="(reward, name) in props.content"
-        v-show="reward > 0"
-        :key="`${props.id}-${name}`"
-        class="gacha-calculator-resource-single-content"
-      >
-        <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
-        X {{ reward }}
-      </div>
-      <!-- <div class="gacha-calculator-resource-single-version">{{ props.version }}</div> -->
     </div>
-  </div>
-  <template v-if="props.tips">
+    <template v-if="props.tips">
       <div v-for="tip in props.tips" :key="tip" class="gacha-calculator-resource-single-tip">
         {{ tip }}
       </div>
     </template>
-    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -90,8 +86,6 @@ function getImageUrl(itemId: string): string {
 .gacha-calculator-resource-single-tip {
   font-size: 0.7rem;
 }
-
-
 
 @media screen and (max-width: 600px) {
   .gacha-calculator-resource-single {

@@ -361,8 +361,8 @@ function handleImageUpload(event: Event) {
   }
   console.log('=== handleImageUpload 执行结束 ===');
 }
-
 </script>
+
 <template>
   <div class="version-reward-diy-container">
     <!-- 左侧绘图区 -->
@@ -411,51 +411,48 @@ function handleImageUpload(event: Event) {
                 <!-- <div class="version-reward-item-bar blue-bar"></div> -->
               </div>
               <div class="version-reward-item-name">{{ reward.name.zh }}</div>
-              <div
-                v-show="reward.content.originiumRecharge > 0"
-                class="version-reward-item-content"
-              >
+              <div v-if="reward.content.originiumRecharge > 0" class="version-reward-item-content">
                 <img
-                  alt="existing"
+                  alt="衍质源石"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                 />× {{ reward.content.originiumRecharge }}
               </div>
-              <div v-show="reward.content.diamond > 0" class="version-reward-item-content">
+              <div v-if="reward.content.diamond > 0" class="version-reward-item-content">
                 <img
-                  alt="existing"
+                  alt="嵌晶玉"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                 />× {{ numberFloor(reward.content.diamond, 0) }}
               </div>
               <div
-                v-show="reward.content.ticketgachaStandardSingle > 0"
+                v-if="reward.content.ticketgachaStandardSingle > 0"
                 class="version-reward-item-content"
               >
                 <img
-                  alt="existing"
+                  alt="基础寻访凭证"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                 />× {{ reward.content.ticketgachaStandardSingle }}
               </div>
               <div
-                v-show="reward.content.ticketgachaSpecialSingle > 0"
+                v-if="reward.content.ticketgachaSpecialSingle > 0"
                 class="version-reward-item-content"
               >
                 <img
-                  alt="existing"
+                  alt="特许寻访凭证"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                 />× {{ reward.content.ticketgachaSpecialSingle }}
               </div>
               <div
-                v-show="reward.content.ticketgachaLimitedSingle > 0"
+                v-if="reward.content.ticketgachaLimitedSingle > 0"
                 class="version-reward-item-content"
               >
                 <img
-                  alt="existing"
+                  alt="限时寻访凭证"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
                 />× {{ reward.content.ticketgachaLimitedSingle }}
               </div>
             </div>
@@ -492,37 +489,37 @@ function handleImageUpload(event: Event) {
               <th></th>
               <th>
                 <img
-                  alt="existing"
+                  alt="衍质源石"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_originium_recharge.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                 />
               </th>
               <th>
                 <img
-                  alt="existing"
+                  alt="嵌晶玉"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_diamond.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                 />
               </th>
               <th>
                 <img
-                  alt="existing"
+                  alt="标准寻访"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_standard_single.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                 />
               </th>
               <th>
                 <img
-                  alt="existing"
+                  alt="特许寻访"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                 />
               </th>
               <th>
                 <img
-                  alt="existing"
+                  alt="限时特许寻访"
                   class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/unpack-images/items/item_ticketgacha_special_single_lt_1_0_1.webp"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
                 />
               </th>
               <th>特许寻访</th>
