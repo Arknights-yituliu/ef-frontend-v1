@@ -39,32 +39,6 @@ const firstRechargeOriginiumPackData = [
   { price: 648, originumCount: 560 },
 ];
 
-const extraPacks: Record<string, PackData> = {
-  seasonal_giftpack: {
-    packId: 'seasonal_giftpack',
-    displayName: {
-      'zh-CN': '限时寻访组合包',
-      'en-US': 'Gacha HH Bundle',
-    },
-    category: 'Seasonal_Rec_pack',
-    price: 98,
-    imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallicon.webp',
-    contents: [
-      {
-        itemId: 'ticketgacha_special_ten_lt_1_0_1',
-        name: getLocalizedValue(itemTable['ticketgacha_special_ten_lt_1_0_1']!.name),
-        quantity: 1,
-      },
-      {
-        itemId: 'item_gold',
-        name: getLocalizedValue(itemTable['item_gold']!.name),
-        quantity: 80_000,
-      },
-    ],
-  },
-};
-
 /**
  * 判定是否为限时寻访组合包
  * 标准：98 元，且类型为 Seasonal_Rec_pack，且名称以“寻访组合包”结尾，且含有 80000 折金票
@@ -123,8 +97,30 @@ export function makePacks(): Record<string, PackData> {
     packs[packId] = packData;
   }
 
-  // 合并额外礼包
-  Object.assign(packs, extraPacks);
+  // 添加限时寻访组合包
+  packs['seasonal_giftpack'] = {
+    packId: 'seasonal_giftpack',
+    displayName: {
+      'zh-CN': '限时寻访组合包',
+      'en-US': 'Gacha HH Bundle',
+    },
+    category: 'Seasonal_Rec_pack',
+    price: 98,
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallicon.webp',
+    contents: [
+      {
+        itemId: 'ticketgacha_special_ten_lt_1_0_1',
+        name: getLocalizedValue(itemTable['ticketgacha_special_ten_lt_1_0_1']!.name),
+        quantity: 1,
+      },
+      {
+        itemId: 'item_gold',
+        name: getLocalizedValue(itemTable['item_gold']!.name),
+        quantity: 80_000,
+      },
+    ],
+  };
 
   // 添加源石礼包（非首充）
   for (const [index, { price, originumCount }] of nonFirstRechargeOriginiumPackData.entries()) {
