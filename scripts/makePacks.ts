@@ -119,9 +119,9 @@ export function makePacks(): Record<string, PackData> {
       'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallbg.webp',
     contents: [
       {
-        itemId: 'ticketgacha_special_ten_lt_1_0_1',
-        name: getLocalizedValue(itemTable['ticketgacha_special_ten_lt_1_0_1']!.name),
-        quantity: 1,
+        itemId: 'ticketgacha_special_single_lt_1_0_1',
+        name: getLocalizedValue(itemTable['ticketgacha_special_single_lt_1_0_1']!.name),
+        quantity: 10,
       },
       {
         itemId: 'item_gold',

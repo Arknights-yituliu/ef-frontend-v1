@@ -1953,12 +1953,12 @@
     "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallbg.webp",
     "contents": [
       {
-        "itemId": "ticketgacha_special_ten_lt_1_0_1",
+        "itemId": "ticketgacha_special_single_lt_1_0_1",
         "name": {
-          "zh-CN": "行火留烬十连凭证",
-          "en-US": "Firewalker's Trail 10×Permit"
+          "zh-CN": "行火留烬寻访凭证",
+          "en-US": "Firewalker's Trail HH Permit"
         },
-        "quantity": 1
+        "quantity": 10
       },
       {
         "itemId": "item_gold",

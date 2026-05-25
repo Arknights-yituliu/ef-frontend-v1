@@ -3,6 +3,8 @@ import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
 import { computed } from 'vue';
 import { packs } from '@/custom/core/packs';
 
+const { locale } = useI18n();
+
 const props = defineProps<{
   modelValue: {
     monthlyPass: boolean;
@@ -50,8 +52,12 @@ const monthlyPassDays = computed(() => {
 });
 
 // 计算月卡资源（从packs.ts获取）
+const monthlyPackData = computed(() => {
+  return Object.values(packs).find((p) => p.category === 'MCard');
+});
+
 const monthlyPassResources = computed(() => {
-  const monthlyPack = packs['月卡'];
+  const monthlyPack = monthlyPackData.value;
   const originiumRecharge = monthlyPack ? 12 : 0; // 一次性12源石
   const oneTimeDiamond = monthlyPack ? 6000 : 0; // 一次性6000玉
   const dailyDiamond = monthlyPassDays.value * 200; // 每天200玉
@@ -76,18 +82,24 @@ function isGachaResource(itemId: string): boolean {
   return (
     itemId === 'item_originium_recharge' ||
     itemId === 'item_diamond' ||
-    itemId === 'item_ticketgacha_special_single' ||
-    itemId === 'item_ticketgacha_standard_single' ||
-    itemId.includes('ticketgacha_special_ten') ||
-    itemId.includes('ticketgacha_standard_ten')
+    itemId.includes('ticketgacha_standard_single') ||
+    itemId.includes('ticketgacha_special_single') ||
+    itemId.includes('ticketgacha_special_single_lt') ||
+    itemId.includes('ticketgacha_special_ten_lt')
   );
 }
 
 // 礼包列表（排除月卡、通行证和源石相关的礼包，以及0抽的礼包）
 const giftPacks = computed(() => {
   const packList = [];
+  const excludedCategories = new Set([
+    'MCard',
+    'BP',
+    'first_originium_recharge',
+    'non_first_originium_recharge',
+  ]);
   for (const [key, pack] of Object.entries(packs)) {
-    if (key.includes('月卡') || key.includes('bp_track') || key.includes('源石')) {
+    if (excludedCategories.has(pack.category)) {
       continue;
     }
 
@@ -111,43 +123,18 @@ const selectedPacks = computed({
   set: (val) => emit('update:modelValue', { ...props.modelValue, selectedPacks: val }),
 });
 
-// 源石列表
+// 首充源石列表
 const firstRechargeStones = computed(() => {
-  const stoneList = [];
-  const stoneKeys = [
-    '6元双倍源石',
-    '30元双倍源石',
-    '98元双倍源石',
-    '198元双倍源石',
-    '328元双倍源石',
-    '648元双倍源石',
-  ];
-
-  for (const key of stoneKeys) {
-    if (packs[key as keyof typeof packs]) {
-      stoneList.push({
-        id: key,
-        ...packs[key as keyof typeof packs],
-      });
-    }
-  }
-  return stoneList;
+  return Object.values(packs)
+    .filter((pack) => pack.category === 'first_originium_recharge')
+    .map((pack) => ({ id: pack.packId, ...pack }));
 });
 
 // 非首充源石列表（可重复购买）
 const normalStones = computed(() => {
-  const stoneList = [];
-  const stoneKeys = ['6元源石', '30元源石', '98元源石', '198元源石', '328元源石', '648元源石'];
-
-  for (const key of stoneKeys) {
-    if (packs[key as keyof typeof packs]) {
-      stoneList.push({
-        id: key,
-        ...packs[key as keyof typeof packs],
-      });
-    }
-  }
-  return stoneList;
+  return Object.values(packs)
+    .filter((pack) => pack.category === 'non_first_originium_recharge')
+    .map((pack) => ({ id: pack.packId, ...pack }));
 });
 
 // 源石数量
@@ -159,44 +146,22 @@ const originiumStoneQuantities = computed({
 // 计算礼包的抽数
 function calculatePackPulls(pack: any): number {
   let totalPulls = 0;
-  let totalDiamonds = 0;
-
   for (const item of pack.contents) {
-    switch (item.itemId) {
-      case 'item_originium_recharge': {
-        // 1源石 = 75嵌晶玉
-        totalDiamonds += item.quantity * 75;
-
-        break;
-      }
-      case 'item_diamond': {
-        totalDiamonds += item.quantity;
-
-        break;
-      }
-      case 'item_ticketgacha_special_single': {
-        // 特许寻访凭证直接算作抽数
-        totalPulls += item.quantity;
-
-        break;
-      }
-      case 'item_ticketgacha_standard_single': {
-        // 基础寻访凭证直接算作抽数
-        totalPulls += item.quantity;
-
-        break;
-      }
-      default: {
-        if (item.itemId.includes('ticketgacha_special_ten')) {
-          // 十连凭证算作10抽
-          totalPulls += item.quantity * 10;
-        }
-      }
+    const id = item.itemId;
+    if (id === 'item_originium_recharge') {
+      totalPulls += (item.quantity * 75) / 500;
+    } else if (id === 'item_diamond') {
+      totalPulls += item.quantity / 500;
+    } else if (
+      id.includes('ticketgacha_standard_single') ||
+      id.includes('ticketgacha_special_single') ||
+      id.includes('ticketgacha_special_single_lt')
+    ) {
+      totalPulls += item.quantity;
+    } else if (id.includes('ticketgacha_special_ten')) {
+      totalPulls += item.quantity * 10;
     }
   }
-
-  // 将嵌晶玉转换为抽数：500嵌晶玉 = 1抽
-  totalPulls += totalDiamonds / 500;
 
   return totalPulls;
 }
@@ -285,7 +250,13 @@ function getStoneQuantity(stone: any): number {
 
 // 获取图标URL
 function getImageUrl(itemId: string): string {
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${itemId}.png`;
+  const fileName = itemId.startsWith('item_') ? itemId : `item_${itemId}`;
+  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${fileName}.png`;
+}
+
+// 获取多语言名称
+function packName(pack: PackData): string {
+  return pack.displayName[locale.value] || pack.displayName['zh-CN'];
 }
 </script>
 
@@ -375,7 +346,7 @@ function getImageUrl(itemId: string): string {
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
-          {{ pack.packDisplayNameZH }}
+          {{ packName(pack) }}
         </div>
         <div
           v-for="item in pack.contents"
@@ -408,7 +379,7 @@ function getImageUrl(itemId: string): string {
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">
-          {{ stone.packDisplayNameZH }}
+          {{ packName(stone) }}
         </div>
         <div
           v-for="item in stone.contents"
@@ -434,7 +405,7 @@ function getImageUrl(itemId: string): string {
 
     <div v-for="stone in normalStones" :key="stone.id" class="gacha-calculator-resource-single">
       <div class="gacha-calculator-resource-single-title">
-        {{ stone.packDisplayNameZH }}
+        {{ packName(stone) }}
       </div>
       <div
         v-for="item in stone.contents"
