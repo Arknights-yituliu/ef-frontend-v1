@@ -1,4 +1,8 @@
 import type {
+  BattlePassLevelTable,
+  BattlePassOverrideLevelTable,
+  BattlePassSeasonTable,
+  BattlePassTrackTable,
   CashShopGoodsTable,
   CashShopGroupTable,
   CashShopHideInGameTable,
@@ -148,6 +152,18 @@ export const skillPatchTable: SkillPatchTable = readJSONWithBigInt('TableCfg/Ski
 export const textTable: TextTable = readJSONWithBigInt('TableCfg/TextTable.json');
 export const weaponBasicTable: WeaponBasicTable = readJSONWithBigInt(
   'TableCfg/WeaponBasicTable.json',
+);
+export const battlePassLevelTable: BattlePassLevelTable = readJSONWithBigInt(
+  'TableCfg_Mapped/BattlePassLevelTable.json',
+);
+export const battlePassTrackTable: BattlePassTrackTable = readJSONWithBigInt(
+  'TableCfg_Mapped/BattlePassTrackTable.json',
+);
+export const battlePassSeasonTable: BattlePassSeasonTable = readJSONWithBigInt(
+  'TableCfg_Mapped/BattlePassSeasonTable.json',
+);
+export const battlePassOverrideLevelTable: BattlePassOverrideLevelTable = readJSONWithBigInt(
+  'TableCfg_Mapped/BattlePassOverrideLevelTable.json',
 );
 export const worldEnergyPointGroupTable: WorldEnergyPointGroupTable = readJSONWithBigInt(
   'TableCfg/WorldEnergyPointGroupTable.json',

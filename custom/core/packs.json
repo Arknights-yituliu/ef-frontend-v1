@@ -1,13 +1,1001 @@
 {
-  "bp_pay_track": {
-    "packId": "bp_pay_track",
+  "bp_track_free": {
+    "packId": "bp_track_free",
+    "displayName": {
+      "zh-CN": "基础配给",
+      "en-US": "Basic Supply"
+    },
+    "category": "BP",
+    "price": 0,
+    "imageUrl": "",
+    "contents": [
+      {
+        "itemId": "item_expcard_stage1_mid",
+        "name": {
+          "zh-CN": "中级作战记录",
+          "en-US": "Intermediate Combat Record"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_weapon_expcard_mid",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_expcard_stage1_mid",
+        "name": {
+          "zh-CN": "中级作战记录",
+          "en-US": "Intermediate Combat Record"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_weapon_expcard_mid",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 2
+      },
+      {
+        "itemId": "item_expcard_stage1_mid",
+        "name": {
+          "zh-CN": "中级作战记录",
+          "en-US": "Intermediate Combat Record"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_weapon_expcard_mid",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_expcard_stage1_mid",
+        "name": {
+          "zh-CN": "中级作战记录",
+          "en-US": "Intermediate Combat Record"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_weapon_expcard_mid",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_diamond",
+        "name": {
+          "zh-CN": "嵌晶玉",
+          "en-US": "Oroberyl"
+        },
+        "quantity": 100
+      },
+      {
+        "itemId": "item_char_break_stage_1_2",
+        "name": {
+          "zh-CN": "协议圆盘",
+          "en-US": "Protodisk"
+        },
+        "quantity": 3
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 5000
+      },
+      {
+        "itemId": "item_weapon_break_low",
+        "name": {
+          "zh-CN": "强固模具",
+          "en-US": "Cast Die"
+        },
+        "quantity": 3
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 5000
+      },
+      {
+        "itemId": "item_case_bp_random_2",
+        "name": {
+          "zh-CN": "中号兑换惊喜箱",
+          "en-US": "Exchange Crate-o-Surprise [M]"
+        },
+        "quantity": 3
+      },
+      {
+        "itemId": "item_expcard_stage1_high",
+        "name": {
+          "zh-CN": "高级作战记录",
+          "en-US": "Advanced Combat Record"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 7500
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 7500
+      },
+      {
+        "itemId": "item_ticketgacha_standard_single",
+        "name": {
+          "zh-CN": "基础寻访凭证",
+          "en-US": "Basic HH Permit"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_char_skill_level_1_6",
+        "name": {
+          "zh-CN": "协议棱柱",
+          "en-US": "Protoprism"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 10000
+      },
+      {
+        "itemId": "item_char_skill_level_1_6",
+        "name": {
+          "zh-CN": "协议棱柱",
+          "en-US": "Protoprism"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 10000
+      },
+      {
+        "itemId": "item_diamond",
+        "name": {
+          "zh-CN": "嵌晶玉",
+          "en-US": "Oroberyl"
+        },
+        "quantity": 100
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 4
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 10000
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 10000
+      },
+      {
+        "itemId": "item_diamond",
+        "name": {
+          "zh-CN": "嵌晶玉",
+          "en-US": "Oroberyl"
+        },
+        "quantity": 200
+      },
+      {
+        "itemId": "item_char_break_stage_3_4",
+        "name": {
+          "zh-CN": "协议圆盘组",
+          "en-US": "Protoset"
+        },
+        "quantity": 4
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 15000
+      },
+      {
+        "itemId": "item_weapon_break_high",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
+        "quantity": 4
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 15000
+      },
+      {
+        "itemId": "item_ticketgacha_standard_single",
+        "name": {
+          "zh-CN": "基础寻访凭证",
+          "en-US": "Basic HH Permit"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 8
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 15000
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 8
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 15000
+      },
+      {
+        "itemId": "item_diamond",
+        "name": {
+          "zh-CN": "嵌晶玉",
+          "en-US": "Oroberyl"
+        },
+        "quantity": 200
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 4
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_case_bp_random_2",
+        "name": {
+          "zh-CN": "中号兑换惊喜箱",
+          "en-US": "Exchange Crate-o-Surprise [M]"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_char_break_stage_3_4",
+        "name": {
+          "zh-CN": "协议圆盘组",
+          "en-US": "Protoset"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_weapon_break_high",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_case_bp_random_2",
+        "name": {
+          "zh-CN": "中号兑换惊喜箱",
+          "en-US": "Exchange Crate-o-Surprise [M]"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_case_bp_random_2",
+        "name": {
+          "zh-CN": "中号兑换惊喜箱",
+          "en-US": "Exchange Crate-o-Surprise [M]"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 4
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_case_bp_random_2",
+        "name": {
+          "zh-CN": "中号兑换惊喜箱",
+          "en-US": "Exchange Crate-o-Surprise [M]"
+        },
+        "quantity": 8
+      }
+    ]
+  },
+  "bp_track_originium": {
+    "packId": "bp_track_originium",
+    "displayName": {
+      "zh-CN": "源石配给",
+      "en-US": "Originium Supply"
+    },
+    "category": "BP",
+    "description": {
+      "zh-CN": "价格为源石折算",
+      "en-US": "Price is based on Originium conversion"
+    },
+    "price": 53.691428571428574,
+    "imageUrl": "",
+    "contents": [
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_expcard_stage1_mid",
+        "name": {
+          "zh-CN": "中级作战记录",
+          "en-US": "Intermediate Combat Record"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_weapon_expcard_mid",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 15000
+      },
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_expcard_stage1_mid",
+        "name": {
+          "zh-CN": "中级作战记录",
+          "en-US": "Intermediate Combat Record"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_weapon_expcard_mid",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 15000
+      },
+      {
+        "itemId": "item_shot_sticker_bp_3",
+        "name": {
+          "zh-CN": "贴纸·巨兽心脏",
+          "en-US": "Sticker: Feranmut Heart"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_char_break_stage_1_2",
+        "name": {
+          "zh-CN": "协议圆盘",
+          "en-US": "Protodisk"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_weapon_break_low",
+        "name": {
+          "zh-CN": "强固模具",
+          "en-US": "Cast Die"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 15000
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_expcard_stage1_high",
+        "name": {
+          "zh-CN": "高级作战记录",
+          "en-US": "Advanced Combat Record"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_ticketgacha_standard_single",
+        "name": {
+          "zh-CN": "基础寻访凭证",
+          "en-US": "Basic HH Permit"
+        },
+        "quantity": 2
+      },
+      {
+        "itemId": "item_char_skill_level_1_6",
+        "name": {
+          "zh-CN": "协议棱柱",
+          "en-US": "Protoprism"
+        },
+        "quantity": 50
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_char_skill_level_1_6",
+        "name": {
+          "zh-CN": "协议棱柱",
+          "en-US": "Protoprism"
+        },
+        "quantity": 50
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 20000
+      },
+      {
+        "itemId": "item_shot_filter_sp_3",
+        "name": {
+          "zh-CN": "滤镜·苍白",
+          "en-US": "Filter: Pale"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 8
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 30000
+      },
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_char_break_stage_3_4",
+        "name": {
+          "zh-CN": "协议圆盘组",
+          "en-US": "Protoset"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_weapon_break_high",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 40000
+      },
+      {
+        "itemId": "item_ticketgacha_standard_single",
+        "name": {
+          "zh-CN": "基础寻访凭证",
+          "en-US": "Basic HH Permit"
+        },
+        "quantity": 2
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 40000
+      },
+      {
+        "itemId": "item_case_wpn_selfselect_bp_3",
+        "name": {
+          "zh-CN": "武器补给·怒潮",
+          "en-US": "Weapon Supply: Wrothful Tide"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 25
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 50000
+      },
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 7
+      },
+      {
+        "itemId": "item_char_break_stage_3_4",
+        "name": {
+          "zh-CN": "协议圆盘组",
+          "en-US": "Protoset"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_weapon_break_high",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 50000
+      },
+      {
+        "itemId": "item_char_skill_crown",
+        "name": {
+          "zh-CN": "存续的痕迹",
+          "en-US": "Mark of Perseverance"
+        },
+        "quantity": 6
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 60000
+      },
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 7
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 12
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 60000
+      },
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 8
+      }
+    ]
+  },
+  "bp_track_pay": {
+    "packId": "bp_track_pay",
     "displayName": {
       "zh-CN": "协议定制",
       "en-US": "Protocol Customized"
     },
     "category": "BP",
     "price": 68,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/协议定制.webp",
+    "imageUrl": "",
     "contents": [
       {
         "itemId": "item_originium_recharge",
@@ -24,6 +1012,606 @@
           "en-US": "Pass EXP"
         },
         "quantity": 12000
+      },
+      {
+        "itemId": "item_char_ap_supply_zhuangfy",
+        "name": {
+          "zh-CN": "油焖整笋罐头",
+          "en-US": "Wholly-Braised Sprout [can]"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_expcard_stage1_mid",
+        "name": {
+          "zh-CN": "中级作战记录",
+          "en-US": "Intermediate Combat Record"
+        },
+        "quantity": 50
+      },
+      {
+        "itemId": "item_weapon_expcard_mid",
+        "name": {
+          "zh-CN": "武器检查装置",
+          "en-US": "Arms INSP Kit"
+        },
+        "quantity": 50
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 30000
+      },
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 8
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_expcard_stage1_high",
+        "name": {
+          "zh-CN": "高级作战记录",
+          "en-US": "Advanced Combat Record"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 30000
+      },
+      {
+        "itemId": "item_user_avatar_bp_1_2",
+        "name": {
+          "zh-CN": "心枢",
+          "en-US": "Cardiac Nexus"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_char_break_stage_1_2",
+        "name": {
+          "zh-CN": "协议圆盘",
+          "en-US": "Protodisk"
+        },
+        "quantity": 25
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_weapon_break_low",
+        "name": {
+          "zh-CN": "强固模具",
+          "en-US": "Cast Die"
+        },
+        "quantity": 25
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 30000
+      },
+      {
+        "itemId": "item_user_avatar_frame_bp_1_2",
+        "name": {
+          "zh-CN": "展卷",
+          "en-US": "Scroll Unfurled"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 2
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 30000
+      },
+      {
+        "itemId": "item_case_wpn_selfselect_bp_3",
+        "name": {
+          "zh-CN": "武器补给·怒潮",
+          "en-US": "Weapon Supply: Wrothful Tide"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_char_skill_level_1_6",
+        "name": {
+          "zh-CN": "协议棱柱",
+          "en-US": "Protoprism"
+        },
+        "quantity": 75
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_ap_feed_in",
+        "name": {
+          "zh-CN": "理智萃取器",
+          "en-US": "Sanity Extractor"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 30000
+      },
+      {
+        "itemId": "item_gachabyproducts_weapongold",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
+        "quantity": 800
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 2
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_weapon_expcard_high",
+        "name": {
+          "zh-CN": "武器检查套组",
+          "en-US": "Arms INSP Set"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 50000
+      },
+      {
+        "itemId": "item_wpnpotentialup_bp",
+        "name": {
+          "zh-CN": "协议化武器原型",
+          "en-US": "Protocolized Weapon Pattern"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_char_break_stage_3_4",
+        "name": {
+          "zh-CN": "协议圆盘组",
+          "en-US": "Protoset"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_weapon_break_high",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 65000
+      },
+      {
+        "itemId": "business_card_topic_bp_1_2",
+        "name": {
+          "zh-CN": "山水墨成",
+          "en-US": "Shanshui Painting"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 4
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 15
+      },
+      {
+        "itemId": "item_ap_feed_in",
+        "name": {
+          "zh-CN": "理智萃取器",
+          "en-US": "Sanity Extractor"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 65000
+      },
+      {
+        "itemId": "item_wpnpotentialup_bp",
+        "name": {
+          "zh-CN": "协议化武器原型",
+          "en-US": "Protocolized Weapon Pattern"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 16
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "name": {
+          "zh-CN": "高阶培养自选箱Ⅰ",
+          "en-US": "Advanced Progression Selection Crate Ⅰ"
+        },
+        "quantity": 8
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 80000
+      },
+      {
+        "itemId": "item_gachabyproducts_weapongold",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
+        "quantity": 800
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 2
+      },
+      {
+        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "name": {
+          "zh-CN": "高阶培养自选箱Ⅰ",
+          "en-US": "Advanced Progression Selection Crate Ⅰ"
+        },
+        "quantity": 8
+      },
+      {
+        "itemId": "item_weapon_break_high",
+        "name": {
+          "zh-CN": "重型强固模具",
+          "en-US": "Heavy Cast Die"
+        },
+        "quantity": 40
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 80000
+      },
+      {
+        "itemId": "item_char_skill_crown",
+        "name": {
+          "zh-CN": "存续的痕迹",
+          "en-US": "Mark of Perseverance"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_char_skill_level_7_12",
+        "name": {
+          "zh-CN": "协议棱柱组",
+          "en-US": "Protohedron"
+        },
+        "quantity": 50
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "name": {
+          "zh-CN": "高阶培养自选箱Ⅰ",
+          "en-US": "Advanced Progression Selection Crate Ⅰ"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 100000
+      },
+      {
+        "itemId": "item_gachabyproducts_weapongold",
+        "name": {
+          "zh-CN": "武库配额",
+          "en-US": "Arsenal Ticket"
+        },
+        "quantity": 800
+      },
+      {
+        "itemId": "item_expcard_stage2_high",
+        "name": {
+          "zh-CN": "高级认知载体",
+          "en-US": "Advanced Cognitive Carrier"
+        },
+        "quantity": 20
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "name": {
+          "zh-CN": "高阶培养自选箱Ⅰ",
+          "en-US": "Advanced Progression Selection Crate Ⅰ"
+        },
+        "quantity": 10
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 100000
+      },
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 8
+      }
+    ]
+  },
+  "first_originium_recharge_0_6": {
+    "packId": "first_originium_recharge_0_6",
+    "displayName": {
+      "zh-CN": "6元首充源石",
+      "en-US": "6 Originium (First Bonus)"
+    },
+    "category": "first_originium_recharge",
+    "price": 6,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/6元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 6
+      }
+    ]
+  },
+  "first_originium_recharge_1_30": {
+    "packId": "first_originium_recharge_1_30",
+    "displayName": {
+      "zh-CN": "30元首充源石",
+      "en-US": "30 Originium (First Bonus)"
+    },
+    "category": "first_originium_recharge",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/30元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 24
+      }
+    ]
+  },
+  "first_originium_recharge_2_98": {
+    "packId": "first_originium_recharge_2_98",
+    "displayName": {
+      "zh-CN": "98元首充源石",
+      "en-US": "98 Originium (First Bonus)"
+    },
+    "category": "first_originium_recharge",
+    "price": 98,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/98元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 84
+      }
+    ]
+  },
+  "first_originium_recharge_3_198": {
+    "packId": "first_originium_recharge_3_198",
+    "displayName": {
+      "zh-CN": "198元首充源石",
+      "en-US": "198 Originium (First Bonus)"
+    },
+    "category": "first_originium_recharge",
+    "price": 198,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/198元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 170
+      }
+    ]
+  },
+  "first_originium_recharge_4_328": {
+    "packId": "first_originium_recharge_4_328",
+    "displayName": {
+      "zh-CN": "328元首充源石",
+      "en-US": "328 Originium (First Bonus)"
+    },
+    "category": "first_originium_recharge",
+    "price": 328,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/328元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 282
+      }
+    ]
+  },
+  "first_originium_recharge_5_648": {
+    "packId": "first_originium_recharge_5_648",
+    "displayName": {
+      "zh-CN": "648元首充源石",
+      "en-US": "648 Originium (First Bonus)"
+    },
+    "category": "first_originium_recharge",
+    "price": 648,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/648元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 560
       }
     ]
   },
@@ -35,7 +1623,7 @@
     },
     "category": "Permanent_pack",
     "price": 98,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/每月素材组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/monthly_giftpack_01_smallicon.webp",
     "contents": [
       {
         "itemId": "item_gold",
@@ -103,7 +1691,7 @@
     },
     "category": "Newbie_pack",
     "price": 128,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/全面人才组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_01_smallicon.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_special_single",
@@ -131,7 +1719,7 @@
     },
     "category": "Newbie_pack",
     "price": 98,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/人事支援组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_02_smallicon.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_standard_single",
@@ -159,7 +1747,7 @@
     },
     "category": "Newbie_pack",
     "price": 6,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/宏愿兵装组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/newbie_giftpack_6_special_smallicon.webp",
     "contents": [
       {
         "itemId": "wpn_sword_0021",
@@ -179,6 +1767,126 @@
       }
     ]
   },
+  "non_first_recharge_originium_0_6": {
+    "packId": "non_first_recharge_originium_0_6",
+    "displayName": {
+      "zh-CN": "6元非首充源石",
+      "en-US": "6 Originium (Non-Bonus)"
+    },
+    "category": "non_first_originium_recharge",
+    "price": 6,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/6元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 3
+      }
+    ]
+  },
+  "non_first_recharge_originium_1_30": {
+    "packId": "non_first_recharge_originium_1_30",
+    "displayName": {
+      "zh-CN": "30元非首充源石",
+      "en-US": "30 Originium (Non-Bonus)"
+    },
+    "category": "non_first_originium_recharge",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/30元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 15
+      }
+    ]
+  },
+  "non_first_recharge_originium_2_98": {
+    "packId": "non_first_recharge_originium_2_98",
+    "displayName": {
+      "zh-CN": "98元非首充源石",
+      "en-US": "98 Originium (Non-Bonus)"
+    },
+    "category": "non_first_originium_recharge",
+    "price": 98,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/98元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 50
+      }
+    ]
+  },
+  "non_first_recharge_originium_3_198": {
+    "packId": "non_first_recharge_originium_3_198",
+    "displayName": {
+      "zh-CN": "198元非首充源石",
+      "en-US": "198 Originium (Non-Bonus)"
+    },
+    "category": "non_first_originium_recharge",
+    "price": 198,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/198元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 102
+      }
+    ]
+  },
+  "non_first_recharge_originium_4_328": {
+    "packId": "non_first_recharge_originium_4_328",
+    "displayName": {
+      "zh-CN": "328元非首充源石",
+      "en-US": "328 Originium (Non-Bonus)"
+    },
+    "category": "non_first_originium_recharge",
+    "price": 328,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/328元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 171
+      }
+    ]
+  },
+  "non_first_recharge_originium_5_648": {
+    "packId": "non_first_recharge_originium_5_648",
+    "displayName": {
+      "zh-CN": "648元非首充源石",
+      "en-US": "648 Originium (Non-Bonus)"
+    },
+    "category": "non_first_originium_recharge",
+    "price": 648,
+    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/648元源石.webp",
+    "contents": [
+      {
+        "itemId": "item_originium_recharge",
+        "name": {
+          "zh-CN": "衍质源石",
+          "en-US": "Origeometry"
+        },
+        "quantity": 350
+      }
+    ]
+  },
   "payshop_giftpack_monthlycard": {
     "packId": "payshop_giftpack_monthlycard",
     "displayName": {
@@ -187,7 +1895,7 @@
     },
     "category": "MCard",
     "price": 30,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/月卡.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/icon_shop_groupbagItem02.webp",
     "contents": [
       {
         "itemId": "item_originium_recharge",
@@ -207,7 +1915,7 @@
     },
     "category": "Seasonal_Rec_pack",
     "price": 6,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/镌宇铭星组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_crossover_lt_1_2_1_smallicon.webp",
     "contents": [
       {
         "itemId": "item_user_avatar_activity_6",
@@ -235,7 +1943,7 @@
     },
     "category": "Seasonal_Rec_pack",
     "price": 98,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/行火寻访组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallicon.webp",
     "contents": [
       {
         "itemId": "ticketgacha_special_ten_lt_1_0_1",
@@ -263,7 +1971,7 @@
     },
     "category": "Seasonal_Rec_pack",
     "price": 198,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/协议源流组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_combine_smallicon.webp",
     "contents": [
       {
         "itemId": "item_ticketgacha_special_single",
@@ -299,7 +2007,7 @@
     },
     "category": "SP_weapon_supply",
     "price": 88,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/特惠武库配额包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_01_smallicon.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -319,7 +2027,7 @@
     },
     "category": "SP_weapon_supply",
     "price": 108,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/优惠武库组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_02_smallicon.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -347,7 +2055,7 @@
     },
     "category": "SP_weapon_supply",
     "price": 128,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/标准武库组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_03_smallicon.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -391,7 +2099,7 @@
     },
     "category": "SP_weapon_supply",
     "price": 328,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/满载武库组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_04_smallicon.webp",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -435,7 +2143,7 @@
     },
     "category": "Permanent_pack",
     "price": 30,
-    "imageUrl": "https://cos.yituliu.cn/endfield/screenshot-images/packs/每周素材组合包.webp",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weekly_giftpack_01_smallicon.webp",
     "contents": [
       {
         "itemId": "item_gold",

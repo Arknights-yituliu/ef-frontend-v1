@@ -1,3 +1,15 @@
+export type {
+  BattlePassLevel,
+  BattlePassLevelGroup,
+  BattlePassLevelTable,
+} from './battlePassLevelTable';
+export type {
+  BattlePassOverrideLevel,
+  BattlePassOverrideLevelGroup,
+  BattlePassOverrideLevelTable,
+} from './battlePassOverrideLevelTable';
+export type { BattlePassSeason, BattlePassSeasonTable } from './battlePassSeasonTable';
+export type { BattlePassTrack, BattlePassTrackTable } from './battlePassTrackTable';
 export type { CashShopGoods, CashShopGoodsTable } from './cashShopGoodsTable';
 export type { CashShopGroup, CashShopGroupTable } from './cashShopGroupTable';
 export type { CashShopHideInGame, CashShopHideInGameTable } from './cashShopHideInGameTable';
