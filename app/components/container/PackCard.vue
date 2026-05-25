@@ -2,7 +2,12 @@
   <article class="pack-card-container">
     <div class="pack-card-wrapper" @click="toggleExpanded">
       <!-- 左侧：图片区域 -->
-      <div class="pack-card-part-left">
+      <div
+        class="pack-card-part-left"
+        :style="{
+          backgroundImage: `url(${props.backgroundImageUrl})`,
+        }"
+      >
         <img
           v-if="props.imageUrl && !imageError"
           :alt="packDisplayName"
@@ -208,6 +213,8 @@ function getPackComparisonBars(pack: PackData) {
   position: relative;
   z-index: 11;
   box-shadow: 0 0 0.75em var(--theme-shadow-base);
+  background-size: cover;
+  background-position: center;
 }
 
 .pack-image {
