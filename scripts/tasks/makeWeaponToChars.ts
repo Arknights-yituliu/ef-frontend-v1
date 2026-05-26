@@ -1,4 +1,4 @@
-import { charWpnRecommendTable, weaponBasicTable } from './gameData';
+import { charWpnRecommendTable, weaponBasicTable } from '../gameData';
 
 // 没有头像的特殊干员 ID 列表，不包含在推荐中
 const noAvatarCharIds = new Set(['chr_9000_endmin']);

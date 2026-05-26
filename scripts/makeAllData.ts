@@ -4,10 +4,10 @@
  * 执行方式: yarn makedata
  */
 import fs from 'node:fs';
-import { makeItems } from './makeItems';
-import { makePackGroups, makePacks, makePackShops } from './makePacks';
-import { makeEnergyAlluviums, makeWeapons } from './makeWeapons';
-import { makeWeaponToChars } from './makeWeaponToChars';
+import { makeItems } from './tasks/makeItems';
+import { makePackGroups, makePacks, makePackShops } from './tasks/makePacks';
+import { makeEnergyAlluviums, makeWeapons } from './tasks/makeWeapons';
+import { makeWeaponToChars } from './tasks/makeWeaponToChars';
 
 // ---------- items ----------
 fs.writeFileSync('custom/core/items.json', JSON.stringify(makeItems(), null, 2), 'utf8');

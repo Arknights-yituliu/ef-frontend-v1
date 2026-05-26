@@ -4,8 +4,8 @@ import type {
   PackData,
   PackGroupData,
   PackShopData,
-} from '../shared/types/pack';
-import type { CashShopGoods, ItemBundle } from './models';
+} from '../../shared/types/pack';
+import type { CashShopGoods, ItemBundle } from '../models';
 import {
   battlePassLevelTable,
   battlePassOverrideLevelTable,
@@ -20,7 +20,7 @@ import {
   giftpackCashShopGoodsDataTable,
   itemTable,
   rewardTable,
-} from './gameData';
+} from '../gameData';
 
 const nonFirstRechargeOriginiumPackData = [
   { price: 6, originumCount: 3 },

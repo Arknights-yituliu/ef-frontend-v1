@@ -1,4 +1,4 @@
-import { getLocalizedValue, itemTable, itemTypeTable } from './gameData';
+import { getLocalizedValue, itemTable, itemTypeTable } from '../gameData';
 
 export interface Item {
   id: string;
