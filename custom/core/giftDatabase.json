@@ -66,28 +66,6 @@
     }
   },
   "gift": {
-    "item_gift_jinlong_3": {
-      "id": "item_gift_jinlong_3",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_2",
-      "favorHobby": [
-        "tag_hobby_creativity",
-        "tag_hobby_knowledge"
-      ]
-    },
-    "item_gift_jinlong_4": {
-      "id": "item_gift_jinlong_4",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_2",
-      "favorHobby": [
-        "tag_hobby_exercise",
-        "tag_hobby_life"
-      ]
-    },
     "item_gift_jinlong_5": {
       "id": "item_gift_jinlong_5",
       "rarity": 5,
@@ -196,6 +174,28 @@
       "favorHobby": [
         "tag_hobby_exercise",
         "tag_hobby_nature"
+      ]
+    },
+    "item_gift_jinlong_3": {
+      "id": "item_gift_jinlong_3",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_2",
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_knowledge"
+      ]
+    },
+    "item_gift_jinlong_4": {
+      "id": "item_gift_jinlong_4",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_2",
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_life"
       ]
     }
   },
