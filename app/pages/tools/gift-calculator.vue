@@ -89,8 +89,17 @@
 :class="[
               'mr-1',
               'reverse-img'
-            ]" height="16" :src="getCategoryIcon(cateId)" width="16" />
-            {{ getLocaleText(cate) }}
+            ]" height="16" :src="getCategoryIcon(cateId)" width="16">
+              <template v-slot:placeholder>
+                <div class="d-flex align-center justify-center fill-height">
+                  <v-icon color="grey-darken-2" icon="mdi-image-broken-variant" class="mdi-rotate-90"/>
+                </div>
+              </template>
+            </v-img>
+            <div class="text-caption d-flex flex-column" style="line-height:1.1em;">
+              <span>{{ getLocaleText(cate)?.[0] }}</span>
+              <span>{{ getLocaleText(cate)?.[1] }}</span>
+            </div>  
           </v-chip>
         </div>
       </div>
@@ -155,7 +164,13 @@
                     'mr-1 position-absolute position-cateicon-on-itemicon',
                     theme== 'dark' ? '' : 'reverse-img',
                     filtedGifts[giftId] ? (theme === 'dark' ? 'hilight-prefer-gift-dark' : 'hilight-prefer-gift-light') : ''
-                  ]" height="16" :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)" width="16"/>
+                  ]" height="16" :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)" width="16">
+                    <template v-slot:placeholder>
+                      <div class="d-flex align-center justify-center fill-height">
+                        <v-icon color="grey-darken-1" icon="mdi-image-broken-variant" class="mdi-rotate-90"/>
+                      </div>
+                    </template>
+                  </v-img>
                 </div>
               </v-badge>
             </v-badge>
@@ -167,8 +182,14 @@
                 <div class="d-flex font-weight-bold align-center">
                   <v-img
 class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)"
-                  width="16"/>
-                  {{ getLocaleText(gifts.giftProps.category[gifts.gift[giftId]?.favorCategory || ''] || {}) }}
+                  width="16">
+                    <template v-slot:placeholder>
+                      <div class="d-flex align-center justify-center fill-height">
+                        <v-icon color="grey-lighten-1" icon="mdi-image-broken-variant" class="mdi-rotate-90"/>
+                      </div>
+                    </template>
+                  </v-img>
+                  {{ getLocaleText(gifts.giftProps.category[gifts.gift[giftId]?.favorCategory || ''] || {})?.[2] }}
                 </div>
                 <v-chip v-if="gifts.gift[giftId]?.isHot" class="mb-1" color="#f33e3a" density="compact" size="small" variant="elevated">
                   <span v-if="gifts.gift[giftId]?.isHotExpiring" class="pr-1 d-flex align-center">
@@ -230,8 +251,14 @@ v-if="checkForceSelectItem('gift', giftId)"
                   <div v-for="cate in gifts.operator[opId]?.favorCategory" class="d-flex font-weight-bold align-center">
                     <v-img
 class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getCategoryIcon(cate)"
-                    width="16"/>
-                    {{ getLocaleText(gifts.giftProps.category[cate] || {}) }}
+                    width="16">
+                      <template v-slot:placeholder>
+                        <div class="d-flex align-center justify-center fill-height">
+                          <v-icon color="grey-lighten-1" icon="mdi-image-broken-variant" class="mdi-rotate-90"/>
+                        </div>
+                      </template>
+                    </v-img>
+                    {{ getLocaleText(gifts.giftProps.category[cate] || {})?.[2] }}
                   </div>
                   <div class="d-flex ga-1">
                     <v-chip v-for="hobby in gifts.operator[opId]?.favorHobby" :key="hobby" density="compact" size="small" variant="outlined">

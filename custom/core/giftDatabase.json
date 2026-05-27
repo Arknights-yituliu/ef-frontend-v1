@@ -2,24 +2,64 @@
   "giftProps": {
     "category": {
       "tag_giftperfer_tundra_1": {
-        "zh-CN": "谷地·协议严选",
-        "en-US": "Valley Protocol"
+        "zh-CN": [
+          "谷地",
+          "协议严选",
+          "谷地·协议严选"
+        ],
+        "en-US": [
+          "Valley",
+          "Protocol",
+          "Valley Protocol"
+        ]
       },
       "tag_giftperfer_tundra_2": {
-        "zh-CN": "谷地·工业严选",
-        "en-US": "Valley Industry"
+        "zh-CN": [
+          "谷地",
+          "工业严选",
+          "谷地·工业严选"
+        ],
+        "en-US": [
+          "Valley",
+          "Industry",
+          "Valley Industry"
+        ]
       },
       "tag_giftperfer_wuling_1": {
-        "zh-CN": "武陵·跑者严选",
-        "en-US": "Wuling Runners"
+        "zh-CN": [
+          "武陵",
+          "跑者严选",
+          "武陵·跑者严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Runners",
+          "Wuling Runners"
+        ]
       },
       "tag_giftperfer_wuling_2": {
-        "zh-CN": "武陵·游商严选",
-        "en-US": "Wuling Merchants"
+        "zh-CN": [
+          "武陵",
+          "游商严选",
+          "武陵·游商严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Merchants",
+          "Wuling Merchants"
+        ]
       },
       "tag_giftperfer_wuling_3": {
-        "zh-CN": "武陵·天师府严选",
-        "en-US": "Wuling Tianshi Bureau"
+        "zh-CN": [
+          "武陵",
+          "天师府严选",
+          "武陵·天师府严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Tianshi Bureau",
+          "Wuling Tianshi Bureau"
+        ]
       }
     },
     "hobby": {
