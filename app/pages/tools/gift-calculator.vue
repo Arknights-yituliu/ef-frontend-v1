@@ -90,9 +90,9 @@
               'mr-1',
               'reverse-img'
             ]" height="16" :src="getCategoryIcon(cateId)" width="16">
-              <template v-slot:placeholder>
+              <template #placeholder>
                 <div class="d-flex align-center justify-center fill-height">
-                  <v-icon color="grey-darken-2" icon="mdi-image-broken-variant" class="mdi-rotate-90"/>
+                  <v-icon class="mdi-rotate-90" color="grey-darken-2" icon="mdi-image-broken-variant"/>
                 </div>
               </template>
             </v-img>
@@ -165,9 +165,9 @@
                     theme== 'dark' ? '' : 'reverse-img',
                     filtedGifts[giftId] ? (theme === 'dark' ? 'hilight-prefer-gift-dark' : 'hilight-prefer-gift-light') : ''
                   ]" height="16" :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)" width="16">
-                    <template v-slot:placeholder>
+                    <template #placeholder>
                       <div class="d-flex align-center justify-center fill-height">
-                        <v-icon color="grey-darken-1" icon="mdi-image-broken-variant" class="mdi-rotate-90"/>
+                        <v-icon class="mdi-rotate-90" color="grey-darken-1" icon="mdi-image-broken-variant"/>
                       </div>
                     </template>
                   </v-img>
@@ -183,9 +183,9 @@
                   <v-img
 class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getCategoryIcon(gifts.gift[giftId]?.favorCategory)"
                   width="16">
-                    <template v-slot:placeholder>
+                    <template #placeholder>
                       <div class="d-flex align-center justify-center fill-height">
-                        <v-icon color="grey-lighten-1" icon="mdi-image-broken-variant" class="mdi-rotate-90"/>
+                        <v-icon class="mdi-rotate-90" color="grey-lighten-1" icon="mdi-image-broken-variant"/>
                       </div>
                     </template>
                   </v-img>
@@ -252,9 +252,9 @@ v-if="checkForceSelectItem('gift', giftId)"
                     <v-img
 class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getCategoryIcon(cate)"
                     width="16">
-                      <template v-slot:placeholder>
+                      <template #placeholder>
                         <div class="d-flex align-center justify-center fill-height">
-                          <v-icon color="grey-lighten-1" icon="mdi-image-broken-variant" class="mdi-rotate-90"/>
+                          <v-icon class="mdi-rotate-90" color="grey-lighten-1" icon="mdi-image-broken-variant"/>
                         </div>
                       </template>
                     </v-img>
