@@ -2094,7 +2094,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               {{ t('page.tools.gachaCalculator.pulls') }}
             </div>
           </v-expansion-panel-title>
-          <v-expansion-panel-text>
+          <v-expansion-panel-text class="gacha-calculator-permanent-panel-text">
             <section
               v-for="group in permanentRewardGroups"
               :key="group.name"
@@ -2428,14 +2428,18 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-permanent-category-title {
-  width: 100%;
+  width: calc(100% + 48px);
   box-sizing: border-box;
-  margin: 4px 0;
+  margin: 4px -24px;
   padding: 6px 8px;
   border-radius: 4px;
   background: rgba(128, 128, 128, 0.5);
   font-size: 0.95rem;
   font-weight: 700;
+}
+
+.gacha-calculator-permanent-panel-text:deep(.v-expansion-panel-text__wrapper) {
+  overflow: hidden;
 }
 
 .gacha-calculator-shortcut-btn-table {
