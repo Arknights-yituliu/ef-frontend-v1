@@ -85,7 +85,7 @@ export const allSkillStats = [
   '效益',
 ];
 
-/** 能量淤积点信息（由 scripts/makeWeapons.ts 自动生成） */
+/** 能量淤积点信息（由 scripts/tasks/makeWeapons.ts 自动生成） */
 export const energyAlluviums: Record<string, EnergyAlluvium> = rawEnergyAlluviums;
 
 /** 武器类型 */
@@ -101,8 +101,8 @@ export const weaponTypeToGroupIconId: Record<string, string> = {
 /** 武器稀有度 */
 export const rarityLevels = [3, 4, 5, 6];
 
-/** 武器预设（由 scripts/makeWeapons.ts 自动生成） */
+/** 武器预设（由 scripts/tasks/makeWeapons.ts 自动生成） */
 export const weapons: Record<string, WeaponPreset> = rawWeapons;
 
-/** 武器推荐干员（由 scripts/makeWeaponToChars.ts 自动生成） */
+/** 武器推荐干员（由 scripts/tasks/makeWeaponToChars.ts 自动生成） */
 export const weaponToChars: Record<string, string[]> = rawWeaponToChars;

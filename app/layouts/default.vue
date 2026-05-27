@@ -1,13 +1,16 @@
 <template>
   <v-app :theme="theme">
     <LayoutCustomBackground />
-    <!--  <AnnimationInitialLoader-->
-    <!--    :is-loading="isInitialLoading"-->
-    <!--    :loading-duration="loadingDuration"-->
-    <!--    @complete="handleInitialLoaderComplete"-->
-    <!--  />-->
+    <!-- <AnnimationInitialLoader
+      :is-loading="isInitialLoading"
+      :loading-duration="loadingDuration"
+      @complete="handleInitialLoaderComplete"
+    /> -->
     <v-navigation-drawer v-model="drawer" class="navigation-drawer" :width="280">
-      <LayoutSidebar />
+      <!-- 在侧边栏外面包一层，用于添加滚动条的 css -->
+      <div class="sidebar-scroll-wrapper">
+        <LayoutSidebar />
+      </div>
     </v-navigation-drawer>
 
     <v-app-bar class="app-bar" :elevation="0">
@@ -48,6 +51,8 @@
 </template>
 
 <script lang="ts" setup>
+import { useWindowScroll } from '@vueuse/core';
+
 const route = useRoute();
 const appConfig = useAppConfig();
 const menuItems = appConfig.menu.routes;
@@ -55,16 +60,16 @@ const { t } = useI18n();
 const { theme } = useTheme();
 const siteName = t('layout.siteName');
 
-// 初始动画加载器
-const initialLoaderConfig = appConfig.initialLoader ?? {};
-const isInitialLoading = ref(initialLoaderConfig.enabled !== false);
-const loadingDuration =
-  typeof initialLoaderConfig.loadingDuration === 'number'
-    ? initialLoaderConfig.loadingDuration
-    : 3000;
-function handleInitialLoaderComplete() {
-  isInitialLoading.value = false;
-}
+// // 初始动画加载器
+// const initialLoaderConfig = appConfig.initialLoader ?? {};
+// const isInitialLoading = ref(initialLoaderConfig.enabled !== false);
+// const loadingDuration =
+//   typeof initialLoaderConfig.loadingDuration === 'number'
+//     ? initialLoaderConfig.loadingDuration
+//     : 3000;
+// function handleInitialLoaderComplete() {
+//   isInitialLoading.value = false;
+// }
 
 /** 边栏是否展开 */
 const drawer = ref(true);
@@ -91,12 +96,8 @@ useHead(() => ({
 }));
 
 // 回到顶部功能
-const showBackToTop = ref(false);
-const scrollThreshold = 300; // 滚动超过300px时显示按钮
-
-function handleScroll() {
-  showBackToTop.value = window.scrollY > scrollThreshold;
-}
+const { y: scrollY } = useWindowScroll();
+const showBackToTop = computed(() => scrollY.value > 512);
 
 function scrollToTop() {
   window.scrollTo({
@@ -104,19 +105,17 @@ function scrollToTop() {
     behavior: 'smooth',
   });
 }
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
 </script>
 
 <style scoped>
 .navigation-drawer {
   border-right: 2px solid var(--theme-accent-color);
+}
+
+.sidebar-scroll-wrapper {
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .app-bar {

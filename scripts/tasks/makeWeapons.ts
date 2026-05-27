@@ -1,4 +1,4 @@
-import type { I18nLanguage } from './gameData';
+import type { I18nLanguage } from '../gameData';
 import {
   gemTable,
   gemTagIdTable,
@@ -9,7 +9,7 @@ import {
   weaponBasicTable,
   worldEnergyPointGroupTable,
   worldEnergyPointTable,
-} from './gameData';
+} from '../gameData';
 
 export interface EssenceStat {
   attribute: string | null;
