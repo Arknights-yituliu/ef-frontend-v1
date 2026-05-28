@@ -9,12 +9,12 @@ import FactoryManualTableJson from '@/custom/core/gacha/data/permanent_factory_m
 import IntelArchiveRewardJson from '@/custom/core/gacha/data/permanent_intel_archive_reward.json';
 import operationalManualTrainingTableJson from '@/custom/core/gacha/data/permanent_operational_manual_training_table.json';
 
+import permanentOtherTableJson from '@/custom/core/gacha/data/permanent_other_table.json';
 import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
 import valleyIVTableJson from '@/custom/core/gacha/data/permanent_valley_IV_table.json';
 import valleyIVTaskTable from '@/custom/core/gacha/data/permanent_valley_IV_task_table.json';
 import wulingTableJson from '@/custom/core/gacha/data/permanent_wuling_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/permanent_wuling_task_table.json';
-import permanentOtherTableJson from '@/custom/core/gacha/data/permanent_other_table.json';
 
 
 
