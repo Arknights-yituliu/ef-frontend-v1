@@ -7,7 +7,7 @@ import type {
   RewardStatisticsResultDetail,
   TotalPullsSingle,
 } from '@/shared/types/gacha-calculator';
-import { addReward, getRewardPull } from '#shared/utils/gacha-calculator';
+import { addReward, getRewardPull, normalizeVersionName } from '#shared/utils/gacha-calculator';
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
@@ -53,6 +53,10 @@ const poolOptions = ref<PoolOption[]>([]);
 
 const displayPoolOptions = ref<string[]>([]);
 
+/**
+ * 初始化卡池选项
+ *
+ * */
 function initPoolOptions() {
   for (const pool of PoolInfoTable) {
     const poolOption: PoolOption = {
@@ -117,6 +121,10 @@ const currentMode = ref('normal');
 const devModeTriggerClicks = ref(0);
 const devModeTriggerThreshold = 8;
 
+/**
+ * 同步当前模式从路由参数
+ *
+ * */
 function syncCurrentModeFromRoute() {
   currentMode.value = route.query.mode === 'dev' ? 'dev' : 'normal';
   if (currentMode.value !== 'dev') {
@@ -124,6 +132,10 @@ function syncCurrentModeFromRoute() {
   }
 }
 
+/**
+ * 点击触发开发模式
+ *
+ * */
 function triggerDevModeByDailyReward() {
   if (currentMode.value === 'dev') {
     return;
@@ -142,6 +154,11 @@ function triggerDevModeByDailyReward() {
   }
 }
 
+/**
+ * 开发模式下，调试开始日期
+ *
+ * @param date 开始日期
+ * */
 function startDateDebug() {
   const newDate = new Date(devStartDate.value);
   newDate.setHours(12, 0, 0, 0);
@@ -150,6 +167,11 @@ function startDateDebug() {
   calc();
 }
 
+/**
+ * 选择卡池
+ *
+ * @param option 卡池选项
+ * */
 function selectedPool(option: PoolOption): void {
   if ('敬请期待' === option.name) {
     return;
@@ -158,6 +180,10 @@ function selectedPool(option: PoolOption): void {
   calc();
 }
 
+/**
+ * 计算奖励
+ *
+ * */
 function calc() {
   calculatorDailyReward(poolStartDate.value, currentPool.value.end);
   existingRewardStatistics();
@@ -168,6 +194,10 @@ function calc() {
   allRewardStatisticsV2();
 }
 
+/**
+ * 用户配置对象
+ *
+ * */
 const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   existingResource: {
     originiumRecharge: 0,
@@ -182,6 +212,10 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   versionVisible: {},
 });
 
+/**
+ * 保存用户配置
+ *
+ * */
 function saveGachaCalculatorUserConfig() {
   localStorage.setItem(
     'Gacha_Calculator_User_Config',
@@ -193,6 +227,10 @@ function saveGachaCalculatorUserConfig() {
  * 库存计算相关代码起始
  */
 
+/**
+ * 库存对象
+ *
+ * */
 const existingResource = ref<RewardStatisticsResultDetail>({
   name: '库存',
   originiumRecharge: 0,
@@ -202,6 +240,10 @@ const existingResource = ref<RewardStatisticsResultDetail>({
   ticketgachaLimitedSingle: 0,
 });
 
+/**
+ * 监听库存对象变化
+ *
+ * */
 watch(
   existingResource,
   (newValue) => {
@@ -219,6 +261,10 @@ watch(
   { deep: true },
 );
 
+/**
+ * 寻访情报书对象
+ *
+ * */
 const seekIntelBook = ref({
   id: 'seek_intel_book',
   name: { zh: '寻访情报书', en: 'Seek Intel Book' },
@@ -237,6 +283,10 @@ const seekIntelBook = ref({
   },
 });
 
+/**
+ * 监听寻访情报书对象变化
+ *
+ * */
 watch(
   seekIntelBook,
   (newValue) => {
@@ -247,6 +297,10 @@ watch(
   { deep: true },
 );
 
+/**
+ * 库存奖励统计结果
+ *
+ * */
 let existingRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   name: '库存',
   originiumRecharge: 0,
@@ -256,6 +310,10 @@ let existingRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
   ticketgachaLimitedSingle: 0,
 };
 
+/**
+ * 计算库存奖励统计结果
+ *
+ * */
 function existingRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
     name: '库存',
@@ -316,7 +374,7 @@ function dailyRewardStatistics(): void {
 
   // 日常奖励重构
   for (const reward of dailyAllRewardTable.value) {
-    if (shouldCountReward(reward)) {
+    if (rewardDisplayAndCountMatchesDateAndTypeAndVersion(reward)) {
       addReward(result, reward);
     }
   }
@@ -365,7 +423,7 @@ function activityRewardStatistics(): void {
   };
 
   for (const reward of activityReward.value) {
-    if (shouldCountReward(reward)) {
+    if (rewardDisplayAndCountMatchesDateAndTypeAndVersion(reward)) {
       addReward(result, reward);
     }
   }
@@ -1020,26 +1078,6 @@ watch(
   },
 );
 
-function clearOrSelectAllDailyRewardModule(action: boolean) {
-  clearOrSelectAll(action, 'button', dailyAllRewardTable);
-}
-
-function clearOrSelectAllActivityModule(action: boolean) {
-  clearOrSelectAll(action, 'button', activityReward);
-}
-
-function clearOrSelectAllPermanentRewardModule(action: boolean) {
-  clearOrSelectAll(action, 'button', permanentRewardTable);
-
-  if (isRewardMatchedSelectedVersion(authorityLevelUpReward.value)) {
-    if (action) {
-      authorityLevelProgress.value = [1, 60];
-    } else {
-      authorityLevelProgress.value = [60, 60];
-    }
-  }
-}
-
 function clearOrSelectAll(
   action: boolean,
   type: string,
@@ -1081,21 +1119,6 @@ function clearOrSelectAll(
     }
   }
 }
-
-const clearBtnGroup = [
-  {
-    text: '日常积累',
-    func: clearOrSelectAllDailyRewardModule,
-  },
-  {
-    text: '版本限时活动奖励',
-    func: clearOrSelectAllActivityModule,
-  },
-  {
-    text: '常驻奖励',
-    func: clearOrSelectAllPermanentRewardModule,
-  },
-];
 
 // 工具函数
 
@@ -1159,50 +1182,19 @@ function saveUserConfig(
   saveGachaCalculatorUserConfig();
 }
 
-/**
- * 检查奖励是否在当前池子期间内有效
- * @param reward 奖励对象
- * @returns 是否有效
- */
-function checkRewardIsValid(reward: Reward): boolean {
-  // 将当前卡池信息复制到临时变量
-  const currentPoolValue = currentPool.value;
-
-  // 如果奖励为通用或者是当前池子类型匹配设为true
-  let display =
-    '通用' === reward.type || reward.type === currentPoolValue.type || '所有版本' === reward.type;
-
-  // console.log(reward.name.zh, reward.type, currentPoolValue.type);
-
-  // 活动结束时间在当前池子开始时间之前，活动已结束
-  if (reward.end <= poolStartDate.value) {
-    // console.log(reward.name.zh, '过期');
-    display = false;
-  }
-
-  // 活动开始时间在当前池子结束时间之后，活动未开始
-  if (reward.start >= currentPoolValue.end) {
-    // console.log(reward.name.zh, '过期');
-    display = false;
-  }
-
-  // console.log(reward.name.zh, reward.end, startDate);
-  // console.log(reward.name.zh, reward.start, currentPoolValue.end);
-  // console.log(reward.name.zh, reward.start, reward.end);
-  // 判断奖励类型是否可以被计入
-  // 通用类型都可以计入，特殊类型需要与当前池子类型匹配
-  // console.log(reward.name.zh, display);
-  return display;
-}
-
 // 武库配额计算
+// 用户持有的标准寻访凭证数量
 const arsenalStandardPulls = ref<number>(0);
+// 用户持有的特许寻访凭证数量
 const arsenalSpecialPulls = ref<number>(0);
+// 武库配额系数，默认80，即每抽换算为80武库配额
 const arsenalCoefficient = ref<number>(80);
+// 源石兑换武库配额的倍率，每1个源石 = 25武库配额
 const ARSENAL_ORIGINIUM_QUOTA_RATE = 25;
+// 用户输入的源石兑换数量，null表示未输入
 const arsenalOriginiumExchange = ref<number | null>(0);
 
-// 实际抽数 = 基础 + 特许，如果特许>30则额外+10
+// 实际抽数的计算：标准券 + 特许券，特许券超过30张时额外赠送10抽
 const arsenalActualPulls = computed(() => {
   let pulls = arsenalStandardPulls.value + arsenalSpecialPulls.value;
   if (arsenalSpecialPulls.value > 30) {
@@ -1211,23 +1203,28 @@ const arsenalActualPulls = computed(() => {
   return pulls;
 });
 
+// 规范化后的源石兑换数量，通过normalizeArsenalOriginiumExchange保证值为非负整数
 const arsenalOriginiumExchangeValue = computed(() =>
   normalizeArsenalOriginiumExchange(arsenalOriginiumExchange.value),
 );
+// 源石兑换产生的武库配额 = 源石数量 × 25
 const arsenalOriginiumQuota = computed(
   () => arsenalOriginiumExchangeValue.value * ARSENAL_ORIGINIUM_QUOTA_RATE,
 );
+// 是否进行了源石兑换，用于控制UI显示
 const hasArsenalOriginiumExchange = computed(() => arsenalOriginiumExchangeValue.value > 0);
 
-// 武库配额 = 实际抽数 × 系数 + 源石数 × 25
+// 武库配额总结果 = 实际抽数 × 系数 + 源石兑换配额
 const arsenalQuotaResult = computed(
   () => arsenalActualPulls.value * arsenalCoefficient.value + arsenalOriginiumQuota.value,
 );
 
+// 设置源石兑换数量，自动规范化处理
 function setArsenalOriginiumExchange(value: number | null) {
   arsenalOriginiumExchange.value = normalizeArsenalOriginiumExchange(value);
 }
 
+// 输入框输入时触发，规范化用户输入并回写至input
 function normalizeArsenalOriginiumExchangeInput(event: Event) {
   const input = event.target as HTMLInputElement | null;
   const normalizedValue = normalizeArsenalOriginiumExchange(
@@ -1239,6 +1236,7 @@ function normalizeArsenalOriginiumExchangeInput(event: Event) {
   }
 }
 
+// 将源石兑换输入规范化为非负整数，非法值返回0
 function normalizeArsenalOriginiumExchange(value: number | string | null | undefined) {
   const numericValue = Number(value);
   if (!Number.isFinite(numericValue)) {
@@ -1280,11 +1278,6 @@ function getSpecialAndLimitedPulls(pullsSignle: TotalPullsSingle | undefined) {
 }
 
 const versionOptions = ref<string[]>([]);
-
-const reversedVersionOptions = computed(() => versionOptions.value.toReversed());
-
-const selectedVersion = ref<string>('all');
-
 const versionVisibleMap = ref<Record<string, boolean>>({});
 
 for (const version of VersionTable) {
@@ -1292,74 +1285,94 @@ for (const version of VersionTable) {
   versionVisibleMap.value[version.version] = true;
 }
 
-function selectVersionOptions(version: string) {
-  selectedVersion.value = selectedVersion.value === version ? 'all' : version;
-}
+const reversedVersionOptions = computed(() => versionOptions.value.toReversed());
 
-function normalizeVersionName(version?: string): string {
-  return (version ?? '').replace(/\s/g, '');
-}
+const selectedVersion = ref<string>('all');
 
+// 获取奖励对象所关联的版本名称列表
+// 通过 reward.version 在全局版本列表中查找匹配项（去空格后比对）
+// 返回空数组表示该奖励没有 version 属性（如库存、寻访情报书等不需版本筛选的项）
 function getRewardVersionControlVersions(reward: Reward): string[] {
+  // 取出奖励的版本字段并去除空格
   const rewardVersion = normalizeVersionName(reward.version);
+  // 如果奖励没有版本信息，返回空数组表示不参与版本筛选
   if (!rewardVersion) {
     return [];
   }
-
+  console.log(
+    'rewardVersion',
+    rewardVersion,
+    ';RewardVersionControlVersions',
+    versionOptions.value.filter((version) => normalizeVersionName(version) === rewardVersion),
+  );
+  // 在全局版本列表中查找与奖励版本名匹配的项
   return versionOptions.value.filter((version) => normalizeVersionName(version) === rewardVersion);
 }
 
+// 判断某个奖励是否属于指定版本
+// version 为 'all' 时匹配全部，用于快捷操作中未选择版本时的全量操作
 function isRewardMatchedVersion(reward: Reward, version: string): boolean {
+  // 'all' 表示不筛选版本，所有奖励都匹配
   if (version === 'all') {
     return true;
   }
 
+  console.log('debug', getRewardVersionControlVersions(reward));
+  // 获取奖励关联的版本列表，检查其中是否有与目标版本匹配的
   return getRewardVersionControlVersions(reward).some(
     (rewardVersion) => normalizeVersionName(rewardVersion) === normalizeVersionName(version),
   );
 }
 
-function isRewardMatchedSelectedVersion(reward: Reward): boolean {
-  return isRewardMatchedVersion(reward, selectedVersion.value);
-}
-
+// 检查指定版本是否在控制面板中被用户勾选为"可见"
 function isVersionVisible(version: string): boolean {
+  // versionVisibleMap 中值为 false 才隐藏，未设置的版本默认为可见
   return versionVisibleMap.value[version] !== false;
 }
 
+// 设置某个版本的可见性开关，同时持久化到 localStorage 并触发全量重算
 function setVersionVisible(version: string, visible: boolean) {
+  // 更新内存中的版本可见性映射
   versionVisibleMap.value[version] = visible;
+  // 确保用户配置对象中存在 versionVisible 字段
   if (!gachaCalculatorUserConfig.value.versionVisible) {
     gachaCalculatorUserConfig.value.versionVisible = {};
   }
+  // 同步写入用户配置对象
   gachaCalculatorUserConfig.value.versionVisible[version] = visible;
+  // 持久化到 localStorage
   saveGachaCalculatorUserConfig();
+  // 重新计算全部资源（因为版本可见性变化会影响该版本所有奖励是否计入统计）
   calc();
 }
 
+// 判断一个奖励在当前版本筛选设置下是否应该显示
+// 没有 version 的奖励（如库存）始终可见
+// 有 version 的奖励需要其关联的版本中至少有一个被用户勾选为可见
 function isRewardVersionVisible(reward: Reward): boolean {
+  // 获取奖励关联的版本列表
   const matchedVersions = getRewardVersionControlVersions(reward);
-
+  // 如果奖励没有关联任何版本，始终显示（如库存、寻访情报书等通用项）
   if (matchedVersions.length === 0) {
     return true;
   }
 
+  console.log('matchedVersions', matchedVersions);
+  // 检查关联的版本中是否至少有一个在控制面板中被勾选为可见
   return matchedVersions.some((version) => isVersionVisible(version));
 }
 
-function shouldCountReward(reward: Reward): boolean {
-  return checkRewardIsValid(reward) && isRewardVersionVisible(reward);
-}
 
+
+// 将奖励累加到统计结果中，仅当该奖励在当前版本筛选下可见时才计入
 function addVisibleReward(result: RewardStatisticsResultDetail, reward: Reward) {
+  // 先检查版本可见性，避免将隐藏版本的奖励计入统计
   if (isRewardVersionVisible(reward)) {
     addReward(result, reward);
   }
 }
 
-function shouldDisplayReward(reward: Reward): boolean {
-  return shouldCountReward(reward);
-}
+
 
 function setVersionRewardsActive(version: string, active: boolean) {
   clearOrSelectAll(active, 'button', dailyAllRewardTable, [0, 0], version);
@@ -1370,6 +1383,90 @@ function setVersionRewardsActive(version: string, active: boolean) {
     authorityLevelProgress.value = active ? [1, 60] : [60, 60];
   }
 }
+
+/**
+ * 检查奖励是否在当前池子期间内有效
+ * @param reward 奖励对象
+ * @returns 是否有效
+ */
+function checkRewardIsValid(reward: Reward): boolean {
+  // 将当前卡池信息复制到临时变量
+  const currentPoolValue = currentPool.value;
+
+  // 如果奖励为通用或者是当前池子类型匹配设为true
+  let display =
+    '通用' === reward.type || reward.type === currentPoolValue.type || '所有版本' === reward.type;
+
+  // console.log(reward.name.zh, reward.type, currentPoolValue.type);
+
+  // 活动结束时间在当前池子开始时间之前，活动已结束
+  if (reward.end <= poolStartDate.value) {
+    // console.log(reward.name.zh, '过期');
+    display = false;
+  }
+
+  // 活动开始时间在当前池子结束时间之后，活动未开始
+  if (reward.start >= currentPoolValue.end) {
+    // console.log(reward.name.zh, '过期');
+    display = false;
+  }
+
+  // console.log(reward.name.zh, reward.end, startDate);
+  // console.log(reward.name.zh, reward.start, currentPoolValue.end);
+  // console.log(reward.name.zh, reward.start, reward.end);
+  // 判断奖励类型是否可以被计入
+  // 通用类型都可以计入，特殊类型需要与当前池子类型匹配
+  // console.log(reward.name.zh, display);
+  return display;
+}
+
+/**
+ * 判断奖励是否在时间范围外，即已过期或尚未开始
+ * @param reward 奖励对象
+ * @returns 是否在时间范围外
+ */
+function rewardIsExpired(reward: Reward): boolean {
+  // 奖励结束时间在当前卡池开始之前：活动已结束
+  if (reward.end <= poolStartDate.value) {
+    return false;
+  }
+  // 奖励开始时间在当前卡池结束之后：活动尚未开始
+  if (reward.start >= currentPool.value.end) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * 判断奖励类型是否匹配当前池子类型
+ * @param reward 奖励对象
+ * @returns 是否匹配
+ */
+function rewardMatchesType(reward: Reward): boolean {
+  return (
+    '通用' === reward.type || reward.type === currentPool.value.type || '所有版本' === reward.type
+  );
+}
+
+/**
+ * 判断奖励版本是否匹配当前选择的版本
+ * @param reward 奖励对象
+ * @returns 是否匹配
+ */
+function rewardMatchesVersion(reward: Reward): boolean {
+   return versionVisibleMap.value[reward.version] !== false;
+}
+
+/**
+ * 判断奖励是否应该在页面上渲染显示
+ * @param reward 奖励对象
+ * @returns 是否应该在页面上渲染显示
+ */
+
+function rewardDisplayAndCountMatchesDateAndTypeAndVersion(reward: Reward): boolean {
+  return rewardIsExpired(reward) && rewardMatchesType(reward) && rewardMatchesVersion(reward);
+}
+
 
 function resetGachaCalculator() {
   const lastVersion = versionOptions.value.at(-1);
@@ -1896,59 +1993,10 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
             </div>
           </v-expansion-panel-text>
         </v-expansion-panel>
-
-        <v-expansion-panel v-show="'dev' === currentMode">
-          <v-expansion-panel-title class="gacha-calculator-card-title">
-            <div>{{ t('page.tools.gachaCalculator.shortcutActions') }}</div>
-          </v-expansion-panel-title>
-          <v-expansion-panel-text>
-            <v-btn
-              v-for="option in versionOptions"
-              :key="option"
-              class="gacha-calculator-pool-btn-dev"
-              :class="selectedVersion === option ? '' : 'gacha-calculator-pool-btn-enabled'"
-              color="rgb(33, 150, 243)"
-              @click="selectVersionOptions(option)"
-              >{{ option }}
-            </v-btn>
-            <v-alert style="margin-bottom: 8px" type="warning">
-              上方版本未选择时，下方操作默认对所有版本生效
-            </v-alert>
-            <v-table class="gacha-calculator-shortcut-btn-table">
-              <thead>
-                <tr>
-                  <td>模块</td>
-                  <td>操作</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="action in clearBtnGroup" :key="action.text">
-                  <td>{{ action.text }}</td>
-                  <td>
-                    <v-btn
-                      class="gacha-calculator-shortcut-btn"
-                      color="red"
-                      text="清空所有选中奖励"
-                      @click="action.func(false)"
-                    />
-                    <v-btn
-                      class="gacha-calculator-shortcut-btn"
-                      color="blue"
-                      text="选中所有奖励"
-                      @click="action.func(true)"
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </v-table>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
       </v-expansion-panels>
       <div class="placeholder-block" />
     </div>
-    <!--      <div>-->
-    <!--        {{ JSON.stringify(allGachaResource) }}-->
-    <!--      </div>-->
+
     <div class="gacha-calculator-container-right">
       <!-- <v-alert style="margin-bottom: 8px" type="info">
         基础寻访次数仅在总计模块显示，各模块不再单独显示
@@ -2052,7 +2100,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               <GachaCalculatorModuleTitle v-if="item.type === '标题'" :title="item.name.zh" />
               <GachaCalculatorResourceSingleBtn
                 v-else
-                v-show="shouldDisplayReward(item)"
+                v-show="rewardDisplayAndCountMatchesDateAndTypeAndVersion(item)"
                 :reward="item"
                 @click="item.active = !item.active"
               />
@@ -2073,7 +2121,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingleBtn
               v-for="item in activityReward"
-              v-show="shouldDisplayReward(item)"
+              v-show="rewardDisplayAndCountMatchesDateAndTypeAndVersion(item)"
               :key="item.id"
               :reward="item"
               @click="item.active = !item.active"
