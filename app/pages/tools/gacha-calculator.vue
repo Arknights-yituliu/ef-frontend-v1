@@ -374,7 +374,7 @@ function dailyRewardStatistics(): void {
 
   // 日常奖励重构
   for (const reward of dailyAllRewardTable.value) {
-    if (rewardDisplayAndCountMatchesDateAndTypeAndVersion(reward)) {
+    if (shouldDisplayAndCount(reward)) {
       addReward(result, reward);
     }
   }
@@ -423,7 +423,7 @@ function activityRewardStatistics(): void {
   };
 
   for (const reward of activityReward.value) {
-    if (rewardDisplayAndCountMatchesDateAndTypeAndVersion(reward)) {
+    if (shouldDisplayAndCount(reward)) {
       addReward(result, reward);
     }
   }
@@ -493,10 +493,14 @@ function permanentRewardStatistics(): void {
     ticketgachaLimitedSingle: 0,
   };
   for (const reward of permanentRewardTable.value) {
-    addVisibleReward(result, reward);
+    if(rewardMatchesVersion(reward)){
+      addReward(result, reward);
+    }
   }
 
-  addVisibleReward(result, authorityLevelUpReward.value);
+  if(rewardMatchesVersion(authorityLevelUpReward.value)){
+    addReward(result, authorityLevelUpReward.value);
+  }
 
   permanentRewardStatisticsResultDetail = result;
   gachaResourceStatisticsResult.value.totalPulls.permanent = getRewardPull(result);
@@ -1346,31 +1350,8 @@ function setVersionVisible(version: string, visible: boolean) {
   calc();
 }
 
-// 判断一个奖励在当前版本筛选设置下是否应该显示
-// 没有 version 的奖励（如库存）始终可见
-// 有 version 的奖励需要其关联的版本中至少有一个被用户勾选为可见
-function isRewardVersionVisible(reward: Reward): boolean {
-  // 获取奖励关联的版本列表
-  const matchedVersions = getRewardVersionControlVersions(reward);
-  // 如果奖励没有关联任何版本，始终显示（如库存、寻访情报书等通用项）
-  if (matchedVersions.length === 0) {
-    return true;
-  }
-
-  console.log('matchedVersions', matchedVersions);
-  // 检查关联的版本中是否至少有一个在控制面板中被勾选为可见
-  return matchedVersions.some((version) => isVersionVisible(version));
-}
 
 
-
-// 将奖励累加到统计结果中，仅当该奖励在当前版本筛选下可见时才计入
-function addVisibleReward(result: RewardStatisticsResultDetail, reward: Reward) {
-  // 先检查版本可见性，避免将隐藏版本的奖励计入统计
-  if (isRewardVersionVisible(reward)) {
-    addReward(result, reward);
-  }
-}
 
 
 
@@ -1384,41 +1365,6 @@ function setVersionRewardsActive(version: string, active: boolean) {
   }
 }
 
-/**
- * 检查奖励是否在当前池子期间内有效
- * @param reward 奖励对象
- * @returns 是否有效
- */
-function checkRewardIsValid(reward: Reward): boolean {
-  // 将当前卡池信息复制到临时变量
-  const currentPoolValue = currentPool.value;
-
-  // 如果奖励为通用或者是当前池子类型匹配设为true
-  let display =
-    '通用' === reward.type || reward.type === currentPoolValue.type || '所有版本' === reward.type;
-
-  // console.log(reward.name.zh, reward.type, currentPoolValue.type);
-
-  // 活动结束时间在当前池子开始时间之前，活动已结束
-  if (reward.end <= poolStartDate.value) {
-    // console.log(reward.name.zh, '过期');
-    display = false;
-  }
-
-  // 活动开始时间在当前池子结束时间之后，活动未开始
-  if (reward.start >= currentPoolValue.end) {
-    // console.log(reward.name.zh, '过期');
-    display = false;
-  }
-
-  // console.log(reward.name.zh, reward.end, startDate);
-  // console.log(reward.name.zh, reward.start, currentPoolValue.end);
-  // console.log(reward.name.zh, reward.start, reward.end);
-  // 判断奖励类型是否可以被计入
-  // 通用类型都可以计入，特殊类型需要与当前池子类型匹配
-  // console.log(reward.name.zh, display);
-  return display;
-}
 
 /**
  * 判断奖励是否在时间范围外，即已过期或尚未开始
@@ -1444,7 +1390,7 @@ function rewardIsExpired(reward: Reward): boolean {
  */
 function rewardMatchesType(reward: Reward): boolean {
   return (
-    '通用' === reward.type || reward.type === currentPool.value.type || '所有版本' === reward.type
+    '通用' === reward.type || reward.type === currentPool.value.type 
   );
 }
 
@@ -1454,8 +1400,10 @@ function rewardMatchesType(reward: Reward): boolean {
  * @returns 是否匹配
  */
 function rewardMatchesVersion(reward: Reward): boolean {
-   return versionVisibleMap.value[reward.version] !== false;
+   return '基础资源' === reward.version || versionVisibleMap.value[reward.version] !== false;
 }
+
+
 
 /**
  * 判断奖励是否应该在页面上渲染显示
@@ -1463,7 +1411,7 @@ function rewardMatchesVersion(reward: Reward): boolean {
  * @returns 是否应该在页面上渲染显示
  */
 
-function rewardDisplayAndCountMatchesDateAndTypeAndVersion(reward: Reward): boolean {
+function shouldDisplayAndCount(reward: Reward): boolean {
   return rewardIsExpired(reward) && rewardMatchesType(reward) && rewardMatchesVersion(reward);
 }
 
@@ -2100,7 +2048,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               <GachaCalculatorModuleTitle v-if="item.type === '标题'" :title="item.name.zh" />
               <GachaCalculatorResourceSingleBtn
                 v-else
-                v-show="rewardDisplayAndCountMatchesDateAndTypeAndVersion(item)"
+                v-show="shouldDisplayAndCount(item)"
                 :reward="item"
                 @click="item.active = !item.active"
               />
@@ -2121,7 +2069,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           <v-expansion-panel-text>
             <GachaCalculatorResourceSingleBtn
               v-for="item in activityReward"
-              v-show="rewardDisplayAndCountMatchesDateAndTypeAndVersion(item)"
+              v-show="shouldDisplayAndCount(item)"
               :key="item.id"
               :reward="item"
               @click="item.active = !item.active"
@@ -2152,7 +2100,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               <template v-for="reward in group.rewards" :key="reward.id">
                 <v-card
                   v-if="reward.id === authorityLevelUpReward.id"
-                  v-show="isRewardVersionVisible(authorityLevelUpReward)"
+                  v-show="rewardMatchesVersion(authorityLevelUpReward)"
                 >
                   <v-card-text>
                     <GachaCalculatorResourceSingle v-bind="authorityLevelUpReward" />
@@ -2172,7 +2120,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 </v-card>
                 <GachaCalculatorResourceSingleBtn
                   v-else
-                  v-show="isRewardVersionVisible(reward)"
+                  v-show="rewardMatchesVersion(reward)"
                   :reward="reward"
                   @click="reward.active = !reward.active"
                 />

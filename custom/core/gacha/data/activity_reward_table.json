@@ -26,7 +26,7 @@
       "en": ""
     },
     "start": "2026/06/12 12:00:00",
-    "end": "2029/12/31 12:00:00",
+    "end": "2026/06/26 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,
@@ -46,7 +46,7 @@
       "en": ""
     },
     "start": "2026/06/05 12:00:00",
-    "end": "2026/07/17 12:00:00",
+    "end": "2026/06/26 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,
@@ -555,26 +555,6 @@
     "content": {
       "originiumRecharge": 0,
       "diamond": 1200,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "离群之狼",
-    "name": {
-      "zh": "离群之狼",
-      "en": ""
-    },
-    "start": "2026/01/22 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "个人故事",
-    "active": true,
-    "version": "零号委托",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 600,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0

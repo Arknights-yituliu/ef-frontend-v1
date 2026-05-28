@@ -61,7 +61,7 @@ const dailyReward = ref<Reward>({
   type: '通用',
   module: '日常',
   active: true,
-  version: '零号委托',
+  version: '基础资源',
   content: {
     originiumRecharge: 0,
     diamond: 0,
@@ -82,7 +82,7 @@ const weekTaskReward = ref<Reward>({
   type: '通用',
   module: '日常',
   active: true,
-  version: '新潮起·故渊离',
+  version: '基础资源',
   content: {
     originiumRecharge: 0,
     diamond: 0,

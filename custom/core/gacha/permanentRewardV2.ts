@@ -14,6 +14,9 @@ import valleyIVTableJson from '@/custom/core/gacha/data/permanent_valley_IV_tabl
 import valleyIVTaskTable from '@/custom/core/gacha/data/permanent_valley_IV_task_table.json';
 import wulingTableJson from '@/custom/core/gacha/data/permanent_wuling_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/permanent_wuling_task_table.json';
+import permanentOtherTableJson from '@/custom/core/gacha/data/permanent_other_table.json';
+
+
 
 const currentVersion = '寻遗散记';
 
@@ -98,7 +101,11 @@ const operatorTraining = {
   },
 };
 
-
+for(const reward of permanentOtherTableJson as Reward[]){
+  reward.start = new Date(reward.start);
+  reward.end = new Date(reward.end);
+  permanentRewardTable.value.push(reward);
+}
 
 permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string | Date }) => {
   const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();
@@ -120,7 +127,7 @@ const authorityLevelUpReward = ref<Reward>({
   type: '通用',
   module: '权限等阶提升',
   active: true,
-  version: '零号委托',
+  version: '基础资源',
   content: {
     originiumRecharge: 0,
     diamond: 0,
