@@ -5,7 +5,7 @@ import { ref } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 import { createVersionDailyReward, dailyAllRewardTable } from '@/custom/core/gacha/dailyReward';
 import {
- 
+
   authorityLevelUpReward,
   permanentRewardTable,
 } from '@/custom/core/gacha/permanentRewardV2';
@@ -102,7 +102,7 @@ for (const reward of sklandRewardGroupByVersion) {
 versionReward.push(
   authorityLevelUpReward.value,
   ...permanentRewardTable.value,
- 
+
 );
 
 const currentVersionReward = ref<Reward[]>([]);
@@ -152,7 +152,7 @@ function filterRewardByVersion(type: string, version: VersionTableItem) {
 
   if ('version' === type) {
     for (const reward of versionReward) {
-      if (version.version === reward.version) {
+      if (version.version === reward.version||'下个版本'===reward.version) {
         currentVersionReward.value.push(reward);
       }
     }
