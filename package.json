@@ -28,6 +28,7 @@
     "echarts": "5.0.0",
     "fuse.js": "^7.1.0",
     "gsap": "^3.13.0",
+    "html2canvas": "^1.4.1",
     "nuxt": "^4.2.0",
     "nuxt-seo-utils": "^7.0.19",
     "unhead": "^2.1.2",
