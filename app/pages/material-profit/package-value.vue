@@ -1,5 +1,11 @@
 <template>
-  <v-container>
+  <v-container
+    class="package-value-page"
+    :class="{
+      'package-value-page-debug-green': devDebugGreenBackground,
+      'package-value-page-debug-no-shadow': devDebugHideCardShadow,
+    }"
+  >
     <header class="page-title">{{ $t('page.materialProfit.packageValue.title') }}</header>
     <!--    <p class="page-description">{{ $t('page.materialProfit.packageValue.description') }}</p>-->
 
@@ -63,6 +69,29 @@
         <span v-else>↓ {{ $t('page.materialProfit.packageValue.sortDesc') }}</span>
       </v-btn>
     </section>
+
+    <section v-show="'dev' === currentMode" class="debug-panel">
+      <div class="debug-panel-title">
+        {{ $t('page.materialProfit.packageValue.devMode') }}
+      </div>
+      <div class="debug-switches">
+        <v-switch
+          v-model="devDebugHideCardShadow"
+          color="primary"
+          density="compact"
+          hide-details
+          :label="$t('page.materialProfit.packageValue.hideCardShadow')"
+        />
+        <v-switch
+          v-model="devDebugGreenBackground"
+          color="green"
+          density="compact"
+          hide-details
+          :label="$t('page.materialProfit.packageValue.greenBackground')"
+        />
+      </div>
+    </section>
+
     <!-- 礼包分类展示 -->
     <div v-if="displayGroups.length > 0">
       <div v-for="group in displayGroups" :key="group.groupId" class="group-section">
@@ -73,7 +102,13 @@
         />
 
         <div v-for="shop in group.shops" :key="shop.shopId" class="shop-section">
-          <h2 class="category-title">{{ shop.displayName[locale as keyof LocalizedText] }}</h2>
+          <h2
+            class="category-title"
+            :data-shop-id="shop.shopId"
+            @click="triggerDevModeByShop(shop.shopId)"
+          >
+            {{ shop.displayName[locale as keyof LocalizedText] }}
+          </h2>
           <TransitionGroup class="packs-container" name="list" tag="div">
             <ContainerPackCard
               v-for="packId in shop.goodsIds"
@@ -108,6 +143,23 @@ const { locale } = useI18n();
 const searchQuery = ref('');
 const sortField = ref<'default' | 'price' | 'gachaOnly' | 'allItems'>('default');
 const sortOrder = ref<'asc' | 'desc'>('asc');
+const route = useRoute();
+const router = useRouter();
+const currentMode = ref('normal');
+const devModeTriggerClicks = ref(0);
+const devModeTriggerThreshold = 8;
+const devModeTriggerShopId = 'SP_weapon_supply';
+const devDebugHideCardShadow = ref(false);
+const devDebugGreenBackground = ref(false);
+
+function syncCurrentModeFromRoute() {
+  currentMode.value = route.query.mode === 'dev' ? 'dev' : 'normal';
+  if (currentMode.value !== 'dev') {
+    devModeTriggerClicks.value = 0;
+  }
+}
+
+watch(() => route.query.mode, syncCurrentModeFromRoute, { immediate: true });
 
 // 使用 computed 生成层级数据
 const displayGroups = computed(() => {
@@ -185,12 +237,44 @@ function toggleSortOrder() {
   sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
 }
 
+function triggerDevModeByShop(shopId: string) {
+  if (shopId !== devModeTriggerShopId || currentMode.value === 'dev') {
+    return;
+  }
+
+  devModeTriggerClicks.value += 1;
+  if (devModeTriggerClicks.value >= devModeTriggerThreshold) {
+    currentMode.value = 'dev';
+    void router.replace({
+      path: route.path,
+      query: {
+        ...route.query,
+        mode: 'dev',
+      },
+    });
+  }
+}
+
 definePageMeta({
   layout: 'default',
 });
 </script>
 
 <style scoped>
+.package-value-page {
+  transition: background-color var(--transition-base);
+}
+
+.package-value-page-debug-green {
+  background-color: #dff8df;
+}
+
+.package-value-page-debug-no-shadow :deep(.pack-card-left),
+.package-value-page-debug-no-shadow :deep(.pack-card-right),
+.package-value-page-debug-no-shadow :deep(.pack-contents-table) {
+  box-shadow: none !important;
+}
+
 .filter-container {
   display: flex;
   align-items: center;
@@ -225,6 +309,30 @@ definePageMeta({
 .sort-order-btn {
   flex: 0 0 auto;
   white-space: nowrap;
+}
+
+.debug-panel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-sm) var(--spacing-md);
+  flex-wrap: wrap;
+  border: 1px dashed var(--theme-border);
+  border-radius: var(--radius-md);
+  background-color: var(--theme-bg-secondary);
+}
+
+.debug-panel-title {
+  color: var(--theme-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.debug-switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
 }
 
 .packs-container {
@@ -275,6 +383,15 @@ definePageMeta({
   .filter-radio-group {
     display: flex;
     justify-content: center;
+  }
+
+  .debug-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .debug-switches {
+    flex-direction: column;
   }
 }
 </style>

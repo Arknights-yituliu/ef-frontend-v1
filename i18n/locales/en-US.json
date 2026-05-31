@@ -357,7 +357,10 @@
         "sortGachaOnly": "Gacha Only",
         "sortAllItems": "All Items",
         "sortAsc": "Ascending",
-        "sortDesc": "Descending"
+        "sortDesc": "Descending",
+        "devMode": "Dev Mode",
+        "hideCardShadow": "Hide Card Shadows",
+        "greenBackground": "Green Background"
       },
       "itemValueTable": {
         "title": "Item Value Table",
