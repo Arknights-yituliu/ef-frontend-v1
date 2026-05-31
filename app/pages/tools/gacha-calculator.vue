@@ -123,6 +123,7 @@ const devModeTriggerThreshold = 8;
 const devDebugGreenBackground = ref(false);
 const devDebugHideCardShadow = ref(false);
 const devDebugHideWarning = ref(false);
+const devDebugHideProbability = ref(false);
 const isDevScreenshotCapturing = ref(false);
 const devScreenshotStatus = ref('');
 const GACHA_CALCULATOR_SCREENSHOT_SCALE = 4;
@@ -296,6 +297,9 @@ function createGachaScreenshotStage(sourceElement: HTMLElement) {
       : '',
     appContainer?.classList.contains('gacha-calculator-container-debug-no-warning')
       ? 'gacha-calculator-container-debug-no-warning'
+      : '',
+    appContainer?.classList.contains('gacha-calculator-container-debug-no-probability')
+      ? 'gacha-calculator-container-debug-no-probability'
       : '',
   ].filter(Boolean).join(' ');
   stage.setAttribute(GACHA_CALCULATOR_SCREENSHOT_STAGE_ATTR, stageId);
@@ -1861,6 +1865,8 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
       'gacha-calculator-container-debug-no-shadow':
         currentMode === 'dev' && devDebugHideCardShadow,
       'gacha-calculator-container-debug-no-warning': currentMode === 'dev' && devDebugHideWarning,
+      'gacha-calculator-container-debug-no-probability':
+        currentMode === 'dev' && devDebugHideProbability,
     }"
   >
     <div class="gacha-calculator-container-left">
@@ -1977,7 +1983,10 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               </div>
             </div>
 
-            <div v-show="'辉光庆时' !== currentPool.name">
+            <div
+              v-show="'辉光庆时' !== currentPool.name"
+              class="gacha-calculator-probability"
+            >
               拿到卡池UP干员的概率：{{ numberFloor(gachaProbability * 100) }}%
             </div>
           </v-expansion-panel-text>
@@ -2286,6 +2295,13 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   density="compact"
                   hide-details
                   label="隐藏警告提示"
+                />
+                <v-switch
+                  v-model="devDebugHideProbability"
+                  color="warning"
+                  density="compact"
+                  hide-details
+                  label="隐藏概率提示"
                 />
               </div>
 
@@ -2678,6 +2694,10 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-container-debug-no-warning .gacha-calculator-warning {
+  display: none !important;
+}
+
+.gacha-calculator-container-debug-no-probability .gacha-calculator-probability {
   display: none !important;
 }
 
