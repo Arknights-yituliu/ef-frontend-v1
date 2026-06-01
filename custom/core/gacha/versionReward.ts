@@ -248,14 +248,14 @@ function toDate(value: string | Date): Date {
  * @param versions 版本名称数组，保留 reward.version 在其中的奖励
  * @returns 过滤并按开始时间倒序排列的奖励数组
  */
-function filterRewardEndAfter(versions: string[]): Reward[] {
-  const now = new Date();
+function filterRewardEndAfter(versions: string[],versionStart: Date): Reward[] {
+  
    const list =  versionReward
     .filter((reward) => {
      
       const endDate = toDate(reward.end);
        console.log(reward.name.zh, reward.version, endDate);
-      return endDate >= now && versions.includes(reward.version);
+      return endDate > versionStart && versions.includes(reward.version);
     })
     .sort((a, b) => toDate(b.start).getTime() - toDate(a.start).getTime());
      const dailyReward =  createVersionDailyReward(new Date('2026/04/17 12:00:00'), new Date('2026/06/05 12:00:00'), '当前版本');
@@ -284,7 +284,10 @@ function rewardTotalCalc(
   // 遍历合并后的奖励列表进行计算
   for (const reward of mergedRewards) {
     result.originiumRecharge += reward.content.originiumRecharge;
+    const tmp = result.diamond;
+    const tmp1 = reward.content.diamond
     result.diamond += reward.content.diamond;
+    console.log(tmp, '+', tmp1, '=', result.diamond);
     result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
     result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
     result.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;

@@ -10,7 +10,7 @@ import {
 
 
 
-const list = filterRewardEndAfter(['零号委托','新潮起·故渊离','春晓时']);
+const list = filterRewardEndAfter(['零号委托','新潮起·故渊离','春晓时'], new Date('2026/04/17 12:00:00'));
 const result: RewardStatisticsResultDetail = rewardTotalCalc(list, [], '总和');
 </script>
 
