@@ -1625,7 +1625,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               </div>
             </div>
 
-            <div v-show="'辉光庆时' !== currentPool.name">
+            <div v-show="'辉光庆典' !== currentPool.name">
               拿到卡池UP干员的概率：{{ numberFloor(gachaProbability * 100) }}%
             </div>
           </v-expansion-panel-text>

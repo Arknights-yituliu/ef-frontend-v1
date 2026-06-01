@@ -15,13 +15,10 @@ import valleyIVTableJson from '@/custom/core/gacha/data/permanent_valley_IV_tabl
 import valleyIVTaskTable from '@/custom/core/gacha/data/permanent_valley_IV_task_table.json';
 import wulingTableJson from '@/custom/core/gacha/data/permanent_wuling_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/permanent_wuling_task_table.json';
-
-
-
+import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 const currentVersion = '寻遗散记';
 
 const permanentRewardTable = ref<Reward[]>([]);
-
 
 function mergeReward(rewards: Reward[]) {
   for (const reward of rewards) {
@@ -75,8 +72,7 @@ for (const reward of operationalManualTrainingTableJson as Reward[]) {
   } else {
     reward.start = new Date(reward.start);
     reward.end = new Date(reward.end);
-     permanentRewardTable.value.push(reward);
-    
+    permanentRewardTable.value.push(reward);
   }
 }
 
@@ -101,11 +97,35 @@ const operatorTraining = {
   },
 };
 
-for(const reward of permanentOtherTableJson as Reward[]){
+for (const reward of permanentOtherTableJson as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
   permanentRewardTable.value.push(reward);
 }
+
+const reward1: Reward = {
+  id: '干员叙事·狼卫',
+  name: {
+    zh: '干员叙事·狼卫',
+    en: '',
+  },
+  start: '2026/01/22 12:00:00',
+  end: '2099/12/31 12:00:00',
+  type: '通用',
+  module: '干员叙事',
+  regional: '四号谷地',
+  active: false,
+  version: '零号委托',
+  content: {
+    originiumRecharge: 0,
+    diamond: 600,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  },
+};
+
+createNewPoolActivity();
 
 permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string | Date }) => {
   const aTime = typeof a.start === 'string' ? new Date(a.start).getTime() : a.start.getTime();
@@ -113,7 +133,37 @@ permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string
   return bTime - aTime;
 });
 
+function createNewPoolActivity() {
+  permanentRewardTable.value.push(reward1);
 
+  for (const item of PoolInfoTable) {
+    const startDate = new Date(item.poolStart);
+
+    if (item.narrative) {
+      const reward2: Reward = {
+        id: `干员叙事·${item.character}`,
+        name: {
+          zh: `干员叙事·${item.character}`,
+          en: '',
+        },
+        start: startDate,
+        end: new Date('2099-12-31 12:00:00'),
+        type: '通用',
+        module: '干员叙事',
+        active: currentVersion === item.version,
+        version: item.version,
+        content: {
+          originiumRecharge: 0,
+          diamond: 600,
+          ticketgachaStandardSingle: 0,
+          ticketgachaSpecialSingle: 0,
+          ticketgachaLimitedSingle: 0,
+        },
+      };
+      permanentRewardTable.value.push(reward2);
+    }
+  }
+}
 
 // 这是一个独立的常驻奖励，使用滑块组件
 const authorityLevelUpReward = ref<Reward>({
@@ -137,6 +187,6 @@ const authorityLevelUpReward = ref<Reward>({
   },
 });
 
-export {  authorityLevelUpReward, permanentRewardTable };
+export { authorityLevelUpReward, permanentRewardTable };
 
 export { default as authorityLevelUpRewardTable } from '@/custom/core/gacha/data/authority_level_up_reward_table.json';

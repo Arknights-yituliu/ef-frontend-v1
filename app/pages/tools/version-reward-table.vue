@@ -3,13 +3,15 @@ import { dateFormat } from '#shared/utils/dateUtil';
 
 import { numberFloor } from '#shared/utils/numberUtil';
 import {
-  currentVersionReward,
-  currentVersionRewardTotal,
-  filterRewardByVersion,
-  versionTable,
+ 
+  filterRewardEndAfter,
+  rewardTotalCalc,
 } from '@/custom/core/gacha/versionReward';
 
-filterRewardByVersion('all', versionTable[2]);
+
+
+const list = filterRewardEndAfter(['零号委托','新潮起·故渊离','春晓时']);
+const result: RewardStatisticsResultDetail = rewardTotalCalc(list, [], '总和');
 </script>
 
 <template>
@@ -24,12 +26,13 @@ filterRewardByVersion('all', versionTable[2]);
           <th>特许寻访</th>
           <th>限时寻访</th>
           <th>来源</th>
+          <th>版本</th>
           <th>开始日期</th>
           <th>结束日期</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="reward in currentVersionReward" :key="reward.id">
+        <tr v-for="reward in list" :key="reward.id">
           <td>{{ reward.name.zh }}</td>
           <td>{{ reward.content.originiumRecharge }}</td>
           <td>{{ reward.content.diamond }}</td>
@@ -37,6 +40,7 @@ filterRewardByVersion('all', versionTable[2]);
           <td>{{ reward.content.ticketgachaSpecialSingle }}</td>
           <td>{{ reward.content.ticketgachaLimitedSingle }}</td>
           <td>{{ reward.module }}</td>
+          <td>{{ reward.version }}</td>
           <td>{{ dateFormat(reward.start) }}</td>
           <td>{{ dateFormat(reward.end) }}</td>
         </tr>
@@ -56,7 +60,7 @@ filterRewardByVersion('all', versionTable[2]);
         </tr>
       </thead>
       <tbody>
-        <tr v-for="reward in currentVersionRewardTotal" :key="reward.name">
+        <tr v-for="reward in [result]" :key="reward.name">
           <td>{{ reward.name }}</td>
           <td>{{ reward.originiumRecharge }}</td>
           <td>{{ reward.diamond }}</td>
@@ -78,8 +82,12 @@ filterRewardByVersion('all', versionTable[2]);
   margin: auto;
   width: 1000px;
   border-collapse: collapse;
-  td {
+
+  td,
+  th {
+    border: 1px solid #000;
     padding: 4px 8px;
+    text-align: center;
   }
 }
 
@@ -90,6 +98,8 @@ filterRewardByVersion('all', versionTable[2]);
   td,
   th {
     border: 1px solid #000;
+    padding: 4px 12px;
+    text-align: center;
   }
 }
 </style>

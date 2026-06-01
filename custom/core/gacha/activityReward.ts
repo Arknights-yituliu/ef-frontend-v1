@@ -81,29 +81,7 @@ function createNewPoolActivity() {
       activityReward.value.push(reward1);
     }
 
-    if (item.narrative) {
-      const reward2: Reward = {
-        id: `干员叙事·${item.character}`,
-        name: {
-          zh: `干员叙事·${item.character}`,
-          en: '',
-        },
-        start: startDate,
-        end: new Date(item.versionEnd),
-        type: '通用',
-        module: '活动',
-        active: currentVersion === item.version,
-        version: item.version,
-        content: {
-          originiumRecharge: 0,
-          diamond: 600,
-          ticketgachaStandardSingle: 0,
-          ticketgachaSpecialSingle: 0,
-          ticketgachaLimitedSingle: 0,
-        },
-      };
-      activityReward.value.push(reward2);
-    }
+   
 
     const reward3: Reward = {
       id: `${item.poolName}卡池签到`,

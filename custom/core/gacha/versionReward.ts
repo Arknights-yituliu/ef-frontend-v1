@@ -1,22 +1,20 @@
 import type { Reward, RewardStatisticsResultDetail } from '#shared/types/gacha-calculator';
-import { calculateDaysDifference, groupAndMergeRewardsByVersion} from '#shared/utils/gacha-calculator';
+import {
+  calculateDaysDifference,
+  groupAndMergeRewardsByVersion,
+} from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
 import { ref } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 import { createVersionDailyReward, dailyAllRewardTable } from '@/custom/core/gacha/dailyReward';
 import {
-
   authorityLevelUpReward,
   permanentRewardTable,
 } from '@/custom/core/gacha/permanentRewardV2';
 
-
-
 const versionReward: Reward[] = [];
 
 const currentVersionRewardTotal = ref<RewardStatisticsResultDetail[]>([]);
-
-
 
 /**
  * 版本表条目类型
@@ -77,6 +75,9 @@ const versionTable: VersionTableItem[] = [
 // }
 
 for (const reward of dailyAllRewardTable.value) {
+  if(reward.module === '标题'){
+    continue;
+  }
   versionReward.push(reward);
 }
 
@@ -93,17 +94,13 @@ for (const reward of activityReward.value) {
   }
 }
 
-const sklandRewardGroupByVersion = groupAndMergeRewardsByVersion('森空岛签到',sklandRewards);
+const sklandRewardGroupByVersion = groupAndMergeRewardsByVersion('森空岛签到', sklandRewards);
 console.log(sklandRewardGroupByVersion);
 for (const reward of sklandRewardGroupByVersion) {
   versionReward.push(reward);
 }
 
-versionReward.push(
-  authorityLevelUpReward.value,
-  ...permanentRewardTable.value,
-
-);
+versionReward.push(authorityLevelUpReward.value, ...permanentRewardTable.value);
 
 const currentVersionReward = ref<Reward[]>([]);
 
@@ -152,7 +149,7 @@ function filterRewardByVersion(type: string, version: VersionTableItem) {
 
   if ('version' === type) {
     for (const reward of versionReward) {
-      if (version.version === reward.version||'下个版本'===reward.version) {
+      if (version.version === reward.version || '下个版本' === reward.version) {
         currentVersionReward.value.push(reward);
       }
     }
@@ -239,7 +236,38 @@ function createMonthlyPackReward(daysDiff: number): Reward {
   };
 }
 
-function rewardTotalCalc(rewardList: Reward[], rechargeReward: Reward[], name: string) {
+/**
+ * 将 string | Date 统一转为 Date
+ */
+function toDate(value: string | Date): Date {
+  return typeof value === 'string' ? new Date(value) : value;
+}
+
+/**
+ * 过滤 versionReward 中属于传入版本且未过期的奖励
+ * @param versions 版本名称数组，保留 reward.version 在其中的奖励
+ * @returns 过滤并按开始时间倒序排列的奖励数组
+ */
+function filterRewardEndAfter(versions: string[]): Reward[] {
+  const now = new Date();
+   const list =  versionReward
+    .filter((reward) => {
+     
+      const endDate = toDate(reward.end);
+       console.log(reward.name.zh, reward.version, endDate);
+      return endDate >= now && versions.includes(reward.version);
+    })
+    .sort((a, b) => toDate(b.start).getTime() - toDate(a.start).getTime());
+     const dailyReward =  createVersionDailyReward(new Date('2026/04/17 12:00:00'), new Date('2026/06/05 12:00:00'), '当前版本');
+    list.push(...dailyReward);
+    return list
+}
+
+function rewardTotalCalc(
+  rewardList: Reward[],
+  rechargeReward: Reward[],
+  name: string,
+): RewardStatisticsResultDetail {
   const result: RewardStatisticsResultDetail = {
     name,
     originiumRecharge: 0,
@@ -261,6 +289,9 @@ function rewardTotalCalc(rewardList: Reward[], rechargeReward: Reward[], name: s
     result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
     result.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
   }
+  result.totalPulls =
+    result.originiumRecharge * 0.15 + result.diamond / 500 + result.ticketgachaSpecialSingle;
+  return result;
 }
 
 const allVersionReward = ref<Reward[]>([]);
@@ -276,4 +307,6 @@ export {
   currentVersionRewardTotal,
   filterRewardByVersion,
   versionTable,
+  filterRewardEndAfter,
+  rewardTotalCalc,
 };

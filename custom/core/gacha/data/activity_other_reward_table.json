@@ -6,11 +6,11 @@
       "en": ""
     },
     "start": "2026/07/07 12:00:00",
-    "end": "2026/07/17 12:00:00",
+    "end": "2026/08/06 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
-    "version": "下个版本",
+    "version": "寻遗散记",
     "content": {
       "originiumRecharge": 0,
       "diamond": 1000,
@@ -26,7 +26,7 @@
       "en": ""
     },
     "start": "2026/07/01 12:00:00",
-    "end": "2026/07/07 12:00:00",
+    "end": "2026/07/15 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -40,9 +40,9 @@
     }
   },
   {
-    "id": "维护补偿",
+    "id": "更新补偿2026-06-26",
     "name": {
-      "zh": "维护补偿",
+      "zh": "更新补偿2026-06-26",
       "en": ""
     },
     "start": "2026/06/26 12:00:00",
@@ -59,11 +59,10 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-
   {
-    "id": "问题修复补偿6.5",
+    "id": "更新补偿2026-06-05",
     "name": {
-      "zh": "问题修复补偿6.5",
+      "zh": "更新补偿2026-06-05",
       "en": ""
     },
     "start": "2026/06/05 12:00:00",
@@ -74,27 +73,7 @@
     "version": "寻遗散记",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 900,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "版本更新6.5",
-    "name": {
-      "zh": "版本更新6.5",
-      "en": ""
-    },
-    "start": "2026/06/05 12:00:00",
-    "end": "2026/06/20 12:00:00",
-    "type": "通用",
-    "module": "维护",
-    "active": true,
-    "version": "寻遗散记",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 900,
+      "diamond": 1800,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -107,7 +86,7 @@
       "en": ""
     },
     "start": "2026/05/22 12:00:00",
-    "end": "2026/05/29 12:00:00",
+    "end": "2026/06/21 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -127,7 +106,7 @@
       "en": ""
     },
     "start": "2026/05/12 12:00:00",
-    "end": "2026/05/19 12:00:00",
+    "end": "2026/05/26 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -141,9 +120,9 @@
     }
   },
   {
-    "id": "维护补偿",
+    "id": "更新补偿2026-05-14",
     "name": {
-      "zh": "维护补偿",
+      "zh": "更新补偿2026-05-14",
       "en": ""
     },
     "start": "2026/05/14 12:00:00",
@@ -154,36 +133,16 @@
     "version": "春晓时",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 200,
+      "diamond": 400,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
   },
   {
-    "id": "维护补偿",
+    "id": "更新补偿2026-04-17",
     "name": {
-      "zh": "维护补偿",
-      "en": ""
-    },
-    "start": "2026/05/14 12:00:00",
-    "end": "2026/05/29 12:00:00",
-    "type": "通用",
-    "module": "维护",
-    "active": true,
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 200,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "问题修复补偿4.17",
-    "name": {
-      "zh": "问题修复补偿4.17",
+      "zh": "更新补偿2026-04-17",
       "en": ""
     },
     "start": "2026/04/17 12:00:00",
@@ -194,27 +153,7 @@
     "version": "春晓时",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 900,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "版本更新4.17",
-    "name": {
-      "zh": "版本更新4.17",
-      "en": ""
-    },
-    "start": "2026/04/17 12:00:00",
-    "end": "2026/05/02 12:00:00",
-    "type": "通用",
-    "module": "维护",
-    "active": true,
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 900,
+      "diamond": 1800,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -227,7 +166,7 @@
       "en": ""
     },
     "start": "2026/04/12 12:00:00",
-    "end": "2026/04/19 12:00:00",
+    "end": "2026/05/12 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -247,7 +186,7 @@
       "en": ""
     },
     "start": "2026/04/07 12:00:00",
-    "end": "2026/04/14 12:00:00",
+    "end": "2026/04/21 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -261,9 +200,9 @@
     }
   },
   {
-    "id": "维护补偿3.29",
+    "id": "更新补偿2026-03-29",
     "name": {
-      "zh": "维护补偿3.29",
+      "zh": "更新补偿2026-03-29",
       "en": ""
     },
     "start": "2026/03/29 12:00:00",
@@ -281,9 +220,9 @@
     }
   },
   {
-    "id": "问题修复补偿3.17",
+    "id": "更新补偿2026-03-14",
     "name": {
-      "zh": "问题修复补偿3.17",
+      "zh": "更新补偿2026-03-14",
       "en": ""
     },
     "start": "2026/03/14 12:00:00",
@@ -294,36 +233,16 @@
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 200,
+      "diamond": 700,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
   },
   {
-    "id": "问题修复补偿3.14",
+    "id": "更新补偿2026-03-12",
     "name": {
-      "zh": "问题修复补偿3.14",
-      "en": ""
-    },
-    "start": "2026/03/14 12:00:00",
-    "end": "2026/03/29 12:00:00",
-    "type": "通用",
-    "module": "维护",
-    "active": true,
-    "version": "新潮起·故渊离",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 500,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "问题修复补偿3.12",
-    "name": {
-      "zh": "问题修复补偿3.12",
+      "zh": "更新补偿2026-03-12",
       "en": ""
     },
     "start": "2026/03/12 12:00:00",
@@ -334,27 +253,7 @@
     "version": "新潮起·故渊离",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 900,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "版本更新3.12",
-    "name": {
-      "zh": "版本更新3.12",
-      "en": ""
-    },
-    "start": "2026/03/12 12:00:00",
-    "end": "2026/03/27 12:00:00",
-    "type": "通用",
-    "module": "维护",
-    "active": true,
-    "version": "新潮起·故渊离",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 900,
+      "diamond": 1800,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -367,7 +266,7 @@
       "en": ""
     },
     "start": "2026/03/01 12:00:00",
-    "end": "2026/03/14 12:00:00",
+    "end": "2026/03/31 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -387,7 +286,7 @@
       "en": ""
     },
     "start": "2026/02/26 12:00:00",
-    "end": "2026/03/05 12:00:00",
+    "end": "2026/03/12 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -407,7 +306,7 @@
       "en": ""
     },
     "start": "2026/02/14 12:00:00",
-    "end": "2026/02/21 12:00:00",
+    "end": "2026/02/28 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -421,9 +320,9 @@
     }
   },
   {
-    "id": "2026.2.12更新补偿",
+    "id": "更新补偿2026-02-12",
     "name": {
-      "zh": "2026.2.12更新补偿",
+      "zh": "更新补偿2026-02-12",
       "en": ""
     },
     "start": "2026/02/12 12:00:00",
@@ -441,9 +340,9 @@
     }
   },
   {
-    "id": "2026.2.5更新补偿",
+    "id": "更新补偿2026-02-05",
     "name": {
-      "zh": "2026.2.5更新补偿",
+      "zh": "更新补偿2026-02-05",
       "en": ""
     },
     "start": "2026/02/05 12:00:00",
@@ -461,9 +360,9 @@
     }
   },
   {
-    "id": "2026.1.30更新补偿",
+    "id": "更新补偿2026-01-30",
     "name": {
-      "zh": "2026.1.30更新补偿",
+      "zh": "更新补偿2026-01-30",
       "en": ""
     },
     "start": "2026/01/30 12:00:00",
@@ -474,27 +373,7 @@
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 200,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "体验优化补偿",
-    "name": {
-      "zh": "体验优化补偿",
-      "en": ""
-    },
-    "start": "2026/01/30 12:00:00",
-    "end": "2026/02/14 12:00:00",
-    "type": "通用",
-    "module": "维护",
-    "active": true,
-    "version": "零号委托",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 500,
+      "diamond": 700,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -507,7 +386,7 @@
       "en": ""
     },
     "start": "2026/01/28 12:00:00",
-    "end": "2026/02/04 12:00:00",
+    "end": "2026/02/11 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -520,7 +399,6 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-
   {
     "id": "玩家调研问卷2026.1.24",
     "name": {
@@ -528,7 +406,7 @@
       "en": ""
     },
     "start": "2026/01/24 12:00:00",
-    "end": "2026/01/31 12:00:00",
+    "end": "2026/02/07 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -588,7 +466,7 @@
       "en": ""
     },
     "start": "2026/01/22 12:00:00",
-    "end": "2026/01/29 12:00:00",
+    "end": "2026/02/05 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -661,7 +539,6 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-
   {
     "id": "森空岛[全球公测开启]活动奖励",
     "name": {
