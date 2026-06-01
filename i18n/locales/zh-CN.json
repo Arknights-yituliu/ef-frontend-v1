@@ -357,7 +357,10 @@
         "sortGachaOnly": "仅抽卡",
         "sortAllItems": "全物品",
         "sortAsc": "升序",
-        "sortDesc": "降序"
+        "sortDesc": "降序",
+        "devMode": "开发模式",
+        "hideCardShadow": "隐藏卡片阴影",
+        "greenBackground": "背景变绿"
       },
       "itemValueTable": {
         "title": "物品价值表",

@@ -120,6 +120,31 @@ const devStartDate = ref(new Date());
 const currentMode = ref('normal');
 const devModeTriggerClicks = ref(0);
 const devModeTriggerThreshold = 8;
+const devDebugGreenBackground = ref(false);
+const devDebugHideCardShadow = ref(false);
+const devDebugHideWarning = ref(false);
+const devDebugHideProbability = ref(false);
+const isDevScreenshotCapturing = ref(false);
+const devScreenshotStatus = ref('');
+const GACHA_CALCULATOR_SCREENSHOT_SCALE = 4;
+const GACHA_CALCULATOR_SCREENSHOT_STAGE_ATTR = 'data-gacha-screenshot-stage';
+const rightPanelScreenshotTargets = [
+  { value: 'existing', label: '库存与寻访情报书' },
+  { value: 'daily', label: '日常积累' },
+  { value: 'activity', label: '版本限时活动' },
+  { value: 'permanent-re', label: '常驻奖励' },
+  { value: 'recharge', label: '氪金资源' },
+  { value: 'debug', label: 'debug' },
+] as const;
+const leftPanelScreenshotTargets = [
+  { value: 'statistical-result', label: '总览卡片' },
+  { value: 'arsenal-quota', label: '武库配额估算' },
+  { value: 'control-panel', label: '控制面板' },
+] as const;
+type RightPanelScreenshotTargetValue = (typeof rightPanelScreenshotTargets)[number]['value'];
+type LeftPanelScreenshotTargetValue = (typeof leftPanelScreenshotTargets)[number]['value'];
+let devScreenshotStatusTimer: number | null = null;
+let devScreenshotStageIndex = 0;
 
 /**
  * 同步当前模式从路由参数
@@ -165,6 +190,324 @@ function startDateDebug() {
 
   poolStartDate.value = newDate;
   calc();
+}
+
+function clearDevScreenshotStatusTimer() {
+  if (devScreenshotStatusTimer !== null) {
+    window.clearTimeout(devScreenshotStatusTimer);
+    devScreenshotStatusTimer = null;
+  }
+}
+
+function setDevScreenshotStatus(message: string, autoClear = true) {
+  devScreenshotStatus.value = message;
+  clearDevScreenshotStatusTimer();
+  if (autoClear) {
+    devScreenshotStatusTimer = window.setTimeout(() => {
+      devScreenshotStatus.value = '';
+      devScreenshotStatusTimer = null;
+    }, 3000);
+  }
+}
+
+function getRightPanelScreenshotTargetLabel(target: RightPanelScreenshotTargetValue) {
+  return rightPanelScreenshotTargets.find((item) => item.value === target)?.label ?? target;
+}
+
+function getLeftPanelScreenshotTargetLabel(target: LeftPanelScreenshotTargetValue) {
+  return leftPanelScreenshotTargets.find((item) => item.value === target)?.label ?? target;
+}
+
+function getGachaScreenshotTimestamp() {
+  return new Date().toISOString().replace(/[:.]/g, '-');
+}
+
+function waitForNextFrame() {
+  return new Promise<void>((resolve) => {
+    window.requestAnimationFrame(() => resolve());
+  });
+}
+
+async function waitForGachaScreenshotAssets(element: HTMLElement) {
+  const imageLoadPromises = Array.from(element.querySelectorAll('img'))
+    .filter((image) => !image.complete)
+    .map(
+      (image) =>
+        new Promise<void>((resolve) => {
+          image.addEventListener('load', () => resolve(), { once: true });
+          image.addEventListener('error', () => resolve(), { once: true });
+        }),
+    );
+
+  await Promise.all([
+    document.fonts?.ready.catch(() => undefined),
+    ...imageLoadPromises,
+  ]);
+}
+
+function getGachaScreenshotElementSize(element: HTMLElement) {
+  const rect = element.getBoundingClientRect();
+
+  return {
+    height: Math.ceil(Math.max(rect.height, element.scrollHeight, element.offsetHeight)),
+    width: Math.ceil(Math.max(rect.width, element.scrollWidth, element.offsetWidth)),
+  };
+}
+
+function copyVueScopeAttributes(source: Element | null, target: Element) {
+  if (!source) {
+    return;
+  }
+
+  for (const attribute of source.attributes) {
+    if (attribute.name.startsWith('data-v-')) {
+      target.setAttribute(attribute.name, attribute.value);
+    }
+  }
+}
+
+function createGachaScreenshotStage(sourceElement: HTMLElement) {
+  const sourceRect = sourceElement.getBoundingClientRect();
+  const sourceWidth = Math.ceil(sourceRect.width || sourceElement.offsetWidth);
+  const appContainer = document.querySelector<HTMLElement>('.gacha-calculator-container');
+  const isRightColumn = sourceElement.classList.contains('gacha-calculator-container-right');
+  const capturePadding = isRightColumn ? 0 : 8;
+  const captureWidth = sourceWidth + capturePadding * 2;
+  const stageId = `${Date.now()}-${devScreenshotStageIndex += 1}`;
+  const stage = document.createElement('div');
+  const rightColumn = isRightColumn
+    ? (sourceElement.cloneNode(true) as HTMLElement)
+    : document.createElement('div');
+  const target = isRightColumn
+    ? rightColumn
+    : (sourceElement.cloneNode(true) as HTMLElement);
+  const style = document.createElement('style');
+
+  copyVueScopeAttributes(appContainer, stage);
+  copyVueScopeAttributes(document.querySelector('.gacha-calculator-container-right'), rightColumn);
+
+  stage.className = [
+    'gacha-calculator-container',
+    'gacha-calculator-screenshot-stage',
+    appContainer?.classList.contains('gacha-calculator-container-debug-green')
+      ? 'gacha-calculator-container-debug-green'
+      : '',
+    appContainer?.classList.contains('gacha-calculator-container-debug-no-shadow')
+      ? 'gacha-calculator-container-debug-no-shadow'
+      : '',
+    appContainer?.classList.contains('gacha-calculator-container-debug-no-warning')
+      ? 'gacha-calculator-container-debug-no-warning'
+      : '',
+    appContainer?.classList.contains('gacha-calculator-container-debug-no-probability')
+      ? 'gacha-calculator-container-debug-no-probability'
+      : '',
+  ].filter(Boolean).join(' ');
+  stage.setAttribute(GACHA_CALCULATOR_SCREENSHOT_STAGE_ATTR, stageId);
+  stage.style.cssText = [
+    'position: fixed',
+    'left: 0',
+    'top: 0',
+    'z-index: 2147483647',
+    'display: block',
+    'width: auto',
+    'max-width: none',
+    'height: auto',
+    'max-height: none',
+    'margin: 0',
+    'padding: 0',
+    'overflow: visible',
+    'pointer-events: none',
+    'opacity: 0',
+    'transform: none',
+  ].join(';');
+
+  rightColumn.classList.add('gacha-calculator-container-right');
+  rightColumn.style.cssText = [
+    `width: ${captureWidth}px`,
+    'max-width: none',
+    'max-height: none',
+    'height: auto',
+    'position: static',
+    'top: auto',
+    'overflow: visible',
+    'overscroll-behavior: auto',
+    `padding: ${isRightColumn ? '0 8px 8px' : `${capturePadding}px`}`,
+    'box-sizing: border-box',
+    'scrollbar-width: none',
+    '-ms-overflow-style: none',
+    'transform: none',
+  ].join(';');
+
+  target.style.width = `${sourceWidth}px`;
+  target.style.maxWidth = 'none';
+  target.style.maxHeight = 'none';
+  target.style.overflow = 'visible';
+  target.style.position = 'relative';
+  target.style.top = 'auto';
+  target.style.left = 'auto';
+  target.style.margin = '0';
+  target.style.opacity = '1';
+  target.style.pointerEvents = 'auto';
+  target.style.transform = 'none';
+
+  style.textContent = `
+    .gacha-calculator-screenshot-stage,
+    .gacha-calculator-screenshot-stage * {
+      animation: none !important;
+      transition: none !important;
+    }
+    .gacha-calculator-screenshot-stage .gacha-calculator-container-right::-webkit-scrollbar {
+      display: none !important;
+    }
+    .gacha-calculator-screenshot-stage .gacha-calculator-sticky-summary-panel {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      width: auto !important;
+      transform: none !important;
+      z-index: auto !important;
+    }
+    .gacha-calculator-screenshot-stage .v-expansion-panel__shadow {
+      display: none !important;
+    }
+    .gacha-calculator-screenshot-stage:not(.gacha-calculator-container-debug-no-shadow) .v-expansion-panel {
+      box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+    .gacha-calculator-screenshot-stage .gacha-calculator-card-title {
+      box-shadow: none !important;
+    }
+    .gacha-calculator-screenshot-stage .gacha-calculator-card-title[aria-expanded='true'] {
+      border-bottom: 1px solid var(--gacha-calculator-border) !important;
+    }
+  `;
+
+  if (!isRightColumn) {
+    rightColumn.append(target);
+  }
+
+  stage.append(style, rightColumn);
+  document.body.append(stage);
+
+  return {
+    captureElement: rightColumn,
+    stageId,
+    stage,
+    target,
+  };
+}
+
+async function downloadCanvasAsPng(canvas: HTMLCanvasElement, fileName: string) {
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((result) => {
+      if (result) {
+        resolve(result);
+      } else {
+        reject(new Error('截图生成失败'));
+      }
+    }, 'image/png');
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function captureGachaCalculatorScreenshot(
+  element: HTMLElement,
+  label: string,
+  fileKey: string,
+) {
+  if (typeof window === 'undefined' || isDevScreenshotCapturing.value) {
+    return;
+  }
+
+  isDevScreenshotCapturing.value = true;
+  setDevScreenshotStatus(`正在截取${label}...`, false);
+
+  let screenshotStage: ReturnType<typeof createGachaScreenshotStage> | null = null;
+  try {
+    const { default: html2canvas } = await import('html2canvas');
+    await nextTick();
+    await waitForNextFrame();
+    screenshotStage = createGachaScreenshotStage(element);
+    await waitForNextFrame();
+    const captureElement = screenshotStage.captureElement;
+    await waitForGachaScreenshotAssets(captureElement);
+    const screenshotSize = getGachaScreenshotElementSize(captureElement);
+    const canvas = await html2canvas(captureElement, {
+      backgroundColor: null,
+      height: screenshotSize.height,
+      imageTimeout: 20_000,
+      logging: false,
+      onclone: (clonedDocument) => {
+        const clonedStage = clonedDocument.querySelector<HTMLElement>(
+          `[${GACHA_CALCULATOR_SCREENSHOT_STAGE_ATTR}="${screenshotStage?.stageId}"]`,
+        );
+
+        if (clonedStage) {
+          clonedStage.style.opacity = '1';
+          clonedStage.style.zIndex = '0';
+        }
+      },
+      scale: GACHA_CALCULATOR_SCREENSHOT_SCALE,
+      scrollX: 0,
+      scrollY: 0,
+      useCORS: true,
+      width: screenshotSize.width,
+      windowHeight: screenshotSize.height + 32,
+      windowWidth: screenshotSize.width + 32,
+    });
+    await downloadCanvasAsPng(
+      canvas,
+      `gacha-calculator-${fileKey}-${getGachaScreenshotTimestamp()}.png`,
+    );
+    setDevScreenshotStatus(`已下载${label}截图`);
+  } catch (error) {
+    console.error('Failed to capture gacha calculator screenshot:', error);
+    setDevScreenshotStatus(`${label}截图失败`);
+  } finally {
+    screenshotStage?.stage.remove();
+    isDevScreenshotCapturing.value = false;
+  }
+}
+
+async function captureRightPanelScreenshot(target?: RightPanelScreenshotTargetValue) {
+  if (typeof window === 'undefined' || isDevScreenshotCapturing.value) {
+    return;
+  }
+
+  const selector = target
+    ? `[data-gacha-screenshot-target="${target}"]`
+    : '.gacha-calculator-container-right';
+  const element = document.querySelector<HTMLElement>(selector);
+  const label = target ? getRightPanelScreenshotTargetLabel(target) : '整个右栏';
+  if (!element) {
+    setDevScreenshotStatus(`未找到${label}`);
+    return;
+  }
+
+  await captureGachaCalculatorScreenshot(element, label, target ?? 'right-column');
+}
+
+async function captureLeftPanelScreenshot(target: LeftPanelScreenshotTargetValue) {
+  if (typeof window === 'undefined' || isDevScreenshotCapturing.value) {
+    return;
+  }
+
+  const element = document.querySelector<HTMLElement>(`[data-gacha-left-screenshot-target="${target}"]`);
+  const label = getLeftPanelScreenshotTargetLabel(target);
+  if (!element) {
+    setDevScreenshotStatus(`未找到${label}`);
+    return;
+  }
+
+  await captureGachaCalculatorScreenshot(element, label, `left-${target}`);
 }
 
 /**
@@ -1072,6 +1415,7 @@ onMounted(() => {
 onUnmounted(() => {
   summaryPanelResizeObserver?.disconnect();
   clearSummaryPanelHeightUpdateTimers();
+  clearDevScreenshotStatusTimer();
   window.removeEventListener('resize', updateSummaryPanelHeight);
 });
 
@@ -1514,10 +1858,24 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 </script>
 
 <template>
-  <section class="gacha-calculator-container">
+  <section
+    class="gacha-calculator-container"
+    :class="{
+      'gacha-calculator-container-debug-green': currentMode === 'dev' && devDebugGreenBackground,
+      'gacha-calculator-container-debug-no-shadow':
+        currentMode === 'dev' && devDebugHideCardShadow,
+      'gacha-calculator-container-debug-no-warning': currentMode === 'dev' && devDebugHideWarning,
+      'gacha-calculator-container-debug-no-probability':
+        currentMode === 'dev' && devDebugHideProbability,
+    }"
+  >
     <div class="gacha-calculator-container-left">
       <v-expansion-panels v-model="leftPartPanel" multiple>
-        <v-expansion-panel class="gacha-calculator-sticky-summary-panel" value="statisticalResult">
+        <v-expansion-panel
+          class="gacha-calculator-sticky-summary-panel"
+          data-gacha-left-screenshot-target="statistical-result"
+          value="statisticalResult"
+        >
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               {{ t('page.tools.gachaCalculator.total') }}
@@ -1631,7 +1989,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel value="arsenalQuota">
+        <v-expansion-panel data-gacha-left-screenshot-target="arsenal-quota" value="arsenalQuota">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>武库配额估算</div>
           </v-expansion-panel-title>
@@ -1772,7 +2130,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel value="controlPanel">
+        <v-expansion-panel data-gacha-left-screenshot-target="control-panel" value="controlPanel">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>控制面板</div>
           </v-expansion-panel-title>
@@ -1912,6 +2270,90 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
+            <div class="gacha-calculator-debug-tools">
+              <div class="gacha-calculator-debug-switches">
+                <v-switch
+                  v-model="devDebugGreenBackground"
+                  color="green"
+                  density="compact"
+                  hide-details
+                  label="背景变绿"
+                />
+                <v-switch
+                  v-model="devDebugHideCardShadow"
+                  color="primary"
+                  density="compact"
+                  hide-details
+                  label="去掉卡片阴影"
+                />
+                <v-switch
+                  v-model="devDebugHideWarning"
+                  color="warning"
+                  density="compact"
+                  hide-details
+                  label="隐藏警告提示"
+                />
+                <v-switch
+                  v-model="devDebugHideProbability"
+                  color="warning"
+                  density="compact"
+                  hide-details
+                  label="隐藏概率提示"
+                />
+              </div>
+
+              <h3>截图调试</h3>
+              <div class="gacha-calculator-debug-screenshot-actions">
+                <v-btn
+                  class="gacha-calculator-debug-screenshot-btn"
+                  color="primary"
+                  :disabled="isDevScreenshotCapturing"
+                  :loading="isDevScreenshotCapturing"
+                  prepend-icon="mdi-monitor-screenshot"
+                  size="small"
+                  variant="tonal"
+                  @click="captureRightPanelScreenshot()"
+                >
+                  整个右栏
+                </v-btn>
+                <v-btn
+                  v-for="target in leftPanelScreenshotTargets"
+                  :key="target.value"
+                  class="gacha-calculator-debug-screenshot-btn"
+                  color="primary"
+                  :disabled="isDevScreenshotCapturing"
+                  prepend-icon="mdi-view-dashboard"
+                  size="small"
+                  variant="tonal"
+                  @click="captureLeftPanelScreenshot(target.value)"
+                >
+                  {{ target.label }}
+                </v-btn>
+                <v-btn
+                  v-for="target in rightPanelScreenshotTargets"
+                  :key="target.value"
+                  class="gacha-calculator-debug-screenshot-btn"
+                  color="primary"
+                  :disabled="isDevScreenshotCapturing"
+                  prepend-icon="mdi-camera"
+                  size="small"
+                  variant="tonal"
+                  @click="captureRightPanelScreenshot(target.value)"
+                >
+                  {{ target.label }}
+                </v-btn>
+              </div>
+              <v-alert
+                v-if="devScreenshotStatus"
+                class="gacha-calculator-debug-screenshot-status"
+                density="compact"
+                type="info"
+                variant="tonal"
+              >
+                {{ devScreenshotStatus }}
+              </v-alert>
+            </div>
+
             <h3>选择卡池的起始时间</h3>
             {{ poolStartDate }}
             <v-date-picker
@@ -1951,7 +2393,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
       </v-alert> -->
       <v-expansion-panels v-model="rightPartPanel" multiple>
         <!--库存-->
-        <v-expansion-panel value="existing">
+        <v-expansion-panel data-gacha-screenshot-target="existing" value="existing">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               库存与寻访情报书
@@ -2027,7 +2469,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
         </v-expansion-panel>
 
         <!--日常奖励-->
-        <v-expansion-panel value="daily">
+        <v-expansion-panel data-gacha-screenshot-target="daily" value="daily">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               日常积累
@@ -2057,7 +2499,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
         </v-expansion-panel>
 
         <!--活动奖励-->
-        <v-expansion-panel value="activity">
+        <v-expansion-panel data-gacha-screenshot-target="activity" value="activity">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               版本限时活动
@@ -2077,7 +2519,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-text>
         </v-expansion-panel>
         <!--常驻奖励重构-->
-        <v-expansion-panel value="permanent-re">
+        <v-expansion-panel data-gacha-screenshot-target="permanent-re" value="permanent-re">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               常驻奖励
@@ -2130,7 +2572,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
         </v-expansion-panel>
 
         <!--氪金资源-->
-        <v-expansion-panel value="recharge">
+        <v-expansion-panel data-gacha-screenshot-target="recharge" value="recharge">
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>
               氪金资源
@@ -2149,7 +2591,11 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-text>
         </v-expansion-panel>
 
-        <v-expansion-panel v-show="'dev' === currentMode" value="debug">
+        <v-expansion-panel
+          v-show="'dev' === currentMode"
+          data-gacha-screenshot-target="debug"
+          value="debug"
+        >
           <v-expansion-panel-title class="gacha-calculator-card-title">
             <div>debug</div>
           </v-expansion-panel-title>
@@ -2234,6 +2680,48 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-container .v-expansion-panel:deep(.v-expansion-panel__shadow) {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.gacha-calculator-container-debug-green {
+  background: #00ff00;
+}
+
+.gacha-calculator-container-debug-no-shadow .v-expansion-panel:deep(.v-expansion-panel__shadow) {
+  box-shadow: none !important;
+}
+
+.gacha-calculator-container-debug-no-warning .gacha-calculator-warning {
+  display: none !important;
+}
+
+.gacha-calculator-container-debug-no-probability .gacha-calculator-probability {
+  display: none !important;
+}
+
+.gacha-calculator-debug-tools {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.gacha-calculator-debug-switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gacha-calculator-debug-screenshot-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 8px;
+}
+
+.gacha-calculator-debug-screenshot-btn {
+  min-width: 0;
+}
+
+.gacha-calculator-debug-screenshot-status {
+  margin-top: 4px;
 }
 
 .gacha-calculator-card-title {
