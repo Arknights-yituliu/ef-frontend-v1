@@ -309,7 +309,7 @@ export {
   currentVersionReward,
   currentVersionRewardTotal,
   filterRewardByVersion,
-  versionTable,
   filterRewardEndAfter,
   rewardTotalCalc,
+  versionTable,
 };
