@@ -484,11 +484,6 @@ function weaponToCharId(weaponId: string): string | undefined {
   return charIds[rotationIndex.value % charIds.length];
 }
 
-/** 清洗数据：过滤掉已不存在的武器（旧版 localStorage 可能包含已删除的武器 ID，导致访问 weapons 时报错） */
-function sanitizeEssenceStats(stats: EssenceStat[]): EssenceStat[] {
-  return stats.filter((s) => s.isCustom || (s.weaponId && s.weaponId in weapons));
-}
-
 /** 需求的基质属性 */
 const requiredEssenceStats = useLocalStorage<EssenceStat[]>(
   'essence-calculator-required-essence-stats',
@@ -498,9 +493,6 @@ const requiredEssenceStats = useLocalStorage<EssenceStat[]>(
     listenToStorageChanges: false,
   },
 );
-
-// 初始化时清洗一次，移除已不存在的武器数据
-requiredEssenceStats.value = sanitizeEssenceStats(requiredEssenceStats.value);
 
 function getGroupIconUrl(iconId: string): string {
   return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/wiki/groupicon/${iconId}.png`;
@@ -556,7 +548,7 @@ function getEssenceStatDescription(stat: EssenceStat): string {
   if (stat.isCustom) {
     return t('page.tools.essenceCalculator.custom');
   } else {
-    return weapons[stat.weaponId!]!.weaponName;
+    return weapons[stat.weaponId!]?.weaponName ?? stat.weaponId!;
   }
 }
 
