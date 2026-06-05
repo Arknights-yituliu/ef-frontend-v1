@@ -14,24 +14,28 @@
         <v-card-title class="text-h6 font-weight-bold">教学视频</v-card-title>
       </v-card-item>
       <v-card-text>
-        <a
-          class="video-link text-body-1"
-          href="https://www.bilibili.com/video/BV1bR7k67EaH"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-          https://www.bilibili.com/video/BV1bR7k67EaH
-        </a>
-        <a
-          class="video-link text-body-1"
-          href="https://www.bilibili.com/video/BV1Wn596bEHK"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-          https://www.bilibili.com/video/BV1Wn596bEHK
-        </a>
+        <p class="mb-3">
+          <a
+            class="video-link text-body-1"
+            href="https://www.bilibili.com/video/BV1bR7k67EaH"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
+            https://www.bilibili.com/video/BV1bR7k67EaH
+          </a>
+        </p>
+        <p>
+          <a
+            class="video-link text-body-1"
+            href="https://www.bilibili.com/video/BV1Wn596bEHK"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
+            https://www.bilibili.com/video/BV1Wn596bEHK
+          </a>
+        </p>
       </v-card-text>
     </v-card>
 
