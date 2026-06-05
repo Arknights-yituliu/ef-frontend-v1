@@ -42,12 +42,12 @@ const firstRechargeOriginiumPackData = [
 
 /**
  * 判定是否为限时寻访组合包
- * 标准：98 元，且类型为 Seasonal_Rec_pack，且名称以“寻访组合包”结尾，且含有 80000 折金票
+ * 标准：98 元，且类型为 Seasonal_Rec_pack 或 Fest_pack，且名称以“寻访组合包”结尾，且含有 80000 折金票
  */
 function isSeasonalGachaPack(goods: CashShopGoods): boolean {
   return (
     goods.priceCNY === 98 &&
-    goods.cashShopId === 'Seasonal_Rec_pack' &&
+    ['Seasonal_Rec_pack', 'Fest_pack'].includes(goods.cashShopId) &&
     getTranslation(goods.goodsName, 'CN').endsWith('寻访组合包') &&
     rewardTable[goods.rewardId]!.itemBundles.some(
       (bundle: ItemBundle) => bundle.id === 'item_gold' && bundle.count === 80_000,
@@ -74,6 +74,10 @@ export function makePacks(): Record<string, PackData> {
     }
     // 忽略协议通行证（单独处理）
     if (goods.cashShopId === 'BP') {
+      continue;
+    }
+    // 忽略 Fest_pack 类型的组合包
+    if (goods.cashShopId === 'Fest_pack') {
       continue;
     }
 
@@ -293,7 +297,11 @@ export function makePackShops(packs: Record<string, PackData>): Record<string, P
     }
   }
 
-  return packShops;
+  return Object.fromEntries(
+    Object.entries(packShops)
+      .toSorted(([idA], [idB]) => idA.localeCompare(idB))
+      .filter(([, shop]) => shop.goodsIds.length > 0),
+  );
 }
 
 export function makePackGroups(): Record<string, PackGroupData> {
@@ -314,5 +322,7 @@ export function makePackGroups(): Record<string, PackGroupData> {
     };
   }
 
-  return packGroups;
+  return Object.fromEntries(
+    Object.entries(packGroups).filter(([, group]) => group.shopIds.length > 0),
+  );
 }

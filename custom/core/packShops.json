@@ -11,6 +11,31 @@
       "bp_track_pay"
     ]
   },
+  "first_originium_recharge": {
+    "shopId": "first_originium_recharge",
+    "displayName": {
+      "zh-CN": "首充源石",
+      "en-US": "First Recharge Originium"
+    },
+    "goodsIds": [
+      "first_originium_recharge_0_6",
+      "first_originium_recharge_1_30",
+      "first_originium_recharge_2_98",
+      "first_originium_recharge_3_198",
+      "first_originium_recharge_4_328",
+      "first_originium_recharge_5_648"
+    ]
+  },
+  "MCard": {
+    "shopId": "MCard",
+    "displayName": {
+      "zh-CN": "月卡",
+      "en-US": "Monthly Pass"
+    },
+    "goodsIds": [
+      "payshop_giftpack_monthlycard"
+    ]
+  },
   "Newbie_pack": {
     "shopId": "Newbie_pack",
     "displayName": {
@@ -23,14 +48,19 @@
       "newbie_giftpack_6_special"
     ]
   },
-  "MCard": {
-    "shopId": "MCard",
+  "non_first_originium_recharge": {
+    "shopId": "non_first_originium_recharge",
     "displayName": {
-      "zh-CN": "月卡",
-      "en-US": "Monthly Pass"
+      "zh-CN": "非首充源石",
+      "en-US": "Non-First Recharge Originium"
     },
     "goodsIds": [
-      "payshop_giftpack_monthlycard"
+      "non_first_recharge_originium_0_6",
+      "non_first_recharge_originium_1_30",
+      "non_first_recharge_originium_2_98",
+      "non_first_recharge_originium_3_198",
+      "non_first_recharge_originium_4_328",
+      "non_first_recharge_originium_5_648"
     ]
   },
   "Permanent_pack": {
@@ -67,36 +97,6 @@
       "weapon_giftpack_02",
       "weapon_giftpack_03",
       "weapon_giftpack_04"
-    ]
-  },
-  "first_originium_recharge": {
-    "shopId": "first_originium_recharge",
-    "displayName": {
-      "zh-CN": "首充源石",
-      "en-US": "First Recharge Originium"
-    },
-    "goodsIds": [
-      "first_originium_recharge_0_6",
-      "first_originium_recharge_1_30",
-      "first_originium_recharge_2_98",
-      "first_originium_recharge_3_198",
-      "first_originium_recharge_4_328",
-      "first_originium_recharge_5_648"
-    ]
-  },
-  "non_first_originium_recharge": {
-    "shopId": "non_first_originium_recharge",
-    "displayName": {
-      "zh-CN": "非首充源石",
-      "en-US": "Non-First Recharge Originium"
-    },
-    "goodsIds": [
-      "non_first_recharge_originium_0_6",
-      "non_first_recharge_originium_1_30",
-      "non_first_recharge_originium_2_98",
-      "non_first_recharge_originium_3_198",
-      "non_first_recharge_originium_4_328",
-      "non_first_recharge_originium_5_648"
     ]
   }
 }

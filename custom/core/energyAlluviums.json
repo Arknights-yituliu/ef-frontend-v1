@@ -198,5 +198,30 @@
       "夜幕",
       "流转"
     ]
+  },
+  "world_energy_point_group09": {
+    "battleId": "world_energy_point_group09",
+    "battleName": "重度能量淤积点·藏剑谷",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv006_1.webp",
+    "secondaryStats": [
+      "攻击提升",
+      "生命提升",
+      "物理伤害提升",
+      "灼热伤害提升",
+      "寒冷伤害提升",
+      "自然伤害提升",
+      "源石技艺提升",
+      "治疗效率提升"
+    ],
+    "skillStats": [
+      "强攻",
+      "追袭",
+      "昂扬",
+      "巧技",
+      "医疗",
+      "切骨",
+      "迸发",
+      "效益"
+    ]
   }
 }

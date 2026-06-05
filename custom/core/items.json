@@ -223,11 +223,39 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_adv_wuling_box_2_2": {
+    "id": "achv_adv_wuling_box_2_2",
+    "name": {
+      "zh-CN": "武陵储藏家奖章·Ⅱ",
+      "en-US": "Wuling Crate Master Ⅱ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_adv_wuling_campfire_1_1": {
     "id": "achv_adv_wuling_campfire_1_1",
     "name": {
       "zh-CN": "锚定武陵奖章·Ⅰ",
       "en-US": "Anchored to Wuling Ⅰ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_campfire_2_1": {
+    "id": "achv_adv_wuling_campfire_2_1",
+    "name": {
+      "zh-CN": "锚定武陵奖章·Ⅱ",
+      "en-US": "Anchored to Wuling Ⅱ"
     },
     "rarity": 1,
     "type": 100,
@@ -293,6 +321,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_adv_wuling_ether_2_2": {
+    "id": "achv_adv_wuling_ether_2_2",
+    "name": {
+      "zh-CN": "“碎片的重聚”·Ⅱ",
+      "en-US": "\"Re-Congregated Fragments\" Ⅱ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_adv_wuling_floor_1_1": {
     "id": "achv_adv_wuling_floor_1_1",
     "name": {
@@ -307,11 +349,53 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_adv_wuling_floor_2_1": {
+    "id": "achv_adv_wuling_floor_2_1",
+    "name": {
+      "zh-CN": "“羽兽三抄水·其之二”",
+      "en-US": "\"Fowlbeast Water Prancer Ⅱ\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_adv_wuling_frog_1_1": {
     "id": "achv_adv_wuling_frog_1_1",
     "name": {
       "zh-CN": "“击股传虫”",
       "en-US": "\"Swat the Lanky and Pass the Bug\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_frog_2_1": {
+    "id": "achv_adv_wuling_frog_2_1",
+    "name": {
+      "zh-CN": "“击股传虫·其之二”",
+      "en-US": "\"Swat the Lanky and Pass the Bug Ⅱ\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_hyper_clean_1": {
+    "id": "achv_adv_wuling_hyper_clean_1",
+    "name": {
+      "zh-CN": "过活跃消除奖章",
+      "en-US": "Superactive Blight Eliminator"
     },
     "rarity": 1,
     "type": 100,
@@ -461,6 +545,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_bat_defeat_dodge_jzogre_2": {
+    "id": "achv_bat_defeat_dodge_jzogre_2",
+    "name": {
+      "zh-CN": "“穿风以行”",
+      "en-US": "\"Gale Weaver\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_bat_defeat_ethillu_2": {
     "id": "achv_bat_defeat_ethillu_2",
     "name": {
@@ -480,6 +578,20 @@
     "name": {
       "zh-CN": "“偃旗息鼓”",
       "en-US": "\"Silencing the Drum\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_defeat_jzmking_2": {
+    "id": "achv_bat_defeat_jzmking_2",
+    "name": {
+      "zh-CN": "“兽王降伏”",
+      "en-US": "\"Mega-Beast Subdued\""
     },
     "rarity": 1,
     "type": 100,
@@ -1217,6 +1329,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_fac_coupon_wuling_4_3": {
+    "id": "achv_fac_coupon_wuling_4_3",
+    "name": {
+      "zh-CN": "武陵调度专家奖章·Ⅳ",
+      "en-US": "Wuling Stock Redistributor Ⅳ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_fac_domain_depot_2": {
     "id": "achv_fac_domain_depot_2",
     "name": {
@@ -1362,6 +1488,34 @@
     "name": {
       "zh-CN": "武陵据点开拓奖章·Ⅰ",
       "en-US": "Wuling Outpost Builder Ⅰ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_simulation_training_2": {
+    "id": "achv_fac_simulation_training_2",
+    "name": {
+      "zh-CN": "“演武巅峰”",
+      "en-US": "\"Zenith of the Trials\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_simulation_training_2_plate": {
+    "id": "achv_fac_simulation_training_2_plate",
+    "name": {
+      "zh-CN": "“演武巅峰”",
+      "en-US": "\"Zenith of the Trials\""
     },
     "rarity": 1,
     "type": 100,
@@ -1819,6 +1973,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_hide_banana_1": {
+    "id": "achv_hide_banana_1",
+    "name": {
+      "zh-CN": "“道具赛？”",
+      "en-US": "\"Arms Race?\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_hide_cave_2": {
     "id": "achv_hide_cave_2",
     "name": {
@@ -1852,6 +2020,20 @@
     "name": {
       "zh-CN": "“协议ε·20.00m”",
       "en-US": "\"Protocol ε 20.00m\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_hide_open_treasure_2": {
+    "id": "achv_hide_open_treasure_2",
+    "name": {
+      "zh-CN": "“小兽的赠礼”",
+      "en-US": "\"Beastie's Tribute\""
     },
     "rarity": 1,
     "type": 100,
@@ -2155,6 +2337,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_quest_mifu_2": {
+    "id": "achv_quest_mifu_2",
+    "name": {
+      "zh-CN": "“以拳问心”",
+      "en-US": "\"A Fistful of Reflections\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_quest_wolfgd_2": {
     "id": "achv_quest_wolfgd_2",
     "name": {
@@ -2449,6 +2645,20 @@
     },
     "iconId": "item_topic_bp_1_2"
   },
+  "business_card_topic_bp_1_3": {
+    "id": "business_card_topic_bp_1_3",
+    "name": {
+      "zh-CN": "苍山藏器",
+      "en-US": "Relic of Viridian Mont"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_bp_1_3"
+  },
   "business_card_topic_chr_0009_azrila": {
     "id": "business_card_topic_chr_0009_azrila",
     "name": {
@@ -2602,6 +2812,20 @@
       "en-US": "Profile Theme"
     },
     "iconId": "item_topic_chr_0030_zhuangfy"
+  },
+  "business_card_topic_chr_0031_mifu": {
+    "id": "business_card_topic_chr_0031_mifu",
+    "name": {
+      "zh-CN": "开怀",
+      "en-US": "Toast to Joy"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_chr_0031_mifu"
   },
   "business_card_topic_normal_1": {
     "id": "business_card_topic_normal_1",
@@ -3037,6 +3261,20 @@
     },
     "iconId": "item_chr_0030_zhuangfy"
   },
+  "chr_0031_mifu": {
+    "id": "chr_0031_mifu",
+    "name": {
+      "zh-CN": "弭弗",
+      "en-US": "Mi Fu"
+    },
+    "rarity": 6,
+    "type": 4,
+    "typeName": {
+      "zh-CN": "招聘合同",
+      "en-US": "Employment Contract"
+    },
+    "iconId": "item_chr_0031_mifu"
+  },
   "common_2x3_l": {
     "id": "common_2x3_l",
     "name": {
@@ -3375,6 +3613,62 @@
   },
   "gem_claym_0015_663": {
     "id": "gem_claym_0015_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_claym_0016_442": {
+    "id": "gem_claym_0016_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_claym_0016_663": {
+    "id": "gem_claym_0016_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_claym_0017_442": {
+    "id": "gem_claym_0017_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_claym_0017_663": {
+    "id": "gem_claym_0017_663",
     "name": {
       "zh-CN": "无瑕基质",
       "en-US": "Flawless Essence"
@@ -7181,6 +7475,20 @@
     },
     "iconId": "item_case_bp_selfselect_skillsp_1"
   },
+  "item_case_char_selfselect_gahca_1_2_2": {
+    "id": "item_case_char_selfselect_gahca_1_2_2",
+    "name": {
+      "zh-CN": "流光庆时调用凭证",
+      "en-US": "Shimmering Moment Designation Permit"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_char_selfselect_gacha_joint"
+  },
   "item_case_char_selfselect_standard": {
     "id": "item_case_char_selfselect_standard",
     "name": {
@@ -7208,6 +7516,20 @@
       "en-US": "Crate"
     },
     "iconId": "item_case_random"
+  },
+  "item_case_token_selfselect_gahca_1_2_2": {
+    "id": "item_case_token_selfselect_gahca_1_2_2",
+    "name": {
+      "zh-CN": "流光庆时信物补给",
+      "en-US": "Shimmering Moment Token Supply"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_token_selfselect_gacha_joint"
   },
   "item_case_wpn_selfselect_1": {
     "id": "item_case_wpn_selfselect_1",
@@ -7264,6 +7586,20 @@
       "en-US": "Crate"
     },
     "iconId": "item_case_wpn_selfselect_bp_3"
+  },
+  "item_case_wpn_selfselect_bp_4": {
+    "id": "item_case_wpn_selfselect_bp_4",
+    "name": {
+      "zh-CN": "武器补给·苍山",
+      "en-US": "Weapon Supply: Viridian Mont"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_bp_4"
   },
   "item_case_wpn_selfselect_common_advlevel": {
     "id": "item_case_wpn_selfselect_common_advlevel",
@@ -7405,6 +7741,20 @@
     },
     "iconId": "item_case_wpn_selfselect_gahca_0_3"
   },
+  "item_case_wpn_selfselect_gahca_1_3_1": {
+    "id": "item_case_wpn_selfselect_gahca_1_3_1",
+    "name": {
+      "zh-CN": "补充武库箱·绛结",
+      "en-US": "Arms OC: Scarlet Knot"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_3_1"
+  },
   "item_case_wpn_selfselect_gahca_c_1": {
     "id": "item_case_wpn_selfselect_gahca_c_1",
     "name": {
@@ -7531,6 +7881,20 @@
     },
     "iconId": "item_char_ap_supply_aglina"
   },
+  "item_char_ap_supply_camille": {
+    "id": "item_char_ap_supply_camille",
+    "name": {
+      "zh-CN": "魔甘草糖果",
+      "en-US": "Devil's Licorice Drops"
+    },
+    "rarity": 5,
+    "type": 22,
+    "typeName": {
+      "zh-CN": "理智药剂",
+      "en-US": "Sanity Meds"
+    },
+    "iconId": "item_char_ap_supply_camille"
+  },
   "item_char_ap_supply_laevat": {
     "id": "item_char_ap_supply_laevat",
     "name": {
@@ -7544,6 +7908,20 @@
       "en-US": "Sanity Meds"
     },
     "iconId": "item_char_ap_supply_laevat"
+  },
+  "item_char_ap_supply_mifu": {
+    "id": "item_char_ap_supply_mifu",
+    "name": {
+      "zh-CN": "龙爪能量饮料",
+      "en-US": "Lungclaw Ultra-E"
+    },
+    "rarity": 5,
+    "type": 22,
+    "typeName": {
+      "zh-CN": "理智药剂",
+      "en-US": "Sanity Meds"
+    },
+    "iconId": "item_char_ap_supply_mifu"
   },
   "item_char_ap_supply_tangtang": {
     "id": "item_char_ap_supply_tangtang",
@@ -8133,6 +8511,20 @@
     },
     "iconId": "item_charpotentialup_chr_0030_zhuangfy"
   },
+  "item_charpotentialup_chr_0031_mifu": {
+    "id": "item_charpotentialup_chr_0031_mifu",
+    "name": {
+      "zh-CN": "弭弗的信物",
+      "en-US": "Mi Fu's Token"
+    },
+    "rarity": 6,
+    "type": 42,
+    "typeName": {
+      "zh-CN": "干员信物",
+      "en-US": "Operator Token"
+    },
+    "iconId": "item_charpotentialup_chr_0031_mifu"
+  },
   "item_charpotentialup_chr_9000_endmin": {
     "id": "item_charpotentialup_chr_9000_endmin",
     "name": {
@@ -8399,6 +8791,20 @@
     },
     "iconId": "item_corp4_grass2_1"
   },
+  "item_corp4_spc": {
+    "id": "item_corp4_spc",
+    "name": {
+      "zh-CN": "罗德岛特制口粮",
+      "en-US": "Rhodes Island Special Ration"
+    },
+    "rarity": 5,
+    "type": 48,
+    "typeName": {
+      "zh-CN": "战术物品",
+      "en-US": "Tactical"
+    },
+    "iconId": "item_corp4_spc"
+  },
   "item_crystal_enr": {
     "id": "item_crystal_enr",
     "name": {
@@ -8542,8 +8948,8 @@
   "item_dog_hsmob_corp_1": {
     "id": "item_dog_hsmob_corp_1",
     "name": {
-      "zh-CN": "烂肉面",
-      "en-US": "Braised Meat Noodles"
+      "zh-CN": "田家特色烂肉面",
+      "en-US": "Tian's Braised Meat Noodles"
     },
     "rarity": 4,
     "type": 48,
@@ -9154,6 +9560,34 @@
       "en-US": "Material"
     },
     "iconId": "item_drop_hvybow_1"
+  },
+  "item_drop_jzmonk_1": {
+    "id": "item_drop_jzmonk_1",
+    "name": {
+      "zh-CN": "百年陈皮",
+      "en-US": "Century Rind"
+    },
+    "rarity": 1,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_drop_jzmonk_1"
+  },
+  "item_drop_jzogre_1": {
+    "id": "item_drop_jzogre_1",
+    "name": {
+      "zh-CN": "尾尖金甲",
+      "en-US": "Caudal Goldscale"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_drop_jzogre_1"
   },
   "item_drop_lbmob_1": {
     "id": "item_drop_lbmob_1",
@@ -11535,6 +11969,20 @@
     },
     "iconId": "item_equip_t4_suit_combo_cd01_edc_03"
   },
+  "item_equip_t4_suit_combo_cd01_edc_04": {
+    "id": "item_equip_t4_suit_combo_cd01_edc_04",
+    "name": {
+      "zh-CN": "清波定位仪·壹型",
+      "en-US": "Qingbo Positioning Kit T1"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_edc_04"
+  },
   "item_equip_t4_suit_combo_cd01_hand_01": {
     "id": "item_equip_t4_suit_combo_cd01_hand_01",
     "name": {
@@ -11772,6 +12220,90 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_criti01_hand_04"
+  },
+  "item_equip_t4_suit_crush_fracture_body_01": {
+    "id": "item_equip_t4_suit_crush_fracture_body_01",
+    "name": {
+      "zh-CN": "旧锋装甲",
+      "en-US": "Grizzled Edge Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_body_01"
+  },
+  "item_equip_t4_suit_crush_fracture_body_02": {
+    "id": "item_equip_t4_suit_crush_fracture_body_02",
+    "name": {
+      "zh-CN": "旧锋装甲·壹型",
+      "en-US": "Grizzled Edge Armor T1"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_body_02"
+  },
+  "item_equip_t4_suit_crush_fracture_edc_01": {
+    "id": "item_equip_t4_suit_crush_fracture_edc_01",
+    "name": {
+      "zh-CN": "旧锋刺刃",
+      "en-US": "Grizzled Edge Push Knife"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_edc_01"
+  },
+  "item_equip_t4_suit_crush_fracture_edc_02": {
+    "id": "item_equip_t4_suit_crush_fracture_edc_02",
+    "name": {
+      "zh-CN": "旧锋刺刃·壹型",
+      "en-US": "Grizzled Edge Push Knife T1"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_edc_02"
+  },
+  "item_equip_t4_suit_crush_fracture_hand_01": {
+    "id": "item_equip_t4_suit_crush_fracture_hand_01",
+    "name": {
+      "zh-CN": "旧锋手甲",
+      "en-US": "Grizzled Edge Gauntlets"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_hand_01"
+  },
+  "item_equip_t4_suit_crush_fracture_hand_02": {
+    "id": "item_equip_t4_suit_crush_fracture_hand_02",
+    "name": {
+      "zh-CN": "旧锋手甲·壹型",
+      "en-US": "Grizzled Edge Gauntlets T1"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_hand_02"
   },
   "item_equip_t4_suit_expend_spell01_body_02": {
     "id": "item_equip_t4_suit_expend_spell01_body_02",
@@ -12094,6 +12626,20 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_phy01_body_03"
+  },
+  "item_equip_t4_suit_phy01_body_04": {
+    "id": "item_equip_t4_suit_phy01_body_04",
+    "name": {
+      "zh-CN": "点剑纤维护甲",
+      "en-US": "Swordmancer Fiber Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_phy01_body_04"
   },
   "item_equip_t4_suit_phy01_edc_01": {
     "id": "item_equip_t4_suit_phy01_edc_01",
@@ -15833,6 +16379,20 @@
     },
     "iconId": "item_equip_t4_suit_combo_cd01_edc_03"
   },
+  "item_formu_t4_suit_combo_cd01_edc_04": {
+    "id": "item_formu_t4_suit_combo_cd01_edc_04",
+    "name": {
+      "zh-CN": "清波定位仪·壹型",
+      "en-US": "Qingbo Positioning Kit T1"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_combo_cd01_edc_04"
+  },
   "item_formu_t4_suit_combo_cd01_hand_01": {
     "id": "item_formu_t4_suit_combo_cd01_hand_01",
     "name": {
@@ -16070,6 +16630,90 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_criti01_hand_04"
+  },
+  "item_formu_t4_suit_crush_fracture_body_01": {
+    "id": "item_formu_t4_suit_crush_fracture_body_01",
+    "name": {
+      "zh-CN": "旧锋装甲",
+      "en-US": "Grizzled Edge Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_body_01"
+  },
+  "item_formu_t4_suit_crush_fracture_body_02": {
+    "id": "item_formu_t4_suit_crush_fracture_body_02",
+    "name": {
+      "zh-CN": "旧锋装甲·壹型",
+      "en-US": "Grizzled Edge Armor T1"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_body_02"
+  },
+  "item_formu_t4_suit_crush_fracture_edc_01": {
+    "id": "item_formu_t4_suit_crush_fracture_edc_01",
+    "name": {
+      "zh-CN": "旧锋刺刃",
+      "en-US": "Grizzled Edge Push Knife"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_edc_01"
+  },
+  "item_formu_t4_suit_crush_fracture_edc_02": {
+    "id": "item_formu_t4_suit_crush_fracture_edc_02",
+    "name": {
+      "zh-CN": "旧锋刺刃·壹型",
+      "en-US": "Grizzled Edge Push Knife T1"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_edc_02"
+  },
+  "item_formu_t4_suit_crush_fracture_hand_01": {
+    "id": "item_formu_t4_suit_crush_fracture_hand_01",
+    "name": {
+      "zh-CN": "旧锋手甲",
+      "en-US": "Grizzled Edge Gauntlets"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_hand_01"
+  },
+  "item_formu_t4_suit_crush_fracture_hand_02": {
+    "id": "item_formu_t4_suit_crush_fracture_hand_02",
+    "name": {
+      "zh-CN": "旧锋手甲·壹型",
+      "en-US": "Grizzled Edge Gauntlets T1"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_crush_fracture_hand_02"
   },
   "item_formu_t4_suit_expend_spell01_body_02": {
     "id": "item_formu_t4_suit_expend_spell01_body_02",
@@ -16392,6 +17036,20 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_phy01_body_03"
+  },
+  "item_formu_t4_suit_phy01_body_04": {
+    "id": "item_formu_t4_suit_phy01_body_04",
+    "name": {
+      "zh-CN": "点剑纤维护甲",
+      "en-US": "Swordmancer Fiber Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_phy01_body_04"
   },
   "item_formu_t4_suit_phy01_edc_01": {
     "id": "item_formu_t4_suit_phy01_edc_01",
@@ -17429,6 +18087,20 @@
     },
     "iconId": "item_corp4_grass2_1"
   },
+  "item_formula_corp4_spc": {
+    "id": "item_formula_corp4_spc",
+    "name": {
+      "zh-CN": "罗德岛特制口粮配方",
+      "en-US": "Formula: Rhodes Island Special Ration"
+    },
+    "rarity": 5,
+    "type": 39,
+    "typeName": {
+      "zh-CN": "配方解锁",
+      "en-US": "Formula Unlock"
+    },
+    "iconId": "item_corp4_spc"
+  },
   "item_formula_dog_1_slimeml_1_1": {
     "id": "item_formula_dog_1_slimeml_1_1",
     "name": {
@@ -17446,8 +18118,8 @@
   "item_formula_dog_hsmob_corp_1": {
     "id": "item_formula_dog_hsmob_corp_1",
     "name": {
-      "zh-CN": "烂肉面配方",
-      "en-US": "Formula: Braised Meat Noodles"
+      "zh-CN": "田家特色烂肉面配方",
+      "en-US": "Formula: Tian's Braised Meat Noodles"
     },
     "rarity": 4,
     "type": 39,
@@ -17905,6 +18577,20 @@
     },
     "iconId": "item_jlebs_grass1_1"
   },
+  "item_formula_jzmonk_1_hsmob_1_1": {
+    "id": "item_formula_jzmonk_1_hsmob_1_1",
+    "name": {
+      "zh-CN": "陈皮拌笋配方",
+      "en-US": "Formula: Rind-Flavored Sprouts"
+    },
+    "rarity": 4,
+    "type": 39,
+    "typeName": {
+      "zh-CN": "配方解锁",
+      "en-US": "Formula Unlock"
+    },
+    "iconId": "item_jzmonk_1_hsmob_1_1"
+  },
   "item_formula_lbmob_1_dog_1_moss_1_1": {
     "id": "item_formula_lbmob_1_dog_1_moss_1_1",
     "name": {
@@ -18311,6 +18997,20 @@
     },
     "iconId": "item_gacha_introletter"
   },
+  "item_gacha_introletter_1_3_1": {
+    "id": "item_gacha_introletter_1_3_1",
+    "name": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "rarity": 6,
+    "type": 83,
+    "typeName": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "iconId": "item_gacha_introletter"
+  },
   "item_gachabyproducts_charticket": {
     "id": "item_gachabyproducts_charticket",
     "name": {
@@ -18702,6 +19402,34 @@
       "en-US": "Gift"
     },
     "iconId": "item_gift_jinlong_5"
+  },
+  "item_gift_jinlong_6": {
+    "id": "item_gift_jinlong_6",
+    "name": {
+      "zh-CN": "炸鳞薯条",
+      "en-US": "Fin-n-Chips"
+    },
+    "rarity": 5,
+    "type": 33,
+    "typeName": {
+      "zh-CN": "礼物",
+      "en-US": "Gift"
+    },
+    "iconId": "item_gift_jinlong_6"
+  },
+  "item_gift_jinlong_7": {
+    "id": "item_gift_jinlong_7",
+    "name": {
+      "zh-CN": "怪味纸杯蛋糕",
+      "en-US": "Bizarro Cupcake"
+    },
+    "rarity": 5,
+    "type": 33,
+    "typeName": {
+      "zh-CN": "礼物",
+      "en-US": "Gift"
+    },
+    "iconId": "item_gift_jinlong_7"
   },
   "item_gift_tundra_1": {
     "id": "item_gift_tundra_1",
@@ -19108,6 +19836,20 @@
       "en-US": "Material"
     },
     "iconId": "item_iron_powder"
+  },
+  "item_jzmonk_1_hsmob_1_1": {
+    "id": "item_jzmonk_1_hsmob_1_1",
+    "name": {
+      "zh-CN": "陈皮拌笋",
+      "en-US": "Rind-Flavored Sprouts"
+    },
+    "rarity": 4,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_jzmonk_1_hsmob_1_1"
   },
   "item_lbmob_1_dog_1_moss_1_1": {
     "id": "item_lbmob_1_dog_1_moss_1_1",
@@ -21321,6 +22063,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0031_mifu": {
+    "id": "item_pic_1_chr_0031_mifu",
+    "name": {
+      "zh-CN": "小酌",
+      "en-US": "Just a Swig"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_9000_endmin": {
     "id": "item_pic_1_chr_9000_endmin",
     "name": {
@@ -21727,6 +22483,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_3_chr_0031_mifu": {
+    "id": "item_pic_3_chr_0031_mifu",
+    "name": {
+      "zh-CN": "得闲",
+      "en-US": "Private Recess"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_3_chr_9000_endmin": {
     "id": "item_pic_3_chr_9000_endmin",
     "name": {
@@ -22110,6 +22880,20 @@
     "name": {
       "zh-CN": "大局已定",
       "en-US": "Forged and Finalized"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_5_chr_0031_mifu": {
+    "id": "item_pic_5_chr_0031_mifu",
+    "name": {
+      "zh-CN": "开怀",
+      "en-US": "Toast to Joy"
     },
     "rarity": 5,
     "type": 76,
@@ -23407,6 +24191,20 @@
     },
     "iconId": "item_port_carrier_1"
   },
+  "item_port_chubby_lung_balloon_1": {
+    "id": "item_port_chubby_lung_balloon_1",
+    "name": {
+      "zh-CN": "龙泡泡气球",
+      "en-US": "Chubby Lung Balloon"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_chubby_lung_balloon_1"
+  },
   "item_port_chubby_lung_stone_1": {
     "id": "item_port_chubby_lung_stone_1",
     "name": {
@@ -23532,6 +24330,20 @@
       "en-US": "Basic Facility"
     },
     "iconId": "item_port_grinder_1"
+  },
+  "item_port_jail_1": {
+    "id": "item_port_jail_1",
+    "name": {
+      "zh-CN": "虎·牢·关",
+      "en-US": "Tiger Cage"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_jail_1"
   },
   "item_port_liquid_cleaner_1": {
     "id": "item_port_liquid_cleaner_1",
@@ -25815,6 +26627,20 @@
     },
     "iconId": "item_shot_filter_sp_3"
   },
+  "item_shot_filter_sp_4": {
+    "id": "item_shot_filter_sp_4",
+    "name": {
+      "zh-CN": "滤镜·胶片",
+      "en-US": "Filter: Film Stock"
+    },
+    "rarity": 5,
+    "type": 58,
+    "typeName": {
+      "zh-CN": "拍照滤镜",
+      "en-US": "Camera Filter"
+    },
+    "iconId": "item_shot_filter_sp_4"
+  },
   "item_shot_sticker_1": {
     "id": "item_shot_sticker_1",
     "name": {
@@ -25913,6 +26739,20 @@
     },
     "iconId": "item_shot_sticker_activity_1"
   },
+  "item_shot_sticker_activity_2": {
+    "id": "item_shot_sticker_activity_2",
+    "name": {
+      "zh-CN": "贴纸·武陵特厨",
+      "en-US": "Sticker: Wuling Super Chef"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_activity_2"
+  },
   "item_shot_sticker_activity_4": {
     "id": "item_shot_sticker_activity_4",
     "name": {
@@ -25968,6 +26808,20 @@
       "en-US": "Photograph Sticker"
     },
     "iconId": "item_shot_sticker_bp_3"
+  },
+  "item_shot_sticker_bp_4": {
+    "id": "item_shot_sticker_bp_4",
+    "name": {
+      "zh-CN": "贴纸·剑桩",
+      "en-US": "Sticker: Sword Stele"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_bp_4"
   },
   "item_shot_sticker_mkting_1": {
     "id": "item_shot_sticker_mkting_1",
@@ -26206,6 +27060,20 @@
       "en-US": "Mission Item"
     },
     "iconId": "item_mission_sm2l1m5_grass"
+  },
+  "item_sm2l6m1_key": {
+    "id": "item_sm2l6m1_key",
+    "name": {
+      "zh-CN": "一截微型石像",
+      "en-US": "Piece of a Mini Stone Statue"
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_sm2l6m1_key"
   },
   "item_sp_1_moss_1_agmelee_1_1": {
     "id": "item_sp_1_moss_1_agmelee_1_1",
@@ -26487,6 +27355,34 @@
     },
     "iconId": "item_ticketgacha_beginner_ten"
   },
+  "item_ticketgacha_joint_single_lt_1_2_2": {
+    "id": "item_ticketgacha_joint_single_lt_1_2_2",
+    "name": {
+      "zh-CN": "流光庆时寻访凭证",
+      "en-US": "Shimmering Moment HH Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_joint_single_lt_1_2_2"
+  },
+  "item_ticketgacha_joint_ten_lt_1_2_2": {
+    "id": "item_ticketgacha_joint_ten_lt_1_2_2",
+    "name": {
+      "zh-CN": "流光庆时十连凭证",
+      "en-US": "Shimmering Moment 10×Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_joint_ten_lt_1_2_2"
+  },
   "item_ticketgacha_special_single": {
     "id": "item_ticketgacha_special_single",
     "name": {
@@ -26599,6 +27495,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_2_1"
   },
+  "item_ticketgacha_special_single_lt_1_3_1": {
+    "id": "item_ticketgacha_special_single_lt_1_3_1",
+    "name": {
+      "zh-CN": "拳与心合寻访凭证",
+      "en-US": "One with Her Fists HH Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_3_1"
+  },
   "item_ticketgacha_special_ten": {
     "id": "item_ticketgacha_special_ten",
     "name": {
@@ -26696,6 +27606,20 @@
       "en-US": "LTO Valuable"
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_2_1"
+  },
+  "item_ticketgacha_special_ten_lt_1_3_1": {
+    "id": "item_ticketgacha_special_ten_lt_1_3_1",
+    "name": {
+      "zh-CN": "拳与心合十连凭证",
+      "en-US": "One with Her Fists 10×Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_3_1"
   },
   "item_ticketgacha_standard_single": {
     "id": "item_ticketgacha_standard_single",
@@ -26920,6 +27844,20 @@
       "en-US": "Portrait"
     },
     "iconId": "item_user_avatar_bp_1_2"
+  },
+  "item_user_avatar_bp_1_3": {
+    "id": "item_user_avatar_bp_1_3",
+    "name": {
+      "zh-CN": "长明",
+      "en-US": "Illuminating an Era"
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_bp_1_3"
   },
   "item_user_avatar_chr_0002_endminm": {
     "id": "item_user_avatar_chr_0002_endminm",
@@ -27299,6 +28237,20 @@
     },
     "iconId": "item_chr_0030_zhuangfy"
   },
+  "item_user_avatar_chr_0031_mifu": {
+    "id": "item_user_avatar_chr_0031_mifu",
+    "name": {
+      "zh-CN": "弭弗",
+      "en-US": "Mi Fu"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_chr_0031_mifu"
+  },
   "item_user_avatar_frame_activity_1": {
     "id": "item_user_avatar_frame_activity_1",
     "name": {
@@ -27326,6 +28278,20 @@
       "en-US": "Portrait Frame"
     },
     "iconId": "item_user_avatar_frame_activity_2"
+  },
+  "item_user_avatar_frame_activity_3": {
+    "id": "item_user_avatar_frame_activity_3",
+    "name": {
+      "zh-CN": "卡莉的墨绘集",
+      "en-US": "Carly's Ink Painting Book"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_activity_3"
   },
   "item_user_avatar_frame_activity_4": {
     "id": "item_user_avatar_frame_activity_4",
@@ -27382,6 +28348,20 @@
       "en-US": "Portrait Frame"
     },
     "iconId": "item_user_avatar_frame_bp_1_2"
+  },
+  "item_user_avatar_frame_bp_1_3": {
+    "id": "item_user_avatar_frame_bp_1_3",
+    "name": {
+      "zh-CN": "剑以衬文",
+      "en-US": "Bladewarded Stanzas"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_bp_1_3"
   },
   "item_user_avatar_frame_channel_1": {
     "id": "item_user_avatar_frame_channel_1",
@@ -31037,6 +32017,34 @@
     },
     "iconId": "item_xiranite_powder"
   },
+  "ticketgacha_joint_single_lt_1_2_2": {
+    "id": "ticketgacha_joint_single_lt_1_2_2",
+    "name": {
+      "zh-CN": "流光庆时寻访凭证",
+      "en-US": "Shimmering Moment HH Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_joint_single_lt_1_2_2"
+  },
+  "ticketgacha_joint_ten_lt_1_2_2": {
+    "id": "ticketgacha_joint_ten_lt_1_2_2",
+    "name": {
+      "zh-CN": "流光庆时十连凭证",
+      "en-US": "Shimmering Moment 10×Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_joint_ten_lt_1_2_2"
+  },
   "ticketgacha_special_single_lt_1_0_1": {
     "id": "ticketgacha_special_single_lt_1_0_1",
     "name": {
@@ -31121,6 +32129,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_2_1"
   },
+  "ticketgacha_special_single_lt_1_3_1": {
+    "id": "ticketgacha_special_single_lt_1_3_1",
+    "name": {
+      "zh-CN": "拳与心合寻访凭证",
+      "en-US": "One with Her Fists HH Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_3_1"
+  },
   "ticketgacha_special_ten_lt_1_0_1": {
     "id": "ticketgacha_special_ten_lt_1_0_1",
     "name": {
@@ -31204,6 +32226,34 @@
       "en-US": "LTO Valuable"
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_2_1"
+  },
+  "ticketgacha_special_ten_lt_1_3_1": {
+    "id": "ticketgacha_special_ten_lt_1_3_1",
+    "name": {
+      "zh-CN": "拳与心合十连凭证",
+      "en-US": "One with Her Fists 10×Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_3_1"
+  },
+  "ticketgacha_weaponbox_lt_1_2_2": {
+    "id": "ticketgacha_weaponbox_lt_1_2_2",
+    "name": {
+      "zh-CN": "融火于风申领凭证",
+      "en-US": "Blaze in the Winds Issue Cert"
+    },
+    "rarity": 6,
+    "type": 93,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_weaponbox_1_2_2"
   },
   "ticketweaponbox_ten_1_lt": {
     "id": "ticketweaponbox_ten_1_lt",
@@ -31386,6 +32436,34 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_claym_0015"
+  },
+  "wpn_claym_0016": {
+    "id": "wpn_claym_0016",
+    "name": {
+      "zh-CN": "幻想苦痛",
+      "en-US": "Phantom Pain"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_claym_0016"
+  },
+  "wpn_claym_0017": {
+    "id": "wpn_claym_0017",
+    "name": {
+      "zh-CN": "赤缨",
+      "en-US": "Amaranthine Tassel"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_claym_0017"
   },
   "wpn_funnel_0001": {
     "id": "wpn_funnel_0001",
@@ -31652,6 +32730,20 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_lance_0006"
+  },
+  "wpn_lance_0007": {
+    "id": "wpn_lance_0007",
+    "name": {
+      "zh-CN": "灯火使命",
+      "en-US": "Beacon of Duty"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_lance_0007"
   },
   "wpn_lance_0008": {
     "id": "wpn_lance_0008",
@@ -32170,61 +33262,5 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0022"
-  },
-  "赤缨": {
-    "id": "赤缨",
-    "name": {
-      "zh-CN": "赤缨",
-      "en-US": "赤缨"
-    },
-    "rarity": 6,
-    "type": 5,
-    "typeName": {
-      "zh-CN": "武器",
-      "en-US": "Weapon"
-    },
-    "iconId": "赤缨"
-  },
-  "镀红祝福": {
-    "id": "镀红祝福",
-    "name": {
-      "zh-CN": "镀红祝福",
-      "en-US": "镀红祝福"
-    },
-    "rarity": 6,
-    "type": 5,
-    "typeName": {
-      "zh-CN": "武器",
-      "en-US": "Weapon"
-    },
-    "iconId": "镀红祝福"
-  },
-  "幻想苦痛": {
-    "id": "幻想苦痛",
-    "name": {
-      "zh-CN": "幻想苦痛",
-      "en-US": "幻想苦痛"
-    },
-    "rarity": 6,
-    "type": 5,
-    "typeName": {
-      "zh-CN": "武器",
-      "en-US": "Weapon"
-    },
-    "iconId": "幻想苦痛"
-  },
-  "灯火使命": {
-    "id": "灯火使命",
-    "name": {
-      "zh-CN": "灯火使命",
-      "en-US": "灯火使命"
-    },
-    "rarity": 6,
-    "type": 5,
-    "typeName": {
-      "zh-CN": "武器",
-      "en-US": "Weapon"
-    },
-    "iconId": "灯火使命"
   }
 }
