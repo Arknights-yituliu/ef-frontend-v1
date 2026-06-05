@@ -2,7 +2,7 @@
   <v-container class="page-container" fluid>
     <!-- 页面标题 -->
     <div class="page-header mb-6">
-      <h1 class="page-title">「春晓时」下半毕业蓝图</h1>
+      <h1 class="page-title">「寻遗散记」毕业蓝图</h1>
     </div>
 
     <!-- 教学视频 -->
@@ -80,16 +80,16 @@ definePageMeta({
   layout: 'default',
 });
 
-// 基地一图流图片（占位）
+// 基地一图流图片
 const images = [
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-05-15/武陵城.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-06-05/武陵城.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-05-15/景玉谷.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-06-05/景玉谷.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-05-15/首墩.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-06-05/首墩.webp',
   },
 ];
 
@@ -100,6 +100,9 @@ interface BlueprintItem {
 }
 
 const blueprints: BlueprintItem[] = [
+  { label: '优质芽针针剂', code: 'EF01E750A1939oOA3uIa' },
+  { label: '装备原件三合一（可选）', code: 'EF0170i86I3E3516O0Ai' },
+  { label: '瓶装液化重息壤（可选）', code: 'EF01u28U5eA6A092AoOU' },
   { label: '1.2下武陵城1', code: 'EF018OIe2A707108UI73' },
   { label: '1.2下武陵城2', code: 'EF013Eo74iU9Uaoa0579' },
   { label: '1.2下武陵城3', code: 'EF0170i86I3E3515O0Ai' },
@@ -108,7 +111,6 @@ const blueprints: BlueprintItem[] = [
   { label: '1.2下景玉谷2', code: 'EF018OIe2A7071uOUI73' },
   { label: '1.2下首墩1', code: 'EF01o5uiEUeae699IieO' },
   { label: '1.2下首墩2', code: 'EF01eaAo9u8O845ioAi8' },
-  { label: '装备原件三合一', code: 'EF01A67ua8I4IE8o9ieO' },
 ];
 
 const blueprintsWithClipboard = ref(
