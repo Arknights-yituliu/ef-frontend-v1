@@ -16,6 +16,15 @@
       <v-card-text>
         <a
           class="video-link text-body-1"
+          href="https://www.bilibili.com/video/BV1bR7k67EaH"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
+          https://www.bilibili.com/video/BV1bR7k67EaH
+        </a>
+        <a
+          class="video-link text-body-1"
           href="https://www.bilibili.com/video/BV1Wn596bEHK"
           rel="noopener noreferrer"
           target="_blank"
