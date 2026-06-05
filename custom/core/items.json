@@ -33262,5 +33262,19 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0022"
+  },
+  "镀红祝福": {
+    "id": "镀红祝福",
+    "name": {
+      "zh-CN": "镀红祝福",
+      "en-US": "镀红祝福"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "镀红祝福"
   }
 }
