@@ -1,9 +1,8 @@
 [
- 
   {
-    "id": "支线任务",
+    "id": "藏剑于谷",
     "name": {
-      "zh": "支线任务",
+      "zh": "藏剑于谷",
       "en": ""
     },
     "start": "2026/06/05 12:00:00",
@@ -15,7 +14,70 @@
     "version": "寻遗散记",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 1200,
+      "diamond": 240,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "古崖论剑",
+    "name": {
+      "zh": "古崖论剑",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "古崖论剑",
+    "name": {
+      "zh": "古崖论剑",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "选剑演武",
+    "name": {
+      "zh": "选剑演武",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -85,6 +147,27 @@
     }
   },
   {
+    "id": "墙崩因隙",
+    "name": {
+      "zh": "墙崩因隙",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "浪白风初起",
     "name": {
       "zh": "浪白风初起",
@@ -119,7 +202,7 @@
     "regional": "武陵",
     "version": "春晓时",
     "content": {
-      "originiumRecharge": 1,
+      "originiumRecharge": 2,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
@@ -130,27 +213,6 @@
     "id": "当时携手处",
     "name": {
       "zh": "当时携手处",
-      "en": ""
-    },
-    "start": "2026/04/17 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "主线任务",
-    "active": true,
-    "regional": "武陵",
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 2,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "墙崩因隙",
-    "name": {
-      "zh": "墙崩因隙",
       "en": ""
     },
     "start": "2026/04/17 12:00:00",
@@ -189,27 +251,7 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-  {
-    "id": "主线任务",
-    "name": {
-      "zh": "主线任务",
-      "en": ""
-    },
-    "start": "2026/04/17 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "主线任务",
-    "active": true,
-    "regional": "武陵",
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 2,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
+ 
   {
     "id": "志同道合",
     "name": {

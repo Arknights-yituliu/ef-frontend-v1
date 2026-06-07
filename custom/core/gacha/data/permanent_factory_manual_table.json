@@ -15,9 +15,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "映火荞花",
     "name": {
       "zh": "映火荞花",
@@ -33,9 +35,11 @@
       "originiumRecharge": 0,
       "diamond": 50,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "柑实",
     "name": {
       "zh": "柑实",
@@ -51,9 +55,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "黯银柑实",
     "name": {
       "zh": "黯银柑实",
@@ -69,9 +75,11 @@
       "originiumRecharge": 0,
       "diamond": 50,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "酮化灌木",
     "name": {
       "zh": "酮化灌木",
@@ -87,9 +95,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "锦草",
     "name": {
       "zh": "锦草",
@@ -105,9 +115,11 @@
       "originiumRecharge": 0,
       "diamond": 255,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "针芽",
     "name": {
       "zh": "针芽",
@@ -123,9 +135,11 @@
       "originiumRecharge": 0,
       "diamond": 255,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "蓬茸锦草",
     "name": {
       "zh": "蓬茸锦草",
@@ -141,9 +155,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "荆刺针芽",
     "name": {
       "zh": "荆刺针芽",
@@ -159,9 +175,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "苦叶椒",
     "name": {
       "zh": "苦叶椒",
@@ -177,9 +195,11 @@
       "originiumRecharge": 0,
       "diamond": 25,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "琼叶参",
     "name": {
       "zh": "琼叶参",
@@ -195,9 +215,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "金石稻",
     "name": {
       "zh": "金石稻",
@@ -213,9 +235,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "萤壳虫",
     "name": {
       "zh": "萤壳虫",
@@ -231,9 +255,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "灼壳虫",
     "name": {
       "zh": "灼壳虫",
@@ -249,9 +275,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "坚硬异香石",
     "name": {
       "zh": "坚硬异香石",
@@ -267,9 +295,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "高能异香石",
     "name": {
       "zh": "高能异香石",
@@ -285,9 +315,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "草籽干粉",
     "name": {
       "zh": "草籽干粉",
@@ -303,9 +335,11 @@
       "originiumRecharge": 0,
       "diamond": 130,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "刺鼻干肉",
     "name": {
       "zh": "刺鼻干肉",
@@ -321,9 +355,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "新笋",
     "name": {
       "zh": "新笋",
@@ -339,9 +375,11 @@
       "originiumRecharge": 0,
       "diamond": 80,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "兽肉",
     "name": {
       "zh": "兽肉",
@@ -357,9 +395,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "虫肉",
     "name": {
       "zh": "虫肉",
@@ -375,9 +415,11 @@
       "originiumRecharge": 0,
       "diamond": 80,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "苦涩麦粉",
     "name": {
       "zh": "苦涩麦粉",
@@ -393,9 +435,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "中空异香石",
     "name": {
       "zh": "中空异香石",
@@ -411,9 +455,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "坚韧的水",
     "name": {
       "zh": "坚韧的水",
@@ -429,9 +475,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "天然气泡水",
     "name": {
       "zh": "天然气泡水",
@@ -447,9 +495,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "水灯虫的灯坠",
     "name": {
       "zh": "水灯虫的灯坠",
@@ -465,9 +515,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "虬兽的须",
     "name": {
       "zh": "虬兽的须",
@@ -483,9 +535,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "软骨碎屑",
     "name": {
       "zh": "软骨碎屑",
@@ -501,9 +555,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "异色油脂",
     "name": {
       "zh": "异色油脂",
@@ -519,9 +575,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "甜腻黑水",
     "name": {
       "zh": "甜腻黑水",
@@ -537,9 +595,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "球刺兽的肝脏",
     "name": {
       "zh": "球刺兽的肝脏",
@@ -555,9 +615,11 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "崩碎斧刃",
     "name": {
       "zh": "崩碎斧刃",
@@ -573,9 +635,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "浸雾大弩",
     "name": {
       "zh": "浸雾大弩",
@@ -591,9 +655,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "大斧角",
     "name": {
       "zh": "大斧角",
@@ -609,9 +675,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "彪兽的长绒",
     "name": {
       "zh": "彪兽的长绒",
@@ -627,9 +695,11 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "竹林虫蛹",
     "name": {
       "zh": "竹林虫蛹",
@@ -645,7 +715,8 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -664,7 +735,8 @@
       "originiumRecharge": 0,
       "diamond": 155,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
@@ -683,32 +755,14 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   },
   {
-    "id": "物品1",
+    "id": "百年陈皮",
     "name": {
-      "zh": "物品1",
-      "en": ""
-    },
-    "start": "2026/05/22 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "简制手册",
-    "active": true,
-    "version": "春晓时",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 75,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "物品2",
-    "name": {
-      "zh": "物品2",
+      "zh": "百年陈皮",
       "en": ""
     },
     "start": "2026/06/05 12:00:00",
@@ -721,7 +775,28 @@
       "originiumRecharge": 0,
       "diamond": 75,
       "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,"ticketgachaLimitedSingle": 0
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "尾尖金甲",
+    "name": {
+      "zh": "尾尖金甲",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "简制手册",
+    "active": true,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 155,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
     }
   }
 ]
