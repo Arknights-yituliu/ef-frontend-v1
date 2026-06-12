@@ -68,7 +68,8 @@
         </template>
       </v-expansion-panel>
     </v-expansion-panels>
-    <v-card class="mt-2 mb-2 px-3 py-2 d-flex align-start align-md-center" :style="[
+    <v-card
+class="mt-2 mb-2 px-3 py-2 d-flex align-start align-md-center" :style="[
       `background: linear-gradient(180deg, ${gifts.gameVersion.color[0]}, ${gifts.gameVersion.color[1]});`,
       `color: ${gifts.gameVersion.textColor};`
     ]">
