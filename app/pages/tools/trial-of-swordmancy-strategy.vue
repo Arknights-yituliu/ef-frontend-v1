@@ -49,7 +49,11 @@
                       <v-row align="center" no-gutters>
                         <v-col class="text-center" cols="12" md="7">
                           <div class="mb-2">当前最优决策</div>
-                          <div class="best-decision-name text-white">
+                          <div
+                            class="best-decision-name text-white"
+                            style="cursor: pointer"
+                            @click="执行最优决策"
+                          >
                             ♔ {{ 计算结果.find((item) => item.is最优)?.决策 ?? '-' }}
                           </div>
                         </v-col>
@@ -99,13 +103,43 @@
                   >
                     <td>{{ i + 1 }}</td>
                     <td>
-                      <v-chip
-                        :color="item.is最优 ? 'primary' : 'default'"
-                        size="small"
-                        variant="flat"
-                      >
-                        {{ item.决策 }}
-                      </v-chip>
+                      <template v-if="item.决策 === '抽取铭牌'">
+                        <v-menu location="bottom">
+                          <template #activator="{ props }">
+                            <v-btn
+                              v-bind="props"
+                              :color="item.is最优 ? 'primary' : 'secondary'"
+                              size="small"
+                              variant="flat"
+                            >
+                              抽取铭牌
+                            </v-btn>
+                          </template>
+                          <v-list density="compact">
+                            <v-list-item :disabled="!可随机抽牌" @click="执行随机抽牌()">
+                              <v-list-item-title>随机抽 1 张</v-list-item-title>
+                            </v-list-item>
+                            <v-list-item
+                              v-for="x in 5"
+                              :key="x"
+                              :disabled="!可抽点数(x)"
+                              @click="执行抽指定点数(x)"
+                            >
+                              <v-list-item-title>{{ dice[x] }} 抽到 {{ x }} 点</v-list-item-title>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu>
+                      </template>
+                      <template v-else>
+                        <v-btn
+                          :color="item.is最优 ? 'primary' : 'secondary'"
+                          size="small"
+                          variant="flat"
+                          @click="执行决策按钮(item.决策)"
+                        >
+                          {{ item.决策 }}
+                        </v-btn>
+                      </template>
                     </td>
                     <td class="text-right">{{ item.即时奖励.toFixed(0) }}</td>
                     <td class="text-right">{{ item.期望未来价值.toFixed(2) }}</td>
@@ -241,7 +275,7 @@
               <div class="text-caption text-medium-emphasis">
                 牌库剩余：{{
                   牌库数量元组
-                    .map((n, i) => `${i + 1} 点 × ${n - (当前手牌数量元组[i] ?? 0)}`)
+                    .map((n, i) => `${dice[i + 1]} × ${n - (当前手牌数量元组[i] ?? 0)}`)
                     .join('、')
                 }}
               </div>
@@ -342,7 +376,7 @@
                     variant="outlined"
                     @click="执行抽指定点数(x)"
                   >
-                    抽到 {{ x }} 点
+                    {{ dice[x] }} 抽到 {{ x }} 点
                   </v-btn>
                 </v-col>
               </v-row>
@@ -494,6 +528,15 @@ import {
 definePageMeta({
   layout: 'default',
 });
+
+const dice: Record<number, string> = {
+  1: '⚀',
+  2: '⚁',
+  3: '⚂',
+  4: '⚃',
+  5: '⚄',
+  6: '⚅',
+} as const;
 
 // ==================== 响应式状态 ====================
 
@@ -707,12 +750,18 @@ function 执行放弃(): void {
   }
   输入.是否翻倍 = false;
   手牌插槽.value = [0, 0, 0, 0, 0];
+
+  消息.value = `已放弃本局，剩余演算次数：${输入.剩余演算次数}，剩余放弃次数：${输入.剩余放弃次数}`;
+  显示消息.value = true;
 }
 
 /** 重置手牌（保留剩余次数） */
 function 执行重置手牌(): void {
   输入.是否翻倍 = false;
   手牌插槽.value = [0, 0, 0, 0, 0];
+
+  消息.value = '手牌已重置';
+  显示消息.value = true;
 }
 
 /** 重置全部（恢复初始状态） */
@@ -725,6 +774,9 @@ function 执行重置全部(): void {
   牌库数量元组.value = [...默认牌库数量元组];
   演算奖励元组.value = [...默认演算奖励元组];
   // MDP 缓存会通过 watch 自动重新计算并更新结果
+
+  消息.value = '已重置全部状态';
+  显示消息.value = true;
 }
 
 /** 抽一张指定点数的牌加入手牌 */
@@ -747,6 +799,9 @@ function 执行抽指定点数(点数: number): void {
     return;
   }
   手牌插槽.value[空位] = 点数;
+
+  消息.value = `抽到 ${点数} 点，当前战力点：${当前战力点.value}`;
+  显示消息.value = true;
 }
 
 /** 随机抽一张牌（按剩余牌库概率） */
@@ -776,6 +831,34 @@ function 执行随机抽牌(): void {
 /** 翻倍：将状态设为已翻倍 */
 function 执行翻倍(): void {
   输入.是否翻倍 = true;
+
+  消息.value = '已选择翻倍，本次演算奖励将翻倍';
+  显示消息.value = true;
+}
+
+/** 根据决策文本执行对应操作 */
+function 执行决策按钮(决策: string): void {
+  switch (决策) {
+    case '开始演算': {
+      执行开始演算();
+      break;
+    }
+    case '放弃': {
+      执行放弃();
+      break;
+    }
+    case '选择翻倍': {
+      执行翻倍();
+      break;
+    }
+  }
+}
+
+/** 执行当前最优决策 */
+function 执行最优决策(): void {
+  const 最优 = 计算结果.value.find((item) => item.is最优);
+  if (!最优) return;
+  执行决策按钮(最优.决策);
 }
 </script>
 
