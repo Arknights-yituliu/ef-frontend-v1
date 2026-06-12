@@ -1,5 +1,6 @@
 import rawGifts from '@/custom/core/giftDatabase.json';
 
+export interface GiftCategoryTag extends Record<string, string[]> {}
 export interface GiftTag extends Record<string, string> {}
 export interface OpName extends Record<string, string> {}
 
@@ -22,11 +23,18 @@ export interface Operator {
 
 export const gifts: {
   giftProps: {
-    category: { [category: string]: GiftTag };
+    category: { [category: string]: GiftCategoryTag };
     hobby: { [hobby: string]: GiftTag };
   },
   gift: { [id: string]: Gift };
   operator: { [id: string]: Operator };
+  gameVersion: {
+    code: string;
+    name: { [lang: string]: string };
+    period?: { [lang: string]: string };
+    color: string[];
+    textColor: string;
+  },
 } = rawGifts;
 
 export function getCategoryIcon(categoryId: string | undefined): string {

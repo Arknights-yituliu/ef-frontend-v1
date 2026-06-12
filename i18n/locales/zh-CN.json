@@ -474,6 +474,7 @@
         "allGiftsExpiring": "即将过气",
         "allOperators": "干员列表",
         "allOperatorsInfo": "高亮代表该干员有该礼物来源喜好；过滤结果不计算【流行品】；点击干员以查询对应礼物",
+        "currentGameVersion": "当前游戏版本",
         "giftExplain": {
           "title1": "关于礼物与信赖度",
           "text1-1": "当管理员位于O.M.V.帝江号上时，可通过前往基建舱室/中央环厅寻找，或使用中央环厅的干员联络台呼叫干员来与干员对话，并赠送礼物。",
