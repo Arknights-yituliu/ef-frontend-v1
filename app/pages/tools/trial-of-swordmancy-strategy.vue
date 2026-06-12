@@ -109,6 +109,11 @@
               <div class="mt-2 text-caption text-medium-emphasis">
                 手牌总数：{{ 当前手牌总数 }} / 5 &nbsp;|&nbsp; 当前战力点：{{ 当前战力点 }}
               </div>
+              <div class="text-caption text-medium-emphasis">
+                牌库剩余：{{
+                  牌库数量元组.map((n, i) => String(n - (当前手牌数量元组[i] ?? 0))).join('、')
+                }}
+              </div>
 
               <v-divider class="my-3" />
 
@@ -126,6 +131,16 @@
                 </v-radio-group>
                 <div v-if="当前手牌总数 < 2" class="text-caption text-grey mt-1">
                   请在抽了至少 2 张铭牌后再选择是否翻倍
+                  <v-tooltip location="top">
+                    <template #activator="{ props }">
+                      <v-icon v-bind="props" size="small">mdi-help-circle-outline</v-icon>
+                    </template>
+                    <div>
+                      虽然只抽了 1 张铭牌时也可以选择翻倍，但是最优策略下一定至少抽 2
+                      张铭牌才会开始演算。
+                    </div>
+                    <div>为了性能考虑，计算器中要求抽至少 2 张铭牌时才能翻倍。</div>
+                  </v-tooltip>
                 </div>
               </div>
             </v-expansion-panel-text>
@@ -149,11 +164,11 @@
                     color="primary"
                     :disabled="计算中"
                     :loading="计算中"
+                    prepend-icon="mdi-calculator"
                     size="large"
                     variant="flat"
                     @click="重新计算MDP"
                   >
-                    <v-icon start>mdi-calculator</v-icon>
                     {{ 计算中 ? '计算中...' : '重新计算' }}
                   </v-btn>
                 </v-col>
@@ -162,11 +177,11 @@
                     block
                     color="secondary"
                     :disabled="!可重置手牌"
+                    prepend-icon="mdi-hand-back-right"
                     size="large"
                     variant="tonal"
                     @click="执行重置手牌"
                   >
-                    <v-icon start>mdi-hand-back-right</v-icon>
                     重置手牌
                   </v-btn>
                 </v-col>
@@ -174,11 +189,11 @@
                   <v-btn
                     block
                     color="grey-darken-1"
+                    prepend-icon="mdi-restore"
                     size="large"
                     variant="tonal"
                     @click="执行重置全部"
                   >
-                    <v-icon start>mdi-restore</v-icon>
                     重置全部
                   </v-btn>
                 </v-col>
@@ -194,11 +209,11 @@
                     block
                     color="warning"
                     :disabled="!可开始演算"
+                    prepend-icon="mdi-play"
                     size="large"
                     variant="tonal"
                     @click="执行开始演算"
                   >
-                    <v-icon start>mdi-play</v-icon>
                     开始演算
                   </v-btn>
                 </v-col>
@@ -207,11 +222,11 @@
                     block
                     color="error"
                     :disabled="!可放弃"
+                    prepend-icon="mdi-close-circle"
                     size="large"
                     variant="tonal"
                     @click="执行放弃"
                   >
-                    <v-icon start>mdi-close-circle</v-icon>
                     放弃
                   </v-btn>
                 </v-col>
@@ -220,11 +235,11 @@
                     block
                     color="orange-darken-1"
                     :disabled="!可翻倍"
+                    prepend-icon="mdi-plus-circle"
                     size="large"
                     variant="tonal"
                     @click="执行翻倍"
                   >
-                    <v-icon start>mdi-plus-circle</v-icon>
                     翻倍
                   </v-btn>
                 </v-col>
@@ -235,11 +250,11 @@
                   <v-btn
                     block
                     color="orange-darken-1"
-                    :disabled="当前手牌总数 >= 5"
+                    :disabled="!可随机抽牌"
+                    prepend-icon="mdi-shuffle"
                     variant="tonal"
                     @click="执行随机抽牌"
                   >
-                    <v-icon start>mdi-shuffle</v-icon>
                     随机抽 1 张
                   </v-btn>
                 </v-col>
@@ -276,9 +291,9 @@
                     <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
                       当前手牌:
                       {{
-                        当前手牌数量元组
-                          .map((c, i) => `${i + 1}点×${c}`)
-                          .filter((s) => !s.endsWith('×0'))
+                        手牌插槽
+                          .filter((s) => s > 0)
+                          .map((s) => String(s))
                           .join('、') || '空'
                       }}
                     </v-col>
@@ -287,10 +302,10 @@
                     </v-col>
                   </v-row>
                   <v-divider class="my-2" />
-                  <template v-if="输入.剩余演算次数 > 0">
+                  <template v-if="输入.剩余演算次数 > 0 && 计算结果.length > 0">
                     <div class="d-flex align-center ga-4">
                       <div>
-                        <span class="text-caption text-medium-emphasis">最优决策：</span>
+                        <span class="text-caption text-medium-emphasis">当前最优决策：</span>
                         <v-chip color="primary" size="small" variant="flat">
                           {{ 计算结果.find((item) => item.is最优)?.决策 ?? '-' }}
                         </v-chip>
@@ -303,18 +318,32 @@
                       </div>
                     </div>
                   </template>
+                  <template v-else-if="输入.剩余演算次数 === 0">
+                    <div class="text-body-1 font-weight-bold text-grey">
+                      已无演算次数，明天再来吧
+                    </div>
+                  </template>
                   <template v-else>
-                    <div class="text-body-1 font-weight-bold text-grey">已无演算次数</div>
+                    <div class="text-body-1 font-weight-bold text-grey">
+                      当前状态不可达，请检查输入
+                    </div>
                   </template>
                 </v-card-text>
               </v-card>
-              <v-table v-if="输入.剩余演算次数 > 0" density="compact" hover>
+              <v-table v-if="计算结果.length > 0" density="compact" hover>
                 <thead>
                   <tr>
                     <th class="text-left">#</th>
                     <th class="text-left">决策</th>
                     <th class="text-right">即时奖励</th>
-                    <th class="text-right">期望未来价值</th>
+                    <th class="text-right">
+                      期望未来价值
+                      <v-tooltip location="top" text="按照最优策略，今天还能获得的调度券数量的期望">
+                        <template #activator="{ props }">
+                          <v-icon v-bind="props" size="small">mdi-information-outline</v-icon>
+                        </template>
+                      </v-tooltip>
+                    </th>
                     <th class="text-right">总价值</th>
                     <th class="text-center">最优</th>
                   </tr>
@@ -350,115 +379,122 @@
       </v-col>
     </v-row>
 
-    <!-- ============ 下半部分：文档区 ============ -->
-    <v-row class="mt-6">
+    <v-row>
       <v-col cols="12">
-        <v-card>
-          <v-card-title>
-            <v-icon class="mr-2" color="primary">mdi-book-open-variant</v-icon>
-            玩法说明
-          </v-card-title>
-          <v-card-text class="text-body-2">
-            <section class="mb-4">
-              <h3 class="text-subtitle-1 font-weight-bold mb-2">📖 基本规则</h3>
+        <v-expansion-panels :model-value="['docs']" multiple>
+          <v-expansion-panel value="docs">
+            <v-expansion-panel-title>
+              <v-icon class="mr-2" color="primary">mdi-book-open-variant</v-icon>
+              说明
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <h3>📖 基本规则</h3>
               <p>
                 在选剑演武中，您需要从牌库中抽取铭牌，凑出特定战力点来获得演算奖励。
                 每次演算可以抽取最多 5 张铭牌，并根据最终手牌的战力点获取对应奖励。
               </p>
-              <v-table class="mt-2" density="compact">
-                <thead>
-                  <tr>
-                    <th>铭牌</th>
-                    <th>点数</th>
-                    <th>初始数量</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(n, i) in 牌库数量元组" :key="i">
-                    <td>铭牌{{ i }}</td>
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ n }}</td>
-                  </tr>
-                </tbody>
-              </v-table>
               <p class="mt-2">
-                <strong>战力点</strong> = (1×铭牌0数量 + 2×铭牌1数量 + 3×铭牌2数量 + 4×铭牌3数量 +
-                5×铭牌4数量) mod 11
+                <strong>战力点</strong> = (1 点铭牌数量 × 1 + 2 点铭牌数量 × 2 + 3 点铭牌数量 × 3 +
+                4 点铭牌数量 × 4 + 5 点铭牌数量 × 5) mod 11
               </p>
-            </section>
 
-            <section class="mb-4">
-              <h3 class="text-subtitle-1 font-weight-bold mb-2">🎮 操作说明</h3>
-              <v-list density="compact" lines="one">
-                <v-list-item>
-                  <template #prepend><v-icon color="primary">mdi-calculator</v-icon></template>
-                  <v-list-item-title>
-                    <strong>开始计算</strong> — 运行 MDP
-                    求解器，计算当前设定下所有状态的最优策略和价值
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <template #prepend><v-icon color="warning">mdi-play</v-icon></template>
-                  <v-list-item-title>
-                    <strong>开始演算</strong> —
-                    消耗一次演算次数，根据当前手牌获得对应奖励，然后重置手牌
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <template #prepend><v-icon color="error">mdi-close-circle</v-icon></template>
-                  <v-list-item-title>
-                    <strong>放弃</strong> —
-                    放弃当前手牌。若还有放弃次数则消耗一次放弃次数并保留演算次数，否则消耗一次演算次数
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <template #prepend><v-icon color="success">mdi-check-circle</v-icon></template>
-                  <v-list-item-title>
-                    <strong>结算（不消耗次数）</strong> — 查看当前手牌对应的奖励但不实际消耗演算次数
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <template #prepend><v-icon>mdi-cards-outline</v-icon></template>
-                  <v-list-item-title>
-                    <strong>抽一张</strong> — 从牌库中随机抽取一张铭牌加入手牌
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <template #prepend><v-icon color="orange-darken-1">mdi-target</v-icon></template>
-                  <v-list-item-title>
-                    <strong>抽到战力点 X</strong> — 模拟连续抽牌直到战力点达到目标值（或手牌满 5
-                    张）
-                  </v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </section>
+              <h3>📋 规则假设</h3>
+              <ul>
+                <li>
+                  <strong>等概率抽取假设</strong
+                  >：每次抽取铭牌时，抽到某一点数铭牌的概率正比于牌库中该点数铭牌的剩余数量。例如，牌库剩余
+                  1 点 × 3、2 点 × 2，则抽到 1 点的概率为 3/5，抽到 2 点的概率为 2/5。
+                </li>
+              </ul>
 
-            <section class="mb-4">
-              <h3 class="text-subtitle-1 font-weight-bold mb-2">🧮 算法说明</h3>
+              <h3>🎮 操作说明</h3>
+              <ul>
+                <li>
+                  <v-icon class="mr-2" color="primary" size="small">mdi-calculator</v-icon>
+                  <strong>重新计算</strong> — 运行 MDP 求解器，计算当前设定下所有状态的最优策略和价
+                </li>
+                <li>
+                  <v-icon class="mr-2" color="secondary" size="small">mdi-hand-back-right</v-icon>
+                  <strong>重置手牌</strong> — 清除当前手牌并重置翻倍状态，不消耗任何次数
+                </li>
+                <li>
+                  <v-icon class="mr-2" size="small">mdi-restore</v-icon>
+                  <strong>重置全部</strong> — 将所有状态恢复为初始值（3 次演算、3 次放弃、2 次翻倍）
+                </li>
+                <li>
+                  <v-icon class="mr-2" color="warning" size="small">mdi-play</v-icon>
+                  <strong>开始演算</strong> —
+                  消耗一次演算次数，根据当前手牌获得对应奖励，然后重置手牌。若已翻倍，同时消耗一次翻倍次数
+                </li>
+                <li>
+                  <v-icon class="mr-2" color="error" size="small">mdi-close-circle</v-icon>
+                  <strong>放弃</strong> —
+                  放弃当前手牌。若还有放弃次数则消耗一次放弃次数并保留演算次数，否则消耗一次演算次数
+                </li>
+                <li>
+                  <v-icon class="mr-2" color="orange-darken-1" size="small">mdi-plus-circle</v-icon>
+                  <strong>翻倍</strong> — 将本次演算的奖励 ×2。仅当手牌恰好为 2
+                  张、未翻倍且还有翻倍次数时可用
+                </li>
+                <li>
+                  <v-icon class="mr-2" size="small">mdi-shuffle</v-icon>
+                  <strong>随机抽 1 张</strong> — 从牌库中按剩余概率随机抽取一张铭牌加入手牌
+                </li>
+                <li>
+                  <v-icon class="mr-2" color="orange-darken-1" size="small">mdi-target</v-icon>
+                  <strong>抽到 x 点</strong> —
+                  从牌库中抽取一张指定点数的铭牌加入手牌。仅当该点数的牌库还有余量时可用
+                </li>
+              </ul>
+
+              <h3>🧮 算法说明</h3>
               <p>
                 本计算器使用<strong>马尔可夫决策过程（MDP）</strong>求解最优策略。 通过反向 BFS
                 拓扑排序 +
                 动态规划，从所有可能的游戏状态中计算出每个状态下最优决策（最大化期望总奖励）。
               </p>
-              <p class="text-caption text-medium-emphasis">
+              <p>
                 求解步骤：① 枚举所有合法状态 → ② 构建状态转移图 → ③ 反向拓扑排序 → ④ DP 求解 Bellman
                 最优方程
               </p>
-            </section>
 
-            <section>
-              <h3 class="text-subtitle-1 font-weight-bold mb-2">⚙️ 翻倍规则</h3>
-              <p>当手牌抽到第 2 张时，必须决定是否<b>翻倍</b>：</p>
+              <h3>📊 输出区说明</h3>
+              <p>计算完成后，输出区会展示当前状态下的决策分析与价值评估：</p>
+              <ul>
+                <li><strong>最优决策</strong> — MDP 求解出的当前状态最佳行动方案</li>
+                <li>
+                  <strong>最优价值</strong> — 按照最优策略，从当前状态开始至结束所能获得的期望总奖励
+                </li>
+                <li>
+                  <strong>期望未来价值</strong> — 选择某个决策后，未来一切演算所能获得的总奖励期望值
+                </li>
+                <li><strong>即时奖励</strong> — 执行当前决策（如开始演算）立即获得的奖励</li>
+                <li>
+                  <strong>总价值</strong> = 即时奖励 + 期望未来价值，表示选择该决策的期望总收益
+                </li>
+              </ul>
+              <p>当剩余演算次数为 0 时，输出区会显示"已无演算次数"提示。</p>
+
+              <h3>⚙️ 翻倍规则</h3>
+              <p>当手牌恰好为 2 张时，可以<b>主动选择</b>是否翻倍：</p>
               <ul>
                 <li>选择翻倍：本次演算的奖励 ×2，消耗一次翻倍次数</li>
-                <li>选择不翻倍：奖励不变</li>
+                <li>不选择翻倍：按正常奖励结算，保留翻倍次数</li>
               </ul>
-              <p class="mt-1">翻倍决定后不可更改。如果翻倍次数用完，则自动选择不翻倍。</p>
-            </section>
-          </v-card-text>
-        </v-card>
+              <p>
+                翻倍决定后不可取消。翻倍只在手牌 2 张时可选，若跳过则后续无法再对本次演算翻倍。
+                翻倍次数用完后翻倍按钮不可用。
+              </p>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-col>
     </v-row>
+
+    <!-- 全局提示 -->
+    <v-snackbar v-model="显示消息" location="top" :timeout="2000">
+      {{ 消息 }}
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -490,6 +526,8 @@ const 输入 = reactive({
 });
 
 const 计算中 = ref(false);
+const 显示消息 = ref(false);
+const 消息 = ref('');
 
 // MDP 缓存：基础设定不变时，结果可复用
 const 求解器缓存 = ref<求解器类 | null>(null);
@@ -544,11 +582,33 @@ const 可放弃 = computed(() => 输入.剩余演算次数 > 0 && !手牌为空.
 /** 翻倍按钮是否可用（手牌2张、未翻倍、有翻倍次数） */
 const 可翻倍 = computed(() => 当前手牌总数.value === 2 && !输入.是否翻倍 && 输入.剩余翻倍次数 > 0);
 
+/** 随机抽牌按钮是否可用（手牌未满且牌库还有余量） */
+const 可随机抽牌 = computed(() => {
+  if (输入.剩余演算次数 <= 0) {
+    return false;
+  }
+  if (当前手牌总数.value >= 5) {
+    return false;
+  }
+  const 牌库剩余总数 = 牌库数量元组.value.reduce(
+    (sum, total, i) => sum + (total - (当前手牌数量元组.value[i] ?? 0)),
+    0,
+  );
+  return 牌库剩余总数 > 0;
+});
+
 /** 抽指定点数按钮是否可用（手牌未满且该点数牌库还有余量） */
 function 可抽点数(点数: number): boolean {
-  if (当前手牌总数.value >= 5) return false;
+  if (输入.剩余演算次数 <= 0) {
+    return false;
+  }
+  if (当前手牌总数.value >= 5) {
+    return false;
+  }
   const 该点数已抽数量 = 当前手牌数量元组.value[点数 - 1]!;
-  if (该点数已抽数量 >= 牌库数量元组.value[点数 - 1]!) return false;
+  if (该点数已抽数量 >= 牌库数量元组.value[点数 - 1]!) {
+    return false;
+  }
   return true;
 }
 
@@ -651,7 +711,8 @@ function 执行开始演算(消耗次数: boolean = true): void {
   输入.是否翻倍 = false;
   手牌插槽.value = [0, 0, 0, 0, 0];
 
-  ElMessage(msg);
+  消息.value = msg;
+  显示消息.value = true;
 }
 
 function 执行放弃(): void {
@@ -685,17 +746,20 @@ function 执行重置全部(): void {
 /** 抽一张指定点数的牌加入手牌 */
 function 执行抽指定点数(点数: number): void {
   if (当前手牌总数.value >= 5) {
-    ElMessage('手牌已满！');
+    消息.value = '手牌已满！';
+    显示消息.value = true;
     return;
   }
   const 已抽数量 = 当前手牌数量元组.value[点数 - 1]!;
   if (已抽数量 >= 牌库数量元组.value[点数 - 1]!) {
-    ElMessage(`${点数}点的牌库已空！`);
+    消息.value = `${点数}点的牌库已空！`;
+    显示消息.value = true;
     return;
   }
   const 空位 = 手牌插槽.value.indexOf(0);
   if (空位 === -1) {
-    ElMessage('手牌已满！');
+    消息.value = '手牌已满！';
+    显示消息.value = true;
     return;
   }
   手牌插槽.value[空位] = 点数;
@@ -704,13 +768,15 @@ function 执行抽指定点数(点数: number): void {
 /** 随机抽一张牌（按剩余牌库概率） */
 function 执行随机抽牌(): void {
   if (当前手牌总数.value >= 5) {
-    ElMessage('手牌已满！');
+    消息.value = '手牌已满！';
+    显示消息.value = true;
     return;
   }
   const 剩余数量 = 牌库数量元组.value.map((n, i) => n - 当前手牌数量元组.value[i]!);
   const 总剩余 = 剩余数量.reduce((a, b) => a + b, 0);
   if (总剩余 === 0) {
-    ElMessage('牌库已空！');
+    消息.value = '牌库已空！';
+    显示消息.value = true;
     return;
   }
   let 随机值 = Math.random() * 总剩余;
@@ -734,36 +800,33 @@ function 计算演算奖励(手牌: number[], 是否翻倍: boolean): number {
 function 执行翻倍(): void {
   输入.是否翻倍 = true;
 }
-
-let 提示计时器: ReturnType<typeof setTimeout>;
-function ElMessage(msg: string): void {
-  clearTimeout(提示计时器);
-  const el = document.createElement('div');
-  el.className = 'sword-calculator-toast';
-  el.textContent = msg;
-  Object.assign(el.style, {
-    position: 'fixed',
-    top: '20px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    background: 'rgba(0,0,0,0.8)',
-    color: '#fff',
-    padding: '10px 24px',
-    borderRadius: '8px',
-    zIndex: '9999',
-    fontSize: '14px',
-    transition: 'opacity 0.3s',
-  });
-  document.body.append(el);
-  提示计时器 = setTimeout(() => {
-    el.style.opacity = '0';
-    setTimeout(() => el.remove(), 300);
-  }, 2000);
-}
 </script>
 
 <style scoped>
-:deep(.bg-primary-lighten-5) {
-  background-color: rgba(var(--v-theme-primary), 0.08) !important;
+* {
+  letter-spacing: 0 !important;
+}
+
+h3 {
+  margin-block: 2rem 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+p {
+  margin-block: 1rem;
+  font-size: 1rem;
+}
+
+ol,
+ul {
+  padding-left: 1.5rem;
+  margin-block: 1rem;
+}
+
+ol li,
+ul li {
+  margin-block: 0.5rem;
+  font-size: 1rem;
 }
 </style>
