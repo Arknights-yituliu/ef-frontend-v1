@@ -95,6 +95,12 @@
         "nameKey": "menu.gachaAnalysis",
         "routePath": "/tools/gacha-analysis",
         "vuetifyIcon": "mdi-chart-bar"
+      },
+      {
+        "i18nKey": "trialOfSwordmancyStrategy",
+        "nameKey": "menu.trialOfSwordmancyStrategy",
+        "routePath": "/tools/trial-of-swordmancy-strategy",
+        "vuetifyIcon": "mdi-sword"
       }
     ]
   },
