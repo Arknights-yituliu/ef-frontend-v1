@@ -282,7 +282,7 @@
                 <v-card-text class="pa-3">
                   <v-row dense>
                     <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                      剩余演算/放弃/翻倍: {{ 输入.剩余演算次数 }} / {{ 输入.剩余放弃次数 }} /
+                      剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} / {{ 输入.剩余放弃次数 }} /
                       {{ 输入.剩余翻倍次数 }}
                     </v-col>
                     <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
