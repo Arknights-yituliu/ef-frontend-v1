@@ -499,6 +499,7 @@
 </template>
 
 <script lang="ts" setup>
+import { watchDebounced } from '@vueuse/core';
 import {
   type MDPResult,
   求解器类,
@@ -623,12 +624,12 @@ function 重新计算MDP(): void {
   更新计算结果();
 }
 
-watch(
+watchDebounced(
   [牌库数量元组, 演算奖励元组],
   () => {
     重新计算MDP();
   },
-  { deep: true, immediate: true },
+  { deep: true, immediate: true, debounce: 300 },
 );
 
 // ==================== 查表更新结果（输入状态变化时触发） ====================
@@ -698,7 +699,8 @@ watch(
 );
 
 function 执行开始演算(消耗次数: boolean = true): void {
-  const 奖励 = 计算演算奖励(当前手牌数量元组.value, 输入.是否翻倍);
+  const 求解器 = 求解器缓存.value;
+  const 奖励 = 求解器?.计算演算奖励(当前手牌数量元组.value, 输入.是否翻倍) ?? 0;
   const msg = `演算完成！获得奖励：${奖励}`;
 
   if (消耗次数) {
@@ -787,13 +789,6 @@ function 执行随机抽牌(): void {
       return;
     }
   }
-}
-
-function 计算演算奖励(手牌: number[], 是否翻倍: boolean): number {
-  const 战力点 = 计算战力点(手牌);
-  let 奖励 = 演算奖励元组.value[战力点] ?? 0;
-  if (是否翻倍) 奖励 *= 2;
-  return 奖励;
 }
 
 /** 翻倍：将状态设为已翻倍 */
