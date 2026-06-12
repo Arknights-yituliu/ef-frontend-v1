@@ -4,332 +4,75 @@
 
     <!-- ============ 上半部分：左右分栏 ============ -->
     <v-row>
-      <!-- ===== 左栏：基础设定 + 输入区 ===== -->
+      <!-- ===== 左栏：输出区 ===== -->
       <v-col cols="12" md="6">
-        <!-- 基础设定 -->
-        <v-expansion-panels class="mb-4" :model-value="['input']" multiple>
-          <v-expansion-panel value="settings">
-            <v-expansion-panel-title>基础设定区</v-expansion-panel-title>
-            <v-expansion-panel-text>
-              <!-- 铭牌库 -->
-              <div class="text-subtitle-2 my-4">初始铭牌库</div>
-              <v-row dense>
-                <v-col v-for="(_, i) in 手牌插槽" :key="i" cols="4" sm="2">
-                  <v-text-field
-                    v-model.number="牌库数量元组[i]"
-                    density="compact"
-                    hide-details
-                    :label="`${i + 1} 点数量`"
-                    max="20"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-              </v-row>
-
-              <!-- 演算奖励 -->
-              <div class="text-subtitle-2 my-4">演算奖励表</div>
-              <v-row dense>
-                <v-col v-for="(_, i) in 演算奖励元组" :key="i" cols="6" lg="3" sm="4">
-                  <v-text-field
-                    v-model.number="演算奖励元组[i]"
-                    density="compact"
-                    hide-details
-                    :label="`战力点 ${i}`"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-              </v-row>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-          <!-- 输入区 -->
-          <v-expansion-panel value="input">
-            <v-expansion-panel-title>当前状态输入区</v-expansion-panel-title>
-            <v-expansion-panel-text>
-              <v-row dense>
-                <v-col cols="4">
-                  <v-text-field
-                    v-model.number="输入.剩余演算次数"
-                    density="compact"
-                    hide-details
-                    label="剩余演算次数"
-                    max="3"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="4">
-                  <v-text-field
-                    v-model.number="输入.剩余放弃次数"
-                    density="compact"
-                    hide-details
-                    label="剩余放弃次数"
-                    max="3"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="4">
-                  <v-text-field
-                    v-model.number="输入.剩余翻倍次数"
-                    density="compact"
-                    hide-details
-                    label="剩余翻倍次数"
-                    max="2"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-              </v-row>
-
-              <v-divider class="my-3" />
-
-              <div class="text-subtitle-2 mb-2">当前手牌（每张牌的点数，0=空位）</div>
-              <v-row dense>
-                <v-col v-for="(_, i) in 手牌插槽" :key="i" cols="4" sm="2">
-                  <v-text-field
-                    v-model.number="手牌插槽[i]"
-                    density="compact"
-                    hide-details
-                    max="5"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-              </v-row>
-
-              <div class="mt-2 text-caption text-medium-emphasis">
-                手牌总数：{{ 当前手牌总数 }} / 5 &nbsp;|&nbsp; 当前战力点：{{ 当前战力点 }}
-              </div>
-              <div class="text-caption text-medium-emphasis">
-                牌库剩余：{{
-                  牌库数量元组.map((n, i) => String(n - (当前手牌数量元组[i] ?? 0))).join('、')
-                }}
-              </div>
-
-              <v-divider class="my-3" />
-
-              <div class="mt-2">
-                <div class="text-body-2 mb-1">翻倍状态</div>
-                <v-radio-group
-                  v-model="输入.是否翻倍"
-                  density="compact"
-                  :disabled="当前手牌总数 < 2"
-                  hide-details
-                  inline
-                >
-                  <v-radio :label="'未翻倍'" :value="false" />
-                  <v-radio :label="'已翻倍'" :value="true" />
-                </v-radio-group>
-                <div v-if="当前手牌总数 < 2" class="text-caption text-grey mt-1">
-                  请在抽了至少 2 张铭牌后再选择是否翻倍
-                  <v-tooltip location="top">
-                    <template #activator="{ props }">
-                      <v-icon v-bind="props" size="small">mdi-help-circle-outline</v-icon>
-                    </template>
-                    <div>
-                      虽然只抽了 1 张铭牌时也可以选择翻倍，但是最优策略下一定至少抽 2
-                      张铭牌才会开始演算。
-                    </div>
-                    <div>为了性能考虑，计算器中要求抽至少 2 张铭牌时才能翻倍。</div>
-                  </v-tooltip>
-                </div>
-              </div>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-col>
-
-      <!-- ===== 右栏：操作区 + 输出区 ===== -->
-      <v-col cols="12" md="6">
-        <v-expansion-panels class="mb-4" :model-value="['operation', 'output']" multiple>
-          <!-- 操作区 -->
-          <v-expansion-panel value="operation">
-            <v-expansion-panel-title>操作区</v-expansion-panel-title>
-            <v-expansion-panel-text>
-              <!-- 第一部分 -->
-              <div class="text-subtitle-2 mb-2">基本操作</div>
-              <v-row class="mb-4" dense>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="primary"
-                    :disabled="计算中"
-                    :loading="计算中"
-                    prepend-icon="mdi-calculator"
-                    size="large"
-                    variant="flat"
-                    @click="重新计算MDP"
-                  >
-                    {{ 计算中 ? '计算中...' : '重新计算' }}
-                  </v-btn>
-                </v-col>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="secondary"
-                    :disabled="!可重置手牌"
-                    prepend-icon="mdi-hand-back-right"
-                    size="large"
-                    variant="tonal"
-                    @click="执行重置手牌"
-                  >
-                    重置手牌
-                  </v-btn>
-                </v-col>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="grey-darken-1"
-                    prepend-icon="mdi-restore"
-                    size="large"
-                    variant="tonal"
-                    @click="执行重置全部"
-                  >
-                    重置全部
-                  </v-btn>
-                </v-col>
-              </v-row>
-
-              <v-divider class="my-3" />
-
-              <!-- 第二部分 -->
-              <div class="text-subtitle-2 mb-2">演算操控</div>
-              <v-row class="mb-3" dense>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="warning"
-                    :disabled="!可开始演算"
-                    prepend-icon="mdi-play"
-                    size="large"
-                    variant="tonal"
-                    @click="执行开始演算"
-                  >
-                    开始演算
-                  </v-btn>
-                </v-col>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="error"
-                    :disabled="!可放弃"
-                    prepend-icon="mdi-close-circle"
-                    size="large"
-                    variant="tonal"
-                    @click="执行放弃"
-                  >
-                    放弃
-                  </v-btn>
-                </v-col>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可翻倍"
-                    prepend-icon="mdi-plus-circle"
-                    size="large"
-                    variant="tonal"
-                    @click="执行翻倍"
-                  >
-                    翻倍
-                  </v-btn>
-                </v-col>
-              </v-row>
-
-              <v-row dense>
-                <v-col cols="6" sm="2">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可随机抽牌"
-                    prepend-icon="mdi-shuffle"
-                    variant="tonal"
-                    @click="执行随机抽牌"
-                  >
-                    随机抽 1 张
-                  </v-btn>
-                </v-col>
-                <v-col v-for="x in 5" :key="x" cols="6" sm="2">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可抽点数(x)"
-                    variant="outlined"
-                    @click="执行抽指定点数(x)"
-                  >
-                    抽到 {{ x }} 点
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
+        <v-expansion-panels class="mb-4" :model-value="['output']" multiple>
           <!-- 输出区 -->
           <v-expansion-panel value="output">
             <v-expansion-panel-title>输出区</v-expansion-panel-title>
             <v-expansion-panel-text>
               <!-- 当前状态摘要 -->
-              <v-card class="mb-4" variant="outlined">
-                <v-card-text class="pa-3">
-                  <v-row dense>
-                    <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                      剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} / {{ 输入.剩余放弃次数 }} /
-                      {{ 输入.剩余翻倍次数 }}
-                    </v-col>
-                    <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                      翻倍状态: {{ 输入.是否翻倍 ? '已翻倍' : '未翻倍' }}
-                    </v-col>
-                    <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                      当前手牌:
-                      {{
-                        手牌插槽
-                          .filter((s) => s > 0)
-                          .map((s) => String(s))
-                          .join('、') || '空'
-                      }}
-                    </v-col>
-                    <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                      战力点: {{ 当前战力点 }}
-                    </v-col>
-                  </v-row>
-                  <v-divider class="my-2" />
-                  <template v-if="输入.剩余演算次数 > 0 && 计算结果.length > 0">
-                    <div class="d-flex align-center ga-4">
-                      <div>
-                        <span class="text-caption text-medium-emphasis">当前最优决策：</span>
-                        <v-chip color="primary" size="small" variant="flat">
-                          {{ 计算结果.find((item) => item.is最优)?.决策 ?? '-' }}
-                        </v-chip>
-                      </div>
-                      <div>
-                        <span class="text-caption text-medium-emphasis">最优价值：</span>
-                        <span class="text-body-1 font-weight-bold text-primary">{{
-                          初始价值.toFixed(2)
-                        }}</span>
-                      </div>
-                    </div>
-                  </template>
-                  <template v-else-if="输入.剩余演算次数 === 0">
-                    <div class="text-body-1 font-weight-bold text-grey">
-                      已无演算次数，明天再来吧
-                    </div>
-                  </template>
-                  <template v-else>
-                    <div class="text-body-1 font-weight-bold text-grey">
-                      当前状态不可达，请检查输入
-                    </div>
-                  </template>
-                </v-card-text>
-              </v-card>
+              <div class="mb-4">
+                <v-row dense>
+                  <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
+                    剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} / {{ 输入.剩余放弃次数 }} /
+                    {{ 输入.剩余翻倍次数 }}
+                  </v-col>
+                  <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
+                    翻倍状态: {{ 输入.是否翻倍 ? '已翻倍' : '未翻倍' }}
+                  </v-col>
+                  <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
+                    当前手牌:
+                    {{
+                      手牌插槽
+                        .filter((s) => s > 0)
+                        .map((s) => String(s))
+                        .join('、') || '空'
+                    }}
+                  </v-col>
+                  <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
+                    战力点: {{ 当前战力点 }}
+                  </v-col>
+                </v-row>
+
+                <v-divider class="my-4" />
+
+                <template v-if="输入.剩余演算次数 > 0 && 计算结果.length > 0">
+                  <v-card
+                    class="best-decision-hero mt-1"
+                    color="primary"
+                    rounded="lg"
+                    theme="dark"
+                    variant="elevated"
+                  >
+                    <v-card-text class="pa-4">
+                      <v-row align="center" no-gutters>
+                        <v-col class="text-center" cols="12" md="7">
+                          <div class="mb-2">当前最优决策</div>
+                          <div class="best-decision-name text-white">
+                            ♔ {{ 计算结果.find((item) => item.is最优)?.决策 ?? '-' }}
+                          </div>
+                        </v-col>
+                        <v-col class="text-center" cols="12" md="5">
+                          <v-divider class="d-md-none my-2" />
+                          <div class="mb-2">最优价值</div>
+                          <div class="best-decision-value text-white">
+                            {{ 初始价值.toFixed(2) }}
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </template>
+                <template v-else-if="输入.剩余演算次数 === 0">
+                  <div class="text-body-1 font-weight-bold text-grey">已无演算次数，明天再来吧</div>
+                </template>
+                <template v-else>
+                  <div class="text-body-1 font-weight-bold text-grey">
+                    当前状态不可达，请检查输入
+                  </div>
+                </template>
+              </div>
               <v-table v-if="计算结果.length > 0" density="compact" hover>
                 <thead>
                   <tr>
@@ -377,6 +120,248 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </v-col>
+
+      <!-- ===== 右栏：基础设定 + 输入区 ===== -->
+      <v-col cols="12" md="6">
+        <!-- 基础设定 -->
+        <v-expansion-panels class="mb-4" :model-value="['input']" multiple>
+          <v-expansion-panel value="settings">
+            <v-expansion-panel-title>基础设定区</v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <!-- 铭牌库 -->
+              <div class="text-subtitle-2 my-4">初始铭牌库</div>
+              <v-row dense>
+                <v-col v-for="(_, i) in 手牌插槽" :key="i" cols="4" sm="2">
+                  <v-text-field
+                    v-model.number="牌库数量元组[i]"
+                    density="compact"
+                    hide-details
+                    :label="`${i + 1} 点数量`"
+                    max="20"
+                    min="0"
+                    type="number"
+                    variant="outlined"
+                  />
+                </v-col>
+              </v-row>
+
+              <!-- 演算奖励 -->
+              <div class="text-subtitle-2 my-4">演算奖励表</div>
+              <v-row dense>
+                <v-col v-for="(_, i) in 演算奖励元组" :key="i" cols="6" lg="3" sm="4">
+                  <v-text-field
+                    v-model.number="演算奖励元组[i]"
+                    density="compact"
+                    hide-details
+                    :label="`战力点 ${i}`"
+                    min="0"
+                    type="number"
+                    variant="outlined"
+                  />
+                </v-col>
+              </v-row>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
+          <!-- 输入区 -->
+          <v-expansion-panel value="input">
+            <v-expansion-panel-title>当前状态输入区</v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <div class="text-subtitle-2 mb-2">剩余演算、放弃、翻倍次数</div>
+              <v-row dense>
+                <v-col cols="4">
+                  <v-text-field
+                    v-model.number="输入.剩余演算次数"
+                    density="compact"
+                    hide-details
+                    label="剩余演算次数"
+                    max="3"
+                    min="0"
+                    type="number"
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="4">
+                  <v-text-field
+                    v-model.number="输入.剩余放弃次数"
+                    density="compact"
+                    hide-details
+                    label="剩余放弃次数"
+                    max="3"
+                    min="0"
+                    type="number"
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="4">
+                  <v-text-field
+                    v-model.number="输入.剩余翻倍次数"
+                    density="compact"
+                    hide-details
+                    label="剩余翻倍次数"
+                    max="2"
+                    min="0"
+                    type="number"
+                    variant="outlined"
+                  />
+                </v-col>
+              </v-row>
+
+              <v-divider class="my-4" />
+
+              <div class="text-subtitle-2 mb-2">当前手牌（每张牌的点数，0=空位）</div>
+              <v-row dense>
+                <v-col v-for="(_, i) in 手牌插槽" :key="i" cols="4" sm="2">
+                  <v-text-field
+                    v-model.number="手牌插槽[i]"
+                    density="compact"
+                    hide-details
+                    max="5"
+                    min="0"
+                    type="number"
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="4" sm="2">
+                  <v-btn
+                    block
+                    class="h-100"
+                    color="secondary"
+                    :disabled="!可重置手牌"
+                    prepend-icon="mdi-hand-back-right"
+                    variant="tonal"
+                    @click="执行重置手牌"
+                  >
+                    重置手牌
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+              <div class="mt-2 text-caption text-medium-emphasis">当前战力点：{{ 当前战力点 }}</div>
+              <div class="text-caption text-medium-emphasis">
+                牌库剩余：{{
+                  牌库数量元组
+                    .map((n, i) => `${i + 1} 点 × ${n - (当前手牌数量元组[i] ?? 0)}`)
+                    .join('、')
+                }}
+              </div>
+
+              <v-divider class="my-4" />
+
+              <div class="mt-2">
+                <div class="text-subtitle-2 mb-2">翻倍状态</div>
+                <v-radio-group
+                  v-model="输入.是否翻倍"
+                  density="compact"
+                  :disabled="当前手牌总数 < 2"
+                  hide-details
+                  inline
+                >
+                  <v-radio :label="'未翻倍'" :value="false" />
+                  <v-radio :label="'已翻倍'" :value="true" />
+                </v-radio-group>
+                <div v-if="当前手牌总数 < 2" class="text-caption text-grey mt-1">
+                  请在抽了至少 2 张铭牌后再选择是否翻倍
+                  <v-tooltip location="top">
+                    <template #activator="{ props }">
+                      <v-icon v-bind="props" size="small">mdi-help-circle-outline</v-icon>
+                    </template>
+                    <div>
+                      虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
+                      张铭牌才会开始演算。
+                    </div>
+                    <div>为了性能考虑，计算器中要求抽至少 2 张铭牌时才能选择是否翻倍。</div>
+                  </v-tooltip>
+                </div>
+              </div>
+
+              <v-divider class="my-4" />
+
+              <div class="text-subtitle-2 mb-2">快捷操作</div>
+
+              <v-row class="my-2" dense>
+                <v-col cols="6" sm="4">
+                  <v-btn
+                    block
+                    color="warning"
+                    :disabled="!可开始演算"
+                    prepend-icon="mdi-play"
+                    size="large"
+                    variant="tonal"
+                    @click="执行开始演算"
+                  >
+                    开始演算
+                  </v-btn>
+                </v-col>
+                <v-col cols="6" sm="4">
+                  <v-btn
+                    block
+                    color="error"
+                    :disabled="!可放弃"
+                    prepend-icon="mdi-close-circle"
+                    size="large"
+                    variant="tonal"
+                    @click="执行放弃"
+                  >
+                    放弃
+                  </v-btn>
+                </v-col>
+                <v-col cols="6" sm="4">
+                  <v-btn
+                    block
+                    color="orange-darken-1"
+                    :disabled="!可翻倍"
+                    prepend-icon="mdi-plus-circle"
+                    size="large"
+                    variant="tonal"
+                    @click="执行翻倍"
+                  >
+                    选择翻倍
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+              <v-row class="my-2" dense>
+                <v-col cols="6" sm="2">
+                  <v-btn
+                    block
+                    color="orange-darken-1"
+                    :disabled="!可随机抽牌"
+                    prepend-icon="mdi-shuffle"
+                    variant="tonal"
+                    @click="执行随机抽牌"
+                  >
+                    随机抽 1 张
+                  </v-btn>
+                </v-col>
+                <v-col v-for="x in 5" :key="x" cols="6" sm="2">
+                  <v-btn
+                    block
+                    color="orange-darken-1"
+                    :disabled="!可抽点数(x)"
+                    variant="outlined"
+                    @click="执行抽指定点数(x)"
+                  >
+                    抽到 {{ x }} 点
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+              <v-btn
+                block
+                class="my-2"
+                color="grey-darken-1"
+                prepend-icon="mdi-restore"
+                size="large"
+                variant="tonal"
+                @click="执行重置全部"
+              >
+                重置全部
+              </v-btn>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
     </v-row>
 
     <v-row>
@@ -409,10 +394,6 @@
 
               <h3>🎮 操作说明</h3>
               <ul>
-                <li>
-                  <v-icon class="mr-2" color="primary" size="small">mdi-calculator</v-icon>
-                  <strong>重新计算</strong> — 运行 MDP 求解器，计算当前设定下所有状态的最优策略和价
-                </li>
                 <li>
                   <v-icon class="mr-2" color="secondary" size="small">mdi-hand-back-right</v-icon>
                   <strong>重置手牌</strong> — 清除当前手牌并重置翻倍状态，不消耗任何次数
@@ -526,7 +507,6 @@ const 输入 = reactive({
   是否翻倍: false,
 });
 
-const 计算中 = ref(false);
 const 显示消息 = ref(false);
 const 消息 = ref('');
 
@@ -616,11 +596,9 @@ function 可抽点数(点数: number): boolean {
 // ==================== 预计算 MDP（基础设定变化时触发） ====================
 
 function 重新计算MDP(): void {
-  计算中.value = true;
   const 求解器 = new 求解器类([...牌库数量元组.value], [...演算奖励元组.value]);
   求解器缓存.value = 求解器;
   MDP缓存.value = 求解器.求解MDP();
-  计算中.value = false;
   更新计算结果();
 }
 
@@ -629,7 +607,11 @@ watchDebounced(
   () => {
     重新计算MDP();
   },
-  { deep: true, immediate: true, debounce: 300 },
+  {
+    deep: true,
+    immediate: true,
+    debounce: 300,
+  },
 );
 
 // ==================== 查表更新结果（输入状态变化时触发） ====================
@@ -800,6 +782,42 @@ function 执行翻倍(): void {
 <style scoped>
 * {
   letter-spacing: 0 !important;
+}
+
+/* ========== 最优决策英雄板块 ========== */
+.best-decision-hero {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 24px rgba(var(--v-theme-primary), 0.35);
+  animation: heroPulse 2s ease-in-out infinite;
+}
+
+.best-decision-name {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.best-decision-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* 确保图标也是白色 */
+.best-decision-hero .v-icon {
+  color: inherit !important;
+}
+
+@keyframes heroPulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 24px rgba(var(--v-theme-primary), 0.35);
+  }
+  50% {
+    box-shadow: 0 4px 40px rgba(var(--v-theme-primary), 0.55);
+  }
 }
 
 h3 {
