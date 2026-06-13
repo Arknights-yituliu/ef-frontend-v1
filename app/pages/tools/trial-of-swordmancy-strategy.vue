@@ -49,13 +49,7 @@
                       <v-row align="center" no-gutters>
                         <v-col class="text-center" cols="12" md="7">
                           <div class="mb-2">当前最优决策</div>
-                          <div
-                            class="best-decision-name text-white"
-                            style="cursor: pointer"
-                            @click="执行最优决策"
-                          >
-                            ♔ {{ 计算结果.find((item) => item.is最优)?.决策 ?? '-' }}
-                          </div>
+                          <div class="best-decision-name text-white">♔ {{ 最优决策名称 }}</div>
                         </v-col>
                         <v-col class="text-center" cols="12" md="5">
                           <v-divider class="d-md-none my-2" />
@@ -155,12 +149,15 @@
         </v-expansion-panels>
       </v-col>
 
-      <!-- ===== 右栏：基础设定 + 输入区 ===== -->
+      <!-- ===== 右栏：游戏风格输入区 ===== -->
       <v-col cols="12" md="6">
-        <!-- 基础设定 -->
-        <v-expansion-panels class="mb-4" :model-value="['input']" multiple>
-          <v-expansion-panel value="settings">
-            <v-expansion-panel-title>基础设定区</v-expansion-panel-title>
+        <!-- 可折叠的基础设定 -->
+        <v-expansion-panels class="mb-4">
+          <v-expansion-panel>
+            <v-expansion-panel-title>
+              <v-icon class="mr-2" size="small">mdi-cog</v-icon>
+              基础设定
+            </v-expansion-panel-title>
             <v-expansion-panel-text>
               <!-- 铭牌库 -->
               <div class="text-subtitle-2 my-4">初始铭牌库</div>
@@ -170,7 +167,7 @@
                     v-model.number="牌库数量元组[i]"
                     density="compact"
                     hide-details
-                    :label="`${i + 1} 点数量`"
+                    :label="`${i + 1} 点`"
                     max="20"
                     min="0"
                     type="number"
@@ -194,199 +191,13 @@
                   />
                 </v-col>
               </v-row>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-          <!-- 输入区 -->
-          <v-expansion-panel value="input">
-            <v-expansion-panel-title>当前状态输入区</v-expansion-panel-title>
-            <v-expansion-panel-text>
-              <div class="text-subtitle-2 mb-2">剩余演算、放弃、翻倍次数</div>
-              <v-row dense>
-                <v-col cols="4">
-                  <v-text-field
-                    v-model.number="输入.剩余演算次数"
-                    density="compact"
-                    hide-details
-                    label="剩余演算次数"
-                    max="3"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="4">
-                  <v-text-field
-                    v-model.number="输入.剩余放弃次数"
-                    density="compact"
-                    hide-details
-                    label="剩余放弃次数"
-                    max="3"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="4">
-                  <v-text-field
-                    v-model.number="输入.剩余翻倍次数"
-                    density="compact"
-                    hide-details
-                    label="剩余翻倍次数"
-                    max="2"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-              </v-row>
-
-              <v-divider class="my-4" />
-
-              <div class="text-subtitle-2 mb-2">当前手牌（每张牌的点数，0=空位）</div>
-              <v-row dense>
-                <v-col v-for="(_, i) in 手牌插槽" :key="i" cols="4" sm="2">
-                  <v-text-field
-                    v-model.number="手牌插槽[i]"
-                    density="compact"
-                    hide-details
-                    max="5"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="4" sm="2">
-                  <v-btn
-                    block
-                    class="h-100"
-                    color="secondary"
-                    :disabled="!可重置手牌"
-                    prepend-icon="mdi-hand-back-right"
-                    variant="tonal"
-                    @click="执行重置手牌"
-                  >
-                    重置手牌
-                  </v-btn>
-                </v-col>
-              </v-row>
-
-              <div class="mt-2 text-caption text-medium-emphasis">当前战力点：{{ 当前战力点 }}</div>
-              <div class="text-caption text-medium-emphasis">
-                牌库剩余：{{
-                  牌库数量元组
-                    .map((n, i) => `${dice[i + 1]} × ${n - (当前手牌数量元组[i] ?? 0)}`)
-                    .join('、')
-                }}
-              </div>
-
-              <v-divider class="my-4" />
-
-              <div class="mt-2">
-                <div class="text-subtitle-2 mb-2">翻倍状态</div>
-                <v-radio-group
-                  v-model="输入.是否翻倍"
-                  density="compact"
-                  :disabled="当前手牌总数 < 2"
-                  hide-details
-                  inline
-                >
-                  <v-radio :label="'未翻倍'" :value="false" />
-                  <v-radio :label="'已翻倍'" :value="true" />
-                </v-radio-group>
-                <div v-if="当前手牌总数 < 2" class="text-caption text-grey mt-1">
-                  请在抽了至少 2 张铭牌后再选择是否翻倍
-                  <v-tooltip location="top">
-                    <template #activator="{ props }">
-                      <v-icon v-bind="props" size="small">mdi-help-circle-outline</v-icon>
-                    </template>
-                    <div>
-                      虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
-                      张铭牌才会开始演算。
-                    </div>
-                    <div>为了性能考虑，计算器中要求抽至少 2 张铭牌时才能选择是否翻倍。</div>
-                  </v-tooltip>
-                </div>
-              </div>
-
-              <v-divider class="my-4" />
-
-              <div class="text-subtitle-2 mb-2">快捷操作</div>
-
-              <v-row class="my-2" dense>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="warning"
-                    :disabled="!可开始演算"
-                    prepend-icon="mdi-play"
-                    size="large"
-                    variant="tonal"
-                    @click="执行开始演算"
-                  >
-                    开始演算
-                  </v-btn>
-                </v-col>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="error"
-                    :disabled="!可放弃"
-                    prepend-icon="mdi-close-circle"
-                    size="large"
-                    variant="tonal"
-                    @click="执行放弃"
-                  >
-                    放弃
-                  </v-btn>
-                </v-col>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可翻倍"
-                    prepend-icon="mdi-plus-circle"
-                    size="large"
-                    variant="tonal"
-                    @click="执行翻倍"
-                  >
-                    选择翻倍
-                  </v-btn>
-                </v-col>
-              </v-row>
-
-              <v-row class="my-2" dense>
-                <v-col cols="6" sm="2">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可随机抽牌"
-                    prepend-icon="mdi-shuffle"
-                    variant="tonal"
-                    @click="执行随机抽牌"
-                  >
-                    随机抽 1 张
-                  </v-btn>
-                </v-col>
-                <v-col v-for="x in 5" :key="x" cols="6" sm="2">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可抽点数(x)"
-                    variant="outlined"
-                    @click="执行抽指定点数(x)"
-                  >
-                    {{ dice[x] }} 抽到 {{ x }} 点
-                  </v-btn>
-                </v-col>
-              </v-row>
 
               <v-btn
                 block
-                class="my-2"
+                class="mt-4"
                 color="grey-darken-1"
                 prepend-icon="mdi-restore"
-                size="large"
+                size="small"
                 variant="tonal"
                 @click="执行重置全部"
               >
@@ -395,6 +206,224 @@
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
+
+        <!-- 游戏风格主面板 -->
+        <div class="game-panel">
+          <!-- ===== 顶部：剩余次数（可编辑） ===== -->
+          <div class="game-top-bar">
+            <div class="game-top-item">
+              <span class="game-top-label">本日剩余</span>
+            </div>
+            <div class="game-top-divider" />
+            <div class="game-top-item">
+              <label class="game-top-label">演算</label>
+              <input
+                v-model.number="输入.剩余演算次数"
+                class="game-top-input"
+                max="3"
+                min="0"
+                type="number"
+              />
+            </div>
+            <div class="game-top-item">
+              <label class="game-top-label">放弃</label>
+              <input
+                v-model.number="输入.剩余放弃次数"
+                class="game-top-input"
+                max="3"
+                min="0"
+                type="number"
+              />
+            </div>
+            <div class="game-top-item">
+              <label class="game-top-label">翻倍</label>
+              <input
+                v-model.number="输入.剩余翻倍次数"
+                class="game-top-input"
+                max="2"
+                min="0"
+                type="number"
+              />
+            </div>
+          </div>
+
+          <!-- ===== 中间区域：手牌卡片 + 牌库剩余 ===== -->
+          <v-row class="game-main" dense>
+            <!-- 左侧 5 张手牌卡片（点击弹出菜单选择点数） -->
+            <v-col class="hand-cards-area" cols="12" md="9">
+              <v-menu v-for="(点, i) in 手牌插槽" :key="i" location="bottom">
+                <template #activator="{ props }">
+                  <div
+                    v-bind="props"
+                    class="hand-card fill-height"
+                    :class="点 > 0 ? 'card-filled' : 'card-empty'"
+                    style="cursor: pointer"
+                  >
+                    <template v-if="点 > 0">
+                      <div class="card-dice">{{ dice[点] }}</div>
+                      <div class="card-points">{{ 点 }} 点</div>
+                    </template>
+                    <template v-else>
+                      <div class="card-placeholder">發</div>
+                    </template>
+                  </div>
+                </template>
+                <v-list density="compact">
+                  <v-list-item :disabled="手牌插槽[i] === 0" @click="手牌插槽[i] = 0">
+                    <v-list-item-title>— 清除</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item
+                    v-for="x in 5"
+                    :key="x"
+                    :disabled="手牌插槽[i] === x"
+                    @click="手牌插槽[i] = x"
+                  >
+                    <v-list-item-title>{{ dice[x] }} {{ x }} 点</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-col>
+
+            <!-- 右侧牌库剩余 -->
+            <v-col class="deck-sidebar" cols="12" md="3">
+              <div class="deck-title">铭牌库剩余</div>
+              <div
+                v-for="(总数, i) in 牌库数量元组"
+                :key="i"
+                class="deck-row"
+                :class="{ 'deck-row-empty': 总数 - (当前手牌数量元组[i] ?? 0) === 0 }"
+              >
+                <span class="deck-icon">{{ dice[i + 1] }}</span>
+                <span class="deck-count">{{ 总数 - (当前手牌数量元组[i] ?? 0) }}</span>
+              </div>
+              <v-menu location="bottom">
+                <template #activator="{ props }">
+                  <v-btn
+                    v-bind="props"
+                    class="mt-2"
+                    :disabled="!可随机抽牌 && 牌库还有余量"
+                    variant="tonal"
+                  >
+                    抽取铭牌
+                  </v-btn>
+                </template>
+                <v-list density="compact">
+                  <v-list-item :disabled="!可随机抽牌" @click="执行随机抽牌">
+                    <v-list-item-title>随机抽 1 张</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item
+                    v-for="x in 5"
+                    :key="x"
+                    :disabled="!可抽点数(x)"
+                    @click="执行抽指定点数(x)"
+                  >
+                    <v-list-item-title>{{ dice[x] }} 抽到 {{ x }} 点</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-col>
+          </v-row>
+
+          <v-divider />
+
+          <!-- ===== 底部战力点 / 奖励进度条 ===== -->
+          <div class="game-reward-bar">
+            <div
+              v-for="p in 11"
+              :key="p - 1"
+              class="reward-cell"
+              :class="{
+                'reward-active': 当前战力点 === p - 1,
+              }"
+            >
+              <div class="reward-point">{{ p - 1 }}</div>
+              <div class="reward-value">{{ 演算奖励元组[p - 1]! * (输入.是否翻倍 ? 2 : 1) }}</div>
+            </div>
+          </div>
+
+          <v-divider />
+
+          <!-- ===== 翻倍状态 ===== -->
+          <div class="game-double-bar">
+            <span class="double-remaining">（剩余 {{ 输入.剩余翻倍次数 }} 次）</span
+            >奖励翻倍<v-tooltip location="top">
+              <template #activator="{ props }">
+                <v-icon v-bind="props" size="small">mdi-help-circle-outline</v-icon>
+              </template>
+              <div>
+                虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
+                张铭牌才会开始演算。
+              </div>
+              <div>为了性能考虑，计算器中要求抽至少 2 张铭牌时才能选择是否翻倍。</div>
+            </v-tooltip>
+            <v-switch
+              v-model="输入.是否翻倍"
+              class="mx-3"
+              color="primary"
+              density="compact"
+              :disabled="当前手牌总数 < 2 || 输入.剩余翻倍次数 <= 0"
+              hide-details
+              inset
+            />
+          </div>
+
+          <!-- ===== 底部操作按钮 ===== -->
+          <div class="game-actions">
+            <v-row dense>
+              <v-col cols="6" md="3">
+                <v-btn
+                  block
+                  color="red"
+                  :disabled="!可放弃"
+                  prepend-icon="mdi-close-circle-outline"
+                  size="large"
+                  variant="flat"
+                  @click="执行放弃"
+                >
+                  放弃（剩余 {{ 输入.剩余放弃次数 }} 次）
+                </v-btn>
+              </v-col>
+              <v-col cols="6" md="3">
+                <v-btn
+                  block
+                  color="green"
+                  :disabled="!可开始演算"
+                  prepend-icon="mdi-play-circle-outline"
+                  size="large"
+                  variant="flat"
+                  @click="执行开始演算"
+                >
+                  开始演算（剩余 {{ 输入.剩余演算次数 }} 次）
+                </v-btn>
+              </v-col>
+              <v-col cols="6" md="3">
+                <v-btn
+                  block
+                  color="secondary"
+                  :disabled="!可重置手牌"
+                  prepend-icon="mdi-hand-back-right"
+                  size="large"
+                  variant="tonal"
+                  @click="执行重置手牌"
+                >
+                  重置手牌
+                </v-btn>
+              </v-col>
+              <v-col cols="6" md="3">
+                <v-btn
+                  block
+                  color="grey-darken-1"
+                  prepend-icon="mdi-restore"
+                  size="large"
+                  variant="tonal"
+                  @click="执行重置全部"
+                >
+                  重置全部
+                </v-btn>
+              </v-col>
+            </v-row>
+          </div>
+        </div>
       </v-col>
     </v-row>
 
@@ -603,9 +632,6 @@ const 可开始演算 = computed(() => 输入.剩余演算次数 > 0 && !手牌�
 /** 放弃按钮是否可用（有演算次数且手牌非空） */
 const 可放弃 = computed(() => 输入.剩余演算次数 > 0 && !手牌为空.value);
 
-/** 翻倍按钮是否可用（手牌2张、未翻倍、有翻倍次数） */
-const 可翻倍 = computed(() => 当前手牌总数.value === 2 && !输入.是否翻倍 && 输入.剩余翻倍次数 > 0);
-
 /** 随机抽牌按钮是否可用（手牌未满且牌库还有余量） */
 const 可随机抽牌 = computed(() => {
   if (输入.剩余演算次数 <= 0) {
@@ -619,6 +645,18 @@ const 可随机抽牌 = computed(() => {
     0,
   );
   return 牌库剩余总数 > 0;
+});
+
+/** 最优决策名称 */
+const 最优决策名称 = computed(() => 计算结果.value.find((item) => item.is最优)?.决策 ?? '-');
+
+/** 牌库是否还有余量 */
+const 牌库还有余量 = computed(() => {
+  const 剩余总数 = 牌库数量元组.value.reduce(
+    (sum, total, i) => sum + Math.max(0, total - (当前手牌数量元组.value[i] ?? 0)),
+    0,
+  );
+  return 剩余总数 > 0;
 });
 
 /** 抽指定点数按钮是否可用（手牌未满且该点数牌库还有余量） */
@@ -888,7 +926,6 @@ function 执行最优决策(): void {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* 确保图标也是白色 */
 .best-decision-hero .v-icon {
   color: inherit !important;
 }
@@ -901,6 +938,220 @@ function 执行最优决策(): void {
   50% {
     box-shadow: 0 4px 40px rgba(var(--v-theme-primary), 0.55);
   }
+}
+
+/* ========== 游戏风格面板 ========== */
+.game-panel {
+  background-color: rgb(var(--v-theme-surface));
+  border-radius: 0.5rem;
+  border: 1px solid rgba(var(--v-border-color), 0.3);
+  overflow: hidden;
+}
+
+/* ---- 顶部次数条 ---- */
+.game-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(var(--v-theme-primary), 0.08);
+  border-bottom: 1px solid rgba(var(--v-border-color), 0.15);
+  overflow-x: auto;
+}
+
+.game-top-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.game-top-label {
+  font-weight: 600;
+  color: rgb(var(--v-theme-on-surface), 0.6);
+  white-space: nowrap;
+}
+
+.game-top-input {
+  width: 3rem;
+  padding: 0.2rem 0.1rem;
+  border: 1px solid rgba(var(--v-border-color), 0.35);
+  border-radius: 6px;
+  background: rgb(var(--v-theme-surface));
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.game-top-input:focus {
+  border-color: rgb(var(--v-theme-primary));
+  box-shadow: 0 0 0 1px rgba(var(--v-theme-primary), 0.3);
+}
+
+.game-top-divider {
+  width: 1px;
+  height: 1.5rem;
+  background: rgba(var(--v-border-color), 0.2);
+  margin: 0 0.25rem;
+}
+
+/* ---- 中间：手牌 + 牌库 ---- */
+.game-main {
+  display: flex;
+  padding: 0.75rem;
+}
+
+/* 手牌卡片区域 */
+.hand-cards-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hand-card {
+  flex: 1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(var(--v-border-color), 0.25);
+  transition: all 0.2s ease;
+  min-height: 80px;
+}
+
+.card-filled {
+  background: linear-gradient(
+    145deg,
+    rgba(var(--v-theme-primary), 0.12),
+    rgba(var(--v-theme-primary), 0.06)
+  );
+  border-color: rgba(var(--v-theme-primary), 0.35);
+}
+
+.card-empty {
+  background: rgba(var(--v-theme-surface-variant), 0.3);
+  border-style: dashed;
+}
+
+.card-dice {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.card-points {
+  font-weight: 700;
+  color: rgb(var(--v-theme-on-surface), 0.8);
+}
+
+.card-placeholder {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: rgba(var(--v-theme-on-surface), 0.15);
+  line-height: 1;
+}
+
+/* ---- 右侧牌库侧栏 ---- */
+.deck-sidebar {
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(var(--v-border-color), 0.15);
+}
+
+.deck-title {
+  font-weight: 600;
+  color: rgb(var(--v-theme-on-surface), 0.5);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.deck-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+}
+
+.deck-row-empty {
+  opacity: 0.35;
+}
+
+.deck-icon {
+  font-size: 1.5rem;
+  line-height: 0;
+  width: 1.2rem;
+  text-align: center;
+}
+
+.deck-count {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- 底部战力点 / 奖励进度条 ---- */
+.game-reward-bar {
+  display: flex;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem;
+  gap: 0;
+  background: rgba(var(--v-theme-surface-variant), 0.15);
+}
+
+.reward-cell {
+  flex: 1 0 0;
+  min-width: 3.6rem;
+  text-align: center;
+  padding: 0.25rem 0.2rem;
+  border-right: 1px solid rgba(var(--v-border-color), 0.1);
+  transition: background 0.15s ease;
+}
+
+.reward-cell:last-child {
+  border-right: none;
+}
+
+.reward-cell.reward-active {
+  background: rgba(var(--v-theme-primary), 0.2);
+  border-radius: 4px;
+}
+
+.reward-point {
+  font-weight: 700;
+  color: rgb(var(--v-theme-on-surface), 0.7);
+}
+
+.reward-value {
+  font-size: 0.8rem;
+  color: rgb(var(--v-theme-on-surface), 0.5);
+  white-space: nowrap;
+}
+
+/* ---- 翻倍状态 ---- */
+.game-double-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.double-remaining {
+  color: rgb(var(--v-theme-on-surface), 0.5);
+}
+
+/* ---- 底部操作按钮 ---- */
+.game-actions {
+  padding: 0.5rem;
+  background: rgba(var(--v-theme-surface-variant), 0.1);
+}
+
+.game-action {
+  flex: 1;
 }
 
 h3 {
