@@ -37,77 +37,34 @@
 
                 <v-divider class="my-4" />
 
-                <template v-if="输入.剩余演算次数 > 0 && 计算结果.length > 0">
-                  <v-card
-                    class="best-decision-hero mt-1"
-                    color="primary"
-                    rounded="lg"
-                    theme="dark"
-                    variant="elevated"
-                  >
-                    <v-card-text class="pa-4">
-                      <v-row align="center" no-gutters>
-                        <v-col class="text-center" cols="12" md="7">
-                          <div class="mb-2">当前最优决策</div>
-                          <div
-                            class="best-decision-name text-white"
-                            style="cursor: pointer"
-                            @click="执行最优决策"
-                          >
-                            ♔ {{ 计算结果.find((item) => item.is最优)?.决策 ?? '-' }}
-                          </div>
-                        </v-col>
-                        <v-col class="text-center" cols="12" md="5">
-                          <v-divider class="d-md-none my-2" />
-                          <div class="mb-2">总收益期望</div>
-                          <div class="best-decision-value text-white">
-                            {{ 初始价值.toFixed(2) }}
-                          </div>
-                        </v-col>
-                      </v-row>
-                    </v-card-text>
-                  </v-card>
-                </template>
-                <template v-else-if="输入.剩余演算次数 === 0">
+                <template v-if="输入.剩余演算次数 === 0">
                   <div class="text-body-1 font-weight-bold text-grey">已无演算次数，明天再来吧</div>
                 </template>
-                <template v-else>
+                <template v-else-if="计算结果.length === 0">
                   <div class="text-body-1 font-weight-bold text-grey">
                     当前状态不可达，请检查输入
                   </div>
                 </template>
               </div>
-              <v-table v-if="计算结果.length > 0" density="compact" hover>
-                <thead>
-                  <tr>
-                    <th class="text-left">#</th>
-                    <th class="text-left">决策</th>
-                    <th class="text-right">本次演武收益</th>
-                    <th class="text-right">
-                      未来演武收益的期望
-                      <v-tooltip location="top" text="选择该决策后，后续演武收益的期望">
-                        <template #activator="{ props }">
-                          <v-icon v-bind="props" size="small">mdi-information-outline</v-icon>
-                        </template>
-                      </v-tooltip>
-                    </th>
-                    <th class="text-right">总收益期望</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    v-for="(item, i) in 计算结果"
-                    :key="i"
-                    :class="{ 'bg-primary-lighten-5': item.is最优 }"
+              <div v-if="计算结果.length > 0" class="strategy-card-list">
+                <div v-for="(item, i) in 计算结果" :key="i" class="strategy-card-track">
+                  <div
+                    class="strategy-result-card"
+                    :class="{ 'is-best': item.is最优 }"
+                    :style="{ '--strategy-card-width': 收益卡片宽度(item) }"
                   >
-                    <td>{{ i + 1 }}</td>
-                    <td>
+                    <div class="strategy-card-rank">{{ i + 1 }}</div>
+                    <div class="strategy-card-action">
+                      <div class="strategy-card-label">
+                        {{ item.is最优 ? '当前最优决策' : '备选决策' }}
+                      </div>
                       <template v-if="item.决策 === '抽取铭牌'">
                         <v-menu location="bottom">
                           <template #activator="{ props }">
                             <v-btn
                               v-bind="props"
-                              :color="item.is最优 ? 'primary' : 'secondary'"
+                              class="strategy-decision-button"
+                              :class="决策按钮主题类(item.决策)"
                               size="small"
                               variant="flat"
                             >
@@ -133,7 +90,8 @@
                       </template>
                       <template v-else>
                         <v-btn
-                          :color="item.is最优 ? 'primary' : 'secondary'"
+                          class="strategy-decision-button"
+                          :class="决策按钮主题类(item.决策)"
                           size="small"
                           variant="flat"
                           @click="执行决策按钮(item.决策)"
@@ -141,13 +99,31 @@
                           {{ item.决策 }}
                         </v-btn>
                       </template>
-                    </td>
-                    <td class="text-right">{{ item.即时奖励.toFixed(0) }}</td>
-                    <td class="text-right">{{ item.期望未来价值.toFixed(2) }}</td>
-                    <td class="text-right font-weight-bold">{{ item.总价值.toFixed(2) }}</td>
-                  </tr>
-                </tbody>
-              </v-table>
+                    </div>
+                    <div class="strategy-card-metrics">
+                      <div class="strategy-metric">
+                        <span>本次演武收益</span>
+                        <strong>{{ item.即时奖励.toFixed(0) }}</strong>
+                      </div>
+                      <div class="strategy-metric">
+                        <span>
+                          未来演武收益的期望
+                          <v-tooltip location="top" text="选择该决策后，后续演武收益的期望">
+                            <template #activator="{ props }">
+                              <v-icon v-bind="props" size="x-small">mdi-information-outline</v-icon>
+                            </template>
+                          </v-tooltip>
+                        </span>
+                        <strong>{{ 格式化万元(item.期望未来价值) }}</strong>
+                      </div>
+                      <div class="strategy-metric total">
+                        <span>总收益期望</span>
+                        <strong>{{ 格式化万元(item.总价值) }}</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -249,6 +225,70 @@
                   />
                 </v-col>
               </v-row>
+
+              <v-divider class="my-4" />
+
+              <div class="text-subtitle-2 mb-2">快捷操作</div>
+
+              <div class="quick-action-grid my-2">
+                <div class="quick-action-start">
+                  <button
+                    aria-label="开始演算"
+                    class="start-calculation-button"
+                    :disabled="!可开始演算"
+                    type="button"
+                    @click="执行开始演算"
+                  >
+                    <span class="start-calculation-mark">
+                      <span class="start-calculation-dot" />
+                      <span class="start-calculation-number">1</span>
+                    </span>
+                    <span class="start-calculation-text">开始演算</span>
+                  </button>
+                </div>
+                <div>
+                  <button
+                    aria-label="放弃"
+                    class="abandon-action-button"
+                    :disabled="!可放弃"
+                    type="button"
+                    @click="执行放弃"
+                  >
+                    <span class="abandon-action-mark">
+                      <v-icon class="abandon-action-icon" size="28">mdi-exit-run</v-icon>
+                    </span>
+                    <span class="abandon-action-content">
+                      <span class="abandon-action-text">放弃</span>
+                      <span class="abandon-action-code" />
+                    </span>
+                  </button>
+                </div>
+                <div>
+                  <v-btn
+                    block
+                    color="orange-darken-1"
+                    :disabled="!可翻倍"
+                    prepend-icon="mdi-plus-circle"
+                    size="large"
+                    variant="tonal"
+                    @click="执行翻倍"
+                  >
+                    选择翻倍
+                  </v-btn>
+                </div>
+                <div>
+                  <v-btn
+                    block
+                    color="grey-darken-1"
+                    prepend-icon="mdi-restore"
+                    size="large"
+                    variant="tonal"
+                    @click="执行重置全部"
+                  >
+                    重置全部
+                  </v-btn>
+                </div>
+              </div>
 
               <v-divider class="my-4" />
 
@@ -386,64 +426,6 @@
                   <span>× {{ 总数 - (当前手牌数量元组[i] ?? 0) }}</span>
                 </span>
               </div>
-
-              <v-divider class="my-4" />
-
-              <div class="text-subtitle-2 mb-2">快捷操作</div>
-
-              <v-row class="my-2" dense>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="warning"
-                    :disabled="!可开始演算"
-                    prepend-icon="mdi-play"
-                    size="large"
-                    variant="tonal"
-                    @click="执行开始演算"
-                  >
-                    开始演算
-                  </v-btn>
-                </v-col>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="error"
-                    :disabled="!可放弃"
-                    prepend-icon="mdi-close-circle"
-                    size="large"
-                    variant="tonal"
-                    @click="执行放弃"
-                  >
-                    放弃
-                  </v-btn>
-                </v-col>
-                <v-col cols="6" sm="4">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可翻倍"
-                    prepend-icon="mdi-plus-circle"
-                    size="large"
-                    variant="tonal"
-                    @click="执行翻倍"
-                  >
-                    选择翻倍
-                  </v-btn>
-                </v-col>
-              </v-row>
-
-              <v-btn
-                block
-                class="my-2"
-                color="grey-darken-1"
-                prepend-icon="mdi-restore"
-                size="large"
-                variant="tonal"
-                @click="执行重置全部"
-              >
-                重置全部
-              </v-btn>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -631,7 +613,34 @@ interface 策略价值项 {
 }
 
 const 计算结果 = ref<策略价值项[]>([]);
-const 初始价值 = ref(0);
+
+const 最大总收益期望 = computed(() => Math.max(0, ...计算结果.value.map((item) => item.总价值)));
+
+function 收益卡片宽度(item: 策略价值项): string {
+  if (最大总收益期望.value <= 0) {
+    return '100%';
+  }
+
+  const ratio = Math.max(0, item.总价值 / 最大总收益期望.value);
+  return `${Math.max(0.16, ratio) * 100}%`;
+}
+
+function 格式化万元(value: number): string {
+  return `${(value / 10_000).toFixed(2)}万`;
+}
+
+function 决策按钮主题类(决策: string): string {
+  if (决策 === '抽取铭牌') {
+    return 'is-draw';
+  }
+  if (决策 === '放弃') {
+    return 'is-abandon';
+  }
+  if (决策 === '开始演算' || 决策 === '选择翻倍') {
+    return 'is-gold';
+  }
+  return 'is-default';
+}
 
 // ==================== 手牌插槽（5 张牌的点数，0=空位） ====================
 
@@ -736,7 +745,6 @@ function 更新计算结果(): void {
   const result = MDP缓存.value;
   if (!求解器 || !result) {
     计算结果.value = [];
-    初始价值.value = 0;
     return;
   }
 
@@ -751,11 +759,8 @@ function 更新计算结果(): void {
   const 当前序号 = result.状态索引.get(状态键(当前状态));
   if (当前序号 === undefined) {
     计算结果.value = [];
-    初始价值.value = 0;
     return;
   }
-
-  const 最优决策 = result.最优策略[当前序号]!;
 
   const items: 策略价值项[] = [];
   for (const 决策 of 求解器.状态容许决策(当前状态)) {
@@ -771,14 +776,26 @@ function 更新计算结果(): void {
       即时奖励,
       期望未来价值,
       总价值,
-      is最优: 决策 === 最优决策,
+      is最优: false,
     });
   }
 
   items.sort((a, b) => b.总价值 - a.总价值);
 
+  const 抽卡项索引 = items.findIndex((item) => item.决策 === '抽取铭牌');
+  const 放弃项索引 = items.findIndex((item) => item.决策 === '放弃');
+  const 抽卡项 = items[抽卡项索引];
+  const 放弃项 = items[放弃项索引];
+  if (抽卡项 && 放弃项 && 抽卡项索引 < 放弃项索引 && Math.abs(抽卡项.总价值 - 放弃项.总价值) < 1) {
+    items.splice(放弃项索引, 1);
+    items.splice(抽卡项索引, 0, 放弃项);
+  }
+
+  if (items[0]) {
+    items[0].is最优 = true;
+  }
+
   计算结果.value = items;
-  初始价值.value = result.价值函数[当前序号]!;
 }
 
 watch(
@@ -932,13 +949,6 @@ function 执行决策按钮(决策: string): void {
     }
   }
 }
-
-/** 执行当前最优决策 */
-function 执行最优决策(): void {
-  const 最优 = 计算结果.value.find((item) => item.is最优);
-  if (!最优) return;
-  执行决策按钮(最优.决策);
-}
 </script>
 
 <style scoped>
@@ -946,31 +956,399 @@ function 执行最优决策(): void {
   letter-spacing: 0 !important;
 }
 
-/* ========== 最优决策英雄板块 ========== */
-.best-decision-hero {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 24px rgba(var(--v-theme-primary), 0.35);
-  animation: heroPulse 2s ease-in-out infinite;
+/* ========== 快捷操作 ========== */
+.quick-action-grid {
+  display: grid;
+  grid-template-columns: minmax(10.5rem, 1.55fr) repeat(3, minmax(6.2rem, 1fr));
+  gap: 0.5rem;
 }
 
-.best-decision-name {
-  font-size: 1.75rem;
-  font-weight: 800;
-  line-height: 1.2;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+.quick-action-grid > * {
+  min-width: 0;
 }
 
-.best-decision-value {
-  font-size: 1.75rem;
-  font-weight: 800;
-  line-height: 1.2;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+.start-calculation-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.35rem 0.55rem;
+  overflow: hidden;
+  font: inherit;
+  color: rgba(255, 255, 255, 0.98);
+  cursor: pointer;
+  appearance: none;
+  background: linear-gradient(90deg, rgba(194, 170, 112, 0.92), rgba(222, 204, 158, 0.86)), #cbb176;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition:
+    filter 0.18s ease,
+    transform 0.18s ease,
+    opacity 0.18s ease;
+  isolation: isolate;
+}
+
+.start-calculation-button::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0,
+      rgba(255, 255, 255, 0.12) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    linear-gradient(120deg, transparent 0 48%, rgba(255, 255, 255, 0.14) 48% 54%, transparent 54%);
+}
+
+.start-calculation-button:hover:not(:disabled) {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+
+.start-calculation-button:disabled {
+  cursor: default;
+  filter: grayscale(0.55);
+  opacity: 0.58;
+}
+
+.start-calculation-button:focus-visible {
+  outline: 2px solid rgba(215, 184, 104, 0.82);
+  outline-offset: 2px;
+}
+
+.start-calculation-mark {
+  position: relative;
+  display: flex;
+  flex: 0 0 2.35rem;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 2rem;
+}
+
+.start-calculation-mark::before {
+  position: absolute;
+  inset: 0.28rem 0.36rem;
+  content: '';
+  border-left: 3px solid rgba(255, 255, 255, 0.94);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.94);
+  transform: skewX(-16deg);
+}
+
+.start-calculation-dot {
+  position: absolute;
+  top: 0.18rem;
+  left: 0.34rem;
+  width: 0.38rem;
+  height: 0.38rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1px;
+}
+
+.start-calculation-number {
+  position: relative;
+  z-index: 1;
+  margin-left: 0.18rem;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.start-calculation-text {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 1.28rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(118, 95, 54, 0.2);
+}
+
+.abandon-action-button {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 44px;
+  padding: 0.34rem 0.5rem;
+  overflow: hidden;
+  font: inherit;
+  color: rgba(255, 255, 255, 0.96);
+  cursor: pointer;
+  appearance: none;
+  background: linear-gradient(90deg, rgba(87, 33, 34, 0.94), rgba(105, 42, 43, 0.88)), #552526;
+  border: 2px solid rgba(255, 42, 44, 0.9);
+  border-radius: 0;
+  transition:
+    filter 0.18s ease,
+    transform 0.18s ease,
+    opacity 0.18s ease;
+  isolation: isolate;
+}
+
+.abandon-action-button::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04) 0,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    linear-gradient(90deg, rgba(255, 42, 44, 0.08), transparent 42%);
+}
+
+.abandon-action-button:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.abandon-action-button:disabled {
+  cursor: default;
+  filter: grayscale(0.45);
+  opacity: 0.58;
+}
+
+.abandon-action-button:focus-visible {
+  outline: 2px solid rgba(255, 42, 44, 0.82);
+  outline-offset: 2px;
+}
+
+.abandon-action-mark {
+  position: relative;
+  display: flex;
+  flex: 0 0 2.35rem;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.abandon-action-mark::before {
+  position: absolute;
+  inset: 0.18rem 0.34rem;
+  content: '';
+  border-left: 3px solid rgba(255, 255, 255, 0.94);
+  transform: skewX(-10deg);
+}
+
+.abandon-action-icon {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.abandon-action-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 0;
+}
+
+.abandon-action-text {
+  overflow: hidden;
+  font-size: 1.28rem;
+  font-weight: 900;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(40, 10, 10, 0.34);
+}
+
+.abandon-action-code {
+  width: 2.8rem;
+  height: 0.24rem;
+  margin-top: 0.18rem;
+  background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.92) 0 0.32rem,
+      transparent 0.32rem 0.46rem
+    )
+    0 0 / 0.46rem 100% repeat-x;
+}
+
+/* ========== 收益卡片列表 ========== */
+.strategy-card-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.strategy-card-track {
+  width: 100%;
+  min-width: 0;
+}
+
+.strategy-result-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: var(--strategy-card-width);
+  min-width: min(100%, 14rem);
+  min-height: 86px;
+  padding: 0.9rem 1rem;
+  overflow: hidden;
+  color: rgba(38, 52, 60, 0.92);
+  background: linear-gradient(135deg, rgba(239, 247, 250, 0.98), rgba(219, 237, 242, 0.98));
+  border: 1px solid rgba(107, 139, 150, 0.28);
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(50, 85, 94, 0.14);
+  transition:
+    width 0.28s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.strategy-result-card.is-best {
+  color: white;
+  background: linear-gradient(135deg, #1976d2 0%, #1e88e5 52%, #42a5f5 100%);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 14px 28px rgba(var(--v-theme-primary), 0.32);
+}
+
+.strategy-result-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(50, 85, 94, 0.18);
+}
+
+.strategy-card-rank {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: rgba(var(--v-theme-primary), 0.92);
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+}
+
+.strategy-result-card.is-best .strategy-card-rank {
+  color: #1976d2;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.strategy-card-action {
+  flex: 1 1 8.5rem;
+  min-width: 0;
+}
+
+.strategy-card-label {
+  margin-bottom: 0.35rem;
+  overflow: hidden;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: rgba(38, 52, 60, 0.56);
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* 确保图标也是白色 */
-.best-decision-hero .v-icon {
-  color: inherit !important;
+.strategy-result-card.is-best .strategy-card-label {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.strategy-decision-button {
+  --strategy-button-bg: rgba(var(--v-theme-primary), 1);
+  --strategy-button-color: #fff;
+
+  max-width: 100%;
+  color: var(--strategy-button-color) !important;
+  font-weight: 800;
+  background: var(--strategy-button-bg) !important;
+  border-radius: 3px;
+}
+
+.strategy-decision-button.is-draw {
+  --strategy-button-bg: #0d5c54;
+}
+
+.strategy-decision-button.is-gold {
+  --strategy-button-bg: #cbb176;
+}
+
+.strategy-decision-button.is-abandon {
+  --strategy-button-bg: #552526;
+}
+
+.strategy-decision-button.is-default {
+  --strategy-button-bg: rgba(var(--v-theme-primary), 1);
+}
+
+.strategy-decision-button :deep(.v-btn__overlay) {
+  opacity: 0;
+}
+
+.strategy-decision-button :deep(.v-btn__underlay) {
+  display: none;
+}
+
+.strategy-card-metrics {
+  display: grid;
+  flex: 2 1 17rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.strategy-metric {
+  min-width: 0;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(107, 139, 150, 0.22);
+}
+
+.strategy-result-card.is-best .strategy-metric {
+  border-left-color: rgba(255, 255, 255, 0.24);
+}
+
+.strategy-metric span {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 0;
+  margin-bottom: 0.22rem;
+  overflow: hidden;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(38, 52, 60, 0.54);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.strategy-result-card.is-best .strategy-metric span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.strategy-metric strong {
+  display: block;
+  overflow: hidden;
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.strategy-metric.total strong {
+  font-size: 1.35rem;
 }
 
 /* ========== 当前手牌卡片 ========== */
@@ -1332,6 +1710,14 @@ function 执行最优决策(): void {
 }
 
 @media (max-width: 700px) {
+  .quick-action-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-action-start {
+    grid-column: 1 / -1;
+  }
+
   .hand-card-grid {
     grid-template-columns: repeat(3, minmax(90px, 1fr));
   }
@@ -1340,16 +1726,6 @@ function 执行最优决策(): void {
 @media (max-width: 420px) {
   .hand-card-grid {
     grid-template-columns: repeat(2, minmax(110px, 1fr));
-  }
-}
-
-@keyframes heroPulse {
-  0%,
-  100% {
-    box-shadow: 0 4px 24px rgba(var(--v-theme-primary), 0.35);
-  }
-  50% {
-    box-shadow: 0 4px 40px rgba(var(--v-theme-primary), 0.55);
   }
 }
 
