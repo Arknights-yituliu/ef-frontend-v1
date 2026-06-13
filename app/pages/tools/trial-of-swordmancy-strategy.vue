@@ -366,30 +366,13 @@
 
               <div class="quick-action-grid mt-3">
                 <div class="quick-action-start">
-                  <button
-                    aria-label="开始演算"
-                    class="start-calculation-button"
+                  <ToolsTrialSwordmancyStartButton
                     :disabled="!可开始演算"
-                    type="button"
-                    @click="() => 执行开始演算()"
-                  >
-                    <v-icon icon="mdi-code-brackets"></v-icon>
-                    <span class="start-calculation-text">开始演算</span>
-                  </button>
+                    @click="执行开始演算()"
+                  />
                 </div>
                 <div>
-                  <button
-                    aria-label="放弃"
-                    class="abandon-action-button"
-                    :disabled="!可放弃"
-                    type="button"
-                    @click="执行放弃"
-                  >
-                    <v-icon icon="mdi-logout"></v-icon>
-                    <span class="abandon-action-content">
-                      <span class="abandon-action-text">放弃</span>
-                    </span>
-                  </button>
+                  <ToolsTrialSwordmancyAbandonButton :disabled="!可放弃" @click="执行放弃" />
                 </div>
                 <div>
                   <v-btn
@@ -1241,147 +1224,6 @@ function 执行决策按钮(决策: string): void {
   min-width: 0;
 }
 
-.start-calculation-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 44px;
-  padding: 0.35rem 0.55rem;
-  overflow: hidden;
-  font: inherit;
-  color: rgba(255, 255, 255, 0.98);
-  cursor: pointer;
-  appearance: none;
-  background: linear-gradient(90deg, rgba(194, 170, 112, 0.92), rgba(222, 204, 158, 0.86)), #cbb176;
-  border: 0;
-  border-radius: 2px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
-  transition:
-    filter 0.18s ease,
-    transform 0.18s ease,
-    opacity 0.18s ease;
-  isolation: isolate;
-}
-
-.start-calculation-button::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.12) 0,
-      rgba(255, 255, 255, 0.12) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    linear-gradient(120deg, transparent 0 48%, rgba(255, 255, 255, 0.14) 48% 54%, transparent 54%);
-}
-
-.start-calculation-button:hover:not(:disabled) {
-  filter: brightness(1.04);
-  transform: translateY(-1px);
-}
-
-.start-calculation-button:disabled {
-  cursor: default;
-  filter: grayscale(0.55);
-  opacity: 0.58;
-}
-
-.start-calculation-button:focus-visible {
-  outline: 2px solid rgba(215, 184, 104, 0.82);
-  outline-offset: 2px;
-}
-
-.start-calculation-text {
-  min-width: 0;
-  overflow: hidden;
-  font-size: 1.28rem;
-  font-weight: 900;
-  line-height: 1;
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(118, 95, 54, 0.2);
-}
-
-.abandon-action-button {
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 44px;
-  padding: 0.34rem 0.5rem;
-  overflow: hidden;
-  font: inherit;
-  color: rgba(255, 255, 255, 0.96);
-  cursor: pointer;
-  appearance: none;
-  background: linear-gradient(90deg, rgba(87, 33, 34, 0.94), rgba(105, 42, 43, 0.88)), #552526;
-  border: 2px solid rgba(255, 42, 44, 0.9);
-  border-radius: 0;
-  transition:
-    filter 0.18s ease,
-    transform 0.18s ease,
-    opacity 0.18s ease;
-  isolation: isolate;
-}
-
-.abandon-action-button::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.04) 0,
-      rgba(255, 255, 255, 0.04) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    linear-gradient(90deg, rgba(255, 42, 44, 0.08), transparent 42%);
-}
-
-.abandon-action-button:hover:not(:disabled) {
-  filter: brightness(1.08);
-  transform: translateY(-1px);
-}
-
-.abandon-action-button:disabled {
-  cursor: default;
-  filter: grayscale(0.45);
-  opacity: 0.58;
-}
-
-.abandon-action-button:focus-visible {
-  outline: 2px solid rgba(255, 42, 44, 0.82);
-  outline-offset: 2px;
-}
-
-.abandon-action-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  min-width: 0;
-}
-
-.abandon-action-text {
-  overflow: hidden;
-  font-size: 1.28rem;
-  font-weight: 900;
-  line-height: 1;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(40, 10, 10, 0.34);
-}
-
 .post-battle-action-row {
   display: flex;
   flex-wrap: wrap;
@@ -1448,15 +1290,6 @@ function 执行决策按钮(决策: string): void {
   background: linear-gradient(135deg, rgba(203, 177, 118, 1), rgba(216, 196, 148, 0.8));
   color: #fff;
 }
-
-/*
-.strategy-result-card.is-best {
-  color: white;
-  background: linear-gradient(135deg, #1976d2 0%, #1e88e5 52%, #42a5f5 100%);
-  border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 5px 5px rgba(var(--v-theme-primary), 0.32);
-}
-*/
 
 .strategy-result-card:hover {
   box-shadow: 0 10px 10px rgba(50, 85, 94, 0.18);
