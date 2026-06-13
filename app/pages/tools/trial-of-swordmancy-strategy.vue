@@ -158,22 +158,27 @@
                   />
                 </v-col>
               </v-row>
-
-              <!-- 演算奖励 -->
-              <div class="text-subtitle-2 my-4">演算奖励表</div>
-              <v-row dense>
-                <v-col v-for="(_, i) in 演算奖励元组" :key="i" cols="6" lg="3" sm="4">
-                  <v-text-field
-                    v-model.number="演算奖励元组[i]"
-                    density="compact"
-                    hide-details
-                    :label="`战力点 ${i}`"
-                    min="0"
-                    type="number"
-                    variant="outlined"
-                  />
-                </v-col>
-              </v-row>
+              <!-- 演武平台等级 -->
+              <div class="text-subtitle-2 my-4">演武平台等级</div>
+              <v-select
+                v-model="演武平台等级"
+                :items="演武平台等级表.map((_, i) => {
+                  return {
+                    value: i + 1,
+                    label: `Lv.${i + 1}`,
+                  };
+                })"
+                label="演武平台等级"
+                class="w-100"
+                item-title="label"
+                item-value="value"
+                @update:modelValue="演武平台等级变化"
+              />
+              <div class="text-subtitle-2 my-4">演武平台属性</div>
+              <ul>
+                <li><strong>双倍次数</strong> {{ 演武平台等级表[演武平台等级 - 1].双倍次数 }}</li>
+                <li><strong>演算奖励（0~10战力点）</strong><br/>{{ 演武平台等级表[演武平台等级 - 1].演算奖励元组.join(' / ') }}</li>
+              </ul>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -515,6 +520,7 @@ import {
   计算战力点,
   默认演算奖励元组,
   默认牌库数量元组,
+  演武平台等级表,
 } from '@/shared/utils/trialOfSwordmancy';
 
 definePageMeta({
@@ -536,7 +542,7 @@ const { mobile } = useDisplay()
 
 const 牌库数量元组 = ref<number[]>([...默认牌库数量元组]);
 const 演算奖励元组 = ref<number[]>([...默认演算奖励元组]);
-
+const 演武平台等级 = ref(4);
 const 输入 = reactive({
   剩余演算次数: 3,
   剩余放弃次数: 3,
@@ -806,15 +812,23 @@ function 删除手牌(索引: number): void {
   手牌插槽.value = [...剩余手牌, ...Array.from({ length: 5 - 剩余手牌.length }, () => 0)];
 }
 
+function 演武平台等级变化(value: number): void {
+  const 等级信息 = 演武平台等级表[value - 1];
+  if (!等级信息) {
+    return;
+  }
+  执行重置全部();
+}
+
 /** 重置全部（恢复初始状态） */
 function 执行重置全部(): void {
   输入.剩余演算次数 = 3;
   输入.剩余放弃次数 = 3;
-  输入.剩余翻倍次数 = 2;
+  输入.剩余翻倍次数 = 演武平台等级表[演武平台等级.value - 1].双倍次数;
   输入.是否翻倍 = false;
   手牌插槽.value = [0, 0, 0, 0, 0];
   牌库数量元组.value = [...默认牌库数量元组];
-  演算奖励元组.value = [...默认演算奖励元组];
+  演算奖励元组.value = [...演武平台等级表[演武平台等级.value - 1].演算奖励元组];
   // MDP 缓存会通过 watch 自动重新计算并更新结果
 
   消息.value = '已重置全部状态';
