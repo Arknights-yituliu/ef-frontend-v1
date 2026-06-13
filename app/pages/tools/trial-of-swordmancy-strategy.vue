@@ -6,7 +6,7 @@
     <v-row>
       <!-- ===== 左栏：输出区 ===== -->
       <v-col cols="12" md="6">
-        <v-expansion-panels class="mb-4" :model-value="['output']" multiple>
+        <v-expansion-panels v-model="左侧面板展开值" class="mb-4" multiple>
           <!-- 输出区 -->
           <v-expansion-panel value="output">
             <v-expansion-panel-title>
@@ -163,6 +163,18 @@
                     variant="outlined"
                   />
                 </v-col>
+                <v-col cols="4" sm="2">
+                  <v-btn
+                    block
+                    class="fill-height"
+                    color="grey-darken-1"
+                    prepend-icon="mdi-restore"
+                    variant="outlined"
+                    @click="执行重置初始铭牌库"
+                  >
+                    重置
+                  </v-btn>
+                </v-col>
               </v-row>
 
               <!-- 数据溢出设置 -->
@@ -206,7 +218,7 @@
 
       <!-- ===== 右栏：输入区 ===== -->
       <v-col cols="12" md="6">
-        <v-expansion-panels class="mb-4" :model-value="['input']" multiple>
+        <v-expansion-panels v-model="右侧面板展开值" class="mb-4" multiple>
           <!-- 输入区 -->
           <v-expansion-panel value="input">
             <v-expansion-panel-title>
@@ -579,6 +591,9 @@ definePageMeta({
 
 const { mobile } = useDisplay();
 
+const 左侧面板展开值 = ref<string[]>(['output', 'settings']);
+const 右侧面板展开值 = ref<string[]>(['input']);
+
 // ==================== 响应式状态 ====================
 
 const 牌库数量元组 = ref<number[]>([...默认牌库数量元组]);
@@ -864,17 +879,21 @@ function 删除手牌(索引: number): void {
   手牌插槽.value = [...剩余手牌, ...Array.from({ length: 5 - 剩余手牌.length }, () => 0)];
 }
 
-/** 重置全部（恢复初始状态） */
-function 执行重置全部(): void {
+/** 重置初始铭牌库（恢复默认牌库数量，MDP 会通过 watch 自动重新计算） */
+function 执行重置初始铭牌库(): void {
   牌库数量元组.value = [...默认牌库数量元组];
-  数据溢出模式值.value = 数据溢出模式.接受1至2次;
-  演武平台等级.value = 4;
+
+  消息.value = '初始铭牌库已重置';
+  显示消息.value = true;
+}
+
+/** 重置全部（仅恢复操作状态，不重置需要重新计算 MDP 的设定） */
+function 执行重置全部(): void {
   输入.剩余演算次数 = 3;
   输入.剩余放弃次数 = 3;
   输入.剩余翻倍次数 = 翻倍次数上限.value;
   输入.是否翻倍 = false;
   手牌插槽.value = [0, 0, 0, 0, 0];
-  // MDP 缓存会通过 watch 自动重新计算并更新结果
 
   消息.value = '已重置全部状态';
   显示消息.value = true;
