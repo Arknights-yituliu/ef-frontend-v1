@@ -59,7 +59,7 @@
                         </v-col>
                         <v-col class="text-center" cols="12" md="5">
                           <v-divider class="d-md-none my-2" />
-                          <div class="mb-2">最优价值</div>
+                          <div class="mb-2">总收益期望</div>
                           <div class="best-decision-value text-white">
                             {{ 初始价值.toFixed(2) }}
                           </div>
@@ -82,17 +82,16 @@
                   <tr>
                     <th class="text-left">#</th>
                     <th class="text-left">决策</th>
-                    <th class="text-right">即时奖励</th>
+                    <th class="text-right">本次演武收益</th>
                     <th class="text-right">
-                      期望未来价值
-                      <v-tooltip location="top" text="按照最优策略，今天还能获得的调度券数量的期望">
+                      未来演武收益的期望
+                      <v-tooltip location="top" text="选择该决策后，后续演武收益的期望">
                         <template #activator="{ props }">
                           <v-icon v-bind="props" size="small">mdi-information-outline</v-icon>
                         </template>
                       </v-tooltip>
                     </th>
-                    <th class="text-right">总价值</th>
-                    <th class="text-center">最优</th>
+                    <th class="text-right">总收益期望</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -116,9 +115,11 @@
                             </v-btn>
                           </template>
                           <v-list density="compact">
+                            <!-- 暂时隐藏随机抽牌入口，保留代码方便后续恢复
                             <v-list-item :disabled="!可随机抽牌" @click="执行随机抽牌()">
                               <v-list-item-title>随机抽 1 张</v-list-item-title>
                             </v-list-item>
+                            -->
                             <v-list-item
                               v-for="x in 5"
                               :key="x"
@@ -144,21 +145,13 @@
                     <td class="text-right">{{ item.即时奖励.toFixed(0) }}</td>
                     <td class="text-right">{{ item.期望未来价值.toFixed(2) }}</td>
                     <td class="text-right font-weight-bold">{{ item.总价值.toFixed(2) }}</td>
-                    <td class="text-center">
-                      <v-icon v-if="item.is最优" color="primary">mdi-star</v-icon>
-                    </td>
                   </tr>
                 </tbody>
               </v-table>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-      </v-col>
-
-      <!-- ===== 右栏：基础设定 + 输入区 ===== -->
-      <v-col cols="12" md="6">
-        <!-- 基础设定 -->
-        <v-expansion-panels class="mb-4" :model-value="['input']" multiple>
+        <v-expansion-panels class="mb-4">
           <v-expansion-panel value="settings">
             <v-expansion-panel-title>基础设定区</v-expansion-panel-title>
             <v-expansion-panel-text>
@@ -196,14 +189,18 @@
               </v-row>
             </v-expansion-panel-text>
           </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
 
+      <!-- ===== 右栏：输入区 ===== -->
+      <v-col cols="12" md="6">
+        <v-expansion-panels class="mb-4" :model-value="['input']" multiple>
           <!-- 输入区 -->
           <v-expansion-panel value="input">
-            <v-expansion-panel-title>当前状态输入区</v-expansion-panel-title>
+            <v-expansion-panel-title>操作区</v-expansion-panel-title>
             <v-expansion-panel-text>
-              <div class="text-subtitle-2 mb-2">剩余演算、放弃、翻倍次数</div>
               <v-row dense>
-                <v-col cols="4">
+                <v-col cols="6" sm="3">
                   <v-text-field
                     v-model.number="输入.剩余演算次数"
                     density="compact"
@@ -215,7 +212,7 @@
                     variant="outlined"
                   />
                 </v-col>
-                <v-col cols="4">
+                <v-col cols="6" sm="3">
                   <v-text-field
                     v-model.number="输入.剩余放弃次数"
                     density="compact"
@@ -227,7 +224,7 @@
                     variant="outlined"
                   />
                 </v-col>
-                <v-col cols="4">
+                <v-col cols="6" sm="3">
                   <v-text-field
                     v-model.number="输入.剩余翻倍次数"
                     density="compact"
@@ -239,27 +236,112 @@
                     variant="outlined"
                   />
                 </v-col>
+                <v-col cols="6" sm="3">
+                  <v-switch
+                    v-model="输入.是否翻倍"
+                    class="h-100 align-center"
+                    color="orange-darken-1"
+                    density="compact"
+                    :disabled="当前手牌总数 < 2"
+                    hide-details
+                    inset
+                    label="已翻倍"
+                  />
+                </v-col>
               </v-row>
 
               <v-divider class="my-4" />
 
-              <div class="text-subtitle-2 mb-2">当前手牌（每张牌的点数，0=空位）</div>
-              <v-row dense>
-                <v-col v-for="(_, i) in 手牌插槽" :key="i" cols="4" sm="2">
-                  <v-text-field
-                    v-model.number="手牌插槽[i]"
-                    density="compact"
-                    hide-details
-                    max="5"
-                    min="0"
-                    type="number"
-                    variant="outlined"
+              <div class="current-hand-heading mb-2">
+                <div class="text-subtitle-2">当前手牌</div>
+              </div>
+              <div class="hand-card-grid">
+                <div v-for="(_, i) in 手牌插槽" :key="i" class="hand-card-slot">
+                  <v-menu location="bottom" width="160">
+                    <template #activator="{ props }">
+                      <button
+                        v-bind="props"
+                        :aria-label="`设置第 ${i + 1} 张手牌`"
+                        class="sword-hand-card"
+                        :class="{ 'is-empty': 手牌插槽[i] === 0 }"
+                        type="button"
+                      >
+                        <span class="sword-card-meta sword-card-meta-left">
+                          <v-icon size="10">mdi-circle-outline</v-icon>
+                          ADMISSION POINT
+                        </span>
+                        <span class="sword-card-meta sword-card-meta-right">
+                          000000 {{ String(i + 1).padStart(2, '0') }}
+                        </span>
+                        <span class="sword-card-frame" />
+                        <span class="sword-card-diagonal" />
+                        <span class="sword-card-symbol">
+                          {{ 手牌插槽[i] > 0 ? dice[手牌插槽[i]] : '空' }}
+                        </span>
+                        <span class="sword-card-point">
+                          {{ 手牌插槽[i] > 0 ? `×${手牌插槽[i]}` : 'EMPTY' }}
+                        </span>
+                        <span class="sword-card-corner top-left" />
+                        <span class="sword-card-corner top-right" />
+                        <span class="sword-card-corner bottom-left" />
+                        <span class="sword-card-corner bottom-right" />
+                      </button>
+                    </template>
+                    <v-list density="compact">
+                      <v-list-item
+                        v-for="point in 手牌插槽[i] === 0 ? [0, 1, 2, 3, 4, 5] : [1, 2, 3, 4, 5]"
+                        :key="point"
+                        :active="手牌插槽[i] === point"
+                        @click="手牌插槽[i] = point"
+                      >
+                        <v-list-item-title>
+                          {{ point === 0 ? '空位' : `${dice[point]} ${point} 点` }}
+                        </v-list-item-title>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+                  <v-btn
+                    v-if="手牌插槽[i] > 0"
+                    :aria-label="`删除第 ${i + 1} 张手牌`"
+                    class="sword-card-delete"
+                    color="error"
+                    density="comfortable"
+                    icon="mdi-close"
+                    size="x-small"
+                    variant="flat"
+                    @click.stop="删除手牌(i)"
                   />
-                </v-col>
-                <v-col cols="4" sm="2">
+                </div>
+              </div>
+              <v-row class="hand-action-row mt-2" dense>
+                <!-- 暂时隐藏随机抽牌按钮，保留代码方便后续恢复
+                <v-col cols="6" sm="4">
                   <v-btn
                     block
-                    class="h-100"
+                    color="orange-darken-1"
+                    :disabled="!可随机抽牌"
+                    prepend-icon="mdi-shuffle"
+                    variant="tonal"
+                    @click="执行随机抽牌"
+                  >
+                    随机抽 1 张
+                  </v-btn>
+                </v-col>
+                -->
+                <v-col v-for="x in 5" :key="x" cols="6" sm="4">
+                  <v-btn
+                    block
+                    color="orange-darken-1"
+                    :disabled="!可抽点数(x)"
+                    variant="outlined"
+                    @click="执行抽指定点数(x)"
+                  >
+                    {{ dice[x] }} 抽到 {{ x }} 点
+                  </v-btn>
+                </v-col>
+                <v-col cols="6" sm="4">
+                  <v-btn
+                    block
                     color="secondary"
                     :disabled="!可重置手牌"
                     prepend-icon="mdi-hand-back-right"
@@ -271,42 +353,38 @@
                 </v-col>
               </v-row>
 
-              <div class="mt-2 text-caption text-medium-emphasis">当前战力点：{{ 当前战力点 }}</div>
-              <div class="text-caption text-medium-emphasis">
-                牌库剩余：{{
-                  牌库数量元组
-                    .map((n, i) => `${dice[i + 1]} × ${n - (当前手牌数量元组[i] ?? 0)}`)
-                    .join('、')
-                }}
-              </div>
-
-              <v-divider class="my-4" />
-
-              <div class="mt-2">
-                <div class="text-subtitle-2 mb-2">翻倍状态</div>
-                <v-radio-group
-                  v-model="输入.是否翻倍"
-                  density="compact"
-                  :disabled="当前手牌总数 < 2"
-                  hide-details
-                  inline
-                >
-                  <v-radio :label="'未翻倍'" :value="false" />
-                  <v-radio :label="'已翻倍'" :value="true" />
-                </v-radio-group>
-                <div v-if="当前手牌总数 < 2" class="text-caption text-grey mt-1">
-                  请在抽了至少 2 张铭牌后再选择是否翻倍
-                  <v-tooltip location="top">
-                    <template #activator="{ props }">
-                      <v-icon v-bind="props" size="small">mdi-help-circle-outline</v-icon>
-                    </template>
-                    <div>
-                      虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
-                      张铭牌才会开始演算。
-                    </div>
-                    <div>为了性能考虑，计算器中要求抽至少 2 张铭牌时才能选择是否翻倍。</div>
-                  </v-tooltip>
+              <div
+                :aria-label="
+                  战力点已溢出
+                    ? `当前战力点：${当前战力点}，手牌点数和已溢出`
+                    : `当前战力点：${当前战力点}`
+                "
+                class="battle-point-slider mt-3"
+                :class="{ 'is-overflow': 战力点已溢出 }"
+                role="img"
+                :style="{ '--battle-point-position': `${((当前战力点 + 0.5) / 11) * 100}%` }"
+              >
+                <div class="battle-point-slider-label">当前战力点</div>
+                <div class="battle-point-slider-track">
+                  <span
+                    v-for="point in 战力点刻度"
+                    :key="point"
+                    class="battle-point-slider-tick"
+                    :class="{ 'is-active': point === 当前战力点 }"
+                  >
+                    {{ point }}
+                  </span>
+                  <div class="battle-point-slider-thumb">
+                    {{ 当前战力点 }}
+                  </div>
                 </div>
+              </div>
+              <div class="remaining-deck text-caption text-medium-emphasis">
+                <span>牌库剩余：</span>
+                <span v-for="(总数, i) in 牌库数量元组" :key="i" class="remaining-deck-item">
+                  <v-icon class="remaining-deck-icon" size="small">{{ diceIcon[i + 1] }}</v-icon>
+                  <span>× {{ 总数 - (当前手牌数量元组[i] ?? 0) }}</span>
+                </span>
               </div>
 
               <v-divider class="my-4" />
@@ -351,32 +429,6 @@
                     @click="执行翻倍"
                   >
                     选择翻倍
-                  </v-btn>
-                </v-col>
-              </v-row>
-
-              <v-row class="my-2" dense>
-                <v-col cols="6" sm="2">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可随机抽牌"
-                    prepend-icon="mdi-shuffle"
-                    variant="tonal"
-                    @click="执行随机抽牌"
-                  >
-                    随机抽 1 张
-                  </v-btn>
-                </v-col>
-                <v-col v-for="x in 5" :key="x" cols="6" sm="2">
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可抽点数(x)"
-                    variant="outlined"
-                    @click="执行抽指定点数(x)"
-                  >
-                    {{ dice[x] }} 抽到 {{ x }} 点
                   </v-btn>
                 </v-col>
               </v-row>
@@ -451,10 +503,12 @@
                   <strong>翻倍</strong> — 将本次演算的奖励 ×2。仅当手牌恰好为 2
                   张、未翻倍且还有翻倍次数时可用
                 </li>
+                <!-- 暂时隐藏随机抽牌说明，保留代码方便后续恢复
                 <li>
                   <v-icon class="mr-2" size="small">mdi-shuffle</v-icon>
                   <strong>随机抽 1 张</strong> — 从牌库中按剩余概率随机抽取一张铭牌加入手牌
                 </li>
+                -->
                 <li>
                   <v-icon class="mr-2" color="orange-darken-1" size="small">mdi-target</v-icon>
                   <strong>抽到 x 点</strong> —
@@ -474,18 +528,18 @@
               </p>
 
               <h3>📊 输出区说明</h3>
-              <p>计算完成后，输出区会展示当前状态下的决策分析与价值评估：</p>
+              <p>计算完成后，输出区会展示当前状态下的决策分析与收益评估：</p>
               <ul>
                 <li><strong>最优决策</strong> — MDP 求解出的当前状态最佳行动方案</li>
                 <li>
-                  <strong>最优价值</strong> — 按照最优策略，从当前状态开始至结束所能获得的期望总奖励
+                  <strong>总收益期望</strong> —
+                  按照最优策略，从当前状态开始至结束所能获得的总收益期望
                 </li>
+                <li><strong>未来演武收益的期望</strong> — 选择某个决策后，后续演武收益的期望</li>
+                <li><strong>本次演武收益</strong> — 执行当前决策（如开始演武）本次获得的收益</li>
                 <li>
-                  <strong>期望未来价值</strong> — 选择某个决策后，未来一切演算所能获得的总奖励期望值
-                </li>
-                <li><strong>即时奖励</strong> — 执行当前决策（如开始演算）立即获得的奖励</li>
-                <li>
-                  <strong>总价值</strong> = 即时奖励 + 期望未来价值，表示选择该决策的期望总收益
+                  <strong>总收益期望</strong> = 本次演武收益 +
+                  未来演武收益的期望，表示选择该决策的总收益期望
                 </li>
               </ul>
               <p>当剩余演算次数为 0 时，输出区会显示"已无演算次数"提示。</p>
@@ -538,6 +592,17 @@ const dice: Record<number, string> = {
   6: '⚅',
 } as const;
 
+const diceIcon: Record<number, string> = {
+  1: 'mdi-dice-1',
+  2: 'mdi-dice-2',
+  3: 'mdi-dice-3',
+  4: 'mdi-dice-4',
+  5: 'mdi-dice-5',
+  6: 'mdi-dice-6',
+} as const;
+
+const 战力点刻度 = Array.from({ length: 11 }, (_, i) => i);
+
 // ==================== 响应式状态 ====================
 
 const 牌库数量元组 = ref<number[]>([...默认牌库数量元组]);
@@ -587,7 +652,13 @@ const 当前手牌总数 = computed(() => 手牌插槽.value.filter((s) => s > 0
 
 const 当前手牌数量元组 = computed(() => 插槽转数量(手牌插槽.value));
 
+const 当前手牌点数和 = computed(() =>
+  手牌插槽.value.reduce((sum, slot) => sum + Math.max(0, slot), 0),
+);
+
 const 当前战力点 = computed(() => 计算战力点(当前手牌数量元组.value));
+
+const 战力点已溢出 = computed(() => 当前手牌点数和.value > 10);
 
 /** 手牌是否为空（全为 0） */
 const 手牌为空 = computed(() => 手牌插槽.value.every((s) => s === 0));
@@ -607,6 +678,7 @@ const 可放弃 = computed(() => 输入.剩余演算次数 > 0 && !手牌为空.
 const 可翻倍 = computed(() => 当前手牌总数.value === 2 && !输入.是否翻倍 && 输入.剩余翻倍次数 > 0);
 
 /** 随机抽牌按钮是否可用（手牌未满且牌库还有余量） */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- 随机抽牌入口暂时隐藏，保留逻辑方便恢复
 const 可随机抽牌 = computed(() => {
   if (输入.剩余演算次数 <= 0) {
     return false;
@@ -764,6 +836,12 @@ function 执行重置手牌(): void {
   显示消息.value = true;
 }
 
+/** 删除指定手牌并让后续手牌前移 */
+function 删除手牌(索引: number): void {
+  const 剩余手牌 = 手牌插槽.value.filter((point, i) => i !== 索引 && point > 0);
+  手牌插槽.value = [...剩余手牌, ...Array.from({ length: 5 - 剩余手牌.length }, () => 0)];
+}
+
 /** 重置全部（恢复初始状态） */
 function 执行重置全部(): void {
   输入.剩余演算次数 = 3;
@@ -805,6 +883,7 @@ function 执行抽指定点数(点数: number): void {
 }
 
 /** 随机抽一张牌（按剩余牌库概率） */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- 随机抽牌入口暂时隐藏，保留逻辑方便恢复
 function 执行随机抽牌(): void {
   if (当前手牌总数.value >= 5) {
     消息.value = '手牌已满！';
@@ -882,15 +961,386 @@ function 执行最优决策(): void {
 }
 
 .best-decision-value {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 800;
   line-height: 1.2;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
 }
 
 /* 确保图标也是白色 */
 .best-decision-hero .v-icon {
   color: inherit !important;
+}
+
+/* ========== 当前手牌卡片 ========== */
+.current-hand-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.hand-card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(78px, 1fr));
+  gap: 0.65rem;
+}
+
+.hand-card-slot {
+  position: relative;
+  min-width: 0;
+}
+
+.sword-hand-card {
+  position: relative;
+  width: 100%;
+  min-height: 132px;
+  padding: 0;
+  overflow: hidden;
+  font: inherit;
+  color: #c3a36e;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  background:
+    linear-gradient(180deg, rgba(223, 249, 246, 0.88), rgba(126, 219, 209, 0.86)), #c9f2ed;
+  border: 1px solid rgba(90, 112, 118, 0.36);
+  border-radius: 6px;
+  box-shadow: 0 16px 26px rgba(37, 174, 166, 0.24);
+  aspect-ratio: 0.72;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+  isolation: isolate;
+}
+
+.sword-hand-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.24) 0,
+      rgba(255, 255, 255, 0.24) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    radial-gradient(circle at 72% 12%, rgba(255, 255, 255, 0.35), transparent 18%);
+  opacity: 0.75;
+}
+
+.sword-hand-card::after {
+  position: absolute;
+  right: 7%;
+  bottom: 5%;
+  left: 7%;
+  z-index: -1;
+  height: 24%;
+  content: '';
+  background: rgba(31, 178, 168, 0.35);
+  border-radius: 18px;
+  filter: blur(10px);
+}
+
+.sword-hand-card:hover {
+  border-color: rgba(var(--v-theme-primary), 0.62);
+  box-shadow: 0 18px 32px rgba(37, 174, 166, 0.3);
+  transform: translateY(-2px);
+}
+
+.sword-hand-card:focus-visible {
+  outline: 2px solid rgba(var(--v-theme-primary), 0.85);
+  outline-offset: 3px;
+}
+
+.sword-hand-card.is-empty {
+  color: rgba(78, 105, 111, 0.42);
+  background:
+    linear-gradient(180deg, rgba(232, 244, 243, 0.86), rgba(190, 224, 220, 0.72)), #e4efee;
+  box-shadow: 0 10px 18px rgba(57, 101, 105, 0.12);
+}
+
+.sword-card-meta {
+  position: absolute;
+  top: 8%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  max-width: 58%;
+  overflow: hidden;
+  font-size: 0.42rem;
+  font-weight: 700;
+  color: rgba(79, 99, 105, 0.54);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sword-card-meta-left {
+  left: 8%;
+  gap: 0.12rem;
+}
+
+.sword-card-meta-right {
+  right: 8%;
+  justify-content: flex-end;
+  max-width: 38%;
+}
+
+.sword-card-frame {
+  position: absolute;
+  inset: 24% 10% 20%;
+  z-index: 1;
+  border: 1px solid rgba(78, 95, 101, 0.24);
+}
+
+.sword-card-diagonal {
+  position: absolute;
+  top: 5%;
+  bottom: 10%;
+  left: 55%;
+  z-index: 1;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(88, 107, 113, 0.26), transparent);
+  transform: rotate(26deg);
+  transform-origin: top;
+}
+
+.sword-card-symbol {
+  position: absolute;
+  bottom: 21%;
+  left: 13%;
+  z-index: 2;
+  font-size: 2.1rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(198, 158, 96, 0.72);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.sword-card-point {
+  position: absolute;
+  right: 12%;
+  bottom: 20%;
+  z-index: 2;
+  font-size: 2.35rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(198, 158, 96, 0.78);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.sword-hand-card.is-empty .sword-card-symbol {
+  font-size: 1.75rem;
+  color: rgba(78, 105, 111, 0.28);
+}
+
+.sword-hand-card.is-empty .sword-card-point {
+  font-size: 0.78rem;
+  color: rgba(78, 105, 111, 0.34);
+}
+
+.sword-card-delete {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.4rem;
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+}
+
+.sword-card-corner {
+  position: absolute;
+  z-index: 2;
+  width: 13px;
+  height: 13px;
+  border-color: rgba(255, 255, 255, 0.9);
+  border-style: solid;
+  border-width: 0;
+}
+
+.sword-card-corner.top-left {
+  top: 5%;
+  left: 5%;
+  border-top-width: 3px;
+  border-left-width: 3px;
+}
+
+.sword-card-corner.top-right {
+  top: 5%;
+  right: 5%;
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+
+.sword-card-corner.bottom-left {
+  bottom: 5%;
+  left: 5%;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.sword-card-corner.bottom-right {
+  right: 5%;
+  bottom: 5%;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+}
+
+/* ========== 当前战力点 ========== */
+.battle-point-slider {
+  --battle-point-thumb-width: 3.4rem;
+
+  display: grid;
+  grid-template-columns: minmax(92px, 0.22fr) minmax(0, 1fr);
+  min-height: 54px;
+  overflow: hidden;
+  border: 1px solid rgba(150, 165, 166, 0.3);
+  border-radius: 4px;
+  background: rgba(216, 232, 229, 0.1);
+  transition:
+    background 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.battle-point-slider.is-overflow {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    linear-gradient(90deg, rgba(154, 28, 33, 0.64), rgba(102, 32, 34, 0.36));
+  border-color: rgba(255, 45, 51, 0.95);
+}
+
+.battle-point-slider-label {
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgba(238, 241, 238, 0.82);
+  background: rgba(24, 28, 28, 0.28);
+  border-right: 1px solid rgba(150, 165, 166, 0.22);
+  white-space: nowrap;
+}
+
+.battle-point-slider.is-overflow .battle-point-slider-label {
+  background: rgba(82, 18, 20, 0.5);
+  border-right-color: rgba(255, 45, 51, 0.34);
+}
+
+.battle-point-slider-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  min-width: 0;
+  padding-top: 0.45rem;
+}
+
+.battle-point-slider-track::before {
+  position: absolute;
+  top: 0.72rem;
+  right: 0.45rem;
+  left: 0.45rem;
+  height: 2px;
+  content: '';
+  background: rgba(238, 241, 238, 0.24);
+}
+
+.battle-point-slider.is-overflow .battle-point-slider-track::before {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.battle-point-slider-tick {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding-top: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: rgba(238, 241, 238, 0.58);
+  border-left: 1px solid rgba(238, 241, 238, 0.12);
+}
+
+.battle-point-slider.is-overflow .battle-point-slider-tick {
+  color: rgba(255, 255, 255, 0.66);
+  border-left-color: rgba(255, 255, 255, 0.14);
+}
+
+.battle-point-slider-tick:first-of-type {
+  border-left: 0;
+}
+
+.battle-point-slider-tick.is-active {
+  color: transparent;
+}
+
+.battle-point-slider-thumb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--battle-point-position);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--battle-point-thumb-width);
+  font-size: 1.75rem;
+  background: rgba(197, 175, 120, 0.82);
+  border-top: 4px solid rgba(38, 48, 45, 0.82);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.96);
+  font-weight: 900;
+  transition:
+    left 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+  will-change: left;
+}
+
+.battle-point-slider.is-overflow .battle-point-slider-thumb {
+  background: rgba(182, 34, 39, 0.88);
+  border-top-color: rgba(255, 45, 51, 0.95);
+}
+
+.remaining-deck {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.55rem;
+}
+
+.remaining-deck-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.12rem;
+  white-space: nowrap;
+}
+
+.remaining-deck-icon {
+  color: rgba(var(--v-theme-primary), 0.9);
+}
+
+@media (max-width: 700px) {
+  .hand-card-grid {
+    grid-template-columns: repeat(3, minmax(90px, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .hand-card-grid {
+    grid-template-columns: repeat(2, minmax(110px, 1fr));
+  }
 }
 
 @keyframes heroPulse {
