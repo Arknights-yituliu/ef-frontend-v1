@@ -212,62 +212,13 @@
               <v-divider class="my-4" />
 
               <div class="hand-card-grid">
-                <div v-for="(_, i) in 手牌插槽" :key="i" class="hand-card-slot">
-                  <v-menu location="bottom" width="160">
-                    <template #activator="{ props }">
-                      <button
-                        v-bind="props"
-                        :aria-label="`设置第 ${i + 1} 张手牌`"
-                        class="sword-hand-card"
-                        :class="{ 'is-empty': 手牌插槽[i] === 0 }"
-                        type="button"
-                      >
-                        <span class="sword-card-meta sword-card-meta-left">
-                          <v-icon size="10">mdi-circle-outline</v-icon>
-                          ADMISSION POINT
-                        </span>
-                        <span class="sword-card-meta sword-card-meta-right">
-                          000000 {{ String(i + 1).padStart(2, '0') }}
-                        </span>
-                        <span class="sword-card-frame" />
-                        <span class="sword-card-diagonal" />
-                        <span class="sword-card-symbol">
-                          {{ 手牌插槽[i] > 0 ? dice[手牌插槽[i]] : '空' }}
-                        </span>
-                        <span class="sword-card-point">
-                          {{ 手牌插槽[i] > 0 ? `×${手牌插槽[i]}` : 'EMPTY' }}
-                        </span>
-                        <span class="sword-card-corner top-left" />
-                        <span class="sword-card-corner top-right" />
-                        <span class="sword-card-corner bottom-left" />
-                        <span class="sword-card-corner bottom-right" />
-                      </button>
-                    </template>
-                    <v-list density="compact">
-                      <v-list-item
-                        v-for="point in 手牌插槽[i] === 0 ? [0, 1, 2, 3, 4, 5] : [1, 2, 3, 4, 5]"
-                        :key="point"
-                        :active="手牌插槽[i] === point"
-                        @click="手牌插槽[i] = point"
-                      >
-                        <v-list-item-title>
-                          {{ point === 0 ? '空位' : `${dice[point]} ${point} 点` }}
-                        </v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                  <v-btn
-                    v-if="手牌插槽[i] > 0"
-                    :aria-label="`删除第 ${i + 1} 张手牌`"
-                    class="sword-card-delete"
-                    color="error"
-                    density="comfortable"
-                    icon="mdi-close"
-                    size="x-small"
-                    variant="flat"
-                    @click.stop="删除手牌(i)"
-                  />
-                </div>
+                <ToolsTrialSwordmancyHandCard
+                  v-for="(_, i) in 5"
+                  :key="i"
+                  v-model="手牌插槽[i]!"
+                  :index="i"
+                  @delete="删除手牌(i)"
+                />
               </div>
               <v-row class="hand-action-row mt-2" dense>
                 <!-- 暂时隐藏随机抽牌按钮，保留代码方便后续恢复
@@ -362,7 +313,7 @@
                     class="start-calculation-button"
                     :disabled="!可开始演算"
                     type="button"
-                    @click="执行开始演算"
+                    @click="() => 执行开始演算()"
                   >
                     <span class="start-calculation-mark">
                       <span class="start-calculation-dot" />
@@ -1410,213 +1361,23 @@ function 执行决策按钮(决策: string): void {
   font-size: 1.35rem;
 }
 
-/* ========== 当前手牌卡片 ========== */
+/* ========== 手牌卡片网格容器 ========== */
 .hand-card-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(78px, 1fr));
   gap: 0.65rem;
 }
 
-.hand-card-slot {
-  position: relative;
-  min-width: 0;
+@media (max-width: 700px) {
+  .hand-card-grid {
+    grid-template-columns: repeat(3, minmax(90px, 1fr));
+  }
 }
 
-.sword-hand-card {
-  position: relative;
-  width: 100%;
-  min-height: 132px;
-  padding: 0;
-  overflow: hidden;
-  font: inherit;
-  color: #c3a36e;
-  text-align: left;
-  cursor: pointer;
-  appearance: none;
-  background:
-    linear-gradient(180deg, rgba(223, 249, 246, 0.88), rgba(126, 219, 209, 0.86)), #c9f2ed;
-  border: 1px solid rgba(90, 112, 118, 0.36);
-  border-radius: 6px;
-  box-shadow: 0 16px 26px rgba(37, 174, 166, 0.24);
-  aspect-ratio: 0.72;
-  transition:
-    border-color 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.18s ease;
-  isolation: isolate;
-}
-
-.sword-hand-card::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.24) 0,
-      rgba(255, 255, 255, 0.24) 1px,
-      transparent 1px,
-      transparent 5px
-    ),
-    radial-gradient(circle at 72% 12%, rgba(255, 255, 255, 0.35), transparent 18%);
-  opacity: 0.75;
-}
-
-.sword-hand-card::after {
-  position: absolute;
-  right: 7%;
-  bottom: 5%;
-  left: 7%;
-  z-index: -1;
-  height: 24%;
-  content: '';
-  background: rgba(31, 178, 168, 0.35);
-  border-radius: 18px;
-  filter: blur(10px);
-}
-
-.sword-hand-card:hover {
-  border-color: rgba(var(--v-theme-primary), 0.62);
-  box-shadow: 0 18px 32px rgba(37, 174, 166, 0.3);
-  transform: translateY(-2px);
-}
-
-.sword-hand-card:focus-visible {
-  outline: 2px solid rgba(var(--v-theme-primary), 0.85);
-  outline-offset: 3px;
-}
-
-.sword-hand-card.is-empty {
-  color: rgba(78, 105, 111, 0.42);
-  background:
-    linear-gradient(180deg, rgba(232, 244, 243, 0.86), rgba(190, 224, 220, 0.72)), #e4efee;
-  box-shadow: 0 10px 18px rgba(57, 101, 105, 0.12);
-}
-
-.sword-card-meta {
-  position: absolute;
-  top: 8%;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  max-width: 58%;
-  overflow: hidden;
-  font-size: 0.42rem;
-  font-weight: 700;
-  color: rgba(79, 99, 105, 0.54);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.sword-card-meta-left {
-  left: 8%;
-  gap: 0.12rem;
-}
-
-.sword-card-meta-right {
-  right: 8%;
-  justify-content: flex-end;
-  max-width: 38%;
-}
-
-.sword-card-frame {
-  position: absolute;
-  inset: 24% 10% 20%;
-  z-index: 1;
-  border: 1px solid rgba(78, 95, 101, 0.24);
-}
-
-.sword-card-diagonal {
-  position: absolute;
-  top: 5%;
-  bottom: 10%;
-  left: 55%;
-  z-index: 1;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(88, 107, 113, 0.26), transparent);
-  transform: rotate(26deg);
-  transform-origin: top;
-}
-
-.sword-card-symbol {
-  position: absolute;
-  bottom: 21%;
-  left: 13%;
-  z-index: 2;
-  font-size: 2.1rem;
-  font-weight: 900;
-  line-height: 1;
-  color: rgba(198, 158, 96, 0.72);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-}
-
-.sword-card-point {
-  position: absolute;
-  right: 12%;
-  bottom: 20%;
-  z-index: 2;
-  font-size: 2.35rem;
-  font-weight: 900;
-  line-height: 1;
-  color: rgba(198, 158, 96, 0.78);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-}
-
-.sword-hand-card.is-empty .sword-card-symbol {
-  font-size: 1.75rem;
-  color: rgba(78, 105, 111, 0.28);
-}
-
-.sword-hand-card.is-empty .sword-card-point {
-  font-size: 0.78rem;
-  color: rgba(78, 105, 111, 0.34);
-}
-
-.sword-card-delete {
-  position: absolute;
-  top: -0.4rem;
-  right: -0.4rem;
-  z-index: 5;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
-}
-
-.sword-card-corner {
-  position: absolute;
-  z-index: 2;
-  width: 13px;
-  height: 13px;
-  border-color: rgba(255, 255, 255, 0.9);
-  border-style: solid;
-  border-width: 0;
-}
-
-.sword-card-corner.top-left {
-  top: 5%;
-  left: 5%;
-  border-top-width: 3px;
-  border-left-width: 3px;
-}
-
-.sword-card-corner.top-right {
-  top: 5%;
-  right: 5%;
-  border-top-width: 3px;
-  border-right-width: 3px;
-}
-
-.sword-card-corner.bottom-left {
-  bottom: 5%;
-  left: 5%;
-  border-bottom-width: 3px;
-  border-left-width: 3px;
-}
-
-.sword-card-corner.bottom-right {
-  right: 5%;
-  bottom: 5%;
-  border-right-width: 3px;
-  border-bottom-width: 3px;
+@media (max-width: 420px) {
+  .hand-card-grid {
+    grid-template-columns: repeat(2, minmax(110px, 1fr));
+  }
 }
 
 /* ========== 当前战力点 ========== */
@@ -1797,16 +1558,6 @@ function 执行决策按钮(决策: string): void {
 
   .quick-action-start {
     grid-column: 1 / -1;
-  }
-
-  .hand-card-grid {
-    grid-template-columns: repeat(3, minmax(90px, 1fr));
-  }
-}
-
-@media (max-width: 420px) {
-  .hand-card-grid {
-    grid-template-columns: repeat(2, minmax(110px, 1fr));
   }
 }
 
