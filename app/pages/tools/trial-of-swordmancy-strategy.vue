@@ -1,5 +1,5 @@
 <template>
-  <v-container class="page-container" fluid>
+  <v-container class="px-0 px-sm-4" fluid>
     <header class="page-title mb-4">选剑演武计算器</header>
 
     <!-- ============ 上半部分：左右分栏 ============ -->
