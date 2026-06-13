@@ -2,12 +2,12 @@
   <div
     :aria-label="overflow ? `当前战力点：${point}，手牌点数和已溢出` : `当前战力点：${point}`"
     class="battle-point-slider"
-    :class="{ 'is-overflow': overflow }"
+    :class="{ 'is-overflow': overflow, 'is-best': curRealPoint === 10 }"
     role="img"
     :style="{ '--battle-point-position': `${((point + 0.5) / 11) * 100}%` }"
   >
     <div class="battle-point-slider-label">
-      {{ overflow ? ( `溢出${overflowCnt}次` ) : '最终战力点' }}
+      最终战力点
     </div>
     <div class="battle-point-slider-track">
       <span
@@ -23,13 +23,25 @@
       </div>
     </div>
   </div>
+  <div v-if="curRealPoint === 10" class="text-caption text-emphasis text-center mb-1 text-white" style="background:#54b7b9;">
+    <v-icon icon="mdi-check"></v-icon>
+    战力点之和达到最高，可以开始演算
+  </div>
+  <div v-if="overflow && Math.trunc(curRealPoint / 11) == 1" class="text-caption text-emphasis text-center mb-1 text-white bg-error">
+    <v-icon icon="mdi-alert"></v-icon>
+    数据溢出 {{ Math.trunc(curRealPoint / 11) }} 次，已触发难度提升
+  </div>
+  <div v-if="overflow && Math.trunc(curRealPoint / 11) == 2" class="text-caption text-emphasis text-center mb-1 text-white bg-error">
+    <v-icon icon="mdi-alert"></v-icon>
+    数据溢出 {{ Math.trunc(curRealPoint / 11) }} 次，难度大幅提升！
+  </div>
 </template>
 
 <script lang="ts" setup>
 defineProps<{
   point: number;
   overflow: boolean;
-  overflowCnt: number;
+  curRealPoint: number;
 }>();
 
 const 战力点刻度 = Array.from({ length: 11 }, (_, i) => i);
@@ -40,13 +52,21 @@ const 战力点刻度 = Array.from({ length: 11 }, (_, i) => i);
   display: grid;
   grid-template-columns: minmax(92px, 0.22fr) minmax(0, 1fr);
   min-height: 54px;
-  overflow: hidden;
+  margin: 0.5rem 0 0 0;
   border: 1px solid var(--theme-border);
-  border-radius: 4px;
   background-color: var(--theme-bg-secondary);
   transition:
     background-color 0.24s ease,
     border-color 0.24s ease;
+}
+
+.battle-point-slider.is-best {
+  border-color: rgba(56, 200, 175, 0.95);
+}
+
+.battle-point-slider.is-best .battle-point-slider-label {
+  background-color: rgba(48, 100, 96, 0.76);
+  border-right-color: rgba(56, 200, 175, 0.46);
 }
 
 .battle-point-slider.is-overflow {

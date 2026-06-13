@@ -11,7 +11,7 @@
         >
           <span class="sword-card-meta sword-card-meta-left">
             <v-icon size="10">mdi-circle-outline</v-icon>
-            ADMISSION POINT
+            BATTLE POINT
           </span>
           <span class="sword-card-meta sword-card-meta-right">
             {{ String(props.index + 1).padStart(2, '0') }}
@@ -19,7 +19,8 @@
           <span class="sword-card-frame" />
           <span class="sword-card-diagonal" />
           <span class="sword-card-symbol">
-            {{ model > 0 ? dice[model]! : '空' }}
+            <v-icon v-if="model > 0" size="small">{{ diceIcon[model] }}</v-icon>
+            <span v-else>空</span>
           </span>
           <span class="sword-card-point">
             {{ model > 0 ? `${model}` : 'EMPTY' }}
@@ -56,14 +57,6 @@
 </template>
 
 <script lang="ts" setup>
-const dice: Record<number, string> = {
-  1: '⚀',
-  2: '⚁',
-  3: '⚂',
-  4: '⚃',
-  5: '⚄',
-  6: '⚅',
-} as const;
 
 const diceIcon: Record<number, string> = {
   1: 'mdi-dice-1',
@@ -216,8 +209,8 @@ const emit = defineEmits<{
   font-size: 28cqi;
   font-weight: 900;
   line-height: 1;
-  color: rgba(198, 158, 96, 0.72);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  color: rgba(55, 75, 60, 0.72);
+  text-shadow: 2px 2px 0 rgba(86, 158, 152, 0.45);
 }
 
 .sword-card-point {
@@ -228,18 +221,20 @@ const emit = defineEmits<{
   font-size: 31cqi;
   font-weight: 900;
   line-height: 1;
-  color: rgba(198, 158, 96, 0.78);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  color: rgba(55, 75, 60, 0.78);
+  text-shadow: 2px 2px 0 rgba(86, 158, 152, 0.45);
 }
 
 .sword-hand-card.is-empty .sword-card-symbol {
   font-size: 23cqi;
   color: rgba(78, 105, 111, 0.28);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .sword-hand-card.is-empty .sword-card-point {
   font-size: 10cqi;
   color: rgba(78, 105, 111, 0.34);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .sword-card-delete {

@@ -50,84 +50,89 @@
                 </template>
               </div>
               <div v-if="计算结果.length > 0" class="strategy-card-list">
-                <div v-for="(item, i) in 计算结果" :key="i" class="strategy-card-track">
-                  <div
-                    class="strategy-result-card"
-                    :class="{ 'is-best': item.is最优 }"
-                    :style="{ '--strategy-card-width': 收益卡片宽度(item) }"
-                  >
-                    <div class="strategy-card-rank">{{ i + 1 }}</div>
-                    <div class="strategy-card-action">
-                      <div class="strategy-card-label">
-                        {{ item.is最优 ? '当前最优决策' : '备选决策' }}
-                      </div>
-                      <template v-if="item.决策 === '抽取铭牌'">
-                        <v-menu location="bottom">
-                          <template #activator="{ props }">
-                            <v-btn
-                              v-bind="props"
-                              class="strategy-decision-button"
-                              :class="决策按钮主题类(item.决策)"
-                              size="small"
-                              variant="flat"
-                            >
-                              抽取铭牌
-                            </v-btn>
-                          </template>
-                          <v-list density="compact">
-                            <!-- 暂时隐藏随机抽牌入口，保留代码方便后续恢复
-                            <v-list-item :disabled="!可随机抽牌" @click="执行随机抽牌()">
-                              <v-list-item-title>随机抽 1 张</v-list-item-title>
-                            </v-list-item>
-                            -->
-                            <v-list-item
-                              v-for="x in 5"
-                              :key="x"
-                              :disabled="!可抽点数(x)"
-                              @click="执行抽指定点数(x)"
-                            >
-                              <v-list-item-title>
-                                <v-icon class="mr-1" :icon="`mdi-dice-${x}-outline`"></v-icon>
-                                 抽到 {{ x }} 点
-                              </v-list-item-title>
-                            </v-list-item>
-                          </v-list>
-                        </v-menu>
-                      </template>
-                      <template v-else>
-                        <v-btn
-                          class="strategy-decision-button"
-                          :class="决策按钮主题类(item.决策)"
-                          size="small"
-                          variant="flat"
-                          @click="执行决策按钮(item.决策)"
-                        >
-                          {{ item.决策 }}
-                        </v-btn>
-                      </template>
-                    </div>
-                    <div class="strategy-card-metrics">
-                      <div class="strategy-metric mobile-hidden">
-                        <span>本次演武收益</span>
-                        <strong>{{ item.即时奖励.toFixed(0) }}</strong>
-                      </div>
-                      <div class="strategy-metric mobile-hidden">
-                        <span>
-                          未来演武收益的期望
-                          <v-tooltip location="top" text="选择该决策后，后续演武收益的期望">
+                <div v-for="(item, i) in 计算结果" :key="i">
+                  <v-badge location="top left" :color="item.is最优 ? 'success' : 'primary'" class="strategy-card-track" offset-x="80">
+                    <template v-slot:badge>
+                      <v-icon class="mr-1">{{ item.is最优 ? 'mdi-crown' : 'mdi-subdirectory-arrow-right' }}</v-icon>
+                      {{ item.is最优 ? '当前最优' : '备选决策 '+String(i).padStart(2, '0') }}
+                    </template>
+                    <div
+                      class="strategy-result-card"
+                      :class="[
+                        `${决策按钮主题类(item.决策)}`,
+                        item.is最优 ? 'is-best' : 'not-best'
+                      ]"
+                      :style="{ '--strategy-card-width': 收益卡片宽度(item) }"
+                    >
+                      <div class="strategy-card-action">
+                        <template v-if="item.决策 === '抽取铭牌'">
+                          <v-menu location="bottom">
                             <template #activator="{ props }">
-                              <v-icon v-bind="props" size="x-small">mdi-information-outline</v-icon>
+                              <v-btn
+                                v-bind="props"
+                                class="strategy-decision-button"
+                                :class="决策按钮主题类(item.决策)"
+                                size="small"
+                                variant="flat"
+                              >
+                                抽取铭牌
+                              </v-btn>
                             </template>
-                          </v-tooltip>
-                        </span>
-                        <strong>{{ 格式化万元(item.期望未来价值) }}</strong>
+                            <v-list density="compact">
+                              <!-- 暂时隐藏随机抽牌入口，保留代码方便后续恢复
+                              <v-list-item :disabled="!可随机抽牌" @click="执行随机抽牌()">
+                                <v-list-item-title>随机抽 1 张</v-list-item-title>
+                              </v-list-item>
+                              -->
+                              <v-list-item
+                                v-for="x in 5"
+                                :key="x"
+                                :disabled="!可抽点数(x)"
+                                @click="执行抽指定点数(x)"
+                              >
+                                <v-list-item-title>
+                                  <v-icon class="mr-1" :icon="`mdi-dice-${x}-outline`"></v-icon>
+                                  抽到 {{ x }} 点
+                                </v-list-item-title>
+                              </v-list-item>
+                            </v-list>
+                          </v-menu>
+                        </template>
+                        <template v-else>
+                          <v-btn
+                            class="strategy-decision-button"
+                            :class="决策按钮主题类(item.决策)"
+                            size="small"
+                            variant="flat"
+                            @click="执行决策按钮(item.决策)"
+                          >
+                            {{ item.决策 }}
+                          </v-btn>
+                        </template>
                       </div>
-                      <div class="strategy-metric total">
-                        <span>总收益期望</span>
-                        <strong>{{ 格式化万元(item.总价值) }}</strong>
+                      <div class="strategy-card-metrics">
+                        <div v-if="!mobile" class="strategy-metric">
+                          <span>本次收益</span>
+                          <strong>{{ item.即时奖励.toFixed(0) }}</strong>
+                        </div>
+                        <div v-if="!mobile" class="strategy-metric">
+                          <span>
+                            未来期望
+                            <v-tooltip location="top" text="选择该决策后，后续演武收益的期望">
+                              <template #activator="{ props }">
+                                <v-icon v-bind="props" size="x-small">mdi-information-outline</v-icon>
+                              </template>
+                            </v-tooltip>
+                          </span>
+                          <strong>{{ 格式化万元(item.期望未来价值) }}</strong>
+                        </div>
+                        <div class="strategy-metric total">
+                          <span>全体期望</span>
+                          <strong>{{ 格式化万元(item.总价值) }}</strong>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </v-badge>
                 </div>
               </div>
             </v-expansion-panel-text>
@@ -272,11 +277,11 @@
               <ToolsTrialSwordmancyBattlePointSlider
                 class="mt-3"
                 :overflow="战力点已溢出"
-                :overflow-cnt="Math.trunc(当前手牌点数和 / 11)"
+                :cur-real-point="当前手牌点数和"
                 :point="当前战力点"
               />
               <div class="remaining-deck text-caption text-medium-emphasis">
-                <span>牌库剩余：</span>
+                <span>铭牌库存：</span>
                 <span v-for="(总数, i) in 牌库数量元组" :key="i" class="remaining-deck-item">
                   <v-icon class="remaining-deck-icon" size="small">{{ diceIcon[i + 1] }}</v-icon>
                   <span>× {{ 总数 - (当前手牌数量元组[i] ?? 0) }}</span>
@@ -319,7 +324,6 @@
                     <v-icon icon="mdi-logout"></v-icon>
                     <span class="abandon-action-content">
                       <span class="abandon-action-text">放弃</span>
-                      <span class="abandon-action-code" />
                     </span>
                   </button>
                 </div>
@@ -367,8 +371,8 @@
               <ul>
                 <li>
                   <strong>奖励演算：</strong>默认类型的演算；挑战成功时，会根据最终战力点数和翻倍状态（后述）获得武陵调度券奖励。<br/>
-                  管理员可以随时选择<strong class="text-error">放弃</strong>，但每次放弃会消耗一次弃权次数（每日弃权上限<strong>3次</strong>）。<br/>
-                  <strong class="text-error">弃权次数耗尽时，继续弃权将扣除奖励演算次数。</strong><br/>
+                  管理员可以随时选择<strong class="text-error">放弃</strong>，但每次放弃会消耗一次弃权次数。<br/>
+                  <strong class="text-error">每日拥有<strong>3次</strong>弃权次数；弃权次数耗尽时，继续弃权将扣除奖励演算次数。</strong><br/>
                   奖励演算每日可进行3次。
                 </li>
                 <li>
@@ -390,7 +394,7 @@
                         溢出 1 次（11+）时：所有敌人等级+30（达到<strong>Lv.90</strong>）
                       </li>
                       <li>
-                        溢出 2 次（22+）时：演算时间缩减至150秒（<strong>3分钟</strong>）
+                        溢出 2 次（22+）时：演算时间缩减至180秒（<strong>3分钟</strong>）
                       </li>
                     </ul>
                     <strong>请谨慎考虑在溢出状态下进行奖励演算。</strong>
@@ -486,7 +490,7 @@
                 <li><strong class="text-error">仅可在抽取第 3 张铭牌前决定是否翻倍。</strong>一旦抽取了第 3 张铭牌，翻倍状态将被锁定，无法修改。<br/>
                   弃权不会消耗翻倍次数，但只要正式进入演算挑战，该次翻倍次数就会被消耗。</li>
               </ul>
-              <p>在本计算其中，仅在手牌数量在 2 张以上时，可以选择是否翻倍。</p>
+              <p>在本计算器中，仅在手牌数量在 2 张以上时，可以选择是否翻倍。</p>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -502,6 +506,7 @@
 
 <script lang="ts" setup>
 import { watchDebounced } from '@vueuse/core';
+import { useDisplay } from 'vuetify'
 import {
   type MDPResult,
   求解器类,
@@ -516,15 +521,6 @@ definePageMeta({
   layout: 'default',
 });
 
-const dice: Record<number, string> = {
-  1: '⚀',
-  2: '⚁',
-  3: '⚂',
-  4: '⚃',
-  5: '⚄',
-  6: '⚅',
-} as const;
-
 const diceIcon: Record<number, string> = {
   1: 'mdi-dice-1',
   2: 'mdi-dice-2',
@@ -533,6 +529,8 @@ const diceIcon: Record<number, string> = {
   5: 'mdi-dice-5',
   6: 'mdi-dice-6',
 } as const;
+
+const { mobile } = useDisplay()
 
 // ==================== 响应式状态 ====================
 
@@ -1126,18 +1124,6 @@ function 执行决策按钮(决策: string): void {
   text-shadow: 0 1px 0 rgba(40, 10, 10, 0.34);
 }
 
-.abandon-action-code {
-  width: 2.8rem;
-  height: 0.24rem;
-  margin-top: 0.18rem;
-  background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.92) 0 0.32rem,
-      transparent 0.32rem 0.46rem
-    )
-    0 0 / 0.46rem 100% repeat-x;
-}
-
 .post-battle-action-row {
   display: flex;
   flex-wrap: wrap;
@@ -1168,30 +1154,54 @@ function 执行决策按钮(决策: string): void {
   gap: 0.75rem;
   width: var(--strategy-card-width);
   min-width: min(100%, 14rem);
-  min-height: 86px;
-  padding: 0.9rem 1rem;
+  min-height: 77px;
+  padding: 0.25rem 1rem;
   overflow: hidden;
   color: rgba(38, 52, 60, 0.92);
   background: linear-gradient(135deg, rgba(239, 247, 250, 0.98), rgba(219, 237, 242, 0.98));
   border: 1px solid rgba(107, 139, 150, 0.28);
-  border-radius: 8px;
-  box-shadow: 0 10px 24px rgba(50, 85, 94, 0.14);
+  box-shadow: 0 5px 5px rgba(50, 85, 94, 0.14);
   transition:
     width 0.28s ease,
     transform 0.18s ease,
     box-shadow 0.18s ease;
 }
 
+.strategy-result-card.is-draw {
+  background: linear-gradient(135deg, rgba(13, 92, 84, 0.3), rgba(13, 92, 84, 0.2));
+}
+.strategy-result-card.is-draw.is-best {
+  background: linear-gradient(135deg, rgba(13, 92, 84, 1), rgba(84, 183, 185, 0.8));
+  color:#fff;
+}
+
+.strategy-result-card.is-abandon {
+  background: linear-gradient(135deg, rgba(85, 37, 38, 0.3), rgba(85, 37, 38, 0.2));
+}
+.strategy-result-card.is-abandon.is-best {
+  background: linear-gradient(135deg, rgba(85, 37, 38, 1), rgba(61, 9, 10, 0.8));
+  color:#fff;
+}
+
+.strategy-result-card.is-gold {
+  background: linear-gradient(135deg, rgba(203, 177, 118, 0.3), rgba(203, 177, 118, 0.2));
+}
+.strategy-result-card.is-gold.is-best {
+  background: linear-gradient(135deg, rgba(203, 177, 118, 1), rgba(216, 196, 148, 0.8));
+  color:#fff;
+}
+
+/*
 .strategy-result-card.is-best {
   color: white;
   background: linear-gradient(135deg, #1976d2 0%, #1e88e5 52%, #42a5f5 100%);
   border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 14px 28px rgba(var(--v-theme-primary), 0.32);
+  box-shadow: 0 5px 5px rgba(var(--v-theme-primary), 0.32);
 }
+*/
 
 .strategy-result-card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(50, 85, 94, 0.18);
+  box-shadow: 0 10px 10px rgba(50, 85, 94, 0.18);
 }
 
 .strategy-card-rank {
@@ -1214,22 +1224,8 @@ function 执行决策按钮(决策: string): void {
 }
 
 .strategy-card-action {
-  flex: 1 1 8.5rem;
   min-width: 0;
-}
-
-.strategy-card-label {
-  margin-bottom: 0.35rem;
-  overflow: hidden;
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: rgba(38, 52, 60, 0.56);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.strategy-result-card.is-best .strategy-card-label {
-  color: rgba(255, 255, 255, 0.72);
+  flex-grow: 100;
 }
 
 .strategy-decision-button {
@@ -1270,12 +1266,12 @@ function 执行决策按钮(决策: string): void {
 .strategy-card-metrics {
   display: grid;
   flex: 2 1 17rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   min-width: 0;
 }
 
 .strategy-metric {
+  display: flex;
   min-width: 0;
   padding-left: 0.75rem;
   border-left: 1px solid rgba(107, 139, 150, 0.22);
@@ -1290,13 +1286,13 @@ function 执行决策按钮(决策: string): void {
   align-items: center;
   gap: 0.2rem;
   min-width: 0;
-  margin-bottom: 0.22rem;
   overflow: hidden;
   font-size: 0.72rem;
   font-weight: 700;
   color: rgba(38, 52, 60, 0.54);
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-right: 0.25rem;
 }
 
 .strategy-result-card.is-best .strategy-metric span {
@@ -1306,15 +1302,12 @@ function 执行决策按钮(决策: string): void {
 .strategy-metric strong {
   display: block;
   overflow: hidden;
-  font-size: 1.1rem;
   font-weight: 900;
-  line-height: 1.1;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .strategy-metric.total strong {
-  font-size: 1.35rem;
 }
 
 /* ========== 手牌卡片网格容器 ========== */
@@ -1362,18 +1355,15 @@ function 执行决策按钮(决策: string): void {
   }
 
   .strategy-card-action {
-    flex-basis: 7.1rem;
+    flex-grow: 0;
   }
 
   .strategy-card-metrics {
     flex: 1 1 6rem;
-    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
     gap: 0;
   }
 
-  .strategy-metric.mobile-hidden {
-    display: none;
-  }
 
   .strategy-metric.total {
     padding-left: 0.65rem;
@@ -1419,5 +1409,10 @@ ul li {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 1px 2px var(--theme-shadow-base);
+}
+
+[data-theme='dark'] .strategy-result-card.not-best .strategy-metric span,
+[data-theme='dark'] .strategy-result-card.not-best .strategy-metric strong {
+  color: rgba(211, 211, 211, 0.54)
 }
 </style>

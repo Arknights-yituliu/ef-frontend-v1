@@ -4,6 +4,7 @@ import { createVuetify } from 'vuetify';
 import { en, zhHans } from 'vuetify/locale';
 // 自定义图标
 import EssenceIcon from '~/components/icon/EssenceIcon.vue';
+import SwordTrialIcon from '~/components/icon/SwordTrialIcon.vue';
 // 在下载`@mdi/font`包之后再引入
 import '@mdi/font/css/materialdesignicons.css';
 
@@ -23,6 +24,7 @@ export default defineNuxtPlugin((app) => {
       defaultSet: 'mdi',
       aliases: {
         essence: EssenceIcon,
+        swordtrial: SwordTrialIcon,
       },
     },
   });
