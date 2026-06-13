@@ -9,7 +9,10 @@
         <v-expansion-panels class="mb-4" :model-value="['output']" multiple>
           <!-- 输出区 -->
           <v-expansion-panel value="output">
-            <v-expansion-panel-title>输出区</v-expansion-panel-title>
+            <v-expansion-panel-title>
+              <v-icon class="mr-2" color="primary">mdi-chart-line</v-icon>
+              输出区
+            </v-expansion-panel-title>
             <v-expansion-panel-text>
               <!-- 当前状态摘要 -->
               <div class="mb-4">
@@ -173,7 +176,10 @@
         <v-expansion-panels class="mb-4" :model-value="['input']" multiple>
           <!-- 输入区 -->
           <v-expansion-panel value="input">
-            <v-expansion-panel-title>操作区</v-expansion-panel-title>
+            <v-expansion-panel-title>
+              <v-icon class="mr-2" color="primary">mdi-tune</v-icon>
+              输入区
+            </v-expansion-panel-title>
             <v-expansion-panel-text>
               <div class="daily-count-row">
                 <span class="daily-count-title">本日剩余</span>
@@ -317,19 +323,6 @@
                       <span class="abandon-action-code" />
                     </span>
                   </button>
-                </div>
-                <div>
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可翻倍"
-                    prepend-icon="mdi-plus-circle"
-                    size="large"
-                    variant="tonal"
-                    @click="执行翻倍"
-                  >
-                    奖励翻倍
-                  </v-btn>
                 </div>
                 <div>
                   <v-btn
@@ -872,6 +865,16 @@ function 执行决策按钮(决策: string): void {
   letter-spacing: 0 !important;
 }
 
+:deep(.v-expansion-panel-text__wrapper) {
+  padding-inline: 0.5rem;
+}
+
+@media screen and (min-width: 600px) {
+  :deep(.v-expansion-panel-text__wrapper) {
+    padding-inline: 1rem;
+  }
+}
+
 /* ========== 快捷操作 ========== */
 .daily-count-row {
   display: flex;
@@ -880,9 +883,9 @@ function 执行决策按钮(决策: string): void {
   gap: 0.45rem 0.75rem;
   min-height: 40px;
   padding: 0.45rem 0.6rem;
-  color: rgba(56, 62, 67, 0.88);
-  background: rgba(234, 238, 240, 0.9);
-  border: 1px solid rgba(176, 185, 190, 0.6);
+  color: var(--theme-text-primary);
+  background: var(--theme-bg-secondary);
+  border: 1px solid var(--theme-border);
   border-radius: 3px;
 }
 
@@ -910,14 +913,14 @@ function 执行决策按钮(决策: string): void {
   padding: 0 0.25rem;
   font: inherit;
   font-weight: 800;
-  color: rgba(24, 31, 36, 0.92);
+  color: var(--theme-text-primary);
   text-align: center;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(135, 146, 154, 0.62);
+  background: var(--theme-bg-primary);
+  border: 1px solid var(--theme-border);
   border-radius: 6px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.92),
-    0 1px 2px rgba(30, 44, 54, 0.12);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 1px 2px var(--theme-shadow-base);
 }
 
 .daily-count-field input::-webkit-inner-spin-button,
@@ -934,7 +937,7 @@ function 执行决策按钮(决策: string): void {
 
 .quick-action-grid {
   display: grid;
-  grid-template-columns: minmax(10.5rem, 1.55fr) repeat(3, minmax(6.2rem, 1fr));
+  grid-template-columns: minmax(10.5rem, 1.55fr) repeat(2, minmax(6.2rem, 1fr));
   gap: 0.5rem;
 }
 
@@ -1434,5 +1437,12 @@ ol li,
 ul li {
   margin-block: 0.5rem;
   font-size: 1rem;
+}
+
+/* ========== 暗色主题适配 ========== */
+[data-theme='dark'] .daily-count-field input {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 1px 2px var(--theme-shadow-base);
 }
 </style>
