@@ -101,11 +101,11 @@
                       </template>
                     </div>
                     <div class="strategy-card-metrics">
-                      <div class="strategy-metric">
+                      <div class="strategy-metric mobile-hidden">
                         <span>本次演武收益</span>
                         <strong>{{ item.即时奖励.toFixed(0) }}</strong>
                       </div>
-                      <div class="strategy-metric">
+                      <div class="strategy-metric mobile-hidden">
                         <span>
                           未来演武收益的期望
                           <v-tooltip location="top" text="选择该决策后，后续演武收益的期望">
@@ -1710,6 +1710,34 @@ function 执行决策按钮(决策: string): void {
 }
 
 @media (max-width: 700px) {
+  .strategy-result-card {
+    min-width: min(100%, 16rem);
+    min-height: 72px;
+    padding: 0.75rem;
+  }
+
+  .strategy-card-action {
+    flex-basis: 7.1rem;
+  }
+
+  .strategy-card-metrics {
+    flex: 1 1 6rem;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .strategy-metric.mobile-hidden {
+    display: none;
+  }
+
+  .strategy-metric.total {
+    padding-left: 0.65rem;
+  }
+
+  .strategy-metric.total strong {
+    font-size: 1.18rem;
+  }
+
   .quick-action-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
