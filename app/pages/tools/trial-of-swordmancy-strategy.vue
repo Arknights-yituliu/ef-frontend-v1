@@ -17,7 +17,7 @@
               <!-- 当前状态摘要 -->
               <div class="mb-4">
                 <v-row dense>
-                  <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
+                  <v-col class="text-caption text-medium-emphasis" cols="6" sm="6">
                     剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} / {{ 输入.剩余放弃次数 }} /
                     {{ 输入.剩余翻倍次数 }}
                   </v-col>
@@ -32,9 +32,6 @@
                         .map((s) => String(s))
                         .join(' ') || '空'
                     }}
-                  </v-col>
-                  <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                    最终战力点: {{ 当前战力点 }}
                   </v-col>
                 </v-row>
 
@@ -51,16 +48,23 @@
               </div>
               <div v-if="计算结果.length > 0" class="strategy-card-list">
                 <div v-for="(item, i) in 计算结果" :key="i">
-                  <v-badge location="top left" :color="item.is最优 ? 'success' : 'primary'" class="strategy-card-track" offset-x="80">
-                    <template v-slot:badge>
-                      <v-icon class="mr-1">{{ item.is最优 ? 'mdi-crown' : 'mdi-subdirectory-arrow-right' }}</v-icon>
-                      {{ item.is最优 ? '当前最优' : '备选决策 '+String(i).padStart(2, '0') }}
+                  <v-badge
+                    class="strategy-card-track"
+                    :color="item.is最优 ? 'success' : 'primary'"
+                    location="top left"
+                    offset-x="80"
+                  >
+                    <template #badge>
+                      <v-icon class="mr-1">{{
+                        item.is最优 ? 'mdi-crown' : 'mdi-subdirectory-arrow-right'
+                      }}</v-icon>
+                      {{ item.is最优 ? '当前最优' : '备选决策 ' + String(i).padStart(2, '0') }}
                     </template>
                     <div
                       class="strategy-result-card"
                       :class="[
                         `${决策按钮主题类(item.决策)}`,
-                        item.is最优 ? 'is-best' : 'not-best'
+                        item.is最优 ? 'is-best' : 'not-best',
                       ]"
                       :style="{ '--strategy-card-width': 收益卡片宽度(item) }"
                     >
@@ -88,12 +92,10 @@
                                 v-for="x in 5"
                                 :key="x"
                                 :disabled="!可抽点数(x)"
+                                :prepend-icon="`mdi-dice-${x}-outline`"
                                 @click="执行抽指定点数(x)"
                               >
-                                <v-list-item-title>
-                                  <v-icon class="mr-1" :icon="`mdi-dice-${x}-outline`"></v-icon>
-                                  抽到 {{ x }} 点
-                                </v-list-item-title>
+                                <v-list-item-title>抽到 {{ x }} 点</v-list-item-title>
                               </v-list-item>
                             </v-list>
                           </v-menu>
@@ -120,7 +122,9 @@
                             未来期望
                             <v-tooltip location="top" text="选择该决策后，后续演武收益的期望">
                               <template #activator="{ props }">
-                                <v-icon v-bind="props" size="x-small">mdi-information-outline</v-icon>
+                                <v-icon v-bind="props" size="x-small"
+                                  >mdi-information-outline</v-icon
+                                >
                               </template>
                             </v-tooltip>
                           </span>
@@ -137,10 +141,12 @@
               </div>
             </v-expansion-panel-text>
           </v-expansion-panel>
-        </v-expansion-panels>
-        <v-expansion-panels class="mb-4">
+
           <v-expansion-panel value="settings">
-            <v-expansion-panel-title>基础设定区</v-expansion-panel-title>
+            <v-expansion-panel-title>
+              <v-icon class="mr-2" color="primary">mdi-cog-outline</v-icon>
+              基础设定区
+            </v-expansion-panel-title>
             <v-expansion-panel-text>
               <!-- 铭牌库 -->
               <div class="text-subtitle-2 my-4">初始铭牌库</div>
@@ -158,26 +164,40 @@
                   />
                 </v-col>
               </v-row>
+
+              <!-- 数据溢出设置 -->
+              <div class="text-subtitle-2 my-4">数据溢出设置</div>
+              <v-radio-group v-model="数据溢出模式值" density="compact" hide-details>
+                <v-radio :label="`不接受数据溢出`" :value="数据溢出模式.不接受" />
+                <v-radio :label="`接受 1 次数据溢出`" :value="数据溢出模式.接受1次" />
+                <v-radio :label="`接受 1 ~ 2 次数据溢出`" :value="数据溢出模式.接受1至2次" />
+              </v-radio-group>
+
               <!-- 演武平台等级 -->
               <div class="text-subtitle-2 my-4">演武平台等级</div>
               <v-select
                 v-model="演武平台等级"
-                :items="演武平台等级表.map((_, i) => {
-                  return {
-                    value: i + 1,
-                    label: `Lv.${i + 1}`,
-                  };
-                })"
-                label="演武平台等级"
                 class="w-100"
+                density="compact"
+                hide-details
                 item-title="label"
                 item-value="value"
-                @update:modelValue="演武平台等级变化"
+                :items="
+                  演武平台等级表.map((_, i) => {
+                    return {
+                      value: i + 1,
+                      label: `Lv. ${i + 1}`,
+                    };
+                  })
+                "
+                label="演武平台等级"
               />
               <div class="text-subtitle-2 my-4">演武平台属性</div>
               <ul>
-                <li><strong>双倍次数</strong> {{ 演武平台等级表[演武平台等级 - 1].双倍次数 }}</li>
-                <li><strong>演算奖励（0~10战力点）</strong><br/>{{ 演武平台等级表[演武平台等级 - 1].演算奖励元组.join(' / ') }}</li>
+                <li><strong>翻倍次数</strong> {{ 翻倍次数上限 }}</li>
+                <li>
+                  <strong>演算奖励（0 ~ 10 战力点）</strong><br />{{ 演算奖励元组.join(' / ') }}
+                </li>
               </ul>
             </v-expansion-panel-text>
           </v-expansion-panel>
@@ -228,8 +248,6 @@
                 </label>
               </div>
 
-              <v-divider class="my-4" />
-
               <div class="hand-card-grid">
                 <ToolsTrialSwordmancyHandCard
                   v-for="(_, i) in 5"
@@ -259,10 +277,10 @@
                     block
                     color="orange-darken-1"
                     :disabled="!可抽点数(x)"
+                    :prepend-icon="`mdi-dice-${x}-outline`"
                     variant="outlined"
                     @click="执行抽指定点数(x)"
-                  >
-                    <v-icon class="mr-1" :icon="`mdi-dice-${x}-outline`"></v-icon> 抽到 {{ x }} 点
+                    >抽到 {{ x }} 点
                   </v-btn>
                 </v-col>
                 <v-col cols="6" sm="4">
@@ -271,7 +289,7 @@
                     color="secondary"
                     :disabled="!可重置手牌"
                     prepend-icon="mdi-hand-back-right"
-                    variant="tonal"
+                    variant="outlined"
                     @click="执行重置手牌"
                   >
                     重置手牌
@@ -281,14 +299,16 @@
 
               <ToolsTrialSwordmancyBattlePointSlider
                 class="mt-3"
-                :overflow="战力点已溢出"
                 :cur-real-point="当前手牌点数和"
+                :overflow="战力点已溢出"
                 :point="当前战力点"
               />
               <div class="remaining-deck text-caption text-medium-emphasis">
                 <span>铭牌库存：</span>
                 <span v-for="(总数, i) in 牌库数量元组" :key="i" class="remaining-deck-item">
-                  <v-icon class="remaining-deck-icon" size="small">{{ diceIcon[i + 1] }}</v-icon>
+                  <v-icon class="remaining-deck-icon" size="small"
+                    >mdi-dice-{{ i + 1 }}-outline</v-icon
+                  >
                   <span>× {{ 总数 - (当前手牌数量元组[i] ?? 0) }}</span>
                 </span>
               </div>
@@ -301,8 +321,18 @@
                   :disabled="当前手牌总数 < 2"
                   hide-details
                   inset
-                  label="奖励翻倍"
+                  :label="`奖励翻倍（剩余 ${输入.剩余翻倍次数} 次）`"
                 />
+                <v-tooltip location="top">
+                  <template #activator="{ props }">
+                    <v-icon v-bind="props" size="small">mdi-help-circle-outline</v-icon>
+                  </template>
+                  <div>
+                    虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
+                    张铭牌才会开始演算。
+                  </div>
+                  <div>为了性能考虑，计算器中要求抽至少 2 张铭牌时才能选择是否翻倍。</div>
+                </v-tooltip>
               </div>
 
               <div class="quick-action-grid mt-3">
@@ -335,10 +365,9 @@
                 <div>
                   <v-btn
                     block
-                    color="grey-darken-1"
                     prepend-icon="mdi-restore"
                     size="large"
-                    variant="tonal"
+                    variant="outlined"
                     @click="执行重置全部"
                   >
                     重置全部
@@ -361,46 +390,39 @@
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <h3>基本规则</h3>
+              <p>在选剑演武中，您需要从牌库中抽取铭牌，凑出特定战力点进行挑战。</p>
               <p>
-                在选剑演武中，您需要从牌库中抽取铭牌，凑出特定战力点进行挑战。
+                每次演算可以抽取最多 5
+                张铭牌，每张铭牌都有其对应的战力点数。所有铭牌的战力点数和会决定最终战力点。
               </p>
-              <p>
-                每次演算可以抽取最多 5 张铭牌，每张铭牌都有其对应的战力点数。所有铭牌的战力点数和会决定最终战力点。
-              </p>
-              <p>
-                <strong>最终战力点</strong> = (所有铭牌的战力点数和) mod 11
-              </p>
-              <p>
-                管理员可在演武平台进行两种演算：
-              </p>
+              <p><strong>最终战力点</strong> = (所有铭牌的战力点数和) mod 11</p>
+              <p>管理员可在演武平台进行两种演算：</p>
               <ul>
                 <li>
-                  <strong>奖励演算：</strong>默认类型的演算；挑战成功时，会根据最终战力点数和翻倍状态（后述）获得武陵调度券奖励。<br/>
-                  管理员可以随时选择<strong class="text-error">放弃</strong>，但每次放弃会消耗一次弃权次数。<br/>
-                  <strong class="text-error">每日拥有<strong>3次</strong>弃权次数；弃权次数耗尽时，继续弃权将扣除奖励演算次数。</strong><br/>
+                  <strong>奖励演算：</strong
+                  >默认类型的演算；挑战成功时，会根据最终战力点数和翻倍状态（后述）获得武陵调度券奖励。<br />
+                  管理员可以随时选择<strong class="text-error">放弃</strong
+                  >，但每次放弃会消耗一次弃权次数。<br />
+                  <strong class="text-error"
+                    >每日拥有<strong>3次</strong>弃权次数；弃权次数耗尽时，继续弃权将扣除奖励演算次数。</strong
+                  ><br />
                   奖励演算每日可进行3次。
                 </li>
                 <li>
-                  <strong>自由演算：</strong>奖励演算次数耗尽后，本日的后续演算将变为“自由演算”。<br/>
+                  <strong>自由演算：</strong
+                  >奖励演算次数耗尽后，本日的后续演算将变为“自由演算”。<br />
                   自由演算不会给予奖励，管理员可以反复挑战。
                 </li>
               </ul>
-              <v-card
-                variant="outlined"
-                class="mx-auto"
-                color="error"
-              >
-                <template v-slot:text>
+              <v-card class="mx-auto" color="error" variant="outlined">
+                <template #text>
                   <v-icon class="mr-2" color="error">mdi-alert</v-icon>
                   <span class="text-body-1">
-                    <strong>注意：</strong>当铭牌的战力点数和超过 10 时，最终战力点会溢出，报酬量将会重新计算，并同时<strong>触发溢出惩罚。</strong>
+                    <strong>注意：</strong>当铭牌的战力点数和超过 10
+                    时，最终战力点会溢出，报酬量将会重新计算，并同时<strong>触发溢出惩罚。</strong>
                     <ul>
-                      <li>
-                        溢出 1 次（11+）时：所有敌人等级+30（达到<strong>Lv.90</strong>）
-                      </li>
-                      <li>
-                        溢出 2 次（22+）时：演算时间缩减至180秒（<strong>3分钟</strong>）
-                      </li>
+                      <li>溢出 1 次（11+）时：所有敌人等级+30（达到<strong>Lv.90</strong>）</li>
+                      <li>溢出 2 次（22+）时：演算时间缩减至180秒（<strong>3分钟</strong>）</li>
                     </ul>
                     <strong>请谨慎考虑在溢出状态下进行奖励演算。</strong>
                   </span>
@@ -411,7 +433,7 @@
               <ul>
                 <li>
                   <strong>等概率抽取假设</strong
-                  >：每次抽取铭牌时，抽到某一点数铭牌的概率正比于牌库中该点数铭牌的剩余数量。<br/>例如，牌库剩余
+                  >：每次抽取铭牌时，抽到某一点数铭牌的概率正比于牌库中该点数铭牌的剩余数量。<br />例如，牌库剩余
                   1 点 × 3、2 点 × 2，则抽到 1 点的概率为 3/5，抽到 2 点的概率为 2/5。
                 </li>
               </ul>
@@ -419,10 +441,18 @@
               <h3>操作说明</h3>
               <p>您首先需要在【基础设定区】设置当前铭牌库的牌数及演算奖励。</p>
               <ul>
-                <li><strong>铭牌库每3日会刷新一次，请务必确保计算器中的铭牌库数量与游戏内一致。</strong></li>
-                <li>演算奖励请填写在未启用翻倍的情况下的数值。默认自动填写演武平台Lv.4时提供的数值。</li>
+                <li>
+                  <strong
+                    >铭牌库每3日会刷新一次，请务必确保计算器中的铭牌库数量与游戏内一致。</strong
+                  >
+                </li>
+                <li>
+                  演算奖励请填写在未启用翻倍的情况下的数值。默认自动填写演武平台Lv.4时提供的数值。
+                </li>
               </ul>
-              <p>之后点击【输入区】的【重置全部】按钮，即可开始演算计算推演。<br/>可用的操作如下：</p>
+              <p>
+                之后点击【输入区】的【重置全部】按钮，即可开始演算计算推演。<br />可用的操作如下：
+              </p>
               <ul>
                 <li>
                   <v-icon class="mr-2" color="secondary" size="small">mdi-hand-back-right</v-icon>
@@ -454,7 +484,9 @@
                 </li>
                 -->
                 <li>
-                  <v-icon class="mr-2" color="orange-darken-1" size="small">mdi-dice-multiple-outline</v-icon>
+                  <v-icon class="mr-2" color="orange-darken-1" size="small"
+                    >mdi-dice-multiple-outline</v-icon
+                  >
                   <strong>抽到 X 点</strong> —
                   从牌库中抽取一张指定点数的铭牌加入手牌。仅当该点数的牌库还有余量时可用
                 </li>
@@ -479,23 +511,41 @@
                   <strong>总收益期望</strong> —
                   按照最优策略，从当前状态开始至结束所能获得的总收益期望
                 </li>
-                <li><strong>未来演武收益的期望</strong> — 选择某个决策后，后续演武收益的期望</li>
+                <li><strong>未来收益期望</strong> — 选择某个决策后，后续演武收益的期望</li>
                 <li><strong>本次演武收益</strong> — 执行当前决策（如开始演武）本次获得的收益</li>
                 <li>
                   <strong>总收益期望</strong> = 本次演武收益 +
-                  未来演武收益的期望，表示选择该决策的总收益期望
+                  未来收益期望，表示选择该决策的总收益期望
                 </li>
               </ul>
               <p>当剩余演算次数为 0 时，输出区会显示"已无演算次数"提示。</p>
 
               <h3>关于翻倍</h3>
-              <p>在游戏中，当次奖励演算抽取了至少 1 张铭牌，且尚未抽取第 3 张铭牌前，可以选择是否开启<strong style="color: #c3ab71;">奖励翻倍模式</strong>。</p>
+              <p>
+                在游戏中，当次奖励演算抽取了至少 1 张铭牌，且尚未抽取第 3
+                张铭牌前，可以选择是否开启<strong style="color: #c3ab71">奖励翻倍模式</strong>。
+              </p>
               <ul>
                 <li>开启翻倍后，本次演算的调度券奖励 ×2。</li>
-                <li><strong class="text-error">仅可在抽取第 3 张铭牌前决定是否翻倍。</strong>一旦抽取了第 3 张铭牌，翻倍状态将被锁定，无法修改。<br/>
-                  弃权不会消耗翻倍次数，但只要正式进入演算挑战，该次翻倍次数就会被消耗。</li>
+                <li>
+                  <strong class="text-error">仅可在抽取第 3 张铭牌前决定是否翻倍。</strong
+                  >一旦抽取了第 3 张铭牌，翻倍状态将被锁定，无法修改。<br />
+                  弃权不会消耗翻倍次数，但只要正式进入演算挑战，该次翻倍次数就会被消耗。
+                </li>
               </ul>
               <p>在本计算器中，仅在手牌数量在 2 张以上时，可以选择是否翻倍。</p>
+              <p>
+                翻倍决定后不可取消。翻倍只在手牌 2 张时可选，若跳过则后续无法再对本次演算翻倍。
+                翻倍次数用完后翻倍按钮不可用。
+              </p>
+
+              <h3>📊 数据溢出规则</h3>
+              <p>战力点 = 总点数 mod 11，当总点数超过 11 时触发数据溢出：</p>
+              <ul>
+                <li><strong>不接受数据溢出</strong> — 总点数 ≥ 11 时奖励归零</li>
+                <li><strong>接受 1 次数据溢出</strong> — 总点数 ≥ 22 时奖励归零</li>
+                <li><strong>接受 1 ~ 2 次数据溢出</strong> — 无额外限制（默认）</li>
+              </ul>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -511,38 +561,34 @@
 
 <script lang="ts" setup>
 import { watchDebounced } from '@vueuse/core';
-import { useDisplay } from 'vuetify'
+import { useDisplay } from 'vuetify';
 import {
   type MDPResult,
+  数据溢出模式,
   求解器类,
+  演武平台等级表,
   type 状态类,
   状态键,
   计算战力点,
-  默认演算奖励元组,
   默认牌库数量元组,
-  演武平台等级表,
 } from '@/shared/utils/trialOfSwordmancy';
 
 definePageMeta({
   layout: 'default',
 });
 
-const diceIcon: Record<number, string> = {
-  1: 'mdi-dice-1',
-  2: 'mdi-dice-2',
-  3: 'mdi-dice-3',
-  4: 'mdi-dice-4',
-  5: 'mdi-dice-5',
-  6: 'mdi-dice-6',
-} as const;
-
-const { mobile } = useDisplay()
+const { mobile } = useDisplay();
 
 // ==================== 响应式状态 ====================
 
 const 牌库数量元组 = ref<number[]>([...默认牌库数量元组]);
-const 演算奖励元组 = ref<number[]>([...默认演算奖励元组]);
+const 演算奖励元组 = computed<number[]>(
+  () => 演武平台等级表[演武平台等级.value - 1]?.演算奖励元组 ?? [],
+);
+const 翻倍次数上限 = computed<number>(() => 演武平台等级表[演武平台等级.value - 1]?.双倍次数 ?? 0);
 const 演武平台等级 = ref(4);
+const 数据溢出模式值 = ref<数据溢出模式>(数据溢出模式.接受1至2次);
+
 const 输入 = reactive({
   剩余演算次数: 3,
   剩余放弃次数: 3,
@@ -637,6 +683,7 @@ const 可开始演算 = computed(() => 输入.剩余演算次数 > 0 && !手牌�
 const 可放弃 = computed(() => 输入.剩余演算次数 > 0 && !手牌为空.value);
 
 /** 翻倍按钮是否可用（手牌2张、未翻倍、有翻倍次数） */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const 可翻倍 = computed(() => 当前手牌总数.value === 2 && !输入.是否翻倍 && 输入.剩余翻倍次数 > 0);
 
 /** 随机抽牌按钮是否可用（手牌未满且牌库还有余量） */
@@ -673,14 +720,19 @@ function 可抽点数(点数: number): boolean {
 // ==================== 预计算 MDP（基础设定变化时触发） ====================
 
 function 重新计算MDP(): void {
-  const 求解器 = new 求解器类([...牌库数量元组.value], [...演算奖励元组.value]);
+  const 求解器 = new 求解器类(
+    [...牌库数量元组.value],
+    [...演算奖励元组.value],
+    翻倍次数上限.value,
+    数据溢出模式值.value,
+  );
   求解器缓存.value = 求解器;
   MDP缓存.value = 求解器.求解MDP();
   更新计算结果();
 }
 
 watchDebounced(
-  [牌库数量元组, 演算奖励元组],
+  [牌库数量元组, 演算奖励元组, 数据溢出模式值, 演武平台等级],
   () => {
     重新计算MDP();
   },
@@ -812,23 +864,16 @@ function 删除手牌(索引: number): void {
   手牌插槽.value = [...剩余手牌, ...Array.from({ length: 5 - 剩余手牌.length }, () => 0)];
 }
 
-function 演武平台等级变化(value: number): void {
-  const 等级信息 = 演武平台等级表[value - 1];
-  if (!等级信息) {
-    return;
-  }
-  执行重置全部();
-}
-
 /** 重置全部（恢复初始状态） */
 function 执行重置全部(): void {
+  牌库数量元组.value = [...默认牌库数量元组];
+  数据溢出模式值.value = 数据溢出模式.接受1至2次;
+  演武平台等级.value = 4;
   输入.剩余演算次数 = 3;
   输入.剩余放弃次数 = 3;
-  输入.剩余翻倍次数 = 演武平台等级表[演武平台等级.value - 1].双倍次数;
+  输入.剩余翻倍次数 = 翻倍次数上限.value;
   输入.是否翻倍 = false;
   手牌插槽.value = [0, 0, 0, 0, 0];
-  牌库数量元组.value = [...默认牌库数量元组];
-  演算奖励元组.value = [...演武平台等级表[演武平台等级.value - 1].演算奖励元组];
   // MDP 缓存会通过 watch 自动重新计算并更新结果
 
   消息.value = '已重置全部状态';
@@ -932,7 +977,9 @@ function 执行决策按钮(决策: string): void {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem 0.75rem;
+  margin-block-end: 1rem;
   min-height: 40px;
   padding: 0.45rem 0.6rem;
   color: var(--theme-text-primary);
@@ -943,7 +990,6 @@ function 执行决策按钮(决策: string): void {
 
 .daily-count-title {
   flex: 0 0 auto;
-  font-size: 0.86rem;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -953,7 +999,6 @@ function 执行决策按钮(决策: string): void {
   align-items: center;
   gap: 0.35rem;
   min-width: 0;
-  font-size: 0.84rem;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -1142,7 +1187,7 @@ function 执行决策按钮(决策: string): void {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.55rem;
+  justify-content: center;
 }
 
 .double-state-switch {
@@ -1165,7 +1210,7 @@ function 执行决策按钮(决策: string): void {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   width: var(--strategy-card-width);
   min-width: min(100%, 14rem);
   min-height: 77px;
@@ -1186,7 +1231,7 @@ function 执行决策按钮(决策: string): void {
 }
 .strategy-result-card.is-draw.is-best {
   background: linear-gradient(135deg, rgba(13, 92, 84, 1), rgba(84, 183, 185, 0.8));
-  color:#fff;
+  color: #fff;
 }
 
 .strategy-result-card.is-abandon {
@@ -1194,7 +1239,7 @@ function 执行决策按钮(决策: string): void {
 }
 .strategy-result-card.is-abandon.is-best {
   background: linear-gradient(135deg, rgba(85, 37, 38, 1), rgba(61, 9, 10, 0.8));
-  color:#fff;
+  color: #fff;
 }
 
 .strategy-result-card.is-gold {
@@ -1202,7 +1247,7 @@ function 执行决策按钮(决策: string): void {
 }
 .strategy-result-card.is-gold.is-best {
   background: linear-gradient(135deg, rgba(203, 177, 118, 1), rgba(216, 196, 148, 0.8));
-  color:#fff;
+  color: #fff;
 }
 
 /*
@@ -1218,25 +1263,6 @@ function 执行决策按钮(决策: string): void {
   box-shadow: 0 10px 10px rgba(50, 85, 94, 0.18);
 }
 
-.strategy-card-rank {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  font-size: 0.95rem;
-  font-weight: 900;
-  color: rgba(var(--v-theme-primary), 0.92);
-  background: rgba(255, 255, 255, 0.72);
-  border-radius: 999px;
-}
-
-.strategy-result-card.is-best .strategy-card-rank {
-  color: #1976d2;
-  background: rgba(255, 255, 255, 0.96);
-}
-
 .strategy-card-action {
   min-width: 0;
   flex-grow: 100;
@@ -1246,10 +1272,9 @@ function 执行决策按钮(决策: string): void {
   --strategy-button-bg: rgba(var(--v-theme-primary), 1);
   --strategy-button-color: #fff;
 
-  max-width: 100%;
-  color: var(--strategy-button-color) !important;
+  color: var(--strategy-button-color);
   font-weight: 800;
-  background: var(--strategy-button-bg) !important;
+  background: var(--strategy-button-bg);
   border-radius: 3px;
 }
 
@@ -1321,25 +1346,16 @@ function 执行决策按钮(决策: string): void {
   white-space: nowrap;
 }
 
-.strategy-metric.total strong {
-}
-
 /* ========== 手牌卡片网格容器 ========== */
 .hand-card-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(78px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 0.65rem;
 }
 
 @media (max-width: 700px) {
   .hand-card-grid {
-    grid-template-columns: repeat(3, minmax(90px, 1fr));
-  }
-}
-
-@media (max-width: 420px) {
-  .hand-card-grid {
-    grid-template-columns: repeat(2, minmax(110px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -1377,7 +1393,6 @@ function 执行决策按钮(决策: string): void {
     grid-template-rows: 1fr;
     gap: 0;
   }
-
 
   .strategy-metric.total {
     padding-left: 0.65rem;
@@ -1427,6 +1442,6 @@ ul li {
 
 [data-theme='dark'] .strategy-result-card.not-best .strategy-metric span,
 [data-theme='dark'] .strategy-result-card.not-best .strategy-metric strong {
-  color: rgba(211, 211, 211, 0.54)
+  color: rgba(211, 211, 211, 0.54);
 }
 </style>
