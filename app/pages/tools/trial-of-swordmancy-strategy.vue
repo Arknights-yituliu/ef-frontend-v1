@@ -175,126 +175,42 @@
           <v-expansion-panel value="input">
             <v-expansion-panel-title>操作区</v-expansion-panel-title>
             <v-expansion-panel-text>
-              <v-row dense>
-                <v-col cols="6" sm="3">
-                  <v-text-field
+              <div class="daily-count-row">
+                <span class="daily-count-title">本日剩余</span>
+                <label class="daily-count-field">
+                  <span>演算</span>
+                  <input
                     v-model.number="输入.剩余演算次数"
-                    density="compact"
-                    hide-details
-                    label="剩余演算次数"
+                    aria-label="剩余演算次数"
                     max="3"
                     min="0"
                     type="number"
-                    variant="outlined"
                   />
-                </v-col>
-                <v-col cols="6" sm="3">
-                  <v-text-field
+                </label>
+                <label class="daily-count-field">
+                  <span>放弃</span>
+                  <input
                     v-model.number="输入.剩余放弃次数"
-                    density="compact"
-                    hide-details
-                    label="剩余放弃次数"
+                    aria-label="剩余放弃次数"
                     max="3"
                     min="0"
                     type="number"
-                    variant="outlined"
                   />
-                </v-col>
-                <v-col cols="6" sm="3">
-                  <v-text-field
+                </label>
+                <label class="daily-count-field">
+                  <span>翻倍</span>
+                  <input
                     v-model.number="输入.剩余翻倍次数"
-                    density="compact"
-                    hide-details
-                    label="剩余翻倍次数"
+                    aria-label="剩余翻倍次数"
                     max="2"
                     min="0"
                     type="number"
-                    variant="outlined"
                   />
-                </v-col>
-                <v-col cols="6" sm="3">
-                  <v-switch
-                    v-model="输入.是否翻倍"
-                    class="h-100 align-center"
-                    color="orange-darken-1"
-                    density="compact"
-                    :disabled="当前手牌总数 < 2"
-                    hide-details
-                    inset
-                    label="已翻倍"
-                  />
-                </v-col>
-              </v-row>
-
-              <v-divider class="my-4" />
-
-              <div class="text-subtitle-2 mb-2">快捷操作</div>
-
-              <div class="quick-action-grid my-2">
-                <div class="quick-action-start">
-                  <button
-                    aria-label="开始演算"
-                    class="start-calculation-button"
-                    :disabled="!可开始演算"
-                    type="button"
-                    @click="执行开始演算"
-                  >
-                    <span class="start-calculation-mark">
-                      <span class="start-calculation-dot" />
-                      <span class="start-calculation-number">1</span>
-                    </span>
-                    <span class="start-calculation-text">开始演算</span>
-                  </button>
-                </div>
-                <div>
-                  <button
-                    aria-label="放弃"
-                    class="abandon-action-button"
-                    :disabled="!可放弃"
-                    type="button"
-                    @click="执行放弃"
-                  >
-                    <span class="abandon-action-mark">
-                      <v-icon class="abandon-action-icon" size="28">mdi-exit-run</v-icon>
-                    </span>
-                    <span class="abandon-action-content">
-                      <span class="abandon-action-text">放弃</span>
-                      <span class="abandon-action-code" />
-                    </span>
-                  </button>
-                </div>
-                <div>
-                  <v-btn
-                    block
-                    color="orange-darken-1"
-                    :disabled="!可翻倍"
-                    prepend-icon="mdi-plus-circle"
-                    size="large"
-                    variant="tonal"
-                    @click="执行翻倍"
-                  >
-                    选择翻倍
-                  </v-btn>
-                </div>
-                <div>
-                  <v-btn
-                    block
-                    color="grey-darken-1"
-                    prepend-icon="mdi-restore"
-                    size="large"
-                    variant="tonal"
-                    @click="执行重置全部"
-                  >
-                    重置全部
-                  </v-btn>
-                </div>
+                </label>
               </div>
 
               <v-divider class="my-4" />
 
-              <div class="current-hand-heading mb-2">
-                <div class="text-subtitle-2">当前手牌</div>
-              </div>
               <div class="hand-card-grid">
                 <div v-for="(_, i) in 手牌插槽" :key="i" class="hand-card-slot">
                   <v-menu location="bottom" width="160">
@@ -425,6 +341,78 @@
                   <v-icon class="remaining-deck-icon" size="small">{{ diceIcon[i + 1] }}</v-icon>
                   <span>× {{ 总数 - (当前手牌数量元组[i] ?? 0) }}</span>
                 </span>
+              </div>
+              <div class="post-battle-action-row mt-3">
+                <v-switch
+                  v-model="输入.是否翻倍"
+                  class="double-state-switch"
+                  color="orange-darken-1"
+                  density="compact"
+                  :disabled="当前手牌总数 < 2"
+                  hide-details
+                  inset
+                  label="奖励翻倍"
+                />
+              </div>
+
+              <div class="quick-action-grid mt-3">
+                <div class="quick-action-start">
+                  <button
+                    aria-label="开始演算"
+                    class="start-calculation-button"
+                    :disabled="!可开始演算"
+                    type="button"
+                    @click="执行开始演算"
+                  >
+                    <span class="start-calculation-mark">
+                      <span class="start-calculation-dot" />
+                      <span class="start-calculation-number">1</span>
+                    </span>
+                    <span class="start-calculation-text">开始演算</span>
+                  </button>
+                </div>
+                <div>
+                  <button
+                    aria-label="放弃"
+                    class="abandon-action-button"
+                    :disabled="!可放弃"
+                    type="button"
+                    @click="执行放弃"
+                  >
+                    <span class="abandon-action-mark">
+                      <v-icon class="abandon-action-icon" size="28">mdi-exit-run</v-icon>
+                    </span>
+                    <span class="abandon-action-content">
+                      <span class="abandon-action-text">放弃</span>
+                      <span class="abandon-action-code" />
+                    </span>
+                  </button>
+                </div>
+                <div>
+                  <v-btn
+                    block
+                    color="orange-darken-1"
+                    :disabled="!可翻倍"
+                    prepend-icon="mdi-plus-circle"
+                    size="large"
+                    variant="tonal"
+                    @click="执行翻倍"
+                  >
+                    奖励翻倍
+                  </v-btn>
+                </div>
+                <div>
+                  <v-btn
+                    block
+                    color="grey-darken-1"
+                    prepend-icon="mdi-restore"
+                    size="large"
+                    variant="tonal"
+                    @click="执行重置全部"
+                  >
+                    重置全部
+                  </v-btn>
+                </div>
               </div>
             </v-expansion-panel-text>
           </v-expansion-panel>
@@ -957,6 +945,65 @@ function 执行决策按钮(决策: string): void {
 }
 
 /* ========== 快捷操作 ========== */
+.daily-count-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.75rem;
+  min-height: 40px;
+  padding: 0.45rem 0.6rem;
+  color: rgba(56, 62, 67, 0.88);
+  background: rgba(234, 238, 240, 0.9);
+  border: 1px solid rgba(176, 185, 190, 0.6);
+  border-radius: 3px;
+}
+
+.daily-count-title {
+  flex: 0 0 auto;
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.daily-count-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+  font-size: 0.84rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.daily-count-field input {
+  appearance: textfield;
+  width: 2.35rem;
+  height: 1.8rem;
+  padding: 0 0.25rem;
+  font: inherit;
+  font-weight: 800;
+  color: rgba(24, 31, 36, 0.92);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(135, 146, 154, 0.62);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 1px 2px rgba(30, 44, 54, 0.12);
+}
+
+.daily-count-field input::-webkit-inner-spin-button,
+.daily-count-field input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.daily-count-field input:focus {
+  border-color: rgba(203, 177, 118, 0.95);
+  outline: 2px solid rgba(203, 177, 118, 0.25);
+  outline-offset: 1px;
+}
+
 .quick-action-grid {
   display: grid;
   grid-template-columns: minmax(10.5rem, 1.55fr) repeat(3, minmax(6.2rem, 1fr));
@@ -1184,6 +1231,18 @@ function 执行决策按钮(决策: string): void {
     0 0 / 0.46rem 100% repeat-x;
 }
 
+.post-battle-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.double-state-switch {
+  flex: 1 1 9rem;
+  min-width: 8.5rem;
+}
+
 /* ========== 收益卡片列表 ========== */
 .strategy-card-list {
   display: grid;
@@ -1352,13 +1411,6 @@ function 执行决策按钮(决策: string): void {
 }
 
 /* ========== 当前手牌卡片 ========== */
-.current-hand-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
 .hand-card-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(78px, 1fr));
@@ -1602,15 +1654,16 @@ function 执行决策按钮(决策: string): void {
   padding: 0 0.75rem;
   font-size: 1rem;
   font-weight: 800;
-  color: rgba(238, 241, 238, 0.82);
-  background: rgba(24, 28, 28, 0.28);
-  border-right: 1px solid rgba(150, 165, 166, 0.22);
+  color: rgba(255, 255, 255, 0.96);
+  background: rgba(20, 27, 29, 0.72);
+  border-right: 1px solid rgba(238, 241, 238, 0.28);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.32);
   white-space: nowrap;
 }
 
 .battle-point-slider.is-overflow .battle-point-slider-label {
-  background: rgba(82, 18, 20, 0.5);
-  border-right-color: rgba(255, 45, 51, 0.34);
+  background: rgba(108, 22, 25, 0.76);
+  border-right-color: rgba(255, 45, 51, 0.46);
 }
 
 .battle-point-slider-track {
