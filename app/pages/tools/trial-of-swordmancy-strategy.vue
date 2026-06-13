@@ -30,11 +30,11 @@
                       手牌插槽
                         .filter((s) => s > 0)
                         .map((s) => String(s))
-                        .join('、') || '空'
+                        .join(' ') || '空'
                     }}
                   </v-col>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                    战力点: {{ 当前战力点 }}
+                    最终战力点: {{ 当前战力点 }}
                   </v-col>
                 </v-row>
 
@@ -86,7 +86,10 @@
                               :disabled="!可抽点数(x)"
                               @click="执行抽指定点数(x)"
                             >
-                              <v-list-item-title>{{ dice[x] }} 抽到 {{ x }} 点</v-list-item-title>
+                              <v-list-item-title>
+                                <v-icon class="mr-1" :icon="`mdi-dice-${x}-outline`"></v-icon>
+                                 抽到 {{ x }} 点
+                              </v-list-item-title>
                             </v-list-item>
                           </v-list>
                         </v-menu>
@@ -249,7 +252,7 @@
                     variant="outlined"
                     @click="执行抽指定点数(x)"
                   >
-                    {{ dice[x] }} 抽到 {{ x }} 点
+                    <v-icon class="mr-1" :icon="`mdi-dice-${x}-outline`"></v-icon> 抽到 {{ x }} 点
                   </v-btn>
                 </v-col>
                 <v-col cols="6" sm="4">
@@ -269,6 +272,7 @@
               <ToolsTrialSwordmancyBattlePointSlider
                 class="mt-3"
                 :overflow="战力点已溢出"
+                :overflow-cnt="Math.trunc(当前手牌点数和 / 11)"
                 :point="当前战力点"
               />
               <div class="remaining-deck text-caption text-medium-emphasis">
@@ -300,10 +304,7 @@
                     type="button"
                     @click="() => 执行开始演算()"
                   >
-                    <span class="start-calculation-mark">
-                      <span class="start-calculation-dot" />
-                      <span class="start-calculation-number">1</span>
-                    </span>
+                    <v-icon icon="mdi-code-brackets"></v-icon>
                     <span class="start-calculation-text">开始演算</span>
                   </button>
                 </div>
@@ -315,9 +316,7 @@
                     type="button"
                     @click="执行放弃"
                   >
-                    <span class="abandon-action-mark">
-                      <v-icon class="abandon-action-icon" size="28">mdi-exit-run</v-icon>
-                    </span>
+                    <v-icon icon="mdi-logout"></v-icon>
                     <span class="abandon-action-content">
                       <span class="abandon-action-text">放弃</span>
                       <span class="abandon-action-code" />
@@ -348,30 +347,73 @@
         <v-expansion-panels :model-value="['docs']" multiple>
           <v-expansion-panel value="docs">
             <v-expansion-panel-title>
-              <v-icon class="mr-2" color="primary">mdi-book-open-variant</v-icon>
-              说明
+              <v-icon class="mr-2" color="primary">mdi-help-circle</v-icon>
+              帮助与说明
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              <h3>📖 基本规则</h3>
+              <h3>基本规则</h3>
               <p>
-                在选剑演武中，您需要从牌库中抽取铭牌，凑出特定战力点来获得演算奖励。
-                每次演算可以抽取最多 5 张铭牌，并根据最终手牌的战力点获取对应奖励。
+                在选剑演武中，您需要从牌库中抽取铭牌，凑出特定战力点进行挑战。
               </p>
-              <p class="mt-2">
-                <strong>战力点</strong> = (1 点铭牌数量 × 1 + 2 点铭牌数量 × 2 + 3 点铭牌数量 × 3 +
-                4 点铭牌数量 × 4 + 5 点铭牌数量 × 5) mod 11
+              <p>
+                每次演算可以抽取最多 5 张铭牌，每张铭牌都有其对应的战力点数。所有铭牌的战力点数和会决定最终战力点。
               </p>
+              <p>
+                <strong>最终战力点</strong> = (所有铭牌的战力点数和) mod 11
+              </p>
+              <p>
+                管理员可在演武平台进行两种演算：
+              </p>
+              <ul>
+                <li>
+                  <strong>奖励演算：</strong>默认类型的演算；挑战成功时，会根据最终战力点数和翻倍状态（后述）获得武陵调度券奖励。<br/>
+                  管理员可以随时选择<strong class="text-error">放弃</strong>，但每次放弃会消耗一次弃权次数（每日弃权上限<strong>3次</strong>）。<br/>
+                  <strong class="text-error">弃权次数耗尽时，继续弃权将扣除奖励演算次数。</strong><br/>
+                  奖励演算每日可进行3次。
+                </li>
+                <li>
+                  <strong>自由演算：</strong>奖励演算次数耗尽后，本日的后续演算将变为“自由演算”。<br/>
+                  自由演算不会给予奖励，管理员可以反复挑战。
+                </li>
+              </ul>
+              <v-card
+                variant="outlined"
+                class="mx-auto"
+                color="error"
+              >
+                <template v-slot:text>
+                  <v-icon class="mr-2" color="error">mdi-alert</v-icon>
+                  <span class="text-body-1">
+                    <strong>注意：</strong>当铭牌的战力点数和超过 10 时，最终战力点会溢出，报酬量将会重新计算，并同时<strong>触发溢出惩罚。</strong>
+                    <ul>
+                      <li>
+                        溢出 1 次（11+）时：所有敌人等级+30（达到<strong>Lv.90</strong>）
+                      </li>
+                      <li>
+                        溢出 2 次（22+）时：演算时间缩减至150秒（<strong>3分钟</strong>）
+                      </li>
+                    </ul>
+                    <strong>请谨慎考虑在溢出状态下进行奖励演算。</strong>
+                  </span>
+                </template>
+              </v-card>
 
-              <h3>📋 规则假设</h3>
+              <h3>规则假设</h3>
               <ul>
                 <li>
                   <strong>等概率抽取假设</strong
-                  >：每次抽取铭牌时，抽到某一点数铭牌的概率正比于牌库中该点数铭牌的剩余数量。例如，牌库剩余
+                  >：每次抽取铭牌时，抽到某一点数铭牌的概率正比于牌库中该点数铭牌的剩余数量。<br/>例如，牌库剩余
                   1 点 × 3、2 点 × 2，则抽到 1 点的概率为 3/5，抽到 2 点的概率为 2/5。
                 </li>
               </ul>
 
-              <h3>🎮 操作说明</h3>
+              <h3>操作说明</h3>
+              <p>您首先需要在【基础设定区】设置当前铭牌库的牌数及演算奖励。</p>
+              <ul>
+                <li><strong>铭牌库每3日会刷新一次，请务必确保计算器中的铭牌库数量与游戏内一致。</strong></li>
+                <li>演算奖励请填写在未启用翻倍的情况下的数值。默认自动填写演武平台Lv.4时提供的数值。</li>
+              </ul>
+              <p>之后点击【输入区】的【重置全部】按钮，即可开始演算计算推演。<br/>可用的操作如下：</p>
               <ul>
                 <li>
                   <v-icon class="mr-2" color="secondary" size="small">mdi-hand-back-right</v-icon>
@@ -382,18 +424,18 @@
                   <strong>重置全部</strong> — 将所有状态恢复为初始值（3 次演算、3 次放弃、2 次翻倍）
                 </li>
                 <li>
-                  <v-icon class="mr-2" color="warning" size="small">mdi-play</v-icon>
+                  <v-icon class="mr-2" color="#c3ab71" size="small">mdi-code-brackets</v-icon>
                   <strong>开始演算</strong> —
                   消耗一次演算次数，根据当前手牌获得对应奖励，然后重置手牌。若已翻倍，同时消耗一次翻倍次数
                 </li>
                 <li>
-                  <v-icon class="mr-2" color="error" size="small">mdi-close-circle</v-icon>
+                  <v-icon class="mr-2" color="error" size="small">mdi-logout</v-icon>
                   <strong>放弃</strong> —
                   放弃当前手牌。若还有放弃次数则消耗一次放弃次数并保留演算次数，否则消耗一次演算次数
                 </li>
                 <li>
                   <v-icon class="mr-2" color="orange-darken-1" size="small">mdi-plus-circle</v-icon>
-                  <strong>翻倍</strong> — 将本次演算的奖励 ×2。仅当手牌恰好为 2
+                  <strong>奖励翻倍</strong> — 启用奖励翻倍，使本次演算的奖励 ×2。仅当手牌恰好为 2
                   张、未翻倍且还有翻倍次数时可用
                 </li>
                 <!-- 暂时隐藏随机抽牌说明，保留代码方便后续恢复
@@ -403,13 +445,13 @@
                 </li>
                 -->
                 <li>
-                  <v-icon class="mr-2" color="orange-darken-1" size="small">mdi-target</v-icon>
-                  <strong>抽到 x 点</strong> —
+                  <v-icon class="mr-2" color="orange-darken-1" size="small">mdi-dice-multiple-outline</v-icon>
+                  <strong>抽到 X 点</strong> —
                   从牌库中抽取一张指定点数的铭牌加入手牌。仅当该点数的牌库还有余量时可用
                 </li>
               </ul>
 
-              <h3>🧮 算法说明</h3>
+              <h3>算法说明</h3>
               <p>
                 本计算器使用<strong>马尔可夫决策过程（MDP）</strong>求解最优策略。 通过反向 BFS
                 拓扑排序 +
@@ -420,7 +462,7 @@
                 最优方程
               </p>
 
-              <h3>📊 输出区说明</h3>
+              <h3>输出区说明</h3>
               <p>计算完成后，输出区会展示当前状态下的决策分析与收益评估：</p>
               <ul>
                 <li><strong>最优决策</strong> — MDP 求解出的当前状态最佳行动方案</li>
@@ -437,16 +479,14 @@
               </ul>
               <p>当剩余演算次数为 0 时，输出区会显示"已无演算次数"提示。</p>
 
-              <h3>⚙️ 翻倍规则</h3>
-              <p>当手牌恰好为 2 张时，可以<b>主动选择</b>是否翻倍：</p>
+              <h3>关于翻倍</h3>
+              <p>在游戏中，当次奖励演算抽取了至少 1 张铭牌，且尚未抽取第 3 张铭牌前，可以选择是否开启<strong style="color: #c3ab71;">奖励翻倍模式</strong>。</p>
               <ul>
-                <li>选择翻倍：本次演算的奖励 ×2，消耗一次翻倍次数</li>
-                <li>不选择翻倍：按正常奖励结算，保留翻倍次数</li>
+                <li>开启翻倍后，本次演算的调度券奖励 ×2。</li>
+                <li><strong class="text-error">仅可在抽取第 3 张铭牌前决定是否翻倍。</strong>一旦抽取了第 3 张铭牌，翻倍状态将被锁定，无法修改。<br/>
+                  弃权不会消耗翻倍次数，但只要正式进入演算挑战，该次翻倍次数就会被消耗。</li>
               </ul>
-              <p>
-                翻倍决定后不可取消。翻倍只在手牌 2 张时可选，若跳过则后续无法再对本次演算翻倍。
-                翻倍次数用完后翻倍按钮不可用。
-              </p>
+              <p>在本计算其中，仅在手牌数量在 2 张以上时，可以选择是否翻倍。</p>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -1001,45 +1041,6 @@ function 执行决策按钮(决策: string): void {
   outline-offset: 2px;
 }
 
-.start-calculation-mark {
-  position: relative;
-  display: flex;
-  flex: 0 0 2.35rem;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  height: 2rem;
-}
-
-.start-calculation-mark::before {
-  position: absolute;
-  inset: 0.28rem 0.36rem;
-  content: '';
-  border-left: 3px solid rgba(255, 255, 255, 0.94);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.94);
-  transform: skewX(-16deg);
-}
-
-.start-calculation-dot {
-  position: absolute;
-  top: 0.18rem;
-  left: 0.34rem;
-  width: 0.38rem;
-  height: 0.38rem;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 1px;
-}
-
-.start-calculation-number {
-  position: relative;
-  z-index: 1;
-  margin-left: 0.18rem;
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.96);
-}
-
 .start-calculation-text {
   min-width: 0;
   overflow: hidden;
@@ -1106,31 +1107,6 @@ function 执行决策按钮(决策: string): void {
 .abandon-action-button:focus-visible {
   outline: 2px solid rgba(255, 42, 44, 0.82);
   outline-offset: 2px;
-}
-
-.abandon-action-mark {
-  position: relative;
-  display: flex;
-  flex: 0 0 2.35rem;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  height: 2rem;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.abandon-action-mark::before {
-  position: absolute;
-  inset: 0.18rem 0.34rem;
-  content: '';
-  border-left: 3px solid rgba(255, 255, 255, 0.94);
-  transform: skewX(-10deg);
-}
-
-.abandon-action-icon {
-  position: relative;
-  z-index: 1;
-  color: rgba(255, 255, 255, 0.96);
 }
 
 .abandon-action-content {
@@ -1430,12 +1406,11 @@ p {
 ol,
 ul {
   padding-left: 1.5rem;
-  margin-block: 1rem;
 }
 
 ol li,
 ul li {
-  margin-block: 0.5rem;
+  margin-block: 0.25rem;
   font-size: 1rem;
 }
 

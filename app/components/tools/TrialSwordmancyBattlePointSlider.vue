@@ -6,7 +6,9 @@
     role="img"
     :style="{ '--battle-point-position': `${((point + 0.5) / 11) * 100}%` }"
   >
-    <div class="battle-point-slider-label">当前战力点</div>
+    <div class="battle-point-slider-label">
+      {{ overflow ? ( `溢出${overflowCnt}次` ) : '最终战力点' }}
+    </div>
     <div class="battle-point-slider-track">
       <span
         v-for="p in 战力点刻度"
@@ -27,6 +29,7 @@
 defineProps<{
   point: number;
   overflow: boolean;
+  overflowCnt: number;
 }>();
 
 const 战力点刻度 = Array.from({ length: 11 }, (_, i) => i);
@@ -138,7 +141,7 @@ const 战力点刻度 = Array.from({ length: 11 }, (_, i) => i);
   font-size: 1.75rem;
   background-color: rgba(197, 175, 120, 0.82);
   border-top: 4px solid var(--theme-accent-color);
-  box-shadow: 0 6px 14px var(--theme-shadow-accent);
+  box-shadow: 0 2px 10px var(--theme-accent-color);
   transform: translateX(-50%);
   color: white;
   font-weight: 900;
