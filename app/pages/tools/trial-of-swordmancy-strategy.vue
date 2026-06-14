@@ -120,13 +120,6 @@
                         <div v-if="!mobile" class="strategy-metric">
                           <span>
                             未来期望
-                            <v-tooltip location="top" text="选择该决策后，后续演武收益的期望">
-                              <template #activator="{ props }">
-                                <v-icon v-bind="props" size="x-small"
-                                  >mdi-information-outline</v-icon
-                                >
-                              </template>
-                            </v-tooltip>
                           </span>
                           <strong>{{ 格式化万元(item.期望未来价值) }}</strong>
                         </div>
@@ -172,17 +165,27 @@
                     variant="outlined"
                     @click="执行重置初始铭牌库"
                   >
-                    重置
+                    重置初始库
                   </v-btn>
                 </v-col>
               </v-row>
+              <div class="text-subtitle-2 text-medium-emphasis">
+                <v-icon icon="mdi-information"></v-icon>
+                <span>
+                  铭牌库每 3 日刷新一次，请确保计算器中的铭牌库数量与游戏内未抽取时的铭牌库数量一致。
+                </span>
+              </div>
 
               <!-- 数据溢出设置 -->
-              <div class="text-subtitle-2 my-4">数据溢出设置</div>
+              <div class="text-subtitle-2 my-4">数据溢出容许</div>
               <v-radio-group v-model="数据溢出模式值" density="compact" hide-details>
                 <v-radio :label="`不接受数据溢出`" :value="数据溢出模式.不接受" />
-                <v-radio :label="`接受 1 次数据溢出`" :value="数据溢出模式.接受1次" />
-                <v-radio :label="`接受 1 ~ 2 次数据溢出`" :value="数据溢出模式.接受1至2次" />
+                <v-radio :label="`接受 1 次数据溢出`" :value="数据溢出模式.接受1次"
+                  :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
+                  :class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }" />
+                <v-radio :label="`接受 1 ~ 2 次数据溢出`" :value="数据溢出模式.接受1至2次"
+                  :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
+                  :class="{ 'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次 }" />
               </v-radio-group>
 
               <!-- 演武平台等级 -->
@@ -198,7 +201,7 @@
                   演武平台等级表.map((_, i) => {
                     return {
                       value: i + 1,
-                      label: `Lv. ${i + 1}`,
+                      label: `Lv.${i + 1}`,
                     };
                   })
                 "
@@ -206,9 +209,9 @@
               />
               <div class="text-subtitle-2 my-4">演武平台属性</div>
               <ul>
-                <li><strong>翻倍次数</strong> {{ 翻倍次数上限 }}</li>
+                <li><strong>翻倍次数上限</strong> {{ 翻倍次数上限 }}</li>
                 <li>
-                  <strong>演算奖励（0 ~ 10 战力点）</strong><br />{{ 演算奖励元组.join(' / ') }}
+                  <strong>演算奖励数量（0 ~ 10 战力点）</strong><br />{{ 演算奖励元组.join(' / ') }}
                 </li>
               </ul>
             </v-expansion-panel-text>
@@ -330,21 +333,11 @@
                   class="double-state-switch"
                   color="orange-darken-1"
                   density="compact"
-                  :disabled="当前手牌总数 < 2"
+                  :disabled="当前手牌总数 !== 2 || 输入.剩余翻倍次数 <= 0"
                   hide-details
                   inset
-                  :label="`奖励翻倍（剩余 ${输入.剩余翻倍次数} 次）`"
+                  :label="`奖励翻倍（${输入.剩余翻倍次数 > 0 ? `剩余 ${输入.剩余翻倍次数} 次` : '已耗尽'}）`"
                 />
-                <v-tooltip location="top">
-                  <template #activator="{ props }">
-                    <v-icon v-bind="props" size="small">mdi-help-circle-outline</v-icon>
-                  </template>
-                  <div>
-                    虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
-                    张铭牌才会开始演算。
-                  </div>
-                  <div>为了性能考虑，计算器中要求抽至少 2 张铭牌时才能选择是否翻倍。</div>
-                </v-tooltip>
               </div>
 
               <div class="quick-action-grid mt-3">
@@ -440,6 +433,7 @@
                   </span>
                 </template>
               </v-card>
+              <p>在演武开始前，管理员可在演武场地东侧的专用区域设置战斗辅助设备以辅助战斗。</p>
 
               <h3>规则假设</h3>
               <ul>
@@ -451,15 +445,15 @@
               </ul>
 
               <h3>操作说明</h3>
-              <p>您首先需要在【基础设定区】设置当前铭牌库的牌数及演算奖励。</p>
+              <p>您首先需要在【基础设定区】设置当前铭牌库的初始牌数、数据溢出容许及演算平台等级。</p>
               <ul>
                 <li>
                   <strong
-                    >铭牌库每3日会刷新一次，请务必确保计算器中的铭牌库数量与游戏内一致。</strong
+                    >铭牌库每3日会刷新一次，请务必确保【基础设定区】中的铭牌库数量与游戏内未抽取时的铭牌库数量一致。</strong
                   >
                 </li>
                 <li>
-                  演算奖励请填写在未启用翻倍的情况下的数值。默认自动填写演武平台Lv.4时提供的数值。
+                  演算平台等级会影响最终战力点奖励量及每日翻倍次数。默认选用Lv.4。
                 </li>
               </ul>
               <p>
@@ -472,7 +466,7 @@
                 </li>
                 <li>
                   <v-icon class="mr-2" size="small">mdi-restore</v-icon>
-                  <strong>重置全部</strong> — 将所有状态恢复为初始值（3 次演算、3 次放弃、2 次翻倍）
+                  <strong>重置全部</strong> — 将所有状态（已抽手牌、翻倍状态、各次数计数）恢复为初始值
                 </li>
                 <li>
                   <v-icon class="mr-2" color="#c3ab71" size="small">mdi-code-brackets</v-icon>
@@ -486,8 +480,7 @@
                 </li>
                 <li>
                   <v-icon class="mr-2" color="orange-darken-1" size="small">mdi-plus-circle</v-icon>
-                  <strong>奖励翻倍</strong> — 启用奖励翻倍，使本次演算的奖励 ×2。仅当手牌恰好为 2
-                  张、未翻倍且还有翻倍次数时可用
+                  <strong>奖励翻倍</strong> — 启用奖励翻倍，使本次演算的奖励 ×2。
                 </li>
                 <!-- 暂时隐藏随机抽牌说明，保留代码方便后续恢复
                 <li>
@@ -523,11 +516,11 @@
                   <strong>总收益期望</strong> —
                   按照最优策略，从当前状态开始至结束所能获得的总收益期望
                 </li>
-                <li><strong>未来收益期望</strong> — 选择某个决策后，后续演武收益的期望</li>
-                <li><strong>本次演武收益</strong> — 执行当前决策（如开始演武）本次获得的收益</li>
+                <li><strong>本次收益</strong> — 执行当前决策（如开始演武）本次获得的收益</li>
+                <li><strong>未来期望</strong> — 选择某个决策后，后续演武收益的期望</li>
                 <li>
-                  <strong>总收益期望</strong> = 本次演武收益 +
-                  未来收益期望，表示选择该决策的总收益期望
+                  <strong>全体期望</strong> = 本次收益 +
+                  未来期望，表示选择该决策的总收益期望
                 </li>
               </ul>
               <p>当剩余演算次数为 0 时，输出区会显示"已无演算次数"提示。</p>
@@ -545,14 +538,14 @@
                   弃权不会消耗翻倍次数，但只要正式进入演算挑战，该次翻倍次数就会被消耗。
                 </li>
               </ul>
-              <p>在本计算器中，仅在手牌数量在 2 张以上时，可以选择是否翻倍。</p>
               <p>
-                翻倍决定后不可取消。翻倍只在手牌 2 张时可选，若跳过则后续无法再对本次演算翻倍。
-                翻倍次数用完后翻倍按钮不可用。
+                虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
+                张铭牌才会开始演算。<br/>
+                为了性能考虑，在本计算器中，仅在刚好抽取了 2 张铭牌时才能选择是否翻倍。
               </p>
 
-              <h3>📊 数据溢出规则</h3>
-              <p>战力点 = 总点数 mod 11，当总点数超过 11 时触发数据溢出：</p>
+              <h3>数据溢出容许</h3>
+              <p>设置后，将考虑溢出状态下的奖励收益。</p>
               <ul>
                 <li><strong>不接受数据溢出</strong> — 总点数 ≥ 11 时奖励归零</li>
                 <li><strong>接受 1 次数据溢出</strong> — 总点数 ≥ 22 时奖励归零</li>
