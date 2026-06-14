@@ -172,9 +172,31 @@
               <div class="text-subtitle-2 text-medium-emphasis">
                 <v-icon icon="mdi-information"></v-icon>
                 <span>
-                  铭牌库每 3 日刷新一次，请确保计算器中的铭牌库数量与游戏内未抽取时的铭牌库数量一致。
+                  铭牌库每 3 天更新一次，但我们不一定每 3 天更新一次网站，若与游戏内不一致请手动调整。
+                  <br>上次更新时间：{{ 当前牌库记录时间文本 }}。
                 </span>
               </div>
+              <v-alert
+                v-if="显示牌库更新提醒"
+                border="start"
+                class="deck-version-alert mt-3"
+                density="comfortable"
+                type="warning"
+                variant="tonal"
+              >
+                <div class="deck-version-alert-content">
+                  <div>
+                    <div class="font-weight-bold">牌库数据可能需要手动更新</div>
+                    <div class="text-body-2">
+                      当前周期：{{ 当前牌库周期范围文本 }}。现有牌库记录时间是 {{ 当前牌库记录时间文本 }}，
+                      请按游戏内最新初始铭牌库手动调整。
+                    </div>
+                  </div>
+                  <v-btn color="warning" size="small" variant="flat" @click="保存当前牌库数据">
+                    已手动更新
+                  </v-btn>
+                </div>
+              </v-alert>
 
               <!-- 数据溢出设置 -->
               <div class="text-subtitle-2 my-4">数据溢出容许</div>
@@ -577,8 +599,23 @@ import {
   type 状态类,
   状态键,
   计算战力点,
+  默认牌库数据,
   默认牌库数量元组,
 } from '@/shared/utils/trialOfSwordmancy';
+import {
+  写入本地牌库数据,
+  格式化东八区时间,
+  牌库周期范围文本,
+  牌库数据快照,
+  牌库数据需要更新,
+  计算牌库刷新周期,
+  读取本地牌库数据,
+} from '@/shared/utils/trialOfSwordmancyDeck';
+import {
+  写入选剑演武页面状态,
+  读取选剑演武页面状态,
+  默认选剑演武页面状态,
+} from '@/shared/utils/trialOfSwordmancyPageState';
 
 definePageMeta({
   layout: 'default',
@@ -596,18 +633,117 @@ const 演算奖励元组 = computed<number[]>(
   () => 演武平台等级表[演武平台等级.value - 1]?.演算奖励元组 ?? [],
 );
 const 翻倍次数上限 = computed<number>(() => 演武平台等级表[演武平台等级.value - 1]?.双倍次数 ?? 0);
-const 演武平台等级 = ref(4);
-const 数据溢出模式值 = ref<数据溢出模式>(数据溢出模式.接受1至2次);
+const 演武平台等级 = ref(默认选剑演武页面状态.演武平台等级);
+const 数据溢出模式值 = ref<数据溢出模式>(默认选剑演武页面状态.数据溢出模式值);
 
 const 输入 = reactive({
-  剩余演算次数: 3,
-  剩余放弃次数: 3,
-  剩余翻倍次数: 2,
-  是否翻倍: false,
+  ...默认选剑演武页面状态.输入,
 });
 
 const 显示消息 = ref(false);
 const 消息 = ref('');
+const 牌库数据 = ref({
+  deck: [...默认牌库数量元组],
+  updatedAt: Date.now(),
+});
+const 当前时间Ms = ref(Date.now());
+let 忽略下一次牌库自动保存快照: string | null = null;
+let 正在恢复页面状态 = false;
+let 牌库时间检查计时器: ReturnType<typeof setInterval> | undefined;
+
+const 当前牌库记录时间文本 = computed(() => 格式化东八区时间(牌库数据.value.updatedAt));
+const 当前牌库周期范围文本 = computed(() => 牌库周期范围文本(计算牌库刷新周期(当前时间Ms.value)));
+const 显示牌库更新提醒 = computed(() => 牌库数据需要更新(牌库数据.value, 当前时间Ms.value));
+
+function 设置牌库数据(deck: number[], updatedAt: number): void {
+  忽略下一次牌库自动保存快照 = 牌库数据快照(deck);
+  牌库数量元组.value = [...deck];
+  牌库数据.value = {
+    deck: [...deck],
+    updatedAt,
+  };
+}
+
+function 保存牌库数据(deck: number[], updatedAt: number = Date.now()): void {
+  const data = {
+    deck: [...deck],
+    updatedAt,
+  };
+  牌库数据.value = data;
+
+  if (import.meta.client) {
+    写入本地牌库数据(localStorage, data);
+  }
+}
+
+function 保存当前牌库数据(): void {
+  保存牌库数据(牌库数量元组.value);
+  消息.value = '当前牌库数据已记录时间戳';
+  显示消息.value = true;
+}
+
+function 生成页面状态快照() {
+  return {
+    version: 1 as const,
+    演武平台等级: 演武平台等级.value,
+    数据溢出模式值: 数据溢出模式值.value,
+    输入: { ...输入 },
+    手牌插槽: [...手牌插槽.value],
+  };
+}
+
+function 保存页面状态(): void {
+  if (!import.meta.client || 正在恢复页面状态) {
+    return;
+  }
+
+  写入选剑演武页面状态(localStorage, 生成页面状态快照());
+}
+
+function 应用页面状态(): void {
+  if (!import.meta.client) {
+    return;
+  }
+
+  正在恢复页面状态 = true;
+  try {
+    const saved = 读取选剑演武页面状态(localStorage);
+    演武平台等级.value = saved.演武平台等级;
+    数据溢出模式值.value = saved.数据溢出模式值;
+    Object.assign(输入, saved.输入);
+    手牌插槽.value = [...saved.手牌插槽];
+  } finally {
+    nextTick(() => {
+      正在恢复页面状态 = false;
+    });
+  }
+}
+
+function 处理页面隐藏(): void {
+  保存页面状态();
+}
+
+onMounted(() => {
+  if (!import.meta.client) {
+    return;
+  }
+
+  const data = 读取本地牌库数据(localStorage);
+  设置牌库数据(data.deck, data.updatedAt);
+  应用页面状态();
+  window.addEventListener('pagehide', 处理页面隐藏);
+  牌库时间检查计时器 = setInterval(() => {
+    当前时间Ms.value = Date.now();
+  }, 60_000);
+});
+
+onUnmounted(() => {
+  保存页面状态();
+  window.removeEventListener('pagehide', 处理页面隐藏);
+  if (牌库时间检查计时器) {
+    clearInterval(牌库时间检查计时器);
+  }
+});
 
 // MDP 缓存：基础设定不变时，结果可复用
 const 求解器缓存 = ref<求解器类 | null>(null);
@@ -653,7 +789,7 @@ function 决策按钮主题类(决策: string): string {
 
 // ==================== 手牌插槽（5 张牌的点数，0=空位） ====================
 
-const 手牌插槽 = ref<number[]>([0, 0, 0, 0, 0]);
+const 手牌插槽 = ref<number[]>([...默认选剑演武页面状态.手牌插槽]);
 
 /** 将手牌插槽（点数数组）转换为求解器所需的铭牌数量元组 */
 function 插槽转数量(插槽: number[]): number[] {
@@ -749,6 +885,43 @@ watchDebounced(
   {
     deep: true,
     immediate: true,
+    debounce: 300,
+  },
+);
+
+watchDebounced(
+  牌库数量元组,
+  () => {
+    const 快照 = 牌库数据快照(牌库数量元组.value);
+    if (忽略下一次牌库自动保存快照 === 快照) {
+      忽略下一次牌库自动保存快照 = null;
+      return;
+    }
+
+    忽略下一次牌库自动保存快照 = null;
+    保存牌库数据(牌库数量元组.value);
+  },
+  {
+    deep: true,
+    debounce: 500,
+  },
+);
+
+watchDebounced(
+  [
+    演武平台等级,
+    数据溢出模式值,
+    () => 输入.剩余演算次数,
+    () => 输入.剩余放弃次数,
+    () => 输入.剩余翻倍次数,
+    () => 输入.是否翻倍,
+    手牌插槽,
+  ],
+  () => {
+    保存页面状态();
+  },
+  {
+    deep: true,
     debounce: 300,
   },
 );
@@ -876,7 +1049,8 @@ function 删除手牌(索引: number): void {
 
 /** 重置初始铭牌库（恢复默认牌库数量，MDP 会通过 watch 自动重新计算） */
 function 执行重置初始铭牌库(): void {
-  牌库数量元组.value = [...默认牌库数量元组];
+  设置牌库数据(默认牌库数据.deck, 默认牌库数据.updatedAt);
+  保存牌库数据(默认牌库数据.deck, 默认牌库数据.updatedAt);
 
   消息.value = '初始铭牌库已重置';
   显示消息.value = true;
@@ -1044,6 +1218,17 @@ function 执行决策按钮(决策: string): void {
   border-color: rgba(203, 177, 118, 0.95);
   outline: 2px solid rgba(203, 177, 118, 0.25);
   outline-offset: 1px;
+}
+
+.deck-version-alert :deep(.v-alert__content) {
+  width: 100%;
+}
+
+.deck-version-alert-content {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .quick-action-grid {
@@ -1392,6 +1577,11 @@ function 执行决策按钮(决策: string): void {
 }
 
 @media (max-width: 700px) {
+  .deck-version-alert-content {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
   .strategy-result-card {
     min-width: min(100%, 16rem);
     min-height: 72px;
