@@ -22,6 +22,7 @@
     "quantitativeCalculator": "Production Line Quantitative Calculator",
     "batterySplitCalculator": "Battery Split Calculator",
     "gachaAnalysis": "Gacha Analysis",
+    "trialOfSwordmancyStrategy": "Trial of Swordmancy Calculator",
     "aic": "AIC",
     "blueprints": "AIC Blueprints",
     "resources": "Resource Download",
@@ -472,6 +473,7 @@
         "allGiftsExpiring": "Expiring",
         "allOperators": "Operators",
         "allOperatorsInfo": "Highlighed operators have the gift source as their preference. Result does not count Popular Preference. Tap the operator to search the gifts.",
+        "currentGameVersion": "Cur. Version",
         "giftExplain": {
           "title1": "About Gift and Trust",
           "text1-1": "Endministrator can find, talk and offer gifts to operators on O.M.V. Dijiang by going to the Infrastructure Cabins / Central Ring, or use the Operator Contact Panel at the Central Ring to contact.",

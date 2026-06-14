@@ -60,6 +60,18 @@
           "Tianshi Bureau",
           "Wuling Tianshi Bureau"
         ]
+      },
+      "tag_giftperfer_wuling_4": {
+        "zh-CN": [
+          "武陵",
+          "选剑局严选",
+          "武陵·选剑局严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Swordmancers",
+          "Wuling Swordmancers"
+        ]
       }
     },
     "hobby": {
@@ -110,11 +122,33 @@
       "id": "item_gift_jinlong_5",
       "rarity": 5,
       "isHot": true,
-      "isHotExpiring": false,
+      "isHotExpiring": true,
       "favorCategory": "tag_giftperfer_wuling_3",
       "favorHobby": [
         "tag_hobby_culture",
         "tag_hobby_charity"
+      ]
+    },
+    "item_gift_jinlong_6": {
+      "id": "item_gift_jinlong_6",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_4",
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_culture"
+      ]
+    },
+    "item_gift_jinlong_7": {
+      "id": "item_gift_jinlong_7",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_4",
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_fashion"
       ]
     },
     "item_gift_tundra_1": {
@@ -405,6 +439,21 @@
         "tag_hobby_culture"
       ]
     },
+    "chr_0031_mifu": {
+      "id": "chr_0031_mifu",
+      "name": {
+        "zh-CN": "弭弗",
+        "en-US": "Mi Fu"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_4"
+      ],
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_life"
+      ]
+    },
     "chr_0004_pelica": {
       "id": "chr_0004_pelica",
       "name": {
@@ -615,5 +664,18 @@
         "tag_hobby_creativity"
       ]
     }
+  },
+  "gameVersion": {
+    "code": "Y1U3",
+    "name": {
+      "zh-CN": "寻遗散记",
+      "en-US": "Sketches of Lost Heirlooms"
+    },
+    "period": {
+      "zh-CN": "前半（弭弗卡池）",
+      "en-US": "First Half (Mi Fu Banner)"
+    },
+    "color": [ "#070604", "#810e1d" ], 
+    "textColor": "#fff"
   }
 }

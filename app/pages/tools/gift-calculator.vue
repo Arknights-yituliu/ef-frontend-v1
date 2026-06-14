@@ -68,6 +68,20 @@
         </template>
       </v-expansion-panel>
     </v-expansion-panels>
+    <v-card
+class="mt-2 mb-2 px-3 py-2 d-flex align-start align-md-center" :style="[
+      `background: linear-gradient(180deg, ${gifts.gameVersion.color[0]}, ${gifts.gameVersion.color[1]});`,
+      `color: ${gifts.gameVersion.textColor};`
+    ]">
+      <v-icon icon="mdi-source-commit"/>
+      <span>
+        <i>{{ gifts.gameVersion.code }}&nbsp;</i>
+        <b>{{ getLocaleText(gifts.gameVersion.name) }}</b>
+        <span v-if="gifts.gameVersion.period" class="text-caption">
+          - {{ getLocaleText(gifts.gameVersion.period) }}
+        </span>
+      </span>
+    </v-card>
     <v-card class="mt-2 mb-2 pa-3">
       <div class="d-flex align-center">
         <div class="d-flex align-center flex-column flex-md-row filter-name">
@@ -280,12 +294,12 @@ v-if="checkForceSelectItem('operator', opId)"
 </template>
 
 <script lang="ts" setup>
-import type { GiftTag, OpName } from '@/custom/core/gifts';
+import type { GiftCategoryTag, GiftTag, OpName } from '@/custom/core/gifts';
 import { getCategoryIcon, getOperatorIcon, gifts, hotIcon } from '@/custom/core/gifts';
 const { theme } = useTheme();
 const { locale } = useI18n();
 
-function getLocaleText (textGroup: GiftTag | OpName | undefined) {
+function getLocaleText (textGroup: GiftCategoryTag | GiftTag | OpName | undefined) {
   return textGroup?.[locale.value]
 }
 
