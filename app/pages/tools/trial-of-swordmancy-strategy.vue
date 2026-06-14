@@ -180,12 +180,14 @@
               <div class="text-subtitle-2 my-4">数据溢出容许</div>
               <v-radio-group v-model="数据溢出模式值" density="compact" hide-details>
                 <v-radio :label="`不接受数据溢出`" :value="数据溢出模式.不接受" />
-                <v-radio :label="`接受 1 次数据溢出`" :value="数据溢出模式.接受1次"
-                  :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
-                  :class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }" />
-                <v-radio :label="`接受 1 ~ 2 次数据溢出`" :value="数据溢出模式.接受1至2次"
-                  :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
-                  :class="{ 'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次 }" />
+                <v-radio
+:class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }" :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
+                  :label="`接受 1 次数据溢出`"
+                  :value="数据溢出模式.接受1次" />
+                <v-radio
+:class="{ 'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次 }" :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
+                  :label="`接受 1 ~ 2 次数据溢出`"
+                  :value="数据溢出模式.接受1至2次" />
               </v-radio-group>
 
               <!-- 演武平台等级 -->
