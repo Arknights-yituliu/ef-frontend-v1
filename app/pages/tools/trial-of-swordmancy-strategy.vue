@@ -189,7 +189,7 @@
                     <div class="font-weight-bold">牌库数据可能需要手动更新</div>
                     <div class="text-body-2">
                       当前周期：{{ 当前牌库周期范围文本 }}。现有牌库记录时间是 {{ 当前牌库记录时间文本 }}，
-                      请按游戏内最新初始铭牌库手动调整。
+                      请核对初始铭牌库是否与游戏内一致，若不一致请手动调整。
                     </div>
                   </div>
                   <v-btn color="warning" size="small" variant="flat" @click="保存当前牌库数据">

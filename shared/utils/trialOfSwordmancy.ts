@@ -386,8 +386,8 @@ export interface 牌库数据类 {
 }
 
 export const 默认牌库数据: 牌库数据类 = {
-  deck: [5, 5, 5, 8, 6],
-  updatedAt: Date.UTC(2026, 5, 11, 12, 0, 0),
+  deck: [4, 5, 6, 6, 7],
+  updatedAt: Date.UTC(2026, 5, 14, 20, 0, 0),
 };
 
 export const 默认牌库数量元组 = 默认牌库数据.deck;

@@ -70,10 +70,17 @@ export function 读取本地牌库数据(storage: Storage): 牌库数据类 {
     if (saved) {
       const data: unknown = JSON.parse(saved);
       if (是有效牌库数据(data)) {
-        return {
+        const savedData = {
           deck: [...data.deck],
           updatedAt: data.updatedAt,
         };
+        const presetData = {
+          deck: [...默认牌库数据.deck],
+          updatedAt: 默认牌库数据.updatedAt,
+        };
+        const newerData = savedData.updatedAt >= presetData.updatedAt ? savedData : presetData;
+        写入本地牌库数据(storage, newerData);
+        return newerData;
       }
     }
   } catch {
