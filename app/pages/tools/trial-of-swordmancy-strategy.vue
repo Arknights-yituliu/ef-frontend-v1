@@ -118,9 +118,7 @@
                           <strong>{{ item.即时奖励.toFixed(0) }}</strong>
                         </div>
                         <div v-if="!mobile" class="strategy-metric">
-                          <span>
-                            未来期望
-                          </span>
+                          <span> 未来期望 </span>
                           <strong>{{ 格式化万元(item.期望未来价值) }}</strong>
                         </div>
                         <div class="strategy-metric total">
@@ -172,8 +170,9 @@
               <div class="text-subtitle-2 text-medium-emphasis">
                 <v-icon icon="mdi-information"></v-icon>
                 <span>
-                  铭牌库每 3 天更新一次，但我们不一定每 3 天更新一次网站，若与游戏内不一致请手动调整。
-                  <br>上次更新时间：{{ 当前牌库记录时间文本 }}。
+                  铭牌库每 3 天更新一次，但我们不一定每 3
+                  天更新一次网站，若与游戏内不一致请手动调整。
+                  <br />上次更新时间：{{ 当前牌库记录时间文本 }}。
                 </span>
               </div>
               <v-alert
@@ -188,7 +187,8 @@
                   <div>
                     <div class="font-weight-bold">牌库数据可能需要手动更新</div>
                     <div class="text-body-2">
-                      当前周期：{{ 当前牌库周期范围文本 }}。现有牌库记录时间是 {{ 当前牌库记录时间文本 }}，
+                      当前周期：{{ 当前牌库周期范围文本 }}。现有牌库记录时间是
+                      {{ 当前牌库记录时间文本 }}，
                       请核对初始铭牌库是否与游戏内一致，若不一致请手动调整。
                     </div>
                   </div>
@@ -203,13 +203,19 @@
               <v-radio-group v-model="数据溢出模式值" density="compact" hide-details>
                 <v-radio :label="`不接受数据溢出`" :value="数据溢出模式.不接受" />
                 <v-radio
-:class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }" :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
+                  :class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }"
+                  :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
                   :label="`接受 1 次数据溢出`"
-                  :value="数据溢出模式.接受1次" />
+                  :value="数据溢出模式.接受1次"
+                />
                 <v-radio
-:class="{ 'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次 }" :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
+                  :class="{
+                    'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次,
+                  }"
+                  :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
                   :label="`接受 1 ~ 2 次数据溢出`"
-                  :value="数据溢出模式.接受1至2次" />
+                  :value="数据溢出模式.接受1至2次"
+                />
               </v-radio-group>
 
               <!-- 演武平台等级 -->
@@ -394,7 +400,31 @@
 
     <v-row>
       <v-col cols="12">
-        <v-expansion-panels :model-value="['docs']" multiple>
+        <v-expansion-panels :model-value="['simplified-strategy', 'docs']" multiple>
+          <!-- 简化策略 -->
+          <v-expansion-panel value="simplified-strategy">
+            <v-expansion-panel-title>
+              <v-icon class="mr-2" color="primary">mdi-lightbulb-on-outline</v-icon>
+              简化策略
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <p>最优策略太麻烦？有一个非常简单的简化策略，三句话记住：</p>
+              <ol>
+                <li><strong>能翻倍则翻倍；</strong></li>
+                <li>
+                  <strong>如果还有至少 2 次放弃机会</strong>，则 roll 到
+                  <strong>10 点</strong>才进去打；
+                </li>
+                <li><strong>否则</strong>也要至少 roll 到 <strong>9 点</strong>才进去打。</li>
+              </ol>
+              <p>
+                当初始牌库为 5、5、5、8、6
+                时，这一简化策略是一大类启发式策略中，收益最高的一个，可以达到最优策略的
+                <strong>98%</strong>。
+              </p>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
           <v-expansion-panel value="docs">
             <v-expansion-panel-title>
               <v-icon class="mr-2" color="primary">mdi-help-circle</v-icon>
@@ -452,16 +482,16 @@
               </ul>
 
               <h3>操作说明</h3>
-              <p>您首先需要在【基础设定区】设置当前铭牌库的初始牌数、数据溢出容许及演算平台等级。</p>
+              <p>
+                您首先需要在【基础设定区】设置当前铭牌库的初始牌数、数据溢出容许及演算平台等级。
+              </p>
               <ul>
                 <li>
                   <strong
                     >铭牌库每3日会刷新一次，请务必确保【基础设定区】中的铭牌库数量与游戏内未抽取时的铭牌库数量一致。</strong
                   >
                 </li>
-                <li>
-                  演算平台等级会影响最终战力点奖励量及每日翻倍次数。默认选用Lv.4。
-                </li>
+                <li>演算平台等级会影响最终战力点奖励量及每日翻倍次数。默认选用Lv.4。</li>
               </ul>
               <p>
                 之后点击【输入区】的【重置全部】按钮，即可开始演算计算推演。<br />可用的操作如下：
@@ -473,7 +503,8 @@
                 </li>
                 <li>
                   <v-icon class="mr-2" size="small">mdi-restore</v-icon>
-                  <strong>重置全部</strong> — 将所有状态（已抽手牌、翻倍状态、各次数计数）恢复为初始值
+                  <strong>重置全部</strong> —
+                  将所有状态（已抽手牌、翻倍状态、各次数计数）恢复为初始值
                 </li>
                 <li>
                   <v-icon class="mr-2" color="#c3ab71" size="small">mdi-code-brackets</v-icon>
@@ -525,10 +556,7 @@
                 </li>
                 <li><strong>本次收益</strong> — 执行当前决策（如开始演武）本次获得的收益</li>
                 <li><strong>未来期望</strong> — 选择某个决策后，后续演武收益的期望</li>
-                <li>
-                  <strong>全体期望</strong> = 本次收益 +
-                  未来期望，表示选择该决策的总收益期望
-                </li>
+                <li><strong>全体期望</strong> = 本次收益 + 未来期望，表示选择该决策的总收益期望</li>
               </ul>
               <p>当剩余演算次数为 0 时，输出区会显示"已无演算次数"提示。</p>
 
@@ -547,7 +575,7 @@
               </ul>
               <p>
                 虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
-                张铭牌才会开始演算。<br/>
+                张铭牌才会开始演算。<br />
                 为了性能考虑，在本计算器中，仅在刚好抽取了 2 张铭牌时才能选择是否翻倍。
               </p>
 
