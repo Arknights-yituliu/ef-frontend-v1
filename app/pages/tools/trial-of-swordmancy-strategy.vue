@@ -270,6 +270,7 @@
                   <input
                     v-model.number="输入.剩余放弃次数"
                     aria-label="剩余放弃次数"
+                    :class="{'empty': !输入.剩余放弃次数}"
                     max="3"
                     min="0"
                     type="number"
@@ -280,6 +281,7 @@
                   <input
                     v-model.number="输入.剩余翻倍次数"
                     aria-label="剩余翻倍次数"
+                    :class="{'empty': !输入.剩余翻倍次数}"
                     max="2"
                     min="0"
                     type="number"
@@ -445,7 +447,7 @@
               </ul>
               <v-card class="mx-auto" color="error" variant="outlined">
                 <template #text>
-                  <v-icon class="mr-2" color="error">mdi-alert</v-icon>
+                  <v-icon class="mr-2">mdi-alert</v-icon>
                   <span class="text-body-1">
                     <strong>注意：</strong>当铭牌的战力点数和超过 10
                     时，最终战力点会溢出，报酬量将会重新计算，并同时<strong>触发溢出惩罚。</strong>
@@ -457,7 +459,17 @@
                   </span>
                 </template>
               </v-card>
-              <p>在演武开始前，管理员可在演武场地东侧的专用区域设置战斗辅助设备以辅助战斗。</p>
+              <v-card class="mx-auto mt-2" :color="theme === 'dark' ? '#cdbb8e' : '#756a51'" variant="tonal">
+                <template #text>
+                  <v-icon class="mr-2">mdi-information</v-icon>
+                  <span class="text-body-1">
+                      <strong>提示：</strong>不选择放弃，直接通过右上角关闭（包括鼠标右键关闭）铭牌抽取界面时，
+                      <strong>演武平台会保存已抽取的铭牌。</strong><br/>
+                      您可以通过这个方式暂时退出抽取界面，在传送点休整/服用食药等准备完毕后，再返回演武平台继续确认挑战。
+                  </span>
+                </template>
+              </v-card>
+              <p>在演武开始前，管理员可在演武场地西侧观景台的专用区域设置战斗辅助设备以辅助战斗。</p>
 
               <h3>规则假设</h3>
               <ul>
@@ -477,7 +489,8 @@
                   >
                 </li>
                 <li>
-                  演算平台等级会影响最终战力点奖励量及每日翻倍次数。默认选用Lv.4。
+                  演算平台等级会影响最终战力点奖励量及每日翻倍次数。默认选用Lv.4。<br/>
+                  <span class="text-error"><strong>注意：</strong>当前存在待完成的演算（即至少抽取了1张铭牌）时，无法进行演武平台升级。<br/>若有升级需求请务必注意。</span>
                 </li>
               </ul>
               <p>
@@ -629,6 +642,7 @@ usePageSeo({
 });
 
 const { mobile } = useDisplay();
+const { theme } = useTheme();
 
 const 左侧面板展开值 = ref<string[]>(['output', 'settings']);
 const 右侧面板展开值 = ref<string[]>(['input']);
@@ -1225,6 +1239,18 @@ function 执行决策按钮(决策: string): void {
   border-color: rgba(203, 177, 118, 0.95);
   outline: 2px solid rgba(203, 177, 118, 0.25);
   outline-offset: 1px;
+}
+
+.daily-count-field input.empty {
+  border-color: rgba(253, 94, 97, 0.9);
+  border-width: 2px;
+  color: rgba(255, 42, 44, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 0, 0, 0.08),
+    0 1px 2px var(--theme-shadow-base);
+}
+.daily-count-field input.empty:focus {
+  outline-color: rgba(255, 42, 44, 0.25);
 }
 
 .deck-version-alert :deep(.v-alert__content) {
