@@ -558,6 +558,13 @@ import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import { CountTo } from 'vue3-count-to';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
+
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('menu.gachaAnalysis')} - ${t('layout.siteName')}`,
+  description: () => 'Analyze gacha records, pity distribution, and probability curves for Endfield pulls.',
+});
 // ========== 获取、加载抽卡数据==========
 
 // 调试开关

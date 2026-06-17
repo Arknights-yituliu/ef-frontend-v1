@@ -621,6 +621,13 @@ definePageMeta({
   layout: 'default',
 });
 
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('menu.trialOfSwordmancyStrategy')} - ${t('layout.siteName')}`,
+  description: () => 'Strategy calculator for Trial of Swordmancy outcomes and hand composition.',
+});
+
 const { mobile } = useDisplay();
 
 const 左侧面板展开值 = ref<string[]>(['output', 'settings']);

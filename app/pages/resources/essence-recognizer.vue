@@ -317,6 +317,14 @@ definePageMeta({
   layout: 'default',
 });
 
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('menu.essenceRecognizer')} - ${t('layout.siteName')}`,
+  description: () =>
+    'Download and use the Endfield essence recognizer tool with usage notes and troubleshooting.',
+});
+
 // 错误提示状态
 const showError = ref(false);
 const errorMessage = ref('');

@@ -297,7 +297,12 @@ v-if="checkForceSelectItem('operator', opId)"
 import type { GiftCategoryTag, GiftTag, OpName } from '@/custom/core/gifts';
 import { getCategoryIcon, getOperatorIcon, gifts, hotIcon } from '@/custom/core/gifts';
 const { theme } = useTheme();
-const { locale } = useI18n();
+const { locale, t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('page.tools.giftCalculator.currentGameVersion')} - ${t('layout.siteName')}`,
+  description: () => t('page.tools.giftCalculator.giftExplain.title1'),
+});
 
 function getLocaleText (textGroup: GiftCategoryTag | GiftTag | OpName | undefined) {
   return textGroup?.[locale.value]

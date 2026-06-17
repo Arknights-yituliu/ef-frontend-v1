@@ -44,6 +44,11 @@ const router = useRouter();
 
 const { t } = useI18n();
 
+usePageSeo({
+  title: () => `${t('page.tools.gachaCalculator.title')} - ${t('layout.siteName')}`,
+  description: () => t('page.tools.gachaCalculator.underDevelopment'),
+});
+
 //
 const leftPartPanel = ref<string[]>(['statisticalResult', 'controlPanel', 'dev']);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'

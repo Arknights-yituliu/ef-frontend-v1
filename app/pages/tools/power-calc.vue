@@ -238,6 +238,13 @@ const powerPerBattery = ref(50);
 const burnTimeSeconds = ref(8);
 const selectedBattery = ref('source');
 
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('menu.batterySplitCalculator')} - ${t('layout.siteName')}`,
+  description: () => 'Plan battery split routing and power output for Endfield production setups.',
+});
+
 // 简单的防抖函数
 function debounce <T extends (...args: any[]) => any>(func: T,
   duration: number = 500): ((...args: Parameters<T>) => void) {

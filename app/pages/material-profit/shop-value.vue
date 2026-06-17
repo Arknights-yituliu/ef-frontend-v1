@@ -102,22 +102,9 @@ definePageMeta({
   layout: 'default',
 });
 
-// SEO 配置
-const siteName = computed(() => t('layout.siteName'));
-const pageTitle = computed(() => `${t('page.materialProfit.shopValue.title')} - ${siteName.value}`);
-const pageDescription = computed(() => t('page.materialProfit.shopValue.description'));
-
-useSeoMeta({
-  title: () => pageTitle.value,
-  description: () => pageDescription.value,
-  ogTitle: () => pageTitle.value,
-  ogDescription: () => pageDescription.value,
-  ogType: 'website',
-  twitterCard: 'summary',
-});
-
-useHead({
-  title: () => pageTitle.value,
+usePageSeo({
+  title: () => `${t('page.materialProfit.shopValue.title')} - ${t('layout.siteName')}`,
+  description: () => t('page.materialProfit.shopValue.description'),
 });
 </script>
 

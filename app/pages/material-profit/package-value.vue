@@ -137,7 +137,7 @@ const defaultSorting: Map<string, number> = new Map(
   Object.keys(packs).map((packId, index) => [packId, index]),
 );
 
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 
 // 筛选和排序状态
 const searchQuery = ref('');
@@ -257,6 +257,11 @@ function triggerDevModeByShop(shopId: string) {
 
 definePageMeta({
   layout: 'default',
+});
+
+usePageSeo({
+  title: () => `${t('page.materialProfit.packageValue.title')} - ${t('layout.siteName')}`,
+  description: () => t('page.materialProfit.packageValue.description'),
 });
 </script>
 
