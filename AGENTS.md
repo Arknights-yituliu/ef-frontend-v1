@@ -11,7 +11,7 @@ yarn lint:format
 # Generate static site (SSG build)
 yarn generate
 
-# Generate game data from scripts
+# Generate game data from scripts (If relevant files are modified)
 yarn makedata
 ```
 
