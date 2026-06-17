@@ -33,6 +33,10 @@ yarn preview
 yarn makedata
 ```
 
+## Important Requirements
+
+- **Keep README in sync**: If you add, remove, or restructure directories/files, update the `项目结构` section in `README.md` accordingly.
+
 ## Documentation Index (content/introduction/)
 
 | File (en) | File (zh) | Core Description |
