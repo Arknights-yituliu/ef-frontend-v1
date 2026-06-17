@@ -5,29 +5,11 @@
 After editing code, run these commands in order to verify correctness:
 
 ```bash
-# Lint check
-yarn lint
-
-# Auto-fix lint issues
-yarn lint:fix
-
-# Format code
-yarn format
-
-# Check formatting only
-yarn format:check
-
 # Lint + format in one pass
 yarn lint:format
 
 # Generate static site (SSG build)
 yarn generate
-
-# Dev server
-yarn dev
-
-# Preview production build
-yarn preview
 
 # Generate game data from scripts
 yarn makedata
@@ -36,6 +18,7 @@ yarn makedata
 ## Important Requirements
 
 - **Keep README in sync**: If you add, remove, or restructure directories/files, update the `项目结构` section in `README.md` accordingly.
+- **Reuse before write**: Before writing new utility/tool functions, check `shared/utils/` (see index below) — if a reusable function already exists, use it instead of duplicating.
 
 ## Documentation Index (content/introduction/)
 
@@ -47,3 +30,21 @@ yarn makedata
 | `docs-setting-en.md` | `docs-setting-zh.md` | How to create, organize, and internationalize documentation pages (file creation, nav config, i18n). Read when adding documentation content. |
 | `contributor-setting-en.md` | `contributor-setting-zh.md` | How to add your information to the project's contributor list. Read when onboarding new contributors. |
 | `common-questions-en.md` | `common-questions-zh.md` | Troubleshooting common development issues (e.g., `better-sqlite3` build failures). Read when encountering setup or build problems. |
+
+## Shared Utils Index (shared/utils/)
+
+| File | Core Description |
+|------|------------------|
+| `autoFontSizing.ts` | Auto-resize font to fit container width |
+| `combinatoricUtil.ts` | Combinatorial generation (k-combinations from array) |
+| `dateUtil.ts` | Date/time formatting with custom template strings |
+| `debounce.ts` | Debounce wrapper for rate-limiting function calls |
+| `domUtil.ts` | DOM helpers — get real element from component ref, scroll, position |
+| `gacha-calculator.ts` | Gacha reward statistics engine (simulation, probability, resource统计) |
+| `numberUtil.ts` | Number rounding, formatting utilities |
+| `trialOfSwordmancy.ts` | Trial of Swordmancy game logic types, enums, constants |
+| `trialOfSwordmancyDeck.ts` | Trial of Swordmancy deck persistence (localStorage) |
+| `trialOfSwordmancyPageState.ts` | Trial of Swordmancy page input/state management types |
+| `urlUtil.ts` | URL parsing, avatar image URL resolution |
+| `gameData/item.ts` | Item display helpers (icon, color, name lookup from game data) |
+| `gameData/pack.ts` | Pack value calculation, gacha count estimation, efficiency analysis |
