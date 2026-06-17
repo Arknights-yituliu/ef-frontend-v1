@@ -163,10 +163,10 @@
           </div>
 
           <div class="mt-4">
-            <h3 class="text-subtitle-2 mb-2">{{ '抽数分布' }}</h3>
+            <h3 class="text-subtitle-2 mb-2">{{ '卡池抽数排行' }}</h3>
             <div class="d-flex flex-wrap">
                 <v-chip
-                  v-for="([pool, item]) in Object.entries(poolDistribution).slice(0, 5)"
+                  v-for="([pool, item]) in Object.entries(poolDistribution).sort(([, a], [, b]) => b.count - a.count).slice(0, 3)"
                   :key="pool"
                   class="pool-distribution-chip"
                   :color="getPoolColor(pool)"
