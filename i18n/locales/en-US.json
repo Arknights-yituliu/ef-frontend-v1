@@ -46,6 +46,8 @@
     "close": "Close",
     "copySuccess": "Copied",
     "copyFailed": "Copy failed",
+    "PCOnly": "Only available on PC",
+    "copyCodePCOnly": "Copied.\nPlease note that this code can only be used on PC platform.",
     "feedback": "Feedback"
   },
   "layout": {
@@ -121,7 +123,7 @@
         "launchRedemptionCodes": {
           "title": "Launch Redemption Codes",
           "tag": "Official",
-          "description": "Redeem at \"Settings - Platform & Account - Gift Code Redemption\""
+          "description": "Redeem at \"Settings - Platform & Account - Gift Code Redemption\"; Require [Mail] feature unlocked."
         },
         "officialWebsite": {
           "title": "Official Website",
