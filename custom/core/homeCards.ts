@@ -584,6 +584,24 @@ export const homeCards: CardData[] = [
     ],
   },
   {
+    i18nKey: 'akedata',
+    icon: 'https://cos.yituliu.cn/endfield/icons/akedata.webp',
+    image: 'https://cos.yituliu.cn/endfield/icons/akedata.webp',
+    descriptionKey: 'description',
+    tagTypes: [CardTagType.ThirdParty],
+    buttons: [
+      {
+        i18nKey: 'buttons.main',
+        buttonType: ButtonType.Main,
+        action: ButtonActionType.Link,
+        actionData: 'https://www.akedata.top/',
+        target: true,
+        icon: 'mdi-web',
+        color: 'primary',
+      },
+    ],
+  },
+  {
     i18nKey: 'dige',
     icon: 'https://cos.yituliu.cn/endfield/icons/DIGEicon.png',
     image: 'https://cos.yituliu.cn/endfield/home/DIGE.png',

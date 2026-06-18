@@ -177,6 +177,11 @@
           "linkIcon": "mdi-toolbox",
           "description": "Includes practical tools like gacha calculator, essence planner and gacha analysis"
         },
+        "akedata": {
+          "title": "AKEData",
+          "tag": "Third Party",
+          "description": "A data query website designed for Arknights: Endfield players. It supports queries for characters, weapons, dungeons, and other types of data."
+        },
         "dige": {
           "title": "D.I.G.E. - Thermal Energy Pond Planner",
           "tag": "Third Party",
