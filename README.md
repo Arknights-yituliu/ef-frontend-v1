@@ -61,8 +61,7 @@ ef-frontend-v1/
 │       └── en-US.json            # 英文（美国）翻译文件
 ├── custom/                       # 自定义文件，用于存放不被 Nuxt 自动识别的配置
 │   ├── config/                   # 自定义配置
-│   │   ├── base-url.ts           # 基础 URL 配置
-│   │   └── pre-fetch.ts          # 预加载配置
+│   │   └── base-url.ts           # 基础 URL 配置
 │   ├── core/                     # 游戏核心数据文件
 │   │   ├── gacha/                # 抽卡数据子目录
 │   │   ├── items.ts              # 物品数据
