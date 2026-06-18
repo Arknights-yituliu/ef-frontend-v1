@@ -225,5 +225,36 @@
         "url": "https://github.com/AndreaFrederica/jei-web"
       }
     ]
+  },
+  {
+    "id": "AKEData",
+    "localized_name": {
+      "zh_CN": "AKEData",
+      "en_US": "AKEData"
+    },
+    "localized_description": {
+      "zh_CN": "AKEData 是一个专为《明日方舟：终末地》玩家制作的数据查询网站。支持角色、武器、副本等各类数据查询",
+      "en_US": "AKEData is a data query website designed for Arknights: Endfield players. It supports queries for characters, weapons, dungeons, and other types of data."
+    },
+    "localized_slogan": {
+      "zh_CN": "AKEData - 《明日方舟：终末地》数据查询工具",
+      "en_US": "AKEData - Data Query Tool for Arknights: Endfield"
+    },
+    "localized_tags": {
+      "zh_CN": ["Wiki"],
+      "en_US": ["Wiki"]
+    },
+    "icon_url": "https://cos.yituliu.cn/endfield/icons/akedata.webp",
+    "links": [
+      {
+        "primary": true,
+        "regionality": "global",
+        "localized_name": {
+          "zh_CN": "主页",
+          "en_US": "Home"
+        },
+        "url": "https://www.akedata.top/"
+      }
+    ]
   }
 ]
