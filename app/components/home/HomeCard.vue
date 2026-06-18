@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import type { CardButton, CardData, CardTagType } from '@/custom/core/homeCards';
+import { useClipboard } from '@vueuse/core'
 import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
 const { t } = useI18n();
+const { copy } = useClipboard();
 
 interface Props {
   card: CardData;
@@ -88,7 +90,7 @@ function handleCardButtonClick (button: CardButton) {
     window.open(button.actionData, target);
   } else if (button.action === ButtonActionType.Copy) {
     // 复制文本
-    copyToClipboard(button.actionData, t('common.copySuccess'));
+    copyToClipboard(button.actionData, t(button.copySuccessText || 'common.copySuccess'));
   }
 }
 
@@ -97,7 +99,8 @@ function handleCardButtonClick (button: CardButton) {
  */
 async function copyToClipboard (text: string, successMessage: string) {
   try {
-    await navigator.clipboard.writeText(text);
+    // await navigator.clipboard.writeText(text);
+    await copy(text);
     alert(successMessage);
   } catch (error) {
     console.error('复制失败:', error);
@@ -179,10 +182,16 @@ function toggleFavorite () {
         color="black"
         :prepend-icon="button.icon"
         size="small"
-        :text="t(`component.home.${button.i18nKey}`)"
         variant="text"
         @click="handleCardButtonClick(button)"
-      />
+      >
+        {{ t(`component.home.${button.i18nKey}`) }}
+        <v-tooltip
+          v-if="button.popupText"
+          activator="parent"
+          location="top"
+        >{{t(button.popupText)}}</v-tooltip>
+      </v-btn>
       <!-- 主按钮 - 永远置于最右侧 -->
       <v-btn
         v-for="button in cardData.mainButtons"

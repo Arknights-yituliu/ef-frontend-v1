@@ -48,6 +48,10 @@ export interface CardButton {
   icon?: string;
   /** 按钮颜色 (可选) */
   color?: string;
+  /** 复制成功后的提示文本（仅 copy 类型有效） */
+  copySuccessText?: string;
+  /** 弹出提示文本 */
+  popupText?: string;
 }
 
 /**
@@ -148,20 +152,20 @@ export const homeCards: CardData[] = [
     descriptionKey: 'description',
     tagTypes: [CardTagType.Official],
     buttons: [
-      {
-        i18nKey: 'buttons.returnofall',
-        buttonType: ButtonType.Text,
-        action: ButtonActionType.Copy,
-        actionData: 'RETURNOFALL',
-        icon: 'mdi-content-copy',
-      },
-      {
-        i18nKey: 'buttons.allfield',
-        buttonType: ButtonType.Text,
-        action: ButtonActionType.Copy,
-        actionData: 'ALLFIELD',
-        icon: 'mdi-content-copy',
-      },
+      // {
+      //   i18nKey: 'buttons.returnofall',
+      //   buttonType: ButtonType.Text,
+      //   action: ButtonActionType.Copy,
+      //   actionData: 'RETURNOFALL',
+      //   icon: 'mdi-content-copy',
+      // },
+      // {
+      //   i18nKey: 'buttons.allfield',
+      //   buttonType: ButtonType.Text,
+      //   action: ButtonActionType.Copy,
+      //   actionData: 'ALLFIELD',
+      //   icon: 'mdi-content-copy',
+      // },
       {
         i18nKey: 'buttons.endfieldgift',
         buttonType: ButtonType.Text,
@@ -174,43 +178,10 @@ export const homeCards: CardData[] = [
         buttonType: ButtonType.Text,
         action: ButtonActionType.Copy,
         actionData: 'ENDFIELD4PC',
-        icon: 'mdi-content-copy',
+        icon: 'mdi-monitor',
+        popupText: 'common.PCOnly',
+        copySuccessText: 'common.copyCodePCOnly',
       },
-      // {
-      //   i18nKey: 'buttons.tdd202601',
-      //   buttonType: ButtonType.Text,
-      //   action: ButtonActionType.Copy,
-      //   actionData: 'TDD202601',
-      //   icon: 'mdi-content-copy',
-      // },
-      // {
-      //   i18nKey: 'buttons.arknightstd',
-      //   buttonType: ButtonType.Text,
-      //   action: ButtonActionType.Copy,
-      //   actionData: 'ARKNIGHTS-TD',
-      //   icon: 'mdi-content-copy',
-      // },
-      // {
-      //   i18nKey: 'buttons.hiddengem01',
-      //   buttonType: ButtonType.Text,
-      //   action: ButtonActionType.Copy,
-      //   actionData: 'HIDDEN-GEM-01',
-      //   icon: 'mdi-content-copy',
-      // },
-      // {
-      //   i18nKey: 'buttons.zmd202601',
-      //   buttonType: ButtonType.Text,
-      //   action: ButtonActionType.Copy,
-      //   actionData: 'ZMD202601',
-      //   icon: 'mdi-content-copy',
-      // },
-      // {
-      //   i18nKey: 'buttons.arknightstdd',
-      //   buttonType: ButtonType.Text,
-      //   action: ButtonActionType.Copy,
-      //   actionData: 'ARKNIGHTS-TDD',
-      //   icon: 'mdi-content-copy',
-      // },
     ],
   },
   {
@@ -404,7 +375,7 @@ export const homeCards: CardData[] = [
         action: ButtonActionType.Link,
         actionData: '/tools/essence-calculator',
         target: false,
-        icon: 'mdi-pokeball',
+        icon: '$essence',
       },
       {
         i18nKey: 'buttons.batterySplitCalculator',
