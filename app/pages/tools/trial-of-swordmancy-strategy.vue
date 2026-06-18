@@ -118,9 +118,7 @@
                           <strong>{{ item.即时奖励.toFixed(0) }}</strong>
                         </div>
                         <div v-if="!mobile" class="strategy-metric">
-                          <span>
-                            未来期望
-                          </span>
+                          <span> 未来期望 </span>
                           <strong>{{ 格式化万元(item.期望未来价值) }}</strong>
                         </div>
                         <div class="strategy-metric total">
@@ -172,8 +170,9 @@
               <div class="text-subtitle-2 text-medium-emphasis">
                 <v-icon icon="mdi-information"></v-icon>
                 <span>
-                  铭牌库每 3 天更新一次，但我们不一定每 3 天更新一次网站，若与游戏内不一致请手动调整。
-                  <br>上次更新时间：{{ 当前牌库记录时间文本 }}。
+                  铭牌库每 3 天更新一次，但我们不一定每 3
+                  天更新一次网站，若与游戏内不一致请手动调整。
+                  <br />上次更新时间：{{ 当前牌库记录时间文本 }}。
                 </span>
               </div>
               <v-alert
@@ -188,7 +187,8 @@
                   <div>
                     <div class="font-weight-bold">牌库数据可能需要手动更新</div>
                     <div class="text-body-2">
-                      当前周期：{{ 当前牌库周期范围文本 }}。现有牌库记录时间是 {{ 当前牌库记录时间文本 }}，
+                      当前周期：{{ 当前牌库周期范围文本 }}。现有牌库记录时间是
+                      {{ 当前牌库记录时间文本 }}，
                       请核对初始铭牌库是否与游戏内一致，若不一致请手动调整。
                     </div>
                   </div>
@@ -203,13 +203,19 @@
               <v-radio-group v-model="数据溢出模式值" density="compact" hide-details>
                 <v-radio :label="`不接受数据溢出`" :value="数据溢出模式.不接受" />
                 <v-radio
-:class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }" :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
+                  :class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }"
+                  :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
                   :label="`接受 1 次数据溢出`"
-                  :value="数据溢出模式.接受1次" />
+                  :value="数据溢出模式.接受1次"
+                />
                 <v-radio
-:class="{ 'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次 }" :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
+                  :class="{
+                    'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次,
+                  }"
+                  :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
                   :label="`接受 1 ~ 2 次数据溢出`"
-                  :value="数据溢出模式.接受1至2次" />
+                  :value="数据溢出模式.接受1至2次"
+                />
               </v-radio-group>
 
               <!-- 演武平台等级 -->
@@ -368,30 +374,13 @@
 
               <div class="quick-action-grid mt-3">
                 <div class="quick-action-start">
-                  <button
-                    aria-label="开始演算"
-                    class="start-calculation-button"
+                  <ToolsTrialSwordmancyStartButton
                     :disabled="!可开始演算"
-                    type="button"
-                    @click="() => 执行开始演算()"
-                  >
-                    <v-icon icon="mdi-code-brackets"></v-icon>
-                    <span class="start-calculation-text">开始演算</span>
-                  </button>
+                    @click="执行开始演算()"
+                  />
                 </div>
                 <div>
-                  <button
-                    aria-label="放弃"
-                    class="abandon-action-button"
-                    :disabled="!可放弃"
-                    type="button"
-                    @click="执行放弃"
-                  >
-                    <v-icon icon="mdi-logout"></v-icon>
-                    <span class="abandon-action-content">
-                      <span class="abandon-action-text">放弃</span>
-                    </span>
-                  </button>
+                  <ToolsTrialSwordmancyAbandonButton :disabled="!可放弃" @click="执行放弃" />
                 </div>
                 <div>
                   <v-btn
@@ -413,7 +402,31 @@
 
     <v-row>
       <v-col cols="12">
-        <v-expansion-panels :model-value="['docs']" multiple>
+        <v-expansion-panels :model-value="['simplified-strategy', 'docs']" multiple>
+          <!-- 简化策略 -->
+          <v-expansion-panel value="simplified-strategy">
+            <v-expansion-panel-title>
+              <v-icon class="mr-2" color="primary">mdi-lightbulb-on-outline</v-icon>
+              简化策略
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <p>最优策略太麻烦？有一个非常简单的简化策略，三句话记住：</p>
+              <ol>
+                <li><strong>能翻倍则翻倍；</strong></li>
+                <li>
+                  <strong>如果还有至少 2 次放弃机会</strong>，则 roll 到
+                  <strong>10 点</strong>才进去打；
+                </li>
+                <li><strong>否则</strong>也要至少 roll 到 <strong>9 点</strong>才进去打。</li>
+              </ol>
+              <p>
+                当初始牌库为 5、5、5、8、6
+                时，这一简化策略是一大类启发式策略中，收益最高的一个，可以达到最优策略的
+                <strong>98%</strong>。
+              </p>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
           <v-expansion-panel value="docs">
             <v-expansion-panel-title>
               <v-icon class="mr-2" color="primary">mdi-help-circle</v-icon>
@@ -481,7 +494,9 @@
               </ul>
 
               <h3>操作说明</h3>
-              <p>您首先需要在【基础设定区】设置当前铭牌库的初始牌数、数据溢出容许及演算平台等级。</p>
+              <p>
+                您首先需要在【基础设定区】设置当前铭牌库的初始牌数、数据溢出容许及演算平台等级。
+              </p>
               <ul>
                 <li>
                   <strong
@@ -503,7 +518,8 @@
                 </li>
                 <li>
                   <v-icon class="mr-2" size="small">mdi-restore</v-icon>
-                  <strong>重置全部</strong> — 将所有状态（已抽手牌、翻倍状态、各次数计数）恢复为初始值
+                  <strong>重置全部</strong> —
+                  将所有状态（已抽手牌、翻倍状态、各次数计数）恢复为初始值
                 </li>
                 <li>
                   <v-icon class="mr-2" color="#c3ab71" size="small">mdi-code-brackets</v-icon>
@@ -555,10 +571,7 @@
                 </li>
                 <li><strong>本次收益</strong> — 执行当前决策（如开始演武）本次获得的收益</li>
                 <li><strong>未来期望</strong> — 选择某个决策后，后续演武收益的期望</li>
-                <li>
-                  <strong>全体期望</strong> = 本次收益 +
-                  未来期望，表示选择该决策的总收益期望
-                </li>
+                <li><strong>全体期望</strong> = 本次收益 + 未来期望，表示选择该决策的总收益期望</li>
               </ul>
               <p>当剩余演算次数为 0 时，输出区会显示"已无演算次数"提示。</p>
 
@@ -577,7 +590,7 @@
               </ul>
               <p>
                 虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
-                张铭牌才会开始演算。<br/>
+                张铭牌才会开始演算。<br />
                 为了性能考虑，在本计算器中，仅在刚好抽取了 2 张铭牌时才能选择是否翻倍。
               </p>
 
@@ -1274,147 +1287,6 @@ function 执行决策按钮(决策: string): void {
   min-width: 0;
 }
 
-.start-calculation-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 44px;
-  padding: 0.35rem 0.55rem;
-  overflow: hidden;
-  font: inherit;
-  color: rgba(255, 255, 255, 0.98);
-  cursor: pointer;
-  appearance: none;
-  background: linear-gradient(90deg, rgba(194, 170, 112, 0.92), rgba(222, 204, 158, 0.86)), #cbb176;
-  border: 0;
-  border-radius: 2px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
-  transition:
-    filter 0.18s ease,
-    transform 0.18s ease,
-    opacity 0.18s ease;
-  isolation: isolate;
-}
-
-.start-calculation-button::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.12) 0,
-      rgba(255, 255, 255, 0.12) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    linear-gradient(120deg, transparent 0 48%, rgba(255, 255, 255, 0.14) 48% 54%, transparent 54%);
-}
-
-.start-calculation-button:hover:not(:disabled) {
-  filter: brightness(1.04);
-  transform: translateY(-1px);
-}
-
-.start-calculation-button:disabled {
-  cursor: default;
-  filter: grayscale(0.55);
-  opacity: 0.58;
-}
-
-.start-calculation-button:focus-visible {
-  outline: 2px solid rgba(215, 184, 104, 0.82);
-  outline-offset: 2px;
-}
-
-.start-calculation-text {
-  min-width: 0;
-  overflow: hidden;
-  font-size: 1.28rem;
-  font-weight: 900;
-  line-height: 1;
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(118, 95, 54, 0.2);
-}
-
-.abandon-action-button {
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 44px;
-  padding: 0.34rem 0.5rem;
-  overflow: hidden;
-  font: inherit;
-  color: rgba(255, 255, 255, 0.96);
-  cursor: pointer;
-  appearance: none;
-  background: linear-gradient(90deg, rgba(87, 33, 34, 0.94), rgba(105, 42, 43, 0.88)), #552526;
-  border: 2px solid rgba(255, 42, 44, 0.9);
-  border-radius: 0;
-  transition:
-    filter 0.18s ease,
-    transform 0.18s ease,
-    opacity 0.18s ease;
-  isolation: isolate;
-}
-
-.abandon-action-button::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.04) 0,
-      rgba(255, 255, 255, 0.04) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    linear-gradient(90deg, rgba(255, 42, 44, 0.08), transparent 42%);
-}
-
-.abandon-action-button:hover:not(:disabled) {
-  filter: brightness(1.08);
-  transform: translateY(-1px);
-}
-
-.abandon-action-button:disabled {
-  cursor: default;
-  filter: grayscale(0.45);
-  opacity: 0.58;
-}
-
-.abandon-action-button:focus-visible {
-  outline: 2px solid rgba(255, 42, 44, 0.82);
-  outline-offset: 2px;
-}
-
-.abandon-action-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  min-width: 0;
-}
-
-.abandon-action-text {
-  overflow: hidden;
-  font-size: 1.28rem;
-  font-weight: 900;
-  line-height: 1;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(40, 10, 10, 0.34);
-}
-
 .post-battle-action-row {
   display: flex;
   flex-wrap: wrap;
@@ -1481,15 +1353,6 @@ function 执行决策按钮(决策: string): void {
   background: linear-gradient(135deg, rgba(203, 177, 118, 1), rgba(216, 196, 148, 0.8));
   color: #fff;
 }
-
-/*
-.strategy-result-card.is-best {
-  color: white;
-  background: linear-gradient(135deg, #1976d2 0%, #1e88e5 52%, #42a5f5 100%);
-  border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 5px 5px rgba(var(--v-theme-primary), 0.32);
-}
-*/
 
 .strategy-result-card:hover {
   box-shadow: 0 10px 10px rgba(50, 85, 94, 0.18);
