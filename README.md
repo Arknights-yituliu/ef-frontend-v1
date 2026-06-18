@@ -78,6 +78,8 @@ docker run -d -p 80:80 ef-frontend-v1
 项目默认以 AGENTS.md 文件和 .claude 目录作为 AI 开发的主要上下文文件。推荐使用 Claude Code 或 OpenCode 以获得最佳开发体验。若使用其他 AI 编程工具，为避免上下文文件过于杂乱，可将其配置文件添加到 .gitignore 中。
 - [OpenCode 兼容性](https://opencode.ai/docs/zh-cn/rules/#claude-code-%E5%85%BC%E5%AE%B9%E6%80%A7) - 了解 OpenCode 兼容 Claude Code 的规则
 - [CC Switch](https://github.com/farion1231/cc-switch) - 便捷切换 Claude Code / OpenCode 对接的AI服务供应商的工具
+- [Anthropic Skills](https://github.com/anthropics/skills) - Anthropic 官方提供的 Agent Skills
+- [OMO Multi Agent Suite](https://github.com/alvinunreal/oh-my-opencode-slim) - 轻量级的 OpenCode 多智能体工作流编排套件
 
 ### 相关资源
 
