@@ -1,5 +1,9 @@
 # AGENTS.md
 
+## The One Percent Principle
+
+If you feel that the part you want to modify has even the slightest possibility of being related to a document, read the relevant document first before making any changes.
+
 ## Verification Commands
 
 After editing code, run these commands in order to verify correctness:
