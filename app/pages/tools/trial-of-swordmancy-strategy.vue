@@ -18,11 +18,15 @@
               <div class="mb-4">
                 <v-row dense>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="6">
-                    剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} / {{ 输入.剩余放弃次数 }} /
-                    {{ 输入.剩余翻倍次数 }}
+                    剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} /
+                    <span :class="{'text-error font-weight-bold': 输入.剩余放弃次数 === 0}">{{ 输入.剩余放弃次数 }}</span> /
+                    <span :class="{'text-error font-weight-bold': 输入.剩余翻倍次数 === 0}">{{ 输入.剩余翻倍次数 }}</span>
                   </v-col>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                    翻倍状态: {{ 输入.是否翻倍 ? '已翻倍' : '未翻倍' }}
+                    翻倍状态:
+                    <v-icon :color="输入.是否翻倍 ? 'orange-darken-1' : undefined" size="small">
+                      {{ 输入.是否翻倍 ? 'mdi-check-circle' : 'mdi-close' }}
+                    </v-icon>
                   </v-col>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
                     当前手牌:
@@ -158,12 +162,12 @@
                   <v-btn
                     block
                     class="fill-height"
-                    color="grey-darken-1"
-                    prepend-icon="mdi-restore"
+                    color="teal-darken-1"
+                    prepend-icon="mdi-sync"
                     variant="outlined"
                     @click="执行重置初始铭牌库"
                   >
-                    重置为当前牌库
+                    同步牌库
                   </v-btn>
                 </v-col>
               </v-row>
@@ -208,11 +212,10 @@
                   Object.keys(演武平台等级表数据).map((_, i) => {
                     return {
                       value: i + 1,
-                      label: `Lv. ${i + 1}`,
+                      label: `Lv. ${i + 1}${i+1===4 ? ' (MAX)' : ''}`,
                     };
                   })
                 "
-                label="演武平台等级"
               />
               <div class="text-subtitle-2 my-4">演武平台属性</div>
               <ul>
@@ -339,14 +342,23 @@
               <div class="post-battle-action-row mt-3">
                 <v-switch
                   v-model="输入.是否翻倍"
+                  :base-color="输入.是否翻倍 && (当前手牌总数 !== 2 || 输入.剩余翻倍次数 <= 0) ? 'orange-darken-1' : undefined"
                   class="double-state-switch"
                   color="orange-darken-1"
                   density="compact"
                   :disabled="当前手牌总数 !== 2 || 输入.剩余翻倍次数 <= 0"
                   hide-details
                   inset
-                  :label="`奖励翻倍（${输入.剩余翻倍次数 > 0 ? `剩余 ${输入.剩余翻倍次数} 次` : '已耗尽'}）`"
-                />
+                >
+                  <template #thumb>
+                    <v-icon v-if="输入.是否翻倍" color="orange-darken-4" size="large">mdi-check</v-icon>
+                  </template>
+                  <template #label>
+                    <span :class="{ 'text-orange-darken-1 font-weight-bold': 输入.是否翻倍}">
+                      {{ `奖励翻倍（${输入.剩余翻倍次数 > 0 ? `剩余 ${输入.剩余翻倍次数} 次` : '已耗尽'}）` }}
+                    </span>
+                  </template>
+                </v-switch>
               </div>
 
               <div class="quick-action-grid mt-3">
@@ -387,7 +399,7 @@
               简化策略
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              <p>最优策略太麻烦？有一个非常简单的简化策略，三句话记住：</p>
+              <p class="mt-0">最优策略太麻烦？有一个非常简单的简化策略，三句话记住：</p>
               <ol>
                 <li><strong>能翻倍则翻倍；</strong></li>
                 <li>
@@ -410,7 +422,7 @@
               帮助与说明
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              <h3>基本规则</h3>
+              <h3 class="mt-0">基本规则</h3>
               <p>在选剑演武中，您需要从牌库中抽取铭牌，凑出特定战力点进行挑战。</p>
               <p>
                 每次演算可以抽取最多 5
@@ -557,14 +569,11 @@
               <p>计算完成后，输出区会展示当前状态下的决策分析与收益评估：</p>
               <ul>
                 <li><strong>最优决策</strong> — MDP 求解出的当前状态最佳行动方案</li>
-                <li>
-                  <strong>总收益期望</strong> —
-                  按照最优策略，从当前状态开始至结束所能获得的总收益期望
-                </li>
                 <li><strong>本次收益</strong> — 执行当前决策（如开始演武）本次获得的收益</li>
                 <li><strong>未来期望</strong> — 选择某个决策后，后续演武收益的期望</li>
                 <li><strong>全体期望</strong> = 本次收益 + 未来期望，表示选择该决策的总收益期望</li>
               </ul>
+              <p>在该区域点击决策名称可以快速执行对应的决策。</p>
               <p>当剩余演算次数为 0 时，输出区会显示 “已无演算次数” 提示。</p>
 
               <h3>关于翻倍</h3>
@@ -1285,8 +1294,6 @@ function 执行决策按钮(决策: string): void {
 .post-battle-action-row {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
 }
 
 .double-state-switch {
@@ -1356,6 +1363,10 @@ function 执行决策按钮(决策: string): void {
 .strategy-card-action {
   min-width: 0;
   flex-grow: 100;
+}
+
+.strategy-result-card.is-best .strategy-card-action :deep(.v-btn) {
+  outline: 2.5px solid rgba(255, 255, 255, 0.6);
 }
 
 .strategy-decision-button {
