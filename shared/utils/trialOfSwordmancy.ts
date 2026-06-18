@@ -389,16 +389,6 @@ export interface 牌库数据类 {
   updatedAt: number;
 }
 
-export const 默认牌库数据: 牌库数据类 = {
-  deck: [4, 5, 6, 6, 7],
-  updatedAt: Date.UTC(2026, 5, 14, 20, 0, 0),
-};
-
-export const 默认牌库数量元组 = 默认牌库数据.deck;
-export const 默认演算奖励元组 = [
-  0, 1000, 2000, 4000, 7500, 12_000, 20_000, 36_000, 60_000, 100_000, 160_000,
-];
-
 export const 演武平台等级表 = [
   {
     等级: 1,

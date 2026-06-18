@@ -1,5 +1,5 @@
+import type { 牌库数据类 } from './trialOfSwordmancy';
 import { 牌库配置, 获取当前牌库Deck, 计算当前牌库索引 } from '@/custom/core/trialOfSwordmancyPools';
-import { type 牌库数据类, 默认牌库数据 } from './trialOfSwordmancy';
 
 export const 牌库数据存储Key = 'trial-swordmancy-deck-data';
 const 旧牌库周期确认存储Key = 'trial-swordmancy-deck-cycle-confirmed';
@@ -43,10 +43,7 @@ export function 牌库数据快照(deck: number[]): string {
   return JSON.stringify(deck);
 }
 
-export function 是有效牌库数据(
-  value: unknown,
-  deckLength: number = 默认牌库数据.deck.length,
-): value is 牌库数据类 {
+export function 是有效牌库数据(value: unknown, deckLength: number = 5): value is 牌库数据类 {
   if (!value || typeof value !== 'object') {
     return false;
   }
