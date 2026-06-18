@@ -6,6 +6,8 @@
 import fs from 'node:fs';
 import { makeItems } from './tasks/makeItems';
 import { makePackGroups, makePacks, makePackShops } from './tasks/makePacks';
+import { makeTrialOfSwordmancyLevelTable } from './tasks/makeTrialOfSwordmancyLevelTable';
+import { makeTrialOfSwordmancyPools } from './tasks/makeTrialOfSwordmancyPools';
 import { makeEnergyAlluviums, makeWeapons } from './tasks/makeWeapons';
 import { makeWeaponToChars } from './tasks/makeWeaponToChars';
 
@@ -41,3 +43,25 @@ fs.writeFileSync('custom/core/packGroups.json', JSON.stringify(packGroups, null,
 console.log(`✓ custom/core/packs.json (${Object.keys(packs).length} packs)`);
 console.log(`✓ custom/core/packShops.json (${Object.keys(packShops).length} shops)`);
 console.log(`✓ custom/core/packGroups.json (${Object.keys(packGroups).length} groups)`);
+
+// ---------- trial-of-swordmancy level table ----------
+const trialOfSwordmancyLevelTable = makeTrialOfSwordmancyLevelTable();
+fs.writeFileSync(
+  'custom/core/trialOfSwordmancyLevelTable.json',
+  JSON.stringify(trialOfSwordmancyLevelTable, null, 2),
+  'utf8',
+);
+console.log(
+  `✓ custom/core/trialOfSwordmancyLevelTable.json (${Object.keys(trialOfSwordmancyLevelTable).length} levels)`,
+);
+
+// ---------- trial-of-swordmancy pools ----------
+const trialOfSwordmancyPools = makeTrialOfSwordmancyPools();
+fs.writeFileSync(
+  'custom/core/trialOfSwordmancyPools.json',
+  JSON.stringify(trialOfSwordmancyPools, null, 2),
+  'utf8',
+);
+console.log(
+  `✓ custom/core/trialOfSwordmancyPools.json (${trialOfSwordmancyPools.pools.length} pools)`,
+);

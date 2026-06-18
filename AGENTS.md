@@ -1,5 +1,9 @@
 # AGENTS.md
 
+## The One Percent Principle
+
+If you feel that the part you want to modify has even the slightest possibility of being related to a document, read the relevant document first before making any changes.
+
 ## Verification Commands
 
 After editing code, run these commands in order to verify correctness:
@@ -17,7 +21,7 @@ yarn makedata
 
 ## Important Requirements
 
-- **Keep README in sync**: If you add, remove, or restructure directories/files, update the `项目结构` section in `README.md` accordingly.
+- **Keep project structure in sync**: If you add, remove, or restructure directories/files, update the `├──` tree in `content/introduction/project-structure-zh.md` and `content/introduction/project-structure-en.md` accordingly.
 - **Reuse before write**: Before writing new utility/tool functions, check `shared/utils/` (see index below) — if a reusable function already exists, use it instead of duplicating.
 
 ## Documentation Index (content/introduction/)

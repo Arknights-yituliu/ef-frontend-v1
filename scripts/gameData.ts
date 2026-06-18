@@ -17,6 +17,10 @@ import type {
   ItemTypeTable,
   LevelLoadingTable,
   RewardTable,
+  SimulationTrainingCardPoolTable,
+  SimulationTrainingCardTable,
+  SimulationTrainingConst,
+  SimulationTrainingLevelTable,
   SkillPatchTable,
   TextTable,
   TranslationKey,
@@ -43,7 +47,7 @@ export type Locale = (typeof languageToLocaleMap)[I18nLanguage];
 
 /** 获取指定语言的国际化文本表路径 */
 export function getI18nTextTablePath(language: I18nLanguage): string {
-  const I18nDir = path.join(endfieldDataDir, 'I18n');
+  const I18nDir = path.join(endfieldDataDir, 'TableCfg');
   return path.join(I18nDir, `I18nTextTable_${language}.json`);
 }
 
@@ -149,25 +153,37 @@ export const levelLoadingTable: LevelLoadingTable = readJSONWithBigInt(
   'TableCfg/LevelLoadingTable.json',
 );
 export const rewardTable: RewardTable = readJSONWithBigInt('TableCfg/RewardTable.json');
+export const simulationTrainingConst: SimulationTrainingConst = readJSONWithBigInt(
+  'TableCfg/SimulationTrainingConst.json',
+);
+export const simulationTrainingCardPoolTable: SimulationTrainingCardPoolTable = readJSONWithBigInt(
+  'TableCfg/SimulationTrainingCardPoolTable.json',
+);
+export const simulationTrainingCardTable: SimulationTrainingCardTable = readJSONWithBigInt(
+  'TableCfg/SimulationTrainingCardTable.json',
+);
+export const simulationTrainingLevelTable: SimulationTrainingLevelTable = readJSONWithBigInt(
+  'TableCfg/SimulationTrainingLevelTable.json',
+);
 export const skillPatchTable: SkillPatchTable = readJSONWithBigInt('TableCfg/SkillPatchTable.json');
 export const textTable: TextTable = readJSONWithBigInt('TableCfg/TextTable.json');
 export const weaponBasicTable: WeaponBasicTable = readJSONWithBigInt(
   'TableCfg/WeaponBasicTable.json',
 );
 export const battlePassLevelTable: BattlePassLevelTable = readJSONWithBigInt(
-  'TableCfg_Mapped/BattlePassLevelTable.json',
+  'TableCfg/BattlePassLevelTable.json',
 );
 export const battlePassTrackTable: BattlePassTrackTable = readJSONWithBigInt(
-  'TableCfg_Mapped/BattlePassTrackTable.json',
+  'TableCfg/BattlePassTrackTable.json',
 );
 export const battlePassSeasonTable: BattlePassSeasonTable = readJSONWithBigInt(
-  'TableCfg_Mapped/BattlePassSeasonTable.json',
+  'TableCfg/BattlePassSeasonTable.json',
 );
 export const battlePassOverrideLevelTable: BattlePassOverrideLevelTable = readJSONWithBigInt(
-  'TableCfg_Mapped/BattlePassOverrideLevelTable.json',
+  'TableCfg/BattlePassOverrideLevelTable.json',
 );
 export const giftpackCashShopGoodsDataTable: GiftpackCashShopGoodsDataTable = readJSONWithBigInt(
-  'TableCfg_Mapped/GiftpackCashShopGoodsDataTable.json',
+  'TableCfg/GiftpackCashShopGoodsDataTable.json',
 );
 export const worldEnergyPointGroupTable: WorldEnergyPointGroupTable = readJSONWithBigInt(
   'TableCfg/WorldEnergyPointGroupTable.json',

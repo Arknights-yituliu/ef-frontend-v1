@@ -571,11 +571,9 @@ import { gachaPools } from '@/custom/core/gacha-pool-info';
 
 const { t } = useI18n();
 
-useHead({
+usePageSeo({
   title: () => `${t('menu.gachaAnalysis')} - ${t('layout.siteName')}`,
-  meta: [
-    { name: 'description', content: 'Analyze gacha records, pity distribution, and probability curves for Endfield pulls.' }
-  ],
+  description: () => 'Analyze gacha records, pity distribution, and probability curves for Endfield pulls.',
 });
 // ========== 获取、加载抽卡数据==========
 

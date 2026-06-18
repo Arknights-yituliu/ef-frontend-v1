@@ -26,6 +26,7 @@ logs
 
 # AI IDE files
 /public/tools/factoriolab
+.claude/settings.local.json
 
 #temp game data
 /app/assets/shanying

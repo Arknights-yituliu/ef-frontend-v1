@@ -29,6 +29,20 @@ export type { ItemType, ItemTypeTable } from './itemTypeTable';
 export type { LevelLoading, LevelLoadingTable } from './levelLoadingTable';
 export type { ItemBundle, Reward, RewardTable } from './rewardTable';
 export type {
+  SimulationTrainingCard,
+  SimulationTrainingCardPool,
+  SimulationTrainingCardPoolTable,
+} from './simulationTrainingCardPoolTable';
+export type {
+  SimulationTrainingCard as SimulationTrainingCardEntry,
+  SimulationTrainingCardTable,
+} from './simulationTrainingCardTable';
+export type { SimulationTrainingConst } from './simulationTrainingConst';
+export type {
+  SimulationTrainingLevel,
+  SimulationTrainingLevelTable,
+} from './simulationTrainingLevelTable';
+export type {
   SkillPatch,
   SkillPatchBlackboardEntry,
   SkillPatchDataBundle,
