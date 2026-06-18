@@ -94,6 +94,7 @@ class="mt-2 mb-2 px-3 py-2 d-flex align-start align-md-center" :style="[
         <div>
           <v-chip
             v-for="[cateId, cate] in Object.entries(gifts.giftProps.category)"
+            :key="cateId"
             class="ma-1 px-2"
             :color="selectedTags.category.includes(cateId) ? '#fffa00' : 'grey-lighten-2'"
             label variant="elevated"
@@ -113,7 +114,7 @@ class="mt-2 mb-2 px-3 py-2 d-flex align-start align-md-center" :style="[
             <div class="text-caption d-flex flex-column" style="line-height:1.1em;">
               <span>{{ getLocaleText(cate)?.[0] }}</span>
               <span>{{ getLocaleText(cate)?.[1] }}</span>
-            </div>  
+            </div>
           </v-chip>
         </div>
       </div>
@@ -128,9 +129,10 @@ class="mt-2 mb-2 px-3 py-2 d-flex align-start align-md-center" :style="[
         <div>
           <v-chip
             v-for="[hobbyId, hobby] in Object.entries(gifts.giftProps.hobby)"
+            :key="hobbyId"
             class="ma-1"
-            :color="selectedTags.hobby.includes(hobbyId) ? '#fffa00' : 'grey-lighten-2'"
-            label variant="elevated"
+            :color="selectedTags.hobby.includes(hobbyId) ? '#fffa00' : 'grey-lighten-2'" label
+            variant="elevated"
             @click="selectTag('hobby', hobbyId)"
           >
             {{ getLocaleText(hobby) }}
@@ -209,7 +211,7 @@ class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getC
                   <span v-if="gifts.gift[giftId]?.isHotExpiring" class="pr-1 d-flex align-center">
                     <v-icon class="pr-2" color="white" size="16">mdi-clock-alert-outline</v-icon>
                     {{ $t('page.tools.giftCalculator.allGiftsExpiring') }}
-                  </span> 
+                  </span>
                   <span class="font-weight-bold">{{ $t('page.tools.giftCalculator.hot') }}</span>
                 </v-chip>
                 <div class="d-flex ga-1">
@@ -262,7 +264,7 @@ v-if="checkForceSelectItem('gift', giftId)"
                 location="bottom"
               >
                 <div class="d-flex flex-column align-center">
-                  <div v-for="cate in gifts.operator[opId]?.favorCategory" class="d-flex font-weight-bold align-center">
+                  <div v-for="cate in gifts.operator[opId]?.favorCategory" :key="cate" class="d-flex font-weight-bold align-center">
                     <v-img
 class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getCategoryIcon(cate)"
                     width="16">
