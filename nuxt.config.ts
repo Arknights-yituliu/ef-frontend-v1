@@ -3,7 +3,6 @@ import path from 'node:path';
 // 参考文档：https://nuxt.com/docs/4.x/api/nuxt-config
 // SEO 文档：https://nuxtseo.com/docs/nuxt-seo/guides/using-the-modules
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
-import { fetchWikiTables } from './custom/config/pre-fetch';
 
 export default defineNuxtConfig({
   /**
