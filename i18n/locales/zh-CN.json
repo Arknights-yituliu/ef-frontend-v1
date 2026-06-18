@@ -179,6 +179,11 @@
           "linkIcon": "mdi-toolbox",
           "description": "包含攒抽计算器、基质规划器和抽卡分析等实用工具"
         },
+        "akedata": {
+          "title": "AKEData",
+          "tag": "第三方",
+          "description": "专为《明日方舟：终末地》玩家制作的数据查询网站。支持角色、武器、副本等各类数据查询"
+        },
         "dige": {
           "title": "D.I.G.E. - 终末地热能池规划器",
           "tag": "第三方",
