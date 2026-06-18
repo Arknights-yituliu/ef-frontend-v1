@@ -163,40 +163,17 @@
                     variant="outlined"
                     @click="执行重置初始铭牌库"
                   >
-                    重置初始库
+                    重置为当前牌库
                   </v-btn>
                 </v-col>
               </v-row>
               <div class="text-subtitle-2 text-medium-emphasis">
                 <v-icon icon="mdi-information"></v-icon>
                 <span>
-                  铭牌库每 3 天更新一次，但我们不一定每 3
-                  天更新一次网站，若与游戏内不一致请手动调整。
-                  <br />上次更新时间：{{ 当前牌库记录时间文本 }}。
+                  当前牌库轮换时间：<strong>{{ 当前牌库时间范围文本 }}</strong
+                  >，若与游戏内不一致请手动调整。
                 </span>
               </div>
-              <v-alert
-                v-if="显示牌库更新提醒"
-                border="start"
-                class="deck-version-alert mt-3"
-                density="comfortable"
-                type="warning"
-                variant="tonal"
-              >
-                <div class="deck-version-alert-content">
-                  <div>
-                    <div class="font-weight-bold">牌库数据可能需要手动更新</div>
-                    <div class="text-body-2">
-                      当前周期：{{ 当前牌库周期范围文本 }}。现有牌库记录时间是
-                      {{ 当前牌库记录时间文本 }}，
-                      请核对初始铭牌库是否与游戏内一致，若不一致请手动调整。
-                    </div>
-                  </div>
-                  <v-btn color="warning" size="small" variant="flat" @click="保存当前牌库数据">
-                    已手动更新
-                  </v-btn>
-                </div>
-              </v-alert>
 
               <!-- 数据溢出设置 -->
               <div class="text-subtitle-2 my-4">数据溢出容许</div>
@@ -500,7 +477,7 @@
               <ul>
                 <li>
                   <strong
-                    >铭牌库每3日会刷新一次，请务必确保【基础设定区】中的铭牌库数量与游戏内未抽取时的铭牌库数量一致。</strong
+                    >铭牌库每3日会轮换一次。若与游戏内不一致，可手动调整【基础设定区】中的铭牌数量。</strong
                   >
                 </li>
                 <li>
@@ -617,6 +594,7 @@
 <script lang="ts" setup>
 import { watchDebounced } from '@vueuse/core';
 import { useDisplay } from 'vuetify';
+import { 获取当前牌库Deck, 计算当前牌库索引 } from '@/custom/core/trialOfSwordmancyPools';
 import {
   type MDPResult,
   数据溢出模式,
@@ -625,17 +603,14 @@ import {
   type 状态类,
   状态键,
   计算战力点,
-  默认牌库数据,
-  默认牌库数量元组,
 } from '@/shared/utils/trialOfSwordmancy';
 import {
   写入本地牌库数据,
   格式化东八区时间,
-  牌库周期范围文本,
   牌库数据快照,
-  牌库数据需要更新,
-  计算牌库刷新周期,
   读取本地牌库数据,
+  轮换起始Ms,
+  轮换间隔Ms,
 } from '@/shared/utils/trialOfSwordmancyDeck';
 import {
   写入选剑演武页面状态,
@@ -662,7 +637,7 @@ const 右侧面板展开值 = ref<string[]>(['input']);
 
 // ==================== 响应式状态 ====================
 
-const 牌库数量元组 = ref<number[]>([...默认牌库数量元组]);
+const 牌库数量元组 = ref<number[]>([4, 5, 6, 6, 7]);
 const 演算奖励元组 = computed<number[]>(
   () => 演武平台等级表[演武平台等级.value - 1]?.演算奖励元组 ?? [],
 );
@@ -677,7 +652,7 @@ const 输入 = reactive({
 const 显示消息 = ref(false);
 const 消息 = ref('');
 const 牌库数据 = ref({
-  deck: [...默认牌库数量元组],
+  deck: [4, 5, 6, 6, 7] as number[],
   updatedAt: Date.now(),
 });
 const 当前时间Ms = ref(Date.now());
@@ -685,11 +660,16 @@ let 忽略下一次牌库自动保存快照: string | null = null;
 let 正在恢复页面状态 = false;
 let 牌库时间检查计时器: ReturnType<typeof setInterval> | undefined;
 
-const 当前牌库记录时间文本 = computed(() => 格式化东八区时间(牌库数据.value.updatedAt));
-const 当前牌库周期范围文本 = computed(() => 牌库周期范围文本(计算牌库刷新周期(当前时间Ms.value)));
-const 显示牌库更新提醒 = computed(() => 牌库数据需要更新(牌库数据.value, 当前时间Ms.value));
-
-function 设置牌库数据(deck: number[], updatedAt: number): void {
+const 当前牌库时间范围文本 = computed(() => {
+  const idx = 计算当前牌库索引(当前时间Ms.value);
+  if (idx < 0) {
+    return '尚未开始';
+  }
+  const start = 轮换起始Ms + idx * 轮换间隔Ms;
+  const end = start + 轮换间隔Ms;
+  return `${格式化东八区时间(start)} - ${格式化东八区时间(end)}`;
+});
+function 设置牌库数据(deck: number[], updatedAt: number = Date.now()): void {
   忽略下一次牌库自动保存快照 = 牌库数据快照(deck);
   牌库数量元组.value = [...deck];
   牌库数据.value = {
@@ -708,12 +688,6 @@ function 保存牌库数据(deck: number[], updatedAt: number = Date.now()): voi
   if (import.meta.client) {
     写入本地牌库数据(localStorage, data);
   }
-}
-
-function 保存当前牌库数据(): void {
-  保存牌库数据(牌库数量元组.value);
-  消息.value = '当前牌库数据已记录时间戳';
-  显示消息.value = true;
 }
 
 function 生成页面状态快照() {
@@ -1081,12 +1055,13 @@ function 删除手牌(索引: number): void {
   手牌插槽.value = [...剩余手牌, ...Array.from({ length: 5 - 剩余手牌.length }, () => 0)];
 }
 
-/** 重置初始铭牌库（恢复默认牌库数量，MDP 会通过 watch 自动重新计算） */
+/** 重置初始铭牌库（恢复当前牌库数据，MDP 会通过 watch 自动重新计算） */
 function 执行重置初始铭牌库(): void {
-  设置牌库数据(默认牌库数据.deck, 默认牌库数据.updatedAt);
-  保存牌库数据(默认牌库数据.deck, 默认牌库数据.updatedAt);
+  const currentDeck = 获取当前牌库Deck(当前时间Ms.value);
+  设置牌库数据(currentDeck);
+  保存牌库数据(currentDeck);
 
-  消息.value = '初始铭牌库已重置';
+  消息.value = '铭牌库已重置为当前游戏牌库';
   显示消息.value = true;
 }
 
