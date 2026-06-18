@@ -1,4 +1,7 @@
-import rawPools from '@/custom/core/trialOfSwordmancyPools.json';
+import rawLevelTable from './trialOfSwordmancyLevelTable.json';
+import rawPools from './trialOfSwordmancyPools.json';
+
+// ==================== 牌库轮换 ====================
 
 export interface 选剑演武牌库池数据 {
   poolId: string;
@@ -42,9 +45,19 @@ export function 计算当前牌库索引(nowMs: number = Date.now()): number {
 export function 获取当前牌库Deck(nowMs: number = Date.now()): number[] {
   const index = 计算当前牌库索引(nowMs);
   if (index < 0) {
-    // 起始时间之前，返回第一个牌库的 deck
     return 牌库配置.pools[0]!.deck;
   }
 
   return 牌库配置.pools[index]!.deck;
 }
+
+// ==================== 演武平台等级 ====================
+
+export interface LevelData {
+  doubleLimit: number;
+  pointAward: number[];
+}
+
+export type LevelTableData = Record<string, LevelData>;
+
+export const 演武平台等级表数据 = rawLevelTable as LevelTableData;

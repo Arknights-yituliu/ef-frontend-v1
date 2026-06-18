@@ -39,6 +39,10 @@ export type {
 } from './simulationTrainingCardTable';
 export type { SimulationTrainingConst } from './simulationTrainingConst';
 export type {
+  SimulationTrainingLevel,
+  SimulationTrainingLevelTable,
+} from './simulationTrainingLevelTable';
+export type {
   SkillPatch,
   SkillPatchBlackboardEntry,
   SkillPatchDataBundle,
