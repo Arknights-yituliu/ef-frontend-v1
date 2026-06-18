@@ -32,10 +32,6 @@
         "titleKey": "docs.sections.operations",
         "items": [
             {
-                "titleKey": "docs.items.infrastructureLayoutGuide",
-                "path": "/operations/infrastructure-layout-guide"
-            },
-            {
                 "titleKey": "docs.items.how2getgachadurl",
                 "path": "/operations/how2get-gacha-url-en"
             }

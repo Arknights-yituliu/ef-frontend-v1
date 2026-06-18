@@ -138,4 +138,12 @@
 definePageMeta({
   layout: 'default',
 });
+
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('page.others.test.title')} - ${t('layout.siteName')}`,
+  description: () => t('page.others.test.description'),
+  robots: 'noindex, follow',
+});
 </script>

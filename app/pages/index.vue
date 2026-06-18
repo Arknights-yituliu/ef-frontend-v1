@@ -49,6 +49,11 @@ definePageMeta({
 
 const { t } = useI18n();
 
+usePageSeo({
+  title: () => `${t('page.home.welcome')} - ${t('layout.siteName')}`,
+  description: () => t('page.home.hint'),
+});
+
 const showSnackbar = ref(false);
 const snackbarText = ref('');
 

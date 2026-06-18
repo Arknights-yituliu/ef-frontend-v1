@@ -252,6 +252,11 @@ import CustomBackground from '~/components/layout/CustomBackground.vue';
 
 const { t } = useI18n();
 
+usePageSeo({
+  title: () => `${t('page.materialProfit.couponStrategy.title')} - ${t('layout.siteName')}`,
+  description: () => t('page.materialProfit.couponStrategy.subtitle'),
+});
+
 interface TableHeader {
   title: string;
   key: string;

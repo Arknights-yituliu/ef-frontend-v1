@@ -168,29 +168,28 @@ router.push('/introduction/project-structure');
 
 ## 路由元信息
 
-### 页面标题
+### 页面标题与 SEO
 
-使用 `useHead` 设置页面标题：
+使用 `usePageSeo` composable 统一设置页面标题和 SEO 元信息：
 
 ```typescript
-useHead({
-  title: '项目结构 - 终末地一图流',
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('menu.projectStructure')} - ${t('layout.siteName')}`,
+  description: () => '了解项目的技术栈、目录结构以及各个文件和目录的作用',
 });
 ```
 
-### SEO 优化
+该 composable 会自动设置 `og:title`、`og:description`、`og:url`、`og:locale`、`twitter:card` 以及 canonical 链接。可用选项：
 
-```typescript
-useHead({
-  title: '项目结构',
-  meta: [
-    {
-      name: 'description',
-      content: '了解项目的技术栈、目录结构以及各个文件和目录的作用',
-    },
-  ],
-});
-```
+| 选项          | 类型                                    | 默认值      | 说明                     |
+| ------------- | --------------------------------------- | ----------- | ------------------------ |
+| `title`       | `MaybeRefOrGetter<string>`              | —           | 页面标题                 |
+| `description` | `MaybeRefOrGetter<string>`              | —           | 页面描述                 |
+| `path`        | `MaybeRefOrGetter<string>`              | 当前 URL    | 自定义 Canonical 路径    |
+| `type`        | `'website' \| 'article'`                | `'website'` | Open Graph 类型          |
+| `robots`      | `'all' \| 'noindex, nofollow' \| ...`   | `'all'`     | Robots 元指令            |
 
 ---
 

@@ -25,11 +25,6 @@ logs
 !.env.example
 
 # AI IDE files
-.cursor
-.claude
-.iflow
-IFLOW.md
-CLAUDE.md
 /public/tools/factoriolab
 
 #temp game data

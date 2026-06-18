@@ -158,15 +158,16 @@
                   <span class="label">{{ '毕业平均' }}：</span>
                   <span class="value">{{ numberRound(info.graduateAverage,1) }}</span>
                 </div>
+
               </div>
             </div>
           </div>
 
           <div class="mt-4">
-            <h3 class="text-subtitle-2 mb-2">{{ '抽数分布' }}</h3>
+            <h3 class="text-subtitle-2 mb-2">{{ '卡池抽数排行' }}</h3>
             <div class="d-flex flex-wrap">
                 <v-chip
-                  v-for="([pool, item]) in Object.entries(poolDistribution).slice(0, 5)"
+                  v-for="([pool, item]) in Object.entries(poolDistribution).sort(([, a], [, b]) => b.count - a.count).slice(0, 3)"
                   :key="pool"
                   class="pool-distribution-chip"
                   :color="getPoolColor(pool)"
@@ -179,18 +180,41 @@
           </div>
 
           <div class="mt-4">
-            <h3 class="text-subtitle-2 mb-2">{{ '角色抽取频次' }}</h3>
+            <div class="freq-header">
+              <h3 class="text-subtitle-2 mb-0">抽取频次</h3>
+              <div ref="freqToggleRef" class="freq-toggle" @click="freqMode = freqMode === 'all' ? 'sixStar' : 'all'">
+                <span class="freq-toggle-label" :class="{ active: freqMode === 'all' }">全部</span>
+                <span class="freq-toggle-label" :class="{ active: freqMode === 'sixStar' }">六星</span>
+                <div class="freq-slider" :style="freqSliderStyle"></div>
+              </div>
+            </div>
             <div class="d-flex flex-wrap gap-2">
-              <v-chip
-                v-for="(char, index) in topCharacters"
-                :key="char.name"
-                class="top-character-chip"
-                :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
-                label
-                size="small"
-              >
-                {{ char.name }} ×{{ char.times }}
-              </v-chip>
+              <template v-if="freqMode === 'all'">
+                <v-chip
+                  v-for="(char, index) in allCharFrequency"
+                  :key="char.name"
+                  class="top-character-chip"
+                  :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
+                  label
+                  size="small"
+                >
+                  {{ char.name }} ×{{ char.count }}
+                </v-chip>
+                <span v-if="allCharFrequency.length === 0" class="no-data-hint">暂无角色记录</span>
+              </template>
+              <template v-else>
+                <v-chip
+                  v-for="(char, index) in topCharacters"
+                  :key="char.name"
+                  class="top-character-chip"
+                  :color="index === 0 ? 'purple' : index === 1 ? 'indigo' : 'teal'"
+                  label
+                  size="small"
+                >
+                  {{ char.name }} ×{{ char.times }}
+                </v-chip>
+                <span v-if="topCharacters.length === 0" class="no-data-hint">暂无六星记录</span>
+              </template>
             </div>
           </div>
         </div>
@@ -200,11 +224,12 @@
       <div class="gacha-dashboard">
         <!-- 1. 卡池选择器 -->
         <div class="pool-selector-wrapper">
-          <div class="pool-selector">
+          <div ref="poolSelectorRef" class="pool-selector">
             <v-btn
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'limited' }"
               elevation="0"
+              :ripple="false"
               variant="flat"
               @click="selectPool('limited')"
             >
@@ -214,6 +239,7 @@
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'permanent' }"
               elevation="0"
+              :ripple="false"
               variant="flat"
               @click="selectPool('permanent')"
             >
@@ -223,11 +249,13 @@
               class="pool-selector__btn"
               :class="{ 'pool-selector__btn--active': selectedPool === 'weapon' }"
               elevation="0"
+              :ripple="false"
               variant="flat"
               @click="selectPool('weapon')"
             >
               武库申领
             </v-btn>
+            <div class="pool-slider" :style="poolSliderStyle"></div>
           </div>
         </div>
 
@@ -398,7 +426,6 @@
           <div class="header-panel-content">
 
             <div class="gacha-stats">
-              <template v-if="isCalculated">
 
                 <!-- 概率峰值 -->
                 <div class="gacha-stat-row">
@@ -452,23 +479,6 @@
                     />%
                   </span>
                 </div>
-              </template>
-
-              <template v-else>
-                <div class="gacha-stat-placeholder">
-                  点击按钮开始计算详细数据...
-                </div>
-              </template>
-            </div>
-
-            <div class="action-bar">
-              <button
-                v-if="!isCalculated"
-                class="calc-btn"
-                @click="startCalculation"
-              >
-                开始计算概率和期望
-              </button>
             </div>
           </div>
 
@@ -478,7 +488,7 @@
         <div class="content-area">
 
           <!-- 1. 曲线图视图 -->
-          <div v-show="isCalculated &&viewType === 'chart'" ref="chartRef" class="echarts-canvas"></div>
+          <div v-show="viewType === 'chart'" ref="chartRef" class="echarts-canvas"></div>
 
           <!-- 2. 数据表视图 -->
           <div v-show="viewType === 'table'" class="data-table-wrapper">
@@ -554,10 +564,19 @@
 <script setup lang="ts">
 import { numberRound } from '#shared/utils/numberUtil';
 import * as echarts from 'echarts';
-import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { CountTo } from 'vue3-count-to';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 import { gachaPools } from '@/custom/core/gacha-pool-info';
+
+const { t } = useI18n();
+
+useHead({
+  title: () => `${t('menu.gachaAnalysis')} - ${t('layout.siteName')}`,
+  meta: [
+    { name: 'description', content: 'Analyze gacha records, pity distribution, and probability curves for Endfield pulls.' }
+  ],
+});
 // ========== 获取、加载抽卡数据==========
 
 // 调试开关
@@ -581,6 +600,9 @@ const realSixStarRecords = computed(() => {
 });
 
 const importMethod = ref('online');
+
+// 角色频次切换（默认全部角色，点击切换为仅六星）
+const freqMode = ref<'all' | 'sixStar'>('all');
 
 const characterRecords = ref<GachaRecord[]>([]);
 const weaponRecords = ref<GachaRecord[]>([]);
@@ -1143,9 +1165,6 @@ const groupedByPool = computed(() => {
     'default': 999,
   };
 
-  console.log('分组结果:', Array.from(map.values()));
-  return Array.from(map.values());
-
   return Array.from(map.values()).toSorted((a, b) => {
     const aOrder = orderMap[a.poolId] ?? orderMap['default'];
     const bOrder = orderMap[b.poolId] ?? orderMap['default'];
@@ -1325,6 +1344,44 @@ const topCharacters = computed(() => {
     .slice(0, 3);
 });
 
+// 角色 ID → 名称映射（从原始记录构建，用于五星角色名解析）
+const charIdToName = computed(() => {
+  const map = new Map<string, string>();
+  for (const r of characterRecords.value) {
+    if (r.charId && r.charName) {
+      map.set(r.charId, r.charName);
+    }
+  }
+  return map;
+});
+
+// 全部角色抽取频次（六星 + 五星合并，top5）
+const allCharFrequency = computed(() => {
+  const freq: Record<string, number> = {};
+  const nameMap = charIdToName.value;
+
+  // 六星角色
+  for (const r of realSixStarRecords.value) {
+    const type = getPoolType(r.poolId);
+    if (type === 'weapon') continue;
+    freq[r.character] = (freq[r.character] || 0) + 1;
+  }
+
+  // 五星角色（将 charId 解析为角色名）
+  for (const r of sixStarRecordsWithCount.value) {
+    if (!r.fiveStars || r.fiveStars.length === 0) continue;
+    for (const charId of r.fiveStars) {
+      const displayName = nameMap.get(charId) || charId;
+      freq[displayName] = (freq[displayName] || 0) + 1;
+    }
+  }
+
+  return Object.entries(freq)
+    .map(([name, count]) => ({ name, count }))
+    .toSorted((a, b) => b.count - a.count)
+    .slice(0, 5);
+});
+
 // 计算每个卡池的总抽数
 function getPoolTotalPulls(records: SixStarEntry[]): number {
   return records.reduce((sum, r) => sum + (r.count || 0), 0);
@@ -1429,13 +1486,23 @@ const gachaTags = computed(() => {
   return tags;
 });
 
+// 缓存：预排序每个卡池的记录，避免 getProbabilityInfo 中重复排序
+const sortedRecordsByPoolId = computed(() => {
+  const map = new Map<string, SixStarEntry[]>();
+  for (const group of groupedByPool.value) {
+    const sorted = [...group.records].toSorted((a, b) => Number.parseInt(a.seqId) - Number.parseInt(b.seqId));
+    map.set(group.poolId, sorted);
+  }
+  return map;
+});
+
 // 判断是否为120抽大保底
 // 1. 判断虚拟记录的辅助函数
 const isVirtualRecord = (name: string) => name === '已垫' || name === '赠送十连';
 /**
  * 核心逻辑：获取显示所需的“恰好在这一抽才出金”的全局概率
  */
-function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
+function getProbabilityInfo(current: SixStarEntry, _allInGroup: SixStarEntry[]) {
   if (isVirtualRecord(current.character)) return null;
 
   const pullCount = current.count; // 当前出金时显示的垫抽数 (1-80)
@@ -1466,7 +1533,7 @@ function getProbabilityInfo(current: SixStarEntry, allInGroup: SixStarEntry[]) {
   let isBigPity = false;
   let debugPulls = 0;
 
-  const sortedRecords = [...allInGroup].toSorted((a, b) => Number.parseInt(a.seqId) - Number.parseInt(b.seqId));
+  const sortedRecords = sortedRecordsByPoolId.value.get(current.poolId) || [];
   const currentIndex = sortedRecords.findIndex(r => r.seqId === current.seqId);
 
   if (currentIndex !== -1) {
@@ -1553,6 +1620,58 @@ function isOnBanner(record: SixStarEntry): boolean {
 const selectedPool = ref<'limited' | 'permanent' | 'weapon'>('limited');
 function selectPool (pool: 'limited' | 'permanent' | 'weapon') {
   selectedPool.value = pool;
+}
+
+// 频次切换器滑动指示器
+const freqToggleRef = ref<HTMLElement | null>(null);
+const freqSliderStyle = ref<Record<string, string>>({ left: '0px', width: '0px', opacity: '0' });
+
+function updateFreqSlider() {
+  if (!freqToggleRef.value) return;
+  const activeBtn = freqToggleRef.value.querySelector('.freq-toggle-label.active') as HTMLElement | null;
+  if (!activeBtn) return;
+  const parentRect = freqToggleRef.value.getBoundingClientRect();
+  const btnRect = activeBtn.getBoundingClientRect();
+  freqSliderStyle.value = {
+    left: `${btnRect.left - parentRect.left}px`,
+    width: `${btnRect.width}px`,
+    opacity: '1'
+  };
+}
+
+watch(freqMode, () => nextTick(updateFreqSlider));
+watch(selectedPool, () => nextTick(updatePoolSlider));
+watch(viewMode, (mode) => {
+  if (mode === 'analyze') {
+    nextTick(() => {
+      updateFreqSlider();
+      updatePoolSlider();
+    });
+  }
+});
+
+// 卡池选择器滑动指示器
+const POOL_COLORS: Record<string, string> = {
+  limited: '#fff132',
+  permanent: '#1e88e5',
+  weapon: '#8e24aa',
+};
+
+const poolSelectorRef = ref<HTMLElement | null>(null);
+const poolSliderStyle = ref<Record<string, string>>({ left: '0px', width: '0px', opacity: '0' });
+
+function updatePoolSlider() {
+  if (!poolSelectorRef.value) return;
+  const activeBtn = poolSelectorRef.value.querySelector('.pool-selector__btn--active') as HTMLElement | null;
+  if (!activeBtn) return;
+  const parentRect = poolSelectorRef.value.getBoundingClientRect();
+  const btnRect = activeBtn.getBoundingClientRect();
+  poolSliderStyle.value = {
+    left: `${btnRect.left - parentRect.left}px`,
+    width: `${btnRect.width}px`,
+    opacity: '1',
+    background: POOL_COLORS[selectedPool.value] || '#fff'
+  };
 }
 
 
@@ -1654,11 +1773,6 @@ const chartRef = ref<HTMLElement | null>(null);
 let myChart: ReturnType<typeof echarts.init> | null = null;
 const viewType = ref<'chart' | 'table'>('chart'); // 默认显示图表
 
-const isCalculated = ref(false);
-
-function startCalculation() {
-  isCalculated.value = true;
-}
 
 // ================= 核心算法：计算分布与期望 =================
 const probabilityData = computed(() => {
@@ -1709,22 +1823,9 @@ const peakInfo = computed(() => {
   return { n: index + 1, chance: maxVal };
 });
 
-const animatedPeakInfo = computed(() => {
-  if (!isCalculated.value) {
-    return { n: 0, chance: 0 };
-  }
-  return peakInfo.value;
-});
+const animatedPeakInfo = computed(() => peakInfo.value);
 
 const expectationResult = computed(() => {
-  if (!isCalculated.value) {
-    return {
-      average: 0,
-      overallRate: 0,
-      detailList: []
-    };
-  }
-
   let expectedValue = 0;
   const detailList: Array<{
     n: number;
