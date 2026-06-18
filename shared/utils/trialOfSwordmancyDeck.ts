@@ -1,5 +1,5 @@
 import type { 牌库数据类 } from './trialOfSwordmancy';
-import { 牌库配置, 获取当前牌库Deck, 计算当前牌库索引 } from '@/custom/core/trialOfSwordmancyPools';
+import { 牌库配置, 获取当前牌库Deck, 计算当前牌库索引 } from '@/custom/core/trialOfSwordmancy';
 
 export const 牌库数据存储Key = 'trial-swordmancy-deck-data';
 const 旧牌库周期确认存储Key = 'trial-swordmancy-deck-cycle-confirmed';
