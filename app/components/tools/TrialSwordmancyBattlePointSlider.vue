@@ -1,39 +1,49 @@
 <template>
-  <div
-    :aria-label="overflow ? `当前战力点：${point}，手牌点数和已溢出` : `当前战力点：${point}`"
-    class="battle-point-slider"
-    :class="{ 'is-overflow': overflow, 'is-best': curRealPoint === 10 }"
-    role="img"
-    :style="{ '--battle-point-position': `${((point + 0.5) / 11) * 100}%` }"
-  >
-    <div class="battle-point-slider-label">
-      最终战力点
-    </div>
-    <div class="battle-point-slider-track">
-      <span
-        v-for="p in 战力点刻度"
-        :key="p"
-        class="battle-point-slider-tick"
-        :class="{ 'is-active': p === point }"
-      >
-        {{ p }}
-      </span>
-      <div class="battle-point-slider-thumb">
-        {{ point }}
+  <div>
+    <div
+      :aria-label="overflow ? `当前战力点：${point}，手牌点数和已溢出` : `当前战力点：${point}`"
+      class="battle-point-slider"
+      :class="{ 'is-overflow': overflow, 'is-best': curRealPoint === 10 }"
+      role="img"
+      :style="{ '--battle-point-position': `${((point + 0.5) / 11) * 100}%` }"
+    >
+      <div class="battle-point-slider-label">最终战力点</div>
+      <div class="battle-point-slider-track">
+        <span
+          v-for="p in 战力点刻度"
+          :key="p"
+          class="battle-point-slider-tick"
+          :class="{ 'is-active': p === point }"
+        >
+          {{ p }}
+        </span>
+        <div class="battle-point-slider-thumb">
+          {{ point }}
+        </div>
       </div>
     </div>
-  </div>
-  <div v-if="curRealPoint === 10" class="text-caption text-emphasis text-center mb-1 text-white" style="background:#54b7b9;">
-    <v-icon icon="mdi-check"></v-icon>
-    战力点之和达到最高，可以开始演算
-  </div>
-  <div v-if="overflow && Math.trunc(curRealPoint / 11) == 1" class="text-caption text-emphasis text-center mb-1 text-white bg-error">
-    <v-icon icon="mdi-alert"></v-icon>
-    数据溢出 {{ Math.trunc(curRealPoint / 11) }} 次，已触发难度提升
-  </div>
-  <div v-if="overflow && Math.trunc(curRealPoint / 11) == 2" class="text-caption text-emphasis text-center mb-1 text-white bg-error">
-    <v-icon icon="mdi-alert"></v-icon>
-    数据溢出 {{ Math.trunc(curRealPoint / 11) }} 次，难度大幅提升！
+    <div
+      v-if="curRealPoint === 10"
+      class="text-caption text-emphasis text-center mb-1 text-white"
+      style="background: #54b7b9"
+    >
+      <v-icon icon="mdi-check"></v-icon>
+      战力点之和达到最高，可以开始演算
+    </div>
+    <div
+      v-if="overflow && Math.trunc(curRealPoint / 11) == 1"
+      class="text-caption text-emphasis text-center mb-1 text-white bg-error"
+    >
+      <v-icon icon="mdi-alert"></v-icon>
+      数据溢出 {{ Math.trunc(curRealPoint / 11) }} 次，已触发难度提升
+    </div>
+    <div
+      v-if="overflow && Math.trunc(curRealPoint / 11) == 2"
+      class="text-caption text-emphasis text-center mb-1 text-white bg-error"
+    >
+      <v-icon icon="mdi-alert"></v-icon>
+      数据溢出 {{ Math.trunc(curRealPoint / 11) }} 次，难度大幅提升！
+    </div>
   </div>
 </template>
 
