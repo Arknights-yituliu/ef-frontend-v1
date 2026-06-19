@@ -22,6 +22,15 @@ export const shops: Shop[] = [
     shopName: '危机合约·机密圣所',
     shopItems: [
       {
+        itemId: 'item_diamond',
+        itemName: '嵌晶玉',
+        quantityPerGroup: 100,
+        stockGroups: 20,
+        originalPrice: 50,
+        discount: 0,
+        currentPrice: 50,
+      },
+      {
         itemId: 'item_wpngem_enhance_dust',
         itemName: '冷却脂',
         quantityPerGroup: 10,
@@ -116,9 +125,9 @@ export const shops: Shop[] = [
         itemName: '三相纳米片',
         quantityPerGroup: 1,
         stockGroups: 60,
-        originalPrice: 30,
+        originalPrice: 15,
         discount: 0,
-        currentPrice: 30,
+        currentPrice: 15,
       },
       {
         itemId: 'item_gold',
@@ -182,15 +191,6 @@ export const shops: Shop[] = [
         originalPrice: 5,
         discount: 0,
         currentPrice: 5,
-      },
-      {
-        itemId: 'item_diamond',
-        itemName: '嵌晶玉',
-        quantityPerGroup: 100,
-        stockGroups: 20,
-        originalPrice: 50,
-        discount: 0,
-        currentPrice: 50,
       },
     ],
   },

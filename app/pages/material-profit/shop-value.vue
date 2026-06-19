@@ -74,16 +74,7 @@
             {{ numberRound(item.totalValue, 2) }}
           </template>
           <template #item.costPerformance="{ item }">
-            <div class="shop-performance-cell shop-performance-cell--table">
-              <div
-                class="shop-performance-badge shop-performance-badge--table"
-                :style="getCostPerformanceBadgeStyle(item.costPerformance, shop.shopId)"
-              >
-                <span class="shop-performance-badge-value">
-                  {{ numberRound(item.costPerformance, 3) }}
-                </span>
-              </div>
-            </div>
+            {{ numberRound(item.costPerformance, 4) }}
           </template>
         </v-data-table>
       </v-card>
@@ -94,8 +85,11 @@
           class="shop-item-card"
         >
           <div class="shop-item-card-top">
-            <div v-if="item.stockLabel" class="shop-item-stock-badge">
-              {{ item.stockLabel }}
+            <div v-if="item.stockLabel" class="shop-item-stock-panel">
+              <span class="shop-item-stock-panel-line">{{ item.stockLabel }}</span>
+              <span class="shop-item-stock-panel-line">
+                每组价值 {{ formatCompactNumber(item.totalValue, 1) }}
+              </span>
             </div>
             <div v-if="item.discountLabel" class="shop-item-discount-badge">
               {{ item.discountLabel }}
@@ -113,41 +107,35 @@
               />
             </div>
             <div class="shop-item-card-quantity-badge">
-              x{{ formatCompactNumber(item.quantityPerGroup) }}
+              ×{{ formatCompactNumber(item.quantityPerGroup) }}
             </div>
           </div>
 
           <div class="shop-item-card-body">
-            <div class="shop-item-card-score">
+            <div class="shop-item-card-score-row">
               <div
                 class="shop-performance-badge shop-performance-badge--card"
                 :style="getCostPerformanceBadgeStyle(item.costPerformance, shop.shopId)"
               >
                 <span class="shop-performance-badge-value">
-                  {{ numberRound(item.costPerformance, 3) }}
+                  {{ formatCostPerformanceDisplay(item.costPerformance) }}
                 </span>
               </div>
-            </div>
-
-            <div class="shop-item-card-meta">
-              <span>总价值 {{ formatCompactNumber(item.totalValue) }}</span>
-              <span>性价比 {{ numberRound(item.costPerformance, 3) }}</span>
-            </div>
-
-            <div class="shop-item-card-price-row">
-              <div class="shop-item-card-price-current">
-                <img
-                  v-if="shop.titleIconUrl"
-                  alt=""
-                  aria-hidden="true"
-                  class="shop-price-icon"
-                  loading="lazy"
-                  :src="shop.titleIconUrl"
-                />
-                {{ formatCompactNumber(item.currentPrice) }}
-              </div>
-              <div v-if="item.originalPriceLabel" class="shop-item-card-price-original">
-                {{ item.originalPriceLabel }}
+              <div class="shop-item-card-price-row">
+                <div class="shop-item-card-price-current">
+                  <img
+                    v-if="shop.titleIconUrl"
+                    alt=""
+                    aria-hidden="true"
+                    class="shop-price-icon"
+                    loading="lazy"
+                    :src="shop.titleIconUrl"
+                  />
+                  {{ formatCompactNumber(item.currentPrice) }}
+                </div>
+                <div v-if="item.originalPriceLabel" class="shop-item-card-price-original">
+                  {{ item.originalPriceLabel }}
+                </div>
               </div>
             </div>
           </div>
@@ -185,14 +173,12 @@ const costPerformanceThemeColors = [
   'rgb(166, 204, 51)',
 ] as const;
 
-const costPerformanceThresholdByShopId = {
-  危机合约·机密圣所: 3.5,
-  保障配额交易: 3,
-  集成配额交易: 1.5,
-  信用交易所: 3.5,
+const costPerformanceScaleByShopId = {
+  危机合约·机密圣所: { threshold: 1, step: 0.25 },
+  保障配额交易: { threshold: 3, step: 0.5 },
+  集成配额交易: { threshold: 1.5, step: 0.5 },
+  信用交易所: { threshold: 3.5, step: 0.5 },
 } as const;
-
-const costPerformanceStep = 0.5;
 
 const { t } = useI18n();
 const viewMode = ref<'table' | 'cards'>('table');
@@ -293,9 +279,12 @@ function getCostPerformanceMultiplier(shopId: string): number {
   return shopId === '信用交易所' ? 100 : 1;
 }
 
-function getCostPerformanceThreshold(shopId: string): number {
+function getCostPerformanceScale(shopId: string): { threshold: number; step: number } {
   return (
-    costPerformanceThresholdByShopId[shopId as keyof typeof costPerformanceThresholdByShopId] ?? 3
+    costPerformanceScaleByShopId[shopId as keyof typeof costPerformanceScaleByShopId] ?? {
+      threshold: 3,
+      step: 0.5,
+    }
   );
 }
 
@@ -304,20 +293,13 @@ function getCostPerformanceTierIndex(costPerformance: number, shopId: string): n
     return costPerformanceThemeColors.length - 1;
   }
 
-  const threshold = getCostPerformanceThreshold(shopId);
-  if (costPerformance >= threshold) {
+  const { threshold, step } = getCostPerformanceScale(shopId);
+  const difference = threshold - costPerformance;
+  if (difference <= 0) {
     return 0;
   }
 
-  if (costPerformance >= threshold - costPerformanceStep) {
-    return 1;
-  }
-
-  if (costPerformance >= threshold - costPerformanceStep * 2) {
-    return 2;
-  }
-
-  return 3;
+  return Math.min(Math.ceil(difference / step), costPerformanceThemeColors.length - 1);
 }
 
 function getCostPerformanceColor(costPerformance: number, shopId: string): string {
@@ -331,10 +313,13 @@ function getCostPerformanceBadgeStyle(
   const color = getCostPerformanceColor(costPerformance, shopId);
 
   return {
-    '--cost-performance-color': color,
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    backgroundImage: `linear-gradient(90deg, ${color} 0%, ${color} 66%, rgba(255, 255, 255, 0.08) 100%)`,
+    backgroundColor: 'transparent',
+    backgroundImage: `linear-gradient(90deg, ${color} 0%, ${color} 64%, rgba(255, 255, 255, 0) 100%)`,
   };
+}
+
+function formatCostPerformanceDisplay(value: number): string {
+  return numberRound(value, 2).toFixed(2);
 }
 
 function getShopItemKey(item: TableItem): string {
@@ -371,13 +356,15 @@ function formatOriginalPriceLabel(originalPrice?: number, discount?: number): st
   return formatCompactNumber(originalPrice);
 }
 
-function formatCompactNumber(value: number): string {
+function formatCompactNumber(value: number, fractionDigits = 0): string {
   if (Math.abs(value) >= 10_000) {
-    const compact = numberRound(value / 10_000, value >= 100_000 ? 0 : 1);
-    return `${compact}万`;
+    const compact = numberRound(value / 10_000, fractionDigits);
+    return `${compact.toFixed(fractionDigits)}万`;
   }
 
-  return `${numberRound(value, 0)}`;
+  return fractionDigits > 0
+    ? numberRound(value, fractionDigits).toFixed(fractionDigits)
+    : `${numberRound(value, 0)}`;
 }
 
 definePageMeta({
@@ -393,7 +380,7 @@ usePageSeo({
 <style scoped>
 .view-switch-section {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-bottom: var(--spacing-lg);
 }
 
@@ -434,11 +421,6 @@ usePageSeo({
   object-fit: contain;
 }
 
-.shop-performance-cell {
-  width: 100%;
-  min-width: 8.75rem;
-}
-
 .shop-performance-badge {
   display: flex;
   align-items: center;
@@ -453,20 +435,6 @@ usePageSeo({
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.1),
     0 0.08rem 0.3rem rgba(0, 0, 0, 0.14);
-}
-
-.shop-performance-badge--table {
-  height: 2.1rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0;
-}
-
-.shop-performance-badge--card {
-  height: 2.3rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 0;
 }
 
 .shop-performance-badge-value {
@@ -490,14 +458,15 @@ usePageSeo({
 
 .shop-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+  max-width: calc((10.5rem * 7) + (var(--spacing-sm) * 6));
   gap: var(--spacing-sm);
 }
 
 .shop-item-card {
   position: relative;
   overflow: hidden;
-  height: 15.9rem;
+  height: 14.9rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--theme-border);
   background:
@@ -505,7 +474,7 @@ usePageSeo({
     linear-gradient(135deg, var(--theme-bg-secondary), var(--theme-bg-tertiary));
   box-shadow: 0 0.5rem 1.25rem var(--theme-shadow-base);
   display: grid;
-  grid-template-rows: 1.5rem 6rem 5.7rem 2.7rem;
+  grid-template-rows: 2.1rem 5.55rem 4.45rem 2.45rem;
 }
 
 .shop-item-card::before {
@@ -543,48 +512,33 @@ usePageSeo({
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  height: 1.5rem;
-  padding: 0 var(--spacing-sm);
+  height: 2.1rem;
+  padding: 0.15rem var(--spacing-sm) 0;
 }
 
-.shop-item-stock-badge,
+.shop-item-stock-panel,
 .shop-item-discount-badge {
   border-radius: var(--radius-sm);
-  padding: 0.15rem 0.45rem;
-  font-size: 0.75rem;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.05;
 }
 
-.shop-item-stock-badge {
+.shop-item-stock-panel {
   position: absolute;
   left: var(--spacing-sm);
-  top: 50%;
-  color: var(--theme-text-primary);
+  top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+  color: var(--theme-text-secondary);
   background-color: color-mix(in srgb, var(--theme-bg-primary) 72%, transparent);
-  border: 1px solid var(--theme-border);
   opacity: 1;
-  transform: translateY(-50%);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .shop-item-stock-badge {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-50%) translateY(-0.15rem);
-    transition:
-      opacity 0.16s ease,
-      transform 0.16s ease,
-      visibility 0s linear 0.16s;
-  }
-
-  .shop-item-card:hover .shop-item-stock-badge,
-  .shop-item-card:focus-within .shop-item-stock-badge {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%);
-    transition-delay: 0s;
-  }
+.shop-item-stock-panel-line {
+  white-space: nowrap;
 }
 
 .shop-item-discount-badge {
@@ -597,8 +551,9 @@ usePageSeo({
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 6rem;
-  padding: 0.15rem var(--spacing-sm) 0.45rem;
+  height: 5.55rem;
+  padding: 0.1rem var(--spacing-sm) 0.35rem;
+  transform: translateY(0.5rem);
 }
 
 .shop-item-card-icon {
@@ -614,11 +569,13 @@ usePageSeo({
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 0.35rem 0.55rem rgba(0, 0, 0, 0.35));
+  transform: scale(1.2);
+  transform-origin: center center;
 }
 
 .shop-item-card-quantity-badge {
   position: absolute;
-  left: 0.35rem;
+  left: 50%;
   bottom: 0.35rem;
   z-index: 2;
   display: inline-flex;
@@ -634,69 +591,70 @@ usePageSeo({
   font-weight: 700;
   line-height: 1;
   box-shadow: 0 0.12rem 0.3rem rgba(0, 0, 0, 0.18);
+  transform: translateX(-50%);
 }
 
 .shop-item-card-body {
-  height: 5.7rem;
-  padding: 0 var(--spacing-sm) var(--spacing-xs, 0.3rem);
+  height: 4.45rem;
+  padding: 0 0.45rem var(--spacing-xs, 0.3rem) 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 0.2rem;
+  gap: 0.12rem;
 }
 
-.shop-item-card-score {
-  min-height: 2.3rem;
+.shop-item-card-score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  min-height: 2.2rem;
+}
+
+.shop-performance-badge--card {
+  flex: 0 0 50%;
+  width: 50%;
+  height: 2.2rem;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-shadow: none;
 }
 
 .shop-item-card-price-row {
+  flex: 0 0 auto;
   display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  min-height: 1.8rem;
-  margin-top: auto;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.05rem;
+  min-width: 4.5rem;
 }
 
 .shop-item-card-price-current {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: clamp(1.08rem, 1.7vw, 1.42rem);
+  gap: 0.3rem;
+  font-size: clamp(1rem, 1.45vw, 1.22rem);
   font-weight: 800;
   line-height: 1;
   color: var(--theme-text-primary);
 }
 
 .shop-item-card-price-original {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   line-height: 1;
   color: var(--theme-text-secondary);
   text-decoration: line-through;
-}
-
-.shop-item-card-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 0.25rem 0.5rem;
-  min-height: 1.35rem;
-  font-size: 0.72rem;
-  color: var(--theme-text-secondary);
-  overflow: hidden;
-}
-
-.shop-item-card-meta span {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .shop-item-card-name {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.7rem;
+  height: 2.45rem;
   padding: 0 0.5rem;
   text-align: center;
   font-weight: 700;
@@ -723,30 +681,43 @@ usePageSeo({
   }
 
   .shop-cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(8.8rem, 1fr));
   }
 
   .shop-item-card {
-    height: 13.9rem;
-    grid-template-rows: 1.45rem 5.15rem 4.95rem 2.95rem;
+    height: 14.1rem;
+    grid-template-rows: 1.9rem 4.8rem 4.25rem 2.45rem;
+  }
+
+  .shop-item-card-top {
+    height: 1.9rem;
+    padding-top: 0.1rem;
   }
 
   .shop-item-card-media {
-    padding: 0.1rem var(--spacing-sm) 0.35rem;
-    height: 5.15rem;
+    padding: 0.08rem var(--spacing-sm) 0.25rem;
+    height: 4.8rem;
   }
 
   .shop-item-card-icon {
-    width: min(5.1rem, 100%);
+    width: min(5rem, 100%);
   }
 
   .shop-item-card-body {
-    height: 4.95rem;
+    height: 4.25rem;
   }
 
   .shop-performance-badge--card {
-    height: 2.05rem;
-    font-size: 1.2rem;
+    height: 1.9rem;
+    font-size: 1.12rem;
+  }
+
+  .shop-item-card-price-current {
+    font-size: 0.95rem;
+  }
+
+  .shop-item-stock-panel {
+    font-size: 0.66rem;
   }
 }
 </style>
