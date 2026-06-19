@@ -1,8 +1,18 @@
 import type { ItemValueMap } from '@/shared/types/itemValue';
+import rawApItems from '@/custom/core/apItems.json';
 
 // 本文件的 itemName 字段仅作为备注使用，请勿依赖其值进行逻辑处理
 
 export const itemValueMap: ItemValueMap = {
+  // 从 apItems.json 注入理智药价值
+  ...Object.fromEntries(
+    Object.entries(rawApItems).map(([key, item]) => [
+      key,
+      { itemId: item.id, value: item.apRecoverValue },
+    ]),
+  ),
+
+  // 氪金资源
   item_originium_recharge: {
     itemId: 'item_originium_recharge',
     itemName: '衍质源石',
@@ -187,38 +197,6 @@ export const itemValueMap: ItemValueMap = {
     itemId: 'ticketgacha_special_ten_lt_1_0_1',
     itemName: '行火留烬十连凭证',
     value: (40 / 75) * 500 * 10,
-  },
-
-  // 理智物品
-  item_ap_supply_lt_n: {
-    itemId: 'item_ap_supply_lt_n',
-    itemName: '应急理智加强剂',
-    value: 40,
-  },
-  ap_supply_lt_n: {
-    itemId: 'ap_supply_lt_n',
-    itemName: '应急理智加强剂',
-    value: 40,
-  },
-  item_char_ap_supply_laevat: {
-    itemId: 'item_char_ap_supply_laevat',
-    itemName: '海盐冰淇淋',
-    value: 40,
-  },
-  item_char_ap_supply_yvonne: {
-    itemId: 'item_char_ap_supply_yvonne',
-    itemName: '草莓可丽饼',
-    value: 40,
-  },
-  item_char_ap_supply_aglina: {
-    itemId: 'item_char_ap_supply_aglina',
-    itemName: '栗花蜜',
-    value: 40,
-  },
-  item_char_ap_supply_zhuangfy: {
-    itemId: 'item_char_ap_supply_zhuangfy',
-    itemName: '油焖整笋罐头',
-    value: 40,
   },
 
   // 物资箱
