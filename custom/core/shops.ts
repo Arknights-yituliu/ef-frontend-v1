@@ -510,7 +510,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_gold',
         quantityPerGroup: 2000,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 140,
         discount: 0,
         currentPrice: 140,
@@ -518,7 +518,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_expcard_stage1_low',
         quantityPerGroup: 30,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 90,
         discount: 0,
         currentPrice: 90,
@@ -526,7 +526,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_expcard_stage1_mid',
         quantityPerGroup: 10,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 140,
         discount: 0,
         currentPrice: 140,
@@ -534,7 +534,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_char_skill_level_1_6',
         quantityPerGroup: 4,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 120,
         discount: 0,
         currentPrice: 120,
@@ -542,7 +542,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_weapon_break_low',
         quantityPerGroup: 2,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 140,
         discount: 0,
         currentPrice: 140,
@@ -550,7 +550,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_diamond',
         quantityPerGroup: 25,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 400,
         discount: 0,
         currentPrice: 400,
@@ -558,7 +558,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_weapon_expcard_low',
         quantityPerGroup: 30,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 90,
         discount: 0,
         currentPrice: 90,
@@ -566,7 +566,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_weapon_expcard_mid',
         quantityPerGroup: 10,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 140,
         discount: 0,
         currentPrice: 140,
@@ -574,7 +574,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_gachabyproducts_weapongold',
         quantityPerGroup: 20,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 840,
         discount: 0,
         currentPrice: 840,
@@ -582,7 +582,7 @@ export const shops: Shop[] = [
       {
         itemId: 'item_char_break_stage_1_2',
         quantityPerGroup: 2,
-        stockGroups: 1,
+        stockGroups: Infinity,
         originalPrice: 140,
         discount: 0,
         currentPrice: 140,

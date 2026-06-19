@@ -28,14 +28,21 @@
 
     <section v-for="shop in shops" :key="shop.shopId" class="mb-4">
       <h2 class="page-sub-title shop-section-title">
-        <img
+        <button
           v-if="shop.titleIconUrl"
-          :alt="shop.shopName"
-          aria-hidden="true"
-          class="shop-section-title-icon"
-          loading="lazy"
-          :src="shop.titleIconUrl"
-        />
+          :aria-label="`连续点击 5 次重置 ${shop.shopName} 的售罄状态`"
+          class="shop-section-title-icon-button"
+          type="button"
+          @click.stop="handleShopTitleIconClick(shop.shopId)"
+        >
+          <img
+            alt=""
+            aria-hidden="true"
+            class="shop-section-title-icon"
+            loading="lazy"
+            :src="shop.titleIconUrl"
+          />
+        </button>
         <span>{{ shop.shopName }}</span>
       </h2>
       <v-card v-if="viewMode === 'table'">
@@ -80,9 +87,20 @@
       </v-card>
       <div v-else class="shop-cards-grid">
         <article
-          v-for="item in getTableItems(shop.shopItems, shop.shopId)"
-          :key="getShopItemKey(item)"
+          v-for="item in getCardItems(shop.shopItems, shop.shopId)"
+          :key="item.shopItemKey"
+          :aria-pressed="item.canToggleSoldOut ? item.isSoldOut : undefined"
           class="shop-item-card"
+          :class="{
+            'shop-item-card--clickable': item.canToggleSoldOut,
+            'shop-item-card--locked': !item.canToggleSoldOut,
+            'shop-item-card--sold-out': item.isSoldOut,
+          }"
+          :role="item.canToggleSoldOut ? 'button' : undefined"
+          :tabindex="item.canToggleSoldOut ? 0 : undefined"
+          @click="handleShopCardClick(shop.shopId, item)"
+          @keydown.enter.prevent="handleShopCardClick(shop.shopId, item)"
+          @keydown.space.prevent="handleShopCardClick(shop.shopId, item)"
         >
           <div class="shop-item-card-top">
             <div v-if="item.stockLabel" class="shop-item-stock-panel">
@@ -201,6 +219,12 @@ interface TableItem {
   costPerformance: number;
 }
 
+interface CardItem extends TableItem {
+  shopItemKey: string;
+  canToggleSoldOut: boolean;
+  isSoldOut: boolean;
+}
+
 interface ShopView {
   shopId: string;
   shopName: string;
@@ -245,6 +269,21 @@ const shops = computed<ShopView[]>(() =>
     })),
 );
 
+const soldOutItemKeysByShop = ref<Record<string, string[]>>({});
+const shopTitleIconClickCounts = ref<Record<string, number>>({});
+const shopTitleIconClickResetTimers = new Map<string, ReturnType<typeof setTimeout>>();
+
+onMounted(() => {
+  loadSoldOutItemKeysFromStorage();
+});
+
+onBeforeUnmount(() => {
+  for (const timerId of shopTitleIconClickResetTimers.values()) {
+    clearTimeout(timerId);
+  }
+  shopTitleIconClickResetTimers.clear();
+});
+
 function getTotalValue(shopItem: ShopItem): number {
   return getItemValue(shopItem.itemId) * shopItem.quantityPerGroup;
 }
@@ -258,7 +297,28 @@ function getShopTitleIconUrl(shopId: string): string | undefined {
 }
 
 function getTableItems(shopItems: ShopItem[], shopId: string): TableItem[] {
-  return shopItems.map((item) => ({
+  return shopItems.map((item) => createTableItem(item, shopId));
+}
+
+function getCardItems(shopItems: ShopItem[], shopId: string): CardItem[] {
+  return shopItems
+    .map((item, index) => {
+      const tableItem = createTableItem(item, shopId);
+      const shopItemKey = getShopItemKey(item, index);
+      const canToggleSoldOut = Number.isFinite(item.stockGroups);
+
+      return {
+        ...tableItem,
+        shopItemKey,
+        canToggleSoldOut,
+        isSoldOut: canToggleSoldOut && isShopItemSoldOut(shopId, shopItemKey),
+      };
+    })
+    .toSorted((left, right) => Number(left.isSoldOut) - Number(right.isSoldOut));
+}
+
+function createTableItem(item: ShopItem, shopId: string): TableItem {
+  return {
     itemId: item.itemId,
     itemName: getItemName(item.itemId),
     quantityPerGroup: item.quantityPerGroup,
@@ -272,7 +332,7 @@ function getTableItems(shopItems: ShopItem[], shopId: string): TableItem[] {
     originalPriceLabel: formatOriginalPriceLabel(item.originalPrice, item.discount),
     totalValue: getTotalValue(item),
     costPerformance: getCostPerformance(item, shopId),
-  }));
+  };
 }
 
 function getCostPerformanceMultiplier(shopId: string): number {
@@ -322,10 +382,150 @@ function formatCostPerformanceDisplay(value: number): string {
   return numberRound(value, 2).toFixed(2);
 }
 
-function getShopItemKey(item: TableItem): string {
-  return [item.itemId, item.currentPrice, item.quantityPerGroup, item.stockGroups ?? 'na'].join(
-    '-',
-  );
+function getShopItemKey(
+  item: Pick<ShopItem, 'itemId' | 'currentPrice' | 'quantityPerGroup' | 'stockGroups'>,
+  index?: number,
+): string {
+  return [
+    item.itemId,
+    item.currentPrice,
+    item.quantityPerGroup,
+    item.stockGroups ?? 'na',
+    index ?? 'na',
+  ].join('-');
+}
+
+function getShopSoldOutStorageKey(shopId: string): string {
+  return `material-profit-shop-value:sold-out:${encodeURIComponent(shopId)}`;
+}
+
+function isShopItemSoldOut(shopId: string, shopItemKey: string): boolean {
+  return soldOutItemKeysByShop.value[shopId]?.includes(shopItemKey) ?? false;
+}
+
+function updateShopSoldOutItemKeys(shopId: string, nextKeys: string[]): void {
+  const nextState =
+    nextKeys.length > 0
+      ? {
+          ...soldOutItemKeysByShop.value,
+          [shopId]: nextKeys,
+        }
+      : omitShopSoldOutItemKeys(shopId);
+
+  soldOutItemKeysByShop.value = nextState;
+  persistShopSoldOutItemKeys(shopId);
+}
+
+function toggleShopItemSoldOut(shopId: string, item: CardItem): void {
+  if (!item.canToggleSoldOut) {
+    return;
+  }
+
+  const currentKeys = soldOutItemKeysByShop.value[shopId] ?? [];
+  const nextKeys = currentKeys.includes(item.shopItemKey)
+    ? currentKeys.filter((key) => key !== item.shopItemKey)
+    : [...currentKeys, item.shopItemKey];
+
+  updateShopSoldOutItemKeys(shopId, nextKeys);
+}
+
+function handleShopCardClick(shopId: string, item: CardItem): void {
+  toggleShopItemSoldOut(shopId, item);
+}
+
+function handleShopTitleIconClick(shopId: string): void {
+  const nextCount = (shopTitleIconClickCounts.value[shopId] ?? 0) + 1;
+
+  if (nextCount >= 5) {
+    clearShopTitleIconClickTimer(shopId);
+    shopTitleIconClickCounts.value = {
+      ...shopTitleIconClickCounts.value,
+      [shopId]: 0,
+    };
+    resetShopSoldOutState(shopId);
+    return;
+  }
+
+  shopTitleIconClickCounts.value = {
+    ...shopTitleIconClickCounts.value,
+    [shopId]: nextCount,
+  };
+
+  clearShopTitleIconClickTimer(shopId);
+  const timerId = setTimeout(() => {
+    shopTitleIconClickCounts.value = {
+      ...shopTitleIconClickCounts.value,
+      [shopId]: 0,
+    };
+    shopTitleIconClickResetTimers.delete(shopId);
+  }, 1200);
+  shopTitleIconClickResetTimers.set(shopId, timerId);
+}
+
+function clearShopTitleIconClickTimer(shopId: string): void {
+  const timerId = shopTitleIconClickResetTimers.get(shopId);
+  if (timerId !== undefined) {
+    clearTimeout(timerId);
+    shopTitleIconClickResetTimers.delete(shopId);
+  }
+}
+
+function resetShopSoldOutState(shopId: string): void {
+  updateShopSoldOutItemKeys(shopId, []);
+}
+
+function omitShopSoldOutItemKeys(shopId: string): Record<string, string[]> {
+  const { [shopId]: _removedShopSoldOutItemKeys, ...rest } = soldOutItemKeysByShop.value;
+  return rest;
+}
+
+function persistShopSoldOutItemKeys(shopId: string): void {
+  if (!import.meta.client) {
+    return;
+  }
+
+  const storageKey = getShopSoldOutStorageKey(shopId);
+  const keys = soldOutItemKeysByShop.value[shopId] ?? [];
+
+  if (keys.length === 0) {
+    localStorage.removeItem(storageKey);
+    return;
+  }
+
+  localStorage.setItem(storageKey, JSON.stringify(keys));
+}
+
+function loadSoldOutItemKeysFromStorage(): void {
+  if (!import.meta.client) {
+    return;
+  }
+
+  const nextState: Record<string, string[]> = {};
+
+  for (const shop of allShops) {
+    const savedValue = localStorage.getItem(getShopSoldOutStorageKey(shop.shopId));
+    if (!savedValue) {
+      continue;
+    }
+
+    try {
+      const parsedValue: unknown = JSON.parse(savedValue);
+      if (!Array.isArray(parsedValue)) {
+        continue;
+      }
+
+      const filteredKeys = parsedValue.filter(
+        (value): value is string => typeof value === 'string',
+      );
+      if (filteredKeys.length > 0) {
+        nextState[shop.shopId] = filteredKeys;
+      }
+    } catch {
+      // 忽略损坏的本地缓存。
+    }
+  }
+
+  soldOutItemKeysByShop.value = nextState;
 }
 
 function formatStockLabel(stockGroups?: number): string | undefined {
@@ -449,10 +649,28 @@ usePageSeo({
   gap: 0.5rem;
 }
 
-.shop-section-title-icon {
+.shop-section-title-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 2.9rem;
   height: 2.9rem;
   flex: 0 0 2.9rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.shop-section-title-icon-button:focus-visible {
+  outline: 2px solid var(--theme-accent-color);
+  outline-offset: 2px;
+}
+
+.shop-section-title-icon {
+  width: 2.9rem;
+  height: 2.9rem;
   object-fit: contain;
 }
 
@@ -473,8 +691,51 @@ usePageSeo({
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 24%),
     linear-gradient(135deg, var(--theme-bg-secondary), var(--theme-bg-tertiary));
   box-shadow: 0 0.5rem 1.25rem var(--theme-shadow-base);
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease,
+    filter 0.16s ease;
+  user-select: none;
   display: grid;
   grid-template-rows: 2.1rem 5.55rem 4.45rem 2.45rem;
+}
+
+.shop-item-card--clickable {
+  cursor: pointer;
+}
+
+.shop-item-card--locked {
+  cursor: default;
+}
+
+.shop-item-card--sold-out {
+  transform: translateY(0.14rem);
+  border-color: color-mix(in srgb, var(--theme-border) 70%, #b0b0b0);
+  box-shadow: 0 0.2rem 0.55rem rgba(0, 0, 0, 0.12);
+}
+
+.shop-item-card--sold-out::after {
+  content: '售罄';
+  position: absolute;
+  left: 0;
+  top: 22%;
+  width: 100%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(138, 138, 138, 0.96), rgba(104, 104, 104, 0.96));
+  color: #fff;
+  font-size: 1.12rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0.1rem 0.22rem rgba(0, 0, 0, 0.45);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 0.18rem 0.35rem rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .shop-item-card::before {
@@ -718,6 +979,11 @@ usePageSeo({
 
   .shop-item-stock-panel {
     font-size: 0.66rem;
+  }
+
+  .shop-item-card--sold-out::after {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
   }
 }
 </style>
