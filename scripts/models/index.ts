@@ -27,6 +27,7 @@ export type { ItemListByType, ItemListByTypeTable } from './itemListByTypeTable'
 export type { Item, ItemTable } from './itemTable';
 export type { ItemType, ItemTypeTable } from './itemTypeTable';
 export type { LevelLoading, LevelLoadingTable } from './levelLoadingTable';
+export type { RecoverApItem, RecoverApItemTable } from './recoverApItemTable';
 export type { ItemBundle, Reward, RewardTable } from './rewardTable';
 export type {
   SimulationTrainingCard,
