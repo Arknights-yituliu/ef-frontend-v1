@@ -27,6 +27,8 @@ logs
 # AI IDE files
 /public/tools/factoriolab
 .claude/settings.local.json
+.cursor
+.iflow
 
 #temp game data
 /app/assets/shanying
