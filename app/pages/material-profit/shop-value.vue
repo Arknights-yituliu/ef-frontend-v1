@@ -698,7 +698,7 @@ usePageSeo({
     filter 0.16s ease;
   user-select: none;
   display: grid;
-  grid-template-rows: 2.1rem 5.55rem 4.45rem 2.45rem;
+  grid-template-rows: 2.1rem 5.55rem 4.45rem 1fr;
 }
 
 .shop-item-card--clickable {
@@ -915,7 +915,7 @@ usePageSeo({
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.45rem;
+  min-height: 2.45rem;
   padding: 0 0.5rem;
   text-align: center;
   font-weight: 700;
@@ -923,6 +923,8 @@ usePageSeo({
   color: #fff;
   background: linear-gradient(180deg, rgba(58, 58, 58, 0.95), rgba(42, 42, 42, 0.98));
   border-top: 0.2rem solid #ffb300;
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -947,7 +949,7 @@ usePageSeo({
 
   .shop-item-card {
     height: 14.1rem;
-    grid-template-rows: 1.9rem 4.8rem 4.25rem 2.45rem;
+    grid-template-rows: 1.9rem 4.8rem 4.25rem 1fr;
   }
 
   .shop-item-card-top {
