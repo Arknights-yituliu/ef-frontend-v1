@@ -12,7 +12,7 @@ After editing code, run these commands in order to verify correctness:
 # Lint + format in one pass
 yarn lint:format
 
-# Generate static site (SSG build)
+# Generate static site for SSG build (There is no need to run this command for minor modifications. Only run it when making major changes, such as creating a new feature or refactoring many existing functions.)
 yarn generate
 
 # Generate game data from scripts (If relevant files are modified)
