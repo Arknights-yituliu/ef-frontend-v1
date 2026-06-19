@@ -14,7 +14,12 @@
           :items-per-page="25"
         >
           <template #item.itemName="{ item }">
-            {{ item.itemName }}
+            <div class="shop-item-name-cell">
+              <div class="shop-item-icon-wrapper">
+                <ContainerItemIcon :item-id="item.itemId" />
+              </div>
+              <span class="shop-item-name">{{ item.itemName }}</span>
+            </div>
           </template>
           <template #item.quantityPerGroup="{ item }">
             {{ item.quantityPerGroup }}
@@ -23,10 +28,10 @@
             {{ item.currentPrice }}
           </template>
           <template #item.totalValue="{ item }">
-            {{ numberRound(item.totalValue,2) }}
+            {{ numberRound(item.totalValue, 2) }}
           </template>
           <template #item.costPerformance="{ item }">
-            {{ numberRound(item.costPerformance,4) }}
+            {{ numberRound(item.costPerformance, 4) }}
           </template>
         </v-data-table>
       </v-card>
@@ -108,4 +113,23 @@ usePageSeo({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.shop-item-name-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 12rem;
+  padding: 0.25rem 0;
+}
+
+.shop-item-icon-wrapper {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
+}
+
+.shop-item-name {
+  color: var(--theme-text-primary);
+  line-height: 1.25;
+}
+</style>
