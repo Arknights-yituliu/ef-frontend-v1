@@ -166,6 +166,11 @@ export const itemValueMap: ItemValueMap = {
     itemName: '无瑕基质',
     value: 80 / 3,
   },
+  item_wpngem_enhance_dust: {
+    itemId: 'item_wpngem_enhance_dust',
+    itemName: '冷却脂',
+    value: 80 / 3 / 22, // 按每个基质等于 22 冷却脂来计算
+  },
 
   // 寻访凭证
   item_ticketgacha_standard_single: {
