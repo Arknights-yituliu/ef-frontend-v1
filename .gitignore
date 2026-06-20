@@ -25,12 +25,10 @@ logs
 !.env.example
 
 # AI IDE files
-.cursor
-.claude
-.iflow
-IFLOW.md
-CLAUDE.md
 /public/tools/factoriolab
+.claude/settings.local.json
+.cursor
+.iflow
 
 #temp game data
 /app/assets/shanying

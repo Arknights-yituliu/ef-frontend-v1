@@ -178,22 +178,9 @@ function handleImageError (event: Event) {
   img.style.display = 'none';
 }
 
-// SEO 配置
-const siteName = computed(() => t('layout.siteName'));
-const pageTitle = computed(() => `${t('page.others.friendLinks.friendLinks')} - ${siteName.value}`);
-const pageDescription = computed(() => t('page.others.friendLinks.friendLinksDescription'));
-
-useSeoMeta({
-  title: () => pageTitle.value,
-  description: () => pageDescription.value,
-  ogTitle: () => pageTitle.value,
-  ogDescription: () => pageDescription.value,
-  ogType: 'website',
-  twitterCard: 'summary',
-});
-
-useHead({
-  title: () => pageTitle.value,
+usePageSeo({
+  title: () => `${t('page.others.friendLinks.friendLinks')} - ${t('layout.siteName')}`,
+  description: () => t('page.others.friendLinks.friendLinksDescription'),
 });
 </script>
 

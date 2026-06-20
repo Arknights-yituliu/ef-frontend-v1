@@ -463,6 +463,11 @@ import {
 } from '@/custom/core/weaponEssence';
 const { t } = useI18n();
 
+usePageSeo({
+  title: () => `${t('page.tools.essenceCalculator.title')} - ${t('layout.siteName')}`,
+  description: () => t('page.tools.essenceCalculator.demandSetDescription'),
+});
+
 /** 是否显示干员专武头像 */
 const showCharAvatar = useLocalStorage('essence-calculator-show-char-avatar', true, {
   writeDefaults: false,

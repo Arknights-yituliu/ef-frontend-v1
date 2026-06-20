@@ -18,11 +18,15 @@
               <div class="mb-4">
                 <v-row dense>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="6">
-                    剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} / {{ 输入.剩余放弃次数 }} /
-                    {{ 输入.剩余翻倍次数 }}
+                    剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} /
+                    <span :class="{'text-error font-weight-bold': 输入.剩余放弃次数 === 0}">{{ 输入.剩余放弃次数 }}</span> /
+                    <span :class="{'text-error font-weight-bold': 输入.剩余翻倍次数 === 0}">{{ 输入.剩余翻倍次数 }}</span>
                   </v-col>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
-                    翻倍状态: {{ 输入.是否翻倍 ? '已翻倍' : '未翻倍' }}
+                    翻倍状态:
+                    <v-icon :color="输入.是否翻倍 ? 'orange-darken-1' : undefined" size="small">
+                      {{ 输入.是否翻倍 ? 'mdi-check-circle' : 'mdi-close' }}
+                    </v-icon>
                   </v-col>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
                     当前手牌:
@@ -118,9 +122,7 @@
                           <strong>{{ item.即时奖励.toFixed(0) }}</strong>
                         </div>
                         <div v-if="!mobile" class="strategy-metric">
-                          <span>
-                            未来期望
-                          </span>
+                          <span> 未来期望 </span>
                           <strong>{{ 格式化万元(item.期望未来价值) }}</strong>
                         </div>
                         <div class="strategy-metric total">
@@ -160,56 +162,41 @@
                   <v-btn
                     block
                     class="fill-height"
-                    color="grey-darken-1"
-                    prepend-icon="mdi-restore"
+                    color="teal-darken-1"
+                    prepend-icon="mdi-sync"
                     variant="outlined"
                     @click="执行重置初始铭牌库"
                   >
-                    重置初始库
+                    同步牌库
                   </v-btn>
                 </v-col>
               </v-row>
               <div class="text-subtitle-2 text-medium-emphasis">
                 <v-icon icon="mdi-information"></v-icon>
                 <span>
-                  铭牌库每 3 天更新一次，但我们不一定每 3 天更新一次网站，若与游戏内不一致请手动调整。
-                  <br>上次更新时间：{{ 当前牌库记录时间文本 }}。
+                  当前牌库轮换时间：<strong>{{ 当前牌库时间范围文本 }}</strong
+                  >，若与游戏内不一致请手动调整。
                 </span>
               </div>
-              <v-alert
-                v-if="显示牌库更新提醒"
-                border="start"
-                class="deck-version-alert mt-3"
-                density="comfortable"
-                type="warning"
-                variant="tonal"
-              >
-                <div class="deck-version-alert-content">
-                  <div>
-                    <div class="font-weight-bold">牌库数据可能需要手动更新</div>
-                    <div class="text-body-2">
-                      当前周期：{{ 当前牌库周期范围文本 }}。现有牌库记录时间是 {{ 当前牌库记录时间文本 }}，
-                      请核对初始铭牌库是否与游戏内一致，若不一致请手动调整。
-                    </div>
-                  </div>
-                  <v-btn color="warning" size="small" variant="flat" @click="保存当前牌库数据">
-                    已手动更新
-                  </v-btn>
-                </div>
-              </v-alert>
 
               <!-- 数据溢出设置 -->
               <div class="text-subtitle-2 my-4">数据溢出容许</div>
               <v-radio-group v-model="数据溢出模式值" density="compact" hide-details>
                 <v-radio :label="`不接受数据溢出`" :value="数据溢出模式.不接受" />
                 <v-radio
-:class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }" :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
+                  :class="{ 'text-error font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1次 }"
+                  :color="数据溢出模式值 == 数据溢出模式.接受1次 ? 'error' : undefined"
                   :label="`接受 1 次数据溢出`"
-                  :value="数据溢出模式.接受1次" />
+                  :value="数据溢出模式.接受1次"
+                />
                 <v-radio
-:class="{ 'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次 }" :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
+                  :class="{
+                    'text-red-darken-1 font-weight-bold': 数据溢出模式值 == 数据溢出模式.接受1至2次,
+                  }"
+                  :color="数据溢出模式值 == 数据溢出模式.接受1至2次 ? 'red-darken-1' : undefined"
                   :label="`接受 1 ~ 2 次数据溢出`"
-                  :value="数据溢出模式.接受1至2次" />
+                  :value="数据溢出模式.接受1至2次"
+                />
               </v-radio-group>
 
               <!-- 演武平台等级 -->
@@ -222,14 +209,13 @@
                 item-title="label"
                 item-value="value"
                 :items="
-                  演武平台等级表.map((_, i) => {
+                  Object.keys(演武平台等级表数据).map((_, i) => {
                     return {
                       value: i + 1,
-                      label: `Lv.${i + 1}`,
+                      label: `Lv. ${i + 1}${i+1===4 ? ' (MAX)' : ''}`,
                     };
                   })
                 "
-                label="演武平台等级"
               />
               <div class="text-subtitle-2 my-4">演武平台属性</div>
               <ul>
@@ -270,6 +256,7 @@
                   <input
                     v-model.number="输入.剩余放弃次数"
                     aria-label="剩余放弃次数"
+                    :class="{ empty: !输入.剩余放弃次数 }"
                     max="3"
                     min="0"
                     type="number"
@@ -280,6 +267,7 @@
                   <input
                     v-model.number="输入.剩余翻倍次数"
                     aria-label="剩余翻倍次数"
+                    :class="{ empty: !输入.剩余翻倍次数 }"
                     max="2"
                     min="0"
                     type="number"
@@ -354,42 +342,34 @@
               <div class="post-battle-action-row mt-3">
                 <v-switch
                   v-model="输入.是否翻倍"
+                  :base-color="输入.是否翻倍 && (当前手牌总数 !== 2 || 输入.剩余翻倍次数 <= 0) ? 'orange-darken-1' : undefined"
                   class="double-state-switch"
                   color="orange-darken-1"
                   density="compact"
                   :disabled="当前手牌总数 !== 2 || 输入.剩余翻倍次数 <= 0"
                   hide-details
                   inset
-                  :label="`奖励翻倍（${输入.剩余翻倍次数 > 0 ? `剩余 ${输入.剩余翻倍次数} 次` : '已耗尽'}）`"
-                />
+                >
+                  <template #thumb>
+                    <v-icon v-if="输入.是否翻倍" color="orange-darken-4" size="large">mdi-check</v-icon>
+                  </template>
+                  <template #label>
+                    <span :class="{ 'text-orange-darken-1 font-weight-bold': 输入.是否翻倍}">
+                      {{ `奖励翻倍（${输入.剩余翻倍次数 > 0 ? `剩余 ${输入.剩余翻倍次数} 次` : '已耗尽'}）` }}
+                    </span>
+                  </template>
+                </v-switch>
               </div>
 
               <div class="quick-action-grid mt-3">
                 <div class="quick-action-start">
-                  <button
-                    aria-label="开始演算"
-                    class="start-calculation-button"
+                  <ToolsTrialSwordmancyStartButton
                     :disabled="!可开始演算"
-                    type="button"
-                    @click="() => 执行开始演算()"
-                  >
-                    <v-icon icon="mdi-code-brackets"></v-icon>
-                    <span class="start-calculation-text">开始演算</span>
-                  </button>
+                    @click="执行开始演算()"
+                  />
                 </div>
                 <div>
-                  <button
-                    aria-label="放弃"
-                    class="abandon-action-button"
-                    :disabled="!可放弃"
-                    type="button"
-                    @click="执行放弃"
-                  >
-                    <v-icon icon="mdi-logout"></v-icon>
-                    <span class="abandon-action-content">
-                      <span class="abandon-action-text">放弃</span>
-                    </span>
-                  </button>
+                  <ToolsTrialSwordmancyAbandonButton :disabled="!可放弃" @click="执行放弃" />
                 </div>
                 <div>
                   <v-btn
@@ -411,14 +391,38 @@
 
     <v-row>
       <v-col cols="12">
-        <v-expansion-panels :model-value="['docs']" multiple>
+        <v-expansion-panels :model-value="['simplified-strategy', 'docs']" multiple>
+          <!-- 简化策略 -->
+          <v-expansion-panel value="simplified-strategy">
+            <v-expansion-panel-title>
+              <v-icon class="mr-2" color="primary">mdi-lightbulb-on-outline</v-icon>
+              简化策略
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <p class="mt-0">最优策略太麻烦？有一个非常简单的简化策略，三句话记住：</p>
+              <ol>
+                <li><strong>能翻倍则翻倍；</strong></li>
+                <li>
+                  <strong>如果还有至少 2 次放弃机会</strong>，则 roll 到
+                  <strong>10 点</strong>才进去打；
+                </li>
+                <li><strong>否则</strong>也要至少 roll 到 <strong>9 点</strong>才进去打。</li>
+              </ol>
+              <p>
+                当初始牌库为 5、5、5、8、6
+                时，这一简化策略是一大类启发式策略中，收益最高的一个，可以达到最优策略的
+                <strong>98%</strong>。
+              </p>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+
           <v-expansion-panel value="docs">
             <v-expansion-panel-title>
               <v-icon class="mr-2" color="primary">mdi-help-circle</v-icon>
               帮助与说明
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              <h3>基本规则</h3>
+              <h3 class="mt-0">基本规则</h3>
               <p>在选剑演武中，您需要从牌库中抽取铭牌，凑出特定战力点进行挑战。</p>
               <p>
                 每次演算可以抽取最多 5
@@ -433,31 +437,52 @@
                   管理员可以随时选择<strong class="text-error">放弃</strong
                   >，但每次放弃会消耗一次弃权次数。<br />
                   <strong class="text-error"
-                    >每日拥有<strong>3次</strong>弃权次数；弃权次数耗尽时，继续弃权将扣除奖励演算次数。</strong
+                    >每日拥有
+                    <strong>3 次</strong
+                    >弃权次数；弃权次数耗尽时，继续弃权将扣除奖励演算次数。</strong
                   ><br />
-                  奖励演算每日可进行3次。
+                  奖励演算每日可进行 3 次。
                 </li>
                 <li>
-                  <strong>自由演算：</strong
-                  >奖励演算次数耗尽后，本日的后续演算将变为“自由演算”。<br />
+                  <strong>自由演算：</strong>奖励演算次数耗尽后，本日的后续演算将变为
+                  “自由演算”。<br />
                   自由演算不会给予奖励，管理员可以反复挑战。
                 </li>
               </ul>
               <v-card class="mx-auto" color="error" variant="outlined">
                 <template #text>
-                  <v-icon class="mr-2" color="error">mdi-alert</v-icon>
+                  <v-icon class="mr-2">mdi-alert</v-icon>
                   <span class="text-body-1">
                     <strong>注意：</strong>当铭牌的战力点数和超过 10
                     时，最终战力点会溢出，报酬量将会重新计算，并同时<strong>触发溢出惩罚。</strong>
                     <ul>
-                      <li>溢出 1 次（11+）时：所有敌人等级+30（达到<strong>Lv.90</strong>）</li>
-                      <li>溢出 2 次（22+）时：演算时间缩减至180秒（<strong>3分钟</strong>）</li>
+                      <li>溢出 1 次（11+）时：所有敌人等级 +30（达到 <strong>Lv. 90</strong>）</li>
+                      <li>溢出 2 次（22+）时：演算时间缩减至 180 秒（<strong>3 分钟</strong>）</li>
                     </ul>
                     <strong>请谨慎考虑在溢出状态下进行奖励演算。</strong>
                   </span>
                 </template>
               </v-card>
-              <p>在演武开始前，管理员可在演武场地东侧的专用区域设置战斗辅助设备以辅助战斗。</p>
+              <v-card
+                class="mx-auto mt-2"
+                :color="theme === 'dark' ? '#cdbb8e' : '#756a51'"
+                variant="tonal"
+              >
+                <template #text>
+                  <v-icon class="mr-2">mdi-information</v-icon>
+                  <span class="text-body-1">
+                    <strong>提示：</strong
+                    >不选择放弃，直接通过右上角关闭（包括鼠标右键关闭）铭牌抽取界面时，<strong
+                      >演武平台会保存已抽取的铭牌。</strong
+                    ><br />
+                    您可以通过这个方式暂时退出抽取界面，在传送点休整 /
+                    服用食药等准备完毕后，再返回演武平台继续确认挑战。
+                  </span>
+                </template>
+              </v-card>
+              <p>
+                在演武开始前，管理员可在演武场地西侧观景台的专用区域设置战斗辅助设备以辅助战斗。
+              </p>
 
               <h3>规则假设</h3>
               <ul>
@@ -469,15 +494,22 @@
               </ul>
 
               <h3>操作说明</h3>
-              <p>您首先需要在【基础设定区】设置当前铭牌库的初始牌数、数据溢出容许及演算平台等级。</p>
+              <p>
+                您首先需要在【基础设定区】设置当前铭牌库的初始牌数、数据溢出容许及演算平台等级。
+              </p>
               <ul>
                 <li>
                   <strong
-                    >铭牌库每3日会刷新一次，请务必确保【基础设定区】中的铭牌库数量与游戏内未抽取时的铭牌库数量一致。</strong
+                    >铭牌库每 3
+                    日会刷新一次，请务必确保【基础设定区】中的铭牌库数量与游戏内未抽取时的铭牌库数量一致。</strong
                   >
                 </li>
                 <li>
-                  演算平台等级会影响最终战力点奖励量及每日翻倍次数。默认选用Lv.4。
+                  演算平台等级会影响最终战力点奖励量及每日翻倍次数。默认选用 Lv. 4。<br />
+                  <span class="text-error"
+                    ><strong>注意：</strong>当前存在待完成的演算（即至少抽取了 1
+                    张铭牌）时，无法进行演武平台升级。<br />若有升级需求请务必注意。</span
+                  >
                 </li>
               </ul>
               <p>
@@ -490,7 +522,8 @@
                 </li>
                 <li>
                   <v-icon class="mr-2" size="small">mdi-restore</v-icon>
-                  <strong>重置全部</strong> — 将所有状态（已抽手牌、翻倍状态、各次数计数）恢复为初始值
+                  <strong>重置全部</strong> —
+                  将所有状态（已抽手牌、翻倍状态、各次数计数）恢复为初始值
                 </li>
                 <li>
                   <v-icon class="mr-2" color="#c3ab71" size="small">mdi-code-brackets</v-icon>
@@ -536,18 +569,12 @@
               <p>计算完成后，输出区会展示当前状态下的决策分析与收益评估：</p>
               <ul>
                 <li><strong>最优决策</strong> — MDP 求解出的当前状态最佳行动方案</li>
-                <li>
-                  <strong>总收益期望</strong> —
-                  按照最优策略，从当前状态开始至结束所能获得的总收益期望
-                </li>
                 <li><strong>本次收益</strong> — 执行当前决策（如开始演武）本次获得的收益</li>
                 <li><strong>未来期望</strong> — 选择某个决策后，后续演武收益的期望</li>
-                <li>
-                  <strong>全体期望</strong> = 本次收益 +
-                  未来期望，表示选择该决策的总收益期望
-                </li>
+                <li><strong>全体期望</strong> = 本次收益 + 未来期望，表示选择该决策的总收益期望</li>
               </ul>
-              <p>当剩余演算次数为 0 时，输出区会显示"已无演算次数"提示。</p>
+              <p>在该区域点击决策名称可以快速执行对应的决策。</p>
+              <p>当剩余演算次数为 0 时，输出区会显示 “已无演算次数” 提示。</p>
 
               <h3>关于翻倍</h3>
               <p>
@@ -564,7 +591,7 @@
               </ul>
               <p>
                 虽然只抽了 1 张铭牌时也可以选择翻倍，但是在最优策略下，一定至少抽 2
-                张铭牌才会开始演算。<br/>
+                张铭牌才会开始演算。<br />
                 为了性能考虑，在本计算器中，仅在刚好抽取了 2 张铭牌时才能选择是否翻倍。
               </p>
 
@@ -592,24 +619,25 @@
 import { watchDebounced } from '@vueuse/core';
 import { useDisplay } from 'vuetify';
 import {
+  演武平台等级表数据,
+  获取当前牌库Deck,
+  计算当前牌库索引,
+} from '@/custom/core/trialOfSwordmancy';
+import {
   type MDPResult,
   数据溢出模式,
   求解器类,
-  演武平台等级表,
   type 状态类,
   状态键,
   计算战力点,
-  默认牌库数据,
-  默认牌库数量元组,
 } from '@/shared/utils/trialOfSwordmancy';
 import {
   写入本地牌库数据,
   格式化东八区时间,
-  牌库周期范围文本,
   牌库数据快照,
-  牌库数据需要更新,
-  计算牌库刷新周期,
   读取本地牌库数据,
+  轮换起始Ms,
+  轮换间隔Ms,
 } from '@/shared/utils/trialOfSwordmancyDeck';
 import {
   写入选剑演武页面状态,
@@ -621,18 +649,28 @@ definePageMeta({
   layout: 'default',
 });
 
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('menu.trialOfSwordmancyStrategy')} - ${t('layout.siteName')}`,
+  description: () => 'Strategy calculator for Trial of Swordmancy outcomes and hand composition.',
+});
+
 const { mobile } = useDisplay();
+const { theme } = useTheme();
 
 const 左侧面板展开值 = ref<string[]>(['output', 'settings']);
 const 右侧面板展开值 = ref<string[]>(['input']);
 
 // ==================== 响应式状态 ====================
 
-const 牌库数量元组 = ref<number[]>([...默认牌库数量元组]);
+const 牌库数量元组 = ref<number[]>([4, 5, 6, 6, 7]);
 const 演算奖励元组 = computed<number[]>(
-  () => 演武平台等级表[演武平台等级.value - 1]?.演算奖励元组 ?? [],
+  () => 演武平台等级表数据[String(演武平台等级.value)]?.pointAward ?? [],
 );
-const 翻倍次数上限 = computed<number>(() => 演武平台等级表[演武平台等级.value - 1]?.双倍次数 ?? 0);
+const 翻倍次数上限 = computed<number>(
+  () => 演武平台等级表数据[String(演武平台等级.value)]?.doubleLimit ?? 0,
+);
 const 演武平台等级 = ref(默认选剑演武页面状态.演武平台等级);
 const 数据溢出模式值 = ref<数据溢出模式>(默认选剑演武页面状态.数据溢出模式值);
 
@@ -643,7 +681,7 @@ const 输入 = reactive({
 const 显示消息 = ref(false);
 const 消息 = ref('');
 const 牌库数据 = ref({
-  deck: [...默认牌库数量元组],
+  deck: [4, 5, 6, 6, 7] as number[],
   updatedAt: Date.now(),
 });
 const 当前时间Ms = ref(Date.now());
@@ -651,11 +689,16 @@ let 忽略下一次牌库自动保存快照: string | null = null;
 let 正在恢复页面状态 = false;
 let 牌库时间检查计时器: ReturnType<typeof setInterval> | undefined;
 
-const 当前牌库记录时间文本 = computed(() => 格式化东八区时间(牌库数据.value.updatedAt));
-const 当前牌库周期范围文本 = computed(() => 牌库周期范围文本(计算牌库刷新周期(当前时间Ms.value)));
-const 显示牌库更新提醒 = computed(() => 牌库数据需要更新(牌库数据.value, 当前时间Ms.value));
-
-function 设置牌库数据(deck: number[], updatedAt: number): void {
+const 当前牌库时间范围文本 = computed(() => {
+  const idx = 计算当前牌库索引(当前时间Ms.value);
+  if (idx < 0) {
+    return '尚未开始';
+  }
+  const start = 轮换起始Ms + idx * 轮换间隔Ms;
+  const end = start + 轮换间隔Ms;
+  return `${格式化东八区时间(start)} - ${格式化东八区时间(end)}`;
+});
+function 设置牌库数据(deck: number[], updatedAt: number = Date.now()): void {
   忽略下一次牌库自动保存快照 = 牌库数据快照(deck);
   牌库数量元组.value = [...deck];
   牌库数据.value = {
@@ -674,12 +717,6 @@ function 保存牌库数据(deck: number[], updatedAt: number = Date.now()): voi
   if (import.meta.client) {
     写入本地牌库数据(localStorage, data);
   }
-}
-
-function 保存当前牌库数据(): void {
-  保存牌库数据(牌库数量元组.value);
-  消息.value = '当前牌库数据已记录时间戳';
-  显示消息.value = true;
 }
 
 function 生成页面状态快照() {
@@ -1047,12 +1084,13 @@ function 删除手牌(索引: number): void {
   手牌插槽.value = [...剩余手牌, ...Array.from({ length: 5 - 剩余手牌.length }, () => 0)];
 }
 
-/** 重置初始铭牌库（恢复默认牌库数量，MDP 会通过 watch 自动重新计算） */
+/** 重置初始铭牌库（恢复当前牌库数据，MDP 会通过 watch 自动重新计算） */
 function 执行重置初始铭牌库(): void {
-  设置牌库数据(默认牌库数据.deck, 默认牌库数据.updatedAt);
-  保存牌库数据(默认牌库数据.deck, 默认牌库数据.updatedAt);
+  const currentDeck = 获取当前牌库Deck(当前时间Ms.value);
+  设置牌库数据(currentDeck);
+  保存牌库数据(currentDeck);
 
-  消息.value = '初始铭牌库已重置';
+  消息.value = '铭牌库已重置为当前游戏牌库';
   显示消息.value = true;
 }
 
@@ -1220,6 +1258,18 @@ function 执行决策按钮(决策: string): void {
   outline-offset: 1px;
 }
 
+.daily-count-field input.empty {
+  border-color: rgba(253, 94, 97, 0.9);
+  border-width: 2px;
+  color: rgba(255, 42, 44, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 0, 0, 0.08),
+    0 1px 2px var(--theme-shadow-base);
+}
+.daily-count-field input.empty:focus {
+  outline-color: rgba(255, 42, 44, 0.25);
+}
+
 .deck-version-alert :deep(.v-alert__content) {
   width: 100%;
 }
@@ -1241,152 +1291,9 @@ function 执行决策按钮(决策: string): void {
   min-width: 0;
 }
 
-.start-calculation-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 44px;
-  padding: 0.35rem 0.55rem;
-  overflow: hidden;
-  font: inherit;
-  color: rgba(255, 255, 255, 0.98);
-  cursor: pointer;
-  appearance: none;
-  background: linear-gradient(90deg, rgba(194, 170, 112, 0.92), rgba(222, 204, 158, 0.86)), #cbb176;
-  border: 0;
-  border-radius: 2px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
-  transition:
-    filter 0.18s ease,
-    transform 0.18s ease,
-    opacity 0.18s ease;
-  isolation: isolate;
-}
-
-.start-calculation-button::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.12) 0,
-      rgba(255, 255, 255, 0.12) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    linear-gradient(120deg, transparent 0 48%, rgba(255, 255, 255, 0.14) 48% 54%, transparent 54%);
-}
-
-.start-calculation-button:hover:not(:disabled) {
-  filter: brightness(1.04);
-  transform: translateY(-1px);
-}
-
-.start-calculation-button:disabled {
-  cursor: default;
-  filter: grayscale(0.55);
-  opacity: 0.58;
-}
-
-.start-calculation-button:focus-visible {
-  outline: 2px solid rgba(215, 184, 104, 0.82);
-  outline-offset: 2px;
-}
-
-.start-calculation-text {
-  min-width: 0;
-  overflow: hidden;
-  font-size: 1.28rem;
-  font-weight: 900;
-  line-height: 1;
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(118, 95, 54, 0.2);
-}
-
-.abandon-action-button {
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 44px;
-  padding: 0.34rem 0.5rem;
-  overflow: hidden;
-  font: inherit;
-  color: rgba(255, 255, 255, 0.96);
-  cursor: pointer;
-  appearance: none;
-  background: linear-gradient(90deg, rgba(87, 33, 34, 0.94), rgba(105, 42, 43, 0.88)), #552526;
-  border: 2px solid rgba(255, 42, 44, 0.9);
-  border-radius: 0;
-  transition:
-    filter 0.18s ease,
-    transform 0.18s ease,
-    opacity 0.18s ease;
-  isolation: isolate;
-}
-
-.abandon-action-button::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.04) 0,
-      rgba(255, 255, 255, 0.04) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    linear-gradient(90deg, rgba(255, 42, 44, 0.08), transparent 42%);
-}
-
-.abandon-action-button:hover:not(:disabled) {
-  filter: brightness(1.08);
-  transform: translateY(-1px);
-}
-
-.abandon-action-button:disabled {
-  cursor: default;
-  filter: grayscale(0.45);
-  opacity: 0.58;
-}
-
-.abandon-action-button:focus-visible {
-  outline: 2px solid rgba(255, 42, 44, 0.82);
-  outline-offset: 2px;
-}
-
-.abandon-action-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  min-width: 0;
-}
-
-.abandon-action-text {
-  overflow: hidden;
-  font-size: 1.28rem;
-  font-weight: 900;
-  line-height: 1;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(40, 10, 10, 0.34);
-}
-
 .post-battle-action-row {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
 }
 
 .double-state-switch {
@@ -1449,15 +1356,6 @@ function 执行决策按钮(决策: string): void {
   color: #fff;
 }
 
-/*
-.strategy-result-card.is-best {
-  color: white;
-  background: linear-gradient(135deg, #1976d2 0%, #1e88e5 52%, #42a5f5 100%);
-  border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 5px 5px rgba(var(--v-theme-primary), 0.32);
-}
-*/
-
 .strategy-result-card:hover {
   box-shadow: 0 10px 10px rgba(50, 85, 94, 0.18);
 }
@@ -1465,6 +1363,10 @@ function 执行决策按钮(决策: string): void {
 .strategy-card-action {
   min-width: 0;
   flex-grow: 100;
+}
+
+.strategy-result-card.is-best .strategy-card-action :deep(.v-btn) {
+  outline: 2.5px solid rgba(255, 255, 255, 0.6);
 }
 
 .strategy-decision-button {

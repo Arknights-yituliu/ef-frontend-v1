@@ -168,29 +168,28 @@ router.push('/introduction/project-structure');
 
 ## Route Meta Information
 
-### Page Title
+### Page Title & SEO
 
-Use `useHead` to set page title:
+Use the `usePageSeo` composable to set page title and SEO meta tags uniformly:
 
 ```typescript
-useHead({
-  title: 'Project Structure - EndField Yituliu',
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('menu.projectStructure')} - ${t('layout.siteName')}`,
+  description: () => 'Learn about the technical stack, directory structure, and file organization',
 });
 ```
 
-### SEO Optimization
+This composable automatically sets `og:title`, `og:description`, `og:url`, `og:locale`, `twitter:card`, and a canonical link. Available options:
 
-```typescript
-useHead({
-  title: 'Project Structure',
-  meta: [
-    {
-      name: 'description',
-      content: 'Learn about the technical stack, directory structure, and file organization',
-    },
-  ],
-});
-```
+| Option        | Type                                    | Default     | Description                          |
+| ------------- | --------------------------------------- | ----------- | ------------------------------------ |
+| `title`       | `MaybeRefOrGetter<string>`              | —           | Page title                           |
+| `description` | `MaybeRefOrGetter<string>`              | —           | Meta description                     |
+| `path`        | `MaybeRefOrGetter<string>`              | Current URL | Custom canonical path                |
+| `type`        | `'website' \| 'article'`                | `'website'` | Open Graph type                      |
+| `robots`      | `'all' \| 'noindex, nofollow' \| ...`   | `'all'`     | Robots meta directive                |
 
 ---
 

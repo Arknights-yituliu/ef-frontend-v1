@@ -10,4 +10,11 @@ definePageMeta({
 
 // 设置集合名称以匹配新目录
 const collectionName = 'operations';
+
+const { t } = useI18n();
+usePageSeo({
+  title: () => `${t('docs.sections.operations')} - ${t('docs.siteTitle')}`,
+  description: () => t('docs.siteTitle'),
+  type: 'article',
+});
 </script>

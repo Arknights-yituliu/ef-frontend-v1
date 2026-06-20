@@ -9,7 +9,7 @@
     "commonQuestions": "Common Questions",
     "formatSpecification": "Format Specification Setup",
     "operations": "Operations Guide",
-    "infrastructureLayoutGuide": "Infrastructure Layout Operation Guide",
+
     "how2getgachadurl": "How to get gacha data URL",
     "materialProfit": "Material Profit",
     "shopValue": "Shop Value",
@@ -46,6 +46,8 @@
     "close": "Close",
     "copySuccess": "Copied",
     "copyFailed": "Copy failed",
+    "PCOnly": "Only available on PC",
+    "copyCodePCOnly": "Copied.\nPlease note that this code can only be used on PC platform.",
     "feedback": "Feedback"
   },
   "layout": {
@@ -121,7 +123,7 @@
         "launchRedemptionCodes": {
           "title": "Launch Redemption Codes",
           "tag": "Official",
-          "description": "Redeem at \"Settings - Platform & Account - Gift Code Redemption\""
+          "description": "Redeem at \"Settings - Platform & Account - Gift Code Redemption\"; Require [Mail] feature unlocked."
         },
         "officialWebsite": {
           "title": "Official Website",
@@ -176,6 +178,11 @@
           "linkText": "Toolbox",
           "linkIcon": "mdi-toolbox",
           "description": "Includes practical tools like gacha calculator, essence planner and gacha analysis"
+        },
+        "akedata": {
+          "title": "AKEData",
+          "tag": "Third Party",
+          "description": "A data query website designed for Arknights: Endfield players. It supports queries for characters, weapons, dungeons, and other types of data."
         },
         "dige": {
           "title": "D.I.G.E. - Thermal Energy Pond Planner",
@@ -560,7 +567,7 @@
       "contributorSetting": "Contributor Setting",
       "commonQuestions": "Common Questions",
       "formatSpecification": "Format Specification Setup",
-      "infrastructureLayoutGuide": "Infrastructure Layout Operation Guide",
+
       "how2getgachadurl": "How to get gacha data URL"
     },
     "search": "Search",

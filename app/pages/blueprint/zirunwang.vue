@@ -124,6 +124,13 @@ definePageMeta({
   layout: 'default',
 });
 
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('page.blueprint.zirunwang.title')} - ${t('layout.siteName')}`,
+  description: () => t('page.blueprint.zirunwang.description'),
+});
+
 const cards: CardData[] = [
   {
     id: '1',

@@ -93,6 +93,13 @@ definePageMeta({
   layout: 'default',
 });
 
+const { t } = useI18n();
+
+usePageSeo({
+  title: () => `${t('menu.blueprints')} - ${t('layout.siteName')}`,
+  description: () => 'AIC blueprint showcase with downloadable images and reference codes.',
+});
+
 // 基地一图流图片
 const images = [
   {
