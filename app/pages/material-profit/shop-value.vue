@@ -2,8 +2,7 @@
   <v-container>
     <header class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</header>
     <p class="page-description shop-value-note">
-      数值按理智 / 代币折算，信用按 100
-      信用点计算；不同商店不可直接跨店对比，颜色仅用于辅助展示性价比。
+      数值为理智 / 代币（信用以 100信用 为单位）；数值越高越值得买，不同商店不可直接跨店对比，卡片视图的颜色仅用于辅助展示性价比。
     </p>
 
     <section class="view-switch-section">
