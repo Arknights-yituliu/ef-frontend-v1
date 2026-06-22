@@ -16,7 +16,12 @@ import type {
   ItemTable,
   ItemTypeTable,
   LevelLoadingTable,
+  RecoverApItemTable,
   RewardTable,
+  SimulationTrainingCardPoolTable,
+  SimulationTrainingCardTable,
+  SimulationTrainingConst,
+  SimulationTrainingLevelTable,
   SkillPatchTable,
   TextTable,
   TranslationKey,
@@ -26,7 +31,6 @@ import type {
 } from './models';
 import * as fs from 'node:fs';
 import path from 'node:path';
-
 import dotenv from 'dotenv';
 
 // 从环境变量加载数据目录，避免硬编码路径
@@ -43,7 +47,7 @@ export type Locale = (typeof languageToLocaleMap)[I18nLanguage];
 
 /** 获取指定语言的国际化文本表路径 */
 export function getI18nTextTablePath(language: I18nLanguage): string {
-  const I18nDir = path.join(endfieldDataDir, 'I18n');
+  const I18nDir = path.join(endfieldDataDir, 'TableCfg');
   return path.join(I18nDir, `I18nTextTable_${language}.json`);
 }
 
@@ -125,6 +129,18 @@ export const languageToLocaleMap = {
 export const usedLanguages = ['CN', 'EN'] as const;
 
 // 读取文件
+export const battlePassLevelTable: BattlePassLevelTable = readJSONWithBigInt(
+  'TableCfg/BattlePassLevelTable.json',
+);
+export const battlePassOverrideLevelTable: BattlePassOverrideLevelTable = readJSONWithBigInt(
+  'TableCfg/BattlePassOverrideLevelTable.json',
+);
+export const battlePassSeasonTable: BattlePassSeasonTable = readJSONWithBigInt(
+  'TableCfg/BattlePassSeasonTable.json',
+);
+export const battlePassTrackTable: BattlePassTrackTable = readJSONWithBigInt(
+  'TableCfg/BattlePassTrackTable.json',
+);
 export const cashShopGoodsTable: CashShopGoodsTable = readJSONWithBigInt(
   'TableCfg/CashShopGoodsTable.json',
 );
@@ -140,6 +156,9 @@ export const charWpnRecommendTable: CharWpnRecommendTable = readJSONWithBigInt(
 );
 export const gemTable: GemTable = readJSONWithBigInt('TableCfg/GemTable.json');
 export const gemTagIdTable: GemTagIdTable = readJSONWithBigInt('TableCfg/GemTagIdTable.json');
+export const giftpackCashShopGoodsDataTable: GiftpackCashShopGoodsDataTable = readJSONWithBigInt(
+  'TableCfg/GiftpackCashShopGoodsDataTable.json',
+);
 export const itemListByTypeTable: ItemListByTypeTable = readJSONWithBigInt(
   'TableCfg/ItemListByTypeTable.json',
 );
@@ -148,26 +167,26 @@ export const itemTypeTable: ItemTypeTable = readJSONWithBigInt('TableCfg/ItemTyp
 export const levelLoadingTable: LevelLoadingTable = readJSONWithBigInt(
   'TableCfg/LevelLoadingTable.json',
 );
+export const recoverApItemTable: RecoverApItemTable = readJSONWithBigInt(
+  'TableCfg/RecoverApItemTable.json',
+);
 export const rewardTable: RewardTable = readJSONWithBigInt('TableCfg/RewardTable.json');
+export const simulationTrainingCardPoolTable: SimulationTrainingCardPoolTable = readJSONWithBigInt(
+  'TableCfg/SimulationTrainingCardPoolTable.json',
+);
+export const simulationTrainingCardTable: SimulationTrainingCardTable = readJSONWithBigInt(
+  'TableCfg/SimulationTrainingCardTable.json',
+);
+export const simulationTrainingConst: SimulationTrainingConst = readJSONWithBigInt(
+  'TableCfg/SimulationTrainingConst.json',
+);
+export const simulationTrainingLevelTable: SimulationTrainingLevelTable = readJSONWithBigInt(
+  'TableCfg/SimulationTrainingLevelTable.json',
+);
 export const skillPatchTable: SkillPatchTable = readJSONWithBigInt('TableCfg/SkillPatchTable.json');
 export const textTable: TextTable = readJSONWithBigInt('TableCfg/TextTable.json');
 export const weaponBasicTable: WeaponBasicTable = readJSONWithBigInt(
   'TableCfg/WeaponBasicTable.json',
-);
-export const battlePassLevelTable: BattlePassLevelTable = readJSONWithBigInt(
-  'TableCfg_Mapped/BattlePassLevelTable.json',
-);
-export const battlePassTrackTable: BattlePassTrackTable = readJSONWithBigInt(
-  'TableCfg_Mapped/BattlePassTrackTable.json',
-);
-export const battlePassSeasonTable: BattlePassSeasonTable = readJSONWithBigInt(
-  'TableCfg_Mapped/BattlePassSeasonTable.json',
-);
-export const battlePassOverrideLevelTable: BattlePassOverrideLevelTable = readJSONWithBigInt(
-  'TableCfg_Mapped/BattlePassOverrideLevelTable.json',
-);
-export const giftpackCashShopGoodsDataTable: GiftpackCashShopGoodsDataTable = readJSONWithBigInt(
-  'TableCfg_Mapped/GiftpackCashShopGoodsDataTable.json',
 );
 export const worldEnergyPointGroupTable: WorldEnergyPointGroupTable = readJSONWithBigInt(
   'TableCfg/WorldEnergyPointGroupTable.json',

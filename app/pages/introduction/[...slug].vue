@@ -9,4 +9,11 @@ definePageMeta({
 });
 
 const collectionName = 'introduction';
+
+const { t } = useI18n();
+usePageSeo({
+  title: () => `${t('docs.sections.introduction')} - ${t('docs.siteTitle')}`,
+  description: () => t('docs.siteTitle'),
+  type: 'article',
+});
 </script>

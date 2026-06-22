@@ -37,9 +37,93 @@
               </template>
               返回首页
             </v-btn>
+            <v-btn
+              class="repair-btn"
+              size="large"
+              variant="outlined"
+              @click="showRepairDialog = true"
+            >
+              <template #prepend>
+                <v-icon icon="mdi-wrench-outline" />
+              </template>
+              尝试修复
+            </v-btn>
           </div>
         </div>
       </div>
+
+      <!-- 修复确认对话框 -->
+      <v-dialog v-model="showRepairDialog" content-class="repair-dialog-wrapper" max-width="480px">
+        <v-card class="repair-card">
+          <!-- 头部 -->
+          <div class="repair-header">
+            <div class="repair-header-left">
+              <v-icon class="repair-header-icon" icon="mdi-wrench-outline" size="18" />
+              <span class="repair-header-title">尝试修复 / ATTEMPT REPAIR</span>
+            </div>
+            <v-btn
+              class="repair-close-btn"
+              icon="mdi-close"
+              size="small"
+              variant="text"
+              @click="showRepairDialog = false"
+            />
+          </div>
+
+          <v-divider class="repair-divider" />
+
+          <!-- 正文 -->
+          <div class="repair-body">
+            <p class="repair-msg">
+              尝试清空本地存储或许能解决部分显示异常或运行时故障。 如果问题仍然存在，欢迎提交<button
+                class="feedback-link"
+                type="button"
+                @click="showFeedbackModal = true"
+              >
+                反馈</button
+              >，我们将协助您进一步排查。
+            </p>
+
+            <div class="repair-warning">
+              <div class="repair-warning-header">
+                <v-icon class="repair-warning-icon" icon="mdi-alert-outline" size="16" />
+                <span class="repair-warning-label">请注意</span>
+              </div>
+              <p class="repair-warning-text">
+                此操作将清空终末地一图流的本地存储数据，包括攒抽计算器、基质规划器等工具保存的个人设置。此操作不会影响其他网站，亦不会删除您的其他浏览器数据。
+              </p>
+            </div>
+          </div>
+
+          <v-divider class="repair-divider" />
+
+          <!-- 底部按钮 -->
+          <div class="repair-footer">
+            <v-btn
+              class="repair-cancel-btn"
+              :disabled="isPurging"
+              variant="text"
+              @click="showRepairDialog = false"
+            >
+              取消
+            </v-btn>
+            <v-btn
+              class="repair-execute-btn"
+              :loading="isPurging"
+              variant="flat"
+              @click="handleRepair"
+            >
+              <template #prepend>
+                <v-icon icon="mdi-delete-sweep" />
+              </template>
+              确认清空并刷新页面
+            </v-btn>
+          </div>
+        </v-card>
+      </v-dialog>
+
+      <!-- 反馈渠道弹窗 -->
+      <LayoutFeedbackModal v-model="showFeedbackModal" />
 
       <!-- 装饰性元素 -->
       <div aria-hidden class="side-decoration left d-none d-md-flex">
@@ -69,6 +153,26 @@ const props = defineProps({
 });
 
 const { theme } = useTheme();
+
+// 修复对话框状态
+const showRepairDialog = ref(false);
+const showFeedbackModal = ref(false);
+const isPurging = ref(false);
+
+function handleRepair() {
+  isPurging.value = true;
+  // 小延迟让 UI 更新后再执行阻塞操作
+  setTimeout(() => {
+    try {
+      localStorage.clear();
+      showRepairDialog.value = false;
+      isPurging.value = false;
+      window.location.reload();
+    } catch {
+      isPurging.value = false;
+    }
+  }, 300);
+}
 
 // 根据错误码派生展示内容
 const errorInfo = computed(() => {
@@ -106,6 +210,10 @@ useHead({
 </script>
 
 <style scoped>
+* {
+  letter-spacing: 0 !important;
+}
+
 .error-page-container {
   display: flex;
   position: relative;
@@ -135,7 +243,6 @@ useHead({
   font-weight: 900;
   margin: 0;
   line-height: 0.8;
-  letter-spacing: -8px;
   color: var(--theme-text-primary);
   opacity: 0.1;
 }
@@ -149,7 +256,6 @@ useHead({
   font-size: clamp(6rem, 20vw, 10rem);
   font-weight: 900;
   line-height: 0.8;
-  letter-spacing: -8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -249,7 +355,6 @@ useHead({
 
 .warning-tag {
   font-size: 0.7rem;
-  letter-spacing: 2px;
   color: #f9a825;
   font-weight: 700;
   display: flex;
@@ -260,7 +365,6 @@ useHead({
   font-size: 1.4rem;
   font-weight: 800;
   margin: 0;
-  letter-spacing: 1px;
 }
 
 .sub-title {
@@ -286,18 +390,35 @@ useHead({
 
 .actions {
   display: flex;
-  justify-content: center;
+  gap: 0.75rem;
 }
 
 .back-btn {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   background-color: var(--theme-text-primary) !important;
   color: var(--theme-bg-primary) !important;
   font-weight: 700;
-  letter-spacing: 2px;
   border-radius: 0;
   height: 52px !important;
   text-transform: none;
+}
+
+.repair-btn {
+  flex: 1;
+  min-width: 0;
+  border-color: var(--theme-text-light) !important;
+  color: var(--theme-text-primary) !important;
+  font-weight: 600;
+  border-radius: 0;
+  height: 52px !important;
+  text-transform: none;
+  transition: all 0.3s;
+}
+
+.repair-btn:hover {
+  background-color: var(--theme-decorative-overlay) !important;
+  border-color: var(--theme-text-primary) !important;
 }
 
 /* Decorations */
@@ -328,7 +449,6 @@ useHead({
 .side-decoration .label {
   writing-mode: vertical-rl;
   font-size: 0.7rem;
-  letter-spacing: 5px;
   font-weight: 300;
 }
 
@@ -352,7 +472,6 @@ useHead({
 
 .system-status {
   font-size: 0.75rem;
-  letter-spacing: 2px;
 }
 
 @keyframes pulse-red {
@@ -377,5 +496,131 @@ useHead({
     animation: none;
     transform: none;
   }
+}
+
+.repair-dialog-wrapper .repair-card {
+  background-color: var(--theme-bg-secondary) !important;
+  border: 1px solid var(--theme-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 16px 48px var(--theme-shadow-strong) !important;
+}
+
+.repair-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+}
+
+.repair-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.repair-header-icon {
+  color: #f9a825 !important;
+}
+
+.repair-header-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--theme-text-primary);
+}
+
+.repair-close-btn {
+  color: var(--theme-text-light) !important;
+}
+
+.repair-divider {
+  border-color: var(--theme-border) !important;
+  opacity: 0.5;
+}
+
+.repair-body {
+  padding: 1.25rem;
+}
+
+.repair-msg {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--theme-text-secondary);
+  margin: 0 0 1rem 0;
+}
+
+.feedback-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #f9a825;
+  font-weight: 700;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+
+.feedback-link:hover {
+  opacity: 0.8;
+}
+
+.repair-warning {
+  background: rgba(249, 168, 37, 0.08);
+  border: 1px solid rgba(249, 168, 37, 0.25);
+  border-left: 3px solid #f9a825;
+  padding: 0.85rem 1rem;
+}
+
+.repair-warning-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.4rem;
+}
+
+.repair-warning-icon {
+  color: #f9a825 !important;
+}
+
+.repair-warning-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f9a825;
+}
+
+.repair-warning-text {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--theme-text-secondary);
+  margin: 0;
+}
+
+.repair-warning-text strong {
+  color: var(--theme-text-primary);
+}
+
+.repair-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+}
+
+.repair-cancel-btn {
+  color: var(--theme-text-light) !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+}
+
+.repair-execute-btn {
+  background-color: #f9a825 !important;
+  color: #1a1a1a !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  border-radius: 0;
+  text-transform: none;
 }
 </style>

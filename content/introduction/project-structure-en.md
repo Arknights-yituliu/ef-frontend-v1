@@ -62,45 +62,116 @@ Before starting development, it's recommended that you understand at least the f
 
 ```
 ef-frontend-v1/
-├── app/                          # Nuxt application directory (auto-recognized by Nuxt)
+├── app/                          # Nuxt application directory
 │   ├── app.vue                   # Application root component
-│   ├── app.config.ts             # Application configuration file
+│   ├── app.config.ts             # Application configuration file, project config sharing hub
+│   ├── error.vue                 # Error page
 │   ├── assets/                   # Static resources directory
+│   │   ├── css/                  # CSS style files
+│   │   ├── images/               # Image resources
+│   │   └── svg/                  # SVG vector graphics
 │   ├── components/               # Components directory
+│   │   ├── annimation/           # Animation components
+│   │   ├── container/            # Container components
+│   │   ├── docs/                 # Documentation-related components
+│   │   ├── gacha-calculator/     # Gacha calculator components
+│   │   ├── home/                 # Home page components
+│   │   ├── icon/                 # Icon components
+│   │   ├── layout/               # Layout components
+│   │   ├── text/                 # Text-related components
+│   │   └── tools/                # Tool page components
 │   ├── composables/              # Composables directory
+│   │   ├── useDocsSearch.ts      # Document search composable
+│   │   ├── usePageSeo.ts         # Page SEO composable
+│   │   └── useTheme.ts           # Theme management composable
 │   ├── layouts/                  # Layouts directory
+│   │   ├── default.vue           # Default layout
+│   │   └── docs.vue              # Documentation layout
 │   ├── middleware/               # Route middleware directory
+│   │   └── docs-path-normalize.global.ts # Global middleware for doc path normalization
 │   ├── pages/                    # Pages directory
+│   │   ├── index.vue             # Home page
+│   │   ├── aic/                  # AIC pages
+│   │   ├── blueprint/            # Blueprint pages
+│   │   ├── introduction/         # Introduction doc pages
+│   │   ├── material-profit/      # Material profit pages
+│   │   ├── operations/           # Operations doc pages
+│   │   ├── others/               # Other pages
+│   │   ├── resources/            # Resource pages
+│   │   └── tools/                # Tool pages
 │   └── plugins/                  # Plugins directory
-├── content/                      # Content directory (auto-recognized by @nuxt/content)
-│   └── introduction/             # Introductions for how to develop this project
-├── public/                       # Public static resources directory (auto-recognized by Nuxt)
+│       └── vuetify.ts            # Vuetify plugin configuration
+├── content/                      # Documentation content directory, organized by category with -zh/-en suffix
+│   ├── introduction/             # Development guide docs
+│   └── operations/               # Operations guide docs
+├── public/                       # Public static resources directory
 │   ├── favicon.ico               # Website favicon
 │   ├── images/                   # Public images directory
+│   ├── svg/                      # Public SVG files
 │   ├── sitemap.xml               # Sitemap file
+│   ├── site.webmanifest          # PWA manifest file
 │   └── _robots.txt               # Robots.txt file
-├── i18n/                         # Internationalization files directory (auto-recognized by @nuxtjs/i18n)
+├── i18n/                         # Internationalization files directory (recognized by @nuxtjs/i18n)
 │   └── locales/
 │       ├── zh-CN.json            # Chinese (Simplified) translation file
-│       └── en-US.json            # English (Simplified) translation file
-├── custom/                       # Custom files directory
-│   └── route/                    # Custom configuration of routes directory
-│       ├── docNavigation.json    # Document navigation configuration
-│       └── routes.json           # Sidebar menu routing configuration
+│       └── en-US.json            # English (US) translation file
+├── custom/                       # Custom files, for config not auto-recognized by Nuxt
+│   ├── config/                   # Custom config
+│   │   ├── base-url.ts           # Base URL configuration
+│   │   └── pre-fetch.ts          # Pre-fetch configuration
+│   ├── core/                     # Core game data files
+│   │   ├── gacha/                # Gacha data subdirectory
+│   │   ├── items.ts              # Item data
+│   │   ├── itemValue.ts          # Item value data
+│   │   ├── gachaItem.ts          # Gacha item data
+│   │   ├── packs.ts              # Pack data
+│   │   ├── shops.ts              # Shop data
+│   │   ├── gifts.ts              # Gift data
+│   │   └── weapons.ts            # Weapon data
+│   ├── info/                     # Project info files
+│   │   ├── contributors.json     # Contributor information
+│   │   └── friendLinks.json      # Friend link information
+│   └── route/                    # Custom route and doc navigation config directory
+│       ├── docNavigation.json    # Documentation navigation config
+│       └── routes.json           # Sidebar menu routing config
 ├── shared/                       # Shared utilities directory
-├── agent.md                      # AI Agent Development Guide (Reference for AI code generation)
-├── Design.md                     # Website design style documentation
-├── LICENSE                       # Project license file
-├── Dockerfile                    # Docker image build file
-├── nginx.conf                    # Nginx configuration file (for Docker container)
+│   ├── types/                    # TypeScript type definitions (auto-recognized by Nuxt)
+│   │   ├── gacha-calculator.ts   # Gacha calculator types
+│   │   ├── gachaItem.ts          # Gacha item types
+│   │   ├── itemValue.ts          # Item value types
+│   │   └── pack.ts               # Pack types
+│   └── utils/                    # Utility functions (auto-recognized by Nuxt)
+│       ├── gameData/             # Game data utilities
+│       │   ├── item.ts           # Item data utility
+│       │   └── pack.ts           # Pack data utility
+│       ├── combinatoricUtil.ts   # Combinatoric utility functions
+│       ├── dateUtil.ts           # Date utility functions
+│       ├── debounce.ts           # Debounce utility
+│       ├── domUtil.ts            # DOM manipulation utilities
+│       ├── numberUtil.ts         # Number utility functions
+│       └── urlUtil.ts            # URL utility functions
+├── scripts/                      # Data processing scripts
+│   ├── gameData.ts               # Game data entry
+│   ├── makeAllData.ts            # Full data generation script
+│   ├── models/                   # Data model definitions
+│   ├── tasks/                    # Data processing tasks
+│   └── tsconfig.json             # Script TypeScript config
+├── docs/                         # Project documentation
+│   └── SVG_BACKGROUND_REPLACE.md # SVG background replacement guide
+├── .github/                      # GitHub configuration
+│   ├── copilot-instructions.md   # Copilot development instructions
+│   └── workflows/                # CI/CD workflows
 ├── .dockerignore                 # Docker build ignore file configuration
 ├── .gitignore                    # Git ignore file configuration
 ├── .editorconfig                 # Editor configuration file
-├── .prettierrc.json              # Prettier code formatter configuration
+├── .prettierrc.json              # Prettier code formatting configuration
 ├── eslint.config.mjs             # ESLint code linting configuration
 ├── content.config.ts             # Nuxt Content module configuration
 ├── nuxt.config.ts                # Nuxt configuration file
 ├── tsconfig.json                 # TypeScript configuration file
+├── Dockerfile                    # Docker image build file
+├── nginx.conf                    # Nginx configuration file (for Docker container)
+├── LICENSE                       # Project license file
 └── package.json                  # Project dependencies configuration
 ```
 

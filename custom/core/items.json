@@ -1091,6 +1091,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_event_contingency_contract_0_3": {
+    "id": "achv_event_contingency_contract_0_3",
+    "name": {
+      "zh-CN": "“再度燃烧”",
+      "en-US": "\"Re-Ignition\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_event_dungfight_2": {
     "id": "achv_event_dungfight_2",
     "name": {
@@ -5514,6 +5528,20 @@
       "en-US": "Mission Item"
     },
     "iconId": "item_read_note"
+  },
+  "item_activity_contract_gold_0": {
+    "id": "item_activity_contract_gold_0",
+    "name": {
+      "zh-CN": "晶化硬币",
+      "en-US": "Vitrified Coin"
+    },
+    "rarity": 5,
+    "type": 3,
+    "typeName": {
+      "zh-CN": "活动代币",
+      "en-US": "Event Currency"
+    },
+    "iconId": "item_activity_contract_gold_0"
   },
   "item_activity_formula_xiranite_enr_hulu": {
     "id": "item_activity_formula_xiranite_enr_hulu",
@@ -26753,6 +26781,20 @@
     },
     "iconId": "item_shot_sticker_activity_2"
   },
+  "item_shot_sticker_activity_3": {
+    "id": "item_shot_sticker_activity_3",
+    "name": {
+      "zh-CN": "贴纸·危机合约",
+      "en-US": "Sticker: Contingency Contract"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_activity_3"
+  },
   "item_shot_sticker_activity_4": {
     "id": "item_shot_sticker_activity_4",
     "name": {
@@ -27803,6 +27845,20 @@
     },
     "iconId": "item_user_avatar_activity_6"
   },
+  "item_user_avatar_activity_7": {
+    "id": "item_user_avatar_activity_7",
+    "name": {
+      "zh-CN": "古老合约",
+      "en-US": "Ancient Contract"
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_7"
+  },
   "item_user_avatar_bp_1_0": {
     "id": "item_user_avatar_bp_1_0",
     "name": {
@@ -28306,6 +28362,20 @@
       "en-US": "Portrait Frame"
     },
     "iconId": "item_user_avatar_frame_activity_4"
+  },
+  "item_user_avatar_frame_activity_5": {
+    "id": "item_user_avatar_frame_activity_5",
+    "name": {
+      "zh-CN": "危机刻录",
+      "en-US": "Contingent Inscription"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_activity_5"
   },
   "item_user_avatar_frame_bp_1_0": {
     "id": "item_user_avatar_frame_bp_1_0",

@@ -16,7 +16,6 @@
 
 <script lang="ts" setup>
 import contributorsData from '@/custom/info/contributors.json';
-
 definePageMeta({
   layout: 'default',
 });
@@ -38,22 +37,9 @@ type Contributor = {
 
 const contributors = computed<Contributor[]>(() => contributorsData.contributors ?? []);
 
-// SEO 配置
-const siteName = computed(() => t('layout.siteName'));
-const pageTitle = computed(() => `${t('page.contributors.title')} - ${siteName.value}`);
-const pageDescription = computed(() => t('page.contributors.description'));
-
-useSeoMeta({
-  title: () => pageTitle.value,
-  description: () => pageDescription.value,
-  ogTitle: () => pageTitle.value,
-  ogDescription: () => pageDescription.value,
-  ogType: 'website',
-  twitterCard: 'summary',
-});
-
-useHead({
-  title: () => pageTitle.value,
+usePageSeo({
+  title: () => `${t('page.contributors.title')} - ${t('layout.siteName')}`,
+  description: () => t('page.contributors.description'),
 });
 </script>
 

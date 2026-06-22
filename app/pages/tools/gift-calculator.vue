@@ -68,6 +68,20 @@
         </template>
       </v-expansion-panel>
     </v-expansion-panels>
+    <v-card
+class="mt-2 mb-2 px-3 py-2 d-flex align-start align-md-center" :style="[
+      `background: linear-gradient(180deg, ${gifts.gameVersion.color[0]}, ${gifts.gameVersion.color[1]});`,
+      `color: ${gifts.gameVersion.textColor};`
+    ]">
+      <v-icon icon="mdi-source-commit"/>
+      <span>
+        <i>{{ gifts.gameVersion.code }}&nbsp;</i>
+        <b>{{ getLocaleText(gifts.gameVersion.name) }}</b>
+        <span v-if="gifts.gameVersion.period" class="text-caption">
+          - {{ getLocaleText(gifts.gameVersion.period) }}
+        </span>
+      </span>
+    </v-card>
     <v-card class="mt-2 mb-2 pa-3">
       <div class="d-flex align-center">
         <div class="d-flex align-center flex-column flex-md-row filter-name">
@@ -80,6 +94,7 @@
         <div>
           <v-chip
             v-for="[cateId, cate] in Object.entries(gifts.giftProps.category)"
+            :key="cateId"
             class="ma-1 px-2"
             :color="selectedTags.category.includes(cateId) ? '#fffa00' : 'grey-lighten-2'"
             label variant="elevated"
@@ -99,7 +114,7 @@
             <div class="text-caption d-flex flex-column" style="line-height:1.1em;">
               <span>{{ getLocaleText(cate)?.[0] }}</span>
               <span>{{ getLocaleText(cate)?.[1] }}</span>
-            </div>  
+            </div>
           </v-chip>
         </div>
       </div>
@@ -114,9 +129,10 @@
         <div>
           <v-chip
             v-for="[hobbyId, hobby] in Object.entries(gifts.giftProps.hobby)"
+            :key="hobbyId"
             class="ma-1"
-            :color="selectedTags.hobby.includes(hobbyId) ? '#fffa00' : 'grey-lighten-2'"
-            label variant="elevated"
+            :color="selectedTags.hobby.includes(hobbyId) ? '#fffa00' : 'grey-lighten-2'" label
+            variant="elevated"
             @click="selectTag('hobby', hobbyId)"
           >
             {{ getLocaleText(hobby) }}
@@ -195,7 +211,7 @@ class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getC
                   <span v-if="gifts.gift[giftId]?.isHotExpiring" class="pr-1 d-flex align-center">
                     <v-icon class="pr-2" color="white" size="16">mdi-clock-alert-outline</v-icon>
                     {{ $t('page.tools.giftCalculator.allGiftsExpiring') }}
-                  </span> 
+                  </span>
                   <span class="font-weight-bold">{{ $t('page.tools.giftCalculator.hot') }}</span>
                 </v-chip>
                 <div class="d-flex ga-1">
@@ -248,7 +264,7 @@ v-if="checkForceSelectItem('gift', giftId)"
                 location="bottom"
               >
                 <div class="d-flex flex-column align-center">
-                  <div v-for="cate in gifts.operator[opId]?.favorCategory" class="d-flex font-weight-bold align-center">
+                  <div v-for="cate in gifts.operator[opId]?.favorCategory" :key="cate" class="d-flex font-weight-bold align-center">
                     <v-img
 class="mr-1" :class="theme== 'dark' ? 'reverse-img' : ''" height="16" :src="getCategoryIcon(cate)"
                     width="16">
@@ -280,12 +296,17 @@ v-if="checkForceSelectItem('operator', opId)"
 </template>
 
 <script lang="ts" setup>
-import type { GiftTag, OpName } from '@/custom/core/gifts';
+import type { GiftCategoryTag, GiftTag, OpName } from '@/custom/core/gifts';
 import { getCategoryIcon, getOperatorIcon, gifts, hotIcon } from '@/custom/core/gifts';
 const { theme } = useTheme();
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 
-function getLocaleText (textGroup: GiftTag | OpName | undefined) {
+usePageSeo({
+  title: () => `${t('page.tools.giftCalculator.currentGameVersion')} - ${t('layout.siteName')}`,
+  description: () => t('page.tools.giftCalculator.giftExplain.title1'),
+});
+
+function getLocaleText (textGroup: GiftCategoryTag | GiftTag | OpName | undefined) {
   return textGroup?.[locale.value]
 }
 

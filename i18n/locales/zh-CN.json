@@ -9,7 +9,7 @@
     "commonQuestions": "常见问题",
     "formatSpecification": "格式化规范设置",
     "operations": "功能操作指南",
-    "infrastructureLayoutGuide": "基建排布操作指南",
+
     "how2getgachadurl": "如何获取抽卡数据URL",
     "materialProfit": "材料收益",
     "shopValue": "商店性价比",
@@ -24,6 +24,7 @@
     "resources": "资源下载",
     "essenceRecognizer": "基质识别工具",
     "gachaAnalysis": "抽卡分析",
+    "trialOfSwordmancyStrategy": "选剑演武计算器",
     "batterySplitCalculator": "电池分流计算器",
     "aic": "集成工业",
     "blueprints": "毕业蓝图",
@@ -45,6 +46,8 @@
     "close": "关闭",
     "copySuccess": "已复制",
     "copyFailed": "复制失败",
+    "PCOnly": "仅限PC端可用",
+    "copyCodePCOnly": "已复制，请注意该兑换码仅可在PC端使用",
     "feedback": "反馈"
   },
   "layout": {
@@ -120,7 +123,7 @@
         "launchRedemptionCodes": {
           "title": "开服兑换码",
           "tag": "官方",
-          "description": "于“设置-平台与账户-礼包兑换”处兑换"
+          "description": "于“设置-平台与账户-礼包兑换”处兑换；需要开启【邮箱】功能"
         },
         "officialWebsite": {
           "title": "《明日方舟：终末地》官网",
@@ -175,6 +178,11 @@
           "linkText": "工具箱",
           "linkIcon": "mdi-toolbox",
           "description": "包含攒抽计算器、基质规划器和抽卡分析等实用工具"
+        },
+        "akedata": {
+          "title": "AKEData",
+          "tag": "第三方",
+          "description": "专为《明日方舟：终末地》玩家制作的数据查询网站。支持角色、武器、副本等各类数据查询"
         },
         "dige": {
           "title": "D.I.G.E. - 终末地热能池规划器",
@@ -474,6 +482,7 @@
         "allGiftsExpiring": "即将过气",
         "allOperators": "干员列表",
         "allOperatorsInfo": "高亮代表该干员有该礼物来源喜好；过滤结果不计算【流行品】；点击干员以查询对应礼物",
+        "currentGameVersion": "当前游戏版本",
         "giftExplain": {
           "title1": "关于礼物与信赖度",
           "text1-1": "当管理员位于O.M.V.帝江号上时，可通过前往基建舱室/中央环厅寻找，或使用中央环厅的干员联络台呼叫干员来与干员对话，并赠送礼物。",
@@ -560,7 +569,7 @@
       "contributorSetting": "贡献者设置",
       "commonQuestions": "常见问题",
       "formatSpecification": "格式化规范设置",
-      "infrastructureLayoutGuide": "基建排布操作指南",
+
       "how2getgachadurl": "如何获取抽卡数据URL"
     },
     "search": "搜索",
