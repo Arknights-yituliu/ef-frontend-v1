@@ -406,9 +406,9 @@
     }
   },
   {
-    "id": "武陵·醚质阶段14",
+    "id": "武陵·醚质阶段14-15",
     "name": {
-      "zh": "武陵·醚质阶段14",
+      "zh": "武陵·醚质阶段14-15",
       "en": ""
     },
     "start": "2026/06/05 12:00:00",
@@ -418,7 +418,7 @@
     "active": false,
     "version": "寻遗散记",
     "content": {
-      "originiumRecharge": 3,
+      "originiumRecharge": 6,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
