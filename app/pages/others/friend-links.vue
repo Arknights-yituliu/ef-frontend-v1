@@ -27,7 +27,7 @@
               class="link-icon"
               :src="link.icon_url"
               @error="handleImageError"
-            >
+            />
             <h3 class="link-name">{{ getLocalizedValue(link.localized_name) }}</h3>
           </div>
 
@@ -120,7 +120,8 @@ interface ApiResponse {
 const { locale, t } = useI18n();
 
 // API URL
-const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list';
+const apiUrl =
+  'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list?kind=endfield,arknights';
 
 /** 自定义的友情链接 */
 const extraFriendLinks = (await import('@/custom/info/friendLinks.json')) as {
@@ -142,7 +143,7 @@ const friendLinks = computed(() => {
 });
 
 // 获取本地化字符串值
-function getLocalizedValue (localized: LocalizedValue | undefined): string | undefined {
+function getLocalizedValue(localized: LocalizedValue | undefined): string | undefined {
   if (!localized) return undefined;
 
   // 将 locale 从 'zh-CN' 转换为 'zh_CN'，'en-US' 转换为 'en_US'
@@ -152,7 +153,7 @@ function getLocalizedValue (localized: LocalizedValue | undefined): string | und
 }
 
 // 获取本地化数组值
-function getLocalizedArray (localized: LocalizedArray | undefined): string[] {
+function getLocalizedArray(localized: LocalizedArray | undefined): string[] {
   if (!localized) return [];
 
   // 将 locale 从 'zh-CN' 转换为 'zh_CN'，'en-US' 转换为 'en_US'
@@ -162,7 +163,7 @@ function getLocalizedArray (localized: LocalizedArray | undefined): string[] {
 }
 
 // 过滤链接（根据区域性和主要链接）
-function getFilteredLinks (links: LinkItem[]): LinkItem[] {
+function getFilteredLinks(links: LinkItem[]): LinkItem[] {
   // 优先显示主要链接，然后是其他链接
   const primaryLinks = links.filter((link) => link.primary);
   const otherLinks = links.filter((link) => !link.primary);
@@ -172,7 +173,7 @@ function getFilteredLinks (links: LinkItem[]): LinkItem[] {
 }
 
 // 处理图片加载错误
-function handleImageError (event: Event) {
+function handleImageError(event: Event) {
   const img = event.target as HTMLImageElement;
   // 可以设置一个默认图标
   img.style.display = 'none';
