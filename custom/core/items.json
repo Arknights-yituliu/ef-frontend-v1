@@ -965,6 +965,34 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_bat_hard_5_2": {
+    "id": "achv_bat_hard_5_2",
+    "name": {
+      "zh-CN": "“死寂争鸣”",
+      "en-US": "\"Contention of Deathly Silences\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_hard_5_2_plate": {
+    "id": "achv_bat_hard_5_2_plate",
+    "name": {
+      "zh-CN": "“死寂争鸣”",
+      "en-US": "\"Contention of Deathly Silences\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_bat_magical_AS_1": {
     "id": "achv_bat_magical_AS_1",
     "name": {
@@ -2169,6 +2197,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_quest_camille_2": {
+    "id": "achv_quest_camille_2",
+    "name": {
+      "zh-CN": "“亡者之舞”",
+      "en-US": "\"Danse Macabre\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_quest_e0m2_3": {
     "id": "achv_quest_e0m2_3",
     "name": {
@@ -2841,6 +2883,20 @@
     },
     "iconId": "item_topic_chr_0031_mifu"
   },
+  "business_card_topic_chr_0033_camille": {
+    "id": "business_card_topic_chr_0033_camille",
+    "name": {
+      "zh-CN": "破影",
+      "en-US": "Shadowbreak"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_chr_0033_camille"
+  },
   "business_card_topic_normal_1": {
     "id": "business_card_topic_normal_1",
     "name": {
@@ -3288,6 +3344,20 @@
       "en-US": "Employment Contract"
     },
     "iconId": "item_chr_0031_mifu"
+  },
+  "chr_0033_camille": {
+    "id": "chr_0033_camille",
+    "name": {
+      "zh-CN": "卡缪",
+      "en-US": "Camille"
+    },
+    "rarity": 6,
+    "type": 4,
+    "typeName": {
+      "zh-CN": "招聘合同",
+      "en-US": "Employment Contract"
+    },
+    "iconId": "item_chr_0033_camille"
   },
   "common_2x3_l": {
     "id": "common_2x3_l",
@@ -4255,6 +4325,34 @@
     },
     "iconId": "item_gem_rarity_5"
   },
+  "gem_lance_0007_442": {
+    "id": "gem_lance_0007_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_lance_0007_663": {
+    "id": "gem_lance_0007_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
   "gem_lance_0008_442": {
     "id": "gem_lance_0008_442",
     "name": {
@@ -4411,6 +4509,34 @@
   },
   "gem_lance_0013_663": {
     "id": "gem_lance_0013_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_lance_0015_442": {
+    "id": "gem_lance_0015_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_lance_0015_663": {
+    "id": "gem_lance_0015_663",
     "name": {
       "zh-CN": "无瑕基质",
       "en-US": "Flawless Essence"
@@ -7783,6 +7909,20 @@
     },
     "iconId": "item_case_wpn_selfselect_gahca_3_1"
   },
+  "item_case_wpn_selfselect_gahca_1_3_2": {
+    "id": "item_case_wpn_selfselect_gahca_1_3_2",
+    "name": {
+      "zh-CN": "补充武库箱·染赤",
+      "en-US": "Arms OC: Crimson Hued"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_3_2"
+  },
   "item_case_wpn_selfselect_gahca_c_1": {
     "id": "item_case_wpn_selfselect_gahca_c_1",
     "name": {
@@ -8552,6 +8692,20 @@
       "en-US": "Operator Token"
     },
     "iconId": "item_charpotentialup_chr_0031_mifu"
+  },
+  "item_charpotentialup_chr_0033_camille": {
+    "id": "item_charpotentialup_chr_0033_camille",
+    "name": {
+      "zh-CN": "卡缪的信物",
+      "en-US": "Camille's Token"
+    },
+    "rarity": 6,
+    "type": 42,
+    "typeName": {
+      "zh-CN": "干员信物",
+      "en-US": "Operator Token"
+    },
+    "iconId": "item_charpotentialup_chr_0033_camille"
   },
   "item_charpotentialup_chr_9000_endmin": {
     "id": "item_charpotentialup_chr_9000_endmin",
@@ -19039,6 +19193,20 @@
     },
     "iconId": "item_gacha_introletter"
   },
+  "item_gacha_introletter_1_3_2": {
+    "id": "item_gacha_introletter_1_3_2",
+    "name": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "rarity": 6,
+    "type": 83,
+    "typeName": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "iconId": "item_gacha_introletter"
+  },
   "item_gachabyproducts_charticket": {
     "id": "item_gachabyproducts_charticket",
     "name": {
@@ -22105,6 +22273,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0033_camille": {
+    "id": "item_pic_1_chr_0033_camille",
+    "name": {
+      "zh-CN": "永恒回归",
+      "en-US": "Return to Eternity"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_9000_endmin": {
     "id": "item_pic_1_chr_9000_endmin",
     "name": {
@@ -22525,6 +22707,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_3_chr_0033_camille": {
+    "id": "item_pic_3_chr_0033_camille",
+    "name": {
+      "zh-CN": "仰视开端",
+      "en-US": "A Proud Start"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_3_chr_9000_endmin": {
     "id": "item_pic_3_chr_9000_endmin",
     "name": {
@@ -22922,6 +23118,20 @@
     "name": {
       "zh-CN": "开怀",
       "en-US": "Toast to Joy"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_5_chr_0033_camille": {
+    "id": "item_pic_5_chr_0033_camille",
+    "name": {
+      "zh-CN": "破影",
+      "en-US": "Shadowbreak"
     },
     "rarity": 5,
     "type": 76,
@@ -24582,6 +24792,20 @@
       "en-US": "Miscellaneous"
     },
     "iconId": "item_port_pear_blossom_bonsai_1"
+  },
+  "item_port_photo_frame_1": {
+    "id": "item_port_photo_frame_1",
+    "name": {
+      "zh-CN": "猩红记忆",
+      "en-US": "Sanguine Memories"
+    },
+    "rarity": 5,
+    "type": 54,
+    "typeName": {
+      "zh-CN": "功能设备",
+      "en-US": "Miscellaneous"
+    },
+    "iconId": "item_port_photo_frame_1"
   },
   "item_port_planter_1": {
     "id": "item_port_planter_1",
@@ -27551,6 +27775,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_3_1"
   },
+  "item_ticketgacha_special_single_lt_1_3_2": {
+    "id": "item_ticketgacha_special_single_lt_1_3_2",
+    "name": {
+      "zh-CN": "夜趋逐罪寻访凭证",
+      "en-US": "Peacekeeper's Nocturne HH Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_3_2"
+  },
   "item_ticketgacha_special_ten": {
     "id": "item_ticketgacha_special_ten",
     "name": {
@@ -27662,6 +27900,20 @@
       "en-US": "LTO Valuable"
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_3_1"
+  },
+  "item_ticketgacha_special_ten_lt_1_3_2": {
+    "id": "item_ticketgacha_special_ten_lt_1_3_2",
+    "name": {
+      "zh-CN": "夜趋逐罪十连凭证",
+      "en-US": "Peacekeeper's Nocturne 10×Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_3_2"
   },
   "item_ticketgacha_standard_single": {
     "id": "item_ticketgacha_standard_single",
@@ -28306,6 +28558,20 @@
       "en-US": "Portrait"
     },
     "iconId": "item_chr_0031_mifu"
+  },
+  "item_user_avatar_chr_0033_camille": {
+    "id": "item_user_avatar_chr_0033_camille",
+    "name": {
+      "zh-CN": "卡缪",
+      "en-US": "Camille"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_chr_0033_camille"
   },
   "item_user_avatar_frame_activity_1": {
     "id": "item_user_avatar_frame_activity_1",
@@ -32213,6 +32479,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_3_1"
   },
+  "ticketgacha_special_single_lt_1_3_2": {
+    "id": "ticketgacha_special_single_lt_1_3_2",
+    "name": {
+      "zh-CN": "夜趋逐罪寻访凭证",
+      "en-US": "Peacekeeper's Nocturne HH Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_3_2"
+  },
   "ticketgacha_special_ten_lt_1_0_1": {
     "id": "ticketgacha_special_ten_lt_1_0_1",
     "name": {
@@ -32310,6 +32590,20 @@
       "en-US": "LTO Valuable"
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_3_1"
+  },
+  "ticketgacha_special_ten_lt_1_3_2": {
+    "id": "ticketgacha_special_ten_lt_1_3_2",
+    "name": {
+      "zh-CN": "夜趋逐罪十连凭证",
+      "en-US": "Peacekeeper's Nocturne 10×Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_3_2"
   },
   "ticketgacha_weaponbox_lt_1_2_2": {
     "id": "ticketgacha_weaponbox_lt_1_2_2",
@@ -32899,6 +33193,20 @@
     },
     "iconId": "wpn_lance_0013"
   },
+  "wpn_lance_0015": {
+    "id": "wpn_lance_0015",
+    "name": {
+      "zh-CN": "镀红祝福",
+      "en-US": "Blessing of Lustrous Carmine"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_lance_0015"
+  },
   "wpn_pistol_0001": {
     "id": "wpn_pistol_0001",
     "name": {
@@ -33332,19 +33640,5 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0022"
-  },
-  "镀红祝福": {
-    "id": "镀红祝福",
-    "name": {
-      "zh-CN": "镀红祝福",
-      "en-US": "镀红祝福"
-    },
-    "rarity": 6,
-    "type": 5,
-    "typeName": {
-      "zh-CN": "武器",
-      "en-US": "Weapon"
-    },
-    "iconId": "镀红祝福"
   }
 }

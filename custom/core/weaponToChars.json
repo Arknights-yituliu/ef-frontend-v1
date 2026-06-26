@@ -67,6 +67,9 @@
     "chr_0015_lifeng"
   ],
   "wpn_lance_0013": [],
+  "wpn_lance_0015": [
+    "chr_0033_camille"
+  ],
   "wpn_pistol_0001": [],
   "wpn_pistol_0002": [],
   "wpn_pistol_0003": [],
@@ -122,6 +125,5 @@
   ],
   "wpn_sword_0022": [
     "chr_0028_wulfa"
-  ],
-  "镀红祝福": []
+  ]
 }
