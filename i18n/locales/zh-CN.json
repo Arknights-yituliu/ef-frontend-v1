@@ -473,6 +473,7 @@
         "shortcutActions": "一键全选或清空"
       },
       "giftCalculator": {
+        "title": "礼物查询器",
         "hot": "流行品",
         "filterGiftCategory": "来源",
         "filterGiftHobby": "爱好",
