@@ -19,8 +19,13 @@
                 <v-row dense>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="6">
                     剩余演算 / 放弃 / 翻倍: {{ 输入.剩余演算次数 }} /
-                    <span :class="{'text-error font-weight-bold': 输入.剩余放弃次数 === 0}">{{ 输入.剩余放弃次数 }}</span> /
-                    <span :class="{'text-error font-weight-bold': 输入.剩余翻倍次数 === 0}">{{ 输入.剩余翻倍次数 }}</span>
+                    <span :class="{ 'text-error font-weight-bold': 输入.剩余放弃次数 === 0 }">{{
+                      输入.剩余放弃次数
+                    }}</span>
+                    /
+                    <span :class="{ 'text-error font-weight-bold': 输入.剩余翻倍次数 === 0 }">{{
+                      输入.剩余翻倍次数
+                    }}</span>
                   </v-col>
                   <v-col class="text-caption text-medium-emphasis" cols="6" sm="3">
                     翻倍状态:
@@ -212,7 +217,7 @@
                   Object.keys(演武平台等级表数据).map((_, i) => {
                     return {
                       value: i + 1,
-                      label: `Lv. ${i + 1}${i+1===4 ? ' (MAX)' : ''}`,
+                      label: `Lv. ${i + 1}${i + 1 === 4 ? ' (MAX)' : ''}`,
                     };
                   })
                 "
@@ -342,7 +347,11 @@
               <div class="post-battle-action-row mt-3">
                 <v-switch
                   v-model="输入.是否翻倍"
-                  :base-color="输入.是否翻倍 && (当前手牌总数 !== 2 || 输入.剩余翻倍次数 <= 0) ? 'orange-darken-1' : undefined"
+                  :base-color="
+                    输入.是否翻倍 && (当前手牌总数 !== 2 || 输入.剩余翻倍次数 <= 0)
+                      ? 'orange-darken-1'
+                      : undefined
+                  "
                   class="double-state-switch"
                   color="orange-darken-1"
                   density="compact"
@@ -351,11 +360,15 @@
                   inset
                 >
                   <template #thumb>
-                    <v-icon v-if="输入.是否翻倍" color="orange-darken-4" size="large">mdi-check</v-icon>
+                    <v-icon v-if="输入.是否翻倍" color="orange-darken-4" size="large"
+                      >mdi-check</v-icon
+                    >
                   </template>
                   <template #label>
-                    <span :class="{ 'text-orange-darken-1 font-weight-bold': 输入.是否翻倍}">
-                      {{ `奖励翻倍（${输入.剩余翻倍次数 > 0 ? `剩余 ${输入.剩余翻倍次数} 次` : '已耗尽'}）` }}
+                    <span :class="{ 'text-orange-darken-1 font-weight-bold': 输入.是否翻倍 }">
+                      {{
+                        `奖励翻倍（${输入.剩余翻倍次数 > 0 ? `剩余 ${输入.剩余翻倍次数} 次` : '已耗尽'}）`
+                      }}
                     </span>
                   </template>
                 </v-switch>
@@ -618,11 +631,7 @@
 <script lang="ts" setup>
 import { watchDebounced } from '@vueuse/core';
 import { useDisplay } from 'vuetify';
-import {
-  演武平台等级表数据,
-  获取当前牌库Deck,
-  计算当前牌库索引,
-} from '@/custom/core/trialOfSwordmancy';
+import { 演武平台等级表数据, 获取当前牌库Deck } from '@/custom/core/trialOfSwordmancy';
 import {
   type MDPResult,
   数据溢出模式,
@@ -690,11 +699,13 @@ let 正在恢复页面状态 = false;
 let 牌库时间检查计时器: ReturnType<typeof setInterval> | undefined;
 
 const 当前牌库时间范围文本 = computed(() => {
-  const idx = 计算当前牌库索引(当前时间Ms.value);
-  if (idx < 0) {
+  const now = 当前时间Ms.value;
+  if (now < 轮换起始Ms) {
     return '尚未开始';
   }
-  const start = 轮换起始Ms + idx * 轮换间隔Ms;
+  const elapsed = now - 轮换起始Ms;
+  const periodNumber = Math.floor(elapsed / 轮换间隔Ms);
+  const start = 轮换起始Ms + periodNumber * 轮换间隔Ms;
   const end = start + 轮换间隔Ms;
   return `${格式化东八区时间(start)} - ${格式化东八区时间(end)}`;
 });
