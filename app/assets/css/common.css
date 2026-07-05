@@ -34,6 +34,7 @@
   color: var(--theme-text-secondary);
   margin-bottom: 2.5rem;
   line-height: 1.5;
+  white-space: pre-wrap;
 }
 
 /* ============================================
