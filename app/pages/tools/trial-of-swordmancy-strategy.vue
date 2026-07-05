@@ -631,7 +631,7 @@
 <script lang="ts" setup>
 import { watchDebounced } from '@vueuse/core';
 import { useDisplay } from 'vuetify';
-import { 演武平台等级表数据, 获取当前牌库Deck } from '@/custom/core/trialOfSwordmancy';
+import { 演武平台等级表数据, 轮换起始Ms, 轮换间隔Ms } from '@/custom/core/trialOfSwordmancy';
 import {
   type MDPResult,
   数据溢出模式,
@@ -644,9 +644,8 @@ import {
   写入本地牌库数据,
   格式化东八区时间,
   牌库数据快照,
+  获取当前牌库Deck,
   读取本地牌库数据,
-  轮换起始Ms,
-  轮换间隔Ms,
 } from '@/shared/utils/trialOfSwordmancyDeck';
 import {
   写入选剑演武页面状态,

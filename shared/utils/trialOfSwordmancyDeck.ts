@@ -1,23 +1,36 @@
 import type { 牌库数据类 } from './trialOfSwordmancy';
-import { 牌库配置, 获取当前牌库Deck, 计算当前牌库索引 } from '@/custom/core/trialOfSwordmancy';
+import { 牌库配置, 轮换起始Ms, 轮换间隔Ms } from '@/custom/core/trialOfSwordmancy';
 
 export const 牌库数据存储Key = 'trial-swordmancy-deck-data';
 const 旧牌库周期确认存储Key = 'trial-swordmancy-deck-cycle-confirmed';
 
-export const 轮换起始Ms = new Date('2026-06-12T04:00:00.000+08:00').getTime();
-export const 轮换间隔Ms = 牌库配置.rotationInterval * 24 * 60 * 60 * 1000;
-
 /**
- * 计算某个时间戳所在的牌库索引
- * 与 计算当前牌库索引 一致，但接受任意时间戳（用于判断保存数据的牌库是否变化）
+ * 计算当前时间所在的卡池索引
+ * @param nowMs 当前时间（毫秒），默认 Date.now()
+ * @returns 卡池索引（0-based），如果当前时间在起始时间之前则返回 -1
  */
-export function 计算推移牌库索引(timestampMs: number): number {
-  if (timestampMs < 轮换起始Ms) {
+export function 计算当前牌库索引(nowMs: number = Date.now()): number {
+  if (nowMs < 轮换起始Ms) {
     return -1;
   }
 
-  const elapsed = timestampMs - 轮换起始Ms;
-  return Math.floor(elapsed / 轮换间隔Ms) % 牌库配置.cardPoolOrder.length;
+  const elapsed = nowMs - 轮换起始Ms;
+  const index = Math.floor(elapsed / 轮换间隔Ms);
+  return index % 牌库配置.cardPoolOrder.length;
+}
+
+/**
+ * 获取当前牌库的 deck 数据
+ * @param nowMs 当前时间（毫秒），默认 Date.now()
+ * @returns deck 数组 [point1, point2, point3, point4, point5]
+ */
+export function 获取当前牌库Deck(nowMs: number = Date.now()): number[] {
+  const index = 计算当前牌库索引(nowMs);
+  if (index < 0) {
+    return 牌库配置.pools[0]!.deck;
+  }
+
+  return 牌库配置.pools[index]!.deck;
 }
 
 export function 格式化东八区时间(timeMs: number): string {
@@ -70,7 +83,7 @@ export function 读取本地牌库数据(storage: Storage): 牌库数据类 {
       const data: unknown = JSON.parse(saved);
       if (是有效牌库数据(data)) {
         // 检查保存的数据是否属于当前牌库
-        const 保存时的牌库索引 = 计算推移牌库索引(data.updatedAt);
+        const 保存时的牌库索引 = 计算当前牌库索引(data.updatedAt);
         const 当前牌库索引 = 计算当前牌库索引();
 
         if (保存时的牌库索引 === 当前牌库索引) {
