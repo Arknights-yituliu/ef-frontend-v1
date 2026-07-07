@@ -26,12 +26,7 @@ const hiddenPages = [
     </section>
 
     <section class="hidden-links">
-      <NuxtLink
-        v-for="page in hiddenPages"
-        :key="page.path"
-        class="hidden-link"
-        :to="page.path"
-      >
+      <NuxtLink v-for="page in hiddenPages" :key="page.path" class="hidden-link" :to="page.path">
         <span class="link-icon">
           <v-icon size="28">{{ page.icon }}</v-icon>
         </span>

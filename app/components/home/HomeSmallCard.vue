@@ -44,7 +44,7 @@ const cardData = computed(() => {
 /**
  * 根据标签类型获取对应的颜色
  */
-function getTagColor (tagType: CardTagType): string {
+function getTagColor(tagType: CardTagType): string {
   switch (tagType) {
     case 'official': {
       return '#FFC107';
@@ -67,9 +67,9 @@ function getTagColor (tagType: CardTagType): string {
 /**
  * 处理卡片点击事件
  */
-function handleCardClick () {
+function handleCardClick() {
   if (!cardData.value.actionButton) return;
-  
+
   const button = cardData.value.actionButton;
   if (button.action === ButtonActionType.Link) {
     // 跳转链接
@@ -84,7 +84,7 @@ function handleCardClick () {
 /**
  * 复制文本到剪贴板
  */
-async function copyToClipboard (text: string, successMessage: string) {
+async function copyToClipboard(text: string, successMessage: string) {
   try {
     await navigator.clipboard.writeText(text);
     alert(successMessage);
@@ -98,7 +98,12 @@ async function copyToClipboard (text: string, successMessage: string) {
 <template>
   <div class="home-small-card" @click="handleCardClick">
     <div class="home-small-card-header">
-      <img v-if="cardData.icon" :alt="cardData.title" class="home-small-card-logo" :src="cardData.icon" >
+      <img
+        v-if="cardData.icon"
+        :alt="cardData.title"
+        class="home-small-card-logo"
+        :src="cardData.icon"
+      />
       <div class="home-small-card-title">
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-small-card-tags">
@@ -123,7 +128,9 @@ async function copyToClipboard (text: string, successMessage: string) {
   display: flex;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   border-radius: 8px;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.8);

@@ -42,7 +42,7 @@
         class="beian-icon"
         src="/images/website-record.png"
         @error="handleImageError"
-      >
+      />
       <a
         class="beian-link"
         href="https://beian.miit.gov.cn/"
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-function handleImageError (event: Event) {
+function handleImageError(event: Event) {
   // 如果备案图标加载失败，隐藏图片元素
   const target = event.target as HTMLImageElement;
   if (target) {

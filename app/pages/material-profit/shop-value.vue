@@ -23,10 +23,10 @@
             {{ item.currentPrice }}
           </template>
           <template #item.totalValue="{ item }">
-            {{ numberRound(item.totalValue,2) }}
+            {{ numberRound(item.totalValue, 2) }}
           </template>
           <template #item.costPerformance="{ item }">
-            {{ numberRound(item.costPerformance,4) }}
+            {{ numberRound(item.costPerformance, 4) }}
           </template>
         </v-data-table>
       </v-card>

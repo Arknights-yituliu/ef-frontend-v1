@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CardButton, CardData, CardTagType } from '@/custom/core/homeCards';
-import { useClipboard } from '@vueuse/core'
+import { useClipboard } from '@vueuse/core';
 import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
 const { t } = useI18n();
@@ -60,7 +60,7 @@ const cardData = computed(() => {
 /**
  * 根据标签类型获取对应的颜色
  */
-function getTagColor (tagType: CardTagType): string {
+function getTagColor(tagType: CardTagType): string {
   switch (tagType) {
     case 'official': {
       return '#FFC107';
@@ -83,7 +83,7 @@ function getTagColor (tagType: CardTagType): string {
 /**
  * 处理卡片内按钮点击事件
  */
-function handleCardButtonClick (button: CardButton) {
+function handleCardButtonClick(button: CardButton) {
   if (button.action === ButtonActionType.Link) {
     // 跳转链接
     const target = button.target ? '_blank' : '_self';
@@ -97,7 +97,7 @@ function handleCardButtonClick (button: CardButton) {
 /**
  * 复制文本到剪贴板
  */
-async function copyToClipboard (text: string, successMessage: string) {
+async function copyToClipboard(text: string, successMessage: string) {
   try {
     // await navigator.clipboard.writeText(text);
     await copy(text);
@@ -111,7 +111,7 @@ async function copyToClipboard (text: string, successMessage: string) {
 /**
  * 切换收藏状态
  */
-function toggleFavorite () {
+function toggleFavorite() {
   if (props.onToggleFavorite) {
     props.onToggleFavorite();
   }
@@ -121,7 +121,7 @@ function toggleFavorite () {
 <template>
   <v-card class="home-card">
     <div class="home-card-header">
-      <img v-if="cardData.icon" :alt="cardData.title" class="home-card-logo" :src="cardData.icon" >
+      <img v-if="cardData.icon" :alt="cardData.title" class="home-card-logo" :src="cardData.icon" />
       <div class="home-card-title">
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-card-tags">
@@ -148,7 +148,7 @@ function toggleFavorite () {
     </div>
     <div class="home-card-content">
       <div v-if="cardData.image" class="home-card-image-wrapper">
-        <img :alt="cardData.title" class="home-card-image" :src="cardData.image" >
+        <img :alt="cardData.title" class="home-card-image" :src="cardData.image" />
         <div v-if="cardData.description" class="home-card-overlay">
           <p class="home-card-description">{{ cardData.description }}</p>
         </div>
@@ -186,11 +186,9 @@ function toggleFavorite () {
         @click="handleCardButtonClick(button)"
       >
         {{ t(`component.home.${button.i18nKey}`) }}
-        <v-tooltip
-          v-if="button.popupText"
-          activator="parent"
-          location="top"
-        >{{t(button.popupText)}}</v-tooltip>
+        <v-tooltip v-if="button.popupText" activator="parent" location="top">{{
+          t(button.popupText)
+        }}</v-tooltip>
       </v-btn>
       <!-- 主按钮 - 永远置于最右侧 -->
       <v-btn
@@ -242,7 +240,9 @@ function toggleFavorite () {
   height: 54px;
   min-width: 54px;
   opacity: 0.7;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   flex-shrink: 0;
   align-self: center;
 }

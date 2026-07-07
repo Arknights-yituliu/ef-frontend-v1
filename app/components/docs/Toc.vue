@@ -216,7 +216,7 @@ function toggleCollapse() {
 
 // 滚动到指定标题
 function scrollToHeading(id: string) {
-  const element = document.getElementById(id);
+  const element = document.querySelector(`#${id}`);
   if (element) {
     const top = element.offsetTop - 80; // 减去顶部导航栏高度
     window.scrollTo({
@@ -242,7 +242,7 @@ onMounted(() => {
       if (!heading) {
         continue;
       }
-      const element = document.getElementById(heading.id);
+      const element = document.querySelector(`#${heading.id}`);
       if (element) {
         const elementTop = element.offsetTop - 100;
         if (scrollTop >= elementTop) {

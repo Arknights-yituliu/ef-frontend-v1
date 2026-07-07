@@ -16,21 +16,29 @@
             <div class="explanation-items">
               <div class="explanation-item">
                 <v-icon class="explanation-icon" color="blue-grey darken-1">mdi-information</v-icon>
-                <span class="explanation-text">通过合理规划购买策略，可以降低弹性需求物资的购买成本，提高调度券的收入，本页面用于查询不同价格下应采取的策略</span>
+                <span class="explanation-text"
+                  >通过合理规划购买策略，可以降低弹性需求物资的购买成本，提高调度券的收入，本页面用于查询不同价格下应采取的策略</span
+                >
               </div>
               <div class="explanation-item">
                 <v-icon class="explanation-icon" color="blue-grey darken-1">mdi-calendar</v-icon>
-                <span class="explanation-text">{{ t('page.materialProfit.couponStrategy.explanation.priceFluctuation')
+                <span class="explanation-text">{{
+                  t('page.materialProfit.couponStrategy.explanation.priceFluctuation')
                 }}</span>
               </div>
               <div class="explanation-item">
-                <v-icon class="explanation-icon" color="blue-grey darken-1">mdi-clock-outline</v-icon>
-                <span class="explanation-text">{{ t('page.materialProfit.couponStrategy.refreshCountdown') }}{{
-                  countdownText }}</span>
+                <v-icon class="explanation-icon" color="blue-grey darken-1"
+                  >mdi-clock-outline</v-icon
+                >
+                <span class="explanation-text"
+                  >{{ t('page.materialProfit.couponStrategy.refreshCountdown')
+                  }}{{ countdownText }}</span
+                >
               </div>
               <div class="explanation-item">
                 <v-icon class="explanation-icon" color="blue-grey darken-1">mdi-trending-up</v-icon>
-                <span class="explanation-text">{{ t('page.materialProfit.couponStrategy.explanation.correctionValue')
+                <span class="explanation-text">{{
+                  t('page.materialProfit.couponStrategy.explanation.correctionValue')
                 }}</span>
               </div>
             </div>
@@ -47,12 +55,21 @@
         </v-card-title>
         <v-card-text>
           <div class="goods-cards-grid wuling-cards-grid">
-            <div v-for="(item, index) in wulingGoodsItems" :key="`wuling-${index}`" class="goods-card">
+            <div
+              v-for="(item, index) in wulingGoodsItems"
+              :key="`wuling-${index}`"
+              class="goods-card"
+            >
               <div class="goods-card-content">
                 <!-- 图片文字区 -->
                 <div class="goods-card-left">
                   <div class="goods-card-image-wrapper">
-                    <img :alt="item.name" class="goods-card-image" :src="item.imageUrl" @error="handleImageError" />
+                    <img
+                      :alt="item.name"
+                      class="goods-card-image"
+                      :src="item.imageUrl"
+                      @error="handleImageError"
+                    />
                   </div>
                   <div class="goods-card-name">
                     <div class="name-decoration wuling-decoration"></div>
@@ -61,9 +78,18 @@
                 </div>
                 <!-- 参考区 -->
                 <div class="goods-item-data">
-                  <div>参考出售价 <span
-class="minitable-value correction"
-                      :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
+                  <div>
+                    参考出售价
+                    <span
+                      class="minitable-value correction"
+                      :class="
+                        item.correctionValue > 100
+                          ? 'positive'
+                          : item.correctionValue < -100
+                            ? 'negative'
+                            : 'zero'
+                      "
+                    >
                       {{ item.referencePrice }}
                     </span>
                   </div>
@@ -77,13 +103,15 @@ class="minitable-value correction"
                 <div class="goods-card-minitable">
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩1/2配额</span>
-                    <span class="minitable-value">>{{ wulingPrices[currentDayIndex] + item.correctionValue
-                    }}</span>
+                    <span class="minitable-value"
+                      >>{{ wulingPrices[currentDayIndex] + item.correctionValue }}</span
+                    >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">全部购买</span>
-                    <span class="minitable-value">≤{{ wulingPrices[currentDayIndex] + item.correctionValue
-                    }}</span>
+                    <span class="minitable-value"
+                      >≤{{ wulingPrices[currentDayIndex] + item.correctionValue }}</span
+                    >
                   </div>
                 </div>
               </div>
@@ -105,7 +133,12 @@ class="minitable-value correction"
               <div class="goods-card-content">
                 <div class="goods-card-left">
                   <div class="goods-card-image-wrapper">
-                    <img :alt="item.name" class="goods-card-image" :src="item.imageUrl" @error="handleImageError" />
+                    <img
+                      :alt="item.name"
+                      class="goods-card-image"
+                      :src="item.imageUrl"
+                      @error="handleImageError"
+                    />
                   </div>
                   <div class="goods-card-name">
                     <div class="name-decoration four-valley-decoration"></div>
@@ -115,9 +148,18 @@ class="minitable-value correction"
 
                 <!-- 参考区 -->
                 <div class="goods-item-data">
-                  <div>参考出售价 <span
-class="minitable-value correction"
-                      :class="item.correctionValue > 100 ? 'positive' : item.correctionValue < -100 ? 'negative' : 'zero'">
+                  <div>
+                    参考出售价
+                    <span
+                      class="minitable-value correction"
+                      :class="
+                        item.correctionValue > 100
+                          ? 'positive'
+                          : item.correctionValue < -100
+                            ? 'negative'
+                            : 'zero'
+                      "
+                    >
                       {{ item.referencePrice }}
                     </span>
                   </div>
@@ -130,19 +172,23 @@ class="minitable-value correction"
                 <div class="goods-card-minitable">
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩1/3配额</span>
-                    <span class="minitable-value">>{{ fourValleySecondPrices[currentDayIndex] +
-                      item.correctionValue }}</span>
+                    <span class="minitable-value"
+                      >>{{ fourValleySecondPrices[currentDayIndex] + item.correctionValue }}</span
+                    >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩2/3配额</span>
-                    <span class="minitable-value">{{ fourValleyFirstPrices[currentDayIndex] +
-                      item.correctionValue }}~{{ fourValleySecondPrices[currentDayIndex] + item.correctionValue
-                      }}</span>
+                    <span class="minitable-value"
+                      >{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}~{{
+                        fourValleySecondPrices[currentDayIndex] + item.correctionValue
+                      }}</span
+                    >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">全部购买</span>
-                    <span class="minitable-value">
-                      <{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span>
+                    <span class="minitable-value"
+                      >&lt;{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span
+                    >
                   </div>
                 </div>
               </div>
@@ -164,11 +210,18 @@ class="minitable-value correction"
               <div class="table-section wuling-region">
                 <div class="region-header">
                   <v-icon class="mr-2" color="cyan">mdi-map-marker</v-icon>
-                  <span class="region-title">{{ t('page.materialProfit.couponStrategy.wulingStrategyTable') }}</span>
+                  <span class="region-title">{{
+                    t('page.materialProfit.couponStrategy.wulingStrategyTable')
+                  }}</span>
                 </div>
                 <v-data-table
-class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
-                  hide-default-footer :items="wulingTableItems">
+                  class="elevation-0"
+                  density="compact"
+                  disable-sort
+                  :headers="wulingTableHeaders"
+                  hide-default-footer
+                  :items="wulingTableItems"
+                >
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
@@ -182,11 +235,24 @@ class="elevation-0" density="compact" disable-sort :headers="wulingTableHeaders"
 
                 <!-- 武陵货品列表表格 -->
                 <v-data-table
-class="elevation-0 mt-4" density="compact" disable-sort :headers="wulingGoodsTableHeaders"
-                  hide-default-footer :items="wulingGoodsItems" :items-per-page="100">
+                  class="elevation-0 mt-4"
+                  density="compact"
+                  disable-sort
+                  :headers="wulingGoodsTableHeaders"
+                  hide-default-footer
+                  :items="wulingGoodsItems"
+                  :items-per-page="100"
+                >
                   <template #item.correctionValue="{ item }">
                     <span
-                      :class="item.correctionValue > 100 ? 'correction-positive' : item.correctionValue < -100 ? 'correction-negative' : 'correction-zero'">
+                      :class="
+                        item.correctionValue > 100
+                          ? 'correction-positive'
+                          : item.correctionValue < -100
+                            ? 'correction-negative'
+                            : 'correction-zero'
+                      "
+                    >
                       {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
                     </span>
                   </template>
@@ -202,12 +268,18 @@ class="elevation-0 mt-4" density="compact" disable-sort :headers="wulingGoodsTab
               <div class="table-section four-valley-region">
                 <div class="region-header">
                   <v-icon class="mr-2" color="light-green">mdi-map-marker</v-icon>
-                  <span class="region-title">{{ t('page.materialProfit.couponStrategy.fourValleyStrategyTable')
+                  <span class="region-title">{{
+                    t('page.materialProfit.couponStrategy.fourValleyStrategyTable')
                   }}</span>
                 </div>
                 <v-data-table
-class="elevation-0" density="compact" disable-sort :headers="fourValleyTableHeaders"
-                  hide-default-footer :items="fourValleyTableItems">
+                  class="elevation-0"
+                  density="compact"
+                  disable-sort
+                  :headers="fourValleyTableHeaders"
+                  hide-default-footer
+                  :items="fourValleyTableItems"
+                >
                   <template #item.weekday="{ item }">
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
@@ -224,11 +296,24 @@ class="elevation-0" density="compact" disable-sort :headers="fourValleyTableHead
 
                 <!-- 四号谷地货品列表表格 -->
                 <v-data-table
-class="elevation-0 mt-4" density="compact" disable-sort
-                  :headers="fourValleyGoodsTableHeaders" hide-default-footer :items="goodsItems" :items-per-page="100">
+                  class="elevation-0 mt-4"
+                  density="compact"
+                  disable-sort
+                  :headers="fourValleyGoodsTableHeaders"
+                  hide-default-footer
+                  :items="goodsItems"
+                  :items-per-page="100"
+                >
                   <template #item.correctionValue="{ item }">
                     <span
-                      :class="item.correctionValue > 100 ? 'correction-positive' : item.correctionValue < -100 ? 'correction-negative' : 'correction-zero'">
+                      :class="
+                        item.correctionValue > 100
+                          ? 'correction-positive'
+                          : item.correctionValue < -100
+                            ? 'correction-negative'
+                            : 'correction-zero'
+                      "
+                    >
                       {{ item.correctionValue > 0 ? '+' : '' }}{{ item.correctionValue }}
                     </span>
                   </template>
@@ -276,26 +361,54 @@ const wulingPrices: number[] = [1438, 1441, 1349, 1344, 1256, 1198, 1517];
 const wulingTableHeaders: TableHeader[] = [
   { title: t('page.materialProfit.couponStrategy.weekday'), key: 'weekday', align: 'center' },
   { title: t('page.materialProfit.couponStrategy.buyAll'), key: 'buyAllPrice', align: 'center' },
-  { title: t('page.materialProfit.couponStrategy.buyHalfQuota'), key: 'buyHalfPrice', align: 'center' },
+  {
+    title: t('page.materialProfit.couponStrategy.buyHalfQuota'),
+    key: 'buyHalfPrice',
+    align: 'center',
+  },
 ];
 
 const wulingGoodsTableHeaders: TableHeader[] = [
   { title: t('page.materialProfit.couponStrategy.goodsName'), key: 'name', align: 'start' },
-  { title: t('page.materialProfit.couponStrategy.referencePrice'), key: 'referencePrice', align: 'center' },
-  { title: t('page.materialProfit.couponStrategy.correctionValue'), key: 'correctionValue', align: 'center' },
+  {
+    title: t('page.materialProfit.couponStrategy.referencePrice'),
+    key: 'referencePrice',
+    align: 'center',
+  },
+  {
+    title: t('page.materialProfit.couponStrategy.correctionValue'),
+    key: 'correctionValue',
+    align: 'center',
+  },
 ];
 
 const fourValleyTableHeaders: TableHeader[] = [
   { title: t('page.materialProfit.couponStrategy.weekday'), key: 'weekday', align: 'center' },
   { title: t('page.materialProfit.couponStrategy.buyAll'), key: 'buyAllPrice', align: 'center' },
-  { title: t('page.materialProfit.couponStrategy.buyOneThirdQuota'), key: 'buyOneThirdPrice', align: 'center' },
-  { title: t('page.materialProfit.couponStrategy.buyTwoThirdsQuota'), key: 'buyTwoThirdsPrice', align: 'center' },
+  {
+    title: t('page.materialProfit.couponStrategy.buyOneThirdQuota'),
+    key: 'buyOneThirdPrice',
+    align: 'center',
+  },
+  {
+    title: t('page.materialProfit.couponStrategy.buyTwoThirdsQuota'),
+    key: 'buyTwoThirdsPrice',
+    align: 'center',
+  },
 ];
 
 const fourValleyGoodsTableHeaders: TableHeader[] = [
   { title: t('page.materialProfit.couponStrategy.goodsName'), key: 'name', align: 'start' },
-  { title: t('page.materialProfit.couponStrategy.referencePrice'), key: 'referencePrice', align: 'center' },
-  { title: t('page.materialProfit.couponStrategy.correctionValue'), key: 'correctionValue', align: 'center' },
+  {
+    title: t('page.materialProfit.couponStrategy.referencePrice'),
+    key: 'referencePrice',
+    align: 'center',
+  },
+  {
+    title: t('page.materialProfit.couponStrategy.correctionValue'),
+    key: 'correctionValue',
+    align: 'center',
+  },
 ];
 
 const currentDayIndex = ref<number>(0);
@@ -317,43 +430,139 @@ interface GoodsItem {
 
 // 四号谷地货组数据
 const goodsItems = ref<GoodsItem[]>([
-  { name: '锚点厨具货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_1.webp', correctionValue: -313, referencePrice: 4679, selected: false },
-  { name: '悬空鼷兽骨雕货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_2.webp', correctionValue: -313, referencePrice: 4679, selected: false },
-  { name: '巫术矿钻货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_3.webp', correctionValue: -313, referencePrice: 4679, selected: false },
-  { name: '天使罐头货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_4.webp', correctionValue: -313, referencePrice: 4679, selected: false },
-  { name: '谷地水培肉货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_5.webp', correctionValue: -25, referencePrice: 4966, selected: false },
-  { name: '团结牌口服液货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_6.webp', correctionValue: -25, referencePrice: 4966, selected: false },
-  { name: '源石树幼苗货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_7.webp', correctionValue: 338, referencePrice: 5329, selected: false },
-  { name: '塞什卡髀石货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_8.webp', correctionValue: -25, referencePrice: 4966, selected: false },
-  { name: '星体晶块货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_9.webp', correctionValue: -25, referencePrice: 4966, selected: false },
-  { name: '警戒者矿镐货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_10.webp', correctionValue: 338, referencePrice: 5329, selected: false },
-  { name: '边角料积木货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_11.webp', correctionValue: 338, referencePrice: 5329, selected: false },
-  { name: '硬脑壳头盔货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_12.webp', correctionValue: 338, referencePrice: 5329, selected: false },
+  {
+    name: '锚点厨具货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_1.webp',
+    correctionValue: -313,
+    referencePrice: 4679,
+    selected: false,
+  },
+  {
+    name: '悬空鼷兽骨雕货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_2.webp',
+    correctionValue: -313,
+    referencePrice: 4679,
+    selected: false,
+  },
+  {
+    name: '巫术矿钻货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_3.webp',
+    correctionValue: -313,
+    referencePrice: 4679,
+    selected: false,
+  },
+  {
+    name: '天使罐头货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_4.webp',
+    correctionValue: -313,
+    referencePrice: 4679,
+    selected: false,
+  },
+  {
+    name: '谷地水培肉货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_5.webp',
+    correctionValue: -25,
+    referencePrice: 4966,
+    selected: false,
+  },
+  {
+    name: '团结牌口服液货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_6.webp',
+    correctionValue: -25,
+    referencePrice: 4966,
+    selected: false,
+  },
+  {
+    name: '源石树幼苗货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_7.webp',
+    correctionValue: 338,
+    referencePrice: 5329,
+    selected: false,
+  },
+  {
+    name: '塞什卡髀石货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_8.webp',
+    correctionValue: -25,
+    referencePrice: 4966,
+    selected: false,
+  },
+  {
+    name: '星体晶块货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_9.webp',
+    correctionValue: -25,
+    referencePrice: 4966,
+    selected: false,
+  },
+  {
+    name: '警戒者矿镐货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_10.webp',
+    correctionValue: 338,
+    referencePrice: 5329,
+    selected: false,
+  },
+  {
+    name: '边角料积木货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_11.webp',
+    correctionValue: 338,
+    referencePrice: 5329,
+    selected: false,
+  },
+  {
+    name: '硬脑壳头盔货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_12.webp',
+    correctionValue: 338,
+    referencePrice: 5329,
+    selected: false,
+  },
 ]);
 
 // 武陵货组数据
 const wulingGoodsItems = ref<GoodsItem[]>([
-  { name: '武侠电影货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_1.webp', correctionValue: 0, referencePrice: 4656, selected: false },
-  { name: '岳研避瘴茶货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_2.webp', correctionValue: 0, referencePrice: 4656, selected: false },
-  { name: '武陵冻梨货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_3.webp', correctionValue: 0, referencePrice: 4656, selected: false },
-  { name: '冬虫夏笋货组', imageUrl: 'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_4.webp', correctionValue: 0, referencePrice: 4656, selected: false },
+  {
+    name: '武侠电影货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_1.webp',
+    correctionValue: 0,
+    referencePrice: 4656,
+    selected: false,
+  },
+  {
+    name: '岳研避瘴茶货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_2.webp',
+    correctionValue: 0,
+    referencePrice: 4656,
+    selected: false,
+  },
+  {
+    name: '武陵冻梨货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_3.webp',
+    correctionValue: 0,
+    referencePrice: 4656,
+    selected: false,
+  },
+  {
+    name: '冬虫夏笋货组',
+    imageUrl:
+      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_4.webp',
+    correctionValue: 0,
+    referencePrice: 4656,
+    selected: false,
+  },
 ]);
-
-// 切换四号谷地货组选择状态
-function toggleGoodsSelection(index: number): void {
-  const item = goodsItems.value[index];
-  if (item) {
-    item.selected = !item.selected;
-  }
-}
-
-// 切换武陵货组选择状态
-function toggleWulingGoodsSelection(index: number): void {
-  const item = wulingGoodsItems.value[index];
-  if (item) {
-    item.selected = !item.selected;
-  }
-}
 
 // 处理图片加载错误
 function handleImageError(e: Event): void {
@@ -364,13 +573,55 @@ function handleImageError(e: Event): void {
 
 // 四号谷地表格数据（静态，固定顺序）
 const fourValleyTableItems = [
-  { weekday: '周一', buyAllPrice: '< 924', buyOneThirdPrice: '924 - 1014', buyTwoThirdsPrice: '> 1014', isCurrentDay: false },
-  { weekday: '周二', buyAllPrice: '< 864', buyOneThirdPrice: '864 - 1109', buyTwoThirdsPrice: '> 1109', isCurrentDay: false },
-  { weekday: '周三', buyAllPrice: '< 824', buyOneThirdPrice: '824 - 917', buyTwoThirdsPrice: '> 917', isCurrentDay: false },
-  { weekday: '周四', buyAllPrice: '< 793', buyOneThirdPrice: '793 - 967', buyTwoThirdsPrice: '> 967', isCurrentDay: false },
-  { weekday: '周五', buyAllPrice: '< 747', buyOneThirdPrice: '747 - 870', buyTwoThirdsPrice: '> 870', isCurrentDay: false },
-  { weekday: '周六', buyAllPrice: '< 816', buyOneThirdPrice: '816 - 825', buyTwoThirdsPrice: '> 825', isCurrentDay: false },
-  { weekday: '周日', buyAllPrice: '< 959', buyOneThirdPrice: '959 - 1206', buyTwoThirdsPrice: '> 1206', isCurrentDay: false },
+  {
+    weekday: '周一',
+    buyAllPrice: '< 924',
+    buyOneThirdPrice: '924 - 1014',
+    buyTwoThirdsPrice: '> 1014',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周二',
+    buyAllPrice: '< 864',
+    buyOneThirdPrice: '864 - 1109',
+    buyTwoThirdsPrice: '> 1109',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周三',
+    buyAllPrice: '< 824',
+    buyOneThirdPrice: '824 - 917',
+    buyTwoThirdsPrice: '> 917',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周四',
+    buyAllPrice: '< 793',
+    buyOneThirdPrice: '793 - 967',
+    buyTwoThirdsPrice: '> 967',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周五',
+    buyAllPrice: '< 747',
+    buyOneThirdPrice: '747 - 870',
+    buyTwoThirdsPrice: '> 870',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周六',
+    buyAllPrice: '< 816',
+    buyOneThirdPrice: '816 - 825',
+    buyTwoThirdsPrice: '> 825',
+    isCurrentDay: false,
+  },
+  {
+    weekday: '周日',
+    buyAllPrice: '< 959',
+    buyOneThirdPrice: '959 - 1206',
+    buyTwoThirdsPrice: '> 1206',
+    isCurrentDay: false,
+  },
 ];
 
 // 武陵表格数据（静态，固定顺序）
@@ -882,7 +1133,6 @@ onUnmounted(() => {
 }
 
 .goods-item-data {
-
   margin-top: 4px;
   padding: 0px 12px;
   border-radius: 8px;
@@ -900,7 +1150,6 @@ onUnmounted(() => {
   background: linear-gradient(180deg, #8bc34a 0%, #9ccc65 100%);
   box-shadow: 0 0 8px rgba(139, 195, 74, 0.4);
 }
-
 
 /* 货组卡片图片 */
 .goods-card-image {

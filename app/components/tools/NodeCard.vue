@@ -1,15 +1,15 @@
 <template>
   <div class="node-wrapper">
-    <div 
-      class="node-card" 
+    <div
+      class="node-card"
       :class="{
-        'output': node.type === 'output',
-        'splitter': node.type === 'splitter',
-        'storage': node.type === 'storage',
-        'thermal': node.type === 'thermal',
+        output: node.type === 'output',
+        splitter: node.type === 'splitter',
+        storage: node.type === 'storage',
+        thermal: node.type === 'thermal',
         'can-drop': node.type === 'output' || node.type === 'splitter',
         'child-node-card': depth > 0,
-        'mobile-clickable': isMobile
+        'mobile-clickable': isMobile,
       }"
       :data-node-id="node.id"
       @click="handleClick"
@@ -21,43 +21,55 @@
         <div class="node-header">
           <div class="node-type-info">
             <span class="node-icon">
-              {{ node.type === 'output' ? '⬇️' : node.type === 'splitter' ? '🔀' : node.type === 'storage' ? '📦' : '🔥' }}
+              {{
+                node.type === 'output'
+                  ? '⬇️'
+                  : node.type === 'splitter'
+                    ? '🔀'
+                    : node.type === 'storage'
+                      ? '📦'
+                      : '🔥'
+              }}
             </span>
             <span class="node-name">
-              {{ node.type === 'output' ? 
-                  (isMobile ? '输出口（请点选这里或子节点以添加设备）' : '输出口（请拖拽设备到这里或子节点上）') : 
-                  (node.type === 'splitter' ? '分流器' : node.type === 'storage' ? '仓库' : '热能池') 
+              {{
+                node.type === 'output'
+                  ? isMobile
+                    ? '输出口（请点选这里或子节点以添加设备）'
+                    : '输出口（请拖拽设备到这里或子节点上）'
+                  : node.type === 'splitter'
+                    ? '分流器'
+                    : node.type === 'storage'
+                      ? '仓库'
+                      : '热能池'
               }}
             </span>
           </div>
-          <div class="node-rate">{{ numberRound(node.rate,2) }}/min</div>
+          <div class="node-rate">{{ numberRound(node.rate, 2) }}/min</div>
         </div>
-        <div v-if="isDraggingOver && (node.type === 'output' || node.type === 'splitter')" class="drop-hint">
+        <div
+          v-if="isDraggingOver && (node.type === 'output' || node.type === 'splitter')"
+          class="drop-hint"
+        >
           松开以添加工具
         </div>
       </template>
-      
+
       <template v-else>
         <div class="child-node-content">
-          <div class="child-rate">{{ numberRound(node.rate,2) }}/min</div>
+          <div class="child-rate">{{ numberRound(node.rate, 2) }}/min</div>
           <div v-if="powerPerMinute" class="child-power">
-            {{ numberRound(powerPerMinute,0) }} ⚡
+            {{ numberRound(powerPerMinute, 0) }} ⚡
           </div>
         </div>
-        <div class="child-delete-button" @click.stop="removeNode">
-          ✕
-        </div>
+        <div class="child-delete-button" @click.stop="removeNode">✕</div>
       </template>
     </div>
-    
+
     <div v-if="node.type === 'output' || node.type === 'splitter'" class="node-children">
       <template v-if="node.children && node.children.length > 0">
-        <div 
-          v-for="(child, index) in node.children"
-          :key="child.id"
-          class="child-node"
-        >
-          <NodeCard 
+        <div v-for="child in node.children" :key="child.id" class="child-node">
+          <NodeCard
             :burn-time-seconds="burnTimeSeconds"
             :depth="depth + 1"
             :is-mobile="isMobile"
@@ -65,6 +77,7 @@
             :on-node-click="onNodeClick"
             :on-remove="onRemove"
             :power-per-battery="powerPerBattery"
+            @add-child="(payload: any) => emit('add-child', payload)"
           />
         </div>
       </template>
@@ -74,7 +87,7 @@
 
 <script setup lang="ts">
 import { numberRound } from '#shared/utils/numberUtil';
-import { computed, nextTick, watch } from 'vue';
+import { computed, ref } from 'vue';
 
 interface Node {
   id: string;
@@ -95,11 +108,15 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const emit = defineEmits<{
+  'add-child': [{ nodeId: string; toolType: string }];
+}>();
+
 // 计算每秒平均功率
 const powerPerMinute = computed(() => {
   if (props.node.type !== 'thermal') return null;
   if (!props.powerPerBattery || !props.burnTimeSeconds) return null;
-  
+
   const burnTimeMinutes = props.burnTimeSeconds / 60;
   const simultaneousBurning = props.node.rate * burnTimeMinutes;
   const powerPerSecond = simultaneousBurning * props.powerPerBattery;
@@ -108,59 +125,41 @@ const powerPerMinute = computed(() => {
 
 const isDraggingOver = ref(false);
 
-const generateId = () => Math.random().toString(36).slice(2, 11);
-
-function onDragOver (event: DragEvent) {
+function onDragOver(_event: DragEvent) {
   if (props.node.type === 'output' || props.node.type === 'splitter') {
     isDraggingOver.value = true;
   }
 }
 
-function onDragLeave () {
+function onDragLeave() {
   isDraggingOver.value = false;
 }
 
-function onDrop (event: DragEvent) {
+function onDrop(event: DragEvent) {
   event.preventDefault();
   event.stopPropagation();
-  
+
   if (props.node.type === 'output' || props.node.type === 'splitter') {
     const toolType = event.dataTransfer?.getData('text/plain') as Node['type'];
     if (toolType) {
       addChildren(toolType);
     }
   }
-  
+
   isDraggingOver.value = false;
 }
 
-function handleClick () {
+function handleClick() {
   if (props.onNodeClick) {
     props.onNodeClick(props.node);
   }
 }
 
-function addChildren (toolType: Node['type']) {
-  if (!props.node.children) {
-    props.node.children = [];
-  }
-  
-  // 添加一个子节点
-  props.node.children.push({
-    id: generateId(),
-    type: toolType,
-    rate: 0,
-    children: toolType === 'splitter' ? [] : undefined
-  });
+function addChildren(toolType: Node['type']) {
+  emit('add-child', { nodeId: props.node.id, toolType });
 }
 
-function removeChildren () {
-  if (props.node.children) {
-    props.node.children = [];
-  }
-}
-
-function removeNode () {
+function removeNode() {
   if (props.onRemove) {
     props.onRemove(props.node.id);
   }
@@ -258,7 +257,7 @@ function removeNode () {
 }
 
 .node-card.storage {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
 }
 
 .node-card.thermal {

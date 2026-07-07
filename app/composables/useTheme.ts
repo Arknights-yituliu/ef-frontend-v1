@@ -1,4 +1,4 @@
-export function useTheme () {
+export function useTheme() {
   const theme = useState<'light' | 'dark'>('theme', () => 'light');
 
   const setTheme = (newTheme: 'light' | 'dark') => {

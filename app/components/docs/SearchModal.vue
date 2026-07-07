@@ -25,7 +25,7 @@
           class="search-input"
           :placeholder="$t('docs.searchPlaceholder')"
           @input="handleSearch"
-        >
+        />
       </div>
 
       <!-- 搜索结果 -->
@@ -97,7 +97,7 @@ watch(
 );
 
 // 处理搜索
-async function handleSearch () {
+async function handleSearch() {
   if (!searchQuery.value.trim()) {
     searchResults.value = [];
     return;
@@ -116,21 +116,21 @@ async function handleSearch () {
 }
 
 // 关闭模态框
-function closeModal () {
+function closeModal() {
   emit('close');
   searchQuery.value = '';
   searchResults.value = [];
 }
 
 // 格式化路径显示（去除语言后缀和锚点）
-function formatPath (id: string): string {
+function formatPath(id: string): string {
   // id 格式类似: /introduction/docs-setting-zh#section-name
   // 显示为: /introduction/docs-setting
   return id.split('#')[0].replace(/-(zh|en)$/, '');
 }
 
 // 截断内容显示
-function truncateContent (content: string, maxLength: number): string {
+function truncateContent(content: string, maxLength: number): string {
   if (!content) return '';
   if (content.length <= maxLength) return content;
   return content.slice(0, Math.max(0, maxLength)) + '...';
@@ -139,7 +139,7 @@ function truncateContent (content: string, maxLength: number): string {
 // 处理搜索结果的 id，转换为可导航的路径
 // id 格式: /introduction/docs-setting-zh#section-name
 // 需要去除语言后缀，保留锚点: /introduction/docs-setting#section-name
-function formatNavigationPath (id: string): string {
+function formatNavigationPath(id: string): string {
   // 分离路径和锚点
   const [path, anchor] = id.split('#');
   // 去除语言后缀
@@ -149,7 +149,7 @@ function formatNavigationPath (id: string): string {
 }
 
 // 跳转到搜索结果
-function goToResult (id: string) {
+function goToResult(id: string) {
   closeModal();
   // 将 id 转换为可导航的路径（去除语言后缀，保留锚点）
   const navigationPath = formatNavigationPath(id);
@@ -157,7 +157,7 @@ function goToResult (id: string) {
 }
 
 // 监听键盘事件
-function handleKeydown (e: KeyboardEvent) {
+function handleKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape') {
     closeModal();
   }

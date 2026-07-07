@@ -15,7 +15,7 @@ interface SearchResult {
   matches?: readonly any[];
 }
 
-export function useDocsSearch () {
+export function useDocsSearch() {
   const { locale } = useI18n();
   const appConfig = useAppConfig();
 
@@ -56,7 +56,9 @@ export function useDocsSearch () {
           : [];
 
       // 从路由前缀中提取集合名称
-      const collectionNames = docsRoutePrefixes.map(getCollectionNameFromPrefix);
+      const collectionNames = docsRoutePrefixes.map((prefix) =>
+        getCollectionNameFromPrefix(prefix),
+      );
 
       // 遍历所有集合，查询每个集合的可搜索章节
       const allSectionsPromises = collectionNames.map(async (collectionName: string) => {
@@ -129,7 +131,7 @@ export function useDocsSearch () {
         score: result.score || 1,
         matches: result.matches,
       }))
-      .sort((a: SearchResult, b: SearchResult) => a.score - b.score);
+      .toSorted((a: SearchResult, b: SearchResult) => a.score - b.score);
 
     // 按文档路径去重，保留每个文档的最佳匹配结果（score 最低的）
     const uniqueResultsMap = new Map<string, SearchResult>();
@@ -144,7 +146,7 @@ export function useDocsSearch () {
     }
 
     // 将 Map 转换为数组，并保持按 score 排序
-    return Array.from(uniqueResultsMap.values()).sort((a, b) => a.score - b.score);
+    return Array.from(uniqueResultsMap.values()).toSorted((a, b) => a.score - b.score);
   };
 
   return {

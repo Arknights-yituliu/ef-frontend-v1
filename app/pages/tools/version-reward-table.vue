@@ -2,15 +2,12 @@
 import { dateFormat } from '#shared/utils/dateUtil';
 
 import { numberFloor } from '#shared/utils/numberUtil';
-import {
- 
-  filterRewardEndAfter,
-  rewardTotalCalc,
-} from '@/custom/core/gacha/versionReward';
+import { filterRewardEndAfter, rewardTotalCalc } from '@/custom/core/gacha/versionReward';
 
-
-
-const list = filterRewardEndAfter(['零号委托','新潮起·故渊离','春晓时'], new Date('2026/04/17 12:00:00'));
+const list = filterRewardEndAfter(
+  ['零号委托', '新潮起·故渊离', '春晓时'],
+  new Date('2026/04/17 12:00:00'),
+);
 const result: RewardStatisticsResultDetail = rewardTotalCalc(list, [], '总和');
 </script>
 

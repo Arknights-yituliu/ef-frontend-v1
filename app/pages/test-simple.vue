@@ -4,7 +4,9 @@
 
     <div class="test-section">
       <h2>主要文字颜色 (var(--theme-text-primary))</h2>
-      <p class="text-primary">这是主要文字颜色的测试文本，应该显示为深色（明色主题）或浅色（暗色主题）</p>
+      <p class="text-primary">
+        这是主要文字颜色的测试文本，应该显示为深色（明色主题）或浅色（暗色主题）
+      </p>
     </div>
 
     <div class="test-section">
@@ -34,11 +36,11 @@
 
     <div class="test-section">
       <h2>不同字体大小测试</h2>
-      <p style="font-size: 1rem; color: var(--theme-text-primary);">1rem - 标准大小</p>
-      <p style="font-size: 1.125rem; color: var(--theme-text-secondary);">1.125rem - 稍大</p>
-      <p style="font-size: 1.5rem; color: var(--theme-text-primary);">1.5rem - 更大</p>
-      <p style="font-size: 2rem; color: var(--theme-text-tertiary);">2rem - 大号</p>
-      <p style="font-size: 3rem; color: var(--theme-accent-color);">3rem - 特大</p>
+      <p style="font-size: 1rem; color: var(--theme-text-primary)">1rem - 标准大小</p>
+      <p style="font-size: 1.125rem; color: var(--theme-text-secondary)">1.125rem - 稍大</p>
+      <p style="font-size: 1.5rem; color: var(--theme-text-primary)">1.5rem - 更大</p>
+      <p style="font-size: 2rem; color: var(--theme-text-tertiary)">2rem - 大号</p>
+      <p style="font-size: 3rem; color: var(--theme-accent-color)">3rem - 特大</p>
     </div>
 
     <div class="test-section">

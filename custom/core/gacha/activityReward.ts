@@ -43,7 +43,6 @@ for (const reward of sklandSignInTable as Reward[]) {
   activityReward.value.push(reward);
 }
 
-
 export { activityReward };
 
 createNewPoolActivity();
@@ -80,8 +79,6 @@ function createNewPoolActivity() {
       };
       activityReward.value.push(reward1);
     }
-
-   
 
     const reward3: Reward = {
       id: `${item.poolName}卡池签到`,

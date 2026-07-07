@@ -75,7 +75,7 @@
           <div style="width: 34px" />
           <div class="item-info-content flex-1">
             <div class="item-label">{{ getItemName(itemId) }}</div>
-            <div class="item-value">{{ numberRound(getItemValue(itemId),3) }}</div>
+            <div class="item-value">{{ numberRound(getItemValue(itemId), 3) }}</div>
           </div>
         </div>
       </div>

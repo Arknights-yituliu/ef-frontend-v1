@@ -17,8 +17,6 @@
 <script lang="ts" setup>
 import type { ColorInstance } from 'color';
 import Color from 'color';
-const { t } = useI18n();
-
 // 画布尺寸
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 120;
@@ -134,7 +132,7 @@ class ParticleCanvas {
       // 将鼠标坐标按比例缩放到画布的实际像素坐标
       this.mouseX = (e.clientX - rect.left) * scaleX;
       this.mouseY = (e.clientY - rect.top) * scaleY;
-      
+
       // 鼠标移动时启动动画
       if (!this.mouseActive) {
         this.mouseActive = true;
@@ -218,7 +216,7 @@ class ParticleCanvas {
     for (const particle of this.particles) {
       particle.update(this.mouseX, this.mouseY);
       particle.draw(this.ctx);
-      
+
       // 检查是否有粒子还在移动
       if (!particle.isSettled()) {
         allSettled = false;
@@ -249,7 +247,7 @@ const canvasRef = ref<HTMLCanvasElement | null>(null);
 const particleCanvasRef = ref<ParticleCanvas | null>(null);
 const isLoaded = ref(false);
 
-function initParticleCanvas () {
+function initParticleCanvas() {
   if (canvasRef.value) {
     if (particleCanvasRef.value) {
       particleCanvasRef.value.destroy();

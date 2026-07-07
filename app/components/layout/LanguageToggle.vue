@@ -45,7 +45,7 @@ const availableLocales = computed(() => {
 });
 
 // 将项目的语言代码映射到 Vuetify 的语言代码
-function getVuetifyLocale (localeCode: string): 'en' | 'zhHans' {
+function getVuetifyLocale(localeCode: string): 'en' | 'zhHans' {
   switch (localeCode) {
     case 'zh-CN': {
       return 'zhHans';
@@ -60,7 +60,7 @@ function getVuetifyLocale (localeCode: string): 'en' | 'zhHans' {
 }
 
 // 处理语言切换
-async function handleLocaleChange (newLocale: 'zh-CN' | 'en-US') {
+async function handleLocaleChange(newLocale: 'zh-CN' | 'en-US') {
   // 切换根html元素的lang属性
   document.documentElement.setAttribute('lang', newLocale);
 

@@ -8,7 +8,7 @@
           alt="Penguin Statistics Logo"
           class="home-card-title-icon"
           src="https://cos.yituliu.cn/endfield/icons/penguin_stats_logo.png"
-        >
+        />
         <b>{{ $t('component.home.penguinStatistics.penguinStatistics') }}</b>
       </div>
       <div class="flex-1" />

@@ -160,7 +160,7 @@ onBeforeUnmount(() => {
             class="card__avatar"
             loading="lazy"
             :src="props.contributor.avatarImg"
-          >
+          />
         </div>
         <div class="card__content">
           <div class="card__meta">

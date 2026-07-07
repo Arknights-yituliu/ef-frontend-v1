@@ -76,7 +76,7 @@ for (const reward of operationalManualTrainingTableJson as Reward[]) {
   }
 }
 
-const operatorTraining = {
+const _operatorTraining = {
   id: 'operator_training',
   name: {
     zh: `干员教学`,

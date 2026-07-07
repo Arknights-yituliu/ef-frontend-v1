@@ -1,5 +1,3 @@
-
-
 function numberRound(number: number, decimalPlaces: number = 2) {
   // 参数验证
   if (Number.isNaN(number)) {
@@ -22,12 +20,12 @@ function numberRound(number: number, decimalPlaces: number = 2) {
 function numberFloor(number: any, decimalPlaces: number = 2) {
   // 参数验证
   if (Number.isNaN(number)) {
-    console.log('第一个参数必须是有效的数字，传入参数：'+number)
+    console.log('第一个参数必须是有效的数字，传入参数：' + number);
     // throw new Error('第一个参数必须是有效的数字，传入参数：'+number);
   }
 
   if (!Number.isInteger(decimalPlaces) || decimalPlaces < 0) {
-    console.log('第二个参数必须是非负整数')
+    console.log('第二个参数必须是非负整数');
     // throw new Error('第二个参数必须是非负整数');
   }
 
@@ -45,7 +43,7 @@ function stringToNumber(str: string | number | undefined): number {
   if (str === undefined || str === null) return 0;
   if (typeof str === 'number') return str;
   const num = Number.parseFloat(str.replace(/[^\d.-]/g, ''));
-  return isNaN(num) ? 0 : num;
+  return Number.isNaN(num) ? 0 : num;
 }
 
 export { numberFloor, numberRound, stringToNumber };

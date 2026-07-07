@@ -7,19 +7,15 @@
       <!-- 小卡片组容器 - 仅显示收藏的卡片 -->
       <div v-if="favoritedCards.length > 0" class="small-card-section">
         <div class="small-card-group">
-          <HomeSmallCard 
-            v-for="card in favoritedCards" 
-            :key="card.i18nKey" 
-            :card="card"
-          />
+          <HomeSmallCard v-for="card in favoritedCards" :key="card.i18nKey" :card="card" />
         </div>
       </div>
 
       <!-- 大卡片组容器 -->
       <div class="card-group">
-        <HomeCard 
-          v-for="card in visibleCards" 
-          :key="card.i18nKey" 
+        <HomeCard
+          v-for="card in visibleCards"
+          :key="card.i18nKey"
           :card="card"
           :is-favorited="isFavorited(card)"
           :on-toggle-favorite="() => toggleFavorite(card)"
@@ -35,13 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  ButtonActionType,
-  type CardData,
-  type FooterButton,
-  homeCards,
-  homeFooterButtons,
-} from '@/custom/core/homeCards';
+import { type CardData, homeCards } from '@/custom/core/homeCards';
 
 definePageMeta({
   layout: 'default',
@@ -61,7 +51,7 @@ const snackbarText = ref('');
 const favorites = ref<Set<string>>(new Set());
 
 // 从 localStorage 加载收藏状态
-function loadFavorites () {
+function loadFavorites() {
   const saved = localStorage.getItem('homeFavorites');
   if (saved) {
     try {
@@ -74,17 +64,17 @@ function loadFavorites () {
 }
 
 // 保存收藏状态到 localStorage
-function saveFavorites () {
+function saveFavorites() {
   localStorage.setItem('homeFavorites', JSON.stringify([...favorites.value]));
 }
 
 // 检查卡片是否被收藏
-function isFavorited (card: CardData) {
+function isFavorited(card: CardData) {
   return favorites.value.has(card.i18nKey);
 }
 
 // 切换收藏状态
-function toggleFavorite (card: CardData) {
+function toggleFavorite(card: CardData) {
   if (favorites.value.has(card.i18nKey)) {
     favorites.value.delete(card.i18nKey);
   } else {
@@ -96,8 +86,8 @@ function toggleFavorite (card: CardData) {
 // 获取收藏的卡片列表
 const favoritedCards = computed(() => {
   return homeCards
-    .filter(card => card.visible !== false && isFavorited(card))
-    .sort((a, b) => {
+    .filter((card) => card.visible !== false && isFavorited(card))
+    .toSorted((a, b) => {
       // 按收藏时间排序（最近收藏的在前）
       const aIndex = [...favorites.value].indexOf(a.i18nKey);
       const bIndex = [...favorites.value].indexOf(b.i18nKey);
@@ -106,49 +96,10 @@ const favoritedCards = computed(() => {
 });
 
 const visibleCards = computed(() => homeCards.filter((card) => card.visible !== false));
-const visibleButtons = computed(() =>
-  homeFooterButtons.filter((button) => button.visible !== false),
-);
-
 // 组件挂载时加载收藏状态
 onMounted(() => {
   loadFavorites();
 });
-
-/**
- * 处理按钮点击事件
- */
-function handleButtonClick (button: FooterButton) {
-  if (button.action === ButtonActionType.Link) {
-    // 跳转链接
-    const target = button.target ? '_blank' : '_self';
-    window.open(button.actionData, target);
-  } else if (button.action === ButtonActionType.Copy) {
-    // 复制文本
-    copyToClipboard(button.actionData, button.copySuccessText || t('common.copySuccess'));
-  }
-}
-
-/**
- * 复制文本到剪贴板
- */
-async function copyToClipboard (text: string, successMessage: string) {
-  try {
-    await navigator.clipboard.writeText(text);
-    showSnackbarMessage(successMessage);
-  } catch (error) {
-    console.error('复制失败:', error);
-    showSnackbarMessage(t('common.copyFailed'));
-  }
-}
-
-/**
- * 显示提示消息
- */
-function showSnackbarMessage (message: string) {
-  snackbarText.value = message;
-  showSnackbar.value = true;
-}
 </script>
 
 <style scoped>

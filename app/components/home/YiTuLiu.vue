@@ -8,7 +8,7 @@
           alt="明日方舟一图流 LOGO"
           class="home-card-title-icon"
           src="https://cos.yituliu.cn/endfield/icons/yituliu-icon.png"
-        >
+        />
         <b>{{ $t('component.home.yiTuLiu.title') }}</b>
       </div>
       <div class="flex-1" />

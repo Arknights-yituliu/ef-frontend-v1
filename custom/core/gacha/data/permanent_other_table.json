@@ -1,5 +1,4 @@
 [
-  
   {
     "id": "四号谷地维修设备",
     "name": {
@@ -19,7 +18,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "游戏工具分享",
     "name": {
       "zh": "游戏工具分享",

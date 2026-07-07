@@ -1,11 +1,9 @@
 <script setup lang="ts">
-
-const props = defineProps<{title:string}>();
-
+const props = defineProps<{ title: string }>();
 </script>
 
 <template>
-  <div class="gacha-calculator-module-title"  style="display:none;">
+  <div class="gacha-calculator-module-title" style="display: none">
     <svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
       <!-- 倒三角形 -->
       <polygon
@@ -16,13 +14,13 @@ const props = defineProps<{title:string}>();
         stroke-width="0"
       />
     </svg>
-    <div class="gacha-calculator-module-title-icon"/>
-  <div>{{props.title}}</div>
+    <div class="gacha-calculator-module-title-icon" />
+    <div>{{ props.title }}</div>
   </div>
 </template>
 
 <style scoped>
-.gacha-calculator-module-title{
+.gacha-calculator-module-title {
   margin: 12px 0;
   padding: 0 4px;
   width: 100%;
@@ -33,5 +31,4 @@ const props = defineProps<{title:string}>();
   display: flex;
   align-items: center;
 }
-
 </style>

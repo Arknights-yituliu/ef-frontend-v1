@@ -8,20 +8,20 @@ const route = useRoute();
 // 监听路由变化
 watch(
   () => route.fullPath,
-  async (newPath) => {
+  async (_newPath) => {
     if (!import.meta.client) return;
     try {
       const currentUrl = window.location.href;
       console.log(currentUrl);
       const data = {
-          url:currentUrl
-      }
-     
+        url: currentUrl,
+      };
+
       await fetch(`${baseUrl}/access-log`, {
         method: 'POST',
-         headers: {
-      'Content-Type': 'application/json'
-    },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(data),
       });
 
@@ -30,12 +30,10 @@ watch(
       console.error('Failed to upload page URL:', error);
     }
   },
-  { immediate: true } // 页面加载时立即执行一次
+  { immediate: true }, // 页面加载时立即执行一次
 );
 </script>
 
-
 <template>
- 
+  <div />
 </template>
-

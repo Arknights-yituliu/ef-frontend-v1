@@ -1,8 +1,5 @@
-import type {
-  GachaResourceStatisticsResult
-} from '#shared/types/gacha-calculator';
+import type { GachaResourceStatisticsResult } from '#shared/types/gacha-calculator';
 import { ref } from 'vue';
-
 
 export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>({
   totalPulls: {
@@ -26,7 +23,7 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-  
+
     recharge: {
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
@@ -47,8 +44,6 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
     },
-   
-    
   },
   rechargeAmount: 0,
   originiumRecharge: 0,
@@ -56,9 +51,4 @@ export const gachaResourceStatisticsResult = ref<GachaResourceStatisticsResult>(
   ticketgachaStandardSingle: 0,
   ticketgachaSpecialSingle: 0,
   ticketgachaLimitedSingle: 0,
-
 });
-
-
-
-

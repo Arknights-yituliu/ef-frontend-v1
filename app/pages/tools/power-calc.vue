@@ -111,6 +111,7 @@
               :on-node-click="handleNodeClick"
               :on-remove="removeNode"
               :power-per-battery="powerPerBattery"
+              @add-child="handleAddChild"
             />
           </div>
 
@@ -174,11 +175,19 @@
             class="action-buttons"
           >
             <button class="action-button splitter-btn" @click="addChildToSelected('splitter')">
-              <img alt="分流器" class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" />
+              <img
+                alt="分流器"
+                class="btn-icon"
+                src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp"
+              />
               <span class="btn-text">添加分流器</span>
             </button>
             <button class="action-button thermal-btn" @click="addChildToSelected('thermal')">
-              <img alt="热能池" class="btn-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" />
+              <img
+                alt="热能池"
+                class="btn-icon"
+                src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp"
+              />
               <span class="btn-text">添加热能池</span>
             </button>
           </div>
@@ -204,7 +213,11 @@
           draggable="true"
           @dragstart="onToolDragStart($event, 'splitter')"
         >
-          <img alt="分流器" class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp" />
+          <img
+            alt="分流器"
+            class="sidebar-tool-icon"
+            src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp"
+          />
           <span class="sidebar-tool-name">分流器</span>
         </div>
         <div
@@ -212,7 +225,11 @@
           draggable="true"
           @dragstart="onToolDragStart($event, 'thermal')"
         >
-          <img alt="热能池" class="sidebar-tool-icon" src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp" />
+          <img
+            alt="热能池"
+            class="sidebar-tool-icon"
+            src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp"
+          />
           <span class="sidebar-tool-name">热能池</span>
         </div>
       </div>
@@ -246,8 +263,10 @@ usePageSeo({
 });
 
 // 简单的防抖函数
-function debounce <T extends (...args: any[]) => any>(func: T,
-  duration: number = 500): ((...args: Parameters<T>) => void) {
+function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  duration: number = 500,
+): (...args: Parameters<T>) => void {
   let timeout: any = 0;
   return function (this: any, ...args: Parameters<T>) {
     clearTimeout(timeout);
@@ -261,7 +280,7 @@ function debounce <T extends (...args: any[]) => any>(func: T,
 const isMobile = ref(false);
 
 // 检测是否为移动设备（基于设备类型，而非屏幕宽度）
-function checkIsMobile () {
+function checkIsMobile() {
   if (typeof navigator === 'undefined') return false;
   const userAgent = navigator.userAgent || navigator.vendor || '';
   // 精确的移动设备检测，iPad始终被视为移动设备
@@ -288,16 +307,46 @@ if (typeof window !== 'undefined') {
 
 // 电池类型配置
 const batteryConfig = {
-  source: { power: 50, time: 8, name: '源矿', image: 'https://cos.yituliu.cn/endfield/items/item_originium_ore.webp' },
-  'low-gu': { power: 220, time: 40, name: '低容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_1.webp' },
-  'mid-gu': { power: 420, time: 40, name: '中容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_2.webp' },
-  'high-gu': { power: 1100, time: 40, name: '高容谷地电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_3.webp' },
-  'low-wu': { power: 1600, time: 40, name: '低容武陵电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_4.webp' },
-  'mid-wu': { power: 3200, time: 40, name: '中容武陵电池', image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_5.webp' },
+  source: {
+    power: 50,
+    time: 8,
+    name: '源矿',
+    image: 'https://cos.yituliu.cn/endfield/items/item_originium_ore.webp',
+  },
+  'low-gu': {
+    power: 220,
+    time: 40,
+    name: '低容谷地电池',
+    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_1.webp',
+  },
+  'mid-gu': {
+    power: 420,
+    time: 40,
+    name: '中容谷地电池',
+    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_2.webp',
+  },
+  'high-gu': {
+    power: 1100,
+    time: 40,
+    name: '高容谷地电池',
+    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_3.webp',
+  },
+  'low-wu': {
+    power: 1600,
+    time: 40,
+    name: '低容武陵电池',
+    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_4.webp',
+  },
+  'mid-wu': {
+    power: 3200,
+    time: 40,
+    name: '中容武陵电池',
+    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_5.webp',
+  },
 };
 
 // 选择电池类型
-function selectBattery (key: keyof typeof batteryConfig) {
+function selectBattery(key: keyof typeof batteryConfig) {
   selectedBattery.value = key;
   const config = batteryConfig[key];
   powerPerBattery.value = config.power;
@@ -380,7 +429,7 @@ interface FlowLine {
 }
 
 // 计算箭头的三个顶点坐标
-function calculateArrowPoints (x1: number, y1: number, x2: number, y2: number): string {
+function calculateArrowPoints(x1: number, y1: number, x2: number, y2: number): string {
   const arrowSize = 8; // 箭头大小
   const angle = Math.atan2(y2 - y1, x2 - x1);
 
@@ -406,7 +455,7 @@ function calculateArrowPoints (x1: number, y1: number, x2: number, y2: number): 
 const flowLines = ref<FlowLine[]>([]);
 
 // 计算连接线的函数
-function calculateFlowLines () {
+function calculateFlowLines() {
   const lines: FlowLine[] = [];
 
   // 如果容器还没渲染，返回空数组
@@ -493,15 +542,44 @@ function calculateFlowLines () {
 const generateId = () => Math.random().toString(36).slice(2, 11);
 
 // 处理节点点击（移动端）
-function handleNodeClick (node: Node) {
+function handleNodeClick(node: Node) {
   if (isMobile.value) {
     selectedNode.value = node;
     showMobileActionPanel.value = true;
   }
 }
 
+// 处理从 NodeCard 发出的 add-child 事件
+function handleAddChild(payload: { nodeId: string; toolType: string }) {
+  const findNode = (node: Node): Node | null => {
+    if (node.id === payload.nodeId) return node;
+    if (node.children) {
+      for (const child of node.children) {
+        const found = findNode(child);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  const targetNode = findNode(outputNode.value);
+  if (targetNode && (targetNode.type === 'output' || targetNode.type === 'splitter')) {
+    if (!targetNode.children) {
+      targetNode.children = [];
+    }
+    targetNode.children.push({
+      id: generateId(),
+      type: payload.toolType as Node['type'],
+      rate: 0,
+      children: payload.toolType === 'splitter' ? [] : undefined,
+    });
+    recalculateRates();
+    calculatePower();
+  }
+}
+
 // 添加子节点到选中节点
-async function addChildToSelected (toolType: Node['type']) {
+async function addChildToSelected(toolType: Node['type']) {
   if (
     selectedNode.value &&
     (selectedNode.value.type === 'output' || selectedNode.value.type === 'splitter')
@@ -530,7 +608,7 @@ async function addChildToSelected (toolType: Node['type']) {
 }
 
 // 删除选中的节点
-function deleteSelectedNode () {
+function deleteSelectedNode() {
   if (selectedNode.value) {
     removeNode(selectedNode.value.id);
     showMobileActionPanel.value = false;
@@ -538,13 +616,13 @@ function deleteSelectedNode () {
 }
 
 // 关闭操作面板
-function closeActionPanel () {
+function closeActionPanel() {
   showMobileActionPanel.value = false;
   selectedNode.value = null;
 }
 
 // 删除节点
-function removeNode (nodeId: string) {
+function removeNode(nodeId: string) {
   const findAndRemove = (node: Node): boolean => {
     if (node.children) {
       const index = node.children.findIndex((child) => child.id === nodeId);
@@ -567,7 +645,7 @@ function removeNode (nodeId: string) {
 }
 
 // 拖拽工具开始
-function onToolDragStart (event: DragEvent, toolType: string) {
+function onToolDragStart(event: DragEvent, toolType: string) {
   draggedTool.value = toolType as Node['type'];
   if (event.dataTransfer) {
     event.dataTransfer.effectAllowed = 'copy';
@@ -576,7 +654,7 @@ function onToolDragStart (event: DragEvent, toolType: string) {
 }
 
 // 重置配置
-function resetTree () {
+function resetTree() {
   outputNode.value.children = [];
   outputNode.value.rate = initialRate.value;
   recalculateRates();
@@ -584,7 +662,7 @@ function resetTree () {
 }
 
 // 重新计算所有节点的流量
-function recalculateRates () {
+function recalculateRates() {
   outputNode.value.rate = initialRate.value;
 
   const calculateNodeRate = (node: Node) => {
@@ -601,7 +679,7 @@ function recalculateRates () {
 }
 
 // 计算电力
-function calculatePower () {
+function calculatePower() {
   let _storage = 0;
   let burned = 0;
   let hasThermal = false;
@@ -655,7 +733,7 @@ function calculatePower () {
 }
 
 // 处理输入变化
-function handleInputChange () {
+function handleInputChange() {
   recalculateRates();
   calculatePower();
 }

@@ -5,26 +5,26 @@
 
     <v-container>
       <v-row>
-          <v-col
-          v-for="(card, index) in cards"
-          :key="card.id"
-          cols="12"
-        >
+        <v-col v-for="card in cards" :key="card.id" cols="12">
           <v-card class="large-card mb-4">
             <v-card-title class="card-title">{{ card.title }}</v-card-title>
             <v-card-subtitle v-if="card.subtitle" class="card-subtitle">
               {{ card.subtitle }}
             </v-card-subtitle>
-            
+
             <!-- 紧凑布局：段落、需求、产出全部在一行 -->
             <v-card-text>
               <!-- 段落 -->
               <div v-if="card.paragraphs && card.paragraphs.length > 0" class="paragraphs-row">
-                <div v-for="(paragraph, pIndex) in card.paragraphs" :key="pIndex" class="paragraph-item">
+                <div
+                  v-for="(paragraph, pIndex) in card.paragraphs"
+                  :key="pIndex"
+                  class="paragraph-item"
+                >
                   {{ paragraph }}
                 </div>
               </div>
-              
+
               <!-- 需求和产出分成两行 -->
               <!-- 第一行：需求 -->
               <div v-if="card.requirements" class="data-section">
@@ -52,7 +52,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- 第二行：产出 -->
               <div v-if="card.production" class="data-section">
                 <div class="section-header-inline">产出</div>
@@ -71,18 +71,13 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- 轮播图 -->
-              <v-divider class="my-4"/>
+              <v-divider class="my-4" />
               <div class="carousel-section">
                 <div class="section-header">图片展示</div>
-                <v-carousel
-                  cycle
-                  height="300"
-                  hide-delimiter-background
-                  show-arrows-on-hover
-                >
-                  <v-carousel-item v-for="(item, index) in carouselItems" :key="index">
+                <v-carousel cycle height="300" hide-delimiter-background show-arrows-on-hover>
+                  <v-carousel-item v-for="(item, i) in carouselItems" :key="i">
                     <div class="carousel-slide" :style="{ backgroundColor: item.color }">
                       <div class="slide-content">
                         <div class="slide-title">{{ item.title }}</div>
@@ -139,36 +134,36 @@ const cards: CardData[] = [
     paragraphs: [
       '欢迎来到个人蓝图站页面。',
       '这是一个新创建的页面，目前不在侧边栏导航中显示。',
-      '您可以直接通过 URL 访问此页面，或将其链接到其他页面。'
+      '您可以直接通过 URL 访问此页面，或将其链接到其他页面。',
     ],
     requirements: {
       tech: '三级科技',
       base: '四号基地',
       sourceOre: '1000',
       purpleCrystal: '500',
-      blueIron: '800'
+      blueIron: '800',
     },
     production: {
       power: '-500/小时',
       ticket: '+10/天',
-      item: '基础材料'
-    }
-  }
+      item: '基础材料',
+    },
+  },
 ];
 
 const carouselItems = [
   {
     title: '红色主题',
-    color: 'rgb(255, 0, 0)'
+    color: 'rgb(255, 0, 0)',
   },
   {
     title: '绿色主题',
-    color: 'rgb(0, 255, 0)'
+    color: 'rgb(0, 255, 0)',
   },
   {
     title: '蓝色主题',
-    color: 'rgb(0, 0, 255)'
-  }
+    color: 'rgb(0, 0, 255)',
+  },
 ];
 </script>
 

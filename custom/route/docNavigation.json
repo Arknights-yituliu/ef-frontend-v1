@@ -1,40 +1,40 @@
 [
-    {
-        "titleKey": "docs.sections.introduction",
-        "items": [
-            {
-                "titleKey": "docs.items.projectStructure",
-                "path": "/introduction/project-structure"
-            },
-            {
-                "titleKey": "docs.items.routeSetting",
-                "path": "/introduction/route-setting"
-            },
-            {
-                "titleKey": "docs.items.docsSetting",
-                "path": "/introduction/docs-setting"
-            },
-            {
-                "titleKey": "docs.items.formatSpecification",
-                "path": "/introduction/format-specification"
-            },
-            {
-                "titleKey": "docs.items.contributorSetting",
-                "path": "/introduction/contributor-setting"
-            },
-            {
-                "titleKey": "docs.items.commonQuestions",
-                "path": "/introduction/common-questions"
-            }
-        ]
-    },
-    {
-        "titleKey": "docs.sections.operations",
-        "items": [
-            {
-                "titleKey": "docs.items.how2getgachadurl",
-                "path": "/operations/how2get-gacha-url-en"
-            }
-        ]
-    }
+  {
+    "titleKey": "docs.sections.introduction",
+    "items": [
+      {
+        "titleKey": "docs.items.projectStructure",
+        "path": "/introduction/project-structure"
+      },
+      {
+        "titleKey": "docs.items.routeSetting",
+        "path": "/introduction/route-setting"
+      },
+      {
+        "titleKey": "docs.items.docsSetting",
+        "path": "/introduction/docs-setting"
+      },
+      {
+        "titleKey": "docs.items.formatSpecification",
+        "path": "/introduction/format-specification"
+      },
+      {
+        "titleKey": "docs.items.contributorSetting",
+        "path": "/introduction/contributor-setting"
+      },
+      {
+        "titleKey": "docs.items.commonQuestions",
+        "path": "/introduction/common-questions"
+      }
+    ]
+  },
+  {
+    "titleKey": "docs.sections.operations",
+    "items": [
+      {
+        "titleKey": "docs.items.how2getgachadurl",
+        "path": "/operations/how2get-gacha-url-en"
+      }
+    ]
+  }
 ]

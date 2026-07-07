@@ -32,8 +32,6 @@ function calculateDaysDifference(
   return (endTimestamp - startTimestamp) / (1000 * 60 * 60 * 24);
 }
 
-
-
 function countTuesdaysBetweenV2(
   startDate: Date | string | number,
   endDate: Date | string | number,
@@ -241,7 +239,7 @@ function groupAndMergeRewardsByVersion(name: string, rewards: Reward[]): Reward[
   // 合并每组内的元素
   const mergedRewards: Reward[] = [];
 
-  for (const [version, rewardGroup] of Object.entries(groupedRewards)) {
+  for (const [, rewardGroup] of Object.entries(groupedRewards)) {
     if (rewardGroup.length === 0) continue;
 
     // 使用第一个元素的属性作为基础
@@ -274,7 +272,6 @@ function groupAndMergeRewardsByVersion(name: string, rewards: Reward[]): Reward[
 
   return mergedRewards;
 }
-
 
 // 规范化版本名称，去除所有空格，用于版本筛选时的一致性匹配
 function normalizeVersionName(version?: string): string {

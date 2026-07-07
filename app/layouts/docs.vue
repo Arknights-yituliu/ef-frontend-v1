@@ -100,7 +100,7 @@ const isSearchModalOpen = ref(false);
 const headings = ref<Array<{ id: string; text: string; depth: number }>>([]);
 
 // 提供给页面组件设置标题的方法
-function setHeadings (newHeadings: Array<{ id: string; text: string; depth: number }>) {
+function setHeadings(newHeadings: Array<{ id: string; text: string; depth: number }>) {
   headings.value = newHeadings;
 }
 
@@ -108,7 +108,7 @@ function setHeadings (newHeadings: Array<{ id: string; text: string; depth: numb
 provide('setDocHeadings', setHeadings);
 
 // 切换侧边栏
-function toggleSidebar () {
+function toggleSidebar() {
   isSidebarOpen.value = !isSidebarOpen.value;
   if (isSidebarOpen.value) {
     isTocOpen.value = false;
@@ -120,7 +120,7 @@ function toggleSidebar () {
 }
 
 // 切换TOC
-function toggleToc () {
+function toggleToc() {
   isTocOpen.value = !isTocOpen.value;
   if (isTocOpen.value) {
     isSidebarOpen.value = false;
@@ -132,26 +132,26 @@ function toggleToc () {
 }
 
 // 关闭侧边栏
-function closeSidebar () {
+function closeSidebar() {
   isSidebarOpen.value = false;
   document.body.style.overflow = '';
 }
 
 // 关闭TOC
-function closeToc () {
+function closeToc() {
   isTocOpen.value = false;
   document.body.style.overflow = '';
 }
 
 // 关闭所有
-function closeAll () {
+function closeAll() {
   isSidebarOpen.value = false;
   isTocOpen.value = false;
   document.body.style.overflow = '';
 }
 
 // 打开搜索弹窗
-function openSearchModal () {
+function openSearchModal() {
   isSearchModalOpen.value = true;
   isSidebarOpen.value = false;
   isTocOpen.value = false;
@@ -159,7 +159,7 @@ function openSearchModal () {
 }
 
 // 关闭搜索弹窗
-function closeSearchModal () {
+function closeSearchModal() {
   isSearchModalOpen.value = false;
   document.body.style.overflow = '';
 }

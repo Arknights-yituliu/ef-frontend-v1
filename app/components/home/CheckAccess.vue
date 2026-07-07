@@ -19,7 +19,7 @@
       />
     </div>
     <div class="home-card-content">
-      <img alt="" class="test-kv" src="https://cos.yituliu.cn/endfield/other/test-kv.jpg" >
+      <img alt="" class="test-kv" src="https://cos.yituliu.cn/endfield/other/test-kv.jpg" />
     </div>
   </v-card>
 </template>

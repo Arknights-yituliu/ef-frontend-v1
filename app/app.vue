@@ -8,5 +8,5 @@
 </template>
 <script lang="ts" setup>
 // 初始化主题（确保主题系统在页面加载时就初始化）
-const { theme } = useTheme();
+useTheme();
 </script>

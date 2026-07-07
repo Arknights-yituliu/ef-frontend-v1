@@ -1,8 +1,8 @@
 <template>
-  <img alt="Map Background" class="bg-image" src="~/assets/svg/map-bg.svg" >
+  <img alt="Map Background" class="bg-image" src="~/assets/svg/map-bg.svg" />
 </template>
 
-<script setup></script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .bg-image {

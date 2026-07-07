@@ -75,7 +75,7 @@ const versionTable: VersionTableItem[] = [
 // }
 
 for (const reward of dailyAllRewardTable.value) {
-  if(reward.module === '标题'){
+  if (reward.module === '标题') {
     continue;
   }
   versionReward.push(reward);
@@ -191,29 +191,8 @@ function filterRewardByVersion(type: string, version: VersionTableItem) {
   // 计算并设置高度
 }
 
-const passPack: Reward = {
-  id: 'pass_pack',
-  name: {
-    zh: '通行证',
-    en: '',
-  },
-  start: new Date(),
-  end: new Date('2099/12/31 00:00:00'),
-  type: '通用',
-  module: '通行证',
-  active: true,
-  version: '',
-  content: {
-    originiumRecharge: 36,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-  },
-};
-
 // 月卡奖励模板（需传入天数差使用）
-function createMonthlyPackReward(daysDiff: number): Reward {
+function _createMonthlyPackReward(_daysDiff: number): Reward {
   return {
     id: 'monthly_pack',
     name: {
@@ -227,8 +206,8 @@ function createMonthlyPackReward(daysDiff: number): Reward {
     active: true,
     version: '',
     content: {
-      originiumRecharge: numberFloor((12 / 30) * daysDiff, 0),
-      diamond: numberFloor(daysDiff) * 200,
+      originiumRecharge: numberFloor((12 / 30) * _daysDiff, 0),
+      diamond: numberFloor(_daysDiff) * 200,
       ticketgachaStandardSingle: 0,
       ticketgachaSpecialSingle: 0,
       ticketgachaLimitedSingle: 0,
@@ -248,19 +227,21 @@ function toDate(value: string | Date): Date {
  * @param versions 版本名称数组，保留 reward.version 在其中的奖励
  * @returns 过滤并按开始时间倒序排列的奖励数组
  */
-function filterRewardEndAfter(versions: string[],versionStart: Date): Reward[] {
-  
-   const list =  versionReward
+function filterRewardEndAfter(versions: string[], versionStart: Date): Reward[] {
+  const list = versionReward
     .filter((reward) => {
-     
       const endDate = toDate(reward.end);
-       console.log(reward.name.zh, reward.version, endDate);
+      console.log(reward.name.zh, reward.version, endDate);
       return endDate > versionStart && versions.includes(reward.version);
     })
-    .sort((a, b) => toDate(b.start).getTime() - toDate(a.start).getTime());
-     const dailyReward =  createVersionDailyReward(new Date('2026/04/17 12:00:00'), new Date('2026/06/05 12:00:00'), '当前版本');
-    list.push(...dailyReward);
-    return list
+    .toSorted((a, b) => toDate(b.start).getTime() - toDate(a.start).getTime());
+  const dailyReward = createVersionDailyReward(
+    new Date('2026/04/17 12:00:00'),
+    new Date('2026/06/05 12:00:00'),
+    '当前版本',
+  );
+  list.push(...dailyReward);
+  return list;
 }
 
 function rewardTotalCalc(
@@ -285,7 +266,7 @@ function rewardTotalCalc(
   for (const reward of mergedRewards) {
     result.originiumRecharge += reward.content.originiumRecharge;
     const tmp = result.diamond;
-    const tmp1 = reward.content.diamond
+    const tmp1 = reward.content.diamond;
     result.diamond += reward.content.diamond;
     console.log(tmp, '+', tmp1, '=', result.diamond);
     result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;

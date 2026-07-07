@@ -13,73 +13,31 @@
   "pools": [
     {
       "poolId": "test_pool_1",
-      "deck": [
-        5,
-        5,
-        5,
-        8,
-        6
-      ]
+      "deck": [5, 5, 5, 8, 6]
     },
     {
       "poolId": "test_pool_2",
-      "deck": [
-        4,
-        5,
-        6,
-        6,
-        7
-      ]
+      "deck": [4, 5, 6, 6, 7]
     },
     {
       "poolId": "test_pool_3",
-      "deck": [
-        7,
-        3,
-        7,
-        3,
-        7
-      ]
+      "deck": [7, 3, 7, 3, 7]
     },
     {
       "poolId": "test_pool_4",
-      "deck": [
-        3,
-        7,
-        7,
-        7,
-        5
-      ]
+      "deck": [3, 7, 7, 7, 5]
     },
     {
       "poolId": "test_pool_5",
-      "deck": [
-        6,
-        6,
-        9,
-        4,
-        3
-      ]
+      "deck": [6, 6, 9, 4, 3]
     },
     {
       "poolId": "test_pool_6",
-      "deck": [
-        4,
-        5,
-        4,
-        8,
-        7
-      ]
+      "deck": [4, 5, 4, 8, 7]
     },
     {
       "poolId": "test_pool_7",
-      "deck": [
-        8,
-        5,
-        2,
-        5,
-        8
-      ]
+      "deck": [8, 5, 2, 5, 8]
     }
   ]
 }

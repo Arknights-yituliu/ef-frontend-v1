@@ -60,7 +60,7 @@ watch(locale, () => {
 });
 
 // 提取文档标题的函数
-function extractHeadings () {
+function extractHeadings() {
   nextTick(() => {
     const headings: Array<{ id: string; text: string; depth: number }> = [];
     const headingElements = document.querySelectorAll('.doc-body h2, .doc-body h3, .doc-body h4');

@@ -57,7 +57,6 @@
 </template>
 
 <script lang="ts" setup>
-
 const diceIcon: Record<number, string> = {
   1: 'mdi-dice-1',
   2: 'mdi-dice-2',

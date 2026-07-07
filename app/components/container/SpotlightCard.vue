@@ -52,28 +52,28 @@ const computedSpotlightColor = computed(() => {
     : 'rgba(124,124,124,0.25)'; // 浅色主题使用白色
 });
 
-function handleMouseMove (e: MouseEvent) {
+function handleMouseMove(e: MouseEvent) {
   if (!divRef.value || isFocused.value) return;
 
   const rect = divRef.value.getBoundingClientRect();
   position.value = { x: e.clientX - rect.left, y: e.clientY - rect.top };
 }
 
-function handleFocus () {
+function handleFocus() {
   isFocused.value = true;
   opacity.value = 0.6;
 }
 
-function handleBlur () {
+function handleBlur() {
   isFocused.value = false;
   opacity.value = 0;
 }
 
-function handleMouseEnter () {
+function handleMouseEnter() {
   opacity.value = 0.6;
 }
 
-function handleMouseLeave () {
+function handleMouseLeave() {
   opacity.value = 0;
 }
 </script>

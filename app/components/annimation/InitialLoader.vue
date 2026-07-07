@@ -24,7 +24,7 @@ const emit = defineEmits<{
 const stage = ref<'loading' | 'reveal' | 'complete'>('loading');
 
 // 初始化所有阶段（同时准备加载和揭幕阶段）
-function initAllPhases () {
+function initAllPhases() {
   nextTick(() => {
     // 在下次 DOM 更新后执行
     // 1. 先创建揭幕阶段的六边形（但动画暂停）
@@ -54,7 +54,7 @@ const row = 15;
 const line = 15;
 
 // 创建六边形矩阵（揭幕阶段）
-function createBlocks () {
+function createBlocks() {
   // 如果没有容器元素则返回
   if (!containerRef.value) return;
 
@@ -111,7 +111,7 @@ const logoRef = ref<SVGSVGElement | null>(null); // Logo SVG 元素引用
 const logoPaths = ref<Array<SVGPathElement | SVGEllipseElement | SVGCircleElement>>([]); // Logo 中所有路径元素
 
 // 收集logo中的所有路径元素
-function collectLogoPaths () {
+function collectLogoPaths() {
   // 如果没有 Logo 元素则返回
   if (!logoRef.value) return;
 
@@ -135,7 +135,7 @@ function collectLogoPaths () {
 
 const revealTimeline = ref<gsap.core.Timeline | null>(null); // GSAP 动画时间线
 // 创建并准备揭幕阶段动画（暂停状态）
-function prepareRevealAnimation () {
+function prepareRevealAnimation() {
   // 如果 blocks 为空则返回
   if (blocks.value.length === 0) return;
 
@@ -184,7 +184,7 @@ function prepareRevealAnimation () {
 }
 
 // Logo 线条逐步绘制动画
-function animateLogo () {
+function animateLogo() {
   // 如果没有 Logo 元素或路径为空，则返回
   if (!logoRef.value || logoPaths.value.length === 0) return;
 
@@ -217,7 +217,7 @@ function animateLogo () {
 const progressCircleRef = ref<SVGCircleElement | null>(null); // 进度圆环元素引用
 
 // 环形进度条动画（可配置时长）
-function animateProgress () {
+function animateProgress() {
   // 如果没有进度圆环或 Logo 元素，则返回
   if (!progressCircleRef.value || !logoRef.value) return;
 

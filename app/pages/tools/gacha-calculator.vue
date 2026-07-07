@@ -245,10 +245,7 @@ async function waitForGachaScreenshotAssets(element: HTMLElement) {
         }),
     );
 
-  await Promise.all([
-    document.fonts?.ready.catch(() => undefined),
-    ...imageLoadPromises,
-  ]);
+  await Promise.all([document.fonts?.ready.catch(() => undefined), ...imageLoadPromises]);
 }
 
 function getGachaScreenshotElementSize(element: HTMLElement) {
@@ -279,14 +276,12 @@ function createGachaScreenshotStage(sourceElement: HTMLElement) {
   const isRightColumn = sourceElement.classList.contains('gacha-calculator-container-right');
   const capturePadding = isRightColumn ? 0 : 8;
   const captureWidth = sourceWidth + capturePadding * 2;
-  const stageId = `${Date.now()}-${devScreenshotStageIndex += 1}`;
+  const stageId = `${Date.now()}-${(devScreenshotStageIndex += 1)}`;
   const stage = document.createElement('div');
   const rightColumn = isRightColumn
     ? (sourceElement.cloneNode(true) as HTMLElement)
     : document.createElement('div');
-  const target = isRightColumn
-    ? rightColumn
-    : (sourceElement.cloneNode(true) as HTMLElement);
+  const target = isRightColumn ? rightColumn : (sourceElement.cloneNode(true) as HTMLElement);
   const style = document.createElement('style');
 
   copyVueScopeAttributes(appContainer, stage);
@@ -307,7 +302,9 @@ function createGachaScreenshotStage(sourceElement: HTMLElement) {
     appContainer?.classList.contains('gacha-calculator-container-debug-no-probability')
       ? 'gacha-calculator-container-debug-no-probability'
       : '',
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
   stage.setAttribute(GACHA_CALCULATOR_SCREENSHOT_STAGE_ATTR, stageId);
   stage.style.cssText = [
     'position: fixed',
@@ -506,7 +503,9 @@ async function captureLeftPanelScreenshot(target: LeftPanelScreenshotTargetValue
     return;
   }
 
-  const element = document.querySelector<HTMLElement>(`[data-gacha-left-screenshot-target="${target}"]`);
+  const element = document.querySelector<HTMLElement>(
+    `[data-gacha-left-screenshot-target="${target}"]`,
+  );
   const label = getLeftPanelScreenshotTargetLabel(target);
   if (!element) {
     setDevScreenshotStatus(`未找到${label}`);
@@ -842,12 +841,12 @@ function permanentRewardStatistics(): void {
     ticketgachaLimitedSingle: 0,
   };
   for (const reward of permanentRewardTable.value) {
-    if(rewardMatchesVersion(reward)){
+    if (rewardMatchesVersion(reward)) {
       addReward(result, reward);
     }
   }
 
-  if(rewardMatchesVersion(authorityLevelUpReward.value)){
+  if (rewardMatchesVersion(authorityLevelUpReward.value)) {
     addReward(result, authorityLevelUpReward.value);
   }
 
@@ -1706,11 +1705,6 @@ function setVersionVisible(version: string, visible: boolean) {
   calc();
 }
 
-
-
-
-
-
 function setVersionRewardsActive(version: string, active: boolean) {
   clearOrSelectAll(active, 'button', dailyAllRewardTable, [0, 0], version);
   clearOrSelectAll(active, 'button', activityReward, [0, 0], version);
@@ -1720,7 +1714,6 @@ function setVersionRewardsActive(version: string, active: boolean) {
     authorityLevelProgress.value = active ? [1, 60] : [60, 60];
   }
 }
-
 
 /**
  * 判断奖励是否在时间范围外，即已过期或尚未开始
@@ -1745,9 +1738,7 @@ function rewardIsExpired(reward: Reward): boolean {
  * @returns 是否匹配
  */
 function rewardMatchesType(reward: Reward): boolean {
-  return (
-    '通用' === reward.type || reward.type === currentPool.value.type 
-  );
+  return '通用' === reward.type || reward.type === currentPool.value.type;
 }
 
 /**
@@ -1756,10 +1747,8 @@ function rewardMatchesType(reward: Reward): boolean {
  * @returns 是否匹配
  */
 function rewardMatchesVersion(reward: Reward): boolean {
-   return '基础资源' === reward.version || versionVisibleMap.value[reward.version] !== false;
+  return '基础资源' === reward.version || versionVisibleMap.value[reward.version] !== false;
 }
-
-
 
 /**
  * 判断奖励是否应该在页面上渲染显示
@@ -1770,7 +1759,6 @@ function rewardMatchesVersion(reward: Reward): boolean {
 function shouldDisplayAndCount(reward: Reward): boolean {
   return rewardIsExpired(reward) && rewardMatchesType(reward) && rewardMatchesVersion(reward);
 }
-
 
 function resetGachaCalculator() {
   const lastVersion = versionOptions.value.at(-1);
@@ -1874,8 +1862,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
     class="gacha-calculator-container"
     :class="{
       'gacha-calculator-container-debug-green': currentMode === 'dev' && devDebugGreenBackground,
-      'gacha-calculator-container-debug-no-shadow':
-        currentMode === 'dev' && devDebugHideCardShadow,
+      'gacha-calculator-container-debug-no-shadow': currentMode === 'dev' && devDebugHideCardShadow,
       'gacha-calculator-container-debug-no-warning': currentMode === 'dev' && devDebugHideWarning,
       'gacha-calculator-container-debug-no-probability':
         currentMode === 'dev' && devDebugHideProbability,

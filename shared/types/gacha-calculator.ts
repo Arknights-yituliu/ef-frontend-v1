@@ -1,21 +1,17 @@
-
-
 export interface PieChartData {
   value: number;
   name: string;
 }
 
-export type ItemDict = Record<string, string>
+export type ItemDict = Record<string, string>;
 
-export type CollectReward  = {
-  originiumRecharge:number;
+export type CollectReward = {
+  originiumRecharge: number;
   stage: number;
   version: string;
-}
+};
 
-
-
-export type RewardStatisticsResultDetail ={
+export type RewardStatisticsResultDetail = {
   name: string;
   /** 衍质源石 */
   originiumRecharge: number;
@@ -28,7 +24,7 @@ export type RewardStatisticsResultDetail ={
   /** 限时寻访凭证 */
   ticketgachaLimitedSingle: number;
   totalPulls?: number;
-}
+};
 
 export interface TotalPullsSingle {
   /** 基础寻访凭证 */
@@ -38,7 +34,6 @@ export interface TotalPullsSingle {
   /** 限时寻访凭证 */
   ticketgachaLimitedSingle: number;
 }
-
 
 // export type ResourceStatisticsResultDetail =  Record<string,{
 //   name:string
@@ -52,25 +47,24 @@ export interface TotalPullsSingle {
 //   ticketgachaSpecialSingle: number;
 // }>
 
-
 export interface Reward {
   id: string;
   name: {
     en: string;
     zh: string;
   };
-  start: string|Date;
-  end: string|Date;
+  start: string | Date;
+  end: string | Date;
   type: string;
   module: string;
-  regional?:string;
+  regional?: string;
   active: boolean;
-  version:string;
+  version: string;
   content: RewardContent;
-  tips?:string[];
+  tips?: string[];
 }
 
-export interface RewardContent{
+export interface RewardContent {
   /** 衍质源石 */
   originiumRecharge: number;
   /** 嵌晶玉数量 */
@@ -89,7 +83,7 @@ export interface CurrentVersionRemainingTime {
   month: number;
 }
 
-export type TotalPulls = Record<string,TotalPullsSingle>
+export type TotalPulls = Record<string, TotalPullsSingle>;
 
 export interface GachaResourceStatisticsResult {
   totalPulls: TotalPulls;
@@ -123,16 +117,16 @@ export interface GachaCalculatorUserConfig {
 }
 
 export type ModuleSelectedStatus = {
-  [key: string]:{
-    [key: string]:boolean
-  }
-}
+  [key: string]: {
+    [key: string]: boolean;
+  };
+};
 
 export type PoolOption = {
-  name:string,
-  start: Date,
-  end: Date,
-  dateText:string,
-  type:string,
-  disabled: boolean
-}
+  name: string;
+  start: Date;
+  end: Date;
+  dateText: string;
+  type: string;
+  disabled: boolean;
+};

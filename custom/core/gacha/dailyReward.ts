@@ -10,7 +10,6 @@ import { ref, watch } from 'vue';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import VersionTable from '@/custom/core/gacha/data/version_table.json';
 const MediumExchangeCrate = 20 * 0.05 + 15 * 0.35 + 10 * 0.6;
-const LargeExchangeCrate = 30 * 0.05 + 25 * 0.35 + 20 * 0.6;
 
 const poolStartDate = ref(new Date());
 
