@@ -141,7 +141,8 @@
                     />
                   </div>
                   <div class="goods-card-name">
-                    <div class="name-decoration four-valley-decoration"></div>
+                    <span class="minitable-value">
+                      <{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span>
                     <span class="name-text">{{ item.name }}</span>
                   </div>
                 </div>
@@ -187,7 +188,7 @@
                   <div class="minitable-row">
                     <span class="minitable-label">全部购买</span>
                     <span class="minitable-value"
-                      >&lt;{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span
+                      >{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span
                     >
                   </div>
                 </div>
