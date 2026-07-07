@@ -122,7 +122,8 @@ interface ApiResponse {
 const { locale, t } = useI18n();
 
 // API URL
-const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list';
+const apiUrl =
+  'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list?kind=endfield,arknights';
 
 /** 自定义的友情链接 */
 

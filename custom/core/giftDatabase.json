@@ -180,7 +180,21 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_wuling_2",
-      "favorHobby": ["tag_hobby_exercise", "tag_hobby_life"]
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_life"
+      ]
+    },
+    "item_gift_jinlong_5": {
+      "id": "item_gift_jinlong_5",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_3",
+      "favorHobby": [
+        "tag_hobby_culture",
+        "tag_hobby_charity"
+      ]
     }
   },
   "operator": {
@@ -303,6 +317,21 @@
       "rarity": 6,
       "favorCategory": ["tag_giftperfer_wuling_4"],
       "favorHobby": ["tag_hobby_exercise", "tag_hobby_life"]
+    },
+    "chr_0033_camille": {
+      "id": "chr_0033_camille",
+      "name": {
+        "zh-CN": "卡缪",
+        "en-US": "Camille"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_4"
+      ],
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_tech"
+      ]
     },
     "chr_0004_pelica": {
       "id": "chr_0004_pelica",
@@ -452,10 +481,13 @@
       "en-US": "Sketches of Lost Heirlooms"
     },
     "period": {
-      "zh-CN": "前半（弭弗卡池）",
-      "en-US": "First Half (Mi Fu Banner)"
+      "zh-CN": "后半（卡缪卡池）",
+      "en-US": "Second Half (Camille Banner)"
     },
-    "color": ["#070604", "#810e1d"],
-    "textColor": "#fff"
+    "color": [
+      "#070604",
+      "#810e1d"
+    ],
+    "textColor": "#ffffff"
   }
 }

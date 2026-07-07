@@ -578,10 +578,10 @@
         "quantity": 15000
       },
       {
-        "itemId": "item_shot_sticker_bp_3",
+        "itemId": "item_shot_sticker_bp_4",
         "name": {
-          "zh-CN": "贴纸·巨兽心脏",
-          "en-US": "Sticker: Feranmut Heart"
+          "zh-CN": "贴纸·剑桩",
+          "en-US": "Sticker: Sword Stele"
         },
         "quantity": 1
       },
@@ -698,10 +698,10 @@
         "quantity": 20000
       },
       {
-        "itemId": "item_shot_filter_sp_3",
+        "itemId": "item_shot_filter_sp_4",
         "name": {
-          "zh-CN": "滤镜·苍白",
-          "en-US": "Filter: Pale"
+          "zh-CN": "滤镜·胶片",
+          "en-US": "Filter: Film Stock"
         },
         "quantity": 1
       },
@@ -818,10 +818,10 @@
         "quantity": 40000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_3",
+        "itemId": "item_case_wpn_selfselect_bp_4",
         "name": {
-          "zh-CN": "武器补给·怒潮",
-          "en-US": "Weapon Supply: Wrothful Tide"
+          "zh-CN": "武器补给·苍山",
+          "en-US": "Weapon Supply: Viridian Mont"
         },
         "quantity": 1
       },
@@ -1014,10 +1014,10 @@
         "quantity": 12000
       },
       {
-        "itemId": "item_char_ap_supply_zhuangfy",
+        "itemId": "item_char_ap_supply_mifu",
         "name": {
-          "zh-CN": "油焖整笋罐头",
-          "en-US": "Wholly-Braised Sprout [can]"
+          "zh-CN": "龙爪能量饮料",
+          "en-US": "Lungclaw Ultra-E"
         },
         "quantity": 1
       },
@@ -1086,10 +1086,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_bp_1_2",
+        "itemId": "item_user_avatar_bp_1_3",
         "name": {
-          "zh-CN": "心枢",
-          "en-US": "Cardiac Nexus"
+          "zh-CN": "长明",
+          "en-US": "Illuminating an Era"
         },
         "quantity": 1
       },
@@ -1126,10 +1126,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_frame_bp_1_2",
+        "itemId": "item_user_avatar_frame_bp_1_3",
         "name": {
-          "zh-CN": "展卷",
-          "en-US": "Scroll Unfurled"
+          "zh-CN": "剑以衬文",
+          "en-US": "Bladewarded Stanzas"
         },
         "quantity": 1
       },
@@ -1166,10 +1166,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_3",
+        "itemId": "item_case_wpn_selfselect_bp_4",
         "name": {
-          "zh-CN": "武器补给·怒潮",
-          "en-US": "Weapon Supply: Wrothful Tide"
+          "zh-CN": "武器补给·苍山",
+          "en-US": "Weapon Supply: Viridian Mont"
         },
         "quantity": 1
       },
@@ -1214,12 +1214,12 @@
         "quantity": 800
       },
       {
-        "itemId": "ap_supply_lt_n",
+        "itemId": "item_char_ap_supply_camille",
         "name": {
-          "zh-CN": "应急理智加强剂",
-          "en-US": "Emergency Sanity Booster"
+          "zh-CN": "魔甘草糖果",
+          "en-US": "Devil's Licorice Drops"
         },
-        "quantity": 2
+        "quantity": 1
       },
       {
         "itemId": "item_expcard_stage2_high",
@@ -1286,10 +1286,10 @@
         "quantity": 65000
       },
       {
-        "itemId": "business_card_topic_bp_1_2",
+        "itemId": "business_card_topic_bp_1_3",
         "name": {
-          "zh-CN": "山水墨成",
-          "en-US": "Shanshui Painting"
+          "zh-CN": "苍山藏器",
+          "en-US": "Relic of Viridian Mont"
         },
         "quantity": 1
       },
@@ -1909,6 +1909,30 @@
           "en-US": "Origeometry"
         },
         "quantity": 12
+      },
+      {
+        "itemId": "item_diamond",
+        "name": {
+          "zh-CN": "嵌晶玉",
+          "en-US": "Oroberyl"
+        },
+        "quantity": 6000
+      },
+      {
+        "itemId": "ap_supply_lt_n",
+        "name": {
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_bp_double_reward",
+        "name": {
+          "zh-CN": "理智消耗许可",
+          "en-US": "Sanity Usage Permit"
+        },
+        "quantity": 120
       }
     ]
   },

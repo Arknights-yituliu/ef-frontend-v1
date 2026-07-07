@@ -39,6 +39,9 @@
   "wpn_lance_0011": ["chr_0012_avywen", "chr_0021_whiten"],
   "wpn_lance_0012": ["chr_0015_lifeng"],
   "wpn_lance_0013": [],
+  "wpn_lance_0015": [
+    "chr_0033_camille"
+  ],
   "wpn_pistol_0001": [],
   "wpn_pistol_0002": [],
   "wpn_pistol_0003": [],
@@ -67,8 +70,14 @@
   "wpn_sword_0017": [],
   "wpn_sword_0018": [],
   "wpn_sword_0019": [],
-  "wpn_sword_0020": ["chr_0024_deepfin"],
-  "wpn_sword_0021": ["chr_0002_endminm", "chr_0003_endminf"],
-  "wpn_sword_0022": ["chr_0028_wulfa"],
-  "镀红祝福": []
+  "wpn_sword_0020": [
+    "chr_0024_deepfin"
+  ],
+  "wpn_sword_0021": [
+    "chr_0002_endminm",
+    "chr_0003_endminf"
+  ],
+  "wpn_sword_0022": [
+    "chr_0028_wulfa"
+  ]
 }

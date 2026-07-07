@@ -261,6 +261,28 @@ export function makePacks(): Record<string, PackData> {
     };
   }
 
+  // 月卡额外每日奖励（30天）
+  const monthlyCardPack = packs['payshop_giftpack_monthlycard'];
+  if (monthlyCardPack) {
+    monthlyCardPack.contents.push(
+      {
+        itemId: 'item_diamond',
+        name: getLocalizedValue(itemTable['item_diamond']!.name),
+        quantity: 30 * 200,
+      },
+      {
+        itemId: 'ap_supply_lt_n',
+        name: getLocalizedValue(itemTable['ap_supply_lt_n']!.name),
+        quantity: 30 * 1,
+      },
+      {
+        itemId: 'item_bp_double_reward',
+        name: getLocalizedValue(itemTable['item_bp_double_reward']!.name),
+        quantity: 30 * 4,
+      },
+    );
+  }
+
   return Object.fromEntries(
     Object.entries(packs).toSorted(([idA], [idB]) => idA.localeCompare(idB)),
   ); // 按 packId 字典序排序，保证 diff 最小

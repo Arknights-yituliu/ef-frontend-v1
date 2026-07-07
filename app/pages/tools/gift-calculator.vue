@@ -403,7 +403,7 @@ const { theme } = useTheme();
 const { locale, t } = useI18n();
 
 usePageSeo({
-  title: () => `${t('page.tools.giftCalculator.currentGameVersion')} - ${t('layout.siteName')}`,
+  title: () => `${t('page.tools.giftCalculator.title')} - ${t('layout.siteName')}`,
   description: () => t('page.tools.giftCalculator.giftExplain.title1'),
 });
 
