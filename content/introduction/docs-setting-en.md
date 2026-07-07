@@ -38,7 +38,7 @@ content/
 
 ### Part 1: Adding Documents Under Existing Top-Level Directories
 
-To add a new document under an existing top-level directory (like [/introduction](file:///d:/development-projects/contribution-projects/ef-frontend-v1/content/introduction)), follow these steps:
+To add a new document under an existing top-level directory (like `content/introduction`), follow these steps:
 
 #### Step 1: Create Markdown File
 

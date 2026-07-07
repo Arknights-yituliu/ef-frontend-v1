@@ -38,7 +38,7 @@ content/
 
 ### 第一部分：在已有的一级目录下新增文档
 
-在现有的一级目录（如 [/introduction](file:///d:/development-projects/contribution-projects/ef-frontend-v1/content/introduction)）下添加新文档，请按照以下步骤操作：
+在现有的一级目录（如 `content/introduction`）下添加新文档，请按照以下步骤操作：
 
 #### 步骤 1: 创建 Markdown 文件
 

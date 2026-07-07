@@ -9,6 +9,7 @@ const route = useRoute();
 watch(
   () => route.fullPath,
   async (newPath) => {
+    if (!import.meta.client) return;
     try {
       const currentUrl = window.location.href;
       console.log(currentUrl);

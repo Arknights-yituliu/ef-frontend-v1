@@ -80,6 +80,8 @@
 </template>
 
 <script lang="ts" setup>
+import extraFriendLinks from '@/custom/info/friendLinks.json';
+
 definePageMeta({
   layout: 'default',
 });
@@ -123,9 +125,6 @@ const { locale, t } = useI18n();
 const apiUrl = 'https://server-cdn.ceobecanteen.top/api/v1/cdn/operate/toolLink/list';
 
 /** 自定义的友情链接 */
-const extraFriendLinks = (await import('@/custom/info/friendLinks.json')) as {
-  default: FriendLink[];
-};
 
 // 获取数据
 const { data, pending, error, refresh } = await useFetch<ApiResponse>(apiUrl, {
@@ -136,9 +135,9 @@ const { data, pending, error, refresh } = await useFetch<ApiResponse>(apiUrl, {
 // 合并自定义友情链接
 const friendLinks = computed(() => {
   if (data.value && data.value.data) {
-    return [...extraFriendLinks.default, ...data.value.data];
+    return [...extraFriendLinks, ...data.value.data];
   }
-  return extraFriendLinks.default;
+  return extraFriendLinks;
 });
 
 // 获取本地化字符串值

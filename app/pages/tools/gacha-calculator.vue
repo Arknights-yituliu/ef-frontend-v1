@@ -9,7 +9,6 @@ import type {
 } from '@/shared/types/gacha-calculator';
 import { addReward, getRewardPull, normalizeVersionName } from '#shared/utils/gacha-calculator';
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
-import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { activityReward } from '@/custom/core/gacha/activityReward';
@@ -37,6 +36,8 @@ import {
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
 import { packs } from '@/custom/core/packs';
+
+let echartsInstance: any = null;
 
 // 当前路由
 const route = useRoute();
@@ -1191,7 +1192,7 @@ watch(
     scheduleSummaryPanelHeightUpdates();
     if (newValue.includes('statisticalResult')) {
       // 等待组件渲染完成
-      nextTick(() => {
+      nextTick(async () => {
         // 等待组件渲染完成, 确保元素存在
         const pieElement: HTMLElement | null = document.querySelector(
           '#gacha-calculator-pie-chart',
@@ -1201,7 +1202,10 @@ watch(
           return;
         }
         // 检查是否已存在实例，避免重复创建
-        myChart = echarts.init(pieElement);
+        if (!echartsInstance) {
+          echartsInstance = await import('echarts');
+        }
+        myChart = echartsInstance.init(pieElement);
         setPieChart(pieChartData);
       });
     }
@@ -1395,14 +1399,17 @@ function initSummaryPanelHeightObserver() {
   });
 }
 
-onMounted(() => {
+onMounted(async () => {
   initPoolOptions();
   loadingUserConfig();
   const gachaCalculatorPieChart: HTMLElement | null = document.querySelector(
     '#gacha-calculator-pie-chart',
   );
   if (gachaCalculatorPieChart) {
-    myChart = echarts.init(gachaCalculatorPieChart);
+    if (!echartsInstance) {
+      echartsInstance = await import('echarts');
+    }
+    myChart = echartsInstance.init(gachaCalculatorPieChart);
   }
 
   setPieChart(pieChartData);
