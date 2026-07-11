@@ -895,11 +895,12 @@ const resourceStatisticsResultDetailList = ref<RewardStatisticsResultDetail[]>([
 const paidResourcesTotalPrice = computed(() => {
   let total = 0;
 
-  // 月卡金额
+  // 月卡金额（按天数向上取整计算所需月卡张数）
   if (rechargeResources.value.monthlyPass) {
     const monthlyPack = packs['payshop_giftpack_monthlycard'];
     if (monthlyPack) {
-      total += monthlyPack.price;
+      const monthlyCardCount = Math.ceil(rechargeResources.value.monthlyPassDays / 30);
+      total += monthlyPack.price * monthlyCardCount;
     }
   }
 
