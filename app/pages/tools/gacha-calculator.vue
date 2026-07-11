@@ -9,9 +9,11 @@ import type {
 } from '@/shared/types/gacha-calculator';
 import { addReward, getRewardPull, normalizeVersionName } from '#shared/utils/gacha-calculator';
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
+import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { activityReward } from '@/custom/core/gacha/activityReward';
+
 // 奖励引入
 import {
   calculatorDailyReward,
@@ -21,9 +23,7 @@ import {
   updateFreeMonthlyPass,
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
-
 import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
-import * as echarts from 'echarts';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
