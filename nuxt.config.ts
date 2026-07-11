@@ -7,12 +7,11 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 export default defineNuxtConfig({
   /**
    * SSR (Server-Side Rendering) 配置
-   * 设置为 true 时，应用将在服务端的 Node.js 环境中执行预渲染
-   * 这意味着提前注入所有 Seo 相关的元数据到原始 HTML 中，而不是在客户端中动态添加
+   * 设置为 false 时，应用将以 SPA (Single Page Application) 模式运行
+   * 这意味着所有页面都在客户端渲染，适合静态站点生成 (SSG)
    * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#ssr
-   * 参考：https://nuxt.com/docs/4.x/getting-started/deployment#static-hosting
    */
-  ssr: true,
+  ssr: false,
 
   /**
    * 站点配置 (site)
