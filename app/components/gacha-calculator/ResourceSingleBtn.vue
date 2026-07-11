@@ -33,7 +33,7 @@ function getImageUrl(itemId: string): string {
           class="gacha-calculator-resource-btn-content-content"
         >
           <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
-          × {{ reward }}
+          × {{ value }}
         </div>
       </div>
       <div v-if="!props.hideVersion" class="gacha-calculator-resource-btn-version">
