@@ -33724,5 +33724,19 @@
       "en-US": "Portrait"
     },
     "iconId": "item_user_avatar_activity_8"
+  },
+  "遥望": {
+    "id": "遥望",
+    "name": {
+      "zh-CN": "遥望",
+      "en-US": "Gaze Afar"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_sword_0023"
   }
 }

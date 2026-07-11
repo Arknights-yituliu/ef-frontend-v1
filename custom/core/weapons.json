@@ -834,5 +834,16 @@
       "secondary": "治疗效率提升",
       "skill": "追袭"
     }
+  },
+  "遥望": {
+    "weaponId": "遥望",
+    "weaponName": "遥望",
+    "weaponType": "单手剑",
+    "rarity": 6,
+    "stats": {
+      "attribute": "主能力提升",
+      "secondary": "源石技艺提升",
+      "skill": "强攻"
+    }
   }
 }
