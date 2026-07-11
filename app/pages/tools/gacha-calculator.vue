@@ -23,7 +23,7 @@ import {
 } from '@/custom/core/gacha/dailyReward';
 
 import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
-
+import * as echarts from 'echarts';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
@@ -37,7 +37,7 @@ import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStati
 
 import { packs } from '@/custom/core/packs';
 
-let echartsInstance: any = null;
+
 
 // 当前路由
 const route = useRoute();
@@ -1192,7 +1192,7 @@ watch(
     scheduleSummaryPanelHeightUpdates();
     if (newValue.includes('statisticalResult')) {
       // 等待组件渲染完成
-      nextTick(async () => {
+      nextTick(() => {
         // 等待组件渲染完成, 确保元素存在
         const pieElement: HTMLElement | null = document.querySelector(
           '#gacha-calculator-pie-chart',
@@ -1202,10 +1202,7 @@ watch(
           return;
         }
         // 检查是否已存在实例，避免重复创建
-        if (!echartsInstance) {
-          echartsInstance = await import('echarts');
-        }
-        myChart = echartsInstance.init(pieElement);
+        myChart = echarts.init(pieElement);
         setPieChart(pieChartData);
       });
     }
@@ -1399,17 +1396,14 @@ function initSummaryPanelHeightObserver() {
   });
 }
 
-onMounted(async () => {
+onMounted( () => {
   initPoolOptions();
   loadingUserConfig();
   const gachaCalculatorPieChart: HTMLElement | null = document.querySelector(
     '#gacha-calculator-pie-chart',
   );
   if (gachaCalculatorPieChart) {
-    if (!echartsInstance) {
-      echartsInstance = await import('echarts');
-    }
-    myChart = echartsInstance.init(gachaCalculatorPieChart);
+     myChart = echarts.init(gachaCalculatorPieChart);
   }
 
   setPieChart(pieChartData);
