@@ -90,7 +90,7 @@
     "poolEnd": "2026/06/26 12:00:00",
     "poolDateStr": "0605-0626",
     "versionStart": "2026/06/05 12:00:00",
-    "versionEnd": "2026/07/17 12:00:00",
+    "versionEnd": "2026/07/16 12:00:00",
     "version": "寻遗散记",
     "combatDrills": true,
     "narrative": true
@@ -99,11 +99,35 @@
     "poolName": "卡缪",
     "character": "卡缪",
     "poolStart": "2026/06/26 12:00:00",
-    "poolEnd": "2026/07/17 12:00:00",
+    "poolEnd": "2026/07/16 12:00:00",
     "poolDateStr": "0626-0717",
     "versionStart": "2026/06/26 12:00:00",
-    "versionEnd": "2026/07/17 12:00:00",
+    "versionEnd": "2026/07/16 12:00:00",
     "version": "寻遗散记",
+    "combatDrills": true,
+    "narrative": true
+  },
+  {
+    "poolName": "诀",
+    "character": "诀",
+    "poolStart": "2026/07/16 12:00:00",
+    "poolEnd": "2026/08/09 11:59:00",
+    "poolDateStr": "0716-0809",
+    "versionStart": "2026/07/16 12:00:00",
+    "versionEnd": "2026/09/03 11:59:00",
+    "version": "向渊行",
+    "combatDrills": true,
+    "narrative": false
+  },
+  {
+    "poolName": "梨诺",
+    "character": "梨诺",
+    "poolStart": "2026/08/09 12:00:00",
+    "poolEnd": "2026/09/03 12:00:00",
+    "poolDateStr": "0809-0903",
+    "versionStart": "2026/07/16 12:00:00",
+    "versionEnd": "2026/09/03 12:00:00",
+    "version": "向渊行",
     "combatDrills": true,
     "narrative": true
   }

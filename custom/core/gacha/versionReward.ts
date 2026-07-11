@@ -61,7 +61,7 @@ const versionTable: VersionTableItem[] = [
   },
   {
     start: new Date('2026/06/05 12:00:00'),
-    end: new Date('2026/07/17 12:00:00'),
+    end: new Date('2026/07/16 12:00:00'),
     primaryColor: 'rgba(193, 56, 89, 1)',
     colorOpacity: 'rgba(193, 56, 89,  0.3)',
     heavyColor: 'rgba(255, 215, 0, 1)',
