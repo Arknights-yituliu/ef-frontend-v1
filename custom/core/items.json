@@ -33696,5 +33696,33 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_lance_huangjinshidai"
+  },
+  "贴纸·抑制器": {
+    "id": "贴纸·抑制器",
+    "name": {
+      "zh-CN": "贴纸·抑制器",
+      "en-US": "Sticker: Suppressor"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_activity_5"
+  },
+  "头像·游乐团团": {
+    "id": "头像·游乐团团",
+    "name": {
+      "zh-CN": "头像·游乐团团",
+      "en-US": "Portrait: Fun Group"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_8"
   }
 }
