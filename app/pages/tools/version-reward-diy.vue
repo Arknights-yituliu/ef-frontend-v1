@@ -13,7 +13,7 @@ import {
   type VersionTableItem,
 } from '@/custom/core/gacha/versionReward';
 
-const currentVersion = ref<VersionTableItem>(versionTable[3] as VersionTableItem);
+const currentVersion = ref<VersionTableItem>(versionTable[4] as VersionTableItem);
 filterRewardByVersion('version', currentVersion.value);
 
 const rewardItemGroupHeightMin = 800;

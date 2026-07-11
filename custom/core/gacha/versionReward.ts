@@ -67,6 +67,14 @@ const versionTable: VersionTableItem[] = [
     heavyColor: 'rgba(255, 215, 0, 1)',
     version: '寻遗散记',
   },
+  {
+    start: new Date('2026/07/16 12:00:00'),
+    end: new Date('2026/09/03 12:00:00'),
+    primaryColor: 'rgba(106, 141, 150, 1)',
+    colorOpacity: 'rgba(106, 141, 150, 0.3)',
+    heavyColor: 'rgba(255, 215, 0, 1)',
+    version: '向渊行',
+  },
 ];
 
 // for (const item of versionTable) {

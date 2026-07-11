@@ -100,6 +100,26 @@
     }
   },
   {
+    "id": "wuling_regional_stock_bill_store_reward_20260605",
+    "name": {
+      "zh": "武陵·调度券商店",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "武陵城地图",
     "name": {
       "zh": "武陵城地图",
@@ -247,6 +267,48 @@
     "tips": ["包含储藏箱、机器人和处理险情"]
   },
   {
+    "id": "应龙关地图",
+    "name": {
+      "zh": "应龙关地图",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 1,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },
+  {
+    "id": "北部禁区地图",
+    "name": {
+      "zh": "北部禁区地图",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 3,
+      "diamond": 4500,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含储藏箱、机器人和处理险情"]
+  },
+  {
     "id": "武陵·地区建设等级1-6",
     "name": {
       "zh": "武陵·地区建设等级1-6",
@@ -345,6 +407,25 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
+  }, {
+    "id": "武陵·地区建设等级18-21",
+    "name": {
+      "zh": "武陵·地区建设等级18-21",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
   },
   {
     "id": "武陵·醚质阶段1-8",
@@ -425,9 +506,28 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
+  }, {
+    "id": "武陵·醚质阶段15-16",
+    "name": {
+      "zh": "武陵·醚质阶段15-16",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "寻遗散记",
+    "content": {
+      "originiumRecharge": 6,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
   },
   {
-    "id": "武陵·模拟空间20260122",
+    "id": "武陵·模拟空间·零号委托",
     "name": {
       "zh": "武陵·模拟空间",
       "en": ""
@@ -447,7 +547,7 @@
     }
   },
   {
-    "id": "武陵·模拟空间20260312",
+    "id": "武陵·模拟空间·新潮起·故渊离",
     "name": {
       "zh": "武陵·模拟空间",
       "en": ""
@@ -467,7 +567,7 @@
     }
   },
   {
-    "id": "武陵·模拟空间20260417",
+    "id": "武陵·模拟空间·春晓时",
     "name": {
       "zh": "武陵·模拟空间",
       "en": ""
@@ -478,6 +578,25 @@
     "module": "地区探索与建设",
     "active": false,
     "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  }, {
+    "id": "武陵·模拟空间·向渊行",
+    "name": {
+      "zh": "武陵·模拟空间",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "向渊行",
     "content": {
       "originiumRecharge": 0,
       "diamond": 100,
@@ -518,6 +637,26 @@
     "module": "地区探索与建设",
     "active": false,
     "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 80,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "武陵·据点防御",
+    "name": {
+      "zh": "武陵·据点防御",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "寻遗散记",
     "content": {
       "originiumRecharge": 0,
       "diamond": 80,
