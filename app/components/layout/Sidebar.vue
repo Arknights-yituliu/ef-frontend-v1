@@ -163,8 +163,19 @@ function navigateToHome() {
   }
 }
 
+function normalizePath(path: string): string {
+  if (!path) {
+    return '/';
+  }
+  // 移除末尾的斜杠（如果有）
+  if (path.length > 1 && path.endsWith('/')) {
+    path = path.slice(0, -1);
+  }
+  return path;
+}
+
 function isActiveRoute(path: string) {
-  return route.path === path;
+  return normalizePath(route.path) === normalizePath(path);
 }
 </script>
 
