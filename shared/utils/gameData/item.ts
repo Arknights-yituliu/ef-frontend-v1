@@ -42,7 +42,7 @@ export function getCharAvatarUrl(charId: string): string {
 
 export function getItemIconUrl(itemId: string): string | undefined {
   const iconId = items[itemId]?.iconId;
-  if (iconId === undefined) {
+  if (!iconId) {
     return undefined;
   }
   return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${iconId}.webp`;
