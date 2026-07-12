@@ -1,74 +1,122 @@
 {
+  "ap_supply_lt_abs1": {
+    "apRecoverValue": 60,
+    "id": "ap_supply_lt_abs1",
+    "itemName": "限时理智回复液"
+  },
+  "ap_supply_lt_abs2": {
+    "apRecoverValue": 60,
+    "id": "ap_supply_lt_abs2",
+    "itemName": "限时理智回复液"
+  },
+  "ap_supply_lt_l": {
+    "apRecoverValue": 100,
+    "id": "ap_supply_lt_l",
+    "itemName": "应急理智浓缩液"
+  },
+  "ap_supply_lt_n": {
+    "apRecoverValue": 40,
+    "id": "ap_supply_lt_n",
+    "itemName": "应急理智加强剂"
+  },
+  "ap_supply_lt_s": {
+    "apRecoverValue": 10,
+    "id": "ap_supply_lt_s",
+    "itemName": "应急理智小样"
+  },
+  "ap_supply_lt_weekly": {
+    "apRecoverValue": 60,
+    "id": "ap_supply_lt_weekly",
+    "itemName": "限时理智回复液"
+  },
   "item_ap_supply_lt": {
     "apRecoverValue": 60,
-    "id": "item_ap_supply_lt"
+    "id": "item_ap_supply_lt",
+    "itemName": "限时理智回复液"
   },
   "item_ap_supply_lt_l": {
     "apRecoverValue": 100,
-    "id": "item_ap_supply_lt_l"
+    "id": "item_ap_supply_lt_l",
+    "itemName": "应急理智浓缩液"
   },
   "item_ap_supply_lt_n": {
     "apRecoverValue": 40,
-    "id": "item_ap_supply_lt_n"
+    "id": "item_ap_supply_lt_n",
+    "itemName": "应急理智加强剂"
   },
   "item_ap_supply_lt_s": {
     "apRecoverValue": 10,
-    "id": "item_ap_supply_lt_s"
+    "id": "item_ap_supply_lt_s",
+    "itemName": "应急理智小样"
   },
   "item_ap_supply_nlt": {
     "apRecoverValue": 40,
-    "id": "item_ap_supply_nlt"
+    "id": "item_ap_supply_nlt",
+    "itemName": "理智回复液"
   },
   "item_ap_supply_springfes_1": {
     "apRecoverValue": 40,
-    "id": "item_ap_supply_springfes_1"
+    "id": "item_ap_supply_springfes_1",
+    "itemName": "春时酥点（喜）"
   },
   "item_ap_supply_springfes_2": {
     "apRecoverValue": 40,
-    "id": "item_ap_supply_springfes_2"
+    "id": "item_ap_supply_springfes_2",
+    "itemName": "春时酥点（财）"
   },
   "item_ap_supply_springfes_3": {
     "apRecoverValue": 40,
-    "id": "item_ap_supply_springfes_3"
+    "id": "item_ap_supply_springfes_3",
+    "itemName": "春时酥点（福）"
   },
   "item_ap_supply_universe": {
     "apRecoverValue": 40,
-    "id": "item_ap_supply_universe"
+    "id": "item_ap_supply_universe",
+    "itemName": "轨道羽兽翅"
   },
   "item_ap_take_out": {
     "apRecoverValue": 120,
-    "id": "item_ap_take_out"
+    "id": "item_ap_take_out",
+    "itemName": "理智精粹药剂"
   },
   "item_char_ap_supply_aglina": {
     "apRecoverValue": 40,
-    "id": "item_char_ap_supply_aglina"
+    "id": "item_char_ap_supply_aglina",
+    "itemName": "栗花蜜"
   },
   "item_char_ap_supply_camille": {
     "apRecoverValue": 40,
-    "id": "item_char_ap_supply_camille"
+    "id": "item_char_ap_supply_camille",
+    "itemName": "魔甘草糖果"
   },
   "item_char_ap_supply_laevat": {
     "apRecoverValue": 40,
-    "id": "item_char_ap_supply_laevat"
+    "id": "item_char_ap_supply_laevat",
+    "itemName": "海盐冰淇淋"
   },
   "item_char_ap_supply_mifu": {
     "apRecoverValue": 40,
-    "id": "item_char_ap_supply_mifu"
+    "id": "item_char_ap_supply_mifu",
+    "itemName": "龙爪能量饮料"
   },
   "item_char_ap_supply_tangtang": {
     "apRecoverValue": 40,
-    "id": "item_char_ap_supply_tangtang"
+    "id": "item_char_ap_supply_tangtang",
+    "itemName": "鳞肉干"
   },
   "item_char_ap_supply_wulfa": {
     "apRecoverValue": 40,
-    "id": "item_char_ap_supply_wulfa"
+    "id": "item_char_ap_supply_wulfa",
+    "itemName": "苹果果切"
   },
   "item_char_ap_supply_yvonne": {
     "apRecoverValue": 40,
-    "id": "item_char_ap_supply_yvonne"
+    "id": "item_char_ap_supply_yvonne",
+    "itemName": "草莓可丽饼"
   },
   "item_char_ap_supply_zhuangfy": {
     "apRecoverValue": 40,
-    "id": "item_char_ap_supply_zhuangfy"
+    "id": "item_char_ap_supply_zhuangfy",
+    "itemName": "油焖整笋罐头"
   }
 }
