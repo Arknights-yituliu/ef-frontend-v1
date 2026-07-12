@@ -9,9 +9,11 @@ import type {
 } from '@/shared/types/gacha-calculator';
 import { addReward, getRewardPull, normalizeVersionName } from '#shared/utils/gacha-calculator';
 import { numberFloor, stringToNumber } from '#shared/utils/numberUtil';
+import * as echarts from 'echarts';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { activityReward } from '@/custom/core/gacha/activityReward';
+
 // 奖励引入
 import {
   calculatorDailyReward,
@@ -21,9 +23,7 @@ import {
   updateFreeMonthlyPass,
   weekTaskReward,
 } from '@/custom/core/gacha/dailyReward';
-
 import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
-
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
@@ -37,7 +37,7 @@ import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStati
 
 import { packs } from '@/custom/core/packs';
 
-let echartsInstance: any = null;
+
 
 // 当前路由
 const route = useRoute();
@@ -895,11 +895,12 @@ const resourceStatisticsResultDetailList = ref<RewardStatisticsResultDetail[]>([
 const paidResourcesTotalPrice = computed(() => {
   let total = 0;
 
-  // 月卡金额
+  // 月卡金额（按天数向上取整计算所需月卡张数）
   if (rechargeResources.value.monthlyPass) {
     const monthlyPack = packs['payshop_giftpack_monthlycard'];
     if (monthlyPack) {
-      total += monthlyPack.price;
+      const monthlyCardCount = Math.ceil(rechargeResources.value.monthlyPassDays / 30);
+      total += monthlyPack.price * monthlyCardCount;
     }
   }
 
@@ -1191,7 +1192,7 @@ watch(
     scheduleSummaryPanelHeightUpdates();
     if (newValue.includes('statisticalResult')) {
       // 等待组件渲染完成
-      nextTick(async () => {
+      nextTick(() => {
         // 等待组件渲染完成, 确保元素存在
         const pieElement: HTMLElement | null = document.querySelector(
           '#gacha-calculator-pie-chart',
@@ -1201,10 +1202,7 @@ watch(
           return;
         }
         // 检查是否已存在实例，避免重复创建
-        if (!echartsInstance) {
-          echartsInstance = await import('echarts');
-        }
-        myChart = echartsInstance.init(pieElement);
+        myChart = echarts.init(pieElement);
         setPieChart(pieChartData);
       });
     }
@@ -1398,17 +1396,14 @@ function initSummaryPanelHeightObserver() {
   });
 }
 
-onMounted(async () => {
+onMounted( () => {
   initPoolOptions();
   loadingUserConfig();
   const gachaCalculatorPieChart: HTMLElement | null = document.querySelector(
     '#gacha-calculator-pie-chart',
   );
   if (gachaCalculatorPieChart) {
-    if (!echartsInstance) {
-      echartsInstance = await import('echarts');
-    }
-    myChart = echartsInstance.init(gachaCalculatorPieChart);
+     myChart = echarts.init(gachaCalculatorPieChart);
   }
 
   setPieChart(pieChartData);

@@ -67,7 +67,13 @@
       "zh-CN": "限时组合包",
       "en-US": "Limited Bundle"
     },
-    "goodsIds": ["seasonal_crossover_lt_1_2_1", "seasonal_giftpack", "seasonal_giftpack_combine"]
+    "goodsIds": [
+      "seasonal_crossover_lt_1_2_1",
+      "seasonal_giftpack",
+      "seasonal_giftpack_combine",
+      "向渊妙趣收藏包",
+      "相伴庆典组合包"
+    ]
   },
   "SP_weapon_supply": {
     "shopId": "SP_weapon_supply",

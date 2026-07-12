@@ -33640,5 +33640,103 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0022"
+  },
+  "四二式·肃阵": {
+    "id": "四二式·肃阵",
+    "name": {
+      "zh-CN": "四二式·肃阵",
+      "en-US": "Type 42: Serene Array"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_funnel_sierzhen"
+  },
+  "联结点": {
+    "id": "联结点",
+    "name": {
+      "zh-CN": "联结点",
+      "en-US": "Convergence Point"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_funnel_lianjiedian"
+  },
+  "曜夜的首演": {
+    "id": "曜夜的首演",
+    "name": {
+      "zh-CN": "曜夜的首演",
+      "en-US": "Starlight Premiere"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_lance_yaoyeshouyan"
+  },
+  "黄金时代": {
+    "id": "黄金时代",
+    "name": {
+      "zh-CN": "黄金时代",
+      "en-US": "Golden Age"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_lance_huangjinshidai"
+  },
+  "贴纸·抑制器": {
+    "id": "贴纸·抑制器",
+    "name": {
+      "zh-CN": "贴纸·抑制器",
+      "en-US": "Sticker: Suppressor"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_activity_5"
+  },
+  "头像·游乐团团": {
+    "id": "头像·游乐团团",
+    "name": {
+      "zh-CN": "头像·游乐团团",
+      "en-US": "Portrait: Fun Group"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_8"
+  },
+  "遥望": {
+    "id": "遥望",
+    "name": {
+      "zh-CN": "遥望",
+      "en-US": "Gaze Afar"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_sword_0023"
   }
 }

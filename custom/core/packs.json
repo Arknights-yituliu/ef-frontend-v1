@@ -2207,5 +2207,79 @@
         "quantity": 240
       }
     ]
+  },
+  "向渊妙趣收藏包": {
+    "packId": "向渊妙趣收藏包",
+    "displayName": {
+      "zh-CN": "向渊妙趣收藏包",
+      "en-US": "Abyssbound Curio Collection Pack"
+    },
+    "category": "Seasonal_Rec_pack",
+    "price": 6,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/向渊妙趣收藏包_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/向渊妙趣收藏包_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "item_ticketgacha_special_single",
+        "name": {
+          "zh-CN": "特许寻访凭证",
+          "en-US": "Chartered HH Permit"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "贴纸·抑制器",
+        "name": {
+          "zh-CN": "贴纸·抑制器",
+          "en-US": "Sticker: Suppressor"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "头像·游乐团团",
+        "name": {
+          "zh-CN": "头像·游乐团团",
+          "en-US": "Portrait: Fun Group"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "相伴庆典组合包": {
+    "packId": "相伴庆典组合包",
+    "displayName": {
+      "zh-CN": "相伴庆典组合包",
+      "en-US": "Companion Celebration Bundle"
+    },
+    "category": "Seasonal_Rec_pack",
+    "price": 298,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/相伴庆典组合包_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/相伴庆典组合包_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "item_ticketgacha_special_single",
+        "name": {
+          "zh-CN": "特许寻访凭证",
+          "en-US": "Chartered HH Permit"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "name": {
+          "zh-CN": "高阶培养自选箱Ⅰ",
+          "en-US": "Advanced Progression Selection Crate Ⅰ"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 100000
+      }
+    ]
   }
 }

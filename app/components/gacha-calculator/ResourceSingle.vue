@@ -19,13 +19,13 @@ function getImageUrl(itemId: string): string {
           {{ props.name.zh }}
         </div>
         <div
-          v-for="(reward, name) in props.content"
-          v-show="reward > 0"
+          v-for="(value, name) in props.content"
+          v-show="value > 0"
           :key="`${props.id}-${name}`"
           class="gacha-calculator-resource-single-content"
         >
           <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
-          × {{ reward }}
+          × {{ value }}
         </div>
         <!-- <div class="gacha-calculator-resource-single-version">{{ props.version }}</div> -->
       </div>
