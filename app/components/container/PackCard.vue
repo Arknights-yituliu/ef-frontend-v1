@@ -124,8 +124,8 @@
           <tr v-for="(content, index) in props.contents" :key="index">
             <td>{{ getItemName(content.itemId) }}</td>
             <td>{{ content.quantity }}</td>
-            <td>{{ getItemBundleValue(content).toFixed(2) }}</td>
-            <td>{{ (getItemBundleValuePercentage(content, props) * 100).toFixed(2) }}%</td>
+            <td>{{ getItemBundleValue(content).toFixed(1) }}</td>
+            <td>{{ (getItemBundleValuePercentage(content, props) * 100).toFixed(1) }}%</td>
           </tr>
         </tbody>
       </table>
@@ -263,7 +263,7 @@ function getPackComparisonBars(pack: PackData) {
   flex-direction: column;
   z-index: 1;
   overflow: hidden;
-  box-shadow: 0 0 0.75em var(--theme-shadow-base);
+  box-shadow: 0 0 0.625em var(--theme-shadow-base);
   /* border: 0.0625em solid var(--theme-border); */
   border-radius: 0.5em;
 }
@@ -406,7 +406,7 @@ function getPackComparisonBars(pack: PackData) {
   margin-left: -0.25em;
   background-color: var(--theme-bg-secondary);
   border-radius: 0.5em;
-  box-shadow: 0 0 0.75em var(--theme-shadow-base);
+  box-shadow: 0 0 0.625em var(--theme-shadow-base);
   border: 0.0625em solid var(--theme-border);
   overflow: hidden;
 }
@@ -579,11 +579,11 @@ function getPackComparisonBars(pack: PackData) {
   width: 32em;
   max-width: 95%;
   height: 0;
-  margin-top: -0.75em;
+  margin-top: -0.5em;
   overflow: hidden;
   background-color: var(--theme-bg-secondary);
   border-radius: 0.5em;
-  box-shadow: 0 0 0.75em var(--theme-shadow-base);
+  box-shadow: 0 0 0.625em var(--theme-shadow-base);
   border: 0.0625em solid var(--theme-border);
   opacity: 0;
   transition: opacity var(--transition-base);
@@ -634,16 +634,10 @@ function getPackComparisonBars(pack: PackData) {
 .contents-table td {
   padding-block: 0.625em;
   padding-inline: 1em;
+  text-align: center;
   font-size: 1em;
   color: var(--theme-text-primary);
   border-bottom: 0.0625em solid var(--theme-border);
-}
-
-/* 数字列右对齐 */
-.contents-table td:nth-child(2),
-.contents-table td:nth-child(3),
-.contents-table td:nth-child(4) {
-  text-align: right;
 }
 
 .contents-table tbody tr:last-child td {
