@@ -225,4 +225,95 @@ export const itemValueMap: ItemValueMap = {
     itemName: '技能提升自选箱',
     value: 400 / 17,
   },
+
+  item_bp_double_reward: {
+    itemId: 'item_bp_double_reward',
+    itemName: '理智消耗许可',
+    value: 0,
+  },
+};
+
+const { value: diamondValue } = itemValueMap['item_diamond']!;
+const { value: goldValue } = itemValueMap['item_gold']!;
+const { value: expcardStage2LowValue } = itemValueMap['item_expcard_stage2_low']!;
+const { value: expcardStage2HighValue } = itemValueMap['item_expcard_stage2_high']!;
+const { value: weaponExpcardHighValue } = itemValueMap['item_weapon_expcard_high']!;
+const { value: skillLevel7To12Value } = itemValueMap['item_char_skill_level_7_12']!;
+const { value: bpDoubleRewardValue } = itemValueMap['item_bp_double_reward']!;
+
+// 中号兑换惊喜箱
+// 嵌晶玉奖励: 嵌晶玉×20 (5%) / 嵌晶玉×15 (35%) / 嵌晶玉×10 (60%)
+// 培养素材奖励: 折金票×5000 (15%) / 折金票×3000 (10%)
+//               初级认知载体×10 (15%) / 初级认知载体×5 (10%)
+//               武器检查套组×2 (15%) / 武器检查套组×1 (10%)
+//               协议棱柱组×2 (15%) / 协议棱柱组×1 (10%)
+const mediumSurpriseBoxValue =
+  // 嵌晶玉
+  (20 * 0.05 + 15 * 0.35 + 10 * 0.6) * diamondValue +
+  // 折金票
+  (5000 * 0.15 + 3000 * 0.1) * goldValue +
+  // 初级认知载体
+  (10 * 0.15 + 5 * 0.1) * expcardStage2LowValue +
+  // 武器检查套组
+  (2 * 0.15 + 1 * 0.1) * weaponExpcardHighValue +
+  // 协议棱柱组
+  (2 * 0.15 + 1 * 0.1) * skillLevel7To12Value;
+
+// 中号循环惊喜箱
+// 嵌晶玉奖励: 嵌晶玉×20 (5%) / 嵌晶玉×15 (35%) / 嵌晶玉×10 (60%)
+// 培养素材奖励: 折金票×5000 (15%) / 折金票×3000 (10%)
+//               初级认知载体×10 (15%) / 初级认知载体×5 (10%)
+//               武器检查套组×2 (15%) / 武器检查套组×1 (10%)
+//               协议棱柱组×2 (15%) / 协议棱柱组×1 (10%)
+// 理智消耗许可奖励: 理智消耗许可×1 (90%) / 理智消耗许可×2 (10%)
+const mediumCycleBoxValue =
+  // 嵌晶玉
+  (20 * 0.05 + 15 * 0.35 + 10 * 0.6) * diamondValue +
+  // 折金票
+  (5000 * 0.15 + 3000 * 0.1) * goldValue +
+  // 初级认知载体
+  (10 * 0.15 + 5 * 0.1) * expcardStage2LowValue +
+  // 武器检查套组
+  (2 * 0.15 + 1 * 0.1) * weaponExpcardHighValue +
+  // 协议棱柱组
+  (2 * 0.15 + 1 * 0.1) * skillLevel7To12Value +
+  // 理智消耗许可
+  (1 * 0.9 + 2 * 0.1) * bpDoubleRewardValue;
+
+// 大号循环惊喜箱
+// 嵌晶玉奖励: 嵌晶玉×30 (5%) / 嵌晶玉×25 (35%) / 嵌晶玉×20 (60%)
+// 培养素材奖励: 折金票×12000 (12.5%) / 折金票×7500 (12.5%)
+//               高级认知载体×2 (12.5%) / 高级认知载体×1 (12.5%)
+//               武器检查套组×5 (12.5%) / 武器检查套组×3 (12.5%)
+//               协议棱柱组×5 (12.5%) / 协议棱柱组×3 (12.5%)
+// 理智消耗许可奖励: 理智消耗许可×3 (90%) / 理智消耗许可×4 (10%)
+const largeCycleBoxValue =
+  // 嵌晶玉
+  (30 * 0.05 + 25 * 0.35 + 20 * 0.6) * diamondValue +
+  // 折金票
+  (12_000 * 0.125 + 7500 * 0.125) * goldValue +
+  // 高级认知载体
+  (2 * 0.125 + 1 * 0.125) * expcardStage2HighValue +
+  // 武器检查套组
+  (5 * 0.125 + 3 * 0.125) * weaponExpcardHighValue +
+  // 协议棱柱组
+  (5 * 0.125 + 3 * 0.125) * skillLevel7To12Value +
+  // 理智消耗许可
+  (3 * 0.9 + 4 * 0.1) * bpDoubleRewardValue;
+
+// 写入 itemValueMap
+itemValueMap['item_case_bp_random_2'] = {
+  itemId: 'item_case_bp_random_2',
+  itemName: '中号兑换惊喜箱',
+  value: mediumSurpriseBoxValue,
+};
+itemValueMap['item_case_bp_random_new_2'] = {
+  itemId: 'item_case_bp_random_new_2',
+  itemName: '中号循环惊喜箱',
+  value: mediumCycleBoxValue,
+};
+itemValueMap['item_case_bp_random_new_3'] = {
+  itemId: 'item_case_bp_random_new_3',
+  itemName: '大号循环惊喜箱',
+  value: largeCycleBoxValue,
 };

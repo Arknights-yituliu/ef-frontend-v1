@@ -16,6 +16,7 @@ import type {
   ItemTable,
   ItemTypeTable,
   LevelLoadingTable,
+  LTItemTable,
   RecoverApItemTable,
   RewardTable,
   SimulationTrainingCardPoolTable,
@@ -167,6 +168,7 @@ export const itemTypeTable: ItemTypeTable = readJSONWithBigInt('TableCfg/ItemTyp
 export const levelLoadingTable: LevelLoadingTable = readJSONWithBigInt(
   'TableCfg/LevelLoadingTable.json',
 );
+export const lTItemTable: LTItemTable = readJSONWithBigInt('TableCfg/LTItemTable.json');
 export const recoverApItemTable: RecoverApItemTable = readJSONWithBigInt(
   'TableCfg/RecoverApItemTable.json',
 );
