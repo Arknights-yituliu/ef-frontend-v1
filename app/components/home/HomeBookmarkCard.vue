@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { HomeBookmark } from '@/shared/types/homeBookmark';
+import { getHomeBookmarkAvatarTextColor } from '@/shared/types/homeBookmark';
 
 const props = defineProps<{
   bookmark: HomeBookmark;
@@ -11,7 +12,7 @@ const emit = defineEmits<{
 }>();
 
 const { t } = useI18n();
-const iconLoadFailed = ref(false);
+const avatarTextColor = computed(() => getHomeBookmarkAvatarTextColor(props.bookmark.avatarColor));
 
 const destinationLabel = computed(() => {
   if (props.bookmark.url.startsWith('/')) {
@@ -45,13 +46,6 @@ function handleKeydown(event: KeyboardEvent): void {
     openBookmark();
   }
 }
-
-watch(
-  () => props.bookmark.icon,
-  () => {
-    iconLoadFailed.value = false;
-  },
-);
 </script>
 
 <template>
@@ -63,14 +57,11 @@ watch(
     @keydown="handleKeydown"
   >
     <div class="home-bookmark-card-pattern" />
-    <div class="home-bookmark-icon">
-      <img
-        v-if="bookmark.icon && !iconLoadFailed"
-        :alt="bookmark.title"
-        :src="bookmark.icon"
-        @error="iconLoadFailed = true"
-      />
-      <v-icon v-else icon="mdi-bookmark-outline" size="28" />
+    <div
+      class="home-bookmark-icon"
+      :style="{ backgroundColor: bookmark.avatarColor, color: avatarTextColor }"
+    >
+      {{ bookmark.avatarText }}
     </div>
 
     <div class="home-bookmark-content">
@@ -162,15 +153,11 @@ watch(
   width: 34px;
   height: 34px;
   overflow: hidden;
-  color: var(--theme-text-secondary);
-  background: var(--theme-decorative-overlay-medium);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
   border-radius: 6px;
-}
-
-.home-bookmark-icon img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
 }
 
 .home-bookmark-content {

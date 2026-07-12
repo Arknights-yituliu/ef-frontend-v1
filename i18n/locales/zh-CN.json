@@ -81,7 +81,10 @@
         "fields": {
           "title": "名称",
           "url": "网址或站内路径",
-          "icon": "图标地址（可选）",
+          "avatarText": "头像文字",
+          "avatarColor": "头像底色",
+          "colorOption": "选择颜色 {color}",
+          "customColor": "自定义头像底色",
           "openInNewTab": "在新标签页打开"
         },
         "validation": {
@@ -89,7 +92,8 @@
           "titleTooLong": "名称不能超过 40 个字符",
           "urlRequired": "请输入网址或站内路径",
           "urlInvalid": "仅支持 / 开头的站内路径或 HTTP/HTTPS 网址",
-          "iconInvalid": "图标仅支持 / 开头的站内路径或 HTTP/HTTPS 网址"
+          "avatarTextRequired": "请输入一个头像文字",
+          "avatarTextTooLong": "头像文字只能有一个字符"
         }
       },
       "checkAccess": {
