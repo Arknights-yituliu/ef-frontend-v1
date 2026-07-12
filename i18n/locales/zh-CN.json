@@ -363,9 +363,12 @@
       "stone": "石",
       "pull": "抽",
       "pulls": "抽",
+      "weaponQuota": "武库配额",
+      "weaponClaim": "次申领",
       "packSanityEfficiency": "全物品",
-      "packPullsEfficiency": "仅抽卡",
-      "648StoneEfficiency": "648 源石"
+      "packPullsEfficiency": "抽干员",
+      "packWeaponEfficiency": "抽武器",
+      "648StoneEfficiency": "648"
     }
   },
   "page": {
@@ -392,13 +395,13 @@
         "title": "礼包性价比",
         "description": "本页面用于展示游戏中各种礼包的性价比分析，帮助玩家评估礼包的购买价值。",
         "searchPlaceholder": "搜索礼包名称...",
-        "sortBy": "排序方式",
-        "sortDefault": "默认",
-        "sortPrice": "价格",
-        "sortGachaOnly": "仅抽卡",
+        "sortCategory": "按分类",
+        "sortPrice": "按价格",
+        "sortOperator": "抽干员",
+        "sortWeapon": "抽武器",
         "sortAllItems": "全物品",
-        "sortAsc": "升序",
-        "sortDesc": "降序",
+        "gachaOperator": "源石抽干员",
+        "gachaWeapon": "源石抽武器",
         "devMode": "开发模式",
         "hideCardShadow": "隐藏卡片阴影",
         "greenBackground": "背景变绿"

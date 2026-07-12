@@ -49,7 +49,15 @@
             <br />
             ￥{{ getPackPricePerStone(props).toFixed(1) }} / {{ $t('component.packCard.stone') }}
           </div>
-          <div v-if="getPackTotalPulls(props) > 0" class="value-pull">
+          <div v-if="showWeaponSummary" class="value-weapon">
+            {{ $t('component.packCard.total') }}
+            {{ getPackTotalWeaponQuota(props).toFixed(0) }}
+            {{ $t('component.packCard.weaponQuota') }}
+            <br />
+            ￥{{ getPackPricePerWeaponClaim(props).toFixed(1) }} /
+            {{ $t('component.packCard.weaponClaim') }}
+          </div>
+          <div v-else-if="getPackTotalPulls(props) > 0" class="value-pull">
             {{ $t('component.packCard.total') }} {{ getPackTotalPulls(props).toFixed(1) }}
             {{ $t('component.packCard.pulls') }}
             <br />
@@ -60,8 +68,8 @@
         <!-- 对比条 -->
         <div class="pack-chart-line">
           <div
-            v-for="(bar, index) in getPackComparisonBars(props)"
-            :key="index"
+            v-for="bar in getPackComparisonBars(props)"
+            :key="bar.key"
             class="pack-chart-line-item"
           >
             <div class="pack-chart-line-label">
@@ -70,10 +78,13 @@
             <div
               class="pack-line-bar"
               :style="{
+                backgroundColor: bar.color,
                 width: `${bar.percentage * 5}em`,
               }"
             >
-              <span>{{ (bar.percentage * 100).toFixed(0) }}%</span>
+              <span :style="{ color: bar.textColor }">
+                {{ (bar.percentage * 100).toFixed(0) }}%
+              </span>
             </div>
           </div>
         </div>
@@ -94,9 +105,6 @@
 
     <!-- 展开的内容表格 - 藏在卡片背后 -->
     <div class="pack-contents-table" :class="{ expanded: isExpanded }">
-      <div class="pack-contents-header">
-        <h3>{{ $t('component.packCard.contents') }}</h3>
-      </div>
       <table class="contents-table">
         <colgroup>
           <col class="col-item-name" />
@@ -126,19 +134,22 @@
 </template>
 
 <script lang="ts" setup>
-import type { PackData } from '@/shared/types/pack';
+import type { PackData, PackGachaMode } from '@/shared/types/pack';
 import {
   getItemBundleValue,
   getItemBundleValuePercentage,
   getPackPricePerPull,
   getPackPricePerStone,
+  getPackPricePerWeaponClaim,
   getPackPullsEfficiency,
   getPackSanityEfficiency,
   getPackStoneEquivalent,
   getPackTotalPulls,
+  getPackTotalWeaponQuota,
+  getPackWeaponEfficiency,
 } from '@/shared/utils/gameData/pack';
 
-const props = defineProps<PackData>();
+const props = defineProps<PackData & { gachaMode: PackGachaMode }>();
 
 const { locale } = useI18n();
 const imageError = ref(false);
@@ -151,6 +162,12 @@ const packDisplayName = computed(() => {
 const packDescription = computed(() => {
   return props.description?.[locale.value];
 });
+
+const showWeaponSummary = computed(
+  () =>
+    getPackTotalWeaponQuota(props) > 0 &&
+    (props.gachaMode === 'weapon' || getPackTotalPulls(props) === 0),
+);
 
 // const countdownText = computed(() => {
 //   return t('component.packCard.daysLeft', { days: props.countdownDays });
@@ -175,16 +192,32 @@ function toggleExpanded() {
 function getPackComparisonBars(pack: PackData) {
   return [
     {
+      key: 'allItems',
       barLabel: $t('component.packCard.packSanityEfficiency'),
       percentage: getPackSanityEfficiency(pack),
+      color: '#f9c74f',
+      textColor: '#212121',
     },
     {
+      key: 'operator',
       barLabel: $t('component.packCard.packPullsEfficiency'),
-      percentage: getPackPullsEfficiency(pack),
+      percentage: getPackPullsEfficiency(pack, props.gachaMode === 'operator'),
+      color: '#e53935',
+      textColor: '#ffffff',
     },
     {
+      key: 'weapon',
+      barLabel: $t('component.packCard.packWeaponEfficiency'),
+      percentage: getPackWeaponEfficiency(pack, props.gachaMode === 'weapon'),
+      color: '#fb8c00',
+      textColor: '#212121',
+    },
+    {
+      key: '648',
       barLabel: $t('component.packCard.648StoneEfficiency'),
       percentage: 1,
+      color: '#9e9e9e',
+      textColor: '#212121',
     },
   ];
 }
@@ -196,7 +229,6 @@ function getPackComparisonBars(pack: PackData) {
   flex-direction: column;
   align-items: center;
   max-width: 100%;
-  margin-bottom: 0.75em;
   /* 屏幕宽 375px -> 字体大小 12px
      屏幕宽 600px -> 字体大小 16px */
   font-size: clamp(10px, calc(5.33333333px + 1.77777777vw), 16px);
@@ -224,7 +256,7 @@ function getPackComparisonBars(pack: PackData) {
 .pack-card-left {
   position: relative;
   isolation: isolate;
-  height: 6.875em;
+  height: 7.25em;
   width: 11.25em;
   flex-shrink: 2;
   display: flex;
@@ -370,7 +402,7 @@ function getPackComparisonBars(pack: PackData) {
 .pack-card-right {
   position: relative;
   display: flex;
-  height: 6.25em;
+  height: 6.625em;
   margin-left: -0.25em;
   background-color: var(--theme-bg-secondary);
   border-radius: 0.5em;
@@ -430,6 +462,10 @@ function getPackComparisonBars(pack: PackData) {
   color: var(--theme-text-primary);
 }
 
+.value-weapon {
+  color: #e87900;
+}
+
 /* 右侧对比条 */
 .pack-chart-line {
   display: flex;
@@ -475,7 +511,7 @@ function getPackComparisonBars(pack: PackData) {
 }
 
 .pack-chart-line-label {
-  width: 5em;
+  width: 4.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -494,7 +530,6 @@ function getPackComparisonBars(pack: PackData) {
   justify-content: flex-start;
   min-width: 2.5em;
   height: 1.125em;
-  background-color: var(--theme-accent-color);
   border-radius: 9999px;
   padding: 0 0.5em;
   box-shadow: 0 0 0.25em var(--theme-shadow-accent);
@@ -574,24 +609,6 @@ function getPackComparisonBars(pack: PackData) {
 
 .col-percentage {
   width: 20%;
-}
-
-.pack-contents-header {
-  padding: 1em;
-  border-bottom: 0.0625em solid var(--theme-border);
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--theme-decorative-overlay-light) 50%,
-    transparent 100%
-  );
-}
-
-.pack-contents-header h3 {
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--theme-text-primary);
-  margin-top: 0.5em;
 }
 
 .contents-table {

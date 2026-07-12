@@ -363,9 +363,12 @@
       "stone": "ori.",
       "pull": "pull",
       "pulls": "pulls",
+      "weaponQuota": "quota",
+      "weaponClaim": "claim",
       "packSanityEfficiency": "All Items",
-      "packPullsEfficiency": "Gacha Only",
-      "648StoneEfficiency": "648 Pack"
+      "packPullsEfficiency": "Operator",
+      "packWeaponEfficiency": "Weapon",
+      "648StoneEfficiency": "648"
     }
   },
   "page": {
@@ -392,13 +395,13 @@
         "title": "Package Value",
         "description": "This page displays cost-effectiveness analysis of various packages in the game to help players evaluate package purchase value.",
         "searchPlaceholder": "Search package name...",
-        "sortBy": "Sort By",
-        "sortDefault": "Default",
-        "sortPrice": "Price",
-        "sortGachaOnly": "Gacha Only",
+        "sortCategory": "By Category",
+        "sortPrice": "By Price",
+        "sortOperator": "Operator",
+        "sortWeapon": "Weapon",
         "sortAllItems": "All Items",
-        "sortAsc": "Ascending",
-        "sortDesc": "Descending",
+        "gachaOperator": "Originium for Operators",
+        "gachaWeapon": "Originium for Weapons",
         "devMode": "Dev Mode",
         "hideCardShadow": "Hide Card Shadows",
         "greenBackground": "Green Background"

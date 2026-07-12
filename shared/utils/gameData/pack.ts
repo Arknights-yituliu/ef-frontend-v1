@@ -5,6 +5,9 @@
 import type { PackContent, PackData } from '@/shared/types/pack';
 import { getItemPulls, getItemValue } from '@/shared/utils/gameData/item';
 
+export const ORIGINIUM_WEAPON_QUOTA_RATE = 25;
+export const WEAPON_QUOTA_PER_CLAIM = 1980;
+
 /**
  * 计算单个物品包的总价值
  * @param {PackContent} packContent - 包含物品ID和数量的物品包
@@ -19,8 +22,31 @@ export function getItemBundleValue({ itemId, quantity }: PackContent) {
  * @param {PackContent} packContent - 包含物品ID和数量的物品包
  * @returns {number} 物品包提供的总抽卡次数
  */
-export function getItemBundlePulls({ itemId, quantity }: PackContent) {
+export function getItemBundlePulls({ itemId, quantity }: PackContent, includeOriginium = true) {
+  if (!includeOriginium && itemId === 'item_originium_recharge') {
+    return 0;
+  }
+
   return getItemPulls(itemId) * quantity;
+}
+
+/**
+ * Calculate the weapon quota available from a single pack content entry.
+ * Originium can be exchanged at a rate of 1 originium to 25 weapon quota.
+ */
+export function getItemBundleWeaponQuota(
+  { itemId, quantity }: PackContent,
+  includeOriginium = true,
+) {
+  if (itemId === 'item_originium_recharge') {
+    return includeOriginium ? quantity * ORIGINIUM_WEAPON_QUOTA_RATE : 0;
+  }
+
+  if (itemId === 'item_gachabyproducts_weapongold') {
+    return quantity;
+  }
+
+  return 0;
 }
 
 /**
@@ -48,8 +74,28 @@ export function getPackTotalValue(pack: PackData) {
  * @param {PackData} pack - 要分析的礼包
  * @returns {number} 礼包中所有物品提供的总抽卡次数
  */
-export function getPackTotalPulls(pack: PackData) {
-  return pack.contents.reduce((sum, content) => sum + getItemBundlePulls(content), 0);
+export function getPackTotalPulls(pack: PackData, includeOriginium = true) {
+  return pack.contents.reduce(
+    (sum, content) => sum + getItemBundlePulls(content, includeOriginium),
+    0,
+  );
+}
+
+/**
+ * Calculate the total weapon quota available from a pack.
+ */
+export function getPackTotalWeaponQuota(pack: PackData, includeOriginium = true) {
+  return pack.contents.reduce(
+    (sum, content) => sum + getItemBundleWeaponQuota(content, includeOriginium),
+    0,
+  );
+}
+
+/**
+ * Calculate the number of weapon claims available from a pack.
+ */
+export function getPackTotalWeaponClaims(pack: PackData) {
+  return getPackTotalWeaponQuota(pack) / WEAPON_QUOTA_PER_CLAIM;
 }
 
 /**
@@ -81,6 +127,13 @@ export function getPackPricePerPull(pack: PackData) {
 }
 
 /**
+ * Calculate the price per weapon claim.
+ */
+export function getPackPricePerWeaponClaim(pack: PackData) {
+  return pack.price / getPackTotalWeaponClaims(pack);
+}
+
+/**
  * 基于648元礼包的理智成本效率基准
  * 表示标准648元礼包的单位货币价值
  * (350个源石充能道具售价648元)
@@ -95,6 +148,12 @@ export const pack648SanityCostEffectiveness =
  */
 export const pack648PullCostEffectiveness =
   getItemBundlePulls({ itemId: 'item_originium_recharge', quantity: 350 }) / 648;
+
+/**
+ * Weapon quota efficiency baseline of the non-first-charge 648 yuan pack.
+ */
+export const pack648WeaponQuotaCostEffectiveness =
+  getItemBundleWeaponQuota({ itemId: 'item_originium_recharge', quantity: 350 }) / 648;
 
 /**
  * 计算礼包相对于648元礼包的理智效率
@@ -114,6 +173,17 @@ export function getPackSanityEfficiency(pack: PackData) {
  * @param {PackData} pack - 要分析的礼包
  * @returns {number} 抽卡效率评分
  */
-export function getPackPullsEfficiency(pack: PackData) {
-  return getPackTotalPulls(pack) / pack.price / pack648PullCostEffectiveness;
+export function getPackPullsEfficiency(pack: PackData, includeOriginium = true) {
+  const totalPulls = getPackTotalPulls(pack, includeOriginium);
+  return totalPulls === 0 ? 0 : totalPulls / pack.price / pack648PullCostEffectiveness;
+}
+
+/**
+ * Calculate weapon quota efficiency relative to the non-first-charge 648 yuan pack.
+ */
+export function getPackWeaponEfficiency(pack: PackData, includeOriginium = true) {
+  const totalWeaponQuota = getPackTotalWeaponQuota(pack, includeOriginium);
+  return totalWeaponQuota === 0
+    ? 0
+    : totalWeaponQuota / pack.price / pack648WeaponQuotaCostEffectiveness;
 }
