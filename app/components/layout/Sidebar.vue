@@ -145,10 +145,9 @@ function getPrimaryItemColor(item: PrimaryMenuItem): string {
 
 // 获取当前激活项对应的颜色
 const currentActiveColor = computed<string>(() => {
-  const activePath = route.path;
   // 遍历菜单项找到对应的颜色
   for (const primaryItem of menuItems) {
-    const secondaryItem = primaryItem.children.find((item) => item.routePath === activePath);
+    const secondaryItem = primaryItem.children.find((item) => isActiveRoute(item.routePath));
     if (secondaryItem) {
       return getPrimaryItemColor(primaryItem);
     }
