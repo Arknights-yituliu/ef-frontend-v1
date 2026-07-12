@@ -1,5 +1,10 @@
 <script lang="ts" setup>
 import type { HomeBookmark, HomeBookmarkInput } from '@/shared/types/homeBookmark';
+import {
+  getHomeBookmarkAvatarTextColor,
+  getHomeBookmarkInitial,
+  HOME_BOOKMARK_AVATAR_COLORS,
+} from '@/shared/types/homeBookmark';
 
 const props = defineProps<{
   bookmark?: HomeBookmark;
@@ -15,7 +20,8 @@ const { t } = useI18n();
 const form = ref();
 const title = ref('');
 const url = ref('');
-const icon = ref('');
+const avatarText = ref('');
+const avatarColor = ref<string>(HOME_BOOKMARK_AVATAR_COLORS[0]);
 const openInNewTab = ref(true);
 
 const dialogTitle = computed(() =>
@@ -35,17 +41,25 @@ const urlRules = [
     validateHomeBookmarkUrl(value) || t('component.home.bookmarks.validation.urlInvalid'),
 ];
 
-const iconRules = [
+const avatarTextRules = [
   (value: string) =>
-    !value.trim() ||
-    validateHomeBookmarkUrl(value) ||
-    t('component.home.bookmarks.validation.iconInvalid'),
+    Boolean(value.trim()) || t('component.home.bookmarks.validation.avatarTextRequired'),
+  (value: string) =>
+    Array.from(value.trim()).length === 1 ||
+    t('component.home.bookmarks.validation.avatarTextTooLong'),
 ];
+
+const avatarPreviewText = computed(
+  () => getHomeBookmarkInitial(avatarText.value) || getHomeBookmarkInitial(title.value) || '?',
+);
+const avatarPreviewTextColor = computed(() => getHomeBookmarkAvatarTextColor(avatarColor.value));
 
 function resetForm(): void {
   title.value = props.bookmark?.title ?? '';
   url.value = props.bookmark?.url ?? '';
-  icon.value = props.bookmark?.icon ?? '';
+  avatarText.value =
+    props.bookmark?.avatarText ?? getHomeBookmarkInitial(props.bookmark?.title ?? '');
+  avatarColor.value = props.bookmark?.avatarColor ?? HOME_BOOKMARK_AVATAR_COLORS[0];
   openInNewTab.value = props.bookmark?.openInNewTab ?? true;
   form.value?.resetValidation();
 }
@@ -59,7 +73,8 @@ async function submit(): Promise<void> {
   emit('save', {
     title: title.value,
     url: url.value,
-    icon: icon.value || undefined,
+    avatarText: avatarText.value,
+    avatarColor: avatarColor.value,
     openInNewTab: openInNewTab.value,
   });
   model.value = false;
@@ -73,6 +88,13 @@ watch(
     }
   },
 );
+
+watch(title, (value, previousValue) => {
+  const previousInitial = getHomeBookmarkInitial(previousValue);
+  if (!avatarText.value || avatarText.value === previousInitial) {
+    avatarText.value = getHomeBookmarkInitial(value);
+  }
+});
 </script>
 
 <template>
@@ -105,13 +127,60 @@ watch(
             placeholder="https://example.com"
             :rules="urlRules"
           />
-          <v-text-field
-            v-model="icon"
-            clearable
-            :label="t('component.home.bookmarks.fields.icon')"
-            placeholder="https://example.com/favicon.ico"
-            :rules="iconRules"
-          />
+          <div class="bookmark-avatar-fields">
+            <div
+              class="bookmark-avatar-preview"
+              :style="{ backgroundColor: avatarColor, color: avatarPreviewTextColor }"
+            >
+              {{ avatarPreviewText }}
+            </div>
+            <v-text-field
+              v-model="avatarText"
+              counter="1"
+              :label="t('component.home.bookmarks.fields.avatarText')"
+              maxlength="1"
+              :rules="avatarTextRules"
+            />
+          </div>
+          <div class="bookmark-color-field">
+            <span>{{ t('component.home.bookmarks.fields.avatarColor') }}</span>
+            <div class="bookmark-color-options">
+              <button
+                v-for="color in HOME_BOOKMARK_AVATAR_COLORS"
+                :key="color"
+                :aria-label="t('component.home.bookmarks.fields.colorOption', { color })"
+                class="bookmark-color-swatch"
+                :class="{ 'bookmark-color-swatch-selected': avatarColor === color }"
+                :style="{ backgroundColor: color }"
+                type="button"
+                @click="avatarColor = color"
+              >
+                <v-icon
+                  v-if="avatarColor === color"
+                  :color="getHomeBookmarkAvatarTextColor(color)"
+                  icon="mdi-check"
+                  size="16"
+                />
+              </button>
+              <label
+                class="bookmark-custom-color"
+                :style="{ backgroundColor: avatarColor }"
+                :title="t('component.home.bookmarks.fields.customColor')"
+              >
+                <v-icon
+                  :color="getHomeBookmarkAvatarTextColor(avatarColor)"
+                  icon="mdi-palette-outline"
+                  size="17"
+                />
+                <input
+                  v-model="avatarColor"
+                  :aria-label="t('component.home.bookmarks.fields.customColor')"
+                  class="bookmark-custom-color-input"
+                  type="color"
+                />
+              </label>
+            </div>
+          </div>
           <v-switch
             v-model="openInNewTab"
             color="primary"
@@ -146,6 +215,86 @@ watch(
 .bookmark-dialog-fields {
   display: grid;
   gap: 0.25rem;
+}
+
+.bookmark-avatar-fields {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+.bookmark-avatar-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-top: 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+}
+
+.bookmark-color-field {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: -0.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--theme-text-secondary);
+  font-size: 0.75rem;
+}
+
+.bookmark-color-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.bookmark-color-swatch,
+.bookmark-custom-color {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid var(--theme-border-secondary);
+  border-radius: 6px;
+}
+
+.bookmark-color-swatch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookmark-color-swatch-selected {
+  outline: 2px solid var(--theme-text-primary);
+  outline-offset: 2px;
+}
+
+.bookmark-color-swatch:focus-visible,
+.bookmark-custom-color:focus-within {
+  outline: 2px solid var(--theme-accent-color);
+  outline-offset: 2px;
+}
+
+.bookmark-custom-color {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bookmark-custom-color-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
 }
 
 .bookmark-dialog-actions {

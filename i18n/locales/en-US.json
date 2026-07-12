@@ -81,7 +81,10 @@
         "fields": {
           "title": "Name",
           "url": "URL or internal path",
-          "icon": "Icon URL (optional)",
+          "avatarText": "Avatar character",
+          "avatarColor": "Avatar color",
+          "colorOption": "Select color {color}",
+          "customColor": "Custom avatar color",
           "openInNewTab": "Open in a new tab"
         },
         "validation": {
@@ -89,7 +92,8 @@
           "titleTooLong": "Name must be 40 characters or fewer",
           "urlRequired": "Enter a URL or internal path",
           "urlInvalid": "Use an internal path starting with / or an HTTP/HTTPS URL",
-          "iconInvalid": "Use an internal path starting with / or an HTTP/HTTPS URL"
+          "avatarTextRequired": "Enter one avatar character",
+          "avatarTextTooLong": "Avatar text must be one character"
         }
       },
       "buttons": {

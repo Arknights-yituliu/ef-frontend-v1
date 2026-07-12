@@ -1,12 +1,15 @@
 import type { HomeBookmark, HomeBookmarkInput } from '@/shared/types/homeBookmark';
+import { getHomeBookmarkInitial, HOME_BOOKMARK_AVATAR_COLORS } from '@/shared/types/homeBookmark';
 
 const STORAGE_KEY = 'homeBookmarks:v1';
-const STORAGE_VERSION = 1;
+const STORAGE_VERSION = 2;
 
 interface HomeBookmarkStorage {
   version: number;
-  bookmarks: HomeBookmark[];
+  bookmarks: unknown[];
 }
+
+const AVATAR_COLOR_PATTERN = /^#[0-9a-f]{6}$/i;
 
 function isAllowedUrl(value: string): boolean {
   if (value.startsWith('/') && !value.startsWith('//')) {
@@ -30,23 +33,58 @@ function normalizeUrl(value: string): string {
   return new URL(trimmedValue).toString();
 }
 
-function isHomeBookmark(value: unknown): value is HomeBookmark {
-  if (!value || typeof value !== 'object') {
-    return false;
+function getDefaultAvatarColor(title: string): string {
+  const hash = Array.from(title).reduce(
+    (result, character) => result + (character.codePointAt(0) ?? 0),
+    0,
+  );
+  return HOME_BOOKMARK_AVATAR_COLORS[hash % HOME_BOOKMARK_AVATAR_COLORS.length] ?? '#455A64';
+}
+
+function normalizeAvatarColor(value: unknown, title: string): string {
+  if (typeof value === 'string' && AVATAR_COLOR_PATTERN.test(value.trim())) {
+    return value.trim().toUpperCase();
   }
 
-  const bookmark = value as Partial<HomeBookmark>;
-  return (
+  return getDefaultAvatarColor(title);
+}
+
+function migrateStoredBookmark(value: unknown): HomeBookmark | undefined {
+  if (!value || typeof value !== 'object') {
+    return undefined;
+  }
+
+  const bookmark = value as Partial<HomeBookmark> & { icon?: unknown };
+  const isValid =
     typeof bookmark.id === 'string' &&
     typeof bookmark.title === 'string' &&
+    Boolean(bookmark.title.trim()) &&
     typeof bookmark.url === 'string' &&
     isAllowedUrl(bookmark.url) &&
-    (bookmark.icon === undefined ||
-      (typeof bookmark.icon === 'string' && isAllowedUrl(bookmark.icon))) &&
     typeof bookmark.openInNewTab === 'boolean' &&
     typeof bookmark.createdAt === 'number' &&
-    typeof bookmark.updatedAt === 'number'
-  );
+    typeof bookmark.updatedAt === 'number';
+
+  if (!isValid) {
+    return undefined;
+  }
+
+  const title = bookmark.title.trim();
+  const avatarText =
+    typeof bookmark.avatarText === 'string'
+      ? getHomeBookmarkInitial(bookmark.avatarText)
+      : getHomeBookmarkInitial(title);
+
+  return {
+    id: bookmark.id,
+    title,
+    url: normalizeUrl(bookmark.url),
+    avatarText: avatarText || '?',
+    avatarColor: normalizeAvatarColor(bookmark.avatarColor, title),
+    openInNewTab: bookmark.openInNewTab,
+    createdAt: bookmark.createdAt,
+    updatedAt: bookmark.updatedAt,
+  };
 }
 
 function createBookmarkId(): string {
@@ -62,12 +100,14 @@ export function validateHomeBookmarkUrl(value: string): boolean {
 }
 
 export function normalizeHomeBookmarkInput(input: HomeBookmarkInput): HomeBookmarkInput {
-  const icon = input.icon?.trim();
+  const title = input.title.trim();
+  const avatarText = getHomeBookmarkInitial(input.avatarText) || getHomeBookmarkInitial(title);
 
   return {
-    title: input.title.trim(),
+    title,
     url: normalizeUrl(input.url),
-    icon: icon ? normalizeUrl(icon) : undefined,
+    avatarText: avatarText || '?',
+    avatarColor: normalizeAvatarColor(input.avatarColor, title),
     openInNewTab: input.openInNewTab,
   };
 }
@@ -102,12 +142,21 @@ export function useHomeBookmarks() {
 
     try {
       const storage = JSON.parse(savedValue) as Partial<HomeBookmarkStorage>;
-      if (storage.version !== STORAGE_VERSION || !Array.isArray(storage.bookmarks)) {
+      if (
+        (storage.version !== 1 && storage.version !== STORAGE_VERSION) ||
+        !Array.isArray(storage.bookmarks)
+      ) {
         bookmarks.value = [];
         return;
       }
 
-      bookmarks.value = storage.bookmarks.filter((bookmark) => isHomeBookmark(bookmark));
+      bookmarks.value = storage.bookmarks
+        .map((bookmark) => migrateStoredBookmark(bookmark))
+        .filter((bookmark): bookmark is HomeBookmark => bookmark !== undefined);
+
+      if (storage.version !== STORAGE_VERSION) {
+        saveBookmarks();
+      }
     } catch (error) {
       console.error('Failed to load home bookmarks:', error);
       bookmarks.value = [];
