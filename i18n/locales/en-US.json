@@ -368,7 +368,10 @@
       "packSanityEfficiency": "All Items",
       "packPullsEfficiency": "Operator",
       "packWeaponEfficiency": "Weapon",
-      "648StoneEfficiency": "648"
+      "648StoneEfficiency": "648",
+      "hidePack": "Hide this package",
+      "confirmHidePack": "Click again to confirm",
+      "restorePack": "Restore this package"
     }
   },
   "page": {
@@ -404,7 +407,9 @@
         "gachaWeapon": "Originium for Weapons",
         "devMode": "Dev Mode",
         "hideCardShadow": "Hide Card Shadows",
-        "greenBackground": "Green Background"
+        "greenBackground": "Green Background",
+        "showHiddenPacks": "Show hidden packages",
+        "hideHiddenPacks": "Stop showing hidden packages"
       },
       "itemValueTable": {
         "title": "Item Value Table",

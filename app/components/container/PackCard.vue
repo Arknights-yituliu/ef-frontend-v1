@@ -1,6 +1,42 @@
 <template>
-  <div class="pack-card-container">
+  <div
+    class="pack-card-container"
+    :class="{
+      'pack-card-container-expanded': isExpanded,
+      'pack-card-container-hidden': props.isHidden,
+    }"
+  >
     <div class="pack-card-wrapper" @click="toggleExpanded">
+      <v-btn
+        v-if="isExpanded"
+        class="pack-visibility-button"
+        :class="{
+          'pack-visibility-button-confirm': hideConfirmationPending,
+          'pack-visibility-button-restore': props.isHidden,
+        }"
+        density="compact"
+        :prepend-icon="
+          props.isHidden
+            ? 'mdi-eye-outline'
+            : hideConfirmationPending
+              ? 'mdi-alert-outline'
+              : 'mdi-eye-off-outline'
+        "
+        size="small"
+        variant="flat"
+        @click.stop="handleVisibilityButtonClick"
+      >
+        {{
+          $t(
+            props.isHidden
+              ? 'component.packCard.restorePack'
+              : hideConfirmationPending
+                ? 'component.packCard.confirmHidePack'
+                : 'component.packCard.hidePack',
+          )
+        }}
+      </v-btn>
+
       <!-- 左侧：图片、价格和标题 -->
       <div class="pack-card-left">
         <!-- 背景图 - 铺满整个左侧区域 -->
@@ -121,7 +157,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(content, index) in props.contents" :key="index">
+          <tr v-for="(content, index) in sortedContents" :key="index">
             <td>{{ getItemName(content.itemId) }}</td>
             <td>{{ content.quantity }}</td>
             <td>{{ getItemBundleValue(content).toFixed(1) }}</td>
@@ -149,11 +185,20 @@ import {
   getPackWeaponEfficiency,
 } from '@/shared/utils/gameData/pack';
 
-const props = defineProps<PackData & { gachaMode: PackGachaMode }>();
+const props = withDefaults(
+  defineProps<PackData & { gachaMode: PackGachaMode; isHidden?: boolean }>(),
+  {
+    isHidden: false,
+  },
+);
+const emit = defineEmits<{
+  'set-hidden': [packId: string, hidden: boolean];
+}>();
 
 const { locale } = useI18n();
 const imageError = ref(false);
 const isExpanded = ref(false);
+const hideConfirmationPending = ref(false);
 
 const packDisplayName = computed(() => {
   return props.displayName[locale.value];
@@ -162,6 +207,12 @@ const packDisplayName = computed(() => {
 const packDescription = computed(() => {
   return props.description?.[locale.value];
 });
+
+const sortedContents = computed(() =>
+  props.contents.toSorted(
+    (a, b) => getItemBundleValuePercentage(b, props) - getItemBundleValuePercentage(a, props),
+  ),
+);
 
 const showWeaponSummary = computed(
   () =>
@@ -187,6 +238,23 @@ function handleImageError() {
 
 function toggleExpanded() {
   isExpanded.value = !isExpanded.value;
+  hideConfirmationPending.value = false;
+}
+
+function handleVisibilityButtonClick() {
+  if (props.isHidden) {
+    hideConfirmationPending.value = false;
+    emit('set-hidden', props.packId, false);
+    return;
+  }
+
+  if (!hideConfirmationPending.value) {
+    hideConfirmationPending.value = true;
+    return;
+  }
+
+  hideConfirmationPending.value = false;
+  emit('set-hidden', props.packId, true);
 }
 
 function getPackComparisonBars(pack: PackData) {
@@ -225,6 +293,8 @@ function getPackComparisonBars(pack: PackData) {
 
 <style scoped>
 .pack-card-container {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -235,7 +305,51 @@ function getPackComparisonBars(pack: PackData) {
   line-height: 1;
 }
 
+.pack-visibility-button {
+  position: absolute;
+  top: 0;
+  right: 0.5em;
+  z-index: 0;
+  height: 26px !important;
+  min-width: 0;
+  padding-inline: 8px !important;
+  transform: translateY(-50%);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--theme-bg-secondary);
+  color: var(--theme-text-primary);
+  font-size: 12px;
+  letter-spacing: 0;
+  box-shadow: 0 2px 6px var(--theme-shadow-base);
+  animation: pack-visibility-button-in var(--transition-base);
+}
+
+@keyframes pack-visibility-button-in {
+  from {
+    opacity: 0;
+    transform: translateY(-35%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+.pack-visibility-button-confirm {
+  border-color: #e53935;
+  background-color: #e53935;
+  color: #ffffff;
+}
+
+.pack-visibility-button-restore {
+  border-color: #2e7d32;
+  background-color: #2e7d32;
+  color: #ffffff;
+}
+
 .pack-card-wrapper {
+  position: relative;
   isolation: isolate;
   z-index: 1;
   display: flex;
@@ -247,9 +361,17 @@ function getPackComparisonBars(pack: PackData) {
   cursor: pointer;
 }
 
+.pack-card-container-hidden .pack-card-wrapper {
+  opacity: 0.55;
+}
+
 .pack-card-wrapper:hover {
   transform: translateY(-0.125em);
   filter: brightness(1.02);
+}
+
+.pack-card-container-hidden .pack-card-wrapper:hover {
+  opacity: 0.75;
 }
 
 /* 左侧列容器 */
@@ -261,11 +383,16 @@ function getPackComparisonBars(pack: PackData) {
   flex-shrink: 2;
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  z-index: 2;
   overflow: hidden;
   box-shadow: 0 0 0.625em var(--theme-shadow-base);
   /* border: 0.0625em solid var(--theme-border); */
   border-radius: 0.5em;
+  transition: transform var(--transition-base);
+}
+
+.pack-card-container-expanded .pack-card-left {
+  transform: translateY(-0.3125em);
 }
 
 /* 背景图 - 铺满整个 left 区域 */
@@ -401,6 +528,7 @@ function getPackComparisonBars(pack: PackData) {
 /* 右侧信息区域 */
 .pack-card-right {
   position: relative;
+  z-index: 1;
   display: flex;
   height: 6.625em;
   margin-left: -0.25em;
@@ -586,12 +714,16 @@ function getPackComparisonBars(pack: PackData) {
   box-shadow: 0 0 0.625em var(--theme-shadow-base);
   border: 0.0625em solid var(--theme-border);
   opacity: 0;
-  transition: opacity var(--transition-base);
+  transform: translateY(-0.25em);
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base);
 }
 
 .pack-contents-table.expanded {
   height: unset;
   opacity: 1;
+  transform: translateY(0);
 }
 
 .col-item-name {

@@ -368,7 +368,10 @@
       "packSanityEfficiency": "全物品",
       "packPullsEfficiency": "抽干员",
       "packWeaponEfficiency": "抽武器",
-      "648StoneEfficiency": "648"
+      "648StoneEfficiency": "648",
+      "hidePack": "隐藏该礼包",
+      "confirmHidePack": "再次点击确认隐藏",
+      "restorePack": "恢复该礼包"
     }
   },
   "page": {
@@ -404,7 +407,9 @@
         "gachaWeapon": "源石抽武器",
         "devMode": "开发模式",
         "hideCardShadow": "隐藏卡片阴影",
-        "greenBackground": "背景变绿"
+        "greenBackground": "背景变绿",
+        "showHiddenPacks": "显示隐藏礼包",
+        "hideHiddenPacks": "收起隐藏礼包"
       },
       "itemValueTable": {
         "title": "物品价值表",

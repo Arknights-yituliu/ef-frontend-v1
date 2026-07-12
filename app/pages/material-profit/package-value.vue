@@ -64,6 +64,23 @@
           </v-btn>
         </v-btn-toggle>
       </div>
+      <v-btn
+        class="hidden-packs-toggle"
+        density="compact"
+        :disabled="hiddenPackCount === 0 && !showHiddenPacks"
+        :prepend-icon="showHiddenPacks ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
+        variant="outlined"
+        @click="showHiddenPacks = !showHiddenPacks"
+      >
+        {{
+          $t(
+            showHiddenPacks
+              ? 'page.materialProfit.packageValue.hideHiddenPacks'
+              : 'page.materialProfit.packageValue.showHiddenPacks',
+          )
+        }}
+        <span class="hidden-packs-count">({{ hiddenPackCount }})</span>
+      </v-btn>
     </section>
 
     <section v-show="'dev' === currentMode" class="debug-panel">
@@ -111,7 +128,9 @@
               v-for="packId in shop.goodsIds"
               :key="packId"
               :gacha-mode="gachaMode"
+              :is-hidden="hiddenPackIdSet.has(packId)"
               v-bind="packs[packId]!"
+              @set-hidden="setPackHidden"
             />
           </TransitionGroup>
         </div>
@@ -139,6 +158,7 @@ const categorySorting: Map<string, number> = new Map(
   Object.keys(packs).map((packId, index) => [packId, index]),
 );
 const bundlePackGroupId = 'shop_pay_gift_pack';
+const hiddenPackStorageKey = 'material-profit-package-value:hidden-pack-ids';
 
 const { locale, t } = useI18n();
 
@@ -154,6 +174,15 @@ const devModeTriggerThreshold = 8;
 const devModeTriggerShopId = 'SP_weapon_supply';
 const devDebugHideCardShadow = ref(false);
 const devDebugGreenBackground = ref(false);
+const hiddenPackIds = ref<string[]>([]);
+const showHiddenPacks = ref(false);
+
+const hiddenPackIdSet = computed(() => new Set(hiddenPackIds.value));
+const hiddenPackCount = computed(() => hiddenPackIds.value.length);
+
+onMounted(() => {
+  loadHiddenPackIds();
+});
 
 function syncCurrentModeFromRoute() {
   currentMode.value = route.query.mode === 'dev' ? 'dev' : 'normal';
@@ -216,6 +245,73 @@ function sortPackIds(packIds: string[]) {
   return packIds.toSorted((a, b) => comparePacks(packs[a]!, packs[b]!));
 }
 
+function setPackHidden(packId: string, hidden: boolean) {
+  if (!(packId in packs)) {
+    return;
+  }
+
+  const nextHiddenPackIds = new Set(hiddenPackIds.value);
+  if (hidden) {
+    nextHiddenPackIds.add(packId);
+  } else {
+    nextHiddenPackIds.delete(packId);
+  }
+
+  hiddenPackIds.value = [...nextHiddenPackIds].toSorted(
+    (a, b) =>
+      (categorySorting.get(a) ?? Number.MAX_SAFE_INTEGER) -
+      (categorySorting.get(b) ?? Number.MAX_SAFE_INTEGER),
+  );
+  persistHiddenPackIds();
+
+  if (hiddenPackIds.value.length === 0) {
+    showHiddenPacks.value = false;
+  }
+}
+
+function persistHiddenPackIds() {
+  if (!import.meta.client) {
+    return;
+  }
+
+  if (hiddenPackIds.value.length === 0) {
+    localStorage.removeItem(hiddenPackStorageKey);
+    return;
+  }
+
+  localStorage.setItem(hiddenPackStorageKey, JSON.stringify(hiddenPackIds.value));
+}
+
+function loadHiddenPackIds() {
+  if (!import.meta.client) {
+    return;
+  }
+
+  const savedValue = localStorage.getItem(hiddenPackStorageKey);
+  if (!savedValue) {
+    return;
+  }
+
+  try {
+    const parsedValue: unknown = JSON.parse(savedValue);
+    if (!Array.isArray(parsedValue)) {
+      return;
+    }
+
+    hiddenPackIds.value = [
+      ...new Set(
+        parsedValue.filter((value): value is string => typeof value === 'string' && value in packs),
+      ),
+    ].toSorted(
+      (a, b) =>
+        (categorySorting.get(a) ?? Number.MAX_SAFE_INTEGER) -
+        (categorySorting.get(b) ?? Number.MAX_SAFE_INTEGER),
+    );
+  } catch {
+    localStorage.removeItem(hiddenPackStorageKey);
+  }
+}
+
 // 使用 computed 生成层级数据
 const displayGroups = computed(() => {
   const query = searchQuery.value.trim().toLowerCase();
@@ -225,7 +321,10 @@ const displayGroups = computed(() => {
     Object.keys(packs).filter((id) => {
       const p = packs[id]!;
       const name = p.displayName[locale.value as keyof LocalizedText] || '';
-      return name.toLowerCase().includes(query);
+      return (
+        name.toLowerCase().includes(query) &&
+        (showHiddenPacks.value || !hiddenPackIdSet.value.has(id))
+      );
     }),
   );
 
@@ -338,6 +437,15 @@ usePageSeo({
   margin-left: var(--spacing-xs);
 }
 
+.hidden-packs-toggle {
+  flex: 0 0 auto;
+  letter-spacing: 0;
+}
+
+.hidden-packs-count {
+  margin-left: 4px;
+}
+
 .sort-field-toggle {
   flex: 0 0 auto;
 }
@@ -369,7 +477,7 @@ usePageSeo({
 .packs-container {
   display: flex;
   flex-wrap: wrap;
-  row-gap: clamp(24px, 4vw, 32px);
+  row-gap: clamp(28px, calc(4vw + 4px), 36px);
   column-gap: 20px;
   position: relative;
 }
@@ -421,6 +529,10 @@ usePageSeo({
     align-items: stretch;
     margin-left: 0;
     min-width: 0;
+    width: 100%;
+  }
+
+  .hidden-packs-toggle {
     width: 100%;
   }
 
