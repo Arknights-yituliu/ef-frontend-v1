@@ -63,6 +63,35 @@
         "thirdparty": "第三方",
         "other": "其他"
       },
+      "bookmarks": {
+        "add": "新增收藏",
+        "addTitle": "新增收藏卡片",
+        "edit": "编辑",
+        "editTitle": "编辑收藏卡片",
+        "delete": "删除",
+        "deleteTitle": "删除收藏卡片",
+        "deleteMessage": "确定删除“{title}”吗？",
+        "actions": "收藏卡片操作",
+        "empty": "暂无收藏",
+        "save": "保存",
+        "cancel": "取消",
+        "added": "收藏卡片已新增",
+        "updated": "收藏卡片已更新",
+        "deleted": "收藏卡片已删除",
+        "fields": {
+          "title": "名称",
+          "url": "网址或站内路径",
+          "icon": "图标地址（可选）",
+          "openInNewTab": "在新标签页打开"
+        },
+        "validation": {
+          "titleRequired": "请输入名称",
+          "titleTooLong": "名称不能超过 40 个字符",
+          "urlRequired": "请输入网址或站内路径",
+          "urlInvalid": "仅支持 / 开头的站内路径或 HTTP/HTTPS 网址",
+          "iconInvalid": "图标仅支持 / 开头的站内路径或 HTTP/HTTPS 网址"
+        }
+      },
       "checkAccess": {
         "betaTestIICheckAccess": "全面测试资格查询",
         "checkAccessOnEndfieldOfficialSite": "前往终末地官网查询资格"

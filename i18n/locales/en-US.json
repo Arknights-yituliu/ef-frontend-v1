@@ -63,6 +63,35 @@
         "thirdparty": "Third Party",
         "other": "Other"
       },
+      "bookmarks": {
+        "add": "Add bookmark",
+        "addTitle": "Add Bookmark Card",
+        "edit": "Edit",
+        "editTitle": "Edit Bookmark Card",
+        "delete": "Delete",
+        "deleteTitle": "Delete Bookmark Card",
+        "deleteMessage": "Delete \"{title}\"?",
+        "actions": "Bookmark card actions",
+        "empty": "No bookmarks yet",
+        "save": "Save",
+        "cancel": "Cancel",
+        "added": "Bookmark card added",
+        "updated": "Bookmark card updated",
+        "deleted": "Bookmark card deleted",
+        "fields": {
+          "title": "Name",
+          "url": "URL or internal path",
+          "icon": "Icon URL (optional)",
+          "openInNewTab": "Open in a new tab"
+        },
+        "validation": {
+          "titleRequired": "Enter a name",
+          "titleTooLong": "Name must be 40 characters or fewer",
+          "urlRequired": "Enter a URL or internal path",
+          "urlInvalid": "Use an internal path starting with / or an HTTP/HTTPS URL",
+          "iconInvalid": "Use an internal path starting with / or an HTTP/HTTPS URL"
+        }
+      },
       "buttons": {
         "github": "GitHub",
         "discord": "Discord Community",

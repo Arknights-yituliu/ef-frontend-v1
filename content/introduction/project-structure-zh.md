@@ -80,12 +80,15 @@ ef-frontend-v1/
 │   │   ├── docs/                 # 文档相关组件
 │   │   ├── gacha-calculator/     # 抽卡计算器组件
 │   │   ├── home/                 # 首页组件
+│   │   │   ├── HomeBookmarkCard.vue   # 首页自定义收藏卡片
+│   │   │   └── HomeBookmarkDialog.vue # 首页自定义收藏编辑弹窗
 │   │   ├── icon/                 # 图标组件
 │   │   ├── layout/               # 布局组件
 │   │   ├── text/                 # 文本相关组件
 │   │   └── tools/                # 工具页面组件
 │   ├── composables/              # 组合式函数目录
 │   │   ├── useDocsSearch.ts      # 文档搜索组合式函数
+│   │   ├── useHomeBookmarks.ts   # 首页自定义收藏管理
 │   │   ├── usePageSeo.ts         # 页面 SEO 组合式函数
 │   │   └── useTheme.ts           # 主题管理组合式函数
 │   ├── layouts/                  # 布局目录
@@ -142,6 +145,7 @@ ef-frontend-v1/
 │   ├── types/                    # TypeScript 类型定义（Nuxt 自动识别）
 │   │   ├── gacha-calculator.ts   # 抽卡计算器类型
 │   │   ├── gachaItem.ts          # 抽卡物品类型
+│   │   ├── homeBookmark.ts       # 首页自定义收藏类型
 │   │   ├── itemValue.ts          # 物品价值类型
 │   │   └── pack.ts               # 礼包类型
 │   └── utils/                    # 工具函数（Nuxt 自动识别）
@@ -379,7 +383,7 @@ i18n/
 - **`shared/types/`** - TypeScript 类型定义目录
   - 存放 TypeScript 类型定义和接口
   - 该目录会被 Nuxt 自动识别
-  - 文件：`gachaItem.ts`、`itemInfo.ts`、`itemValue.ts`、`pack.ts`
+  - 文件：`gachaItem.ts`、`homeBookmark.ts`、`itemInfo.ts`、`itemValue.ts`、`pack.ts`
 
 - **`shared/utils/`** - 工具函数目录
   - 存放常用操作的工具函数

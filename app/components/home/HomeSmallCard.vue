@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import type { CardData, CardTagType } from '@/custom/core/homeCards';
+import type { CardButton, CardData, CardTagType } from '@/custom/core/homeCards';
 import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
 const { t } = useI18n();
+const isExpanded = ref(false);
 
 interface Props {
   card: CardData;
@@ -28,8 +29,11 @@ const cardData = computed(() => {
   const primaryTagColor = tags.length > 0 && tags[0] ? tags[0].color : '#9E9E9E';
 
   // Find the primary action button
-  const buttons = props.card.buttons || [];
-  const mainButtons = buttons.filter((btn) => btn.buttonType === ButtonType.Main);
+  const buttons = (props.card.buttons || []).filter(
+    (button) => button.buttonType !== ButtonType.Blank,
+  );
+  const mainButtons = buttons.filter((button) => button.buttonType === ButtonType.Main);
+  const pageButtons = buttons.filter((button) => button.action === ButtonActionType.Link);
   const actionButton = mainButtons.length > 0 ? mainButtons[0] : buttons[0];
 
   return {
@@ -38,6 +42,8 @@ const cardData = computed(() => {
     primaryTagColor,
     icon: props.card.icon,
     actionButton,
+    pageButtons,
+    hasMultiplePages: pageButtons.length > 1,
   };
 });
 
@@ -67,10 +73,23 @@ function getTagColor(tagType: CardTagType): string {
 /**
  * 处理卡片点击事件
  */
-function handleCardClick() {
+function handleCardClick(): void {
+  if (cardData.value.hasMultiplePages) {
+    isExpanded.value = !isExpanded.value;
+    return;
+  }
+
   if (!cardData.value.actionButton) return;
 
-  const button = cardData.value.actionButton;
+  handleButtonAction(cardData.value.actionButton);
+}
+
+function handlePageButtonClick(button: CardButton): void {
+  isExpanded.value = false;
+  handleButtonAction(button);
+}
+
+function handleButtonAction(button: CardButton): void {
   if (button.action === ButtonActionType.Link) {
     // 跳转链接
     const target = button.target ? '_blank' : '_self';
@@ -79,6 +98,10 @@ function handleCardClick() {
     // 复制文本
     copyToClipboard(button.actionData, t('common.copySuccess'));
   }
+}
+
+function closeLinkPicker(): void {
+  isExpanded.value = false;
 }
 
 /**
@@ -96,8 +119,17 @@ async function copyToClipboard(text: string, successMessage: string) {
 </script>
 
 <template>
-  <div class="home-small-card" @click="handleCardClick">
-    <div class="home-small-card-header">
+  <div
+    v-click-outside="closeLinkPicker"
+    class="home-small-card"
+    :class="{ 'is-expanded': isExpanded }"
+  >
+    <button
+      :aria-expanded="cardData.hasMultiplePages ? isExpanded : undefined"
+      class="home-small-card-header"
+      type="button"
+      @click="handleCardClick"
+    >
       <img
         v-if="cardData.icon"
         :alt="cardData.title"
@@ -117,8 +149,37 @@ async function copyToClipboard(text: string, successMessage: string) {
           </span>
         </div>
       </div>
-      <span v-if="cardData.actionButton" class="home-small-card-arrow">›</span>
-    </div>
+      <v-icon
+        v-if="cardData.actionButton"
+        class="home-small-card-arrow"
+        :icon="cardData.hasMultiplePages && isExpanded ? 'mdi-chevron-up' : 'mdi-chevron-right'"
+        size="20"
+      />
+    </button>
+
+    <Transition name="home-small-card-picker">
+      <div v-if="cardData.hasMultiplePages && isExpanded" class="home-small-card-pages">
+        <button
+          v-for="button in cardData.pageButtons"
+          :key="button.i18nKey"
+          class="home-small-card-page"
+          type="button"
+          @click="handlePageButtonClick(button)"
+        >
+          <span class="home-small-card-page-icon">
+            <v-icon :icon="button.icon || 'mdi-link-variant'" size="18" />
+          </span>
+          <span class="home-small-card-page-label">
+            {{ t(`component.home.${button.i18nKey}`) }}
+          </span>
+          <v-icon
+            class="home-small-card-page-arrow"
+            :icon="button.target ? 'mdi-open-in-new' : 'mdi-chevron-right'"
+            size="17"
+          />
+        </button>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -126,50 +187,73 @@ async function copyToClipboard(text: string, successMessage: string) {
 /* 小卡片容器 */
 .home-small-card {
   display: flex;
-  overflow: hidden;
-  cursor: pointer;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
   transition:
+    background-color 0.2s ease,
     transform 0.2s ease,
     box-shadow 0.2s ease;
+  color: var(--theme-text-primary);
+  background: var(--theme-bg-secondary);
+  border: 1px solid var(--theme-border);
   border-radius: 8px;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 1px 3px var(--theme-glass-shadow);
   width: 280px;
   height: 58px;
 }
 
-.home-small-card:hover {
+.home-small-card:not(.is-expanded):hover {
+  background: var(--theme-bg-tertiary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--theme-glass-shadow);
 }
 
-/* 小卡片标题栏：深色背景 */
+.home-small-card.is-expanded {
+  z-index: 1000;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 12px var(--theme-glass-shadow);
+}
+
+/* 小卡片标题栏 */
 .home-small-card-header {
-  width: 100%;
-  background-color: transparent;
-  padding: 8px 10px 8px 8px;
   display: flex;
+  flex: 0 0 58px;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 58px;
+  padding: 8px 10px 8px 8px;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
   gap: 6px;
-  height: 100%;
   position: relative;
   overflow: hidden;
-  justify-content: space-between;
   margin: 0;
+}
+
+.home-small-card-header:focus-visible,
+.home-small-card-page:focus-visible {
+  outline: 2px solid var(--theme-accent-color);
+  outline-offset: -2px;
 }
 
 .home-small-card-header::before {
   content: '';
   position: absolute;
-  top: 0;
+  top: 8px;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/svg/map-bg-white.svg');
-  background-size: auto;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.1;
+  bottom: 8px;
+  width: 3px;
+  background: var(--theme-text-tertiary);
+  border-radius: 0 3px 3px 0;
+  opacity: 0.5;
   pointer-events: none;
   z-index: 0;
 }
@@ -188,15 +272,19 @@ async function copyToClipboard(text: string, successMessage: string) {
 
 /* 卡片logo：左侧独立显示 */
 .home-small-card-logo {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
+  padding: 4px;
   object-fit: contain;
+  background: var(--theme-decorative-overlay-medium);
+  border-radius: 6px;
+  box-sizing: border-box;
   flex-shrink: 0;
 }
 
 /* 卡片标题：单行显示，超长时显示省略号 */
 .home-small-card-title b {
-  color: white;
+  color: var(--theme-text-primary);
   font-size: 0.9rem;
   white-space: nowrap;
   overflow: hidden;
@@ -225,12 +313,85 @@ async function copyToClipboard(text: string, successMessage: string) {
 
 /* 右侧箭头图标 */
 .home-small-card-arrow {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-text-tertiary);
   flex-shrink: 0;
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-  line-height: 1;
-  font-weight: 300;
+}
+
+.home-small-card-pages {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: calc(100% - 1px);
+  right: -1px;
+  left: -1px;
+  z-index: 1;
+  gap: 2px;
+  padding: 6px;
+  background: var(--theme-bg-secondary);
+  border: 1px solid var(--theme-border);
+  border-top: 1px solid var(--theme-border);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 12px 24px var(--theme-glass-shadow);
+}
+
+.home-small-card-picker-enter-active,
+.home-small-card-picker-leave-active {
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.home-small-card-picker-enter-from,
+.home-small-card-picker-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.home-small-card-page {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 5px 7px;
+  color: var(--theme-text-primary);
+  font: inherit;
+  font-size: 0.84rem;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+.home-small-card-page:hover {
+  background: var(--theme-bg-tertiary);
+}
+
+.home-small-card-page-icon {
+  display: flex;
+  flex: 0 0 30px;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  color: var(--theme-text-secondary);
+  background: var(--theme-decorative-overlay-medium);
+  border-radius: 6px;
+}
+
+.home-small-card-page-label {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-small-card-page-arrow {
+  flex-shrink: 0;
+  margin-left: 8px;
+  color: var(--theme-text-tertiary);
 }
 </style>

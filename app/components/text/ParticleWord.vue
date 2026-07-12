@@ -3,13 +3,12 @@
     <div class="particle-word-wrapper">
       <canvas
         ref="canvasRef"
+        :aria-label="text"
         class="particle-canvas"
         :height="CANVAS_HEIGHT"
+        role="img"
         :width="CANVAS_WIDTH"
       />
-      <div v-if="!isLoaded" class="particle-loading">
-        {{ $t('component.particleWord.loading') }}
-      </div>
     </div>
   </div>
 </template>
@@ -245,7 +244,6 @@ const props = defineProps<Props>();
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const particleCanvasRef = ref<ParticleCanvas | null>(null);
-const isLoaded = ref(false);
 
 function initParticleCanvas() {
   if (canvasRef.value) {
@@ -258,7 +256,6 @@ function initParticleCanvas() {
 
     particleCanvasRef.value.generateTextParticles(props.text, color);
     particleCanvasRef.value.startAnimation();
-    isLoaded.value = true;
   }
 }
 
@@ -323,13 +320,5 @@ onUnmounted(() => {
   cursor: default;
   max-width: 100%;
   height: auto;
-}
-
-.particle-loading {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 </style>
