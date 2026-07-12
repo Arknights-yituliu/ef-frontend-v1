@@ -1,6 +1,6 @@
 <template>
   <div ref="itemIconPlaceholderRef" class="item-icon-placeholder">
-    <img :alt="itemName" class="item-icon-img" :src="getItemIconUrl(props.itemId)" />
+    <img :alt="itemName" class="item-icon-img" :src="itemIconUrl" />
     <div class="item-gradient-overlay" />
     <div class="item-tier-bar" />
     <div v-if="props.showItemName" ref="itemNameRef" class="item-name">
@@ -38,6 +38,15 @@ const itemName = computed(() => {
     return props.itemName;
   } else {
     return getItemName(props.itemId, locale.value);
+  }
+});
+
+const itemIconUrl = computed(() => {
+  const itemIconUrl = getItemIconUrl(props.itemId);
+  if (!itemIconUrl) {
+    return 'https://cos.yituliu.cn/endfield/other/默认武器图标.webp';
+  } else {
+    return itemIconUrl;
   }
 });
 

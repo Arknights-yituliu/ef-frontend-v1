@@ -6,7 +6,7 @@ export interface Item {
   rarity: number;
   type: number;
   typeName: Record<string, string>;
-  iconId: string;
+  iconId: string | null;
 }
 
 export const items: Record<string, Item> = rawItems;
