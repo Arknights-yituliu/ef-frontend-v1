@@ -1946,7 +1946,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
             </div>
 
             <!-- 当前时间：{{ dateFormat(poolStartDate) }} -->
-            <div class="gacha-calculator-warning">
+            <div class="gacha-calculator-warning" style="display: none;">
               《寻遗散记》资源尚在更新中，结果仅供参考，切勿轻信本站！
             </div>
 
@@ -2029,12 +2029,18 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
         <v-expansion-panel data-gacha-left-screenshot-target="arsenal-quota" value="arsenalQuota">
           <v-expansion-panel-title class="gacha-calculator-card-title">
-            <div>武库配额估算</div>
+            <div class="gacha-calculator-arsenal-title">
+              <span>武库配额</span>
+              <img
+                alt="武库配额"
+                src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+              />
+              <span>{{ arsenalQuotaResult }}</span>
+            </div>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
             <div class="gacha-calculator-arsenal-quota">
               <section class="gacha-calculator-originium-allocation">
-                <div class="gacha-calculator-arsenal-module-title">源石重分配</div>
                 <div class="gacha-calculator-originium-source-row">
                   <div class="gacha-calculator-originium-source-item">
                     <img
@@ -2076,7 +2082,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   </div>
                 </div>
                 <div class="gacha-calculator-originium-allocation-row">
-                  <label class="gacha-calculator-originium-allocation-label">分配源石数量</label>
+                  <span class="gacha-calculator-originium-allocation-copy">源石</span>
                   <div class="gacha-calculator-originium-allocation-controls">
                     <v-btn
                       class="gacha-calculator-originium-allocation-step-btn"
@@ -2097,6 +2103,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       -1
                     </v-btn>
                     <v-number-input
+                      aria-label="分配给武库配额的源石数量"
                       class="gacha-calculator-originium-allocation-input"
                       control-variant="hidden"
                       density="compact"
@@ -2128,6 +2135,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       +10
                     </v-btn>
                   </div>
+                  <span class="gacha-calculator-originium-allocation-copy">→ 武库配额</span>
                 </div>
                 <div class="gacha-calculator-originium-allocation-result">
                   <div class="gacha-calculator-originium-source-item">
@@ -2177,46 +2185,43 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   </div>
                 </div>
               </section>
-              <v-divider style="margin: 1rem 0" />
               <div class="gacha-calculator-arsenal-quota-row">
                 <label class="gacha-calculator-arsenal-quota-label">武库配额系数</label>
-                <v-number-input
-                  v-model="arsenalCoefficient"
-                  class="gacha-calculator-arsenal-quota-input-field"
-                  control-variant="hidden"
-                  density="compact"
-                  hide-details="auto"
-                  variant="solo"
-                />
-                <v-btn
-                  class="gacha-calculator-arsenal-quota-btn"
-                  color="orange"
-                  size="small"
-                  variant="tonal"
-                  @click="arsenalCoefficient = 38"
-                >
-                  保底值(38)
-                </v-btn>
-                <v-btn
-                  class="gacha-calculator-arsenal-quota-btn"
-                  color="blue"
-                  size="small"
-                  variant="tonal"
-                  @click="arsenalCoefficient = 50"
-                >
-                  期望值(50)
-                </v-btn>
-                <v-btn
-                  class="gacha-calculator-arsenal-quota-btn"
-                  color="green"
-                  size="small"
-                  variant="tonal"
-                  @click="arsenalCoefficient = 80"
-                >
-                  统计值(80)
-                </v-btn>
+                <div class="gacha-calculator-arsenal-coefficient-control">
+                  <v-btn-toggle
+                    v-model="arsenalCoefficient"
+                    class="gacha-calculator-arsenal-coefficient-toggle"
+                    color="primary"
+                    density="compact"
+                    divided
+                    mandatory
+                    variant="outlined"
+                  >
+                    <v-btn :value="38">保底 38</v-btn>
+                    <v-btn :value="50">期望 50</v-btn>
+                    <v-btn :value="80">统计 80</v-btn>
+                  </v-btn-toggle>
+                  <v-tooltip location="top" max-width="360" open-on-click>
+                    <template #activator="{ props }">
+                      <v-icon
+                        v-bind="props"
+                        aria-label="查看武库配额系数说明"
+                        icon="mdi-information-outline"
+                        role="button"
+                        size="small"
+                        tabindex="0"
+                      />
+                    </template>
+                    <div class="gacha-calculator-arsenal-coefficient-help">
+                      <div><strong>保底值：</strong>最小值，抽数少了建议选这个</div>
+                      <div><strong>期望值：</strong>根据抽卡概率计算的理论值，不考虑保底规则</div>
+                      <div>
+                        <strong>实际值：</strong>考虑了保底规则，抽卡多了实际获取量更接近实际值
+                      </div>
+                    </div>
+                  </v-tooltip>
+                </div>
               </div>
-              <v-divider style="margin: 0.5rem 0" />
               <div class="gacha-calculator-arsenal-breakdown">
                 <div class="gacha-calculator-arsenal-breakdown-row">
                   <div>
@@ -2227,8 +2232,17 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       }}<template v-if="arsenalBonusPulls"> + 赠送 {{ arsenalBonusPulls }}</template
                       >）
                     </span>
+                    <span class="gacha-calculator-arsenal-breakdown-note">
+                      特许凭证抽数超过 30 时，会计入赠送的 10 抽
+                    </span>
                   </div>
-                  <strong>{{ arsenalPullQuota }}</strong>
+                  <div class="gacha-calculator-arsenal-breakdown-value">
+                    <img
+                      alt="武库配额"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                    />
+                    <strong>{{ arsenalPullQuota }}</strong>
+                  </div>
                 </div>
                 <div class="gacha-calculator-arsenal-breakdown-row">
                   <div>
@@ -2238,38 +2252,51 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       {{ arsenalCalculationDays }} 天 × {{ ARSENAL_DAILY_CREDIT_QUOTA }}
                     </span>
                   </div>
-                  <strong>{{ arsenalRoutineQuota }}</strong>
+                  <div class="gacha-calculator-arsenal-breakdown-value">
+                    <img
+                      alt="武库配额"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                    />
+                    <strong>{{ arsenalRoutineQuota }}</strong>
+                  </div>
                 </div>
                 <div class="gacha-calculator-arsenal-breakdown-row">
                   <div>
                     <strong>氪金</strong>
+                    <span>共氪金 {{ numberFloor(paidResourcesTotalPrice, 2) }} 元</span>
                   </div>
-                  <strong>{{ arsenalRechargeQuota }}</strong>
+                  <div class="gacha-calculator-arsenal-breakdown-value">
+                    <img
+                      alt="武库配额"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                    />
+                    <strong>{{ arsenalRechargeQuota }}</strong>
+                  </div>
                 </div>
                 <div class="gacha-calculator-arsenal-breakdown-row">
                   <div>
                     <strong>源石分配</strong>
                     <span>
-                      {{ arsenalOriginiumAllocationValue }} ×
+                      {{ arsenalOriginiumAllocationValue }} 源石 ×
                       {{ ORIGINIUM_WEAPON_QUOTA_RATE }}
                     </span>
                   </div>
-                  <strong>{{ arsenalOriginiumQuota }}</strong>
+                  <div class="gacha-calculator-arsenal-breakdown-value">
+                    <img
+                      alt="武库配额"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                    />
+                    <strong>{{ arsenalOriginiumQuota }}</strong>
+                  </div>
                 </div>
               </div>
               <div class="gacha-calculator-arsenal-total">
                 <span>武库配额合计</span>
-                <div>
-                  <img
-                    alt="武库配额"
-                    class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
-                  />
-                  <strong>{{ arsenalQuotaResult }}</strong>
-                </div>
-              </div>
-              <div class="gacha-calculator-arsenal-note">
-                特许凭证抽数超过 30 时，抽卡获得部分会计入赠送的 10 抽。
+                <img
+                  alt="武库配额"
+                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                />
+                <strong>{{ arsenalQuotaResult }}</strong>
               </div>
             </div>
           </v-expansion-panel-text>
@@ -2916,6 +2943,18 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   box-shadow: inset 0 -1px var(--gacha-calculator-border);
 }
 
+.gacha-calculator-arsenal-title {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.gacha-calculator-arsenal-title img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
 .gacha-calculator-pool-selector {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
@@ -3108,15 +3147,15 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   margin: 0 12px 0 0;
 }
 
-.gacha-calculator-originium-allocation,
 .gacha-calculator-arsenal-quota {
   padding: 0.5rem 0;
 }
 
-.gacha-calculator-arsenal-module-title {
-  margin-bottom: 10px;
-  font-size: 1rem;
-  font-weight: 700;
+.gacha-calculator-originium-allocation {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 4px;
 }
 
 .gacha-calculator-originium-source-row,
@@ -3129,9 +3168,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-originium-source-row {
-  margin-bottom: 16px;
-  padding-block: 10px;
-  border-block: 1px solid var(--theme-border-secondary);
+  margin-bottom: 8px;
 }
 
 .gacha-calculator-originium-source-item {
@@ -3162,24 +3199,26 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-originium-allocation-row {
-  display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
-  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
   align-items: center;
   padding: 4px 0;
 }
 
-.gacha-calculator-originium-allocation-label {
+.gacha-calculator-originium-allocation-copy {
   color: rgba(var(--v-theme-on-surface), 0.68);
   font-size: 0.85rem;
   font-weight: 400;
+  white-space: nowrap;
 }
 
 .gacha-calculator-originium-allocation-controls {
   display: grid;
-  grid-template-columns: 42px 38px minmax(80px, 96px) 38px 42px;
-  gap: 4px;
+  grid-template-columns: 34px 30px 56px 30px 34px;
+  gap: 3px;
   align-items: center;
+  flex: 0 0 auto;
   width: max-content;
   max-width: 100%;
 }
@@ -3196,9 +3235,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-originium-allocation-result {
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--theme-border-secondary);
+  margin-top: 8px;
 }
 
 .gacha-calculator-originium-allocation-total {
@@ -3219,11 +3256,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 }
 
 .gacha-calculator-arsenal-quota-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
   align-items: center;
-  margin: 0.75rem 0;
-  gap: 8px;
+  margin: 0 0 0.75rem;
+  padding-left: 4px;
+  gap: 12px;
 }
 
 .gacha-calculator-arsenal-quota-label {
@@ -3232,18 +3270,39 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   white-space: nowrap;
 }
 
-.gacha-calculator-arsenal-quota-input-field {
-  flex: 1;
-  min-width: 60px;
+.gacha-calculator-arsenal-coefficient-control {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  min-width: 0;
 }
 
-.gacha-calculator-arsenal-quota-btn {
-  white-space: nowrap;
+.gacha-calculator-arsenal-coefficient-toggle {
+  display: flex;
+  width: 100%;
+  max-width: 320px;
+}
+
+.gacha-calculator-arsenal-coefficient-toggle :deep(.v-btn) {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-inline: 6px;
   font-size: 0.75rem;
+  letter-spacing: 0;
+}
+
+.gacha-calculator-arsenal-coefficient-help {
+  display: grid;
+  gap: 6px;
+  line-height: 1.5;
 }
 
 .gacha-calculator-arsenal-breakdown {
   display: grid;
+  overflow: hidden;
+  border: 1px solid var(--theme-border-secondary);
+  border-radius: 4px;
+  background: rgba(var(--v-theme-on-surface), 0.025);
 }
 
 .gacha-calculator-arsenal-breakdown-row {
@@ -3251,8 +3310,16 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 16px;
   align-items: center;
-  padding: 11px 4px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--theme-border-secondary);
+}
+
+.gacha-calculator-arsenal-breakdown-row:nth-child(even) {
+  background: rgba(var(--v-theme-primary), 0.05);
+}
+
+.gacha-calculator-arsenal-breakdown-row:last-child {
+  border-bottom: 0;
 }
 
 .gacha-calculator-arsenal-breakdown-row > div {
@@ -3266,35 +3333,47 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   font-size: 0.82rem;
 }
 
-.gacha-calculator-arsenal-breakdown-row > strong {
+.gacha-calculator-arsenal-breakdown-row .gacha-calculator-arsenal-breakdown-note {
+  color: rgba(var(--v-theme-on-surface), 0.48);
+  font-size: 0.75rem;
+}
+
+.gacha-calculator-arsenal-breakdown-row > .gacha-calculator-arsenal-breakdown-value {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 88px;
+}
+
+.gacha-calculator-arsenal-breakdown-value img {
+  width: 20px;
+  height: 20px;
+}
+
+.gacha-calculator-arsenal-breakdown-value strong {
   font-size: 1.1rem;
   font-variant-numeric: tabular-nums;
 }
 
 .gacha-calculator-arsenal-total {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 6px;
   padding-top: 16px;
   font-weight: 700;
 }
 
-.gacha-calculator-arsenal-total > div {
-  display: flex;
-  align-items: center;
+.gacha-calculator-arsenal-total img {
+  width: 28px;
+  height: 28px;
 }
 
 .gacha-calculator-arsenal-total strong {
   color: rgb(33, 150, 243);
   font-size: 1.5rem;
   font-variant-numeric: tabular-nums;
-}
-
-.gacha-calculator-arsenal-note {
-  margin-top: 10px;
-  color: rgba(var(--v-theme-on-surface), 0.58);
-  font-size: 0.78rem;
 }
 
 .placeholder-block {
@@ -3437,18 +3516,6 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
   .gacha-calculator-originium-allocation-total strong {
     font-size: 1rem;
-  }
-
-  .gacha-calculator-originium-allocation-row {
-    grid-template-columns: 1fr;
-  }
-
-  .gacha-calculator-arsenal-quota-label {
-    width: 100%;
-  }
-
-  .gacha-calculator-arsenal-quota-input-field {
-    flex-basis: 100%;
   }
 
   .gacha-calculator-pie-chart {
