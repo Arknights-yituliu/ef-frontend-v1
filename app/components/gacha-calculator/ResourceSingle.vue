@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import type { Reward } from '#shared/types/gacha-calculator';
 import { itemIdDict } from '#shared/utils/gacha-calculator';
-const props = defineProps<Reward>();
+const props = defineProps<
+  Reward & {
+    weaponQuota?: number;
+  }
+>();
+
+const WEAPON_QUOTA_ICON_URL =
+  'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png';
 
 /**
  *
@@ -26,6 +33,17 @@ function getImageUrl(itemId: string): string {
         >
           <img alt="existing" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(name)" />
           × {{ value }}
+        </div>
+        <div
+          v-if="props.weaponQuota && props.weaponQuota > 0"
+          class="gacha-calculator-resource-single-content"
+        >
+          <img
+            alt="武库配额"
+            class="gacha-calculator-gacha-item-icon"
+            :src="WEAPON_QUOTA_ICON_URL"
+          />
+          × {{ props.weaponQuota }}
         </div>
         <!-- <div class="gacha-calculator-resource-single-version">{{ props.version }}</div> -->
       </div>

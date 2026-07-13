@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
+import { getPackTotalWeaponQuota } from '#shared/utils/gameData/pack';
 import { computed } from 'vue';
 import { packs } from '@/custom/core/packs';
 
@@ -41,6 +42,8 @@ const protocolCustomizationActive = computed({
   set: (val) => emit('update:modelValue', { ...props.modelValue, protocolCustomization: val }),
 });
 
+const protocolCustomizationWeaponQuota = getPackTotalWeaponQuota(packs['bp_track_pay'], false);
+
 // 计算月卡天数（自动根据当前日期和池子结束日期计算）
 const monthlyPassDays = computed(() => {
   if (!props.currentPool) {
@@ -77,11 +80,12 @@ const monthlyPassResources = computed(() => {
   };
 });
 
-// 判断是否为抽卡资源（玉、源石、抽卡券）
+// 判断是否为抽卡或武库配额资源
 function isGachaResource(itemId: string): boolean {
   return (
     itemId === 'item_originium_recharge' ||
     itemId === 'item_diamond' ||
+    itemId === 'item_gachabyproducts_weapongold' ||
     itemId.includes('ticketgacha_standard_single') ||
     itemId.includes('ticketgacha_special_single') ||
     itemId.includes('ticketgacha_special_single_lt') ||
@@ -89,7 +93,7 @@ function isGachaResource(itemId: string): boolean {
   );
 }
 
-// 礼包列表（排除月卡、通行证和源石相关的礼包，以及0抽的礼包）
+// 礼包列表（排除月卡、通行证和源石相关的礼包，以及不含抽卡或武库配额的礼包）
 const giftPacks = computed(() => {
   const packList = [];
   const excludedCategories = new Set([
@@ -103,9 +107,10 @@ const giftPacks = computed(() => {
       continue;
     }
 
-    // 计算礼包的抽数，过滤掉0抽的礼包
+    // 直接提供武库配额的礼包也需要在攒抽计算器中可选
     const pulls = calculatePackPulls(pack);
-    if (pulls <= 0) {
+    const weaponQuota = getPackTotalWeaponQuota(pack, false);
+    if (pulls <= 0 && weaponQuota <= 0) {
       continue;
     }
 
@@ -327,6 +332,14 @@ function packName(pack: PackData): string {
             src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
           />
           × 36
+        </div>
+        <div class="gacha-calculator-resource-single-content">
+          <img
+            alt="武库配额"
+            class="gacha-calculator-gacha-item-icon"
+            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+          />
+          × {{ protocolCustomizationWeaponQuota }}
         </div>
         <div class="gacha-calculator-resource-single-content">¥68</div>
       </div>
