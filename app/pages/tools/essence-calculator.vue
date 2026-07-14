@@ -133,9 +133,9 @@
                                   <v-tooltip activator="parent" location="bottom">
                                     {{
                                       [
-                                        t(requiredEssenceStats[index]!.attribute),
-                                        t(requiredEssenceStats[index]!.secondary),
-                                        t(requiredEssenceStats[index]!.skill),
+                                        requiredEssenceStats[index]!.attribute ? t(requiredEssenceStats[index]!.attribute) : "",
+                                        requiredEssenceStats[index]!.secondary ? t(requiredEssenceStats[index]!.secondary) : "",
+                                        requiredEssenceStats[index]!.skill ? t(requiredEssenceStats[index]!.skill) : "",
                                       ]
                                         .filter(Boolean)
                                         .join('、')
@@ -204,9 +204,9 @@
                                   <v-tooltip activator="parent" location="bottom">
                                     {{
                                       [
-                                        t(weapons[weaponId]!.stats.attribute),
-                                        t(weapons[weaponId]!.stats.secondary),
-                                        t(weapons[weaponId]!.stats.skill),
+                                        weapons[weaponId]!.stats.attribute ? t(weapons[weaponId]!.stats.attribute) : "",
+                                        weapons[weaponId]!.stats.secondary ? t(weapons[weaponId]!.stats.secondary) : "",
+                                        weapons[weaponId]!.stats.skill ? t(weapons[weaponId]!.stats.skill) : "",
                                       ]
                                         .filter(Boolean)
                                         .join('、')
@@ -330,7 +330,7 @@
                       variant="outlined"
                     />
                     <v-chip v-else color="primary" variant="flat">
-                      {{ t(stat.attribute) }}
+                      {{ stat.attribute ? t(stat.attribute) : "" }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="2">
@@ -345,7 +345,7 @@
                       variant="outlined"
                     />
                     <v-chip v-else color="secondary" variant="flat">
-                      {{ t(stat.secondary) }}
+                      {{ stat.secondary ? t(stat.secondary) : "" }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="2">
@@ -360,7 +360,7 @@
                       variant="outlined"
                     />
                     <v-chip v-else color="success" variant="flat">
-                      {{ t(stat.skill) }}
+                      {{ stat.skill ? t(stat.skill) : "" }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="3">
@@ -553,7 +553,7 @@ function getEssenceStatDescription(stat: EssenceStat): string {
   if (stat.isCustom) {
     return t('page.tools.essenceCalculator.custom');
   } else {
-    return t(weapons[stat.weaponId!]?.weaponName) ?? stat.weaponId!;
+    return weapons[stat.weaponId!]?.weaponName ? t(weapons[stat.weaponId!]?.weaponName!) : stat.weaponId!;
   }
 }
 
