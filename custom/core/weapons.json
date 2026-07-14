@@ -1,849 +1,849 @@
 {
   "wpn_claym_0003": {
     "weaponId": "wpn_claym_0003",
-    "weaponName": "工业零点一",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0003_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 4,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "攻击提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_claym_0004": {
     "weaponId": "wpn_claym_0004",
-    "weaponName": "典范",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0004_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "攻击提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_claym_0006": {
     "weaponId": "wpn_claym_0006",
-    "weaponName": "昔日精品",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0006_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "生命提升",
-      "skill": "效益"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.hp",
+      "skill": "weapon.stat.treatment"
     }
   },
   "wpn_claym_0007": {
     "weaponId": "wpn_claym_0007",
-    "weaponName": "大雷斑",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0007_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 6,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "生命提升",
-      "skill": "医疗"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.hp",
+      "skill": "weapon.stat.medicant"
     }
   },
   "wpn_claym_0008": {
     "weaponId": "wpn_claym_0008",
-    "weaponName": "破碎君王",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0008_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 6,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "暴击率提升",
-      "skill": "粉碎"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.critRate",
+      "skill": "weapon.stat.crusher"
     }
   },
   "wpn_claym_0009": {
     "weaponId": "wpn_claym_0009",
-    "weaponName": "淬火者",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0009_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 4,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "生命提升",
-      "skill": "粉碎"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.hp",
+      "skill": "weapon.stat.crusher"
     }
   },
   "wpn_claym_0010": {
     "weaponId": "wpn_claym_0010",
-    "weaponName": "达尔霍夫7",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0010_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 3,
     "stats": {
-      "attribute": "主能力提升",
+      "attribute": "weapon.stat.main",
       "secondary": null,
-      "skill": "强攻"
+      "skill": "weapon.stat.assault"
     }
   },
   "wpn_claym_0011": {
     "weaponId": "wpn_claym_0011",
-    "weaponName": "探骊",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0011_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 5,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "迸发"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.detonate"
     }
   },
   "wpn_claym_0012": {
     "weaponId": "wpn_claym_0012",
-    "weaponName": "终点之声",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0012_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 5,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "生命提升",
-      "skill": "医疗"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.hp",
+      "skill": "weapon.stat.medicant"
     }
   },
   "wpn_claym_0013": {
     "weaponId": "wpn_claym_0013",
-    "weaponName": "赫拉芬格",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0013_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 6,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "攻击提升",
-      "skill": "迸发"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.detonate"
     }
   },
   "wpn_claym_0014": {
     "weaponId": "wpn_claym_0014",
-    "weaponName": "古渠",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0014_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 5,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "源石技艺提升",
-      "skill": "残暴"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.artsIntensity",
+      "skill": "weapon.stat.brutality"
     }
   },
   "wpn_claym_0015": {
     "weaponId": "wpn_claym_0015",
-    "weaponName": "O.B.J.重荷",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0015_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 5,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "生命提升",
-      "skill": "效益"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.hp",
+      "skill": "weapon.stat.treatment"
     }
   },
   "wpn_claym_0016": {
     "weaponId": "wpn_claym_0016",
-    "weaponName": "幻想苦痛",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0016_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 6,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "源石技艺提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.artsIntensity",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_claym_0017": {
     "weaponId": "wpn_claym_0017",
-    "weaponName": "赤缨",
-    "weaponType": "双手剑",
+    "weaponName": "weapon.name.wpn_claym_0017_name",
+    "weaponType": "weapon.type.greatSword",
     "rarity": 6,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "攻击提升",
-      "skill": "巧技"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.combative"
     }
   },
   "wpn_funnel_0001": {
     "weaponId": "wpn_funnel_0001",
-    "weaponName": "全自动骇新星",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0001_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 4,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "法术伤害提升",
-      "skill": "昂扬"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.artsBoost",
+      "skill": "weapon.stat.inspiring"
     }
   },
   "wpn_funnel_0002": {
     "weaponId": "wpn_funnel_0002",
-    "weaponName": "吉米尼12",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0002_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 3,
     "stats": {
-      "attribute": "主能力提升",
+      "attribute": "weapon.stat.main",
       "secondary": null,
-      "skill": "强攻"
+      "skill": "weapon.stat.assault"
     }
   },
   "wpn_funnel_0003": {
     "weaponId": "wpn_funnel_0003",
-    "weaponName": "荧光雷羽",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0003_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 4,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "攻击提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_funnel_0004": {
     "weaponId": "wpn_funnel_0004",
-    "weaponName": "迷失荒野",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0004_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 5,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "电磁伤害提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.electricDmg",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_funnel_0005": {
     "weaponId": "wpn_funnel_0005",
-    "weaponName": "悼亡诗",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0005_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 5,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "攻击提升",
-      "skill": "夜幕"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.twilight"
     }
   },
   "wpn_funnel_0006": {
     "weaponId": "wpn_funnel_0006",
-    "weaponName": "作品：蚀迹",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0006_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "自然伤害提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.natureDmg",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_funnel_0007": {
     "weaponId": "wpn_funnel_0007",
-    "weaponName": "莫奈何",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0007_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 5,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "昂扬"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.inspiring"
     }
   },
   "wpn_funnel_0008": {
     "weaponId": "wpn_funnel_0008",
-    "weaponName": "爆破单元",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0008_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "源石技艺提升",
-      "skill": "迸发"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.artsIntensity",
+      "skill": "weapon.stat.detonate"
     }
   },
   "wpn_funnel_0009": {
     "weaponId": "wpn_funnel_0009",
-    "weaponName": "遗忘",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0009_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "法术伤害提升",
-      "skill": "夜幕"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.artsBoost",
+      "skill": "weapon.stat.twilight"
     }
   },
   "wpn_funnel_0010": {
     "weaponId": "wpn_funnel_0010",
-    "weaponName": "骑士精神",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0010_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "生命提升",
-      "skill": "医疗"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.hp",
+      "skill": "weapon.stat.medicant"
     }
   },
   "wpn_funnel_0011": {
     "weaponId": "wpn_funnel_0011",
-    "weaponName": "使命必达",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0011_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "追袭"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.pursuit"
     }
   },
   "wpn_funnel_0012": {
     "weaponId": "wpn_funnel_0012",
-    "weaponName": "布道自由",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0012_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 5,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "治疗效率提升",
-      "skill": "医疗"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.treatmentEfficiency",
+      "skill": "weapon.stat.medicant"
     }
   },
   "wpn_funnel_0013": {
     "weaponId": "wpn_funnel_0013",
-    "weaponName": "沧溟星梦",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0013_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "治疗效率提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.treatmentEfficiency",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_funnel_0014": {
     "weaponId": "wpn_funnel_0014",
-    "weaponName": "O.B.J.术识",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0014_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 5,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "源石技艺提升",
-      "skill": "追袭"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.artsIntensity",
+      "skill": "weapon.stat.pursuit"
     }
   },
   "wpn_funnel_0015": {
     "weaponId": "wpn_funnel_0015",
-    "weaponName": "孤舟",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0015_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "攻击提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_funnel_0017": {
     "weaponId": "wpn_funnel_0017",
-    "weaponName": "雾中微光",
-    "weaponType": "施术单元",
+    "weaponName": "weapon.name.wpn_funnel_0017_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "电磁伤害提升",
-      "skill": "效益"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.electricDmg",
+      "skill": "weapon.stat.treatment"
     }
   },
   "wpn_lance_0003": {
     "weaponId": "wpn_lance_0003",
-    "weaponName": "寻路者道标",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0003_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 4,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "攻击提升",
-      "skill": "昂扬"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.inspiring"
     }
   },
   "wpn_lance_0004": {
     "weaponId": "wpn_lance_0004",
-    "weaponName": "嵌合正义",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0004_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 5,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "残暴"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.brutality"
     }
   },
   "wpn_lance_0006": {
     "weaponId": "wpn_lance_0006",
-    "weaponName": "向心之引",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0006_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 5,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "电磁伤害提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.electricDmg",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_lance_0007": {
     "weaponId": "wpn_lance_0007",
-    "weaponName": "灯火使命",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0007_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "效益"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.treatment"
     }
   },
   "wpn_lance_0008": {
     "weaponId": "wpn_lance_0008",
-    "weaponName": "天使杀手",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0008_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 4,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "法术伤害提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.artsBoost",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_lance_0009": {
     "weaponId": "wpn_lance_0009",
-    "weaponName": "奥佩罗77",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0009_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 3,
     "stats": {
-      "attribute": "主能力提升",
+      "attribute": "weapon.stat.main",
       "secondary": null,
-      "skill": "强攻"
+      "skill": "weapon.stat.assault"
     }
   },
   "wpn_lance_0010": {
     "weaponId": "wpn_lance_0010",
-    "weaponName": "骁勇",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0010_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "物理伤害提升",
-      "skill": "巧技"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.physicalDmg",
+      "skill": "weapon.stat.combative"
     }
   },
   "wpn_lance_0011": {
     "weaponId": "wpn_lance_0011",
-    "weaponName": "J.E.T.",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0011_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "攻击提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_lance_0012": {
     "weaponId": "wpn_lance_0012",
-    "weaponName": "负山",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0012_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "物理伤害提升",
-      "skill": "效益"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.physicalDmg",
+      "skill": "weapon.stat.treatment"
     }
   },
   "wpn_lance_0013": {
     "weaponId": "wpn_lance_0013",
-    "weaponName": "O.B.J.尖峰",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0013_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 5,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "物理伤害提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.physicalDmg",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_lance_0015": {
     "weaponId": "wpn_lance_0015",
-    "weaponName": "镀红祝福",
-    "weaponType": "长柄武器",
+    "weaponName": "weapon.name.wpn_lance_0015_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "灼热伤害提升",
-      "skill": "流转"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.heatDmg",
+      "skill": "weapon.stat.flow"
     }
   },
   "wpn_pistol_0001": {
     "weaponId": "wpn_pistol_0001",
-    "weaponName": "佩科5",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0001_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 3,
     "stats": {
-      "attribute": "主能力提升",
+      "attribute": "weapon.stat.main",
       "secondary": null,
-      "skill": "强攻"
+      "skill": "weapon.stat.assault"
     }
   },
   "wpn_pistol_0002": {
     "weaponId": "wpn_pistol_0002",
-    "weaponName": "呼啸守卫",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0002_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 4,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "攻击提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_pistol_0003": {
     "weaponId": "wpn_pistol_0003",
-    "weaponName": "长路",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0003_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 4,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "法术伤害提升",
-      "skill": "追袭"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.artsBoost",
+      "skill": "weapon.stat.pursuit"
     }
   },
   "wpn_pistol_0004": {
     "weaponId": "wpn_pistol_0004",
-    "weaponName": "理性告别",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0004_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 5,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "灼热伤害提升",
-      "skill": "追袭"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.heatDmg",
+      "skill": "weapon.stat.pursuit"
     }
   },
   "wpn_pistol_0005": {
     "weaponId": "wpn_pistol_0005",
-    "weaponName": "领航者",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0005_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 6,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "寒冷伤害提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.cryoDmg",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_pistol_0006": {
     "weaponId": "wpn_pistol_0006",
-    "weaponName": "作品：众生",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0006_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 5,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "法术伤害提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.artsBoost",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_pistol_0007": {
     "weaponId": "wpn_pistol_0007",
-    "weaponName": "望乡",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0007_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "寒冷伤害提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.cryoDmg",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_pistol_0008": {
     "weaponId": "wpn_pistol_0008",
-    "weaponName": "楔子",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0008_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "暴击率提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.critRate",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_pistol_0009": {
     "weaponId": "wpn_pistol_0009",
-    "weaponName": "同类相食",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0009_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "法术伤害提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.artsBoost",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_pistol_0010": {
     "weaponId": "wpn_pistol_0010",
-    "weaponName": "艺术暴君",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0010_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 6,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "暴击率提升",
-      "skill": "切骨"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.critRate",
+      "skill": "weapon.stat.fracture"
     }
   },
   "wpn_pistol_0011": {
     "weaponId": "wpn_pistol_0011",
-    "weaponName": "落草",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0011_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "攻击提升",
-      "skill": "迸发"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.detonate"
     }
   },
   "wpn_pistol_0012": {
     "weaponId": "wpn_pistol_0012",
-    "weaponName": "O.B.J.迅极",
-    "weaponType": "手铳",
+    "weaponName": "weapon.name.wpn_pistol_0012_name",
+    "weaponType": "weapon.type.handcannon",
     "rarity": 5,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "迸发"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.detonate"
     }
   },
   "wpn_sword_0003": {
     "weaponId": "wpn_sword_0003",
-    "weaponName": "塔尔11",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0003_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 3,
     "stats": {
-      "attribute": "主能力提升",
+      "attribute": "weapon.stat.main",
       "secondary": null,
-      "skill": "强攻"
+      "skill": "weapon.stat.assault"
     }
   },
   "wpn_sword_0005": {
     "weaponId": "wpn_sword_0005",
-    "weaponName": "钢铁余音",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0005_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 5,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "物理伤害提升",
-      "skill": "巧技"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.physicalDmg",
+      "skill": "weapon.stat.combative"
     }
   },
   "wpn_sword_0006": {
     "weaponId": "wpn_sword_0006",
-    "weaponName": "熔铸火焰",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0006_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "攻击提升",
-      "skill": "夜幕"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.twilight"
     }
   },
   "wpn_sword_0007": {
     "weaponId": "wpn_sword_0007",
-    "weaponName": "坚城铸造者",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0007_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 5,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "昂扬"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.inspiring"
     }
   },
   "wpn_sword_0008": {
     "weaponId": "wpn_sword_0008",
-    "weaponName": "显锋",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0008_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 4,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "物理伤害提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.physicalDmg",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_sword_0009": {
     "weaponId": "wpn_sword_0009",
-    "weaponName": "浪潮",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0009_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 4,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "攻击提升",
-      "skill": "追袭"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.pursuit"
     }
   },
   "wpn_sword_0010": {
     "weaponId": "wpn_sword_0010",
-    "weaponName": "黯色火炬",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0010_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "灼热伤害提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.heatDmg",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_sword_0011": {
     "weaponId": "wpn_sword_0011",
-    "weaponName": "扶摇",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0011_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "暴击率提升",
-      "skill": "夜幕"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.critRate",
+      "skill": "weapon.stat.twilight"
     }
   },
   "wpn_sword_0012": {
     "weaponId": "wpn_sword_0012",
-    "weaponName": "热熔切割器",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0012_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "攻击提升",
-      "skill": "流转"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.flow"
     }
   },
   "wpn_sword_0013": {
     "weaponId": "wpn_sword_0013",
-    "weaponName": "显赫声名",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0013_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "物理伤害提升",
-      "skill": "残暴"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.physicalDmg",
+      "skill": "weapon.stat.brutality"
     }
   },
   "wpn_sword_0014": {
     "weaponId": "wpn_sword_0014",
-    "weaponName": "白夜新星",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0014_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "源石技艺提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.artsIntensity",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_sword_0015": {
     "weaponId": "wpn_sword_0015",
-    "weaponName": "仰止",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0015_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 5,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "物理伤害提升",
-      "skill": "夜幕"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.physicalDmg",
+      "skill": "weapon.stat.twilight"
     }
   },
   "wpn_sword_0016": {
     "weaponId": "wpn_sword_0016",
-    "weaponName": "不知归",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0016_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "攻击提升",
-      "skill": "流转"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.flow"
     }
   },
   "wpn_sword_0017": {
     "weaponId": "wpn_sword_0017",
-    "weaponName": "光荣记忆",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0017_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "暴击率提升",
-      "skill": "夜幕"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.critRate",
+      "skill": "weapon.stat.twilight"
     }
   },
   "wpn_sword_0018": {
     "weaponId": "wpn_sword_0018",
-    "weaponName": "十二问",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0018_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 5,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "攻击提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_sword_0019": {
     "weaponId": "wpn_sword_0019",
-    "weaponName": "O.B.J.轻芒",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0019_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 5,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "攻击提升",
-      "skill": "流转"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.flow"
     }
   },
   "wpn_sword_0020": {
     "weaponId": "wpn_sword_0020",
-    "weaponName": "逐鳞3.0",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0020_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 5,
     "stats": {
-      "attribute": "力量提升",
-      "secondary": "寒冷伤害提升",
-      "skill": "压制"
+      "attribute": "weapon.stat.strength",
+      "secondary": "weapon.stat.cryoDmg",
+      "skill": "weapon.stat.suppression"
     }
   },
   "wpn_sword_0021": {
     "weaponId": "wpn_sword_0021",
-    "weaponName": "宏愿",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0021_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "攻击提升",
-      "skill": "附术"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.attack",
+      "skill": "weapon.stat.infliction"
     }
   },
   "wpn_sword_0022": {
     "weaponId": "wpn_sword_0022",
-    "weaponName": "狼之绯",
-    "weaponType": "单手剑",
+    "weaponName": "weapon.name.wpn_sword_0022_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "敏捷提升",
-      "secondary": "暴击率提升",
-      "skill": "切骨"
+      "attribute": "weapon.stat.agility",
+      "secondary": "weapon.stat.critRate",
+      "skill": "weapon.stat.fracture"
     }
   },
   "四二式·肃阵": {
     "weaponId": "四二式·肃阵",
-    "weaponName": "四二式·肃阵",
-    "weaponType": "施术单元",
+    "weaponName": "四二式·肃阵_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "迸发"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.detonate"
     }
   },
   "联结点": {
     "weaponId": "联结点",
-    "weaponName": "联结点",
-    "weaponType": "施术单元",
+    "weaponName": "联结点_name",
+    "weaponType": "weapon.type.artsUnit",
     "rarity": 6,
     "stats": {
-      "attribute": "智识提升",
-      "secondary": "终结技充能效率提升",
-      "skill": "效益"
+      "attribute": "weapon.stat.intellect",
+      "secondary": "weapon.stat.ultimateGain",
+      "skill": "weapon.stat.treatment"
     }
   },
   "曜夜的首演": {
     "weaponId": "曜夜的首演",
-    "weaponName": "曜夜的首演",
-    "weaponType": "长柄武器",
+    "weaponName": "曜夜的首演_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "治疗效率提升",
-      "skill": "医疗"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.treatmentEfficiency",
+      "skill": "weapon.stat.medicant"
     }
   },
   "黄金时代": {
     "weaponId": "黄金时代",
-    "weaponName": "黄金时代",
-    "weaponType": "长柄武器",
+    "weaponName": "黄金时代_name",
+    "weaponType": "weapon.type.polearm",
     "rarity": 6,
     "stats": {
-      "attribute": "意志提升",
-      "secondary": "治疗效率提升",
-      "skill": "追袭"
+      "attribute": "weapon.stat.will",
+      "secondary": "weapon.stat.treatmentEfficiency",
+      "skill": "weapon.stat.pursuit"
     }
   },
   "遥望": {
     "weaponId": "遥望",
-    "weaponName": "遥望",
-    "weaponType": "单手剑",
+    "weaponName": "遥望_name",
+    "weaponType": "weapon.type.sword",
     "rarity": 6,
     "stats": {
-      "attribute": "主能力提升",
-      "secondary": "源石技艺提升",
-      "skill": "强攻"
+      "attribute": "weapon.stat.main",
+      "secondary": "weapon.stat.artsIntensity",
+      "skill": "weapon.stat.assault"
     }
   }
 }

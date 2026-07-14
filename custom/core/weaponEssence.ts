@@ -51,51 +51,51 @@ export interface WeaponPreset {
 }
 
 /** 全部的基础属性 */
-export const allAttributeStats = ['敏捷提升', '力量提升', '意志提升', '智识提升', '主能力提升'];
+export const allAttributeStats = ['weapon.stat.agility', 'weapon.stat.strength', 'weapon.stat.will', 'weapon.stat.intellect', 'weapon.stat.main'];
 /** 全部的附加属性 */
 export const allSecondaryStats = [
-  '攻击提升',
-  '生命提升',
-  '物理伤害提升',
-  '灼热伤害提升',
-  '电磁伤害提升',
-  '寒冷伤害提升',
-  '自然伤害提升',
-  '暴击率提升',
-  '源石技艺提升',
-  '终结技充能效率提升',
-  '法术伤害提升',
-  '治疗效率提升',
+  'weapon.stat.attack',
+  'weapon.stat.hp',
+  'weapon.stat.physicalDmg',
+  'weapon.stat.heatDmg',
+  'weapon.stat.electricDmg',
+  'weapon.stat.cryoDmg',
+  'weapon.stat.natureDmg',
+  'weapon.stat.critRate',
+  'weapon.stat.artsIntensity',
+  'weapon.stat.ultimateGain',
+  'weapon.stat.artsBoost',
+  'weapon.stat.treatmentEfficiency',
 ];
 /** 全部的技能属性 */
 export const allSkillStats = [
-  '强攻',
-  '压制',
-  '追袭',
-  '粉碎',
-  '昂扬',
-  '巧技',
-  '残暴',
-  '附术',
-  '医疗',
-  '切骨',
-  '迸发',
-  '夜幕',
-  '流转',
-  '效益',
+  'weapon.stat.assault',
+  'weapon.stat.suppression',
+  'weapon.stat.pursuit',
+  'weapon.stat.crusher',
+  'weapon.stat.inspiring',
+  'weapon.stat.combative',
+  'weapon.stat.brutality',
+  'weapon.stat.infliction',
+  'weapon.stat.medicant',
+  'weapon.stat.fracture',
+  'weapon.stat.detonate',
+  'weapon.stat.twilight',
+  'weapon.stat.flow',
+  'weapon.stat.treatment',
 ];
 
 /** 能量淤积点信息（由 scripts/tasks/makeWeapons.ts 自动生成） */
 export const energyAlluviums: Record<string, EnergyAlluvium> = rawEnergyAlluviums;
 
 /** 武器类型 */
-export const weaponTypes = ['单手剑', '双手剑', '长柄武器', '手铳', '施术单元'];
+export const weaponTypes = ['weapon.type.sword', 'weapon.type.greatSword', 'weapon.type.polearm', 'weapon.type.handcannon', 'weapon.type.artsUnit'];
 export const weaponTypeToGroupIconId: Record<string, string> = {
-  单手剑: 'icon_wiki_group_weapon_sword',
-  双手剑: 'icon_wiki_group_weapon_claymores',
-  长柄武器: 'icon_wiki_group_weapon_lance',
-  手铳: 'icon_wiki_group_weapon_pistol',
-  施术单元: 'icon_wiki_group_weapon_wand',
+  'weapon.type.sword': 'icon_wiki_group_weapon_sword',
+  'weapon.type.greatSword': 'icon_wiki_group_weapon_claymores',
+  'weapon.type.polearm': 'icon_wiki_group_weapon_lance',
+  'weapon.type.handcannon': 'icon_wiki_group_weapon_pistol',
+  'weapon.type.artsUnit': 'icon_wiki_group_weapon_wand',
 };
 
 /** 武器稀有度 */

@@ -65,7 +65,7 @@
 
                           <div class="pl-1 mb-6">
                             <v-chip color="info" label variant="outlined">
-                              {{ choice.battleName }}
+                              {{ t(choice.battleName) }}
                             </v-chip>
                           </div>
 
@@ -90,7 +90,7 @@
                                   label
                                   variant="flat"
                                 >
-                                  {{ attr }}
+                                  {{ t(attr) }}
                                 </v-chip>
                               </div>
                             </div>
@@ -101,7 +101,7 @@
                                 {{ t('page.tools.essenceCalculator.selectSecondaryStats') }}
                               </div>
                               <v-chip color="teal" label variant="flat">
-                                {{ choice.selectedSecondary }}
+                                {{ t(choice.selectedSecondary) }}
                               </v-chip>
                             </div>
 
@@ -111,7 +111,7 @@
                                 {{ t('page.tools.essenceCalculator.selectSkillStats') }}
                               </div>
                               <v-chip color="blue" label variant="flat">
-                                {{ choice.selectedSkill }}
+                                {{ t(choice.selectedSkill) }}
                               </v-chip>
                             </div>
                           </div>
@@ -133,9 +133,9 @@
                                   <v-tooltip activator="parent" location="bottom">
                                     {{
                                       [
-                                        requiredEssenceStats[index]!.attribute,
-                                        requiredEssenceStats[index]!.secondary,
-                                        requiredEssenceStats[index]!.skill,
+                                        t(requiredEssenceStats[index]!.attribute),
+                                        t(requiredEssenceStats[index]!.secondary),
+                                        t(requiredEssenceStats[index]!.skill),
                                       ]
                                         .filter(Boolean)
                                         .join('、')
@@ -204,9 +204,9 @@
                                   <v-tooltip activator="parent" location="bottom">
                                     {{
                                       [
-                                        weapons[weaponId]!.stats.attribute,
-                                        weapons[weaponId]!.stats.secondary,
-                                        weapons[weaponId]!.stats.skill,
+                                        t(weapons[weaponId]!.stats.attribute),
+                                        t(weapons[weaponId]!.stats.secondary),
+                                        t(weapons[weaponId]!.stats.skill),
                                       ]
                                         .filter(Boolean)
                                         .join('、')
@@ -255,7 +255,7 @@
         <v-expansion-panels :model-value="['设置', '需求设定']" multiple>
           <!-- 设置 -->
           <v-expansion-panel value="设置">
-            <v-expansion-panel-title>设置</v-expansion-panel-title>
+            <v-expansion-panel-title>{{ t('page.tools.essenceCalculator.settings') }}</v-expansion-panel-title>
             <v-expansion-panel-text>
               <!-- 干员专武开关 -->
               <div class="d-flex align-center mb-6 mt-4 ga-2">
@@ -290,7 +290,7 @@
                   variant="flat"
                   @click="toggleBattle(battleId)"
                 >
-                  {{ alluvium.battleName }}
+                  {{ t(alluvium.battleName) }}
                 </v-chip>
               </div>
             </v-expansion-panel-text>
@@ -330,7 +330,7 @@
                       variant="outlined"
                     />
                     <v-chip v-else color="primary" variant="flat">
-                      {{ stat.attribute }}
+                      {{ t(stat.attribute) }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="2">
@@ -345,7 +345,7 @@
                       variant="outlined"
                     />
                     <v-chip v-else color="secondary" variant="flat">
-                      {{ stat.secondary }}
+                      {{ t(stat.secondary) }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="2">
@@ -360,7 +360,7 @@
                       variant="outlined"
                     />
                     <v-chip v-else color="success" variant="flat">
-                      {{ stat.skill }}
+                      {{ t(stat.skill) }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="3">
@@ -406,7 +406,7 @@
                       class="group-icon"
                       :src="getGroupIconUrl(weaponTypeToGroupIconId[weaponType]!)"
                     />
-                    <h3>{{ weaponType }}</h3>
+                    <h3>{{ t(weaponType) }}</h3>
                   </div>
                   <div class="weapon-grid">
                     <div
@@ -553,7 +553,7 @@ function getEssenceStatDescription(stat: EssenceStat): string {
   if (stat.isCustom) {
     return t('page.tools.essenceCalculator.custom');
   } else {
-    return weapons[stat.weaponId!]?.weaponName ?? stat.weaponId!;
+    return t(weapons[stat.weaponId!]?.weaponName) ?? stat.weaponId!;
   }
 }
 
