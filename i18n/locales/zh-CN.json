@@ -652,6 +652,10 @@
       "devGroup": {
         "title": "开发群 696486169",
         "desc": "如果有能力自己解决问题，可以加开发群"
+      },
+      "discord": {
+        "title": "Discord",
+        "desc": "Welcome to our Discord community!"
       }
     }
   }

@@ -650,6 +650,10 @@
       "devGroup": {
         "title": "Dev Group: 938710832",
         "desc": "For those capable of solving issues themselves"
+      },
+      "discord": {
+        "title": "Discord",
+        "desc": "Welcome to our Discord community!"
       }
     }
   }
