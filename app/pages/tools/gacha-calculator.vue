@@ -2246,6 +2246,22 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 </div>
                 <div class="gacha-calculator-arsenal-breakdown-row">
                   <div>
+                    <strong>源石分配</strong>
+                    <span>
+                      {{ arsenalOriginiumAllocationValue }} 源石 ×
+                      {{ ORIGINIUM_WEAPON_QUOTA_RATE }}
+                    </span>
+                  </div>
+                  <div class="gacha-calculator-arsenal-breakdown-value">
+                    <img
+                      alt="武库配额"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                    />
+                    <strong>{{ arsenalOriginiumQuota }}</strong>
+                  </div>
+                </div>
+                <div class="gacha-calculator-arsenal-breakdown-row">
+                  <div>
                     <strong>周常与信用商店（估算）</strong>
                     <span>
                       {{ arsenalWeeklyCount }} 周 × {{ ARSENAL_WEEKLY_QUOTA }} +
@@ -2271,22 +2287,6 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <strong>{{ arsenalRechargeQuota }}</strong>
-                  </div>
-                </div>
-                <div class="gacha-calculator-arsenal-breakdown-row">
-                  <div>
-                    <strong>源石分配</strong>
-                    <span>
-                      {{ arsenalOriginiumAllocationValue }} 源石 ×
-                      {{ ORIGINIUM_WEAPON_QUOTA_RATE }}
-                    </span>
-                  </div>
-                  <div class="gacha-calculator-arsenal-breakdown-value">
-                    <img
-                      alt="武库配额"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
-                    />
-                    <strong>{{ arsenalOriginiumQuota }}</strong>
                   </div>
                 </div>
               </div>
