@@ -2,28 +2,76 @@
   "giftProps": {
     "category": {
       "tag_giftperfer_tundra_1": {
-        "zh-CN": ["谷地", "协议严选", "谷地·协议严选"],
-        "en-US": ["Valley", "Protocol", "Valley Protocol"]
+        "zh-CN": [
+          "谷地",
+          "协议严选",
+          "谷地·协议严选"
+        ],
+        "en-US": [
+          "Valley",
+          "Protocol",
+          "Valley Protocol"
+        ]
       },
       "tag_giftperfer_tundra_2": {
-        "zh-CN": ["谷地", "工业严选", "谷地·工业严选"],
-        "en-US": ["Valley", "Industry", "Valley Industry"]
+        "zh-CN": [
+          "谷地",
+          "工业严选",
+          "谷地·工业严选"
+        ],
+        "en-US": [
+          "Valley",
+          "Industry",
+          "Valley Industry"
+        ]
       },
       "tag_giftperfer_wuling_1": {
-        "zh-CN": ["武陵", "跑者严选", "武陵·跑者严选"],
-        "en-US": ["Wuling", "Runners", "Wuling Runners"]
+        "zh-CN": [
+          "武陵",
+          "跑者严选",
+          "武陵·跑者严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Runners",
+          "Wuling Runners"
+        ]
       },
       "tag_giftperfer_wuling_2": {
-        "zh-CN": ["武陵", "游商严选", "武陵·游商严选"],
-        "en-US": ["Wuling", "Merchants", "Wuling Merchants"]
+        "zh-CN": [
+          "武陵",
+          "游商严选",
+          "武陵·游商严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Merchants",
+          "Wuling Merchants"
+        ]
       },
       "tag_giftperfer_wuling_3": {
-        "zh-CN": ["武陵", "天师府严选", "武陵·天师府严选"],
-        "en-US": ["Wuling", "Tianshi Bureau", "Wuling Tianshi Bureau"]
+        "zh-CN": [
+          "武陵",
+          "天师府严选",
+          "武陵·天师府严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Tianshi Bureau",
+          "Wuling Tianshi Bureau"
+        ]
       },
       "tag_giftperfer_wuling_4": {
-        "zh-CN": ["武陵", "选剑局严选", "武陵·选剑局严选"],
-        "en-US": ["Wuling", "Swordmancers", "Wuling Swordmancers"]
+        "zh-CN": [
+          "武陵",
+          "选剑局严选",
+          "武陵·选剑局严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Swordmancers",
+          "Wuling Swordmancers"
+        ]
       }
     },
     "hobby": {
@@ -70,21 +118,16 @@
     }
   },
   "gift": {
-    "item_gift_jinlong_5": {
-      "id": "item_gift_jinlong_5",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_3",
-      "favorHobby": ["tag_hobby_culture", "tag_hobby_charity"]
-    },
     "item_gift_jinlong_6": {
       "id": "item_gift_jinlong_6",
       "rarity": 5,
       "isHot": true,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_wuling_4",
-      "favorHobby": ["tag_hobby_life", "tag_hobby_culture"]
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_culture"
+      ]
     },
     "item_gift_jinlong_7": {
       "id": "item_gift_jinlong_7",
@@ -92,7 +135,10 @@
       "isHot": true,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_wuling_4",
-      "favorHobby": ["tag_hobby_creativity", "tag_hobby_fashion"]
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_fashion"
+      ]
     },
     "item_gift_tundra_1": {
       "id": "item_gift_tundra_1",
@@ -100,7 +146,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_tundra_2",
-      "favorHobby": ["tag_hobby_tech", "tag_hobby_nature"]
+      "favorHobby": [
+        "tag_hobby_tech",
+        "tag_hobby_nature"
+      ]
     },
     "item_gift_tundra_2": {
       "id": "item_gift_tundra_2",
@@ -108,7 +157,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_tundra_2",
-      "favorHobby": ["tag_hobby_knowledge", "tag_hobby_culture"]
+      "favorHobby": [
+        "tag_hobby_knowledge",
+        "tag_hobby_culture"
+      ]
     },
     "item_gift_tundra_3": {
       "id": "item_gift_tundra_3",
@@ -116,7 +168,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_tundra_1",
-      "favorHobby": ["tag_hobby_exercise", "tag_hobby_art"]
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_art"
+      ]
     },
     "item_gift_tundra_4": {
       "id": "item_gift_tundra_4",
@@ -124,7 +179,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_tundra_1",
-      "favorHobby": ["tag_hobby_creativity", "tag_hobby_fashion"]
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_fashion"
+      ]
     },
     "item_gift_tundra_5": {
       "id": "item_gift_tundra_5",
@@ -132,7 +190,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_tundra_1",
-      "favorHobby": ["tag_hobby_nature", "tag_hobby_culture"]
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_culture"
+      ]
     },
     "item_gift_tundra_6": {
       "id": "item_gift_tundra_6",
@@ -140,7 +201,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_tundra_2",
-      "favorHobby": ["tag_hobby_art", "tag_hobby_life"]
+      "favorHobby": [
+        "tag_hobby_art",
+        "tag_hobby_life"
+      ]
     },
     "item_gift_tundra_7": {
       "id": "item_gift_tundra_7",
@@ -148,7 +212,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_tundra_1",
-      "favorHobby": ["tag_hobby_tech", "tag_hobby_charity"]
+      "favorHobby": [
+        "tag_hobby_tech",
+        "tag_hobby_charity"
+      ]
     },
     "item_gift_jinlong_1": {
       "id": "item_gift_jinlong_1",
@@ -156,7 +223,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_wuling_1",
-      "favorHobby": ["tag_hobby_life", "tag_hobby_culture"]
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_culture"
+      ]
     },
     "item_gift_jinlong_2": {
       "id": "item_gift_jinlong_2",
@@ -164,7 +234,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_wuling_1",
-      "favorHobby": ["tag_hobby_exercise", "tag_hobby_nature"]
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_nature"
+      ]
     },
     "item_gift_jinlong_3": {
       "id": "item_gift_jinlong_3",
@@ -172,7 +245,10 @@
       "isHot": false,
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_wuling_2",
-      "favorHobby": ["tag_hobby_creativity", "tag_hobby_knowledge"]
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_knowledge"
+      ]
     },
     "item_gift_jinlong_4": {
       "id": "item_gift_jinlong_4",
@@ -205,8 +281,13 @@
         "en-US": "Ember"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_exercise", "tag_hobby_tech"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_tech"
+      ]
     },
     "chr_0013_aglina": {
       "id": "chr_0013_aglina",
@@ -215,8 +296,13 @@
         "en-US": "Gilberta"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_fashion", "tag_hobby_culture"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_fashion",
+        "tag_hobby_culture"
+      ]
     },
     "chr_0015_lifeng": {
       "id": "chr_0015_lifeng",
@@ -225,8 +311,13 @@
         "en-US": "Lifeng"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_wuling_1"],
-      "favorHobby": ["tag_hobby_exercise", "tag_hobby_nature"]
+      "favorCategory": [
+        "tag_giftperfer_wuling_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_nature"
+      ]
     },
     "chr_0016_laevat": {
       "id": "chr_0016_laevat",
@@ -235,8 +326,13 @@
         "en-US": "Laevatain"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_creativity", "tag_hobby_life"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_life"
+      ]
     },
     "chr_0017_yvonne": {
       "id": "chr_0017_yvonne",
@@ -245,8 +341,13 @@
         "en-US": "Yvonne"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_fashion", "tag_hobby_tech"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_fashion",
+        "tag_hobby_tech"
+      ]
     },
     "chr_0025_ardelia": {
       "id": "chr_0025_ardelia",
@@ -255,8 +356,13 @@
         "en-US": "Ardelia"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_life", "tag_hobby_nature"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_nature"
+      ]
     },
     "chr_0026_lastrite": {
       "id": "chr_0026_lastrite",
@@ -265,8 +371,13 @@
         "en-US": "Last Rite"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_knowledge", "tag_hobby_charity"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_knowledge",
+        "tag_hobby_charity"
+      ]
     },
     "chr_0029_pograni": {
       "id": "chr_0029_pograni",
@@ -275,8 +386,13 @@
         "en-US": "Pogranichnik"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_wuling_1"],
-      "favorHobby": ["tag_hobby_culture", "tag_hobby_knowledge"]
+      "favorCategory": [
+        "tag_giftperfer_wuling_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_culture",
+        "tag_hobby_knowledge"
+      ]
     },
     "chr_0027_tangtang": {
       "id": "chr_0027_tangtang",
@@ -285,8 +401,13 @@
         "en-US": "Tangtang"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_wuling_2"],
-      "favorHobby": ["tag_hobby_nature", "tag_hobby_creativity"]
+      "favorCategory": [
+        "tag_giftperfer_wuling_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_creativity"
+      ]
     },
     "chr_0028_wulfa": {
       "id": "chr_0028_wulfa",
@@ -295,8 +416,13 @@
         "en-US": "Rossi"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_wuling_2"],
-      "favorHobby": ["tag_hobby_nature", "tag_hobby_exercise"]
+      "favorCategory": [
+        "tag_giftperfer_wuling_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_exercise"
+      ]
     },
     "chr_0030_zhuangfy": {
       "id": "chr_0030_zhuangfy",
@@ -305,8 +431,13 @@
         "en-US": "Zhuang Fangyi"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_wuling_3"],
-      "favorHobby": ["tag_hobby_charity", "tag_hobby_culture"]
+      "favorCategory": [
+        "tag_giftperfer_wuling_3"
+      ],
+      "favorHobby": [
+        "tag_hobby_charity",
+        "tag_hobby_culture"
+      ]
     },
     "chr_0031_mifu": {
       "id": "chr_0031_mifu",
@@ -315,8 +446,13 @@
         "en-US": "Mi Fu"
       },
       "rarity": 6,
-      "favorCategory": ["tag_giftperfer_wuling_4"],
-      "favorHobby": ["tag_hobby_exercise", "tag_hobby_life"]
+      "favorCategory": [
+        "tag_giftperfer_wuling_4"
+      ],
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_life"
+      ]
     },
     "chr_0033_camille": {
       "id": "chr_0033_camille",
@@ -340,8 +476,13 @@
         "en-US": "Perlica"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_life", "tag_hobby_creativity"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_creativity"
+      ]
     },
     "chr_0005_chen": {
       "id": "chr_0005_chen",
@@ -350,8 +491,13 @@
         "en-US": "Chen Qianyu"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_wuling_1"],
-      "favorHobby": ["tag_hobby_culture", "tag_hobby_charity"]
+      "favorCategory": [
+        "tag_giftperfer_wuling_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_culture",
+        "tag_hobby_charity"
+      ]
     },
     "chr_0006_wolfgd": {
       "id": "chr_0006_wolfgd",
@@ -360,8 +506,13 @@
         "en-US": "Wulfgard"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_nature", "tag_hobby_creativity"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_creativity"
+      ]
     },
     "chr_0007_ikut": {
       "id": "chr_0007_ikut",
@@ -370,8 +521,13 @@
         "en-US": "Arclight"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_nature", "tag_hobby_exercise"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_exercise"
+      ]
     },
     "chr_0011_seraph": {
       "id": "chr_0011_seraph",
@@ -380,8 +536,13 @@
         "en-US": "Xaihi"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_tech", "tag_hobby_knowledge"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_tech",
+        "tag_hobby_knowledge"
+      ]
     },
     "chr_0012_avywen": {
       "id": "chr_0012_avywen",
@@ -390,8 +551,13 @@
         "en-US": "Avywenna"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_life", "tag_hobby_fashion"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_fashion"
+      ]
     },
     "chr_0014_aurora": {
       "id": "chr_0014_aurora",
@@ -400,8 +566,13 @@
         "en-US": "Snowshine"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_exercise", "tag_hobby_charity"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_exercise",
+        "tag_hobby_charity"
+      ]
     },
     "chr_0018_dapan": {
       "id": "chr_0018_dapan",
@@ -410,8 +581,13 @@
         "en-US": "Da Pan"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_wuling_1"],
-      "favorHobby": ["tag_hobby_life", "tag_hobby_charity"]
+      "favorCategory": [
+        "tag_giftperfer_wuling_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_charity"
+      ]
     },
     "chr_0024_deepfin": {
       "id": "chr_0024_deepfin",
@@ -420,8 +596,13 @@
         "en-US": "Alesh"
       },
       "rarity": 5,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_culture", "tag_hobby_exercise"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_culture",
+        "tag_hobby_exercise"
+      ]
     },
     "chr_0019_karin": {
       "id": "chr_0019_karin",
@@ -430,8 +611,13 @@
         "en-US": "Akekuri"
       },
       "rarity": 4,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_charity", "tag_hobby_exercise"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_charity",
+        "tag_hobby_exercise"
+      ]
     },
     "chr_0020_meurs": {
       "id": "chr_0020_meurs",
@@ -440,8 +626,13 @@
         "en-US": "Catcher"
       },
       "rarity": 4,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_life", "tag_hobby_exercise"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_exercise"
+      ]
     },
     "chr_0021_whiten": {
       "id": "chr_0021_whiten",
@@ -450,8 +641,13 @@
         "en-US": "Estella"
       },
       "rarity": 4,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_art", "tag_hobby_knowledge"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_art",
+        "tag_hobby_knowledge"
+      ]
     },
     "chr_0022_bounda": {
       "id": "chr_0022_bounda",
@@ -460,8 +656,13 @@
         "en-US": "Fluorite"
       },
       "rarity": 4,
-      "favorCategory": ["tag_giftperfer_tundra_1"],
-      "favorHobby": ["tag_hobby_nature", "tag_hobby_creativity"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_1"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_creativity"
+      ]
     },
     "chr_0023_antal": {
       "id": "chr_0023_antal",
@@ -470,8 +671,13 @@
         "en-US": "Antal"
       },
       "rarity": 4,
-      "favorCategory": ["tag_giftperfer_tundra_2"],
-      "favorHobby": ["tag_hobby_knowledge", "tag_hobby_creativity"]
+      "favorCategory": [
+        "tag_giftperfer_tundra_2"
+      ],
+      "favorHobby": [
+        "tag_hobby_knowledge",
+        "tag_hobby_creativity"
+      ]
     }
   },
   "gameVersion": {
