@@ -1,227 +1,227 @@
 {
   "world_energy_point_group01": {
     "battleId": "world_energy_point_group01",
-    "battleName": "energyAlluviums.world_energy_point_group01_name",
+    "battleName": "energyAlluviums.world_energy_point_group01",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv001_1.webp",
     "secondaryStats": [
-      "weapon.stat.attack",
-      "weapon.stat.heatDmg",
-      "weapon.stat.electricDmg",
-      "weapon.stat.cryoDmg",
-      "weapon.stat.natureDmg",
-      "weapon.stat.artsIntensity",
-      "weapon.stat.ultimateGain",
-      "weapon.stat.artsBoost"
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_pulsedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_usp",
+      "weapon.stat.gat_passive_attr_magicdam"
     ],
     "skillStats": [
-      "weapon.stat.assault", 
-      "weapon.stat.suppression", 
-      "weapon.stat.pursuit", 
-      "weapon.stat.crusher", 
-      "weapon.stat.combative", 
-      "weapon.stat.detonate", 
-      "weapon.stat.flow", 
-      "weapon.stat.treatment"
+      "weapon.stat.gst_passive_force",
+      "weapon.stat.gst_passive_tactic",
+      "weapon.stat.gst_passive_combo",
+      "weapon.stat.gst_passive_smash",
+      "weapon.stat.gst_passive_phyabn",
+      "weapon.stat.gst_passive_burst",
+      "weapon.stat.gst_passive_tacafter",
+      "weapon.stat.gst_passive_keyword"
     ]
   },
   "world_energy_point_group02": {
     "battleId": "world_energy_point_group02",
-    "battleName": "energyAlluviums.world_energy_point_group02_name",
+    "battleName": "energyAlluviums.world_energy_point_group02",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv005_1.webp",
     "secondaryStats": [
-      "weapon.stat.attack",
-      "weapon.stat.physicalDmg",
-      "weapon.stat.electricDmg",
-      "weapon.stat.cryoDmg",
-      "weapon.stat.natureDmg",
-      "weapon.stat.critRate",
-      "weapon.stat.ultimateGain",
-      "weapon.stat.artsBoost"
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_pulsedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_usp",
+      "weapon.stat.gat_passive_attr_magicdam"
     ],
     "skillStats": [
-      "weapon.stat.suppression", 
-      "weapon.stat.pursuit", 
-      "weapon.stat.inspiring", 
-      "weapon.stat.combative", 
-      "weapon.stat.infliction", 
-      "weapon.stat.medicant", 
-      "weapon.stat.fracture", 
-      "weapon.stat.treatment"
+      "weapon.stat.gst_passive_tactic",
+      "weapon.stat.gst_passive_combo",
+      "weapon.stat.gst_passive_spirit",
+      "weapon.stat.gst_passive_phyabn",
+      "weapon.stat.gst_passive_magabn",
+      "weapon.stat.gst_passive_heal",
+      "weapon.stat.gst_passive_crit",
+      "weapon.stat.gst_passive_keyword"
     ]
   },
   "world_energy_point_group03": {
     "battleId": "world_energy_point_group03",
-    "battleName": "energyAlluviums.world_energy_point_group03_name",
+    "battleName": "energyAlluviums.world_energy_point_group03",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv006_1.webp",
     "secondaryStats": [
-      "weapon.stat.hp",
-      "weapon.stat.physicalDmg",
-      "weapon.stat.heatDmg",
-      "weapon.stat.cryoDmg",
-      "weapon.stat.natureDmg",
-      "weapon.stat.critRate",
-      "weapon.stat.artsIntensity",
-      "weapon.stat.treatmentEfficiency"
+      "weapon.stat.gat_passive_attr_hp",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_heal"
     ],
     "skillStats": [
-      "weapon.stat.assault", 
-      "weapon.stat.suppression", 
-      "weapon.stat.combative", 
-      "weapon.stat.brutality", 
-      "weapon.stat.infliction", 
-      "weapon.stat.detonate", 
-      "weapon.stat.twilight", 
-      "weapon.stat.treatment"
+      "weapon.stat.gst_passive_force",
+      "weapon.stat.gst_passive_tactic",
+      "weapon.stat.gst_passive_phyabn",
+      "weapon.stat.gst_passive_break",
+      "weapon.stat.gst_passive_magabn",
+      "weapon.stat.gst_passive_burst",
+      "weapon.stat.gst_passive_ult",
+      "weapon.stat.gst_passive_keyword"
     ]
   },
   "world_energy_point_group04": {
     "battleId": "world_energy_point_group04",
-    "battleName": "energyAlluviums.world_energy_point_group04_name",
+    "battleName": "energyAlluviums.world_energy_point_group04",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv007_1.webp",
     "secondaryStats": [
-      "weapon.stat.attack",
-      "weapon.stat.hp",
-      "weapon.stat.physicalDmg",
-      "weapon.stat.heatDmg",
-      "weapon.stat.natureDmg",
-      "weapon.stat.critRate",
-      "weapon.stat.artsIntensity",
-      "weapon.stat.treatmentEfficiency"
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_hp",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_heal"
     ],
     "skillStats": [
-      "weapon.stat.pursuit", 
-      "weapon.stat.crusher", 
-      "weapon.stat.inspiring", 
-      "weapon.stat.brutality", 
-      "weapon.stat.infliction", 
-      "weapon.stat.medicant", 
-      "weapon.stat.fracture", 
-      "weapon.stat.flow"
+      "weapon.stat.gst_passive_combo",
+      "weapon.stat.gst_passive_smash",
+      "weapon.stat.gst_passive_spirit",
+      "weapon.stat.gst_passive_break",
+      "weapon.stat.gst_passive_magabn",
+      "weapon.stat.gst_passive_heal",
+      "weapon.stat.gst_passive_crit",
+      "weapon.stat.gst_passive_tacafter"
     ]
   },
   "world_energy_point_group05": {
     "battleId": "world_energy_point_group05",
-    "battleName": "energyAlluviums.world_energy_point_group05_name",
+    "battleName": "energyAlluviums.world_energy_point_group05",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv002_1.webp",
     "secondaryStats": [
-      "weapon.stat.attack",
-      "weapon.stat.hp",
-      "weapon.stat.electricDmg",
-      "weapon.stat.cryoDmg",
-      "weapon.stat.critRate",
-      "weapon.stat.ultimateGain",
-      "weapon.stat.artsBoost",
-      "weapon.stat.treatmentEfficiency"
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_hp",
+      "weapon.stat.gat_passive_attr_pulsedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_usp",
+      "weapon.stat.gat_passive_attr_magicdam",
+      "weapon.stat.gat_passive_attr_heal"
     ],
     "skillStats": [
-      "weapon.stat.assault", 
-      "weapon.stat.crusher", 
-      "weapon.stat.brutality", 
-      "weapon.stat.medicant", 
-      "weapon.stat.fracture", 
-      "weapon.stat.detonate", 
-      "weapon.stat.twilight", 
-      "weapon.stat.flow"
+      "weapon.stat.gst_passive_force",
+      "weapon.stat.gst_passive_smash",
+      "weapon.stat.gst_passive_break",
+      "weapon.stat.gst_passive_heal",
+      "weapon.stat.gst_passive_crit",
+      "weapon.stat.gst_passive_burst",
+      "weapon.stat.gst_passive_ult",
+      "weapon.stat.gst_passive_tacafter"
     ]
   },
   "world_energy_point_group06": {
     "battleId": "world_energy_point_group06",
-    "battleName": "energyAlluviums.world_energy_point_group06_name",
+    "battleName": "energyAlluviums.world_energy_point_group06",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.webp",
     "secondaryStats": [
-      "weapon.stat.hp",
-      "weapon.stat.physicalDmg",
-      "weapon.stat.electricDmg",
-      "weapon.stat.cryoDmg",
-      "weapon.stat.artsIntensity",
-      "weapon.stat.ultimateGain",
-      "weapon.stat.artsBoost",
-      "weapon.stat.treatmentEfficiency"
+      "weapon.stat.gat_passive_attr_hp",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_pulsedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_usp",
+      "weapon.stat.gat_passive_attr_magicdam",
+      "weapon.stat.gat_passive_attr_heal"
     ],
     "skillStats": [
-      "weapon.stat.suppression", 
-      "weapon.stat.crusher", 
-      "weapon.stat.inspiring", 
-      "weapon.stat.combative", 
-      "weapon.stat.medicant", 
-      "weapon.stat.fracture", 
-      "weapon.stat.detonate", 
-      "weapon.stat.twilight"
+      "weapon.stat.gst_passive_tactic",
+      "weapon.stat.gst_passive_smash",
+      "weapon.stat.gst_passive_spirit",
+      "weapon.stat.gst_passive_phyabn",
+      "weapon.stat.gst_passive_heal",
+      "weapon.stat.gst_passive_crit",
+      "weapon.stat.gst_passive_burst",
+      "weapon.stat.gst_passive_ult"
     ]
   },
   "world_energy_point_group07": {
     "battleId": "world_energy_point_group07",
-    "battleName": "energyAlluviums.world_energy_point_group07_name",
+    "battleName": "energyAlluviums.world_energy_point_group07",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv004_1.webp",
     "secondaryStats": [
-      "weapon.stat.attack",
-      "weapon.stat.physicalDmg",
-      "weapon.stat.heatDmg",
-      "weapon.stat.electricDmg",
-      "weapon.stat.natureDmg",
-      "weapon.stat.critRate",
-      "weapon.stat.ultimateGain",
-      "weapon.stat.artsBoost"
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_pulsedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_usp",
+      "weapon.stat.gat_passive_attr_magicdam"
     ],
     "skillStats": [
-      "weapon.stat.assault", 
-      "weapon.stat.pursuit", 
-      "weapon.stat.inspiring", 
-      "weapon.stat.brutality", 
-      "weapon.stat.infliction", 
-      "weapon.stat.twilight", 
-      "weapon.stat.flow", 
-      "weapon.stat.treatment"
+      "weapon.stat.gst_passive_force",
+      "weapon.stat.gst_passive_combo",
+      "weapon.stat.gst_passive_spirit",
+      "weapon.stat.gst_passive_break",
+      "weapon.stat.gst_passive_magabn",
+      "weapon.stat.gst_passive_ult",
+      "weapon.stat.gst_passive_tacafter",
+      "weapon.stat.gst_passive_keyword"
     ]
   },
   "world_energy_point_group08": {
     "battleId": "world_energy_point_group08",
-    "battleName": "energyAlluviums.world_energy_point_group08_name",
+    "battleName": "energyAlluviums.world_energy_point_group08",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv005_1.webp",
     "secondaryStats": [
-      "weapon.stat.hp",
-      "weapon.stat.heatDmg",
-      "weapon.stat.electricDmg",
-      "weapon.stat.cryoDmg",
-      "weapon.stat.natureDmg",
-      "weapon.stat.artsIntensity",
-      "weapon.stat.ultimateGain",
-      "weapon.stat.treatmentEfficiency"
+      "weapon.stat.gat_passive_attr_hp",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_pulsedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_usp",
+      "weapon.stat.gat_passive_attr_heal"
     ],
     "skillStats": [
-      "weapon.stat.suppression", 
-      "weapon.stat.crusher", 
-      "weapon.stat.combative", 
-      "weapon.stat.brutality", 
-      "weapon.stat.infliction", 
-      "weapon.stat.fracture", 
-      "weapon.stat.twilight", 
-      "weapon.stat.flow"
+      "weapon.stat.gst_passive_tactic",
+      "weapon.stat.gst_passive_smash",
+      "weapon.stat.gst_passive_phyabn",
+      "weapon.stat.gst_passive_break",
+      "weapon.stat.gst_passive_magabn",
+      "weapon.stat.gst_passive_crit",
+      "weapon.stat.gst_passive_ult",
+      "weapon.stat.gst_passive_tacafter"
     ]
   },
   "world_energy_point_group09": {
     "battleId": "world_energy_point_group09",
-    "battleName": "energyAlluviums.world_energy_point_group09_name",
+    "battleName": "energyAlluviums.world_energy_point_group09",
     "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv006_1.webp",
     "secondaryStats": [
-      "weapon.stat.attack",
-      "weapon.stat.hp",
-      "weapon.stat.physicalDmg",
-      "weapon.stat.heatDmg",
-      "weapon.stat.cryoDmg",
-      "weapon.stat.natureDmg",
-      "weapon.stat.artsIntensity",
-      "weapon.stat.treatmentEfficiency"
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_hp",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_heal"
     ],
     "skillStats": [
-      "weapon.stat.assault", 
-      "weapon.stat.pursuit", 
-      "weapon.stat.inspiring", 
-      "weapon.stat.combative", 
-      "weapon.stat.medicant", 
-      "weapon.stat.fracture", 
-      "weapon.stat.detonate", 
-      "weapon.stat.treatment"
+      "weapon.stat.gst_passive_force",
+      "weapon.stat.gst_passive_combo",
+      "weapon.stat.gst_passive_spirit",
+      "weapon.stat.gst_passive_phyabn",
+      "weapon.stat.gst_passive_heal",
+      "weapon.stat.gst_passive_crit",
+      "weapon.stat.gst_passive_burst",
+      "weapon.stat.gst_passive_keyword"
     ]
   }
 }

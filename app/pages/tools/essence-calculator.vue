@@ -13,7 +13,7 @@
                   <v-card elevation="2" rounded="lg">
                     <template #image>
                       <v-img
-                        :alt="choice.battleName"
+                        :alt="t(choice.battleName)"
                         class="result-card-background-image opacity-30 d-none d-md-block"
                         cover
                         :src="energyAlluviums[choice.battleId]!.imageUrl"
@@ -461,7 +461,7 @@ import {
   weaponTypes,
   weaponTypeToGroupIconId,
 } from '@/custom/core/weaponEssence';
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 usePageSeo({
   title: () => `${t('page.tools.essenceCalculator.title')} - ${t('layout.siteName')}`,
@@ -553,7 +553,7 @@ function getEssenceStatDescription(stat: EssenceStat): string {
   if (stat.isCustom) {
     return t('page.tools.essenceCalculator.custom');
   } else {
-    return weapons[stat.weaponId!]?.weaponName ? t(weapons[stat.weaponId!]?.weaponName!) : stat.weaponId!;
+    return getItemName(stat.weaponId!, locale.value) ?? stat.weaponId!;
   }
 }
 

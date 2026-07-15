@@ -9,7 +9,7 @@ import { makePackGroups, makePacks, makePackShops } from './tasks/makePacks';
 import { makeRecoverApItems } from './tasks/makeRecoverApItems';
 import { makeTrialOfSwordmancyLevelTable } from './tasks/makeTrialOfSwordmancyLevelTable';
 import { makeTrialOfSwordmancyPools } from './tasks/makeTrialOfSwordmancyPools';
-import { makeEnergyAlluviums, makeWeapons } from './tasks/makeWeapons';
+import { makeEnergyAlluviums, makeWeaponLocalizations, makeWeapons } from './tasks/makeWeapons';
 import { makeWeaponToChars } from './tasks/makeWeaponToChars';
 
 // ---------- items ----------
@@ -19,12 +19,14 @@ console.log('✓ custom/core/items.json');
 // ---------- weapons ----------
 fs.writeFileSync('custom/core/weapons.json', JSON.stringify(makeWeapons(), null, 2), 'utf8');
 console.log('✓ custom/core/weapons.json');
-fs.writeFileSync(
-  'custom/core/energyAlluviums.json',
-  JSON.stringify(makeEnergyAlluviums(), null, 2),
-  'utf8',
-);
+
+fs.writeFileSync('custom/core/energyAlluviums.json', JSON.stringify(makeEnergyAlluviums(), null, 2), 'utf8');
 console.log('✓ custom/core/energyAlluviums.json');
+
+fs.writeFileSync('i18n/locales/zh-CN-weapons.json', JSON.stringify(makeWeaponLocalizations("CN"), null, 2), 'utf8');
+fs.writeFileSync('i18n/locales/en-US-weapons.json', JSON.stringify(makeWeaponLocalizations("EN"), null, 2), 'utf8');
+console.log('✓ i18n/locales/zh-CN-weapons.json');
+console.log('✓ i18n/locales/en-US-weapons.json');
 
 // ---------- weaponToChars ----------
 fs.writeFileSync(

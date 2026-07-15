@@ -44,58 +44,69 @@ export interface WeaponStat {
 
 export interface WeaponPreset {
   weaponId: string;
-  weaponName: string;
   weaponType: string;
   rarity: number;
   stats: WeaponStat;
 }
 
 /** 全部的基础属性 */
-export const allAttributeStats = ['weapon.stat.agility', 'weapon.stat.strength', 'weapon.stat.will', 'weapon.stat.intellect', 'weapon.stat.main'];
+export const allAttributeStats = [
+  'weapon.stat.gat_passive_attr_agi',
+  'weapon.stat.gat_passive_attr_str',
+  'weapon.stat.gat_passive_attr_will',
+  'weapon.stat.gat_passive_attr_wisd',
+  'weapon.stat.gat_passive_attr_main'
+];
 /** 全部的附加属性 */
 export const allSecondaryStats = [
-  'weapon.stat.attack',
-  'weapon.stat.hp',
-  'weapon.stat.physicalDmg',
-  'weapon.stat.heatDmg',
-  'weapon.stat.electricDmg',
-  'weapon.stat.cryoDmg',
-  'weapon.stat.natureDmg',
-  'weapon.stat.critRate',
-  'weapon.stat.artsIntensity',
-  'weapon.stat.ultimateGain',
-  'weapon.stat.artsBoost',
-  'weapon.stat.treatmentEfficiency',
+  'weapon.stat.gat_passive_attr_atk',
+  'weapon.stat.gat_passive_attr_crirate',
+  'weapon.stat.gat_passive_attr_pulsedam',
+  'weapon.stat.gat_passive_attr_firedam',
+  'weapon.stat.gat_passive_attr_heal',
+  'weapon.stat.gat_passive_attr_hp',
+  'weapon.stat.gat_passive_attr_icedam',
+  'weapon.stat.gat_passive_attr_magicdam',
+  'weapon.stat.gat_passive_attr_naturaldam',
+  'weapon.stat.gat_passive_attr_phydam',
+  'weapon.stat.gat_passive_attr_physpell',
+  'weapon.stat.gat_passive_attr_usp',
 ];
 /** 全部的技能属性 */
 export const allSkillStats = [
-  'weapon.stat.assault',
-  'weapon.stat.suppression',
-  'weapon.stat.pursuit',
-  'weapon.stat.crusher',
-  'weapon.stat.inspiring',
-  'weapon.stat.combative',
-  'weapon.stat.brutality',
-  'weapon.stat.infliction',
-  'weapon.stat.medicant',
-  'weapon.stat.fracture',
-  'weapon.stat.detonate',
-  'weapon.stat.twilight',
-  'weapon.stat.flow',
-  'weapon.stat.treatment',
+  'weapon.stat.gst_passive_tacafter',
+  'weapon.stat.gst_passive_magabn',
+  'weapon.stat.gst_passive_crit',
+  'weapon.stat.gst_passive_spirit',
+  'weapon.stat.gst_passive_ult',
+  'weapon.stat.gst_passive_break',
+  'weapon.stat.gst_passive_smash',
+  'weapon.stat.gst_passive_burst',
+  'weapon.stat.gst_passive_combo',
+  'weapon.stat.gst_passive_force',
+  'weapon.stat.gst_passive_heal',
+  'weapon.stat.gst_passive_keyword',
+  'weapon.stat.gst_passive_phyabn',
+  'weapon.stat.gst_passive_tactic',
 ];
 
 /** 能量淤积点信息（由 scripts/tasks/makeWeapons.ts 自动生成） */
 export const energyAlluviums: Record<string, EnergyAlluvium> = rawEnergyAlluviums;
 
 /** 武器类型 */
-export const weaponTypes = ['weapon.type.sword', 'weapon.type.greatSword', 'weapon.type.polearm', 'weapon.type.handcannon', 'weapon.type.artsUnit'];
+export const weaponTypes = [
+  'weapon.type.wpn_sword',
+  'weapon.type.wpn_claym',
+  'weapon.type.wpn_lance',
+  'weapon.type.wpn_pistol',
+  'weapon.type.wpn_funnel'
+];
 export const weaponTypeToGroupIconId: Record<string, string> = {
-  'weapon.type.sword': 'icon_wiki_group_weapon_sword',
-  'weapon.type.greatSword': 'icon_wiki_group_weapon_claymores',
-  'weapon.type.polearm': 'icon_wiki_group_weapon_lance',
-  'weapon.type.handcannon': 'icon_wiki_group_weapon_pistol',
-  'weapon.type.artsUnit': 'icon_wiki_group_weapon_wand',
+  'weapon.type.wpn_sword': 'icon_wiki_group_weapon_sword',
+  'weapon.type.wpn_claym': 'icon_wiki_group_weapon_claymores',
+  'weapon.type.wpn_lance': 'icon_wiki_group_weapon_lance',
+  'weapon.type.wpn_pistol': 'icon_wiki_group_weapon_pistol',
+  'weapon.type.wpn_funnel': 'icon_wiki_group_weapon_wand',
 };
 
 /** 武器稀有度 */

@@ -1,849 +1,772 @@
 {
   "wpn_claym_0003": {
     "weaponId": "wpn_claym_0003",
-    "weaponName": "weapon.name.wpn_claym_0003_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_claym_0004": {
     "weaponId": "wpn_claym_0004",
-    "weaponName": "weapon.name.wpn_claym_0004_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_claym_0006": {
     "weaponId": "wpn_claym_0006",
-    "weaponName": "weapon.name.wpn_claym_0006_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.hp",
-      "skill": "weapon.stat.treatment"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_hp",
+      "skill": "weapon.stat.gst_passive_keyword"
     }
   },
   "wpn_claym_0007": {
     "weaponId": "wpn_claym_0007",
-    "weaponName": "weapon.name.wpn_claym_0007_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.hp",
-      "skill": "weapon.stat.medicant"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_hp",
+      "skill": "weapon.stat.gst_passive_heal"
     }
   },
   "wpn_claym_0008": {
     "weaponId": "wpn_claym_0008",
-    "weaponName": "weapon.name.wpn_claym_0008_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.critRate",
-      "skill": "weapon.stat.crusher"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_crirate",
+      "skill": "weapon.stat.gst_passive_smash"
     }
   },
   "wpn_claym_0009": {
     "weaponId": "wpn_claym_0009",
-    "weaponName": "weapon.name.wpn_claym_0009_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.hp",
-      "skill": "weapon.stat.crusher"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_hp",
+      "skill": "weapon.stat.gst_passive_smash"
     }
   },
   "wpn_claym_0010": {
     "weaponId": "wpn_claym_0010",
-    "weaponName": "weapon.name.wpn_claym_0010_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 3,
     "stats": {
-      "attribute": "weapon.stat.main",
+      "attribute": "weapon.stat.gat_passive_attr_main",
       "secondary": null,
-      "skill": "weapon.stat.assault"
+      "skill": "weapon.stat.gst_passive_force"
     }
   },
   "wpn_claym_0011": {
     "weaponId": "wpn_claym_0011",
-    "weaponName": "weapon.name.wpn_claym_0011_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.detonate"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_burst"
     }
   },
   "wpn_claym_0012": {
     "weaponId": "wpn_claym_0012",
-    "weaponName": "weapon.name.wpn_claym_0012_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.hp",
-      "skill": "weapon.stat.medicant"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_hp",
+      "skill": "weapon.stat.gst_passive_heal"
     }
   },
   "wpn_claym_0013": {
     "weaponId": "wpn_claym_0013",
-    "weaponName": "weapon.name.wpn_claym_0013_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.detonate"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_burst"
     }
   },
   "wpn_claym_0014": {
     "weaponId": "wpn_claym_0014",
-    "weaponName": "weapon.name.wpn_claym_0014_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.artsIntensity",
-      "skill": "weapon.stat.brutality"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_physpell",
+      "skill": "weapon.stat.gst_passive_break"
     }
   },
   "wpn_claym_0015": {
     "weaponId": "wpn_claym_0015",
-    "weaponName": "weapon.name.wpn_claym_0015_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.hp",
-      "skill": "weapon.stat.treatment"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_hp",
+      "skill": "weapon.stat.gst_passive_keyword"
     }
   },
   "wpn_claym_0016": {
     "weaponId": "wpn_claym_0016",
-    "weaponName": "weapon.name.wpn_claym_0016_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.artsIntensity",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_physpell",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_claym_0017": {
     "weaponId": "wpn_claym_0017",
-    "weaponName": "weapon.name.wpn_claym_0017_name",
-    "weaponType": "weapon.type.greatSword",
+    "weaponType": "weapon.type.wpn_claym",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.combative"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_phyabn"
     }
   },
   "wpn_funnel_0001": {
     "weaponId": "wpn_funnel_0001",
-    "weaponName": "weapon.name.wpn_funnel_0001_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.artsBoost",
-      "skill": "weapon.stat.inspiring"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_magicdam",
+      "skill": "weapon.stat.gst_passive_spirit"
     }
   },
   "wpn_funnel_0002": {
     "weaponId": "wpn_funnel_0002",
-    "weaponName": "weapon.name.wpn_funnel_0002_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 3,
     "stats": {
-      "attribute": "weapon.stat.main",
+      "attribute": "weapon.stat.gat_passive_attr_main",
       "secondary": null,
-      "skill": "weapon.stat.assault"
+      "skill": "weapon.stat.gst_passive_force"
     }
   },
   "wpn_funnel_0003": {
     "weaponId": "wpn_funnel_0003",
-    "weaponName": "weapon.name.wpn_funnel_0003_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_funnel_0004": {
     "weaponId": "wpn_funnel_0004",
-    "weaponName": "weapon.name.wpn_funnel_0004_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.electricDmg",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_pulsedam",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_funnel_0005": {
     "weaponId": "wpn_funnel_0005",
-    "weaponName": "weapon.name.wpn_funnel_0005_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.twilight"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_ult"
     }
   },
   "wpn_funnel_0006": {
     "weaponId": "wpn_funnel_0006",
-    "weaponName": "weapon.name.wpn_funnel_0006_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.natureDmg",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_naturaldam",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_funnel_0007": {
     "weaponId": "wpn_funnel_0007",
-    "weaponName": "weapon.name.wpn_funnel_0007_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.inspiring"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_spirit"
     }
   },
   "wpn_funnel_0008": {
     "weaponId": "wpn_funnel_0008",
-    "weaponName": "weapon.name.wpn_funnel_0008_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.artsIntensity",
-      "skill": "weapon.stat.detonate"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_physpell",
+      "skill": "weapon.stat.gst_passive_burst"
     }
   },
   "wpn_funnel_0009": {
     "weaponId": "wpn_funnel_0009",
-    "weaponName": "weapon.name.wpn_funnel_0009_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.artsBoost",
-      "skill": "weapon.stat.twilight"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_magicdam",
+      "skill": "weapon.stat.gst_passive_ult"
     }
   },
   "wpn_funnel_0010": {
     "weaponId": "wpn_funnel_0010",
-    "weaponName": "weapon.name.wpn_funnel_0010_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.hp",
-      "skill": "weapon.stat.medicant"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_hp",
+      "skill": "weapon.stat.gst_passive_heal"
     }
   },
   "wpn_funnel_0011": {
     "weaponId": "wpn_funnel_0011",
-    "weaponName": "weapon.name.wpn_funnel_0011_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.pursuit"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_combo"
     }
   },
   "wpn_funnel_0012": {
     "weaponId": "wpn_funnel_0012",
-    "weaponName": "weapon.name.wpn_funnel_0012_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.treatmentEfficiency",
-      "skill": "weapon.stat.medicant"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_heal",
+      "skill": "weapon.stat.gst_passive_heal"
     }
   },
   "wpn_funnel_0013": {
     "weaponId": "wpn_funnel_0013",
-    "weaponName": "weapon.name.wpn_funnel_0013_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.treatmentEfficiency",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_heal",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_funnel_0014": {
     "weaponId": "wpn_funnel_0014",
-    "weaponName": "weapon.name.wpn_funnel_0014_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.artsIntensity",
-      "skill": "weapon.stat.pursuit"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_physpell",
+      "skill": "weapon.stat.gst_passive_combo"
     }
   },
   "wpn_funnel_0015": {
     "weaponId": "wpn_funnel_0015",
-    "weaponName": "weapon.name.wpn_funnel_0015_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_funnel_0017": {
     "weaponId": "wpn_funnel_0017",
-    "weaponName": "weapon.name.wpn_funnel_0017_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.electricDmg",
-      "skill": "weapon.stat.treatment"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_pulsedam",
+      "skill": "weapon.stat.gst_passive_keyword"
     }
   },
   "wpn_lance_0003": {
     "weaponId": "wpn_lance_0003",
-    "weaponName": "weapon.name.wpn_lance_0003_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.inspiring"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_spirit"
     }
   },
   "wpn_lance_0004": {
     "weaponId": "wpn_lance_0004",
-    "weaponName": "weapon.name.wpn_lance_0004_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.brutality"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_break"
     }
   },
   "wpn_lance_0006": {
     "weaponId": "wpn_lance_0006",
-    "weaponName": "weapon.name.wpn_lance_0006_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.electricDmg",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_pulsedam",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_lance_0007": {
     "weaponId": "wpn_lance_0007",
-    "weaponName": "weapon.name.wpn_lance_0007_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.treatment"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_keyword"
     }
   },
   "wpn_lance_0008": {
     "weaponId": "wpn_lance_0008",
-    "weaponName": "weapon.name.wpn_lance_0008_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.artsBoost",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_magicdam",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_lance_0009": {
     "weaponId": "wpn_lance_0009",
-    "weaponName": "weapon.name.wpn_lance_0009_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 3,
     "stats": {
-      "attribute": "weapon.stat.main",
+      "attribute": "weapon.stat.gat_passive_attr_main",
       "secondary": null,
-      "skill": "weapon.stat.assault"
+      "skill": "weapon.stat.gst_passive_force"
     }
   },
   "wpn_lance_0010": {
     "weaponId": "wpn_lance_0010",
-    "weaponName": "weapon.name.wpn_lance_0010_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.physicalDmg",
-      "skill": "weapon.stat.combative"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_phydam",
+      "skill": "weapon.stat.gst_passive_phyabn"
     }
   },
   "wpn_lance_0011": {
     "weaponId": "wpn_lance_0011",
-    "weaponName": "weapon.name.wpn_lance_0011_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_lance_0012": {
     "weaponId": "wpn_lance_0012",
-    "weaponName": "weapon.name.wpn_lance_0012_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.physicalDmg",
-      "skill": "weapon.stat.treatment"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_phydam",
+      "skill": "weapon.stat.gst_passive_keyword"
     }
   },
   "wpn_lance_0013": {
     "weaponId": "wpn_lance_0013",
-    "weaponName": "weapon.name.wpn_lance_0013_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.physicalDmg",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_phydam",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_lance_0015": {
     "weaponId": "wpn_lance_0015",
-    "weaponName": "weapon.name.wpn_lance_0015_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.heatDmg",
-      "skill": "weapon.stat.flow"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_firedam",
+      "skill": "weapon.stat.gst_passive_tacafter"
     }
   },
   "wpn_pistol_0001": {
     "weaponId": "wpn_pistol_0001",
-    "weaponName": "weapon.name.wpn_pistol_0001_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 3,
     "stats": {
-      "attribute": "weapon.stat.main",
+      "attribute": "weapon.stat.gat_passive_attr_main",
       "secondary": null,
-      "skill": "weapon.stat.assault"
+      "skill": "weapon.stat.gst_passive_force"
     }
   },
   "wpn_pistol_0002": {
     "weaponId": "wpn_pistol_0002",
-    "weaponName": "weapon.name.wpn_pistol_0002_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_pistol_0003": {
     "weaponId": "wpn_pistol_0003",
-    "weaponName": "weapon.name.wpn_pistol_0003_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.artsBoost",
-      "skill": "weapon.stat.pursuit"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_magicdam",
+      "skill": "weapon.stat.gst_passive_combo"
     }
   },
   "wpn_pistol_0004": {
     "weaponId": "wpn_pistol_0004",
-    "weaponName": "weapon.name.wpn_pistol_0004_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.heatDmg",
-      "skill": "weapon.stat.pursuit"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_firedam",
+      "skill": "weapon.stat.gst_passive_combo"
     }
   },
   "wpn_pistol_0005": {
     "weaponId": "wpn_pistol_0005",
-    "weaponName": "weapon.name.wpn_pistol_0005_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.cryoDmg",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_icedam",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_pistol_0006": {
     "weaponId": "wpn_pistol_0006",
-    "weaponName": "weapon.name.wpn_pistol_0006_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.artsBoost",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_magicdam",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_pistol_0007": {
     "weaponId": "wpn_pistol_0007",
-    "weaponName": "weapon.name.wpn_pistol_0007_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.cryoDmg",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_icedam",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_pistol_0008": {
     "weaponId": "wpn_pistol_0008",
-    "weaponName": "weapon.name.wpn_pistol_0008_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.critRate",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_crirate",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_pistol_0009": {
     "weaponId": "wpn_pistol_0009",
-    "weaponName": "weapon.name.wpn_pistol_0009_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.artsBoost",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_magicdam",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_pistol_0010": {
     "weaponId": "wpn_pistol_0010",
-    "weaponName": "weapon.name.wpn_pistol_0010_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.critRate",
-      "skill": "weapon.stat.fracture"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_crirate",
+      "skill": "weapon.stat.gst_passive_crit"
     }
   },
   "wpn_pistol_0011": {
     "weaponId": "wpn_pistol_0011",
-    "weaponName": "weapon.name.wpn_pistol_0011_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.detonate"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_burst"
     }
   },
   "wpn_pistol_0012": {
     "weaponId": "wpn_pistol_0012",
-    "weaponName": "weapon.name.wpn_pistol_0012_name",
-    "weaponType": "weapon.type.handcannon",
+    "weaponType": "weapon.type.wpn_pistol",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.detonate"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_burst"
     }
   },
   "wpn_sword_0003": {
     "weaponId": "wpn_sword_0003",
-    "weaponName": "weapon.name.wpn_sword_0003_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 3,
     "stats": {
-      "attribute": "weapon.stat.main",
+      "attribute": "weapon.stat.gat_passive_attr_main",
       "secondary": null,
-      "skill": "weapon.stat.assault"
+      "skill": "weapon.stat.gst_passive_force"
     }
   },
   "wpn_sword_0005": {
     "weaponId": "wpn_sword_0005",
-    "weaponName": "weapon.name.wpn_sword_0005_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.physicalDmg",
-      "skill": "weapon.stat.combative"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_phydam",
+      "skill": "weapon.stat.gst_passive_phyabn"
     }
   },
   "wpn_sword_0006": {
     "weaponId": "wpn_sword_0006",
-    "weaponName": "weapon.name.wpn_sword_0006_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.twilight"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_ult"
     }
   },
   "wpn_sword_0007": {
     "weaponId": "wpn_sword_0007",
-    "weaponName": "weapon.name.wpn_sword_0007_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.inspiring"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_spirit"
     }
   },
   "wpn_sword_0008": {
     "weaponId": "wpn_sword_0008",
-    "weaponName": "weapon.name.wpn_sword_0008_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.physicalDmg",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_phydam",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_sword_0009": {
     "weaponId": "wpn_sword_0009",
-    "weaponName": "weapon.name.wpn_sword_0009_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 4,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.pursuit"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_combo"
     }
   },
   "wpn_sword_0010": {
     "weaponId": "wpn_sword_0010",
-    "weaponName": "weapon.name.wpn_sword_0010_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.heatDmg",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_firedam",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_sword_0011": {
     "weaponId": "wpn_sword_0011",
-    "weaponName": "weapon.name.wpn_sword_0011_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.critRate",
-      "skill": "weapon.stat.twilight"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_crirate",
+      "skill": "weapon.stat.gst_passive_ult"
     }
   },
   "wpn_sword_0012": {
     "weaponId": "wpn_sword_0012",
-    "weaponName": "weapon.name.wpn_sword_0012_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.flow"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tacafter"
     }
   },
   "wpn_sword_0013": {
     "weaponId": "wpn_sword_0013",
-    "weaponName": "weapon.name.wpn_sword_0013_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.physicalDmg",
-      "skill": "weapon.stat.brutality"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_phydam",
+      "skill": "weapon.stat.gst_passive_break"
     }
   },
   "wpn_sword_0014": {
     "weaponId": "wpn_sword_0014",
-    "weaponName": "weapon.name.wpn_sword_0014_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.artsIntensity",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_physpell",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_sword_0015": {
     "weaponId": "wpn_sword_0015",
-    "weaponName": "weapon.name.wpn_sword_0015_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.physicalDmg",
-      "skill": "weapon.stat.twilight"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_phydam",
+      "skill": "weapon.stat.gst_passive_ult"
     }
   },
   "wpn_sword_0016": {
     "weaponId": "wpn_sword_0016",
-    "weaponName": "weapon.name.wpn_sword_0016_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.flow"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tacafter"
     }
   },
   "wpn_sword_0017": {
     "weaponId": "wpn_sword_0017",
-    "weaponName": "weapon.name.wpn_sword_0017_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.critRate",
-      "skill": "weapon.stat.twilight"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_crirate",
+      "skill": "weapon.stat.gst_passive_ult"
     }
   },
   "wpn_sword_0018": {
     "weaponId": "wpn_sword_0018",
-    "weaponName": "weapon.name.wpn_sword_0018_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_sword_0019": {
     "weaponId": "wpn_sword_0019",
-    "weaponName": "weapon.name.wpn_sword_0019_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.flow"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_tacafter"
     }
   },
   "wpn_sword_0020": {
     "weaponId": "wpn_sword_0020",
-    "weaponName": "weapon.name.wpn_sword_0020_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 5,
     "stats": {
-      "attribute": "weapon.stat.strength",
-      "secondary": "weapon.stat.cryoDmg",
-      "skill": "weapon.stat.suppression"
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_icedam",
+      "skill": "weapon.stat.gst_passive_tactic"
     }
   },
   "wpn_sword_0021": {
     "weaponId": "wpn_sword_0021",
-    "weaponName": "weapon.name.wpn_sword_0021_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.attack",
-      "skill": "weapon.stat.infliction"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_magabn"
     }
   },
   "wpn_sword_0022": {
     "weaponId": "wpn_sword_0022",
-    "weaponName": "weapon.name.wpn_sword_0022_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.agility",
-      "secondary": "weapon.stat.critRate",
-      "skill": "weapon.stat.fracture"
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_crirate",
+      "skill": "weapon.stat.gst_passive_crit"
     }
   },
   "四二式·肃阵": {
     "weaponId": "四二式·肃阵",
-    "weaponName": "四二式·肃阵_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.detonate"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_burst"
     }
   },
   "联结点": {
     "weaponId": "联结点",
-    "weaponName": "联结点_name",
-    "weaponType": "weapon.type.artsUnit",
+    "weaponType": "weapon.type.wpn_funnel",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.intellect",
-      "secondary": "weapon.stat.ultimateGain",
-      "skill": "weapon.stat.treatment"
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_keyword"
     }
   },
   "曜夜的首演": {
     "weaponId": "曜夜的首演",
-    "weaponName": "曜夜的首演_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.treatmentEfficiency",
-      "skill": "weapon.stat.medicant"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_heal",
+      "skill": "weapon.stat.gst_passive_heal"
     }
   },
   "黄金时代": {
     "weaponId": "黄金时代",
-    "weaponName": "黄金时代_name",
-    "weaponType": "weapon.type.polearm",
+    "weaponType": "weapon.type.wpn_lance",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.will",
-      "secondary": "weapon.stat.treatmentEfficiency",
-      "skill": "weapon.stat.pursuit"
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_heal",
+      "skill": "weapon.stat.gst_passive_combo"
     }
   },
   "遥望": {
     "weaponId": "遥望",
-    "weaponName": "遥望_name",
-    "weaponType": "weapon.type.sword",
+    "weaponType": "weapon.type.wpn_sword",
     "rarity": 6,
     "stats": {
-      "attribute": "weapon.stat.main",
-      "secondary": "weapon.stat.artsIntensity",
-      "skill": "weapon.stat.assault"
+      "attribute": "weapon.stat.gat_passive_attr_main",
+      "secondary": "weapon.stat.gat_passive_attr_physpell",
+      "skill": "weapon.stat.gst_passive_force"
     }
   }
 }
