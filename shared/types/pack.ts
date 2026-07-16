@@ -10,6 +10,7 @@ export interface PackContent {
 }
 
 export type PackCategory = string;
+export type PackGachaMode = 'operator' | 'weapon';
 
 export interface PackData {
   packId: string;

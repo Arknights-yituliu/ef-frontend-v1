@@ -19,54 +19,67 @@
         :placeholder="$t('page.materialProfit.packageValue.searchPlaceholder')"
         variant="outlined"
       />
-      <div class="filter-sort">
-        <span class="sort-label">{{ $t('page.materialProfit.packageValue.sortBy') }}:</span>
-        <v-radio-group
-          v-model="sortField"
-          class="filter-radio-group"
-          density="compact"
-          hide-details
-          inline
-        >
-          <v-radio
-            density="compact"
-            :label="$t('page.materialProfit.packageValue.sortDefault')"
-            value="default"
-          />
-          <v-radio
-            density="compact"
-            :label="$t('page.materialProfit.packageValue.sortPrice')"
-            value="price"
-          />
-          <v-radio
-            density="compact"
-            :label="$t('page.materialProfit.packageValue.sortGachaOnly')"
-            value="gachaOnly"
-          />
-          <v-radio
-            density="compact"
-            :label="$t('page.materialProfit.packageValue.sortAllItems')"
-            value="allItems"
-          />
-        </v-radio-group>
-      </div>
-
-      <v-btn
-        class="sort-order-btn"
+      <v-btn-toggle
+        v-model="gachaMode"
+        class="gacha-mode-toggle"
+        color="primary"
         density="compact"
-        size="large"
-        :title="
-          sortOrder === 'asc'
-            ? $t('page.materialProfit.packageValue.sortAsc')
-            : $t('page.materialProfit.packageValue.sortDesc')
-        "
+        divided
+        mandatory
         variant="outlined"
-        @click="toggleSortOrder"
       >
-        <span v-if="sortOrder === 'asc'"
-          >↑ {{ $t('page.materialProfit.packageValue.sortAsc') }}</span
+        <v-btn value="operator">
+          <v-icon start>mdi-account</v-icon>
+          {{ $t('page.materialProfit.packageValue.gachaOperator') }}
+        </v-btn>
+        <v-btn value="weapon">
+          <v-icon start>mdi-sword-cross</v-icon>
+          {{ $t('page.materialProfit.packageValue.gachaWeapon') }}
+        </v-btn>
+      </v-btn-toggle>
+      <div class="filter-sort">
+        <v-btn-toggle
+          v-model="sortField"
+          class="sort-field-toggle"
+          color="primary"
+          density="compact"
+          divided
+          mandatory
+          variant="outlined"
         >
-        <span v-else>↓ {{ $t('page.materialProfit.packageValue.sortDesc') }}</span>
+          <v-btn value="category">
+            {{ $t('page.materialProfit.packageValue.sortCategory') }}
+          </v-btn>
+          <v-btn value="price">
+            {{ $t('page.materialProfit.packageValue.sortPrice') }}
+          </v-btn>
+          <v-btn value="operator">
+            {{ $t('page.materialProfit.packageValue.sortOperator') }}
+          </v-btn>
+          <v-btn value="weapon">
+            {{ $t('page.materialProfit.packageValue.sortWeapon') }}
+          </v-btn>
+          <v-btn value="allItems">
+            {{ $t('page.materialProfit.packageValue.sortAllItems') }}
+          </v-btn>
+        </v-btn-toggle>
+      </div>
+      <v-btn
+        class="hidden-packs-toggle"
+        density="compact"
+        :disabled="hiddenPackCount === 0 && !showHiddenPacks"
+        :prepend-icon="showHiddenPacks ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
+        variant="outlined"
+        @click="showHiddenPacks = !showHiddenPacks"
+      >
+        {{
+          $t(
+            showHiddenPacks
+              ? 'page.materialProfit.packageValue.hideHiddenPacks'
+              : 'page.materialProfit.packageValue.showHiddenPacks',
+          )
+        }}
+        <span class="hidden-packs-count">({{ hiddenPackCount }})</span>
       </v-btn>
     </section>
 
@@ -103,6 +116,7 @@
 
         <div v-for="shop in group.shops" :key="shop.shopId" class="shop-section">
           <h2
+            v-if="shop.showTitle"
             class="category-title"
             :data-shop-id="shop.shopId"
             @click="triggerDevModeByShop(shop.shopId)"
@@ -113,7 +127,10 @@
             <ContainerPackCard
               v-for="packId in shop.goodsIds"
               :key="packId"
+              :gacha-mode="gachaMode"
+              :is-hidden="hiddenPackIdSet.has(packId)"
               v-bind="packs[packId]!"
+              @set-hidden="setPackHidden"
             />
           </TransitionGroup>
         </div>
@@ -127,22 +144,28 @@
 </template>
 
 <script lang="ts" setup>
-import type { LocalizedText } from '@/shared/types/pack';
+import type { LocalizedText, PackData, PackGachaMode } from '@/shared/types/pack';
 import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
 import { packGroups, packs, packShops } from '@/custom/core/packs';
-import { getPackPullsEfficiency, getPackSanityEfficiency } from '@/shared/utils/gameData/pack';
+import {
+  getPackPullsEfficiency,
+  getPackSanityEfficiency,
+  getPackWeaponEfficiency,
+} from '@/shared/utils/gameData/pack';
 
-// 全局数据引用-原始顺序（用于默认排序）
-const defaultSorting: Map<string, number> = new Map(
+// 全局数据引用-原始顺序（用于分类排序）
+const categorySorting: Map<string, number> = new Map(
   Object.keys(packs).map((packId, index) => [packId, index]),
 );
+const bundlePackGroupId = 'shop_pay_gift_pack';
+const hiddenPackStorageKey = 'material-profit-package-value:hidden-pack-ids';
 
 const { locale, t } = useI18n();
 
 // 筛选和排序状态
 const searchQuery = ref('');
-const sortField = ref<'default' | 'price' | 'gachaOnly' | 'allItems'>('default');
-const sortOrder = ref<'asc' | 'desc'>('asc');
+const gachaMode = ref<PackGachaMode>('operator');
+const sortField = ref<'category' | 'price' | 'operator' | 'weapon' | 'allItems'>('category');
 const route = useRoute();
 const router = useRouter();
 const currentMode = ref('normal');
@@ -151,6 +174,15 @@ const devModeTriggerThreshold = 8;
 const devModeTriggerShopId = 'SP_weapon_supply';
 const devDebugHideCardShadow = ref(false);
 const devDebugGreenBackground = ref(false);
+const hiddenPackIds = ref<string[]>([]);
+const showHiddenPacks = ref(false);
+
+const hiddenPackIdSet = computed(() => new Set(hiddenPackIds.value));
+const hiddenPackCount = computed(() => hiddenPackIds.value.length);
+
+onMounted(() => {
+  loadHiddenPackIds();
+});
 
 function syncCurrentModeFromRoute() {
   currentMode.value = route.query.mode === 'dev' ? 'dev' : 'normal';
@@ -161,6 +193,125 @@ function syncCurrentModeFromRoute() {
 
 watch(() => route.query.mode, syncCurrentModeFromRoute, { immediate: true });
 
+function compareCategoryOrder(packA: PackData, packB: PackData) {
+  return (
+    (categorySorting.get(packA.packId) ?? Number.MAX_SAFE_INTEGER) -
+    (categorySorting.get(packB.packId) ?? Number.MAX_SAFE_INTEGER)
+  );
+}
+
+function comparePacks(packA: PackData, packB: PackData) {
+  switch (sortField.value) {
+    case 'category': {
+      return compareCategoryOrder(packA, packB);
+    }
+    case 'price': {
+      return (
+        packA.price - packB.price ||
+        getPackSanityEfficiency(packB) - getPackSanityEfficiency(packA) ||
+        compareCategoryOrder(packA, packB)
+      );
+    }
+    case 'operator': {
+      return (
+        getPackPullsEfficiency(packB, gachaMode.value === 'operator') -
+          getPackPullsEfficiency(packA, gachaMode.value === 'operator') ||
+        packA.price - packB.price ||
+        compareCategoryOrder(packA, packB)
+      );
+    }
+    case 'weapon': {
+      return (
+        getPackWeaponEfficiency(packB, gachaMode.value === 'weapon') -
+          getPackWeaponEfficiency(packA, gachaMode.value === 'weapon') ||
+        packA.price - packB.price ||
+        compareCategoryOrder(packA, packB)
+      );
+    }
+    case 'allItems': {
+      return (
+        getPackSanityEfficiency(packB) - getPackSanityEfficiency(packA) ||
+        packA.price - packB.price ||
+        compareCategoryOrder(packA, packB)
+      );
+    }
+    default: {
+      return 0;
+    }
+  }
+}
+
+function sortPackIds(packIds: string[]) {
+  return packIds.toSorted((a, b) => comparePacks(packs[a]!, packs[b]!));
+}
+
+function setPackHidden(packId: string, hidden: boolean) {
+  if (!(packId in packs)) {
+    return;
+  }
+
+  const nextHiddenPackIds = new Set(hiddenPackIds.value);
+  if (hidden) {
+    nextHiddenPackIds.add(packId);
+  } else {
+    nextHiddenPackIds.delete(packId);
+  }
+
+  hiddenPackIds.value = [...nextHiddenPackIds].toSorted(
+    (a, b) =>
+      (categorySorting.get(a) ?? Number.MAX_SAFE_INTEGER) -
+      (categorySorting.get(b) ?? Number.MAX_SAFE_INTEGER),
+  );
+  persistHiddenPackIds();
+
+  if (hiddenPackIds.value.length === 0) {
+    showHiddenPacks.value = false;
+  }
+}
+
+function persistHiddenPackIds() {
+  if (!import.meta.client) {
+    return;
+  }
+
+  if (hiddenPackIds.value.length === 0) {
+    localStorage.removeItem(hiddenPackStorageKey);
+    return;
+  }
+
+  localStorage.setItem(hiddenPackStorageKey, JSON.stringify(hiddenPackIds.value));
+}
+
+function loadHiddenPackIds() {
+  if (!import.meta.client) {
+    return;
+  }
+
+  const savedValue = localStorage.getItem(hiddenPackStorageKey);
+  if (!savedValue) {
+    return;
+  }
+
+  try {
+    const parsedValue: unknown = JSON.parse(savedValue);
+    if (!Array.isArray(parsedValue)) {
+      return;
+    }
+
+    hiddenPackIds.value = [
+      ...new Set(
+        parsedValue.filter((value): value is string => typeof value === 'string' && value in packs),
+      ),
+    ].toSorted(
+      (a, b) =>
+        (categorySorting.get(a) ?? Number.MAX_SAFE_INTEGER) -
+        (categorySorting.get(b) ?? Number.MAX_SAFE_INTEGER),
+    );
+  } catch {
+    localStorage.removeItem(hiddenPackStorageKey);
+  }
+}
+
 // 使用 computed 生成层级数据
 const displayGroups = computed(() => {
   const query = searchQuery.value.trim().toLowerCase();
@@ -170,57 +321,45 @@ const displayGroups = computed(() => {
     Object.keys(packs).filter((id) => {
       const p = packs[id]!;
       const name = p.displayName[locale.value as keyof LocalizedText] || '';
-      return name.toLowerCase().includes(query);
+      return (
+        name.toLowerCase().includes(query) &&
+        (showHiddenPacks.value || !hiddenPackIdSet.value.has(id))
+      );
     }),
   );
 
   // 2. 构建并排序层级结构
   const groups = Object.values(packGroups).map((group) => {
+    if (sortField.value !== 'category' && group.groupId === bundlePackGroupId) {
+      const goodsIds = sortPackIds(
+        group.shopIds.flatMap((shopId) => {
+          const shop = packShops[shopId];
+          return shop ? shop.goodsIds.filter((id) => filteredPackIds.has(id)) : [];
+        }),
+      );
+
+      return {
+        ...group,
+        shops:
+          goodsIds.length > 0
+            ? [
+                {
+                  shopId: `${group.groupId}-merged`,
+                  displayName: group.displayName,
+                  goodsIds,
+                  showTitle: false,
+                },
+              ]
+            : [],
+      };
+    }
+
     const shops = group.shopIds
       .map((shopId) => packShops[shopId])
       .filter((shop) => !!shop)
       .map((shop) => {
-        // 过滤 goods
-        const goodsIds = shop.goodsIds.filter((id) => filteredPackIds.has(id));
-
-        // 对 goods 进行排序
-        goodsIds.sort((a, b) => {
-          const packA = packs[a]!;
-          const packB = packs[b]!;
-          let valueA: number;
-          let valueB: number;
-
-          switch (sortField.value) {
-            case 'default': {
-              valueA = defaultSorting.get(packA.packId) ?? 999;
-              valueB = defaultSorting.get(packB.packId) ?? 999;
-              break;
-            }
-            case 'price': {
-              valueA = packA.price;
-              valueB = packB.price;
-              break;
-            }
-            case 'gachaOnly': {
-              valueA = getPackPullsEfficiency(packA);
-              valueB = getPackPullsEfficiency(packB);
-              break;
-            }
-            case 'allItems': {
-              valueA = getPackSanityEfficiency(packA);
-              valueB = getPackSanityEfficiency(packB);
-              break;
-            }
-            default: {
-              valueA = 0;
-              valueB = 0;
-            }
-          }
-
-          return sortOrder.value === 'asc' ? valueA - valueB : valueB - valueA;
-        });
-
-        return { ...shop, goodsIds };
+        const goodsIds = sortPackIds(shop.goodsIds.filter((id) => filteredPackIds.has(id)));
+        return { ...shop, goodsIds, showTitle: true };
       })
       .filter((shop) => shop.goodsIds.length > 0);
 
@@ -229,13 +368,6 @@ const displayGroups = computed(() => {
 
   return groups.filter((group) => group.shops.length > 0);
 });
-
-/**
- * 切换排序方向
- */
-function toggleSortOrder() {
-  sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
-}
 
 function triggerDevModeByShop(shopId: string) {
   if (shopId !== devModeTriggerShopId || currentMode.value === 'dev') {
@@ -294,26 +426,28 @@ usePageSeo({
   max-width: 300px;
 }
 
+.gacha-mode-toggle {
+  flex: 0 0 auto;
+}
+
 .filter-sort {
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-left: var(--spacing-xs);
 }
 
-.sort-label {
-  font-size: var(--font-size-base);
-  color: var(--theme-text-primary);
-  white-space: nowrap;
+.hidden-packs-toggle {
   flex: 0 0 auto;
+  letter-spacing: 0;
 }
 
-.filter-radio-group {
-  flex: 0 0 auto;
+.hidden-packs-count {
+  margin-left: 4px;
 }
 
-.sort-order-btn {
+.sort-field-toggle {
   flex: 0 0 auto;
-  white-space: nowrap;
 }
 
 .debug-panel {
@@ -343,12 +477,21 @@ usePageSeo({
 .packs-container {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(20px, 6.66666666vw, 40px);
+  row-gap: clamp(28px, calc(4vw + 4px), 36px);
+  column-gap: 20px;
   position: relative;
 }
 
+.group-section :deep(.module-header) {
+  margin-bottom: 20px;
+}
+
+.group-section:first-child :deep(.module-header) {
+  margin-top: 40px;
+}
+
 .category-title {
-  margin-block: var(--spacing-lg) var(--spacing-md);
+  margin-block: 20px var(--spacing-md);
   color: var(--theme-text-primary);
   font-size: var(--font-size-md);
 }
@@ -377,17 +520,46 @@ usePageSeo({
     max-width: 100%;
   }
 
-  .filter-radio-group {
-    width: 100%;
+  .gacha-mode-toggle {
+    align-self: center;
   }
 
   .filter-sort {
     flex-direction: column;
+    align-items: stretch;
+    margin-left: 0;
+    min-width: 0;
+    width: 100%;
   }
 
-  .filter-radio-group {
+  .hidden-packs-toggle {
+    width: 100%;
+  }
+
+  .group-section :deep(.module-header) {
+    margin-bottom: 16px;
+  }
+
+  .group-section:first-child :deep(.module-header) {
+    margin-top: 32px;
+  }
+
+  .category-title {
+    margin-top: 16px;
+  }
+
+  .sort-field-toggle {
     display: flex;
     justify-content: center;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .sort-field-toggle :deep(.v-btn) {
+    flex: 1 1 0;
+    min-width: 0 !important;
+    padding-inline: var(--spacing-xs);
   }
 
   .debug-panel {

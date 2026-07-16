@@ -289,6 +289,9 @@ export default defineNuxtConfig({
    * 参考：https://nuxt.com/docs/4.x/api/nuxt-config#vite
    */
   vite: {
+    server: {
+      allowedHosts: ['zrw.asia'],
+    },
     vue: {
       /**
        * 模板配置 (template)

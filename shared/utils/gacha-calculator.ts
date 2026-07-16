@@ -169,7 +169,7 @@ function groupAndMergeTasksByVersionAndModule(moduleId: string, tasks: Reward[])
         ...firstTask,
         id: `${moduleId}_${version}_${module}`,
         name: {
-          zh: `${firstTask.regional || ''}-${firstTask.module}`,
+          zh: firstTask.regional ? `${firstTask.regional}-${moduleId}` : `${moduleId}`,
           en: ``,
         },
         content: {

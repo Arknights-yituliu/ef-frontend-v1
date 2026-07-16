@@ -20,10 +20,9 @@
           <HomeSmallCard v-for="card in favoritedCards" :key="card.i18nKey" :card="card" />
           <button class="home-bookmark-add-card" type="button" @click="openAddBookmarkDialog">
             <span class="home-bookmark-add-icon">
-              <v-icon icon="mdi-plus" size="22" />
+              <v-icon icon="mdi-plus" size="24" />
             </span>
             <span>{{ t('component.home.bookmarks.add') }}</span>
-            <v-icon class="home-bookmark-add-arrow" icon="mdi-chevron-right" size="20" />
           </button>
         </div>
       </section>
@@ -271,30 +270,31 @@ onMounted(() => {
 .home-bookmark-add-card {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 280px;
   height: 58px;
   padding: 8px 10px;
   box-sizing: border-box;
-  color: var(--theme-text-primary);
+  gap: 0.375rem;
+  color: var(--theme-text-secondary);
   font: inherit;
   font-size: 0.9rem;
   font-weight: 600;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
-  background: var(--theme-bg-secondary);
-  border: 1px solid var(--theme-border);
+  background: transparent;
+  border: 1px dashed var(--theme-text-tertiary);
   border-radius: 8px;
-  box-shadow: 0 1px 3px var(--theme-glass-shadow);
   transition:
+    color 0.2s ease,
     background-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+    border-color 0.2s ease;
 }
 
 .home-bookmark-add-card:hover {
-  background: var(--theme-bg-tertiary);
-  box-shadow: 0 4px 12px var(--theme-glass-shadow);
-  transform: translateY(-2px);
+  color: var(--theme-text-primary);
+  background: var(--theme-decorative-overlay-light);
+  border-color: var(--theme-text-secondary);
 }
 
 .home-bookmark-add-card:focus-visible {
@@ -304,20 +304,11 @@ onMounted(() => {
 
 .home-bookmark-add-icon {
   display: flex;
-  flex: 0 0 34px;
+  flex: 0 0 24px;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  margin-right: 9px;
-  color: var(--theme-text-secondary);
-  background: var(--theme-decorative-overlay-strong);
-  border-radius: 6px;
-}
-
-.home-bookmark-add-arrow {
-  margin-left: auto;
-  color: var(--theme-text-tertiary);
+  width: 24px;
+  height: 24px;
 }
 
 @media (max-width: 600px) {

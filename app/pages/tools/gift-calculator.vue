@@ -79,7 +79,7 @@
     <v-card
       class="mt-2 mb-2 px-3 py-2 d-flex align-start align-md-center"
       :style="[
-        `background: linear-gradient(180deg, ${gifts.gameVersion.color[0]}, ${gifts.gameVersion.color[1]});`,
+        `background: linear-gradient(180deg, ${gifts.gameVersion.color.join(',')});`,
         `color: ${gifts.gameVersion.textColor};`,
       ]"
     >
@@ -133,7 +133,7 @@
               </template>
             </v-img>
             <div class="text-caption d-flex flex-column" style="line-height: 1.1em">
-              <span>{{ getLocaleText(cate)?.[0] }}</span>
+              <span style="font-weight:bold">{{ getLocaleText(cate)?.[0] }}</span>
               <span>{{ getLocaleText(cate)?.[1] }}</span>
             </div>
           </v-chip>

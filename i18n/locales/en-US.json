@@ -81,7 +81,10 @@
         "fields": {
           "title": "Name",
           "url": "URL or internal path",
-          "icon": "Icon URL (optional)",
+          "avatarText": "Avatar character",
+          "avatarColor": "Avatar color",
+          "colorOption": "Select color {color}",
+          "customColor": "Custom avatar color",
           "openInNewTab": "Open in a new tab"
         },
         "validation": {
@@ -89,7 +92,8 @@
           "titleTooLong": "Name must be 40 characters or fewer",
           "urlRequired": "Enter a URL or internal path",
           "urlInvalid": "Use an internal path starting with / or an HTTP/HTTPS URL",
-          "iconInvalid": "Use an internal path starting with / or an HTTP/HTTPS URL"
+          "avatarTextRequired": "Enter one avatar character",
+          "avatarTextTooLong": "Avatar text must be one character"
         }
       },
       "buttons": {
@@ -359,9 +363,15 @@
       "stone": "ori.",
       "pull": "pull",
       "pulls": "pulls",
+      "weaponQuota": "quota",
+      "weaponClaim": "claim",
       "packSanityEfficiency": "All Items",
-      "packPullsEfficiency": "Gacha Only",
-      "648StoneEfficiency": "648 Pack"
+      "packPullsEfficiency": "Operator",
+      "packWeaponEfficiency": "Weapon",
+      "648StoneEfficiency": "648",
+      "hidePack": "Hide this package",
+      "confirmHidePack": "Click again to confirm",
+      "restorePack": "Restore this package"
     }
   },
   "page": {
@@ -388,16 +398,18 @@
         "title": "Package Value",
         "description": "This page displays cost-effectiveness analysis of various packages in the game to help players evaluate package purchase value.",
         "searchPlaceholder": "Search package name...",
-        "sortBy": "Sort By",
-        "sortDefault": "Default",
-        "sortPrice": "Price",
-        "sortGachaOnly": "Gacha Only",
+        "sortCategory": "By Category",
+        "sortPrice": "By Price",
+        "sortOperator": "Operator",
+        "sortWeapon": "Weapon",
         "sortAllItems": "All Items",
-        "sortAsc": "Ascending",
-        "sortDesc": "Descending",
+        "gachaOperator": "Originium for Operators",
+        "gachaWeapon": "Originium for Weapons",
         "devMode": "Dev Mode",
         "hideCardShadow": "Hide Card Shadows",
-        "greenBackground": "Green Background"
+        "greenBackground": "Green Background",
+        "showHiddenPacks": "Show hidden packages",
+        "hideHiddenPacks": "Stop showing hidden packages"
       },
       "itemValueTable": {
         "title": "Item Value Table",
@@ -638,6 +650,10 @@
       "devGroup": {
         "title": "Dev Group: 938710832",
         "desc": "For those capable of solving issues themselves"
+      },
+      "discord": {
+        "title": "Discord",
+        "desc": "Welcome to our Discord community!"
       }
     }
   }

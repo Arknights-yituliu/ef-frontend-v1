@@ -97,5 +97,11 @@ const feedbackChannels = ref<ChannelItem[]>([
     actionType: 'copy',
     url: '696486169',
   },
+  {
+    method: 'feedback.list.discord.title',
+    description: 'feedback.list.discord.desc',
+    actionType: 'link',
+    url: 'https://discord.com/invite/SJCEjH9hmr',
+  },
 ]);
 </script>

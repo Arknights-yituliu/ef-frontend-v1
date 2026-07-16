@@ -7,7 +7,8 @@ import { ref } from 'vue';
 import etchSpaceSalvageRewardJson from '@/custom/core/gacha/data/permanent_etch_space_salvage_reward.json';
 import FactoryManualTableJson from '@/custom/core/gacha/data/permanent_factory_manual_table.json';
 import IntelArchiveRewardJson from '@/custom/core/gacha/data/permanent_intel_archive_reward.json';
-import operationalManualTrainingTableJson from '@/custom/core/gacha/data/permanent_operational_manual_training_table.json';
+import operationalManualTrainingTableJson from '@/custom/core/gacha/data/permanent_operational_manual_table.json';
+import operationalManualTrainingTaskTable from '@/custom/core/gacha/data/permanent_operator_training_task_table.json';
 
 import permanentOtherTableJson from '@/custom/core/gacha/data/permanent_other_table.json';
 import permanentRewardTableJson from '@/custom/core/gacha/data/permanent_reward_table.json';
@@ -64,38 +65,28 @@ mergeReward(factoryManualMergeRewards as Reward[]);
 
 mergeReward(IntelArchiveRewardJson as Reward[]);
 
-let operatorTotal = 0;
+
 
 for (const reward of operationalManualTrainingTableJson as Reward[]) {
-  if (reward.id.includes('干员教学')) {
-    operatorTotal++;
-  } else {
+
     reward.start = new Date(reward.start);
     reward.end = new Date(reward.end);
     permanentRewardTable.value.push(reward);
-  }
+  
 }
 
-const _operatorTraining = {
-  id: 'operator_training',
-  name: {
-    zh: `干员教学`,
-    en: '',
-  },
-  start: new Date('2026/01/22 12:00:00'),
-  end: new Date('2099/12/31 12:00:00'),
-  type: '通用',
-  module: '行动手册',
-  active: false,
-  version: `零号委托——${currentVersion}`,
-  content: {
-    originiumRecharge: 0,
-    diamond: operatorTotal * 20,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-  },
-};
+
+const mergedOperatorTrainingTasks = groupAndMergeTasksByVersionAndModule(
+  '干员教学',
+  operationalManualTrainingTaskTable,
+);
+
+console.log(mergedOperatorTrainingTasks);
+
+mergeReward(mergedOperatorTrainingTasks as Reward[]);
+
+
+
 
 for (const reward of permanentOtherTableJson as Reward[]) {
   reward.start = new Date(reward.start);
@@ -180,7 +171,7 @@ const authorityLevelUpReward = ref<Reward>({
   version: '基础资源',
   content: {
     originiumRecharge: 0,
-    diamond: 0,
+    diamond: 4500,
     ticketgachaStandardSingle: 0,
     ticketgachaSpecialSingle: 0,
     ticketgachaLimitedSingle: 0,

@@ -168,7 +168,6 @@ function toggleFavorite() {
         v-for="button in cardData.linkButtons"
         :key="button.i18nKey"
         class="card-button card-button-text"
-        color="black"
         :prepend-icon="button.icon"
         size="small"
         :text="t(`component.home.${button.i18nKey}`)"
@@ -179,7 +178,6 @@ function toggleFavorite() {
         v-for="button in cardData.textButtons"
         :key="button.i18nKey"
         class="card-button card-button-text"
-        color="black"
         :prepend-icon="button.icon"
         size="small"
         variant="text"
@@ -212,11 +210,13 @@ function toggleFavorite() {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  color: var(--theme-text-primary);
+  background: var(--theme-bg-secondary);
+  border: 1px solid var(--theme-border);
 }
 
 /* 卡片标题栏：深色背景 */
 .home-card-header {
-  background-color: rgba(0, 0, 0, 0.8);
   padding: 16px 0px 16px 16px;
   display: flex;
   align-items: center;
@@ -225,6 +225,8 @@ function toggleFavorite() {
   position: relative;
   overflow: hidden;
   justify-content: space-between;
+  background-color: var(--theme-bg-tertiary);
+  border-bottom: 1px solid var(--theme-border);
 }
 
 /* 标题栏右侧小按钮容器 */
@@ -259,13 +261,17 @@ function toggleFavorite() {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('/svg/map-bg-white.svg');
+  background-image: url('/svg/map-bg.svg');
   background-size: auto;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.1;
+  opacity: 0.04;
   pointer-events: none;
   z-index: 0;
+}
+
+[data-theme='dark'] .home-card-header::before {
+  background-image: url('/svg/map-bg-white.svg');
 }
 
 /* 标题区域：占据剩余空间，垂直布局，左对齐 */
@@ -286,11 +292,16 @@ function toggleFavorite() {
   height: 48px;
   object-fit: contain;
   flex-shrink: 0;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+}
+
+[data-theme='dark'] .home-card-logo {
+  filter: none;
 }
 
 /* 卡片标题：单行显示，超长时显示省略号 */
 .home-card-title b {
-  color: white;
+  color: var(--theme-text-primary);
   font-size: 1.2rem;
   white-space: nowrap;
   overflow: hidden;
@@ -373,12 +384,13 @@ function toggleFavorite() {
   align-items: center;
   gap: 0.375rem;
   padding: 0.75rem 1rem;
-  background-color: rgba(245, 245, 245, 0.95);
   min-height: 48px;
   justify-content: flex-end;
   flex-wrap: wrap;
   position: relative;
   overflow: hidden;
+  background-color: var(--theme-bg-secondary);
+  border-top: 1px solid var(--theme-border);
 }
 
 .home-card-buttons::before {
@@ -397,6 +409,10 @@ function toggleFavorite() {
   z-index: 0;
 }
 
+[data-theme='dark'] .home-card-buttons::before {
+  background-image: url('/svg/map-bg-white.svg');
+}
+
 /* 主按钮 - 保持原样式 */
 .card-button {
   min-width: 80px;
@@ -412,6 +428,7 @@ function toggleFavorite() {
   min-width: 60px;
   max-width: 160px;
   height: 32px;
+  color: var(--theme-text-primary) !important;
   font-size: 0.8125rem;
   opacity: 0.85;
 }
