@@ -168,7 +168,7 @@ function calculateRewardTotal(
   extraRewards: Reward[],
 ): RewardStatisticsResultDetail {
   const result: RewardStatisticsResultDetail = {
-    name: name,
+    name,
     originiumRecharge: 0,
     diamond: 0,
     ticketgachaStandardSingle: 0,
@@ -342,13 +342,13 @@ for (const reward of rawVersionReward) {
 
 export {
   allVersionReward,
-  currentVersionReward,
-  currentVersionRewardTotal,
-  getVersionReward,
-  filterRewardEndAfter,
-  rewardTotalCalc,
-  versionTable,
-  getPoolReward,
   currentPoolReward,
   currentPoolRewardTotal,
+  currentVersionReward,
+  currentVersionRewardTotal,
+  filterRewardEndAfter,
+  getPoolReward,
+  getVersionReward,
+  rewardTotalCalc,
+  versionTable,
 };
