@@ -142,5 +142,37 @@
       "治疗效率提升"
     ],
     "skillStats": ["强攻", "追袭", "昂扬", "巧技", "医疗", "切骨", "迸发", "效益"]
+  },
+  "world_energy_point_group10": {
+    "battleId": "world_energy_point_group10",
+    "battleName": "重度能量淤积点·应龙关",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv007_1.webp",
+    "secondaryStats": [
+      "攻击提升",
+      "物理伤害提升",
+      "电磁伤害提升",
+      "寒冷伤害提升",
+      "自然伤害提升",
+      "暴击率提升",
+      "源石技艺提升",
+      "法术伤害提升"
+    ],
+    "skillStats": ["压制", "追袭", "巧技", "残暴", "附术", "迸发", "流转", "效益"]
+  },
+  "world_energy_point_group11": {
+    "battleId": "world_energy_point_group11",
+    "battleName": "重度能量淤积点·北部禁区",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv008_1.webp",
+    "secondaryStats": [
+      "生命提升",
+      "物理伤害提升",
+      "灼热伤害提升",
+      "自然伤害提升",
+      "暴击率提升",
+      "源石技艺提升",
+      "法术伤害提升",
+      "治疗效率提升"
+    ],
+    "skillStats": ["强攻", "压制", "追袭", "粉碎", "昂扬", "附术", "医疗", "效益"]
   }
 }

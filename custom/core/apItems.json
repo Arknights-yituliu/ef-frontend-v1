@@ -79,6 +79,11 @@
     "id": "item_ap_take_out",
     "itemName": "理智精粹药剂"
   },
+  "item_birthday_ap_supply_2026": {
+    "apRecoverValue": 40,
+    "id": "item_birthday_ap_supply_2026",
+    "itemName": "第一年的生日蛋糕"
+  },
   "item_char_ap_supply_aglina": {
     "apRecoverValue": 40,
     "id": "item_char_ap_supply_aglina",
@@ -93,6 +98,16 @@
     "apRecoverValue": 40,
     "id": "item_char_ap_supply_laevat",
     "itemName": "海盐冰淇淋"
+  },
+  "item_char_ap_supply_liino": {
+    "apRecoverValue": 40,
+    "id": "item_char_ap_supply_liino",
+    "itemName": "手工星星糖"
+  },
+  "item_char_ap_supply_lizhiyan": {
+    "apRecoverValue": 40,
+    "id": "item_char_ap_supply_lizhiyan",
+    "itemName": "桂花米糕"
   },
   "item_char_ap_supply_mifu": {
     "apRecoverValue": 40,

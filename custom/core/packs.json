@@ -578,10 +578,10 @@
         "quantity": 15000
       },
       {
-        "itemId": "item_shot_sticker_bp_4",
+        "itemId": "item_shot_sticker_bp_5",
         "name": {
-          "zh-CN": "贴纸·剑桩",
-          "en-US": "Sticker: Sword Stele"
+          "zh-CN": "贴纸·永镇蚀海",
+          "en-US": "Sticker: Eternal Peace Over Blighted Seas"
         },
         "quantity": 1
       },
@@ -698,10 +698,10 @@
         "quantity": 20000
       },
       {
-        "itemId": "item_shot_filter_sp_4",
+        "itemId": "item_shot_filter_sp_5",
         "name": {
-          "zh-CN": "滤镜·胶片",
-          "en-US": "Filter: Film Stock"
+          "zh-CN": "滤镜·希望色彩",
+          "en-US": "Filter: Hues of Hope"
         },
         "quantity": 1
       },
@@ -818,10 +818,10 @@
         "quantity": 40000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_4",
+        "itemId": "item_case_wpn_selfselect_bp_5",
         "name": {
-          "zh-CN": "武器补给·苍山",
-          "en-US": "Weapon Supply: Viridian Mont"
+          "zh-CN": "武器补给·蚀海",
+          "en-US": "Weapon Supply: Blighted Sea"
         },
         "quantity": 1
       },
@@ -1011,13 +1011,13 @@
           "zh-CN": "通行证经验",
           "en-US": "Pass EXP"
         },
-        "quantity": 12000
+        "quantity": 12500
       },
       {
-        "itemId": "item_char_ap_supply_mifu",
+        "itemId": "item_char_ap_supply_lizhiyan",
         "name": {
-          "zh-CN": "龙爪能量饮料",
-          "en-US": "Lungclaw Ultra-E"
+          "zh-CN": "桂花米糕",
+          "en-US": "Osmanthus Rice Cake"
         },
         "quantity": 1
       },
@@ -1086,10 +1086,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_bp_1_3",
+        "itemId": "item_user_avatar_bp_1_4",
         "name": {
-          "zh-CN": "长明",
-          "en-US": "Illuminating an Era"
+          "zh-CN": "现实迸裂",
+          "en-US": "Shattering of Reality"
         },
         "quantity": 1
       },
@@ -1126,10 +1126,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_frame_bp_1_3",
+        "itemId": "item_user_avatar_frame_bp_1_4",
         "name": {
-          "zh-CN": "剑以衬文",
-          "en-US": "Bladewarded Stanzas"
+          "zh-CN": "降伏",
+          "en-US": "Pacification"
         },
         "quantity": 1
       },
@@ -1166,10 +1166,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_4",
+        "itemId": "item_case_wpn_selfselect_bp_5",
         "name": {
-          "zh-CN": "武器补给·苍山",
-          "en-US": "Weapon Supply: Viridian Mont"
+          "zh-CN": "武器补给·蚀海",
+          "en-US": "Weapon Supply: Blighted Sea"
         },
         "quantity": 1
       },
@@ -1214,10 +1214,10 @@
         "quantity": 800
       },
       {
-        "itemId": "item_char_ap_supply_camille",
+        "itemId": "item_char_ap_supply_liino",
         "name": {
-          "zh-CN": "魔甘草糖果",
-          "en-US": "Devil's Licorice Drops"
+          "zh-CN": "手工星星糖",
+          "en-US": "Handmade Star Candy"
         },
         "quantity": 1
       },
@@ -1286,10 +1286,10 @@
         "quantity": 65000
       },
       {
-        "itemId": "business_card_topic_bp_1_3",
+        "itemId": "business_card_topic_bp_1_4",
         "name": {
-          "zh-CN": "苍山藏器",
-          "en-US": "Relic of Viridian Mont"
+          "zh-CN": "根源苦楚",
+          "en-US": "Fount of Suffering"
         },
         "quantity": 1
       },
@@ -1615,6 +1615,80 @@
       }
     ]
   },
+  "giftpack_lt_decorate_1_4": {
+    "packId": "giftpack_lt_decorate_1_4",
+    "displayName": {
+      "zh-CN": "向渊妙趣收藏包",
+      "en-US": "Homecoming Curios Collection Pack"
+    },
+    "category": "Seasonal_Rec_pack",
+    "price": 6,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_decorate_1_4_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_decorate_1_4_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "item_ticketgacha_special_single",
+        "name": {
+          "zh-CN": "特许寻访凭证",
+          "en-US": "Chartered HH Permit"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_user_avatar_giftpack_1",
+        "name": {
+          "zh-CN": "游乐团团",
+          "en-US": "ConcertPom"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_shot_sticker_giftpack_1",
+        "name": {
+          "zh-CN": "贴纸·抑制器",
+          "en-US": "Sticker: Suppressor"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "giftpack_lt_gacha_plus_1_4": {
+    "packId": "giftpack_lt_gacha_plus_1_4",
+    "displayName": {
+      "zh-CN": "相伴庆典组合包",
+      "en-US": "Companionship Celebration Bundle"
+    },
+    "category": "Seasonal_Rec_pack",
+    "price": 298,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_gacha_plus_1_4_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_gacha_plus_1_4_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "item_ticketgacha_special_single",
+        "name": {
+          "zh-CN": "特许寻访凭证",
+          "en-US": "Chartered HH Permit"
+        },
+        "quantity": 30
+      },
+      {
+        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "name": {
+          "zh-CN": "高阶培养自选箱Ⅰ",
+          "en-US": "Advanced Progression Selection Crate Ⅰ"
+        },
+        "quantity": 5
+      },
+      {
+        "itemId": "item_gold",
+        "name": {
+          "zh-CN": "折金票",
+          "en-US": "T-Creds"
+        },
+        "quantity": 100000
+      }
+    ]
+  },
   "monthly_giftpack_01": {
     "packId": "monthly_giftpack_01",
     "displayName": {
@@ -1936,6 +2010,216 @@
       }
     ]
   },
+  "resetid_giftpack_free_01": {
+    "packId": "resetid_giftpack_free_01",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_free_02": {
+    "packId": "resetid_giftpack_free_02",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_free_03": {
+    "packId": "resetid_giftpack_free_03",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_free_04": {
+    "packId": "resetid_giftpack_free_04",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_free_05": {
+    "packId": "resetid_giftpack_free_05",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_pay_01": {
+    "packId": "resetid_giftpack_pay_01",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_pay_02": {
+    "packId": "resetid_giftpack_pay_02",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_pay_03": {
+    "packId": "resetid_giftpack_pay_03",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_pay_04": {
+    "packId": "resetid_giftpack_pay_04",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "resetid_giftpack_pay_05": {
+    "packId": "resetid_giftpack_pay_05",
+    "displayName": {
+      "zh-CN": "信息更新支援包",
+      "en-US": "ID Info Update Pack"
+    },
+    "category": "Permanent_pack",
+    "price": 30,
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallicon.webp",
+    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/resetid_giftpack_01_smallbg.webp",
+    "contents": [
+      {
+        "itemId": "resetid_card_1",
+        "name": {
+          "zh-CN": "ID信息更新卡",
+          "en-US": "ID Info Update Card"
+        },
+        "quantity": 1
+      }
+    ]
+  },
   "seasonal_crossover_lt_1_2_1": {
     "packId": "seasonal_crossover_lt_1_2_1",
     "displayName": {
@@ -2205,80 +2489,6 @@
           "en-US": "Arms INSP Kit"
         },
         "quantity": 240
-      }
-    ]
-  },
-  "向渊妙趣收藏包": {
-    "packId": "向渊妙趣收藏包",
-    "displayName": {
-      "zh-CN": "向渊妙趣收藏包",
-      "en-US": "Abyssbound Curio Collection Pack"
-    },
-    "category": "Seasonal_Rec_pack",
-    "price": 6,
-    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/向渊妙趣收藏包_smallicon.webp",
-    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/向渊妙趣收藏包_smallbg.webp",
-    "contents": [
-      {
-        "itemId": "item_ticketgacha_special_single",
-        "name": {
-          "zh-CN": "特许寻访凭证",
-          "en-US": "Chartered HH Permit"
-        },
-        "quantity": 1
-      },
-      {
-        "itemId": "贴纸·抑制器",
-        "name": {
-          "zh-CN": "贴纸·抑制器",
-          "en-US": "Sticker: Suppressor"
-        },
-        "quantity": 1
-      },
-      {
-        "itemId": "头像·游乐团团",
-        "name": {
-          "zh-CN": "头像·游乐团团",
-          "en-US": "Portrait: Fun Group"
-        },
-        "quantity": 1
-      }
-    ]
-  },
-  "相伴庆典组合包": {
-    "packId": "相伴庆典组合包",
-    "displayName": {
-      "zh-CN": "相伴庆典组合包",
-      "en-US": "Companion Celebration Bundle"
-    },
-    "category": "Seasonal_Rec_pack",
-    "price": 298,
-    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/相伴庆典组合包_smallicon.webp",
-    "backgroundImageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/相伴庆典组合包_smallbg.webp",
-    "contents": [
-      {
-        "itemId": "item_ticketgacha_special_single",
-        "name": {
-          "zh-CN": "特许寻访凭证",
-          "en-US": "Chartered HH Permit"
-        },
-        "quantity": 30
-      },
-      {
-        "itemId": "item_case_bp_selfselect_skillsp_1",
-        "name": {
-          "zh-CN": "高阶培养自选箱Ⅰ",
-          "en-US": "Advanced Progression Selection Crate Ⅰ"
-        },
-        "quantity": 5
-      },
-      {
-        "itemId": "item_gold",
-        "name": {
-          "zh-CN": "折金票",
-          "en-US": "T-Creds"
-        },
-        "quantity": 100000
       }
     ]
   }
