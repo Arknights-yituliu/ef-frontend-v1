@@ -2,11 +2,11 @@
   <v-container class="page-container" fluid>
     <!-- 页面标题 -->
     <div class="page-header mb-6">
-      <h1 class="page-title">「寻遗散记」毕业蓝图</h1>
+      <h1 class="page-title">「向渊行」毕业蓝图</h1>
     </div>
 
     <!-- 教学视频 -->
-    <v-card class="mb-6">
+    <v-card v-if="false" class="mb-6">
       <v-card-item>
         <template #prepend>
           <v-icon color="red" icon="mdi-video" size="32" />
@@ -103,13 +103,22 @@ usePageSeo({
 // 基地一图流图片
 const images = [
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-06-05/武陵城.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片1.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-06-05/景玉谷.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片2.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-06-05/首墩.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片3.webp',
+  },
+  {
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片4.webp',
+  },
+  {
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片7.webp',
+  },
+  {
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片8.webp',
   },
 ];
 
@@ -120,17 +129,13 @@ interface BlueprintItem {
 }
 
 const blueprints: BlueprintItem[] = [
-  { label: '优质芽针针剂', code: 'EF01E750A1939oOA3uIa' },
-  { label: '装备原件三合一（可选）', code: 'EF0170i86I3E3516O0Ai' },
-  { label: '瓶装液化重息壤（可选）', code: 'EF01u28U5eA6A092AoOU' },
-  { label: '1.2下武陵城1', code: 'EF018OIe2A707108UI73' },
-  { label: '1.2下武陵城2', code: 'EF013Eo74iU9Uaoa0579' },
-  { label: '1.2下武陵城3', code: 'EF0170i86I3E3515O0Ai' },
-  { label: '1.2下武陵城4', code: 'EF01o5uiEUeae69uIieO' },
-  { label: '1.2下景玉谷1', code: 'EF015i2179aoauIOeIoe' },
-  { label: '1.2下景玉谷2', code: 'EF018OIe2A7071uOUI73' },
-  { label: '1.2下首墩1', code: 'EF01o5uiEUeae699IieO' },
-  { label: '1.2下首墩2', code: 'EF01eaAo9u8O845ioAi8' },
+  { label: '1.4武陵城1', code: 'EF015i2179aoauU8eIoe' },
+  { label: '1.4武陵城2', code: 'EF018OIe2A7071IeUI73' },
+  { label: '1.4武陵城3', code: 'EF01081Ou4E7Ei7uE179' },
+  { label: '1.4景玉谷1', code: 'EF01u28U5eA6A080AoOU' },
+  { label: '1.4景玉谷2', code: 'EF01ao6532OeOA71oe5e' },
+  { label: '1.4应龙关1', code: 'EF01eaAo9u8O84i6oAi8' },
+  { label: '1.4应龙关2', code: 'EF018OIe2A7071IiUI73' },
 ];
 
 const blueprintsWithClipboard = ref(

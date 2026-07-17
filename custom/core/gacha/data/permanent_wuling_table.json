@@ -267,30 +267,9 @@
     "tips": ["包含储藏箱、机器人和处理险情"]
   },
   {
-    "id": "应龙关地图",
+    "id": "应龙关+北部禁区地图",
     "name": {
-      "zh": "应龙关地图",
-      "en": ""
-    },
-    "start": "2026/01/22 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "地区探索与建设",
-    "active": false,
-    "version": "向渊行",
-    "content": {
-      "originiumRecharge": 1,
-      "diamond": 1000,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    },
-    "tips": ["包含储藏箱、机器人和处理险情"]
-  },
-  {
-    "id": "北部禁区地图",
-    "name": {
-      "zh": "北部禁区地图",
+      "zh": "应龙关+北部禁区地图",
       "en": ""
     },
     "start": "2026/01/22 12:00:00",
@@ -301,13 +280,14 @@
     "version": "向渊行",
     "content": {
       "originiumRecharge": 3,
-      "diamond": 4500,
+      "diamond": 3920,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     },
     "tips": ["包含储藏箱、机器人和处理险情"]
   },
+ 
   {
     "id": "武陵·地区建设等级1-6",
     "name": {
@@ -408,9 +388,9 @@
       "ticketgachaLimitedSingle": 0
     }
   }, {
-    "id": "武陵·地区建设等级18-21",
+    "id": "武陵·地区建设等级18-24",
     "name": {
-      "zh": "武陵·地区建设等级18-21",
+      "zh": "武陵·地区建设等级18-24",
       "en": ""
     },
     "start": "2026/07/16 12:00:00",
@@ -421,8 +401,8 @@
     "version": "向渊行",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 600,
-      "ticketgachaStandardSingle": 3,
+      "diamond": 1200,
+      "ticketgachaStandardSingle":6,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }

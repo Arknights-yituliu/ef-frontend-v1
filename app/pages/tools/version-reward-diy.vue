@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Reward } from '#shared/types/gacha-calculator';
+import type { Reward, VersionTableItem } from '#shared/types/gacha-calculator';
 import { dateFormat } from '#shared/utils/dateUtil';
 
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
@@ -8,13 +8,12 @@ import { computed, onMounted, ref, watch } from 'vue';
 import {
   currentVersionReward,
   currentVersionRewardTotal,
-  filterRewardByVersion,
-  versionTable,
-  type VersionTableItem,
+  getVersionReward,
+  versionTable
 } from '@/custom/core/gacha/versionReward';
 
 const currentVersion = ref<VersionTableItem>(versionTable[4] as VersionTableItem);
-filterRewardByVersion('version', currentVersion.value);
+getVersionReward( currentVersion.value);
 
 const rewardItemGroupHeightMin = 800;
 const rewardItemGroupHeightMax = 2600;

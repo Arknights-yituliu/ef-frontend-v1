@@ -59,7 +59,20 @@
       "zh-CN": "标准组合包",
       "en-US": "Standard Bundle"
     },
-    "goodsIds": ["monthly_giftpack_01", "weekly_giftpack_01"]
+    "goodsIds": [
+      "monthly_giftpack_01",
+      "resetid_giftpack_free_01",
+      "resetid_giftpack_free_02",
+      "resetid_giftpack_free_03",
+      "resetid_giftpack_free_04",
+      "resetid_giftpack_free_05",
+      "resetid_giftpack_pay_01",
+      "resetid_giftpack_pay_02",
+      "resetid_giftpack_pay_03",
+      "resetid_giftpack_pay_04",
+      "resetid_giftpack_pay_05",
+      "weekly_giftpack_01"
+    ]
   },
   "Seasonal_Rec_pack": {
     "shopId": "Seasonal_Rec_pack",
@@ -68,11 +81,11 @@
       "en-US": "Limited Bundle"
     },
     "goodsIds": [
+      "giftpack_lt_decorate_1_4",
+      "giftpack_lt_gacha_plus_1_4",
       "seasonal_crossover_lt_1_2_1",
       "seasonal_giftpack",
-      "seasonal_giftpack_combine",
-      "向渊妙趣收藏包",
-      "相伴庆典组合包"
+      "seasonal_giftpack_combine"
     ]
   },
   "SP_weapon_supply": {
