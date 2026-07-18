@@ -18,8 +18,6 @@ import {
 
 const rawVersionReward: Reward[] = [];
 
-
-
 const versionTable: VersionTableItem[] = [
   {
     start: new Date('2026/01/22 12:00:00'),
@@ -129,37 +127,41 @@ function getVersionReward(version: VersionTableItem) {
   // 计算并设置高度
 }
 
-const currentPoolReward = ref<Reward[]>([]);
-const currentPoolRewardTotal = ref<RewardStatisticsResultDetail[]>([]);
-function getPoolReward(version: string,start:Date,end:Date) {
+function getPoolReward(version: string, character: string, start: Date, end: Date) {
+  const daysDiff = calculateDaysDifference(start, end);
 
- const daysDiff = calculateDaysDifference(start, end);
-
-  currentPoolRewardTotal.value = [];
-  currentPoolReward.value = [];
+  currentVersionRewardTotal.value = [];
+  currentVersionReward.value = [];
   let dailyReward: Reward[] = [];
 
   dailyReward = createVersionDailyReward(start, end, version);
 
-  currentPoolReward.value.push(...dailyReward);
+  currentVersionReward.value.push(...dailyReward);
 
   for (const reward of rawVersionReward) {
-    if (version === reward.version) {
-      currentPoolReward.value.push(reward);
+    if (version !== reward.version) {
+      continue;
     }
+    if (character !== reward.type && '通用' !== reward.type) {
+      continue;
+    } 
+    if(new Date(reward.start) < start){
+      continue;
+    }
+    
+    currentVersionReward.value.push(reward);
   }
 
-  const result1 = calculateRewardTotal('零氪', currentPoolReward.value, []);
-  const result2 = calculateRewardTotal('月卡', currentPoolReward.value, [
+  const result1 = calculateRewardTotal('零氪', currentVersionReward.value, []);
+  const result2 = calculateRewardTotal('月卡', currentVersionReward.value, [
     _createMonthlyPackReward(daysDiff),
   ]);
-  const result3 = calculateRewardTotal('月卡+通行证', currentPoolReward.value, [
+  const result3 = calculateRewardTotal('月卡+通行证', currentVersionReward.value, [
     _createMonthlyPackReward(daysDiff),
     _createBattlePassReward(),
   ]);
 
-  currentPoolRewardTotal.value.push(result1, result2, result3);
-
+  currentVersionRewardTotal.value.push(result1, result2, result3);
 }
 
 function calculateRewardTotal(
@@ -342,8 +344,6 @@ for (const reward of rawVersionReward) {
 
 export {
   allVersionReward,
-  currentPoolReward,
-  currentPoolRewardTotal,
   currentVersionReward,
   currentVersionRewardTotal,
   filterRewardEndAfter,

@@ -17,23 +17,12 @@
         <p class="mb-3">
           <a
             class="video-link text-body-1"
-            href="https://www.bilibili.com/video/BV1bR7k67EaH"
+            href="https://www.bilibili.com/video/BV1bjKK67EVP"
             rel="noopener noreferrer"
             target="_blank"
           >
             <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-            https://www.bilibili.com/video/BV1bR7k67EaH
-          </a>
-        </p>
-        <p>
-          <a
-            class="video-link text-body-1"
-            href="https://www.bilibili.com/video/BV1Wn596bEHK"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-            https://www.bilibili.com/video/BV1Wn596bEHK
+            https://www.bilibili.com/video/BV1bjKK67EVP
           </a>
         </p>
       </v-card-text>
@@ -103,22 +92,22 @@ usePageSeo({
 // 基地一图流图片
 const images = [
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片1.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片1.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片2.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片2.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片3.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片3.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片4.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片4.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片7.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片7.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-17/幻灯片8.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片8.webp',
   },
 ];
 
@@ -131,11 +120,15 @@ interface BlueprintItem {
 const blueprints: BlueprintItem[] = [
   { label: '1.4武陵城1', code: 'EF015i2179aoauU8eIoe' },
   { label: '1.4武陵城2', code: 'EF018OIe2A7071IeUI73' },
-  { label: '1.4武陵城3', code: 'EF01081Ou4E7Ei7uE179' },
+  { label: '1.4武陵城3', code: 'EF01u28U5eA6A0i6AoOU' },
   { label: '1.4景玉谷1', code: 'EF01u28U5eA6A080AoOU' },
   { label: '1.4景玉谷2', code: 'EF01ao6532OeOA71oe5e' },
-  { label: '1.4应龙关1', code: 'EF01eaAo9u8O84i6oAi8' },
-  { label: '1.4应龙关2', code: 'EF018OIe2A7071IiUI73' },
+  { label: '1.4应龙关1', code: 'EF013Eo74iU9UaI90579' },
+  { label: '1.4应龙关2', code: 'EF0170i86I3E35iuO0Ai' },
+  { label: '赫铜零件模块', code: 'EF01E750A1939oI43uIa' },
+  { label: '赤铜零件模块', code: 'EF0170i86I3E35I7O0Ai' },
+  { label: '赤铜耐压罐模块', code: 'EF01A67ua8I4IE539ieO' },
+  { label: '瓶装液化重息壤', code: 'EF018OIe2A7071o2UI73' },
 ];
 
 const blueprintsWithClipboard = ref(

@@ -8,12 +8,14 @@ import { computed, onMounted, ref, watch } from 'vue';
 import {
   currentVersionReward,
   currentVersionRewardTotal,
+  getPoolReward,
   getVersionReward,
   versionTable
 } from '@/custom/core/gacha/versionReward';
 
 const currentVersion = ref<VersionTableItem>(versionTable[4] as VersionTableItem);
 getVersionReward( currentVersion.value);
+  //  getPoolReward("向渊行","梨诺",new Date('2026/08/09 12:00:00'),new Date('2026/09/02 12:00:00'));
 
 const rewardItemGroupHeightMin = 800;
 const rewardItemGroupHeightMax = 2600;
@@ -102,6 +104,18 @@ const groupedRewards = computed(() => {
   }
   return sorted;
 });
+
+/** 是否在奖励项中显示开始和结束日期 */
+const showDates = ref(false);
+
+/**
+ * 格式化奖励日期为 yyyy-MM-dd 格式
+ * @param date 日期（Date 或 string）
+ * @returns yyyy-MM-dd 格式的日期字符串
+ */
+function formatRewardDate(date: string | Date): string {
+  return dateFormat(date, 'yyyy-MM-dd');
+}
 
 // 控制台数据 - 初始化时使用默认图片
 const controlPanel = ref({
@@ -404,55 +418,60 @@ function handleImageUpload(event: Event) {
             <div class="version-reward-module-title">{{ module }}</div>
             <!-- 分组内的奖励项 -->
             <div v-for="reward in rewards" :key="reward.id" class="version-reward-item">
-              <div>
-                <!-- <div class="version-reward-item-bar red-bar"></div> -->
-                <div class="version-reward-item-bar yellow-bar"></div>
-                <!-- <div class="version-reward-item-bar blue-bar"></div> -->
+              <div class="version-reward-item-row">
+                <div>
+                  <!-- <div class="version-reward-item-bar red-bar"></div> -->
+                  <div class="version-reward-item-bar yellow-bar"></div>
+                  <!-- <div class="version-reward-item-bar blue-bar"></div> -->
+                </div>
+                <div class="version-reward-item-name">{{ reward.name.zh }}</div>
+                <div v-if="reward.content.originiumRecharge > 0" class="version-reward-item-content">
+                  <img
+                    alt="衍质源石"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+                  />× {{ reward.content.originiumRecharge }}
+                </div>
+                <div v-if="reward.content.diamond > 0" class="version-reward-item-content">
+                  <img
+                    alt="嵌晶玉"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+                  />× {{ numberFloor(reward.content.diamond, 0) }}
+                </div>
+                <div
+                  v-if="reward.content.ticketgachaStandardSingle > 0"
+                  class="version-reward-item-content"
+                >
+                  <img
+                    alt="基础寻访凭证"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
+                  />× {{ reward.content.ticketgachaStandardSingle }}
+                </div>
+                <div
+                  v-if="reward.content.ticketgachaSpecialSingle > 0"
+                  class="version-reward-item-content"
+                >
+                  <img
+                    alt="特许寻访凭证"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
+                  />× {{ reward.content.ticketgachaSpecialSingle }}
+                </div>
+                <div
+                  v-if="reward.content.ticketgachaLimitedSingle > 0"
+                  class="version-reward-item-content"
+                >
+                  <img
+                    alt="限时寻访凭证"
+                    class="version-reward-item-icon"
+                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
+                  />× {{ reward.content.ticketgachaLimitedSingle }}
+                </div>
               </div>
-              <div class="version-reward-item-name">{{ reward.name.zh }}</div>
-              <div v-if="reward.content.originiumRecharge > 0" class="version-reward-item-content">
-                <img
-                  alt="衍质源石"
-                  class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
-                />× {{ reward.content.originiumRecharge }}
-              </div>
-              <div v-if="reward.content.diamond > 0" class="version-reward-item-content">
-                <img
-                  alt="嵌晶玉"
-                  class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
-                />× {{ numberFloor(reward.content.diamond, 0) }}
-              </div>
-              <div
-                v-if="reward.content.ticketgachaStandardSingle > 0"
-                class="version-reward-item-content"
-              >
-                <img
-                  alt="基础寻访凭证"
-                  class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
-                />× {{ reward.content.ticketgachaStandardSingle }}
-              </div>
-              <div
-                v-if="reward.content.ticketgachaSpecialSingle > 0"
-                class="version-reward-item-content"
-              >
-                <img
-                  alt="特许寻访凭证"
-                  class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
-                />× {{ reward.content.ticketgachaSpecialSingle }}
-              </div>
-              <div
-                v-if="reward.content.ticketgachaLimitedSingle > 0"
-                class="version-reward-item-content"
-              >
-                <img
-                  alt="限时寻访凭证"
-                  class="version-reward-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
-                />× {{ reward.content.ticketgachaLimitedSingle }}
+              <div v-if="showDates" class="version-reward-item-date">
+                {{ formatRewardDate(reward.start) }} ~ {{ formatRewardDate(reward.end) }}
               </div>
             </div>
           </template>
@@ -614,6 +633,14 @@ function handleImageUpload(event: Event) {
       <div class="control-item">
         <label>其他说明</label>
         <textarea v-model="controlPanel.otherInfo" placeholder="请输入其他说明" rows="4"></textarea>
+      </div>
+
+      <!-- 显示日期开关 -->
+      <div class="control-item">
+        <label>
+          <input v-model="showDates" type="checkbox" />
+          显示奖励日期（开始 ~ 结束）
+        </label>
       </div>
 
       <div class="control-item">
@@ -833,11 +860,9 @@ function handleImageUpload(event: Event) {
 /* ========== 2.2.2.1 单个奖励项 ========== */
 .version-reward-item {
   font-size: 26px;
-  height: 64px;
   width: 500px;
   display: flex;
-  align-items: center;
-  padding: 0 4px;
+  flex-direction: column;
   margin-bottom: 12px;
   background-color: rgb(32, 32, 32, 0.85);
   color: white;
@@ -845,11 +870,24 @@ function handleImageUpload(event: Event) {
   border-radius: 8px;
 }
 
+.version-reward-item-row {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 4px;
+}
+
 .version-reward-item-name {
   padding: 0px 0px 0px 12px;
   width: 240px;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.version-reward-item-date {
+  padding: 2px 16px 6px 16px;
+  font-size: 0.65rem;
+  opacity: 0.6;
 }
 
 .version-reward-item-content {
