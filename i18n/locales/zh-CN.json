@@ -458,6 +458,7 @@
     "tools": {
       "essenceCalculator": {
         "title": "基质规划器",
+        "settings": "设置",
         "demandSet": "需求设定",
         "demandSetDescription": "需求的顺序不会影响结果。如果您想要优先刷取特定基质，请仅添加该基质的需求。",
         "attributeStats": "基础属性",

@@ -1,0 +1,55 @@
+{
+  "weapon": {
+    "type": {
+      "wpn_sword": "Sword",
+      "wpn_funnel": "Arts Unit",
+      "wpn_claym": "Greatsword",
+      "wpn_lance": "Polearm",
+      "wpn_pistol": "Handcannon"
+    },
+    "stat": {
+      "gat_passive_attr_agi": "Agility Boost",
+      "gat_passive_attr_atk": "Attack Boost",
+      "gat_passive_attr_crirate": "Critical Rate Boost",
+      "gat_passive_attr_firedam": "Heat DMG Boost",
+      "gat_passive_attr_heal": "Treatment Efficiency Boost",
+      "gat_passive_attr_hp": "HP Boost",
+      "gat_passive_attr_icedam": "Cryo DMG Boost",
+      "gat_passive_attr_magicdam": "Arts DMG Boost",
+      "gat_passive_attr_main": "Main Attribute Boost",
+      "gat_passive_attr_naturaldam": "Nature DMG Boost",
+      "gat_passive_attr_phydam": "Physical DMG Boost",
+      "gat_passive_attr_physpell": "Arts Intensity Boost",
+      "gat_passive_attr_pulsedam": "Electric DMG Boost",
+      "gat_passive_attr_str": "Strength Boost",
+      "gat_passive_attr_usp": "Ultimate Gain Efficiency Boost",
+      "gat_passive_attr_will": "Will Boost",
+      "gat_passive_attr_wisd": "Intellect Boost",
+      "gst_passive_break": "Brutality",
+      "gst_passive_burst": "Detonate",
+      "gst_passive_combo": "Pursuit",
+      "gst_passive_crit": "Fracture",
+      "gst_passive_force": "Assault",
+      "gst_passive_heal": "Medicant",
+      "gst_passive_keyword": "Efficacy",
+      "gst_passive_magabn": "Infliction",
+      "gst_passive_phyabn": "Combative",
+      "gst_passive_smash": "Crusher",
+      "gst_passive_spirit": "Inspiring",
+      "gst_passive_tacafter": "Flow",
+      "gst_passive_tactic": "Suppression",
+      "gst_passive_ult": "Twilight"
+    }
+  },
+  "energyAlluviums": {
+    "world_energy_point_group01": "Severe Energy Alluvium: The Hub",
+    "world_energy_point_group02": "Severe Energy Alluvium: Originium Science Park",
+    "world_energy_point_group03": "Severe Energy Alluvium: Origin Lodespring",
+    "world_energy_point_group04": "Severe Energy Alluvium: Power Plateau",
+    "world_energy_point_group05": "Severe Energy Alluvium: Wuling City",
+    "world_energy_point_group06": "Severe Energy Alluvium: Qingbo Stockade",
+    "world_energy_point_group07": "Severe Energy Alluvium: Marker Stone",
+    "world_energy_point_group08": "Severe Energy Alluvium: Test Area",
+    "world_energy_point_group09": "Severe Energy Alluvium: Sword Vault Dale"
+  }
+}
