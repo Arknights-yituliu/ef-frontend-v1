@@ -223,5 +223,55 @@
       "weapon.stat.gst_passive_burst",
       "weapon.stat.gst_passive_keyword"
     ]
+  },
+  "world_energy_point_group10": {
+    "battleId": "world_energy_point_group10",
+    "battleName": "energyAlluviums.world_energy_point_group10",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv007_1.webp",
+    "secondaryStats": [
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_pulsedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_magicdam"
+    ],
+    "skillStats": [
+      "weapon.stat.gst_passive_tactic",
+      "weapon.stat.gst_passive_combo",
+      "weapon.stat.gst_passive_phyabn",
+      "weapon.stat.gst_passive_break",
+      "weapon.stat.gst_passive_magabn",
+      "weapon.stat.gst_passive_burst",
+      "weapon.stat.gst_passive_tacafter",
+      "weapon.stat.gst_passive_keyword"
+    ]
+  },
+  "world_energy_point_group11": {
+    "battleId": "world_energy_point_group11",
+    "battleName": "energyAlluviums.world_energy_point_group11",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv008_1.webp",
+    "secondaryStats": [
+      "weapon.stat.gat_passive_attr_hp",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_magicdam",
+      "weapon.stat.gat_passive_attr_heal"
+    ],
+    "skillStats": [
+      "weapon.stat.gst_passive_force",
+      "weapon.stat.gst_passive_tactic",
+      "weapon.stat.gst_passive_combo",
+      "weapon.stat.gst_passive_smash",
+      "weapon.stat.gst_passive_spirit",
+      "weapon.stat.gst_passive_magabn",
+      "weapon.stat.gst_passive_heal",
+      "weapon.stat.gst_passive_keyword"
+    ]
   }
 }
