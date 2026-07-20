@@ -177,7 +177,7 @@ export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
 export function getWeaponTypesLocalized(language: I18nLanguage): Record<string, string> {
   switch(language) {
     case 'CN':
-    default:
+    default: {
       return {
         wpn_sword: "单手剑",
         wpn_funnel: "施术单元",
@@ -185,8 +185,9 @@ export function getWeaponTypesLocalized(language: I18nLanguage): Record<string, 
         wpn_lance: "长柄武器",
         wpn_pistol: "手铳",
       }
+    }
 
-    case 'EN':
+    case 'EN': {
       return {
         wpn_sword: "Sword",
         wpn_funnel: "Arts Unit",
@@ -194,6 +195,7 @@ export function getWeaponTypesLocalized(language: I18nLanguage): Record<string, 
         wpn_lance: "Polearm",
         wpn_pistol: "Handcannon",
       }
+    }
   }
 }
 
@@ -206,15 +208,13 @@ export function makeWeaponLocalizations(language: I18nLanguage): WeaponLocalizat
     energyAlluviums: {}
   };
 
-  Object.keys(gemTable)
-    .toSorted()
-    .forEach(attrId => {
+  for (const attrId of Object.keys(gemTable)
+    .toSorted()) {
       weaponLocalization.weapon.stat[attrId] = getGemTagName(attrId, language);
-  });
+  }
   
-  Object.keys(worldEnergyPointGroupTable)
-    .toSorted()
-    .forEach(groupId => {
+  for (const groupId of Object.keys(worldEnergyPointGroupTable)
+    .toSorted()) {
       const group = worldEnergyPointGroupTable[groupId]!;
       const worldLevelMap = group.worldLevel2GameMechanicsIdMap;
 
@@ -224,7 +224,7 @@ export function makeWeaponLocalizations(language: I18nLanguage): WeaponLocalizat
       const energyPoint = worldEnergyPointTable[lastMechanicsId]!;
 
       weaponLocalization.energyAlluviums[groupId] = getTranslation(energyPoint.gameName, language);
-    });
+    }
 
   return weaponLocalization;
 }
