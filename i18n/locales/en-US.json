@@ -48,6 +48,8 @@
     "copyFailed": "Copy failed",
     "PCOnly": "Only available on PC",
     "copyCodePCOnly": "Copied.\nPlease note that this code can only be used on PC platform.",
+    "limitY1U4": "Only available during the version \"Homecoming\"",
+    "copyCodeY1U4": "Copied.\nPlease note that this code can only be used during the version \"Homecoming\".",
     "feedback": "Feedback"
   },
   "layout": {
@@ -128,6 +130,7 @@
         "allfield": "ALLFIELD",
         "endfieldgift": "ENDFIELDGIFT",
         "endfield4pc": "ENDFIELD4PC",
+        "efy1u4": "ENDFIELDRENEW",
         "tdd202601": "TDD202601",
         "arknightstd": "ARKNIGHTS-TD",
         "hiddengem01": "HIDDEN-GEM-01",
@@ -154,7 +157,7 @@
       },
       "cards": {
         "launchRedemptionCodes": {
-          "title": "Launch Redemption Codes",
+          "title": "Available Redemption Codes",
           "tag": "Official",
           "description": "Redeem at \"Settings - Platform & Account - Gift Code Redemption\"; Require [Mail] feature unlocked."
         },

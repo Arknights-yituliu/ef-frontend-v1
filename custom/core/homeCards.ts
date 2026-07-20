@@ -182,6 +182,15 @@ export const homeCards: CardData[] = [
         popupText: 'common.PCOnly',
         copySuccessText: 'common.copyCodePCOnly',
       },
+      {
+        i18nKey: 'buttons.efy1u4',
+        buttonType: ButtonType.Text,
+        action: ButtonActionType.Copy,
+        actionData: 'ENDFIELDRENEW',
+        icon: 'mdi-timer-alert',
+        popupText: 'common.limitY1U4',
+        copySuccessText: 'common.copyCodeY1U4',
+      },
     ],
   },
   {
