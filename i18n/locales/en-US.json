@@ -152,6 +152,12 @@
         "betaTestIICheckAccess": "Beta Test II Check Access",
         "checkAccessOnEndfieldOfficialSite": "Check access on endfield official site"
       },
+      "codeContent": {
+        "title": "Contents: ",
+        "endfieldgift": "Oroberyl x150, T-Creds x10k, Intermediate Combat Record x20, Arms INSP Kit x20",
+        "PCOnly": "T-Creds x1.3k, Advanced Combat Record x2, Arms INSP Kit x2",
+        "limitY1U4": "Camera Sticker [Safety Helmet], T-Creds x7.16k"
+      },
       "chargeReward": {
         "betaTestIIChargeRewardQuery": "Beta Test II Charge Reward Query"
       },

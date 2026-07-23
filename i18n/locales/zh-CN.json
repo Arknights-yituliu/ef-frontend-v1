@@ -155,6 +155,12 @@
         "visitWiki": "访问Wiki",
         "visitBlueprintStation": "访问蓝图站"
       },
+      "codeContent": {
+        "title": "兑换码内含：",
+        "endfieldgift": "嵌晶玉x150、折金票x1万、中级作战记录x20、武器检查装置x20",
+        "PCOnly": "折金票x1.3万、高级作战记录x2、武器检查装置x2",
+        "limitY1U4": "相机贴纸【工业安全帽】、折金票x7.16万"
+      },
       "cards": {
         "launchRedemptionCodes": {
           "title": "可用兑换码",
