@@ -134,6 +134,7 @@ export interface GachaCalculatorUserConfig {
   versionVisible?: {
     [key: string]: boolean;
   };
+  arsenalExistingQuota?: number;
 }
 
 export type ModuleSelectedStatus = {

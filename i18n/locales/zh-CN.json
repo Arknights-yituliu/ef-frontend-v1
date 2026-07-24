@@ -48,6 +48,8 @@
     "copyFailed": "复制失败",
     "PCOnly": "仅限PC端可用",
     "copyCodePCOnly": "已复制，请注意该兑换码仅可在PC端使用",
+    "limitY1U4": "仅限【向渊行】版本期间可用",
+    "copyCodeY1U4": "已复制，请注意该兑换码仅可于【向渊行】版本期间使用",
     "feedback": "反馈"
   },
   "layout": {
@@ -135,6 +137,7 @@
         "allfield": "ALLFIELD",
         "endfieldgift": "ENDFIELDGIFT",
         "endfield4pc": "ENDFIELD4PC",
+        "efy1u4": "ENDFIELDRENEW",
         "tdd202601": "TDD202601",
         "arknightstd": "ARKNIGHTS-TD",
         "hiddengem01": "HIDDEN-GEM-01",
@@ -152,9 +155,15 @@
         "visitWiki": "访问Wiki",
         "visitBlueprintStation": "访问蓝图站"
       },
+      "codeContent": {
+        "title": "兑换码内含：",
+        "endfieldgift": "嵌晶玉x150、折金票x1万、中级作战记录x20、武器检查装置x20",
+        "PCOnly": "折金票x1.3万、高级作战记录x2、武器检查装置x2",
+        "limitY1U4": "相机贴纸【工业安全帽】、折金票x7.16万"
+      },
       "cards": {
         "launchRedemptionCodes": {
-          "title": "开服兑换码",
+          "title": "可用兑换码",
           "tag": "官方",
           "description": "于“设置-平台与账户-礼包兑换”处兑换；需要开启【邮箱】功能"
         },
@@ -455,6 +464,7 @@
     "tools": {
       "essenceCalculator": {
         "title": "基质规划器",
+        "settings": "设置",
         "demandSet": "需求设定",
         "demandSetDescription": "需求的顺序不会影响结果。如果您想要优先刷取特定基质，请仅添加该基质的需求。",
         "attributeStats": "基础属性",

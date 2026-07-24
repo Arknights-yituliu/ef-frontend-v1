@@ -230,12 +230,12 @@ export default defineNuxtConfig({
       {
         code: 'zh-CN', // 语言代码
         label: '中文', // 显示标签
-        file: 'zh-CN.json', // 语言文件路径（相对于 langDir）
+        files: ['zh-CN.json', 'zh-CN-weapons.json'], // 语言文件路径（相对于 langDir）
       },
       {
         code: 'en-US',
         label: 'English',
-        file: 'en-US.json',
+        files: ['en-US.json', 'en-US-weapons.json'],
       },
     ],
 

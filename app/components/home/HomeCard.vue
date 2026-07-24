@@ -90,7 +90,11 @@ function handleCardButtonClick(button: CardButton) {
     window.open(button.actionData, target);
   } else if (button.action === ButtonActionType.Copy) {
     // 复制文本
-    copyToClipboard(button.actionData, t(button.copySuccessText || 'common.copySuccess'));
+    let text = t(button.copySuccessText || 'common.copySuccess');
+    if (button.codeInner) {
+      text += `\n${t('component.home.codeContent.title')}${t(`component.home.${button.codeInner}`)}`;
+    }
+    copyToClipboard(button.actionData, text);
   }
 }
 

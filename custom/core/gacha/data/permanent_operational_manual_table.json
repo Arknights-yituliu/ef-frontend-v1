@@ -8,7 +8,7 @@
     "start": "2026/06/05 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": true,
     "version": "寻遗散记",
     "content": {
@@ -28,7 +28,7 @@
     "start": "2026/04/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "春晓时",
     "content": {
@@ -48,7 +48,7 @@
     "start": "2026/04/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "春晓时",
     "content": {
@@ -68,7 +68,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -88,7 +88,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -108,7 +108,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -128,7 +128,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -148,7 +148,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -168,7 +168,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "新潮起·故渊离",
     "content": {
@@ -189,7 +189,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·首通",
     "active": false,
     "version": "新潮起·故渊离",
     "content": {
@@ -210,7 +210,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -230,7 +230,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -250,7 +250,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -270,7 +270,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -290,7 +290,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -310,7 +310,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -330,7 +330,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -350,7 +350,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -370,7 +370,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -390,7 +390,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -410,7 +410,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -430,7 +430,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -450,7 +450,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -470,7 +470,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -490,12 +490,152 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·节点奖励",
     "active": false,
     "version": "零号委托",
     "content": {
       "originiumRecharge": 0,
       "diamond": 750,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "模拟空间·四号谷地·零号委托",
+    "name": {
+      "zh": "模拟空间·四号谷地",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动节点·集成工业模拟",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 965,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "模拟空间·武陵·零号委托",
+    "name": {
+      "zh": "模拟空间·武陵",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动节点·集成工业模拟",
+    "active": false,
+    "version": "零号委托",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 305,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "模拟空间·武陵·新潮起·故渊离",
+    "name": {
+      "zh": "模拟空间·武陵",
+      "en": ""
+    },
+    "start": "2026/03/12 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动节点·集成工业模拟",
+    "active": false,
+    "version": "新潮起·故渊离",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 105,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "模拟空间·武陵·春晓时",
+    "name": {
+      "zh": "模拟空间·武陵",
+      "en": ""
+    },
+    "start": "2026/04/17 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动节点·集成工业模拟",
+    "active": false,
+    "version": "春晓时",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 185,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "模拟空间·武陵·向渊行",
+    "name": {
+      "zh": "模拟空间·武陵",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动节点·集成工业模拟",
+    "active": true,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 275,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "能量淤积点首通20260716",
+    "name": {
+      "zh": "能量淤积点首通",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动节点·首通",
+    "active": true,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "危境再现·阿莱克琉斯",
+    "name": {
+      "zh": "危境再现·阿莱克琉斯",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动节点·首通",
+    "active": true,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0

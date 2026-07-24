@@ -19,10 +19,17 @@ export interface EssenceStat {
 
 export interface Weapon {
   weaponId: string;
-  weaponName: string;
   weaponType: string;
   rarity: number;
   stats: EssenceStat;
+}
+
+export interface WeaponLocalization {
+  weapon: {
+    type: Record<string, string>,
+    stat: Record<string, string>,
+  },
+  energyAlluviums: Record<string, string>,
 }
 
 export function getItemName(itemId: string, language: I18nLanguage): string {
@@ -34,11 +41,11 @@ export function getItemName(itemId: string, language: I18nLanguage): string {
 
 export function getWeaponTypeName(weaponId: string): string {
   const weaponTypeToTypeName = new Map<number, string>([
-    [1, '单手剑'],
-    [2, '施术单元'],
-    [3, '双手剑'],
-    [5, '长柄武器'],
-    [6, '手铳'],
+    [1, 'weapon.type.wpn_sword'],
+    [2, 'weapon.type.wpn_funnel'],
+    [3, 'weapon.type.wpn_claym'],
+    [5, 'weapon.type.wpn_lance'],
+    [6, 'weapon.type.wpn_pistol'],
   ]);
   return weaponTypeToTypeName.get(weaponBasicTable[weaponId]!.weaponType)!;
 }
@@ -70,7 +77,7 @@ export function getGameName(gameGroupId: string): string {
   return getTranslation(worldEnergyPoint.gameName, 'CN');
 }
 
-export function getStatsForWeapon(weaponId: string, language: I18nLanguage): EssenceStat {
+export function getStatsForWeapon(weaponId: string): EssenceStat {
   const weapon = weaponBasicTable[weaponId];
   if (!weapon) {
     throw new Error(`无法找到武器数据，weaponId=${weaponId}`);
@@ -84,15 +91,15 @@ export function getStatsForWeapon(weaponId: string, language: I18nLanguage): Ess
     const gem = gemTable[gemStat]!;
     switch (gem.termType) {
       case 0: {
-        result.attribute = getGemTagName(gem.gemTermId, language);
+        result.attribute = `weapon.stat.${gem.gemTermId}`;
         break;
       }
       case 1: {
-        result.secondary = getGemTagName(gem.gemTermId, language);
+        result.secondary = `weapon.stat.${gem.gemTermId}`;
         break;
       }
       case 2: {
-        result.skill = getGemTagName(gem.gemTermId, language);
+        result.skill = `weapon.stat.${gem.gemTermId}`;
         break;
       }
     }
@@ -108,10 +115,9 @@ export function makeWeapons(): Record<string, Weapon> {
         weaponId,
         {
           weaponId,
-          weaponName: getItemName(weaponId, 'CN'),
           weaponType: getWeaponTypeName(weaponId),
           rarity: weaponBasicTable[weaponId]!.rarity,
-          stats: getStatsForWeapon(weaponId, 'CN'),
+          stats: getStatsForWeapon(weaponId),
         },
       ]),
   );
@@ -144,15 +150,9 @@ export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
     const maxWorldLevel = Math.max(...Object.keys(worldLevelMap).map(Number));
     const lastMechanicsId = worldLevelMap[String(maxWorldLevel)]!;
     const energyPoint = worldEnergyPointTable[lastMechanicsId]!;
-    const battleName = getTranslation(energyPoint.gameName, 'CN');
 
-    // 翻译附加属性词条
-    const secondaryStats = group.secAttrTermIds.map((termId: string) =>
-      getGemTagName(termId, 'CN'),
-    );
-
-    // 翻译技能属性词条
-    const skillStats = group.skillTermIds.map((termId: string) => getGemTagName(termId, 'CN'));
+    const secondaryStats = group.secAttrTermIds.map((termId: string) => `weapon.stat.${termId}`);
+    const skillStats = group.skillTermIds.map((termId: string) => `weapon.stat.${termId}`);
 
     // 通过 levelId 从 LevelLoadingTable 获取背景图文件名
     const levelId = energyPoint.levelId;
@@ -164,7 +164,7 @@ export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
 
     result[groupId] = {
       battleId: groupId,
-      battleName,
+      battleName: `energyAlluviums.${groupId}`,
       imageUrl,
       secondaryStats,
       skillStats,
@@ -172,4 +172,59 @@ export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
   }
 
   return result;
+}
+
+export function getWeaponTypesLocalized(language: I18nLanguage): Record<string, string> {
+  switch(language) {
+    case 'CN':
+    default: {
+      return {
+        wpn_sword: "单手剑",
+        wpn_funnel: "施术单元",
+        wpn_claym: "双手剑",
+        wpn_lance: "长柄武器",
+        wpn_pistol: "手铳",
+      }
+    }
+
+    case 'EN': {
+      return {
+        wpn_sword: "Sword",
+        wpn_funnel: "Arts Unit",
+        wpn_claym: "Greatsword",
+        wpn_lance: "Polearm",
+        wpn_pistol: "Handcannon",
+      }
+    }
+  }
+}
+
+export function makeWeaponLocalizations(language: I18nLanguage): WeaponLocalization {
+  const weaponLocalization: WeaponLocalization = {
+    weapon: {
+      type: getWeaponTypesLocalized(language),
+      stat: {}
+    },
+    energyAlluviums: {}
+  };
+
+  for (const attrId of Object.keys(gemTable)
+    .toSorted()) {
+      weaponLocalization.weapon.stat[attrId] = getGemTagName(attrId, language);
+  }
+  
+  for (const groupId of Object.keys(worldEnergyPointGroupTable)
+    .toSorted()) {
+      const group = worldEnergyPointGroupTable[groupId]!;
+      const worldLevelMap = group.worldLevel2GameMechanicsIdMap;
+
+      // 取最高世界等级对应的 mechanicsId，其 gameName 即为"重度能量淤积点·xxx"
+      const maxWorldLevel = Math.max(...Object.keys(worldLevelMap).map(Number));
+      const lastMechanicsId = worldLevelMap[String(maxWorldLevel)]!;
+      const energyPoint = worldEnergyPointTable[lastMechanicsId]!;
+
+      weaponLocalization.energyAlluviums[groupId] = getTranslation(energyPoint.gameName, language);
+    }
+
+  return weaponLocalization;
 }

@@ -1,0 +1,57 @@
+{
+  "weapon": {
+    "type": {
+      "wpn_sword": "单手剑",
+      "wpn_funnel": "施术单元",
+      "wpn_claym": "双手剑",
+      "wpn_lance": "长柄武器",
+      "wpn_pistol": "手铳"
+    },
+    "stat": {
+      "gat_passive_attr_agi": "敏捷提升",
+      "gat_passive_attr_atk": "攻击提升",
+      "gat_passive_attr_crirate": "暴击率提升",
+      "gat_passive_attr_firedam": "灼热伤害提升",
+      "gat_passive_attr_heal": "治疗效率提升",
+      "gat_passive_attr_hp": "生命提升",
+      "gat_passive_attr_icedam": "寒冷伤害提升",
+      "gat_passive_attr_magicdam": "法术伤害提升",
+      "gat_passive_attr_main": "主能力提升",
+      "gat_passive_attr_naturaldam": "自然伤害提升",
+      "gat_passive_attr_phydam": "物理伤害提升",
+      "gat_passive_attr_physpell": "源石技艺提升",
+      "gat_passive_attr_pulsedam": "电磁伤害提升",
+      "gat_passive_attr_str": "力量提升",
+      "gat_passive_attr_usp": "终结技充能效率提升",
+      "gat_passive_attr_will": "意志提升",
+      "gat_passive_attr_wisd": "智识提升",
+      "gst_passive_break": "残暴",
+      "gst_passive_burst": "迸发",
+      "gst_passive_combo": "追袭",
+      "gst_passive_crit": "切骨",
+      "gst_passive_force": "强攻",
+      "gst_passive_heal": "医疗",
+      "gst_passive_keyword": "效益",
+      "gst_passive_magabn": "附术",
+      "gst_passive_phyabn": "巧技",
+      "gst_passive_smash": "粉碎",
+      "gst_passive_spirit": "昂扬",
+      "gst_passive_tacafter": "流转",
+      "gst_passive_tactic": "压制",
+      "gst_passive_ult": "夜幕"
+    }
+  },
+  "energyAlluviums": {
+    "world_energy_point_group01": "重度能量淤积点·枢纽区",
+    "world_energy_point_group02": "重度能量淤积点·源石研究园",
+    "world_energy_point_group03": "重度能量淤积点·矿脉源区",
+    "world_energy_point_group04": "重度能量淤积点·供能高地",
+    "world_energy_point_group05": "重度能量淤积点·武陵城",
+    "world_energy_point_group06": "重度能量淤积点·清波寨",
+    "world_energy_point_group07": "重度能量淤积点·首墩",
+    "world_energy_point_group08": "重度能量淤积点·试验园区",
+    "world_energy_point_group09": "重度能量淤积点·藏剑谷",
+    "world_energy_point_group10": "重度能量淤积点·应龙关",
+    "world_energy_point_group11": "重度能量淤积点·北部禁区"
+  }
+}

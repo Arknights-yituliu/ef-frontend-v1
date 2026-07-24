@@ -563,6 +563,7 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   rangeSlider: {},
   slider: {},
   versionVisible: {},
+  arsenalExistingQuota: 0,
 });
 
 /**
@@ -1218,11 +1219,40 @@ const rangeSliderMap: Record<string, Ref<number[]>> = {
   authority_level_up_reward: authorityLevelProgress,
 };
 
+function migrateOperatorTrainingButtonGroupActive(statusMap: Record<string, boolean>): boolean {
+  let migrated = false;
+
+  for (const { version } of VersionTable) {
+    const oldId = `干员教学_${version}_行动手册`;
+    const newId = `干员教学_${version}_行动节点·训练/教学`;
+
+    if (statusMap[newId] === undefined && statusMap[oldId] !== undefined) {
+      statusMap[newId] = statusMap[oldId];
+      migrated = true;
+    }
+
+    if (statusMap[oldId] !== undefined) {
+      Reflect.deleteProperty(statusMap, oldId);
+      migrated = true;
+    }
+  }
+
+  const xunyisanjiId = '干员教学_寻遗散记_行动节点·训练/教学';
+  const xiangyuanxingId = '干员教学_向渊行_行动节点·训练/教学';
+  if (statusMap[xiangyuanxingId] === undefined && statusMap[xunyisanjiId] !== undefined) {
+    statusMap[xiangyuanxingId] = statusMap[xunyisanjiId];
+    migrated = true;
+  }
+
+  return migrated;
+}
+
 function loadingUserConfig() {
   const localConfigStr = localStorage.getItem('Gacha_Calculator_User_Config');
   if (localConfigStr) {
     try {
       const localConfig: GachaCalculatorUserConfig = JSON.parse(localConfigStr);
+      let shouldPersistUserConfig = false;
       // 使用localConfig
       if (localConfig.rangeSlider) {
         for (const key in localConfig.rangeSlider) {
@@ -1247,16 +1277,19 @@ function loadingUserConfig() {
       }
 
       if (localConfig.buttonGroupActive) {
+        const buttonGroupActive = { ...localConfig.buttonGroupActive };
+        shouldPersistUserConfig = migrateOperatorTrainingButtonGroupActive(buttonGroupActive);
+
         // 日常奖励重构
-        _setButtonGroupActive(localConfig.buttonGroupActive, dailyAllRewardTable);
+        _setButtonGroupActive(buttonGroupActive, dailyAllRewardTable);
 
         // 常驻奖励重构
-        _setButtonGroupActive(localConfig.buttonGroupActive, permanentRewardTable);
+        _setButtonGroupActive(buttonGroupActive, permanentRewardTable);
 
         // 活动奖励
-        _setButtonGroupActive(localConfig.buttonGroupActive, activityReward);
+        _setButtonGroupActive(buttonGroupActive, activityReward);
 
-        gachaCalculatorUserConfig.value.buttonGroupActive = localConfig.buttonGroupActive;
+        gachaCalculatorUserConfig.value.buttonGroupActive = buttonGroupActive;
       }
 
       if (localConfig.versionVisible) {
@@ -1270,6 +1303,12 @@ function loadingUserConfig() {
           ...gachaCalculatorUserConfig.value.versionVisible,
           ...localConfig.versionVisible,
         };
+      }
+
+      if (localConfig.arsenalExistingQuota !== undefined) {
+        const existingQuota = normalizeArsenalExistingQuota(localConfig.arsenalExistingQuota);
+        arsenalExistingQuota.value = existingQuota;
+        gachaCalculatorUserConfig.value.arsenalExistingQuota = existingQuota;
       }
 
       if (localConfig.existingResource) {
@@ -1300,6 +1339,10 @@ function loadingUserConfig() {
         existingResource.value.ticketgachaSpecialSingle = stringToNumber(
           localExistingResource.ticketgachaSpecialSingle,
         );
+      }
+
+      if (shouldPersistUserConfig) {
+        saveGachaCalculatorUserConfig();
       }
     } catch (error) {
       console.error('Failed to parse user config:', error);
@@ -1543,9 +1586,10 @@ function saveUserConfig(
 
 // 武库配额计算
 const ARSENAL_WEEKLY_QUOTA = 100;
-const ARSENAL_DAILY_CREDIT_QUOTA = 20;
+const ARSENAL_DAILY_CREDIT_QUOTA = 10;
 const arsenalCoefficient = ref<number>(80);
 const arsenalOriginiumAllocation = ref<number>(0);
+const arsenalExistingQuota = ref<number>(0);
 
 const arsenalTotalOriginium = computed(() =>
   Math.max(0, Math.floor(totalResourceStatisticsResultDetail.value.originiumRecharge || 0)),
@@ -1641,7 +1685,8 @@ const arsenalQuotaResult = computed(
     arsenalPullQuota.value +
     arsenalRoutineQuota.value +
     arsenalRechargeQuota.value +
-    arsenalOriginiumQuota.value,
+    arsenalOriginiumQuota.value +
+    arsenalExistingQuota.value,
 );
 
 function normalizeArsenalOriginiumAllocation(value: number | string | null | undefined) {
@@ -1652,8 +1697,23 @@ function normalizeArsenalOriginiumAllocation(value: number | string | null | und
   return Math.min(arsenalTotalOriginium.value, Math.max(0, Math.floor(numericValue)));
 }
 
+function normalizeArsenalExistingQuota(value: number | string | null | undefined) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) {
+    return 0;
+  }
+  return Math.max(0, Math.floor(numericValue));
+}
+
 function setArsenalOriginiumAllocation(value: number | null) {
   arsenalOriginiumAllocation.value = normalizeArsenalOriginiumAllocation(value);
+}
+
+function setArsenalExistingQuota(value: number | null) {
+  const existingQuota = normalizeArsenalExistingQuota(value);
+  arsenalExistingQuota.value = existingQuota;
+  gachaCalculatorUserConfig.value.arsenalExistingQuota = existingQuota;
+  saveGachaCalculatorUserConfig();
 }
 
 function adjustArsenalOriginiumAllocation(delta: number) {
@@ -1814,14 +1874,18 @@ function resetGachaCalculator() {
   calc();
 }
 
-// 常驻奖励的分类名称列表，包含五个分类
+// 常驻奖励分类名称列表
 const permanentRewardCategoryNames = [
   '地图资源',
   '任务',
   '档案采集',
   '蚀像寻遗',
   '新手活动',
-  '行动手册',
+  '行动节点',
+  '行动节点·节点奖励',
+  '行动节点·首通',
+  '行动节点·训练/教学',
+  '行动节点·集成工业模拟',
   '未分类',
 ] as const;
 
@@ -1840,7 +1904,13 @@ const permanentRewardModuleCategoryMap: Record<string, PermanentRewardCategoryNa
   蚀像寻遗刻度: '蚀像寻遗',
   蚀像寻遗储藏箱: '蚀像寻遗',
   蚀像寻遗探索任务: '蚀像寻遗',
-  行动手册: '行动手册',
+  干员教学: '行动节点·训练/教学',
+  行动手册: '行动节点',
+  行动节点: '行动节点',
+  '行动节点·节点奖励': '行动节点·节点奖励',
+  '行动节点·首通': '行动节点·首通',
+  '行动节点·训练/教学': '行动节点·训练/教学',
+  '行动节点·集成工业模拟': '行动节点·集成工业模拟',
   新手活动: '新手活动',
 };
 
@@ -2287,6 +2357,30 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <strong>{{ arsenalRechargeQuota }}</strong>
+                  </div>
+                </div>
+                <div class="gacha-calculator-arsenal-breakdown-row">
+                  <div>
+                    <strong>现有库存</strong>
+                  </div>
+                  <div class="gacha-calculator-arsenal-breakdown-value">
+                    <img
+                      alt="武库配额"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                    />
+                    <v-number-input
+                      aria-label="现有武库配额库存"
+                      class="gacha-calculator-arsenal-existing-input"
+                      control-variant="hidden"
+                      density="compact"
+                      hide-details="auto"
+                      :min="0"
+                      :model-value="arsenalExistingQuota"
+                      :precision="0"
+                      :step="1"
+                      variant="solo"
+                      @update:model-value="setArsenalExistingQuota"
+                    />
                   </div>
                 </div>
               </div>
@@ -3353,6 +3447,15 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-arsenal-breakdown-value strong {
   font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.gacha-calculator-arsenal-existing-input {
+  width: 96px;
+}
+
+.gacha-calculator-arsenal-existing-input :deep(input) {
+  text-align: right;
   font-variant-numeric: tabular-nums;
 }
 

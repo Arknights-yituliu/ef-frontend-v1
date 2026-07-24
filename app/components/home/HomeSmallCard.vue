@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 import type { CardButton, CardData, CardTagType } from '@/custom/core/homeCards';
+import { useClipboard } from '@vueuse/core';
 import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
 const { t } = useI18n();
+const { copy } = useClipboard();
+
 const isExpanded = ref(false);
 
 interface Props {
@@ -33,7 +36,7 @@ const cardData = computed(() => {
     (button) => button.buttonType !== ButtonType.Blank,
   );
   const mainButtons = buttons.filter((button) => button.buttonType === ButtonType.Main);
-  const pageButtons = buttons.filter((button) => button.action === ButtonActionType.Link);
+  const pageButtons = buttons.filter((button) => button.action === ButtonActionType.Link || button.action === ButtonActionType.Copy);
   const actionButton = mainButtons.length > 0 ? mainButtons[0] : buttons[0];
 
   return {
@@ -96,7 +99,11 @@ function handleButtonAction(button: CardButton): void {
     window.open(button.actionData, target);
   } else if (button.action === ButtonActionType.Copy) {
     // 复制文本
-    copyToClipboard(button.actionData, t('common.copySuccess'));
+    let text = t(button.copySuccessText || 'common.copySuccess');
+    if (button.codeInner) {
+      text += `\n${t('component.home.codeContent.title')}${t(`component.home.${button.codeInner}`)}`;
+    }
+    copyToClipboard(button.actionData, text);
   }
 }
 
@@ -109,7 +116,8 @@ function closeLinkPicker(): void {
  */
 async function copyToClipboard(text: string, successMessage: string) {
   try {
-    await navigator.clipboard.writeText(text);
+    // await navigator.clipboard.writeText(text);
+    await copy(text);
     alert(successMessage);
   } catch (error) {
     console.error('复制失败:', error);
@@ -171,6 +179,9 @@ async function copyToClipboard(text: string, successMessage: string) {
           </span>
           <span class="home-small-card-page-label">
             {{ t(`component.home.${button.i18nKey}`) }}
+            <span v-if="button.popupText" style="white-space:normal;font-size:0.7rem;">
+              <br>({{ t(button.popupText || '') }})
+            </span>
           </span>
           <v-icon
             class="home-small-card-page-arrow"

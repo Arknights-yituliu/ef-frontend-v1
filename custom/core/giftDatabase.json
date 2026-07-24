@@ -72,6 +72,18 @@
           "Swordmancers",
           "Wuling Swordmancers"
         ]
+      },
+      "tag_giftperfer_wuling_5": {
+        "zh-CN": [
+          "武陵",
+          "探索者严选",
+          "武陵·探索者严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Explorer",
+          "Wuling Explorer"
+        ]
       }
     },
     "hobby": {
@@ -122,7 +134,7 @@
       "id": "item_gift_jinlong_6",
       "rarity": 5,
       "isHot": true,
-      "isHotExpiring": false,
+      "isHotExpiring": true,
       "favorCategory": "tag_giftperfer_wuling_4",
       "favorHobby": [
         "tag_hobby_life",
@@ -133,11 +145,33 @@
       "id": "item_gift_jinlong_7",
       "rarity": 5,
       "isHot": true,
-      "isHotExpiring": false,
+      "isHotExpiring": true,
       "favorCategory": "tag_giftperfer_wuling_4",
       "favorHobby": [
         "tag_hobby_creativity",
         "tag_hobby_fashion"
+      ]
+    },
+    "item_gift_jinlong_8": {
+      "id": "item_gift_jinlong_8",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_5",
+      "favorHobby": [
+        "tag_hobby_charity",
+        "tag_hobby_nature"
+      ]
+    },
+    "item_gift_jinlong_9": {
+      "id": "item_gift_jinlong_9",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_5",
+      "favorHobby": [
+        "tag_hobby_art",
+        "tag_hobby_culture"
       ]
     },
     "item_gift_tundra_1": {
@@ -450,8 +484,23 @@
         "tag_giftperfer_wuling_4"
       ],
       "favorHobby": [
-        "tag_hobby_exercise",
-        "tag_hobby_life"
+        "tag_hobby_life",
+        "tag_hobby_exercise"
+      ]
+    },
+    "chr_0032_lizhiyan": {
+      "id": "chr_0032_lizhiyan",
+      "name": {
+        "zh-CN": "诀",
+        "en-US": "Arcane"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_5"
+      ],
+      "favorHobby": [
+        "tag_hobby_nature",
+        "tag_hobby_charity"
       ]
     },
     "chr_0033_camille": {
@@ -681,18 +730,19 @@
     }
   },
   "gameVersion": {
-    "code": "Y1U3",
+    "code": "Y1U4",
     "name": {
-      "zh-CN": "寻遗散记",
-      "en-US": "Sketches of Lost Heirlooms"
+      "zh-CN": "向渊行",
+      "en-US": "Homecoming"
     },
     "period": {
-      "zh-CN": "后半（卡缪卡池）",
-      "en-US": "Second Half (Camille Banner)"
+      "zh-CN": "前半（诀 卡池）",
+      "en-US": "First Half (Arcane Banner)"
     },
     "color": [
-      "#070604",
-      "#810e1d"
+      "#0e1215",
+      "#318e9d",
+      "#ffffff"
     ],
     "textColor": "#ffffff"
   }

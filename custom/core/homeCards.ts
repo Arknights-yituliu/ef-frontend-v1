@@ -52,6 +52,8 @@ export interface CardButton {
   copySuccessText?: string;
   /** 弹出提示文本 */
   popupText?: string;
+  /** 兑换码内容 **/
+  codeInner?: string;
 }
 
 /**
@@ -172,6 +174,7 @@ export const homeCards: CardData[] = [
         action: ButtonActionType.Copy,
         actionData: 'ENDFIELDGIFT',
         icon: 'mdi-content-copy',
+        codeInner: 'codeContent.endfieldgift',
       },
       {
         i18nKey: 'buttons.endfield4pc',
@@ -181,6 +184,17 @@ export const homeCards: CardData[] = [
         icon: 'mdi-monitor',
         popupText: 'common.PCOnly',
         copySuccessText: 'common.copyCodePCOnly',
+        codeInner: 'codeContent.PCOnly',
+      },
+      {
+        i18nKey: 'buttons.efy1u4',
+        buttonType: ButtonType.Text,
+        action: ButtonActionType.Copy,
+        actionData: 'ENDFIELDRENEW',
+        icon: 'mdi-timer-alert',
+        popupText: 'common.limitY1U4',
+        copySuccessText: 'common.copyCodeY1U4',
+        codeInner: 'codeContent.limitY1U4',
       },
     ],
   },

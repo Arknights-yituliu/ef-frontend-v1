@@ -48,6 +48,8 @@
     "copyFailed": "Copy failed",
     "PCOnly": "Only available on PC",
     "copyCodePCOnly": "Copied.\nPlease note that this code can only be used on PC platform.",
+    "limitY1U4": "Only available during the version \"Homecoming\"",
+    "copyCodeY1U4": "Copied.\nPlease note that this code can only be used during the version \"Homecoming\".",
     "feedback": "Feedback"
   },
   "layout": {
@@ -128,6 +130,7 @@
         "allfield": "ALLFIELD",
         "endfieldgift": "ENDFIELDGIFT",
         "endfield4pc": "ENDFIELD4PC",
+        "efy1u4": "ENDFIELDRENEW",
         "tdd202601": "TDD202601",
         "arknightstd": "ARKNIGHTS-TD",
         "hiddengem01": "HIDDEN-GEM-01",
@@ -149,12 +152,18 @@
         "betaTestIICheckAccess": "Beta Test II Check Access",
         "checkAccessOnEndfieldOfficialSite": "Check access on endfield official site"
       },
+      "codeContent": {
+        "title": "Contents: ",
+        "endfieldgift": "Oroberyl x150, T-Creds x10k, Intermediate Combat Record x20, Arms INSP Kit x20",
+        "PCOnly": "T-Creds x1.3k, Advanced Combat Record x2, Arms INSP Kit x2",
+        "limitY1U4": "Camera Sticker [Safety Helmet], T-Creds x7.16k"
+      },
       "chargeReward": {
         "betaTestIIChargeRewardQuery": "Beta Test II Charge Reward Query"
       },
       "cards": {
         "launchRedemptionCodes": {
-          "title": "Launch Redemption Codes",
+          "title": "Available Redemption Codes",
           "tag": "Official",
           "description": "Redeem at \"Settings - Platform & Account - Gift Code Redemption\"; Require [Mail] feature unlocked."
         },
@@ -455,31 +464,32 @@
     "tools": {
       "essenceCalculator": {
         "title": "Essence Planner",
-        "demandSet": "Demand Set",
-        "demandSetDescription": "The order of demands does not affect the results. If you want to prioritize farming a specific essence, please only add demands for that essence.",
+        "settings": "Settings",
+        "demandSet": "Select Essences",
+        "demandSetDescription": "Essence order does not affect the results. If you want to prioritize farming a specific essence, please only select that one.",
         "attributeStats": "Attribute Stats",
         "secondaryStats": "Secondary Stats",
         "skillStats": "Skill Stats",
         "blank": "Blank",
         "custom": "Custom",
-        "battleLocationFilter": "Battle Location Filter",
+        "battleLocationFilter": "Location Filter",
         "weaponPreset": "Weapon Preset",
         "output": "Result",
         "bestStrategy": "Best Strategy Suggestion",
-        "farmLocation": "Farm Location",
+        "farmLocation": "Location",
         "preEngraveStats": "Pre-Engrave Stats",
-        "selectAttributeStats": "Select Attribute Stats",
-        "selectSecondaryStats": "Select Secondary Stats",
-        "selectSkillStats": "Select Skill Stats",
-        "noValidDemand": "Please add at least one valid essence demand in the \"Demand Set\" section.",
-        "noResultDueToFilter": "No available plans due to current filters. Please adjust the \"Battle Location Filter\" or add more demands.",
+        "selectAttributeStats": "Attribute stats locked:",
+        "selectSecondaryStats": "Secondary stat locked:",
+        "selectSkillStats": "Skill stat locked:",
+        "noValidDemand": "Please select at least one valid essence in the \"Select Essence\" section.",
+        "noResultDueToFilter": "No available plans due to current filters. Please adjust the \"Location Filter\" or select more essences.",
         "debugInput": "Debug Input",
         "debugOutput": "Debug Output",
         "plan": "Plan",
-        "requirementsMet": "requirements",
-        "weaponsMatched": "weapons",
-        "satisfiedRequirements": "Satisfied Requirements",
-        "matchedWeapons": "Matched Weapons",
+        "requirementsMet": "selected essence(s)",
+        "weaponsMatched": "total available",
+        "satisfiedRequirements": "Essences selected",
+        "matchedWeapons": "All available essences",
         "showMorePlans": "Show More Plans ({count})",
         "showCharWeapon": "Show Character's Recommended Weapon",
         "charWeaponTooltip": "From in-game weapon recommendations, based on the first item in 'Skill Fitting'. For reference only."
