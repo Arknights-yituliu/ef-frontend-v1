@@ -8,7 +8,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -28,7 +28,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -48,7 +48,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -68,7 +68,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -88,7 +88,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -108,7 +108,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -128,7 +128,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -148,7 +148,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -168,7 +168,7 @@
     "start": "2026/01/22 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "零号委托",
     "content": {
@@ -188,7 +188,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "新潮起·故渊离",
     "content": {
@@ -208,7 +208,7 @@
     "start": "2026/03/12 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "新潮起·故渊离",
     "content": {
@@ -228,7 +228,7 @@
     "start": "2026/04/17 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "春晓时",
     "content": {
@@ -248,7 +248,7 @@
     "start": "2026/06/05 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "寻遗散记",
     "content": {
@@ -268,7 +268,7 @@
     "start": "2026/06/26 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
     "version": "寻遗散记",
     "content": {
@@ -288,9 +288,9 @@
     "start": "2026/07/16 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
-    "version": "寻遗散记",
+    "version": "向渊行",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
@@ -308,9 +308,9 @@
     "start": "2026/08/09 12:00:00",
     "end": "2099/12/31 12:00:00",
     "type": "通用",
-    "module": "行动手册",
+    "module": "行动节点·训练/教学",
     "active": false,
-    "version": "寻遗散记",
+    "version": "向渊行",
     "content": {
       "originiumRecharge": 0,
       "diamond": 20,
