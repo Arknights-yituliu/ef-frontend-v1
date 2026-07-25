@@ -8,12 +8,25 @@ import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
 import sklandSignInTable from '@/custom/core/gacha/data/skland_sign_in_table.json';
 
 const currentVersion = '寻遗散记';
+const DEFAULT_ACTIVITY_GACHA_REWARD_DAYS = 1;
+const activityGachaRewardDayOverrides: Record<string, number> = {
+  宏运连连乐: 15,
+  根脉奇境: 7,
+  '炽燃·竞技大会': 7,
+  '丰碑留名·兽吼': 7,
+};
 
 const activityReward = ref<Reward[]>([]);
+
+function applyGachaRewardDays(reward: Reward) {
+  reward.gachaRewardDays =
+    activityGachaRewardDayOverrides[reward.id] ?? DEFAULT_ACTIVITY_GACHA_REWARD_DAYS;
+}
 
 for (const reward of ActivityRewardTable as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
+  applyGachaRewardDays(reward);
 
   reward.active = currentVersion === reward.version;
   if (reward.start.getTime() < Date.now()) {
@@ -26,6 +39,7 @@ for (const reward of ActivityRewardTable as Reward[]) {
 for (const reward of OtherRewardTableJson as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
+  applyGachaRewardDays(reward);
   reward.active = currentVersion === reward.version;
   if (reward.start.getTime() < Date.now()) {
     reward.active = false;
@@ -36,6 +50,7 @@ for (const reward of OtherRewardTableJson as Reward[]) {
 for (const reward of sklandSignInTable as Reward[]) {
   reward.start = new Date(reward.start);
   reward.end = new Date(reward.end);
+  applyGachaRewardDays(reward);
   reward.active = currentVersion === reward.version;
   if (reward.start.getTime() < Date.now()) {
     reward.active = false;
@@ -65,6 +80,7 @@ function createNewPoolActivity() {
         },
         start: startDate,
         end: new Date(item.versionEnd),
+        gachaRewardDays: DEFAULT_ACTIVITY_GACHA_REWARD_DAYS,
         type: '通用',
         module: '活动',
         active: currentVersion === item.version,
@@ -88,6 +104,7 @@ function createNewPoolActivity() {
       },
       start: new Date(item.poolStart),
       end: new Date(item.poolEnd),
+      gachaRewardDays: 3,
       type: item.character,
       module: '活动',
       active: currentVersion === item.version,

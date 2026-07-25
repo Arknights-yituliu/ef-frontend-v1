@@ -75,6 +75,7 @@ export interface Reward {
   };
   start: string | Date;
   end: string | Date;
+  gachaRewardDays?: number;
   type: string;
   module: string;
   regional?: string;

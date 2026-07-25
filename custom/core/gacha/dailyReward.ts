@@ -70,6 +70,27 @@ const dailyReward = ref<Reward>({
   },
 });
 
+const creditShopReward = ref<Reward>({
+  id: 'credit_shop_reward',
+  name: {
+    zh: `信用商店（估算）× 0 天`,
+    en: '',
+  },
+  start: new Date('2026/01/22 12:00:00'),
+  end: new Date('2099/12/31 12:00:00'),
+  type: '通用',
+  module: '日常',
+  active: true,
+  version: '基础资源',
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 0,
+  },
+});
+
 const weekTaskReward = ref<Reward>({
   id: 'week_task_reward',
   name: {
@@ -98,6 +119,12 @@ function calculatorDailyReward(start: Date, end: Date): void {
     en: '',
   };
   dailyReward.value.content.diamond = numberRound(remainingDays, 0) * 200;
+
+  creditShopReward.value.name = {
+    zh: `信用商店（估算）× ${numberRound(remainingDays, 0)} 天`,
+    en: '',
+  };
+  creditShopReward.value.content.diamond = numberRound(remainingDays, 0) * 25;
 
   const remainingWeek: number = countTuesdaysBetweenV2(start, end);
   weekTaskReward.value.name = {
@@ -146,6 +173,26 @@ function createVersionDailyReward(start: Date, end: Date, version: string): Rewa
       content: {
         originiumRecharge: 0,
         diamond: numberRound(remainingWeek, 0) * 500,
+        ticketgachaStandardSingle: 0,
+        ticketgachaSpecialSingle: 0,
+        ticketgachaLimitedSingle: 0,
+      },
+    },
+    {
+      id: 'credit_shop_reward',
+      name: {
+        zh: `信用商店（估算）× ${numberRound(remainingDays, 0)} 天`,
+        en: '',
+      },
+      start: new Date('2026/01/22 12:00:00'),
+      end: new Date('2099/12/31 12:00:00'),
+      type: '通用',
+      module: '日常',
+      active: true,
+      version,
+      content: {
+        originiumRecharge: 0,
+        diamond: numberRound(remainingDays, 0) * 25,
         ticketgachaStandardSingle: 0,
         ticketgachaSpecialSingle: 0,
         ticketgachaLimitedSingle: 0,
@@ -239,6 +286,7 @@ for (const poolInfo of PoolInfoTable) {
 export {
   calculatorDailyReward,
   createVersionDailyReward,
+  creditShopReward,
   dailyAllRewardTable,
   dailyReward,
   poolStartDate,
