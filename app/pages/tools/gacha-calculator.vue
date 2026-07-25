@@ -826,19 +826,59 @@ function activityRewardStatistics(): void {
  * 常驻奖励计算相关代码起始
  */
 
-const authorityLevelProgress = ref<number[]>([60, 60]);
+const AUTHORITY_LEVEL_MIN = 1;
+const AUTHORITY_LEVEL_MAX = 60;
+const DEFAULT_AUTHORITY_LEVEL_PROGRESS = [AUTHORITY_LEVEL_MAX, AUTHORITY_LEVEL_MAX] as const;
+
+const authorityLevelProgress = ref<number[]>([...DEFAULT_AUTHORITY_LEVEL_PROGRESS]);
+
+function normalizeAuthorityLevelProgress(value: unknown): [number, number] {
+  if (
+    !Array.isArray(value) ||
+    value.length !== 2 ||
+    !value.every((level) => typeof level === 'number' && Number.isFinite(level))
+  ) {
+    return [...DEFAULT_AUTHORITY_LEVEL_PROGRESS];
+  }
+
+  const [firstLevel, secondLevel] = value.map((level) =>
+    Math.min(AUTHORITY_LEVEL_MAX, Math.max(AUTHORITY_LEVEL_MIN, Math.trunc(level))),
+  );
+
+  return firstLevel <= secondLevel ? [firstLevel, secondLevel] : [secondLevel, firstLevel];
+}
+
+function isSameAuthorityLevelProgress(
+  left: readonly number[],
+  right: readonly number[],
+): boolean {
+  return left[0] === right[0] && left[1] === right[1];
+}
+
+function syncAuthorityLevelUpReward(): void {
+  let result = 0;
+  for (const reward of authorityLevelUpRewardTable) {
+    if (
+      reward.level > authorityLevelProgress.value[0]! &&
+      reward.level <= authorityLevelProgress.value[1]!
+    ) {
+      result += reward.diamond;
+    }
+  }
+
+  authorityLevelUpReward.value.content.diamond = result;
+}
 
 watch(
   authorityLevelProgress,
   (newVal) => {
-    let result: number = 0;
-    for (const reward of authorityLevelUpRewardTable) {
-      if (reward.level > newVal[0]! && reward.level <= newVal[1]!) {
-        result += reward.diamond;
-      }
+    const normalizedProgress = normalizeAuthorityLevelProgress(newVal);
+    if (!isSameAuthorityLevelProgress(newVal, normalizedProgress)) {
+      authorityLevelProgress.value = normalizedProgress;
+      return;
     }
 
-    authorityLevelUpReward.value.content.diamond = result;
+    syncAuthorityLevelUpReward();
     saveUserConfig(authorityLevelUpReward.value.id, newVal, 'rangeSlider');
 
     permanentRewardStatistics();
@@ -1297,9 +1337,18 @@ function loadingUserConfig() {
           if (range === undefined || !Array.isArray(range)) {
             continue;
           }
-          gachaCalculatorUserConfig.value.rangeSlider[key] = range;
+
+          const normalizedRange =
+            key === authorityLevelUpReward.value.id
+              ? normalizeAuthorityLevelProgress(range)
+              : range;
+          if (key === authorityLevelUpReward.value.id && !isSameAuthorityLevelProgress(range, normalizedRange)) {
+            shouldPersistUserConfig = true;
+          }
+
+          gachaCalculatorUserConfig.value.rangeSlider[key] = normalizedRange;
           if (rangeSliderMap[key]) {
-            rangeSliderMap[key].value = range;
+            rangeSliderMap[key].value = normalizedRange;
           }
         }
       }
@@ -1484,6 +1533,7 @@ function initSummaryPanelHeightObserver() {
 onMounted(() => {
   initPoolOptions();
   loadingUserConfig();
+  syncAuthorityLevelUpReward();
   const gachaCalculatorPieChart: HTMLElement | null = document.querySelector(
     '#gacha-calculator-pie-chart',
   );
