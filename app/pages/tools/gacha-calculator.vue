@@ -7,6 +7,7 @@ import type {
   RewardStatisticsResultDetail,
   TotalPullsSingle,
 } from '@/shared/types/gacha-calculator';
+import { dateFormat } from '#shared/utils/dateUtil';
 import {
   addReward,
   calculateDaysDifference,
@@ -24,6 +25,7 @@ import { activityReward } from '@/custom/core/gacha/activityReward';
 // 奖励引入
 import {
   calculatorDailyReward,
+  creditShopReward,
   dailyAllRewardTable,
   dailyReward,
   poolStartDate,
@@ -135,6 +137,7 @@ const devDebugGreenBackground = ref(false);
 const devDebugHideCardShadow = ref(false);
 const devDebugHideWarning = ref(false);
 const devDebugHideProbability = ref(false);
+const devShowActivityTimeRange = ref(false);
 const isDevScreenshotCapturing = ref(false);
 const devScreenshotStatus = ref('');
 const GACHA_CALCULATOR_SCREENSHOT_SCALE = 4;
@@ -201,6 +204,34 @@ function startDateDebug() {
 
   poolStartDate.value = newDate;
   calc();
+}
+
+function getActivityGachaRewardEnd(reward: Reward) {
+  const start = new Date(reward.start);
+  const rewardDays = reward.gachaRewardDays ?? 1;
+
+  return new Date(start.getTime() + rewardDays * 24 * 60 * 60 * 1000);
+}
+
+function getActivityTimeRangeText(reward: Reward) {
+  const rewardDays = reward.gachaRewardDays ?? 1;
+  const activityType = rewardDays === 1 ? '瞬时' : '持续';
+
+  return `活动：${dateFormat(reward.start, 'yyyy/MM/dd HH:mm')} - ${dateFormat(
+    reward.end,
+    'yyyy/MM/dd HH:mm',
+  )} · ${activityType} · 抽卡资源前 ${rewardDays} 天`;
+}
+
+function syncActivityRewardsByTime() {
+  const syncDate = new Date(devStartDate.value);
+  syncDate.setHours(12, 0, 0, 0);
+
+  for (const reward of activityReward.value) {
+    reward.active = syncDate < getActivityGachaRewardEnd(reward);
+  }
+
+  setDevScreenshotStatus(`已按 ${dateFormat(syncDate, 'yyyy/MM/dd HH:mm')} 同步活动奖励`);
 }
 
 function clearDevScreenshotStatusTimer() {
@@ -724,6 +755,7 @@ function dailyRewardStatistics(): void {
   };
 
   addReward(result, dailyReward.value);
+  addReward(result, creditShopReward.value);
   addReward(result, weekTaskReward.value);
 
   // 日常奖励重构
@@ -1658,8 +1690,6 @@ const arsenalCreditShopQuota = computed(
   () => arsenalCalculationDays.value * ARSENAL_DAILY_CREDIT_QUOTA,
 );
 
-const arsenalRoutineQuota = computed(() => arsenalWeeklyQuota.value + arsenalCreditShopQuota.value);
-
 const arsenalRechargeQuota = computed(() => {
   let quota = 0;
 
@@ -1683,7 +1713,8 @@ const arsenalRechargeQuota = computed(() => {
 const arsenalQuotaResult = computed(
   () =>
     arsenalPullQuota.value +
-    arsenalRoutineQuota.value +
+    arsenalWeeklyQuota.value +
+    arsenalCreditShopQuota.value +
     arsenalRechargeQuota.value +
     arsenalOriginiumQuota.value +
     arsenalExistingQuota.value,
@@ -2332,9 +2363,23 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 </div>
                 <div class="gacha-calculator-arsenal-breakdown-row">
                   <div>
-                    <strong>周常与信用商店（估算）</strong>
+                    <strong>周常</strong>
                     <span>
-                      {{ arsenalWeeklyCount }} 周 × {{ ARSENAL_WEEKLY_QUOTA }} +
+                      {{ arsenalWeeklyCount }} 周 × {{ ARSENAL_WEEKLY_QUOTA }}
+                    </span>
+                  </div>
+                  <div class="gacha-calculator-arsenal-breakdown-value">
+                    <img
+                      alt="武库配额"
+                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                    />
+                    <strong>{{ arsenalWeeklyQuota }}</strong>
+                  </div>
+                </div>
+                <div class="gacha-calculator-arsenal-breakdown-row">
+                  <div>
+                    <strong>信用商店（估算）</strong>
+                    <span>
                       {{ arsenalCalculationDays }} 天 × {{ ARSENAL_DAILY_CREDIT_QUOTA }}
                     </span>
                   </div>
@@ -2343,7 +2388,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       alt="武库配额"
                       src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
-                    <strong>{{ arsenalRoutineQuota }}</strong>
+                    <strong>{{ arsenalCreditShopQuota }}</strong>
                   </div>
                 </div>
                 <div class="gacha-calculator-arsenal-breakdown-row">
@@ -2566,7 +2611,24 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   hide-details
                   label="隐藏概率提示"
                 />
+                <v-switch
+                  v-model="devShowActivityTimeRange"
+                  color="primary"
+                  density="compact"
+                  hide-details
+                  label="显示活动时间"
+                />
               </div>
+
+              <v-btn
+                color="primary"
+                prepend-icon="mdi-clock-sync-outline"
+                size="small"
+                variant="tonal"
+                @click="syncActivityRewardsByTime"
+              >
+                时间同步
+              </v-btn>
 
               <h3>截图调试</h3>
               <div class="gacha-calculator-debug-screenshot-actions">
@@ -2746,14 +2808,15 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
           <v-expansion-panel-text>
             <div @click="triggerDevModeByDailyReward">
-              <GachaCalculatorResourceSingle
-                v-bind="dailyReward"
-                :weapon-quota="arsenalCreditShopQuota"
-              />
+              <GachaCalculatorResourceSingle v-bind="dailyReward" />
             </div>
             <GachaCalculatorResourceSingle
               v-bind="weekTaskReward"
               :weapon-quota="arsenalWeeklyQuota"
+            />
+            <GachaCalculatorResourceSingle
+              v-bind="creditShopReward"
+              :weapon-quota="arsenalCreditShopQuota"
             />
 
             <v-divider style="margin: 1rem 0" />
@@ -2781,13 +2844,22 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            <GachaCalculatorResourceSingleBtn
+            <div
               v-for="item in activityReward"
               v-show="shouldDisplayAndCount(item)"
               :key="item.id"
-              :reward="item"
-              @click="item.active = !item.active"
-            />
+            >
+              <GachaCalculatorResourceSingleBtn
+                :reward="item"
+                @click="item.active = !item.active"
+              />
+              <div
+                v-if="currentMode === 'dev' && devShowActivityTimeRange"
+                class="gacha-calculator-activity-time-range"
+              >
+                {{ getActivityTimeRangeText(item) }}
+              </div>
+            </div>
           </v-expansion-panel-text>
         </v-expansion-panel>
         <!--常驻奖励重构-->
@@ -2994,6 +3066,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-debug-screenshot-status {
   margin-top: 4px;
+}
+
+.gacha-calculator-activity-time-range {
+  margin: -2px 4px 6px;
+  color: rgba(var(--v-theme-on-surface), 0.55);
+  font-size: 0.7rem;
 }
 
 .gacha-calculator-card-title {
