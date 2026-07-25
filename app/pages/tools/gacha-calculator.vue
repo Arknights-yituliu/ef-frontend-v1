@@ -1255,22 +1255,27 @@ function migrateOperatorTrainingButtonGroupActive(statusMap: Record<string, bool
   let migrated = false;
 
   for (const { version } of VersionTable) {
-    const oldId = `干员教学_${version}_行动手册`;
-    const newId = `干员教学_${version}_行动节点·训练/教学`;
+    const newId = `干员教学_${version}_行动手册·训练/教学`;
+    const oldIds = [
+      `干员教学_${version}_行动节点·训练/教学`,
+      `干员教学_${version}_行动手册`,
+    ];
 
-    if (statusMap[newId] === undefined && statusMap[oldId] !== undefined) {
-      statusMap[newId] = statusMap[oldId];
-      migrated = true;
-    }
+    for (const oldId of oldIds) {
+      if (statusMap[newId] === undefined && statusMap[oldId] !== undefined) {
+        statusMap[newId] = statusMap[oldId];
+        migrated = true;
+      }
 
-    if (statusMap[oldId] !== undefined) {
-      Reflect.deleteProperty(statusMap, oldId);
-      migrated = true;
+      if (statusMap[oldId] !== undefined) {
+        Reflect.deleteProperty(statusMap, oldId);
+        migrated = true;
+      }
     }
   }
 
-  const xunyisanjiId = '干员教学_寻遗散记_行动节点·训练/教学';
-  const xiangyuanxingId = '干员教学_向渊行_行动节点·训练/教学';
+  const xunyisanjiId = '干员教学_寻遗散记_行动手册·训练/教学';
+  const xiangyuanxingId = '干员教学_向渊行_行动手册·训练/教学';
   if (statusMap[xiangyuanxingId] === undefined && statusMap[xunyisanjiId] !== undefined) {
     statusMap[xiangyuanxingId] = statusMap[xunyisanjiId];
     migrated = true;
@@ -1912,11 +1917,11 @@ const permanentRewardCategoryNames = [
   '档案采集',
   '蚀像寻遗',
   '新手活动',
-  '行动节点',
-  '行动节点·节点奖励',
-  '行动节点·首通',
-  '行动节点·训练/教学',
-  '行动节点·集成工业模拟',
+  '行动手册',
+  '行动手册·节点奖励',
+  '行动手册·首通',
+  '行动手册·训练/教学',
+  '行动手册·集成工业模拟',
   '未分类',
 ] as const;
 
@@ -1935,13 +1940,12 @@ const permanentRewardModuleCategoryMap: Record<string, PermanentRewardCategoryNa
   蚀像寻遗刻度: '蚀像寻遗',
   蚀像寻遗储藏箱: '蚀像寻遗',
   蚀像寻遗探索任务: '蚀像寻遗',
-  干员教学: '行动节点·训练/教学',
-  行动手册: '行动节点',
-  行动节点: '行动节点',
-  '行动节点·节点奖励': '行动节点·节点奖励',
-  '行动节点·首通': '行动节点·首通',
-  '行动节点·训练/教学': '行动节点·训练/教学',
-  '行动节点·集成工业模拟': '行动节点·集成工业模拟',
+  干员教学: '行动手册·训练/教学',
+  行动手册: '行动手册',
+  '行动手册·节点奖励': '行动手册·节点奖励',
+  '行动手册·首通': '行动手册·首通',
+  '行动手册·训练/教学': '行动手册·训练/教学',
+  '行动手册·集成工业模拟': '行动手册·集成工业模拟',
   新手活动: '新手活动',
 };
 
