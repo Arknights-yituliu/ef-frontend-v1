@@ -6,7 +6,7 @@
     </div>
 
     <!-- 教学视频 -->
-    <v-card v-if="false" class="mb-6">
+    <v-card class="mb-6">
       <v-card-item>
         <template #prepend>
           <v-icon color="red" icon="mdi-video" size="32" />
