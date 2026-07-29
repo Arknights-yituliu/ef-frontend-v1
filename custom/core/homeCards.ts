@@ -587,6 +587,32 @@ export const homeCards: CardData[] = [
     ],
   },
   {
+    i18nKey: 'endBalloonPuzzle',
+    icon: '/images/end-balloon-puzzle.png',
+    image: '/images/end-balloon-puzzle.png',
+    descriptionKey: 'description',
+    tagTypes: [CardTagType.ThirdParty],
+    buttons: [
+      {
+        i18nKey: 'buttons.githubRepository',
+        buttonType: ButtonType.Link,
+        action: ButtonActionType.Link,
+        actionData: 'https://github.com/DaliBerr/EndBalloonPuzzle',
+        target: true,
+        icon: 'mdi-github',
+      },
+      {
+        i18nKey: 'buttons.main',
+        buttonType: ButtonType.Main,
+        action: ButtonActionType.Link,
+        actionData: 'https://daliberr.github.io/EndBalloonPuzzle/',
+        target: true,
+        icon: 'mdi-web',
+        color: 'primary',
+      },
+    ],
+  },
+  {
     i18nKey: 'dige',
     icon: 'https://cos.yituliu.cn/endfield/icons/DIGEicon.png',
     image: 'https://cos.yituliu.cn/endfield/home/DIGE.png',

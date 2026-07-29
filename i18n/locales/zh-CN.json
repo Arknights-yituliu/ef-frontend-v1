@@ -107,6 +107,7 @@
       },
       "buttons": {
         "github": "GitHub",
+        "githubRepository": "GitHub 仓库",
         "discord": "Discord 社区",
         "copyContact": "复制联系邮箱",
         "main": "访问",
@@ -225,6 +226,11 @@
           "title": "AKEData",
           "tag": "第三方",
           "description": "专为《明日方舟：终末地》玩家制作的数据查询网站。支持角色、武器、副本等各类数据查询"
+        },
+        "endBalloonPuzzle": {
+          "title": "终末地气球解密工具",
+          "tag": "第三方",
+          "description": "气球解密工具，解放大脑"
         },
         "dige": {
           "title": "D.I.G.E. - 终末地热能池规划器",

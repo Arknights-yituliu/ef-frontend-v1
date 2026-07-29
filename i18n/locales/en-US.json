@@ -100,6 +100,7 @@
       },
       "buttons": {
         "github": "GitHub",
+        "githubRepository": "GitHub Repository",
         "discord": "Discord Community",
         "copyContact": "Copy Contact Email",
         "main": "Visit",
@@ -225,6 +226,11 @@
           "title": "AKEData",
           "tag": "Third Party",
           "description": "A data query website designed for Arknights: Endfield players. It supports queries for characters, weapons, dungeons, and other types of data."
+        },
+        "endBalloonPuzzle": {
+          "title": "Endfield Balloon Puzzle Tool",
+          "tag": "Third Party",
+          "description": "A balloon puzzle solver that gives your brain a break."
         },
         "dige": {
           "title": "D.I.G.E. - Thermal Energy Pond Planner",
