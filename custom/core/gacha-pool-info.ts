@@ -81,6 +81,26 @@ const gachaPools: GachaPool[] = [
     poolName: '绛结申领',
     upCharName: '赤缨',
   },
+  {
+    poolId: 'special_1_3_2',
+    poolName: '逐罪者',
+    upCharName: '卡缪',
+  },
+  {
+    poolId: 'weponbox_1_3_2',
+    poolName: '染赤申领',
+    upCharName: '镀红祝福',
+  },
+  {
+    poolId: 'special_1_4_1',
+    poolName: '临渊望北',
+    upCharName: '诀',
+  },
+  {
+    poolId: 'weponbox_1_4_1',
+    poolName: '军列申领',
+    upCharName: '四二式·肃阵',
+  },
 ];
 // 卡池命名逻辑 special_「大版本号」_「小版本号」_「第n个卡池」
 export { gachaPools };
