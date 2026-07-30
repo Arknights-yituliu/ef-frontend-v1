@@ -100,6 +100,7 @@
       },
       "buttons": {
         "github": "GitHub",
+        "githubRepository": "GitHub Repository",
         "discord": "Discord Community",
         "copyContact": "Copy Contact Email",
         "main": "Visit",
@@ -154,9 +155,9 @@
       },
       "codeContent": {
         "title": "Contents: ",
-        "endfieldgift": "Oroberyl x150, T-Creds x10k, Intermediate Combat Record x20, Arms INSP Kit x20",
-        "PCOnly": "T-Creds x1.3k, Advanced Combat Record x2, Arms INSP Kit x2",
-        "limitY1U4": "Camera Sticker [Safety Helmet], T-Creds x7.16k"
+        "endfieldgift": "Oroberyl*150, T-Creds*10k, Intermediate Combat Record*20, Arms INSP Kit*20",
+        "PCOnly": "T-Creds*13k, Advanced Combat Record*2, Arms INSP Kit*2",
+        "limitY1U4": "Camera Sticker [Safety Helmet], T-Creds*71.6k"
       },
       "chargeReward": {
         "betaTestIIChargeRewardQuery": "Beta Test II Charge Reward Query"
@@ -225,6 +226,11 @@
           "title": "AKEData",
           "tag": "Third Party",
           "description": "A data query website designed for Arknights: Endfield players. It supports queries for characters, weapons, dungeons, and other types of data."
+        },
+        "endBalloonPuzzle": {
+          "title": "Endfield Balloon Puzzle Tool",
+          "tag": "Third Party",
+          "description": "A balloon puzzle solver that gives your brain a break."
         },
         "dige": {
           "title": "D.I.G.E. - Thermal Energy Pond Planner",

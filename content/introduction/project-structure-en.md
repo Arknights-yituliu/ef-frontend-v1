@@ -84,6 +84,7 @@ ef-frontend-v1/
 │   │   └── tools/                # Tool page components
 │   ├── composables/              # Composables directory
 │   │   ├── useDocsSearch.ts      # Document search composable
+│   │   ├── useHomeCardEditorDrafts.ts # Home card editor draft management
 │   │   ├── useHomeBookmarks.ts   # Home bookmark management
 │   │   ├── usePageSeo.ts         # Page SEO composable
 │   │   └── useTheme.ts           # Theme management composable
@@ -99,7 +100,7 @@ ef-frontend-v1/
 │   │   ├── introduction/         # Introduction doc pages
 │   │   ├── material-profit/      # Material profit pages
 │   │   ├── operations/           # Operations doc pages
-│   │   ├── others/               # Other pages
+│   │   ├── others/               # Other pages, including the hidden home card editor
 │   │   ├── resources/            # Resource pages
 │   │   └── tools/                # Tool pages
 │   └── plugins/                  # Plugins directory
@@ -141,6 +142,7 @@ ef-frontend-v1/
 │   ├── types/                    # TypeScript type definitions (auto-recognized by Nuxt)
 │   │   ├── gacha-calculator.ts   # Gacha calculator types
 │   │   ├── gachaItem.ts          # Gacha item types
+│   │   ├── homeCardEditor.ts     # Home card editor draft types
 │   │   ├── homeBookmark.ts       # Home bookmark types
 │   │   ├── itemValue.ts          # Item value types
 │   │   └── pack.ts               # Pack types
@@ -379,7 +381,7 @@ Stores utility functions, utility classes, and TypeScript type definitions that 
 - **`shared/types/`** - TypeScript type definitions directory
   - Stores TypeScript type definitions and interfaces
   - This directory is auto-recognized by Nuxt
-  - Files: `gachaItem.ts`, `homeBookmark.ts`, `itemInfo.ts`, `itemValue.ts`, `pack.ts`
+  - Files: `gachaItem.ts`, `homeCardEditor.ts`, `homeBookmark.ts`, `itemInfo.ts`, `itemValue.ts`, `pack.ts`
 
 - **`shared/utils/`** - Utility functions directory
   - Stores utility functions for common operations

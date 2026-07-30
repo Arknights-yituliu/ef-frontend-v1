@@ -2244,6 +2244,15 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       :disabled="arsenalOriginiumAllocationValue <= 0"
                       size="small"
                       variant="tonal"
+                      @click="setArsenalOriginiumAllocation(0)"
+                    >
+                      0
+                    </v-btn>
+                    <v-btn
+                      class="gacha-calculator-originium-allocation-step-btn"
+                      :disabled="arsenalOriginiumAllocationValue <= 0"
+                      size="small"
+                      variant="tonal"
                       @click="adjustArsenalOriginiumAllocation(-10)"
                     >
                       -10
@@ -2288,6 +2297,15 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                       @click="adjustArsenalOriginiumAllocation(10)"
                     >
                       +10
+                    </v-btn>
+                    <v-btn
+                      class="gacha-calculator-originium-allocation-step-btn"
+                      :disabled="arsenalOriginiumAllocationValue >= arsenalTotalOriginium"
+                      size="small"
+                      variant="tonal"
+                      @click="setArsenalOriginiumAllocation(arsenalTotalOriginium)"
+                    >
+                      All
                     </v-btn>
                   </div>
                   <span class="gacha-calculator-originium-allocation-copy">→ 武库配额</span>
@@ -3441,7 +3459,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-originium-allocation-controls {
   display: grid;
-  grid-template-columns: 34px 30px 56px 30px 34px;
+  grid-template-columns: 28px 34px 30px 88px 30px 34px 32px;
   gap: 3px;
   align-items: center;
   flex: 0 0 auto;
@@ -3740,6 +3758,11 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   .gacha-calculator-originium-allocation-result {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 4px;
+  }
+
+  .gacha-calculator-originium-allocation-controls {
+    grid-template-columns: 28px 32px 28px minmax(56px, 1fr) 28px 32px 32px;
+    width: 100%;
   }
 
   .gacha-calculator-originium-allocation-total {
