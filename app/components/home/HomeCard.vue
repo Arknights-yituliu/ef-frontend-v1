@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CardButton, CardData, CardTagType } from '@/custom/core/homeCards';
+import type { HomeCardPreviewContent } from '@/shared/types/homeCardEditor';
 import { useClipboard } from '@vueuse/core';
 import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
@@ -10,9 +11,16 @@ interface Props {
   card: CardData;
   isFavorited?: boolean;
   onToggleFavorite?: () => void;
+  previewContent?: HomeCardPreviewContent;
+  showFavorite?: boolean;
+  interactive?: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  isFavorited: false,
+  showFavorite: true,
+  interactive: true,
+});
 
 const cardData = computed(() => {
   const baseKey = `component.home.cards.${props.card.i18nKey}`;
@@ -41,14 +49,16 @@ const cardData = computed(() => {
   const isFavorited = props.isFavorited || false;
 
   return {
-    title: t(`${baseKey}.title`),
+    title: props.previewContent ? props.previewContent.title : t(`${baseKey}.title`),
     tags,
     primaryTagColor,
     icon: props.card.icon,
     image: props.card.image,
-    description: props.card.descriptionKey
-      ? t(`${baseKey}.${props.card.descriptionKey}`)
-      : undefined,
+    description: props.previewContent
+      ? props.previewContent.description
+      : props.card.descriptionKey
+        ? t(`${baseKey}.${props.card.descriptionKey}`)
+        : undefined,
     buttons,
     mainButtons,
     linkButtons,
@@ -84,6 +94,10 @@ function getTagColor(tagType: CardTagType): string {
  * 处理卡片内按钮点击事件
  */
 function handleCardButtonClick(button: CardButton) {
+  if (!props.interactive) {
+    return;
+  }
+
   if (button.action === ButtonActionType.Link) {
     // 跳转链接
     const target = button.target ? '_blank' : '_self';
@@ -96,6 +110,21 @@ function handleCardButtonClick(button: CardButton) {
     }
     copyToClipboard(button.actionData, text);
   }
+}
+
+function getButtonText(button: CardButton): string {
+  return (
+    props.previewContent?.buttonLabels[button.i18nKey] ?? t(`component.home.${button.i18nKey}`)
+  );
+}
+
+function getButtonPopupText(button: CardButton): string | undefined {
+  const previewPopupText = props.previewContent?.buttonPopupTexts?.[button.i18nKey];
+  if (previewPopupText) {
+    return previewPopupText;
+  }
+
+  return button.popupText ? t(button.popupText) : undefined;
 }
 
 /**
@@ -141,6 +170,7 @@ function toggleFavorite() {
       </div>
       <!-- 收藏按钮 -->
       <v-btn
+        v-if="showFavorite"
         class="favorite-btn"
         :color="cardData.isFavorited ? 'warning' : 'grey'"
         density="comfortable"
@@ -174,7 +204,7 @@ function toggleFavorite() {
         class="card-button card-button-text"
         :prepend-icon="button.icon"
         size="small"
-        :text="t(`component.home.${button.i18nKey}`)"
+        :text="getButtonText(button)"
         variant="text"
         @click="handleCardButtonClick(button)"
       />
@@ -187,9 +217,9 @@ function toggleFavorite() {
         variant="text"
         @click="handleCardButtonClick(button)"
       >
-        {{ t(`component.home.${button.i18nKey}`) }}
-        <v-tooltip v-if="button.popupText" activator="parent" location="top">{{
-          t(button.popupText)
+        {{ getButtonText(button) }}
+        <v-tooltip v-if="getButtonPopupText(button)" activator="parent" location="top">{{
+          getButtonPopupText(button)
         }}</v-tooltip>
       </v-btn>
       <!-- 主按钮 - 永远置于最右侧 -->
@@ -201,7 +231,7 @@ function toggleFavorite() {
         :prepend-icon="button.icon"
         size="small"
         :style="{ borderLeft: `3px solid ${cardData.primaryTagColor}` }"
-        :text="t(`component.home.${button.i18nKey}`)"
+        :text="getButtonText(button)"
         @click="handleCardButtonClick(button)"
       />
     </div>

@@ -378,6 +378,14 @@ export default defineNuxtConfig({
      * - 支持通配符和路径模式匹配
      * - 这些路径将被添加到 robots.txt 的 Disallow 规则中
      */
-    disallow: ['/others/test'],
+    disallow: ['/others/test', '/others/home-card-editor'],
+  },
+
+  /**
+   * Sitemap 配置
+   * 隐藏的内部页面可直链访问，但不应出现在站点地图中。
+   */
+  sitemap: {
+    exclude: ['/others/home-card-editor'],
   },
 });
