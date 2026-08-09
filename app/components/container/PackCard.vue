@@ -81,9 +81,13 @@
         <div class="pack-info-text">
           <div class="value-stone">
             {{ $t('component.packCard.equivalent') }}
-            {{ getPackStoneEquivalent(props).toFixed(1) }} {{ $t('component.packCard.stone') }}
+            {{
+              getPackStoneEquivalent(props, props.weaponQuotaBaseline).toFixed(1)
+            }}
+            {{ $t('component.packCard.stone') }}
             <br />
-            ￥{{ getPackPricePerStone(props).toFixed(1) }} / {{ $t('component.packCard.stone') }}
+            ￥{{ getPackPricePerStone(props, props.weaponQuotaBaseline).toFixed(1) }} /
+            {{ $t('component.packCard.stone') }}
           </div>
           <div v-if="showWeaponSummary" class="value-weapon">
             {{ $t('component.packCard.total') }}
@@ -160,8 +164,16 @@
           <tr v-for="(content, index) in sortedContents" :key="index">
             <td>{{ getItemName(content.itemId) }}</td>
             <td>{{ content.quantity }}</td>
-            <td>{{ getItemBundleValue(content).toFixed(1) }}</td>
-            <td>{{ (getItemBundleValuePercentage(content, props) * 100).toFixed(1) }}%</td>
+            <td>
+              {{ getItemBundleAllItemsValue(content, props.weaponQuotaBaseline).toFixed(1) }}
+            </td>
+            <td>
+              {{
+                (getItemBundleValuePercentage(content, props, props.weaponQuotaBaseline) * 100).toFixed(
+                  1,
+                )
+              }}%
+            </td>
           </tr>
         </tbody>
       </table>
@@ -170,9 +182,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { PackData, PackGachaMode } from '@/shared/types/pack';
+import type { PackData, PackGachaMode, WeaponQuotaBaseline } from '@/shared/types/pack';
 import {
-  getItemBundleValue,
+  getItemBundleAllItemsValue,
   getItemBundleValuePercentage,
   getPackPricePerPull,
   getPackPricePerStone,
@@ -183,12 +195,20 @@ import {
   getPackTotalPulls,
   getPackTotalWeaponQuota,
   getPackWeaponEfficiency,
+  pack648WeaponQuotaBaseline,
 } from '@/shared/utils/gameData/pack';
 
 const props = withDefaults(
-  defineProps<PackData & { gachaMode: PackGachaMode; isHidden?: boolean }>(),
+  defineProps<
+    PackData & {
+      gachaMode: PackGachaMode;
+      isHidden?: boolean;
+      weaponQuotaBaseline?: WeaponQuotaBaseline;
+    }
+  >(),
   {
     isHidden: false,
+    weaponQuotaBaseline: () => pack648WeaponQuotaBaseline,
   },
 );
 const emit = defineEmits<{
@@ -210,7 +230,9 @@ const packDescription = computed(() => {
 
 const sortedContents = computed(() =>
   props.contents.toSorted(
-    (a, b) => getItemBundleValuePercentage(b, props) - getItemBundleValuePercentage(a, props),
+    (a, b) =>
+      getItemBundleValuePercentage(b, props, props.weaponQuotaBaseline) -
+      getItemBundleValuePercentage(a, props, props.weaponQuotaBaseline),
   ),
 );
 
@@ -262,7 +284,7 @@ function getPackComparisonBars(pack: PackData) {
     {
       key: 'allItems',
       barLabel: $t('component.packCard.packSanityEfficiency'),
-      percentage: getPackSanityEfficiency(pack),
+      percentage: getPackSanityEfficiency(pack, props.weaponQuotaBaseline),
       color: '#f9c74f',
       textColor: '#212121',
     },
@@ -276,7 +298,11 @@ function getPackComparisonBars(pack: PackData) {
     {
       key: 'weapon',
       barLabel: $t('component.packCard.packWeaponEfficiency'),
-      percentage: getPackWeaponEfficiency(pack, props.gachaMode === 'weapon'),
+      percentage: getPackWeaponEfficiency(
+        pack,
+        props.gachaMode === 'weapon',
+        props.weaponQuotaBaseline,
+      ),
       color: '#fb8c00',
       textColor: '#212121',
     },

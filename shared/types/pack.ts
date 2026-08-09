@@ -12,6 +12,11 @@ export interface PackContent {
 export type PackCategory = string;
 export type PackGachaMode = 'operator' | 'weapon';
 
+export interface WeaponQuotaBaseline {
+  totalQuota: number;
+  price: number;
+}
+
 export interface PackData {
   packId: string;
   displayName: LocalizedText;

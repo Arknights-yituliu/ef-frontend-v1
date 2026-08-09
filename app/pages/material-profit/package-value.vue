@@ -19,24 +19,64 @@
         :placeholder="$t('page.materialProfit.packageValue.searchPlaceholder')"
         variant="outlined"
       />
-      <v-btn-toggle
-        v-model="gachaMode"
-        class="gacha-mode-toggle"
-        color="primary"
-        density="compact"
-        divided
-        mandatory
-        variant="outlined"
-      >
-        <v-btn value="operator">
-          <v-icon start>mdi-account</v-icon>
-          {{ $t('page.materialProfit.packageValue.gachaOperator') }}
-        </v-btn>
-        <v-btn value="weapon">
-          <v-icon start>mdi-sword-cross</v-icon>
-          {{ $t('page.materialProfit.packageValue.gachaWeapon') }}
-        </v-btn>
-      </v-btn-toggle>
+      <div class="gacha-mode-controls">
+        <v-btn-toggle
+          v-model="gachaMode"
+          class="gacha-mode-toggle"
+          color="primary"
+          density="compact"
+          divided
+          mandatory
+          variant="outlined"
+        >
+          <v-btn value="operator">
+            <v-icon start>mdi-account</v-icon>
+            {{ $t('page.materialProfit.packageValue.gachaOperator') }}
+          </v-btn>
+          <v-btn value="weapon">
+            <v-icon start>mdi-sword-cross</v-icon>
+            {{ $t('page.materialProfit.packageValue.gachaWeapon') }}
+          </v-btn>
+        </v-btn-toggle>
+        <v-menu
+          v-model="showWeaponBaselineMenu"
+          :close-on-content-click="false"
+          location="bottom start"
+        >
+          <template #activator="{ props: menuProps }">
+            <v-btn
+              v-bind="menuProps"
+              :aria-label="$t('page.materialProfit.packageValue.weaponBaselineSettings')"
+              class="weapon-baseline-settings"
+              density="compact"
+              :ripple="false"
+              size="small"
+              variant="outlined"
+            >
+              <v-icon>mdi-cog-outline</v-icon>
+            </v-btn>
+          </template>
+          <v-sheet class="weapon-baseline-menu" rounded="sm">
+            <div class="weapon-baseline-menu-title">
+              {{ $t('page.materialProfit.packageValue.weaponBaselineTitle') }}
+            </div>
+            <div class="weapon-baseline-switch">
+              <span>{{ $t('page.materialProfit.packageValue.weaponBaseline648') }}</span>
+              <v-switch
+                v-model="weaponQuotaBaselineMode"
+                color="primary"
+                density="compact"
+                :false-value="'originium648'"
+                hide-details
+                :true-value="'standardWeaponPack'"
+              />
+              <span>
+                {{ $t('page.materialProfit.packageValue.weaponBaselineStandardPack') }}
+              </span>
+            </div>
+          </v-sheet>
+        </v-menu>
+      </div>
       <div class="filter-sort">
         <v-btn-toggle
           v-model="sortField"
@@ -129,6 +169,7 @@
               :key="packId"
               :gacha-mode="gachaMode"
               :is-hidden="hiddenPackIdSet.has(packId)"
+              :weapon-quota-baseline="weaponQuotaBaseline"
               v-bind="packs[packId]!"
               @set-hidden="setPackHidden"
             />
@@ -144,13 +185,20 @@
 </template>
 
 <script lang="ts" setup>
-import type { LocalizedText, PackData, PackGachaMode } from '@/shared/types/pack';
+import type {
+  LocalizedText,
+  PackData,
+  PackGachaMode,
+  WeaponQuotaBaseline,
+} from '@/shared/types/pack';
 import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
 import { packGroups, packs, packShops } from '@/custom/core/packs';
 import {
   getPackPullsEfficiency,
   getPackSanityEfficiency,
+  getPackTotalWeaponQuota,
   getPackWeaponEfficiency,
+  pack648WeaponQuotaBaseline,
 } from '@/shared/utils/gameData/pack';
 
 // 全局数据引用-原始顺序（用于分类排序）
@@ -165,6 +213,8 @@ const { locale, t } = useI18n();
 // 筛选和排序状态
 const searchQuery = ref('');
 const gachaMode = ref<PackGachaMode>('operator');
+const weaponQuotaBaselineMode = ref<'originium648' | 'standardWeaponPack'>('originium648');
+const showWeaponBaselineMenu = ref(false);
 const sortField = ref<'category' | 'price' | 'operator' | 'weapon' | 'allItems'>('category');
 const route = useRoute();
 const router = useRouter();
@@ -179,6 +229,17 @@ const showHiddenPacks = ref(false);
 
 const hiddenPackIdSet = computed(() => new Set(hiddenPackIds.value));
 const hiddenPackCount = computed(() => hiddenPackIds.value.length);
+const weaponQuotaBaseline = computed<WeaponQuotaBaseline>(() => {
+  if (weaponQuotaBaselineMode.value === 'standardWeaponPack') {
+    const standardWeaponPack = packs['weapon_giftpack_03']!;
+    return {
+      totalQuota: getPackTotalWeaponQuota(standardWeaponPack),
+      price: standardWeaponPack.price,
+    };
+  }
+
+  return pack648WeaponQuotaBaseline;
+});
 
 onMounted(() => {
   loadHiddenPackIds();
@@ -208,7 +269,8 @@ function comparePacks(packA: PackData, packB: PackData) {
     case 'price': {
       return (
         packA.price - packB.price ||
-        getPackSanityEfficiency(packB) - getPackSanityEfficiency(packA) ||
+        getPackSanityEfficiency(packB, weaponQuotaBaseline.value) -
+          getPackSanityEfficiency(packA, weaponQuotaBaseline.value) ||
         compareCategoryOrder(packA, packB)
       );
     }
@@ -222,15 +284,20 @@ function comparePacks(packA: PackData, packB: PackData) {
     }
     case 'weapon': {
       return (
-        getPackWeaponEfficiency(packB, gachaMode.value === 'weapon') -
-          getPackWeaponEfficiency(packA, gachaMode.value === 'weapon') ||
+        getPackWeaponEfficiency(
+          packB,
+          gachaMode.value === 'weapon',
+          weaponQuotaBaseline.value,
+        ) -
+          getPackWeaponEfficiency(packA, gachaMode.value === 'weapon', weaponQuotaBaseline.value) ||
         packA.price - packB.price ||
         compareCategoryOrder(packA, packB)
       );
     }
     case 'allItems': {
       return (
-        getPackSanityEfficiency(packB) - getPackSanityEfficiency(packA) ||
+        getPackSanityEfficiency(packB, weaponQuotaBaseline.value) -
+          getPackSanityEfficiency(packA, weaponQuotaBaseline.value) ||
         packA.price - packB.price ||
         compareCategoryOrder(packA, packB)
       );
@@ -430,6 +497,73 @@ usePageSeo({
   flex: 0 0 auto;
 }
 
+.gacha-mode-controls {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 4px;
+}
+
+.weapon-baseline-settings {
+  flex: 0 0 auto;
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  border-radius: var(--radius-sm) !important;
+  background-color: transparent !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text-primary) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: none !important;
+}
+
+.weapon-baseline-settings:hover,
+.weapon-baseline-settings:focus,
+.weapon-baseline-settings:focus-visible,
+.weapon-baseline-settings:active {
+  background-color: transparent !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text-primary) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.weapon-baseline-settings::before {
+  opacity: 0 !important;
+}
+
+.weapon-baseline-menu {
+  min-width: 250px;
+  padding: 12px;
+  border: 1px solid var(--theme-border);
+  background-color: var(--theme-bg-secondary);
+  box-shadow: 0 4px 12px var(--theme-shadow-base);
+}
+
+.weapon-baseline-menu-title {
+  margin-bottom: 8px;
+  color: var(--theme-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.weapon-baseline-switch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  color: var(--theme-text-primary);
+  font-size: var(--font-size-xs);
+}
+
+.weapon-baseline-switch span:last-child {
+  text-align: right;
+}
+
 .filter-sort {
   display: flex;
   align-items: center;
@@ -521,6 +655,10 @@ usePageSeo({
   }
 
   .gacha-mode-toggle {
+    align-self: center;
+  }
+
+  .gacha-mode-controls {
     align-self: center;
   }
 
