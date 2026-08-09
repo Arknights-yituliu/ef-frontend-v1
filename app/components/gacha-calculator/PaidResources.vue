@@ -43,6 +43,10 @@ const protocolCustomizationActive = computed({
 });
 
 const protocolCustomizationWeaponQuota = getPackTotalWeaponQuota(packs['bp_track_pay'], false);
+const quantityAdjustablePackMaxQuantities: Record<string, number> = {
+  weapon_giftpack_02: 3,
+  weapon_giftpack_03: 5,
+};
 
 // 计算月卡天数（自动根据当前日期和池子结束日期计算）
 const monthlyPassDays = computed(() => {
@@ -223,13 +227,32 @@ const totalPrice = computed(() => {
 
 // 切换礼包选择
 function togglePack(packId: string) {
-  const current = (selectedPacks.value && selectedPacks.value[packId]) || 0;
-  const newValue = current > 0 ? 0 : 1;
+  const quantity = getPackQuantity(packId);
+  const maxQuantity = getPackMaxQuantity(packId);
+  updatePackQuantity(packId, quantity >= maxQuantity ? 0 : quantity + 1);
+}
+
+function getPackQuantity(packId: string): number {
+  return selectedPacks.value[packId] || 0;
+}
+
+function isQuantityAdjustablePack(packId: string): boolean {
+  return packId in quantityAdjustablePackMaxQuantities;
+}
+
+function getPackMaxQuantity(packId: string): number {
+  return quantityAdjustablePackMaxQuantities[packId] || 1;
+}
+
+function updatePackQuantity(packId: string, value: number) {
+  const quantity = Number.isFinite(value)
+    ? Math.min(getPackMaxQuantity(packId), Math.max(0, Math.floor(value)))
+    : 0;
   emit('update:modelValue', {
     ...props.modelValue,
     selectedPacks: {
       ...selectedPacks.value,
-      [packId]: newValue,
+      [packId]: quantity,
     },
   });
 }
@@ -277,7 +300,7 @@ function packName(pack: PackData): string {
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">月卡（{{ monthlyPassDays }}天）</div>
-        <div class="gacha-calculator-resource-single-content">
+        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
@@ -285,7 +308,7 @@ function packName(pack: PackData): string {
           />
           × {{ monthlyPassResources?.originiumRecharge }}
         </div>
-        <div class="gacha-calculator-resource-single-content">
+        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
           <img
             alt="diamond"
             class="gacha-calculator-gacha-item-icon"
@@ -306,7 +329,7 @@ function packName(pack: PackData): string {
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">源石配给</div>
-        <div class="gacha-calculator-resource-single-content">
+        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
@@ -325,7 +348,7 @@ function packName(pack: PackData): string {
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">协议定制</div>
-        <div class="gacha-calculator-resource-single-content">
+        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
@@ -333,7 +356,7 @@ function packName(pack: PackData): string {
           />
           × 36
         </div>
-        <div class="gacha-calculator-resource-single-content">
+        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
           <img
             alt="武库配额"
             class="gacha-calculator-gacha-item-icon"
@@ -349,34 +372,62 @@ function packName(pack: PackData): string {
 
     <!-- 礼包 -->
     <div class="section-title">礼包</div>
-    <v-btn
+    <div
       v-for="pack in giftPacks"
       :key="pack.id"
-      :active="selectedPacks[pack.id]! > 0"
-      class="gacha-calculator-resource-single-btn"
-      :class="{ 'btn-active': selectedPacks[pack.id]! > 0 }"
-      @click="togglePack(pack.id)"
+      class="gacha-calculator-purchase-row"
     >
-      <div class="gacha-calculator-resource-single-btn-content">
-        <div class="gacha-calculator-resource-single-title">
-          {{ packName(pack) }}
+      <v-btn
+        :active="getPackQuantity(pack.id) > 0"
+        class="gacha-calculator-resource-single-btn gacha-calculator-purchase-select-btn"
+        :class="{ 'btn-active': getPackQuantity(pack.id) > 0 }"
+        @click="togglePack(pack.id)"
+      >
+        <div class="gacha-calculator-resource-single-btn-content">
+          <div class="gacha-calculator-resource-single-title">
+            {{ packName(pack) }}
+          </div>
+          <div
+            v-for="item in pack.contents"
+            v-show="isGachaResource(item.itemId)"
+            :key="`${pack.id}-${item.itemId}`"
+            class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
+          >
+            <img
+              alt="item"
+              class="gacha-calculator-gacha-item-icon"
+              :src="getImageUrl(item.itemId)"
+            />
+            × {{ item.quantity }}
+          </div>
+          <div class="gacha-calculator-resource-single-content">¥{{ pack.price }}</div>
         </div>
-        <div
-          v-for="item in pack.contents"
-          v-show="isGachaResource(item.itemId)"
-          :key="`${pack.id}-${item.itemId}`"
-          class="gacha-calculator-resource-single-content"
-        >
-          <img
-            alt="item"
-            class="gacha-calculator-gacha-item-icon"
-            :src="getImageUrl(item.itemId)"
-          />
-          × {{ item.quantity }}
-        </div>
-        <div class="gacha-calculator-resource-single-content">¥{{ pack.price }}</div>
+      </v-btn>
+      <div
+        v-if="isQuantityAdjustablePack(pack.id)"
+        class="gacha-calculator-purchase-quantity"
+      >
+        <v-btn
+          aria-label="减少礼包数量"
+          density="compact"
+          :disabled="getPackQuantity(pack.id) <= 0"
+          icon="mdi-minus"
+          size="small"
+          variant="text"
+          @click="updatePackQuantity(pack.id, getPackQuantity(pack.id) - 1)"
+        />
+        <span>{{ getPackQuantity(pack.id) }}</span>
+        <v-btn
+          aria-label="增加礼包数量"
+          density="compact"
+          :disabled="getPackQuantity(pack.id) >= getPackMaxQuantity(pack.id)"
+          icon="mdi-plus"
+          size="small"
+          variant="text"
+          @click="updatePackQuantity(pack.id, getPackQuantity(pack.id) + 1)"
+        />
       </div>
-    </v-btn>
+    </div>
 
     <v-divider style="margin: 1rem 0" />
 
@@ -398,7 +449,7 @@ function packName(pack: PackData): string {
           v-for="item in stone.contents"
           v-show="isGachaResource(item.itemId)"
           :key="`${stone.id}-${item.itemId}`"
-          class="gacha-calculator-resource-single-content"
+          class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
         >
           <img
             alt="item"
@@ -416,42 +467,54 @@ function packName(pack: PackData): string {
     <!-- 普通源石 -->
     <div class="section-title">普通源石</div>
 
-    <div v-for="stone in normalStones" :key="stone.id" class="gacha-calculator-resource-single">
-      <div class="gacha-calculator-resource-single-title">
-        {{ packName(stone) }}
-      </div>
+    <div v-for="stone in normalStones" :key="stone.id" class="gacha-calculator-purchase-row">
       <div
-        v-for="item in stone.contents"
-        v-show="isGachaResource(item.itemId)"
-        :key="`${stone.id}-${item.itemId}`"
-        class="gacha-calculator-resource-single-content"
+        class="gacha-calculator-resource-single-btn gacha-calculator-purchase-select-btn"
+        :class="{ 'btn-active': (originiumStoneQuantities[stone.id] || 0) > 0 }"
       >
-        <img alt="item" class="gacha-calculator-gacha-item-icon" :src="getImageUrl(item.itemId)" />
-        × {{ item.quantity }}
+        <div class="gacha-calculator-resource-single-btn-content">
+          <div class="gacha-calculator-resource-single-title">
+            {{ packName(stone) }}
+          </div>
+          <div
+            v-for="item in stone.contents"
+            v-show="isGachaResource(item.itemId)"
+            :key="`${stone.id}-${item.itemId}`"
+            class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
+          >
+            <img
+              alt="item"
+              class="gacha-calculator-gacha-item-icon"
+              :src="getImageUrl(item.itemId)"
+            />
+            × {{ item.quantity }}
+          </div>
+          <div class="gacha-calculator-resource-single-content">¥{{ stone.price }}</div>
+        </div>
       </div>
-      <div class="gacha-calculator-resource-single-content">¥{{ stone.price }}</div>
-      <div class="gacha-calculator-resource-single-content">
+      <div class="gacha-calculator-purchase-quantity">
         <v-btn
+          aria-label="减少普通源石数量"
           density="compact"
+          :disabled="(originiumStoneQuantities[stone.id] || 0) <= 0"
+          icon="mdi-minus"
           size="small"
-          variant="outlined"
+          variant="text"
           @click.stop="
             updateOriginiumQuantity(stone.id, (originiumStoneQuantities[stone.id] || 0) - 1)
           "
-        >
-          -
-        </v-btn>
-        <span class="stone-number">{{ originiumStoneQuantities[stone.id] || 0 }}</span>
+        />
+        <span>{{ originiumStoneQuantities[stone.id] || 0 }}</span>
         <v-btn
+          aria-label="增加普通源石数量"
           density="compact"
+          icon="mdi-plus"
           size="small"
-          variant="outlined"
+          variant="text"
           @click.stop="
             updateOriginiumQuantity(stone.id, (originiumStoneQuantities[stone.id] || 0) + 1)
           "
-        >
-          +
-        </v-btn>
+        />
       </div>
     </div>
   </div>
@@ -514,20 +577,36 @@ function packName(pack: PackData): string {
   border-radius: 4px;
 }
 
-.gacha-calculator-resource-single {
-  width: 560px;
+.gacha-calculator-purchase-row {
   display: flex;
-  box-sizing: border-box;
-  font-size: 1rem;
-  align-items: center;
-  border-radius: 4px;
+  gap: 4px;
+  align-items: stretch;
   margin: 4px 0;
-  padding: 4px 4px;
+}
+
+.gacha-calculator-purchase-select-btn {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.gacha-calculator-purchase-quantity {
+  display: flex;
+  width: 92px;
+  flex: 0 0 92px;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--theme-border-secondary);
-  box-shadow:
-    rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
-    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
-    rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.gacha-calculator-purchase-quantity span {
+  width: 20px;
+  text-align: center;
+  font-weight: 600;
 }
 
 .gacha-calculator-resource-single-title {
@@ -542,9 +621,8 @@ function packName(pack: PackData): string {
   padding: 0 4px;
 }
 
-.stone-number {
-  margin: 0 8px;
-  font-weight: 600;
+.gacha-calculator-resource-item-content {
+  min-width: calc(42px + 6ch + 8px);
 }
 
 @media screen and (max-width: 600px) {
@@ -552,9 +630,9 @@ function packName(pack: PackData): string {
     font-size: 0.8rem;
   }
 
-  .gacha-calculator-resource-single {
-    width: 300px;
-    font-size: 0.8rem;
+  .gacha-calculator-purchase-quantity {
+    width: 84px;
+    flex-basis: 84px;
   }
 
   .gacha-calculator-resource-single-title {

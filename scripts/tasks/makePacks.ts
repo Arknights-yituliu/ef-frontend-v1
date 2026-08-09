@@ -40,6 +40,19 @@ const firstRechargeOriginiumPackData = [
   { price: 648, originumCount: 560 },
 ];
 
+const excludedPackIds = new Set([
+  'resetid_giftpack_free_01',
+  'resetid_giftpack_free_02',
+  'resetid_giftpack_free_03',
+  'resetid_giftpack_free_04',
+  'resetid_giftpack_free_05',
+  'resetid_giftpack_pay_01',
+  'resetid_giftpack_pay_02',
+  'resetid_giftpack_pay_03',
+  'resetid_giftpack_pay_04',
+  'resetid_giftpack_pay_05',
+]);
+
 /**
  * 判定是否为限时寻访组合包
  * 标准：98 元，且类型为 Seasonal_Rec_pack 或 Fest_pack，且名称以“寻访组合包”结尾，且含有 80000 折金票
@@ -62,6 +75,9 @@ export function makePacks(): Record<string, PackData> {
   for (const [packId, goods] of Object.entries(cashShopGoodsTable)) {
     // 忽略隐藏的组合包
     if (cashShopHideInGameTable[packId]?.hideInGame === true) {
+      continue;
+    }
+    if (excludedPackIds.has(packId)) {
       continue;
     }
     // 忽略限时寻访组合包（单独处理）

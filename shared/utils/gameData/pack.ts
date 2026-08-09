@@ -2,11 +2,15 @@
  * 游戏数据模块 - 礼包相关工具函数
  * 提供礼包价值计算、抽卡数量计算和效率分析等功能
  */
-import type { PackContent, PackData } from '@/shared/types/pack';
+import type { PackContent, PackData, WeaponQuotaBaseline } from '@/shared/types/pack';
 import { getItemPulls, getItemValue } from '@/shared/utils/gameData/item';
 
 export const ORIGINIUM_WEAPON_QUOTA_RATE = 25;
 export const WEAPON_QUOTA_PER_CLAIM = 1980;
+export const pack648WeaponQuotaBaseline: WeaponQuotaBaseline = {
+  totalQuota: 350 * ORIGINIUM_WEAPON_QUOTA_RATE,
+  price: 648,
+};
 
 /**
  * 计算单个物品包的总价值
@@ -56,8 +60,16 @@ export function getItemBundleWeaponQuota(
  * @param {PackData} pack - 包含该物品包的礼包
  * @returns {number} 物品包价值占礼包总价的百分比
  */
-export function getItemBundleValuePercentage(packContent: PackContent, pack: PackData) {
-  return getItemBundleValue(packContent) / pack.price / pack648SanityCostEffectiveness;
+export function getItemBundleValuePercentage(
+  packContent: PackContent,
+  pack: PackData,
+  weaponQuotaBaseline = pack648WeaponQuotaBaseline,
+) {
+  return (
+    getItemBundleAllItemsValue(packContent, weaponQuotaBaseline) /
+    pack.price /
+    pack648SanityCostEffectiveness
+  );
 }
 
 /**
@@ -65,8 +77,14 @@ export function getItemBundleValuePercentage(packContent: PackContent, pack: Pac
  * @param {PackData} pack - 要分析的礼包
  * @returns {number} 礼包中所有物品的总价值
  */
-export function getPackTotalValue(pack: PackData) {
-  return pack.contents.reduce((sum, content) => sum + getItemBundleValue(content), 0);
+export function getPackTotalValue(
+  pack: PackData,
+  weaponQuotaBaseline = pack648WeaponQuotaBaseline,
+) {
+  return pack.contents.reduce(
+    (sum, content) => sum + getItemBundleAllItemsValue(content, weaponQuotaBaseline),
+    0,
+  );
 }
 
 /**
@@ -104,8 +122,11 @@ export function getPackTotalWeaponClaims(pack: PackData) {
  * @param {PackData} pack - 要分析的礼包
  * @returns {number} 礼包的石头等值价值
  */
-export function getPackStoneEquivalent(pack: PackData) {
-  return getPackTotalValue(pack) / 40;
+export function getPackStoneEquivalent(
+  pack: PackData,
+  weaponQuotaBaseline = pack648WeaponQuotaBaseline,
+) {
+  return getPackTotalValue(pack, weaponQuotaBaseline) / 40;
 }
 
 /**
@@ -113,8 +134,11 @@ export function getPackStoneEquivalent(pack: PackData) {
  * @param {PackData} pack - 要分析的礼包
  * @returns {number} 每石头的价格
  */
-export function getPackPricePerStone(pack: PackData) {
-  return pack.price / getPackStoneEquivalent(pack);
+export function getPackPricePerStone(
+  pack: PackData,
+  weaponQuotaBaseline = pack648WeaponQuotaBaseline,
+) {
+  return pack.price / getPackStoneEquivalent(pack, weaponQuotaBaseline);
 }
 
 /**
@@ -152,8 +176,39 @@ export const pack648PullCostEffectiveness =
 /**
  * Weapon quota efficiency baseline of the non-first-charge 648 yuan pack.
  */
-export const pack648WeaponQuotaCostEffectiveness =
-  getItemBundleWeaponQuota({ itemId: 'item_originium_recharge', quantity: 350 }) / 648;
+export function getWeaponQuotaCostEffectiveness(baseline: WeaponQuotaBaseline) {
+  return baseline.totalQuota / baseline.price;
+}
+
+export const pack648WeaponQuotaCostEffectiveness = getWeaponQuotaCostEffectiveness(
+  pack648WeaponQuotaBaseline,
+);
+
+/**
+ * Convert weapon quota into the same value unit used by the all-items calculation.
+ */
+export function getWeaponQuotaValue(
+  baseline: WeaponQuotaBaseline = pack648WeaponQuotaBaseline,
+) {
+  return pack648SanityCostEffectiveness / getWeaponQuotaCostEffectiveness(baseline);
+}
+
+/**
+ * Calculate the all-items value of a single pack content entry.
+ * Originium stays in the operator-pull value; explicit weapon quota uses the selected baseline.
+ */
+export function getItemBundleAllItemsValue(
+  packContent: PackContent,
+  weaponQuotaBaseline = pack648WeaponQuotaBaseline,
+) {
+  const baseValue = getItemBundleValue(packContent);
+
+  if (packContent.itemId === 'item_gachabyproducts_weapongold') {
+    return packContent.quantity * getWeaponQuotaValue(weaponQuotaBaseline);
+  }
+
+  return baseValue;
+}
 
 /**
  * 计算礼包相对于648元礼包的理智效率
@@ -162,8 +217,11 @@ export const pack648WeaponQuotaCostEffectiveness =
  * @param {PackData} pack - 要分析的礼包
  * @returns {number} 理智效率评分
  */
-export function getPackSanityEfficiency(pack: PackData) {
-  return getPackTotalValue(pack) / pack.price / pack648SanityCostEffectiveness;
+export function getPackSanityEfficiency(
+  pack: PackData,
+  weaponQuotaBaseline = pack648WeaponQuotaBaseline,
+) {
+  return getPackTotalValue(pack, weaponQuotaBaseline) / pack.price / pack648SanityCostEffectiveness;
 }
 
 /**
@@ -181,9 +239,13 @@ export function getPackPullsEfficiency(pack: PackData, includeOriginium = true) 
 /**
  * Calculate weapon quota efficiency relative to the non-first-charge 648 yuan pack.
  */
-export function getPackWeaponEfficiency(pack: PackData, includeOriginium = true) {
+export function getPackWeaponEfficiency(
+  pack: PackData,
+  includeOriginium = true,
+  baseline = pack648WeaponQuotaBaseline,
+) {
   const totalWeaponQuota = getPackTotalWeaponQuota(pack, includeOriginium);
   return totalWeaponQuota === 0
     ? 0
-    : totalWeaponQuota / pack.price / pack648WeaponQuotaCostEffectiveness;
+    : totalWeaponQuota / pack.price / getWeaponQuotaCostEffectiveness(baseline);
 }
