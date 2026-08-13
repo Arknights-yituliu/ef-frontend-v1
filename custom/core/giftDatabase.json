@@ -130,28 +130,6 @@
     }
   },
   "gift": {
-    "item_gift_jinlong_6": {
-      "id": "item_gift_jinlong_6",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_4",
-      "favorHobby": [
-        "tag_hobby_life",
-        "tag_hobby_culture"
-      ]
-    },
-    "item_gift_jinlong_7": {
-      "id": "item_gift_jinlong_7",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_4",
-      "favorHobby": [
-        "tag_hobby_creativity",
-        "tag_hobby_fashion"
-      ]
-    },
     "item_gift_jinlong_8": {
       "id": "item_gift_jinlong_8",
       "rarity": 5,
@@ -304,6 +282,28 @@
       "favorHobby": [
         "tag_hobby_culture",
         "tag_hobby_charity"
+      ]
+    }, 
+    "item_gift_jinlong_6": {
+      "id": "item_gift_jinlong_6",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_4",
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_culture"
+      ]
+    },
+    "item_gift_jinlong_7": {
+      "id": "item_gift_jinlong_7",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_4",
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_fashion"
       ]
     }
   },
@@ -516,6 +516,21 @@
       "favorHobby": [
         "tag_hobby_creativity",
         "tag_hobby_tech"
+      ]
+    },
+    "chr_0035_liino": {
+      "id": "chr_0035_liino",
+      "name": {
+        "zh-CN": "梨诺",
+        "en-US": "Liino"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_5"
+      ],
+      "favorHobby": [
+        "tag_hobby_creativity",
+        "tag_hobby_art"
       ]
     },
     "chr_0004_pelica": {
@@ -736,8 +751,8 @@
       "en-US": "Homecoming"
     },
     "period": {
-      "zh-CN": "前半（诀 卡池）",
-      "en-US": "First Half (Arcane Banner)"
+      "zh-CN": "后半（梨诺 卡池）",
+      "en-US": "Second Half (Liino Banner)"
     },
     "color": [
       "#0e1215",
