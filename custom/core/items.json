@@ -1640,8 +1640,8 @@
   "achv_fac_coupon_wuling_5_3": {
     "id": "achv_fac_coupon_wuling_5_3",
     "name": {
-      "zh-CN": "武陵调度专家奖章·Ⅳ",
-      "en-US": "Wuling Stock Redistributor Ⅳ"
+      "zh-CN": "武陵调度专家奖章·Ⅴ",
+      "en-US": "Wuling Stock Redistributor Ⅴ"
     },
     "rarity": 1,
     "type": 100,
@@ -2785,6 +2785,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_quest_liino_2": {
+    "id": "achv_quest_liino_2",
+    "name": {
+      "zh-CN": "“如同流星飞越边界”",
+      "en-US": "\"Like a Star Streaking Through the Boundaries\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_quest_mifu_2": {
     "id": "achv_quest_mifu_2",
     "name": {
@@ -3317,6 +3331,20 @@
     },
     "iconId": "item_topic_chr_0033_camille"
   },
+  "business_card_topic_chr_0035_liino": {
+    "id": "business_card_topic_chr_0035_liino",
+    "name": {
+      "zh-CN": "笞心习作",
+      "en-US": "Heart-Whipping Practice"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_chr_0035_liino"
+  },
   "business_card_topic_normal_1": {
     "id": "business_card_topic_normal_1",
     "name": {
@@ -3792,6 +3820,20 @@
       "en-US": "Employment Contract"
     },
     "iconId": "item_chr_0033_camille"
+  },
+  "chr_0035_liino": {
+    "id": "chr_0035_liino",
+    "name": {
+      "zh-CN": "梨诺",
+      "en-US": "Liino"
+    },
+    "rarity": 6,
+    "type": 4,
+    "typeName": {
+      "zh-CN": "招聘合同",
+      "en-US": "Employment Contract"
+    },
+    "iconId": "item_chr_0035_liino"
   },
   "common_2x3_l": {
     "id": "common_2x3_l",
@@ -8735,6 +8777,20 @@
     },
     "iconId": "item_case_wpn_selfselect_gahca_1_4_1"
   },
+  "item_case_wpn_selfselect_gahca_1_4_2": {
+    "id": "item_case_wpn_selfselect_gahca_1_4_2",
+    "name": {
+      "zh-CN": "补充武库箱·明曜",
+      "en-US": "Arms OC: Bedazzled"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_1_4_2"
+  },
   "item_case_wpn_selfselect_gahca_c_1": {
     "id": "item_case_wpn_selfselect_gahca_c_1",
     "name": {
@@ -9014,6 +9070,20 @@
       "en-US": "Operator Material"
     },
     "iconId": "item_char_break_stage_3_4"
+  },
+  "item_char_equip_supply_liino": {
+    "id": "item_char_equip_supply_liino",
+    "name": {
+      "zh-CN": "武库防具箱α·晨星",
+      "en-US": "Arsenal Defense Crate α: Dawnstar"
+    },
+    "rarity": 5,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_char_equip_supply_1"
   },
   "item_char_equip_supply_lizhiyan_1": {
     "id": "item_char_equip_supply_lizhiyan_1",
@@ -9588,6 +9658,20 @@
       "en-US": "Operator Token"
     },
     "iconId": "item_charpotentialup_chr_0033_camille"
+  },
+  "item_charpotentialup_chr_0035_liino": {
+    "id": "item_charpotentialup_chr_0035_liino",
+    "name": {
+      "zh-CN": "梨诺的信物",
+      "en-US": "Liino's Token"
+    },
+    "rarity": 6,
+    "type": 42,
+    "typeName": {
+      "zh-CN": "干员信物",
+      "en-US": "Operator Token"
+    },
+    "iconId": "item_charpotentialup_chr_0035_liino"
   },
   "item_charpotentialup_chr_9000_endmin": {
     "id": "item_charpotentialup_chr_9000_endmin",
@@ -21447,6 +21531,20 @@
     },
     "iconId": "item_gacha_introletter"
   },
+  "item_gacha_introletter_1_4_2": {
+    "id": "item_gacha_introletter_1_4_2",
+    "name": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "rarity": 6,
+    "type": 83,
+    "typeName": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "iconId": "item_gacha_introletter"
+  },
   "item_gachabyproducts_charticket": {
     "id": "item_gachabyproducts_charticket",
     "name": {
@@ -25171,6 +25269,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0035_liino": {
+    "id": "item_pic_1_chr_0035_liino",
+    "name": {
+      "zh-CN": "开演日",
+      "en-US": "Show Time"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_9000_endmin": {
     "id": "item_pic_1_chr_9000_endmin",
     "name": {
@@ -25619,6 +25731,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_3_chr_0035_liino": {
+    "id": "item_pic_3_chr_0035_liino",
+    "name": {
+      "zh-CN": "晨星眺望之处",
+      "en-US": "Where the Morning Star Gazes"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_3_chr_9000_endmin": {
     "id": "item_pic_3_chr_9000_endmin",
     "name": {
@@ -26044,6 +26170,20 @@
     "name": {
       "zh-CN": "破影",
       "en-US": "Shadowbreak"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_5_chr_0035_liino": {
+    "id": "item_pic_5_chr_0035_liino",
+    "name": {
+      "zh-CN": "笞心习作",
+      "en-US": "Heart-Whipping Practice"
     },
     "rarity": 5,
     "type": 76,
@@ -27523,6 +27663,34 @@
     },
     "iconId": "item_port_dismantler_1"
   },
+  "item_port_display_stand_1": {
+    "id": "item_port_display_stand_1",
+    "name": {
+      "zh-CN": "“偶像的身姿”立牌",
+      "en-US": "\"Idol Pose\" Ad Stand"
+    },
+    "rarity": 5,
+    "type": 111,
+    "typeName": {
+      "zh-CN": "装饰物品",
+      "en-US": "Ornamental"
+    },
+    "iconId": "item_port_display_stand_1"
+  },
+  "item_port_doll_1": {
+    "id": "item_port_doll_1",
+    "name": {
+      "zh-CN": "陪伴款“晨星”玩偶",
+      "en-US": "\"Morning Star\" Companion-Type Figurine"
+    },
+    "rarity": 5,
+    "type": 111,
+    "typeName": {
+      "zh-CN": "装饰物品",
+      "en-US": "Ornamental"
+    },
+    "iconId": "item_port_doll_1"
+  },
   "item_port_dumper_1": {
     "id": "item_port_dumper_1",
     "name": {
@@ -27774,6 +27942,20 @@
       "en-US": "Miscellaneous"
     },
     "iconId": "item_port_marker_1"
+  },
+  "item_port_microphone_1": {
+    "id": "item_port_microphone_1",
+    "name": {
+      "zh-CN": "“缎带之声”麦克风",
+      "en-US": "\"Ribbon Voice\" Microphone"
+    },
+    "rarity": 5,
+    "type": 111,
+    "typeName": {
+      "zh-CN": "装饰物品",
+      "en-US": "Ornamental"
+    },
+    "iconId": "item_port_microphone_1"
   },
   "item_port_miner_1": {
     "id": "item_port_miner_1",
@@ -31233,6 +31415,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_4_1"
   },
+  "item_ticketgacha_special_single_lt_1_4_2": {
+    "id": "item_ticketgacha_special_single_lt_1_4_2",
+    "name": {
+      "zh-CN": "明耀晨星寻访凭证",
+      "en-US": "Bedazzling Dawnstar HH Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_4_2"
+  },
   "item_ticketgacha_special_ten": {
     "id": "item_ticketgacha_special_ten",
     "name": {
@@ -31372,6 +31568,20 @@
       "en-US": "LTO Valuable"
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_4_1"
+  },
+  "item_ticketgacha_special_ten_lt_1_4_2": {
+    "id": "item_ticketgacha_special_ten_lt_1_4_2",
+    "name": {
+      "zh-CN": "明耀晨星十连凭证",
+      "en-US": "Bedazzling Dawnstar 10×Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_4_2"
   },
   "item_ticketgacha_standard_single": {
     "id": "item_ticketgacha_standard_single",
@@ -32072,6 +32282,20 @@
       "en-US": "Portrait"
     },
     "iconId": "item_chr_0033_camille"
+  },
+  "item_user_avatar_chr_0035_liino": {
+    "id": "item_user_avatar_chr_0035_liino",
+    "name": {
+      "zh-CN": "梨诺",
+      "en-US": "Liino"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_chr_0035_liino"
   },
   "item_user_avatar_frame_activity_1": {
     "id": "item_user_avatar_frame_activity_1",
@@ -36273,6 +36497,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_4_1"
   },
+  "ticketgacha_special_single_lt_1_4_2": {
+    "id": "ticketgacha_special_single_lt_1_4_2",
+    "name": {
+      "zh-CN": "明耀晨星寻访凭证",
+      "en-US": "Bedazzling Dawnstar HH Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_4_2"
+  },
   "ticketgacha_special_ten_lt_1_0_1": {
     "id": "ticketgacha_special_ten_lt_1_0_1",
     "name": {
@@ -36398,6 +36636,20 @@
       "en-US": "LTO Valuable"
     },
     "iconId": "item_ticketgacha_special_ten_lt_1_4_1"
+  },
+  "ticketgacha_special_ten_lt_1_4_2": {
+    "id": "ticketgacha_special_ten_lt_1_4_2",
+    "name": {
+      "zh-CN": "明耀晨星十连凭证",
+      "en-US": "Bedazzling Dawnstar 10×Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_ten_lt_1_4_2"
   },
   "ticketgacha_weaponbox_lt_1_2_2": {
     "id": "ticketgacha_weaponbox_lt_1_2_2",
@@ -37014,6 +37266,20 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_lance_0013"
+  },
+  "wpn_lance_0014": {
+    "id": "wpn_lance_0014",
+    "name": {
+      "zh-CN": "曜夜的首演",
+      "en-US": "Bedazzling Night Debut"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_lance_0014"
   },
   "wpn_lance_0015": {
     "id": "wpn_lance_0015",

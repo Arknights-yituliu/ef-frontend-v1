@@ -59,10 +59,7 @@
       "zh-CN": "标准组合包",
       "en-US": "Standard Bundle"
     },
-    "goodsIds": [
-      "monthly_giftpack_01",
-      "weekly_giftpack_01"
-    ]
+    "goodsIds": ["monthly_giftpack_01", "weekly_giftpack_01"]
   },
   "Seasonal_Rec_pack": {
     "shopId": "Seasonal_Rec_pack",

@@ -101,6 +101,16 @@ const gachaPools: GachaPool[] = [
     poolName: '军列申领',
     upCharName: '四二式·肃阵',
   },
+    {
+    poolId: 'special_1_4_2',
+    poolName: '晨星于此闪耀',
+    upCharName: '梨诺',
+  },
+  {
+    poolId: 'weponbox_1_4_2',
+    poolName: '星曜申领',
+    upCharName: '曜夜的首演',
+  },
 ];
 // 卡池命名逻辑 special_「大版本号」_「小版本号」_「第n个卡池」
 export { gachaPools };

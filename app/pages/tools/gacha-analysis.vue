@@ -1377,9 +1377,10 @@ const allCharFrequency = computed(() => {
     freq[r.character] = (freq[r.character] || 0) + 1;
   }
 
-  // 五星角色（将 charId 解析为角色名）
+  // 五星角色（将 charId 解析为角色名；与六星部分一致，跳过武器池）
   for (const r of sixStarRecordsWithCount.value) {
     if (!r.fiveStars || r.fiveStars.length === 0) continue;
+    if (getPoolType(r.poolId) === 'weapon') continue;
     for (const charId of r.fiveStars) {
       const displayName = nameMap.get(charId) || charId;
       freq[displayName] = (freq[displayName] || 0) + 1;
