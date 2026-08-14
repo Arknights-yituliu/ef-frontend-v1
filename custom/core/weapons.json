@@ -419,6 +419,16 @@
       "skill": "weapon.stat.gst_passive_magabn"
     }
   },
+  "wpn_lance_0014": {
+    "weaponId": "wpn_lance_0014",
+    "weaponType": "weapon.type.wpn_lance",
+    "rarity": 6,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_heal",
+      "skill": "weapon.stat.gst_passive_heal"
+    }
+  },
   "wpn_lance_0015": {
     "weaponId": "wpn_lance_0015",
     "weaponType": "weapon.type.wpn_lance",
@@ -757,16 +767,6 @@
       "attribute": "weapon.stat.gat_passive_attr_main",
       "secondary": "weapon.stat.gat_passive_attr_physpell",
       "skill": "weapon.stat.gst_passive_force"
-    }
-  },
-  "曜夜的首演": {
-    "weaponId": "曜夜的首演",
-    "weaponType": "weapon.type.wpn_lance",
-    "rarity": 6,
-    "stats": {
-      "attribute": "weapon.stat.gat_passive_attr_will",
-      "secondary": "weapon.stat.gat_passive_attr_heal",
-      "skill": "weapon.stat.gst_passive_heal"
     }
   }
 }
