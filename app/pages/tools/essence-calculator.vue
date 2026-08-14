@@ -133,9 +133,15 @@
                                   <v-tooltip activator="parent" location="bottom">
                                     {{
                                       [
-                                        requiredEssenceStats[index]!.attribute ? t(requiredEssenceStats[index]!.attribute) : "",
-                                        requiredEssenceStats[index]!.secondary ? t(requiredEssenceStats[index]!.secondary) : "",
-                                        requiredEssenceStats[index]!.skill ? t(requiredEssenceStats[index]!.skill) : "",
+                                        requiredEssenceStats[index]!.attribute
+                                          ? t(requiredEssenceStats[index]!.attribute)
+                                          : '',
+                                        requiredEssenceStats[index]!.secondary
+                                          ? t(requiredEssenceStats[index]!.secondary)
+                                          : '',
+                                        requiredEssenceStats[index]!.skill
+                                          ? t(requiredEssenceStats[index]!.skill)
+                                          : '',
                                       ]
                                         .filter(Boolean)
                                         .join('、')
@@ -154,13 +160,25 @@
                                         }}
                                       </div>
                                       <div class="text-center text-no-wrap">
-                                        {{ requiredEssenceStats[index]!.attribute ?? '' }}
+                                        {{
+                                          requiredEssenceStats[index]!.attribute
+                                            ? t(requiredEssenceStats[index]!.attribute)
+                                            : ''
+                                        }}
                                       </div>
                                       <div class="text-center text-no-wrap">
-                                        {{ requiredEssenceStats[index]!.secondary ?? '' }}
+                                        {{
+                                          requiredEssenceStats[index]!.secondary
+                                            ? t(requiredEssenceStats[index]!.secondary)
+                                            : ''
+                                        }}
                                       </div>
                                       <div class="text-center text-no-wrap">
-                                        {{ requiredEssenceStats[index]!.skill ?? '' }}
+                                        {{
+                                          requiredEssenceStats[index]!.skill
+                                            ? t(requiredEssenceStats[index]!.skill)
+                                            : ''
+                                        }}
                                       </div>
                                     </div>
                                   </v-card>
@@ -204,9 +222,15 @@
                                   <v-tooltip activator="parent" location="bottom">
                                     {{
                                       [
-                                        weapons[weaponId]!.stats.attribute ? t(weapons[weaponId]!.stats.attribute) : "",
-                                        weapons[weaponId]!.stats.secondary ? t(weapons[weaponId]!.stats.secondary) : "",
-                                        weapons[weaponId]!.stats.skill ? t(weapons[weaponId]!.stats.skill) : "",
+                                        weapons[weaponId]!.stats.attribute
+                                          ? t(weapons[weaponId]!.stats.attribute)
+                                          : '',
+                                        weapons[weaponId]!.stats.secondary
+                                          ? t(weapons[weaponId]!.stats.secondary)
+                                          : '',
+                                        weapons[weaponId]!.stats.skill
+                                          ? t(weapons[weaponId]!.stats.skill)
+                                          : '',
                                       ]
                                         .filter(Boolean)
                                         .join('、')
@@ -255,7 +279,9 @@
         <v-expansion-panels :model-value="['设置', '需求设定']" multiple>
           <!-- 设置 -->
           <v-expansion-panel value="设置">
-            <v-expansion-panel-title>{{ t('page.tools.essenceCalculator.settings') }}</v-expansion-panel-title>
+            <v-expansion-panel-title>{{
+              t('page.tools.essenceCalculator.settings')
+            }}</v-expansion-panel-title>
             <v-expansion-panel-text>
               <!-- 干员专武开关 -->
               <div class="d-flex align-center mb-6 mt-4 ga-2">
@@ -324,13 +350,15 @@
                       v-model="stat.attribute"
                       density="compact"
                       hide-details
-                      :items="allAttributeStats"
+                      item-title="title"
+                      item-value="value"
+                      :items="allAttributeStats.map((attr) => ({ value: attr, title: t(attr) }))"
                       :label="t('page.tools.essenceCalculator.attributeStats')"
                       :list-props="{ density: 'compact' }"
                       variant="outlined"
                     />
                     <v-chip v-else color="primary" variant="flat">
-                      {{ stat.attribute ? t(stat.attribute) : "" }}
+                      {{ stat.attribute ? t(stat.attribute) : '' }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="2">
@@ -339,13 +367,15 @@
                       v-model="stat.secondary"
                       density="compact"
                       hide-details
-                      :items="allSecondaryStats"
+                      item-title="title"
+                      item-value="value"
+                      :items="allSecondaryStats.map((sec) => ({ value: sec, title: t(sec) }))"
                       :label="t('page.tools.essenceCalculator.secondaryStats')"
                       :list-props="{ density: 'compact' }"
                       variant="outlined"
                     />
                     <v-chip v-else color="secondary" variant="flat">
-                      {{ stat.secondary ? t(stat.secondary) : "" }}
+                      {{ stat.secondary ? t(stat.secondary) : '' }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="2">
@@ -354,13 +384,15 @@
                       v-model="stat.skill"
                       density="compact"
                       hide-details
-                      :items="allSkillStats"
+                      item-title="title"
+                      item-value="value"
+                      :items="allSkillStats.map((skill) => ({ value: skill, title: t(skill) }))"
                       :label="t('page.tools.essenceCalculator.skillStats')"
                       :list-props="{ density: 'compact' }"
                       variant="outlined"
                     />
                     <v-chip v-else color="success" variant="flat">
-                      {{ stat.skill ? t(stat.skill) : "" }}
+                      {{ stat.skill ? t(stat.skill) : '' }}
                     </v-chip>
                   </v-col>
                   <v-col cols="12" md="3">
