@@ -1,5 +1,6 @@
 # Nuxt dev/build outputs
 .output
+.output-compare
 .data
 .nuxt
 .nitro
@@ -29,6 +30,9 @@ logs
 .claude/settings.local.json
 .cursor
 .iflow
+
+# AI check files
+GEO-AUDIT-REPORT.md
 
 #temp game data
 /app/assets/shanying
