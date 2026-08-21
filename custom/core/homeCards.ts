@@ -416,6 +416,14 @@ export const homeCards: CardData[] = [
         target: false,
         icon: 'mdi-chart-line',
       },
+      {
+        i18nKey: 'buttons.oea',
+        buttonType: ButtonType.Text,
+        action: ButtonActionType.Link,
+        actionData: '/resources/oea',
+        target: false,
+        icon: 'mdi-archive-search',
+      },
     ],
   },
   {

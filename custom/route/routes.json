@@ -115,6 +115,12 @@
         "nameKey": "menu.essenceRecognizer",
         "routePath": "/resources/essence-recognizer",
         "vuetifyIcon": "mdi-cube-scan"
+      },
+      {
+        "i18nKey": "oea",
+        "nameKey": "menu.oea",
+        "routePath": "/resources/oea",
+        "vuetifyIcon": "mdi-archive-search"
       }
     ]
   },
