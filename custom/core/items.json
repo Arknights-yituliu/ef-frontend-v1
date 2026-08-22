@@ -37756,5 +37756,47 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0026"
+  },
+  "寒夜幽影": {
+    "id": "寒夜幽影",
+    "name": {
+      "zh-CN": "寒夜幽影",
+      "en-US": "寒夜幽影"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": ""
+  },
+  "苦难的尽头": {
+    "id": "苦难的尽头",
+    "name": {
+      "zh-CN": "苦难的尽头",
+      "en-US": "苦难的尽头"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": ""
+  },
+  "点心时刻": {
+    "id": "点心时刻",
+    "name": {
+      "zh-CN": "点心时刻",
+      "en-US": "点心时刻"
+    },
+    "rarity": 5,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": ""
   }
 }
