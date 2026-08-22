@@ -4,6 +4,11 @@ import { dateFormat } from '#shared/utils/dateUtil';
 import { numberFloor } from '#shared/utils/numberUtil';
 import { filterRewardEndAfter, rewardTotalCalc } from '@/custom/core/gacha/versionReward';
 
+usePageSeo({
+  title: '版本奖励表 - 终末地一图流',
+  description: '《明日方舟：终末地》各版本奖励一览表，汇总衍质源石、嵌晶玉与寻访凭证等版本资源。',
+});
+
 const list = filterRewardEndAfter(
   ['零号委托', '新潮起·故渊离','基础资源'], '春晓时',
   new Date('2026/04/17 12:00:00'),

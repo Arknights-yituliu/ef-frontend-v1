@@ -13,6 +13,11 @@ import {
   versionTable
 } from '@/custom/core/gacha/versionReward';
 
+usePageSeo({
+  title: '版本资源作图 - 终末地一图流',
+  description: '自定义版本资源统计图内容、KV 与展示文案，导出《明日方舟：终末地》版本奖励汇总图。',
+});
+
 const currentVersion = ref<VersionTableItem>(versionTable[4] as VersionTableItem);
 getVersionReward( currentVersion.value);
   //  getPoolReward("向渊行","梨诺",new Date('2026/08/09 12:00:00'),new Date('2026/09/02 12:00:00'));

@@ -56,6 +56,36 @@ export default defineNuxtConfig({
             '根据《明日方舟：终末地》建造的数据解析平台，致力于以数据的视角解读游戏内容，构建友好理性的社区。',
         },
       ],
+      // 站点级 Schema.org 结构化数据，直接注入静态 HTML（ssr:false 下 useSchemaOrg 不会输出到 HTML）
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            '@id': 'https://ef.yituliu.cn/#organization',
+            name: '终末地一图流',
+            alternateName: 'Endfield Yituliu',
+            url: 'https://ef.yituliu.cn/',
+            logo: 'https://ef.yituliu.cn/android-chrome-512x512.png',
+            description:
+              '根据《明日方舟：终末地》建造的数据解析平台，致力于以数据的视角解读游戏内容，构建友好理性的社区。',
+          }),
+        },
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            '@id': 'https://ef.yituliu.cn/#website',
+            name: '终末地一图流',
+            alternateName: 'Endfield Yituliu',
+            url: 'https://ef.yituliu.cn/',
+            inLanguage: ['zh-CN', 'en-US'],
+            publisher: { '@id': 'https://ef.yituliu.cn/#organization' },
+          }),
+        },
+      ],
     },
   },
 

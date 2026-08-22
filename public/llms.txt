@@ -1,0 +1,36 @@
+# 终末地一图流 (Endfield Yituliu)
+
+> 根据《明日方舟：终末地》建造的数据解析平台，致力于以数据的视角解读游戏内容，构建友好理性的社区。
+> A community data-analysis platform for Arknights: Endfield, interpreting game content through data.
+
+终末地一图流提供物品价值、商店与礼包性价比、攒抽计算器等实用工具，帮助玩家以数据视角理解《明日方舟：终末地》的游戏内容。
+
+## 工具 (Tools)
+
+- [攒抽计算器 / Gacha Calculator](https://ef.yituliu.cn/tools/gacha-calculator): 计算版本可获得的抽卡资源（衍质源石、嵌晶玉、寻访凭证等）。
+- [基质规划器 / Essence Planner](https://ef.yituliu.cn/tools/essence-calculator): 规划基质（Essence）资源的使用与升级方案。
+- [礼物查询器 / Gift Search](https://ef.yituliu.cn/tools/gift-calculator): 查询干员礼物偏好与最优赠送方案。
+- [选剑演武计算器 / Trial of Swordmancy Calculator](https://ef.yituliu.cn/tools/trial-of-swordmancy-strategy): 选剑演武玩法相关计算与策略。
+- [抽卡分析 / Gacha Analysis](https://ef.yituliu.cn/tools/gacha-analysis): 分析抽卡记录、统计出货与保底情况。
+- [电池分流计算器 / Battery Split Calculator](https://ef.yituliu.cn/tools/power-calc): 计算基建电池（电力）的分流与分配方案。
+
+## 材料收益 (Material Profit)
+
+- [商店性价比 / Shop Value](https://ef.yituliu.cn/material-profit/shop-value): 商店物品的性价比分析与购买建议。
+- [礼包性价比 / Package Value](https://ef.yituliu.cn/material-profit/package-value): 礼包内容的性价比评估。
+- [物品价值表 / Item Value Table](https://ef.yituliu.cn/material-profit/item-value-table): 游戏内物品的价值换算参考表。
+
+## 资源与蓝图 (Resources & Blueprints)
+
+- [基质识别工具 / Essence Recognizer](https://ef.yituliu.cn/resources/essence-recognizer): 识别基质相关物品与属性。
+- [毕业蓝图 / AIC Blueprints](https://ef.yituliu.cn/aic/blueprint): AIC（集成工业）毕业蓝图方案。
+
+## 社区 (Community)
+
+- [友情链接 / Friend Links](https://ef.yituliu.cn/others/friend-links): 相关《明日方舟：终末地》社区工具与网站。
+- [贡献者 / Contributors](https://ef.yituliu.cn/others/contributors): 网站贡献者名单与职责。
+
+## 文档 (Documentation)
+
+- [项目结构 / Project Structure](https://ef.yituliu.cn/introduction/project-structure-zh): 项目结构与开发说明。
+- [如何获取抽卡链接 / How to Get Gacha URL](https://ef.yituliu.cn/operations/how2get-gacha-url-zh): 获取并导入抽卡记录链接的教程。
