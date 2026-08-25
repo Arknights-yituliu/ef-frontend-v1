@@ -1,5 +1,185 @@
 [
   {
+    "id": "陵水渡秋签到",
+    "name": {
+      "zh": "陵水渡秋签到",
+      "en": ""
+    },
+    "start": "2026/09/31 12:00:00",
+    "end": "2026/09/02 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪淞幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1500,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "深林覆雪签到",
+    "name": {
+      "zh": "深林覆雪签到",
+      "en": ""
+    },
+    "start": "2026/08/31 12:00:00",
+    "end": "2026/09/02 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪淞幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "引入活动·于钟鸣的旧城",
+    "name": {
+      "zh": "引入活动·于钟鸣的旧城",
+      "en": ""
+    },
+    "start": "2026/10/05 12:00:00",
+    "end": "2026/10/19 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "引入活动·雪降深林",
+    "name": {
+      "zh": "引入活动·雪降深林",
+      "en": ""
+    },
+    "start": "2026/10/05 12:00:00",
+    "end": "2026/10/19 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "战争回响",
+    "name": {
+      "zh": "战争回响",
+      "en": ""
+    },
+    "start": "2026/10/05 12:00:00",
+    "end": "2026/10/19 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "丰碑留名·刻影",
+    "name": {
+      "zh": "丰碑留名·刻影",
+      "en": ""
+    },
+    "start": "2026/10/05 12:00:00",
+    "end": "2026/10/19 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "跑者运动会",
+    "name": {
+      "zh": "跑者运动会",
+      "en": ""
+    },
+    "start": "2026/10/01 12:00:00",
+    "end": "2026/10/31 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1600,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "集成援助·泡泡出击",
+    "name": {
+      "zh": "集成援助·泡泡出击",
+      "en": ""
+    },
+    "start": "2026/09/16 12:00:00",
+    "end": "2026/10/31 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1600,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "挽弓试炼",
+    "name": {
+      "zh": "挽弓试炼",
+      "en": ""
+    },
+    "start": "2026/09/09 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "宏运连连乐",
     "name": {
       "zh": "宏运连连乐",

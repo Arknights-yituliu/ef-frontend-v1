@@ -130,5 +130,19 @@
     "version": "向渊行",
     "combatDrills": true,
     "narrative": true
+  },
+{
+    "poolName": "提弗洛斯",
+    "character": "提弗洛斯",
+    "poolStart": "2026/09/02 12:00:00",
+    "poolEnd": "2026/10/14 12:00:00",
+    "poolDateStr": "0902-1014",
+    "versionStart": "2026/09/02 12:00:00",
+    "versionEnd": "2026/10/14 12:00:00",
+    "version": "雪凇幽梦",
+    "combatDrills": true,
+    "narrative": true
   }
+
+  
 ]
