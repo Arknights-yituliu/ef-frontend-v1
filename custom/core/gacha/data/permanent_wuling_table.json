@@ -60,7 +60,7 @@
     }
   },
   {
-    "id": "wuling_regional_stock_bill_store_reward_20260417",
+    "id": "wuling_regional_stock_bill_store_reward_20260514",
     "name": {
       "zh": "武陵·调度券商店",
       "en": ""
@@ -100,7 +100,7 @@
     }
   },
   {
-    "id": "wuling_regional_stock_bill_store_reward_20260605",
+    "id": "wuling_regional_stock_bill_store_reward_20260716",
     "name": {
       "zh": "武陵·调度券商店",
       "en": ""
@@ -111,6 +111,25 @@
     "module": "地区探索与建设",
     "active": false,
     "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  }, {
+    "id": "wuling_regional_stock_bill_store_reward_20260902",
+    "name": {
+      "zh": "武陵·调度券商店",
+      "en": ""
+    },
+    "start": "2026/09/02 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "雪凇幽梦",
     "content": {
       "originiumRecharge": 0,
       "diamond": 0,
@@ -439,7 +458,7 @@
     "type": "通用",
     "module": "地区探索与建设",
     "active": false,
-    "version": "雪淞幽梦",
+    "version": "雪凇幽梦",
     "content": {
       "originiumRecharge": 0,
       "diamond": 600,
@@ -542,6 +561,46 @@
     "version": "寻遗散记",
     "content": {
       "originiumRecharge": 6,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "武陵·醚质阶段17-18",
+    "name": {
+      "zh": "武陵·醚质阶段17-18",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 6,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+   {
+    "id": "武陵·醚质阶段19-19",
+    "name": {
+      "zh": "武陵·醚质阶段19-19",
+      "en": ""
+    },
+    "start": "2026/09/02 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 3,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,

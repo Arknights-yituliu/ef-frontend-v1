@@ -10,7 +10,7 @@
     "type": "通用",
     "module": "活动",
     "active": true,
-    "version": "雪淞幽梦",
+    "version": "雪凇幽梦",
     "content": {
       "originiumRecharge": 0,
       "diamond": 1500,
@@ -30,7 +30,7 @@
     "type": "通用",
     "module": "活动",
     "active": true,
-    "version": "雪淞幽梦",
+    "version": "雪凇幽梦",
     "content": {
       "originiumRecharge": 0,
       "diamond": 500,
@@ -133,7 +133,7 @@
     "version": "雪凇幽梦",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 1600,
+      "diamond": 1200,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
