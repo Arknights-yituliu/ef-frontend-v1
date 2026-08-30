@@ -21,18 +21,34 @@
 
       <!-- 头部按钮：下载 / GitHub / QQ 交流群 -->
       <div class="d-flex flex-wrap ga-2 my-4">
-        <v-btn
-          color="primary"
-          href="https://mirrorchyan.com/zh/projects?rid=OEA&os=windows&arch=x64&channel=stable"
-          prepend-icon="mdi-cloud-download"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          下载最新版（Mirror酱）
-        </v-btn>
-        <v-btn :loading="githubDownloading" prepend-icon="mdi-download" @click="downloadFromGithub">
-          下载最新版（GitHub）
-        </v-btn>
+        <v-btn-group density="compact" elevation="3">
+          <v-btn
+            color="primary"
+            href="https://mirrorchyan.com/zh/projects?rid=OEA&os=windows&arch=x64&channel=stable"
+            prepend-icon="mdi-launch"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Mirror酱下载
+          </v-btn>
+          <v-btn
+            color="secondary"
+            href="https://oea.oem.re/latest"
+            prepend-icon="mdi-cloud-download"
+            rel="noopener noreferrer"
+          >
+            OEM 下载
+          </v-btn>
+          <v-btn
+            color="primary"
+            :loading="githubDownloading"
+            prepend-icon="mdi-download"
+            @click="downloadFromGithub"
+          >
+            GitHub 下载
+          </v-btn>
+        </v-btn-group>
+
         <v-btn
           href="https://github.com/Logical-Byte/open-endfield-assistant"
           prepend-icon="mdi-github"
