@@ -578,10 +578,10 @@
         "quantity": 15000
       },
       {
-        "itemId": "item_shot_sticker_bp_5",
+        "itemId": "item_shot_sticker_bp_6",
         "name": {
-          "zh-CN": "贴纸·永镇蚀海",
-          "en-US": "Sticker: Eternal Peace Over Blighted Seas"
+          "zh-CN": "贴纸·捕梦",
+          "en-US": "Sticker: Dream Snare"
         },
         "quantity": 1
       },
@@ -698,10 +698,10 @@
         "quantity": 20000
       },
       {
-        "itemId": "item_shot_filter_sp_5",
+        "itemId": "item_shot_filter_sp_6",
         "name": {
-          "zh-CN": "滤镜·希望色彩",
-          "en-US": "Filter: Hues of Hope"
+          "zh-CN": "滤镜·血忆",
+          "en-US": "Filter: Sanguine Recall"
         },
         "quantity": 1
       },
@@ -818,10 +818,10 @@
         "quantity": 40000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_5",
+        "itemId": "item_case_wpn_selfselect_bp_6",
         "name": {
-          "zh-CN": "武器补给·蚀海",
-          "en-US": "Weapon Supply: Blighted Sea"
+          "zh-CN": "武器补给·幽林",
+          "en-US": "Weapon Supply: Gloomwald"
         },
         "quantity": 1
       },
@@ -1014,10 +1014,10 @@
         "quantity": 12500
       },
       {
-        "itemId": "item_char_ap_supply_lizhiyan",
+        "itemId": "item_char_ap_supply_typhoea",
         "name": {
-          "zh-CN": "桂花米糕",
-          "en-US": "Osmanthus Rice Cake"
+          "zh-CN": "萨米维格腌咸鳞",
+          "en-US": "Samivegric Salted Fin"
         },
         "quantity": 1
       },
@@ -1086,10 +1086,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_bp_1_4",
+        "itemId": "item_user_avatar_bp_1_5",
         "name": {
-          "zh-CN": "现实迸裂",
-          "en-US": "Shattering of Reality"
+          "zh-CN": "冰结的轮廓",
+          "en-US": "Frozen Outline"
         },
         "quantity": 1
       },
@@ -1126,10 +1126,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_frame_bp_1_4",
+        "itemId": "item_user_avatar_frame_bp_1_5",
         "name": {
-          "zh-CN": "降伏",
-          "en-US": "Pacification"
+          "zh-CN": "雪祀规则",
+          "en-US": "Rules of the Snowpriest"
         },
         "quantity": 1
       },
@@ -1166,10 +1166,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_5",
+        "itemId": "item_case_wpn_selfselect_bp_6",
         "name": {
-          "zh-CN": "武器补给·蚀海",
-          "en-US": "Weapon Supply: Blighted Sea"
+          "zh-CN": "武器补给·幽林",
+          "en-US": "Weapon Supply: Gloomwald"
         },
         "quantity": 1
       },
@@ -1214,12 +1214,12 @@
         "quantity": 800
       },
       {
-        "itemId": "item_char_ap_supply_liino",
+        "itemId": "ap_supply_lt_n",
         "name": {
-          "zh-CN": "手工星星糖",
-          "en-US": "Handmade Star Candy"
+          "zh-CN": "应急理智加强剂",
+          "en-US": "Emergency Sanity Booster"
         },
-        "quantity": 1
+        "quantity": 2
       },
       {
         "itemId": "item_expcard_stage2_high",
@@ -1286,10 +1286,10 @@
         "quantity": 65000
       },
       {
-        "itemId": "business_card_topic_bp_1_4",
+        "itemId": "business_card_topic_bp_1_5",
         "name": {
-          "zh-CN": "根源苦楚",
-          "en-US": "Fount of Suffering"
+          "zh-CN": "梦时曜夜",
+          "en-US": "Dreamlit Night"
         },
         "quantity": 1
       },

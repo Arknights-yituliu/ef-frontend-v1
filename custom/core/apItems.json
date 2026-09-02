@@ -29,6 +29,11 @@
     "id": "ap_supply_lt_weekly",
     "itemName": "限时理智回复液"
   },
+  "item_ap_supply_activity_wuling_racing": {
+    "apRecoverValue": 40,
+    "id": "item_ap_supply_activity_wuling_racing",
+    "itemName": "“滚动龙泡泡”特饮"
+  },
   "item_ap_supply_lt": {
     "apRecoverValue": 60,
     "id": "item_ap_supply_lt",
@@ -118,6 +123,11 @@
     "apRecoverValue": 40,
     "id": "item_char_ap_supply_tangtang",
     "itemName": "鳞肉干"
+  },
+  "item_char_ap_supply_typhoea": {
+    "apRecoverValue": 40,
+    "id": "item_char_ap_supply_typhoea",
+    "itemName": "萨米维格腌咸鳞"
   },
   "item_char_ap_supply_wulfa": {
     "apRecoverValue": 40,
