@@ -2,7 +2,7 @@
   <v-container class="page-container" fluid>
     <!-- 页面标题 -->
     <div class="page-header mb-6">
-      <h1 class="page-title">「向渊行」毕业蓝图</h1>
+      <h1 class="page-title">「雪凇幽梦」毕业蓝图（非活动期间）</h1>
     </div>
 
     <!-- 教学视频 -->
@@ -17,12 +17,12 @@
         <p class="mb-3">
           <a
             class="video-link text-body-1"
-            href="https://www.bilibili.com/video/BV1bjKK67EVP"
+            href="https://www.bilibili.com/video/BV1c4t76dEDv"
             rel="noopener noreferrer"
             target="_blank"
           >
             <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-            https://www.bilibili.com/video/BV1bjKK67EVP
+            https://www.bilibili.com/video/BV1c4t76dEDv
           </a>
         </p>
       </v-card-text>
@@ -101,13 +101,13 @@ const images = [
     url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片3.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片4.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片4.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片7.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片12.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片8.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片13.JPG',
   },
 ];
 
@@ -123,8 +123,8 @@ const blueprints: BlueprintItem[] = [
   { label: '1.4武陵城3', code: 'EF01u28U5eA6A0i6AoOU' },
   { label: '1.4景玉谷1', code: 'EF01u28U5eA6A080AoOU' },
   { label: '1.4景玉谷2', code: 'EF01ao6532OeOA71oe5e' },
-  { label: '1.4应龙关1', code: 'EF013Eo74iU9UaI90579' },
-  { label: '1.4应龙关2', code: 'EF0170i86I3E35iuO0Ai' },
+  { label: '1.5应龙关1', code: 'EF01o5uiEUeae6OeIieO' },
+  { label: '1.5应龙关2', code: 'EF01A67ua8I4IEai9ieO' },
   { label: '赫铜零件模块', code: 'EF01E750A1939oI43uIa' },
   { label: '赤铜零件模块', code: 'EF0170i86I3E35I7O0Ai' },
   { label: '赤铜耐压罐模块', code: 'EF01A67ua8I4IE539ieO' },
