@@ -186,7 +186,7 @@ export const homeCards: CardData[] = [
         copySuccessText: 'common.copyCodePCOnly',
         codeInner: 'codeContent.PCOnly',
       },
-      //{
+      // {
       //  i18nKey: 'buttons.efy1u4',
       //  buttonType: ButtonType.Text,
       //  action: ButtonActionType.Copy,
@@ -195,7 +195,7 @@ export const homeCards: CardData[] = [
       //  popupText: 'common.limitY1U4',
       //  copySuccessText: 'common.copyCodeY1U4',
       //  codeInner: 'codeContent.limitY1U4',
-      //},
+      // },
     ],
   },
   {
