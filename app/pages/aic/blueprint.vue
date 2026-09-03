@@ -123,7 +123,7 @@ const blueprints: BlueprintItem[] = [
   { label: '1.4武陵城3', code: 'EF01u28U5eA6A0i6AoOU' },
   { label: '1.4景玉谷1', code: 'EF01u28U5eA6A080AoOU' },
   { label: '1.4景玉谷2', code: 'EF01ao6532OeOA71oe5e' },
-  { label: '1.5应龙关1', code: 'EF01o5uiEUeae6OeIieO' },
+  { label: '1.5应龙关1', code: 'EF01E750A1939ouE3uIa' },
   { label: '1.5应龙关2', code: 'EF01A67ua8I4IEai9ieO' },
   { label: '赫铜零件模块', code: 'EF01E750A1939oI43uIa' },
   { label: '赤铜零件模块', code: 'EF0170i86I3E35I7O0Ai' },
