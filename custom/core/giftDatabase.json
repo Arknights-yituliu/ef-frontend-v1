@@ -84,6 +84,18 @@
           "Explorer",
           "Wuling Explorer"
         ]
+      },
+      "tag_giftperfer_wuling_6": {
+        "zh-CN": [
+          "武陵",
+          "差旅严选",
+          "武陵·差旅严选"
+        ],
+        "en-US": [
+          "Wuling",
+          "Traveler",
+          "Wuling Traveler"
+        ]
       }
     },
     "hobby": {
@@ -134,7 +146,7 @@
       "id": "item_gift_jinlong_8",
       "rarity": 5,
       "isHot": true,
-      "isHotExpiring": false,
+      "isHotExpiring": true,
       "favorCategory": "tag_giftperfer_wuling_5",
       "favorHobby": [
         "tag_hobby_charity",
@@ -145,11 +157,33 @@
       "id": "item_gift_jinlong_9",
       "rarity": 5,
       "isHot": true,
-      "isHotExpiring": false,
+      "isHotExpiring": true,
       "favorCategory": "tag_giftperfer_wuling_5",
       "favorHobby": [
         "tag_hobby_art",
         "tag_hobby_culture"
+      ]
+    },
+    "item_gift_jinlong_10": {
+      "id": "item_gift_jinlong_10",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_6",
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_nature"
+      ]
+    },
+    "item_gift_jinlong_11": {
+      "id": "item_gift_jinlong_11",
+      "rarity": 5,
+      "isHot": true,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_6",
+      "favorHobby": [
+        "tag_hobby_charity",
+        "tag_hobby_art"
       ]
     },
     "item_gift_tundra_1": {
@@ -283,7 +317,7 @@
         "tag_hobby_culture",
         "tag_hobby_charity"
       ]
-    }, 
+    },
     "item_gift_jinlong_6": {
       "id": "item_gift_jinlong_6",
       "rarity": 5,
@@ -518,6 +552,21 @@
         "tag_hobby_tech"
       ]
     },
+    "chr_0034_typhoea": {
+      "id": "chr_0034_typhoea",
+      "name": {
+        "zh-CN": "提弗洛斯",
+        "en-US": "Typhoeus"
+      },
+      "rarity": 6,
+      "favorCategory": [
+        "tag_giftperfer_wuling_6"
+      ],
+      "favorHobby": [
+        "tag_hobby_life",
+        "tag_hobby_nature"
+      ]
+    },
     "chr_0035_liino": {
       "id": "chr_0035_liino",
       "name": {
@@ -745,19 +794,19 @@
     }
   },
   "gameVersion": {
-    "code": "Y1U4",
+    "code": "Y1U5",
     "name": {
-      "zh-CN": "向渊行",
-      "en-US": "Homecoming"
+      "zh-CN": "雪凇幽梦",
+      "en-US": "Dreamscape of Wind and Snow"
     },
     "period": {
-      "zh-CN": "后半（梨诺 卡池）",
-      "en-US": "Second Half (Liino Banner)"
+      "zh-CN": "前半（提弗洛斯 卡池）",
+      "en-US": "First Half (Typhoeus Banner)"
     },
     "color": [
-      "#0e1215",
-      "#318e9d",
-      "#ffffff"
+      "#1a2160",
+      "#3f59d1",
+      "#c5bad3"
     ],
     "textColor": "#ffffff"
   }
