@@ -357,6 +357,7 @@ export {
   filterRewardEndAfter,
   getPoolReward,
   getVersionReward,
+  rawVersionReward,
   rewardTotalCalc,
   versionTable,
 };
