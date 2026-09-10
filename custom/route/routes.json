@@ -49,7 +49,7 @@
         "nameKey": "menu.blueprints",
         "routePath": "/aic/blueprint",
         "vuetifyIcon": "mdi-factory",
-        "visibleBefore": "2026-09-02T06:00:00+08:00"
+        "visibleBefore": "2026-10-14T06:00:00+08:00"
       },
       {
         "i18nKey": "quantitativeCalculator",
@@ -120,9 +120,7 @@
         "i18nKey": "oea",
         "nameKey": "menu.oea",
         "routePath": "/resources/oea",
-        "vuetifyIcon": "mdi-archive-search",
-        "visibleBefore": "2000-01-01T00:00:00+08:00",
-        "__doc__": "先隐藏起来"
+        "vuetifyIcon": "mdi-archive-search"
       }
     ]
   },

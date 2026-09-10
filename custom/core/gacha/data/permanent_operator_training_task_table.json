@@ -318,5 +318,45 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
+  },
+  {
+    "id": "干员教学·提弗洛斯",
+    "name": {
+      "zh": "干员教学·提弗洛斯",
+      "en": ""
+    },
+    "start": "2026/09/02 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册·训练/教学",
+    "active": false,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 20,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "干员教学·111",
+    "name": {
+      "zh": "干员教学·111",
+      "en": ""
+    },
+    "start": "2026/09/02 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "行动手册·训练/教学",
+    "active": false,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 20,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
   }
 ]

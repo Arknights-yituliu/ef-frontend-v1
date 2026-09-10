@@ -319,6 +319,26 @@
       "skill": "weapon.stat.gst_passive_keyword"
     }
   },
+  "wpn_funnel_0019": {
+    "weaponId": "wpn_funnel_0019",
+    "weaponType": "weapon.type.wpn_funnel",
+    "rarity": 6,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_atk",
+      "skill": "weapon.stat.gst_passive_burst"
+    }
+  },
+  "wpn_funnel_0020": {
+    "weaponId": "wpn_funnel_0020",
+    "weaponType": "weapon.type.wpn_funnel",
+    "rarity": 6,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_agi",
+      "secondary": "weapon.stat.gat_passive_attr_naturaldam",
+      "skill": "weapon.stat.gst_passive_burst"
+    }
+  },
   "wpn_lance_0003": {
     "weaponId": "wpn_lance_0003",
     "weaponType": "weapon.type.wpn_lance",
@@ -767,36 +787,6 @@
       "attribute": "weapon.stat.gat_passive_attr_main",
       "secondary": "weapon.stat.gat_passive_attr_physpell",
       "skill": "weapon.stat.gst_passive_force"
-    }
-  },
-  "寒夜幽影": {
-    "weaponId": "寒夜幽影",
-    "weaponType": "weapon.type.wpn_funnel",
-    "rarity": 6,
-    "stats": {
-      "attribute": "weapon.stat.gat_passive_attr_agi",
-      "secondary": "weapon.stat.gat_passive_attr_atk",
-      "skill": "weapon.stat.gst_passive_burst"
-    }
-  },
-  "苦难的尽头": {
-    "weaponId": "苦难的尽头",
-    "weaponType": "weapon.type.wpn_funnel",
-    "rarity": 6,
-    "stats": {
-      "attribute": "weapon.stat.gat_passive_attr_agi",
-      "secondary": "weapon.stat.gat_passive_attr_naturaldam",
-      "skill": "weapon.stat.gst_passive_burst"
-    }
-  },
-  "点心时刻": {
-    "weaponId": "点心时刻",
-    "weaponType": "weapon.type.wpn_sword",
-    "rarity": 5,
-    "stats": {
-      "attribute": "weapon.stat.gat_passive_attr_str",
-      "secondary": "weapon.stat.gat_passive_attr_heal",
-      "skill": "weapon.stat.gst_passive_heal"
     }
   }
 }

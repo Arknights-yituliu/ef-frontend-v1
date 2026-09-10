@@ -1,8 +1,48 @@
 [
   {
-    "id": "档案采集",
+    "id": "档案采集·雪凇幽梦·1",
     "name": {
       "zh": "档案采集",
+      "en": ""
+    },
+    "start": "2026/09/02 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "档案采集·雪凇幽梦·1",
+    "name": {
+      "zh": "档案采集",
+      "en": ""
+    },
+    "start": "2026/09/02 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": true,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "档案采集·应龙作战记录",
+    "name": {
+      "zh": "档案采集·应龙作战记录",
       "en": ""
     },
     "start": "2026/06/05 12:00:00",
@@ -18,10 +58,51 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
-    "id": "档案采集",
+  },
+  {
+    "id": "档案采集·应龙关",
     "name": {
-      "zh": "档案采集",
+      "zh": "档案采集·应龙关",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": true,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "档案采集·受灾者的求生经历",
+    "name": {
+      "zh": "档案采集·受灾者的求生经历",
+      "en": ""
+    },
+    "start": "2026/06/05 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": true,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "档案采集·藏剑谷炎国遗迹",
+    "name": {
+      "zh": "档案采集·藏剑谷炎国遗迹",
       "en": ""
     },
     "start": "2026/06/05 12:00:00",

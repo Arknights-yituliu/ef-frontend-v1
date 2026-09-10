@@ -8,9 +8,8 @@ import { computed, onMounted, ref, watch } from 'vue';
 import {
   currentVersionReward,
   currentVersionRewardTotal,
-  getPoolReward,
   getVersionReward,
-  versionTable
+  versionTable,
 } from '@/custom/core/gacha/versionReward';
 
 usePageSeo({
@@ -18,9 +17,10 @@ usePageSeo({
   description: '自定义版本资源统计图内容、KV 与展示文案，导出《明日方舟：终末地》版本奖励汇总图。',
 });
 
-const currentVersion = ref<VersionTableItem>(versionTable[4] as VersionTableItem);
-getVersionReward( currentVersion.value);
-  //  getPoolReward("向渊行","梨诺",new Date('2026/08/09 12:00:00'),new Date('2026/09/02 12:00:00'));
+const versionInfo:VersionTableItem = versionTable[5] as VersionTableItem;
+
+const currentVersion = ref<VersionTableItem>(versionInfo);
+getVersionReward(currentVersion.value);
 
 const rewardItemGroupHeightMin = 800;
 const rewardItemGroupHeightMax = 2600;
@@ -60,51 +60,68 @@ const footerStyle = computed(() => {
 });
 
 /**
- * 模块分组显示顺序
- * 按数组顺序排列，未列出的模块自动追加到末尾
+ * 模块 -> 顶层分组 映射
+ * 归并为 日常 / 活动 / 地区探索 / 任务，未配置的模块自动归入“其他”
  */
-const moduleOrder = ref([
-  '日常',
-  '活动',
-  '地区探索与建设',
-  '主线任务',
-  '重要任务',
-  '次要任务',
-  '支线任务',
-  '通行证',
-  '月卡',
-  '权限等阶提升',
-  '行动手册',
-  '常驻活动',
-  '蚀刻空间',
-  '地区建设',
-  '地区探索',
-  '模拟奖励',
-  '探索等级',
-  '节点手册',
-]);
+const moduleGroupMap: Record<string, string> = {
+  日常: '日常',
+  活动: '活动',
+  常驻活动: '活动',
+  干员叙事: '活动',
+  地区探索: '地区探索',
+  地区建设: '地区探索',
+  地区探索与建设: '地区探索',
+  主线任务: '任务',
+  重要任务: '任务',
+  次要任务: '任务',
+  支线任务: '任务',
+};
 
 /**
- * 按 module 分组 currentVersionReward，并按 moduleOrder 排序
+ * 顶层分组显示顺序，按数组顺序排列
+ */
+const moduleGroupOrder = ['日常', '活动', '地区探索', '任务', '其他'];
+
+/**
+ * 模块展示顺序（组内排序用）
+ * 按数组顺序排列，未列出的模块自动追加到末尾
+ */
+const moduleOrder = ref(['日常', '活动', '地区探索', '任务', '其他']);
+
+/**
+ * 按顶层分组归并 currentVersionReward，并按 moduleGroupOrder 排序
+ * 组内按 moduleOrder 顺序排列，未配置的模块自动追加到末尾
  */
 const groupedRewards = computed(() => {
   const groups: Record<string, Reward[]> = {};
   for (const reward of currentVersionReward.value) {
-    const module = reward.module || '其他';
-    if (!groups[module]) {
-      groups[module] = [];
+    const group = moduleGroupMap[reward.module || '其他'] || '其他';
+    if (!groups[group]) {
+      groups[group] = [];
     }
-    groups[module]!.push(reward);
+    groups[group]!.push(reward);
   }
+
+  // 预构建 module -> 排序下标 映射，供组内排序使用
+  const moduleIndexMap = new Map(moduleOrder.value.map((module, index) => [module, index]));
+  const getModuleIndex = (module: string): number =>
+    moduleIndexMap.get(module) ?? moduleOrder.value.length;
+
   const sorted: Record<string, Reward[]> = {};
-  for (const key of moduleOrder.value) {
-    if (groups[key]) {
-      sorted[key] = groups[key];
+  for (const key of moduleGroupOrder) {
+    const groupRewards = groups[key];
+    if (groupRewards) {
+      sorted[key] = groupRewards.toSorted(
+        (a, b) => getModuleIndex(a.module || '其他') - getModuleIndex(b.module || '其他'),
+      );
     }
   }
   for (const key of Object.keys(groups)) {
-    if (!moduleOrder.value.includes(key)) {
-      sorted[key] = groups[key] || [];
+    if (!moduleGroupOrder.includes(key)) {
+      const groupRewards = groups[key];
+      if (groupRewards) {
+        sorted[key] = groupRewards;
+      }
     }
   }
   return sorted;
@@ -125,7 +142,6 @@ function formatRewardDate(date: string | Date): string {
 // 控制台数据 - 初始化时使用默认图片
 const controlPanel = ref({
   title: '版本资源估算',
-  versionName: '春晓时',
   updateDate: dateFormat(new Date()),
   otherInfo: '施工中，非版本完整资源，部分资源为保守估算，仅供参考',
   kvImage: 'https://cos.yituliu.cn/endfield/other/kv-v1.1.webp',
@@ -166,20 +182,6 @@ onMounted(() => {
         controlPanel.value.title = savedTitle;
       }
 
-      // 读取版本名称
-      const savedVersionName = localStorage.getItem('version-reward-version-name');
-      if (savedVersionName) {
-        console.log('读取到版本名称:', savedVersionName);
-        controlPanel.value.versionName = savedVersionName;
-      }
-
-      // 读取更新日期
-      // const savedUpdateDate = localStorage.getItem('version-reward-update-date');
-      // if (savedUpdateDate) {
-      //   console.log('读取到更新日期:', savedUpdateDate);
-      //   controlPanel.value.updateDate = savedUpdateDate;
-      // }
-
       // 读取其他说明
       const savedOtherInfo = localStorage.getItem('version-reward-other-info');
       if (savedOtherInfo) {
@@ -218,34 +220,6 @@ watch(
     }
   },
 );
-
-watch(
-  () => controlPanel.value.versionName,
-  (newValue) => {
-    if (typeof localStorage !== 'undefined') {
-      try {
-        localStorage.setItem('version-reward-version-name', newValue);
-        console.log('✓ 版本名称已保存到localStorage');
-      } catch (error) {
-        console.error('✗ 保存版本名称到localStorage失败:', error);
-      }
-    }
-  },
-);
-
-// watch(
-//   () => controlPanel.value.updateDate,
-//   (newValue) => {
-//     if (typeof localStorage !== 'undefined') {
-//       try {
-//         localStorage.setItem('version-reward-update-date', newValue);
-//         console.log('✓ 更新日期已保存到localStorage');
-//       } catch (error) {
-//         console.error('✗ 保存更新日期到localStorage失败:', error);
-//       }
-//     }
-//   },
-// );
 
 watch(
   () => controlPanel.value.otherInfo,
@@ -402,7 +376,7 @@ function handleImageUpload(event: Event) {
 
           <!-- 版本名称 -->
           <div class="version-section">
-            <h2 class="version-title">{{ controlPanel.versionName }}</h2>
+            <h2 class="version-title">{{ versionInfo.version }}</h2>
           </div>
 
           <!-- 其他文本（更新日期和说明） -->
@@ -425,12 +399,13 @@ function handleImageUpload(event: Event) {
             <div v-for="reward in rewards" :key="reward.id" class="version-reward-item">
               <div class="version-reward-item-row">
                 <div>
-                  <!-- <div class="version-reward-item-bar red-bar"></div> -->
                   <div class="version-reward-item-bar yellow-bar"></div>
-                  <!-- <div class="version-reward-item-bar blue-bar"></div> -->
                 </div>
                 <div class="version-reward-item-name">{{ reward.name.zh }}</div>
-                <div v-if="reward.content.originiumRecharge > 0" class="version-reward-item-content">
+                <div
+                  v-if="reward.content.originiumRecharge > 0"
+                  class="version-reward-item-content"
+                >
                   <img
                     alt="衍质源石"
                     class="version-reward-item-icon"
@@ -621,18 +596,6 @@ function handleImageUpload(event: Event) {
         <label>标题</label>
         <input v-model="controlPanel.title" placeholder="请输入标题" type="text" />
       </div>
-
-      <!-- 版本名称输入 -->
-      <div class="control-item">
-        <label>版本名称</label>
-        <input v-model="controlPanel.versionName" placeholder="请输入版本名称" type="text" />
-      </div>
-
-      <!-- 更新日期输入 -->
-      <!-- <div class="control-item">
-        <label>更新日期</label>
-        <input v-model="controlPanel.updateDate" type="date" />
-      </div> -->
 
       <!-- 其他说明输入 -->
       <div class="control-item">

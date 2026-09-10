@@ -17,7 +17,7 @@ import valleyIVTaskTable from '@/custom/core/gacha/data/permanent_valley_IV_task
 import wulingTableJson from '@/custom/core/gacha/data/permanent_wuling_table.json';
 import wulingTaskTable from '@/custom/core/gacha/data/permanent_wuling_task_table.json';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
-const currentVersion = '寻遗散记';
+const currentVersion = '雪凇幽梦';
 
 const permanentRewardTable = ref<Reward[]>([]);
 

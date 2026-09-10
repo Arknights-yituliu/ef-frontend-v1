@@ -273,5 +273,30 @@
       "weapon.stat.gst_passive_heal",
       "weapon.stat.gst_passive_keyword"
     ]
+  },
+  "world_energy_point_group12": {
+    "battleId": "world_energy_point_group12",
+    "battleName": "energyAlluviums.world_energy_point_group12",
+    "imageUrl": "https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv009_1.webp",
+    "secondaryStats": [
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_hp",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_pulsedam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_usp",
+      "weapon.stat.gat_passive_attr_magicdam",
+      "weapon.stat.gat_passive_attr_heal"
+    ],
+    "skillStats": [
+      "weapon.stat.gst_passive_force",
+      "weapon.stat.gst_passive_smash",
+      "weapon.stat.gst_passive_spirit",
+      "weapon.stat.gst_passive_break",
+      "weapon.stat.gst_passive_heal",
+      "weapon.stat.gst_passive_burst",
+      "weapon.stat.gst_passive_ult",
+      "weapon.stat.gst_passive_tacafter"
+    ]
   }
 }
