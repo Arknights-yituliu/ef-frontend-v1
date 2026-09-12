@@ -256,5 +256,45 @@
         "url": "https://www.akedata.top/"
       }
     ]
+  },
+  {
+    "id": "IndustrialPlanner",
+    "localized_name": {
+      "zh_CN": "终末地集成工业仿真器",
+      "en_US": "Endfield Industrial Planner"
+    },
+    "localized_description": {
+      "zh_CN": "面向《明日方舟：终末地》的网页版集成工业布局与仿真工具。自由搭建产线，模拟物流与供电，排查缺料和堵塞，保存并分享布局方案。",
+      "en_US": "A browser-based factory layout and simulation tool for Arknights: Endfield. Build production lines, simulate logistics and power, identify shortages and bottlenecks, and save and share your layouts."
+    },
+    "localized_slogan": {
+      "zh_CN": "在网页里搭产线，让规划先跑起来。",
+      "en_US": "Build your factory in the browser. Put your plans into motion."
+    },
+    "localized_tags": {
+      "zh_CN": ["集成工业", "产线布局", "运行仿真", "蓝图管理"],
+      "en_US": ["AIC", "Factory Layout", "Simulation", "Blueprint Management"]
+    },
+    "icon_url": "https://endfield.amiyabot.com/device-icons/item_log_belt_01.webp",
+    "links": [
+      {
+        "primary": true,
+        "regionality": "CHINA_MAINLAND",
+        "localized_name": {
+          "zh_CN": "国内站",
+          "en_US": "CN Site"
+        },
+        "url": "https://endfield.amiyabot.com/"
+      },
+      {
+        "primary": false,
+        "regionality": "EXCEPT_CHINA_MAINLANDS",
+        "localized_name": {
+          "zh_CN": "海外站",
+          "en_US": "Global Site"
+        },
+        "url": "https://endfield.anonymous-test.top/"
+      }
+    ]
   }
 ]
