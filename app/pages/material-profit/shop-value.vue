@@ -358,22 +358,19 @@ function getCostPerformanceScale(shopId: string): { threshold: number; step: num
   );
 }
 
-function getCostPerformanceTierIndex(costPerformance: number, shopId: string): number {
+function getCostPerformanceColor(costPerformance: number, shopId: string): string {
   if (!Number.isFinite(costPerformance)) {
-    return costPerformanceThemeColors.length - 1;
+    return costPerformanceThemeColors.at(-1)!;
   }
 
   const { threshold, step } = getCostPerformanceScale(shopId);
   const difference = threshold - costPerformance;
-  if (difference <= 0) {
-    return 0;
-  }
+  const tierIndex =
+    difference <= 0
+      ? 0
+      : Math.min(Math.ceil(difference / step), costPerformanceThemeColors.length - 1);
 
-  return Math.min(Math.ceil(difference / step), costPerformanceThemeColors.length - 1);
-}
-
-function getCostPerformanceColor(costPerformance: number, shopId: string): string {
-  return costPerformanceThemeColors[getCostPerformanceTierIndex(costPerformance, shopId)];
+  return costPerformanceThemeColors[tierIndex]!;
 }
 
 function getCostPerformanceBadgeStyle(
