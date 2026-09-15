@@ -2,7 +2,8 @@
   <v-container>
     <header class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</header>
     <p class="page-description shop-value-note">
-      数值为理智 / 代币（信用以 100信用 为单位）；数值越高越值得买，不同商店不可直接跨店对比，卡片视图的颜色仅用于辅助展示性价比。
+      数值为理智 / 代币（信用以 100信用
+      为单位）；数值越高越值得买，不同商店不可直接跨店对比，卡片视图的颜色仅用于辅助展示性价比。
     </p>
 
     <section class="view-switch-section">
@@ -194,6 +195,8 @@ const costPerformanceScaleByShopId = {
   危机合约·机密圣所: { threshold: 1, step: 0.25 },
   保障配额交易: { threshold: 3, step: 0.5 },
   集成配额交易: { threshold: 1.5, step: 0.5 },
+  '集成援助·泡泡出击商店·一期': { threshold: 3, step: 0.5 },
+  '集成援助·泡泡出击商店·二期': { threshold: 3, step: 0.5 },
   信用交易所: { threshold: 3.5, step: 0.5 },
 } as const;
 
@@ -335,7 +338,15 @@ function createTableItem(item: ShopItem, shopId: string): TableItem {
 }
 
 function getCostPerformanceMultiplier(shopId: string): number {
-  return shopId === '信用交易所' ? 100 : 1;
+  if (shopId === '信用交易所') {
+    return 100;
+  }
+
+  if (shopId === '集成援助·泡泡出击商店·一期' || shopId === '集成援助·泡泡出击商店·二期') {
+    return 1000;
+  }
+
+  return 1;
 }
 
 function getCostPerformanceScale(shopId: string): { threshold: number; step: number } {
