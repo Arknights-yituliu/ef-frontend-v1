@@ -1,21 +1,6 @@
 // 本文件中的 itemName 字段仅作为备注使用，请勿依赖其值进行逻辑处理
 
-export interface ShopItem {
-  itemId: string;
-  itemName?: string;
-  quantityPerGroup: number; // 每组数量
-  stockGroups?: number; // 库存组数
-  originalPrice?: number; // 原价
-  discount?: number; // 折扣
-  currentPrice: number; // 现价
-}
-
-export interface Shop {
-  shopId: string;
-  shopName: string;
-  currencyItemId?: string;
-  shopItems: ShopItem[];
-}
+import type { Shop } from '#shared/types/shop';
 
 export const shops: Shop[] = [
   {

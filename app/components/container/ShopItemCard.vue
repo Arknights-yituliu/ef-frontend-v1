@@ -76,22 +76,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { ShopCardItem } from '#shared/types/shop';
 import { numberRound } from '#shared/utils/numberUtil';
-
-interface ShopCardItem {
-  itemId: string;
-  itemName: string;
-  quantityPerGroup: number;
-  currentPrice: number;
-  iconUrl?: string;
-  originalPriceLabel?: string;
-  stockLabel?: string;
-  discountLabel?: string;
-  totalValue: number;
-  costPerformance: number;
-  canToggleSoldOut: boolean;
-  isSoldOut: boolean;
-}
 
 const props = defineProps<{
   item: ShopCardItem;

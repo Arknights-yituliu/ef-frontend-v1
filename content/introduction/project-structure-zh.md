@@ -149,6 +149,7 @@ ef-frontend-v1/
 │   │   ├── homeCardEditor.ts     # 首页卡片编辑器草稿类型
 │   │   ├── homeBookmark.ts       # 首页自定义收藏类型
 │   │   ├── itemValue.ts          # 物品价值类型
+│   │   ├── shop.ts               # 商店类型
 │   │   └── pack.ts               # 礼包类型
 │   └── utils/                    # 工具函数（Nuxt 自动识别）
 │       ├── gameData/             # 游戏数据工具
@@ -385,7 +386,7 @@ i18n/
 - **`shared/types/`** - TypeScript 类型定义目录
   - 存放 TypeScript 类型定义和接口
   - 该目录会被 Nuxt 自动识别
-  - 文件：`gachaItem.ts`、`homeCardEditor.ts`、`homeBookmark.ts`、`itemInfo.ts`、`itemValue.ts`、`pack.ts`
+  - 文件：`gachaItem.ts`、`homeCardEditor.ts`、`homeBookmark.ts`、`itemInfo.ts`、`itemValue.ts`、`shop.ts`、`pack.ts`
 
 - **`shared/utils/`** - 工具函数目录
   - 存放常用操作的工具函数

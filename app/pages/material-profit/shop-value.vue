@@ -100,7 +100,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Shop, ShopItem } from '@/custom/core/shops';
+import type { ShopCardItem, ShopItem, ShopTableItem, ShopView } from '#shared/types/shop';
 import { numberRound } from '#shared/utils/numberUtil';
 import { shops as allShops } from '@/custom/core/shops';
 import { getItemIconUrl, getItemName, getItemValue } from '@/shared/utils/gameData/item';
@@ -109,36 +109,6 @@ const { t } = useI18n();
 const viewMode = ref<'table' | 'cards'>('table');
 
 const hiddenShopIds = new Set(['四号谷地物资调度 − 稳定需求物资', '武陵物资调度 − 稳定需求物资']);
-
-interface TableItem {
-  itemId: string;
-  itemName: string;
-  quantityPerGroup: number;
-  currentPrice: number;
-  iconUrl?: string;
-  originalPrice?: number;
-  discount?: number;
-  stockGroups?: number;
-  stockLabel?: string;
-  discountLabel?: string;
-  originalPriceLabel?: string;
-  totalValue: number;
-  costPerformance: number;
-}
-
-interface CardItem extends TableItem {
-  shopItemKey: string;
-  canToggleSoldOut: boolean;
-  isSoldOut: boolean;
-}
-
-interface ShopView {
-  shopId: string;
-  shopName: string;
-  shopItems: ShopItem[];
-  currencyItemId?: string;
-  titleIconUrl?: string;
-}
 
 const headers = computed(() => [
   {
@@ -200,7 +170,7 @@ function getCostPerformance(item: ShopItem, shopId: string): number {
   return (getTotalValue(item) / item.currentPrice) * getCostPerformanceMultiplier(shopId);
 }
 
-function getShopTitleIconUrl(shop: Shop): string | undefined {
+function getShopTitleIconUrl(shop: ShopView): string | undefined {
   if (!shop.currencyItemId) {
     return undefined;
   }
@@ -208,11 +178,11 @@ function getShopTitleIconUrl(shop: Shop): string | undefined {
   return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${shop.currencyItemId}.png`;
 }
 
-function getTableItems(shopItems: ShopItem[], shopId: string): TableItem[] {
+function getTableItems(shopItems: ShopItem[], shopId: string): ShopTableItem[] {
   return shopItems.map((item) => createTableItem(item, shopId));
 }
 
-function getCardItems(shopItems: ShopItem[], shopId: string): CardItem[] {
+function getCardItems(shopItems: ShopItem[], shopId: string): ShopCardItem[] {
   return shopItems
     .map((item, index) => {
       const tableItem = createTableItem(item, shopId);
@@ -229,7 +199,7 @@ function getCardItems(shopItems: ShopItem[], shopId: string): CardItem[] {
     .toSorted((left, right) => Number(left.isSoldOut) - Number(right.isSoldOut));
 }
 
-function createTableItem(item: ShopItem, shopId: string): TableItem {
+function createTableItem(item: ShopItem, shopId: string): ShopTableItem {
   return {
     itemId: item.itemId,
     itemName: getItemName(item.itemId),
@@ -293,7 +263,7 @@ function updateShopSoldOutItemKeys(shopId: string, nextKeys: string[]): void {
   persistShopSoldOutItemKeys(shopId);
 }
 
-function toggleShopItemSoldOut(shopId: string, item: CardItem): void {
+function toggleShopItemSoldOut(shopId: string, item: ShopCardItem): void {
   if (!item.canToggleSoldOut) {
     return;
   }
@@ -306,7 +276,7 @@ function toggleShopItemSoldOut(shopId: string, item: CardItem): void {
   updateShopSoldOutItemKeys(shopId, nextKeys);
 }
 
-function handleShopCardClick(shopId: string, item: CardItem): void {
+function handleShopCardClick(shopId: string, item: ShopCardItem): void {
   toggleShopItemSoldOut(shopId, item);
 }
 
@@ -521,6 +491,7 @@ usePageSeo({
 }
 
 .shop-section-title {
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
