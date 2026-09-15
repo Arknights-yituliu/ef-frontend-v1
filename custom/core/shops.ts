@@ -13,6 +13,7 @@ export interface ShopItem {
 export interface Shop {
   shopId: string;
   shopName: string;
+  currencyItemId?: string;
   shopItems: ShopItem[];
 }
 
@@ -20,6 +21,7 @@ export const shops: Shop[] = [
   {
     shopId: '集成援助·泡泡出击商店·一期',
     shopName: '集成援助·泡泡出击商店（一期）',
+    currencyItemId: 'item_activity_relief_coupon_1',
     shopItems: [
       {
         itemId: 'item_diamond',
@@ -152,6 +154,7 @@ export const shops: Shop[] = [
   {
     shopId: '集成援助·泡泡出击商店·二期',
     shopName: '集成援助·泡泡出击商店（二期）',
+    currencyItemId: 'item_activity_relief_coupon_1',
     shopItems: [
       {
         itemId: 'item_user_avatar_activity_9',
@@ -320,6 +323,7 @@ export const shops: Shop[] = [
   {
     shopId: '危机合约·机密圣所',
     shopName: '危机合约·机密圣所',
+    currencyItemId: 'item_activity_contract_gold_0',
     shopItems: [
       {
         itemId: 'item_diamond',
@@ -497,6 +501,7 @@ export const shops: Shop[] = [
   {
     shopId: '保障配额交易',
     shopName: '保障配额交易',
+    currencyItemId: 'item_gachabyproducts_charticket',
     shopItems: [
       {
         itemId: 'item_ticketgacha_special_single_lt_1_0_1',
@@ -629,6 +634,7 @@ export const shops: Shop[] = [
   {
     shopId: '集成配额交易',
     shopName: '集成配额交易',
+    currencyItemId: 'item_gachabyproducts_weaponticket',
     shopItems: [
       {
         itemId: 'item_expcard_stage2_high',
@@ -806,6 +812,7 @@ export const shops: Shop[] = [
   {
     shopId: '信用交易所',
     shopName: '信用交易所',
+    currencyItemId: 'item_spaceship_credit_shadow',
     shopItems: [
       {
         itemId: 'item_gold',
