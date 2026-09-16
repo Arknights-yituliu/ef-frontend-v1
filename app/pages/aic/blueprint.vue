@@ -17,12 +17,12 @@
         <p class="mb-3">
           <a
             class="video-link text-body-1"
-            href="https://www.bilibili.com/video/BV1c4t76dEDv"
+            href="https://www.bilibili.com/video/BV1c4eF6sERA/"
             rel="noopener noreferrer"
             target="_blank"
           >
             <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-            https://www.bilibili.com/video/BV1c4t76dEDv
+            https://www.bilibili.com/video/BV1c4eF6sERA/
           </a>
         </p>
       </v-card-text>
