@@ -2,7 +2,7 @@
   <v-container class="page-container" fluid>
     <!-- 页面标题 -->
     <div class="page-header mb-6">
-      <h1 class="page-title">「雪凇幽梦」毕业蓝图（非活动期间）</h1>
+      <h1 class="page-title">「集成援助·泡泡出击」上半毕业蓝图</h1>
     </div>
 
     <!-- 教学视频 -->
@@ -92,22 +92,25 @@ usePageSeo({
 // 基地一图流图片
 const images = [
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片1.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片1.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片2.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片2.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片3.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片3.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片4.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片4.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片12.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片9.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片13.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片5.JPG',
+  },
+  {
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片6.JPG',
   },
 ];
 
@@ -118,6 +121,8 @@ interface BlueprintItem {
 }
 
 const blueprints: BlueprintItem[] = [
+  { label: '首墩龙泡泡上', code: 'EF01u28U5eA6A04aAoOU' },
+  { label: '息壤龙泡泡模块', code: 'EF0170i86I3E35A3O0Ai' },
   { label: '1.4武陵城1', code: 'EF015i2179aoauU8eIoe' },
   { label: '1.4武陵城2', code: 'EF018OIe2A7071IeUI73' },
   { label: '1.4武陵城3', code: 'EF01u28U5eA6A0i6AoOU' },
