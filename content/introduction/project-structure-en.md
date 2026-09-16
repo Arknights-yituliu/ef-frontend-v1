@@ -145,6 +145,7 @@ ef-frontend-v1/
 │   │   ├── homeCardEditor.ts     # Home card editor draft types
 │   │   ├── homeBookmark.ts       # Home bookmark types
 │   │   ├── itemValue.ts          # Item value types
+│   │   ├── shop.ts               # Shop types
 │   │   └── pack.ts               # Pack types
 │   └── utils/                    # Utility functions (auto-recognized by Nuxt)
 │       ├── gameData/             # Game data utilities
@@ -381,7 +382,7 @@ Stores utility functions, utility classes, and TypeScript type definitions that 
 - **`shared/types/`** - TypeScript type definitions directory
   - Stores TypeScript type definitions and interfaces
   - This directory is auto-recognized by Nuxt
-  - Files: `gachaItem.ts`, `homeCardEditor.ts`, `homeBookmark.ts`, `itemInfo.ts`, `itemValue.ts`, `pack.ts`
+  - Files: `gachaItem.ts`, `homeCardEditor.ts`, `homeBookmark.ts`, `itemInfo.ts`, `itemValue.ts`, `shop.ts`, `pack.ts`
 
 - **`shared/utils/`** - Utility functions directory
   - Stores utility functions for common operations

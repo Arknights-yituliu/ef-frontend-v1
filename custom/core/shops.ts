@@ -1,25 +1,314 @@
 // 本文件中的 itemName 字段仅作为备注使用，请勿依赖其值进行逻辑处理
 
-export interface ShopItem {
-  itemId: string;
-  itemName?: string;
-  quantityPerGroup: number; // 每组数量
-  stockGroups?: number; // 库存组数
-  originalPrice?: number; // 原价
-  discount?: number; // 折扣
-  currentPrice: number; // 现价
-}
-
-export interface Shop {
-  shopId: string;
-  shopName: string;
-  shopItems: ShopItem[];
-}
+import type { Shop } from '#shared/types/shop';
 
 export const shops: Shop[] = [
   {
+    shopId: '集成援助·泡泡出击商店·一期',
+    shopName: '集成援助·泡泡出击商店（一期）',
+    currencyItemId: 'item_activity_relief_coupon_1',
+    shopItems: [
+      {
+        itemId: 'item_diamond',
+        itemName: '嵌晶玉',
+        quantityPerGroup: 100,
+        stockGroups: 3,
+        originalPrice: 25_000,
+        discount: -0.8,
+        currentPrice: 5000,
+      },
+      {
+        itemId: 'item_diamond',
+        itemName: '嵌晶玉',
+        quantityPerGroup: 100,
+        stockGroups: 3,
+        originalPrice: 25_000,
+        discount: -0.4,
+        currentPrice: 15_000,
+      },
+      {
+        itemId: 'item_expcard_stage2_high',
+        itemName: '高级认知载体',
+        quantityPerGroup: 1,
+        stockGroups: 10,
+        originalPrice: 6000,
+        discount: -0.6,
+        currentPrice: 2400,
+      },
+      {
+        itemId: 'item_case_bp_selfselect_skillsp_1',
+        itemName: '高阶培养自选箱1',
+        quantityPerGroup: 1,
+        stockGroups: 3,
+        originalPrice: 12_000,
+        discount: -0.6,
+        currentPrice: 4800,
+      },
+      {
+        itemId: 'item_weapon_expcard_high',
+        itemName: '武器检查套组',
+        quantityPerGroup: 1,
+        stockGroups: 5,
+        originalPrice: 2500,
+        discount: -0.6,
+        currentPrice: 1000,
+      },
+      {
+        itemId: 'item_char_skill_level_7_12',
+        itemName: '协议棱柱组',
+        quantityPerGroup: 1,
+        stockGroups: 30,
+        originalPrice: 2500,
+        discount: -0.6,
+        currentPrice: 1000,
+      },
+      {
+        itemId: 'item_char_break_stage_3_4',
+        itemName: '协议圆盘组',
+        quantityPerGroup: 1,
+        stockGroups: 5,
+        originalPrice: 3000,
+        discount: -0.6,
+        currentPrice: 1200,
+      },
+      {
+        itemId: 'item_gold',
+        itemName: '折金票',
+        quantityPerGroup: 3000,
+        stockGroups: 15,
+        originalPrice: 3500,
+        discount: -0.6,
+        currentPrice: 1400,
+      },
+      {
+        itemId: 'item_expcard_stage2_high',
+        itemName: '高级认知载体',
+        quantityPerGroup: 1,
+        stockGroups: 10,
+        originalPrice: 6000,
+        discount: 0,
+        currentPrice: 6000,
+      },
+      {
+        itemId: 'item_case_bp_selfselect_skillsp_1',
+        itemName: '高阶培养自选箱1',
+        quantityPerGroup: 1,
+        stockGroups: 3,
+        originalPrice: 12_000,
+        discount: 0,
+        currentPrice: 12_000,
+      },
+      {
+        itemId: 'item_weapon_expcard_high',
+        itemName: '武器检查套组',
+        quantityPerGroup: 1,
+        stockGroups: 5,
+        originalPrice: 2500,
+        discount: 0,
+        currentPrice: 2500,
+      },
+      {
+        itemId: 'item_char_skill_level_7_12',
+        itemName: '协议棱柱组',
+        quantityPerGroup: 1,
+        stockGroups: 30,
+        originalPrice: 2500,
+        discount: 0,
+        currentPrice: 2500,
+      },
+      {
+        itemId: 'item_char_break_stage_3_4',
+        itemName: '协议圆盘组',
+        quantityPerGroup: 1,
+        stockGroups: 5,
+        originalPrice: 3000,
+        discount: 0,
+        currentPrice: 3000,
+      },
+      {
+        itemId: 'item_gold',
+        itemName: '折金票',
+        quantityPerGroup: 3000,
+        stockGroups: 15,
+        originalPrice: 3500,
+        discount: 0,
+        currentPrice: 3500,
+      },
+    ],
+  },
+  {
+    shopId: '集成援助·泡泡出击商店·二期',
+    shopName: '集成援助·泡泡出击商店（二期）',
+    currencyItemId: 'item_activity_relief_coupon_1',
+    shopItems: [
+      {
+        itemId: 'item_user_avatar_activity_9',
+        itemName: '泡泡出击（头像）',
+        quantityPerGroup: 1,
+        stockGroups: 1,
+        originalPrice: 50_000,
+        discount: -0.8,
+        currentPrice: 10_000,
+      },
+      {
+        itemId: 'item_diamond',
+        itemName: '嵌晶玉',
+        quantityPerGroup: 100,
+        stockGroups: 5,
+        originalPrice: 25_000,
+        discount: -0.8,
+        currentPrice: 5000,
+      },
+      {
+        itemId: 'item_diamond',
+        itemName: '嵌晶玉',
+        quantityPerGroup: 100,
+        stockGroups: 5,
+        originalPrice: 25_000,
+        discount: -0.4,
+        currentPrice: 15_000,
+      },
+      {
+        itemId: 'item_expcard_stage2_high',
+        itemName: '高级认知载体',
+        quantityPerGroup: 1,
+        stockGroups: 15,
+        originalPrice: 6000,
+        discount: -0.6,
+        currentPrice: 2400,
+      },
+      {
+        itemId: 'item_case_bp_selfselect_skillsp_1',
+        itemName: '高阶培养自选箱1',
+        quantityPerGroup: 1,
+        stockGroups: 8,
+        originalPrice: 12_000,
+        discount: -0.6,
+        currentPrice: 4800,
+      },
+      {
+        itemId: 'item_char_skill_crown',
+        itemName: '存续的痕迹',
+        quantityPerGroup: 1,
+        stockGroups: 4,
+        originalPrice: 15_000,
+        discount: -0.6,
+        currentPrice: 6000,
+      },
+      {
+        itemId: 'item_weapon_expcard_high',
+        itemName: '武器检查套组',
+        quantityPerGroup: 1,
+        stockGroups: 10,
+        originalPrice: 2500,
+        discount: -0.6,
+        currentPrice: 1000,
+      },
+      {
+        itemId: 'item_char_skill_level_7_12',
+        itemName: '协议棱柱组',
+        quantityPerGroup: 1,
+        stockGroups: 40,
+        originalPrice: 2500,
+        discount: -0.6,
+        currentPrice: 1000,
+      },
+      {
+        itemId: 'item_char_break_stage_3_4',
+        itemName: '协议圆盘组',
+        quantityPerGroup: 1,
+        stockGroups: 10,
+        originalPrice: 3000,
+        discount: -0.6,
+        currentPrice: 1200,
+      },
+      {
+        itemId: 'item_gold',
+        itemName: '折金票',
+        quantityPerGroup: 3000,
+        stockGroups: 20,
+        originalPrice: 3500,
+        discount: -0.6,
+        currentPrice: 1400,
+      },
+      {
+        itemId: 'item_expcard_stage2_high',
+        itemName: '高级认知载体',
+        quantityPerGroup: 1,
+        stockGroups: 15,
+        originalPrice: 6000,
+        discount: 0,
+        currentPrice: 6000,
+      },
+      {
+        itemId: 'item_case_bp_selfselect_skillsp_1',
+        itemName: '高阶培养自选箱1',
+        quantityPerGroup: 1,
+        stockGroups: 8,
+        originalPrice: 12_000,
+        discount: 0,
+        currentPrice: 12_000,
+      },
+      {
+        itemId: 'item_char_skill_crown',
+        itemName: '存续的痕迹',
+        quantityPerGroup: 1,
+        stockGroups: 4,
+        originalPrice: 15_000,
+        discount: 0,
+        currentPrice: 15_000,
+      },
+      {
+        itemId: 'item_weapon_expcard_high',
+        itemName: '武器检查套组',
+        quantityPerGroup: 1,
+        stockGroups: 10,
+        originalPrice: 2500,
+        discount: 0,
+        currentPrice: 2500,
+      },
+      {
+        itemId: 'item_char_skill_level_7_12',
+        itemName: '协议棱柱组',
+        quantityPerGroup: 1,
+        stockGroups: 40,
+        originalPrice: 2500,
+        discount: 0,
+        currentPrice: 2500,
+      },
+      {
+        itemId: 'item_char_break_stage_3_4',
+        itemName: '协议圆盘组',
+        quantityPerGroup: 1,
+        stockGroups: 10,
+        originalPrice: 3000,
+        discount: 0,
+        currentPrice: 3000,
+      },
+      {
+        itemId: 'item_gold',
+        itemName: '折金票',
+        quantityPerGroup: 3000,
+        stockGroups: 20,
+        originalPrice: 3500,
+        discount: 0,
+        currentPrice: 3500,
+      },
+      {
+        itemId: 'item_gold',
+        itemName: '折金票',
+        quantityPerGroup: 500,
+        stockGroups: 100,
+        originalPrice: 10_000,
+        discount: 0,
+        currentPrice: 10_000,
+      },
+    ],
+  },
+  {
     shopId: '危机合约·机密圣所',
     shopName: '危机合约·机密圣所',
+    currencyItemId: 'item_activity_contract_gold_0',
     shopItems: [
       {
         itemId: 'item_diamond',
@@ -197,6 +486,7 @@ export const shops: Shop[] = [
   {
     shopId: '保障配额交易',
     shopName: '保障配额交易',
+    currencyItemId: 'item_gachabyproducts_charticket',
     shopItems: [
       {
         itemId: 'item_ticketgacha_special_single_lt_1_0_1',
@@ -329,6 +619,7 @@ export const shops: Shop[] = [
   {
     shopId: '集成配额交易',
     shopName: '集成配额交易',
+    currencyItemId: 'item_gachabyproducts_weaponticket',
     shopItems: [
       {
         itemId: 'item_expcard_stage2_high',
@@ -506,6 +797,7 @@ export const shops: Shop[] = [
   {
     shopId: '信用交易所',
     shopName: '信用交易所',
+    currencyItemId: 'item_spaceship_credit_shadow',
     shopItems: [
       {
         itemId: 'item_gold',
