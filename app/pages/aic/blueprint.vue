@@ -104,9 +104,6 @@ const images = [
     url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片4.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片9.JPG',
-  },
-  {
     url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片5.JPG',
   },
   {
