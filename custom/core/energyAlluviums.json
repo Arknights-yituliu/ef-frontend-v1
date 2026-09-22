@@ -2,7 +2,7 @@
   "world_energy_point_group01": {
     "battleId": "world_energy_point_group01",
     "battleName": "energyAlluviums.world_energy_point_group01",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv001_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv001_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_atk",
       "weapon.stat.gat_passive_attr_firedam",
@@ -27,7 +27,7 @@
   "world_energy_point_group02": {
     "battleId": "world_energy_point_group02",
     "battleName": "energyAlluviums.world_energy_point_group02",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv005_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv005_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_atk",
       "weapon.stat.gat_passive_attr_phydam",
@@ -52,7 +52,7 @@
   "world_energy_point_group03": {
     "battleId": "world_energy_point_group03",
     "battleName": "energyAlluviums.world_energy_point_group03",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv006_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv006_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_hp",
       "weapon.stat.gat_passive_attr_phydam",
@@ -77,7 +77,7 @@
   "world_energy_point_group04": {
     "battleId": "world_energy_point_group04",
     "battleName": "energyAlluviums.world_energy_point_group04",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv007_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map01_lv007_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_atk",
       "weapon.stat.gat_passive_attr_hp",
@@ -102,7 +102,7 @@
   "world_energy_point_group05": {
     "battleId": "world_energy_point_group05",
     "battleName": "energyAlluviums.world_energy_point_group05",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv002_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv002_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_atk",
       "weapon.stat.gat_passive_attr_hp",
@@ -127,7 +127,7 @@
   "world_energy_point_group06": {
     "battleId": "world_energy_point_group06",
     "battleName": "energyAlluviums.world_energy_point_group06",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv003_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_hp",
       "weapon.stat.gat_passive_attr_phydam",
@@ -152,7 +152,7 @@
   "world_energy_point_group07": {
     "battleId": "world_energy_point_group07",
     "battleName": "energyAlluviums.world_energy_point_group07",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv004_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv004_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_atk",
       "weapon.stat.gat_passive_attr_phydam",
@@ -177,7 +177,7 @@
   "world_energy_point_group08": {
     "battleId": "world_energy_point_group08",
     "battleName": "energyAlluviums.world_energy_point_group08",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv005_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv005_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_hp",
       "weapon.stat.gat_passive_attr_firedam",
@@ -202,7 +202,7 @@
   "world_energy_point_group09": {
     "battleId": "world_energy_point_group09",
     "battleName": "energyAlluviums.world_energy_point_group09",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv006_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv006_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_atk",
       "weapon.stat.gat_passive_attr_hp",
@@ -227,7 +227,7 @@
   "world_energy_point_group10": {
     "battleId": "world_energy_point_group10",
     "battleName": "energyAlluviums.world_energy_point_group10",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv007_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv007_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_atk",
       "weapon.stat.gat_passive_attr_phydam",
@@ -252,7 +252,7 @@
   "world_energy_point_group11": {
     "battleId": "world_energy_point_group11",
     "battleName": "energyAlluviums.world_energy_point_group11",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv008_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv008_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_hp",
       "weapon.stat.gat_passive_attr_phydam",
@@ -277,7 +277,7 @@
   "world_energy_point_group12": {
     "battleId": "world_energy_point_group12",
     "battleName": "energyAlluviums.world_energy_point_group12",
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv009_1.png",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv009_1.png",
     "secondaryStats": [
       "weapon.stat.gat_passive_attr_atk",
       "weapon.stat.gat_passive_attr_hp",
