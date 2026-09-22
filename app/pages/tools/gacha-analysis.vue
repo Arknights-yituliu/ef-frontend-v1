@@ -81,7 +81,7 @@
               <img
                 alt="用户头像"
                 class="avatar-img"
-                src="https://cos.yituliu.cn/endfield/unpack-images/characters/icon_chr_0003_endminf.webp "
+                src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_chr_0003_endminf.png"
               />
             </div>
 
