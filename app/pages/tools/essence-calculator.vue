@@ -532,7 +532,7 @@ const requiredEssenceStats = useLocalStorage<EssenceStat[]>(
 );
 
 function getGroupIconUrl(iconId: string): string {
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/wiki/groupicon/${iconId}.png`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/wiki/groupicon/${iconId}.png`;
 }
 
 /** 已选武器 ID 集合（O(1) 查询） */

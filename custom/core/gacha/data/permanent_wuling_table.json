@@ -118,7 +118,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "wuling_regional_stock_bill_store_reward_20260902",
     "name": {
       "zh": "武陵·调度券商店",
@@ -587,7 +588,7 @@
       "ticketgachaLimitedSingle": 0
     }
   },
-   {
+  {
     "id": "武陵·醚质阶段19",
     "name": {
       "zh": "武陵·醚质阶段19",

@@ -38,11 +38,11 @@ export const gifts: {
 } = rawGifts;
 
 export function getCategoryIcon(categoryId: string | undefined): string {
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/ship/${categoryId}.png`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/ship/${categoryId}.png`;
 }
 
 export function getOperatorIcon(opId: string): string {
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${opId}.webp`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${opId}.png`;
 }
 
-export const hotIcon = `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/arts/ui/sprites/common/icon_common_hot.png`;
+export const hotIcon = `https://data.akedata.wiki/public/images/assets/beyond/arts/ui/sprites/common/icon_common_hot.png`;

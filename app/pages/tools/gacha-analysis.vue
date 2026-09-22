@@ -81,7 +81,7 @@
               <img
                 alt="用户头像"
                 class="avatar-img"
-                src="https://cos.yituliu.cn/endfield/unpack-images/characters/icon_chr_0003_endminf.webp "
+                src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_chr_0003_endminf.png"
               />
             </div>
 
@@ -1698,10 +1698,10 @@ function toggleExpand(seqId: string) {
 // 获取头像 URL
 function getAvatarUrl(id: string, isWeapon: boolean = false): string {
   if (isWeapon) {
-    return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${id}.webp`;
+    return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${id}.png`;
   }
 
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${id}.webp`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${id}.png`;
 }
 
 // 图片加载失败时

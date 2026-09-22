@@ -1,5 +1,5 @@
 [
- {
+  {
     "id": "支线任务",
     "name": {
       "zh": "支线任务",
@@ -61,7 +61,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "拨云见日",
     "name": {
       "zh": "拨云见日",
@@ -81,7 +82,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "物是人非",
     "name": {
       "zh": "物是人非",
@@ -175,7 +177,7 @@
     "end": "2099/12/31 12:00:00",
     "type": "通用",
     "module": "支线任务",
-    "active": true, 
+    "active": true,
     "regional": "武陵",
     "version": "向渊行",
     "content": {
@@ -185,7 +187,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "家有难奔",
     "name": {
       "zh": "家有难奔",
@@ -205,7 +208,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "往日珍瑰",
     "name": {
       "zh": "往日珍瑰",
@@ -225,7 +229,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "刀剑无名·其三",
     "name": {
       "zh": "刀剑无名·其三",
@@ -245,7 +250,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "刀剑无名·其二",
     "name": {
       "zh": "刀剑无名·其二",
@@ -265,7 +271,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "刀剑无名·其一",
     "name": {
       "zh": "刀剑无名·其一",
@@ -285,7 +292,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "月往日来",
     "name": {
       "zh": "月往日来",
@@ -305,7 +313,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "填隙柱地",
     "name": {
       "zh": "填隙柱地",
@@ -325,7 +334,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "据点建设·心脏修复站·三",
     "name": {
       "zh": "据点建设·心脏修复站·三",
@@ -345,7 +355,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  }, {
+  },
+  {
     "id": "据点建设·盈天台建设站",
     "name": {
       "zh": "据点建设·盈天台建设站",

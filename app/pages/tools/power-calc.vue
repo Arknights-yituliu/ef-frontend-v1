@@ -178,7 +178,7 @@
               <img
                 alt="分流器"
                 class="btn-icon"
-                src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp"
+                src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_log_splitter.png"
               />
               <span class="btn-text">添加分流器</span>
             </button>
@@ -186,7 +186,7 @@
               <img
                 alt="热能池"
                 class="btn-icon"
-                src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp"
+                src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_port_power_sta_1.png"
               />
               <span class="btn-text">添加热能池</span>
             </button>
@@ -216,7 +216,7 @@
           <img
             alt="分流器"
             class="sidebar-tool-icon"
-            src="https://cos.yituliu.cn/endfield/items/item_log_splitter.webp"
+            src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_log_splitter.png"
           />
           <span class="sidebar-tool-name">分流器</span>
         </div>
@@ -228,7 +228,7 @@
           <img
             alt="热能池"
             class="sidebar-tool-icon"
-            src="https://cos.yituliu.cn/endfield/items/item_port_power_sta_1.webp"
+            src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_port_power_sta_1.png"
           />
           <span class="sidebar-tool-name">热能池</span>
         </div>
@@ -311,37 +311,43 @@ const batteryConfig = {
     power: 50,
     time: 8,
     name: '源矿',
-    image: 'https://cos.yituliu.cn/endfield/items/item_originium_ore.webp',
+    image:
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_originium_ore.png',
   },
   'low-gu': {
     power: 220,
     time: 40,
     name: '低容谷地电池',
-    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_1.webp',
+    image:
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_proc_battery_1.png',
   },
   'mid-gu': {
     power: 420,
     time: 40,
     name: '中容谷地电池',
-    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_2.webp',
+    image:
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_proc_battery_2.png',
   },
   'high-gu': {
     power: 1100,
     time: 40,
     name: '高容谷地电池',
-    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_3.webp',
+    image:
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_proc_battery_3.png',
   },
   'low-wu': {
     power: 1600,
     time: 40,
     name: '低容武陵电池',
-    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_4.webp',
+    image:
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_proc_battery_4.png',
   },
   'mid-wu': {
     power: 3200,
     time: 40,
     name: '中容武陵电池',
-    image: 'https://cos.yituliu.cn/endfield/items/item_proc_battery_5.webp',
+    image:
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_proc_battery_5.png',
   },
 };
 

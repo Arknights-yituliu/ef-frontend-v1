@@ -3,7 +3,6 @@ export interface PieChartData {
   name: string;
 }
 
-
 /**
  * 版本表条目类型
  */
@@ -21,7 +20,6 @@ export interface VersionTableItem {
   /** 版本名称 */
   version: string;
 }
-
 
 export type ItemDict = Record<string, string>;
 

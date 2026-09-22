@@ -59,7 +59,7 @@ const versionTable: VersionTableItem[] = [
     heavyColor: 'rgba(255, 215, 0, 1)',
     version: '向渊行',
   },
-   {
+  {
     start: new Date('2026/09/02 12:00:00'),
     end: new Date('2026/10/14 12:00:00'),
     primaryColor: 'rgba(184, 136, 216, 1)',
@@ -152,11 +152,11 @@ function getPoolReward(version: string, character: string, start: Date, end: Dat
     }
     if (character !== reward.type && '通用' !== reward.type) {
       continue;
-    } 
-    if(new Date(reward.start) < start){
+    }
+    if (new Date(reward.start) < start) {
       continue;
     }
-    
+
     currentVersionReward.value.push(reward);
   }
 
