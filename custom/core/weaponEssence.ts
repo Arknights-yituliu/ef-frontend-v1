@@ -55,7 +55,7 @@ export const allAttributeStats = [
   'weapon.stat.gat_passive_attr_str',
   'weapon.stat.gat_passive_attr_will',
   'weapon.stat.gat_passive_attr_wisd',
-  'weapon.stat.gat_passive_attr_main'
+  'weapon.stat.gat_passive_attr_main',
 ];
 /** 全部的附加属性 */
 export const allSecondaryStats = [
@@ -99,7 +99,7 @@ export const weaponTypes = [
   'weapon.type.wpn_claym',
   'weapon.type.wpn_lance',
   'weapon.type.wpn_pistol',
-  'weapon.type.wpn_funnel'
+  'weapon.type.wpn_funnel',
 ];
 export const weaponTypeToGroupIconId: Record<string, string> = {
   'weapon.type.wpn_sword': 'icon_wiki_group_weapon_sword',

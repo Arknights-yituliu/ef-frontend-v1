@@ -187,9 +187,7 @@ export const pack648WeaponQuotaCostEffectiveness = getWeaponQuotaCostEffectivene
 /**
  * Convert weapon quota into the same value unit used by the all-items calculation.
  */
-export function getWeaponQuotaValue(
-  baseline: WeaponQuotaBaseline = pack648WeaponQuotaBaseline,
-) {
+export function getWeaponQuotaValue(baseline: WeaponQuotaBaseline = pack648WeaponQuotaBaseline) {
   return pack648SanityCostEffectiveness / getWeaponQuotaCostEffectiveness(baseline);
 }
 

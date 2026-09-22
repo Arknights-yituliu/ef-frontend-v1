@@ -1,4 +1,8 @@
-import type { Reward, RewardStatisticsResultDetail, VersionTableItem } from '#shared/types/gacha-calculator';
+import type {
+  Reward,
+  RewardStatisticsResultDetail,
+  VersionTableItem,
+} from '#shared/types/gacha-calculator';
 
 const versionTable: VersionTableItem[] = [
   {
@@ -42,6 +46,3 @@ const versionTable: VersionTableItem[] = [
     version: '向渊行',
   },
 ];
-
-
-
