@@ -104,13 +104,13 @@
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩1/2配额</span>
                     <span class="minitable-value"
-                      >>{{ wulingPrices[currentDayIndex] + item.correctionValue }}</span
+                      >&gt;{{ wulingPrices[currentDayIndex]! + item.correctionValue }}</span
                     >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">全部购买</span>
                     <span class="minitable-value"
-                      >≤{{ wulingPrices[currentDayIndex] + item.correctionValue }}</span
+                      >≤{{ wulingPrices[currentDayIndex]! + item.correctionValue }}</span
                     >
                   </div>
                 </div>
@@ -142,7 +142,8 @@
                   </div>
                   <div class="goods-card-name">
                     <span class="minitable-value">
-                      <{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span>
+                      &lt;{{ fourValleyFirstPrices[currentDayIndex]! + item.correctionValue }}</span
+                    >
                     <span class="name-text">{{ item.name }}</span>
                   </div>
                 </div>
@@ -174,22 +175,24 @@
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩1/3配额</span>
                     <span class="minitable-value"
-                      >>{{ fourValleySecondPrices[currentDayIndex] + item.correctionValue }}</span
+                      >&gt;{{
+                        fourValleySecondPrices[currentDayIndex]! + item.correctionValue
+                      }}</span
                     >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩2/3配额</span>
                     <span class="minitable-value"
-                      >{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}~{{
-                        fourValleySecondPrices[currentDayIndex] + item.correctionValue
+                      >{{ fourValleyFirstPrices[currentDayIndex]! + item.correctionValue }}~{{
+                        fourValleySecondPrices[currentDayIndex]! + item.correctionValue
                       }}</span
                     >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">全部购买</span>
-                    <span class="minitable-value"
-                      >{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span
-                    >
+                    <span class="minitable-value">{{
+                      fourValleyFirstPrices[currentDayIndex]! + item.correctionValue
+                    }}</span>
                   </div>
                 </div>
               </div>
@@ -227,10 +230,10 @@
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
                   <template #item.buyAllPrice="{ item }">
-                    <span class="wuling-buy-all" v-html="item.buyAllPrice"></span>
+                    <span class="wuling-buy-all">{{ item.buyAllPrice }}</span>
                   </template>
                   <template #item.buyHalfPrice="{ item }">
-                    <span class="wuling-buy-just" v-html="item.buyHalfPrice"></span>
+                    <span class="wuling-buy-just">{{ item.buyHalfPrice }}</span>
                   </template>
                 </v-data-table>
 
@@ -285,13 +288,13 @@
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
                   <template #item.buyAllPrice="{ item }">
-                    <span class="four-valley-buy-all" v-html="item.buyAllPrice"></span>
+                    <span class="four-valley-buy-all">{{ item.buyAllPrice }}</span>
                   </template>
                   <template #item.buyOneThirdPrice="{ item }">
-                    <span class="four-valley-buy-middle" v-html="item.buyOneThirdPrice"></span>
+                    <span class="four-valley-buy-middle">{{ item.buyOneThirdPrice }}</span>
                   </template>
                   <template #item.buyTwoThirdsPrice="{ item }">
-                    <span class="four-valley-buy-just" v-html="item.buyTwoThirdsPrice"></span>
+                    <span class="four-valley-buy-just">{{ item.buyTwoThirdsPrice }}</span>
                   </template>
                 </v-data-table>
 
