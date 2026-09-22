@@ -182,20 +182,20 @@ function getPackIcon(pack: any): string {
       item.itemId === 'item_ticketgacha_special_single' ||
       item.itemId.includes('ticketgacha_special_ten')
     ) {
-      return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png';
+      return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png';
     }
     if (item.itemId === 'item_ticketgacha_standard_single') {
-      return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png';
+      return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png';
     }
     if (item.itemId === 'item_originium_recharge') {
-      return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png';
+      return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png';
     }
     if (item.itemId === 'item_diamond') {
-      return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png';
+      return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png';
     }
   }
   // 默认使用特许寻访凭证图标
-  return 'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png';
+  return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png';
 }
 
 // 计算总金额
@@ -279,7 +279,7 @@ function getStoneQuantity(stone: any): number {
 // 获取图标URL
 function getImageUrl(itemId: string): string {
   const fileName = itemId.startsWith('item_') ? itemId : `item_${itemId}`;
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${fileName}.png`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${fileName}.png`;
 }
 
 // 获取多语言名称
@@ -300,19 +300,23 @@ function packName(pack: PackData): string {
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">月卡（{{ monthlyPassDays }}天）</div>
-        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
+        <div
+          class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
+        >
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+            src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
           />
           × {{ monthlyPassResources?.originiumRecharge }}
         </div>
-        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
+        <div
+          class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
+        >
           <img
             alt="diamond"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+            src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
           />
           × {{ monthlyPassResources ? monthlyPassDays * 200 : 0 }}
         </div>
@@ -329,11 +333,13 @@ function packName(pack: PackData): string {
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">源石配给</div>
-        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
+        <div
+          class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
+        >
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+            src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
           />
           × 3
         </div>
@@ -348,19 +354,23 @@ function packName(pack: PackData): string {
     >
       <div class="gacha-calculator-resource-single-btn-content">
         <div class="gacha-calculator-resource-single-title">协议定制</div>
-        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
+        <div
+          class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
+        >
           <img
             alt="originium"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+            src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
           />
           × 36
         </div>
-        <div class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content">
+        <div
+          class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
+        >
           <img
             alt="武库配额"
             class="gacha-calculator-gacha-item-icon"
-            src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+            src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
           />
           × {{ protocolCustomizationWeaponQuota }}
         </div>
@@ -372,11 +382,7 @@ function packName(pack: PackData): string {
 
     <!-- 礼包 -->
     <div class="section-title">礼包</div>
-    <div
-      v-for="pack in giftPacks"
-      :key="pack.id"
-      class="gacha-calculator-purchase-row"
-    >
+    <div v-for="pack in giftPacks" :key="pack.id" class="gacha-calculator-purchase-row">
       <v-btn
         :active="getPackQuantity(pack.id) > 0"
         class="gacha-calculator-resource-single-btn gacha-calculator-purchase-select-btn"
@@ -403,10 +409,7 @@ function packName(pack: PackData): string {
           <div class="gacha-calculator-resource-single-content">¥{{ pack.price }}</div>
         </div>
       </v-btn>
-      <div
-        v-if="isQuantityAdjustablePack(pack.id)"
-        class="gacha-calculator-purchase-quantity"
-      >
+      <div v-if="isQuantityAdjustablePack(pack.id)" class="gacha-calculator-purchase-quantity">
         <v-btn
           aria-label="减少礼包数量"
           density="compact"

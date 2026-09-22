@@ -26,10 +26,10 @@ export interface Weapon {
 
 export interface WeaponLocalization {
   weapon: {
-    type: Record<string, string>,
-    stat: Record<string, string>,
-  },
-  energyAlluviums: Record<string, string>,
+    type: Record<string, string>;
+    stat: Record<string, string>;
+  };
+  energyAlluviums: Record<string, string>;
 }
 
 export function getItemName(itemId: string, language: I18nLanguage): string {
@@ -159,7 +159,7 @@ export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
     const loadingEntry = levelLoadingTable[levelId];
     const bgName = loadingEntry?.bgNameGroup?.[0] ?? '';
     const imageUrl = bgName
-      ? `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/${bgName}.webp`
+      ? `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/${bgName}.png`
       : '';
 
     result[groupId] = {
@@ -175,26 +175,26 @@ export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
 }
 
 export function getWeaponTypesLocalized(language: I18nLanguage): Record<string, string> {
-  switch(language) {
+  switch (language) {
     case 'CN':
     default: {
       return {
-        wpn_sword: "单手剑",
-        wpn_funnel: "施术单元",
-        wpn_claym: "双手剑",
-        wpn_lance: "长柄武器",
-        wpn_pistol: "手铳",
-      }
+        wpn_sword: '单手剑',
+        wpn_funnel: '施术单元',
+        wpn_claym: '双手剑',
+        wpn_lance: '长柄武器',
+        wpn_pistol: '手铳',
+      };
     }
 
     case 'EN': {
       return {
-        wpn_sword: "Sword",
-        wpn_funnel: "Arts Unit",
-        wpn_claym: "Greatsword",
-        wpn_lance: "Polearm",
-        wpn_pistol: "Handcannon",
-      }
+        wpn_sword: 'Sword',
+        wpn_funnel: 'Arts Unit',
+        wpn_claym: 'Greatsword',
+        wpn_lance: 'Polearm',
+        wpn_pistol: 'Handcannon',
+      };
     }
   }
 }
@@ -203,28 +203,26 @@ export function makeWeaponLocalizations(language: I18nLanguage): WeaponLocalizat
   const weaponLocalization: WeaponLocalization = {
     weapon: {
       type: getWeaponTypesLocalized(language),
-      stat: {}
+      stat: {},
     },
-    energyAlluviums: {}
+    energyAlluviums: {},
   };
 
-  for (const attrId of Object.keys(gemTable)
-    .toSorted()) {
-      weaponLocalization.weapon.stat[attrId] = getGemTagName(attrId, language);
+  for (const attrId of Object.keys(gemTable).toSorted()) {
+    weaponLocalization.weapon.stat[attrId] = getGemTagName(attrId, language);
   }
-  
-  for (const groupId of Object.keys(worldEnergyPointGroupTable)
-    .toSorted()) {
-      const group = worldEnergyPointGroupTable[groupId]!;
-      const worldLevelMap = group.worldLevel2GameMechanicsIdMap;
 
-      // 取最高世界等级对应的 mechanicsId，其 gameName 即为"重度能量淤积点·xxx"
-      const maxWorldLevel = Math.max(...Object.keys(worldLevelMap).map(Number));
-      const lastMechanicsId = worldLevelMap[String(maxWorldLevel)]!;
-      const energyPoint = worldEnergyPointTable[lastMechanicsId]!;
+  for (const groupId of Object.keys(worldEnergyPointGroupTable).toSorted()) {
+    const group = worldEnergyPointGroupTable[groupId]!;
+    const worldLevelMap = group.worldLevel2GameMechanicsIdMap;
 
-      weaponLocalization.energyAlluviums[groupId] = getTranslation(energyPoint.gameName, language);
-    }
+    // 取最高世界等级对应的 mechanicsId，其 gameName 即为"重度能量淤积点·xxx"
+    const maxWorldLevel = Math.max(...Object.keys(worldLevelMap).map(Number));
+    const lastMechanicsId = worldLevelMap[String(maxWorldLevel)]!;
+    const energyPoint = worldEnergyPointTable[lastMechanicsId]!;
+
+    weaponLocalization.energyAlluviums[groupId] = getTranslation(energyPoint.gameName, language);
+  }
 
   return weaponLocalization;
 }
