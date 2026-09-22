@@ -104,11 +104,11 @@ export function makePacks(): Record<string, PackData> {
       displayName: getLocalizedValue(goods.goodsName),
       category: goods.cashShopId,
       price: goods.priceCNY,
-      imageUrl: `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/${goods.iconId}.webp`,
+      imageUrl: `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/${goods.iconId}.png`,
       backgroundImageUrl: (() => {
         const bg = giftpackCashShopGoodsDataTable[packId]?.bg;
         return bg
-          ? `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/${bg}.webp`
+          ? `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/${bg}.png`
           : undefined;
       })(),
       contents: reward.itemBundles.map((bundle: ItemBundle) => {
@@ -134,9 +134,9 @@ export function makePacks(): Record<string, PackData> {
     category: 'Seasonal_Rec_pack',
     price: 98,
     imageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallicon.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallicon.png',
     backgroundImageUrl:
-      'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallbg.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_giftpack_lt_01_smallbg.png',
     contents: [
       {
         itemId: 'ticketgacha_special_single_lt_1_0_1',

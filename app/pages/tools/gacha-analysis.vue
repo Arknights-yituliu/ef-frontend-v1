@@ -1698,10 +1698,10 @@ function toggleExpand(seqId: string) {
 // 获取头像 URL
 function getAvatarUrl(id: string, isWeapon: boolean = false): string {
   if (isWeapon) {
-    return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${id}.webp`;
+    return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${id}.png`;
   }
 
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${id}.webp`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${id}.png`;
 }
 
 // 图片加载失败时

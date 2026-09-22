@@ -175,7 +175,7 @@ function getShopTitleIconUrl(shop: ShopView): string | undefined {
     return undefined;
   }
 
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${shop.currencyItemId}.png`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${shop.currencyItemId}.png`;
 }
 
 function getTableItems(shopItems: ShopItem[], shopId: string): ShopTableItem[] {
