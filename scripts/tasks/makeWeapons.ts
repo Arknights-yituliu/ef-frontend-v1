@@ -159,7 +159,7 @@ export function makeEnergyAlluviums(): Record<string, EnergyAlluvium> {
     const loadingEntry = levelLoadingTable[levelId];
     const bgName = loadingEntry?.bgNameGroup?.[0] ?? '';
     const imageUrl = bgName
-      ? `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/${bgName}.png`
+      ? `https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/${bgName}.png`
       : '';
 
     result[groupId] = {
