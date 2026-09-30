@@ -2,7 +2,7 @@
   <v-container class="page-container" fluid>
     <!-- 页面标题 -->
     <div class="page-header mb-6">
-      <h1 class="page-title">「集成援助·泡泡出击」下半毕业蓝图</h1>
+      <h1 class="page-title">「雪凇幽梦」毕业蓝图（非活动期间）</h1>
     </div>
 
     <!-- 教学视频 -->
@@ -17,12 +17,12 @@
         <p class="mb-3">
           <a
             class="video-link text-body-1"
-            href="https://www.bilibili.com/video/BV1JThW6yE73/"
+            href="https://www.bilibili.com/video/BV1c4t76dEDv"
             rel="noopener noreferrer"
             target="_blank"
           >
             <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-            https://www.bilibili.com/video/BV1JThW6yE73/
+            https://www.bilibili.com/video/BV1c4t76dEDv
           </a>
         </p>
       </v-card-text>
@@ -92,22 +92,22 @@ usePageSeo({
 // 基地一图流图片
 const images = [
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-23/幻灯片1.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片1.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-23/幻灯片2.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片2.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-23/幻灯片3.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片3.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-23/幻灯片4.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片4.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片5.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片12.JPG',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-16/幻灯片6.JPG',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片13.JPG',
   },
 ];
 
@@ -118,11 +118,6 @@ interface BlueprintItem {
 }
 
 const blueprints: BlueprintItem[] = [
-  { label: '首墩龙泡泡下1', code: 'EF015i2179aoau3AeIoe' },
-  { label: '首墩龙泡泡下2', code: 'EF018OIe2A7071i3UI73' },
-  { label: '重息壤龙泡泡模块', code: 'EF01u28U5eA6A04EAoOU' },
-  { label: '液气转化模块', code: 'EF01ao6532OeOA5aoe5e' },
-  { label: '首墩龙泡泡上', code: 'EF01u28U5eA6A04aAoOU' },
   { label: '1.4武陵城1', code: 'EF015i2179aoauU8eIoe' },
   { label: '1.4武陵城2', code: 'EF018OIe2A7071IeUI73' },
   { label: '1.4武陵城3', code: 'EF01u28U5eA6A0i6AoOU' },
@@ -130,6 +125,10 @@ const blueprints: BlueprintItem[] = [
   { label: '1.4景玉谷2', code: 'EF01ao6532OeOA71oe5e' },
   { label: '1.5应龙关1', code: 'EF01E750A1939ouE3uIa' },
   { label: '1.5应龙关2', code: 'EF01A67ua8I4IEai9ieO' },
+  { label: '赫铜零件模块', code: 'EF01E750A1939oI43uIa' },
+  { label: '赤铜零件模块', code: 'EF0170i86I3E35I7O0Ai' },
+  { label: '赤铜耐压罐模块', code: 'EF01A67ua8I4IE539ieO' },
+  { label: '瓶装液化重息壤', code: 'EF018OIe2A7071o2UI73' },
 ];
 
 const blueprintsWithClipboard = ref(
