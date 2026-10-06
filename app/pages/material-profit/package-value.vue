@@ -284,11 +284,7 @@ function comparePacks(packA: PackData, packB: PackData) {
     }
     case 'weapon': {
       return (
-        getPackWeaponEfficiency(
-          packB,
-          gachaMode.value === 'weapon',
-          weaponQuotaBaseline.value,
-        ) -
+        getPackWeaponEfficiency(packB, gachaMode.value === 'weapon', weaponQuotaBaseline.value) -
           getPackWeaponEfficiency(packA, gachaMode.value === 'weapon', weaponQuotaBaseline.value) ||
         packA.price - packB.price ||
         compareCategoryOrder(packA, packB)

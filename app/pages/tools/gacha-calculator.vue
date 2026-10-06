@@ -848,10 +848,7 @@ function normalizeAuthorityLevelProgress(value: unknown): [number, number] {
   return firstLevel <= secondLevel ? [firstLevel, secondLevel] : [secondLevel, firstLevel];
 }
 
-function isSameAuthorityLevelProgress(
-  left: readonly number[],
-  right: readonly number[],
-): boolean {
+function isSameAuthorityLevelProgress(left: readonly number[], right: readonly number[]): boolean {
   return left[0] === right[0] && left[1] === right[1];
 }
 
@@ -1296,10 +1293,7 @@ function migrateOperatorTrainingButtonGroupActive(statusMap: Record<string, bool
 
   for (const { version } of VersionTable) {
     const newId = `干员教学_${version}_行动手册·训练/教学`;
-    const oldIds = [
-      `干员教学_${version}_行动节点·训练/教学`,
-      `干员教学_${version}_行动手册`,
-    ];
+    const oldIds = [`干员教学_${version}_行动节点·训练/教学`, `干员教学_${version}_行动手册`];
 
     for (const oldId of oldIds) {
       if (statusMap[newId] === undefined && statusMap[oldId] !== undefined) {
@@ -1342,7 +1336,10 @@ function loadingUserConfig() {
             key === authorityLevelUpReward.value.id
               ? normalizeAuthorityLevelProgress(range)
               : range;
-          if (key === authorityLevelUpReward.value.id && !isSameAuthorityLevelProgress(range, normalizedRange)) {
+          if (
+            key === authorityLevelUpReward.value.id &&
+            !isSameAuthorityLevelProgress(range, normalizedRange)
+          ) {
             shouldPersistUserConfig = true;
           }
 
@@ -2101,7 +2098,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
             </div>
 
             <!-- 当前时间：{{ dateFormat(poolStartDate) }} -->
-            <div class="gacha-calculator-warning" style="display: none;">
+            <div class="gacha-calculator-warning" style="display: none">
               《寻遗散记》资源尚在更新中，结果仅供参考，切勿轻信本站！
             </div>
 
@@ -2117,7 +2114,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+                    src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.originiumRecharge }}
@@ -2132,7 +2129,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+                    src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}
@@ -2145,7 +2142,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
+                    src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}
@@ -2156,7 +2153,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
+                    src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}
@@ -2167,7 +2164,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <img
                     alt="existing"
                     class="gacha-calculator-gacha-item-icon"
-                    src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
+                    src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.ticketgachaLimitedSingle }}
@@ -2188,7 +2185,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               <span>武库配额</span>
               <img
                 alt="武库配额"
-                src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
               />
               <span>{{ arsenalQuotaResult }}</span>
             </div>
@@ -2200,35 +2197,35 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="衍质源石"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                     />
                     <span>{{ totalResourceStatisticsResultDetail.originiumRecharge }}</span>
                   </div>
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="嵌晶玉"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                     />
                     <span>{{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}</span>
                   </div>
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="基础寻访凭证"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                     />
                     <span>{{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}</span>
                   </div>
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="特许寻访凭证"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                     />
                     <span>{{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}</span>
                   </div>
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="限时寻访凭证"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
                     />
                     <span>{{ totalResourceStatisticsResultDetail.ticketgachaLimitedSingle }}</span>
                   </div>
@@ -2314,35 +2311,35 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="衍质源石"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                     />
                     <span>{{ arsenalRemainingOriginium }}</span>
                   </div>
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="嵌晶玉"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                     />
                     <span>{{ numberFloor(totalResourceStatisticsResultDetail.diamond, 0) }}</span>
                   </div>
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="基础寻访凭证"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                     />
                     <span>{{ totalResourceStatisticsResultDetail.ticketgachaStandardSingle }}</span>
                   </div>
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="特许寻访凭证"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                     />
                     <span>{{ totalResourceStatisticsResultDetail.ticketgachaSpecialSingle }}</span>
                   </div>
                   <div class="gacha-calculator-originium-source-item">
                     <img
                       alt="限时寻访凭证"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
                     />
                     <span>{{ totalResourceStatisticsResultDetail.ticketgachaLimitedSingle }}</span>
                   </div>
@@ -2351,7 +2348,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                     <span>+</span>
                     <img
                       alt="武库配额"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <strong>{{ arsenalOriginiumQuota }}</strong>
                     <span>武库配额</span>
@@ -2412,7 +2409,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <div class="gacha-calculator-arsenal-breakdown-value">
                     <img
                       alt="武库配额"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <strong>{{ arsenalPullQuota }}</strong>
                   </div>
@@ -2428,7 +2425,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <div class="gacha-calculator-arsenal-breakdown-value">
                     <img
                       alt="武库配额"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <strong>{{ arsenalOriginiumQuota }}</strong>
                   </div>
@@ -2436,14 +2433,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <div class="gacha-calculator-arsenal-breakdown-row">
                   <div>
                     <strong>周常</strong>
-                    <span>
-                      {{ arsenalWeeklyCount }} 周 × {{ ARSENAL_WEEKLY_QUOTA }}
-                    </span>
+                    <span> {{ arsenalWeeklyCount }} 周 × {{ ARSENAL_WEEKLY_QUOTA }} </span>
                   </div>
                   <div class="gacha-calculator-arsenal-breakdown-value">
                     <img
                       alt="武库配额"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <strong>{{ arsenalWeeklyQuota }}</strong>
                   </div>
@@ -2458,7 +2453,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <div class="gacha-calculator-arsenal-breakdown-value">
                     <img
                       alt="武库配额"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <strong>{{ arsenalCreditShopQuota }}</strong>
                   </div>
@@ -2471,7 +2466,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <div class="gacha-calculator-arsenal-breakdown-value">
                     <img
                       alt="武库配额"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <strong>{{ arsenalRechargeQuota }}</strong>
                   </div>
@@ -2483,7 +2478,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   <div class="gacha-calculator-arsenal-breakdown-value">
                     <img
                       alt="武库配额"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                     />
                     <v-number-input
                       aria-label="现有武库配额库存"
@@ -2505,7 +2500,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <span>武库配额合计</span>
                 <img
                   alt="武库配额"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
+                  src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png"
                 />
                 <strong>{{ arsenalQuotaResult }}</strong>
               </div>
@@ -2599,35 +2594,35 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                     />
                   </th>
                   <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                     />
                   </th>
                   <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                     />
                   </th>
                   <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                     />
                   </th>
                   <th>
                     <img
                       alt="existing"
                       class="gacha-calculator-result-detail-table-icon"
-                      src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
+                      src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single_lt.png"
                     />
                   </th>
                 </tr>
@@ -2807,7 +2802,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <img
                   alt="existing"
                   class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
+                  src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png"
                 />
                 <v-number-input
                   v-model="existingResource.originiumRecharge"
@@ -2821,7 +2816,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <img
                   alt="existing"
                   class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+                  src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
                 />
                 <v-number-input
                   v-model="existingResource.diamond"
@@ -2835,7 +2830,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <img
                   alt="existing"
                   class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
+                  src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png"
                 />
                 <v-number-input
                   v-model="existingResource.ticketgachaStandardSingle"
@@ -2849,7 +2844,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                 <img
                   alt="existing"
                   class="gacha-calculator-gacha-item-icon"
-                  src="https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
+                  src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png"
                 />
                 <v-number-input
                   v-model="existingResource.ticketgachaSpecialSingle"
@@ -2916,11 +2911,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            <div
-              v-for="item in activityReward"
-              v-show="shouldDisplayAndCount(item)"
-              :key="item.id"
-            >
+            <div v-for="item in activityReward" v-show="shouldDisplayAndCount(item)" :key="item.id">
               <GachaCalculatorResourceSingleBtn
                 :reward="item"
                 @click="item.active = !item.active"

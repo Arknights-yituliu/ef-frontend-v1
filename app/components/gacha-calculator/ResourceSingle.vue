@@ -8,13 +8,13 @@ const props = defineProps<
 >();
 
 const WEAPON_QUOTA_ICON_URL =
-  'https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png';
+  'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_gachabyproducts_weapongold.png';
 
 /**
  *
  */
 function getImageUrl(itemId: string): string {
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${itemIdDict[itemId]}.png`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${itemIdDict[itemId]}.png`;
 }
 </script>
 

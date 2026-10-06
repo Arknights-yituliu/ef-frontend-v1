@@ -293,6 +293,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_adv_wuling_bugball_2": {
+    "id": "achv_adv_wuling_bugball_2",
+    "name": {
+      "zh-CN": "“虫球满贯”",
+      "en-US": "\"A Goal Truly Slugged\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_adv_wuling_campfire_1_1": {
     "id": "achv_adv_wuling_campfire_1_1",
     "name": {
@@ -494,6 +508,20 @@
     "name": {
       "zh-CN": "过活跃消除奖章",
       "en-US": "Superactive Blight Eliminator"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_minimap_1_2": {
+    "id": "achv_adv_wuling_minimap_1_2",
+    "name": {
+      "zh-CN": "遂明储藏家奖章",
+      "en-US": "Suiming Crate Master"
     },
     "rarity": 1,
     "type": 100,
@@ -1166,6 +1194,34 @@
     "name": {
       "zh-CN": "“山中见犼”",
       "en-US": "\"Howlers of the Crag\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_hard_7_2": {
+    "id": "achv_bat_hard_7_2",
+    "name": {
+      "zh-CN": "“幽影刻形”",
+      "en-US": "\"Marked by Dark Shadows\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_hard_7_2_plate": {
+    "id": "achv_bat_hard_7_2_plate",
+    "name": {
+      "zh-CN": "“幽影刻形”",
+      "en-US": "\"Marked by Dark Shadows\""
     },
     "rarity": 1,
     "type": 100,
@@ -2939,6 +2995,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_quest_gm02m27_2": {
+    "id": "achv_quest_gm02m27_2",
+    "name": {
+      "zh-CN": "“愿遂心明”",
+      "en-US": "\"Let Suiming Light the Way\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_quest_laevat_2": {
     "id": "achv_quest_laevat_2",
     "name": {
@@ -4058,6 +4128,20 @@
       "en-US": "Employment Contract"
     },
     "iconId": "item_chr_0035_liino"
+  },
+  "chr_0038_purrche": {
+    "id": "chr_0038_purrche",
+    "name": {
+      "zh-CN": "噗切娜",
+      "en-US": "Purrchena"
+    },
+    "rarity": 5,
+    "type": 4,
+    "typeName": {
+      "zh-CN": "招聘合同",
+      "en-US": "Employment Contract"
+    },
+    "iconId": "item_chr_0038_purrche"
   },
   "common_2x3_l": {
     "id": "common_2x3_l",
@@ -10372,6 +10456,20 @@
       "en-US": "Operator Token"
     },
     "iconId": "item_charpotentialup_chr_0035_liino"
+  },
+  "item_charpotentialup_chr_0038_purrche": {
+    "id": "item_charpotentialup_chr_0038_purrche",
+    "name": {
+      "zh-CN": "噗切娜的信物",
+      "en-US": "Purrchena's Token"
+    },
+    "rarity": 5,
+    "type": 42,
+    "typeName": {
+      "zh-CN": "干员信物",
+      "en-US": "Operator Token"
+    },
+    "iconId": "item_charpotentialup_chr_0038_purrche"
   },
   "item_charpotentialup_chr_9000_endmin": {
     "id": "item_charpotentialup_chr_9000_endmin",
@@ -25815,6 +25913,90 @@
     },
     "iconId": "item_mission_gm02m10_key"
   },
+  "item_mission_gm02m27_bell": {
+    "id": "item_mission_gm02m27_bell",
+    "name": {
+      "zh-CN": "“醒时钟”微雕纪念模型",
+      "en-US": "Mini \"Waking Bell\" Souvenir"
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_gm02m27_bell"
+  },
+  "item_mission_gm02m27_lingjian1": {
+    "id": "item_mission_gm02m27_lingjian1",
+    "name": {
+      "zh-CN": "替换件·巽",
+      "en-US": "Replacement Part \"Xun\""
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_gm02m27_lingjian"
+  },
+  "item_mission_gm02m27_lingjian2": {
+    "id": "item_mission_gm02m27_lingjian2",
+    "name": {
+      "zh-CN": "替换件·坎",
+      "en-US": "Replacement Part \"Kan\""
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_gm02m27_lingjian"
+  },
+  "item_mission_gm02m27_lingjian3": {
+    "id": "item_mission_gm02m27_lingjian3",
+    "name": {
+      "zh-CN": "替换件·震",
+      "en-US": "Replacement Part \"Zhen\""
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_gm02m27_lingjian"
+  },
+  "item_mission_gm02m27_lingjian4": {
+    "id": "item_mission_gm02m27_lingjian4",
+    "name": {
+      "zh-CN": "替换件·乾",
+      "en-US": "Replacement Part \"Qian\""
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_gm02m27_lingjian"
+  },
+  "item_mission_gm02m27_switch": {
+    "id": "item_mission_gm02m27_switch",
+    "name": {
+      "zh-CN": "醒时钟的启动装置",
+      "en-US": "Waking Bell Activator"
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_gm02m27_switch"
+  },
   "item_mission_sm1l2m2_key": {
     "id": "item_mission_sm1l2m2_key",
     "name": {
@@ -26795,6 +26977,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0038_purrche": {
+    "id": "item_pic_1_chr_0038_purrche",
+    "name": {
+      "zh-CN": "嗷呜！",
+      "en-US": "RAWR!"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_9000_endmin": {
     "id": "item_pic_1_chr_9000_endmin",
     "name": {
@@ -27271,6 +27467,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_3_chr_0038_purrche": {
+    "id": "item_pic_3_chr_0038_purrche",
+    "name": {
+      "zh-CN": "大菲林",
+      "en-US": "Purry Big Feline"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_3_chr_9000_endmin": {
     "id": "item_pic_3_chr_9000_endmin",
     "name": {
@@ -27724,6 +27934,20 @@
     "name": {
       "zh-CN": "笞心习作",
       "en-US": "Heart-Whipping Practice"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_5_chr_0038_purrche": {
+    "id": "item_pic_5_chr_0038_purrche",
+    "name": {
+      "zh-CN": "美梦时刻",
+      "en-US": "Moment of a Beautiful Dream"
     },
     "rarity": 5,
     "type": 76,
@@ -34033,6 +34257,20 @@
     },
     "iconId": "item_chr_0035_liino"
   },
+  "item_user_avatar_chr_0038_purrche": {
+    "id": "item_user_avatar_chr_0038_purrche",
+    "name": {
+      "zh-CN": "噗切娜",
+      "en-US": "Purrchena"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_chr_0038_purrche"
+  },
   "item_user_avatar_frame_activity_1": {
     "id": "item_user_avatar_frame_activity_1",
     "name": {
@@ -39590,6 +39828,20 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0022"
+  },
+  "wpn_sword_0023": {
+    "id": "wpn_sword_0023",
+    "name": {
+      "zh-CN": "点心时刻",
+      "en-US": "Dessert Moment"
+    },
+    "rarity": 5,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_sword_0023"
   },
   "wpn_sword_0026": {
     "id": "wpn_sword_0026",

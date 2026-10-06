@@ -104,13 +104,13 @@
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩1/2配额</span>
                     <span class="minitable-value"
-                      >>{{ wulingPrices[currentDayIndex] + item.correctionValue }}</span
+                      >&gt;{{ wulingPrices[currentDayIndex]! + item.correctionValue }}</span
                     >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">全部购买</span>
                     <span class="minitable-value"
-                      >≤{{ wulingPrices[currentDayIndex] + item.correctionValue }}</span
+                      >≤{{ wulingPrices[currentDayIndex]! + item.correctionValue }}</span
                     >
                   </div>
                 </div>
@@ -142,7 +142,8 @@
                   </div>
                   <div class="goods-card-name">
                     <span class="minitable-value">
-                      <{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span>
+                      &lt;{{ fourValleyFirstPrices[currentDayIndex]! + item.correctionValue }}</span
+                    >
                     <span class="name-text">{{ item.name }}</span>
                   </div>
                 </div>
@@ -174,22 +175,24 @@
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩1/3配额</span>
                     <span class="minitable-value"
-                      >>{{ fourValleySecondPrices[currentDayIndex] + item.correctionValue }}</span
+                      >&gt;{{
+                        fourValleySecondPrices[currentDayIndex]! + item.correctionValue
+                      }}</span
                     >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">买到剩2/3配额</span>
                     <span class="minitable-value"
-                      >{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}~{{
-                        fourValleySecondPrices[currentDayIndex] + item.correctionValue
+                      >{{ fourValleyFirstPrices[currentDayIndex]! + item.correctionValue }}~{{
+                        fourValleySecondPrices[currentDayIndex]! + item.correctionValue
                       }}</span
                     >
                   </div>
                   <div class="minitable-row">
                     <span class="minitable-label">全部购买</span>
-                    <span class="minitable-value"
-                      >{{ fourValleyFirstPrices[currentDayIndex] + item.correctionValue }}</span
-                    >
+                    <span class="minitable-value">{{
+                      fourValleyFirstPrices[currentDayIndex]! + item.correctionValue
+                    }}</span>
                   </div>
                 </div>
               </div>
@@ -227,10 +230,10 @@
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
                   <template #item.buyAllPrice="{ item }">
-                    <span class="wuling-buy-all" v-html="item.buyAllPrice"></span>
+                    <span class="wuling-buy-all">{{ item.buyAllPrice }}</span>
                   </template>
                   <template #item.buyHalfPrice="{ item }">
-                    <span class="wuling-buy-just" v-html="item.buyHalfPrice"></span>
+                    <span class="wuling-buy-just">{{ item.buyHalfPrice }}</span>
                   </template>
                 </v-data-table>
 
@@ -285,13 +288,13 @@
                     <span :class="{ 'current-day': item.isCurrentDay }">{{ item.weekday }}</span>
                   </template>
                   <template #item.buyAllPrice="{ item }">
-                    <span class="four-valley-buy-all" v-html="item.buyAllPrice"></span>
+                    <span class="four-valley-buy-all">{{ item.buyAllPrice }}</span>
                   </template>
                   <template #item.buyOneThirdPrice="{ item }">
-                    <span class="four-valley-buy-middle" v-html="item.buyOneThirdPrice"></span>
+                    <span class="four-valley-buy-middle">{{ item.buyOneThirdPrice }}</span>
                   </template>
                   <template #item.buyTwoThirdsPrice="{ item }">
-                    <span class="four-valley-buy-just" v-html="item.buyTwoThirdsPrice"></span>
+                    <span class="four-valley-buy-just">{{ item.buyTwoThirdsPrice }}</span>
                   </template>
                 </v-data-table>
 
@@ -434,7 +437,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '锚点厨具货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_1.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_1.png',
     correctionValue: -313,
     referencePrice: 4679,
     selected: false,
@@ -442,7 +445,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '悬空鼷兽骨雕货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_2.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_2.png',
     correctionValue: -313,
     referencePrice: 4679,
     selected: false,
@@ -450,7 +453,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '巫术矿钻货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_3.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_3.png',
     correctionValue: -313,
     referencePrice: 4679,
     selected: false,
@@ -458,7 +461,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '天使罐头货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_4.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_4.png',
     correctionValue: -313,
     referencePrice: 4679,
     selected: false,
@@ -466,7 +469,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '谷地水培肉货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_5.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_5.png',
     correctionValue: -25,
     referencePrice: 4966,
     selected: false,
@@ -474,7 +477,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '团结牌口服液货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_6.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_6.png',
     correctionValue: -25,
     referencePrice: 4966,
     selected: false,
@@ -482,7 +485,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '源石树幼苗货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_7.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_7.png',
     correctionValue: 338,
     referencePrice: 5329,
     selected: false,
@@ -490,7 +493,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '塞什卡髀石货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_8.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_8.png',
     correctionValue: -25,
     referencePrice: 4966,
     selected: false,
@@ -498,7 +501,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '星体晶块货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_9.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_9.png',
     correctionValue: -25,
     referencePrice: 4966,
     selected: false,
@@ -506,7 +509,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '警戒者矿镐货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_10.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_10.png',
     correctionValue: 338,
     referencePrice: 5329,
     selected: false,
@@ -514,7 +517,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '边角料积木货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_11.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_11.png',
     correctionValue: 338,
     referencePrice: 5329,
     selected: false,
@@ -522,7 +525,7 @@ const goodsItems = ref<GoodsItem[]>([
   {
     name: '硬脑壳头盔货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_tundra_12.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_tundra_12.png',
     correctionValue: 338,
     referencePrice: 5329,
     selected: false,
@@ -534,7 +537,7 @@ const wulingGoodsItems = ref<GoodsItem[]>([
   {
     name: '武侠电影货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_1.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_jinlong_1.png',
     correctionValue: 0,
     referencePrice: 4656,
     selected: false,
@@ -542,7 +545,7 @@ const wulingGoodsItems = ref<GoodsItem[]>([
   {
     name: '岳研避瘴茶货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_2.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_jinlong_2.png',
     correctionValue: 0,
     referencePrice: 4656,
     selected: false,
@@ -550,7 +553,7 @@ const wulingGoodsItems = ref<GoodsItem[]>([
   {
     name: '武陵冻梨货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_3.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_jinlong_3.png',
     correctionValue: 0,
     referencePrice: 4656,
     selected: false,
@@ -558,7 +561,7 @@ const wulingGoodsItems = ref<GoodsItem[]>([
   {
     name: '冬虫夏笋货组',
     imageUrl:
-      'https://cos.yituliu.cn/endfield/unpack-images/coupon-items/item_domainshop_cargo_jinlong_4.webp',
+      'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemiconbig/item_domainshop_cargo_jinlong_4.png',
     correctionValue: 0,
     referencePrice: 4656,
     selected: false,

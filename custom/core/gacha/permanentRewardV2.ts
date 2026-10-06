@@ -65,16 +65,11 @@ mergeReward(factoryManualMergeRewards as Reward[]);
 
 mergeReward(IntelArchiveRewardJson as Reward[]);
 
-
-
 for (const reward of operationalManualTrainingTableJson as Reward[]) {
-
-    reward.start = new Date(reward.start);
-    reward.end = new Date(reward.end);
-    permanentRewardTable.value.push(reward);
-  
+  reward.start = new Date(reward.start);
+  reward.end = new Date(reward.end);
+  permanentRewardTable.value.push(reward);
 }
-
 
 const mergedOperatorTrainingTasks = groupAndMergeTasksByVersionAndModule(
   '干员教学',
@@ -84,9 +79,6 @@ const mergedOperatorTrainingTasks = groupAndMergeTasksByVersionAndModule(
 console.log(mergedOperatorTrainingTasks);
 
 mergeReward(mergedOperatorTrainingTasks as Reward[]);
-
-
-
 
 for (const reward of permanentOtherTableJson as Reward[]) {
   reward.start = new Date(reward.start);

@@ -779,6 +779,16 @@
       "skill": "weapon.stat.gst_passive_crit"
     }
   },
+  "wpn_sword_0023": {
+    "weaponId": "wpn_sword_0023",
+    "weaponType": "weapon.type.wpn_sword",
+    "rarity": 5,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_heal",
+      "skill": "weapon.stat.gst_passive_heal"
+    }
+  },
   "wpn_sword_0026": {
     "weaponId": "wpn_sword_0026",
     "weaponType": "weapon.type.wpn_sword",

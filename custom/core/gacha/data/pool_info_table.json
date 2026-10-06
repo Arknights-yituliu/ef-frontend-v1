@@ -131,7 +131,7 @@
     "combatDrills": true,
     "narrative": true
   },
-{
+  {
     "poolName": "提弗洛斯",
     "character": "提弗洛斯",
     "poolStart": "2026/09/02 12:00:00",
@@ -143,6 +143,4 @@
     "combatDrills": true,
     "narrative": true
   }
-
-  
 ]

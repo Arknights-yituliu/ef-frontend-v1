@@ -36,7 +36,9 @@ const cardData = computed(() => {
     (button) => button.buttonType !== ButtonType.Blank,
   );
   const mainButtons = buttons.filter((button) => button.buttonType === ButtonType.Main);
-  const pageButtons = buttons.filter((button) => button.action === ButtonActionType.Link || button.action === ButtonActionType.Copy);
+  const pageButtons = buttons.filter(
+    (button) => button.action === ButtonActionType.Link || button.action === ButtonActionType.Copy,
+  );
   const actionButton = mainButtons.length > 0 ? mainButtons[0] : buttons[0];
 
   return {
@@ -179,8 +181,8 @@ async function copyToClipboard(text: string, successMessage: string) {
           </span>
           <span class="home-small-card-page-label">
             {{ t(`component.home.${button.i18nKey}`) }}
-            <span v-if="button.popupText" style="white-space:normal;font-size:0.7rem;">
-              <br>({{ t(button.popupText || '') }})
+            <span v-if="button.popupText" style="white-space: normal; font-size: 0.7rem">
+              <br />({{ t(button.popupText || '') }})
             </span>
           </span>
           <v-icon

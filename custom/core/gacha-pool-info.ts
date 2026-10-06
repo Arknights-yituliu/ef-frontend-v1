@@ -101,7 +101,7 @@ const gachaPools: GachaPool[] = [
     poolName: '军列申领',
     upCharName: '四二式·肃阵',
   },
-    {
+  {
     poolId: 'special_1_4_2',
     poolName: '晨星于此闪耀',
     upCharName: '梨诺',
@@ -111,7 +111,7 @@ const gachaPools: GachaPool[] = [
     poolName: '星曜申领',
     upCharName: '曜夜的首演',
   },
-      {
+  {
     poolId: 'special_1_5_1',
     poolName: '冬猎',
     upCharName: '提弗洛斯',

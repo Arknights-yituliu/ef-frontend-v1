@@ -20,11 +20,23 @@ console.log('✓ custom/core/items.json');
 fs.writeFileSync('custom/core/weapons.json', JSON.stringify(makeWeapons(), null, 2), 'utf8');
 console.log('✓ custom/core/weapons.json');
 
-fs.writeFileSync('custom/core/energyAlluviums.json', JSON.stringify(makeEnergyAlluviums(), null, 2), 'utf8');
+fs.writeFileSync(
+  'custom/core/energyAlluviums.json',
+  JSON.stringify(makeEnergyAlluviums(), null, 2),
+  'utf8',
+);
 console.log('✓ custom/core/energyAlluviums.json');
 
-fs.writeFileSync('i18n/locales/zh-CN-weapons.json', JSON.stringify(makeWeaponLocalizations("CN"), null, 2), 'utf8');
-fs.writeFileSync('i18n/locales/en-US-weapons.json', JSON.stringify(makeWeaponLocalizations("EN"), null, 2), 'utf8');
+fs.writeFileSync(
+  'i18n/locales/zh-CN-weapons.json',
+  JSON.stringify(makeWeaponLocalizations('CN'), null, 2),
+  'utf8',
+);
+fs.writeFileSync(
+  'i18n/locales/en-US-weapons.json',
+  JSON.stringify(makeWeaponLocalizations('EN'), null, 2),
+  'utf8',
+);
 console.log('✓ i18n/locales/zh-CN-weapons.json');
 console.log('✓ i18n/locales/en-US-weapons.json');
 

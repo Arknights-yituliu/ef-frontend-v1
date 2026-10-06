@@ -133,7 +133,7 @@
               </template>
             </v-img>
             <div class="text-caption d-flex flex-column" style="line-height: 1.1em">
-              <span style="font-weight:bold">{{ getLocaleText(cate)?.[0] }}</span>
+              <span style="font-weight: bold">{{ getLocaleText(cate)?.[0] }}</span>
               <span>{{ getLocaleText(cate)?.[1] }}</span>
             </div>
           </v-chip>

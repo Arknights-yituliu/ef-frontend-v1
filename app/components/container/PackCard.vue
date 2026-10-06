@@ -81,9 +81,7 @@
         <div class="pack-info-text">
           <div class="value-stone">
             {{ $t('component.packCard.equivalent') }}
-            {{
-              getPackStoneEquivalent(props, props.weaponQuotaBaseline).toFixed(1)
-            }}
+            {{ getPackStoneEquivalent(props, props.weaponQuotaBaseline).toFixed(1) }}
             {{ $t('component.packCard.stone') }}
             <br />
             ￥{{ getPackPricePerStone(props, props.weaponQuotaBaseline).toFixed(1) }} /
@@ -169,9 +167,9 @@
             </td>
             <td>
               {{
-                (getItemBundleValuePercentage(content, props, props.weaponQuotaBaseline) * 100).toFixed(
-                  1,
-                )
+                (
+                  getItemBundleValuePercentage(content, props, props.weaponQuotaBaseline) * 100
+                ).toFixed(1)
               }}%
             </td>
           </tr>

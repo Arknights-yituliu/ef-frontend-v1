@@ -37,7 +37,7 @@ export function getItemPulls(itemId: string): number {
 }
 
 export function getCharAvatarUrl(charId: string): string {
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${charId}.webp`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/charicon/icon_${charId}.png`;
 }
 
 export function getItemIconUrl(itemId: string): string | undefined {
@@ -45,7 +45,7 @@ export function getItemIconUrl(itemId: string): string | undefined {
   if (!iconId) {
     return undefined;
   }
-  return `https://cos.yituliu.cn/endfield/endfielddata/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${iconId}.webp`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/itemicon/${iconId}.png`;
 }
 
 export function getItemRarity(itemId: string): number | undefined {

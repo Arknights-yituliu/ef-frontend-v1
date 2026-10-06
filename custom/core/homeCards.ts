@@ -578,8 +578,8 @@ export const homeCards: CardData[] = [
   },
   {
     i18nKey: 'akedata',
-    icon: 'https://cos.yituliu.cn/endfield/icons/akedata.webp',
-    image: 'https://cos.yituliu.cn/endfield/icons/akedata.webp',
+    icon: 'https://www.akedata.wiki/icon_AKEData_background.png',
+    image: 'https://www.akedata.wiki/icon_AKEData_background.png',
     descriptionKey: 'description',
     tagTypes: [CardTagType.ThirdParty],
     buttons: [
