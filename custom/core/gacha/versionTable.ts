@@ -12,7 +12,7 @@ const versionTable: VersionTableItem[] = [
     end: new Date('2026/03/12 12:00:00'),
     primaryColor: 'rgba(87, 224, 210,  1)',
     colorOpacity: 'rgba(187, 224, 210,  0.3)',
- 
+
     version: '零号委托',
   },
   {
@@ -20,7 +20,7 @@ const versionTable: VersionTableItem[] = [
     end: new Date('2026/04/17 12:00:00'),
     primaryColor: 'rgba(87, 224, 210,  1)',
     colorOpacity: 'rgba(187, 224, 210,  0.3)',
-   
+
     version: '新潮起·故渊离',
   },
   {
@@ -28,7 +28,7 @@ const versionTable: VersionTableItem[] = [
     end: new Date('2026/06/05 12:00:00'),
     primaryColor: 'rgba(87, 224, 210,  1)',
     colorOpacity: 'rgba(187, 224, 210,  0.3)',
-   
+
     version: '春晓时',
   },
   {
@@ -36,7 +36,7 @@ const versionTable: VersionTableItem[] = [
     end: new Date('2026/07/16 12:00:00'),
     primaryColor: 'rgba(193, 56, 89, 1)',
     colorOpacity: 'rgba(193, 56, 89,  0.3)',
-    
+
     version: '寻遗散记',
   },
   {
@@ -44,7 +44,7 @@ const versionTable: VersionTableItem[] = [
     end: new Date('2026/09/02 12:00:00'),
     primaryColor: 'rgba(106, 141, 150, 1)',
     colorOpacity: 'rgba(106, 141, 150, 0.3)',
-  
+
     version: '向渊行',
   },
   {
@@ -52,7 +52,7 @@ const versionTable: VersionTableItem[] = [
     end: new Date('2026/10/15 12:00:00'),
     primaryColor: 'rgba(184, 136, 216, 1)',
     colorOpacity: 'rgba(184, 136, 216, 0.3)',
- 
+
     version: '雪凇幽梦',
   },
   {
@@ -61,7 +61,7 @@ const versionTable: VersionTableItem[] = [
     // TODO: 待补充「丹青渡」官方主题色，当前暂用默认配色占位
     primaryColor: 'rgba(232, 216, 168, 1)',
     colorOpacity: 'rgba(232, 216, 168, 0.3)',
-   
+
     version: '丹青渡',
   },
 ];

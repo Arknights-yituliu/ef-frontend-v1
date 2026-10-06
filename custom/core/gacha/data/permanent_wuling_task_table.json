@@ -1,5 +1,5 @@
 [
-   {
+  {
     "id": "主线任务",
     "name": {
       "zh": "主线任务",
@@ -19,7 +19,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "支线任务",
     "name": {
       "zh": "支线任务",
@@ -39,7 +40,8 @@
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
-  },{
+  },
+  {
     "id": "支线任务",
     "name": {
       "zh": "支线任务",
