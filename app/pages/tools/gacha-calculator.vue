@@ -43,7 +43,7 @@ import {
 
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
-import { versionTable as VersionTable } from '@/custom/core/gacha/versionAndPoolInfo';
+import { versionTable as VersionTable } from '@/custom/core/gacha/versionTable';
 
 import { packs } from '@/custom/core/packs';
 

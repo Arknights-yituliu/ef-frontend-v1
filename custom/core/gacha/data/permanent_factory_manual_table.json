@@ -860,26 +860,6 @@
     }
   },
   {
-    "id": "采集物1",
-    "name": {
-      "zh": "采集物",
-      "en": ""
-    },
-    "start": "2026/09/02 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "简制手册",
-    "active": true,
-    "version": "雪凇幽梦",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 155,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
     "id": "采集物2",
     "name": {
       "zh": "采集物",
@@ -890,10 +870,10 @@
     "type": "通用",
     "module": "简制手册",
     "active": true,
-    "version": "雪凇幽梦",
+    "version": "丹青渡",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 155,
+      "diamond": 305,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0

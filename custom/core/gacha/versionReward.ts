@@ -310,4 +310,4 @@ export {
   rewardTotalCalc,
 };
 
-export { versionTable } from '@/custom/core/gacha/versionAndPoolInfo';
+export { versionTable } from '@/custom/core/gacha/versionTable';

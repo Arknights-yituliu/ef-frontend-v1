@@ -8,7 +8,7 @@ import {
 import { numberRound } from '#shared/utils/numberUtil';
 import { ref, watch } from 'vue';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
-import { versionTable as VersionTable } from '@/custom/core/gacha/versionAndPoolInfo';
+import { versionTable as VersionTable } from '@/custom/core/gacha/versionTable';
 const MediumExchangeCrate = 20 * 0.05 + 15 * 0.35 + 10 * 0.6;
 
 const poolStartDate = ref(new Date());
