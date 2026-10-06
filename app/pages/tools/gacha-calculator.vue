@@ -1531,6 +1531,8 @@ function initSummaryPanelHeightObserver() {
 onMounted(() => {
   initPoolOptions();
   loadingUserConfig();
+  oneTimeRewardNoticeDismissed.value =
+    window.localStorage.getItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY) === 'true';
   syncAuthorityLevelUpReward();
   const gachaCalculatorPieChart: HTMLElement | null = document.querySelector(
     '#gacha-calculator-pie-chart',
@@ -1941,6 +1943,23 @@ function rewardMatchesVersion(reward: Reward): boolean {
 
 function shouldDisplayAndCount(reward: Reward): boolean {
   return rewardIsExpired(reward) && rewardMatchesType(reward) && rewardMatchesVersion(reward);
+}
+
+const oneTimeRewardNotice = {
+  name: '烟火生缘·网页奖励',
+  start: new Date('2026/10/15 07:00:00'),
+  end: new Date('2026/11/26 06:00:00'),
+  link: 'https://endfield.hypergryph.com/version_briefing/latest?source_from=yituliu',
+  resource: '嵌晶玉',
+  resourceAmount: 1000,
+} as const;
+
+const ONE_TIME_REWARD_NOTICE_DISMISSED_KEY = 'gacha-calculator-one-time-reward-notice-dismissed';
+const oneTimeRewardNoticeDismissed = ref(false);
+
+function dismissOneTimeRewardNotice(): void {
+  oneTimeRewardNoticeDismissed.value = true;
+  window.localStorage.setItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY, 'true');
 }
 
 function resetGachaCalculator() {
@@ -2787,6 +2806,64 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
       <!-- <v-alert style="margin-bottom: 8px" type="info">
         基础寻访次数仅在总计模块显示，各模块不再单独显示
       </v-alert> -->
+      <section
+        v-if="!oneTimeRewardNoticeDismissed"
+        aria-label="一次性奖励"
+        class="gacha-calculator-one-time-rewards"
+        data-gacha-screenshot-target="one-time"
+      >
+        <div class="gacha-calculator-one-time-rewards-heading">
+          <div class="gacha-calculator-one-time-rewards-title">
+            <v-icon icon="mdi-gift-outline" size="small" />
+            <span>版本前瞻奖励需手动领取！</span>
+          </div>
+        </div>
+
+        <div class="gacha-calculator-one-time-reward">
+          <div class="gacha-calculator-one-time-reward-main">
+            <div class="gacha-calculator-one-time-reward-copy">
+              <strong>{{ oneTimeRewardNotice.name }}</strong>
+              <span class="gacha-calculator-one-time-reward-period">
+                有效期：{{ dateFormat(oneTimeRewardNotice.start, 'MM/dd HH:mm') }} -
+                {{ dateFormat(oneTimeRewardNotice.end, 'MM/dd HH:mm') }}
+              </span>
+            </div>
+
+            <div class="gacha-calculator-one-time-reward-resources">
+              <div class="gacha-calculator-one-time-reward-resource">
+                <img
+                  :alt="oneTimeRewardNotice.resource"
+                  src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+                />
+                <span>× {{ oneTimeRewardNotice.resourceAmount }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gacha-calculator-one-time-reward-actions">
+            <v-btn
+              :href="oneTimeRewardNotice.link"
+              prepend-icon="mdi-open-in-new"
+              rel="noopener noreferrer"
+              size="small"
+              target="_blank"
+              variant="tonal"
+            >
+              未领取，点击跳转
+            </v-btn>
+            <v-btn
+              color="success"
+              prepend-icon="mdi-check-circle-outline"
+              size="small"
+              variant="tonal"
+              @click="dismissOneTimeRewardNotice"
+            >
+              已领取，不再提示
+            </v-btn>
+          </div>
+        </div>
+      </section>
+
       <v-expansion-panels v-model="rightPartPanel" multiple>
         <!--库存-->
         <v-expansion-panel data-gacha-screenshot-target="existing" value="existing">
@@ -3136,6 +3213,95 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   margin: -2px 4px 6px;
   color: rgba(var(--v-theme-on-surface), 0.55);
   font-size: 0.7rem;
+}
+
+.gacha-calculator-one-time-rewards {
+  margin: 8px 0;
+  padding: 14px 16px 12px;
+  border: 2px solid #f59e0b;
+  border-radius: 6px;
+  background: rgba(254, 243, 199, 0.96);
+  color: #78350f;
+  box-shadow: 0 2px 8px rgba(146, 64, 14, 0.18);
+}
+
+.gacha-calculator-one-time-rewards-heading,
+.gacha-calculator-one-time-reward-main,
+.gacha-calculator-one-time-reward-actions {
+  display: flex;
+  align-items: center;
+}
+
+.gacha-calculator-one-time-rewards-heading {
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.gacha-calculator-one-time-rewards-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.gacha-calculator-one-time-rewards-title .v-icon {
+  color: #d97706;
+}
+
+.gacha-calculator-one-time-reward {
+  padding-top: 10px;
+  border-top: 1px solid rgba(180, 83, 9, 0.25);
+}
+
+.gacha-calculator-one-time-reward-main {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gacha-calculator-one-time-reward-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.gacha-calculator-one-time-reward-copy strong {
+  font-size: 0.95rem;
+}
+
+.gacha-calculator-one-time-reward-period {
+  font-size: 0.78rem;
+  color: rgba(120, 53, 15, 0.72);
+}
+
+.gacha-calculator-one-time-reward-resources {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.gacha-calculator-one-time-reward-resource {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.gacha-calculator-one-time-reward-resource img {
+  width: 32px;
+  height: 32px;
+}
+
+.gacha-calculator-one-time-reward-actions {
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.gacha-calculator-one-time-reward-actions .v-btn {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .gacha-calculator-card-title {
@@ -3714,6 +3880,28 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
   .gacha-calculator-warning {
     display: none;
+  }
+
+  .gacha-calculator-one-time-rewards {
+    margin: 8px 0;
+    padding: 12px;
+  }
+
+  .gacha-calculator-one-time-rewards-heading {
+    align-items: flex-start;
+  }
+
+  .gacha-calculator-one-time-reward-main {
+    display: grid;
+    gap: 8px;
+  }
+
+  .gacha-calculator-one-time-reward-resources {
+    flex-wrap: wrap;
+  }
+
+  .gacha-calculator-one-time-reward-actions {
+    gap: 6px;
   }
 
   .gacha-calculator-pool-selector {
