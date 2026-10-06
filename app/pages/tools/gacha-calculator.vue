@@ -66,6 +66,7 @@ const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity']);
 const poolOptions = ref<PoolOption[]>([]);
 
 const displayPoolOptions = ref<string[]>([]);
+const combinedPoolType = '祀+明河';
 
 /**
  * 初始化卡池选项
@@ -85,6 +86,20 @@ function initPoolOptions() {
     if (poolOption.end.getTime() > Date.now()) {
       displayPoolOptions.value.push(poolOption.name);
     }
+  }
+
+  const combinedPoolOption: PoolOption = {
+    name: combinedPoolType,
+    start: new Date('2026/10/15 12:00:00'),
+    end: new Date('2026/11/23 12:00:00'),
+    dateText: '1015-1123',
+    type: combinedPoolType,
+    disabled: false,
+  };
+
+  poolOptions.value.push(combinedPoolOption);
+  if (combinedPoolOption.end.getTime() > Date.now()) {
+    displayPoolOptions.value.push(combinedPoolOption.name);
   }
 
   const poolOption: PoolOption = {
@@ -126,6 +141,8 @@ const currentPool = ref<PoolOption>({
   type: '轻飘飘的信使',
   disabled: false,
 });
+
+const isCombinedPoolSelected = computed(() => currentPool.value.type === combinedPoolType);
 
 // let startDate: Date = new Date();
 
@@ -669,12 +686,40 @@ const seekIntelBook = ref({
   },
 });
 
+const additionalSeekIntelBook = ref({
+  id: 'seek_intel_book_double_pool',
+  name: { zh: '寻访情报书（明河）', en: 'Minghe Seek Intel Book' },
+  active: false,
+  type: '通用',
+  module: '库存',
+  version: '通用',
+  start: new Date('2026/01/01'),
+  end: new Date('2099/12/31'),
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 10,
+  },
+});
+
 /**
  * 监听寻访情报书对象变化
  *
  * */
 watch(
   seekIntelBook,
+  (newValue) => {
+    saveUserConfig(newValue.id, newValue.active, 'buttonActive');
+    existingRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
+
+watch(
+  additionalSeekIntelBook,
   (newValue) => {
     saveUserConfig(newValue.id, newValue.active, 'buttonActive');
     existingRewardStatistics();
@@ -707,7 +752,9 @@ function existingRewardStatistics(): void {
     diamond: existingResource.value.diamond / 1,
     ticketgachaStandardSingle: existingResource.value.ticketgachaStandardSingle / 1,
     ticketgachaSpecialSingle: existingResource.value.ticketgachaSpecialSingle / 1,
-    ticketgachaLimitedSingle: seekIntelBook.value.active ? 10 : 0,
+    ticketgachaLimitedSingle:
+      (seekIntelBook.value.active ? 10 : 0) +
+      (isCombinedPoolSelected.value && additionalSeekIntelBook.value.active ? 10 : 0),
   };
 
   existingRewardStatisticsResultDetail = result;
@@ -1358,6 +1405,10 @@ function loadingUserConfig() {
         if (localConfig.buttonActive['seek_intel_book'] !== undefined) {
           seekIntelBook.value.active = localConfig.buttonActive['seek_intel_book'] || false;
         }
+        if (localConfig.buttonActive['seek_intel_book_double_pool'] !== undefined) {
+          additionalSeekIntelBook.value.active =
+            localConfig.buttonActive['seek_intel_book_double_pool'] || false;
+        }
       }
 
       if (localConfig.buttonGroupActive) {
@@ -1530,6 +1581,7 @@ function initSummaryPanelHeightObserver() {
 
 onMounted(() => {
   initPoolOptions();
+  const hasStoredUserConfig = localStorage.getItem('Gacha_Calculator_User_Config') !== null;
   loadingUserConfig();
   oneTimeRewardNoticeDismissed.value =
     window.localStorage.getItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY) === 'true';
@@ -1547,6 +1599,9 @@ onMounted(() => {
       selectedPool(option);
       break;
     }
+  }
+  if (!hasStoredUserConfig) {
+    initializeDefaultVersionSelection();
   }
 
   syncCurrentModeFromRoute();
@@ -1923,7 +1978,8 @@ function rewardIsExpired(reward: Reward): boolean {
  * @returns 是否匹配
  */
 function rewardMatchesType(reward: Reward): boolean {
-  return '通用' === reward.type || reward.type === currentPool.value.type;
+  const currentPoolTypes = currentPool.value.type.split('+');
+  return '通用' === reward.type || currentPoolTypes.includes(reward.type);
 }
 
 /**
@@ -1962,19 +2018,27 @@ function dismissOneTimeRewardNotice(): void {
   window.localStorage.setItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY, 'true');
 }
 
-function resetGachaCalculator() {
+function initializeDefaultVersionSelection(): void {
   const lastVersion = versionOptions.value.at(-1);
+  const previousVersion = versionOptions.value.at(-2);
   if (!lastVersion) {
     return;
   }
 
   for (const version of versionOptions.value) {
+    const visible = version === lastVersion || version === previousVersion;
     const active = version === lastVersion;
-    setVersionVisible(version, active);
+    setVersionVisible(version, visible);
     setVersionRewardsActive(version, active);
   }
 
   calc();
+}
+
+function resetGachaCalculator() {
+  oneTimeRewardNoticeDismissed.value = false;
+  window.localStorage.removeItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY);
+  initializeDefaultVersionSelection();
 }
 
 // 常驻奖励分类名称列表
@@ -2937,6 +3001,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               :hide-version="true"
               :reward="seekIntelBook"
               @click="seekIntelBook.active = !seekIntelBook.active"
+            />
+            <GachaCalculatorResourceSingleBtn
+              v-if="isCombinedPoolSelected"
+              :hide-version="true"
+              :reward="additionalSeekIntelBook"
+              @click="additionalSeekIntelBook.active = !additionalSeekIntelBook.active"
             />
           </v-expansion-panel-text>
         </v-expansion-panel>
