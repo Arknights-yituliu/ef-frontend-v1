@@ -114,6 +114,16 @@ export interface GachaResourceStatisticsResult {
   ticketgachaLimitedSingle: number;
 }
 
+export type GachaCalculatorRechargeResources = {
+  monthlyPass: boolean;
+  battlePass: boolean;
+  protocolCustomization: boolean;
+  monthlyPassDays: number;
+  selectedPacks: Record<string, number>;
+  selectedPoolPacks: Record<string, Record<string, number>>;
+  originiumStones: Record<string, number>;
+};
+
 export interface GachaCalculatorUserConfig {
   existingResource: {
     [key: string]: number;
@@ -134,6 +144,12 @@ export interface GachaCalculatorUserConfig {
     [key: string]: boolean;
   };
   arsenalExistingQuota?: number;
+  arsenalOriginiumAllocation?: number;
+  currentPoolName?: string;
+  displayPoolOptions?: string[];
+  leftPartPanel?: string[];
+  rechargeResources?: GachaCalculatorRechargeResources;
+  rightPartPanel?: string[];
 }
 
 export type ModuleSelectedStatus = {
@@ -142,11 +158,18 @@ export type ModuleSelectedStatus = {
   };
 };
 
+export type PoolMember = {
+  poolName: string;
+  character: string;
+  packId?: string;
+};
+
 export type PoolOption = {
   name: string;
   start: Date;
   end: Date;
   dateText: string;
   type: string;
+  poolMembers: PoolMember[];
   disabled: boolean;
 };

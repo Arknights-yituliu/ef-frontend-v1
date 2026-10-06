@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { PoolMember } from '#shared/types/gacha-calculator';
 import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
 import { getPackTotalWeaponQuota } from '#shared/utils/gameData/pack';
 import { computed } from 'vue';
-import { packs } from '@/custom/core/packs';
+import { availablePacks as packs } from '@/custom/core/packs';
 
 const { locale } = useI18n();
 
@@ -13,12 +14,15 @@ const props = defineProps<{
     protocolCustomization: boolean;
     monthlyPassDays: number;
     selectedPacks: Record<string, number>;
+    selectedPoolPacks: Record<string, Record<string, number>>;
     originiumStones: Record<string, number>;
   };
   currentPool?: {
     start: Date;
     end: Date;
   };
+  poolMembers?: PoolMember[];
+  poolScopedPackIds?: string[];
 }>();
 
 const emit = defineEmits<{
@@ -47,6 +51,22 @@ const quantityAdjustablePackMaxQuantities: Record<string, number> = {
   weapon_giftpack_02: 3,
   weapon_giftpack_03: 5,
 };
+
+const poolPackOptions = computed(() => {
+  return (props.poolMembers ?? []).flatMap((member) => {
+    const packId = member.packId;
+    if (!packId) {
+      return [];
+    }
+
+    const pack = packs[packId];
+    if (!pack) {
+      return [];
+    }
+
+    return [{ member, pack }];
+  });
+});
 
 // 计算月卡天数（自动根据当前日期和池子结束日期计算）
 const monthlyPassDays = computed(() => {
@@ -110,6 +130,9 @@ const giftPacks = computed(() => {
     if (excludedCategories.has(pack.category)) {
       continue;
     }
+    if (props.poolScopedPackIds?.includes(key)) {
+      continue;
+    }
 
     // 直接提供武库配额的礼包也需要在攒抽计算器中可选
     const pulls = calculatePackPulls(pack);
@@ -130,6 +153,11 @@ const giftPacks = computed(() => {
 const selectedPacks = computed({
   get: () => props.modelValue.selectedPacks,
   set: (val) => emit('update:modelValue', { ...props.modelValue, selectedPacks: val }),
+});
+
+const selectedPoolPacks = computed({
+  get: () => props.modelValue.selectedPoolPacks,
+  set: (val) => emit('update:modelValue', { ...props.modelValue, selectedPoolPacks: val }),
 });
 
 // 首充源石列表
@@ -242,6 +270,28 @@ function isQuantityAdjustablePack(packId: string): boolean {
 
 function getPackMaxQuantity(packId: string): number {
   return quantityAdjustablePackMaxQuantities[packId] || 1;
+}
+
+function getPoolPackQuantity(poolName: string, packId: string): number {
+  return selectedPoolPacks.value[poolName]?.[packId] || 0;
+}
+
+function togglePoolPack(poolName: string, packId: string): void {
+  const quantity = getPoolPackQuantity(poolName, packId);
+  updatePoolPackQuantity(poolName, packId, quantity > 0 ? 0 : 1);
+}
+
+function updatePoolPackQuantity(poolName: string, packId: string, value: number): void {
+  emit('update:modelValue', {
+    ...props.modelValue,
+    selectedPoolPacks: {
+      ...selectedPoolPacks.value,
+      [poolName]: {
+        ...selectedPoolPacks.value[poolName],
+        [packId]: value > 0 ? 1 : 0,
+      },
+    },
+  });
 }
 
 function updatePackQuantity(packId: string, value: number) {
@@ -382,6 +432,43 @@ function packName(pack: PackData): string {
 
     <!-- 礼包 -->
     <div class="section-title">礼包</div>
+    <template v-if="poolPackOptions.length > 0">
+      <div class="section-title">卡池专属礼包</div>
+      <div
+        v-for="poolPack in poolPackOptions"
+        :key="`${poolPack.member.poolName}-${poolPack.pack.packId}`"
+        class="gacha-calculator-purchase-row"
+      >
+        <v-btn
+          :active="getPoolPackQuantity(poolPack.member.poolName, poolPack.pack.packId) > 0"
+          class="gacha-calculator-resource-single-btn gacha-calculator-purchase-select-btn"
+          :class="{
+            'btn-active': getPoolPackQuantity(poolPack.member.poolName, poolPack.pack.packId) > 0,
+          }"
+          @click="togglePoolPack(poolPack.member.poolName, poolPack.pack.packId)"
+        >
+          <div class="gacha-calculator-resource-single-btn-content">
+            <div class="gacha-calculator-resource-single-title">
+              {{ packName(poolPack.pack) }}（{{ poolPack.member.character }}）
+            </div>
+            <div
+              v-for="item in poolPack.pack.contents"
+              v-show="isGachaResource(item.itemId)"
+              :key="`${poolPack.pack.packId}-${poolPack.member.poolName}-${item.itemId}`"
+              class="gacha-calculator-resource-single-content gacha-calculator-resource-item-content"
+            >
+              <img
+                alt="item"
+                class="gacha-calculator-gacha-item-icon"
+                :src="getImageUrl(item.itemId)"
+              />
+              × {{ item.quantity }}
+            </div>
+            <div class="gacha-calculator-resource-single-content">¥{{ poolPack.pack.price }}</div>
+          </div>
+        </v-btn>
+      </div>
+    </template>
     <div v-for="pack in giftPacks" :key="pack.id" class="gacha-calculator-purchase-row">
       <v-btn
         :active="getPackQuantity(pack.id) > 0"

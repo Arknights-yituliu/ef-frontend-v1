@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type {
+  GachaCalculatorRechargeResources,
   GachaCalculatorUserConfig,
   PieChartData,
+  PoolMember,
   PoolOption,
   Reward,
   RewardStatisticsResultDetail,
@@ -45,11 +47,12 @@ import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStati
 
 import { versionTable as VersionTable } from '@/custom/core/gacha/versionTable';
 
-import { packs } from '@/custom/core/packs';
+import { availablePacks as packs } from '@/custom/core/packs';
 
 // 当前路由
 const route = useRoute();
 const router = useRouter();
+const GACHA_CALCULATOR_USER_CONFIG_KEY = 'Gacha_Calculator_User_Config';
 
 const { t } = useI18n();
 
@@ -66,40 +69,86 @@ const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity']);
 const poolOptions = ref<PoolOption[]>([]);
 
 const displayPoolOptions = ref<string[]>([]);
-const combinedPoolType = '祀+明河';
+
+type PoolSchedule = {
+  poolName: string;
+  character: string;
+  poolStart: string;
+  poolEnd: string;
+  poolDateStr: string;
+  poolGroup?: string;
+  poolPackId?: string;
+};
+
+const poolSchedules = PoolInfoTable as PoolSchedule[];
+const poolScopedPackIds = [
+  ...new Set(poolSchedules.flatMap((pool) => (pool.poolPackId ? [pool.poolPackId] : []))),
+];
+
+function createPoolOption(pools: PoolSchedule[]): PoolOption {
+  const firstPool = pools[0];
+  if (!firstPool) {
+    throw new Error('Cannot create a pool option without pool data');
+  }
+
+  const poolMembers: PoolMember[] = pools.map((pool) => ({
+    poolName: pool.poolName,
+    character: pool.character,
+    packId: pool.poolPackId,
+  }));
+  const start = new Date(Math.min(...pools.map((pool) => new Date(pool.poolStart).getTime())));
+  const end = new Date(Math.max(...pools.map((pool) => new Date(pool.poolEnd).getTime())));
+  const isCombined = poolMembers.length > 1;
+
+  return {
+    name: isCombined
+      ? poolMembers.map((member) => member.character).join('+')
+      : `${firstPool.character}卡池`,
+    start,
+    end,
+    dateText: isCombined
+      ? `${dateFormat(start, 'MMdd')}-${dateFormat(end, 'MMdd')}`
+      : firstPool.poolDateStr,
+    type: poolMembers.map((member) => member.poolName).join('+'),
+    poolMembers,
+    disabled: false,
+  };
+}
+
+function getPoolScheduleGroups(): PoolSchedule[][] {
+  const groups = new Map<string, PoolSchedule[]>();
+  for (const pool of poolSchedules) {
+    const groupKey = pool.poolGroup ?? pool.poolName;
+    const group = groups.get(groupKey) ?? [];
+    group.push(pool);
+    groups.set(groupKey, group);
+  }
+  return [...groups.values()];
+}
 
 /**
  * 初始化卡池选项
  *
  * */
 function initPoolOptions() {
-  for (const pool of PoolInfoTable) {
-    const poolOption: PoolOption = {
-      name: `${pool.poolName}卡池`,
-      start: new Date(pool.poolStart),
-      end: new Date(pool.poolEnd),
-      dateText: pool.poolDateStr,
-      type: pool.poolName,
-      disabled: false,
-    };
+  for (const pool of poolSchedules) {
+    const poolOption = createPoolOption([pool]);
     poolOptions.value.push(poolOption);
     if (poolOption.end.getTime() > Date.now()) {
       displayPoolOptions.value.push(poolOption.name);
     }
   }
 
-  const combinedPoolOption: PoolOption = {
-    name: combinedPoolType,
-    start: new Date('2026/10/15 12:00:00'),
-    end: new Date('2026/11/23 12:00:00'),
-    dateText: '1015-1123',
-    type: combinedPoolType,
-    disabled: false,
-  };
+  for (const poolGroup of getPoolScheduleGroups()) {
+    if (poolGroup.length < 2) {
+      continue;
+    }
 
-  poolOptions.value.push(combinedPoolOption);
-  if (combinedPoolOption.end.getTime() > Date.now()) {
-    displayPoolOptions.value.push(combinedPoolOption.name);
+    const combinedPoolOption = createPoolOption(poolGroup);
+    poolOptions.value.push(combinedPoolOption);
+    if (combinedPoolOption.end.getTime() > Date.now()) {
+      displayPoolOptions.value.push(combinedPoolOption.name);
+    }
   }
 
   const poolOption: PoolOption = {
@@ -108,6 +157,7 @@ function initPoolOptions() {
     end: new Date('2026/06/23 12:00:00'),
     dateText: '',
     type: '敬请期待',
+    poolMembers: [],
     disabled: true,
   };
 
@@ -117,6 +167,7 @@ function initPoolOptions() {
     end: new Date('2026/12/31 12:00:00'),
     dateText: '',
     type: '所有版本',
+    poolMembers: [],
     disabled: true,
   };
 
@@ -139,10 +190,14 @@ const currentPool = ref<PoolOption>({
   end: new Date('2026/02/24 12:00:00'),
   dateText: '02.07——02.24',
   type: '轻飘飘的信使',
+  poolMembers: [{ poolName: '轻飘飘的信使', character: '轻飘飘的信使' }],
   disabled: false,
 });
 
-const isCombinedPoolSelected = computed(() => currentPool.value.type === combinedPoolType);
+const isCombinedPoolSelected = computed(() => currentPool.value.poolMembers.length > 1);
+const currentPoolPackNames = computed(
+  () => new Set(currentPool.value.poolMembers.map((member) => member.poolName)),
+);
 
 // let startDate: Date = new Date();
 
@@ -579,7 +634,24 @@ function selectedPool(option: PoolOption): void {
     return;
   }
   currentPool.value = option;
+  gachaCalculatorUserConfig.value.currentPoolName = option.name;
+  saveGachaCalculatorUserConfig();
+  updateSeekIntelBookNames();
   calc();
+}
+
+function selectDefaultPool(useStoredPool = true): void {
+  const storedPool = useStoredPool
+    ? poolOptions.value.find(
+        (option) =>
+          option.name === gachaCalculatorUserConfig.value.currentPoolName && !option.disabled,
+      )
+    : undefined;
+  const defaultPool =
+    storedPool ?? poolOptions.value.find((option) => !option.disabled && option.end > new Date());
+  if (defaultPool) {
+    selectedPool(defaultPool);
+  }
 }
 
 /**
@@ -613,6 +685,9 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   slider: {},
   versionVisible: {},
   arsenalExistingQuota: 0,
+  arsenalOriginiumAllocation: 0,
+  leftPartPanel: [...leftPartPanel.value],
+  rightPartPanel: [...rightPartPanel.value],
 });
 
 /**
@@ -621,7 +696,7 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
  * */
 function saveGachaCalculatorUserConfig() {
   localStorage.setItem(
-    'Gacha_Calculator_User_Config',
+    GACHA_CALCULATOR_USER_CONFIG_KEY,
     JSON.stringify(gachaCalculatorUserConfig.value),
   );
 }
@@ -688,7 +763,7 @@ const seekIntelBook = ref({
 
 const additionalSeekIntelBook = ref({
   id: 'seek_intel_book_double_pool',
-  name: { zh: '寻访情报书（明河）', en: 'Minghe Seek Intel Book' },
+  name: { zh: '寻访情报书', en: 'Seek Intel Book' },
   active: false,
   type: '通用',
   module: '库存',
@@ -703,6 +778,22 @@ const additionalSeekIntelBook = ref({
     ticketgachaLimitedSingle: 10,
   },
 });
+
+function updateSeekIntelBookNames(): void {
+  const [firstPoolMember, additionalPoolMember] = currentPool.value.poolMembers;
+  seekIntelBook.value.name = firstPoolMember
+    ? {
+        zh: `寻访情报书（${firstPoolMember.character}卡池）`,
+        en: `${firstPoolMember.character} Pool Seek Intel Book`,
+      }
+    : { zh: '寻访情报书', en: 'Seek Intel Book' };
+  additionalSeekIntelBook.value.name = additionalPoolMember
+    ? {
+        zh: `寻访情报书（${additionalPoolMember.character}卡池）`,
+        en: `${additionalPoolMember.character} Pool Seek Intel Book`,
+      }
+    : { zh: '寻访情报书', en: 'Seek Intel Book' };
+}
 
 /**
  * 监听寻访情报书对象变化
@@ -996,23 +1087,33 @@ function permanentRewardStatistics(): void {
  */
 
 // 氪金资源状态
-const rechargeResources = ref<{
-  monthlyPass: boolean;
-  battlePass: boolean;
-  protocolCustomization: boolean;
-  monthlyPassDays: number;
-  selectedPacks: Record<string, number>;
-  originiumStones: Record<string, number>;
-}>({
+const rechargeResources = ref<GachaCalculatorRechargeResources>({
   monthlyPass: false,
   battlePass: false,
   protocolCustomization: false,
   monthlyPassDays: 30,
   selectedPacks: {},
+  selectedPoolPacks: {},
   originiumStones: {},
 });
 
 const resourceStatisticsResultDetailList = ref<RewardStatisticsResultDetail[]>([]);
+
+function copyRechargeResources(
+  resources: GachaCalculatorRechargeResources,
+): GachaCalculatorRechargeResources {
+  return {
+    ...resources,
+    selectedPacks: { ...resources.selectedPacks },
+    selectedPoolPacks: Object.fromEntries(
+      Object.entries(resources.selectedPoolPacks).map(([poolName, poolPacks]) => [
+        poolName,
+        { ...poolPacks },
+      ]),
+    ),
+    originiumStones: { ...resources.originiumStones },
+  };
+}
 
 // 计算氪金总金额
 const paidResourcesTotalPrice = computed(() => {
@@ -1042,6 +1143,22 @@ const paidResourcesTotalPrice = computed(() => {
     }
   }
 
+  for (const [poolName, poolPackSelections] of Object.entries(
+    rechargeResources.value.selectedPoolPacks,
+  )) {
+    if (!currentPoolPackNames.value.has(poolName)) {
+      continue;
+    }
+    for (const [packId, quantity] of Object.entries(poolPackSelections)) {
+      if (quantity > 0) {
+        const pack = packs[packId as keyof typeof packs];
+        if (pack) {
+          total += pack.price * quantity;
+        }
+      }
+    }
+  }
+
   // 普通源石金额
   for (const [stoneId, quantity] of Object.entries(rechargeResources.value.originiumStones)) {
     if (quantity > 0) {
@@ -1057,7 +1174,9 @@ const paidResourcesTotalPrice = computed(() => {
 
 watch(
   rechargeResources,
-  () => {
+  (newValue) => {
+    gachaCalculatorUserConfig.value.rechargeResources = copyRechargeResources(newValue);
+    saveGachaCalculatorUserConfig();
     rechargeResourceStatistics();
     allRewardStatisticsV2();
   },
@@ -1080,8 +1199,45 @@ function resetRechargeResourcesKeepMonthlyPass() {
     protocolCustomization: false,
     monthlyPassDays: rechargeResources.value.monthlyPassDays,
     selectedPacks: {},
+    selectedPoolPacks: {},
     originiumStones: {},
   };
+}
+
+function addPackContentsToResourceResult(
+  result: RewardStatisticsResultDetail,
+  packId: string,
+  quantity: number,
+): void {
+  if (quantity <= 0) {
+    return;
+  }
+
+  const pack = packs[packId as keyof typeof packs];
+  if (!pack?.contents) {
+    return;
+  }
+
+  for (const item of pack.contents) {
+    const itemId = item.itemId;
+    if (itemId === 'item_originium_recharge') {
+      result.originiumRecharge += item.quantity * quantity;
+    } else if (itemId === 'item_diamond') {
+      result.diamond += item.quantity * quantity;
+    } else if (itemId.includes('ticketgacha_special_single')) {
+      if (itemId.includes('_lt_')) {
+        result.ticketgachaLimitedSingle += item.quantity * quantity;
+      } else {
+        result.ticketgachaSpecialSingle += item.quantity * quantity;
+      }
+    } else if (itemId.includes('ticketgacha_standard_single')) {
+      result.ticketgachaStandardSingle += item.quantity * quantity;
+    } else if (itemId.includes('ticketgacha_special_ten')) {
+      result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
+    } else if (itemId.includes('ticketgacha_standard_ten')) {
+      result.ticketgachaStandardSingle += item.quantity * 10 * quantity;
+    }
+  }
 }
 
 function rechargeResourceStatistics(): void {
@@ -1117,30 +1273,17 @@ function rechargeResourceStatistics(): void {
 
   // 计算选中的礼包
   for (const [packId, quantity] of Object.entries(rechargeResources.value.selectedPacks)) {
-    if (quantity > 0 && packs[packId as keyof typeof packs]) {
-      const pack = packs[packId as keyof typeof packs];
-      if (pack && pack.contents) {
-        for (const item of pack.contents) {
-          const itemId = item.itemId;
-          if (itemId === 'item_originium_recharge') {
-            result.originiumRecharge += item.quantity * quantity;
-          } else if (itemId === 'item_diamond') {
-            result.diamond += item.quantity * quantity;
-          } else if (itemId.includes('ticketgacha_special_single')) {
-            if (itemId.includes('_lt_')) {
-              result.ticketgachaLimitedSingle += item.quantity * quantity;
-            } else {
-              result.ticketgachaSpecialSingle += item.quantity * quantity;
-            }
-          } else if (itemId.includes('ticketgacha_standard_single')) {
-            result.ticketgachaStandardSingle += item.quantity * quantity;
-          } else if (itemId.includes('ticketgacha_special_ten')) {
-            result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
-          } else if (itemId.includes('ticketgacha_standard_ten')) {
-            result.ticketgachaStandardSingle += item.quantity * 10 * quantity;
-          }
-        }
-      }
+    addPackContentsToResourceResult(result, packId, quantity);
+  }
+
+  for (const [poolName, poolPackSelections] of Object.entries(
+    rechargeResources.value.selectedPoolPacks,
+  )) {
+    if (!currentPoolPackNames.value.has(poolName)) {
+      continue;
+    }
+    for (const [packId, quantity] of Object.entries(poolPackSelections)) {
+      addPackContentsToResourceResult(result, packId, quantity);
     }
   }
 
@@ -1312,6 +1455,8 @@ function setPieChart(data: PieChartData[]) {
 watch(
   () => [...leftPartPanel.value],
   (newValue) => {
+    gachaCalculatorUserConfig.value.leftPartPanel = [...newValue];
+    saveGachaCalculatorUserConfig();
     scheduleSummaryPanelHeightUpdates();
     if (newValue.includes('statisticalResult')) {
       // 等待组件渲染完成
@@ -1329,6 +1474,14 @@ watch(
         setPieChart(pieChartData);
       });
     }
+  },
+);
+
+watch(
+  () => [...rightPartPanel.value],
+  (newValue) => {
+    gachaCalculatorUserConfig.value.rightPartPanel = [...newValue];
+    saveGachaCalculatorUserConfig();
   },
 );
 
@@ -1366,12 +1519,90 @@ function migrateOperatorTrainingButtonGroupActive(statusMap: Record<string, bool
   return migrated;
 }
 
+function normalizeNumberRecord(value: unknown): Record<string, number> {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    Object.entries(value).flatMap(([key, rawValue]) => {
+      const numericValue = Number(rawValue);
+      return Number.isFinite(numericValue) && numericValue > 0
+        ? [[key, Math.floor(numericValue)]]
+        : [];
+    }),
+  );
+}
+
+function normalizePoolPackSelections(value: unknown): Record<string, Record<string, number>> {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    Object.entries(value).map(([poolName, poolPacks]) => [
+      poolName,
+      normalizeNumberRecord(poolPacks),
+    ]),
+  );
+}
+
+function normalizePanelState(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) {
+    return undefined;
+  }
+
+  return value.filter((panel): panel is string => typeof panel === 'string');
+}
+
 function loadingUserConfig() {
-  const localConfigStr = localStorage.getItem('Gacha_Calculator_User_Config');
+  const localConfigStr = localStorage.getItem(GACHA_CALCULATOR_USER_CONFIG_KEY);
   if (localConfigStr) {
     try {
       const localConfig: GachaCalculatorUserConfig = JSON.parse(localConfigStr);
       let shouldPersistUserConfig = false;
+
+      const leftPartPanelState = normalizePanelState(localConfig.leftPartPanel);
+      if (leftPartPanelState) {
+        leftPartPanel.value = leftPartPanelState;
+      }
+      const rightPartPanelState = normalizePanelState(localConfig.rightPartPanel);
+      if (rightPartPanelState) {
+        rightPartPanel.value = rightPartPanelState;
+      }
+
+      if (localConfig.currentPoolName) {
+        gachaCalculatorUserConfig.value.currentPoolName = localConfig.currentPoolName;
+      }
+      const displayPoolOptionsState = normalizePanelState(localConfig.displayPoolOptions);
+      if (displayPoolOptionsState) {
+        displayPoolOptions.value = displayPoolOptionsState;
+      }
+
+      if (localConfig.rechargeResources) {
+        const savedRechargeResources = localConfig.rechargeResources;
+        const monthlyPassDays = Number(savedRechargeResources.monthlyPassDays);
+        rechargeResources.value = {
+          monthlyPass: savedRechargeResources.monthlyPass === true,
+          battlePass: savedRechargeResources.battlePass === true,
+          protocolCustomization: savedRechargeResources.protocolCustomization === true,
+          monthlyPassDays:
+            Number.isFinite(monthlyPassDays) && monthlyPassDays >= 0
+              ? Math.floor(monthlyPassDays)
+              : 30,
+          selectedPacks: normalizeNumberRecord(savedRechargeResources.selectedPacks),
+          selectedPoolPacks: normalizePoolPackSelections(savedRechargeResources.selectedPoolPacks),
+          originiumStones: normalizeNumberRecord(savedRechargeResources.originiumStones),
+        };
+      }
+
+      if (localConfig.arsenalOriginiumAllocation !== undefined) {
+        const allocation = Number(localConfig.arsenalOriginiumAllocation);
+        if (Number.isFinite(allocation)) {
+          arsenalOriginiumAllocation.value = Math.max(0, Math.floor(allocation));
+        }
+      }
+
       // 使用localConfig
       if (localConfig.rangeSlider) {
         for (const key in localConfig.rangeSlider) {
@@ -1581,7 +1812,7 @@ function initSummaryPanelHeightObserver() {
 
 onMounted(() => {
   initPoolOptions();
-  const hasStoredUserConfig = localStorage.getItem('Gacha_Calculator_User_Config') !== null;
+  const hasStoredUserConfig = localStorage.getItem(GACHA_CALCULATOR_USER_CONFIG_KEY) !== null;
   loadingUserConfig();
   oneTimeRewardNoticeDismissed.value =
     window.localStorage.getItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY) === 'true';
@@ -1594,12 +1825,7 @@ onMounted(() => {
   }
 
   setPieChart(pieChartData);
-  for (const option of poolOptions.value) {
-    if (option.end > new Date()) {
-      selectedPool(option);
-      break;
-    }
-  }
+  selectDefaultPool();
   if (!hasStoredUserConfig) {
     initializeDefaultVersionSelection();
   }
@@ -1847,7 +2073,10 @@ function normalizeArsenalExistingQuota(value: number | string | null | undefined
 }
 
 function setArsenalOriginiumAllocation(value: number | null) {
-  arsenalOriginiumAllocation.value = normalizeArsenalOriginiumAllocation(value);
+  const allocation = normalizeArsenalOriginiumAllocation(value);
+  arsenalOriginiumAllocation.value = allocation;
+  gachaCalculatorUserConfig.value.arsenalOriginiumAllocation = allocation;
+  saveGachaCalculatorUserConfig();
 }
 
 function setArsenalExistingQuota(value: number | null) {
@@ -1978,7 +2207,7 @@ function rewardIsExpired(reward: Reward): boolean {
  * @returns 是否匹配
  */
 function rewardMatchesType(reward: Reward): boolean {
-  const currentPoolTypes = currentPool.value.type.split('+');
+  const currentPoolTypes = currentPool.value.poolMembers.map((member) => member.poolName);
   return '通用' === reward.type || currentPoolTypes.includes(reward.type);
 }
 
@@ -2038,6 +2267,7 @@ function initializeDefaultVersionSelection(): void {
 function resetGachaCalculator() {
   oneTimeRewardNoticeDismissed.value = false;
   window.localStorage.removeItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY);
+  selectDefaultPool(false);
   initializeDefaultVersionSelection();
 }
 
@@ -2111,6 +2341,8 @@ const permanentRewardGroups = computed(() => {
 
 function selectDisplayPoolOptions(poolName: string) {
   displayPoolOptions.value = toggleStringInArray(poolName, displayPoolOptions.value);
+  gachaCalculatorUserConfig.value.displayPoolOptions = [...displayPoolOptions.value];
+  saveGachaCalculatorUserConfig();
 }
 
 /**
@@ -2257,7 +2489,11 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               </div>
             </div>
 
-            <div v-show="'辉光庆典' !== currentPool.name">
+            <div
+              v-show="'辉光庆典' !== currentPool.name"
+              class="gacha-calculator-pool-probability"
+              :class="{ 'gacha-calculator-pool-probability-hidden': isCombinedPoolSelected }"
+            >
               拿到卡池UP干员的概率：{{ numberFloor(gachaProbability * 100) }}%
             </div>
           </v-expansion-panel-text>
@@ -2879,7 +3115,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
         <div class="gacha-calculator-one-time-rewards-heading">
           <div class="gacha-calculator-one-time-rewards-title">
             <v-icon icon="mdi-gift-outline" size="small" />
-            <span>版本前瞻奖励需手动领取！</span>
+            <span>版本前瞻奖励需在网页端或游戏内置浏览器手动领取！</span>
           </div>
         </div>
 
@@ -3142,7 +3378,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            <GachaCalculatorPaidResources v-model="rechargeResources" :current-pool="currentPool" />
+            <GachaCalculatorPaidResources
+              v-model="rechargeResources"
+              :current-pool="currentPool"
+              :pool-members="currentPool.poolMembers"
+              :pool-scoped-pack-ids="poolScopedPackIds"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -3251,6 +3492,10 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-container-debug-no-probability .gacha-calculator-probability {
   display: none !important;
+}
+
+.gacha-calculator-pool-probability-hidden {
+  visibility: hidden;
 }
 
 .gacha-calculator-debug-tools {
