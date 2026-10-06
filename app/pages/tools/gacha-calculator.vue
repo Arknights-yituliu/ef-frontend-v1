@@ -34,7 +34,6 @@ import {
 } from '@/custom/core/gacha/dailyReward';
 import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
-import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
 import {
   authorityLevelUpReward,
@@ -43,6 +42,8 @@ import {
 } from '@/custom/core/gacha/permanentRewardV2';
 
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
+
+import { versionTable as VersionTable } from '@/custom/core/gacha/versionAndPoolInfo';
 
 import { packs } from '@/custom/core/packs';
 

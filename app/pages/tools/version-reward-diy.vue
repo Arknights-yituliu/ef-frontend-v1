@@ -17,7 +17,7 @@ usePageSeo({
   description: '自定义版本资源统计图内容、KV 与展示文案，导出《明日方舟：终末地》版本奖励汇总图。',
 });
 
-const versionInfo: VersionTableItem = versionTable[5] as VersionTableItem;
+const versionInfo: VersionTableItem = versionTable[6] as VersionTableItem;
 
 const currentVersion = ref<VersionTableItem>(versionInfo);
 getVersionReward(currentVersion.value);
