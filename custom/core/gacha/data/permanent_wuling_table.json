@@ -306,7 +306,8 @@
       "ticketgachaLimitedSingle": 0
     },
     "tips": ["包含：储藏箱、机器人、处理险情、浮空回收"]
-  }, {
+  },
+  {
     "id": "北部禁区地图",
     "name": {
       "zh": "北部禁区地图",
@@ -319,7 +320,7 @@
     "active": false,
     "version": "向渊行",
     "content": {
-      "originiumRecharge":2,
+      "originiumRecharge": 2,
       "diamond": 810,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
