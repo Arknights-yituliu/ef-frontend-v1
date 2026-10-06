@@ -6,6 +6,7 @@ import type {
   PackShopData,
 } from '../../shared/types/pack';
 import type { CashShopGoods, ItemBundle } from '../models';
+import { DELISTED_PACK_CATEGORY } from '../../shared/types/pack';
 import {
   battlePassLevelTable,
   battlePassOverrideLevelTable,
@@ -53,6 +54,17 @@ const excludedPackIds = new Set([
   'resetid_giftpack_pay_05',
 ]);
 
+// 已下架礼包保留历史数据，不再归入可购买分类。
+const delistedPackIds = new Set([
+  'giftpack_lt_decorate_1_4',
+  'giftpack_lt_gacha_plus_1_4',
+  'seasonal_crossover_lt_1_2_1',
+]);
+const delistedPackDisplayName: LocalizedText = {
+  'zh-CN': '已下架礼包',
+  'en-US': 'Discontinued Packs',
+};
+
 /**
  * 判定是否为限时寻访组合包
  * 标准：98 元，且类型为 Seasonal_Rec_pack 或 Fest_pack，且名称以“寻访组合包”结尾，且含有 80000 折金票
@@ -74,7 +86,7 @@ export function makePacks(): Record<string, PackData> {
   // 处理礼包
   for (const [packId, goods] of Object.entries(cashShopGoodsTable)) {
     // 忽略隐藏的组合包
-    if (cashShopHideInGameTable[packId]?.hideInGame === true) {
+    if (cashShopHideInGameTable[packId]?.hideInGame === true && !delistedPackIds.has(packId)) {
       continue;
     }
     if (excludedPackIds.has(packId)) {
@@ -102,7 +114,7 @@ export function makePacks(): Record<string, PackData> {
     const packData: PackData = {
       packId,
       displayName: getLocalizedValue(goods.goodsName),
-      category: goods.cashShopId,
+      category: delistedPackIds.has(packId) ? DELISTED_PACK_CATEGORY : goods.cashShopId,
       price: goods.priceCNY,
       imageUrl: `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/${goods.iconId}.png`,
       backgroundImageUrl: (() => {
@@ -335,6 +347,14 @@ export function makePackShops(packs: Record<string, PackData>): Record<string, P
     }
   }
 
+  packShops[DELISTED_PACK_CATEGORY] = {
+    shopId: DELISTED_PACK_CATEGORY,
+    displayName: delistedPackDisplayName,
+    goodsIds: Object.values(packs)
+      .filter((pack) => pack.category === DELISTED_PACK_CATEGORY)
+      .map((pack) => pack.packId),
+  };
+
   return Object.fromEntries(
     Object.entries(packShops)
       .toSorted(([idA], [idB]) => idA.localeCompare(idB))
@@ -359,6 +379,12 @@ export function makePackGroups(): Record<string, PackGroupData> {
       shopIds,
     };
   }
+
+  packGroups[DELISTED_PACK_CATEGORY] = {
+    groupId: DELISTED_PACK_CATEGORY,
+    displayName: delistedPackDisplayName,
+    shopIds: [DELISTED_PACK_CATEGORY],
+  };
 
   return Object.fromEntries(
     Object.entries(packGroups).filter(([, group]) => group.shopIds.length > 0),

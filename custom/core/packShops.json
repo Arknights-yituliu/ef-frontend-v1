@@ -7,6 +7,18 @@
     },
     "goodsIds": ["bp_track_free", "bp_track_originium", "bp_track_pay"]
   },
+  "delisted_pack": {
+    "shopId": "delisted_pack",
+    "displayName": {
+      "zh-CN": "已下架礼包",
+      "en-US": "Discontinued Packs"
+    },
+    "goodsIds": [
+      "giftpack_lt_decorate_1_4",
+      "giftpack_lt_gacha_plus_1_4",
+      "seasonal_crossover_lt_1_2_1"
+    ]
+  },
   "first_originium_recharge": {
     "shopId": "first_originium_recharge",
     "displayName": {
@@ -67,13 +79,7 @@
       "zh-CN": "限时组合包",
       "en-US": "Limited Bundle"
     },
-    "goodsIds": [
-      "giftpack_lt_decorate_1_4",
-      "giftpack_lt_gacha_plus_1_4",
-      "seasonal_crossover_lt_1_2_1",
-      "seasonal_giftpack",
-      "seasonal_giftpack_combine"
-    ]
+    "goodsIds": ["seasonal_giftpack", "seasonal_giftpack_combine"]
   },
   "SP_weapon_supply": {
     "shopId": "SP_weapon_supply",

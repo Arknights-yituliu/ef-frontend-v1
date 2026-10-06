@@ -193,6 +193,7 @@ import type {
 } from '@/shared/types/pack';
 import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
 import { packGroups, packs, packShops } from '@/custom/core/packs';
+import { DELISTED_PACK_CATEGORY } from '@/shared/types/pack';
 import {
   getPackPullsEfficiency,
   getPackSanityEfficiency,
@@ -422,7 +423,7 @@ const displayGroups = computed(() => {
       .filter((shop) => !!shop)
       .map((shop) => {
         const goodsIds = sortPackIds(shop.goodsIds.filter((id) => filteredPackIds.has(id)));
-        return { ...shop, goodsIds, showTitle: true };
+        return { ...shop, goodsIds, showTitle: group.groupId !== DELISTED_PACK_CATEGORY };
       })
       .filter((shop) => shop.goodsIds.length > 0);
 

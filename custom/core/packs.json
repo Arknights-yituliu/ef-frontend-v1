@@ -1621,7 +1621,7 @@
       "zh-CN": "向渊妙趣收藏包",
       "en-US": "Homecoming Curios Collection Pack"
     },
-    "category": "Seasonal_Rec_pack",
+    "category": "delisted_pack",
     "price": 6,
     "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_decorate_1_4_smallicon.png",
     "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_decorate_1_4_smallbg.png",
@@ -1658,7 +1658,7 @@
       "zh-CN": "相伴庆典组合包",
       "en-US": "Companionship Celebration Bundle"
     },
-    "category": "Seasonal_Rec_pack",
+    "category": "delisted_pack",
     "price": 298,
     "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_gacha_plus_1_4_smallicon.png",
     "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_gacha_plus_1_4_smallbg.png",
@@ -2016,7 +2016,7 @@
       "zh-CN": "镌宇铭星组合包",
       "en-US": "Etchings of Our Cosmic Dreams Pack"
     },
-    "category": "Seasonal_Rec_pack",
+    "category": "delisted_pack",
     "price": 6,
     "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_crossover_lt_1_2_1_smallicon.png",
     "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/seasonal_crossover_lt_1_2_1_smallbg.png",
