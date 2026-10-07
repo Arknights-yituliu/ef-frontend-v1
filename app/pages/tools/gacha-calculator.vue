@@ -974,7 +974,7 @@ function normalizeAuthorityLevelProgress(value: unknown): [number, number] {
     Math.min(AUTHORITY_LEVEL_MAX, Math.max(AUTHORITY_LEVEL_MIN, Math.trunc(level))),
   );
 
-  return firstLevel <= secondLevel ? [firstLevel, secondLevel] : [secondLevel, firstLevel];
+  return firstLevel! <= secondLevel! ? [firstLevel!, secondLevel!] : [secondLevel!, firstLevel!];
 }
 
 function isSameAuthorityLevelProgress(left: readonly number[], right: readonly number[]): boolean {
@@ -2081,7 +2081,10 @@ const arsenalRechargeQuota = computed(() => {
   let quota = 0;
 
   if (rechargeResources.value.protocolCustomization) {
-    quota += getPackTotalWeaponQuota(packs['bp_track_pay'], false);
+    const bpTrackPayPack = packs['bp_track_pay'];
+    if (bpTrackPayPack) {
+      quota += getPackTotalWeaponQuota(bpTrackPayPack, false);
+    }
   }
 
   for (const [packId, quantity] of Object.entries(rechargeResources.value.selectedPacks)) {
