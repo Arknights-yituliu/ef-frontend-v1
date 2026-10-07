@@ -138,9 +138,47 @@
     "poolEnd": "2026/09/30 12:00:00",
     "poolDateStr": "0902-0930",
     "versionStart": "2026/09/02 12:00:00",
-    "versionEnd": "2026/10/14 12:00:00",
+    "versionEnd": "2026/10/15 12:00:00",
     "version": "雪凇幽梦",
     "combatDrills": true,
     "narrative": true
+  },
+  {
+    "poolName": "祀",
+    "character": "祀",
+    "poolStart": "2026/10/15 12:00:00",
+    "poolEnd": "2026/11/05 12:00:00",
+    "poolDateStr": "1015-1105",
+    "versionStart": "2026/09/02 12:00:00",
+    "versionEnd": "2026/10/15 12:00:00",
+    "version": "丹青渡",
+    "poolPackId": "seasonal_giftpack",
+    "combatDrills": true,
+    "narrative": false
+  },
+  {
+    "poolName": "明河",
+    "character": "明河",
+    "poolStart": "2026/11/06 12:00:00",
+    "poolEnd": "2026/11/26 12:00:00",
+    "poolDateStr": "1106-1126",
+    "versionStart": "2026/09/02 12:00:00",
+    "versionEnd": "2026/10/15 12:00:00",
+    "version": "丹青渡",
+    "poolPackId": "seasonal_giftpack",
+    "combatDrills": true,
+    "narrative": true
+  },
+  {
+    "poolName": "祀+明河",
+    "character": "祀+明河",
+    "poolStart": "2026/10/15 12:00:00",
+    "poolEnd": "2026/11/26 12:00:00",
+    "poolDateStr": "1015-1126",
+    "versionStart": "2026/09/02 12:00:00",
+    "versionEnd": "2026/10/15 12:00:00",
+    "version": "丹青渡",
+    "poolMembers": ["祀", "明河"],
+    "skipReward": true
   }
 ]

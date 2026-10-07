@@ -78,22 +78,6 @@
     }
   },
   "gift": {
-    "item_gift_jinlong_8": {
-      "id": "item_gift_jinlong_8",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_5",
-      "favorHobby": ["tag_hobby_charity", "tag_hobby_nature"]
-    },
-    "item_gift_jinlong_9": {
-      "id": "item_gift_jinlong_9",
-      "rarity": 5,
-      "isHot": true,
-      "isHotExpiring": true,
-      "favorCategory": "tag_giftperfer_wuling_5",
-      "favorHobby": ["tag_hobby_art", "tag_hobby_culture"]
-    },
     "item_gift_jinlong_10": {
       "id": "item_gift_jinlong_10",
       "rarity": 5,
@@ -221,6 +205,22 @@
       "isHotExpiring": false,
       "favorCategory": "tag_giftperfer_wuling_4",
       "favorHobby": ["tag_hobby_creativity", "tag_hobby_fashion"]
+    },
+    "item_gift_jinlong_8": {
+      "id": "item_gift_jinlong_8",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_5",
+      "favorHobby": ["tag_hobby_charity", "tag_hobby_nature"]
+    },
+    "item_gift_jinlong_9": {
+      "id": "item_gift_jinlong_9",
+      "rarity": 5,
+      "isHot": false,
+      "isHotExpiring": false,
+      "favorCategory": "tag_giftperfer_wuling_5",
+      "favorHobby": ["tag_hobby_art", "tag_hobby_culture"]
     }
   },
   "operator": {
@@ -474,6 +474,16 @@
       "favorCategory": ["tag_giftperfer_tundra_2"],
       "favorHobby": ["tag_hobby_culture", "tag_hobby_exercise"]
     },
+    "chr_0038_purrche": {
+      "id": "chr_0038_purrche",
+      "name": {
+        "zh-CN": "噗切娜",
+        "en-US": "Purrchena"
+      },
+      "rarity": 5,
+      "favorCategory": ["tag_giftperfer_wuling_6"],
+      "favorHobby": ["tag_hobby_art", "tag_hobby_charity"]
+    },
     "chr_0019_karin": {
       "id": "chr_0019_karin",
       "name": {
@@ -532,8 +542,8 @@
       "en-US": "Dreamscape of Wind and Snow"
     },
     "period": {
-      "zh-CN": "前半（提弗洛斯 卡池）",
-      "en-US": "First Half (Typhoeus Banner)"
+      "zh-CN": "后半（噗切娜赠送及后半活动）",
+      "en-US": "Second Half (Purrchena giveaway and other events)"
     },
     "color": ["#1a2160", "#3f59d1", "#c5bad3"],
     "textColor": "#ffffff"

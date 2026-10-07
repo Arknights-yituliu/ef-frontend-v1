@@ -1,5 +1,185 @@
 [
   {
+    "id": "密境行者",
+    "name": {
+      "zh": "密境行者",
+      "en": ""
+    },
+    "start": "2026/10/31 12:00:00",
+    "end": "2026/11/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "予众魂的新光影",
+    "name": {
+      "zh": "予众魂的新光影",
+      "en": ""
+    },
+    "start": "2026/10/31 12:00:00",
+    "end": "2026/11/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 300,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "战争回响常驻挑战玩法更新",
+    "name": {
+      "zh": "战争回响常驻挑战玩法更新",
+      "en": ""
+    },
+    "start": "2026/10/15 12:00:00",
+    "end": "2026/11/26 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "丰碑留名·魇林",
+    "name": {
+      "zh": "丰碑留名·魇林",
+      "en": ""
+    },
+    "start": "2026/10/22 12:00:00",
+    "end": "2026/11/05 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "卡莉的芳菲童话",
+    "name": {
+      "zh": "卡莉的芳菲童话",
+      "en": ""
+    },
+    "start": "2026/10/22 12:00:00",
+    "end": "2026/11/05 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1500,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "百趣演武",
+    "name": {
+      "zh": "百趣演武",
+      "en": ""
+    },
+    "start": "2026/10/29 12:00:00",
+    "end": "2026/11/19 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "危机合约浸蓝测试作战",
+    "name": {
+      "zh": "危机合约浸蓝测试作战",
+      "en": ""
+    },
+    "start": "2026/11/05 12:00:00",
+    "end": "2026/11/26 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 2000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "引入活动·墨分诸彩",
+    "name": {
+      "zh": "引入活动·墨分诸彩",
+      "en": ""
+    },
+    "start": "2026/10/15 12:00:00",
+    "end": "2026/11/05 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "烟火生缘",
+    "name": {
+      "zh": "烟火生缘",
+      "en": ""
+    },
+    "start": "2026/10/15 12:00:00",
+    "end": "2026/11/26 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "陵水渡秋签到",
     "name": {
       "zh": "陵水渡秋签到",
@@ -46,7 +226,7 @@
       "en": ""
     },
     "start": "2026/10/05 12:00:00",
-    "end": "2026/10/19 12:00:00",
+    "end": "2026/10/15 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,
@@ -66,7 +246,7 @@
       "en": ""
     },
     "start": "2026/10/05 12:00:00",
-    "end": "2026/10/19 12:00:00",
+    "end": "2026/10/15 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,
@@ -86,7 +266,7 @@
       "en": ""
     },
     "start": "2026/10/05 12:00:00",
-    "end": "2026/10/19 12:00:00",
+    "end": "2026/10/15 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,
@@ -106,7 +286,7 @@
       "en": ""
     },
     "start": "2026/10/05 12:00:00",
-    "end": "2026/10/19 12:00:00",
+    "end": "2026/10/15 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,

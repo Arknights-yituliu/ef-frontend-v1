@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type {
+  GachaCalculatorRechargeResources,
   GachaCalculatorUserConfig,
   PieChartData,
+  PoolMember,
   PoolOption,
+  PoolSchedule,
   Reward,
   RewardStatisticsResultDetail,
   TotalPullsSingle,
@@ -34,7 +37,6 @@ import {
 } from '@/custom/core/gacha/dailyReward';
 import gachaProbabilityTable from '@/custom/core/gacha/data/gacha_probability_table.json';
 import PoolInfoTable from '@/custom/core/gacha/data/pool_info_table.json';
-import VersionTable from '@/custom/core/gacha/data/version_table.json';
 
 import {
   authorityLevelUpReward,
@@ -44,11 +46,15 @@ import {
 
 import { gachaResourceStatisticsResult } from '@/custom/core/gacha/resourceStatisticsResult';
 
-import { packs } from '@/custom/core/packs';
+import { versionTable as VersionTable } from '@/custom/core/gacha/versionTable';
+
+import { availablePacks as packs } from '@/custom/core/packs';
 
 // 当前路由
 const route = useRoute();
 const router = useRouter();
+// 抽卡计算器用户配置在 localStorage 中的存储键
+const GACHA_CALCULATOR_USER_CONFIG_KEY = 'Gacha_Calculator_User_Config';
 
 const { t } = useI18n();
 
@@ -66,20 +72,61 @@ const poolOptions = ref<PoolOption[]>([]);
 
 const displayPoolOptions = ref<string[]>([]);
 
+// 卡池排期数据，作为卡池选项的唯一数据来源
+const poolSchedules = PoolInfoTable as PoolSchedule[];
+// 所有卡池专属礼包 ID 集合（去重），用于按当前卡池筛选专属礼包
+const poolScopedPackIds = [
+  ...new Set(poolSchedules.flatMap((pool) => (pool.poolPackId ? [pool.poolPackId] : []))),
+];
+
+/**
+ * 根据卡池排期表（pool_info_table.json）中的一条记录创建卡池选项
+ * 若该记录通过 poolMembers 引用了其他卡池，则视为合池：时间取并集、名称以「+」连接
+ * @param schedule 卡池排期记录
+ * @returns 组装完成的卡池选项
+ */
+function createPoolOption(schedule: PoolSchedule): PoolOption {
+  // poolMembers 引用其他卡池名，未配置时该选项仅包含自身
+  const memberSchedules = schedule.poolMembers
+    ?.map((poolName) => poolSchedules.find((pool) => pool.poolName === poolName))
+    .filter(Boolean);
+  const members = memberSchedules?.length ? memberSchedules : [schedule];
+
+  const poolMembers: PoolMember[] = members.map((member) => ({
+    poolName: member!.poolName,
+    character: member!.character,
+    packId: member!.poolPackId,
+  }));
+  // 合池的起止时间取组内所有卡池的并集
+  const start = new Date(
+    Math.min(...members.map((member) => new Date(member!.poolStart).getTime())),
+  );
+  const end = new Date(Math.max(...members.map((member) => new Date(member!.poolEnd).getTime())));
+  const isCombined = poolMembers.length > 1;
+
+  return {
+    // 合池时用各角色名以「+」连接，单池时用「角色名卡池」
+    name: isCombined
+      ? poolMembers.map((member) => member.character).join('+')
+      : `${schedule.character}卡池`,
+    start,
+    end,
+    dateText: isCombined
+      ? `${dateFormat(start, 'MMdd')}-${dateFormat(end, 'MMdd')}`
+      : schedule.poolDateStr,
+    type: poolMembers.map((member) => member.poolName).join('+'),
+    poolMembers,
+    disabled: false,
+  };
+}
+
 /**
  * 初始化卡池选项
- *
+ * 逐条读取卡池排期表生成选项，合池由记录中的 poolMembers 字段显式声明
  * */
 function initPoolOptions() {
-  for (const pool of PoolInfoTable) {
-    const poolOption: PoolOption = {
-      name: `${pool.poolName}卡池`,
-      start: new Date(pool.poolStart),
-      end: new Date(pool.poolEnd),
-      dateText: pool.poolDateStr,
-      type: pool.poolName,
-      disabled: false,
-    };
+  for (const pool of poolSchedules) {
+    const poolOption = createPoolOption(pool);
     poolOptions.value.push(poolOption);
     if (poolOption.end.getTime() > Date.now()) {
       displayPoolOptions.value.push(poolOption.name);
@@ -92,6 +139,7 @@ function initPoolOptions() {
     end: new Date('2026/06/23 12:00:00'),
     dateText: '',
     type: '敬请期待',
+    poolMembers: [],
     disabled: true,
   };
 
@@ -101,30 +149,32 @@ function initPoolOptions() {
     end: new Date('2026/12/31 12:00:00'),
     dateText: '',
     type: '所有版本',
+    poolMembers: [],
     disabled: true,
   };
 
   poolOptions.value.push(poolOption, allVersionOption);
 }
 
-//  {
-//     name: '待定',
-//     color: '#FA5B81',
-//     start: new Date('2026/02/24 12:00:00'),
-//     end: new Date('2026/03/12 12:00:00'),
-//     dateText: '',
-//     type: '热烈色彩',
-//     disabled: true,
-//   },
-
+/**
+ * 当前卡池默认值，poolMembers 描述该卡池包含的成员（单池时只有一个成员）
+ */
 const currentPool = ref<PoolOption>({
   name: '轻飘飘的信使',
   start: new Date('2026/02/07 12:00:00'),
   end: new Date('2026/02/24 12:00:00'),
   dateText: '02.07——02.24',
   type: '轻飘飘的信使',
+  poolMembers: [{ poolName: '轻飘飘的信使', character: '轻飘飘的信使' }],
   disabled: false,
 });
+
+// 当前选中的是否为合池（成员数大于 1）
+const isCombinedPoolSelected = computed(() => currentPool.value.poolMembers.length > 1);
+// 当前卡池包含的所有卡池名集合，用于筛选卡池专属礼包的适用范围
+const currentPoolPackNames = computed(
+  () => new Set(currentPool.value.poolMembers.map((member) => member.poolName)),
+);
 
 // let startDate: Date = new Date();
 
@@ -553,6 +603,7 @@ async function captureLeftPanelScreenshot(target: LeftPanelScreenshotTargetValue
 
 /**
  * 选择卡池
+ * 切换后同步到用户配置、刷新寻访情报书名称并重新计算奖励
  *
  * @param option 卡池选项
  * */
@@ -561,7 +612,29 @@ function selectedPool(option: PoolOption): void {
     return;
   }
   currentPool.value = option;
+  gachaCalculatorUserConfig.value.currentPoolName = option.name;
+  saveGachaCalculatorUserConfig();
+  updateSeekIntelBookNames();
   calc();
+}
+
+/**
+ * 选择默认卡池
+ * 优先恢复用户上次选择的卡池，缺失时回退到当前未结束且可用的首个卡池
+ * @param useStoredPool 是否优先使用已保存的卡池名，重置场景下传 false
+ */
+function selectDefaultPool(useStoredPool = true): void {
+  const storedPool = useStoredPool
+    ? poolOptions.value.find(
+        (option) =>
+          option.name === gachaCalculatorUserConfig.value.currentPoolName && !option.disabled,
+      )
+    : undefined;
+  const defaultPool =
+    storedPool ?? poolOptions.value.find((option) => !option.disabled && option.end > new Date());
+  if (defaultPool) {
+    selectedPool(defaultPool);
+  }
 }
 
 /**
@@ -595,15 +668,19 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   slider: {},
   versionVisible: {},
   arsenalExistingQuota: 0,
+  arsenalOriginiumAllocation: 0,
+  // 面板展开状态一并持久化，用于恢复左侧/右侧面板
+  leftPartPanel: [...leftPartPanel.value],
+  rightPartPanel: [...rightPartPanel.value],
 });
 
 /**
  * 保存用户配置
- *
+ * 将当前配置序列化后写入 localStorage
  * */
 function saveGachaCalculatorUserConfig() {
   localStorage.setItem(
-    'Gacha_Calculator_User_Config',
+    GACHA_CALCULATOR_USER_CONFIG_KEY,
     JSON.stringify(gachaCalculatorUserConfig.value),
   );
 }
@@ -668,12 +745,62 @@ const seekIntelBook = ref({
   },
 });
 
+// 合池场景下的第二本寻访情报书，仅在选中合池时展示与计入
+const additionalSeekIntelBook = ref({
+  id: 'seek_intel_book_double_pool',
+  name: { zh: '寻访情报书', en: 'Seek Intel Book' },
+  active: false,
+  type: '通用',
+  module: '库存',
+  version: '通用',
+  start: new Date('2026/01/01'),
+  end: new Date('2099/12/31'),
+  content: {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+    ticketgachaLimitedSingle: 10,
+  },
+});
+
+/**
+ * 依据当前卡池成员刷新两本寻访情报书的显示名称
+ * 单池时只用第一本；合池时第一本对应第一个成员、第二本对应第二个成员
+ */
+function updateSeekIntelBookNames(): void {
+  const [firstPoolMember, additionalPoolMember] = currentPool.value.poolMembers;
+  seekIntelBook.value.name = firstPoolMember
+    ? {
+        zh: `寻访情报书（${firstPoolMember.character}卡池）`,
+        en: `${firstPoolMember.character} Pool Seek Intel Book`,
+      }
+    : { zh: '寻访情报书', en: 'Seek Intel Book' };
+  additionalSeekIntelBook.value.name = additionalPoolMember
+    ? {
+        zh: `寻访情报书（${additionalPoolMember.character}卡池）`,
+        en: `${additionalPoolMember.character} Pool Seek Intel Book`,
+      }
+    : { zh: '寻访情报书', en: 'Seek Intel Book' };
+}
+
 /**
  * 监听寻访情报书对象变化
  *
  * */
 watch(
   seekIntelBook,
+  (newValue) => {
+    saveUserConfig(newValue.id, newValue.active, 'buttonActive');
+    existingRewardStatistics();
+    allRewardStatisticsV2();
+  },
+  { deep: true },
+);
+
+// 第二本寻访情报书的开关变化同样需要持久化并触发重算
+watch(
+  additionalSeekIntelBook,
   (newValue) => {
     saveUserConfig(newValue.id, newValue.active, 'buttonActive');
     existingRewardStatistics();
@@ -697,7 +824,7 @@ let existingRewardStatisticsResultDetail: RewardStatisticsResultDetail = {
 
 /**
  * 计算库存奖励统计结果
- *
+ * 限时凭证 = 第一本情报书 + 合池时第二本情报书的加成
  * */
 function existingRewardStatistics(): void {
   const result: RewardStatisticsResultDetail = {
@@ -706,7 +833,9 @@ function existingRewardStatistics(): void {
     diamond: existingResource.value.diamond / 1,
     ticketgachaStandardSingle: existingResource.value.ticketgachaStandardSingle / 1,
     ticketgachaSpecialSingle: existingResource.value.ticketgachaSpecialSingle / 1,
-    ticketgachaLimitedSingle: seekIntelBook.value.active ? 10 : 0,
+    ticketgachaLimitedSingle:
+      (seekIntelBook.value.active ? 10 : 0) +
+      (isCombinedPoolSelected.value && additionalSeekIntelBook.value.active ? 10 : 0),
   };
 
   existingRewardStatisticsResultDetail = result;
@@ -845,7 +974,7 @@ function normalizeAuthorityLevelProgress(value: unknown): [number, number] {
     Math.min(AUTHORITY_LEVEL_MAX, Math.max(AUTHORITY_LEVEL_MIN, Math.trunc(level))),
   );
 
-  return firstLevel <= secondLevel ? [firstLevel, secondLevel] : [secondLevel, firstLevel];
+  return firstLevel! <= secondLevel! ? [firstLevel!, secondLevel!] : [secondLevel!, firstLevel!];
 }
 
 function isSameAuthorityLevelProgress(left: readonly number[], right: readonly number[]): boolean {
@@ -948,25 +1077,45 @@ function permanentRewardStatistics(): void {
  */
 
 // 氪金资源状态
-const rechargeResources = ref<{
-  monthlyPass: boolean;
-  battlePass: boolean;
-  protocolCustomization: boolean;
-  monthlyPassDays: number;
-  selectedPacks: Record<string, number>;
-  originiumStones: Record<string, number>;
-}>({
+// selectedPacks 为通用礼包选择，selectedPoolPacks 为按卡池划分的专属礼包选择
+const rechargeResources = ref<GachaCalculatorRechargeResources>({
   monthlyPass: false,
   battlePass: false,
   protocolCustomization: false,
   monthlyPassDays: 30,
   selectedPacks: {},
+  selectedPoolPacks: {},
   originiumStones: {},
 });
 
 const resourceStatisticsResultDetailList = ref<RewardStatisticsResultDetail[]>([]);
 
-// 计算氪金总金额
+/**
+ * 深拷贝氪金资源对象
+ * 用于写入用户配置，避免共享同一引用导致后续修改互相影响
+ * @param resources 待拷贝的氪金资源
+ * @returns 深拷贝后的氪金资源
+ */
+function copyRechargeResources(
+  resources: GachaCalculatorRechargeResources,
+): GachaCalculatorRechargeResources {
+  return {
+    ...resources,
+    selectedPacks: { ...resources.selectedPacks },
+    selectedPoolPacks: Object.fromEntries(
+      Object.entries(resources.selectedPoolPacks).map(([poolName, poolPacks]) => [
+        poolName,
+        { ...poolPacks },
+      ]),
+    ),
+    originiumStones: { ...resources.originiumStones },
+  };
+}
+
+/**
+ * 计算氪金总金额
+ * 累加月卡、协议定制、通用礼包、当前卡池专属礼包与普通源石的花费
+ */
 const paidResourcesTotalPrice = computed(() => {
   let total = 0;
 
@@ -994,6 +1143,23 @@ const paidResourcesTotalPrice = computed(() => {
     }
   }
 
+  // 卡池专属礼包金额（仅统计属于当前卡池的卡池分组）
+  for (const [poolName, poolPackSelections] of Object.entries(
+    rechargeResources.value.selectedPoolPacks,
+  )) {
+    if (!currentPoolPackNames.value.has(poolName)) {
+      continue;
+    }
+    for (const [packId, quantity] of Object.entries(poolPackSelections)) {
+      if (quantity > 0) {
+        const pack = packs[packId as keyof typeof packs];
+        if (pack) {
+          total += pack.price * quantity;
+        }
+      }
+    }
+  }
+
   // 普通源石金额
   for (const [stoneId, quantity] of Object.entries(rechargeResources.value.originiumStones)) {
     if (quantity > 0) {
@@ -1007,9 +1173,12 @@ const paidResourcesTotalPrice = computed(() => {
   return total;
 });
 
+// 氪金资源变化时同步进用户配置并重算统计
 watch(
   rechargeResources,
-  () => {
+  (newValue) => {
+    gachaCalculatorUserConfig.value.rechargeResources = copyRechargeResources(newValue);
+    saveGachaCalculatorUserConfig();
     rechargeResourceStatistics();
     allRewardStatisticsV2();
   },
@@ -1025,6 +1194,10 @@ let rechargeResourceStatisticsResultDetail: RewardStatisticsResultDetail = {
   ticketgachaLimitedSingle: 0,
 };
 
+/**
+ * 重置氪金资源选择，保留月卡与月卡天数
+ * 同时清空通用礼包与卡池专属礼包的选择
+ */
 function resetRechargeResourcesKeepMonthlyPass() {
   rechargeResources.value = {
     monthlyPass: rechargeResources.value.monthlyPass,
@@ -1032,10 +1205,58 @@ function resetRechargeResourcesKeepMonthlyPass() {
     protocolCustomization: false,
     monthlyPassDays: rechargeResources.value.monthlyPassDays,
     selectedPacks: {},
+    selectedPoolPacks: {},
     originiumStones: {},
   };
 }
 
+/**
+ * 将某个礼包的内容按数量折算累加到统计结果中
+ * 支持源石、嵌晶玉、寻访凭证（单抽/十连、限定/特殊/标准）
+ * @param result 目标统计结果，会被就地修改
+ * @param packId 礼包 ID
+ * @param quantity 购买数量
+ */
+function addPackContentsToResourceResult(
+  result: RewardStatisticsResultDetail,
+  packId: string,
+  quantity: number,
+): void {
+  if (quantity <= 0) {
+    return;
+  }
+
+  const pack = packs[packId as keyof typeof packs];
+  if (!pack?.contents) {
+    return;
+  }
+
+  for (const item of pack.contents) {
+    const itemId = item.itemId;
+    if (itemId === 'item_originium_recharge') {
+      result.originiumRecharge += item.quantity * quantity;
+    } else if (itemId === 'item_diamond') {
+      result.diamond += item.quantity * quantity;
+    } else if (itemId.includes('ticketgacha_special_single')) {
+      if (itemId.includes('_lt_')) {
+        result.ticketgachaLimitedSingle += item.quantity * quantity;
+      } else {
+        result.ticketgachaSpecialSingle += item.quantity * quantity;
+      }
+    } else if (itemId.includes('ticketgacha_standard_single')) {
+      result.ticketgachaStandardSingle += item.quantity * quantity;
+    } else if (itemId.includes('ticketgacha_special_ten')) {
+      result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
+    } else if (itemId.includes('ticketgacha_standard_ten')) {
+      result.ticketgachaStandardSingle += item.quantity * 10 * quantity;
+    }
+  }
+}
+
+/**
+ * 计算氪金资源统计结果
+ * 汇总月卡、源石配给、协议定制、通用礼包、当前卡池专属礼包与普通源石
+ */
 function rechargeResourceStatistics(): void {
   const remainingDays = calculateDaysDifference(poolStartDate.value, currentPool.value.end);
 
@@ -1067,32 +1288,20 @@ function rechargeResourceStatistics(): void {
     result.originiumRecharge += 36;
   }
 
-  // 计算选中的礼包
+  // 计算选中的通用礼包
   for (const [packId, quantity] of Object.entries(rechargeResources.value.selectedPacks)) {
-    if (quantity > 0 && packs[packId as keyof typeof packs]) {
-      const pack = packs[packId as keyof typeof packs];
-      if (pack && pack.contents) {
-        for (const item of pack.contents) {
-          const itemId = item.itemId;
-          if (itemId === 'item_originium_recharge') {
-            result.originiumRecharge += item.quantity * quantity;
-          } else if (itemId === 'item_diamond') {
-            result.diamond += item.quantity * quantity;
-          } else if (itemId.includes('ticketgacha_special_single')) {
-            if (itemId.includes('_lt_')) {
-              result.ticketgachaLimitedSingle += item.quantity * quantity;
-            } else {
-              result.ticketgachaSpecialSingle += item.quantity * quantity;
-            }
-          } else if (itemId.includes('ticketgacha_standard_single')) {
-            result.ticketgachaStandardSingle += item.quantity * quantity;
-          } else if (itemId.includes('ticketgacha_special_ten')) {
-            result.ticketgachaSpecialSingle += item.quantity * 10 * quantity;
-          } else if (itemId.includes('ticketgacha_standard_ten')) {
-            result.ticketgachaStandardSingle += item.quantity * 10 * quantity;
-          }
-        }
-      }
+    addPackContentsToResourceResult(result, packId, quantity);
+  }
+
+  // 计算当前卡池专属礼包
+  for (const [poolName, poolPackSelections] of Object.entries(
+    rechargeResources.value.selectedPoolPacks,
+  )) {
+    if (!currentPoolPackNames.value.has(poolName)) {
+      continue;
+    }
+    for (const [packId, quantity] of Object.entries(poolPackSelections)) {
+      addPackContentsToResourceResult(result, packId, quantity);
     }
   }
 
@@ -1260,10 +1469,13 @@ function setPieChart(data: PieChartData[]) {
   myChart.setOption(option);
 }
 
-// 由于expansion-panel折叠会销毁组件，需要监听 panel.value 变化, 当包含 statisticalResult 时, 初始化饼图
+// 左侧面板展开状态变化时同步进用户配置；由于 expansion-panel 折叠会销毁组件，
+// 当包含 statisticalResult 时需要重新初始化饼图
 watch(
   () => [...leftPartPanel.value],
   (newValue) => {
+    gachaCalculatorUserConfig.value.leftPartPanel = [...newValue];
+    saveGachaCalculatorUserConfig();
     scheduleSummaryPanelHeightUpdates();
     if (newValue.includes('statisticalResult')) {
       // 等待组件渲染完成
@@ -1281,6 +1493,15 @@ watch(
         setPieChart(pieChartData);
       });
     }
+  },
+);
+
+// 右侧面板展开状态变化时同步进用户配置，便于下次进入时恢复
+watch(
+  () => [...rightPartPanel.value],
+  (newValue) => {
+    gachaCalculatorUserConfig.value.rightPartPanel = [...newValue];
+    saveGachaCalculatorUserConfig();
   },
 );
 
@@ -1318,12 +1539,114 @@ function migrateOperatorTrainingButtonGroupActive(statusMap: Record<string, bool
   return migrated;
 }
 
+/**
+ * 将未知值规整为「字符串 -> 正整数」的记录
+ * 非对象、非有限数或非正数的项会被过滤掉，数值向下取整
+ * @param value 待规整的原始值
+ * @returns 规整后的记录
+ */
+function normalizeNumberRecord(value: unknown): Record<string, number> {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    Object.entries(value).flatMap(([key, rawValue]) => {
+      const numericValue = Number(rawValue);
+      return Number.isFinite(numericValue) && numericValue > 0
+        ? [[key, Math.floor(numericValue)]]
+        : [];
+    }),
+  );
+}
+
+/**
+ * 将未知值规整为「卡池名 -> 礼包数量记录」的两层结构
+ * @param value 待规整的原始值
+ * @returns 规整后的卡池专属礼包选择
+ */
+function normalizePoolPackSelections(value: unknown): Record<string, Record<string, number>> {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    Object.entries(value).map(([poolName, poolPacks]) => [
+      poolName,
+      normalizeNumberRecord(poolPacks),
+    ]),
+  );
+}
+
+/**
+ * 将未知值规整为字符串数组，不是数组时返回 undefined（表示沿用当前值）
+ * @param value 待规整的原始值
+ * @returns 规整后的字符串数组，或 undefined
+ */
+function normalizePanelState(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) {
+    return undefined;
+  }
+
+  return value.filter((panel): panel is string => typeof panel === 'string');
+}
+
+/**
+ * 加载本地用户配置
+ * 从 localStorage 读取并逐字段规整后回填到各响应式状态，异常时仅打印错误
+ */
 function loadingUserConfig() {
-  const localConfigStr = localStorage.getItem('Gacha_Calculator_User_Config');
+  const localConfigStr = localStorage.getItem(GACHA_CALCULATOR_USER_CONFIG_KEY);
   if (localConfigStr) {
     try {
       const localConfig: GachaCalculatorUserConfig = JSON.parse(localConfigStr);
       let shouldPersistUserConfig = false;
+
+      // 恢复左右面板的展开状态
+      const leftPartPanelState = normalizePanelState(localConfig.leftPartPanel);
+      if (leftPartPanelState) {
+        leftPartPanel.value = leftPartPanelState;
+      }
+      const rightPartPanelState = normalizePanelState(localConfig.rightPartPanel);
+      if (rightPartPanelState) {
+        rightPartPanel.value = rightPartPanelState;
+      }
+
+      // 恢复上次选择的卡池与卡池显示筛选
+      if (localConfig.currentPoolName) {
+        gachaCalculatorUserConfig.value.currentPoolName = localConfig.currentPoolName;
+      }
+      const displayPoolOptionsState = normalizePanelState(localConfig.displayPoolOptions);
+      if (displayPoolOptionsState) {
+        displayPoolOptions.value = displayPoolOptionsState;
+      }
+
+      // 恢复氪金资源配置（含卡池专属礼包），逐字段规整后回填
+      if (localConfig.rechargeResources) {
+        const savedRechargeResources = localConfig.rechargeResources;
+        const monthlyPassDays = Number(savedRechargeResources.monthlyPassDays);
+        rechargeResources.value = {
+          monthlyPass: savedRechargeResources.monthlyPass === true,
+          battlePass: savedRechargeResources.battlePass === true,
+          protocolCustomization: savedRechargeResources.protocolCustomization === true,
+          monthlyPassDays:
+            Number.isFinite(monthlyPassDays) && monthlyPassDays >= 0
+              ? Math.floor(monthlyPassDays)
+              : 30,
+          selectedPacks: normalizeNumberRecord(savedRechargeResources.selectedPacks),
+          selectedPoolPacks: normalizePoolPackSelections(savedRechargeResources.selectedPoolPacks),
+          originiumStones: normalizeNumberRecord(savedRechargeResources.originiumStones),
+        };
+      }
+
+      // 恢复武库源石分配数量
+      if (localConfig.arsenalOriginiumAllocation !== undefined) {
+        const allocation = Number(localConfig.arsenalOriginiumAllocation);
+        if (Number.isFinite(allocation)) {
+          arsenalOriginiumAllocation.value = Math.max(0, Math.floor(allocation));
+        }
+      }
+
       // 使用localConfig
       if (localConfig.rangeSlider) {
         for (const key in localConfig.rangeSlider) {
@@ -1353,9 +1676,13 @@ function loadingUserConfig() {
       if (localConfig.buttonActive) {
         gachaCalculatorUserConfig.value.buttonActive = localConfig.buttonActive;
 
-        // 加载寻访情报书状态
+        // 加载寻访情报书状态（含合池场景的第二本情报书）
         if (localConfig.buttonActive['seek_intel_book'] !== undefined) {
           seekIntelBook.value.active = localConfig.buttonActive['seek_intel_book'] || false;
+        }
+        if (localConfig.buttonActive['seek_intel_book_double_pool'] !== undefined) {
+          additionalSeekIntelBook.value.active =
+            localConfig.buttonActive['seek_intel_book_double_pool'] || false;
         }
       }
 
@@ -1527,9 +1854,17 @@ function initSummaryPanelHeightObserver() {
   });
 }
 
+/**
+ * 组件挂载时初始化
+ * 初始化卡池选项、加载用户配置、恢复一次性奖励提示状态、渲染饼图并选定默认卡池
+ */
 onMounted(() => {
   initPoolOptions();
+  // 需在加载配置前判断本地是否已有配置，用于决定是否套用默认版本选择
+  const hasStoredUserConfig = localStorage.getItem(GACHA_CALCULATOR_USER_CONFIG_KEY) !== null;
   loadingUserConfig();
+  oneTimeRewardNoticeDismissed.value =
+    window.localStorage.getItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY) === 'true';
   syncAuthorityLevelUpReward();
   const gachaCalculatorPieChart: HTMLElement | null = document.querySelector(
     '#gacha-calculator-pie-chart',
@@ -1539,11 +1874,11 @@ onMounted(() => {
   }
 
   setPieChart(pieChartData);
-  for (const option of poolOptions.value) {
-    if (option.end > new Date()) {
-      selectedPool(option);
-      break;
-    }
+  // 恢复已保存的卡池，找不到时回退到当前可用卡池
+  selectDefaultPool();
+  // 首次访问（无本地配置）时给出默认版本选择
+  if (!hasStoredUserConfig) {
+    initializeDefaultVersionSelection();
   }
 
   syncCurrentModeFromRoute();
@@ -1746,7 +2081,10 @@ const arsenalRechargeQuota = computed(() => {
   let quota = 0;
 
   if (rechargeResources.value.protocolCustomization) {
-    quota += getPackTotalWeaponQuota(packs['bp_track_pay'], false);
+    const bpTrackPayPack = packs['bp_track_pay'];
+    if (bpTrackPayPack) {
+      quota += getPackTotalWeaponQuota(bpTrackPayPack, false);
+    }
   }
 
   for (const [packId, quantity] of Object.entries(rechargeResources.value.selectedPacks)) {
@@ -1788,8 +2126,15 @@ function normalizeArsenalExistingQuota(value: number | string | null | undefined
   return Math.max(0, Math.floor(numericValue));
 }
 
+/**
+ * 设置武库源石分配数量，并同步持久化到用户配置
+ * @param value 新的分配数量
+ */
 function setArsenalOriginiumAllocation(value: number | null) {
-  arsenalOriginiumAllocation.value = normalizeArsenalOriginiumAllocation(value);
+  const allocation = normalizeArsenalOriginiumAllocation(value);
+  arsenalOriginiumAllocation.value = allocation;
+  gachaCalculatorUserConfig.value.arsenalOriginiumAllocation = allocation;
+  saveGachaCalculatorUserConfig();
 }
 
 function setArsenalExistingQuota(value: number | null) {
@@ -1916,11 +2261,13 @@ function rewardIsExpired(reward: Reward): boolean {
 
 /**
  * 判断奖励类型是否匹配当前池子类型
+ * 合池时只要奖励类型命中任一成员卡池名即视为匹配
  * @param reward 奖励对象
  * @returns 是否匹配
  */
 function rewardMatchesType(reward: Reward): boolean {
-  return '通用' === reward.type || reward.type === currentPool.value.type;
+  const currentPoolTypes = currentPool.value.poolMembers.map((member) => member.poolName);
+  return '通用' === reward.type || currentPoolTypes.includes(reward.type);
 }
 
 /**
@@ -1942,19 +2289,59 @@ function shouldDisplayAndCount(reward: Reward): boolean {
   return rewardIsExpired(reward) && rewardMatchesType(reward) && rewardMatchesVersion(reward);
 }
 
-function resetGachaCalculator() {
+// 版本前瞻网页奖励提示信息（需玩家手动前往网页领取）
+const oneTimeRewardNotice = {
+  name: '烟火生缘·网页奖励',
+  start: new Date('2026/10/15 07:00:00'),
+  end: new Date('2026/11/26 06:00:00'),
+  link: 'https://endfield.hypergryph.com/version_briefing/latest?source_from=yituliu',
+  resource: '嵌晶玉',
+  resourceAmount: 1000,
+} as const;
+
+// 一次性奖励提示的关闭状态在 localStorage 中的存储键
+const ONE_TIME_REWARD_NOTICE_DISMISSED_KEY = 'gacha-calculator-one-time-reward-notice-dismissed';
+// 一次性奖励提示是否已被用户关闭
+const oneTimeRewardNoticeDismissed = ref(false);
+
+/**
+ * 关闭一次性奖励提示，并记录到 localStorage 以免下次再次弹出
+ */
+function dismissOneTimeRewardNotice(): void {
+  oneTimeRewardNoticeDismissed.value = true;
+  window.localStorage.setItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY, 'true');
+}
+
+/**
+ * 应用默认版本选择
+ * 默认显示并激活最后一个版本，同时把倒数第二个版本设为可见（便于对比）
+ */
+function initializeDefaultVersionSelection(): void {
   const lastVersion = versionOptions.value.at(-1);
+  const previousVersion = versionOptions.value.at(-2);
   if (!lastVersion) {
     return;
   }
 
   for (const version of versionOptions.value) {
+    const visible = version === lastVersion || version === previousVersion;
     const active = version === lastVersion;
-    setVersionVisible(version, active);
+    setVersionVisible(version, visible);
     setVersionRewardsActive(version, active);
   }
 
   calc();
+}
+
+/**
+ * 重置抽卡计算器
+ * 清除一次性奖励提示记录、恢复默认卡池与默认版本选择
+ */
+function resetGachaCalculator() {
+  oneTimeRewardNoticeDismissed.value = false;
+  window.localStorage.removeItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY);
+  selectDefaultPool(false);
+  initializeDefaultVersionSelection();
 }
 
 // 常驻奖励分类名称列表
@@ -2025,8 +2412,14 @@ const permanentRewardGroups = computed(() => {
   );
 });
 
+/**
+ * 切换卡池显示筛选，并同步持久化到用户配置
+ * @param poolName 被切换显示状态的卡池名
+ */
 function selectDisplayPoolOptions(poolName: string) {
   displayPoolOptions.value = toggleStringInArray(poolName, displayPoolOptions.value);
+  gachaCalculatorUserConfig.value.displayPoolOptions = [...displayPoolOptions.value];
+  saveGachaCalculatorUserConfig();
 }
 
 /**
@@ -2173,7 +2566,12 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               </div>
             </div>
 
-            <div v-show="'辉光庆典' !== currentPool.name">
+            <!-- 合池时隐藏 UP 概率（两个卡池概率不同，无统一数值） -->
+            <div
+              v-show="'辉光庆典' !== currentPool.name"
+              class="gacha-calculator-pool-probability"
+              :class="{ 'gacha-calculator-pool-probability-hidden': isCombinedPoolSelected }"
+            >
               拿到卡池UP干员的概率：{{ numberFloor(gachaProbability * 100) }}%
             </div>
           </v-expansion-panel-text>
@@ -2786,6 +3184,65 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
       <!-- <v-alert style="margin-bottom: 8px" type="info">
         基础寻访次数仅在总计模块显示，各模块不再单独显示
       </v-alert> -->
+      <!-- 版本前瞻网页奖励提示：需手动前往网页领取，可关闭且状态持久化 -->
+      <section
+        v-if="!oneTimeRewardNoticeDismissed"
+        aria-label="一次性奖励"
+        class="gacha-calculator-one-time-rewards"
+        data-gacha-screenshot-target="one-time"
+      >
+        <div class="gacha-calculator-one-time-rewards-heading">
+          <div class="gacha-calculator-one-time-rewards-title">
+            <v-icon icon="mdi-gift-outline" size="small" />
+            <span>版本前瞻奖励需在网页端或游戏内置浏览器手动领取！</span>
+          </div>
+        </div>
+
+        <div class="gacha-calculator-one-time-reward">
+          <div class="gacha-calculator-one-time-reward-main">
+            <div class="gacha-calculator-one-time-reward-copy">
+              <strong>{{ oneTimeRewardNotice.name }}</strong>
+              <span class="gacha-calculator-one-time-reward-period">
+                有效期：{{ dateFormat(oneTimeRewardNotice.start, 'MM/dd HH:mm') }} -
+                {{ dateFormat(oneTimeRewardNotice.end, 'MM/dd HH:mm') }}
+              </span>
+            </div>
+
+            <div class="gacha-calculator-one-time-reward-resources">
+              <div class="gacha-calculator-one-time-reward-resource">
+                <img
+                  :alt="oneTimeRewardNotice.resource"
+                  src="https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png"
+                />
+                <span>× {{ oneTimeRewardNotice.resourceAmount }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gacha-calculator-one-time-reward-actions">
+            <v-btn
+              :href="oneTimeRewardNotice.link"
+              prepend-icon="mdi-open-in-new"
+              rel="noopener noreferrer"
+              size="small"
+              target="_blank"
+              variant="tonal"
+            >
+              未领取，点击跳转
+            </v-btn>
+            <v-btn
+              color="success"
+              prepend-icon="mdi-check-circle-outline"
+              size="small"
+              variant="tonal"
+              @click="dismissOneTimeRewardNotice"
+            >
+              已领取，不再提示
+            </v-btn>
+          </div>
+        </div>
+      </section>
+
       <v-expansion-panels v-model="rightPartPanel" multiple>
         <!--库存-->
         <v-expansion-panel data-gacha-screenshot-target="existing" value="existing">
@@ -2859,6 +3316,13 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
               :hide-version="true"
               :reward="seekIntelBook"
               @click="seekIntelBook.active = !seekIntelBook.active"
+            />
+            <!-- 合池时额外展示第二本寻访情报书 -->
+            <GachaCalculatorResourceSingleBtn
+              v-if="isCombinedPoolSelected"
+              :hide-version="true"
+              :reward="additionalSeekIntelBook"
+              @click="additionalSeekIntelBook.active = !additionalSeekIntelBook.active"
             />
           </v-expansion-panel-text>
         </v-expansion-panel>
@@ -2994,7 +3458,13 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
-            <GachaCalculatorPaidResources v-model="rechargeResources" :current-pool="currentPool" />
+            <!-- 传入卡池成员与专属礼包 ID，用于展示当前卡池对应的专属礼包 -->
+            <GachaCalculatorPaidResources
+              v-model="rechargeResources"
+              :current-pool="currentPool"
+              :pool-members="currentPool.poolMembers"
+              :pool-scoped-pack-ids="poolScopedPackIds"
+            />
           </v-expansion-panel-text>
         </v-expansion-panel>
 
@@ -3105,6 +3575,11 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   display: none !important;
 }
 
+/* 合池时隐藏 UP 概率：保留占位以避免布局跳动 */
+.gacha-calculator-pool-probability-hidden {
+  visibility: hidden;
+}
+
 .gacha-calculator-debug-tools {
   display: grid;
   gap: 12px;
@@ -3135,6 +3610,96 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
   margin: -2px 4px 6px;
   color: rgba(var(--v-theme-on-surface), 0.55);
   font-size: 0.7rem;
+}
+
+/* 版本前瞻网页奖励提示区块 */
+.gacha-calculator-one-time-rewards {
+  margin: 8px 0;
+  padding: 14px 16px 12px;
+  border: 2px solid #f59e0b;
+  border-radius: 6px;
+  background: rgba(254, 243, 199, 0.96);
+  color: #78350f;
+  box-shadow: 0 2px 8px rgba(146, 64, 14, 0.18);
+}
+
+.gacha-calculator-one-time-rewards-heading,
+.gacha-calculator-one-time-reward-main,
+.gacha-calculator-one-time-reward-actions {
+  display: flex;
+  align-items: center;
+}
+
+.gacha-calculator-one-time-rewards-heading {
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.gacha-calculator-one-time-rewards-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.gacha-calculator-one-time-rewards-title .v-icon {
+  color: #d97706;
+}
+
+.gacha-calculator-one-time-reward {
+  padding-top: 10px;
+  border-top: 1px solid rgba(180, 83, 9, 0.25);
+}
+
+.gacha-calculator-one-time-reward-main {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gacha-calculator-one-time-reward-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.gacha-calculator-one-time-reward-copy strong {
+  font-size: 0.95rem;
+}
+
+.gacha-calculator-one-time-reward-period {
+  font-size: 0.78rem;
+  color: rgba(120, 53, 15, 0.72);
+}
+
+.gacha-calculator-one-time-reward-resources {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.gacha-calculator-one-time-reward-resource {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.gacha-calculator-one-time-reward-resource img {
+  width: 32px;
+  height: 32px;
+}
+
+.gacha-calculator-one-time-reward-actions {
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.gacha-calculator-one-time-reward-actions .v-btn {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .gacha-calculator-card-title {
@@ -3713,6 +4278,29 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
   .gacha-calculator-warning {
     display: none;
+  }
+
+  /* 窄屏下一次性奖励提示改为纵向排列 */
+  .gacha-calculator-one-time-rewards {
+    margin: 8px 0;
+    padding: 12px;
+  }
+
+  .gacha-calculator-one-time-rewards-heading {
+    align-items: flex-start;
+  }
+
+  .gacha-calculator-one-time-reward-main {
+    display: grid;
+    gap: 8px;
+  }
+
+  .gacha-calculator-one-time-reward-resources {
+    flex-wrap: wrap;
+  }
+
+  .gacha-calculator-one-time-reward-actions {
+    gap: 6px;
   }
 
   .gacha-calculator-pool-selector {

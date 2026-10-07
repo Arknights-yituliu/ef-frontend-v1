@@ -10,6 +10,7 @@ export interface PackContent {
 }
 
 export type PackCategory = string;
+export const DELISTED_PACK_CATEGORY = 'delisted_pack';
 export type PackGachaMode = 'operator' | 'weapon';
 
 export interface WeaponQuotaBaseline {

@@ -140,6 +140,26 @@
     }
   },
   {
+    "id": "wuling_regional_stock_bill_store_reward_20261015",
+    "name": {
+      "zh": "武陵·调度券商店",
+      "en": ""
+    },
+    "start": "2026/10/15 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "武陵城地图",
     "name": {
       "zh": "武陵城地图",
@@ -266,9 +286,9 @@
     "tips": ["包含储藏箱、机器人和处理险情"]
   },
   {
-    "id": "藏剑谷地图（预估）",
+    "id": "藏剑谷地图",
     "name": {
-      "zh": "藏剑谷地图（预估）",
+      "zh": "藏剑谷地图",
       "en": ""
     },
     "start": "2026/03/12 12:00:00",
@@ -287,9 +307,9 @@
     "tips": ["包含储藏箱、机器人和处理险情"]
   },
   {
-    "id": "应龙关+北部禁区地图",
+    "id": "应龙关地图",
     "name": {
-      "zh": "应龙关+北部禁区地图",
+      "zh": "应龙关地图",
       "en": ""
     },
     "start": "2026/01/22 12:00:00",
@@ -299,18 +319,39 @@
     "active": false,
     "version": "向渊行",
     "content": {
-      "originiumRecharge": 3,
-      "diamond": 3920,
+      "originiumRecharge": 1,
+      "diamond": 810,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     },
-    "tips": ["包含储藏箱、机器人和处理险情"]
+    "tips": ["包含：储藏箱、机器人、处理险情、浮空回收"]
   },
   {
-    "id": "雪松林+遂明地图",
+    "id": "北部禁区地图",
     "name": {
-      "zh": "雪松林+遂明地图",
+      "zh": "北部禁区地图",
+      "en": ""
+    },
+    "start": "2026/01/22 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 810,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含：储藏箱、机器人、处理险情、浮空回收"]
+  },
+  {
+    "id": "雪松林地图",
+    "name": {
+      "zh": "雪松林地图",
       "en": ""
     },
     "start": "2026/09/02 12:00:00",
@@ -320,13 +361,55 @@
     "active": false,
     "version": "雪凇幽梦",
     "content": {
-      "originiumRecharge": 5,
-      "diamond": 2000,
+      "originiumRecharge": 2,
+      "diamond": 1555,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     },
-    "tips": ["包含储藏箱、机器人和处理险情"]
+    "tips": ["包含：储藏箱、机器人、处理险情、浮空回收"]
+  },
+  {
+    "id": "遂明地图",
+    "name": {
+      "zh": "遂明地图",
+      "en": ""
+    },
+    "start": "2026/09/24 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 1440,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含：储藏箱、机器人、处理险情、浮空回收"]
+  },
+  {
+    "id": "新版本地图",
+    "name": {
+      "zh": "新版本地图",
+      "en": ""
+    },
+    "start": "2026/10/15 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 5,
+      "diamond": 4000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含：储藏箱、机器人、处理险情、浮空回收"]
   },
   {
     "id": "武陵·地区建设等级1-6",
@@ -469,6 +552,26 @@
     }
   },
   {
+    "id": "武陵·地区建设等级28-33",
+    "name": {
+      "zh": "武陵·地区建设等级28-33",
+      "en": ""
+    },
+    "start": "2026/10/15 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 6,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "武陵·醚质阶段1-8",
     "name": {
       "zh": "武陵·醚质阶段1-8",
@@ -602,6 +705,26 @@
     "version": "雪凇幽梦",
     "content": {
       "originiumRecharge": 3,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "武陵·醚质阶段20-21",
+    "name": {
+      "zh": "武陵·醚质阶段20-21",
+      "en": ""
+    },
+    "start": "2026/10/15 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 6,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,

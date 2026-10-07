@@ -17,10 +17,26 @@ usePageSeo({
   description: '自定义版本资源统计图内容、KV 与展示文案，导出《明日方舟：终末地》版本奖励汇总图。',
 });
 
-const versionInfo: VersionTableItem = versionTable[5] as VersionTableItem;
-
-const currentVersion = ref<VersionTableItem>(versionInfo);
+const currentVersion = ref<VersionTableItem>(versionTable[6] as VersionTableItem);
 getVersionReward(currentVersion.value);
+
+/** 控制台版本下拉框当前选中的版本名称 */
+const selectedVersionName = ref(currentVersion.value.version);
+
+/**
+ * 切换当前展示版本
+ * 更新当前版本、重新生成该版本奖励数据，并按新数据量重置绘图区高度
+ * @param versionName 目标版本名称
+ */
+function handleVersionChange(versionName: string) {
+  const target = versionTable.find((item) => item.version === versionName);
+  if (!target) {
+    return;
+  }
+  currentVersion.value = target;
+  getVersionReward(target);
+  controlPanel.value.rewardItemGroupHeight = getDefaultRewardItemGroupHeight();
+}
 
 const rewardItemGroupHeightMin = 800;
 const rewardItemGroupHeightMax = 2600;
@@ -129,6 +145,33 @@ const groupedRewards = computed(() => {
 
 /** 是否在奖励项中显示开始和结束日期 */
 const showDates = ref(false);
+
+/** 是否在模块名称下方显示该模块的限定抽卡数（侧边控制） */
+const showModuleLimitedPulls = ref(true);
+
+/**
+ * 统计各顶层分组（模块）的限定抽卡数
+ * 限定抽卡 = 特许寻访 + 限时寻访 + 衍质源石折算 + 合成玉折算（不含标准寻访）
+ * 折算口径与攒抽计算器一致：衍质源石 75/500，合成玉 1/500
+ * @returns 以模块名称为键、限定抽卡数为值的映射
+ */
+const moduleLimitedPulls = computed<Record<string, number>>(() => {
+  const result: Record<string, number> = {};
+  for (const [module, rewards] of Object.entries(groupedRewards.value)) {
+    const pulls = rewards.reduce((sum, reward) => {
+      const content = reward.content;
+      return (
+        sum +
+        content.ticketgachaSpecialSingle +
+        content.ticketgachaLimitedSingle +
+        (content.originiumRecharge * 75) / 500 +
+        content.diamond / 500
+      );
+    }, 0);
+    result[module] = numberFloor(pulls, 0);
+  }
+  return result;
+});
 
 /**
  * 格式化奖励日期为 yyyy-MM-dd 格式
@@ -376,7 +419,7 @@ function handleImageUpload(event: Event) {
 
           <!-- 版本名称 -->
           <div class="version-section">
-            <h2 class="version-title">{{ versionInfo.version }}</h2>
+            <h2 class="version-title">{{ currentVersion.version }}</h2>
           </div>
 
           <!-- 其他文本（更新日期和说明） -->
@@ -394,7 +437,15 @@ function handleImageUpload(event: Event) {
         >
           <template v-for="(rewards, module) in groupedRewards" :key="module">
             <!-- 分组标题 -->
-            <div class="version-reward-module-title">{{ module }}</div>
+            <div class="version-reward-module-title">
+              <span>{{ module }}</span>
+              <span
+                v-if="showModuleLimitedPulls && moduleLimitedPulls[module]"
+                class="version-reward-module-pulls"
+              >
+                限定 {{ moduleLimitedPulls[module] }} 抽
+              </span>
+            </div>
             <!-- 分组内的奖励项 -->
             <div v-for="reward in rewards" :key="reward.id" class="version-reward-item">
               <div class="version-reward-item-row">
@@ -582,6 +633,16 @@ function handleImageUpload(event: Event) {
     <div class="control-panel">
       <h2>控制台</h2>
 
+      <!-- 版本切换 -->
+      <div class="control-item">
+        <label>版本</label>
+        <select v-model="selectedVersionName" @change="handleVersionChange(selectedVersionName)">
+          <option v-for="item in versionTable" :key="item.version" :value="item.version">
+            {{ item.version }}
+          </option>
+        </select>
+      </div>
+
       <!-- 图片上传 -->
       <div class="control-item">
         <label>头图上传 (KV)</label>
@@ -608,6 +669,14 @@ function handleImageUpload(event: Event) {
         <label>
           <input v-model="showDates" type="checkbox" />
           显示奖励日期（开始 ~ 结束）
+        </label>
+      </div>
+
+      <!-- 显示模块限定抽卡数开关 -->
+      <div class="control-item">
+        <label>
+          <input v-model="showModuleLimitedPulls" type="checkbox" />
+          显示模块限定抽卡数（特许 + 限时）
         </label>
       </div>
 
@@ -815,7 +884,10 @@ function handleImageUpload(event: Event) {
   height: 64px;
   width: 500px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 1.05;
   padding: 0 20px;
   margin-bottom: 12px;
   background-color: rgb(32, 32, 32, 0.85);
@@ -823,6 +895,15 @@ function handleImageUpload(event: Event) {
   border-left: 8px solid #fffa00;
   break-inside: avoid;
   border-radius: 8px;
+}
+
+/* 模块名称下方的限定抽卡数 */
+.version-reward-module-pulls {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2;
+  color: #fff;
+  opacity: 0.8;
 }
 
 /* ========== 2.2.2.1 单个奖励项 ========== */
@@ -1052,6 +1133,7 @@ function handleImageUpload(event: Event) {
 .control-item input[type='text'],
 .control-item input[type='date'],
 .control-item input[type='number'],
+.control-item select,
 .control-item textarea {
   width: 100%;
   padding: 10px;
