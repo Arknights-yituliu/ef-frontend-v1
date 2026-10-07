@@ -170,7 +170,10 @@ const groupedRewards = computed(() => {
 const showDates = ref(false);
 
 /** 是否在模块名称下方显示该模块的限定抽卡数（侧边控制） */
-const showModuleLimitedPulls = ref(true);
+const showModuleLimitedPulls = ref(false);
+
+/** 是否隐藏页脚的「信息发布」行（侧边控制，默认隐藏） */
+const hideInfoPublish = ref(true);
 
 /**
  * 统计各顶层分组（模块）的限定抽卡数
@@ -319,6 +322,46 @@ function resetRewardItemGroupHeight() {
   controlPanel.value.rewardItemGroupHeight = getDefaultRewardItemGroupHeight();
 }
 
+/** 左侧绘图区 DOM 引用，供图片导出使用 */
+const canvasAreaRef = ref<HTMLElement | null>(null);
+
+/** 是否正在导出图片，用于禁用按钮并显示提示文案 */
+const isExporting = ref(false);
+
+/**
+ * 将左侧绘图区导出为 PNG 图片并触发下载
+ * 使用 html2canvas 按设备像素比放大截图，再通过临时 <a> 触发浏览器下载
+ */
+async function exportCanvasAsImage() {
+  const element = canvasAreaRef.value;
+  if (!element || isExporting.value) {
+    return;
+  }
+  isExporting.value = true;
+  try {
+    const { default: html2canvas } = await import('html2canvas');
+    const canvas = await html2canvas(element, {
+      // 允许截取跨域图片（头图、资源图标等）
+      allowTaint: false,
+      backgroundColor: '#ffffff',
+      imageTimeout: 20_000,
+      logging: false,
+      scale: window.devicePixelRatio || 1,
+      useCORS: true,
+    });
+    const dataUrl = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.download = `版本资源作图-${currentVersion.value.version}-${dateFormat(new Date(), 'yyyyMMdd')}.png`;
+    link.href = dataUrl;
+    link.click();
+  } catch (error) {
+    console.error('导出图片失败:', error);
+    alert('导出图片失败，请重试。');
+  } finally {
+    isExporting.value = false;
+  }
+}
+
 // 图片上传处理
 function handleImageUpload(event: Event) {
   console.log('=== handleImageUpload 开始执行 ===');
@@ -424,7 +467,7 @@ function handleImageUpload(event: Event) {
 <template>
   <div class="version-reward-diy-container">
     <!-- 左侧绘图区 -->
-    <div class="canvas-area">
+    <div ref="canvasAreaRef" class="canvas-area">
       <!-- 头图 -->
       <img alt="" class="version-reward-bg-kv" :src="controlPanel.kvImage" />
       <!-- 等高线背景 -->
@@ -640,7 +683,7 @@ function handleImageUpload(event: Event) {
               <td></td>
               <td>https://ef.yituliu.cn/tools/gacha-calculator/</td>
             </tr>
-            <tr>
+            <tr v-if="!hideInfoPublish">
               <td>信息发布：</td>
               <td>逻辑元LogicalByte@Bilibili</td>
             </tr>
@@ -703,6 +746,14 @@ function handleImageUpload(event: Event) {
         </label>
       </div>
 
+      <!-- 隐藏信息发布开关 -->
+      <div class="control-item">
+        <label>
+          <input v-model="hideInfoPublish" type="checkbox" />
+          隐藏信息发布（页脚署名行）
+        </label>
+      </div>
+
       <div class="control-item">
         <label>奖励项区域高度</label>
         <div class="height-control">
@@ -725,6 +776,18 @@ function handleImageUpload(event: Event) {
             <button type="button" @click="resetRewardItemGroupHeight">自动高度</button>
           </div>
         </div>
+      </div>
+
+      <!-- 图片导出 -->
+      <div class="control-item">
+        <button
+          class="export-button"
+          :disabled="isExporting"
+          type="button"
+          @click="exportCanvasAsImage"
+        >
+          {{ isExporting ? '导出中…' : '导出图片' }}
+        </button>
       </div>
     </div>
   </div>
@@ -1226,6 +1289,28 @@ function handleImageUpload(event: Event) {
 
 .height-control button:hover {
   border-color: #333;
+}
+
+/* 图片导出按钮 */
+.export-button {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fffa00;
+  color: #333;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.export-button:hover:not(:disabled) {
+  border-color: #333;
+}
+
+.export-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* ========== 4. 颜色工具类 ========== */
