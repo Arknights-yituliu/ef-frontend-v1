@@ -1,4 +1,4 @@
-import type { Reward } from '#shared/types/gacha-calculator';
+import type { PoolSchedule, Reward } from '#shared/types/gacha-calculator';
 import {
   groupAndMergeRewardsByVersion,
   groupAndMergeTasksByVersionAndModule,
@@ -119,8 +119,13 @@ permanentRewardTable.value.sort((a: { start: string | Date }, b: { start: string
 function createNewPoolActivity() {
   permanentRewardTable.value.push(reward1);
 
-  for (const item of PoolInfoTable) {
+  for (const item of PoolInfoTable as PoolSchedule[]) {
     const startDate = new Date(item.poolStart);
+
+    // 仅用于生成卡池选项的记录（如合池）不参与奖励生成
+    if (item.skipReward) {
+      continue;
+    }
 
     if (item.narrative) {
       const reward2: Reward = {

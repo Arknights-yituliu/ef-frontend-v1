@@ -152,7 +152,6 @@
     "versionStart": "2026/09/02 12:00:00",
     "versionEnd": "2026/10/15 12:00:00",
     "version": "丹青渡",
-    "poolGroup": "version-1-4",
     "poolPackId": "seasonal_giftpack",
     "combatDrills": true,
     "narrative": false
@@ -166,9 +165,20 @@
     "versionStart": "2026/09/02 12:00:00",
     "versionEnd": "2026/10/15 12:00:00",
     "version": "丹青渡",
-    "poolGroup": "version-1-4",
     "poolPackId": "seasonal_giftpack",
     "combatDrills": true,
     "narrative": true
+  },
+  {
+    "poolName": "祀+明河",
+    "character": "祀+明河",
+    "poolStart": "2026/10/15 12:00:00",
+    "poolEnd": "2026/11/26 12:00:00",
+    "poolDateStr": "1015-1126",
+    "versionStart": "2026/09/02 12:00:00",
+    "versionEnd": "2026/10/15 12:00:00",
+    "version": "丹青渡",
+    "poolMembers": ["祀", "明河"],
+    "skipReward": true
   }
 ]

@@ -173,3 +173,36 @@ export type PoolOption = {
   poolMembers: PoolMember[];
   disabled: boolean;
 };
+
+/**
+ * 卡池排期表（pool_info_table.json）中的单条记录结构
+ * 每条记录直接对应攒抽计算器中的一个卡池选项
+ */
+export type PoolSchedule = {
+  /** 卡池名称 */
+  poolName: string;
+  /** 卡池角色名 */
+  character: string;
+  /** 卡池开始时间 */
+  poolStart: string;
+  /** 卡池结束时间 */
+  poolEnd: string;
+  /** 卡池日期字符串 */
+  poolDateStr: string;
+  /** 所属版本开始时间 */
+  versionStart: string;
+  /** 所属版本结束时间 */
+  versionEnd: string;
+  /** 所属版本名称 */
+  version: string;
+  /** 是否生成作战演练奖励 */
+  combatDrills?: boolean;
+  /** 是否生成干员叙事奖励 */
+  narrative?: boolean;
+  /** 合池所引用的子卡池名称列表，未配置时该选项仅包含自身 */
+  poolMembers?: string[];
+  /** 卡池专属礼包 ID */
+  poolPackId?: string;
+  /** 生成动态奖励时是否跳过该条记录（合池等仅用于生成选项的记录） */
+  skipReward?: boolean;
+};

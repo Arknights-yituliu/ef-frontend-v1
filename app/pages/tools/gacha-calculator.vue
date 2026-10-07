@@ -5,6 +5,7 @@ import type {
   PieChartData,
   PoolMember,
   PoolOption,
+  PoolSchedule,
   Reward,
   RewardStatisticsResultDetail,
   TotalPullsSingle,
@@ -71,19 +72,6 @@ const poolOptions = ref<PoolOption[]>([]);
 
 const displayPoolOptions = ref<string[]>([]);
 
-/**
- * 卡池排期表（pool_info_table.json）中的单条记录结构
- */
-type PoolSchedule = {
-  poolName: string;
-  character: string;
-  poolStart: string;
-  poolEnd: string;
-  poolDateStr: string;
-  poolGroup?: string;
-  poolPackId?: string;
-};
-
 // 卡池排期数据，作为卡池选项的唯一数据来源
 const poolSchedules = PoolInfoTable as PoolSchedule[];
 // 所有卡池专属礼包 ID 集合（去重），用于按当前卡池筛选专属礼包
@@ -92,37 +80,40 @@ const poolScopedPackIds = [
 ];
 
 /**
- * 根据一组卡池排期创建卡池选项
- * 多个排期归为一组时会合并为「合池」选项：时间取并集，名称以「+」连接
- * @param pools 属于同一选项的卡池排期列表
+ * 根据卡池排期表（pool_info_table.json）中的一条记录创建卡池选项
+ * 若该记录通过 poolMembers 引用了其他卡池，则视为合池：时间取并集、名称以「+」连接
+ * @param schedule 卡池排期记录
  * @returns 组装完成的卡池选项
  */
-function createPoolOption(pools: PoolSchedule[]): PoolOption {
-  const firstPool = pools[0];
-  if (!firstPool) {
-    throw new Error('无法在缺少卡池数据的情况下创建卡池选项');
-  }
+function createPoolOption(schedule: PoolSchedule): PoolOption {
+  // poolMembers 引用其他卡池名，未配置时该选项仅包含自身
+  const memberSchedules = schedule.poolMembers
+    ?.map((poolName) => poolSchedules.find((pool) => pool.poolName === poolName))
+    .filter(Boolean);
+  const members = memberSchedules?.length ? memberSchedules : [schedule];
 
-  const poolMembers: PoolMember[] = pools.map((pool) => ({
-    poolName: pool.poolName,
-    character: pool.character,
-    packId: pool.poolPackId,
+  const poolMembers: PoolMember[] = members.map((member) => ({
+    poolName: member!.poolName,
+    character: member!.character,
+    packId: member!.poolPackId,
   }));
   // 合池的起止时间取组内所有卡池的并集
-  const start = new Date(Math.min(...pools.map((pool) => new Date(pool.poolStart).getTime())));
-  const end = new Date(Math.max(...pools.map((pool) => new Date(pool.poolEnd).getTime())));
+  const start = new Date(
+    Math.min(...members.map((member) => new Date(member!.poolStart).getTime())),
+  );
+  const end = new Date(Math.max(...members.map((member) => new Date(member!.poolEnd).getTime())));
   const isCombined = poolMembers.length > 1;
 
   return {
-    // 合池时用各角色名以「+」连接，单池时用「角色名+卡池」
+    // 合池时用各角色名以「+」连接，单池时用「角色名卡池」
     name: isCombined
       ? poolMembers.map((member) => member.character).join('+')
-      : `${firstPool.character}卡池`,
+      : `${schedule.character}卡池`,
     start,
     end,
     dateText: isCombined
       ? `${dateFormat(start, 'MMdd')}-${dateFormat(end, 'MMdd')}`
-      : firstPool.poolDateStr,
+      : schedule.poolDateStr,
     type: poolMembers.map((member) => member.poolName).join('+'),
     poolMembers,
     disabled: false,
@@ -130,45 +121,15 @@ function createPoolOption(pools: PoolSchedule[]): PoolOption {
 }
 
 /**
- * 按 poolGroup 将卡池排期分组
- * 未配置 poolGroup 的卡池以 poolName 作为分组键，即各自独立成组
- * @returns 分组后的卡池排期二维数组
- */
-function getPoolScheduleGroups(): PoolSchedule[][] {
-  const groups = new Map<string, PoolSchedule[]>();
-  for (const pool of poolSchedules) {
-    const groupKey = pool.poolGroup ?? pool.poolName;
-    const group = groups.get(groupKey) ?? [];
-    group.push(pool);
-    groups.set(groupKey, group);
-  }
-  return [...groups.values()];
-}
-
-/**
  * 初始化卡池选项
- * 逐个生成单池选项后，再为同组（poolGroup 相同且成员数大于 1）的卡池生成合池选项
+ * 逐条读取卡池排期表生成选项，合池由记录中的 poolMembers 字段显式声明
  * */
 function initPoolOptions() {
-  // 每个卡池排期生成一个独立的单池选项
   for (const pool of poolSchedules) {
-    const poolOption = createPoolOption([pool]);
+    const poolOption = createPoolOption(pool);
     poolOptions.value.push(poolOption);
     if (poolOption.end.getTime() > Date.now()) {
       displayPoolOptions.value.push(poolOption.name);
-    }
-  }
-
-  // 合并同组卡池：仅保留成员数大于 1 的分组，生成合池选项
-  for (const poolGroup of getPoolScheduleGroups()) {
-    if (poolGroup.length < 2) {
-      continue;
-    }
-
-    const combinedPoolOption = createPoolOption(poolGroup);
-    poolOptions.value.push(combinedPoolOption);
-    if (combinedPoolOption.end.getTime() > Date.now()) {
-      displayPoolOptions.value.push(combinedPoolOption.name);
     }
   }
 
@@ -195,17 +156,9 @@ function initPoolOptions() {
   poolOptions.value.push(poolOption, allVersionOption);
 }
 
-//  {
-//     name: '待定',
-//     color: '#FA5B81',
-//     start: new Date('2026/02/24 12:00:00'),
-//     end: new Date('2026/03/12 12:00:00'),
-//     dateText: '',
-//     type: '热烈色彩',
-//     disabled: true,
-//   },
-
-// 当前卡池默认值，poolMembers 描述该卡池包含的成员（单池时只有一个成员）
+/**
+ * 当前卡池默认值，poolMembers 描述该卡池包含的成员（单池时只有一个成员）
+ */
 const currentPool = ref<PoolOption>({
   name: '轻飘飘的信使',
   start: new Date('2026/02/07 12:00:00'),

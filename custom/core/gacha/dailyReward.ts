@@ -1,4 +1,4 @@
-import type { Reward } from '#shared/types/gacha-calculator';
+import type { PoolSchedule, Reward } from '#shared/types/gacha-calculator';
 import {
   calculateDaysDifference,
   countTuesdaysBetweenV2,
@@ -260,7 +260,12 @@ for (const version of VersionTable) {
 
 dailyAllRewardTable.value.push(createRewardModuleTitle('集成配额商店兑换'));
 
-for (const poolInfo of PoolInfoTable) {
+for (const poolInfo of PoolInfoTable as PoolSchedule[]) {
+  // 仅用于生成卡池选项的记录（如合池）不参与奖励生成
+  if (poolInfo.skipReward) {
+    continue;
+  }
+
   dailyAllRewardTable.value.push({
     id: `${poolInfo.character}卡池商店兑换寻访凭证`,
     name: {
