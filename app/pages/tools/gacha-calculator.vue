@@ -81,40 +81,29 @@ const poolScopedPackIds = [
 
 /**
  * 根据卡池排期表（pool_info_table.json）中的一条记录创建卡池选项
- * 若该记录通过 poolMembers 引用了其他卡池，则视为合池：时间取并集、名称以「+」连接
+ * poolMembers 显式声明该选项包含的成员：单池为自身，合池为全部成员
  * @param schedule 卡池排期记录
  * @returns 组装完成的卡池选项
  */
 function createPoolOption(schedule: PoolSchedule): PoolOption {
-  // poolMembers 引用其他卡池名，未配置时该选项仅包含自身
-  const memberSchedules = schedule.poolMembers
-    ?.map((poolName) => poolSchedules.find((pool) => pool.poolName === poolName))
-    .filter(Boolean);
-  const members = memberSchedules?.length ? memberSchedules : [schedule];
+  const members = schedule.poolMembers.map(
+    (poolName) => poolSchedules.find((pool) => pool.poolName === poolName)!,
+  );
 
   const poolMembers: PoolMember[] = members.map((member) => ({
-    poolName: member!.poolName,
-    character: member!.character,
-    packId: member!.poolPackId,
+    poolName: member.poolName,
+    character: member.character,
+    packId: member.poolPackId,
   }));
-  // 合池的起止时间取组内所有卡池的并集
-  const start = new Date(
-    Math.min(...members.map((member) => new Date(member!.poolStart).getTime())),
-  );
-  const end = new Date(Math.max(...members.map((member) => new Date(member!.poolEnd).getTime())));
-  const isCombined = poolMembers.length > 1;
 
   return {
-    // 合池时用各角色名以「+」连接，单池时用「角色名卡池」
-    name: isCombined
-      ? poolMembers.map((member) => member.character).join('+')
-      : `${schedule.character}卡池`,
-    start,
-    end,
-    dateText: isCombined
-      ? `${dateFormat(start, 'MMdd')}-${dateFormat(end, 'MMdd')}`
-      : schedule.poolDateStr,
-    type: poolMembers.map((member) => member.poolName).join('+'),
+    // 选项名称统一为「角色名 + 卡池」后缀（合池记录的 character 已用「+」连接各角色名）
+    name: `${schedule.character}卡池`,
+    // 起止时间直接读取记录自身的字段（合池记录的 poolStart / poolEnd 已填为组内并集）
+    start: new Date(schedule.poolStart),
+    end: new Date(schedule.poolEnd),
+    dateText: schedule.poolDateStr,
+    type: schedule.poolName,
     poolMembers,
     disabled: false,
   };
