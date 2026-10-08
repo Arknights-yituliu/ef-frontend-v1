@@ -8,8 +8,11 @@
     "versionStart": "2026/01/22 12:00:00",
     "versionEnd": "2026/03/12 12:00:00",
     "version": "零号委托",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["莱万汀"],
+    "skipReward": false
   },
   {
     "poolName": "洁尔佩塔",
@@ -20,8 +23,11 @@
     "versionStart": "2026/01/22 12:00:00",
     "versionEnd": "2026/03/12 12:00:00",
     "version": "零号委托",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["洁尔佩塔"],
+    "skipReward": false
   },
   {
     "poolName": "伊冯",
@@ -32,8 +38,11 @@
     "versionStart": "2026/01/22 12:00:00",
     "versionEnd": "2026/03/12 12:00:00",
     "version": "零号委托",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["伊冯"],
+    "skipReward": false
   },
   {
     "poolName": "汤汤",
@@ -44,8 +53,11 @@
     "versionStart": "2026/03/12 12:00:00",
     "versionEnd": "2026/04/17 12:00:00",
     "version": "新潮起·故渊离",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": false
+    "narrative": false,
+    "poolMembers": ["汤汤"],
+    "skipReward": false
   },
   {
     "poolName": "洛茜",
@@ -56,8 +68,11 @@
     "versionStart": "2026/03/29 12:00:00",
     "versionEnd": "2026/04/17 12:00:00",
     "version": "新潮起·故渊离",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["洛茜"],
+    "skipReward": false
   },
   {
     "poolName": "庄方宜",
@@ -68,8 +83,11 @@
     "versionStart": "2026/04/17 12:00:00",
     "versionEnd": "2026/05/22 12:00:00",
     "version": "春晓时",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": false
+    "narrative": false,
+    "poolMembers": ["庄方宜"],
+    "skipReward": false
   },
   {
     "poolName": "辉光庆典",
@@ -80,8 +98,11 @@
     "versionStart": "2026/05/14 12:00:00",
     "versionEnd": "2026/06/05 12:00:00",
     "version": "春晓时",
+    "poolPackId": "",
     "combatDrills": false,
-    "narrative": false
+    "narrative": false,
+    "poolMembers": ["辉光庆典"],
+    "skipReward": false
   },
   {
     "poolName": "弭弗",
@@ -92,8 +113,11 @@
     "versionStart": "2026/06/05 12:00:00",
     "versionEnd": "2026/07/16 12:00:00",
     "version": "寻遗散记",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["弭弗"],
+    "skipReward": false
   },
   {
     "poolName": "卡缪",
@@ -104,8 +128,11 @@
     "versionStart": "2026/06/26 12:00:00",
     "versionEnd": "2026/07/16 12:00:00",
     "version": "寻遗散记",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["卡缪"],
+    "skipReward": false
   },
   {
     "poolName": "诀",
@@ -116,8 +143,11 @@
     "versionStart": "2026/07/16 12:00:00",
     "versionEnd": "2026/09/02 11:59:00",
     "version": "向渊行",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": false
+    "narrative": false,
+    "poolMembers": ["诀"],
+    "skipReward": false
   },
   {
     "poolName": "梨诺",
@@ -128,8 +158,11 @@
     "versionStart": "2026/07/16 12:00:00",
     "versionEnd": "2026/09/02 12:00:00",
     "version": "向渊行",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["梨诺"],
+    "skipReward": false
   },
   {
     "poolName": "提弗洛斯",
@@ -140,8 +173,11 @@
     "versionStart": "2026/09/02 12:00:00",
     "versionEnd": "2026/10/15 12:00:00",
     "version": "雪凇幽梦",
+    "poolPackId": "",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["提弗洛斯"],
+    "skipReward": false
   },
   {
     "poolName": "祀",
@@ -154,7 +190,9 @@
     "version": "丹青渡",
     "poolPackId": "seasonal_giftpack",
     "combatDrills": true,
-    "narrative": false
+    "narrative": false,
+    "poolMembers": ["祀"],
+    "skipReward": false
   },
   {
     "poolName": "明河",
@@ -167,7 +205,9 @@
     "version": "丹青渡",
     "poolPackId": "seasonal_giftpack",
     "combatDrills": true,
-    "narrative": true
+    "narrative": true,
+    "poolMembers": ["明河"],
+    "skipReward": false
   },
   {
     "poolName": "祀+明河",
@@ -178,6 +218,9 @@
     "versionStart": "2026/09/02 12:00:00",
     "versionEnd": "2026/10/15 12:00:00",
     "version": "丹青渡",
+    "poolPackId": "",
+    "combatDrills": false,
+    "narrative": false,
     "poolMembers": ["祀", "明河"],
     "skipReward": true
   }

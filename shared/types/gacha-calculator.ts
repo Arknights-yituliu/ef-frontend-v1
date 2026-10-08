@@ -145,6 +145,7 @@ export interface GachaCalculatorUserConfig {
   };
   arsenalExistingQuota?: number;
   arsenalOriginiumAllocation?: number;
+  originiumReserveForGacha?: number;
   currentPoolName?: string;
   displayPoolOptions?: string[];
   leftPartPanel?: string[];
@@ -199,8 +200,8 @@ export type PoolSchedule = {
   combatDrills?: boolean;
   /** 是否生成干员叙事奖励 */
   narrative?: boolean;
-  /** 合池所引用的子卡池名称列表，未配置时该选项仅包含自身 */
-  poolMembers?: string[];
+  /** 该记录包含的卡池名称列表：单池填自身，合池填全部成员 */
+  poolMembers: string[];
   /** 卡池专属礼包 ID */
   poolPackId?: string;
   /** 生成动态奖励时是否跳过该条记录（合池等仅用于生成选项的记录） */
