@@ -145,6 +145,7 @@ export interface GachaCalculatorUserConfig {
   };
   arsenalExistingQuota?: number;
   arsenalOriginiumAllocation?: number;
+  originiumReserveForGacha?: number;
   currentPoolName?: string;
   displayPoolOptions?: string[];
   leftPartPanel?: string[];

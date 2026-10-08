@@ -64,7 +64,12 @@ usePageSeo({
 });
 
 //
-const leftPartPanel = ref<string[]>(['statisticalResult', 'arsenalQuota', 'controlPanel', 'dev']);
+const isMobileViewport = typeof window !== 'undefined' && window.innerWidth <= 600;
+const leftPartPanel = ref<string[]>([
+  'statisticalResult',
+  ...(!isMobileViewport ? ['arsenalQuota'] : []),
+  'dev',
+]);
 // 'existing', 'daily','activity,'regional', 'level', 'regional','permanent'
 const rightPartPanel = ref<string[]>(['existing', 'daily', 'activity']);
 
@@ -658,6 +663,7 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   versionVisible: {},
   arsenalExistingQuota: 0,
   arsenalOriginiumAllocation: 0,
+  originiumReserveForGacha: 0,
   // 面板展开状态一并持久化，用于恢复左侧/右侧面板
   leftPartPanel: [...leftPartPanel.value],
   rightPartPanel: [...rightPartPanel.value],
@@ -690,6 +696,9 @@ const existingResource = ref<RewardStatisticsResultDetail>({
   ticketgachaSpecialSingle: 0,
   ticketgachaLimitedSingle: 0,
 });
+
+// 从全部计算所得的源石中保留的数量，默认全部用于抽卡
+const originiumReserveForGacha = ref(0);
 
 /**
  * 监听库存对象变化
@@ -1325,6 +1334,61 @@ const totalResourceStatisticsResultDetail = ref<RewardStatisticsResultDetail>({
   ticketgachaLimitedSingle: 0,
 });
 
+function normalizeOriginiumReserve(value: number | string | null | undefined): number {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) {
+    return 0;
+  }
+  return Math.max(0, Math.floor(numericValue));
+}
+
+const originiumReserveForGachaValue = computed(() =>
+  Math.min(
+    normalizeOriginiumReserve(originiumReserveForGacha.value),
+    Math.max(0, Math.floor(totalResourceStatisticsResultDetail.value.originiumRecharge || 0)),
+  ),
+);
+
+const totalOriginiumRechargeForGacha = computed(() => {
+  return Math.max(
+    0,
+    totalResourceStatisticsResultDetail.value.originiumRecharge -
+      originiumReserveForGachaValue.value,
+  );
+});
+
+function setOriginiumReserveForGacha(value: number | string | null | undefined): void {
+  const reserve = normalizeOriginiumReserve(value);
+  originiumReserveForGacha.value = reserve;
+  gachaCalculatorUserConfig.value.originiumReserveForGacha = reserve;
+  saveGachaCalculatorUserConfig();
+  allRewardStatisticsV2();
+}
+
+/**
+ * 按源石总量占比从某个资源来源的抽数中扣除统一保留的源石，避免总览与分项统计不一致
+ */
+function getRewardPullWithOriginiumReserve(
+  reward: RewardStatisticsResultDetail,
+  totalOriginium: number,
+): TotalPullsSingle {
+  const pulls = getRewardPull(reward);
+  const normalizedTotalOriginium = Math.max(0, totalOriginium);
+  const reservedOriginium = Math.min(originiumReserveForGachaValue.value, normalizedTotalOriginium);
+
+  if (normalizedTotalOriginium <= 0 || reservedOriginium <= 0 || reward.originiumRecharge <= 0) {
+    return pulls;
+  }
+
+  const rewardOriginiumReserve =
+    (reward.originiumRecharge / normalizedTotalOriginium) * reservedOriginium;
+  pulls.ticketgachaSpecialSingle = Math.max(
+    0,
+    pulls.ticketgachaSpecialSingle - (rewardOriginiumReserve * 75) / 500,
+  );
+  return pulls;
+}
+
 const gachaProbability = ref(0);
 
 function allRewardStatisticsV2(): void {
@@ -1355,7 +1419,23 @@ function allRewardStatisticsV2(): void {
 
   totalResourceStatisticsResultDetail.value = result;
 
-  gachaResourceStatisticsResult.value.totalPulls.total = getRewardPull(result);
+  const resourcePullStatistics = [
+    ['existing', existingRewardStatisticsResultDetail],
+    ['daily', dailyRewardStatisticsResultDetail],
+    ['activity', activityRewardStatisticsResultDetail],
+    ['permanent', permanentRewardStatisticsResultDetail],
+    ['recharge', rechargeResourceStatisticsResultDetail],
+  ] as const;
+  for (const [key, detail] of resourcePullStatistics) {
+    gachaResourceStatisticsResult.value.totalPulls[key] = getRewardPullWithOriginiumReserve(
+      detail,
+      result.originiumRecharge,
+    );
+  }
+  gachaResourceStatisticsResult.value.totalPulls.total = getRewardPullWithOriginiumReserve(
+    result,
+    result.originiumRecharge,
+  );
 
   list.push(result);
 
@@ -1588,7 +1668,9 @@ function loadingUserConfig() {
   const localConfigStr = localStorage.getItem(GACHA_CALCULATOR_USER_CONFIG_KEY);
   if (localConfigStr) {
     try {
-      const localConfig: GachaCalculatorUserConfig = JSON.parse(localConfigStr);
+      const localConfig = JSON.parse(localConfigStr) as GachaCalculatorUserConfig & {
+        useExistingOriginiumForGacha?: boolean;
+      };
       let shouldPersistUserConfig = false;
 
       // 恢复左右面板的展开状态
@@ -1738,6 +1820,23 @@ function loadingUserConfig() {
         existingResource.value.ticketgachaSpecialSingle = stringToNumber(
           localExistingResource.ticketgachaSpecialSingle,
         );
+      }
+
+      if (localConfig.originiumReserveForGacha !== undefined) {
+        const reserve = normalizeOriginiumReserve(localConfig.originiumReserveForGacha);
+        originiumReserveForGacha.value = reserve;
+        gachaCalculatorUserConfig.value.originiumReserveForGacha = reserve;
+        if (Number(localConfig.originiumReserveForGacha) !== reserve) {
+          shouldPersistUserConfig = true;
+        }
+      } else if (typeof localConfig.useExistingOriginiumForGacha === 'boolean') {
+        // 兼容上一版配置：关闭旧开关时，转换为保留原有库存源石。
+        const reserve = localConfig.useExistingOriginiumForGacha
+          ? 0
+          : normalizeOriginiumReserve(existingResource.value.originiumRecharge);
+        originiumReserveForGacha.value = reserve;
+        gachaCalculatorUserConfig.value.originiumReserveForGacha = reserve;
+        shouldPersistUserConfig = true;
       }
 
       if (shouldPersistUserConfig) {
@@ -2324,13 +2423,72 @@ function initializeDefaultVersionSelection(): void {
 
 /**
  * 重置抽卡计算器
- * 清除一次性奖励提示记录、恢复默认卡池与默认版本选择
+ * 清除一次性奖励提示记录、恢复默认计算状态
  */
-function resetGachaCalculator() {
+async function resetGachaCalculator(): Promise<void> {
   oneTimeRewardNoticeDismissed.value = false;
   window.localStorage.removeItem(ONE_TIME_REWARD_NOTICE_DISMISSED_KEY);
+
+  // 清空库存、情报书和所有氪金资源
+  existingResource.value.originiumRecharge = 0;
+  existingResource.value.diamond = 0;
+  existingResource.value.ticketgachaStandardSingle = 0;
+  existingResource.value.ticketgachaSpecialSingle = 0;
+  originiumReserveForGacha.value = 0;
+  seekIntelBook.value.active = false;
+  additionalSeekIntelBook.value.active = false;
+  rechargeResources.value = {
+    monthlyPass: false,
+    battlePass: false,
+    protocolCustomization: false,
+    monthlyPassDays: 30,
+    selectedPacks: {},
+    selectedPoolPacks: {},
+    originiumStones: {},
+  };
+
+  // 清空武库状态，恢复默认计算起点与系数
+  arsenalCoefficient.value = 80;
+  arsenalOriginiumAllocation.value = 0;
+  arsenalExistingQuota.value = 0;
+  authorityLevelProgress.value = [...DEFAULT_AUTHORITY_LEVEL_PROGRESS];
+  poolStartDate.value = new Date();
+  devStartDate.value = new Date(poolStartDate.value);
+  selectedVersion.value = 'all';
+
+  // 恢复默认显示的卡池，并清除旧配置中残留的计算状态
+  displayPoolOptions.value = poolOptions.value
+    .filter((option) => !option.disabled && option.end.getTime() > Date.now())
+    .map((option) => option.name);
+  gachaCalculatorUserConfig.value.existingResource = {
+    originiumRecharge: 0,
+    diamond: 0,
+    ticketgachaStandardSingle: 0,
+    ticketgachaSpecialSingle: 0,
+  };
+  gachaCalculatorUserConfig.value.originiumReserveForGacha = 0;
+  gachaCalculatorUserConfig.value.buttonActive = {};
+  gachaCalculatorUserConfig.value.buttonGroupActive = {};
+  gachaCalculatorUserConfig.value.rangeSlider = {};
+  gachaCalculatorUserConfig.value.slider = {};
+  gachaCalculatorUserConfig.value.versionVisible = {};
+  gachaCalculatorUserConfig.value.displayPoolOptions = [...displayPoolOptions.value];
+  gachaCalculatorUserConfig.value.rechargeResources = {
+    ...rechargeResources.value,
+    selectedPacks: {},
+    selectedPoolPacks: {},
+    originiumStones: {},
+  };
+  gachaCalculatorUserConfig.value.arsenalExistingQuota = 0;
+  gachaCalculatorUserConfig.value.arsenalOriginiumAllocation = 0;
+
+  syncAuthorityLevelUpReward();
   selectDefaultPool(false);
   initializeDefaultVersionSelection();
+
+  // 等待深层 watch 将重置后的状态同步到配置后再落盘
+  await nextTick();
+  saveGachaCalculatorUserConfig();
 }
 
 // 常驻奖励分类名称列表
@@ -2500,9 +2658,7 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   />
                   <span class="gacha-calculator-statistics-result-item-text">
                     {{ totalResourceStatisticsResultDetail.originiumRecharge }}
-                    ({{
-                      numberFloor(totalResourceStatisticsResultDetail.originiumRecharge * 0.15, 0)
-                    }}
+                    ({{ numberFloor(totalOriginiumRechargeForGacha * 0.15, 0) }}
                     {{ t('page.tools.gachaCalculator.pulls') }})
                   </span>
                 </div>
@@ -2553,6 +2709,47 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
                   </span>
                 </div>
               </div>
+            </div>
+
+            <div class="gacha-calculator-originium-reserve">
+              <span>我想保留</span>
+              <v-btn
+                aria-label="不保留源石"
+                class="gacha-calculator-originium-reserve-action"
+                density="compact"
+                size="small"
+                variant="text"
+                @click="setOriginiumReserveForGacha(0)"
+              >
+                0
+              </v-btn>
+              <v-number-input
+                aria-label="保留源石数量"
+                class="gacha-calculator-originium-reserve-input"
+                control-variant="hidden"
+                density="compact"
+                hide-details="auto"
+                :max="totalResourceStatisticsResultDetail.originiumRecharge"
+                :min="0"
+                :model-value="originiumReserveForGachaValue"
+                :precision="0"
+                :step="1"
+                variant="solo"
+                @update:model-value="setOriginiumReserveForGacha"
+              />
+              <v-btn
+                aria-label="保留全部源石"
+                class="gacha-calculator-originium-reserve-action"
+                density="compact"
+                size="small"
+                variant="text"
+                @click="
+                  setOriginiumReserveForGacha(totalResourceStatisticsResultDetail.originiumRecharge)
+                "
+              >
+                all
+              </v-btn>
+              <span>个源石用于其他用途</span>
             </div>
 
             <!-- 合池时隐藏 UP 概率（两个卡池概率不同，无统一数值） -->
@@ -3447,6 +3644,19 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
           </v-expansion-panel-title>
 
           <v-expansion-panel-text>
+            <v-btn
+              block
+              class="gacha-calculator-recharge-value-link"
+              color="primary"
+              prepend-icon="mdi-chart-box-outline"
+              rel="noopener noreferrer"
+              target="_blank"
+              to="/material-profit/package-value"
+              variant="tonal"
+            >
+              访问礼包性价比页面
+            </v-btn>
+
             <!-- 传入卡池成员与专属礼包 ID，用于展示当前卡池对应的专属礼包 -->
             <GachaCalculatorPaidResources
               v-model="rechargeResources"
@@ -3825,6 +4035,34 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
 .gacha-calculator-statistics-result-item-text {
   padding: 0 0 4px 12px;
+}
+
+.gacha-calculator-originium-reserve {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-top: 4px;
+  color: rgba(var(--v-theme-on-surface), 0.68);
+  font-size: 0.85rem;
+}
+
+.gacha-calculator-originium-reserve-input {
+  flex: 0 0 96px;
+  width: 96px;
+}
+
+.gacha-calculator-originium-reserve-input :deep(input) {
+  text-align: center;
+}
+
+.gacha-calculator-originium-reserve-action {
+  min-width: 28px;
+  padding-inline: 4px;
+}
+
+.gacha-calculator-recharge-value-link {
+  margin-bottom: 12px;
 }
 
 .gacha-calculator-control-panel {
@@ -4365,6 +4603,11 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 
   .gacha-calculator-statistics-result-item-text {
     padding: 0;
+  }
+
+  .gacha-calculator-originium-reserve-input {
+    flex-basis: 84px;
+    width: 84px;
   }
 
   .gacha-calculator-version-control-row {
