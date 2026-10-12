@@ -1,4 +1,4 @@
-export type BlueprintRendererView = '3d-top';
+export type BlueprintRendererView = '3d-top' | 'blueprint';
 
 export interface BlueprintMetric {
   labelKey: string;

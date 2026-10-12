@@ -621,6 +621,28 @@
         "jsonSource": "JSON",
         "openJson": "Open JSON",
         "copyJsonUrl": "Copy JSON URL",
+        "rendererControls": {
+          "title": "Renderer controls",
+          "viewLabel": "View",
+          "views": {
+            "threeDTop": "3D top",
+            "blueprint": "Blueprint"
+          },
+          "showBase": "Show base",
+          "animations": "Animations",
+          "autoplay": "Autoplay",
+          "start": "Start simulation",
+          "pause": "Pause simulation",
+          "reload": "Reload",
+          "errorDescription": "The renderer failed to load. Try again.",
+          "status": {
+            "loading": "Loading",
+            "ready": "Ready",
+            "running": "Running",
+            "paused": "Paused",
+            "error": "Load failed"
+          }
+        },
         "blueprintStatus": {
           "ready": "Preview ready",
           "pending": "Pending"

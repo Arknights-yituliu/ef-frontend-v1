@@ -181,8 +181,116 @@
           </div>
 
           <template v-if="selectedBlueprint">
+            <div
+              :aria-label="t('page.blueprint.resourceLibrary.rendererControls.title')"
+              class="renderer-controls"
+              role="group"
+            >
+              <div class="renderer-control-main">
+                <div class="renderer-control-group">
+                  <span class="renderer-control-label">
+                    {{ t('page.blueprint.resourceLibrary.rendererControls.viewLabel') }}
+                  </span>
+                  <v-btn-toggle
+                    color="primary"
+                    density="compact"
+                    divided
+                    mandatory
+                    :model-value="rendererView"
+                    @update:model-value="setRendererView"
+                  >
+                    <v-btn value="3d-top">
+                      <v-icon icon="mdi-cube-outline" start />
+                      {{ t('page.blueprint.resourceLibrary.rendererControls.views.threeDTop') }}
+                    </v-btn>
+                    <v-btn value="blueprint">
+                      <v-icon icon="mdi-view-grid-outline" start />
+                      {{ t('page.blueprint.resourceLibrary.rendererControls.views.blueprint') }}
+                    </v-btn>
+                  </v-btn-toggle>
+                </div>
+
+                <div class="renderer-control-switches">
+                  <v-switch
+                    color="primary"
+                    density="compact"
+                    hide-details
+                    :label="t('page.blueprint.resourceLibrary.rendererControls.showBase')"
+                    :model-value="rendererShowBase"
+                    @update:model-value="setRendererShowBase"
+                  />
+                  <v-switch
+                    color="primary"
+                    density="compact"
+                    hide-details
+                    :label="t('page.blueprint.resourceLibrary.rendererControls.animations')"
+                    :model-value="rendererAnimations"
+                    @update:model-value="setRendererAnimations"
+                  />
+                  <v-switch
+                    color="primary"
+                    density="compact"
+                    hide-details
+                    :label="t('page.blueprint.resourceLibrary.rendererControls.autoplay')"
+                    :model-value="rendererAutoplay"
+                    @update:model-value="setRendererAutoplay"
+                  />
+                </div>
+              </div>
+
+              <div class="renderer-status-row">
+                <div
+                  aria-live="polite"
+                  class="renderer-status"
+                  :class="`renderer-status-${rendererStatus}`"
+                >
+                  <span class="status-dot" />
+                  <span>{{ rendererStatusLabel }}</span>
+                  <span v-if="rendererErrorMessage" class="renderer-error-message">
+                    {{ rendererErrorMessage }}
+                  </span>
+                </div>
+                <div class="renderer-actions">
+                  <v-btn
+                    v-if="rendererIsRunning"
+                    prepend-icon="mdi-pause"
+                    size="small"
+                    variant="outlined"
+                    @click="pauseRenderer"
+                  >
+                    {{ t('page.blueprint.resourceLibrary.rendererControls.pause') }}
+                  </v-btn>
+                  <v-btn
+                    v-else
+                    prepend-icon="mdi-play"
+                    size="small"
+                    variant="outlined"
+                    @click="startRenderer"
+                  >
+                    {{ t('page.blueprint.resourceLibrary.rendererControls.start') }}
+                  </v-btn>
+                  <v-tooltip
+                    location="top"
+                    :text="t('page.blueprint.resourceLibrary.rendererControls.reload')"
+                  >
+                    <template #activator="{ props }">
+                      <v-btn
+                        v-bind="props"
+                        :aria-label="t('page.blueprint.resourceLibrary.rendererControls.reload')"
+                        icon="mdi-refresh"
+                        size="small"
+                        variant="text"
+                        @click="reloadRenderer"
+                      />
+                    </template>
+                  </v-tooltip>
+                </div>
+              </div>
+            </div>
+
             <div class="renderer-frame">
               <iframe
+                :key="rendererReloadKey"
                 allow="fullscreen"
                 class="renderer-iframe"
                 loading="lazy"
@@ -192,6 +300,8 @@
                     name: t(selectedBlueprint.titleKey),
                   })
                 "
+                @error="handleRendererError"
+                @load="handleRendererLoad"
               />
             </div>
 
@@ -206,7 +316,7 @@
               </div>
               <div class="metric-item">
                 <span>{{ t('page.blueprint.resourceLibrary.metadata.view') }}</span>
-                <strong>{{ selectedBlueprint.renderer.view }}</strong>
+                <strong>{{ rendererViewLabel }}</strong>
               </div>
             </div>
 
@@ -265,6 +375,8 @@ import {
   type BlueprintCollection,
   blueprintCollections,
   type BlueprintEntry,
+  type BlueprintRendererOptions,
+  type BlueprintRendererView,
 } from '@/custom/blueprint/collections';
 
 definePageMeta({
@@ -287,6 +399,38 @@ const selectedTag = ref('all');
 const selectedVersion = ref('all');
 const copiedTarget = ref<string | null>(null);
 const { copy } = useClipboard();
+
+const RENDERER_ORIGIN = 'https://endfield.hsyhhssyy.net';
+const RENDERER_CHANNEL = 'industrial-planner:blueprint';
+const RENDERER_VERSION = 1;
+
+const defaultRendererOptions: BlueprintRendererOptions = {
+  showBase: false,
+  view: '3d-top',
+  animations: false,
+  autoplay: false,
+};
+
+type RendererStatus = 'loading' | 'ready' | 'running' | 'paused' | 'error';
+type RendererCommand = 'start' | 'pause' | 'setView' | 'setAnimations';
+
+interface PendingRendererCommand {
+  command: RendererCommand;
+  payload?: Record<string, unknown>;
+}
+
+const rendererFrameRef = ref<HTMLIFrameElement | null>(null);
+const rendererReloadKey = ref(0);
+const rendererView = ref<BlueprintRendererView>(defaultRendererOptions.view);
+const rendererShowBase = ref(defaultRendererOptions.showBase);
+const rendererAnimations = ref(defaultRendererOptions.animations);
+const rendererAutoplay = ref(defaultRendererOptions.autoplay);
+const rendererUrlOptions = ref<BlueprintRendererOptions>({ ...defaultRendererOptions });
+const rendererStatus = ref<RendererStatus>('loading');
+const rendererReady = ref(false);
+const rendererIsRunning = ref(false);
+const rendererErrorMessage = ref('');
+const pendingRendererCommands = ref<PendingRendererCommand[]>([]);
 
 const totalBlueprintCount = computed(() =>
   collections.reduce((total, collection) => total + collection.blueprints.length, 0),
@@ -426,13 +570,25 @@ async function copyJsonUrl(blueprint: BlueprintEntry) {
   }, 1600);
 }
 
+const rendererStatusLabel = computed(() =>
+  t(`page.blueprint.resourceLibrary.rendererControls.status.${rendererStatus.value}`),
+);
+
+const rendererViewLabel = computed(() =>
+  t(
+    `page.blueprint.resourceLibrary.rendererControls.views.${
+      rendererView.value === '3d-top' ? 'threeDTop' : 'blueprint'
+    }`,
+  ),
+);
+
 const rendererUrl = computed(() => {
   if (!selectedBlueprint.value) {
     return '';
   }
 
-  const url = new URL('https://endfield.hsyhhssyy.net/');
-  const renderer = selectedBlueprint.value.renderer;
+  const url = new URL(RENDERER_ORIGIN);
+  const renderer = rendererUrlOptions.value;
   url.searchParams.set('embed', 'blueprint');
   url.searchParams.set('blueprintUrl', selectedBlueprintJsonUrl.value);
   url.searchParams.set('showBase', renderer.showBase ? '1' : '0');
@@ -441,6 +597,237 @@ const rendererUrl = computed(() => {
   url.searchParams.set('autoplay', renderer.autoplay ? '1' : '0');
   return url.toString();
 });
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function isRendererView(value: unknown): value is BlueprintRendererView {
+  return value === '3d-top' || value === 'blueprint';
+}
+
+function getRendererMessageText(value: unknown): string {
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (isRecord(value) && typeof value.message === 'string') {
+    return value.message;
+  }
+
+  return t('page.blueprint.resourceLibrary.rendererControls.errorDescription');
+}
+
+function updateRendererRuntimeState(state: unknown) {
+  const normalizedState = typeof state === 'string' ? state.toLowerCase() : '';
+
+  if (normalizedState === 'running' || normalizedState === 'playing') {
+    rendererIsRunning.value = true;
+    rendererStatus.value = 'running';
+    return;
+  }
+
+  if (normalizedState === 'paused' || normalizedState === 'stopped' || normalizedState === 'idle') {
+    rendererIsRunning.value = false;
+    rendererStatus.value = 'paused';
+    return;
+  }
+
+  if (normalizedState === 'ready' || normalizedState === 'loaded') {
+    rendererIsRunning.value = false;
+    rendererStatus.value = 'ready';
+  }
+}
+
+function deliverRendererCommand(command: RendererCommand, payload: Record<string, unknown> = {}) {
+  const rendererWindow = rendererFrameRef.value?.contentWindow;
+  if (!rendererWindow) {
+    return false;
+  }
+
+  rendererWindow.postMessage(
+    {
+      channel: RENDERER_CHANNEL,
+      version: RENDERER_VERSION,
+      type: 'command',
+      command,
+      ...payload,
+    },
+    RENDERER_ORIGIN,
+  );
+  return true;
+}
+
+function sendRendererCommand(command: RendererCommand, payload: Record<string, unknown> = {}) {
+  if (!rendererReady.value || !rendererFrameRef.value?.contentWindow) {
+    pendingRendererCommands.value.push({ command, payload });
+    return;
+  }
+
+  deliverRendererCommand(command, payload);
+}
+
+function flushRendererCommands() {
+  if (!rendererReady.value) {
+    return;
+  }
+
+  const commands = pendingRendererCommands.value.splice(0);
+  for (const { command, payload } of commands) {
+    deliverRendererCommand(command, payload);
+  }
+}
+
+function handleRendererReady() {
+  rendererReady.value = true;
+  rendererErrorMessage.value = '';
+  if (rendererStatus.value !== 'running') {
+    rendererStatus.value = rendererIsRunning.value ? 'running' : 'ready';
+  }
+  flushRendererCommands();
+}
+
+function handleRendererLoad() {
+  handleRendererReady();
+}
+
+function handleRendererError() {
+  rendererReady.value = false;
+  rendererStatus.value = 'error';
+  rendererErrorMessage.value = t(
+    'page.blueprint.resourceLibrary.rendererControls.errorDescription',
+  );
+}
+
+function handleRendererMessage(event: MessageEvent) {
+  if (
+    event.origin !== RENDERER_ORIGIN ||
+    event.source !== rendererFrameRef.value?.contentWindow ||
+    !isRecord(event.data) ||
+    event.data.channel !== RENDERER_CHANNEL ||
+    event.data.version !== RENDERER_VERSION
+  ) {
+    return;
+  }
+
+  const message = event.data;
+  const payload = isRecord(message.payload) ? message.payload : {};
+  const messageType = String(message.type ?? message.event ?? '').toLowerCase();
+  const error = message.error ?? payload.error;
+
+  if (messageType === 'error' || error) {
+    rendererStatus.value = 'error';
+    rendererErrorMessage.value = getRendererMessageText(error);
+    return;
+  }
+
+  if (
+    messageType === 'ready' ||
+    messageType === 'loaded' ||
+    message.ready === true ||
+    payload.ready === true
+  ) {
+    handleRendererReady();
+  }
+
+  const runtimeState = message.state ?? message.status ?? payload.state ?? payload.status;
+  if (
+    messageType === 'state' ||
+    messageType === 'status' ||
+    messageType === 'runtime' ||
+    typeof runtimeState === 'string'
+  ) {
+    updateRendererRuntimeState(runtimeState);
+  }
+}
+
+function setRendererView(value: unknown) {
+  if (!isRendererView(value) || value === rendererView.value) {
+    return;
+  }
+
+  rendererView.value = value;
+  sendRendererCommand('setView', { view: value });
+}
+
+function setRendererShowBase(value: unknown) {
+  rendererShowBase.value = Boolean(value);
+  reloadRenderer();
+}
+
+function setRendererAnimations(value: unknown) {
+  rendererAnimations.value = Boolean(value);
+  sendRendererCommand('setAnimations', { enabled: rendererAnimations.value });
+}
+
+function setRendererAutoplay(value: unknown) {
+  rendererAutoplay.value = Boolean(value);
+  reloadRenderer();
+}
+
+function startRenderer() {
+  rendererIsRunning.value = true;
+  rendererStatus.value = rendererReady.value ? 'running' : 'loading';
+  sendRendererCommand('start');
+}
+
+function pauseRenderer() {
+  rendererIsRunning.value = false;
+  rendererStatus.value = rendererReady.value ? 'paused' : 'loading';
+  sendRendererCommand('pause');
+}
+
+function reloadRenderer() {
+  if (!selectedBlueprint.value) {
+    return;
+  }
+
+  rendererUrlOptions.value = {
+    view: rendererView.value,
+    showBase: rendererShowBase.value,
+    animations: rendererAnimations.value,
+    autoplay: rendererAutoplay.value,
+  };
+  rendererReady.value = false;
+  rendererStatus.value = 'loading';
+  rendererErrorMessage.value = '';
+  rendererIsRunning.value = rendererAutoplay.value;
+  pendingRendererCommands.value = [];
+  rendererReloadKey.value += 1;
+}
+
+function resetRendererForBlueprint(blueprint: BlueprintEntry | undefined) {
+  if (!blueprint) {
+    return;
+  }
+
+  const options = { ...blueprint.renderer };
+  rendererView.value = options.view;
+  rendererShowBase.value = options.showBase;
+  rendererAnimations.value = options.animations;
+  rendererAutoplay.value = options.autoplay;
+  rendererUrlOptions.value = options;
+  rendererReady.value = false;
+  rendererStatus.value = 'loading';
+  rendererErrorMessage.value = '';
+  rendererIsRunning.value = options.autoplay;
+  pendingRendererCommands.value = [];
+  rendererReloadKey.value += 1;
+}
+
+onMounted(() => {
+  window.addEventListener('message', handleRendererMessage);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('message', handleRendererMessage);
+});
+
+watch(
+  () => selectedBlueprint.value?.id,
+  () => resetRendererForBlueprint(selectedBlueprint.value),
+  { immediate: true },
+);
 
 watch(
   () => selectedCollection.value.id,
@@ -810,6 +1197,100 @@ watch(
   white-space: nowrap;
 }
 
+.renderer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--theme-border);
+  background: var(--theme-bg-tertiary);
+}
+
+.renderer-control-main,
+.renderer-status-row,
+.renderer-control-group,
+.renderer-control-switches,
+.renderer-actions {
+  display: flex;
+  align-items: center;
+}
+
+.renderer-control-main,
+.renderer-status-row {
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.renderer-control-main {
+  align-items: flex-start;
+}
+
+.renderer-control-group {
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.renderer-control-label {
+  color: var(--theme-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.renderer-control-switches {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.renderer-control-switches :deep(.v-switch) {
+  flex: 0 0 auto;
+}
+
+.renderer-control-switches :deep(.v-selection-control) {
+  min-height: 2rem;
+}
+
+.renderer-status {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--theme-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.renderer-status-loading {
+  color: #ad7200;
+}
+
+.renderer-status-ready,
+.renderer-status-paused {
+  color: var(--theme-text-secondary);
+}
+
+.renderer-status-running {
+  color: #008f6b;
+}
+
+.renderer-status-error {
+  color: #c44536;
+}
+
+.renderer-error-message {
+  max-width: 24rem;
+  overflow: hidden;
+  color: inherit;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.renderer-actions {
+  flex-shrink: 0;
+  gap: 0.25rem;
+}
+
 .renderer-frame {
   aspect-ratio: 16 / 10;
   min-height: 22rem;
@@ -960,6 +1441,16 @@ watch(
 
   .viewer-meta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .renderer-control-main,
+  .renderer-status-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .renderer-control-switches {
+    justify-content: flex-start;
   }
 
   .metric-item:nth-child(2) {

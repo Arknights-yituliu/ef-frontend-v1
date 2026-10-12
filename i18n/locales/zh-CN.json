@@ -623,6 +623,28 @@
         "jsonSource": "JSON",
         "openJson": "打开 JSON",
         "copyJsonUrl": "复制 JSON 地址",
+        "rendererControls": {
+          "title": "渲染控制台",
+          "viewLabel": "视角",
+          "views": {
+            "threeDTop": "3D 顶视",
+            "blueprint": "蓝图视图"
+          },
+          "showBase": "显示基地",
+          "animations": "动画",
+          "autoplay": "自动播放",
+          "start": "开始仿真",
+          "pause": "暂停仿真",
+          "reload": "重新加载",
+          "errorDescription": "渲染器加载失败，请重试",
+          "status": {
+            "loading": "加载中",
+            "ready": "已就绪",
+            "running": "运行中",
+            "paused": "已暂停",
+            "error": "加载失败"
+          }
+        },
         "blueprintStatus": {
           "ready": "可预览",
           "pending": "待接入"
