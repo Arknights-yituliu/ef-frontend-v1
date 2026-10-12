@@ -178,6 +178,7 @@ ef-frontend-v1/
 ├── .gitignore                    # Git ignore file configuration
 ├── .editorconfig                 # Editor configuration file
 ├── .prettierrc.json              # Prettier code formatting configuration
+├── .prettierignore               # Prettier ignore file configuration
 ├── eslint.config.mjs             # ESLint code linting configuration
 ├── content.config.ts             # Nuxt Content module configuration
 ├── nuxt.config.ts                # Nuxt configuration file
@@ -452,6 +453,9 @@ Contains the project's license information.
 
 - **`.prettierrc.json`** - Prettier code formatter configuration
   - Configures code formatting rules for the project
+
+- **`.prettierignore`** - Prettier ignore file configuration
+  - Keeps externally defined blueprint JSON files in their original compact form
 
 - **`eslint.config.mjs`** - ESLint code linting configuration
   - Configures ESLint rules for code quality and style checking

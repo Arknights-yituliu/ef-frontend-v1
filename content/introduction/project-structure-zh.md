@@ -182,6 +182,7 @@ ef-frontend-v1/
 ├── .gitignore                    # Git 忽略文件配置
 ├── .editorconfig                 # 编辑器配置文件
 ├── .prettierrc.json              # Prettier 代码格式化配置
+├── .prettierignore               # Prettier 忽略文件配置
 ├── eslint.config.mjs             # ESLint 代码检查配置
 ├── content.config.ts             # Nuxt Content 模块配置
 ├── nuxt.config.ts                # Nuxt 配置文件
@@ -456,6 +457,9 @@ i18n/
 
 - **`.prettierrc.json`** - Prettier 代码格式化配置
   - 配置项目的代码格式化规则
+
+- **`.prettierignore`** - Prettier 忽略文件配置
+  - 保持外部蓝图 JSON 文件的原始内容和压缩格式
 
 - **`eslint.config.mjs`** - ESLint 代码检查配置
   - 配置 ESLint 规则，用于代码质量和风格检查
