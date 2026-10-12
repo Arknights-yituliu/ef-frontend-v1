@@ -25,6 +25,7 @@
     "trialOfSwordmancyStrategy": "Trial of Swordmancy Calculator",
     "aic": "AIC",
     "blueprints": "AIC Blueprints",
+    "blueprintResourceLibrary": "Blueprint Resource Library",
     "resources": "Resource Download",
     "essenceRecognizer": "Essence Recognizer",
     "oea": "OEA",
@@ -592,6 +593,77 @@
       "zirunwang": {
         "title": "Personal Blueprint Station",
         "description": "This is the Personal Blueprint Station page."
+      },
+      "resourceLibrary": {
+        "title": "Blueprint Resource Library",
+        "description": "The blueprint collection hub. Browse collections and load each blueprint's 3D preview from one place.",
+        "kicker": "Blueprint Lab",
+        "status": "Test Page",
+        "blueprintCount": "blueprints",
+        "collectionKicker": "Collections",
+        "collectionTitle": "Collection Directory",
+        "workspaceTitle": "Blueprint Entries",
+        "entryCount": "{count} entries",
+        "searchLabel": "Search",
+        "searchPlaceholder": "Search by name, description, or tag",
+        "tagLabel": "Tag",
+        "allTags": "All tags",
+        "versionLabel": "Version",
+        "allVersions": "All versions",
+        "updatedAt": "Updated {date}",
+        "copyEntryLink": "Copy entry link",
+        "emptyTitle": "This collection has no blueprints yet",
+        "emptyDescription": "The collection is ready for maintainers to add its JSON blueprint entries.",
+        "viewerKicker": "Renderer Preview",
+        "viewerEmptyTitle": "Select a blueprint",
+        "viewerEmptyDescription": "Choose a blueprint entry on the left to load its renderer preview here.",
+        "rendererTitle": "Blueprint renderer preview for {name}",
+        "jsonSource": "JSON",
+        "openJson": "Open JSON",
+        "copyJsonUrl": "Copy JSON URL",
+        "blueprintStatus": {
+          "ready": "Preview ready",
+          "pending": "Pending"
+        },
+        "metadata": {
+          "dimensions": "Layout size",
+          "entityCount": "Entity count",
+          "slotLinks": "Connections",
+          "view": "View"
+        },
+        "tags": {
+          "qualityBudNeedle": "Quality Bud Needle Agent",
+          "sixPerMinute": "6/min",
+          "externalPower": "External power"
+        },
+        "collections": {
+          "coreProduction": {
+            "title": "Core Production",
+            "description": "Mature layouts for stable production, with capacity and space efficiency in focus.",
+            "purpose": "Stable output"
+          },
+          "starterLayouts": {
+            "title": "Starter Layouts",
+            "description": "Low-barrier layouts for early resource growth, built to be accessible and expandable.",
+            "purpose": "Low barrier"
+          },
+          "communityLab": {
+            "title": "Community Lab",
+            "description": "Focused experiments that preserve different authors' ideas and tradeoffs.",
+            "purpose": "Experiments"
+          }
+        },
+        "blueprints": {
+          "qualityBudNeedle6Min": {
+            "title": "Quality Bud Needle Agent 6/min",
+            "description": "A test blueprint for an automatically planned production line targeting 6/min in a 19 x 41 layout.",
+            "metrics": {
+              "dimensions": "19 x 41",
+              "entityCount": "349",
+              "slotLinks": "7"
+            }
+          }
+        }
       }
     }
   },

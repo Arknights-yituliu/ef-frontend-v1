@@ -101,6 +101,8 @@ ef-frontend-v1/
 │   │   ├── index.vue             # 首页
 │   │   ├── aic/                  # AIC 页面
 │   │   ├── blueprint/            # 蓝图页面
+│   │   │   ├── resource-library.vue # 隐藏的蓝图资源库测试页面
+│   │   │   └── zirunwang.vue     # 个人蓝图站页面
 │   │   ├── introduction/         # 介绍文档页面
 │   │   ├── material-profit/      # 材料收益页面
 │   │   ├── operations/           # 行动文档页面
@@ -113,6 +115,8 @@ ef-frontend-v1/
 │   ├── introduction/             # 开发指南文档
 │   └── operations/               # 操作指南文档
 ├── public/                       # 公共静态资源目录
+│   ├── blueprints/               # 蓝图 JSON 静态资源
+│   │   └── quality-bud-needle-6-min.json
 │   ├── favicon.ico               # 网站图标
 │   ├── images/                   # 公共图片目录
 │   ├── svg/                      # 公共 SVG 文件
@@ -139,6 +143,8 @@ ef-frontend-v1/
 │   ├── info/                     # 项目信息文件
 │   │   ├── contributors.json     # 贡献者信息
 │   │   └── friendLinks.json      # 友链信息
+│   ├── blueprint/                # 蓝图资源库数据
+│   │   └── collections.ts        # 合集与蓝图条目配置
 │   └── route/                    # 自定义路由与文档导航配置目录
 │       ├── docNavigation.json    # 文档导航配置
 │       └── routes.json           # 侧边栏菜单路由配置
@@ -307,6 +313,7 @@ assets/
 存放不需要处理的静态文件，这些文件会直接复制到输出目录。
 
 - 可以通过 `/` 路径直接访问，例如：`/favicon.ico`
+- `blueprints/` 存放可由外部蓝图渲染器读取的 JSON 文件
 
 ---
 
@@ -368,6 +375,10 @@ i18n/
 - **`custom/info/`** - 项目信息文件目录
   - 存放项目相关信息文件
   - 文件：`contributors.json` - 包含贡献者信息，包括头像、链接、职位和标签
+
+- **`custom/blueprint/`** - 蓝图资源库数据目录
+  - 存放蓝图合集、条目元信息和渲染器配置
+  - 文件：`collections.ts` - 每个蓝图条目对应一个 JSON 地址
 
 - **`custom/route/routes.json`** - 自定义路由配置文件
   - 用于配置侧边栏菜单的路由信息

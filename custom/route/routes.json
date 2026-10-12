@@ -52,6 +52,13 @@
         "visibleBefore": "2026-10-14T06:00:00+08:00"
       },
       {
+        "i18nKey": "blueprintResourceLibrary",
+        "nameKey": "menu.blueprintResourceLibrary",
+        "routePath": "/blueprint/resource-library",
+        "vuetifyIcon": "mdi-archive-outline",
+        "isHidden": true
+      },
+      {
         "i18nKey": "quantitativeCalculator",
         "nameKey": "menu.quantitativeCalculator",
         "routePath": "https://factory.ef.yituliu.cn/aef?v=11",

@@ -97,6 +97,8 @@ ef-frontend-v1/
 │   │   ├── index.vue             # Home page
 │   │   ├── aic/                  # AIC pages
 │   │   ├── blueprint/            # Blueprint pages
+│   │   │   ├── resource-library.vue # Hidden blueprint resource library test page
+│   │   │   └── zirunwang.vue     # Personal blueprint station page
 │   │   ├── introduction/         # Introduction doc pages
 │   │   ├── material-profit/      # Material profit pages
 │   │   ├── operations/           # Operations doc pages
@@ -109,6 +111,8 @@ ef-frontend-v1/
 │   ├── introduction/             # Development guide docs
 │   └── operations/               # Operations guide docs
 ├── public/                       # Public static resources directory
+│   ├── blueprints/               # Blueprint JSON static resources
+│   │   └── quality-bud-needle-6-min.json
 │   ├── favicon.ico               # Website favicon
 │   ├── images/                   # Public images directory
 │   ├── svg/                      # Public SVG files
@@ -135,6 +139,8 @@ ef-frontend-v1/
 │   ├── info/                     # Project info files
 │   │   ├── contributors.json     # Contributor information
 │   │   └── friendLinks.json      # Friend link information
+│   ├── blueprint/                # Blueprint resource library data
+│   │   └── collections.ts        # Collection and blueprint entry config
 │   └── route/                    # Custom route and doc navigation config directory
 │       ├── docNavigation.json    # Documentation navigation config
 │       └── routes.json           # Sidebar menu routing config
@@ -303,6 +309,7 @@ assets/
 Stores static files that don't need processing. These files are directly copied to the output directory.
 
 - Can be accessed directly via `/` path, e.g., `/favicon.ico`
+- `blueprints/` stores JSON files consumed by the external blueprint renderer
 
 ---
 
@@ -364,6 +371,10 @@ Used to store custom files not automatically recognized by Nuxt.
 - **`custom/info/`** - Project information files directory
   - Stores project-related information files
   - Files: `contributors.json` - Contains contributor information with avatars, links, positions, and tags
+
+- **`custom/blueprint/`** - Blueprint resource library data directory
+  - Stores blueprint collections, entry metadata, and renderer options
+  - File: `collections.ts` - Each blueprint entry maps to one JSON URL
 
 - **`custom/route/routes.json`** - Custom route configuration file
   - Used to configure route information for the sidebar menu
