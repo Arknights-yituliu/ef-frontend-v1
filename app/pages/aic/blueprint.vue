@@ -2,7 +2,7 @@
   <v-container class="page-container" fluid>
     <!-- 页面标题 -->
     <div class="page-header mb-6">
-      <h1 class="page-title">「雪凇幽梦」毕业蓝图（非活动期间）</h1>
+      <h1 class="page-title">「丹青渡」毕业蓝图</h1>
     </div>
 
     <!-- 教学视频 -->
@@ -17,12 +17,12 @@
         <p class="mb-3">
           <a
             class="video-link text-body-1"
-            href="https://www.bilibili.com/video/BV1c4t76dEDv"
+            href="https://www.bilibili.com/video/BV1K6Jy6pE5M"
             rel="noopener noreferrer"
             target="_blank"
           >
             <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-            https://www.bilibili.com/video/BV1c4t76dEDv
+            https://www.bilibili.com/video/BV1K6Jy6pE5M
           </a>
         </p>
       </v-card-text>
@@ -92,22 +92,19 @@ usePageSeo({
 // 基地一图流图片
 const images = [
   {
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-10-15/幻灯片1.JPG',
+  },
+  {
     url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片1.webp',
   },
   {
     url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片2.webp',
   },
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片3.webp',
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-10-15/幻灯片8.JPG',
   },
   {
     url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片4.JPG',
-  },
-  {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片12.JPG',
-  },
-  {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片13.JPG',
   },
 ];
 
@@ -118,6 +115,10 @@ interface BlueprintItem {
 }
 
 const blueprints: BlueprintItem[] = [
+  { label: '（多合一）1.6集成蓝图', code: 'EF01081Ou4E7Ei90E179' },
+  { label: '（模块化）1.6打粉模块', code: 'EF01ao6532OeOAOioe5e' },
+  { label: '（模块化）1.6灌装模块', code: 'EF015i2179aoauiEeIoe' },
+  { label: '（模块化）1.6反应模块', code: 'EF018OIe2A7071a9UI73' },
   { label: '1.4武陵城1', code: 'EF015i2179aoauU8eIoe' },
   { label: '1.4武陵城2', code: 'EF018OIe2A7071IeUI73' },
   { label: '1.4武陵城3', code: 'EF01u28U5eA6A0i6AoOU' },
