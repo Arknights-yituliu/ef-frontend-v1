@@ -29,6 +29,7 @@
     "batterySplitCalculator": "电池分流计算器",
     "aic": "集成工业",
     "blueprints": "毕业蓝图",
+    "blueprintResourceLibrary": "蓝图资源库",
     "others": "其它",
     "friendLinks": "友情链接",
     "test": "测试",
@@ -594,6 +595,99 @@
       "zirunwang": {
         "title": "个人蓝图站",
         "description": "这是个人蓝图站页面。"
+      },
+      "resourceLibrary": {
+        "title": "蓝图资源库",
+        "description": "蓝图集总入口。按合集浏览蓝图，并在同一页面中加载对应的 3D 预览。",
+        "kicker": "蓝图实验室",
+        "status": "测试页面",
+        "blueprintCount": "个蓝图",
+        "collectionKicker": "合集",
+        "collectionTitle": "合集目录",
+        "workspaceTitle": "蓝图条目",
+        "entryCount": "{count} 个条目",
+        "searchLabel": "搜索",
+        "searchPlaceholder": "搜索名称、描述或标签",
+        "tagLabel": "标签",
+        "allTags": "全部标签",
+        "versionLabel": "版本",
+        "allVersions": "全部版本",
+        "updatedAt": "更新于 {date}",
+        "copyEntryLink": "复制条目链接",
+        "emptyTitle": "这个合集还没有蓝图",
+        "emptyDescription": "合集已经建立，等待维护者加入对应的 JSON 蓝图条目。",
+        "viewerKicker": "渲染预览",
+        "viewerEmptyTitle": "选择一个蓝图",
+        "viewerEmptyDescription": "从左侧选择蓝图条目后，这里会加载对应的渲染预览。",
+        "rendererTitle": "{name} 的蓝图渲染预览",
+        "jsonSource": "JSON",
+        "openJson": "打开 JSON",
+        "copyJsonUrl": "复制 JSON 地址",
+        "rendererControls": {
+          "title": "渲染控制台",
+          "viewLabel": "视角",
+          "views": {
+            "threeDTop": "3D 顶视",
+            "blueprint": "蓝图视图"
+          },
+          "showBase": "显示基地",
+          "animations": "动画",
+          "autoplay": "自动播放",
+          "start": "开始仿真",
+          "pause": "暂停仿真",
+          "reload": "重新加载",
+          "errorDescription": "渲染器加载失败，请重试",
+          "status": {
+            "loading": "加载中",
+            "ready": "已就绪",
+            "running": "运行中",
+            "paused": "已暂停",
+            "error": "加载失败"
+          }
+        },
+        "blueprintStatus": {
+          "ready": "可预览",
+          "pending": "待接入"
+        },
+        "metadata": {
+          "dimensions": "布局尺寸",
+          "entityCount": "实体数量",
+          "slotLinks": "连接数量",
+          "view": "视角"
+        },
+        "tags": {
+          "qualityBudNeedle": "优质芽针针剂",
+          "sixPerMinute": "6/min",
+          "externalPower": "外部供电"
+        },
+        "collections": {
+          "coreProduction": {
+            "title": "核心生产",
+            "description": "面向稳定量产的成熟布局，优先展示产能和空间利用率。",
+            "purpose": "稳定量产"
+          },
+          "starterLayouts": {
+            "title": "开荒起步",
+            "description": "服务早期资源积累的低门槛布局，强调易获取和易扩展。",
+            "purpose": "低门槛"
+          },
+          "communityLab": {
+            "title": "社区实验",
+            "description": "收录有明确主题的试验方案，保留不同作者的思路和取舍。",
+            "purpose": "方案实验"
+          }
+        },
+        "blueprints": {
+          "qualityBudNeedle6Min": {
+            "title": "优质芽针针剂 6/min",
+            "description": "自动规划产线的测试蓝图，目标产出 6/min，布局尺寸为 19 × 41。",
+            "metrics": {
+              "dimensions": "19 × 41",
+              "entityCount": "349",
+              "slotLinks": "7"
+            }
+          }
+        }
       }
     }
   },

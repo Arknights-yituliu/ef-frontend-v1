@@ -1,0 +1,2 @@
+# Blueprint payloads are externally defined JSON documents; keep their bytes stable.
+/public/blueprints/**/*.json

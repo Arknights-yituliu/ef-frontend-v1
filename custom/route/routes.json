@@ -49,7 +49,14 @@
         "nameKey": "menu.blueprints",
         "routePath": "/aic/blueprint",
         "vuetifyIcon": "mdi-factory",
-        "visibleBefore": "2026-10-14T06:00:00+08:00"
+        "visibleBefore": "2026-10-26T06:00:00+08:00"
+      },
+      {
+        "i18nKey": "blueprintResourceLibrary",
+        "nameKey": "menu.blueprintResourceLibrary",
+        "routePath": "/blueprint/resource-library",
+        "vuetifyIcon": "mdi-archive-outline",
+        "isHidden": true
       },
       {
         "i18nKey": "quantitativeCalculator",

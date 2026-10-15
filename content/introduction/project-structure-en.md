@@ -97,6 +97,8 @@ ef-frontend-v1/
 │   │   ├── index.vue             # Home page
 │   │   ├── aic/                  # AIC pages
 │   │   ├── blueprint/            # Blueprint pages
+│   │   │   ├── resource-library.vue # Hidden blueprint resource library test page
+│   │   │   └── zirunwang.vue     # Personal blueprint station page
 │   │   ├── introduction/         # Introduction doc pages
 │   │   ├── material-profit/      # Material profit pages
 │   │   ├── operations/           # Operations doc pages
@@ -109,6 +111,8 @@ ef-frontend-v1/
 │   ├── introduction/             # Development guide docs
 │   └── operations/               # Operations guide docs
 ├── public/                       # Public static resources directory
+│   ├── blueprints/               # Blueprint JSON static resources
+│   │   └── quality-bud-needle-6-min.json
 │   ├── favicon.ico               # Website favicon
 │   ├── images/                   # Public images directory
 │   ├── svg/                      # Public SVG files
@@ -135,6 +139,8 @@ ef-frontend-v1/
 │   ├── info/                     # Project info files
 │   │   ├── contributors.json     # Contributor information
 │   │   └── friendLinks.json      # Friend link information
+│   ├── blueprint/                # Blueprint resource library data
+│   │   └── collections.ts        # Collection and blueprint entry config
 │   └── route/                    # Custom route and doc navigation config directory
 │       ├── docNavigation.json    # Documentation navigation config
 │       └── routes.json           # Sidebar menu routing config
@@ -172,6 +178,7 @@ ef-frontend-v1/
 ├── .gitignore                    # Git ignore file configuration
 ├── .editorconfig                 # Editor configuration file
 ├── .prettierrc.json              # Prettier code formatting configuration
+├── .prettierignore               # Prettier ignore file configuration
 ├── eslint.config.mjs             # ESLint code linting configuration
 ├── content.config.ts             # Nuxt Content module configuration
 ├── nuxt.config.ts                # Nuxt configuration file
@@ -303,6 +310,7 @@ assets/
 Stores static files that don't need processing. These files are directly copied to the output directory.
 
 - Can be accessed directly via `/` path, e.g., `/favicon.ico`
+- `blueprints/` stores JSON files consumed by the external blueprint renderer
 
 ---
 
@@ -364,6 +372,10 @@ Used to store custom files not automatically recognized by Nuxt.
 - **`custom/info/`** - Project information files directory
   - Stores project-related information files
   - Files: `contributors.json` - Contains contributor information with avatars, links, positions, and tags
+
+- **`custom/blueprint/`** - Blueprint resource library data directory
+  - Stores blueprint collections, entry metadata, and renderer options
+  - File: `collections.ts` - Each blueprint entry maps to one JSON URL
 
 - **`custom/route/routes.json`** - Custom route configuration file
   - Used to configure route information for the sidebar menu
@@ -441,6 +453,9 @@ Contains the project's license information.
 
 - **`.prettierrc.json`** - Prettier code formatter configuration
   - Configures code formatting rules for the project
+
+- **`.prettierignore`** - Prettier ignore file configuration
+  - Keeps externally defined blueprint JSON files in their original compact form
 
 - **`eslint.config.mjs`** - ESLint code linting configuration
   - Configures ESLint rules for code quality and style checking
