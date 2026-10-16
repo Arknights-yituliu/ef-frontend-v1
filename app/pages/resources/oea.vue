@@ -72,6 +72,11 @@
       <h2>新手提示</h2>
       <ol>
         <li>
+          在页面上方<strong class="text-primary">下载</strong>并<strong class="text-primary"
+            >解压</strong
+          >后运行 <code>OEA.exe</code>
+        </li>
+        <li>
           打开终末地，调成 <strong class="text-primary">1280 × 720</strong>、<strong
             class="text-primary"
             >简体中文</strong
@@ -79,8 +84,16 @@
         </li>
         <li><strong class="text-primary">关闭 HDR</strong>，关闭性能监控软件</li>
         <li>终末地打开<strong class="text-primary">档案库界面</strong></li>
-        <li>点击左上角<strong class="text-primary">开始扫描</strong></li>
-        <li>扫完点击右上角<strong class="text-primary">导出到地图集</strong></li>
+        <li>
+          点击<strong class="text-primary">扫描结果栏</strong>的<strong class="text-primary"
+            >开始扫描</strong
+          >
+        </li>
+        <li>
+          扫完点击<strong class="text-primary">全部档案栏</strong>的<strong class="text-primary"
+            >导出收集状态</strong
+          >
+        </li>
       </ol>
 
       <!-- 操作说明 -->
@@ -116,18 +129,6 @@
           按 <v-hotkey display-mode="text" inline keys="Alt+DELETE" variant="flat" /> 退出程序
         </li>
       </ul>
-
-      <!-- 已知问题 -->
-      <h2>已知问题</h2>
-      <ol>
-        <li>
-          于清波寨中可收集到两页「挂在竹子上的字条」（在档案库中记录为同一档案的两页，显示为2/2，<strong
-            class="text-primary"
-            >但标题中没有序号区分</strong
-          >）。<br />
-          OEA 目前无法区分二者，目前只要识别到其一就认为 2 个档案都已收集。
-        </li>
-      </ol>
 
       <!-- 常见问题 -->
       <h2>常见问题</h2>
@@ -248,6 +249,24 @@
           target="_blank"
         >
           Mirror酱
+          <v-icon icon="mdi-open-in-new" size="small" />
+        </a>
+        <a
+          class="text-primary text-decoration-none d-inline-flex align-center ga-1"
+          href="https://github.com/RapidAI/RapidOCR"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          RapidAI/RapidOCR
+          <v-icon icon="mdi-github" size="small" />
+        </a>
+        <a
+          class="text-primary text-decoration-none d-inline-flex align-center ga-1"
+          href="https://www.modelscope.cn/models/RapidAI/RapidOCR"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          RapidAI/RapidOCR 模型 (ModelScope)
           <v-icon icon="mdi-open-in-new" size="small" />
         </a>
         <a
