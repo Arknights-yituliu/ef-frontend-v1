@@ -147,6 +147,11 @@ export const itemValueMap: ItemValueMap = {
     itemName: '三相纳米片',
     value: 80 / 6.8,
   },
+  item_char_skill_specialize_6: {
+    itemId: 'item_char_skill_specialize_6',
+    itemName: '跃迁浆体涂片',
+    value: 80 / 6.8,
+  },
 
   // 存续的痕迹
   item_char_skill_crown: {
@@ -208,6 +213,11 @@ export const itemValueMap: ItemValueMap = {
   item_case_bp_selfselect_skillsp_1: {
     itemId: 'item_case_bp_selfselect_skillsp_1',
     itemName: '高阶培养自选箱Ⅰ',
+    value: (80 / 6.8) * 2,
+  },
+  item_case_bp_selfselect_skillsp_2: {
+    itemId: 'item_case_bp_selfselect_skillsp_2',
+    itemName: '高阶培养自选箱Ⅱ',
     value: (80 / 6.8) * 2,
   },
   item_case_bp_selfselect_exp: {

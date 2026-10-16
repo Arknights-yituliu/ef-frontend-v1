@@ -298,5 +298,30 @@
       "weapon.stat.gst_passive_ult",
       "weapon.stat.gst_passive_tacafter"
     ]
+  },
+  "world_energy_point_group13": {
+    "battleId": "world_energy_point_group13",
+    "battleName": "energyAlluviums.world_energy_point_group13",
+    "imageUrl": "https://data.akedata.wiki/cdn-cgi/image/width=660,height=480,format=webp,quality=50/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/loading/bg_loading_map02_lv010_1.png",
+    "secondaryStats": [
+      "weapon.stat.gat_passive_attr_atk",
+      "weapon.stat.gat_passive_attr_phydam",
+      "weapon.stat.gat_passive_attr_firedam",
+      "weapon.stat.gat_passive_attr_icedam",
+      "weapon.stat.gat_passive_attr_naturaldam",
+      "weapon.stat.gat_passive_attr_crirate",
+      "weapon.stat.gat_passive_attr_physpell",
+      "weapon.stat.gat_passive_attr_usp"
+    ],
+    "skillStats": [
+      "weapon.stat.gst_passive_tactic",
+      "weapon.stat.gst_passive_combo",
+      "weapon.stat.gst_passive_phyabn",
+      "weapon.stat.gst_passive_magabn",
+      "weapon.stat.gst_passive_crit",
+      "weapon.stat.gst_passive_burst",
+      "weapon.stat.gst_passive_tacafter",
+      "weapon.stat.gst_passive_keyword"
+    ]
   }
 }

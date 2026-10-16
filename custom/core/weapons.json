@@ -139,6 +139,26 @@
       "skill": "weapon.stat.gst_passive_phyabn"
     }
   },
+  "wpn_claym_0018": {
+    "weaponId": "wpn_claym_0018",
+    "weaponType": "weapon.type.wpn_claym",
+    "rarity": 6,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_icedam",
+      "skill": "weapon.stat.gst_passive_keyword"
+    }
+  },
+  "wpn_claym_0019": {
+    "weaponId": "wpn_claym_0019",
+    "weaponType": "weapon.type.wpn_claym",
+    "rarity": 6,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_wisd",
+      "secondary": "weapon.stat.gat_passive_attr_icedam",
+      "skill": "weapon.stat.gst_passive_keyword"
+    }
+  },
   "wpn_funnel_0001": {
     "weaponId": "wpn_funnel_0001",
     "weaponType": "weapon.type.wpn_funnel",
@@ -787,6 +807,16 @@
       "attribute": "weapon.stat.gat_passive_attr_str",
       "secondary": "weapon.stat.gat_passive_attr_heal",
       "skill": "weapon.stat.gst_passive_heal"
+    }
+  },
+  "wpn_sword_0024": {
+    "weaponId": "wpn_sword_0024",
+    "weaponType": "weapon.type.wpn_sword",
+    "rarity": 6,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_will",
+      "secondary": "weapon.stat.gat_passive_attr_pulsedam",
+      "skill": "weapon.stat.gst_passive_burst"
     }
   },
   "wpn_sword_0026": {

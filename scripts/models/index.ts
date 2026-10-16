@@ -52,6 +52,7 @@ export type {
 } from './skillPatchTable';
 export type { TextTable } from './textTable';
 export type { WeaponBasic, WeaponBasicTable } from './weaponBasicTable';
+export type { WikiEntryData, WikiEntryDataTable } from './wikiEntryDataTable';
 export type {
   WorldEnergyPointGroup,
   WorldEnergyPointGroupTable,

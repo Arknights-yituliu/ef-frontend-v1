@@ -1,4 +1,4 @@
-import { charWpnRecommendTable, weaponBasicTable } from '../gameData';
+import { charWpnRecommendTable, weaponBasicTable, wikiWeaponIds } from '../gameData';
 
 // 没有头像的特殊干员 ID 列表，不包含在推荐中
 const noAvatarCharIds = new Set(['chr_9000_endmin']);
@@ -6,12 +6,14 @@ const noAvatarCharIds = new Set(['chr_9000_endmin']);
 /**
  * 从武器推荐表中生成 weaponId -> charId[] 的映射。
  * 仅取每位干员的第一推荐武器（weaponIds1[0]）。
- * 所有武器均会包含在结果中，无干员推荐的武器对应空列表。
+ * 仅包含 wiki 中存在的武器（与 weapons.json 保持一致），无干员推荐的武器对应空列表。
  */
 export function makeWeaponToChars(): Record<string, string[]> {
-  // 以 weaponBasicTable 为基底，确保所有武器都在结果中
+  // 以 weaponBasicTable 中 wiki 存在的武器为基底，确保结果与武器表一致
   const weaponToChars: Map<string, string[]> = new Map(
-    Object.keys(weaponBasicTable).map((weaponId) => [weaponId, []]),
+    Object.keys(weaponBasicTable)
+      .filter((weaponId) => wikiWeaponIds.has(weaponId))
+      .map((weaponId) => [weaponId, []]),
   );
 
   for (const [charId, entry] of Object.entries(charWpnRecommendTable)) {
@@ -29,10 +31,10 @@ export function makeWeaponToChars(): Record<string, string[]> {
       continue;
     }
 
-    // 检查该武器是否存在于 weaponBasicTable 中
+    // 检查该武器是否存在（wiki 中存在的武器集合）
     if (!weaponToChars.has(firstWeapon)) {
       console.warn(
-        `Weapon ${firstWeapon} recommended by char ${charId} not found in weaponBasicTable.`,
+        `Weapon ${firstWeapon} recommended by char ${charId} not found in wiki weapon list.`,
       );
       continue;
     }

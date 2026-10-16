@@ -13,6 +13,8 @@
   "wpn_claym_0015": [],
   "wpn_claym_0016": [],
   "wpn_claym_0017": ["chr_0031_mifu"],
+  "wpn_claym_0018": ["chr_0036_jsspsi"],
+  "wpn_claym_0019": [],
   "wpn_funnel_0001": [],
   "wpn_funnel_0002": [],
   "wpn_funnel_0003": [],
@@ -78,5 +80,6 @@
   "wpn_sword_0021": ["chr_0002_endminm", "chr_0003_endminf"],
   "wpn_sword_0022": ["chr_0028_wulfa"],
   "wpn_sword_0023": ["chr_0038_purrche"],
+  "wpn_sword_0024": [],
   "wpn_sword_0026": []
 }

@@ -578,10 +578,10 @@
         "quantity": 15000
       },
       {
-        "itemId": "item_shot_sticker_bp_6",
+        "itemId": "item_shot_sticker_bp_7",
         "name": {
-          "zh-CN": "贴纸·捕梦",
-          "en-US": "Sticker: Dream Snare"
+          "zh-CN": "贴纸·线形墨魉",
+          "en-US": "Sticker: Minimalist Ink Spirit"
         },
         "quantity": 1
       },
@@ -698,10 +698,10 @@
         "quantity": 20000
       },
       {
-        "itemId": "item_shot_filter_sp_6",
+        "itemId": "item_shot_filter_sp_7",
         "name": {
-          "zh-CN": "滤镜·血忆",
-          "en-US": "Filter: Sanguine Recall"
+          "zh-CN": "滤镜·武陵印象",
+          "en-US": "Filter: Wuling Impression"
         },
         "quantity": 1
       },
@@ -818,10 +818,10 @@
         "quantity": 40000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_6",
+        "itemId": "item_case_wpn_selfselect_bp_7",
         "name": {
-          "zh-CN": "武器补给·幽林",
-          "en-US": "Weapon Supply: Gloomwald"
+          "zh-CN": "武器补给·墨卷",
+          "en-US": "Weapon Supply: Ink Scroll"
         },
         "quantity": 1
       },
@@ -1014,10 +1014,10 @@
         "quantity": 12500
       },
       {
-        "itemId": "item_char_ap_supply_typhoea",
+        "itemId": "item_char_ap_supply_jsspsi",
         "name": {
-          "zh-CN": "萨米维格腌咸鳞",
-          "en-US": "Samivegric Salted Fin"
+          "zh-CN": "松烟墨条",
+          "en-US": "Pine Soot Ink Stick"
         },
         "quantity": 1
       },
@@ -1086,10 +1086,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_bp_1_5",
+        "itemId": "item_user_avatar_bp_1_6",
         "name": {
-          "zh-CN": "冰结的轮廓",
-          "en-US": "Frozen Outline"
+          "zh-CN": "龙的简约线条",
+          "en-US": "Doodled Lung"
         },
         "quantity": 1
       },
@@ -1126,10 +1126,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_frame_bp_1_5",
+        "itemId": "item_user_avatar_frame_bp_1_6",
         "name": {
-          "zh-CN": "雪祀规则",
-          "en-US": "Rules of the Snowpriest"
+          "zh-CN": "墨峦",
+          "en-US": "Ink Mountains"
         },
         "quantity": 1
       },
@@ -1166,10 +1166,10 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_6",
+        "itemId": "item_case_wpn_selfselect_bp_7",
         "name": {
-          "zh-CN": "武器补给·幽林",
-          "en-US": "Weapon Supply: Gloomwald"
+          "zh-CN": "武器补给·墨卷",
+          "en-US": "Weapon Supply: Ink Scroll"
         },
         "quantity": 1
       },
@@ -1214,12 +1214,12 @@
         "quantity": 800
       },
       {
-        "itemId": "ap_supply_lt_n",
+        "itemId": "item_char_ap_supply_minghe",
         "name": {
-          "zh-CN": "应急理智加强剂",
-          "en-US": "Emergency Sanity Booster"
+          "zh-CN": "怒骊糕",
+          "en-US": "Nuli Cake"
         },
-        "quantity": 2
+        "quantity": 1
       },
       {
         "itemId": "item_expcard_stage2_high",
@@ -1286,10 +1286,10 @@
         "quantity": 65000
       },
       {
-        "itemId": "business_card_topic_bp_1_5",
+        "itemId": "business_card_topic_bp_1_6",
         "name": {
-          "zh-CN": "梦时曜夜",
-          "en-US": "Dreamlit Night"
+          "zh-CN": "自有意气向云流",
+          "en-US": "Aspiration for the Clouds"
         },
         "quantity": 1
       },
@@ -1350,10 +1350,10 @@
         "quantity": 30
       },
       {
-        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "itemId": "item_case_bp_selfselect_skillsp_2",
         "name": {
-          "zh-CN": "高阶培养自选箱Ⅰ",
-          "en-US": "Advanced Progression Selection Crate Ⅰ"
+          "zh-CN": "高阶培养自选箱Ⅱ",
+          "en-US": "Advanced Progression Selection Crate Ⅱ"
         },
         "quantity": 8
       },
@@ -1382,10 +1382,10 @@
         "quantity": 2
       },
       {
-        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "itemId": "item_case_bp_selfselect_skillsp_2",
         "name": {
-          "zh-CN": "高阶培养自选箱Ⅰ",
-          "en-US": "Advanced Progression Selection Crate Ⅰ"
+          "zh-CN": "高阶培养自选箱Ⅱ",
+          "en-US": "Advanced Progression Selection Crate Ⅱ"
         },
         "quantity": 8
       },
@@ -1430,10 +1430,10 @@
         "quantity": 30
       },
       {
-        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "itemId": "item_case_bp_selfselect_skillsp_2",
         "name": {
-          "zh-CN": "高阶培养自选箱Ⅰ",
-          "en-US": "Advanced Progression Selection Crate Ⅰ"
+          "zh-CN": "高阶培养自选箱Ⅱ",
+          "en-US": "Advanced Progression Selection Crate Ⅱ"
         },
         "quantity": 10
       },
@@ -1470,10 +1470,10 @@
         "quantity": 30
       },
       {
-        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "itemId": "item_case_bp_selfselect_skillsp_2",
         "name": {
-          "zh-CN": "高阶培养自选箱Ⅰ",
-          "en-US": "Advanced Progression Selection Crate Ⅰ"
+          "zh-CN": "高阶培养自选箱Ⅱ",
+          "en-US": "Advanced Progression Selection Crate Ⅱ"
         },
         "quantity": 10
       },
@@ -1652,6 +1652,51 @@
       }
     ]
   },
+  "giftpack_lt_decorate_1_6": {
+    "packId": "giftpack_lt_decorate_1_6",
+    "displayName": {
+      "zh-CN": "奇妙视线收藏包",
+      "en-US": "Wondrous View Collection Pack"
+    },
+    "category": "Seasonal_Rec_pack",
+    "price": 6,
+    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_decorate_1_6_smallicon.png",
+    "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_decorate_1_6_smallbg.png",
+    "contents": [
+      {
+        "itemId": "item_ticketgacha_special_single",
+        "name": {
+          "zh-CN": "特许寻访凭证",
+          "en-US": "Chartered HH Permit"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_shot_sticker_giftpack_5",
+        "name": {
+          "zh-CN": "贴纸·哦吼……",
+          "en-US": "Sticker: Aha..."
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_shot_sticker_giftpack_3",
+        "name": {
+          "zh-CN": "贴纸·左右看看",
+          "en-US": "Sticker: Looking Around"
+        },
+        "quantity": 1
+      },
+      {
+        "itemId": "item_shot_sticker_giftpack_4",
+        "name": {
+          "zh-CN": "贴纸·严肃凝视",
+          "en-US": "Sticker: Solemn Gaze"
+        },
+        "quantity": 1
+      }
+    ]
+  },
   "giftpack_lt_gacha_plus_1_4": {
     "packId": "giftpack_lt_gacha_plus_1_4",
     "displayName": {
@@ -1689,16 +1734,16 @@
       }
     ]
   },
-  "monthly_giftpack_01": {
-    "packId": "monthly_giftpack_01",
+  "monthly_giftpack_02": {
+    "packId": "monthly_giftpack_02",
     "displayName": {
       "zh-CN": "每月素材组合包",
       "en-US": "Monthly Materials Bundle"
     },
     "category": "Permanent_pack",
     "price": 98,
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/monthly_giftpack_01_smallicon.png",
-    "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/monthly_giftpack_01_smallbg.png",
+    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/monthly_giftpack_02_smallicon.png",
+    "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/monthly_giftpack_02_smallbg.png",
     "contents": [
       {
         "itemId": "item_gold",
@@ -1749,10 +1794,10 @@
         "quantity": 50
       },
       {
-        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "itemId": "item_case_bp_selfselect_skillsp_2",
         "name": {
-          "zh-CN": "高阶培养自选箱Ⅰ",
-          "en-US": "Advanced Progression Selection Crate Ⅰ"
+          "zh-CN": "高阶培养自选箱Ⅱ",
+          "en-US": "Advanced Progression Selection Crate Ⅱ"
         },
         "quantity": 20
       }
@@ -2200,16 +2245,16 @@
       }
     ]
   },
-  "weapon_giftpack_04": {
-    "packId": "weapon_giftpack_04",
+  "weapon_giftpack_05": {
+    "packId": "weapon_giftpack_05",
     "displayName": {
       "zh-CN": "满载武库组合包",
       "en-US": "Loaded Arsenal Bundle"
     },
     "category": "SP_weapon_supply",
     "price": 328,
-    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_04_smallicon.png",
-    "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_04_smallbg.png",
+    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_05_smallicon.png",
+    "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/weapon_giftpack_05_smallbg.png",
     "contents": [
       {
         "itemId": "item_gachabyproducts_weapongold",
@@ -2220,10 +2265,10 @@
         "quantity": 5280
       },
       {
-        "itemId": "item_case_bp_selfselect_skillsp_1",
+        "itemId": "item_case_bp_selfselect_skillsp_2",
         "name": {
-          "zh-CN": "高阶培养自选箱Ⅰ",
-          "en-US": "Advanced Progression Selection Crate Ⅰ"
+          "zh-CN": "高阶培养自选箱Ⅱ",
+          "en-US": "Advanced Progression Selection Crate Ⅱ"
         },
         "quantity": 5
       },

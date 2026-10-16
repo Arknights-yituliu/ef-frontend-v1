@@ -71,7 +71,7 @@
       "zh-CN": "标准组合包",
       "en-US": "Standard Bundle"
     },
-    "goodsIds": ["monthly_giftpack_01", "weekly_giftpack_01"]
+    "goodsIds": ["monthly_giftpack_02", "weekly_giftpack_01"]
   },
   "Seasonal_Rec_pack": {
     "shopId": "Seasonal_Rec_pack",
@@ -79,7 +79,7 @@
       "zh-CN": "限时组合包",
       "en-US": "Limited Bundle"
     },
-    "goodsIds": ["seasonal_giftpack", "seasonal_giftpack_combine"]
+    "goodsIds": ["giftpack_lt_decorate_1_6", "seasonal_giftpack", "seasonal_giftpack_combine"]
   },
   "SP_weapon_supply": {
     "shopId": "SP_weapon_supply",
@@ -91,7 +91,7 @@
       "weapon_giftpack_01",
       "weapon_giftpack_02",
       "weapon_giftpack_03",
-      "weapon_giftpack_04"
+      "weapon_giftpack_05"
     ]
   }
 }

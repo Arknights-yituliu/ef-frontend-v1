@@ -293,6 +293,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_adv_wuling_box_4_2": {
+    "id": "achv_adv_wuling_box_4_2",
+    "name": {
+      "zh-CN": "异境储藏家奖章",
+      "en-US": "Outworldly Crate Master"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_adv_wuling_bugball_2": {
     "id": "achv_adv_wuling_bugball_2",
     "name": {
@@ -340,6 +354,20 @@
     "name": {
       "zh-CN": "锚定武陵奖章·Ⅲ",
       "en-US": "Anchored to Wuling Ⅲ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_campfire_4_1": {
+    "id": "achv_adv_wuling_campfire_4_1",
+    "name": {
+      "zh-CN": "锚定武陵奖章·Ⅳ",
+      "en-US": "Anchored to Wuling Ⅳ"
     },
     "rarity": 1,
     "type": 100,
@@ -424,6 +452,20 @@
     "name": {
       "zh-CN": "“碎片的重聚”·Ⅲ",
       "en-US": "Re-Congregated Fragments Ⅲ"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_ether_4_2": {
+    "id": "achv_adv_wuling_ether_4_2",
+    "name": {
+      "zh-CN": "“碎片的重聚”·Ⅳ",
+      "en-US": "\"Re-Congregated Fragments\" Ⅳ"
     },
     "rarity": 1,
     "type": 100,
@@ -522,6 +564,34 @@
     "name": {
       "zh-CN": "遂明储藏家奖章",
       "en-US": "Suiming Crate Master"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_paint_2": {
+    "id": "achv_adv_wuling_paint_2",
+    "name": {
+      "zh-CN": "“补画匠”",
+      "en-US": "\"Painting Mender\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_password_2": {
+    "id": "achv_adv_wuling_password_2",
+    "name": {
+      "zh-CN": "“妙笔连珠”",
+      "en-US": "\"Brilliant Dabs and Strokes\""
     },
     "rarity": 1,
     "type": 100,
@@ -746,6 +816,34 @@
     "name": {
       "zh-CN": "“偃旗息鼓”",
       "en-US": "\"Silencing the Drum\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_defeat_jsspsi_3": {
+    "id": "achv_bat_defeat_jsspsi_3",
+    "name": {
+      "zh-CN": "“便知万物新”",
+      "en-US": "\"Insight of Rejuvenation\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_defeat_jsspsi_3_plate": {
+    "id": "achv_bat_defeat_jsspsi_3_plate",
+    "name": {
+      "zh-CN": "“便知万物新”",
+      "en-US": "\"Insight of Rejuvenation\""
     },
     "rarity": 1,
     "type": 100,
@@ -1231,6 +1329,48 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_bat_hard_8_2": {
+    "id": "achv_bat_hard_8_2",
+    "name": {
+      "zh-CN": "“深林呓语”",
+      "en-US": "\"Murmurs of the Deep Forest\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_hard_8_2_plate": {
+    "id": "achv_bat_hard_8_2_plate",
+    "name": {
+      "zh-CN": "“深林呓语”",
+      "en-US": "\"Murmurs of the Deep Forest\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_jsspsi_reverse_color_2": {
+    "id": "achv_bat_jsspsi_reverse_color_2",
+    "name": {
+      "zh-CN": "“留白”",
+      "en-US": "\"Art of Blanks\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_bat_magical_AS_1": {
     "id": "achv_bat_magical_AS_1",
     "name": {
@@ -1469,6 +1609,34 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_event_gambling_dungeon_1_2": {
+    "id": "achv_event_gambling_dungeon_1_2",
+    "name": {
+      "zh-CN": "“演武与计算”",
+      "en-US": "\"Dataplate Counter\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_gambling_dungeon_1_2_plate": {
+    "id": "achv_event_gambling_dungeon_1_2_plate",
+    "name": {
+      "zh-CN": "“演武与计算”",
+      "en-US": "\"Dataplate Counter\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_event_racingdungeon_1_2": {
     "id": "achv_event_racingdungeon_1_2",
     "name": {
@@ -1572,6 +1740,34 @@
     "name": {
       "zh-CN": "“六方巧境”",
       "en-US": "\"Artful Realm of Six Cardinals\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_wuling_challenge_dung_03_2": {
+    "id": "achv_event_wuling_challenge_dung_03_2",
+    "name": {
+      "zh-CN": "“画外遗光”",
+      "en-US": "\"Fade Beyond the Painting\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_wuling_challenge_dung_03_2_plate": {
+    "id": "achv_event_wuling_challenge_dung_03_2_plate",
+    "name": {
+      "zh-CN": "“画外遗光”",
+      "en-US": "\"Fade Beyond the Painting\""
     },
     "rarity": 1,
     "type": 100,
@@ -1852,6 +2048,34 @@
     "name": {
       "zh-CN": "稳定出售奖章",
       "en-US": "Steady Sales"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_inn_management_2": {
+    "id": "achv_fac_inn_management_2",
+    "name": {
+      "zh-CN": "老饕悦服奖章",
+      "en-US": "Happy Gourmand"
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_inn_management_2_plate": {
+    "id": "achv_fac_inn_management_2_plate",
+    "name": {
+      "zh-CN": "老饕悦服奖章",
+      "en-US": "Happy Gourmand"
     },
     "rarity": 1,
     "type": 100,
@@ -2505,6 +2729,20 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_hide_accidental_injury_1": {
+    "id": "achv_hide_accidental_injury_1",
+    "name": {
+      "zh-CN": "“非自愿渡劫”",
+      "en-US": "\"Involuntary Karma Recipient\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_hide_aether_lock_clean_2": {
     "id": "achv_hide_aether_lock_clean_2",
     "name": {
@@ -2687,6 +2925,34 @@
     },
     "iconId": "item_achievement_icon"
   },
+  "achv_hide_spaceship_v1d6_1": {
+    "id": "achv_hide_spaceship_v1d6_1",
+    "name": {
+      "zh-CN": "“得见南山”",
+      "en-US": "\"A View of the Southern Peak\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_hide_three_dragon_1": {
+    "id": "achv_hide_three_dragon_1",
+    "name": {
+      "zh-CN": "“最帅气的龙”",
+      "en-US": "\"Most Dashing Lung\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
   "achv_hide_waterwheel_top_2": {
     "id": "achv_hide_waterwheel_top_2",
     "name": {
@@ -2832,6 +3098,48 @@
     "name": {
       "zh-CN": "“裂伤于此终结”",
       "en-US": "\"Thus Ends the Weeping Gash\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_quest_e12m1_3": {
+    "id": "achv_quest_e12m1_3",
+    "name": {
+      "zh-CN": "“入丹青”",
+      "en-US": "\"Enter the Painted World\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_quest_e12m4_3": {
+    "id": "achv_quest_e12m4_3",
+    "name": {
+      "zh-CN": "“洞我执”",
+      "en-US": "\"See Through the Self\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_quest_e12m5_3": {
+    "id": "achv_quest_e12m5_3",
+    "name": {
+      "zh-CN": "“着新墨”",
+      "en-US": "\"Paint with Fresh Ink\""
     },
     "rarity": 1,
     "type": 100,
@@ -3042,6 +3350,20 @@
     "name": {
       "zh-CN": "“以拳问心”",
       "en-US": "\"A Fistful of Reflections\""
+    },
+    "rarity": 1,
+    "type": 100,
+    "typeName": {
+      "zh-CN": "蚀刻章",
+      "en-US": "Engraved Medal"
+    },
+    "iconId": "item_achievement_icon"
+  },
+  "achv_quest_sm2l10m3_2": {
+    "id": "achv_quest_sm2l10m3_2",
+    "name": {
+      "zh-CN": "“纪念日”",
+      "en-US": "\"A Day to Remember\""
     },
     "rarity": 1,
     "type": 100,
@@ -3401,6 +3723,20 @@
     },
     "iconId": "item_topic_bp_1_5"
   },
+  "business_card_topic_bp_1_6": {
+    "id": "business_card_topic_bp_1_6",
+    "name": {
+      "zh-CN": "自有意气向云流",
+      "en-US": "Aspiration for the Clouds"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_bp_1_6"
+  },
   "business_card_topic_chr_0009_azrila": {
     "id": "business_card_topic_chr_0009_azrila",
     "name": {
@@ -3624,6 +3960,20 @@
       "en-US": "Profile Theme"
     },
     "iconId": "item_topic_chr_0035_liino"
+  },
+  "business_card_topic_chr_0036_jsspsi": {
+    "id": "business_card_topic_chr_0036_jsspsi",
+    "name": {
+      "zh-CN": "不浊",
+      "en-US": "Untainted"
+    },
+    "rarity": 6,
+    "type": 68,
+    "typeName": {
+      "zh-CN": "名片主题",
+      "en-US": "Profile Theme"
+    },
+    "iconId": "item_topic_chr_0036_jsspsi"
   },
   "business_card_topic_normal_1": {
     "id": "business_card_topic_normal_1",
@@ -4129,6 +4479,20 @@
     },
     "iconId": "item_chr_0035_liino"
   },
+  "chr_0036_jsspsi": {
+    "id": "chr_0036_jsspsi",
+    "name": {
+      "zh-CN": "祀",
+      "en-US": "Si"
+    },
+    "rarity": 6,
+    "type": 4,
+    "typeName": {
+      "zh-CN": "招聘合同",
+      "en-US": "Employment Contract"
+    },
+    "iconId": "item_chr_0036_jsspsi"
+  },
   "chr_0038_purrche": {
     "id": "chr_0038_purrche",
     "name": {
@@ -4537,6 +4901,62 @@
   },
   "gem_claym_0017_663": {
     "id": "gem_claym_0017_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_claym_0018_442": {
+    "id": "gem_claym_0018_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_claym_0018_663": {
+    "id": "gem_claym_0018_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_claym_0019_442": {
+    "id": "gem_claym_0019_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_claym_0019_663": {
+    "id": "gem_claym_0019_663",
     "name": {
       "zh-CN": "无瑕基质",
       "en-US": "Flawless Essence"
@@ -6397,6 +6817,62 @@
     },
     "iconId": "item_gem_rarity_5"
   },
+  "gem_sword_0024_442": {
+    "id": "gem_sword_0024_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_sword_0024_663": {
+    "id": "gem_sword_0024_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_sword_0025_442": {
+    "id": "gem_sword_0025_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_sword_0025_663": {
+    "id": "gem_sword_0025_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "type": 19,
+    "typeName": {
+      "zh-CN": "基质",
+      "en-US": "Essence"
+    },
+    "iconId": "item_gem_rarity_5"
+  },
   "gem_sword_0026_442": {
     "id": "gem_sword_0026_442",
     "name": {
@@ -6662,6 +7138,90 @@
       "en-US": "Mission Item"
     },
     "iconId": "item_read_note"
+  },
+  "item_Ingredient_flour_1": {
+    "id": "item_Ingredient_flour_1",
+    "name": {
+      "zh-CN": "面粉",
+      "en-US": "Flour"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_Ingredient_flour_1"
+  },
+  "item_Ingredient_oil_1": {
+    "id": "item_Ingredient_oil_1",
+    "name": {
+      "zh-CN": "菜籽油",
+      "en-US": "Seed Oil"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_Ingredient_oil_1"
+  },
+  "item_Ingredient_paprika_1": {
+    "id": "item_Ingredient_paprika_1",
+    "name": {
+      "zh-CN": "辣椒粉",
+      "en-US": "Ground Pepper"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_Ingredient_paprika_1"
+  },
+  "item_Ingredient_spices_1": {
+    "id": "item_Ingredient_spices_1",
+    "name": {
+      "zh-CN": "一百三十香",
+      "en-US": "Spice Mix 130"
+    },
+    "rarity": 5,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_Ingredient_spices_1"
+  },
+  "item_Ingredient_starch_1": {
+    "id": "item_Ingredient_starch_1",
+    "name": {
+      "zh-CN": "淀粉",
+      "en-US": "Starch"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_Ingredient_starch_1"
+  },
+  "item_Ingredient_sugar_1": {
+    "id": "item_Ingredient_sugar_1",
+    "name": {
+      "zh-CN": "砂糖",
+      "en-US": "Sugar"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_Ingredient_sugar_1"
   },
   "item_activity_contract_gold_0": {
     "id": "item_activity_contract_gold_0",
@@ -8945,6 +9505,62 @@
     },
     "iconId": "item_bp_xiranite_oven_mode_1"
   },
+  "item_byproduct_bean_1": {
+    "id": "item_byproduct_bean_1",
+    "name": {
+      "zh-CN": "球豆壳",
+      "en-US": "Ballpea Pod"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_byproduct_bean_1"
+  },
+  "item_byproduct_bean_moss_1": {
+    "id": "item_byproduct_bean_moss_1",
+    "name": {
+      "zh-CN": "球豆壳粉末",
+      "en-US": "Ballpea Pod Powder"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_byproduct_bean_moss_1"
+  },
+  "item_byproduct_potato_1": {
+    "id": "item_byproduct_potato_1",
+    "name": {
+      "zh-CN": "平薯叶",
+      "en-US": "Pingtuber Leaf"
+    },
+    "rarity": 1,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_byproduct_potato_1"
+  },
+  "item_byproduct_potato_moss_1": {
+    "id": "item_byproduct_potato_moss_1",
+    "name": {
+      "zh-CN": "平薯叶粉末",
+      "en-US": "Pingtuber Leaf Powder"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_byproduct_potato_moss_1"
+  },
   "item_c16m2_newspaper": {
     "id": "item_c16m2_newspaper",
     "name": {
@@ -9155,6 +9771,20 @@
     },
     "iconId": "item_case_bp_selfselect_skillsp_1"
   },
+  "item_case_bp_selfselect_skillsp_2": {
+    "id": "item_case_bp_selfselect_skillsp_2",
+    "name": {
+      "zh-CN": "高阶培养自选箱Ⅱ",
+      "en-US": "Advanced Progression Selection Crate Ⅱ"
+    },
+    "rarity": 5,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_bp_selfselect_skillsp_2"
+  },
   "item_case_char_selfselect_gahca_1_2_2": {
     "id": "item_case_char_selfselect_gahca_1_2_2",
     "name": {
@@ -9308,6 +9938,20 @@
       "en-US": "Crate"
     },
     "iconId": "item_case_wpn_selfselect_bp_6"
+  },
+  "item_case_wpn_selfselect_bp_7": {
+    "id": "item_case_wpn_selfselect_bp_7",
+    "name": {
+      "zh-CN": "武器补给·墨卷",
+      "en-US": "Weapon Supply: Ink Scroll"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_bp_7"
   },
   "item_case_wpn_selfselect_common_advlevel": {
     "id": "item_case_wpn_selfselect_common_advlevel",
@@ -9519,6 +10163,20 @@
     },
     "iconId": "item_case_wpn_selfselect_gahca_1_5_1"
   },
+  "item_case_wpn_selfselect_gahca_1_6_1": {
+    "id": "item_case_wpn_selfselect_gahca_1_6_1",
+    "name": {
+      "zh-CN": "补充武库箱·篆玉",
+      "en-US": "Arms OC: Seal of Jade"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_1_6_1"
+  },
   "item_case_wpn_selfselect_gahca_c_1": {
     "id": "item_case_wpn_selfselect_gahca_c_1",
     "name": {
@@ -9588,6 +10246,20 @@
       "en-US": "Crate"
     },
     "iconId": "item_case_wpn_selfselect_gahca_c_5"
+  },
+  "item_case_wpn_selfselect_gahca_tangtang": {
+    "id": "item_case_wpn_selfselect_gahca_tangtang",
+    "name": {
+      "zh-CN": "补充武库箱·细枝",
+      "en-US": "Arms OC: Tender Sprig"
+    },
+    "rarity": 6,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_case_wpn_selfselect_gahca_1_1"
   },
   "item_case_wpn_selfselect_gahca_yvonne": {
     "id": "item_case_wpn_selfselect_gahca_yvonne",
@@ -9673,6 +10345,20 @@
     },
     "iconId": "item_char_ap_supply_camille"
   },
+  "item_char_ap_supply_jsspsi": {
+    "id": "item_char_ap_supply_jsspsi",
+    "name": {
+      "zh-CN": "松烟墨条",
+      "en-US": "Pine Soot Ink Stick"
+    },
+    "rarity": 5,
+    "type": 22,
+    "typeName": {
+      "zh-CN": "理智药剂",
+      "en-US": "Sanity Meds"
+    },
+    "iconId": "item_char_ap_supply_jsspsi"
+  },
   "item_char_ap_supply_laevat": {
     "id": "item_char_ap_supply_laevat",
     "name": {
@@ -9728,6 +10414,20 @@
       "en-US": "Sanity Meds"
     },
     "iconId": "item_char_ap_supply_mifu"
+  },
+  "item_char_ap_supply_minghe": {
+    "id": "item_char_ap_supply_minghe",
+    "name": {
+      "zh-CN": "怒骊糕",
+      "en-US": "Nuli Cake"
+    },
+    "rarity": 5,
+    "type": 22,
+    "typeName": {
+      "zh-CN": "理智药剂",
+      "en-US": "Sanity Meds"
+    },
+    "iconId": "item_char_ap_supply_minghe"
   },
   "item_char_ap_supply_tangtang": {
     "id": "item_char_ap_supply_tangtang",
@@ -9826,6 +10526,20 @@
       "en-US": "Operator Material"
     },
     "iconId": "item_char_break_stage_3_4"
+  },
+  "item_char_equip_supply_jsspsi": {
+    "id": "item_char_equip_supply_jsspsi",
+    "name": {
+      "zh-CN": "武库防具箱α·万象",
+      "en-US": "Arsenal Defense Crate α: Omnipresence"
+    },
+    "rarity": 5,
+    "type": 43,
+    "typeName": {
+      "zh-CN": "物资箱",
+      "en-US": "Crate"
+    },
+    "iconId": "item_char_equip_supply_1"
   },
   "item_char_equip_supply_liino": {
     "id": "item_char_equip_supply_liino",
@@ -10008,6 +10722,20 @@
       "en-US": "Rare Progression Material"
     },
     "iconId": "item_char_skill_specialize_5"
+  },
+  "item_char_skill_specialize_6": {
+    "id": "item_char_skill_specialize_6",
+    "name": {
+      "zh-CN": "跃迁浆体涂片",
+      "en-US": "Warp Plasma-Coated Slide"
+    },
+    "rarity": 5,
+    "type": 95,
+    "typeName": {
+      "zh-CN": "珍贵培养素材",
+      "en-US": "Rare Progression Material"
+    },
+    "iconId": "item_char_skill_specialize_6"
   },
   "item_charpotentialup_chr_0002_endminm": {
     "id": "item_charpotentialup_chr_0002_endminm",
@@ -10457,6 +11185,20 @@
     },
     "iconId": "item_charpotentialup_chr_0035_liino"
   },
+  "item_charpotentialup_chr_0036_jsspsi": {
+    "id": "item_charpotentialup_chr_0036_jsspsi",
+    "name": {
+      "zh-CN": "祀的信物",
+      "en-US": "Si's Token"
+    },
+    "rarity": 6,
+    "type": 42,
+    "typeName": {
+      "zh-CN": "干员信物",
+      "en-US": "Operator Token"
+    },
+    "iconId": "item_charpotentialup_chr_0036_jsspsi"
+  },
   "item_charpotentialup_chr_0038_purrche": {
     "id": "item_charpotentialup_chr_0038_purrche",
     "name": {
@@ -10807,6 +11549,342 @@
     },
     "iconId": "item_corp4_spc"
   },
+  "item_corp_bean_1": {
+    "id": "item_corp_bean_1",
+    "name": {
+      "zh-CN": "球豆",
+      "en-US": "Ballpea"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_bean_1"
+  },
+  "item_corp_bean_seed_1": {
+    "id": "item_corp_bean_seed_1",
+    "name": {
+      "zh-CN": "球豆种子",
+      "en-US": "Ballpea Seeds"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_bean_seed_1"
+  },
+  "item_corp_cabbage_1": {
+    "id": "item_corp_cabbage_1",
+    "name": {
+      "zh-CN": "青菜",
+      "en-US": "Cabbage"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_cabbage_1"
+  },
+  "item_corp_cabbage_2": {
+    "id": "item_corp_cabbage_2",
+    "name": {
+      "zh-CN": "优质青菜",
+      "en-US": "Cabbage [A]"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_cabbage_2"
+  },
+  "item_corp_cabbage_seed_1": {
+    "id": "item_corp_cabbage_seed_1",
+    "name": {
+      "zh-CN": "青菜种子",
+      "en-US": "Cabbage Seeds"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_cabbage_seed_1"
+  },
+  "item_corp_cabbage_seed_2": {
+    "id": "item_corp_cabbage_seed_2",
+    "name": {
+      "zh-CN": "优质青菜种子",
+      "en-US": "Cabbage Seeds [A]"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_cabbage_seed_2"
+  },
+  "item_corp_canolaflower_1": {
+    "id": "item_corp_canolaflower_1",
+    "name": {
+      "zh-CN": "籽油花",
+      "en-US": "Oilseed Bloom"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_canolaflower_1"
+  },
+  "item_corp_canolaflower_seed_1": {
+    "id": "item_corp_canolaflower_seed_1",
+    "name": {
+      "zh-CN": "籽油花种子",
+      "en-US": "Oilseeds"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_canolaflower_seed_1"
+  },
+  "item_corp_mushroom_1": {
+    "id": "item_corp_mushroom_1",
+    "name": {
+      "zh-CN": "多味菇",
+      "en-US": "Relishroom"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_mushroom_1"
+  },
+  "item_corp_mushroom_2": {
+    "id": "item_corp_mushroom_2",
+    "name": {
+      "zh-CN": "优质多味菇",
+      "en-US": "Relishroom [A]"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_mushroom_2"
+  },
+  "item_corp_mushroom_seed_1": {
+    "id": "item_corp_mushroom_seed_1",
+    "name": {
+      "zh-CN": "多味菇孢子",
+      "en-US": "Relishroom Spores"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_mushroom_seed_1"
+  },
+  "item_corp_mushroom_seed_2": {
+    "id": "item_corp_mushroom_seed_2",
+    "name": {
+      "zh-CN": "优质多味菇孢子",
+      "en-US": "Relishroom Spores [A]"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_mushroom_seed_2"
+  },
+  "item_corp_potato_1": {
+    "id": "item_corp_potato_1",
+    "name": {
+      "zh-CN": "平薯",
+      "en-US": "Pingtuber"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_potato_1"
+  },
+  "item_corp_potato_seed_1": {
+    "id": "item_corp_potato_seed_1",
+    "name": {
+      "zh-CN": "平薯块茎",
+      "en-US": "Pingtuber Cutting"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_potato_seed_1"
+  },
+  "item_corp_strawberry_1": {
+    "id": "item_corp_strawberry_1",
+    "name": {
+      "zh-CN": "青叶莓",
+      "en-US": "Sourberry"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_strawberry_1"
+  },
+  "item_corp_strawberry_2": {
+    "id": "item_corp_strawberry_2",
+    "name": {
+      "zh-CN": "优质青叶莓",
+      "en-US": "Sourberry [A]"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_strawberry_2"
+  },
+  "item_corp_strawberry_seed_1": {
+    "id": "item_corp_strawberry_seed_1",
+    "name": {
+      "zh-CN": "青叶莓种子",
+      "en-US": "Sourberry Seeds"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_strawberry_seed_1"
+  },
+  "item_corp_strawberry_seed_2": {
+    "id": "item_corp_strawberry_seed_2",
+    "name": {
+      "zh-CN": "优质青叶莓种子",
+      "en-US": "Sourberry Seeds [A]"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_strawberry_seed_2"
+  },
+  "item_corp_sugarcane_1": {
+    "id": "item_corp_sugarcane_1",
+    "name": {
+      "zh-CN": "脆蔗",
+      "en-US": "Crunchcane"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_sugarcane_1"
+  },
+  "item_corp_sugarcane_seed_1": {
+    "id": "item_corp_sugarcane_seed_1",
+    "name": {
+      "zh-CN": "脆蔗种子",
+      "en-US": "Crunchcane Cutting"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_sugarcane_seed_1"
+  },
+  "item_corp_tomato_1": {
+    "id": "item_corp_tomato_1",
+    "name": {
+      "zh-CN": "茄果",
+      "en-US": "Matoberry"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_tomato_1"
+  },
+  "item_corp_tomato_seed_1": {
+    "id": "item_corp_tomato_seed_1",
+    "name": {
+      "zh-CN": "茄果种子",
+      "en-US": "Matoberry Seeds"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_tomato_seed_1"
+  },
+  "item_corp_whitegourd_1": {
+    "id": "item_corp_whitegourd_1",
+    "name": {
+      "zh-CN": "白瓜",
+      "en-US": "Whitemelon"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_whitegourd_1"
+  },
+  "item_corp_whitegourd_seed_1": {
+    "id": "item_corp_whitegourd_seed_1",
+    "name": {
+      "zh-CN": "白瓜种子",
+      "en-US": "Whitemelon Seeds"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_corp_whitegourd_seed_1"
+  },
   "item_crystal_enr": {
     "id": "item_crystal_enr",
     "name": {
@@ -10960,6 +12038,48 @@
       "en-US": "Personal Device"
     },
     "iconId": "item_device_balloon_recycle_3"
+  },
+  "item_device_buff_ink_1": {
+    "id": "item_device_buff_ink_1",
+    "name": {
+      "zh-CN": "四尺《养气图》",
+      "en-US": "4FT Qi Cultivation Scroll"
+    },
+    "rarity": 3,
+    "type": 101,
+    "typeName": {
+      "zh-CN": "随身装置",
+      "en-US": "Personal Device"
+    },
+    "iconId": "item_device_buff_ink_1"
+  },
+  "item_device_buff_ink_2": {
+    "id": "item_device_buff_ink_2",
+    "name": {
+      "zh-CN": "五尺《养气图》",
+      "en-US": "5FT Qi Cultivation Scroll"
+    },
+    "rarity": 4,
+    "type": 101,
+    "typeName": {
+      "zh-CN": "随身装置",
+      "en-US": "Personal Device"
+    },
+    "iconId": "item_device_buff_ink_2"
+  },
+  "item_device_buff_ink_3": {
+    "id": "item_device_buff_ink_3",
+    "name": {
+      "zh-CN": "六尺《养气图》",
+      "en-US": "6FT Qi Cultivation Scroll"
+    },
+    "rarity": 5,
+    "type": 101,
+    "typeName": {
+      "zh-CN": "随身装置",
+      "en-US": "Personal Device"
+    },
+    "iconId": "item_device_buff_ink_3"
   },
   "item_device_buff_snow_1": {
     "id": "item_device_buff_snow_1",
@@ -11786,6 +12906,48 @@
       "en-US": "Material"
     },
     "iconId": "item_drop_hvybow_1"
+  },
+  "item_drop_inkbiter_1": {
+    "id": "item_drop_inkbiter_1",
+    "name": {
+      "zh-CN": "小墨团",
+      "en-US": "Ink Droplet"
+    },
+    "rarity": 1,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_drop_inkbiter_1"
+  },
+  "item_drop_inkkirin_1": {
+    "id": "item_drop_inkkirin_1",
+    "name": {
+      "zh-CN": "降劫雨露",
+      "en-US": "Calamity's Raindew"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_drop_inkkirin_1"
+  },
+  "item_drop_inklion_1": {
+    "id": "item_drop_inklion_1",
+    "name": {
+      "zh-CN": "敕律玉球",
+      "en-US": "Edified Jade Orb"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_drop_inklion_1"
   },
   "item_drop_jzmonk_1": {
     "id": "item_drop_jzmonk_1",
@@ -13621,6 +14783,34 @@
     },
     "iconId": "item_equip_t4_parts_wuling00_body_05"
   },
+  "item_equip_t4_parts_wuling00_body_06": {
+    "id": "item_equip_t4_parts_wuling00_body_06",
+    "name": {
+      "zh-CN": "集成实训刃装护甲",
+      "en-US": "AIC Fieldwork CQB Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_body_06"
+  },
+  "item_equip_t4_parts_wuling00_body_06_preset_333": {
+    "id": "item_equip_t4_parts_wuling00_body_06_preset_333",
+    "name": {
+      "zh-CN": "集成实训刃装护甲",
+      "en-US": "AIC Fieldwork CQB Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_body_06"
+  },
   "item_equip_t4_parts_wuling00_edc_01": {
     "id": "item_equip_t4_parts_wuling00_edc_01",
     "name": {
@@ -13760,6 +14950,34 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_parts_wuling00_edc_05"
+  },
+  "item_equip_t4_parts_wuling00_edc_06": {
+    "id": "item_equip_t4_parts_wuling00_edc_06",
+    "name": {
+      "zh-CN": "集成实训刃装短锯",
+      "en-US": "AIC Fieldwork CQB Hacksaw"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_edc_06"
+  },
+  "item_equip_t4_parts_wuling00_edc_06_preset_333": {
+    "id": "item_equip_t4_parts_wuling00_edc_06_preset_333",
+    "name": {
+      "zh-CN": "集成实训刃装短锯",
+      "en-US": "AIC Fieldwork CQB Hacksaw"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_edc_06"
   },
   "item_equip_t4_parts_wuling00_hand_01": {
     "id": "item_equip_t4_parts_wuling00_hand_01",
@@ -13901,6 +15119,34 @@
     },
     "iconId": "item_equip_t4_parts_wuling00_hand_05"
   },
+  "item_equip_t4_parts_wuling00_hand_06": {
+    "id": "item_equip_t4_parts_wuling00_hand_06",
+    "name": {
+      "zh-CN": "集成实训刃装护手",
+      "en-US": "AIC Fieldwork CQB Gloves"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_hand_06"
+  },
+  "item_equip_t4_parts_wuling00_hand_06_preset_333": {
+    "id": "item_equip_t4_parts_wuling00_hand_06_preset_333",
+    "name": {
+      "zh-CN": "集成实训刃装护手",
+      "en-US": "AIC Fieldwork CQB Gloves"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_hand_06"
+  },
   "item_equip_t4_parts_wuling01_body_01": {
     "id": "item_equip_t4_parts_wuling01_body_01",
     "name": {
@@ -14041,6 +15287,34 @@
     },
     "iconId": "item_equip_t4_parts_wuling02_body_02"
   },
+  "item_equip_t4_parts_wuling02_body_03": {
+    "id": "item_equip_t4_parts_wuling02_body_03",
+    "name": {
+      "zh-CN": "涉渊钢甲",
+      "en-US": "Rift Trekker Steel Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_body_03"
+  },
+  "item_equip_t4_parts_wuling02_body_04": {
+    "id": "item_equip_t4_parts_wuling02_body_04",
+    "name": {
+      "zh-CN": "涉渊防护服",
+      "en-US": "Rift Trekker Overalls"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_body_04"
+  },
   "item_equip_t4_parts_wuling02_edc_01": {
     "id": "item_equip_t4_parts_wuling02_edc_01",
     "name": {
@@ -14054,6 +15328,20 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_parts_wuling02_edc_01"
+  },
+  "item_equip_t4_parts_wuling02_edc_02": {
+    "id": "item_equip_t4_parts_wuling02_edc_02",
+    "name": {
+      "zh-CN": "涉渊白刃",
+      "en-US": "Rift Trekker Silver Blade"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_edc_02"
   },
   "item_equip_t4_parts_wuling02_hand_01": {
     "id": "item_equip_t4_parts_wuling02_hand_01",
@@ -14082,6 +15370,34 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_parts_wuling02_hand_02"
+  },
+  "item_equip_t4_parts_wuling02_hand_03": {
+    "id": "item_equip_t4_parts_wuling02_hand_03",
+    "name": {
+      "zh-CN": "涉渊裹手",
+      "en-US": "Rift Trekker Wraps"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_hand_03"
+  },
+  "item_equip_t4_parts_wuling02_hand_04": {
+    "id": "item_equip_t4_parts_wuling02_hand_04",
+    "name": {
+      "zh-CN": "涉渊手甲",
+      "en-US": "Rift Trekker Gauntlets"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_hand_04"
   },
   "item_equip_t4_suit_atb01_body_01": {
     "id": "item_equip_t4_suit_atb01_body_01",
@@ -14335,6 +15651,20 @@
     },
     "iconId": "item_equip_t4_suit_atk02_body_04"
   },
+  "item_equip_t4_suit_atk02_body_05": {
+    "id": "item_equip_t4_suit_atk02_body_05",
+    "name": {
+      "zh-CN": "50式应龙软甲",
+      "en-US": "Type 50 Yinglung Soft Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_atk02_body_05"
+  },
   "item_equip_t4_suit_atk02_edc_01": {
     "id": "item_equip_t4_suit_atk02_edc_01",
     "name": {
@@ -14405,6 +15735,20 @@
     },
     "iconId": "item_equip_t4_suit_atk02_edc_05"
   },
+  "item_equip_t4_suit_atk02_edc_06": {
+    "id": "item_equip_t4_suit_atk02_edc_06",
+    "name": {
+      "zh-CN": "50式应龙信标",
+      "en-US": "Type 50 Yinglung Beacon"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_atk02_edc_06"
+  },
   "item_equip_t4_suit_atk02_hand_01": {
     "id": "item_equip_t4_suit_atk02_hand_01",
     "name": {
@@ -14432,6 +15776,20 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_atk02_hand_01"
+  },
+  "item_equip_t4_suit_atk02_hand_03": {
+    "id": "item_equip_t4_suit_atk02_hand_03",
+    "name": {
+      "zh-CN": "50式应龙手套",
+      "en-US": "Type 50 Yinglung Gloves"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_atk02_hand_03"
   },
   "item_equip_t4_suit_attri01_body_01": {
     "id": "item_equip_t4_suit_attri01_body_01",
@@ -15749,6 +17107,20 @@
     },
     "iconId": "item_equip_t4_suit_pulse_cryst01_body_01"
   },
+  "item_equip_t4_suit_pulse_cryst01_body_02": {
+    "id": "item_equip_t4_suit_pulse_cryst01_body_02",
+    "name": {
+      "zh-CN": "脉冲式轻甲",
+      "en-US": "Pulser Labs Light Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_pulse_cryst01_body_02"
+  },
   "item_equip_t4_suit_pulse_cryst01_edc_01": {
     "id": "item_equip_t4_suit_pulse_cryst01_edc_01",
     "name": {
@@ -15791,6 +17163,20 @@
     },
     "iconId": "item_equip_t4_suit_pulse_cryst01_edc_03"
   },
+  "item_equip_t4_suit_pulse_cryst01_edc_04": {
+    "id": "item_equip_t4_suit_pulse_cryst01_edc_04",
+    "name": {
+      "zh-CN": "脉冲式护甲板",
+      "en-US": "Pulser Labs Armor Slab"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_pulse_cryst01_edc_04"
+  },
   "item_equip_t4_suit_pulse_cryst01_hand_01": {
     "id": "item_equip_t4_suit_pulse_cryst01_hand_01",
     "name": {
@@ -15804,6 +17190,20 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_pulse_cryst01_hand_01"
+  },
+  "item_equip_t4_suit_pulse_cryst01_hand_02": {
+    "id": "item_equip_t4_suit_pulse_cryst01_hand_02",
+    "name": {
+      "zh-CN": "脉冲式轻护手",
+      "en-US": "Pulser Labs Light Gauntlets"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_pulse_cryst01_hand_02"
   },
   "item_equip_t4_suit_spellburst_body_01": {
     "id": "item_equip_t4_suit_spellburst_body_01",
@@ -15889,6 +17289,34 @@
     },
     "iconId": "item_equip_t4_suit_usp02_body_04"
   },
+  "item_equip_t4_suit_usp02_body_05": {
+    "id": "item_equip_t4_suit_usp02_body_05",
+    "name": {
+      "zh-CN": "长息防护服",
+      "en-US": "Eternal Xiranite Overalls"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_usp02_body_05"
+  },
+  "item_equip_t4_suit_usp02_body_06": {
+    "id": "item_equip_t4_suit_usp02_body_06",
+    "name": {
+      "zh-CN": "长息改装护甲",
+      "en-US": "Eternal Xiranite MOD Armor"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_usp02_body_06"
+  },
   "item_equip_t4_suit_usp02_edc_01": {
     "id": "item_equip_t4_suit_usp02_edc_01",
     "name": {
@@ -15973,6 +17401,20 @@
     },
     "iconId": "item_equip_t4_suit_usp02_edc_06"
   },
+  "item_equip_t4_suit_usp02_edc_07": {
+    "id": "item_equip_t4_suit_usp02_edc_07",
+    "name": {
+      "zh-CN": "长息测距仪",
+      "en-US": "Eternal Xiranite Rangefinder"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_usp02_edc_07"
+  },
   "item_equip_t4_suit_usp02_hand_01": {
     "id": "item_equip_t4_suit_usp02_hand_01",
     "name": {
@@ -16028,6 +17470,20 @@
       "en-US": "Gear"
     },
     "iconId": "item_equip_t4_suit_usp02_hand_04"
+  },
+  "item_equip_t4_suit_usp02_hand_05": {
+    "id": "item_equip_t4_suit_usp02_hand_05",
+    "name": {
+      "zh-CN": "长息导能护手",
+      "en-US": "Eternal Xiranite Channeling Gloves"
+    },
+    "rarity": 5,
+    "type": 6,
+    "typeName": {
+      "zh-CN": "装备",
+      "en-US": "Gear"
+    },
+    "iconId": "item_equip_t4_suit_usp02_hand_05"
   },
   "item_erhound_1_agmelee_1_moss_1_1": {
     "id": "item_erhound_1_agmelee_1_moss_1_1",
@@ -18759,6 +20215,20 @@
     },
     "iconId": "item_equip_t4_parts_wuling00_body_05"
   },
+  "item_formu_t4_parts_wuling00_body_06": {
+    "id": "item_formu_t4_parts_wuling00_body_06",
+    "name": {
+      "zh-CN": "集成实训刃装护甲",
+      "en-US": "AIC Fieldwork CQB Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_body_06"
+  },
   "item_formu_t4_parts_wuling00_edc_01": {
     "id": "item_formu_t4_parts_wuling00_edc_01",
     "name": {
@@ -18829,6 +20299,20 @@
     },
     "iconId": "item_equip_t4_parts_wuling00_edc_05"
   },
+  "item_formu_t4_parts_wuling00_edc_06": {
+    "id": "item_formu_t4_parts_wuling00_edc_06",
+    "name": {
+      "zh-CN": "集成实训刃装短锯",
+      "en-US": "AIC Fieldwork CQB Hacksaw"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_edc_06"
+  },
   "item_formu_t4_parts_wuling00_hand_01": {
     "id": "item_formu_t4_parts_wuling00_hand_01",
     "name": {
@@ -18898,6 +20382,20 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_parts_wuling00_hand_05"
+  },
+  "item_formu_t4_parts_wuling00_hand_06": {
+    "id": "item_formu_t4_parts_wuling00_hand_06",
+    "name": {
+      "zh-CN": "集成实训刃装护手",
+      "en-US": "AIC Fieldwork CQB Gloves"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_parts_wuling00_hand_06"
   },
   "item_formu_t4_parts_wuling01_body_01": {
     "id": "item_formu_t4_parts_wuling01_body_01",
@@ -19039,6 +20537,34 @@
     },
     "iconId": "item_equip_t4_parts_wuling02_body_02"
   },
+  "item_formu_t4_parts_wuling02_body_03": {
+    "id": "item_formu_t4_parts_wuling02_body_03",
+    "name": {
+      "zh-CN": "涉渊钢甲",
+      "en-US": "Rift Trekker Steel Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_body_03"
+  },
+  "item_formu_t4_parts_wuling02_body_04": {
+    "id": "item_formu_t4_parts_wuling02_body_04",
+    "name": {
+      "zh-CN": "涉渊防护服",
+      "en-US": "Rift Trekker Overalls"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_body_04"
+  },
   "item_formu_t4_parts_wuling02_edc_01": {
     "id": "item_formu_t4_parts_wuling02_edc_01",
     "name": {
@@ -19052,6 +20578,20 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_parts_wuling02_edc_01"
+  },
+  "item_formu_t4_parts_wuling02_edc_02": {
+    "id": "item_formu_t4_parts_wuling02_edc_02",
+    "name": {
+      "zh-CN": "涉渊白刃",
+      "en-US": "Rift Trekker Silver Blade"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_edc_02"
   },
   "item_formu_t4_parts_wuling02_hand_01": {
     "id": "item_formu_t4_parts_wuling02_hand_01",
@@ -19080,6 +20620,34 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_parts_wuling02_hand_02"
+  },
+  "item_formu_t4_parts_wuling02_hand_03": {
+    "id": "item_formu_t4_parts_wuling02_hand_03",
+    "name": {
+      "zh-CN": "涉渊裹手",
+      "en-US": "Rift Trekker Wraps"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_hand_03"
+  },
+  "item_formu_t4_parts_wuling02_hand_04": {
+    "id": "item_formu_t4_parts_wuling02_hand_04",
+    "name": {
+      "zh-CN": "涉渊手甲",
+      "en-US": "Rift Trekker Gauntlets"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_parts_wuling02_hand_04"
   },
   "item_formu_t4_suit_atb01_body_01": {
     "id": "item_formu_t4_suit_atb01_body_01",
@@ -19333,6 +20901,20 @@
     },
     "iconId": "item_equip_t4_suit_atk02_body_04"
   },
+  "item_formu_t4_suit_atk02_body_05": {
+    "id": "item_formu_t4_suit_atk02_body_05",
+    "name": {
+      "zh-CN": "50式应龙软甲",
+      "en-US": "Type 50 Yinglung Soft Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_atk02_body_05"
+  },
   "item_formu_t4_suit_atk02_edc_01": {
     "id": "item_formu_t4_suit_atk02_edc_01",
     "name": {
@@ -19403,6 +20985,20 @@
     },
     "iconId": "item_equip_t4_suit_atk02_edc_05"
   },
+  "item_formu_t4_suit_atk02_edc_06": {
+    "id": "item_formu_t4_suit_atk02_edc_06",
+    "name": {
+      "zh-CN": "50式应龙信标",
+      "en-US": "Type 50 Yinglung Beacon"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_atk02_edc_06"
+  },
   "item_formu_t4_suit_atk02_hand_01": {
     "id": "item_formu_t4_suit_atk02_hand_01",
     "name": {
@@ -19430,6 +21026,20 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_atk02_hand_01"
+  },
+  "item_formu_t4_suit_atk02_hand_03": {
+    "id": "item_formu_t4_suit_atk02_hand_03",
+    "name": {
+      "zh-CN": "50式应龙手套",
+      "en-US": "Type 50 Yinglung Gloves"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_atk02_hand_03"
   },
   "item_formu_t4_suit_attri01_body_01": {
     "id": "item_formu_t4_suit_attri01_body_01",
@@ -20747,6 +22357,20 @@
     },
     "iconId": "item_equip_t4_suit_pulse_cryst01_body_01"
   },
+  "item_formu_t4_suit_pulse_cryst01_body_02": {
+    "id": "item_formu_t4_suit_pulse_cryst01_body_02",
+    "name": {
+      "zh-CN": "脉冲式轻甲",
+      "en-US": "Pulser Labs Light Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_pulse_cryst01_body_02"
+  },
   "item_formu_t4_suit_pulse_cryst01_edc_01": {
     "id": "item_formu_t4_suit_pulse_cryst01_edc_01",
     "name": {
@@ -20789,6 +22413,20 @@
     },
     "iconId": "item_equip_t4_suit_pulse_cryst01_edc_03"
   },
+  "item_formu_t4_suit_pulse_cryst01_edc_04": {
+    "id": "item_formu_t4_suit_pulse_cryst01_edc_04",
+    "name": {
+      "zh-CN": "脉冲式护甲板",
+      "en-US": "Pulser Labs Armor Slab"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_pulse_cryst01_edc_04"
+  },
   "item_formu_t4_suit_pulse_cryst01_hand_01": {
     "id": "item_formu_t4_suit_pulse_cryst01_hand_01",
     "name": {
@@ -20802,6 +22440,20 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_pulse_cryst01_hand_01"
+  },
+  "item_formu_t4_suit_pulse_cryst01_hand_02": {
+    "id": "item_formu_t4_suit_pulse_cryst01_hand_02",
+    "name": {
+      "zh-CN": "脉冲式轻护手",
+      "en-US": "Pulser Labs Light Gauntlets"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_pulse_cryst01_hand_02"
   },
   "item_formu_t4_suit_spellburst_body_01": {
     "id": "item_formu_t4_suit_spellburst_body_01",
@@ -20887,6 +22539,34 @@
     },
     "iconId": "item_equip_t4_suit_usp02_body_04"
   },
+  "item_formu_t4_suit_usp02_body_05": {
+    "id": "item_formu_t4_suit_usp02_body_05",
+    "name": {
+      "zh-CN": "长息防护服",
+      "en-US": "Eternal Xiranite Overalls"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_usp02_body_05"
+  },
+  "item_formu_t4_suit_usp02_body_06": {
+    "id": "item_formu_t4_suit_usp02_body_06",
+    "name": {
+      "zh-CN": "长息改装护甲",
+      "en-US": "Eternal Xiranite MOD Armor"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_usp02_body_06"
+  },
   "item_formu_t4_suit_usp02_edc_01": {
     "id": "item_formu_t4_suit_usp02_edc_01",
     "name": {
@@ -20971,6 +22651,20 @@
     },
     "iconId": "item_equip_t4_suit_usp02_edc_06"
   },
+  "item_formu_t4_suit_usp02_edc_07": {
+    "id": "item_formu_t4_suit_usp02_edc_07",
+    "name": {
+      "zh-CN": "长息测距仪",
+      "en-US": "Eternal Xiranite Rangefinder"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_usp02_edc_07"
+  },
   "item_formu_t4_suit_usp02_hand_01": {
     "id": "item_formu_t4_suit_usp02_hand_01",
     "name": {
@@ -21026,6 +22720,20 @@
       "en-US": "Gear Template"
     },
     "iconId": "item_equip_t4_suit_usp02_hand_04"
+  },
+  "item_formu_t4_suit_usp02_hand_05": {
+    "id": "item_formu_t4_suit_usp02_hand_05",
+    "name": {
+      "zh-CN": "长息导能护手",
+      "en-US": "Eternal Xiranite Channeling Gloves"
+    },
+    "rarity": 5,
+    "type": 47,
+    "typeName": {
+      "zh-CN": "装备制造模板",
+      "en-US": "Gear Template"
+    },
+    "iconId": "item_equip_t4_suit_usp02_hand_05"
   },
   "item_formula_agfly_1_agmelee_1_moss_2_1": {
     "id": "item_formula_agfly_1_agmelee_1_moss_2_1",
@@ -22371,6 +24079,34 @@
     },
     "iconId": "item_hsmob_1_grass_2_1"
   },
+  "item_formula_inkbiter_1_wgshoal_1_1": {
+    "id": "item_formula_inkbiter_1_wgshoal_1_1",
+    "name": {
+      "zh-CN": "草本清凉饮配方",
+      "en-US": "Formula: Herbal Tisane"
+    },
+    "rarity": 3,
+    "type": 39,
+    "typeName": {
+      "zh-CN": "配方解锁",
+      "en-US": "Formula Unlock"
+    },
+    "iconId": "item_inkbiter_1_wgshoal_1_1"
+  },
+  "item_formula_inkkirin_1_hscrane_1_1": {
+    "id": "item_formula_inkkirin_1_hscrane_1_1",
+    "name": {
+      "zh-CN": "酥麻炸虫蛹配方",
+      "en-US": "Formula: Numbing Crispy Pupae"
+    },
+    "rarity": 4,
+    "type": 39,
+    "typeName": {
+      "zh-CN": "配方解锁",
+      "en-US": "Formula Unlock"
+    },
+    "iconId": "item_inkkirin_1_hscrane_1"
+  },
   "item_formula_jlebm_corp4_1": {
     "id": "item_formula_jlebm_corp4_1",
     "name": {
@@ -23015,6 +24751,20 @@
     },
     "iconId": "item_gacha_introletter"
   },
+  "item_gacha_introletter_1_6_1": {
+    "id": "item_gacha_introletter_1_6_1",
+    "name": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "rarity": 6,
+    "type": 83,
+    "typeName": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "iconId": "item_gacha_introletter"
+  },
   "item_gachabyproducts_charticket": {
     "id": "item_gachabyproducts_charticket",
     "name": {
@@ -23070,6 +24820,20 @@
       "en-US": "Valuable"
     },
     "iconId": "item_gachabyproducts_weaponticket"
+  },
+  "item_gambling_dungeon_exp": {
+    "id": "item_gambling_dungeon_exp",
+    "name": {
+      "zh-CN": "演武积分",
+      "en-US": "Arena Points"
+    },
+    "rarity": 5,
+    "type": 110,
+    "typeName": {
+      "zh-CN": "历程积分",
+      "en-US": "Journey Points"
+    },
+    "iconId": "item_gambling_dungeon_exp"
   },
   "item_gas_acid": {
     "id": "item_gas_acid",
@@ -23645,6 +25409,34 @@
     },
     "iconId": "item_gift_jinlong_11"
   },
+  "item_gift_jinlong_12": {
+    "id": "item_gift_jinlong_12",
+    "name": {
+      "zh-CN": "缘缘庄拼图",
+      "en-US": "Yuanyuan Manor Jigsaw"
+    },
+    "rarity": 5,
+    "type": 33,
+    "typeName": {
+      "zh-CN": "礼物",
+      "en-US": "Gift"
+    },
+    "iconId": "item_gift_jinlong_12"
+  },
+  "item_gift_jinlong_13": {
+    "id": "item_gift_jinlong_13",
+    "name": {
+      "zh-CN": "木雕剑",
+      "en-US": "Wooden Sword"
+    },
+    "rarity": 5,
+    "type": 33,
+    "typeName": {
+      "zh-CN": "礼物",
+      "en-US": "Gift"
+    },
+    "iconId": "item_gift_jinlong_13"
+  },
   "item_gift_jinlong_2": {
     "id": "item_gift_jinlong_2",
     "name": {
@@ -24036,6 +25828,1434 @@
       "en-US": "Mission Item"
     },
     "iconId": "item_hub_key"
+  },
+  "item_inkbiter_1_wgshoal_1_1": {
+    "id": "item_inkbiter_1_wgshoal_1_1",
+    "name": {
+      "zh-CN": "草本清凉饮",
+      "en-US": "Herbal Tisane"
+    },
+    "rarity": 4,
+    "type": 48,
+    "typeName": {
+      "zh-CN": "战术物品",
+      "en-US": "Tactical"
+    },
+    "iconId": "item_inkbiter_1_wgshoal_1_1"
+  },
+  "item_inkkirin_1_hscrane_1_1": {
+    "id": "item_inkkirin_1_hscrane_1_1",
+    "name": {
+      "zh-CN": "酥麻炸虫蛹",
+      "en-US": "Numbing Crispy Pupae"
+    },
+    "rarity": 4,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inkkirin_1_hscrane_1"
+  },
+  "item_inn_dish_1": {
+    "id": "item_inn_dish_1",
+    "name": {
+      "zh-CN": "肉包子",
+      "en-US": "Meat Baozi"
+    },
+    "rarity": 2,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_1"
+  },
+  "item_inn_dish_10": {
+    "id": "item_inn_dish_10",
+    "name": {
+      "zh-CN": "糯米凉糕",
+      "en-US": "Sticky Rice Cake"
+    },
+    "rarity": 3,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_10"
+  },
+  "item_inn_dish_11": {
+    "id": "item_inn_dish_11",
+    "name": {
+      "zh-CN": "鲜奶炖蛋",
+      "en-US": "Steamed Flan"
+    },
+    "rarity": 3,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_11"
+  },
+  "item_inn_dish_12": {
+    "id": "item_inn_dish_12",
+    "name": {
+      "zh-CN": "豌杂拌面",
+      "en-US": "Pea-Topped Noodles"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_12"
+  },
+  "item_inn_dish_13": {
+    "id": "item_inn_dish_13",
+    "name": {
+      "zh-CN": "手抓饭",
+      "en-US": "Meaty Pilaf"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_13"
+  },
+  "item_inn_dish_14": {
+    "id": "item_inn_dish_14",
+    "name": {
+      "zh-CN": "鳞肉水饺",
+      "en-US": "Fin Dumpling"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_14"
+  },
+  "item_inn_dish_15": {
+    "id": "item_inn_dish_15",
+    "name": {
+      "zh-CN": "炸薯条",
+      "en-US": "Tuber Fries"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_15"
+  },
+  "item_inn_dish_16": {
+    "id": "item_inn_dish_16",
+    "name": {
+      "zh-CN": "酸菜鳞肉",
+      "en-US": "Fin & Pickled Greens"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_16"
+  },
+  "item_inn_dish_17": {
+    "id": "item_inn_dish_17",
+    "name": {
+      "zh-CN": "烤肉串",
+      "en-US": "Roasted Kebab"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_17"
+  },
+  "item_inn_dish_18": {
+    "id": "item_inn_dish_18",
+    "name": {
+      "zh-CN": "鳞香肉丝",
+      "en-US": "Fin-Savory Shreds"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_18"
+  },
+  "item_inn_dish_19": {
+    "id": "item_inn_dish_19",
+    "name": {
+      "zh-CN": "豆沙汤圆",
+      "en-US": "Beanpaste Tangyuan"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_19"
+  },
+  "item_inn_dish_2": {
+    "id": "item_inn_dish_2",
+    "name": {
+      "zh-CN": "手擀素面",
+      "en-US": "Hand-Kneaded Noodle"
+    },
+    "rarity": 2,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_2"
+  },
+  "item_inn_dish_20": {
+    "id": "item_inn_dish_20",
+    "name": {
+      "zh-CN": "酸莓布丁",
+      "en-US": "Sourberry Pudding"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_20"
+  },
+  "item_inn_dish_21": {
+    "id": "item_inn_dish_21",
+    "name": {
+      "zh-CN": "咸酪脆饼",
+      "en-US": "Salted Cheese Crackers"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_21"
+  },
+  "item_inn_dish_22": {
+    "id": "item_inn_dish_22",
+    "name": {
+      "zh-CN": "雪绵豆沙",
+      "en-US": "Sweetbeans on Snow"
+    },
+    "rarity": 4,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_22"
+  },
+  "item_inn_dish_23": {
+    "id": "item_inn_dish_23",
+    "name": {
+      "zh-CN": "老麻抄手",
+      "en-US": "Chaoshou & Numbing Sauce"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_23"
+  },
+  "item_inn_dish_24": {
+    "id": "item_inn_dish_24",
+    "name": {
+      "zh-CN": "八宝饭",
+      "en-US": "Eight Treasure Rice"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_24"
+  },
+  "item_inn_dish_25": {
+    "id": "item_inn_dish_25",
+    "name": {
+      "zh-CN": "至臻鳞肉卷",
+      "en-US": "Roll of Fin-Supreme"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_25"
+  },
+  "item_inn_dish_26": {
+    "id": "item_inn_dish_26",
+    "name": {
+      "zh-CN": "界龙肉卷",
+      "en-US": "Boundary Lung Roll"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_26"
+  },
+  "item_inn_dish_27": {
+    "id": "item_inn_dish_27",
+    "name": {
+      "zh-CN": "果味沙拉",
+      "en-US": "Berry Fruity Toss"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_27"
+  },
+  "item_inn_dish_28": {
+    "id": "item_inn_dish_28",
+    "name": {
+      "zh-CN": "麻辣香锅",
+      "en-US": "Mala Xiang Guo"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_28"
+  },
+  "item_inn_dish_29": {
+    "id": "item_inn_dish_29",
+    "name": {
+      "zh-CN": "坛子肉",
+      "en-US": "Clay Jar Meat"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_29"
+  },
+  "item_inn_dish_3": {
+    "id": "item_inn_dish_3",
+    "name": {
+      "zh-CN": "番茄炒蛋",
+      "en-US": "Mato & Egg"
+    },
+    "rarity": 2,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_3"
+  },
+  "item_inn_dish_30": {
+    "id": "item_inn_dish_30",
+    "name": {
+      "zh-CN": "福寿全",
+      "en-US": "Immortal Galore of Fortune"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_30"
+  },
+  "item_inn_dish_31": {
+    "id": "item_inn_dish_31",
+    "name": {
+      "zh-CN": "糖醋宝鳞",
+      "en-US": "Sweet & Sour Fingot"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_31"
+  },
+  "item_inn_dish_32": {
+    "id": "item_inn_dish_32",
+    "name": {
+      "zh-CN": "“银耳莲子”羹",
+      "en-US": "\"Snowshroom & Lotus\" Soup"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_32"
+  },
+  "item_inn_dish_33": {
+    "id": "item_inn_dish_33",
+    "name": {
+      "zh-CN": "茄果鳞肉汤",
+      "en-US": "Fin-Mato Soup"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_33"
+  },
+  "item_inn_dish_34": {
+    "id": "item_inn_dish_34",
+    "name": {
+      "zh-CN": "酸辣汤",
+      "en-US": "Hot & Sour Soup"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_34"
+  },
+  "item_inn_dish_35": {
+    "id": "item_inn_dish_35",
+    "name": {
+      "zh-CN": "白瓜肉丸汤",
+      "en-US": "Melon & Meatball Soup"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_35"
+  },
+  "item_inn_dish_36": {
+    "id": "item_inn_dish_36",
+    "name": {
+      "zh-CN": "奶油蘑菇汤",
+      "en-US": "Cream of Shroom"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_36"
+  },
+  "item_inn_dish_37": {
+    "id": "item_inn_dish_37",
+    "name": {
+      "zh-CN": "白鳞高汤",
+      "en-US": "White Fin Broth"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_37"
+  },
+  "item_inn_dish_38": {
+    "id": "item_inn_dish_38",
+    "name": {
+      "zh-CN": "莓果甜汤",
+      "en-US": "Berry-Sweet Sip"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_38"
+  },
+  "item_inn_dish_39": {
+    "id": "item_inn_dish_39",
+    "name": {
+      "zh-CN": "簇锦豆腐羹",
+      "en-US": "Tofu Bouquet Soup"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_39"
+  },
+  "item_inn_dish_4": {
+    "id": "item_inn_dish_4",
+    "name": {
+      "zh-CN": "红椒土豆丝",
+      "en-US": "Shredded Tuber & Pepper"
+    },
+    "rarity": 2,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_4"
+  },
+  "item_inn_dish_40": {
+    "id": "item_inn_dish_40",
+    "name": {
+      "zh-CN": "金丝小贝",
+      "en-US": "Goldfloss Chiffon"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_40"
+  },
+  "item_inn_dish_41": {
+    "id": "item_inn_dish_41",
+    "name": {
+      "zh-CN": "雪纱蛋黄月饼",
+      "en-US": "Snow-Veiled Mooncake"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_41"
+  },
+  "item_inn_dish_42": {
+    "id": "item_inn_dish_42",
+    "name": {
+      "zh-CN": "千果珍珠圆",
+      "en-US": "Pearly Fruit Punch"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_42"
+  },
+  "item_inn_dish_43": {
+    "id": "item_inn_dish_43",
+    "name": {
+      "zh-CN": "红蕊奶酪蛋糕",
+      "en-US": "Redbloom Cheesecake"
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_43"
+  },
+  "item_inn_dish_44": {
+    "id": "item_inn_dish_44",
+    "name": {
+      "zh-CN": "“勺里游”",
+      "en-US": "\"Spoon Swimmer\""
+    },
+    "rarity": 5,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_44"
+  },
+  "item_inn_dish_5": {
+    "id": "item_inn_dish_5",
+    "name": {
+      "zh-CN": "缘缘菜饭",
+      "en-US": "Yuanyuan Veggy Rice"
+    },
+    "rarity": 3,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_5"
+  },
+  "item_inn_dish_6": {
+    "id": "item_inn_dish_6",
+    "name": {
+      "zh-CN": "菌菇蒸饺",
+      "en-US": "Shroom Dumpling"
+    },
+    "rarity": 3,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_6"
+  },
+  "item_inn_dish_7": {
+    "id": "item_inn_dish_7",
+    "name": {
+      "zh-CN": "青菜养生粥",
+      "en-US": "Tonic Congee & Greens"
+    },
+    "rarity": 3,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_7"
+  },
+  "item_inn_dish_8": {
+    "id": "item_inn_dish_8",
+    "name": {
+      "zh-CN": "香煎鳞肉",
+      "en-US": "Skilleted Fin"
+    },
+    "rarity": 3,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_8"
+  },
+  "item_inn_dish_9": {
+    "id": "item_inn_dish_9",
+    "name": {
+      "zh-CN": "茄汁白瓜",
+      "en-US": "Melon in Sauce"
+    },
+    "rarity": 3,
+    "type": 108,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜品",
+      "en-US": "Inn Food"
+    },
+    "iconId": "item_inn_dish_9"
+  },
+  "item_inn_drink_1": {
+    "id": "item_inn_drink_1",
+    "name": {
+      "zh-CN": "大碗碎茶",
+      "en-US": "Bowl of Tea"
+    },
+    "rarity": 2,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_1"
+  },
+  "item_inn_drink_10": {
+    "id": "item_inn_drink_10",
+    "name": {
+      "zh-CN": "瓶装霞莓饮",
+      "en-US": "Bottled Duskberry Juice"
+    },
+    "rarity": 5,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_10"
+  },
+  "item_inn_drink_2": {
+    "id": "item_inn_drink_2",
+    "name": {
+      "zh-CN": "瓶装兽奶",
+      "en-US": "Bottled Milk"
+    },
+    "rarity": 2,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_2"
+  },
+  "item_inn_drink_3": {
+    "id": "item_inn_drink_3",
+    "name": {
+      "zh-CN": "玉米汁",
+      "en-US": "Corn Juice"
+    },
+    "rarity": 3,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_3"
+  },
+  "item_inn_drink_4": {
+    "id": "item_inn_drink_4",
+    "name": {
+      "zh-CN": "瓶装脆蔗汁",
+      "en-US": "Bottled Canejuice"
+    },
+    "rarity": 3,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_4"
+  },
+  "item_inn_drink_5": {
+    "id": "item_inn_drink_5",
+    "name": {
+      "zh-CN": "梨花香茶",
+      "en-US": "Pear Blossom Tea"
+    },
+    "rarity": 4,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_5"
+  },
+  "item_inn_drink_6": {
+    "id": "item_inn_drink_6",
+    "name": {
+      "zh-CN": "游人酒",
+      "en-US": "Seeker's Kohl"
+    },
+    "rarity": 4,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_6"
+  },
+  "item_inn_drink_7": {
+    "id": "item_inn_drink_7",
+    "name": {
+      "zh-CN": "瓶装优质兽奶",
+      "en-US": "Bottled Milk [A]"
+    },
+    "rarity": 4,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_7"
+  },
+  "item_inn_drink_8": {
+    "id": "item_inn_drink_8",
+    "name": {
+      "zh-CN": "陈酿葡萄露",
+      "en-US": "Vintage Grapedew"
+    },
+    "rarity": 5,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_8"
+  },
+  "item_inn_drink_9": {
+    "id": "item_inn_drink_9",
+    "name": {
+      "zh-CN": "潮前龙井",
+      "en-US": "Pre-Tide Lungjing"
+    },
+    "rarity": 5,
+    "type": 52,
+    "typeName": {
+      "zh-CN": "消耗品",
+      "en-US": "Consumable"
+    },
+    "iconId": "item_inn_drink_9"
+  },
+  "item_inn_drink_water": {
+    "id": "item_inn_drink_water",
+    "name": {
+      "zh-CN": "直饮水",
+      "en-US": "Potable Water"
+    },
+    "rarity": 1,
+    "type": 124,
+    "typeName": {
+      "zh-CN": "客栈无限水",
+      "en-US": "Endless Drink of the Inn"
+    },
+    "iconId": "item_inn_drink_water"
+  },
+  "item_inn_gold": {
+    "id": "item_inn_gold",
+    "name": {
+      "zh-CN": "烟火钱",
+      "en-US": "Spirit Money"
+    },
+    "rarity": 4,
+    "type": 106,
+    "typeName": {
+      "zh-CN": "客栈经营玩法货币",
+      "en-US": "Inn Currency"
+    },
+    "iconId": "item_inn_gold"
+  },
+  "item_inn_recipe_1": {
+    "id": "item_inn_recipe_1",
+    "name": {
+      "zh-CN": "肉包子食谱",
+      "en-US": "Recipe: Meat Baozi"
+    },
+    "rarity": 2,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_1"
+  },
+  "item_inn_recipe_10": {
+    "id": "item_inn_recipe_10",
+    "name": {
+      "zh-CN": "糯米凉糕食谱",
+      "en-US": "Recipe: Sticky Rice Cake"
+    },
+    "rarity": 3,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_10"
+  },
+  "item_inn_recipe_11": {
+    "id": "item_inn_recipe_11",
+    "name": {
+      "zh-CN": "鲜奶炖蛋食谱",
+      "en-US": "Recipe: Steamed Flan"
+    },
+    "rarity": 3,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_11"
+  },
+  "item_inn_recipe_12": {
+    "id": "item_inn_recipe_12",
+    "name": {
+      "zh-CN": "豌杂拌面食谱",
+      "en-US": "Recipe: Pea-Topped Noodles"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_12"
+  },
+  "item_inn_recipe_13": {
+    "id": "item_inn_recipe_13",
+    "name": {
+      "zh-CN": "手抓饭食谱",
+      "en-US": "Recipe: Meaty Pilaf"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_13"
+  },
+  "item_inn_recipe_14": {
+    "id": "item_inn_recipe_14",
+    "name": {
+      "zh-CN": "鳞肉水饺食谱",
+      "en-US": "Recipe: Fin Dumpling"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_14"
+  },
+  "item_inn_recipe_15": {
+    "id": "item_inn_recipe_15",
+    "name": {
+      "zh-CN": "炸薯条食谱",
+      "en-US": "Recipe: Tuber Fries"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_15"
+  },
+  "item_inn_recipe_16": {
+    "id": "item_inn_recipe_16",
+    "name": {
+      "zh-CN": "酸菜鳞肉食谱",
+      "en-US": "Recipe: Fin & Pickled Greens"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_16"
+  },
+  "item_inn_recipe_17": {
+    "id": "item_inn_recipe_17",
+    "name": {
+      "zh-CN": "烤肉串食谱",
+      "en-US": "Recipe: Roasted Kebab"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_17"
+  },
+  "item_inn_recipe_18": {
+    "id": "item_inn_recipe_18",
+    "name": {
+      "zh-CN": "鳞香肉丝食谱",
+      "en-US": "Recipe: Fin-Savory Shreds"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_18"
+  },
+  "item_inn_recipe_19": {
+    "id": "item_inn_recipe_19",
+    "name": {
+      "zh-CN": "豆沙汤圆食谱",
+      "en-US": "Recipe: Beanpaste Tangyuan"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_19"
+  },
+  "item_inn_recipe_2": {
+    "id": "item_inn_recipe_2",
+    "name": {
+      "zh-CN": "手擀素面食谱",
+      "en-US": "Recipe: Hand-Kneaded Noodle"
+    },
+    "rarity": 2,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_2"
+  },
+  "item_inn_recipe_20": {
+    "id": "item_inn_recipe_20",
+    "name": {
+      "zh-CN": "酸莓布丁食谱",
+      "en-US": "Recipe: Sourberry Pudding"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_20"
+  },
+  "item_inn_recipe_21": {
+    "id": "item_inn_recipe_21",
+    "name": {
+      "zh-CN": "咸酪脆饼食谱",
+      "en-US": "Recipe: Salted Cheese Crackers"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_21"
+  },
+  "item_inn_recipe_22": {
+    "id": "item_inn_recipe_22",
+    "name": {
+      "zh-CN": "雪绵豆沙食谱",
+      "en-US": "Recipe: Sweetbeans on Snow"
+    },
+    "rarity": 4,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_22"
+  },
+  "item_inn_recipe_23": {
+    "id": "item_inn_recipe_23",
+    "name": {
+      "zh-CN": "老麻抄手食谱",
+      "en-US": "Recipe: Chaoshou & Numbing Sauce"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_23"
+  },
+  "item_inn_recipe_24": {
+    "id": "item_inn_recipe_24",
+    "name": {
+      "zh-CN": "八宝饭食谱",
+      "en-US": "Recipe: Eight Treasure Rice"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_24"
+  },
+  "item_inn_recipe_25": {
+    "id": "item_inn_recipe_25",
+    "name": {
+      "zh-CN": "至臻鳞肉卷食谱",
+      "en-US": "Recipe: Roll of Fin-Supreme"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_25"
+  },
+  "item_inn_recipe_26": {
+    "id": "item_inn_recipe_26",
+    "name": {
+      "zh-CN": "界龙肉卷食谱",
+      "en-US": "Recipe: Boundary Lung Roll"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_26"
+  },
+  "item_inn_recipe_27": {
+    "id": "item_inn_recipe_27",
+    "name": {
+      "zh-CN": "果味沙拉食谱",
+      "en-US": "Recipe: Berry Fruity Toss"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_27"
+  },
+  "item_inn_recipe_28": {
+    "id": "item_inn_recipe_28",
+    "name": {
+      "zh-CN": "麻辣香锅食谱",
+      "en-US": "Recipe: Mala Xiang Guo"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_28"
+  },
+  "item_inn_recipe_29": {
+    "id": "item_inn_recipe_29",
+    "name": {
+      "zh-CN": "坛子肉食谱",
+      "en-US": "Recipe: Clay Jar Meat"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_29"
+  },
+  "item_inn_recipe_3": {
+    "id": "item_inn_recipe_3",
+    "name": {
+      "zh-CN": "番茄炒蛋食谱",
+      "en-US": "Recipe: Mato & Egg"
+    },
+    "rarity": 2,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_3"
+  },
+  "item_inn_recipe_30": {
+    "id": "item_inn_recipe_30",
+    "name": {
+      "zh-CN": "福寿全食谱",
+      "en-US": "Recipe: Immortal Galore of Fortune"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_30"
+  },
+  "item_inn_recipe_31": {
+    "id": "item_inn_recipe_31",
+    "name": {
+      "zh-CN": "糖醋宝鳞食谱",
+      "en-US": "Recipe: Sweet & Sour Fingot"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_31"
+  },
+  "item_inn_recipe_32": {
+    "id": "item_inn_recipe_32",
+    "name": {
+      "zh-CN": "“银耳莲子”羹食谱",
+      "en-US": "Recipe: \"Snowshroom & Lotus\" Soup"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_32"
+  },
+  "item_inn_recipe_33": {
+    "id": "item_inn_recipe_33",
+    "name": {
+      "zh-CN": "茄果鳞肉汤食谱",
+      "en-US": "Recipe: Fin-Mato Soup"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_33"
+  },
+  "item_inn_recipe_34": {
+    "id": "item_inn_recipe_34",
+    "name": {
+      "zh-CN": "酸辣汤食谱",
+      "en-US": "Recipe: Hot & Sour Soup"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_34"
+  },
+  "item_inn_recipe_35": {
+    "id": "item_inn_recipe_35",
+    "name": {
+      "zh-CN": "白瓜肉丸汤食谱",
+      "en-US": "Recipe: Melon & Meatball Soup"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_35"
+  },
+  "item_inn_recipe_36": {
+    "id": "item_inn_recipe_36",
+    "name": {
+      "zh-CN": "奶油蘑菇汤食谱",
+      "en-US": "Recipe: Cream of Shroom"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_36"
+  },
+  "item_inn_recipe_37": {
+    "id": "item_inn_recipe_37",
+    "name": {
+      "zh-CN": "白鳞高汤食谱",
+      "en-US": "Recipe: White Fin Broth"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_37"
+  },
+  "item_inn_recipe_38": {
+    "id": "item_inn_recipe_38",
+    "name": {
+      "zh-CN": "莓果甜汤食谱",
+      "en-US": "Recipe: Berry-Sweet Sip"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_38"
+  },
+  "item_inn_recipe_39": {
+    "id": "item_inn_recipe_39",
+    "name": {
+      "zh-CN": "簇锦豆腐羹食谱",
+      "en-US": "Recipe: Tofu Bouquet Soup"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_39"
+  },
+  "item_inn_recipe_4": {
+    "id": "item_inn_recipe_4",
+    "name": {
+      "zh-CN": "红椒土豆丝食谱",
+      "en-US": "Recipe: Shredded Tuber & Pepper"
+    },
+    "rarity": 2,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_4"
+  },
+  "item_inn_recipe_40": {
+    "id": "item_inn_recipe_40",
+    "name": {
+      "zh-CN": "金丝小贝食谱",
+      "en-US": "Recipe: Goldfloss Chiffon"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_40"
+  },
+  "item_inn_recipe_41": {
+    "id": "item_inn_recipe_41",
+    "name": {
+      "zh-CN": "雪纱蛋黄月饼食谱",
+      "en-US": "Recipe: Snow-Veiled Mooncake"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_41"
+  },
+  "item_inn_recipe_42": {
+    "id": "item_inn_recipe_42",
+    "name": {
+      "zh-CN": "千果珍珠圆食谱",
+      "en-US": "Recipe: Pearly Fruit Punch"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_42"
+  },
+  "item_inn_recipe_43": {
+    "id": "item_inn_recipe_43",
+    "name": {
+      "zh-CN": "红蕊奶酪蛋糕食谱",
+      "en-US": "Recipe: Redbloom Cheesecake"
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_43"
+  },
+  "item_inn_recipe_44": {
+    "id": "item_inn_recipe_44",
+    "name": {
+      "zh-CN": "“勺里游”食谱",
+      "en-US": "Recipe: \"Spoon Swimmer\""
+    },
+    "rarity": 5,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_44"
+  },
+  "item_inn_recipe_5": {
+    "id": "item_inn_recipe_5",
+    "name": {
+      "zh-CN": "缘缘菜饭食谱",
+      "en-US": "Recipe: Yuanyuan Veggy Rice"
+    },
+    "rarity": 3,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_5"
+  },
+  "item_inn_recipe_6": {
+    "id": "item_inn_recipe_6",
+    "name": {
+      "zh-CN": "菌菇蒸饺食谱",
+      "en-US": "Recipe: Shroom Dumpling"
+    },
+    "rarity": 3,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_6"
+  },
+  "item_inn_recipe_7": {
+    "id": "item_inn_recipe_7",
+    "name": {
+      "zh-CN": "青菜养生粥食谱",
+      "en-US": "Recipe: Tonic Congee & Greens"
+    },
+    "rarity": 3,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_7"
+  },
+  "item_inn_recipe_8": {
+    "id": "item_inn_recipe_8",
+    "name": {
+      "zh-CN": "香煎鳞肉食谱",
+      "en-US": "Recipe: Skilleted Fin"
+    },
+    "rarity": 3,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_8"
+  },
+  "item_inn_recipe_9": {
+    "id": "item_inn_recipe_9",
+    "name": {
+      "zh-CN": "茄汁白瓜食谱",
+      "en-US": "Recipe: Melon in Sauce"
+    },
+    "rarity": 3,
+    "type": 109,
+    "typeName": {
+      "zh-CN": "客栈经营玩法菜谱",
+      "en-US": "Inn Recipe"
+    },
+    "iconId": "item_inn_dish_9"
   },
   "item_iron_bottle": {
     "id": "item_iron_bottle",
@@ -26081,6 +29301,34 @@
     },
     "iconId": "item_mission_sm1l6m2_brokenmedicinebox"
   },
+  "item_mission_sm2l10m1_coupon": {
+    "id": "item_mission_sm2l10m1_coupon",
+    "name": {
+      "zh-CN": "泡水的抽奖券",
+      "en-US": "Soaked Lottery Ticket"
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_sm2l10m1_coupon"
+  },
+  "item_mission_sm2l10m3_herb": {
+    "id": "item_mission_sm2l10m3_herb",
+    "name": {
+      "zh-CN": "一捆草药",
+      "en-US": "Bundle of Herbs"
+    },
+    "rarity": 5,
+    "type": 13,
+    "typeName": {
+      "zh-CN": "任务物品",
+      "en-US": "Mission Item"
+    },
+    "iconId": "item_mission_sm2l10m3_herb"
+  },
   "item_mission_sm2l2m2_collection": {
     "id": "item_mission_sm2l2m2_collection",
     "name": {
@@ -26164,6 +29412,62 @@
       "en-US": "Material"
     },
     "iconId": "item_muck_feces_1"
+  },
+  "item_muck_inn_1": {
+    "id": "item_muck_inn_1",
+    "name": {
+      "zh-CN": "增速膨地啪",
+      "en-US": "Bumper-Speed"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_muck_inn_1"
+  },
+  "item_muck_inn_2": {
+    "id": "item_muck_inn_2",
+    "name": {
+      "zh-CN": "优质膨地啪",
+      "en-US": "Bumper-Excel"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_muck_inn_2"
+  },
+  "item_muck_inn_3": {
+    "id": "item_muck_inn_3",
+    "name": {
+      "zh-CN": "双效膨地啪",
+      "en-US": "Bumper-Double"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_muck_inn_3"
+  },
+  "item_muck_inn_4": {
+    "id": "item_muck_inn_4",
+    "name": {
+      "zh-CN": "臻品膨地啪",
+      "en-US": "Bumper-Supreme"
+    },
+    "rarity": 5,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_muck_inn_4"
   },
   "item_muck_xiranite_1": {
     "id": "item_muck_xiranite_1",
@@ -26366,6 +29670,20 @@
     "name": {
       "zh-CN": "吾乡旧",
       "en-US": "My Former Home"
+    },
+    "rarity": 5,
+    "type": 59,
+    "typeName": {
+      "zh-CN": "唱片",
+      "en-US": "Vinyl"
+    },
+    "iconId": "item_spaceship_music"
+  },
+  "item_music_exp_wuling_9": {
+    "id": "item_music_exp_wuling_9",
+    "name": {
+      "zh-CN": "雪林",
+      "en-US": "Snowy Forest"
     },
     "rarity": 5,
     "type": 59,
@@ -26977,6 +30295,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0036_jsspsi": {
+    "id": "item_pic_1_chr_0036_jsspsi",
+    "name": {
+      "zh-CN": "自在",
+      "en-US": "Carefree"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_0038_purrche": {
     "id": "item_pic_1_chr_0038_purrche",
     "name": {
@@ -27467,6 +30799,20 @@
     },
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_3_chr_0036_jsspsi": {
+    "id": "item_pic_3_chr_0036_jsspsi",
+    "name": {
+      "zh-CN": "驻墨间",
+      "en-US": "In the Realm of Ink"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_3_chr_0038_purrche": {
     "id": "item_pic_3_chr_0038_purrche",
     "name": {
@@ -27934,6 +31280,20 @@
     "name": {
       "zh-CN": "笞心习作",
       "en-US": "Heart-Whipping Practice"
+    },
+    "rarity": 5,
+    "type": 76,
+    "typeName": {
+      "zh-CN": "干员留影",
+      "en-US": "Operator Snapshot"
+    },
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_5_chr_0036_jsspsi": {
+    "id": "item_pic_5_chr_0036_jsspsi",
+    "name": {
+      "zh-CN": "不浊",
+      "en-US": "Untainted"
     },
     "rarity": 5,
     "type": 76,
@@ -29357,6 +32717,20 @@
     },
     "iconId": "item_port_battle_turret_3"
   },
+  "item_port_burger_1": {
+    "id": "item_port_burger_1",
+    "name": {
+      "zh-CN": "汉堡之王",
+      "en-US": "Lord of the Hamburgers"
+    },
+    "rarity": 5,
+    "type": 111,
+    "typeName": {
+      "zh-CN": "装饰物品",
+      "en-US": "Ornamental"
+    },
+    "iconId": "item_port_burger_1"
+  },
   "item_port_carrier_1": {
     "id": "item_port_carrier_1",
     "name": {
@@ -30141,6 +33515,174 @@
     },
     "iconId": "item_port_soil_bbflower_1"
   },
+  "item_port_soil_corp_bean_1": {
+    "id": "item_port_soil_corp_bean_1",
+    "name": {
+      "zh-CN": "球豆田块",
+      "en-US": "Ballpea Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_bean_1"
+  },
+  "item_port_soil_corp_cabbage_1": {
+    "id": "item_port_soil_corp_cabbage_1",
+    "name": {
+      "zh-CN": "青菜田块",
+      "en-US": "Cabbage Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_cabbage_1"
+  },
+  "item_port_soil_corp_cabbage_2": {
+    "id": "item_port_soil_corp_cabbage_2",
+    "name": {
+      "zh-CN": "优质青菜田块",
+      "en-US": "Cabbage Plot [A]"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_cabbage_2"
+  },
+  "item_port_soil_corp_canolaflower_1": {
+    "id": "item_port_soil_corp_canolaflower_1",
+    "name": {
+      "zh-CN": "籽油花田块",
+      "en-US": "Oilseed Bloom Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_canolaflower_1"
+  },
+  "item_port_soil_corp_mushroom_1": {
+    "id": "item_port_soil_corp_mushroom_1",
+    "name": {
+      "zh-CN": "多味菇田块",
+      "en-US": "Relishroom Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_mushroom_1"
+  },
+  "item_port_soil_corp_mushroom_2": {
+    "id": "item_port_soil_corp_mushroom_2",
+    "name": {
+      "zh-CN": "优质多味菇田块",
+      "en-US": "Relishroom Plot [A]"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_mushroom_2"
+  },
+  "item_port_soil_corp_potato_1": {
+    "id": "item_port_soil_corp_potato_1",
+    "name": {
+      "zh-CN": "平薯田块",
+      "en-US": "Pingtuber Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_potato_1"
+  },
+  "item_port_soil_corp_strawberry_1": {
+    "id": "item_port_soil_corp_strawberry_1",
+    "name": {
+      "zh-CN": "青叶莓田块",
+      "en-US": "Sourberry Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_strawberry_1"
+  },
+  "item_port_soil_corp_strawberry_2": {
+    "id": "item_port_soil_corp_strawberry_2",
+    "name": {
+      "zh-CN": "优质青叶莓田块",
+      "en-US": "Sourberry Plot [A]"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_strawberry_2"
+  },
+  "item_port_soil_corp_sugarcane_1": {
+    "id": "item_port_soil_corp_sugarcane_1",
+    "name": {
+      "zh-CN": "脆蔗田块",
+      "en-US": "Crunchcane Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_sugarcane_1"
+  },
+  "item_port_soil_corp_tomato_1": {
+    "id": "item_port_soil_corp_tomato_1",
+    "name": {
+      "zh-CN": "茄果田块",
+      "en-US": "Matoberry Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_tomato_1"
+  },
+  "item_port_soil_corp_whitegourd_1": {
+    "id": "item_port_soil_corp_whitegourd_1",
+    "name": {
+      "zh-CN": "白瓜田块",
+      "en-US": "Whitemelon Plot"
+    },
+    "rarity": 3,
+    "type": 9,
+    "typeName": {
+      "zh-CN": "普通设备",
+      "en-US": "Basic Facility"
+    },
+    "iconId": "item_port_soil_corp_whitegourd_1"
+  },
   "item_port_soil_grass_1": {
     "id": "item_port_soil_grass_1",
     "name": {
@@ -30379,6 +33921,20 @@
     },
     "iconId": "item_port_squirter_1"
   },
+  "item_port_stock_board_1": {
+    "id": "item_port_stock_board_1",
+    "name": {
+      "zh-CN": "调度的具象",
+      "en-US": "Redistribution Made Manifest"
+    },
+    "rarity": 5,
+    "type": 111,
+    "typeName": {
+      "zh-CN": "装饰物品",
+      "en-US": "Ornamental"
+    },
+    "iconId": "item_port_stock_board_1"
+  },
   "item_port_storager_1": {
     "id": "item_port_storager_1",
     "name": {
@@ -30532,6 +34088,20 @@
       "en-US": "Miscellaneous"
     },
     "iconId": "item_port_udpipe_unloader_2"
+  },
+  "item_port_ugly_paint_1": {
+    "id": "item_port_ugly_paint_1",
+    "name": {
+      "zh-CN": "挑灯看龙",
+      "en-US": "Lung by the Lantern"
+    },
+    "rarity": 5,
+    "type": 111,
+    "typeName": {
+      "zh-CN": "装饰物品",
+      "en-US": "Ornamental"
+    },
+    "iconId": "item_port_ugly_paint_1"
   },
   "item_port_unloader_1": {
     "id": "item_port_unloader_1",
@@ -31443,6 +35013,146 @@
     },
     "iconId": "item_racingdungeon_exp"
   },
+  "item_ranch_egg_1": {
+    "id": "item_ranch_egg_1",
+    "name": {
+      "zh-CN": "禽蛋",
+      "en-US": "Egg"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_egg_1"
+  },
+  "item_ranch_egg_2": {
+    "id": "item_ranch_egg_2",
+    "name": {
+      "zh-CN": "优质禽蛋",
+      "en-US": "Egg [A]"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_egg_2"
+  },
+  "item_ranch_fishmeat_1": {
+    "id": "item_ranch_fishmeat_1",
+    "name": {
+      "zh-CN": "鳞肉",
+      "en-US": "Fin Fillet"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_fishmeat_1"
+  },
+  "item_ranch_fishmeat_2": {
+    "id": "item_ranch_fishmeat_2",
+    "name": {
+      "zh-CN": "优质鳞肉",
+      "en-US": "Fin Fillet [A]"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_fishmeat_2"
+  },
+  "item_ranch_fodder_1": {
+    "id": "item_ranch_fodder_1",
+    "name": {
+      "zh-CN": "饱食饲料",
+      "en-US": "Yummy Feed"
+    },
+    "rarity": 3,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_fodder_1"
+  },
+  "item_ranch_fodder_2": {
+    "id": "item_ranch_fodder_2",
+    "name": {
+      "zh-CN": "双效饱食饲料",
+      "en-US": "Double-Yummy Feed"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_fodder_2"
+  },
+  "item_ranch_meat_1": {
+    "id": "item_ranch_meat_1",
+    "name": {
+      "zh-CN": "肉块",
+      "en-US": "Meat"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_meat_1"
+  },
+  "item_ranch_meat_2": {
+    "id": "item_ranch_meat_2",
+    "name": {
+      "zh-CN": "优质肉块",
+      "en-US": "Meat [A]"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_meat_2"
+  },
+  "item_ranch_milk_1": {
+    "id": "item_ranch_milk_1",
+    "name": {
+      "zh-CN": "兽奶",
+      "en-US": "Milk"
+    },
+    "rarity": 2,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_milk_1"
+  },
+  "item_ranch_milk_2": {
+    "id": "item_ranch_milk_2",
+    "name": {
+      "zh-CN": "优质兽奶",
+      "en-US": "Milk [A]"
+    },
+    "rarity": 4,
+    "type": 8,
+    "typeName": {
+      "zh-CN": "材料",
+      "en-US": "Material"
+    },
+    "iconId": "item_ranch_milk_2"
+  },
   "item_record_002_01": {
     "id": "item_record_002_01",
     "name": {
@@ -31905,6 +35615,20 @@
     },
     "iconId": "item_settlement_exp"
   },
+  "item_shot_anim_aglina_s_1": {
+    "id": "item_shot_anim_aglina_s_1",
+    "name": {
+      "zh-CN": "飘游寄语",
+      "en-US": "Floating Message"
+    },
+    "rarity": 5,
+    "type": 105,
+    "typeName": {
+      "zh-CN": "拍照动作",
+      "en-US": "Camera Pose"
+    },
+    "iconId": "item_shot_anim_aglina_s_1"
+  },
   "item_shot_anim_ardelia_s_1": {
     "id": "item_shot_anim_ardelia_s_1",
     "name": {
@@ -31918,6 +35642,20 @@
       "en-US": "Camera Pose"
     },
     "iconId": "item_shot_anim_ardelia_s_1"
+  },
+  "item_shot_anim_azrila_s_1": {
+    "id": "item_shot_anim_azrila_s_1",
+    "name": {
+      "zh-CN": "铁誓仪仗",
+      "en-US": "Steel Honor Guard"
+    },
+    "rarity": 5,
+    "type": 105,
+    "typeName": {
+      "zh-CN": "拍照动作",
+      "en-US": "Camera Pose"
+    },
+    "iconId": "item_shot_anim_azrila_s_1"
   },
   "item_shot_anim_chen_s_1": {
     "id": "item_shot_anim_chen_s_1",
@@ -31947,6 +35685,34 @@
     },
     "iconId": "item_shot_anim_laevat_s_1"
   },
+  "item_shot_anim_lastrite_s_1": {
+    "id": "item_shot_anim_lastrite_s_1",
+    "name": {
+      "zh-CN": "柔软霜雪",
+      "en-US": "Gentle Frost"
+    },
+    "rarity": 5,
+    "type": 105,
+    "typeName": {
+      "zh-CN": "拍照动作",
+      "en-US": "Camera Pose"
+    },
+    "iconId": "item_shot_anim_lastrite_s_1"
+  },
+  "item_shot_anim_lifeng_s_1": {
+    "id": "item_shot_anim_lifeng_s_1",
+    "name": {
+      "zh-CN": "持正明心",
+      "en-US": "Righteous Bearing"
+    },
+    "rarity": 5,
+    "type": 105,
+    "typeName": {
+      "zh-CN": "拍照动作",
+      "en-US": "Camera Pose"
+    },
+    "iconId": "item_shot_anim_lifeng_s_1"
+  },
   "item_shot_anim_lino_m_1": {
     "id": "item_shot_anim_lino_m_1",
     "name": {
@@ -31975,6 +35741,20 @@
     },
     "iconId": "item_shot_anim_lizhiyan_m_1"
   },
+  "item_shot_anim_mifu_s_1": {
+    "id": "item_shot_anim_mifu_s_1",
+    "name": {
+      "zh-CN": "蓄拳势",
+      "en-US": "Haymaker Poise"
+    },
+    "rarity": 5,
+    "type": 105,
+    "typeName": {
+      "zh-CN": "拍照动作",
+      "en-US": "Camera Pose"
+    },
+    "iconId": "item_shot_anim_mifu_s_1"
+  },
   "item_shot_anim_pelica_s_1": {
     "id": "item_shot_anim_pelica_s_1",
     "name": {
@@ -32002,6 +35782,34 @@
       "en-US": "Camera Pose"
     },
     "iconId": "item_shot_anim_pograni_s_1"
+  },
+  "item_shot_anim_si_m_1": {
+    "id": "item_shot_anim_si_m_1",
+    "name": {
+      "zh-CN": "飞白",
+      "en-US": "Wispy Stroke"
+    },
+    "rarity": 5,
+    "type": 105,
+    "typeName": {
+      "zh-CN": "拍照动作",
+      "en-US": "Camera Pose"
+    },
+    "iconId": "item_shot_anim_si_m_1"
+  },
+  "item_shot_anim_tangtang_m_1": {
+    "id": "item_shot_anim_tangtang_m_1",
+    "name": {
+      "zh-CN": "魔眼之力",
+      "en-US": "EYE AM SUPREME"
+    },
+    "rarity": 5,
+    "type": 105,
+    "typeName": {
+      "zh-CN": "拍照动作",
+      "en-US": "Camera Pose"
+    },
+    "iconId": "item_shot_anim_tangtang_m_1"
   },
   "item_shot_anim_typhoea_m_1": {
     "id": "item_shot_anim_typhoea_m_1",
@@ -32227,6 +36035,20 @@
     },
     "iconId": "item_shot_filter_sp_6"
   },
+  "item_shot_filter_sp_7": {
+    "id": "item_shot_filter_sp_7",
+    "name": {
+      "zh-CN": "滤镜·武陵印象",
+      "en-US": "Filter: Wuling Impression"
+    },
+    "rarity": 5,
+    "type": 58,
+    "typeName": {
+      "zh-CN": "拍照滤镜",
+      "en-US": "Camera Filter"
+    },
+    "iconId": "item_shot_filter_sp_7"
+  },
   "item_shot_sticker_1": {
     "id": "item_shot_sticker_1",
     "name": {
@@ -32437,6 +36259,20 @@
     },
     "iconId": "item_shot_sticker_activity_4"
   },
+  "item_shot_sticker_activity_5": {
+    "id": "item_shot_sticker_activity_5",
+    "name": {
+      "zh-CN": "贴纸·除危记号",
+      "en-US": "Sticker: Contingency Resolved"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_activity_5"
+  },
   "item_shot_sticker_birthday_2026": {
     "id": "item_shot_sticker_birthday_2026",
     "name": {
@@ -32535,6 +36371,20 @@
     },
     "iconId": "item_shot_sticker_bp_6"
   },
+  "item_shot_sticker_bp_7": {
+    "id": "item_shot_sticker_bp_7",
+    "name": {
+      "zh-CN": "贴纸·线形墨魉",
+      "en-US": "Sticker: Minimalist Ink Spirit"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_bp_7"
+  },
   "item_shot_sticker_channel_v1d3d6_1": {
     "id": "item_shot_sticker_channel_v1d3d6_1",
     "name": {
@@ -32549,6 +36399,20 @@
     },
     "iconId": "item_shot_sticker_channel_v1d3d6_1"
   },
+  "item_shot_sticker_channel_v1d6_1": {
+    "id": "item_shot_sticker_channel_v1d6_1",
+    "name": {
+      "zh-CN": "贴纸·长城",
+      "en-US": "Sticker: Great Wall"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_channel_v1d6_1"
+  },
   "item_shot_sticker_giftpack_1": {
     "id": "item_shot_sticker_giftpack_1",
     "name": {
@@ -32562,6 +36426,48 @@
       "en-US": "Photograph Sticker"
     },
     "iconId": "item_shot_sticker_giftpack_1"
+  },
+  "item_shot_sticker_giftpack_3": {
+    "id": "item_shot_sticker_giftpack_3",
+    "name": {
+      "zh-CN": "贴纸·左右看看",
+      "en-US": "Sticker: Looking Around"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_giftpack_3"
+  },
+  "item_shot_sticker_giftpack_4": {
+    "id": "item_shot_sticker_giftpack_4",
+    "name": {
+      "zh-CN": "贴纸·严肃凝视",
+      "en-US": "Sticker: Solemn Gaze"
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_giftpack_4"
+  },
+  "item_shot_sticker_giftpack_5": {
+    "id": "item_shot_sticker_giftpack_5",
+    "name": {
+      "zh-CN": "贴纸·哦吼……",
+      "en-US": "Sticker: Aha..."
+    },
+    "rarity": 5,
+    "type": 70,
+    "typeName": {
+      "zh-CN": "拍照贴纸",
+      "en-US": "Photograph Sticker"
+    },
+    "iconId": "item_shot_sticker_giftpack_5"
   },
   "item_shot_sticker_mkting_1": {
     "id": "item_shot_sticker_mkting_1",
@@ -32926,6 +36832,20 @@
       "en-US": "Dijiang: Display Items"
     },
     "iconId": "item_spaceship_exhibits_jinlong_3"
+  },
+  "item_spaceship_exhibits_jinlong_4": {
+    "id": "item_spaceship_exhibits_jinlong_4",
+    "name": {
+      "zh-CN": "如意方圆",
+      "en-US": "Mark and Fulfill"
+    },
+    "rarity": 5,
+    "type": 69,
+    "typeName": {
+      "zh-CN": "帝江号陈列品",
+      "en-US": "Dijiang: Display Items"
+    },
+    "iconId": "item_spaceship_exhibits_jinlong_4"
   },
   "item_spaceship_exhibits_jinlong_5": {
     "id": "item_spaceship_exhibits_jinlong_5",
@@ -33333,6 +37253,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_5_1"
   },
+  "item_ticketgacha_special_single_lt_1_6_1": {
+    "id": "item_ticketgacha_special_single_lt_1_6_1",
+    "name": {
+      "zh-CN": "万物有灵寻访凭证",
+      "en-US": "Spirit's Restoration HH Permit"
+    },
+    "rarity": 6,
+    "type": 82,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_6_1"
+  },
   "item_ticketgacha_special_ten": {
     "id": "item_ticketgacha_special_ten",
     "name": {
@@ -33585,6 +37519,20 @@
     },
     "iconId": "item_user_avatar_activity_1"
   },
+  "item_user_avatar_activity_10": {
+    "id": "item_user_avatar_activity_10",
+    "name": {
+      "zh-CN": "“即刻发达”",
+      "en-US": "\"Get Lucky Now\""
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_10"
+  },
   "item_user_avatar_activity_11": {
     "id": "item_user_avatar_activity_11",
     "name": {
@@ -33598,6 +37546,34 @@
       "en-US": "Portrait"
     },
     "iconId": "item_user_avatar_activity_11"
+  },
+  "item_user_avatar_activity_12": {
+    "id": "item_user_avatar_activity_12",
+    "name": {
+      "zh-CN": "可爱堡堡",
+      "en-US": "Cutesy Burger"
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_12"
+  },
+  "item_user_avatar_activity_13": {
+    "id": "item_user_avatar_activity_13",
+    "name": {
+      "zh-CN": "白刃的奖章",
+      "en-US": "Silverblade Medal"
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_activity_13"
   },
   "item_user_avatar_activity_2": {
     "id": "item_user_avatar_activity_2",
@@ -33808,6 +37784,20 @@
       "en-US": "Portrait"
     },
     "iconId": "item_user_avatar_bp_1_5"
+  },
+  "item_user_avatar_bp_1_6": {
+    "id": "item_user_avatar_bp_1_6",
+    "name": {
+      "zh-CN": "龙的简约线条",
+      "en-US": "Doodled Lung"
+    },
+    "rarity": 6,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_user_avatar_bp_1_6"
   },
   "item_user_avatar_chr_0002_endminm": {
     "id": "item_user_avatar_chr_0002_endminm",
@@ -34257,6 +38247,20 @@
     },
     "iconId": "item_chr_0035_liino"
   },
+  "item_user_avatar_chr_0036_jsspsi": {
+    "id": "item_user_avatar_chr_0036_jsspsi",
+    "name": {
+      "zh-CN": "祀",
+      "en-US": "Si"
+    },
+    "rarity": 5,
+    "type": 66,
+    "typeName": {
+      "zh-CN": "头像",
+      "en-US": "Portrait"
+    },
+    "iconId": "item_chr_0036_jsspsi"
+  },
   "item_user_avatar_chr_0038_purrche": {
     "id": "item_user_avatar_chr_0038_purrche",
     "name": {
@@ -34369,6 +38373,34 @@
     },
     "iconId": "item_user_avatar_frame_activity_7"
   },
+  "item_user_avatar_frame_activity_8": {
+    "id": "item_user_avatar_frame_activity_8",
+    "name": {
+      "zh-CN": "卡莉的芳菲集",
+      "en-US": "Carly's Verdant Anthology"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_activity_8"
+  },
+  "item_user_avatar_frame_activity_9": {
+    "id": "item_user_avatar_frame_activity_9",
+    "name": {
+      "zh-CN": "危机响应",
+      "en-US": "Contingency Respondent"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_activity_9"
+  },
   "item_user_avatar_frame_bp_1_0": {
     "id": "item_user_avatar_frame_bp_1_0",
     "name": {
@@ -34452,6 +38484,20 @@
       "en-US": "Portrait Frame"
     },
     "iconId": "item_user_avatar_frame_bp_1_5"
+  },
+  "item_user_avatar_frame_bp_1_6": {
+    "id": "item_user_avatar_frame_bp_1_6",
+    "name": {
+      "zh-CN": "墨峦",
+      "en-US": "Ink Mountains"
+    },
+    "rarity": 6,
+    "type": 67,
+    "typeName": {
+      "zh-CN": "头像框",
+      "en-US": "Portrait Frame"
+    },
+    "iconId": "item_user_avatar_frame_bp_1_6"
   },
   "item_user_avatar_frame_channel_1": {
     "id": "item_user_avatar_frame_channel_1",
@@ -38569,6 +42615,20 @@
     },
     "iconId": "item_ticketgacha_special_single_lt_1_5_1"
   },
+  "ticketgacha_special_single_lt_1_6_1": {
+    "id": "ticketgacha_special_single_lt_1_6_1",
+    "name": {
+      "zh-CN": "万物有灵寻访凭证",
+      "en-US": "Spirit's Restoration HH Permit"
+    },
+    "rarity": 6,
+    "type": 81,
+    "typeName": {
+      "zh-CN": "限时珍贵物品",
+      "en-US": "LTO Valuable"
+    },
+    "iconId": "item_ticketgacha_special_single_lt_1_6_1"
+  },
   "ticketgacha_special_ten_lt_1_0_1": {
     "id": "ticketgacha_special_ten_lt_1_0_1",
     "name": {
@@ -38932,6 +42992,34 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_claym_0017"
+  },
+  "wpn_claym_0018": {
+    "id": "wpn_claym_0018",
+    "name": {
+      "zh-CN": "玉中身",
+      "en-US": "Jade Vessel"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_claym_0018"
+  },
+  "wpn_claym_0019": {
+    "id": "wpn_claym_0019",
+    "name": {
+      "zh-CN": "悠久传承",
+      "en-US": "Long Heritage"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_claym_0019"
   },
   "wpn_funnel_0001": {
     "id": "wpn_funnel_0001",
@@ -39815,6 +43903,20 @@
     },
     "iconId": "wpn_sword_0021"
   },
+  "wpn_sword_0021_ink": {
+    "id": "wpn_sword_0021_ink",
+    "name": {
+      "zh-CN": "宏愿",
+      "en-US": "Grand Vision"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_sword_0021"
+  },
   "wpn_sword_0022": {
     "id": "wpn_sword_0022",
     "name": {
@@ -39842,6 +43944,20 @@
       "en-US": "Weapon"
     },
     "iconId": "wpn_sword_0023"
+  },
+  "wpn_sword_0024": {
+    "id": "wpn_sword_0024",
+    "name": {
+      "zh-CN": "聚合工业",
+      "en-US": "Complexed Industry"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_sword_0024"
   },
   "wpn_sword_0026": {
     "id": "wpn_sword_0026",

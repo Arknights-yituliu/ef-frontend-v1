@@ -99,6 +99,11 @@
     "id": "item_char_ap_supply_camille",
     "itemName": "魔甘草糖果"
   },
+  "item_char_ap_supply_jsspsi": {
+    "apRecoverValue": 40,
+    "id": "item_char_ap_supply_jsspsi",
+    "itemName": "松烟墨条"
+  },
   "item_char_ap_supply_laevat": {
     "apRecoverValue": 40,
     "id": "item_char_ap_supply_laevat",
@@ -118,6 +123,11 @@
     "apRecoverValue": 40,
     "id": "item_char_ap_supply_mifu",
     "itemName": "龙爪能量饮料"
+  },
+  "item_char_ap_supply_minghe": {
+    "apRecoverValue": 40,
+    "id": "item_char_ap_supply_minghe",
+    "itemName": "怒骊糕"
   },
   "item_char_ap_supply_tangtang": {
     "apRecoverValue": 40,

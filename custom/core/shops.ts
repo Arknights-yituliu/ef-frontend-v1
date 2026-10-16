@@ -37,7 +37,7 @@ export const shops: Shop[] = [
       },
       {
         itemId: 'item_case_bp_selfselect_skillsp_1',
-        itemName: '高阶培养自选箱1',
+        itemName: '高阶培养自选箱Ⅰ',
         quantityPerGroup: 1,
         stockGroups: 3,
         originalPrice: 12_000,
@@ -91,7 +91,7 @@ export const shops: Shop[] = [
       },
       {
         itemId: 'item_case_bp_selfselect_skillsp_1',
-        itemName: '高阶培养自选箱1',
+        itemName: '高阶培养自选箱Ⅰ',
         quantityPerGroup: 1,
         stockGroups: 3,
         originalPrice: 12_000,
@@ -179,7 +179,7 @@ export const shops: Shop[] = [
       },
       {
         itemId: 'item_case_bp_selfselect_skillsp_1',
-        itemName: '高阶培养自选箱1',
+        itemName: '高阶培养自选箱Ⅰ',
         quantityPerGroup: 1,
         stockGroups: 8,
         originalPrice: 12_000,
@@ -242,7 +242,7 @@ export const shops: Shop[] = [
       },
       {
         itemId: 'item_case_bp_selfselect_skillsp_1',
-        itemName: '高阶培养自选箱1',
+        itemName: '高阶培养自选箱Ⅰ',
         quantityPerGroup: 1,
         stockGroups: 8,
         originalPrice: 12_000,

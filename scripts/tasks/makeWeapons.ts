@@ -7,6 +7,7 @@ import {
   levelLoadingTable,
   skillPatchTable,
   weaponBasicTable,
+  wikiWeaponIds,
   worldEnergyPointGroupTable,
   worldEnergyPointTable,
 } from '../gameData';
@@ -110,6 +111,7 @@ export function getStatsForWeapon(weaponId: string): EssenceStat {
 export function makeWeapons(): Record<string, Weapon> {
   return Object.fromEntries(
     Object.keys(weaponBasicTable)
+      .filter((weaponId) => wikiWeaponIds.has(weaponId)) // 仅保留 wiki 中存在的武器，排除 wiki 里没有的武器
       .toSorted() // 按字典序排序，保证 diff 最小
       .map((weaponId) => [
         weaponId,

@@ -68,15 +68,19 @@ const delistedPackDisplayName: LocalizedText = {
 /**
  * 判定是否为限时寻访组合包
  * 标准：98 元，且类型为 Seasonal_Rec_pack 或 Fest_pack，且名称以“寻访组合包”结尾，且含有 80000 折金票
+ * 注：最新上线的组合包其奖励数据可能尚未解包（RewardTable 中缺失），此时无法校验 80000 折金票，
+ *     但价格、类型、名称均符合，仍按寻访组合包处理，避免因数据缺失而中断。
  */
 function isSeasonalGachaPack(goods: CashShopGoods): boolean {
+  const reward = rewardTable[goods.rewardId];
   return (
     goods.priceCNY === 98 &&
     ['Seasonal_Rec_pack', 'Fest_pack'].includes(goods.cashShopId) &&
     getTranslation(goods.goodsName, 'CN').endsWith('寻访组合包') &&
-    rewardTable[goods.rewardId]!.itemBundles.some(
-      (bundle: ItemBundle) => bundle.id === 'item_gold' && bundle.count === 80_000,
-    )
+    (reward === undefined ||
+      reward.itemBundles.some(
+        (bundle: ItemBundle) => bundle.id === 'item_gold' && bundle.count === 80_000,
+      ))
   );
 }
 
