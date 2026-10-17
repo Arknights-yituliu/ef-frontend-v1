@@ -2,6 +2,7 @@
 import type { PoolMember } from '#shared/types/gacha-calculator';
 import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
 import { getPackTotalWeaponQuota } from '#shared/utils/gameData/pack';
+import { getLocalizedText } from '#shared/utils/i18nUtil';
 import { computed } from 'vue';
 import { availablePacks as packs } from '@/custom/core/packs';
 
@@ -334,7 +335,7 @@ function getImageUrl(itemId: string): string {
 
 // 获取多语言名称
 function packName(pack: PackData): string {
-  return pack.displayName[locale.value] || pack.displayName['zh-CN'];
+  return getLocalizedText(pack.displayName, locale.value);
 }
 </script>
 
