@@ -14,7 +14,7 @@ export const tierColorMap: Map<number, ColorInstance> = new Map([
   [6, Color('#ff7100')],
 ]);
 
-export function getItemName(itemId: string, locale?: string): string {
+export function getItemName(itemId: string, locale: string): string {
   if (items[itemId] === undefined) {
     return itemId;
   }
