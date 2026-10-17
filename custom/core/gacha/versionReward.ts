@@ -8,7 +8,7 @@ import {
   groupAndMergeRewardsByVersion,
 } from '#shared/utils/gacha-calculator';
 import { numberFloor } from '#shared/utils/numberUtil';
-import { ref, version } from 'vue';
+import { ref } from 'vue';
 import { activityReward } from '@/custom/core/gacha/activityReward';
 import { createVersionDailyReward, dailyAllRewardTable } from '@/custom/core/gacha/dailyReward';
 import {
@@ -82,43 +82,6 @@ function getVersionReward(version: VersionTableItem) {
   currentVersionRewardTotal.value.push(result1, result2, result3);
 
   // 计算并设置高度
-}
-
-function getPoolReward(version: string, character: string, start: Date, end: Date) {
-  const daysDiff = calculateDaysDifference(start, end);
-
-  currentVersionRewardTotal.value = [];
-  currentVersionReward.value = [];
-  let dailyReward: Reward[] = [];
-
-  dailyReward = createVersionDailyReward(start, end, version);
-
-  currentVersionReward.value.push(...dailyReward);
-
-  for (const reward of rawVersionReward) {
-    if (version !== reward.version) {
-      continue;
-    }
-    if (character !== reward.type && '通用' !== reward.type) {
-      continue;
-    }
-    if (new Date(reward.start) < start) {
-      continue;
-    }
-
-    currentVersionReward.value.push(reward);
-  }
-
-  const result1 = calculateRewardTotal('零氪', currentVersionReward.value, []);
-  const result2 = calculateRewardTotal('月卡', currentVersionReward.value, [
-    _createMonthlyPackReward(daysDiff),
-  ]);
-  const result3 = calculateRewardTotal('月卡+通行证', currentVersionReward.value, [
-    _createMonthlyPackReward(daysDiff),
-    _createBattlePassReward(),
-  ]);
-
-  currentVersionRewardTotal.value.push(result1, result2, result3);
 }
 
 function calculateRewardTotal(
@@ -205,109 +168,6 @@ function _createBattlePassReward(): Reward {
   };
 }
 
-/**
- * 将 string | Date 统一转为 Date
- */
-function toDate(value: string | Date): Date {
-  return typeof value === 'string' ? new Date(value) : value;
-}
-
-/**
- * 过滤 versionReward 中属于传入版本且未过期的奖励
- * @param versions 版本名称数组，保留 reward.version 在其中的奖励
- * @param currentVersion
- * @param versionStart
- * @returns 过滤并按开始时间倒序排列的奖励数组
- */
-function filterRewardEndAfter(
-  versions: string[],
-  currentVersion: string,
-  versionStart: Date,
-): Reward[] {
-  const list = [];
-
-  for (const reward of rawVersionReward) {
-    const endTimeStamp = toDate(reward.end).getTime();
-
-    if (reward.name.zh === '权限等级提升奖励') {
-      console.log(111);
-    }
-
-    if (reward.id.startsWith('辉光')) {
-      continue;
-    }
-
-    if (currentVersion === reward.version) {
-      list.push(reward);
-      continue;
-    }
-
-    if (endTimeStamp > versionStart.getTime() && versions.includes(reward.version)) {
-      list.push(reward);
-    }
-  }
-
-  list.sort((a, b) => toDate(b.start).getTime() - toDate(a.start).getTime());
-
-  const dailyReward = createVersionDailyReward(
-    new Date('2026/04/17 12:00:00'),
-    new Date('2026/06/05 12:00:00'),
-    '当前版本',
-  );
-  list.push(...dailyReward);
-  return list;
-}
-
-function rewardTotalCalc(
-  rewardList: Reward[],
-  rechargeReward: Reward[],
-  name: string,
-): RewardStatisticsResultDetail {
-  const result: RewardStatisticsResultDetail = {
-    name,
-    originiumRecharge: 0,
-    diamond: 0,
-    ticketgachaStandardSingle: 0,
-    ticketgachaSpecialSingle: 0,
-    ticketgachaLimitedSingle: 0,
-    totalPulls: 0,
-  };
-
-  // 合并rewardList和rechargeReward
-  const mergedRewards = [...rewardList, ...rechargeReward];
-
-  // 遍历合并后的奖励列表进行计算
-  for (const reward of mergedRewards) {
-    result.originiumRecharge += reward.content.originiumRecharge;
-    const tmp = result.diamond;
-    const tmp1 = reward.content.diamond;
-    result.diamond += reward.content.diamond;
-    // console.log(tmp, '+', tmp1, '=', result.diamond);
-    result.ticketgachaStandardSingle += reward.content.ticketgachaStandardSingle;
-    result.ticketgachaSpecialSingle += reward.content.ticketgachaSpecialSingle;
-    result.ticketgachaLimitedSingle += reward.content.ticketgachaLimitedSingle;
-  }
-  result.totalPulls =
-    result.originiumRecharge * 0.15 + result.diamond / 500 + result.ticketgachaSpecialSingle;
-  return result;
-}
-
-const allVersionReward = ref<Reward[]>([]);
-for (const reward of rawVersionReward) {
-  if (reward.module !== '标题') {
-    allVersionReward.value.push(reward);
-  }
-}
-
-export {
-  allVersionReward,
-  currentVersionReward,
-  currentVersionRewardTotal,
-  filterRewardEndAfter,
-  getPoolReward,
-  getVersionReward,
-  rawVersionReward,
-  rewardTotalCalc,
-};
+export { currentVersionReward, currentVersionRewardTotal, getVersionReward, rawVersionReward };
 
 export { versionTable } from '@/custom/core/gacha/versionTable';

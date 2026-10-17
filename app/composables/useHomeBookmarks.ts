@@ -99,7 +99,7 @@ export function validateHomeBookmarkUrl(value: string): boolean {
   return isAllowedUrl(value.trim());
 }
 
-export function normalizeHomeBookmarkInput(input: HomeBookmarkInput): HomeBookmarkInput {
+function normalizeHomeBookmarkInput(input: HomeBookmarkInput): HomeBookmarkInput {
   const title = input.title.trim();
   const avatarText = getHomeBookmarkInitial(input.avatarText) || getHomeBookmarkInitial(title);
 

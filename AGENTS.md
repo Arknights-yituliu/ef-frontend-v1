@@ -42,14 +42,11 @@ yarn makedata
 | `autoFontSizing.ts` | Auto-resize font to fit container width |
 | `combinatoricUtil.ts` | Combinatorial generation (k-combinations from array) |
 | `dateUtil.ts` | Date/time formatting with custom template strings |
-| `debounce.ts` | Debounce wrapper for rate-limiting function calls |
-| `domUtil.ts` | DOM helpers — get real element from component ref, scroll, position |
 | `gacha-calculator.ts` | Gacha reward statistics engine (simulation, probability, resource统计) |
 | `i18nUtil.ts` | Localized text lookup with `zh-CN`/`en-US` fallback |
 | `numberUtil.ts` | Number rounding, formatting utilities |
 | `trialOfSwordmancy.ts` | Trial of Swordmancy game logic types, enums, constants |
 | `trialOfSwordmancyDeck.ts` | Trial of Swordmancy deck persistence (localStorage) |
 | `trialOfSwordmancyPageState.ts` | Trial of Swordmancy page input/state management types |
-| `urlUtil.ts` | URL parsing, avatar image URL resolution |
 | `gameData/item.ts` | Item display helpers (icon, color, name lookup from game data) |
 | `gameData/pack.ts` | Pack value calculation, gacha count estimation, efficiency analysis |

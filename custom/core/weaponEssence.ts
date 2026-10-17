@@ -111,9 +111,6 @@ export const weaponTypeToGroupIconId: Record<string, string> = {
   'weapon.type.wpn_funnel': 'icon_wiki_group_weapon_wand',
 };
 
-/** 武器稀有度 */
-export const rarityLevels = [3, 4, 5, 6];
-
 /** 武器预设（由 scripts/tasks/makeWeapons.ts 自动生成） */
 export const weapons: Record<string, WeaponPreset> = rawWeapons;
 

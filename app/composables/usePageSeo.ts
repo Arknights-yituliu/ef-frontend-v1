@@ -11,7 +11,7 @@ type PageSeoOptions = {
 
 const siteUrl = 'https://ef.yituliu.cn';
 
-export const pageSeoDefaults = {
+const pageSeoDefaults = {
   ogLocale: 'zh_CN',
   ogLocaleAlternate: ['en_US'],
   ogType: 'website',

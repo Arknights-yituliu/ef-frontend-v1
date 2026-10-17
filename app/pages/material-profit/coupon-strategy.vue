@@ -813,7 +813,6 @@ onUnmounted(() => {
   color: #b0b0b0;
 }
 
-.region-section,
 .table-section {
   padding: 16px;
   border: 1px solid var(--theme-border);
@@ -835,36 +834,6 @@ onUnmounted(() => {
   color: var(--theme-text-primary);
 }
 
-.strategy-display {
-  margin-bottom: 20px;
-}
-
-.strategy-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: #fff;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.strategy-icon {
-  flex-shrink: 0;
-}
-
-.strategy-label {
-  font-size: 1rem;
-  color: #666;
-  font-weight: 600;
-}
-
-.strategy-value {
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
 /* 武陵青蓝色主题 */
 .wuling-region {
   border-color: rgba(0, 188, 212, 0.3);
@@ -877,28 +846,6 @@ onUnmounted(() => {
 /* 武陵货组卡片网格 - 与四号谷地保持一致 */
 .wuling-cards-grid {
   /* 使用相同的flex布局，不设置grid-template-columns */
-}
-
-/* 武陵货组卡片选中状态 */
-.wuling-cards-container .goods-card.selected {
-  background: rgba(0, 188, 212, 0.1);
-  border-color: #00bcd4;
-  box-shadow: 0 2px 6px rgba(0, 188, 212, 0.3);
-}
-
-.wuling-cards-container .goods-card.selected:hover {
-  background: rgba(0, 188, 212, 0.15);
-  border-color: #26c6da;
-}
-
-.wuling-success-text {
-  color: #00bcd4;
-  font-weight: 700;
-}
-
-.wuling-warning-text {
-  color: #607d8b;
-  font-weight: 700;
 }
 
 .wuling-buy-all {
@@ -919,22 +866,6 @@ onUnmounted(() => {
 .four-valley-region .region-header {
   border-color: rgba(139, 195, 74, 0.3);
 }
-
-.four-valley-success-text {
-  color: #8bc34a;
-  font-weight: 700;
-}
-
-.four-valley-info-text {
-  color: #cddc39;
-  font-weight: 700;
-}
-
-.four-valley-warning-text {
-  color: #ffc107;
-  font-weight: 700;
-}
-
 .four-valley-buy-all {
   color: #8bc34a;
   font-weight: 600;
@@ -986,25 +917,7 @@ onUnmounted(() => {
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
   padding: 4px 8px;
   border-radius: 4px;
-}
-
-.refresh-countdown {
-  display: flex;
-  align-items: center;
-  font-size: 0.95rem;
-  color: #666;
-  background: rgba(102, 126, 234, 0.1);
-  padding: 6px 16px;
-  border-radius: 16px;
-  font-weight: 600;
-}
-
-.countdown-label {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* 修正值颜色样式 */
+} /* 修正值颜色样式 */
 .correction-positive {
   color: #4caf50;
   font-weight: 700;
@@ -1041,14 +954,6 @@ onUnmounted(() => {
 [data-theme='dark'] .reference-price {
   color: #b0b0b0;
 }
-
-/* 货组卡片容器 */
-.goods-cards-container {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 2px solid #e0e0e0;
-}
-
 /* 货组卡片网格布局 - flex自适应 */
 .goods-cards-grid {
   display: flex;
@@ -1148,13 +1053,6 @@ onUnmounted(() => {
   background: linear-gradient(180deg, #00bcd4 0%, #26c6da 100%);
   box-shadow: 0 0 8px rgba(0, 188, 212, 0.4);
 }
-
-/* 四号谷地装饰条 */
-.four-valley-decoration {
-  background: linear-gradient(180deg, #8bc34a 0%, #9ccc65 100%);
-  box-shadow: 0 0 8px rgba(139, 195, 74, 0.4);
-}
-
 /* 货组卡片图片 */
 .goods-card-image {
   width: 144px;
@@ -1185,14 +1083,6 @@ onUnmounted(() => {
   background: transparent;
 }
 
-/* 修正值行 - 保持水平布局 */
-.minitable-row.correction-row {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-
 /* 迷你表格标签 */
 .minitable-label {
   font-size: 1rem;
@@ -1219,52 +1109,7 @@ onUnmounted(() => {
 
 .minitable-value.correction.zero {
   color: #ff9900;
-}
-
-/* 武陵价格主题 */
-.wuling-price {
-  color: #00bcd4;
-}
-
-/* 四号谷地价格主题 */
-.four-valley-price {
-  color: #8bc34a;
-}
-
-/* 货组卡片信息区域 - 底部 */
-.goods-card-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-top: 6px;
-  padding-top: 6px;
-  border-top: 1px solid #e0e0e0;
-}
-
-/* 货组卡片文本 */
-.goods-card-text {
-  font-size: 0.8rem;
-  color: #333;
-  font-weight: 500;
-  line-height: 1.3;
-  text-align: center;
-}
-
-/* 修正值箭头 */
-.correction-arrow {
-  flex-shrink: 0;
-  font-size: 1rem;
-}
-
-/* 修正值数字 */
-.correction-value {
-  flex-shrink: 0;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-/* 响应式调整 - 移动端只允许换行，不改变卡片宽度 */
+} /* 响应式调整 - 移动端只允许换行，不改变卡片宽度 */
 @media (max-width: 960px) {
   /* 保持300px固定宽度，flex容器自动换行 */
 }
@@ -1302,25 +1147,6 @@ onUnmounted(() => {
 [data-theme='dark'] .goods-card.selected:hover {
   background: rgba(156, 204, 101, 0.2);
 }
-
-[data-theme='dark'] .goods-cards-container {
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme='dark'] .goods-card-text {
-  color: #e0e0e0;
-}
-
-[data-theme='dark'] .goods-card-correction {
-  background: rgba(30, 30, 30, 0.9);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme='dark'] .correction-value {
-  color: #e0e0e0;
-}
-
 [data-theme='dark'] .page-title {
   color: #e0e0e0;
 }
@@ -1329,7 +1155,6 @@ onUnmounted(() => {
   color: #b0b0b0;
 }
 
-[data-theme='dark'] .region-section,
 [data-theme='dark'] .table-section {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
@@ -1338,16 +1163,6 @@ onUnmounted(() => {
 [data-theme='dark'] .region-header {
   border-color: rgba(255, 255, 255, 0.1);
 }
-
-[data-theme='dark'] .strategy-item {
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme='dark'] .strategy-label {
-  color: #b0b0b0;
-}
-
 [data-theme='dark'] .wuling-buy-all {
   color: #26c6da;
 }
@@ -1366,14 +1181,5 @@ onUnmounted(() => {
 
 [data-theme='dark'] .four-valley-buy-just {
   color: #ffb74d;
-}
-
-[data-theme='dark'] .refresh-countdown {
-  color: #b0b0b0;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme='dark'] .countdown-label {
-  color: #b0b0b0;
 }
 </style>

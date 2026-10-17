@@ -439,10 +439,6 @@ usePageSeo({
 }
 
 @media screen and (max-width: 600px) {
-  .friend-links-page {
-    padding: 1rem 0;
-  }
-
   .card-header {
     flex-direction: column;
     align-items: flex-start;
