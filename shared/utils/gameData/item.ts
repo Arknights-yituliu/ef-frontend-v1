@@ -1,6 +1,6 @@
 import type { ColorInstance } from 'color';
+import { getLocalizedText } from '#shared/utils/i18nUtil';
 import Color from 'color';
-import { useI18n } from 'vue-i18n';
 import { gachaItemMap } from '@/custom/core/gachaItem';
 import { items } from '@/custom/core/items';
 import { itemValueMap } from '@/custom/core/itemValue';
@@ -13,13 +13,6 @@ export const tierColorMap: Map<number, ColorInstance> = new Map([
   [5, Color('#ffbb03')],
   [6, Color('#ff7100')],
 ]);
-
-export function getLocalizedText(text: Record<string, string>, locale?: string): string {
-  if (locale === undefined) {
-    locale = useI18n().locale.value;
-  }
-  return text[locale] ?? text['zh-CN'] ?? Object.values(text)[0] ?? '';
-}
 
 export function getItemName(itemId: string, locale?: string): string {
   if (items[itemId] === undefined) {

@@ -163,6 +163,7 @@ ef-frontend-v1/
 │       ├── dateUtil.ts           # Date utility functions
 │       ├── debounce.ts           # Debounce utility
 │       ├── domUtil.ts            # DOM manipulation utilities
+│       ├── i18nUtil.ts           # Localized text utilities
 │       ├── numberUtil.ts         # Number utility functions
 │       └── urlUtil.ts            # URL utility functions
 ├── scripts/                      # Data processing scripts
@@ -401,7 +402,7 @@ Stores utility functions, utility classes, and TypeScript type definitions that 
 - **`shared/utils/`** - Utility functions directory
   - Stores utility functions for common operations
   - This directory is auto-recognized by Nuxt and can be used directly in pages and components without manual import
-  - Files: `combinatoricUtil.ts`, `domUtil.ts`, `gameData/item.ts`, `numberUtil.ts`, `urlUtil.ts`
+  - Files: `combinatoricUtil.ts`, `domUtil.ts`, `gameData/item.ts`, `i18nUtil.ts`, `numberUtil.ts`, `urlUtil.ts`
 
 ---
 

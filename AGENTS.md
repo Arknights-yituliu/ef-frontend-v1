@@ -45,6 +45,7 @@ yarn makedata
 | `debounce.ts` | Debounce wrapper for rate-limiting function calls |
 | `domUtil.ts` | DOM helpers — get real element from component ref, scroll, position |
 | `gacha-calculator.ts` | Gacha reward statistics engine (simulation, probability, resource统计) |
+| `i18nUtil.ts` | Localized text lookup with `zh-CN`/first-value fallback |
 | `numberUtil.ts` | Number rounding, formatting utilities |
 | `trialOfSwordmancy.ts` | Trial of Swordmancy game logic types, enums, constants |
 | `trialOfSwordmancyDeck.ts` | Trial of Swordmancy deck persistence (localStorage) |
