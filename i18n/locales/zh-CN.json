@@ -3,19 +3,10 @@
     "home": "主页",
     "introduction": "开发指南",
     "documentation": "文档",
-    "routeSetting": "路由设置",
-    "docsSetting": "文档编写",
-    "contributorSetting": "贡献者设置",
-    "commonQuestions": "常见问题",
-    "formatSpecification": "格式化规范设置",
-    "operations": "功能操作指南",
-
-    "how2getgachadurl": "如何获取抽卡数据URL",
     "materialProfit": "材料收益",
     "shopValue": "商店性价比",
     "packageValue": "礼包性价比",
     "itemValueTable": "物品价值表",
-    "couponStrategy": "最优倒货策略",
     "tools": "一图流工具箱",
     "gachaCalculator": "攒抽计算器",
     "essenceCalculator": "基质规划器",
@@ -36,11 +27,6 @@
     "contributors": "贡献/参与者"
   },
   "common": {
-    "language": "语言",
-    "light": "浅色",
-    "dark": "深色",
-    "zh": "中文",
-    "en": "English",
     "loading": "加载中...",
     "error": "错误",
     "retry": "重试",
@@ -51,8 +37,7 @@
     "PCOnly": "仅限PC端可用",
     "copyCodePCOnly": "已复制，请注意该兑换码仅可在PC端使用",
     "limitY1U4": "仅限【向渊行】版本期间可用",
-    "copyCodeY1U4": "已复制，请注意该兑换码仅可于【向渊行】版本期间使用",
-    "feedback": "反馈"
+    "copyCodeY1U4": "已复制，请注意该兑换码仅可于【向渊行】版本期间使用"
   },
   "layout": {
     "theme": "主题",
@@ -76,7 +61,6 @@
         "deleteTitle": "删除收藏卡片",
         "deleteMessage": "确定删除“{title}”吗？",
         "actions": "收藏卡片操作",
-        "empty": "暂无收藏",
         "save": "保存",
         "cancel": "取消",
         "added": "收藏卡片已新增",
@@ -104,9 +88,6 @@
         "betaTestIICheckAccess": "全面测试资格查询",
         "checkAccessOnEndfieldOfficialSite": "前往终末地官网查询资格"
       },
-      "chargeReward": {
-        "betaTestIIChargeRewardQuery": "全面测试充值返还查询"
-      },
       "buttons": {
         "github": "GitHub",
         "githubRepository": "GitHub 仓库",
@@ -118,7 +99,6 @@
         "website": "官网",
         "news": "新闻公告",
         "chargeReward": "充值返还查询",
-        "prepOrders": "预抽卡活动",
         "factory4Graduate": "谷地一键毕业",
         "wulingGraduate": "武陵一键毕业",
         "endfieldLab": "开始使用",
@@ -133,7 +113,6 @@
         "itemValueTable": "物品价值表",
         "gachaCalculator": "攒抽计算器",
         "essenceCalculator": "基质规划器",
-        "quantitativeCalculator": "量化计算器",
         "batterySplitCalculator": "分流计算器",
         "essenceRecognizer": "基质识别工具",
         "oea": "档案查漏补缺",
@@ -142,11 +121,6 @@
         "endfieldgift": "ENDFIELDGIFT",
         "endfield4pc": "ENDFIELD4PC",
         "efy1u4": "ENDFIELDRENEW",
-        "tdd202601": "TDD202601",
-        "arknightstd": "ARKNIGHTS-TD",
-        "hiddengem01": "HIDDEN-GEM-01",
-        "zmd202601": "ZMD202601",
-        "arknightstdd": "ARKNIGHTS-TDD",
         "bilibili": "Bilibili",
         "qq": "QQ",
         "douyin": "抖音",
@@ -307,7 +281,6 @@
         }
       },
       "penguinStatistics": {
-        "penguin": "企鹅物流",
         "penguinStatistics": "企鹅物流数据统计",
         "penguinStatisticsDescription": "企鹅物流数据统计（Penguin Statistics）是企鹅物流旗下数据处理部门（误），致力于明日方舟各素材的掉率统计。",
         "itemDropRates": "材料掉率",
@@ -355,9 +328,6 @@
         "description": "专为《明日方舟：终末地》打造的工业规划利器。输入目标，生成从资源到成品的最高效率全链条生产方案，让基地扩建精准高效。"
       }
     },
-    "particleWord": {
-      "loading": "正在加载粒子动画..."
-    },
     "contributorCard": {
       "profileLink": "个人主页",
       "tagsLabel": "负责内容",
@@ -365,12 +335,6 @@
       "avatarAlt": "{name}的头像"
     },
     "packCard": {
-      "stoneEquivalent": "源石等价",
-      "totalPulls": "总抽数",
-      "pricePerStone": "每石价格",
-      "pricePerPull": "每抽价格",
-      "perUnit": "/{unit}",
-      "contents": "礼包内容",
       "equivalent": "折合",
       "total": "共",
       "daysLeft": "剩余 {days} 天",
@@ -448,8 +412,6 @@
       "itemValueTable": {
         "title": "物品价值表",
         "description": "本页面用于展示游戏中各种物品的价值评估表，帮助玩家了解物品的相对价值。",
-        "itemName": "物品名称",
-        "itemValue": "价值",
         "searchPlaceholder": "搜索物品名称...",
         "sortBy": "排序方式",
         "sortValue": "价值",
@@ -460,13 +422,9 @@
       "couponStrategy": {
         "title": "弹性需求物资交易策略",
         "subtitle": "根据弹性需求物资最低价的变化规律，优化每日购买额度的使用策略",
-        "todayStrategy": "今日进货参考价",
         "refreshCountdown": "距离下次价格刷新：",
         "wuling": "武陵购入参考价",
         "fourValley": "四号谷地购入参考价",
-        "lowestPriceBelow": "当最低价低于 {price} 时",
-        "lowestPriceAbove": "当最低价高于 {price} 时",
-        "priceBetween": "当最低价在 {price1} 到 {price2} 之间时",
         "buyAll": "全部购买",
         "buyHalfQuota": "买到剩1/2配额",
         "buyOneThirdQuota": "买到剩1/3配额",
@@ -475,7 +433,6 @@
         "weekday": "星期",
         "wulingStrategyTable": "武陵",
         "fourValleyStrategyTable": "四号谷地",
-        "goodsTable": "货品列表",
         "goodsName": "货品名称",
         "correctionValue": "相对均价修正值",
         "referencePrice": "出售参考价",
@@ -498,9 +455,7 @@
         "blank": "空白",
         "custom": "自定义",
         "battleLocationFilter": "刷取地点筛选",
-        "weaponPreset": "武器预设",
         "output": "计算结果",
-        "bestStrategy": "最佳策略建议",
         "farmLocation": "刷取地点",
         "preEngraveStats": "预刻写方案",
         "selectAttributeStats": "选择基础属性",
@@ -508,8 +463,6 @@
         "selectSkillStats": "选择技能属性",
         "noValidDemand": "请在“需求设定”中至少添加一个有效的基质需求。",
         "noResultDueToFilter": "当前过滤条件导致无可用方案，请调整“刷取地点筛选”或添加更多需求。",
-        "debugInput": "调试输入",
-        "debugOutput": "调试输出",
         "plan": "方案",
         "requirementsMet": "需求满足",
         "weaponsMatched": "武器匹配",
@@ -534,7 +487,6 @@
         "archivePermanent": "往期版本常驻奖励",
         "recharge": "氪金",
         "activity": "版本限时活动",
-        "other": "其他",
         "existing": "库存",
         "daily": "日常",
         "activityReward": "活动奖励",
@@ -542,17 +494,9 @@
         "permanentReward": "常驻奖励",
         "rechargeReward": "氪金奖励",
         "regionalReward": "地区奖励",
-        "task": "任务",
-        "level": "等级",
-        "reward": "奖励",
-        "potential": "潜在",
-        "operationalManual": "行动手册",
         "regional": "地区",
         "pieChartName": "攒抽占比",
-        "pieChartTooltip": "{seriesName} {name} : {value}抽,占 ({percent}%)",
-        "countWithPulls": "{count}（{pulls} 抽）",
-        "calculationDetail": "计算详情",
-        "shortcutActions": "一键全选或清空"
+        "calculationDetail": "计算详情"
       },
       "giftCalculator": {
         "title": "礼物查询器",
@@ -565,7 +509,6 @@
         "allGiftsExpiring": "即将过气",
         "allOperators": "干员列表",
         "allOperatorsInfo": "高亮代表该干员有该礼物来源喜好；过滤结果不计算【流行品】；点击干员以查询对应礼物",
-        "currentGameVersion": "当前游戏版本",
         "giftExplain": {
           "title1": "关于礼物与信赖度",
           "text1-1": "当管理员位于O.M.V.帝江号上时，可通过前往基建舱室/中央环厅寻找，或使用中央环厅的干员联络台呼叫干员来与干员对话，并赠送礼物。",
@@ -711,9 +654,6 @@
   },
   "footer": {
     "copyrightTitle": "版权声明与许可协议",
-    "copyrightNotice": "版权声明",
-    "license": "许可协议",
-    "community": "社区参与",
     "copyrightText1": "网站所涉及的公司名称、商标、产品等均为其各自所有者的资产，仅供识别。网站内使用的游戏图片、动画、音频、文本原文，仅用于更好地表现游戏资料，其版权属于 Arknights:Endfield/上海鹰角网络科技有限公司。",
     "copyrightText2": "除非另有声明，网站其他内容采用",
     "copyrightLink": "知识共享 署名-非商业性使用 4.0 国际 许可协议",
@@ -745,7 +685,6 @@
       "contributorSetting": "贡献者设置",
       "commonQuestions": "常见问题",
       "formatSpecification": "格式化规范设置",
-
       "how2getgachadurl": "如何获取抽卡数据URL"
     },
     "search": "搜索",

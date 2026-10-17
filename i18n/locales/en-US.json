@@ -3,14 +3,6 @@
     "home": "Home",
     "introduction": "Introduction",
     "documentation": "Documentation",
-    "routeSetting": "Route Setting",
-    "docsSetting": "Writing Docs",
-    "contributorSetting": "Contributor Setting",
-    "commonQuestions": "Common Questions",
-    "formatSpecification": "Format Specification Setup",
-    "operations": "Operations Guide",
-
-    "how2getgachadurl": "How to get gacha data URL",
     "materialProfit": "Material Profit",
     "shopValue": "Shop Value",
     "packageValue": "Package Value",
@@ -32,15 +24,9 @@
     "others": "Others",
     "friendLinks": "Friend Links",
     "test": "Test",
-    "contributors": "Contributors",
-    "couponStrategy": "Coupon Strategy"
+    "contributors": "Contributors"
   },
   "common": {
-    "language": "Language",
-    "light": "Light",
-    "dark": "Dark",
-    "zh": "中文",
-    "en": "English",
     "loading": "Loading...",
     "error": "Error",
     "retry": "Retry",
@@ -51,8 +37,7 @@
     "PCOnly": "Only available on PC",
     "copyCodePCOnly": "Copied.\nPlease note that this code can only be used on PC platform.",
     "limitY1U4": "Only available during the version \"Homecoming\"",
-    "copyCodeY1U4": "Copied.\nPlease note that this code can only be used during the version \"Homecoming\".",
-    "feedback": "Feedback"
+    "copyCodeY1U4": "Copied.\nPlease note that this code can only be used during the version \"Homecoming\"."
   },
   "layout": {
     "theme": "Theme",
@@ -76,7 +61,6 @@
         "deleteTitle": "Delete Bookmark Card",
         "deleteMessage": "Delete \"{title}\"?",
         "actions": "Bookmark card actions",
-        "empty": "No bookmarks yet",
         "save": "Save",
         "cancel": "Cancel",
         "added": "Bookmark card added",
@@ -111,7 +95,6 @@
         "website": "Website",
         "news": "News",
         "chargeReward": "Charge Reward Query",
-        "prepOrders": "Pre-Gacha Event",
         "factory4Graduate": "Factory Quick Graduation",
         "wulingGraduate": "Wuling Quick Graduation",
         "endfieldLab": "Get Started",
@@ -127,8 +110,6 @@
         "gachaCalculator": "Gacha Calculator",
         "essenceCalculator": "Essence Planner",
         "batterySplitCalculator": "Battery Split Calculator",
-        "quantitativeCalculator": "Quantitative Calculator",
-        "gachaAnalysis": "Gacha Analysis",
         "essenceRecognizer": "Essence Recognizer",
         "oea": "OEA",
         "returnofall": "RETURNOFALL",
@@ -136,11 +117,6 @@
         "endfieldgift": "ENDFIELDGIFT",
         "endfield4pc": "ENDFIELD4PC",
         "efy1u4": "ENDFIELDRENEW",
-        "tdd202601": "TDD202601",
-        "arknightstd": "ARKNIGHTS-TD",
-        "hiddengem01": "HIDDEN-GEM-01",
-        "zmd202601": "ZMD202601",
-        "arknightstdd": "ARKNIGHTS-TDD",
         "bilibili": "Bilibili",
         "qq": "QQ",
         "douyin": "Douyin",
@@ -162,9 +138,6 @@
         "endfieldgift": "Oroberyl*150, T-Creds*10k, Intermediate Combat Record*20, Arms INSP Kit*20",
         "PCOnly": "T-Creds*13k, Advanced Combat Record*2, Arms INSP Kit*2",
         "limitY1U4": "Camera Sticker [Safety Helmet], T-Creds*71.6k"
-      },
-      "chargeReward": {
-        "betaTestIIChargeRewardQuery": "Beta Test II Charge Reward Query"
       },
       "cards": {
         "launchRedemptionCodes": {
@@ -308,7 +281,6 @@
         }
       },
       "penguinStatistics": {
-        "penguin": "penguin",
         "penguinStatistics": "penguin-statistics",
         "penguinStatisticsDescription": "Penguin Statistics is the Department of Data Analysis of Penguin Logistics (not really). We devote ourselves to item drop analysis.\nPenguin Statistics' current dataset is maintained through a combination of player manual reports, screenshot recognitions, and other uploads via public APIs. The Penguin Statistics team performs various types of automatic, scheduled, and manual maintenance to ensure the dataset's accuracy.",
         "itemDropRates": "Item Drop Rates",
@@ -356,9 +328,6 @@
         "description": "A powerful AIC planning tool for Arknights: Endfield. Input your goals to generate the most efficient full-chain production plans from resources to finished products, making base expansion precise and efficient."
       }
     },
-    "particleWord": {
-      "loading": "Loading particle animation..."
-    },
     "contributorCard": {
       "profileLink": "Profile",
       "tagsLabel": "Responsible Content",
@@ -366,12 +335,6 @@
       "avatarAlt": "{name}'s avatar"
     },
     "packCard": {
-      "stoneEquivalent": "Stone Equivalent",
-      "totalPulls": "Total Pulls",
-      "pricePerStone": "Price per Stone",
-      "pricePerPull": "Price per Pull",
-      "perUnit": "/{unit}",
-      "contents": "Contents",
       "equivalent": "Equiv",
       "total": "Total",
       "daysLeft": "{days} days left",
@@ -449,8 +412,6 @@
       "itemValueTable": {
         "title": "Item Value Table",
         "description": "This page displays a value assessment table for various items in the game to help players understand the relative value of items.",
-        "itemName": "Item Name",
-        "itemValue": "Item Value",
         "searchPlaceholder": "Search item name...",
         "sortBy": "Sort By",
         "sortValue": "Value",
@@ -461,13 +422,9 @@
       "couponStrategy": {
         "title": "Coupon Strategy",
         "subtitle": "Optimize daily purchasing strategy based on store coupon prices",
-        "todayStrategy": "Today's Best Strategy",
         "refreshCountdown": "Time to Refresh: ",
         "wuling": "Wuling",
         "fourValley": "Four Valley",
-        "lowestPriceBelow": "When price is below {price}",
-        "lowestPriceAbove": "When price is above {price}",
-        "priceBetween": "When price is between {price1} and {price2}",
         "buyAll": "Buy Full Quota",
         "buyHalfQuota": "Buy Half Quota",
         "buyOneThirdQuota": "Buy One Third Quota",
@@ -476,7 +433,6 @@
         "weekday": "Weekday",
         "wulingStrategyTable": "Wuling Strategy Table",
         "fourValleyStrategyTable": "Four Valley Strategy Table",
-        "goodsTable": "Goods List",
         "goodsName": "Goods Name",
         "correctionValue": "Correction Value",
         "referencePrice": "Reference Price",
@@ -499,9 +455,7 @@
         "blank": "Blank",
         "custom": "Custom",
         "battleLocationFilter": "Location Filter",
-        "weaponPreset": "Weapon Preset",
         "output": "Result",
-        "bestStrategy": "Best Strategy Suggestion",
         "farmLocation": "Location",
         "preEngraveStats": "Pre-Engrave Stats",
         "selectAttributeStats": "Attribute stats locked:",
@@ -509,8 +463,6 @@
         "selectSkillStats": "Skill stat locked:",
         "noValidDemand": "Please select at least one valid essence in the \"Select Essence\" section.",
         "noResultDueToFilter": "No available plans due to current filters. Please adjust the \"Location Filter\" or select more essences.",
-        "debugInput": "Debug Input",
-        "debugOutput": "Debug Output",
         "plan": "Plan",
         "requirementsMet": "selected essence(s)",
         "weaponsMatched": "total available",
@@ -535,7 +487,6 @@
         "archivePermanent": "Potential·Old Version",
         "recharge": "recharge",
         "activity": "Activity",
-        "other": "Other",
         "existing": "Existing",
         "daily": "Daily",
         "activityReward": "Activity Rewards",
@@ -543,15 +494,9 @@
         "permanentReward": "Permanent Rewards",
         "rechargeReward": "Recharge Rewards",
         "regionalReward": "Regional Rewards",
-        "task": "Task",
-        "level": "Level",
-        "reward": "Reward",
         "regional": "Regional",
         "pieChartName": "Gacha Resource Distribution",
-        "pieChartTooltip": "{seriesName} {name} : {value} pulls, ({percent}%)",
-        "countWithPulls": "{count} ({pulls} pulls)",
-        "calculationDetail": "Calculation Detail",
-        "shortcutActions": "Select All or Clear"
+        "calculationDetail": "Calculation Detail"
       },
       "giftCalculator": {
         "title": "Gift Search",
@@ -564,7 +509,6 @@
         "allGiftsExpiring": "Expiring",
         "allOperators": "Operators",
         "allOperatorsInfo": "Highlighed operators have the gift source as their preference. Result does not count Popular Preference. Tap the operator to search the gifts.",
-        "currentGameVersion": "Cur. Version",
         "giftExplain": {
           "title1": "About Gift and Trust",
           "text1-1": "Endministrator can find, talk and offer gifts to operators on O.M.V. Dijiang by going to the Infrastructure Cabins / Central Ring, or use the Operator Contact Panel at the Central Ring to contact.",
@@ -710,9 +654,6 @@
   },
   "footer": {
     "copyrightTitle": "Copyright Notice and License Agreement",
-    "copyrightNotice": "Copyright Notice",
-    "license": "License Agreement",
-    "community": "Community Participation",
     "copyrightText1": "Company names, trademarks, products, etc. mentioned on this website are assets of their respective owners, used for identification purposes only. Game images, animations, audio, and original text used on this website are solely for better presentation of game materials, and their copyright belongs to Arknights/Shanghai Hypergryph Network Technology Co., Ltd.",
     "copyrightText2": "Unless otherwise stated, other content on this website is licensed under the",
     "copyrightLink": "Creative Commons Attribution-NonCommercial 4.0 International License",
@@ -744,7 +685,6 @@
       "contributorSetting": "Contributor Setting",
       "commonQuestions": "Common Questions",
       "formatSpecification": "Format Specification Setup",
-
       "how2getgachadurl": "How to get gacha data URL"
     },
     "search": "Search",
