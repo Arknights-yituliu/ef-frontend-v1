@@ -263,13 +263,6 @@ function toggleFavorite() {
   border-bottom: 1px solid var(--theme-border);
 }
 
-/* 标题栏右侧小按钮容器 */
-.home-card-header-actions {
-  display: flex;
-  gap: 0.25rem;
-  flex-shrink: 0;
-}
-
 /* 收藏按钮 */
 .favorite-btn {
   width: 54px;
@@ -469,29 +462,5 @@ function toggleFavorite() {
 
 .card-button-text:hover {
   opacity: 1;
-}
-
-.home-card-custom :deep(*) {
-  margin-bottom: var(--spacing-sm);
-}
-
-.home-card-custom :deep(a.simple-link) {
-  font-size: var(--font-size-sm);
-}
-
-.home-card-custom :deep(.p-title) {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  padding: var(--spacing-sm) 0;
-}
-
-.home-card-custom :deep(.p-li) {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: var(--font-size-sm);
-}
-
-.home-card-custom :deep(.p-li::before) {
-  content: '\2022';
-  margin-right: var(--spacing-xs);
 }
 </style>

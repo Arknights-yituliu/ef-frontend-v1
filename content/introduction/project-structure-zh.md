@@ -71,11 +71,8 @@ ef-frontend-v1/
 │   ├── app.config.ts             # 应用配置文件，相当于项目配置共享中心
 │   ├── error.vue                 # 错误页面
 │   ├── assets/                   # 静态资源目录
-│   │   ├── css/                  # CSS 样式文件
-│   │   ├── images/               # 图片资源
-│   │   └── svg/                  # SVG 矢量图
+│   │   └── css/                  # CSS 样式文件（原子样式、通用样式、主题变量）
 │   ├── components/               # 组件目录
-│   │   ├── annimation/           # 动画组件
 │   │   ├── container/            # 容器组件
 │   │   ├── docs/                 # 文档相关组件
 │   │   ├── gacha-calculator/     # 抽卡计算器组件
@@ -129,18 +126,20 @@ ef-frontend-v1/
 │       └── en-US.json            # 英文（美国）翻译文件
 ├── custom/                       # 自定义文件，用于存放不被 Nuxt 自动识别的配置
 │   ├── config/                   # 自定义配置
-│   │   ├── base-url.ts           # 基础 URL 配置
-│   │   └── pre-fetch.ts          # 预加载配置
+│   │   └── base-url.ts           # 基础 URL 配置
 │   ├── core/                     # 游戏核心数据文件
 │   │   ├── gacha/                # 抽卡数据子目录
 │   │   ├── items.ts              # 物品数据
 │   │   ├── itemValue.ts          # 物品价值数据
 │   │   ├── gachaItem.ts          # 抽卡物品数据
+│   │   ├── gacha-pool-info.ts    # 卡池排期信息
+│   │   ├── homeCards.ts          # 首页卡片配置
 │   │   ├── packs.ts              # 礼包数据
 │   │   ├── shops.ts              # 商店数据（读取 shops.json 并做类型转换）
 │   │   ├── shops.json            # 商店数据（由 scripts/tasks/makeShops.ts 生成）
 │   │   ├── gifts.ts              # 礼物数据
-│   │   └── weapons.ts            # 武器数据
+│   │   ├── trialOfSwordmancy.ts  # 选剑演武数据
+│   │   └── weaponEssence.ts      # 武器与基质数据
 │   ├── info/                     # 项目信息文件
 │   │   ├── contributors.json     # 贡献者信息
 │   │   └── friendLinks.json      # 友链信息
@@ -163,21 +162,21 @@ ef-frontend-v1/
 │       ├── gameData/             # 游戏数据工具
 │       │   ├── item.ts           # 物品数据工具
 │       │   └── pack.ts           # 礼包数据工具
+│       ├── autoFontSizing.ts     # 按容器宽度自适应字号
 │       ├── combinatoricUtil.ts   # 组合数学工具函数
 │       ├── dateUtil.ts           # 日期工具函数
-│       ├── debounce.ts           # 防抖工具函数
-│       ├── domUtil.ts            # DOM 操作工具
+│       ├── gacha-calculator.ts   # 攒抽计算公共逻辑
 │       ├── i18nUtil.ts           # 多语言文本工具
 │       ├── numberUtil.ts         # 数字工具函数
-│       └── urlUtil.ts            # URL 工具函数
+│       ├── trialOfSwordmancy.ts  # 选剑演武核心逻辑
+│       ├── trialOfSwordmancyDeck.ts # 选剑演武牌库持久化
+│       └── trialOfSwordmancyPageState.ts # 选剑演武页面状态
 ├── scripts/                      # 数据处理脚本
 │   ├── gameData.ts               # 游戏数据入口
 │   ├── makeAllData.ts            # 全量数据生成脚本
 │   ├── models/                   # 数据模型定义
 │   ├── tasks/                    # 数据处理任务
 │   └── tsconfig.json             # 脚本 TypeScript 配置
-├── docs/                         # 项目文档
-│   └── SVG_BACKGROUND_REPLACE.md # SVG 背景替换指南
 ├── .github/                      # GitHub 配置
 │   ├── copilot-instructions.md   # Copilot 开发指引
 │   └── workflows/                # CI/CD 工作流
@@ -401,18 +400,18 @@ i18n/
 - **`shared/types/`** - TypeScript 类型定义目录
   - 存放 TypeScript 类型定义和接口
   - 该目录会被 Nuxt 自动识别
-  - 文件：`common.ts`、`gachaItem.ts`、`homeCardEditor.ts`、`homeBookmark.ts`、`itemInfo.ts`、`itemValue.ts`、`shop.ts`、`pack.ts`
+  - 文件：`common.ts`、`gacha-calculator.ts`、`gachaItem.ts`、`homeCardEditor.ts`、`homeBookmark.ts`、`itemValue.ts`、`shop.ts`、`pack.ts`
 
 - **`shared/utils/`** - 工具函数目录
   - 存放常用操作的工具函数
   - 该目录会被 Nuxt 自动识别，可在无需手动导入的情况下在 pages 和 components 目录下直接使用
-  - 文件：`combinatoricUtil.ts`、`domUtil.ts`、`gameData/item.ts`、`i18nUtil.ts`、`numberUtil.ts`、`urlUtil.ts`
+  - 文件：`autoFontSizing.ts`、`combinatoricUtil.ts`、`dateUtil.ts`、`gacha-calculator.ts`、`gameData/item.ts`、`gameData/pack.ts`、`i18nUtil.ts`、`numberUtil.ts`、`trialOfSwordmancy.ts`、`trialOfSwordmancyDeck.ts`、`trialOfSwordmancyPageState.ts`
 
 ---
 
 ### 项目根目录文件
 
-#### `agent.md` - AI Agent 开发指南
+#### `AGENTS.md` - AI Agent 开发指南
 
 专为 AI 生成代码时参考的知识文档，包含：
 
@@ -423,10 +422,6 @@ i18n/
 - 常见问题解答
 
 该文档帮助 AI 快速了解项目结构、开发规范和流程，确保生成的代码符合项目约定。
-
-#### `Design.md` - 网站设计风格文档
-
-包含网站的设计风格指南和规范说明。
 
 #### `LICENSE` - 项目许可证文件
 

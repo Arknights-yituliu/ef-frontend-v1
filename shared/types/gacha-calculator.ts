@@ -23,12 +23,6 @@ export interface VersionTableItem {
 
 export type ItemDict = Record<string, string>;
 
-export type CollectReward = {
-  originiumRecharge: number;
-  stage: number;
-  version: string;
-};
-
 export type RewardStatisticsResultDetail = {
   name: string;
   /** 衍质源石 */
@@ -52,18 +46,6 @@ export interface TotalPullsSingle {
   /** 限时寻访凭证 */
   ticketgachaLimitedSingle: number;
 }
-
-// export type ResourceStatisticsResultDetail =  Record<string,{
-//   name:string
-//   /** 衍质源石 */
-//   originiumRecharge: number;
-//   /** 嵌晶玉数量 */
-//   diamond: number;
-//   /**  基础寻访凭证 */
-//   ticketgachaStandardSingle: number;
-//   /** 特许寻访凭证 */
-//   ticketgachaSpecialSingle: number;
-// }>
 
 export interface Reward {
   id: string;
@@ -94,12 +76,6 @@ export interface RewardContent {
   ticketgachaSpecialSingle: number;
 
   ticketgachaLimitedSingle: number;
-}
-
-export interface CurrentVersionRemainingTime {
-  day: number;
-  week: number;
-  month: number;
 }
 
 export type TotalPulls = Record<string, TotalPullsSingle>;
@@ -152,12 +128,6 @@ export interface GachaCalculatorUserConfig {
   rechargeResources?: GachaCalculatorRechargeResources;
   rightPartPanel?: string[];
 }
-
-export type ModuleSelectedStatus = {
-  [key: string]: {
-    [key: string]: boolean;
-  };
-};
 
 export type PoolMember = {
   poolName: string;
