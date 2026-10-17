@@ -334,6 +334,7 @@ import {
   type HomeCardEditorDraft,
   type HomeCardPreviewContent,
 } from '@/shared/types/homeCardEditor';
+import { getLocalizedText } from '@/shared/utils/i18nUtil';
 
 definePageMeta({
   layout: 'default',
@@ -408,17 +409,29 @@ const previewContent = computed<HomeCardPreviewContent>(() => {
 
   for (const button of draft.value.buttons) {
     const key = button.i18nKey.trim() || button.id;
-    buttonLabels[key] = getLocalizedText(button.labelZh, button.labelEn);
+    buttonLabels[key] = getLocalizedText(
+      { 'zh-CN': button.labelZh, 'en-US': button.labelEn },
+      locale.value,
+    );
 
-    const popupText = getLocalizedText(button.popupTextZh, button.popupTextEn);
+    const popupText = getLocalizedText(
+      { 'zh-CN': button.popupTextZh, 'en-US': button.popupTextEn },
+      locale.value,
+    );
     if (popupText) {
       buttonPopupTexts[key] = popupText;
     }
   }
 
   return {
-    title: getLocalizedText(draft.value.titleZh, draft.value.titleEn),
-    description: getLocalizedText(draft.value.descriptionZh, draft.value.descriptionEn),
+    title: getLocalizedText(
+      { 'zh-CN': draft.value.titleZh, 'en-US': draft.value.titleEn },
+      locale.value,
+    ),
+    description: getLocalizedText(
+      { 'zh-CN': draft.value.descriptionZh, 'en-US': draft.value.descriptionEn },
+      locale.value,
+    ),
     buttonLabels,
     buttonPopupTexts,
   };
@@ -447,12 +460,6 @@ const validationMessages = computed(() => {
 
   return messages;
 });
-
-function getLocalizedText(zh: string, en: string): string {
-  const primaryText = locale.value === 'en-US' ? en : zh;
-  const fallbackText = locale.value === 'en-US' ? zh : en;
-  return primaryText || fallbackText;
-}
 
 function showMessage(message: string, color: 'success' | 'error' = 'success'): void {
   snackbarText.value = message;
