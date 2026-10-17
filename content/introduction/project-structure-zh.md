@@ -167,6 +167,7 @@ ef-frontend-v1/
 │       ├── dateUtil.ts           # 日期工具函数
 │       ├── debounce.ts           # 防抖工具函数
 │       ├── domUtil.ts            # DOM 操作工具
+│       ├── i18nUtil.ts           # 多语言文本工具
 │       ├── numberUtil.ts         # 数字工具函数
 │       └── urlUtil.ts            # URL 工具函数
 ├── scripts/                      # 数据处理脚本
@@ -405,7 +406,7 @@ i18n/
 - **`shared/utils/`** - 工具函数目录
   - 存放常用操作的工具函数
   - 该目录会被 Nuxt 自动识别，可在无需手动导入的情况下在 pages 和 components 目录下直接使用
-  - 文件：`combinatoricUtil.ts`、`domUtil.ts`、`gameData/item.ts`、`numberUtil.ts`、`urlUtil.ts`
+  - 文件：`combinatoricUtil.ts`、`domUtil.ts`、`gameData/item.ts`、`i18nUtil.ts`、`numberUtil.ts`、`urlUtil.ts`
 
 ---
 

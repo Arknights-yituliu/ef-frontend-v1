@@ -117,14 +117,10 @@
 
 <script lang="ts" setup>
 import type { Shop, ShopCardItem, ShopItem, ShopTableItem } from '#shared/types/shop';
+import { getLocalizedText } from '#shared/utils/i18nUtil';
 import { numberCompact, numberRound } from '#shared/utils/numberUtil';
 import { shops as allShops } from '@/custom/core/shops';
-import {
-  getItemIconUrl,
-  getItemName,
-  getItemValue,
-  getLocalizedText,
-} from '@/shared/utils/gameData/item';
+import { getItemIconUrl, getItemName, getItemValue } from '@/shared/utils/gameData/item';
 
 const { locale, t } = useI18n();
 const viewMode = ref<'table' | 'cards'>('table');
