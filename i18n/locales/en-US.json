@@ -505,7 +505,8 @@
         "matchedWeapons": "All available essences",
         "showMorePlans": "Show More Plans ({count})",
         "showCharWeapon": "Show Character's Recommended Weapon",
-        "charWeaponTooltip": "From in-game weapon recommendations, based on the first item in 'Skill Fitting'. For reference only."
+        "charWeaponTooltip": "From in-game weapon recommendations, based on the first item in 'Skill Fitting'. For reference only.",
+        "foresight": "Foresight"
       },
       "gachaCalculator": {
         "standard": "Standard",

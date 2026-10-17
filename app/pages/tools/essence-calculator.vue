@@ -212,6 +212,7 @@
                                     },
                                   )"
                                   :key="weaponId"
+                                  class="weapon-icon-wrapper"
                                 >
                                   <ContainerItemIcon
                                     :char-id="showCharAvatar ? weaponToCharId(weaponId) : undefined"
@@ -219,6 +220,12 @@
                                     :item-id="weaponId"
                                     show-item-name
                                   />
+                                  <div
+                                    v-if="weapons[weaponId]!.isForesight"
+                                    class="weapon-foresight-badge"
+                                  >
+                                    {{ t('page.tools.essenceCalculator.foresight') }}
+                                  </div>
                                   <v-tooltip activator="parent" location="bottom">
                                     {{
                                       [
@@ -463,6 +470,9 @@
                         :item-id="weaponId"
                         show-item-name
                       />
+                      <div v-if="weapon.isForesight" class="weapon-foresight-badge">
+                        {{ t('page.tools.essenceCalculator.foresight') }}
+                      </div>
                       <div v-if="selectedWeaponIds.has(weaponId)" class="weapon-selected-overlay">
                         <v-icon color="white" size="large">mdi-check-circle</v-icon>
                       </div>
@@ -815,6 +825,21 @@ function showMoreChoices() {
 .weapon-icon-wrapper {
   position: relative;
   cursor: pointer;
+}
+
+.weapon-foresight-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 0 0.25rem;
+  border-radius: var(--radius-sm) 0 var(--radius-sm) 0;
+  background-color: rgb(var(--v-theme-info));
+  color: rgb(var(--v-theme-on-info));
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1.4;
+  pointer-events: none;
 }
 
 .weapon-selected-overlay {

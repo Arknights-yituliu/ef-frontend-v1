@@ -16,6 +16,8 @@ export type { CashShopHideInGame, CashShopHideInGameTable } from './cashShopHide
 export type { CashShop, CashShopTable } from './cashShopTable';
 export type { CharWpnRecommend, CharWpnRecommendTable } from './charWpnRecommendTable';
 export type { TranslationKey } from './common';
+export type { ForesightCharGrowth, ForesightCharGrowthTable } from './foresightCharGrowthTable';
+export type { ForesightWeapon, ForesightWeaponTable } from './foresightWeaponTable';
 export type { GemTable, Gem as GemTerm } from './gemTable';
 export type { GemTagIdTable } from './gemTagIdTable';
 export type {
@@ -30,6 +32,9 @@ export type { LevelLoading, LevelLoadingTable } from './levelLoadingTable';
 export type { LTItem, LTItemTable } from './lTItemTable';
 export type { RecoverApItem, RecoverApItemTable } from './recoverApItemTable';
 export type { ItemBundle, Reward, RewardTable } from './rewardTable';
+export type { ShopGoods, ShopGoodsTable } from './shopGoodsTable';
+export type { ShopGroup, ShopGroupTable } from './shopGroupTable';
+export type { Shop, ShopTable } from './shopTable';
 export type {
   SimulationTrainingCard,
   SimulationTrainingCardPool,

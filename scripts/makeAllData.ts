@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import { makeItems } from './tasks/makeItems';
 import { makePackGroups, makePacks, makePackShops } from './tasks/makePacks';
 import { makeRecoverApItems } from './tasks/makeRecoverApItems';
+import { makeShops } from './tasks/makeShops';
 import { makeTrialOfSwordmancyLevelTable } from './tasks/makeTrialOfSwordmancyLevelTable';
 import { makeTrialOfSwordmancyPools } from './tasks/makeTrialOfSwordmancyPools';
 import { makeEnergyAlluviums, makeWeaponLocalizations, makeWeapons } from './tasks/makeWeapons';
@@ -62,6 +63,11 @@ console.log(`✓ custom/core/packGroups.json (${Object.keys(packGroups).length} 
 // ---------- recover-ap-items ----------
 fs.writeFileSync('custom/core/apItems.json', JSON.stringify(makeRecoverApItems(), null, 2), 'utf8');
 console.log(`✓ custom/core/apItems.json`);
+
+// ---------- shops ----------
+const shops = makeShops();
+fs.writeFileSync('custom/core/shops.json', JSON.stringify(shops, null, 2), 'utf8');
+console.log(`✓ custom/core/shops.json (${shops.length} shops)`);
 
 // ---------- trial-of-swordmancy level table ----------
 const trialOfSwordmancyLevelTable = makeTrialOfSwordmancyLevelTable();

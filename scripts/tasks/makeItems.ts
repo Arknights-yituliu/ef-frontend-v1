@@ -1,4 +1,10 @@
-import { getLocalizedValue, itemTable, itemTypeTable } from '../gameData';
+import {
+  foresightWeaponIds,
+  foresightWeaponTable,
+  getLocalizedValue,
+  itemTable,
+  itemTypeTable,
+} from '../gameData';
 
 export interface Item {
   id: string;
@@ -23,8 +29,11 @@ export interface Item {
   // valuableTabType: number;
 }
 
+/** 武器在 ItemTable 中的物品类型 ID */
+const WEAPON_ITEM_TYPE = 5;
+
 export function makeItems(): Record<string, Item> {
-  return Object.fromEntries(
+  const items: Record<string, Item> = Object.fromEntries(
     Object.keys(itemTable)
       .toSorted() // 按字典序排序，保证 diff 最小
       .map((itemId) => {
@@ -56,5 +65,30 @@ export function makeItems(): Record<string, Item> {
           },
         ];
       }),
+  );
+
+  const weaponTypeName = getLocalizedValue(itemTypeTable[String(WEAPON_ITEM_TYPE)]!.name);
+
+  // 前瞻武器：ItemTable 中尚未收录，需要手动补录以便前端展示图标与名称
+  for (const weaponId of foresightWeaponIds) {
+    if (items[weaponId] !== undefined) {
+      continue;
+    }
+    const foresightWeapon = foresightWeaponTable[weaponId]!;
+    items[weaponId] = {
+      id: weaponId,
+      name: getLocalizedValue(foresightWeapon.name),
+      rarity: foresightWeapon.rarity,
+      type: WEAPON_ITEM_TYPE,
+      typeName: weaponTypeName,
+      iconId: foresightWeapon.iconId,
+    };
+  }
+
+  // 按字典序排序，保证 diff 最小
+  return Object.fromEntries(
+    Object.keys(items)
+      .toSorted()
+      .map((itemId) => [itemId, items[itemId]!]),
   );
 }

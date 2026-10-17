@@ -2,7 +2,7 @@
   <v-container>
     <header class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</header>
     <p class="page-description shop-value-note">
-      数值为理智 / 代币（信用以 100信用
+      数值为理智 / 代币（信用、调度券以 100
       为单位）；数值越高越值得买，不同商店不可直接跨店对比，卡片视图的颜色仅用于辅助展示性价比。
     </p>
 
@@ -108,7 +108,7 @@ import { getItemIconUrl, getItemName, getItemValue } from '@/shared/utils/gameDa
 const { t } = useI18n();
 const viewMode = ref<'table' | 'cards'>('table');
 
-const hiddenShopIds = new Set(['四号谷地物资调度 − 稳定需求物资', '武陵物资调度 − 稳定需求物资']);
+const hiddenShopIds = new Set();
 
 const headers = computed(() => [
   {
@@ -218,12 +218,12 @@ function createTableItem(item: ShopItem, shopId: string): ShopTableItem {
 }
 
 function getCostPerformanceMultiplier(shopId: string): number {
-  if (shopId === '信用交易所') {
+  if (
+    shopId === 'shop_spaceship_1' ||
+    shopId === 'domainshop_page_com_map01' ||
+    shopId === 'domainshop_page_com_map02'
+  ) {
     return 100;
-  }
-
-  if (shopId === '集成援助·泡泡出击商店·一期' || shopId === '集成援助·泡泡出击商店·二期') {
-    return 1000;
   }
 
   return 1;

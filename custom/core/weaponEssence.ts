@@ -47,6 +47,8 @@ export interface WeaponPreset {
   weaponType: string;
   rarity: number;
   stats: WeaponStat;
+  /** 是否为尚未正式上线的前瞻武器 */
+  isForesight: boolean;
 }
 
 /** 全部的基础属性 */

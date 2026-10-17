@@ -43959,6 +43959,20 @@
     },
     "iconId": "wpn_sword_0024"
   },
+  "wpn_sword_0025": {
+    "id": "wpn_sword_0025",
+    "name": {
+      "zh-CN": "唤月",
+      "en-US": "Lunar Calling"
+    },
+    "rarity": 6,
+    "type": 5,
+    "typeName": {
+      "zh-CN": "武器",
+      "en-US": "Weapon"
+    },
+    "iconId": "wpn_sword_0025"
+  },
   "wpn_sword_0026": {
     "id": "wpn_sword_0026",
     "name": {

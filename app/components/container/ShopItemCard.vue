@@ -97,12 +97,11 @@ const costPerformanceThemeColors = [
 ] as const;
 
 const costPerformanceScaleByShopId = {
-  危机合约·机密圣所: { threshold: 1, step: 0.25 },
-  保障配额交易: { threshold: 3, step: 0.5 },
-  集成配额交易: { threshold: 1.5, step: 0.5 },
-  '集成援助·泡泡出击商店·一期': { threshold: 3, step: 0.5 },
-  '集成援助·泡泡出击商店·二期': { threshold: 3, step: 0.5 },
-  信用交易所: { threshold: 3.5, step: 0.5 },
+  shop_pay_yellow_1: { threshold: 3, step: 0.5 },
+  shop_pay_green_1: { threshold: 1.5, step: 0.5 },
+  shop_spaceship_1: { threshold: 12, step: 3 },
+  domainshop_page_com_map01: { threshold: 1, step: 0.3 },
+  domainshop_page_com_map02: { threshold: 0.5, step: 0.15 },
 } as const;
 
 function getCostPerformanceScale(shopId: string): { threshold: number; step: number } {

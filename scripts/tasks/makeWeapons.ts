@@ -1,5 +1,7 @@
 import type { I18nLanguage } from '../gameData';
 import {
+  foresightWeaponIds,
+  foresightWeaponTable,
   gemTable,
   gemTagIdTable,
   getTranslation,
@@ -23,6 +25,8 @@ export interface Weapon {
   weaponType: string;
   rarity: number;
   stats: EssenceStat;
+  /** 是否为尚未正式上线的前瞻武器（数据来自 ForesightWeaponTable） */
+  isForesight: boolean;
 }
 
 export interface WeaponLocalization {
@@ -40,15 +44,25 @@ export function getItemName(itemId: string, language: I18nLanguage): string {
   return getTranslation(itemTable[itemId].name, language);
 }
 
+/** 武器类型（wpnType 数字）到类型名称 i18n key 的映射 */
+const weaponTypeToTypeName = new Map<number, string>([
+  [1, 'weapon.type.wpn_sword'],
+  [2, 'weapon.type.wpn_funnel'],
+  [3, 'weapon.type.wpn_claym'],
+  [5, 'weapon.type.wpn_lance'],
+  [6, 'weapon.type.wpn_pistol'],
+]);
+
+export function getWeaponTypeNameByNumber(weaponType: number): string {
+  const typeName = weaponTypeToTypeName.get(weaponType);
+  if (typeName === undefined) {
+    throw new Error(`未知的武器类型，weaponType=${weaponType}`);
+  }
+  return typeName;
+}
+
 export function getWeaponTypeName(weaponId: string): string {
-  const weaponTypeToTypeName = new Map<number, string>([
-    [1, 'weapon.type.wpn_sword'],
-    [2, 'weapon.type.wpn_funnel'],
-    [3, 'weapon.type.wpn_claym'],
-    [5, 'weapon.type.wpn_lance'],
-    [6, 'weapon.type.wpn_pistol'],
-  ]);
-  return weaponTypeToTypeName.get(weaponBasicTable[weaponId]!.weaponType)!;
+  return getWeaponTypeNameByNumber(weaponBasicTable[weaponId]!.weaponType);
 }
 
 export function getEmptyStat(): EssenceStat {
@@ -78,6 +92,24 @@ export function getGameName(gameGroupId: string): string {
   return getTranslation(worldEnergyPoint.gameName, 'CN');
 }
 
+/** 根据 gem termType 将属性写入 EssenceStat 的对应分类 */
+function applyGemStat(result: EssenceStat, gemTermId: string, termType: number): void {
+  switch (termType) {
+    case 0: {
+      result.attribute = `weapon.stat.${gemTermId}`;
+      break;
+    }
+    case 1: {
+      result.secondary = `weapon.stat.${gemTermId}`;
+      break;
+    }
+    case 2: {
+      result.skill = `weapon.stat.${gemTermId}`;
+      break;
+    }
+  }
+}
+
 export function getStatsForWeapon(weaponId: string): EssenceStat {
   const weapon = weaponBasicTable[weaponId];
   if (!weapon) {
@@ -90,29 +122,32 @@ export function getStatsForWeapon(weaponId: string): EssenceStat {
     const tagId = skillPatch.SkillPatchDataBundle[0]!.tagId;
     const gemStat = gemTagIdTable[tagId]!;
     const gem = gemTable[gemStat]!;
-    switch (gem.termType) {
-      case 0: {
-        result.attribute = `weapon.stat.${gem.gemTermId}`;
-        break;
-      }
-      case 1: {
-        result.secondary = `weapon.stat.${gem.gemTermId}`;
-        break;
-      }
-      case 2: {
-        result.skill = `weapon.stat.${gem.gemTermId}`;
-        break;
-      }
-    }
+    applyGemStat(result, gem.gemTermId, gem.termType);
+  }
+  return result;
+}
+
+/** 从前瞻武器表（ForesightWeaponTable）中读取武器属性 */
+export function getForesightWeaponStats(weaponId: string): EssenceStat {
+  const foresightWeapon = foresightWeaponTable[weaponId];
+  if (!foresightWeapon) {
+    throw new Error(`无法找到前瞻武器数据，weaponId=${weaponId}`);
+  }
+
+  const result = getEmptyStat();
+  for (const gemTagId of foresightWeapon.gemTagIds) {
+    const gemStat = gemTagIdTable[gemTagId]!;
+    const gem = gemTable[gemStat]!;
+    applyGemStat(result, gem.gemTermId, gem.termType);
   }
   return result;
 }
 
 export function makeWeapons(): Record<string, Weapon> {
-  return Object.fromEntries(
+  // 常规武器：仅保留 wiki 中存在的武器，排除 wiki 里没有的武器
+  const weapons: Record<string, Weapon> = Object.fromEntries(
     Object.keys(weaponBasicTable)
-      .filter((weaponId) => wikiWeaponIds.has(weaponId)) // 仅保留 wiki 中存在的武器，排除 wiki 里没有的武器
-      .toSorted() // 按字典序排序，保证 diff 最小
+      .filter((weaponId) => wikiWeaponIds.has(weaponId))
       .map((weaponId) => [
         weaponId,
         {
@@ -120,8 +155,31 @@ export function makeWeapons(): Record<string, Weapon> {
           weaponType: getWeaponTypeName(weaponId),
           rarity: weaponBasicTable[weaponId]!.rarity,
           stats: getStatsForWeapon(weaponId),
+          isForesight: false,
         },
       ]),
+  );
+
+  // 前瞻武器：补录 ForesightWeaponTable 中尚未收录的武器（未正式上线）
+  for (const weaponId of foresightWeaponIds) {
+    if (weapons[weaponId] !== undefined) {
+      continue;
+    }
+    const foresightWeapon = foresightWeaponTable[weaponId]!;
+    weapons[weaponId] = {
+      weaponId,
+      weaponType: getWeaponTypeNameByNumber(foresightWeapon.wpnType),
+      rarity: foresightWeapon.rarity,
+      stats: getForesightWeaponStats(weaponId),
+      isForesight: true,
+    };
+  }
+
+  // 按字典序排序，保证 diff 最小
+  return Object.fromEntries(
+    Object.keys(weapons)
+      .toSorted()
+      .map((weaponId) => [weaponId, weapons[weaponId]!]),
   );
 }
 

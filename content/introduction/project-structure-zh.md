@@ -137,7 +137,8 @@ ef-frontend-v1/
 │   │   ├── itemValue.ts          # 物品价值数据
 │   │   ├── gachaItem.ts          # 抽卡物品数据
 │   │   ├── packs.ts              # 礼包数据
-│   │   ├── shops.ts              # 商店数据
+│   │   ├── shops.ts              # 商店数据（读取 shops.json 并做类型转换）
+│   │   ├── shops.json            # 商店数据（由 scripts/tasks/makeShops.ts 生成）
 │   │   ├── gifts.ts              # 礼物数据
 │   │   └── weapons.ts            # 武器数据
 │   ├── info/                     # 项目信息文件

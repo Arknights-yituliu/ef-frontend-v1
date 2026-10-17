@@ -8,6 +8,8 @@ import type {
   CashShopHideInGameTable,
   CashShopTable,
   CharWpnRecommendTable,
+  ForesightCharGrowthTable,
+  ForesightWeaponTable,
   GemTable,
   GemTagIdTable,
   GiftpackCashShopGoodsDataTable,
@@ -19,6 +21,9 @@ import type {
   LTItemTable,
   RecoverApItemTable,
   RewardTable,
+  ShopGoodsTable,
+  ShopGroupTable,
+  ShopTable,
   SimulationTrainingCardPoolTable,
   SimulationTrainingCardTable,
   SimulationTrainingConst,
@@ -156,6 +161,12 @@ export const cashShopTable: CashShopTable = readJSONWithBigInt('TableCfg/CashSho
 export const charWpnRecommendTable: CharWpnRecommendTable = readJSONWithBigInt(
   'TableCfg/CharWpnRecommendTable.json',
 );
+export const foresightCharGrowthTable: ForesightCharGrowthTable = readJSONWithBigInt(
+  'TableCfg/ForesightCharGrowthTable.json',
+);
+export const foresightWeaponTable: ForesightWeaponTable = readJSONWithBigInt(
+  'TableCfg/ForesightWeaponTable.json',
+);
 export const gemTable: GemTable = readJSONWithBigInt('TableCfg/GemTable.json');
 export const gemTagIdTable: GemTagIdTable = readJSONWithBigInt('TableCfg/GemTagIdTable.json');
 export const giftpackCashShopGoodsDataTable: GiftpackCashShopGoodsDataTable = readJSONWithBigInt(
@@ -174,6 +185,9 @@ export const recoverApItemTable: RecoverApItemTable = readJSONWithBigInt(
   'TableCfg/RecoverApItemTable.json',
 );
 export const rewardTable: RewardTable = readJSONWithBigInt('TableCfg/RewardTable.json');
+export const shopGoodsTable: ShopGoodsTable = readJSONWithBigInt('TableCfg/ShopGoodsTable.json');
+export const shopGroupTable: ShopGroupTable = readJSONWithBigInt('TableCfg/ShopGroupTable.json');
+export const shopTable: ShopTable = readJSONWithBigInt('TableCfg/ShopTable.json');
 export const simulationTrainingCardPoolTable: SimulationTrainingCardPoolTable = readJSONWithBigInt(
   'TableCfg/SimulationTrainingCardPoolTable.json',
 );
@@ -214,3 +228,6 @@ export const wikiWeaponIds: Set<string> = new Set(
     .filter((entry) => entry.groupId.startsWith('wiki_group_weapon') && entry.refItemId !== '')
     .map((entry) => entry.refItemId),
 );
+
+/** 前瞻武器 ID 集合（ForesightWeaponTable 中的武器），用于补录尚未正式上线的武器 */
+export const foresightWeaponIds: Set<string> = new Set(Object.keys(foresightWeaponTable));

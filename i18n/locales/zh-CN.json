@@ -505,7 +505,8 @@
         "matchedWeapons": "匹配的武器",
         "showMorePlans": "显示更多方案（{count} 个）",
         "showCharWeapon": "显示干员专武",
-        "charWeaponTooltip": "来自游戏内武器推荐，取“技能适配”的首件武器，仅供参考"
+        "charWeaponTooltip": "来自游戏内武器推荐，取“技能适配”的首件武器，仅供参考",
+        "foresight": "前瞻"
       },
       "gachaCalculator": {
         "standard": "基础",
