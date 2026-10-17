@@ -219,11 +219,6 @@ const carouselItems = [
   border-radius: 4px;
   font-size: 0.9rem;
 }
-
-.compact-section {
-  margin-top: 0.5rem;
-}
-
 .section-header-inline {
   font-size: 0.9rem;
   font-weight: bold;
@@ -259,14 +254,6 @@ const carouselItems = [
   font-family: monospace;
   opacity: 0.9;
 }
-
-.section-title {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: var(--v-theme-primary);
-}
-
 .single-row {
   display: flex;
   gap: 0.5rem;

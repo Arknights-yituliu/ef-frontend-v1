@@ -61,11 +61,6 @@ function getImageUrl(itemId: string): string {
   width: 36px;
   height: 36px;
 }
-.gacha-calculator-resource-single-btn {
-  margin: 4px 0px;
-  width: 100%;
-}
-
 .gacha-calculator-resource-single {
   position: relative;
   width: 100%;

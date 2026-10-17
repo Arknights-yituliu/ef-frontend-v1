@@ -107,8 +107,6 @@ export default defineNuxtConfig({
      */
     dirs: [
       '~~/shared/utils/gameData', // gameData 目录下的工具函数自动导入
-      '~~/shared/types/endfielddata',
-      '~~/shared/types/endfielddata/TableCfg',
     ],
   },
 

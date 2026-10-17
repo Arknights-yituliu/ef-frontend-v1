@@ -307,26 +307,6 @@ function removeNode() {
   font-weight: 600;
   pointer-events: none;
 }
-
-.delete-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #f44;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.delete-button:hover {
-  background: #f44;
-  color: white;
-}
-
 .node-children {
   display: flex;
   flex-direction: row;

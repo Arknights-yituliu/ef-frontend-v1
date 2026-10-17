@@ -472,7 +472,7 @@ function handleImageUpload(event: Event) {
       <img alt="" class="version-reward-bg-kv" :src="controlPanel.kvImage" />
       <!-- 等高线背景 -->
       <div class="contour-bg">
-        <img alt="Map Background" src="~/assets/svg/map-bg.svg" />
+        <img alt="Map Background" src="/svg/map-bg.svg" />
       </div>
       <!-- 内容区 -->
       <div id="rewards-area" :style="rewardsAreaStyle">
@@ -1069,66 +1069,6 @@ function handleImageUpload(event: Event) {
   padding: 4px 12px;
   margin: 0 auto 8px;
 }
-
-.version-reward-result-group {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-around;
-}
-
-/* ========== 2.2.3.1 单个结果 ========== */
-.version-reward-result {
-  width: 330px;
-  background-color: rgb(32, 32, 32, 0.85);
-  color: white;
-  height: 288px;
-  display: flex;
-  margin: 12px 0;
-  font-size: 24px;
-
-  .version-reward-result-color-border {
-    height: 60px;
-    width: 4px;
-  }
-
-  .blue-bg.version-reward-result-color-border {
-    height: 168px;
-  }
-
-  .version-reward-result-name {
-    font-size: 32px;
-    font-weight: bolder;
-  }
-
-  .reward-result-text {
-    padding: 12px 20px;
-
-    .version-reward-result-type {
-      width: 270px;
-      padding: 2px 12px;
-
-      .version-reward-result-number {
-        display: inline-block;
-        padding-left: 32px;
-      }
-    }
-  }
-}
-
-.version-reward-result-content {
-  justify-content: flex-start;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.version-reward-result-content-item {
-  width: 139px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-
 #version-reward-footer-12 {
   position: relative;
   z-index: 1;
@@ -1311,22 +1251,5 @@ function handleImageUpload(event: Event) {
 .export-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-/* ========== 4. 颜色工具类 ========== */
-.yellow-bg {
-  background-color: #fffa00;
-}
-
-.green-bg {
-  background-color: #00ffa2;
-}
-
-.blue-bg {
-  background-color: #00ffff;
-}
-
-.red-bg {
-  background-color: #f44336;
 }
 </style>
