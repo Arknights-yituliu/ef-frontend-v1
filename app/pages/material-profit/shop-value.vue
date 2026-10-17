@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <header class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</header>
-    <p class="page-description shop-value-note">数值越高越值得买，不同商店不可直接跨店对比。</p>
+    <p class="page-description shop-value-note">{{ $t('page.materialProfit.shopValue.note') }}</p>
 
     <section class="view-switch-section">
       <v-btn-toggle
@@ -14,46 +14,48 @@
       >
         <v-btn value="table">
           <v-icon start>mdi-table</v-icon>
-          表格视图
+          {{ $t('page.materialProfit.shopValue.tableView') }}
         </v-btn>
         <v-btn value="cards">
           <v-icon start>mdi-view-grid</v-icon>
-          卡片视图
+          {{ $t('page.materialProfit.shopValue.cardView') }}
         </v-btn>
       </v-btn-toggle>
     </section>
 
-    <section v-for="shop in shops" :key="shop.shopId" class="mb-4">
+    <section v-for="section in shopSections" :key="section.shopId" class="mb-4">
       <h2 class="page-sub-title shop-section-title">
         <button
-          v-if="shop.titleIconUrl"
-          :aria-label="`连续点击 5 次重置 ${shop.shopName} 的售罄状态`"
+          v-if="section.currencyIconUrl"
+          :aria-label="t('page.materialProfit.shopValue.resetSoldOutHint', { name: section.name })"
           class="shop-section-title-icon-button"
           type="button"
-          @click.stop="handleShopTitleIconClick(shop.shopId)"
+          @click.stop="handleShopTitleIconClick(section.shopId)"
         >
           <img
             alt=""
             aria-hidden="true"
             class="shop-section-title-icon"
             loading="lazy"
-            :src="shop.titleIconUrl"
+            :src="section.currencyIconUrl"
           />
         </button>
-        <span>{{ shop.shopName }}</span>
+        <span>{{ section.name }}</span>
       </h2>
-      <div v-if="shopIdsWithTotalPrice.has(shop.shopId)" class="shop-total-price">
-        <span class="shop-total-price-label">总价</span>
+      <div v-if="section.totalPrice !== undefined" class="shop-total-price">
+        <span class="shop-total-price-label">{{
+          $t('page.materialProfit.shopValue.totalPrice')
+        }}</span>
         <span class="shop-total-price-value">
           <img
-            v-if="shop.titleIconUrl"
+            v-if="section.currencyIconUrl"
             alt=""
             aria-hidden="true"
             class="shop-total-price-icon"
             loading="lazy"
-            :src="shop.titleIconUrl"
+            :src="section.currencyIconUrl"
           />
-          {{ formatCurrencyTotal(getUnsoldItemsTotalPrice(shop)) }}
+          {{ section.totalPrice }}
         </span>
       </div>
       <v-card v-if="viewMode === 'table'">
@@ -61,7 +63,7 @@
           class="mb-4"
           :headers="headers"
           :hover="true"
-          :items="getTableItems(shop.shopItems, shop.shopId)"
+          :items="section.tableItems"
           :items-per-page="25"
         >
           <template #item.itemName="{ item }">
@@ -81,12 +83,12 @@
           <template #item.currentPrice="{ item }">
             <div class="shop-price-cell">
               <img
-                v-if="shop.titleIconUrl"
+                v-if="section.currencyIconUrl"
                 alt=""
                 aria-hidden="true"
                 class="shop-price-icon"
                 loading="lazy"
-                :src="shop.titleIconUrl"
+                :src="section.currencyIconUrl"
               />
               <span>{{ item.currentPrice }}</span>
             </div>
@@ -101,12 +103,12 @@
       </v-card>
       <div v-else class="shop-cards-grid">
         <ContainerShopItemCard
-          v-for="item in getCardItems(shop.shopItems, shop.shopId)"
+          v-for="item in section.cardItems"
           :key="item.shopItemKey"
+          :currency-icon-url="section.currencyIconUrl"
           :item="item"
-          :shop-id="shop.shopId"
-          :title-icon-url="shop.titleIconUrl"
-          @toggle-sold-out="handleShopCardClick(shop.shopId, item)"
+          :shop-id="section.shopId"
+          @toggle-sold-out="handleShopCardClick(section.shopId, item)"
         />
       </div>
     </section>
@@ -114,18 +116,32 @@
 </template>
 
 <script lang="ts" setup>
-import type { ShopCardItem, ShopItem, ShopTableItem, ShopView } from '#shared/types/shop';
-import { numberRound } from '#shared/utils/numberUtil';
+import type { Shop, ShopCardItem, ShopItem, ShopTableItem } from '#shared/types/shop';
+import { numberCompact, numberRound } from '#shared/utils/numberUtil';
 import { shops as allShops } from '@/custom/core/shops';
-import { getItemIconUrl, getItemName, getItemValue } from '@/shared/utils/gameData/item';
+import {
+  getItemIconUrl,
+  getItemName,
+  getItemValue,
+  getLocalizedText,
+} from '@/shared/utils/gameData/item';
 
-const { t } = useI18n();
+const { locale, t } = useI18n();
 const viewMode = ref<'table' | 'cards'>('table');
 
-const hiddenShopIds = new Set();
+/** 页面渲染用的商店视图数据：名称、货币图标与商品行都在这里一次性算好 */
+interface ShopSection {
+  shopId: string;
+  name: string;
+  currencyIconUrl?: string;
+  tableItems: ShopTableItem[];
+  cardItems: ShopCardItem[];
+  /** 仅「总价」商店有值 */
+  totalPrice?: number;
+}
 
 /** 展示「总价」的商店（活动商店，无限库存商品不计入） */
-const shopIdsWithTotalPrice = new Set(['shop_inn_management_3']);
+const shopIdsWithTotalPrice = new Set<string>(['shop_inn_management_3']);
 
 const headers = computed(() => [
   {
@@ -160,14 +176,7 @@ const headers = computed(() => [
   },
 ]);
 
-const shops = computed<ShopView[]>(() =>
-  allShops
-    .filter((shop) => !hiddenShopIds.has(shop.shopId))
-    .map((shop) => ({
-      ...shop,
-      titleIconUrl: getShopTitleIconUrl(shop),
-    })),
-);
+const shopSections = computed<ShopSection[]>(() => allShops.map((shop) => createShopSection(shop)));
 
 const soldOutItemKeysByShop = ref<Record<string, string[]>>({});
 const shopTitleIconClickCounts = ref<Record<string, number>>({});
@@ -192,19 +201,28 @@ function getCostPerformance(item: ShopItem, shopId: string): number {
   return (getTotalValue(item) / item.currentPrice) * getCostPerformanceMultiplier(shopId);
 }
 
-function getShopTitleIconUrl(shop: ShopView): string | undefined {
-  if (!shop.currencyItemId) {
+function createShopSection(shop: Shop): ShopSection {
+  const shopId = shop.shopId;
+
+  return {
+    shopId,
+    name: getLocalizedText(shop.shopName, locale.value),
+    currencyIconUrl: getCurrencyIconUrl(shop.currencyItemId),
+    tableItems: shop.shopItems.map((item) => createTableItem(item, shopId)),
+    cardItems: createCardItems(shop.shopItems, shopId),
+    totalPrice: getShopTotalPrice(shop),
+  };
+}
+
+function getCurrencyIconUrl(currencyItemId?: string): string | undefined {
+  if (!currencyItemId) {
     return undefined;
   }
 
-  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${shop.currencyItemId}.png`;
+  return `https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/${currencyItemId}.png`;
 }
 
-function getTableItems(shopItems: ShopItem[], shopId: string): ShopTableItem[] {
-  return shopItems.map((item) => createTableItem(item, shopId));
-}
-
-function getCardItems(shopItems: ShopItem[], shopId: string): ShopCardItem[] {
+function createCardItems(shopItems: ShopItem[], shopId: string): ShopCardItem[] {
   return shopItems
     .map((item, index) => {
       const tableItem = createTableItem(item, shopId);
@@ -221,22 +239,25 @@ function getCardItems(shopItems: ShopItem[], shopId: string): ShopCardItem[] {
     .toSorted((left, right) => Number(left.isSoldOut) - Number(right.isSoldOut));
 }
 
-function getUnsoldItemsTotalPrice(shop: ShopView): number {
-  return shop.shopItems.reduce((totalPrice, item, index) => {
+/** 未售罄商品的总价，仅对需要展示总价的商店计算，无限库存商品不计入 */
+function getShopTotalPrice(shop: Shop): number | undefined {
+  if (!shopIdsWithTotalPrice.has(shop.shopId)) {
+    return undefined;
+  }
+
+  const totalPrice = shop.shopItems.reduce((total, item, index) => {
     if (!Number.isFinite(item.stockGroups)) {
-      return totalPrice;
+      return total;
     }
 
     if (isShopItemSoldOut(shop.shopId, getShopItemKey(item, index))) {
-      return totalPrice;
+      return total;
     }
 
-    return totalPrice + item.currentPrice * item.stockGroups!;
+    return total + item.currentPrice * item.stockGroups!;
   }, 0);
-}
 
-function formatCurrencyTotal(value: number): string {
-  return `${Math.round(value)}`;
+  return Math.round(totalPrice);
 }
 
 function createTableItem(item: ShopItem, shopId: string): ShopTableItem {
@@ -422,10 +443,10 @@ function formatStockLabel(stockGroups?: number): string | undefined {
   }
 
   if (!Number.isFinite(stockGroups)) {
-    return '库存 ∞';
+    return t('page.materialProfit.shopValue.stockInfinite');
   }
 
-  return `库存 ${stockGroups}`;
+  return t('page.materialProfit.shopValue.stockCount', { count: stockGroups });
 }
 
 function formatStockCount(stockGroups?: number): string {
@@ -453,18 +474,7 @@ function formatOriginalPriceLabel(originalPrice?: number, discount?: number): st
     return undefined;
   }
 
-  return formatCompactNumber(originalPrice);
-}
-
-function formatCompactNumber(value: number, fractionDigits = 0): string {
-  if (Math.abs(value) >= 10_000) {
-    const compact = numberRound(value / 10_000, fractionDigits);
-    return `${compact.toFixed(fractionDigits)}万`;
-  }
-
-  return fractionDigits > 0
-    ? numberRound(value, fractionDigits).toFixed(fractionDigits)
-    : `${numberRound(value, 0)}`;
+  return numberCompact(originalPrice, locale.value);
 }
 
 definePageMeta({

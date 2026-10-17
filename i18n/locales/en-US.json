@@ -126,6 +126,7 @@
         "itemValueTable": "Item Value Table",
         "gachaCalculator": "Gacha Calculator",
         "essenceCalculator": "Essence Planner",
+        "batterySplitCalculator": "Battery Split Calculator",
         "quantitativeCalculator": "Quantitative Calculator",
         "gachaAnalysis": "Gacha Analysis",
         "essenceRecognizer": "Essence Recognizer",
@@ -390,6 +391,10 @@
       "hidePack": "Hide this package",
       "confirmHidePack": "Click again to confirm",
       "restorePack": "Restore this package"
+    },
+    "shopItemCard": {
+      "valuePerGroup": "Group value {value}",
+      "soldOut": "Sold out"
     }
   },
   "page": {
@@ -406,6 +411,13 @@
       "shopValue": {
         "title": "Shop Value",
         "description": "This page displays cost-effectiveness analysis of various items in the shop to help players make better purchasing decisions.",
+        "note": "Higher values mean better deals. Different shops are not directly comparable.",
+        "tableView": "Table View",
+        "cardView": "Card View",
+        "totalPrice": "Total Price",
+        "resetSoldOutHint": "Click the shop icon 5 times in a row to reset the sold-out state of {name}",
+        "stockInfinite": "Stock ∞",
+        "stockCount": "Stock {count}",
         "itemName": "Item Name",
         "quantityPerGroup": "Quantity per Group",
         "stock": "Stock",
@@ -526,6 +538,11 @@
         "other": "Other",
         "existing": "Existing",
         "daily": "Daily",
+        "activityReward": "Activity Rewards",
+        "potentialReward": "Potential Rewards",
+        "permanentReward": "Permanent Rewards",
+        "rechargeReward": "Recharge Rewards",
+        "regionalReward": "Regional Rewards",
         "task": "Task",
         "level": "Level",
         "reward": "Reward",

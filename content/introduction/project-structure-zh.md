@@ -151,6 +151,7 @@ ef-frontend-v1/
 │       └── routes.json           # 侧边栏菜单路由配置
 ├── shared/                       # 共享工具目录
 │   ├── types/                    # TypeScript 类型定义（Nuxt 自动识别）
+│   │   ├── common.ts             # 通用类型（如多语言文本 LocalizedText）
 │   │   ├── gacha-calculator.ts   # 抽卡计算器类型
 │   │   ├── gachaItem.ts          # 抽卡物品类型
 │   │   ├── homeCardEditor.ts     # 首页卡片编辑器草稿类型
@@ -399,7 +400,7 @@ i18n/
 - **`shared/types/`** - TypeScript 类型定义目录
   - 存放 TypeScript 类型定义和接口
   - 该目录会被 Nuxt 自动识别
-  - 文件：`gachaItem.ts`、`homeCardEditor.ts`、`homeBookmark.ts`、`itemInfo.ts`、`itemValue.ts`、`shop.ts`、`pack.ts`
+  - 文件：`common.ts`、`gachaItem.ts`、`homeCardEditor.ts`、`homeBookmark.ts`、`itemInfo.ts`、`itemValue.ts`、`shop.ts`、`pack.ts`
 
 - **`shared/utils/`** - 工具函数目录
   - 存放常用操作的工具函数

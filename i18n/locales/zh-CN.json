@@ -390,6 +390,10 @@
       "hidePack": "隐藏该礼包",
       "confirmHidePack": "再次点击确认隐藏",
       "restorePack": "恢复该礼包"
+    },
+    "shopItemCard": {
+      "valuePerGroup": "每组价值 {value}",
+      "soldOut": "售罄"
     }
   },
   "page": {
@@ -406,6 +410,13 @@
       "shopValue": {
         "title": "商店性价比",
         "description": "本页面用于展示商店中各种商品的性价比分析，帮助玩家做出更明智的购买决策。",
+        "note": "数值越高越值得买，不同商店不可直接跨店对比。",
+        "tableView": "表格视图",
+        "cardView": "卡片视图",
+        "totalPrice": "总价",
+        "resetSoldOutHint": "连续点击 5 次重置 {name} 的售罄状态",
+        "stockInfinite": "库存 ∞",
+        "stockCount": "库存 {count}",
         "itemName": "物品名称",
         "quantityPerGroup": "每组数量",
         "stock": "库存",
@@ -526,6 +537,11 @@
         "other": "其他",
         "existing": "库存",
         "daily": "日常",
+        "activityReward": "活动奖励",
+        "potentialReward": "潜在奖励",
+        "permanentReward": "常驻奖励",
+        "rechargeReward": "氪金奖励",
+        "regionalReward": "地区奖励",
         "task": "任务",
         "level": "等级",
         "reward": "奖励",

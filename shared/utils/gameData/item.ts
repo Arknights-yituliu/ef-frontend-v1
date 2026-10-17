@@ -18,7 +18,7 @@ export function getLocalizedText(text: Record<string, string>, locale?: string):
   if (locale === undefined) {
     locale = useI18n().locale.value;
   }
-  return text[locale] ?? '';
+  return text[locale] ?? text['zh-CN'] ?? Object.values(text)[0] ?? '';
 }
 
 export function getItemName(itemId: string, locale?: string): string {

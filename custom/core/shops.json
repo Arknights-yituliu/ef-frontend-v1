@@ -1,7 +1,10 @@
 [
   {
     "shopId": "shop_inn_management_3",
-    "shopName": "堂头小铺·实用货品",
+    "shopName": {
+      "zh-CN": "堂头小铺·实用货品",
+      "en-US": "Pantry Shop·Useful Goods"
+    },
     "currencyItemId": "item_inn_gold",
     "shopItems": [
       {
@@ -125,7 +128,10 @@
   },
   {
     "shopId": "shop_pay_yellow_1",
-    "shopName": "配额兑换所·保障配额交易",
+    "shopName": {
+      "zh-CN": "配额兑换所·保障配额交易",
+      "en-US": "Quota Exchange·Bond Quota Exchange"
+    },
     "currencyItemId": "item_gachabyproducts_charticket",
     "shopItems": [
       {
@@ -429,7 +435,10 @@
   },
   {
     "shopId": "shop_pay_green_1",
-    "shopName": "配额兑换所·集成配额交易",
+    "shopName": {
+      "zh-CN": "配额兑换所·集成配额交易",
+      "en-US": "Quota Exchange·AIC Quota Exchange"
+    },
     "currencyItemId": "item_gachabyproducts_weaponticket",
     "shopItems": [
       {
@@ -949,7 +958,10 @@
   },
   {
     "shopId": "shop_spaceship_1",
-    "shopName": "信用交易所",
+    "shopName": {
+      "zh-CN": "信用交易所",
+      "en-US": "Credit Store"
+    },
     "currencyItemId": "item_spaceship_credit",
     "shopItems": [
       {
@@ -2252,7 +2264,10 @@
   },
   {
     "shopId": "domainshop_page_com_map01",
-    "shopName": "谷地物资调度·稳定需求物资",
+    "shopName": {
+      "zh-CN": "谷地物资调度·稳定需求物资",
+      "en-US": "Valley Stock Redistribution·Staple Goods"
+    },
     "currencyItemId": "item_domain_tundra_coupon",
     "shopItems": [
       {
@@ -3258,7 +3273,10 @@
   },
   {
     "shopId": "domainshop_page_com_map02",
-    "shopName": "武陵物资调度·稳定需求物资",
+    "shopName": {
+      "zh-CN": "武陵物资调度·稳定需求物资",
+      "en-US": "Wuling Stock Redistribution·Staple Goods"
+    },
     "currencyItemId": "item_domain_jinlong_coupon",
     "shopItems": [
       {

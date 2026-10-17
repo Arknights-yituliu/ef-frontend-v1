@@ -1,10 +1,5 @@
-import type {
-  LocalizedText,
-  PackContent,
-  PackData,
-  PackGroupData,
-  PackShopData,
-} from '../../shared/types/pack';
+import type { LocalizedText } from '../../shared/types/common';
+import type { PackContent, PackData, PackGroupData, PackShopData } from '../../shared/types/pack';
 import type { CashShopGoods, ItemBundle } from '../models';
 import { DELISTED_PACK_CATEGORY } from '../../shared/types/pack';
 import {

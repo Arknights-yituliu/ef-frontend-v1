@@ -1,5 +1,7 @@
+import type { LocalizedText } from '../../shared/types/common';
 import type { Shop as ShopDefinition, ShopGroup } from '../models';
 import {
+  getLocalizedValue,
   getTranslation,
   itemTable,
   rewardTable,
@@ -39,7 +41,8 @@ export interface ShopItemOutput {
 /** 生成后的商店（写入 JSON） */
 export interface ShopOutput {
   shopId: string;
-  shopName: string;
+  /** 多语言商店名 */
+  shopName: LocalizedText;
   currencyItemId?: string;
   shopItems: ShopItemOutput[];
 }
@@ -58,15 +61,28 @@ function compareStringDesc(left: string, right: string): number {
 }
 
 /** 商店显示名：分组名 + 商店名（去掉重复/空部分） */
-function getShopDisplayName(shop: ShopDefinition): string {
+function getShopDisplayName(shop: ShopDefinition): LocalizedText {
   const group: ShopGroup | undefined = shopGroupTable[shop.shopGroupId];
-  const groupName = group ? getTranslation(group.shopGroupName, 'CN') : '';
-  const shopName = getTranslation(shop.shopName, 'CN');
+  const groupNames: LocalizedText | undefined = group
+    ? getLocalizedValue(group.shopGroupName)
+    : undefined;
+  const shopNames = getLocalizedValue(shop.shopName);
+  const locales = Object.keys(shopNames) as (keyof LocalizedText)[];
 
+  return Object.fromEntries(
+    locales.map((locale) => [
+      locale,
+      joinDisplayName(groupNames?.[locale] ?? '', shopNames[locale]) || shop.shopId,
+    ]),
+  );
+}
+
+/** 拼接「分组名·商店名」，去重并忽略空字符串 */
+function joinDisplayName(groupName: string, shopName: string): string {
   const parts = [groupName, shopName].filter((name) => name.length > 0);
   const uniqueParts = parts.filter((name, index) => parts.indexOf(name) === index);
 
-  return uniqueParts.join('·') || shop.shopId;
+  return uniqueParts.join('·');
 }
 
 /** 商店货币：取该商店任意商品的 moneyId */

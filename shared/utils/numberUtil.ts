@@ -46,4 +46,27 @@ function stringToNumber(str: string | number | undefined): number {
   return Number.isNaN(num) ? 0 : num;
 }
 
-export { numberFloor, numberRound, stringToNumber };
+/** 紧凑数字的单位：中文以「万」为分界，英文以「K」为分界 */
+const compactUnitMap: Record<string, { divisor: number; unit: string }> = {
+  'zh-CN': { divisor: 10_000, unit: '万' },
+  'en-US': { divisor: 1000, unit: 'K' },
+};
+
+/**
+ * 将数字压缩为紧凑写法，例如 12345 在保留 1 位小数时为 1.2万（中文）/ 12.3K（英文）。
+ * 小于 10000 的数字保持原样，避免丢失精度。
+ */
+function numberCompact(value: number, locale: string, fractionDigits: number = 0): string {
+  const { divisor, unit } = compactUnitMap[locale] ?? compactUnitMap['zh-CN']!;
+
+  if (Math.abs(value) >= 10_000) {
+    const compact = numberRound(value / divisor, fractionDigits);
+    return `${compact.toFixed(fractionDigits)}${unit}`;
+  }
+
+  return fractionDigits > 0
+    ? numberRound(value, fractionDigits).toFixed(fractionDigits)
+    : `${numberRound(value, 0)}`;
+}
+
+export { numberCompact, numberFloor, numberRound, stringToNumber };

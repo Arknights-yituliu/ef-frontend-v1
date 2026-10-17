@@ -7,6 +7,7 @@
       'shop-item-card--locked': !item.canToggleSoldOut,
       'shop-item-card--sold-out': item.isSoldOut,
     }"
+    :data-sold-out-label="item.isSoldOut ? t('component.shopItemCard.soldOut') : undefined"
     :role="item.canToggleSoldOut ? 'button' : undefined"
     :tabindex="item.canToggleSoldOut ? 0 : undefined"
     @click="emit('toggle-sold-out')"
@@ -17,7 +18,11 @@
       <div v-if="item.stockLabel" class="shop-item-stock-panel">
         <span class="shop-item-stock-panel-line">{{ item.stockLabel }}</span>
         <span class="shop-item-stock-panel-line">
-          每组价值 {{ formatCompactNumber(item.totalValue, 1) }}
+          {{
+            t('component.shopItemCard.valuePerGroup', {
+              value: formatCompactNumber(item.totalValue, 1),
+            })
+          }}
         </span>
       </div>
       <div v-if="item.discountLabel" class="shop-item-discount-badge">
@@ -53,12 +58,12 @@
         <div class="shop-item-card-price-row">
           <div class="shop-item-card-price-current">
             <img
-              v-if="titleIconUrl"
+              v-if="currencyIconUrl"
               alt=""
               aria-hidden="true"
               class="shop-price-icon"
               loading="lazy"
-              :src="titleIconUrl"
+              :src="currencyIconUrl"
             />
             {{ formatCompactNumber(item.currentPrice) }}
           </div>
@@ -77,13 +82,15 @@
 
 <script lang="ts" setup>
 import type { ShopCardItem } from '#shared/types/shop';
-import { numberRound } from '#shared/utils/numberUtil';
+import { numberCompact, numberRound } from '#shared/utils/numberUtil';
 
 const props = defineProps<{
   item: ShopCardItem;
   shopId: string;
-  titleIconUrl?: string;
+  currencyIconUrl?: string;
 }>();
+
+const { locale, t } = useI18n();
 
 const emit = defineEmits<{
   'toggle-sold-out': [];
@@ -146,17 +153,10 @@ function formatCostPerformanceDisplay(value: number): string {
 }
 
 function formatCompactNumber(value: number, fractionDigits = 0): string {
-  if (Math.abs(value) >= 10_000) {
-    const compact = numberRound(value / 10_000, fractionDigits);
-    return `${compact.toFixed(fractionDigits)}万`;
-  }
-
-  return fractionDigits > 0
-    ? numberRound(value, fractionDigits).toFixed(fractionDigits)
-    : `${numberRound(value, 0)}`;
+  return numberCompact(value, locale.value, fractionDigits);
 }
 
-const { item, shopId, titleIconUrl } = toRefs(props);
+const { item, shopId, currencyIconUrl } = toRefs(props);
 </script>
 
 <style scoped>
@@ -223,7 +223,7 @@ const { item, shopId, titleIconUrl } = toRefs(props);
 }
 
 .shop-item-card--sold-out::after {
-  content: '售罄';
+  content: attr(data-sold-out-label);
   position: absolute;
   left: 0;
   top: 22%;

@@ -147,6 +147,7 @@ ef-frontend-v1/
 │       └── routes.json           # Sidebar menu routing config
 ├── shared/                       # Shared utilities directory
 │   ├── types/                    # TypeScript type definitions (auto-recognized by Nuxt)
+│   │   ├── common.ts             # Common types (e.g. localized text LocalizedText)
 │   │   ├── gacha-calculator.ts   # Gacha calculator types
 │   │   ├── gachaItem.ts          # Gacha item types
 │   │   ├── homeCardEditor.ts     # Home card editor draft types
@@ -395,7 +396,7 @@ Stores utility functions, utility classes, and TypeScript type definitions that 
 - **`shared/types/`** - TypeScript type definitions directory
   - Stores TypeScript type definitions and interfaces
   - This directory is auto-recognized by Nuxt
-  - Files: `gachaItem.ts`, `homeCardEditor.ts`, `homeBookmark.ts`, `itemInfo.ts`, `itemValue.ts`, `shop.ts`, `pack.ts`
+  - Files: `common.ts`, `gachaItem.ts`, `homeCardEditor.ts`, `homeBookmark.ts`, `itemInfo.ts`, `itemValue.ts`, `shop.ts`, `pack.ts`
 
 - **`shared/utils/`** - Utility functions directory
   - Stores utility functions for common operations
