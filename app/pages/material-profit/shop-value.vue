@@ -259,7 +259,7 @@ function getShopTotalPrice(shop: Shop): number | undefined {
 function createTableItem(item: ShopItem, shopId: string): ShopTableItem {
   return {
     itemId: item.itemId,
-    itemName: getItemName(item.itemId),
+    itemName: getItemName(item.itemId, locale.value),
     quantityPerGroup: item.quantityPerGroup,
     currentPrice: item.currentPrice,
     iconUrl: getItemIconUrl(item.itemId),

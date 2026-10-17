@@ -160,7 +160,7 @@
         </thead>
         <tbody>
           <tr v-for="(content, index) in sortedContents" :key="index">
-            <td>{{ getItemName(content.itemId) }}</td>
+            <td>{{ getItemName(content.itemId, locale) }}</td>
             <td>{{ content.quantity }}</td>
             <td>
               {{ getItemBundleAllItemsValue(content, props.weaponQuotaBaseline).toFixed(1) }}

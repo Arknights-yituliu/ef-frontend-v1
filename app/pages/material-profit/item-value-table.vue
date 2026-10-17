@@ -74,7 +74,7 @@
         <div class="item-info-bubble">
           <div style="width: 34px" />
           <div class="item-info-content flex-1">
-            <div class="item-label">{{ getItemName(itemId) }}</div>
+            <div class="item-label">{{ getItemName(itemId, locale) }}</div>
             <div class="item-value">{{ numberRound(getItemValue(itemId), 3) }}</div>
           </div>
         </div>
@@ -129,7 +129,7 @@ const filteredAndSortedItemIdList = computed(() => {
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.trim().toLowerCase();
     result = result.filter((id) => {
-      const name = getItemName(id).toLowerCase();
+      const name = getItemName(id, locale.value).toLowerCase();
       return name.includes(query) || id.toLowerCase().includes(query);
     });
   }
