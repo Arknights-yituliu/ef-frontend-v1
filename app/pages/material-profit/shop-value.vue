@@ -1,10 +1,7 @@
 <template>
   <v-container>
     <header class="page-title">{{ $t('page.materialProfit.shopValue.title') }}</header>
-    <p class="page-description shop-value-note">
-      数值为理智 / 代币（信用、调度券以 100
-      为单位）；数值越高越值得买，不同商店不可直接跨店对比，卡片视图的颜色仅用于辅助展示性价比。
-    </p>
+    <p class="page-description shop-value-note">数值越高越值得买，不同商店不可直接跨店对比。</p>
 
     <section class="view-switch-section">
       <v-btn-toggle
@@ -45,6 +42,20 @@
         </button>
         <span>{{ shop.shopName }}</span>
       </h2>
+      <div v-if="shopIdsWithTotalPrice.has(shop.shopId)" class="shop-total-price">
+        <span class="shop-total-price-label">总价</span>
+        <span class="shop-total-price-value">
+          <img
+            v-if="shop.titleIconUrl"
+            alt=""
+            aria-hidden="true"
+            class="shop-total-price-icon"
+            loading="lazy"
+            :src="shop.titleIconUrl"
+          />
+          {{ formatCurrencyTotal(getUnsoldItemsTotalPrice(shop)) }}
+        </span>
+      </div>
       <v-card v-if="viewMode === 'table'">
         <v-data-table
           class="mb-4"
@@ -63,6 +74,9 @@
           </template>
           <template #item.quantityPerGroup="{ item }">
             {{ item.quantityPerGroup }}
+          </template>
+          <template #item.stockGroups="{ item }">
+            {{ formatStockCount(item.stockGroups) }}
           </template>
           <template #item.currentPrice="{ item }">
             <div class="shop-price-cell">
@@ -110,6 +124,9 @@ const viewMode = ref<'table' | 'cards'>('table');
 
 const hiddenShopIds = new Set();
 
+/** 展示「总价」的商店（活动商店，无限库存商品不计入） */
+const shopIdsWithTotalPrice = new Set(['shop_inn_management_3']);
+
 const headers = computed(() => [
   {
     title: t('page.materialProfit.shopValue.itemName'),
@@ -119,6 +136,11 @@ const headers = computed(() => [
   {
     title: t('page.materialProfit.shopValue.quantityPerGroup'),
     key: 'quantityPerGroup',
+    sortable: true,
+  },
+  {
+    title: t('page.materialProfit.shopValue.stock'),
+    key: 'stockGroups',
     sortable: true,
   },
   {
@@ -199,6 +221,24 @@ function getCardItems(shopItems: ShopItem[], shopId: string): ShopCardItem[] {
     .toSorted((left, right) => Number(left.isSoldOut) - Number(right.isSoldOut));
 }
 
+function getUnsoldItemsTotalPrice(shop: ShopView): number {
+  return shop.shopItems.reduce((totalPrice, item, index) => {
+    if (!Number.isFinite(item.stockGroups)) {
+      return totalPrice;
+    }
+
+    if (isShopItemSoldOut(shop.shopId, getShopItemKey(item, index))) {
+      return totalPrice;
+    }
+
+    return totalPrice + item.currentPrice * item.stockGroups!;
+  }, 0);
+}
+
+function formatCurrencyTotal(value: number): string {
+  return `${Math.round(value)}`;
+}
+
 function createTableItem(item: ShopItem, shopId: string): ShopTableItem {
   return {
     itemId: item.itemId,
@@ -221,7 +261,8 @@ function getCostPerformanceMultiplier(shopId: string): number {
   if (
     shopId === 'shop_spaceship_1' ||
     shopId === 'domainshop_page_com_map01' ||
-    shopId === 'domainshop_page_com_map02'
+    shopId === 'domainshop_page_com_map02' ||
+    shopId === 'shop_inn_management_3'
   ) {
     return 100;
   }
@@ -381,10 +422,22 @@ function formatStockLabel(stockGroups?: number): string | undefined {
   }
 
   if (!Number.isFinite(stockGroups)) {
-    return '常驻';
+    return '库存 ∞';
   }
 
   return `库存 ${stockGroups}`;
+}
+
+function formatStockCount(stockGroups?: number): string {
+  if (stockGroups === undefined) {
+    return '';
+  }
+
+  if (!Number.isFinite(stockGroups)) {
+    return '∞';
+  }
+
+  return `${stockGroups}`;
 }
 
 function formatDiscountLabel(discount?: number): string | undefined {
@@ -519,6 +572,37 @@ usePageSeo({
 .shop-section-title-icon {
   width: 2.9rem;
   height: 2.9rem;
+  object-fit: contain;
+}
+
+.shop-total-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  color: var(--theme-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.shop-total-price-label {
+  color: var(--theme-text-primary);
+  font-weight: 600;
+}
+
+.shop-total-price-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--theme-text-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.shop-total-price-icon {
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: 0 0 1.45rem;
   object-fit: contain;
 }
 

@@ -32,6 +32,11 @@ export type { LevelLoading, LevelLoadingTable } from './levelLoadingTable';
 export type { LTItem, LTItemTable } from './lTItemTable';
 export type { RecoverApItem, RecoverApItemTable } from './recoverApItemTable';
 export type { ItemBundle, Reward, RewardTable } from './rewardTable';
+export type {
+  ShopChannelDevelopment,
+  ShopChannelDevelopmentLevel,
+  ShopChannelDevelopmentTable,
+} from './shopChannelDevelopmentTable';
 export type { ShopGoods, ShopGoodsTable } from './shopGoodsTable';
 export type { ShopGroup, ShopGroupTable } from './shopGroupTable';
 export type { Shop, ShopTable } from './shopTable';

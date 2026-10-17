@@ -21,6 +21,7 @@ import type {
   LTItemTable,
   RecoverApItemTable,
   RewardTable,
+  ShopChannelDevelopmentTable,
   ShopGoodsTable,
   ShopGroupTable,
   ShopTable,
@@ -185,6 +186,9 @@ export const recoverApItemTable: RecoverApItemTable = readJSONWithBigInt(
   'TableCfg/RecoverApItemTable.json',
 );
 export const rewardTable: RewardTable = readJSONWithBigInt('TableCfg/RewardTable.json');
+export const shopChannelDevelopmentTable: ShopChannelDevelopmentTable = readJSONWithBigInt(
+  'TableCfg/ShopChannelDevelopmentTable.json',
+);
 export const shopGoodsTable: ShopGoodsTable = readJSONWithBigInt('TableCfg/ShopGoodsTable.json');
 export const shopGroupTable: ShopGroupTable = readJSONWithBigInt('TableCfg/ShopGroupTable.json');
 export const shopTable: ShopTable = readJSONWithBigInt('TableCfg/ShopTable.json');

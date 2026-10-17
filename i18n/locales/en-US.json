@@ -408,6 +408,7 @@
         "description": "This page displays cost-effectiveness analysis of various items in the shop to help players make better purchasing decisions.",
         "itemName": "Item Name",
         "quantityPerGroup": "Quantity per Group",
+        "stock": "Stock",
         "currentPrice": "Current Price",
         "totalValue": "Total Value",
         "costPerformance": "Cost Performance"
