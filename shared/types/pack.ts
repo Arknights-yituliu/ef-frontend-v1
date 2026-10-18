@@ -2,7 +2,8 @@ import type { LocalizedText } from './common';
 
 export interface PackContent {
   itemId: string;
-  name?: LocalizedText;
+  /** 中文物品名，仅作为数据可读性提示，展示时请使用 `getItemName` 按当前语言查询 */
+  itemName?: string;
   quantity: number;
 }
 

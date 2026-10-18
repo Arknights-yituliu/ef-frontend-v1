@@ -125,7 +125,7 @@ export function makePacks(): Record<string, PackData> {
         const item = itemTable[bundle.id]!;
         return {
           itemId: bundle.id,
-          name: getLocalizedValue(item.name),
+          itemName: getTranslation(item.name, 'CN'),
           quantity: bundle.count,
         };
       }),
@@ -150,12 +150,12 @@ export function makePacks(): Record<string, PackData> {
     contents: [
       {
         itemId: 'ticketgacha_special_single_lt_1_0_1',
-        name: getLocalizedValue(itemTable['ticketgacha_special_single_lt_1_0_1']!.name),
+        itemName: getTranslation(itemTable['ticketgacha_special_single_lt_1_0_1']!.name, 'CN'),
         quantity: 10,
       },
       {
         itemId: 'item_gold',
-        name: getLocalizedValue(itemTable['item_gold']!.name),
+        itemName: getTranslation(itemTable['item_gold']!.name, 'CN'),
         quantity: 80_000,
       },
     ],
@@ -176,7 +176,7 @@ export function makePacks(): Record<string, PackData> {
       contents: [
         {
           itemId: 'item_originium_recharge',
-          name: getLocalizedValue(itemTable['item_originium_recharge']!.name),
+          itemName: getTranslation(itemTable['item_originium_recharge']!.name, 'CN'),
           quantity: originumCount,
         },
       ],
@@ -198,7 +198,7 @@ export function makePacks(): Record<string, PackData> {
       contents: [
         {
           itemId: 'item_originium_recharge',
-          name: getLocalizedValue(itemTable['item_originium_recharge']!.name),
+          itemName: getTranslation(itemTable['item_originium_recharge']!.name, 'CN'),
           quantity: originumCount,
         },
       ],
@@ -257,7 +257,7 @@ export function makePacks(): Record<string, PackData> {
       payTrackContents.push(
         ...payTrackReward.itemBundles.map((bundle) => ({
           itemId: bundle.id,
-          name: getLocalizedValue(itemTable[bundle.id]!.name),
+          itemName: getTranslation(itemTable[bundle.id]!.name, 'CN'),
           quantity: bundle.count,
         })),
       );
@@ -268,7 +268,7 @@ export function makePacks(): Record<string, PackData> {
       const reward = rewardTable[level[rewardKey]]!;
       return reward.itemBundles.map((bundle) => ({
         itemId: bundle.id,
-        name: getLocalizedValue(itemTable[bundle.id]!.name),
+        itemName: getTranslation(itemTable[bundle.id]!.name, 'CN'),
         quantity: bundle.count,
       }));
     });
@@ -293,17 +293,17 @@ export function makePacks(): Record<string, PackData> {
     monthlyCardPack.contents.push(
       {
         itemId: 'item_diamond',
-        name: getLocalizedValue(itemTable['item_diamond']!.name),
+        itemName: getTranslation(itemTable['item_diamond']!.name, 'CN'),
         quantity: 30 * 200,
       },
       {
         itemId: 'ap_supply_lt_n',
-        name: getLocalizedValue(itemTable['ap_supply_lt_n']!.name),
+        itemName: getTranslation(itemTable['ap_supply_lt_n']!.name, 'CN'),
         quantity: 30 * 1,
       },
       {
         itemId: 'item_bp_double_reward',
-        name: getLocalizedValue(itemTable['item_bp_double_reward']!.name),
+        itemName: getTranslation(itemTable['item_bp_double_reward']!.name, 'CN'),
         quantity: 30 * 4,
       },
     );
