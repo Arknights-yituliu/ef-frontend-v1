@@ -5,8 +5,6 @@ export interface Item {
   id: string;
   name: LocalizedText;
   rarity: number;
-  type: number;
-  typeName: LocalizedText;
   iconId: string | null;
 }
 
