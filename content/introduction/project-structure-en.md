@@ -170,8 +170,10 @@ ef-frontend-v1/
 ├── scripts/                      # Data processing scripts
 │   ├── gameData.ts               # Game data entry
 │   ├── makeAllData.ts            # Full data generation script
+│   ├── derived/                  # Derived collections/indexes from unpacked tables
 │   ├── models/                   # Data model definitions
 │   ├── tasks/                    # Data processing tasks
+│   ├── utils/                    # Shared utility functions (i18n, JSON reading, etc.)
 │   └── tsconfig.json             # Script TypeScript config
 ├── .github/                      # GitHub configuration
 │   ├── copilot-instructions.md   # Copilot development instructions

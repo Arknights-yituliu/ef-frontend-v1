@@ -174,8 +174,10 @@ ef-frontend-v1/
 ├── scripts/                      # 数据处理脚本
 │   ├── gameData.ts               # 游戏数据入口
 │   ├── makeAllData.ts            # 全量数据生成脚本
+│   ├── derived/                  # 由解包表派生的集合/索引
 │   ├── models/                   # 数据模型定义
 │   ├── tasks/                    # 数据处理任务
+│   ├── utils/                    # 公共工具函数（多语言、JSON 读取等）
 │   └── tsconfig.json             # 脚本 TypeScript 配置
 ├── .github/                      # GitHub 配置
 │   ├── copilot-instructions.md   # Copilot 开发指引
