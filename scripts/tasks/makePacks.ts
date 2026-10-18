@@ -11,12 +11,11 @@ import {
   cashShopGroupTable,
   cashShopHideInGameTable,
   cashShopTable,
-  getLocalizedValue,
-  getTranslation,
   giftpackCashShopGoodsDataTable,
   itemTable,
   rewardTable,
 } from '../gameData';
+import { getLocalizedValue, getTranslation } from '../utils/translation';
 
 const nonFirstRechargeOriginiumPackData = [
   { price: 6, originumCount: 3 },

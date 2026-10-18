@@ -31,110 +31,15 @@ import type {
   SimulationTrainingLevelTable,
   SkillPatchTable,
   TextTable,
-  TranslationKey,
   WeaponBasicTable,
   WikiEntryDataTable,
   WorldEnergyPointGroupTable,
   WorldEnergyPointTable,
 } from './models';
+import type { I18nLanguage } from './utils/i18n';
 import * as fs from 'node:fs';
-import path from 'node:path';
-import dotenv from 'dotenv';
-
-// 从环境变量加载数据目录，避免硬编码路径
-dotenv.config();
-if (!process.env.ENDFIELD_DATA_DIR) {
-  throw new Error(
-    '请设置环境变量 ENDFIELD_DATA_DIR，指向数据的根目录（即 TableCfg 文件夹的父目录）。',
-  );
-}
-export const endfieldDataDir: string = process.env.ENDFIELD_DATA_DIR;
-
-export type I18nLanguage = (typeof i18nLanguages)[number];
-export type Locale = (typeof languageToLocaleMap)[I18nLanguage];
-
-/** 获取指定语言的国际化文本表路径 */
-export function getI18nTextTablePath(language: I18nLanguage): string {
-  const I18nDir = path.join(endfieldDataDir, 'TableCfg');
-  return path.join(I18nDir, `I18nTextTable_${language}.json`);
-}
-
-/** 解析带有大整数的 JSON 的辅助函数 */
-export function parseJSONWithBigInt(text: string): any {
-  // 将看起来像 ID 的数值（长整数）替换为字符串，避免 JSON.parse 时丢失精度
-  // 目前的实现方法是简单地将所有 "id": <number> 替换为 "id": "<number>"
-  const stringified = text.replace(/"id":\s*(-?\d+)/g, '"id": "$1"');
-  return JSON.parse(stringified);
-}
-
-export function readJSONWithBigInt(relativePath: string): any {
-  const fullPath = path.join(endfieldDataDir, relativePath);
-  const text = fs.readFileSync(fullPath, 'utf8');
-  return parseJSONWithBigInt(text);
-}
-
-/**
- * 获取指定语言的文本内容
- * 如果找不到翻译或翻译为空，返回原始文本
- */
-export function getTranslation({ id, text }: TranslationKey, language: I18nLanguage): string {
-  const translation = i18nTextTables.get(language)?.[String(id)];
-  if (translation !== undefined) {
-    return translation.trim();
-  } else {
-    return text;
-  }
-}
-
-/**
- * 获取多语言文本对象
- * @example
- * Input: { id: 114514, text: "" }
- * Output: { 'zh-CN': "测试文本", 'en-US': "Test Text", ... }
- */
-export function getLocalizedValue({ id, text }: TranslationKey): Record<Locale, string> {
-  const result: Record<Locale, string> = {} as Record<Locale, string>;
-  for (const lang of usedLanguages) {
-    result[languageToLocaleMap[lang]!] = getTranslation({ id, text }, lang);
-  }
-  return result;
-}
-
-export const i18nLanguages = [
-  'CN',
-  'TC',
-  'DE',
-  'EN',
-  'MX',
-  'FR',
-  'ID',
-  'IT',
-  'JP',
-  'KR',
-  'BR',
-  'RU',
-  'TH',
-  'VN',
-] as const;
-export const languageToLocaleMap = {
-  CN: 'zh-CN',
-  TC: 'zh-TW',
-  DE: 'de-DE',
-  EN: 'en-US',
-  MX: 'es-MX',
-  FR: 'fr-FR',
-  ID: 'id-ID',
-  IT: 'it-IT',
-  JP: 'ja-JP',
-  KR: 'ko-KR',
-  BR: 'pt-BR',
-  RU: 'ru-RU',
-  TH: 'th-TH',
-  VN: 'vi-VN',
-} as const;
-
-// 一图流只使用中英双语
-export const usedLanguages = ['CN', 'EN'] as const;
+import { getI18nTextTablePath, i18nLanguages } from './utils/i18n';
+import { readJSONWithBigInt } from './utils/json';
 
 // 读取文件
 export const battlePassLevelTable: BattlePassLevelTable = readJSONWithBigInt(
@@ -219,19 +124,10 @@ export const worldEnergyPointTable: WorldEnergyPointTable = readJSONWithBigInt(
   'TableCfg/WorldEnergyPointTable.json',
 );
 
-export const i18nTextTables: Map<string, I18nTextTable> = new Map(
+/** 所有语言的国际化文本表，key 为语言，value 为「文本 ID → 翻译」的映射 */
+export const i18nTextTables: Map<I18nLanguage, I18nTextTable> = new Map(
   i18nLanguages.map((lang) => [
     lang,
     JSON.parse(fs.readFileSync(getI18nTextTablePath(lang), 'utf8')),
   ]),
 );
-
-/** wiki 档案中出现过的武器 ID 集合（groupId 以 wiki_group_weapon 开头），用于排除 wiki 里没有的武器 */
-export const wikiWeaponIds: Set<string> = new Set(
-  Object.values(wikiEntryDataTable)
-    .filter((entry) => entry.groupId.startsWith('wiki_group_weapon') && entry.refItemId !== '')
-    .map((entry) => entry.refItemId),
-);
-
-/** 前瞻武器 ID 集合（ForesightWeaponTable 中的武器），用于补录尚未正式上线的武器 */
-export const foresightWeaponIds: Set<string> = new Set(Object.keys(foresightWeaponTable));

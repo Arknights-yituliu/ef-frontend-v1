@@ -1,18 +1,17 @@
-import type { I18nLanguage } from '../gameData';
+import type { I18nLanguage } from '../utils/i18n';
+import { foresightWeaponIds, wikiWeaponIds } from '../derived/weaponIds';
 import {
-  foresightWeaponIds,
   foresightWeaponTable,
   gemTable,
   gemTagIdTable,
-  getTranslation,
   itemTable,
   levelLoadingTable,
   skillPatchTable,
   weaponBasicTable,
-  wikiWeaponIds,
   worldEnergyPointGroupTable,
   worldEnergyPointTable,
 } from '../gameData';
+import { getTranslation } from '../utils/translation';
 
 export interface EssenceStat {
   attribute: string | null;

@@ -1,11 +1,7 @@
 import type { LocalizedText } from '../../shared/types/common';
-import {
-  foresightWeaponIds,
-  foresightWeaponTable,
-  getLocalizedValue,
-  itemTable,
-  itemTypeTable,
-} from '../gameData';
+import { foresightWeaponIds } from '../derived/weaponIds';
+import { foresightWeaponTable, itemTable, itemTypeTable } from '../gameData';
+import { getLocalizedValue } from '../utils/translation';
 
 export interface Item {
   id: string;

@@ -1,8 +1,6 @@
 import type { LocalizedText } from '../../shared/types/common';
 import type { Shop as ShopDefinition, ShopGroup } from '../models';
 import {
-  getLocalizedValue,
-  getTranslation,
   itemTable,
   rewardTable,
   shopChannelDevelopmentTable,
@@ -10,6 +8,7 @@ import {
   shopGroupTable,
   shopTable,
 } from '../gameData';
+import { getLocalizedValue, getTranslation } from '../utils/translation';
 
 /**
  * 需要生成的商店列表（对应解包 ShopTable.json 的键）。
