@@ -185,12 +185,8 @@
 </template>
 
 <script lang="ts" setup>
-import type {
-  LocalizedText,
-  PackData,
-  PackGachaMode,
-  WeaponQuotaBaseline,
-} from '@/shared/types/pack';
+import type { LocalizedText } from '@/shared/types/common';
+import type { PackData, PackGachaMode, WeaponQuotaBaseline } from '@/shared/types/pack';
 import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
 import { packGroups, packs, packShops } from '@/custom/core/packs';
 import { DELISTED_PACK_CATEGORY } from '@/shared/types/pack';

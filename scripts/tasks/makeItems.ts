@@ -1,3 +1,4 @@
+import type { LocalizedText } from '../../shared/types/common';
 import {
   foresightWeaponIds,
   foresightWeaponTable,
@@ -8,10 +9,10 @@ import {
 
 export interface Item {
   id: string;
-  name: Record<string, string>;
+  name: LocalizedText;
   rarity: number;
   type: number;
-  typeName: Record<string, string>;
+  typeName: LocalizedText;
   iconId: string;
 
   // backpackCanDiscard: boolean;

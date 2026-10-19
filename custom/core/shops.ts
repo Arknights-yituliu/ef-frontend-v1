@@ -1,3 +1,4 @@
+import type { LocalizedText } from '#shared/types/common';
 import type { Shop, ShopItem } from '#shared/types/shop';
 import rawShops from '@/custom/core/shops.json';
 
@@ -16,7 +17,7 @@ interface RawShopItem {
 
 interface RawShop {
   shopId: string;
-  shopName: string;
+  shopName: LocalizedText;
   currencyItemId?: string;
   shopItems: RawShopItem[];
 }

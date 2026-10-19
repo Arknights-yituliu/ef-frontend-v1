@@ -1,7 +1,4 @@
-export interface LocalizedText {
-  'zh-CN': string;
-  'en-US': string;
-}
+import type { LocalizedText } from './common';
 
 export interface PackContent {
   itemId: string;

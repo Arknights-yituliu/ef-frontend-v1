@@ -1,3 +1,5 @@
+import type { LocalizedText } from './common';
+
 export interface ShopItem {
   itemId: string;
   itemName?: string;
@@ -10,7 +12,8 @@ export interface ShopItem {
 
 export interface Shop {
   shopId: string;
-  shopName: string;
+  /** 多语言商店名 */
+  shopName: LocalizedText;
   currencyItemId?: string;
   shopItems: ShopItem[];
 }
@@ -35,8 +38,4 @@ export interface ShopCardItem extends ShopTableItem {
   shopItemKey: string;
   canToggleSoldOut: boolean;
   isSoldOut: boolean;
-}
-
-export interface ShopView extends Shop {
-  titleIconUrl?: string;
 }
