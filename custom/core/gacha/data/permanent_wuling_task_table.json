@@ -1,8 +1,8 @@
 [
   {
-    "id": "主线任务",
+    "id": "入丹青",
     "name": {
-      "zh": "主线任务",
+      "zh": "入丹青",
       "en": ""
     },
     "start": "2026/07/16 12:00:00",
@@ -13,7 +13,7 @@
     "regional": "武陵",
     "version": "丹青渡",
     "content": {
-      "originiumRecharge": 22,
+      "originiumRecharge": 3,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
@@ -21,9 +21,114 @@
     }
   },
   {
-    "id": "支线任务",
+    "id": "知兴衰",
     "name": {
-      "zh": "支线任务",
+      "zh": "知兴衰",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 3,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "见纵横",
+    "name": {
+      "zh": "见纵横",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 3,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "洞我执",
+    "name": {
+      "zh": "洞我执",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "着新墨",
+    "name": {
+      "zh": "着新墨",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "着新墨",
+    "name": {
+      "zh": "着新墨",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "主线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 4,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "开画大吉",
+    "name": {
+      "zh": "开画大吉",
       "en": ""
     },
     "start": "2026/07/16 12:00:00",
@@ -35,16 +140,79 @@
     "version": "丹青渡",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 1500,
+      "diamond": 50,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
     }
   },
   {
-    "id": "支线任务",
+    "id": "无终之恋",
     "name": {
-      "zh": "支线任务",
+      "zh": "无终之恋",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 125,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "前缘再续",
+    "name": {
+      "zh": "前缘再续",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+{
+    "id": "奇闻满地跑",
+    "name": {
+      "zh": "奇闻满地跑",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "据点建设·盈天台建设站·三",
+    "name": {
+      "zh": "据点建设·盈天台建设站·三",
       "en": ""
     },
     "start": "2026/07/16 12:00:00",
@@ -56,7 +224,70 @@
     "version": "雪凇幽梦",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 800,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "终其一生",
+    "name": {
+      "zh": "终其一生",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "命运的明示",
+    "name": {
+      "zh": "命运的明示",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "钟鸣人归",
+    "name": {
+      "zh": "钟鸣人归",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "雪凇幽梦",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 150,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -231,9 +462,9 @@
     }
   },
   {
-    "id": "家有难奔",
+    "id": "有家难奔",
     "name": {
-      "zh": "家有难奔",
+      "zh": "有家难奔",
       "en": ""
     },
     "start": "2026/07/16 12:00:00",
@@ -378,6 +609,27 @@
     }
   },
   {
+    "id": "据点建设·盈天台建设站·二",
+    "name": {
+      "zh": "据点建设·盈天台建设站·二",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "据点建设·心脏修复站·三",
     "name": {
       "zh": "据点建设·心脏修复站·三",
@@ -399,9 +651,30 @@
     }
   },
   {
-    "id": "据点建设·盈天台建设站",
+    "id": "据点建设·盈天台建设站·一",
     "name": {
-      "zh": "据点建设·盈天台建设站",
+      "zh": "据点建设·盈天台建设站·一",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "向渊行",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 50,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "据点部署·盈天台建设站",
+    "name": {
+      "zh": "据点部署·盈天台建设站",
       "en": ""
     },
     "start": "2026/07/16 12:00:00",
