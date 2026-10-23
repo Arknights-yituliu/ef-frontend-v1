@@ -131,7 +131,6 @@ const gachaPools: GachaPool[] = [
     poolName: '篆玉申领',
     upCharName: '玉中身',
   },
-  
 ];
 // 卡池命名逻辑 special_「大版本号」_「小版本号」_「第n个卡池」
 export { gachaPools };
