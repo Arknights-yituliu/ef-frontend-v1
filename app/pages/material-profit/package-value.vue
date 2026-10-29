@@ -161,7 +161,7 @@
             :data-shop-id="shop.shopId"
             @click="triggerDevModeByShop(shop.shopId)"
           >
-            {{ shop.displayName[locale as keyof LocalizedText] }}
+            {{ getLocalizedText(shop.displayName, locale) }}
           </h2>
           <TransitionGroup class="packs-container" name="list" tag="div">
             <ContainerPackCard
@@ -185,7 +185,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { LocalizedText } from '@/shared/types/common';
 import type { PackData, PackGachaMode, WeaponQuotaBaseline } from '@/shared/types/pack';
 import ModuleHeader from '@/app/components/layout/ModuleHeader.vue';
 import { packGroups, packs, packShops } from '@/custom/core/packs';
@@ -197,6 +196,7 @@ import {
   getPackWeaponEfficiency,
   pack648WeaponQuotaBaseline,
 } from '@/shared/utils/gameData/pack';
+import { getLocalizedText } from '@/shared/utils/i18nUtil';
 
 // 全局数据引用-原始顺序（用于分类排序）
 const categorySorting: Map<string, number> = new Map(
@@ -380,7 +380,7 @@ const displayGroups = computed(() => {
   const filteredPackIds = new Set(
     Object.keys(packs).filter((id) => {
       const p = packs[id]!;
-      const name = p.displayName[locale.value as keyof LocalizedText] || '';
+      const name = getLocalizedText(p.displayName, locale.value);
       return (
         name.toLowerCase().includes(query) &&
         (showHiddenPacks.value || !hiddenPackIdSet.value.has(id))

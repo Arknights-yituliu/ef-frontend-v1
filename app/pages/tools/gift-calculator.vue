@@ -559,15 +559,6 @@ const filtedGifts = computed(() => {
   position: relative;
   cursor: pointer;
 }
-
-.border-animation {
-  animation: hilight-force-border 0.5s ease-out reverse forwards 1;
-}
-
-.border-animation-op {
-  animation: hilight-force-border-op 0.5s ease-out reverse forwards 1;
-}
-
 .gift-item {
   width: var(--weapon-icon-size);
   height: var(--weapon-icon-size);

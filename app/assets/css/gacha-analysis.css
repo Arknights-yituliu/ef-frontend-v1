@@ -275,11 +275,6 @@
   background: linear-gradient(135deg, #4ccdf5, #79fff5);
 }
 
-.gacha-tag--normal {
-  background: linear-gradient(135deg, #fff132, #fdfa80);
-  color: #333;
-}
-
 .gacha-tag--unlucky {
   background: linear-gradient(135deg, #fb8238, #fdc675);
 }
@@ -318,10 +313,6 @@
 .user-stats-basic .stat-value {
   font-size: 1rem;
   font-weight: 700;
-}
-
-.stat-block {
-  text-align: center;
 }
 
 .stat-value {
@@ -691,29 +682,6 @@
     linear-gradient(90deg, #3bc4e8, #68f0e8, #82ffae, #fef060, #fdb852, #f75e00);
 }
 
-.off-label {
-  margin-left: 8px;
-  height: 80%;
-  font-size: 12px;
-  font-weight: bold;
-  color: #e74c3c;
-  background: #f9d5d5;
-  padding: 2px 6px;
-  border-radius: 3px;
-  white-space: nowrap;
-}
-
-.lucky-label {
-  margin-left: 8px;
-  height: 80%;
-  color: black;
-  font-size: 12px;
-  font-weight: bold;
-  background: rgb(253, 250, 38);
-  padding: 2px 6px;
-  border-radius: 3px;
-}
-
 /* 移动端响应式 */
 @media (max-width: 768px) {
   .gacha-overview {
@@ -790,20 +758,6 @@
   .avatar-text {
     font-size: 15px;
   }
-
-  .off-label,
-  .lucky-label {
-    font-size: 10px;
-    padding: 1px 4px;
-    margin-left: 4px;
-  }
-}
-
-.pool-name,
-.character-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .action-buttons-container {
@@ -951,24 +905,11 @@
   opacity: 1;
 }
 
-.gacha-stat-placeholder {
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  color: inherit;
-  opacity: 0.5;
-  font-size: 14px;
-}
-
 .count-text {
   display: inline-block;
   font-weight: inherit;
   color: inherit;
   font-variant-numeric: tabular-nums;
-}
-
-.action-bar {
-  margin-top: 15px;
 }
 
 .content-area {
@@ -1042,15 +983,6 @@
   opacity: 0.4;
 }
 
-.table-footer {
-  padding: 10px;
-  font-size: 12px;
-  opacity: 0.5;
-  text-align: center;
-  border-top: 1px solid rgba(128, 128, 128, 0.2);
-  background: transparent;
-}
-
 .data-table-wrapper::-webkit-scrollbar {
   width: 6px;
 }
@@ -1068,35 +1000,6 @@
   background: rgba(128, 128, 128, 0.5);
 }
 
-.calc-btn,
-.reset-btn {
-  background: transparent;
-  color: #f1c40f;
-  border: 1px solid #f1c40f;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.calc-btn:hover,
-.reset-btn:hover {
-  background: rgba(241, 196, 15, 0.1);
-  opacity: 1;
-}
-
-.reset-btn {
-  color: inherit;
-  border-color: rgba(128, 128, 128, 0.5);
-  opacity: 0.7;
-}
-
-.reset-btn:hover {
-  border-color: inherit;
-  opacity: 1;
-}
-
 .empty-state {
   height: 400px;
   display: flex;
@@ -1108,11 +1011,6 @@
   background: transparent;
   border: 2px dashed rgba(128, 128, 128, 0.3);
   border-radius: 8px;
-}
-
-.empty-icon {
-  font-size: 48px;
-  margin-bottom: 10px;
 }
 
 /* ============================================
@@ -1570,11 +1468,6 @@
 }
 
 /* 操作栏 */
-.action-bar {
-  margin-bottom: 15px;
-  text-align: right;
-}
-
 /* 调试数据区域 */
 .debug-data-section {
   margin: 20px auto;

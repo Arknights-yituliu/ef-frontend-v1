@@ -40,6 +40,9 @@ GEO-AUDIT-REPORT.md
 # Plugins files
 .VSCodeCounter
 
+# 临时工作目录
+temp
+
 # Other files
 information_record
 

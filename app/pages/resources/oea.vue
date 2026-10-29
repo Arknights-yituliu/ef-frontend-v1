@@ -5,7 +5,7 @@
         <v-slide-group-item>
           <v-img
             :min-width="500"
-            src="https://cos.yituliu.cn/endfield/oea/assets/oea-image-1.webp"
+            src="https://cos.yituliu.cn/endfield/oea/assets/oea-image-3.png"
           />
         </v-slide-group-item>
         <v-slide-group-item>
@@ -14,13 +14,19 @@
             src="https://cos.yituliu.cn/endfield/oea/assets/oea-image-2.webp"
           />
         </v-slide-group-item>
+        <v-slide-group-item>
+          <v-img
+            :min-width="500"
+            src="https://cos.yituliu.cn/endfield/oea/assets/oea-image-4.png"
+          />
+        </v-slide-group-item>
       </v-slide-group>
     </v-sheet>
     <v-container class="page-container">
-      <h1>OEA - 终末地档案查漏补缺</h1>
+      <h1>OEA：终末地小助手</h1>
 
       <!-- 头部按钮：下载 / GitHub / QQ 交流群 -->
-      <div class="d-flex flex-wrap ga-2 my-4">
+      <div class="d-flex flex-wrap ga-2 mt-4 mb-10">
         <v-btn-group density="compact" elevation="3">
           <v-btn
             color="primary"
@@ -68,54 +74,74 @@
         </v-btn>
       </div>
 
-      <!-- 新手提示 -->
-      <h2>新手提示</h2>
+      <!-- 简介 -->
+      <p>
+        OEA 是开源免费的终末地小助手，支持<strong class="text-primary">档案查漏补缺</strong
+        >和<strong class="text-primary">百趣演武自动抽</strong>。
+      </p>
+      <ul>
+        <li>
+          <strong class="text-primary">档案查漏补缺</strong>：一键识别终末地档案库，并同步到
+          OEM（终末地地图集），助力每一个全收集梦想！
+        </li>
+        <li>
+          <strong class="rainbow-text">百趣演武自动抽</strong
+          >：抽到想要的牌型为止，解放双手，摆完挂机！
+        </li>
+      </ul>
+
+      <!-- 使用前准备 -->
+      <h2>使用前准备</h2>
       <ol>
         <li>
-          在页面上方<strong class="text-primary">下载</strong>并<strong class="text-primary"
+          在页面上方<strong class="text-primary">下载</strong>，<strong class="text-primary"
             >解压</strong
           >后运行 <code>OEA.exe</code>
         </li>
         <li>
-          打开终末地，调成 <strong class="text-primary">1280 × 720</strong>、<strong
+          打开终末地，设置为 <strong class="text-primary">1280 × 720 窗口模式</strong>、<strong
             class="text-primary"
             >简体中文</strong
-          >
-        </li>
-        <li><strong class="text-primary">关闭 HDR</strong>，关闭性能监控软件</li>
-        <li>终末地打开<strong class="text-primary">档案库界面</strong></li>
-        <li>
-          点击<strong class="text-primary">扫描结果栏</strong>的<strong class="text-primary"
-            >开始扫描</strong
-          >
+          >。
         </li>
         <li>
-          扫完点击<strong class="text-primary">全部档案栏</strong>的<strong class="text-primary"
-            >导出收集状态</strong
-          >
+          <strong class="text-primary">关闭 HDR</strong
+          >，关闭性能监控软件和任何会遮挡终末地窗口的软件。
         </li>
       </ol>
+      <p class="text-body-2 text-medium-emphasis">
+        理论上支持任意 <strong>16:9</strong> 的分辨率，我们最建议使用
+        <strong>1280 × 720 窗口模式</strong>，这个分辨率可以兼顾准确性和性能。
+      </p>
 
-      <!-- 操作说明 -->
-      <h2>操作说明</h2>
-      <p class="font-weight-bold text-h6">使用前准备</p>
-      <ul>
+      <!-- 档案查漏补缺 -->
+      <h2>档案查漏补缺</h2>
+      <ol>
+        <li>终末地打开<strong class="text-primary">档案库主界面</strong>。</li>
         <li>
-          理论上支持任意 <strong class="text-primary">16:9</strong> 的分辨率。我们最建议使用
-          <strong class="text-primary">1280 × 720</strong>、<strong class="text-primary"
-            >窗口模式</strong
-          >，这个分辨率可以兼顾准确性和性能。
+          点击<strong class="text-primary">开始扫描</strong>，或按
+          <v-hotkey inline keys="'" variant="flat" />（引号键）。
         </li>
+        <li>扫完点击<strong class="text-primary">导出收集状态</strong>。</li>
+      </ol>
+      <p class="text-body-2 text-medium-emphasis">
+        理论上支持从协议终端、大世界和任意档案库界面开始扫描。为了稳定性，建议始终从<strong>档案库主界面</strong>开始扫描。
+      </p>
+
+      <!-- 百趣演武自动抽 -->
+      <h2 class="rainbow-text rainbow-block">百趣演武自动抽</h2>
+      <ol>
+        <li>终末地打开<strong class="text-primary">百趣演武的抽牌界面</strong>。</li>
+        <li>选择<strong class="text-primary">牌型目标</strong>。</li>
         <li>
-          理论上目前支持从任意档案库界面、协议终端界面和大世界界面开始扫描，为了稳定性，建议始终从<strong
-            class="text-primary"
-            >档案库主界面</strong
-          >开始扫描。
+          点击<strong class="text-primary">开始抽卡</strong>，或按
+          <v-hotkey inline keys=";" variant="flat" />（分号键）。
         </li>
-        <li>请将终末地的语言调成<strong class="text-primary">简体中文</strong>。</li>
-        <li>请<strong class="text-primary">关闭 HDR</strong>，关闭任何会遮挡终末地窗口的软件。</li>
-      </ul>
-      <p class="font-weight-bold text-h6">快捷键</p>
+        <li>满足<strong class="text-primary">任意一个</strong>目标后会自动停止抽卡。</li>
+      </ol>
+
+      <!-- 快捷键 -->
+      <h2>快捷键</h2>
       <ul>
         <li>
           按
@@ -123,10 +149,18 @@
             inline
             keys="'"
             variant="flat"
-          />（引号键）开始扫描档案库；扫描过程中再次按下可停止
+          />（引号键）开始扫描档案库，扫描过程中再次按下可停止。
         </li>
         <li>
-          按 <v-hotkey display-mode="text" inline keys="Alt+DELETE" variant="flat" /> 退出程序
+          按
+          <v-hotkey
+            inline
+            keys=";"
+            variant="flat"
+          />（分号键）开始百趣演武自动抽牌，再次按下可停止。
+        </li>
+        <li>
+          按 <v-hotkey display-mode="text" inline keys="Alt+DELETE" variant="flat" /> 退出程序。
         </li>
       </ul>
 
@@ -146,19 +180,8 @@
         <v-expansion-panel title="OEA 收费吗？">
           <v-expansion-panel-text>
             <p>
-              OEA 开源且免费，不会以任何形式收取费用。
-              <br />
-              您可以前往
-              <a
-                class="text-primary text-decoration-none"
-                href="https://github.com/Logical-Byte/open-endfield-assistant/releases"
-                rel="noopener noreferrer"
-                target="_blank"
-                >GitHub Release</a
-              >
-              免费下载和使用 OEA。
-              <br />
-              如果您是通过付费方式获取的 OEA，您可能已经被不法商家欺骗，请立即告知我们。
+              OEA 开源且免费，不会以任何形式收取费用。如果您是通过付费方式获取的
+              OEA，您可能已经被不法商家欺骗，请立即告知我们。
             </p>
           </v-expansion-panel-text>
         </v-expansion-panel>
@@ -172,14 +195,16 @@
                 target="_blank"
                 >Mirror酱</a
               >
-              是独立的第三方应用分发平台，提供加速下载服务，需要付费使用。OEA
-              本身不收取任何费用，也提供免费的下载渠道，您可以前往
+              是独立的第三方应用分发平台，提供加速下载服务，需要付费使用。
+            </p>
+            <p>
+              OEA 本身不收取任何费用，也提供免费的下载渠道。您可以前往
               <a
                 class="text-primary text-decoration-none"
                 href="https://github.com/Logical-Byte/open-endfield-assistant/releases"
                 rel="noopener noreferrer"
                 target="_blank"
-                >GitHub Release</a
+                >GitHub Releases</a
               >
               免费下载和使用。
             </p>
@@ -266,7 +291,7 @@
           rel="noopener noreferrer"
           target="_blank"
         >
-          RapidAI/RapidOCR 模型 (ModelScope)
+          RapidOCR 模型
           <v-icon icon="mdi-open-in-new" size="small" />
         </a>
         <a
@@ -333,7 +358,7 @@ const { t } = useI18n();
 usePageSeo({
   title: () => `${t('menu.oea')} - ${t('layout.siteName')}`,
   description: () =>
-    'OEA is an open-source tool to scan and export your Endfield archives. Get started with tips, usage instructions, FAQ and feedback.',
+    'OEA 是开源免费的终末地小助手，支持档案查漏补缺和百趣演武自动抽。支持 Windows 10 / 11，下载解压即用。',
 });
 
 /** GitHub 仓库（Logical-Byte/open-endfield-assistant）。 */
@@ -461,5 +486,35 @@ ul > li {
 ul > li::marker,
 ol > li::marker {
   font-family: 'Jetbrains Mono', 'Google Sans Code', 'Consolas', 'Courier New', monospace;
+}
+
+/* 炫彩文字：渐变横向流动，可按需用在行内或块级元素上 */
+/* background-repeat 需显式 repeat：全局 reset 把它设为 no-repeat，动画中途渐变移出盒子会让文字整体消失 */
+.rainbow-text {
+  background-image: linear-gradient(90deg, #ef4444, #eab308, #22c55e, #06b6d4, #3b82f6, #d946ef);
+  background-size: 200% 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  animation: rainbow-title-flow 3s linear infinite;
+}
+
+/* 块级元素需让渐变盒贴合文字宽度，否则整行宽的渐变只覆盖文字所在的一小段，看起来是单色 */
+.rainbow-block {
+  width: fit-content;
+}
+
+@keyframes rainbow-title-flow {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rainbow-text {
+    animation: none;
+  }
 }
 </style>

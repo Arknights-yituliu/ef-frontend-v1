@@ -1,5 +1,6 @@
 import type { RecoverApItem } from '../models';
-import { getTranslation, itemTable, lTItemTable, recoverApItemTable } from '../gameData';
+import { itemTable, lTItemTable, recoverApItemTable } from '../gameData';
+import { getTranslation } from '../utils/translation';
 
 /** 恢复 AP 道具输出（在解包数据基础上增加中文名，方便开发者阅读） */
 export interface RecoverApItemOutput extends RecoverApItem {

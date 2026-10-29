@@ -121,6 +121,16 @@ const gachaPools: GachaPool[] = [
     poolName: '幽寒申领',
     upCharName: '寒夜幽影',
   },
+  {
+    poolId: 'special_1_6_1',
+    poolName: '万物更新',
+    upCharName: '祀',
+  },
+  {
+    poolId: 'weponbox_1_6_1',
+    poolName: '篆玉申领',
+    upCharName: '玉中身',
+  },
 ];
 // 卡池命名逻辑 special_「大版本号」_「小版本号」_「第n个卡池」
 export { gachaPools };

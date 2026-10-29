@@ -40,9 +40,9 @@
     }
   },
   {
-    "id": "战争回响常驻挑战玩法更新",
+    "id": "战争回响",
     "name": {
-      "zh": "战争回响常驻挑战玩法更新",
+      "zh": "战争回响",
       "en": ""
     },
     "start": "2026/10/15 12:00:00",
@@ -53,7 +53,7 @@
     "version": "丹青渡",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 600,
+      "diamond": 500,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -273,7 +273,7 @@
     "version": "雪凇幽梦",
     "content": {
       "originiumRecharge": 0,
-      "diamond": 1200,
+      "diamond": 300,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0

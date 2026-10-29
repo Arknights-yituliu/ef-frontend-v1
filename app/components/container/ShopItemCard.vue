@@ -438,22 +438,6 @@ const { item, shopId, currencyIconUrl } = toRefs(props);
 }
 
 @media screen and (max-width: 600px) {
-  .view-switch-section {
-    justify-content: stretch;
-  }
-
-  .view-switch-section :deep(.v-btn-toggle) {
-    width: 100%;
-  }
-
-  .view-switch-section :deep(.v-btn) {
-    flex: 1 1 0;
-  }
-
-  .shop-cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(8.8rem, 1fr));
-  }
-
   .shop-item-card {
     height: 14.1rem;
     grid-template-rows: 1.9rem 4.8rem 4.25rem 1fr;

@@ -5260,11 +5260,6 @@ graphemer@^1.4.0:
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
-gsap@^3.13.0:
-  version "3.13.0"
-  resolved "https://registry.npmmirror.com/gsap/-/gsap-3.13.0.tgz"
-  integrity sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==
-
 gzip-size@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npmmirror.com/gzip-size/-/gzip-size-7.0.0.tgz"
@@ -5528,11 +5523,6 @@ hookable@^5.5.3:
   version "5.5.3"
   resolved "https://registry.npmmirror.com/hookable/-/hookable-5.5.3.tgz"
   integrity sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==
-
-hookable@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.npmmirror.com/hookable/-/hookable-6.0.1.tgz"
-  integrity sha512-uKGyY8BuzN/a5gvzvA+3FVWo0+wUjgtfSdnmjtrOVwQCZPHpHDH2WRO3VZSOeluYrHoDCiXFffZXs8Dj1ULWtw==
 
 html-entities@^2.6.0:
   version "2.6.0"
@@ -9253,13 +9243,6 @@ unhead@2.0.19:
   integrity sha512-gEEjkV11Aj+rBnY6wnRfsFtF2RxKOLaPN4i+Gx3UhBxnszvV6ApSNZbGk7WKyy/lErQ6ekPN63qdFL7sa1leow==
   dependencies:
     hookable "^5.5.3"
-
-unhead@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npmmirror.com/unhead/-/unhead-2.1.2.tgz"
-  integrity sha512-vSihrxyb+zsEUfEbraZBCjdE0p/WSoc2NGDrpwwSNAwuPxhYK1nH3eegf02IENLpn1sUhL8IoO84JWmRQ6tILA==
-  dependencies:
-    hookable "^6.0.1"
 
 unicode-emoji-modifier-base@^1.0.0:
   version "1.0.0"

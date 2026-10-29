@@ -97,28 +97,7 @@
     "regional": "武陵",
     "version": "丹青渡",
     "content": {
-      "originiumRecharge": 4,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 0,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
-    "id": "着新墨",
-    "name": {
-      "zh": "着新墨",
-      "en": ""
-    },
-    "start": "2026/07/16 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "主线任务",
-    "active": true,
-    "regional": "武陵",
-    "version": "丹青渡",
-    "content": {
-      "originiumRecharge": 4,
+      "originiumRecharge": 3,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
@@ -204,6 +183,49 @@
     "content": {
       "originiumRecharge": 0,
       "diamond": 75,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "纪念日",
+    "name": {
+      "zh": "纪念日",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 100,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+
+  {
+    "id": "后目的地",
+    "name": {
+      "zh": "后目的地",
+      "en": ""
+    },
+    "start": "2026/07/16 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "丹青渡",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 180,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0

@@ -117,14 +117,10 @@
 
 <script lang="ts" setup>
 import type { Shop, ShopCardItem, ShopItem, ShopTableItem } from '#shared/types/shop';
+import { getLocalizedText } from '#shared/utils/i18nUtil';
 import { numberCompact, numberRound } from '#shared/utils/numberUtil';
 import { shops as allShops } from '@/custom/core/shops';
-import {
-  getItemIconUrl,
-  getItemName,
-  getItemValue,
-  getLocalizedText,
-} from '@/shared/utils/gameData/item';
+import { getItemIconUrl, getItemName, getItemValue } from '@/shared/utils/gameData/item';
 
 const { locale, t } = useI18n();
 const viewMode = ref<'table' | 'cards'>('table');
@@ -263,7 +259,7 @@ function getShopTotalPrice(shop: Shop): number | undefined {
 function createTableItem(item: ShopItem, shopId: string): ShopTableItem {
   return {
     itemId: item.itemId,
-    itemName: getItemName(item.itemId),
+    itemName: getItemName(item.itemId, locale.value),
     quantityPerGroup: item.quantityPerGroup,
     currentPrice: item.currentPrice,
     iconUrl: getItemIconUrl(item.itemId),
@@ -530,29 +526,6 @@ usePageSeo({
   flex: 0 0 1.45rem;
   object-fit: contain;
 }
-
-.shop-performance-badge {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 0.35rem;
-  padding: 0 0.9rem;
-  color: #fff;
-  font-variant-numeric: tabular-nums;
-  text-shadow: 0 0.08rem 0.16rem rgba(0, 0, 0, 0.28);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
-    0 0.08rem 0.3rem rgba(0, 0, 0, 0.14);
-}
-
-.shop-performance-badge-value {
-  position: relative;
-  z-index: 1;
-  letter-spacing: 0;
-}
-
 .shop-section-title {
   margin-top: 2rem;
   display: flex;

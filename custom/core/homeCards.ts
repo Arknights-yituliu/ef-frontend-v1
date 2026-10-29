@@ -1,12 +1,4 @@
 /**
- * 首页卡片链接配置
- */
-export interface CardLink {
-  i18nKey: string;
-  href: string;
-}
-
-/**
  * 首页按钮动作类型
  */
 export enum ButtonActionType {
@@ -57,26 +49,6 @@ export interface CardButton {
 }
 
 /**
- * 首页底部按钮配置
- */
-export interface FooterButton {
-  /** 国际化键名，用于从 i18n 文件中获取按钮文本内容 */
-  i18nKey: string;
-  /** 按钮动作类型 */
-  action: ButtonActionType;
-  /** 动作参数 */
-  actionData: string;
-  /** 是否在新标签页打开（仅 link 类型有效），默认为 true */
-  target?: boolean;
-  /** 按钮图标 (Material Design Icons 图标名) */
-  icon?: string;
-  /** 是否显示按钮，默认为 true */
-  visible?: boolean;
-  /** 复制成功后的提示文本（仅 copy 类型有效） */
-  copySuccessText?: string;
-}
-
-/**
  * 标签类型枚举
  */
 export enum CardTagType {
@@ -111,40 +83,6 @@ export interface CardData {
   /** 卡片内按钮列表（可选） */
   buttons?: CardButton[];
 }
-
-/**
- * 首页卡片列表
- */
-
-/**
- * 首页底部按钮列表
- */
-export const homeFooterButtons: FooterButton[] = [
-  {
-    i18nKey: 'buttons.github',
-    action: ButtonActionType.Link,
-    actionData: 'https://github.com/Arknights-yituliu/ef-frontend-v1',
-    target: true,
-    icon: 'mdi-github',
-    visible: true,
-  },
-  {
-    i18nKey: 'buttons.discord',
-    action: ButtonActionType.Link,
-    actionData: 'https://discord.gg/your-discord-link',
-    target: true,
-    icon: 'mdi-discord',
-    visible: true,
-  },
-  {
-    i18nKey: 'buttons.copyContact',
-    action: ButtonActionType.Copy,
-    actionData: 'contact@example.com',
-    icon: 'mdi-content-copy',
-    visible: true,
-    copySuccessText: '已复制联系邮箱',
-  },
-];
 
 export const homeCards: CardData[] = [
   {

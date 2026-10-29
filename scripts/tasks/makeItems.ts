@@ -1,18 +1,12 @@
 import type { LocalizedText } from '../../shared/types/common';
-import {
-  foresightWeaponIds,
-  foresightWeaponTable,
-  getLocalizedValue,
-  itemTable,
-  itemTypeTable,
-} from '../gameData';
+import { foresightWeaponIds } from '../derived/weaponIds';
+import { foresightWeaponTable, itemTable } from '../gameData';
+import { getLocalizedValue } from '../utils/translation';
 
 export interface Item {
   id: string;
   name: LocalizedText;
   rarity: number;
-  type: number;
-  typeName: LocalizedText;
   iconId: string;
 
   // backpackCanDiscard: boolean;
@@ -30,9 +24,6 @@ export interface Item {
   // valuableTabType: number;
 }
 
-/** 武器在 ItemTable 中的物品类型 ID */
-const WEAPON_ITEM_TYPE = 5;
-
 export function makeItems(): Record<string, Item> {
   const items: Record<string, Item> = Object.fromEntries(
     Object.keys(itemTable)
@@ -45,8 +36,6 @@ export function makeItems(): Record<string, Item> {
             id: itemId,
             name: getLocalizedValue(itemData.name),
             rarity: itemData.rarity,
-            type: itemData.type,
-            typeName: getLocalizedValue(itemTypeTable[String(itemData.type)]!.name),
             iconId: itemData.iconId,
 
             // backpackCanDiscard: itemData.backpackCanDiscard,
@@ -68,8 +57,6 @@ export function makeItems(): Record<string, Item> {
       }),
   );
 
-  const weaponTypeName = getLocalizedValue(itemTypeTable[String(WEAPON_ITEM_TYPE)]!.name);
-
   // 前瞻武器：ItemTable 中尚未收录，需要手动补录以便前端展示图标与名称
   for (const weaponId of foresightWeaponIds) {
     if (items[weaponId] !== undefined) {
@@ -80,8 +67,6 @@ export function makeItems(): Record<string, Item> {
       id: weaponId,
       name: getLocalizedValue(foresightWeapon.name),
       rarity: foresightWeapon.rarity,
-      type: WEAPON_ITEM_TYPE,
-      typeName: weaponTypeName,
       iconId: foresightWeapon.iconId,
     };
   }

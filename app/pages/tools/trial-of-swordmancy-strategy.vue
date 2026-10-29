@@ -1280,17 +1280,6 @@ function 执行决策按钮(决策: string): void {
   outline-color: rgba(255, 42, 44, 0.25);
 }
 
-.deck-version-alert :deep(.v-alert__content) {
-  width: 100%;
-}
-
-.deck-version-alert-content {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .quick-action-grid {
   display: grid;
   grid-template-columns: minmax(10.5rem, 1.55fr) repeat(2, minmax(6.2rem, 1fr));
@@ -1489,11 +1478,6 @@ function 执行决策按钮(决策: string): void {
 }
 
 @media (max-width: 700px) {
-  .deck-version-alert-content {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
   .strategy-result-card {
     min-width: min(100%, 16rem);
     min-height: 72px;

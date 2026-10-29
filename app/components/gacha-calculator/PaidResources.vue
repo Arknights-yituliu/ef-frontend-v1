@@ -2,6 +2,7 @@
 import type { PoolMember } from '#shared/types/gacha-calculator';
 import { calculateDaysDifference } from '#shared/utils/gacha-calculator';
 import { getPackTotalWeaponQuota } from '#shared/utils/gameData/pack';
+import { getLocalizedText } from '#shared/utils/i18nUtil';
 import { computed } from 'vue';
 import { availablePacks as packs } from '@/custom/core/packs';
 
@@ -203,56 +204,6 @@ function calculatePackPulls(pack: any): number {
   return totalPulls;
 }
 
-// 获取礼包的主要图标
-function getPackIcon(pack: any): string {
-  for (const item of pack.contents) {
-    if (
-      item.itemId === 'item_ticketgacha_special_single' ||
-      item.itemId.includes('ticketgacha_special_ten')
-    ) {
-      return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png';
-    }
-    if (item.itemId === 'item_ticketgacha_standard_single') {
-      return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_standard_single.png';
-    }
-    if (item.itemId === 'item_originium_recharge') {
-      return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_originium_recharge.png';
-    }
-    if (item.itemId === 'item_diamond') {
-      return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_diamond.png';
-    }
-  }
-  // 默认使用特许寻访凭证图标
-  return 'https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/walleticon/item_ticketgacha_special_single.png';
-}
-
-// 计算总金额
-const totalPrice = computed(() => {
-  let total = 0;
-
-  // 礼包金额
-  for (const [packId, quantity] of Object.entries(selectedPacks.value)) {
-    if (quantity > 0) {
-      const pack = packs[packId as keyof typeof packs];
-      if (pack) {
-        total += pack.price * quantity;
-      }
-    }
-  }
-
-  // 普通源石金额
-  for (const [stoneId, quantity] of Object.entries(originiumStoneQuantities.value)) {
-    if (quantity > 0) {
-      const stone = packs[stoneId as keyof typeof packs];
-      if (stone) {
-        total += stone.price * quantity;
-      }
-    }
-  }
-
-  return total;
-});
-
 // 切换礼包选择
 function togglePack(packId: string) {
   const quantity = getPackQuantity(packId);
@@ -318,14 +269,6 @@ function updateOriginiumQuantity(stoneId: string, value: number) {
   });
 }
 
-// 获取源石数量
-function getStoneQuantity(stone: any): number {
-  if (stone.contents && stone.contents[0]) {
-    return stone.contents[0].quantity;
-  }
-  return 0;
-}
-
 // 获取图标URL
 function getImageUrl(itemId: string): string {
   const fileName = itemId.startsWith('item_') ? itemId : `item_${itemId}`;
@@ -334,7 +277,7 @@ function getImageUrl(itemId: string): string {
 
 // 获取多语言名称
 function packName(pack: PackData): string {
-  return pack.displayName[locale.value] || pack.displayName['zh-CN'];
+  return getLocalizedText(pack.displayName, locale.value);
 }
 </script>
 
@@ -619,12 +562,6 @@ function packName(pack: PackData): string {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-
-.placeholder-card {
-  background-color: #f5f5f5;
-  margin: 4px 0;
-}
-
 .gacha-calculator-gacha-item-icon {
   width: 42px;
   height: 42px;

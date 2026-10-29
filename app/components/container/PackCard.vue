@@ -160,7 +160,7 @@
         </thead>
         <tbody>
           <tr v-for="(content, index) in sortedContents" :key="index">
-            <td>{{ getItemName(content.itemId) }}</td>
+            <td>{{ getItemName(content.itemId, locale) }}</td>
             <td>{{ content.quantity }}</td>
             <td>
               {{ getItemBundleAllItemsValue(content, props.weaponQuotaBaseline).toFixed(1) }}
@@ -195,6 +195,7 @@ import {
   getPackWeaponEfficiency,
   pack648WeaponQuotaBaseline,
 } from '@/shared/utils/gameData/pack';
+import { getLocalizedText } from '@/shared/utils/i18nUtil';
 
 const props = withDefaults(
   defineProps<
@@ -218,13 +219,9 @@ const imageError = ref(false);
 const isExpanded = ref(false);
 const hideConfirmationPending = ref(false);
 
-const packDisplayName = computed(() => {
-  return props.displayName[locale.value];
-});
+const packDisplayName = computed(() => getLocalizedText(props.displayName, locale.value));
 
-const packDescription = computed(() => {
-  return props.description?.[locale.value];
-});
+const packDescription = computed(() => getLocalizedText(props.description, locale.value));
 
 const sortedContents = computed(() =>
   props.contents.toSorted(

@@ -4142,15 +4142,6 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
 .gacha-calculator-permanent-panel-text:deep(.v-expansion-panel-text__wrapper) {
   overflow: hidden;
 }
-
-.gacha-calculator-shortcut-btn-table {
-  text-align: center;
-}
-
-.gacha-calculator-shortcut-btn {
-  margin: 4px;
-}
-
 .gacha-calculator-result-detail-table-icon {
   width: 36px;
   height: 36px;
@@ -4618,17 +4609,6 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .gacha-calculator-shortcut-btn-table {
-    font-size: 0.8rem;
-  }
-
-  .gacha-calculator-shortcut-btn {
-    margin: 4px 0;
-    width: 150px;
-    font-size: 0.8rem;
-  }
-
   .gacha-calculator-result-detail-table {
     font-size: 0.6rem;
   }
@@ -4637,11 +4617,6 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
     width: 24px;
     height: 24px;
   }
-
-  .content-container {
-    padding: 0.5rem;
-  }
-
   .placeholder-block {
     display: none;
   }
