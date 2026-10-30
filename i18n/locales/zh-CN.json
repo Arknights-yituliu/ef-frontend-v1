@@ -24,7 +24,9 @@
     "others": "其它",
     "friendLinks": "友情链接",
     "test": "测试",
-    "contributors": "贡献/参与者"
+    "contributors": "贡献/参与者",
+    "userCenter": "个人中心",
+    "sklandEndfield": "森空岛角色数据"
   },
   "common": {
     "loading": "加载中...",
@@ -32,6 +34,7 @@
     "retry": "重试",
     "noData": "暂无数据",
     "close": "关闭",
+    "cancel": "取消",
     "copySuccess": "已复制",
     "copyFailed": "复制失败",
     "PCOnly": "仅限PC端可用",
@@ -307,6 +310,52 @@
     "shopItemCard": {
       "valuePerGroup": "每组价值 {value}",
       "soldOut": "售罄"
+    },
+    "userCenter": {
+      "entry": {
+        "login": "登录",
+        "center": "个人中心",
+        "logout": "退出登录",
+        "unknownUser": "用户"
+      },
+      "login": {
+        "title": "登录一图流账号",
+        "resetTitle": "找回密码",
+        "tabs": {
+          "password": "密码登录",
+          "code": "验证码登录",
+          "register": "注册"
+        },
+        "fields": {
+          "account": "邮箱或用户名",
+          "email": "邮箱",
+          "code": "验证码",
+          "password": "密码",
+          "newPassword": "新密码",
+          "userName": "用户名",
+          "nickname": "昵称（选填）"
+        },
+        "hints": {
+          "userName": "3-20 位字母、数字或下划线",
+          "password": "6-32 位字母、数字或 {'@'}_",
+          "resetAccount": "填写账号绑定的邮箱或用户名，验证码将发送到绑定邮箱"
+        },
+        "sendCode": "获取验证码",
+        "submit": "登录",
+        "register": "注册并登录",
+        "resetPassword": "重置密码",
+        "forgotPassword": "忘记密码？",
+        "resetSuccess": "密码已重置，请使用新密码登录",
+        "validation": {
+          "required": "此项为必填项",
+          "email": "请输入有效的邮箱地址",
+          "code": "请输入 6 位数字验证码",
+          "userName": "用户名需为 3-20 位字母、数字或下划线",
+          "password": "密码需为 6-32 位字母、数字或 {'@'}_",
+          "nickname": "昵称最多 24 位中文、字母或数字",
+          "failed": "操作失败，请稍后再试"
+        }
+      }
     }
   },
   "page": {
@@ -499,6 +548,143 @@
       "friendLinks": {
         "friendLinks": "友情链接",
         "friendLinksDescription": "以下是一些与明日方舟相关的优秀工具和资源网站。\n想要将自己的内容添加到友情链接？请加开发群 696486169 并 at 群主。"
+      }
+    },
+    "userCenter": {
+      "title": "个人中心",
+      "description": "管理你的账号资料、邮箱与密码。",
+      "loginRequired": "登录后可管理你的账号资料。",
+      "requestFailed": "请求失败，请稍后再试",
+      "registerTime": "注册时间",
+      "lastLoginTime": "最近登录",
+      "banned": "该账号已被封禁，如有疑问请联系管理员。",
+      "fields": {
+        "nickname": "昵称",
+        "uid": "UID",
+        "email": "邮箱",
+        "status": "账号状态",
+        "registerTime": "注册时间",
+        "lastLoginTime": "最近登录"
+      },
+      "status": {
+        "normal": "正常",
+        "banned": "已封禁"
+      },
+      "profile": {
+        "title": "账号资料",
+        "nickname": "昵称",
+        "avatar": "头像地址",
+        "avatarHint": "填写图片链接，留空则使用昵称首字",
+        "save": "保存资料",
+        "saved": "资料已更新",
+        "nicknameRule": "昵称不能为空且不超过 64 个字符",
+        "avatarRule": "头像地址不能超过 512 个字符"
+      },
+      "email": {
+        "title": "邮箱",
+        "current": "当前邮箱",
+        "notBound": "未绑定",
+        "newEmail": "新邮箱",
+        "code": "验证码",
+        "oldCode": "当前邮箱验证码",
+        "newCode": "新邮箱验证码",
+        "sendCode": "获取验证码",
+        "sendToCurrent": "发送到当前邮箱",
+        "bind": "绑定邮箱",
+        "change": "换绑邮箱",
+        "bound": "邮箱绑定成功",
+        "changed": "邮箱换绑成功",
+        "codeSent": "验证码已发送，请查收邮箱",
+        "confirmEmail": "确认邮箱",
+        "confirmMismatch": "两次输入的邮箱不一致",
+        "sameAsCurrent": "新邮箱不能与当前邮箱相同",
+        "sendToNew": "发送到新邮箱",
+        "changeHint": "换绑需同时验证当前邮箱与新邮箱；同一网络下两次发送需间隔 60 秒以上。"
+      },
+      "password": {
+        "title": "修改密码",
+        "old": "当前密码",
+        "new": "新密码",
+        "confirm": "确认新密码",
+        "submit": "修改密码",
+        "changed": "密码修改成功，请重新登录",
+        "confirmMismatch": "两次输入的密码不一致"
+      }
+    },
+    "sklandEndfield": {
+      "title": "森空岛角色数据",
+      "description": "通过森空岛凭据获取《明日方舟：终末地》的角色档案数据。",
+      "requestFailed": "请求失败，请稍后再试",
+      "credential": {
+        "title": "森空岛凭据",
+        "ready": "凭据已就绪，可直接读取角色数据。",
+        "clear": "清除凭据",
+        "expired": "凭据已失效，请重新获取。",
+        "tabs": {
+          "cred": "直接输入",
+          "hg": "Token 换取",
+          "qr": "扫码获取"
+        },
+        "credSteps": {
+          "login": "登录森空岛",
+          "fetch": "获取凭证",
+          "paste": "粘贴凭证"
+        },
+        "credLoginHint": "首先登录森空岛网页版（建议使用 Edge 或 Safari 等桌面浏览器）。",
+        "openCredPage": "打开森空岛官网",
+        "consoleTip": "登录后按 F12 打开开发者工具，切换到控制台（Console），输入以下命令并回车：",
+        "copyCommand": "复制命令",
+        "copied": "已复制",
+        "pasteTip": "执行后凭证会自动复制到剪贴板，按 Enter 后将内容粘贴到下一步的输入框。若浏览器提示禁止粘贴，先在控制台输入 allow pasting 或 允许粘贴 后回车。",
+        "credPlaceholder": "粘贴凭证字符串（cred,token）",
+        "credInvalid": "未能从输入内容中解析出 cred，请检查粘贴格式",
+        "verify": "验证凭据",
+        "next": "下一步",
+        "hgSteps": {
+          "login": "登录官网",
+          "fetch": "获取 Token",
+          "paste": "输入凭证"
+        },
+        "hgLoginHint": "首先打开并登录鹰角网络通行证官网。",
+        "openHgSite": "打开通行证官网",
+        "hgUrlTip": "登录后访问以下地址，复制返回的全部内容：",
+        "copyUrl": "复制地址",
+        "openUrl": "直接访问",
+        "hgPlaceholder": "粘贴返回内容（token 或整段 JSON）",
+        "hgInvalid": "未能从输入内容中解析出通行证 token，请检查 JSON 格式",
+        "exchange": "换取凭据",
+        "qrHint": "使用森空岛 App 扫描二维码完成登录。",
+        "qrEmpty": "生成二维码后使用森空岛 App 扫码",
+        "qrCreate": "生成二维码",
+        "qrRefresh": "刷新二维码",
+        "qrWaiting": "等待扫码确认…",
+        "qrSuccess": "扫码成功，凭据已获取"
+      },
+      "role": {
+        "title": "选择角色",
+        "select": "终末地角色",
+        "empty": "该账号下未找到终末地角色"
+      },
+      "detail": {
+        "level": "权限等阶",
+        "worldLevel": "探索等级",
+        "charNum": "干员数",
+        "weaponNum": "武器数",
+        "mission": "使命纪事",
+        "createTime": "创建时间",
+        "lastLoginTime": "最后登录",
+        "saveTime": "存档时间",
+        "stamina": "理智",
+        "daily": "每日活跃",
+        "weekly": "每周活跃",
+        "bp": "通行证",
+        "chars": "干员",
+        "domains": "地区建设",
+        "raw": "原始数据",
+        "unknownPlayer": "未知玩家",
+        "unknownChar": "未知干员",
+        "unknownWeapon": "未知武器",
+        "refine": "精炼 "
       }
     },
     "blueprint": {

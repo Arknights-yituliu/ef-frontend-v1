@@ -24,7 +24,9 @@
     "others": "Others",
     "friendLinks": "Friend Links",
     "test": "Test",
-    "contributors": "Contributors"
+    "contributors": "Contributors",
+    "userCenter": "Account",
+    "sklandEndfield": "Skland Character Data"
   },
   "common": {
     "loading": "Loading...",
@@ -32,6 +34,7 @@
     "retry": "Retry",
     "noData": "No data available",
     "close": "Close",
+    "cancel": "Cancel",
     "copySuccess": "Copied",
     "copyFailed": "Copy failed",
     "PCOnly": "Only available on PC",
@@ -307,6 +310,52 @@
     "shopItemCard": {
       "valuePerGroup": "Group value {value}",
       "soldOut": "Sold out"
+    },
+    "userCenter": {
+      "entry": {
+        "login": "Sign in",
+        "center": "Account Center",
+        "logout": "Sign out",
+        "unknownUser": "User"
+      },
+      "login": {
+        "title": "Sign in to Yituliu",
+        "resetTitle": "Reset Password",
+        "tabs": {
+          "password": "Password",
+          "code": "Email Code",
+          "register": "Register"
+        },
+        "fields": {
+          "account": "Email or username",
+          "email": "Email",
+          "code": "Verification code",
+          "password": "Password",
+          "newPassword": "New password",
+          "userName": "Username",
+          "nickname": "Nickname (optional)"
+        },
+        "hints": {
+          "userName": "3-20 letters, digits or underscores",
+          "password": "6-32 letters, digits or {'@'}_",
+          "resetAccount": "Enter the email or username bound to your account; the code will be sent to the bound email"
+        },
+        "sendCode": "Send code",
+        "submit": "Sign in",
+        "register": "Register",
+        "resetPassword": "Reset password",
+        "forgotPassword": "Forgot password?",
+        "resetSuccess": "Password reset. Please sign in with your new password.",
+        "validation": {
+          "required": "This field is required",
+          "email": "Enter a valid email address",
+          "code": "Enter the 6-digit verification code",
+          "userName": "Username must be 3-20 letters, digits or underscores",
+          "password": "Password must be 6-32 letters, digits or {'@'}_",
+          "nickname": "Nickname allows up to 24 letters, digits or Chinese characters",
+          "failed": "Something went wrong. Please try again later."
+        }
+      }
     }
   },
   "page": {
@@ -499,6 +548,143 @@
       "friendLinks": {
         "friendLinks": "Friend Links",
         "friendLinksDescription": "Here are some excellent tools and resource websites related to Arknights.\nWant to add your own content to the Friend Links? Join the dev group 696486169 and mention the group owner."
+      }
+    },
+    "userCenter": {
+      "title": "Account Center",
+      "description": "Manage your profile, email and password.",
+      "loginRequired": "Sign in to manage your account.",
+      "requestFailed": "Request failed. Please try again later.",
+      "registerTime": "Registered",
+      "lastLoginTime": "Last login",
+      "banned": "This account has been banned. Please contact the administrator.",
+      "fields": {
+        "nickname": "Nickname",
+        "uid": "UID",
+        "email": "Email",
+        "status": "Status",
+        "registerTime": "Registered",
+        "lastLoginTime": "Last login"
+      },
+      "status": {
+        "normal": "Active",
+        "banned": "Banned"
+      },
+      "profile": {
+        "title": "Profile",
+        "nickname": "Nickname",
+        "avatar": "Avatar URL",
+        "avatarHint": "Enter an image URL; leave empty to use the first character of your nickname",
+        "save": "Save profile",
+        "saved": "Profile updated",
+        "nicknameRule": "Nickname is required and must be 64 characters or fewer",
+        "avatarRule": "Avatar URL must be 512 characters or fewer"
+      },
+      "email": {
+        "title": "Email",
+        "current": "Current email",
+        "notBound": "Not bound",
+        "newEmail": "New email",
+        "code": "Verification code",
+        "oldCode": "Code for current email",
+        "newCode": "Code for new email",
+        "sendCode": "Send code",
+        "sendToCurrent": "Send to current email",
+        "bind": "Bind email",
+        "change": "Change email",
+        "bound": "Email bound successfully",
+        "changed": "Email changed successfully",
+        "codeSent": "Verification code sent. Please check your inbox.",
+        "confirmEmail": "Confirm email",
+        "confirmMismatch": "The two email addresses do not match",
+        "sameAsCurrent": "The new email must differ from the current one",
+        "sendToNew": "Send to new email",
+        "changeHint": "Changing the email requires codes from both the current and the new mailbox; two sends from the same network must be at least 60 seconds apart."
+      },
+      "password": {
+        "title": "Change Password",
+        "old": "Current password",
+        "new": "New password",
+        "confirm": "Confirm new password",
+        "submit": "Change password",
+        "changed": "Password changed. Please sign in again.",
+        "confirmMismatch": "The two passwords do not match"
+      }
+    },
+    "sklandEndfield": {
+      "title": "Skland Character Data",
+      "description": "Fetch Arknights: Endfield character card data with your Skland credential.",
+      "requestFailed": "Request failed. Please try again later.",
+      "credential": {
+        "title": "Skland Credential",
+        "ready": "Credential is ready. You can load character data now.",
+        "clear": "Clear credential",
+        "expired": "The credential has expired. Please obtain it again.",
+        "tabs": {
+          "cred": "Direct input",
+          "hg": "Token exchange",
+          "qr": "Scan QR code"
+        },
+        "credSteps": {
+          "login": "Sign in to Skland",
+          "fetch": "Get credential",
+          "paste": "Paste credential"
+        },
+        "credLoginHint": "First sign in to the Skland website (a desktop browser such as Edge or Safari is recommended).",
+        "openCredPage": "Open Skland website",
+        "consoleTip": "Press F12 to open DevTools, switch to the Console tab and run the command below:",
+        "copyCommand": "Copy command",
+        "copied": "Copied",
+        "pasteTip": "The credential is copied to your clipboard automatically. Press Enter, then paste the result in the next step. If the browser blocks pasting, type allow pasting first.",
+        "credPlaceholder": "Paste the credential string (cred,token)",
+        "credInvalid": "Could not extract a cred from the input. Please check the pasted format.",
+        "verify": "Verify credential",
+        "next": "Next",
+        "hgSteps": {
+          "login": "Sign in",
+          "fetch": "Get token",
+          "paste": "Enter token"
+        },
+        "hgLoginHint": "First open and sign in to the Hypergryph passport website.",
+        "openHgSite": "Open passport website",
+        "hgUrlTip": "After signing in, visit the address below and copy the full response:",
+        "copyUrl": "Copy URL",
+        "openUrl": "Open",
+        "hgPlaceholder": "Paste the response (token or full JSON)",
+        "hgInvalid": "Could not extract a passport token from the input. Please check the JSON format.",
+        "exchange": "Exchange credential",
+        "qrHint": "Scan the QR code with the Skland app to sign in.",
+        "qrEmpty": "Generate a QR code, then scan it with the Skland app",
+        "qrCreate": "Generate QR code",
+        "qrRefresh": "Refresh QR code",
+        "qrWaiting": "Waiting for scan confirmation...",
+        "qrSuccess": "Scan succeeded. Credential obtained."
+      },
+      "role": {
+        "title": "Select Role",
+        "select": "Endfield role",
+        "empty": "No Endfield role found for this account"
+      },
+      "detail": {
+        "level": "Level",
+        "worldLevel": "World level",
+        "charNum": "Characters",
+        "weaponNum": "Weapons",
+        "mission": "Mission",
+        "createTime": "Created",
+        "lastLoginTime": "Last login",
+        "saveTime": "Last saved",
+        "stamina": "Stamina",
+        "daily": "Daily activity",
+        "weekly": "Weekly activity",
+        "bp": "Battle pass",
+        "chars": "Characters",
+        "domains": "Domain construction",
+        "raw": "Raw data",
+        "unknownPlayer": "Unknown player",
+        "unknownChar": "Unknown character",
+        "unknownWeapon": "Unknown weapon",
+        "refine": "Refine "
       }
     },
     "blueprint": {

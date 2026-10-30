@@ -15,6 +15,7 @@
         <LayoutFeedbackToggle @click="isFeedbackOpen = true" />
         <LayoutThemeToggle />
         <div class="control-divider" />
+        <LayoutUserEntry />
         <LayoutLanguageToggle />
       </div>
     </v-app-bar>
@@ -42,6 +43,7 @@
       />
     </v-fade-transition>
     <LayoutFeedbackModal v-model="isFeedbackOpen" />
+    <UserCenterLoginDialog v-model="isLoginDialogOpen" @success="handleLoginSuccess" />
   </v-app>
 </template>
 
@@ -60,6 +62,18 @@ const drawer = ref(true);
 
 /** 反馈组件是否打开 */
 const isFeedbackOpen = ref(false);
+
+/** 登录弹窗显隐（由 useUserCenter 统一维护，多处入口共享） */
+const { isLoginDialogOpen, fetchProfile } = useUserCenter();
+
+/**
+ * 登录/注册成功后的回调：拉取用户资料，供头像与昵称展示
+ */
+function handleLoginSuccess(): void {
+  fetchProfile().catch(() => {
+    // 资料拉取失败不影响登录态，个人中心页会再次加载并提示
+  });
+}
 
 // 根据当前路由查找对应的页面名称
 const pageTitle = computed(() => {
