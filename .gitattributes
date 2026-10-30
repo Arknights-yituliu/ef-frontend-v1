@@ -1,0 +1,4 @@
+# 统一换行符：仓库内与检出到工作区均使用 LF
+# 目的：避免 Windows 的 core.autocrlf=true 与 Prettier 的 endOfLine=lf 冲突，
+# 导致格式化后出现大量“内容未变却显示被修改”的假改动
+* text=auto eol=lf
