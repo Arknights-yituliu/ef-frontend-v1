@@ -35,7 +35,7 @@
             rel="noopener noreferrer"
             target="_blank"
           >
-            Mirror酱下载
+            前往 Mirror酱下载
           </v-btn>
           <v-btn
             color="secondary"
@@ -43,7 +43,7 @@
             prepend-icon="mdi-cloud-download"
             rel="noopener noreferrer"
           >
-            OEM 下载
+            从 OEM 下载
           </v-btn>
           <v-btn
             color="primary"
@@ -51,7 +51,7 @@
             prepend-icon="mdi-download"
             @click="downloadFromGithub"
           >
-            GitHub 下载
+            从 GitHub 下载
           </v-btn>
         </v-btn-group>
 
