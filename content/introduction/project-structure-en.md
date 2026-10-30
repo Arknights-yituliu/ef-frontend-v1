@@ -77,14 +77,22 @@ ef-frontend-v1/
 │   │   │   └── HomeBookmarkDialog.vue # Custom bookmark editor dialog
 │   │   ├── icon/                 # Icon components
 │   │   ├── layout/               # Layout components
+│   │   │   └── UserEntry.vue     # Header user entry (login button / avatar menu)
+│   │   ├── skland/               # Skland character data components
+│   │   │   ├── CardDetail.vue    # Character card detail display
+│   │   │   └── CredentialPanel.vue # Credential panel (direct input / token exchange / QR scan)
 │   │   ├── text/                 # Text-related components
-│   │   └── tools/                # Tool page components
+│   │   ├── tools/                # Tool page components
+│   │   └── user-center/          # User center components
+│   │       └── LoginDialog.vue   # Login / register / password reset dialog
 │   ├── composables/              # Composables directory
 │   │   ├── useDocsSearch.ts      # Document search composable
 │   │   ├── useHomeCardEditorDrafts.ts # Home card editor draft management
 │   │   ├── useHomeBookmarks.ts   # Home bookmark management
 │   │   ├── usePageSeo.ts         # Page SEO composable
-│   │   └── useTheme.ts           # Theme management composable
+│   │   ├── useSkland.ts          # Skland credential and character data API wrapper
+│   │   ├── useTheme.ts           # Theme management composable
+│   │   └── useUserCenter.ts      # UserCenter session and account API wrapper
 │   ├── layouts/                  # Layouts directory
 │   │   ├── default.vue           # Default layout
 │   │   └── docs.vue              # Documentation layout
@@ -101,7 +109,10 @@ ef-frontend-v1/
 │   │   ├── operations/           # Operations doc pages
 │   │   ├── others/               # Other pages, including the hidden home card editor
 │   │   ├── resources/            # Resource pages
-│   │   └── tools/                # Tool pages
+│   │   ├── tools/                # Tool pages
+│   │   │   └── skland-endfield.vue # Skland Endfield character data page
+│   │   └── user/                 # User-related pages
+│   │       └── center.vue        # Account center (hidden route /user/center)
 │   └── plugins/                  # Plugins directory
 │       └── vuetify.ts            # Vuetify plugin configuration
 ├── content/                      # Documentation content directory, organized by category with -zh/-en suffix
@@ -122,7 +133,7 @@ ef-frontend-v1/
 │       └── en-US.json            # English (US) translation file
 ├── custom/                       # Custom files, for config not auto-recognized by Nuxt
 │   ├── config/                   # Custom config
-│   │   └── base-url.ts           # Base URL configuration
+│   │   └── base-url.ts           # Base URL configuration (incl. UserCenter base URL and client id)
 │   ├── core/                     # Core game data files
 │   │   ├── gacha/                # Gacha data subdirectory
 │   │   ├── items.ts              # Item data
@@ -153,7 +164,9 @@ ef-frontend-v1/
 │   │   ├── homeBookmark.ts       # Home bookmark types
 │   │   ├── itemValue.ts          # Item value types
 │   │   ├── shop.ts               # Shop types
-│   │   └── pack.ts               # Pack types
+│   │   ├── pack.ts               # Pack types
+│   │   ├── skland.ts             # Skland API types
+│   │   └── userCenter.ts         # UserCenter API types
 │   └── utils/                    # Utility functions (auto-recognized by Nuxt)
 │       ├── gameData/             # Game data utilities
 │       │   ├── item.ts           # Item data utility
@@ -164,6 +177,7 @@ ef-frontend-v1/
 │       ├── gacha-calculator.ts   # Shared gacha calculator logic
 │       ├── i18nUtil.ts           # Localized text utilities
 │       ├── numberUtil.ts         # Number utility functions
+│       ├── sklandSign.ts         # Skland zonai API signing utility
 │       ├── trialOfSwordmancy.ts  # Trial of Swordmancy core logic
 │       ├── trialOfSwordmancyDeck.ts # Trial of Swordmancy deck persistence
 │       └── trialOfSwordmancyPageState.ts # Trial of Swordmancy page state
@@ -179,6 +193,7 @@ ef-frontend-v1/
 │   ├── copilot-instructions.md   # Copilot development instructions
 │   └── workflows/                # CI/CD workflows
 ├── .gitignore                    # Git ignore file configuration
+├── .gitattributes                # Git line-ending configuration (LF for text files)
 ├── .editorconfig                 # Editor configuration file
 ├── .prettierrc.json              # Prettier code formatting configuration
 ├── .prettierignore               # Prettier ignore file configuration
@@ -423,6 +438,9 @@ This document helps AI quickly understand project structure, development convent
 Contains the project's license information.
 
 #### Configuration Files
+
+- **`.gitattributes`** - Git line-ending configuration
+  - Normalizes text files to LF, preventing Windows `core.autocrlf` from conflicting with Prettier's `endOfLine: lf` and reporting files as modified
 
 - **`.editorconfig`** - Editor configuration file
   - Defines coding style settings for different editors (indentation, charset, etc.)

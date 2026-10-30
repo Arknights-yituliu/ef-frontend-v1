@@ -108,6 +108,12 @@
         "nameKey": "menu.gachaAnalysis",
         "routePath": "/tools/gacha-analysis",
         "vuetifyIcon": "mdi-chart-bar"
+      },
+      {
+        "i18nKey": "sklandEndfield",
+        "nameKey": "menu.sklandEndfield",
+        "routePath": "/tools/skland-endfield",
+        "vuetifyIcon": "mdi-account-box"
       }
     ]
   },
@@ -155,6 +161,13 @@
         "nameKey": "menu.contributors",
         "routePath": "/others/contributors",
         "vuetifyIcon": "mdi-account-heart"
+      },
+      {
+        "i18nKey": "userCenter",
+        "nameKey": "menu.userCenter",
+        "routePath": "/user/center",
+        "vuetifyIcon": "mdi-account-cog",
+        "isHidden": true
       },
       {
         "i18nKey": "documentation",

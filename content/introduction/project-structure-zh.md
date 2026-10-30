@@ -81,14 +81,22 @@ ef-frontend-v1/
 │   │   │   └── HomeBookmarkDialog.vue # 首页自定义收藏编辑弹窗
 │   │   ├── icon/                 # 图标组件
 │   │   ├── layout/               # 布局组件
+│   │   │   └── UserEntry.vue     # 顶栏用户入口（登录按钮 / 头像菜单）
+│   │   ├── skland/               # 森空岛角色数据组件
+│   │   │   ├── CardDetail.vue    # 角色档案详情展示
+│   │   │   └── CredentialPanel.vue # 凭据获取面板（直接输入 / Token 换取 / 扫码）
 │   │   ├── text/                 # 文本相关组件
-│   │   └── tools/                # 工具页面组件
+│   │   ├── tools/                # 工具页面组件
+│   │   └── user-center/          # 用户中心组件
+│   │       └── LoginDialog.vue   # 登录 / 注册 / 找回密码弹窗
 │   ├── composables/              # 组合式函数目录
 │   │   ├── useDocsSearch.ts      # 文档搜索组合式函数
 │   │   ├── useHomeCardEditorDrafts.ts # 首页卡片编辑器草稿管理
 │   │   ├── useHomeBookmarks.ts   # 首页自定义收藏管理
 │   │   ├── usePageSeo.ts         # 页面 SEO 组合式函数
-│   │   └── useTheme.ts           # 主题管理组合式函数
+│   │   ├── useSkland.ts          # 森空岛凭据获取与角色数据接口封装
+│   │   ├── useTheme.ts           # 主题管理组合式函数
+│   │   └── useUserCenter.ts      # UserCenter 会话与账号接口封装
 │   ├── layouts/                  # 布局目录
 │   │   ├── default.vue           # 默认布局
 │   │   └── docs.vue              # 文档布局
@@ -105,7 +113,10 @@ ef-frontend-v1/
 │   │   ├── operations/           # 行动文档页面
 │   │   ├── others/               # 其他页面（含隐藏的首页卡片编辑器）
 │   │   ├── resources/            # 资源页面
-│   │   └── tools/                # 工具页面
+│   │   ├── tools/                # 工具页面
+│   │   │   └── skland-endfield.vue # 森空岛终末地角色数据页面
+│   │   └── user/                 # 用户相关页面
+│   │       └── center.vue        # 个人中心（隐藏路由 /user/center）
 │   └── plugins/                  # 插件目录
 │       └── vuetify.ts            # Vuetify 插件配置
 ├── content/                      # 文档内容目录，按分类存放中英文后缀 .md 文件
@@ -126,7 +137,7 @@ ef-frontend-v1/
 │       └── en-US.json            # 英文（美国）翻译文件
 ├── custom/                       # 自定义文件，用于存放不被 Nuxt 自动识别的配置
 │   ├── config/                   # 自定义配置
-│   │   └── base-url.ts           # 基础 URL 配置
+│   │   └── base-url.ts           # 基础 URL 配置（含 UserCenter 服务基址与客户端标识）
 │   ├── core/                     # 游戏核心数据文件
 │   │   ├── gacha/                # 抽卡数据子目录
 │   │   ├── items.ts              # 物品数据
@@ -157,7 +168,9 @@ ef-frontend-v1/
 │   │   ├── homeBookmark.ts       # 首页自定义收藏类型
 │   │   ├── itemValue.ts          # 物品价值类型
 │   │   ├── shop.ts               # 商店类型
-│   │   └── pack.ts               # 礼包类型
+│   │   ├── pack.ts               # 礼包类型
+│   │   ├── skland.ts             # 森空岛接口类型
+│   │   └── userCenter.ts         # UserCenter 接口类型
 │   └── utils/                    # 工具函数（Nuxt 自动识别）
 │       ├── gameData/             # 游戏数据工具
 │       │   ├── item.ts           # 物品数据工具
@@ -168,6 +181,7 @@ ef-frontend-v1/
 │       ├── gacha-calculator.ts   # 攒抽计算公共逻辑
 │       ├── i18nUtil.ts           # 多语言文本工具
 │       ├── numberUtil.ts         # 数字工具函数
+│       ├── sklandSign.ts         # 森空岛 zonai 接口签名工具
 │       ├── trialOfSwordmancy.ts  # 选剑演武核心逻辑
 │       ├── trialOfSwordmancyDeck.ts # 选剑演武牌库持久化
 │       └── trialOfSwordmancyPageState.ts # 选剑演武页面状态
@@ -183,6 +197,7 @@ ef-frontend-v1/
 │   ├── copilot-instructions.md   # Copilot 开发指引
 │   └── workflows/                # CI/CD 工作流
 ├── .gitignore                    # Git 忽略文件配置
+├── .gitattributes                # Git 行尾符配置（文本文件统一为 LF）
 ├── .editorconfig                 # 编辑器配置文件
 ├── .prettierrc.json              # Prettier 代码格式化配置
 ├── .prettierignore               # Prettier 忽略文件配置
@@ -427,6 +442,9 @@ i18n/
 包含项目的许可证信息。
 
 #### 配置文件
+
+- **`.gitattributes`** - Git 行尾符配置
+  - 统一文本文件的换行符为 LF，避免 Windows 的 `core.autocrlf` 与 Prettier 的 `endOfLine: lf` 冲突而误报文件被修改
 
 - **`.editorconfig`** - 编辑器配置文件
   - 定义不同编辑器的编码风格设置（缩进、字符集等）
