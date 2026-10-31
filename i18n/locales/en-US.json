@@ -662,7 +662,9 @@
       },
       "role": {
         "title": "Select Role",
+        "accountCount": "{count} Endfield accounts",
         "select": "Endfield role",
+        "selectPlaceholder": "Select an account to view and upload",
         "empty": "No Endfield role found for this account"
       },
       "detail": {
@@ -685,6 +687,22 @@
         "unknownChar": "Unknown character",
         "unknownWeapon": "Unknown weapon",
         "refine": "Refine "
+      },
+      "cloud": {
+        "title": "Cloud Archive",
+        "loginHint": "Sign in to the user center to upload the current character data or read previously saved data.",
+        "login": "Sign in",
+        "empty": "No cloud archive yet. Load character data and upload it to create one.",
+        "select": "Cloud character",
+        "upload": "Upload current data",
+        "uploadHint": "Load Skland character data first, then upload it to the cloud.",
+        "load": "Load cloud data",
+        "updatedAt": "Cloud data updated at {time}",
+        "uploadSuccess": "Character data uploaded to the cloud",
+        "requestFailed": "Cloud request failed. Please try again later.",
+        "rateLimited": "Uploading too frequently. Please try again later.",
+        "sessionExpired": "Session expired. Please sign in again.",
+        "notBound": "This character is not bound to your account"
       }
     },
     "blueprint": {

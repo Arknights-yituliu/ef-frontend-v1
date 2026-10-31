@@ -1,5 +1,9 @@
 import type {
   UcCodeUsage,
+  UcEfAccount,
+  UcEfPlayerData,
+  UcEfPlayerDataSaveParams,
+  UcEfPlayerDataSaveResult,
   UcLoginByEmailParams,
   UcLoginByPasswordParams,
   UcLoginVO,
@@ -305,6 +309,53 @@ export function useUserCenter() {
     });
   }
 
+  // ---------------- 终末地玩家数据 ----------------
+
+  /**
+   * 查询当前用户已绑定的终末地角色列表（不含玩家数据正文）
+   * @returns 已绑定角色列表，按最近导入时间倒序
+   */
+  async function listEfAccounts(): Promise<UcEfAccount[]> {
+    const response = await ucRequest<UcEfAccount[]>({ url: '/user/ef-accounts' });
+    return response.data ?? [];
+  }
+
+  /**
+   * 读取指定角色的终末地玩家数据
+   * @param roleId 终末地游戏内角色 UID
+   * @param serverId 服务器 ID，可省略
+   * @returns 玩家数据；绑定存在但数据行缺失时返回 null
+   */
+  async function fetchEfPlayerData(
+    roleId: string,
+    serverId?: string,
+  ): Promise<UcEfPlayerData | null> {
+    const params = new URLSearchParams({ roleId });
+    if (serverId) {
+      params.set('serverId', serverId);
+    }
+    const response = await ucRequest<UcEfPlayerData | null>({
+      url: `/user/ef-accounts/player-data?${params.toString()}`,
+    });
+    return response.data ?? null;
+  }
+
+  /**
+   * 保存终末地玩家数据（已存在则整份覆盖，首次上传同时建立角色绑定）
+   * @param params 角色标识与玩家数据 JSON 对象
+   * @returns 本次写入的角色标识与保存时间
+   */
+  async function saveEfPlayerData(
+    params: UcEfPlayerDataSaveParams,
+  ): Promise<UcEfPlayerDataSaveResult> {
+    const response = await ucRequest<UcEfPlayerDataSaveResult>({
+      method: 'POST',
+      url: '/user/ef-accounts/player-data/save',
+      data: params,
+    });
+    return response.data;
+  }
+
   /** 打开登录弹窗 */
   function openLoginDialog(): void {
     isLoginDialogOpen.value = true;
@@ -343,5 +394,8 @@ export function useUserCenter() {
     bindEmail,
     sendChangeEmailCode,
     changeEmail,
+    listEfAccounts,
+    fetchEfPlayerData,
+    saveEfPlayerData,
   };
 }

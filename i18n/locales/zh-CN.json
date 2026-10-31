@@ -662,7 +662,9 @@
       },
       "role": {
         "title": "选择角色",
+        "accountCount": "共 {count} 个终末地账号",
         "select": "终末地角色",
+        "selectPlaceholder": "请选择要查看并上报的账号",
         "empty": "该账号下未找到终末地角色"
       },
       "detail": {
@@ -685,6 +687,22 @@
         "unknownChar": "未知干员",
         "unknownWeapon": "未知武器",
         "refine": "精炼 "
+      },
+      "cloud": {
+        "title": "云端存档",
+        "loginHint": "登录用户中心后，可将当前角色数据保存到云端，或读取此前保存的数据。",
+        "login": "登录",
+        "empty": "该账号还没有云端存档，获取角色数据后可上传保存。",
+        "select": "云端角色",
+        "upload": "上传当前角色数据",
+        "uploadHint": "请先获取森空岛角色数据，再上传到云端。",
+        "load": "读取云端数据",
+        "updatedAt": "云端数据更新于 {time}",
+        "uploadSuccess": "角色数据已上传到云端",
+        "requestFailed": "云端数据请求失败，请稍后再试",
+        "rateLimited": "上传过于频繁，请稍后再试",
+        "sessionExpired": "登录已失效，请重新登录",
+        "notBound": "该角色尚未绑定到当前账号"
       }
     },
     "blueprint": {

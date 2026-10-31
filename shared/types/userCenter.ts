@@ -74,6 +74,45 @@ export interface UcUpdateProfileParams {
   avatar?: string;
 }
 
+/** 已绑定的终末地角色（GET /user/ef-accounts，不含玩家数据正文） */
+export interface UcEfAccount {
+  /** 终末地游戏内角色 UID */
+  roleId: string;
+  /** 服务器 ID，未传时为空串 */
+  serverId: string;
+  /** 首次导入该角色数据的时间 */
+  createTime: string | null;
+  /** 最近一次导入该角色数据的时间 */
+  updateTime: string;
+}
+
+/** 终末地玩家数据读取结果（GET /user/ef-accounts/player-data） */
+export interface UcEfPlayerData {
+  roleId: string;
+  serverId: string;
+  /** 保存时提交的 JSON 对象，服务端原样返回 */
+  playerData: Record<string, unknown>;
+  updateTime: string;
+}
+
+/** 保存终末地玩家数据参数（POST /user/ef-accounts/player-data/save） */
+export interface UcEfPlayerDataSaveParams {
+  /** 终末地游戏内角色 UID，不超过 32 位可见 ASCII 字符 */
+  roleId: string;
+  /** 服务器 ID，可省略（按空串保存） */
+  serverId?: string;
+  /** 玩家数据 JSON 对象，序列化后不超过 2MB */
+  playerData: Record<string, unknown>;
+}
+
+/** 保存终末地玩家数据结果 */
+export interface UcEfPlayerDataSaveResult {
+  roleId: string;
+  serverId: string;
+  /** 本次保存时间 */
+  updateTime: string;
+}
+
 /** ucRequest 请求配置 */
 export interface UcRequestConfig {
   /** HTTP 方法，默认 GET */
