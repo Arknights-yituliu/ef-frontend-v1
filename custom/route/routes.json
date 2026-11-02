@@ -107,13 +107,15 @@
         "i18nKey": "gachaAnalysis",
         "nameKey": "menu.gachaAnalysis",
         "routePath": "/tools/gacha-analysis",
-        "vuetifyIcon": "mdi-chart-bar"
+        "vuetifyIcon": "mdi-chart-bar",
+        "isHidden": true
       },
       {
         "i18nKey": "sklandEndfield",
         "nameKey": "menu.sklandEndfield",
         "routePath": "/tools/skland-endfield",
-        "vuetifyIcon": "mdi-account-box"
+        "vuetifyIcon": "mdi-account-box",
+        "isHidden": true
       }
     ]
   },
