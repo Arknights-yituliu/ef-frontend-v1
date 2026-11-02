@@ -573,6 +573,7 @@
 import type { EChartsOption } from 'echarts';
 import { numberRound } from '#shared/utils/numberUtil';
 import { computed, defineAsyncComponent, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { UcApiError } from '@/app/composables/useUserCenter';
 import debugGachaData from '@/custom/core/gacha-analysis-example.json';
 
 import { gachaPools } from '@/custom/core/gacha-pool-info';
@@ -581,6 +582,14 @@ const CountTo = defineAsyncComponent(() => import('vue3-count-to').then((m) => m
 let echartsInstance: any = null;
 
 const { t } = useI18n();
+/** UserCenter 会话状态与寻访记录接口 */
+const {
+  isLoggedIn,
+  openLoginDialog,
+  createEfPoolRecordTask,
+  checkEfPoolRecordTask,
+  fetchEfPoolRecords,
+} = useUserCenter();
 
 usePageSeo({
   title: () => `${t('menu.gachaAnalysis')} - ${t('layout.siteName')}`,
@@ -753,46 +762,42 @@ async function submitAndVerify() {
   collectError.value = '';
 
   try {
-    const BASE_URL = 'https://endfield.backend.yituliu.cn';
-    const formData = new FormData();
-    formData.append('hgToken', hgToken);
+    // 寻访记录接口需要登录态，未登录时引导用户登录
+    if (!isLoggedIn.value) {
+      collectError.value = '请先登录后再获取抽卡记录';
+      openLoginDialog();
+      return;
+    }
 
     // Step 1: 创建任务
-    const uploadRes = await fetch(`${BASE_URL}/pool-record/create-task`, {
-      method: 'POST',
-      body: formData,
-    });
-    const taskResponse = await uploadRes.json();
-    const taskId = taskResponse?.data;
+    const taskId = await createEfPoolRecordTask(hgToken);
     if (!taskId) throw new Error('获取任务ID失败');
 
     // Step 2: 轮询任务状态
     let roleId = '';
     for (let i = 0; i < 30; i++) {
       await new Promise((res) => setTimeout(res, 2000));
-      const checkRes = await fetch(
-        `${BASE_URL}/pool-record/check-task?taskId=${encodeURIComponent(taskId)}`,
-      );
-      const checkData = await checkRes.json();
-      if (checkData.code === 200 && checkData.data?.roleId) {
-        roleId = checkData.data.roleId;
-        if (checkData.data.nickName) {
-          userNickName.value = checkData.data.nickName;
+      try {
+        const taskResult = await checkEfPoolRecordTask(taskId);
+        roleId = taskResult.roleId;
+        if (taskResult.nickName) {
+          userNickName.value = taskResult.nickName;
         }
         break;
+      } catch (error) {
+        // 10003 表示任务尚未完成，继续轮询；其余错误直接中止
+        if (error instanceof UcApiError && error.code === 10_003) continue;
+        throw error;
       }
     }
     if (!roleId) throw new Error('任务处理超时');
 
-    // Step 3: 获取数据并分流处理
-    const listRes = await fetch(
-      `${BASE_URL}/pool-record/character/list?taskId=${encodeURIComponent(taskId)}`,
-    );
-    const listResponse = await listRes.json();
-    if (!listResponse?.data) throw new Error('返回数据无效');
+    // Step 3: 按角色读取寻访记录并分流处理
+    const recordData = await fetchEfPoolRecords(roleId);
+    if (!recordData) throw new Error('返回数据无效');
 
-    const rawChar = listResponse.data.characterPoolRecord || [];
-    const rawWep = listResponse.data.weaponPoolRecord || [];
+    const rawChar = recordData.characterPoolRecord || [];
+    const rawWep = recordData.weaponPoolRecord || [];
 
     // 标准化新抓取的数据
     const newCharRecords = rawChar.map((item: any) => normalizeRecord(item, false));
@@ -815,6 +820,10 @@ async function submitAndVerify() {
     viewMode.value = 'analyze';
   } catch (error: any) {
     console.error('分析失败:', error);
+    // 会话失效时清理后引导重新登录
+    if (error instanceof UcApiError && (error.code === 80_001 || error.code === 80_002)) {
+      openLoginDialog();
+    }
     collectError.value = error.message || '网络错误';
   } finally {
     isSubmitting.value = false;

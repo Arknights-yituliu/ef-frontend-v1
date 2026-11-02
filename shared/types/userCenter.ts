@@ -113,6 +113,24 @@ export interface UcEfPlayerDataSaveResult {
   updateTime: string;
 }
 
+/** 寻访记录导入任务完成后的角色档案（GET /user/ef-pool-records/check-task） */
+export interface UcEfPoolRecordTaskResult {
+  /** 终末地游戏内角色 UID */
+  roleId: string;
+  /** 鹰角账号 uid */
+  uid: string;
+  /** 玩家昵称 */
+  nickName: string;
+}
+
+/** 寻访记录集合（GET /user/ef-pool-records/record） */
+export interface UcEfPoolRecordData {
+  /** 干员寻访记录 */
+  characterPoolRecord: Record<string, unknown>[];
+  /** 武器寻访记录 */
+  weaponPoolRecord: Record<string, unknown>[];
+}
+
 /** ucRequest 请求配置 */
 export interface UcRequestConfig {
   /** HTTP 方法，默认 GET */

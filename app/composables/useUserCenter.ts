@@ -4,6 +4,8 @@ import type {
   UcEfPlayerData,
   UcEfPlayerDataSaveParams,
   UcEfPlayerDataSaveResult,
+  UcEfPoolRecordData,
+  UcEfPoolRecordTaskResult,
   UcLoginByEmailParams,
   UcLoginByPasswordParams,
   UcLoginVO,
@@ -356,6 +358,43 @@ export function useUserCenter() {
     return response.data;
   }
 
+  /**
+   * 创建寻访记录导入任务（任务归属当前登录用户）
+   * @param hgToken 鹰角通行证 token
+   * @returns 任务 ID，供轮询任务状态
+   */
+  async function createEfPoolRecordTask(hgToken: string): Promise<string> {
+    const response = await ucRequest<string>({
+      method: 'POST',
+      url: `/user/ef-pool-records/create-task?hgToken=${encodeURIComponent(hgToken)}`,
+    });
+    return response.data;
+  }
+
+  /**
+   * 查询寻访记录导入任务状态
+   * @param taskId 创建任务时返回的任务 ID
+   * @returns 任务完成时的角色档案；未完成时抛出 code 10003
+   */
+  async function checkEfPoolRecordTask(taskId: string): Promise<UcEfPoolRecordTaskResult> {
+    const response = await ucRequest<UcEfPoolRecordTaskResult>({
+      url: `/user/ef-pool-records/check-task?taskId=${encodeURIComponent(taskId)}`,
+    });
+    return response.data;
+  }
+
+  /**
+   * 按角色读取当前用户的干员与武器寻访记录
+   * @param roleId 终末地游戏内角色 UID
+   * @returns 干员与武器寻访记录
+   */
+  async function fetchEfPoolRecords(roleId: string): Promise<UcEfPoolRecordData> {
+    const response = await ucRequest<UcEfPoolRecordData>({
+      url: `/user/ef-pool-records/record?roleId=${encodeURIComponent(roleId)}`,
+    });
+    return response.data;
+  }
+
   /** 打开登录弹窗 */
   function openLoginDialog(): void {
     isLoginDialogOpen.value = true;
@@ -397,5 +436,8 @@ export function useUserCenter() {
     listEfAccounts,
     fetchEfPlayerData,
     saveEfPlayerData,
+    createEfPoolRecordTask,
+    checkEfPoolRecordTask,
+    fetchEfPoolRecords,
   };
 }
