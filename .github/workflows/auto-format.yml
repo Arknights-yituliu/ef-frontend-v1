@@ -14,8 +14,8 @@ on:
 
 # 环境变量配置
 env:
-  COMMIT_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
-  COMMIT_NAME: "代码格式化小助手"
+  COMMIT_EMAIL: '41898282+github-actions[bot]@users.noreply.github.com'
+  COMMIT_NAME: '代码格式化小助手'
 
 # 并发控制配置
 concurrency:
@@ -39,28 +39,35 @@ jobs:
     steps:
       # 步骤 1: 检查是否应该跳过（避免无限循环）
       # 如果是由格式化提交触发的，则跳过执行
+      # 注意：不要把 ${{ github.event.* }} 直接内联进 run 脚本，
+      # 多行 / 含反引号与特殊字符的提交信息会被 shell 当成命令执行。
+      # 统一通过 env 传入，并在脚本中加引号使用。
       - name: Check if should skip
         id: should-skip
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          HEAD_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           # 如果是手动触发，不跳过
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo "should_skip=false" >> $GITHUB_OUTPUT
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "should_skip=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          
-          # 检查提交信息是否包含格式化标记
+
+          # 只取提交信息首行，避免多行内容干扰判断
+          COMMIT_MSG="${HEAD_COMMIT_MESSAGE%%$'\n'*}"
+
           # 如果 head_commit 不存在，则默认为不跳过
-          if [ -z "${{ github.event.head_commit.message }}" ]; then
-            echo "should_skip=false" >> $GITHUB_OUTPUT
+          if [ -z "$COMMIT_MSG" ]; then
+            echo "should_skip=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          
-          COMMIT_MSG="${{ github.event.head_commit.message }}"
-          if echo "$COMMIT_MSG" | grep -q "style: 自动格式化"; then
-            echo "should_skip=true" >> $GITHUB_OUTPUT
+
+          if printf '%s' "$COMMIT_MSG" | grep -q "style: 自动格式化"; then
+            echo "should_skip=true" >> "$GITHUB_OUTPUT"
             echo "检测到格式化提交，跳过执行以避免无限循环"
           else
-            echo "should_skip=false" >> $GITHUB_OUTPUT
+            echo "should_skip=false" >> "$GITHUB_OUTPUT"
           fi
 
       # 步骤 2: 检出源代码
@@ -137,29 +144,33 @@ jobs:
       # 如果有更改，则自动提交格式化后的代码
       - name: Commit and Push Changes
         if: steps.should-skip.outputs.should_skip != 'true' && steps.check-changes.outputs.has_changes == 'true'
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          HEAD_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           # 配置 Git 的邮箱/名称
-          git config --global user.email "${{ env.COMMIT_EMAIL }}"
-          git config --global user.name "${{ env.COMMIT_NAME }}"
-          
+          git config user.email "$COMMIT_EMAIL"
+          git config user.name "$COMMIT_NAME"
+
           # 获取当前分支名称
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+
           # 暂存所有更改
           git add -A
-          
+
+          # 原始提交信息只取首行，保证格式化提交是单行且可被跳过逻辑识别
+          ORIGIN_MSG="${HEAD_COMMIT_MESSAGE%%$'\n'*}"
+
           # 获取提交信息（如果是由 push 触发的，使用原始提交信息；否则使用默认信息）
-          if [ "${{ github.event_name }}" == "push" ]; then
-            # 获取触发此次工作流的提交信息
-            COMMIT_MSG="style: 自动格式化代码 (触发于: ${{ github.event.head_commit.message }})"
+          if [ "$EVENT_NAME" = "push" ] && [ -n "$ORIGIN_MSG" ]; then
+            COMMIT_MSG="style: 自动格式化代码 (触发于: ${ORIGIN_MSG})"
           else
             # 手动触发时使用默认信息
             COMMIT_MSG="style: 自动格式化代码"
           fi
-          
+
           # 提交更改
           git commit -m "$COMMIT_MSG" || exit 0
-          
+
           # 推送到远程分支
           git push origin "$BRANCH_NAME"
-
