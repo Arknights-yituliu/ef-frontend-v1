@@ -15,6 +15,8 @@ import { getLocalizedValue, getTranslation } from '../utils/translation';
  * 这里只包含「商店价值」页面展示的商店，其余商店如需展示可在此追加。
  */
 export const targetShopIds: string[] = [
+  // 危机合约商店
+  'shop_activity_contingency_contract_1_1',
   // 烟火生缘活动「堂头小铺」：仅收录以烟火钱兑换养成材料的「实用货品」分店
   'shop_inn_management_3',
   'shop_pay_yellow_1',

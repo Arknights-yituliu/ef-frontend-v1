@@ -910,7 +910,7 @@
       "secondary": "weapon.stat.gat_passive_attr_atk",
       "skill": "weapon.stat.gst_passive_magabn"
     },
-    "isForesight": true
+    "isForesight": false
   },
   "wpn_sword_0026": {
     "weaponId": "wpn_sword_0026",

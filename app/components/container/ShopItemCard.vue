@@ -110,6 +110,7 @@ const costPerformanceScaleByShopId = {
   domainshop_page_com_map01: { threshold: 1, step: 0.3 },
   domainshop_page_com_map02: { threshold: 0.5, step: 0.15 },
   shop_inn_management_3: { threshold: 3.9, step: 0.6 },
+  shop_activity_contingency_contract_1_1: { threshold: 1, step: 0.25 },
 } as const;
 
 function getCostPerformanceScale(shopId: string): { threshold: number; step: number } {

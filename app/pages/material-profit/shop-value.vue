@@ -137,7 +137,10 @@ interface ShopSection {
 }
 
 /** 展示「总价」的商店（活动商店，无限库存商品不计入） */
-const shopIdsWithTotalPrice = new Set<string>(['shop_inn_management_3']);
+const shopIdsWithTotalPrice = new Set<string>([
+  'shop_inn_management_3',
+  'shop_activity_contingency_contract_1_1',
+]);
 
 const headers = computed(() => [
   {

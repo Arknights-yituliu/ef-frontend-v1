@@ -980,6 +980,24 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_event_contingency_contract_1_3": {
+    "id": "achv_event_contingency_contract_1_3",
+    "name": {
+      "zh-CN": "“洗尽浊蓝”",
+      "en-US": "\"Indigo Cleansed\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_contingency_contract_1_3_plate": {
+    "id": "achv_event_contingency_contract_1_3_plate",
+    "name": {
+      "zh-CN": "“洗尽浊蓝”",
+      "en-US": "\"Indigo Cleansed\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_event_dungfight_2": {
     "id": "achv_event_dungfight_2",
     "name": {
@@ -2159,6 +2177,15 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_quest_minghe_2": {
+    "id": "achv_quest_minghe_2",
+    "name": {
+      "zh-CN": "“归野”",
+      "en-US": "\"Back to the Rustics\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_quest_sm2l10m3_2": {
     "id": "achv_quest_sm2l10m3_2",
     "name": {
@@ -2555,6 +2582,15 @@
     "rarity": 6,
     "iconId": "item_topic_chr_0036_jsspsi"
   },
+  "business_card_topic_chr_0037_minghe": {
+    "id": "business_card_topic_chr_0037_minghe",
+    "name": {
+      "zh-CN": "携光",
+      "en-US": "Bearer of Light"
+    },
+    "rarity": 6,
+    "iconId": "item_topic_chr_0037_minghe"
+  },
   "business_card_topic_normal_1": {
     "id": "business_card_topic_normal_1",
     "name": {
@@ -2887,6 +2923,15 @@
     },
     "rarity": 6,
     "iconId": "item_chr_0036_jsspsi"
+  },
+  "chr_0037_minghe": {
+    "id": "chr_0037_minghe",
+    "name": {
+      "zh-CN": "明河",
+      "en-US": "Argent Flow"
+    },
+    "rarity": 6,
+    "iconId": "item_chr_0037_minghe"
   },
   "chr_0038_purrche": {
     "id": "chr_0038_purrche",
@@ -4651,6 +4696,15 @@
     },
     "rarity": 5,
     "iconId": "item_activity_contract_gold_0"
+  },
+  "item_activity_contract_gold_1": {
+    "id": "item_activity_contract_gold_1",
+    "name": {
+      "zh-CN": "晶化硬币·浸蓝",
+      "en-US": "Vitrified Indigo"
+    },
+    "rarity": 5,
+    "iconId": "item_activity_contract_gold_1"
   },
   "item_activity_copper_poly": {
     "id": "item_activity_copper_poly",
@@ -6542,6 +6596,15 @@
     "rarity": 6,
     "iconId": "item_case_wpn_selfselect_gahca_1_6_1"
   },
+  "item_case_wpn_selfselect_gahca_1_6_2": {
+    "id": "item_case_wpn_selfselect_gahca_1_6_2",
+    "name": {
+      "zh-CN": "补充武库箱·月映",
+      "en-US": "Arms OC: Moongleam"
+    },
+    "rarity": 6,
+    "iconId": "item_case_wpn_selfselect_gahca_1_6_2"
+  },
   "item_case_wpn_selfselect_gahca_c_1": {
     "id": "item_case_wpn_selfselect_gahca_c_1",
     "name": {
@@ -6802,6 +6865,15 @@
     },
     "rarity": 5,
     "iconId": "item_char_equip_supply_2"
+  },
+  "item_char_equip_supply_minghe": {
+    "id": "item_char_equip_supply_minghe",
+    "name": {
+      "zh-CN": "武库防具箱α·天河",
+      "en-US": "Arsenal Defense Crate α: Star River"
+    },
+    "rarity": 5,
+    "iconId": "item_char_equip_supply_1"
   },
   "item_char_equip_supply_typhoea": {
     "id": "item_char_equip_supply_typhoea",
@@ -7198,6 +7270,15 @@
     },
     "rarity": 6,
     "iconId": "item_charpotentialup_chr_0036_jsspsi"
+  },
+  "item_charpotentialup_chr_0037_minghe": {
+    "id": "item_charpotentialup_chr_0037_minghe",
+    "name": {
+      "zh-CN": "明河的信物",
+      "en-US": "Argent Flow's Token"
+    },
+    "rarity": 6,
+    "iconId": "item_charpotentialup_chr_0037_minghe"
   },
   "item_charpotentialup_chr_0038_purrche": {
     "id": "item_charpotentialup_chr_0038_purrche",
@@ -10146,7 +10227,7 @@
     "id": "item_equip_t4_suit_atk02_hand_03",
     "name": {
       "zh-CN": "50式应龙手套",
-      "en-US": "Type 50 Yinglung Gloves"
+      "en-US": "Type 50 Yinglung Hands PPE"
     },
     "rarity": 5,
     "iconId": "item_equip_t4_suit_atk02_hand_03"
@@ -13521,7 +13602,7 @@
     "id": "item_formu_t4_suit_atk02_hand_03",
     "name": {
       "zh-CN": "50式应龙手套",
-      "en-US": "Type 50 Yinglung Gloves"
+      "en-US": "Type 50 Yinglung Hands PPE"
     },
     "rarity": 5,
     "iconId": "item_equip_t4_suit_atk02_hand_03"
@@ -15913,6 +15994,15 @@
   },
   "item_gacha_introletter_1_6_1": {
     "id": "item_gacha_introletter_1_6_1",
+    "name": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "rarity": 6,
+    "iconId": "item_gacha_introletter"
+  },
+  "item_gacha_introletter_1_6_2": {
+    "id": "item_gacha_introletter_1_6_2",
     "name": {
       "zh-CN": "寻访情报书",
       "en-US": "Headhunting Dossier"
@@ -18548,6 +18638,42 @@
     "rarity": 5,
     "iconId": "item_mission_c34m3_andrewsnowball"
   },
+  "item_mission_c37m1_foragel": {
+    "id": "item_mission_c37m1_foragel",
+    "name": {
+      "zh-CN": "辛辣饵料",
+      "en-US": "Spicy Bait"
+    },
+    "rarity": 5,
+    "iconId": "item_mission_c37m1_Forage"
+  },
+  "item_mission_c37m3_branch": {
+    "id": "item_mission_c37m3_branch",
+    "name": {
+      "zh-CN": "夜明河赠与的树枝",
+      "en-US": "Branch From Ye Minghe"
+    },
+    "rarity": 5,
+    "iconId": "item_mission_sm2l1m1_bamboo"
+  },
+  "item_mission_c37m3_tools": {
+    "id": "item_mission_c37m3_tools",
+    "name": {
+      "zh-CN": "修理兽棚的工具",
+      "en-US": "Beast Pen Repair Tools"
+    },
+    "rarity": 5,
+    "iconId": "item_mission_c37m3_tools"
+  },
+  "item_mission_c37m3_woodenboard": {
+    "id": "item_mission_c37m3_woodenboard",
+    "name": {
+      "zh-CN": "结实的木板",
+      "en-US": "Sturdy Planks"
+    },
+    "rarity": 5,
+    "iconId": "item_mission_sm2l1m1_bamboo"
+  },
   "item_mission_e0m0_hubkey": {
     "id": "item_mission_e0m0_hubkey",
     "name": {
@@ -19484,6 +19610,15 @@
     "rarity": 5,
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0037_minghe": {
+    "id": "item_pic_1_chr_0037_minghe",
+    "name": {
+      "zh-CN": "照野",
+      "en-US": "Bright Lance of the Wilds"
+    },
+    "rarity": 5,
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_0038_purrche": {
     "id": "item_pic_1_chr_0038_purrche",
     "name": {
@@ -19808,6 +19943,15 @@
     "rarity": 5,
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_3_chr_0037_minghe": {
+    "id": "item_pic_3_chr_0037_minghe",
+    "name": {
+      "zh-CN": "宿云",
+      "en-US": "Camped Beneath the Clouds"
+    },
+    "rarity": 5,
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_3_chr_0038_purrche": {
     "id": "item_pic_3_chr_0038_purrche",
     "name": {
@@ -20119,6 +20263,15 @@
     "name": {
       "zh-CN": "不浊",
       "en-US": "Untainted"
+    },
+    "rarity": 5,
+    "iconId": "item_potential_normal_photo"
+  },
+  "item_pic_5_chr_0037_minghe": {
+    "id": "item_pic_5_chr_0037_minghe",
+    "name": {
+      "zh-CN": "携光",
+      "en-US": "Bearer of Light"
     },
     "rarity": 5,
     "iconId": "item_potential_normal_photo"
@@ -21211,6 +21364,15 @@
     },
     "rarity": 1,
     "iconId": "item_port_grinder_1"
+  },
+  "item_port_horse_1": {
+    "id": "item_port_horse_1",
+    "name": {
+      "zh-CN": "摇摇怒骊",
+      "en-US": "Rocking Nuli"
+    },
+    "rarity": 5,
+    "iconId": "item_port_horse_1"
   },
   "item_port_jail_1": {
     "id": "item_port_jail_1",
@@ -22985,6 +23147,15 @@
     "rarity": 5,
     "iconId": "item_shot_anim_mifu_s_1"
   },
+  "item_shot_anim_minghe_m_1": {
+    "id": "item_shot_anim_minghe_m_1",
+    "name": {
+      "zh-CN": "老友的闲时",
+      "en-US": "Idling With an Old Friend"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_anim_minghe_m_1"
+  },
   "item_shot_anim_pelica_s_1": {
     "id": "item_shot_anim_pelica_s_1",
     "name": {
@@ -23957,6 +24128,15 @@
     "rarity": 6,
     "iconId": "item_ticketgacha_special_single_lt_1_6_1"
   },
+  "item_ticketgacha_special_single_lt_1_6_2": {
+    "id": "item_ticketgacha_special_single_lt_1_6_2",
+    "name": {
+      "zh-CN": "星河共我寻访凭证",
+      "en-US": "The Stars Are With Me HH Permit"
+    },
+    "rarity": 6,
+    "iconId": "item_ticketgacha_special_single_lt_1_6_2"
+  },
   "item_ticketgacha_special_ten": {
     "id": "item_ticketgacha_special_ten",
     "name": {
@@ -24595,6 +24775,15 @@
     },
     "rarity": 5,
     "iconId": "item_chr_0036_jsspsi"
+  },
+  "item_user_avatar_chr_0037_minghe": {
+    "id": "item_user_avatar_chr_0037_minghe",
+    "name": {
+      "zh-CN": "明河",
+      "en-US": "Argent Flow"
+    },
+    "rarity": 5,
+    "iconId": "item_chr_0037_minghe"
   },
   "item_user_avatar_chr_0038_purrche": {
     "id": "item_user_avatar_chr_0038_purrche",
@@ -27403,6 +27592,15 @@
     },
     "rarity": 6,
     "iconId": "item_ticketgacha_special_single_lt_1_6_1"
+  },
+  "ticketgacha_special_single_lt_1_6_2": {
+    "id": "ticketgacha_special_single_lt_1_6_2",
+    "name": {
+      "zh-CN": "星河共我寻访凭证",
+      "en-US": "The Stars Are With Me HH Permit"
+    },
+    "rarity": 6,
+    "iconId": "item_ticketgacha_special_single_lt_1_6_2"
   },
   "ticketgacha_special_ten_lt_1_0_1": {
     "id": "ticketgacha_special_ten_lt_1_0_1",
