@@ -107,8 +107,7 @@
         "i18nKey": "gachaAnalysis",
         "nameKey": "menu.gachaAnalysis",
         "routePath": "/tools/gacha-analysis",
-        "vuetifyIcon": "mdi-chart-bar",
-        "isHidden": true
+        "vuetifyIcon": "mdi-chart-bar"
       },
       {
         "i18nKey": "sklandEndfield",

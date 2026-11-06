@@ -74,6 +74,19 @@
 
     <!-- 分析页面 -->
     <div v-if="viewMode === 'analyze'" class="gacha-analysis">
+      <!-- 顶部操作栏 -->
+      <div class="analysis-toolbar">
+        <span class="analysis-toolbar-title">抽卡分析</span>
+
+        <div class="analysis-toolbar-actions">
+          <button class="btn update-btn" @click="goToUpdate">更新数据</button>
+
+          <button class="btn export-btn" @click="exportDataToJson">导出数据</button>
+
+          <button class="btn clear-btn" @click="confirmClearCache">删除记录</button>
+        </div>
+      </div>
+
       <div class="gacha-overview mb-8">
         <div class="gacha-overview-left">
           <div class="user-card">
@@ -400,15 +413,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- 底部按钮 -->
-        <div class="action-buttons-container action-buttons-container--center">
-          <button class="btn update-btn" @click="goToUpdate">更新数据</button>
-
-          <button class="btn export-btn" @click="exportDataToJson">导出数据</button>
-
-          <button class="btn clear-btn" @click="confirmClearCache">删除记录</button>
         </div>
       </div>
 

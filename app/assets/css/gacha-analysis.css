@@ -760,17 +760,41 @@
   }
 }
 
-.action-buttons-container {
+/* 顶部操作栏 */
+.analysis-toolbar {
   display: flex;
-  justify-content: end;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.action-buttons {
-  bottom: 20px;
-  right: 20px;
+.analysis-toolbar-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f1c40f;
+}
+
+.analysis-toolbar-actions {
   display: flex;
-  gap: 12px;
-  z-index: 1000;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.analysis-toolbar-actions .btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 危险操作使用描边样式，避免与主操作抢视觉 */
+.analysis-toolbar-actions .clear-btn {
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #ef4444;
 }
 
 .btn {
@@ -1422,15 +1446,6 @@
 
 .record-tag--off {
   color: #ef4444;
-}
-
-/* 底部按钮容器 */
-.action-buttons-container--center {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
 }
 
 /* 按钮样式 */

@@ -11,6 +11,7 @@
 - [基质规划器 / Essence Planner](https://ef.yituliu.cn/tools/essence-calculator): 规划基质（Essence）资源的使用与升级方案。
 - [礼物查询器 / Gift Search](https://ef.yituliu.cn/tools/gift-calculator): 查询干员礼物偏好与最优赠送方案。
 - [选剑演武计算器 / Trial of Swordmancy Calculator](https://ef.yituliu.cn/tools/trial-of-swordmancy-strategy): 选剑演武玩法相关计算与策略。
+- [抽卡分析 / Gacha Analysis](https://ef.yituliu.cn/tools/gacha-analysis): 分析抽卡记录、统计出货与保底情况。
 - [电池分流计算器 / Battery Split Calculator](https://ef.yituliu.cn/tools/power-calc): 计算基建电池（电力）的分流与分配方案。
 
 ## 材料收益 (Material Profit)
