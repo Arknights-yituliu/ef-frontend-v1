@@ -650,6 +650,16 @@ const freqMode = ref<'all' | 'sixStar'>('all');
 const characterRecords = ref<GachaRecord[]>([]);
 const weaponRecords = ref<GachaRecord[]>([]);
 
+function isAnalysisRecord(record: GachaRecord) {
+  return record.rarity !== 0 && !!record.charName?.trim() && record.charName !== '寻访情报书';
+}
+const analysisCharacterRecords = computed(() =>
+  characterRecords.value.filter((record) => isAnalysisRecord(record)),
+);
+const analysisWeaponRecords = computed(() =>
+  weaponRecords.value.filter((record) => isAnalysisRecord(record)),
+);
+
 const characterSixStarResults = ref<SixStarEntry[]>([]);
 const weaponSixStarResults = ref<SixStarEntry[]>([]);
 
@@ -1176,8 +1186,8 @@ function processGachaData() {
     parseSeqId(b.seqId) - parseSeqId(a.seqId);
 
   // 分别处理角色和武器
-  const charAnalysis = analyzeSingleType(characterRecords.value);
-  const wepAnalysis = analyzeSingleType(weaponRecords.value);
+  const charAnalysis = analyzeSingleType(analysisCharacterRecords.value);
+  const wepAnalysis = analyzeSingleType(analysisWeaponRecords.value);
 
   // 4. 更新响应式结果
   characterSixStarResults.value = charAnalysis.toSorted(sortByDesc);
@@ -1381,7 +1391,7 @@ const poolSummary = computed(() => {
 // 卡池分布
 const poolDistribution = computed(() => {
   const map: Record<string, { count: number; ratio: number }> = {};
-  for (const r of [...characterRecords.value, ...weaponRecords.value]) {
+  for (const r of [...analysisCharacterRecords.value, ...analysisWeaponRecords.value]) {
     if (!map[r.poolName]) {
       map[r.poolName] = { count: 0, ratio: 0 };
     }
@@ -1417,7 +1427,7 @@ const topCharacters = computed(() => {
 // 角色 ID → 名称映射（从原始记录构建，用于五星角色名解析）
 const charIdToName = computed(() => {
   const map = new Map<string, string>();
-  for (const r of characterRecords.value) {
+  for (const r of analysisCharacterRecords.value) {
     if (r.charId && r.charName) {
       map.set(r.charId, r.charName);
     }
@@ -1456,8 +1466,9 @@ const allCharFrequency = computed(() => {
 // 计算每个卡池的总抽数
 function getPoolTotalPulls(records: SixStarEntry[]): number {
   const poolId = records[0]?.poolId;
-  return [...characterRecords.value, ...weaponRecords.value].filter((r) => r.poolId === poolId)
-    .length;
+  return [...analysisCharacterRecords.value, ...analysisWeaponRecords.value].filter(
+    (r) => r.poolId === poolId,
+  ).length;
 }
 
 // ========== 特色抽卡 Tag 计算逻辑 ==========
@@ -1575,6 +1586,7 @@ const bigPityRecords = computed(() => {
 
   for (const [index, record] of records.entries()) {
     if (record.seqId !== String(index + 1)) break;
+    if (!isAnalysisRecord(record)) continue;
     if (getPoolType(record.poolId) !== 'limited' || record.isFree) continue;
 
     const upChar = getUpChar(record);
