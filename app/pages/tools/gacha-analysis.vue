@@ -81,7 +81,7 @@
     <div v-if="viewMode === 'analyze'" class="gacha-analysis">
       <!-- 顶部操作栏 -->
       <div class="analysis-toolbar">
-        <span class="analysis-toolbar-title">抽卡分析</span>
+        <h1 class="analysis-toolbar-title">抽卡分析</h1>
 
         <div class="analysis-toolbar-actions">
           <button class="btn update-btn" @click="goToUpdate">更新数据</button>
@@ -283,7 +283,7 @@
         </div>
 
         <!-- 3. 数据列表渲染 -->
-        <div v-for="group in currentPoolGroup" :key="group.poolId" class="mb-8">
+        <div v-for="group in paginatedPoolGroup" :key="group.poolId" class="mb-8">
           <h2 class="text-h5 mb-3 pool-group-title">
             <span>{{ group.poolName }}</span>
 
@@ -428,6 +428,12 @@
             </div>
           </div>
         </div>
+        <v-pagination
+          v-if="poolPageCount > 1"
+          v-model="poolPage"
+          :length="poolPageCount"
+          :total-visible="5"
+        />
       </div>
 
       <div class="chart-container">
@@ -1253,6 +1259,18 @@ const currentPoolGroup = computed(() => {
   });
 });
 
+const poolPage = ref(1);
+const poolPageSize = 5;
+const poolPageCount = computed(() => Math.ceil(currentPoolGroup.value.length / poolPageSize));
+const paginatedPoolGroup = computed(() => {
+  const start = (poolPage.value - 1) * poolPageSize;
+  return currentPoolGroup.value.slice(start, start + poolPageSize);
+});
+
+watch(poolPageCount, (count) => {
+  poolPage.value = Math.min(poolPage.value, Math.max(count, 1));
+});
+
 // ========== 计算相关 ==========
 
 const totalAllPulls = computed(() => {
@@ -1685,7 +1703,10 @@ function updateFreqSlider() {
 }
 
 watch(freqMode, () => nextTick(updateFreqSlider));
-watch(selectedPool, () => nextTick(updatePoolSlider));
+watch(selectedPool, () => {
+  poolPage.value = 1;
+  nextTick(updatePoolSlider);
+});
 watch(viewMode, (mode) => {
   if (mode === 'analyze') {
     nextTick(() => {
