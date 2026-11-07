@@ -10,6 +10,31 @@ interface GachaPool {
 // 卡池列表
 const gachaPools: GachaPool[] = [
   {
+    poolId: 'weaponbox_constant_1',
+    poolName: '坚冰申领',
+    upCharName: '赫拉芬格',
+  },
+  {
+    poolId: 'weaponbox_constant_2',
+    poolName: '星声申领',
+    upCharName: '沧溟星梦',
+  },
+  {
+    poolId: 'weaponbox_constant_3',
+    poolName: '远途申领',
+    upCharName: '不知归',
+  },
+  {
+    poolId: 'weaponbox_constant_4',
+    poolName: '崇山申领',
+    upCharName: '负山',
+  },
+  {
+    poolId: 'weaponbox_constant_5',
+    poolName: '雷鸣申领',
+    upCharName: '大雷斑',
+  },
+  {
     poolId: 'special_1_0_1',
     poolName: '熔火灼痕',
     upCharName: '莱万汀',

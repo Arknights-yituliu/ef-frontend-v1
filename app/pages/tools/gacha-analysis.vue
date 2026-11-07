@@ -345,9 +345,13 @@
                     <div
                       class="gacha-bar"
                       :class="getBarType(record)"
-                      :style="{ width: Math.min(getBarWidth(record.count), 100) + '%' }"
+                      :style="{
+                        width: Math.min(getBarWidth(record.isFree ? 10 : record.count), 100) + '%',
+                      }"
                     >
-                      <div class="pull-count">{{ record.count }} 抽</div>
+                      <div class="pull-count">
+                        {{ record.isFree ? '免费' : `${record.count} 抽` }}
+                      </div>
                     </div>
 
                     <div
@@ -379,12 +383,17 @@
                   </div>
 
                   <div
-                    v-if="expandedSeqId === record.seqId && record.fiveStars?.length"
+                    v-if="
+                      expandedSeqId === record.seqId &&
+                      (record.freeRewards || record.fiveStars)?.length
+                    "
                     class="mt-2 ml-2 p-2 expanded-five-stars"
                   >
                     <div class="five-stars-list">
                       <div
-                        v-for="(item, i) in countFiveStars(record.fiveStars || [])"
+                        v-for="(item, i) in countFiveStars(
+                          record.freeRewards || record.fiveStars || [],
+                        )"
                         :key="i"
                         class="five-star-item"
                       >
@@ -663,6 +672,8 @@ interface SixStarEntry {
   count: number;
   timestamp: string | number;
   fiveStars?: string[];
+  freeRewards?: string[];
+  isFree?: boolean;
 }
 
 function safeTimestamp(ts: string | number): number {
@@ -704,8 +715,14 @@ function getPoolColor(poolName: string): string {
 }
 
 const upCharMap = new Map<string, string>();
+const upCharNameMap = new Map<string, string | null>();
 for (const pool of gachaPools) {
   upCharMap.set(pool.poolId, pool.upCharName);
+  upCharNameMap.set(pool.poolName, upCharNameMap.has(pool.poolName) ? null : pool.upCharName);
+}
+
+function getUpChar(record: { poolName: string; poolId: string }): string | undefined {
+  return upCharNameMap.get(record.poolName) ?? upCharMap.get(record.poolId);
 }
 
 // ========== 通过链接获取 ==========
@@ -1048,25 +1065,37 @@ function processGachaData() {
       {
         count: number;
         fiveStars: string[];
-        freeRecords: { rarity: number; name: string }[];
+        freeCount: number;
+        freeFiveStars: string[];
+        freeRewards: string[];
       }
     > = {};
 
     for (const record of list) {
       if (!poolState[record.poolId]) {
-        poolState[record.poolId] = { count: 0, fiveStars: [], freeRecords: [] };
+        poolState[record.poolId] = {
+          count: 0,
+          fiveStars: [],
+          freeCount: 0,
+          freeFiveStars: [],
+          freeRewards: [],
+        };
       }
       const state = poolState[record.poolId]!;
 
       // --- 【核心逻辑：免费抽数分流】 ---
       if (record.isFree) {
-        // 1. 完全不增加 state.count (跳过保底水位)
-        // 2. 如果是 5 星或 6 星，记录到该池子的免费清单里
-        if (record.rarity >= 5) {
-          state.freeRecords.push({
-            rarity: record.rarity,
-            name: record.charId,
+        state.freeCount++;
+        if (record.rarity >= 5) state.freeRewards.push(record.charId);
+        if (record.rarity === 6) {
+          resultWithPadded.push({
+            ...record,
+            character: record.charName,
+            count: 0,
+            timestamp: record.gachaTs,
           });
+        } else if (record.rarity === 5) {
+          state.freeFiveStars.push(record.charId);
         }
         continue;
       }
@@ -1091,7 +1120,7 @@ function processGachaData() {
 
     // --- 【特殊处理：将每个池子的免费统计作为虚拟节点插入】 ---
     for (const [poolId, state] of Object.entries(poolState)) {
-      if (state.freeRecords.length > 0) {
+      if (state.freeCount > 0) {
         // 找到该池子中 seqId 最小的记录作为锚点（用于让它显示在底端）
         const firstInPool = list.find((r) => r.poolId === poolId);
 
@@ -1100,10 +1129,11 @@ function processGachaData() {
           poolName: firstInPool?.poolName || '未知卡池',
           character: '赠送十连',
           charId: 'free_bundle',
-          count: 10,
+          count: state.freeCount,
           timestamp: firstInPool?.gachaTs || Date.now(),
           seqId: (firstInPool?.seqId || '0') + '_bottom_free',
-          fiveStars: state.freeRecords.map((r) => r.name),
+          fiveStars: state.freeFiveStars,
+          freeRewards: state.freeRewards,
         });
       }
     }
@@ -1156,7 +1186,7 @@ function isOffPool(record: SixStarEntry): boolean {
   if (record.character === '已垫' || record.character === '赠送十连') {
     return false;
   }
-  const upChar = upCharMap.get(record.poolId);
+  const upChar = getUpChar(record);
   if (!upChar) {
     return false;
   }
@@ -1299,6 +1329,7 @@ const poolSummary = computed(() => {
       // 如果是 UP 角色
       if (isOnBanner(record)) {
         summary[type].nonPityCount += 1;
+        if (record.isFree) continue;
 
         // 将这一段路程的所有抽数（含之前歪掉的）加入“UP总投入”
         totalPullsForUp[type] += runningPullsSinceLastUp[type];
@@ -1315,7 +1346,10 @@ const poolSummary = computed(() => {
     // 六星平均出货（所有六星）
     s.average = s.totalCount > 0 ? s.total / s.totalCount : 0;
     // UP平均出货：总投入 / UP个数
-    s.graduateAverage = s.nonPityCount > 0 ? totalPullsForUp[key] / s.nonPityCount : 0;
+    const paidUpCount = chronologicalRecords.filter(
+      (record) => getPoolType(record.poolId) === key && !record.isFree && isOnBanner(record),
+    ).length;
+    s.graduateAverage = paidUpCount > 0 ? totalPullsForUp[key] / paidUpCount : 0;
   }
 
   return summary;
@@ -1324,21 +1358,11 @@ const poolSummary = computed(() => {
 // 卡池分布
 const poolDistribution = computed(() => {
   const map: Record<string, { count: number; ratio: number }> = {};
-  // 1. 先统计真实六星的抽数（原有逻辑）
-  for (const r of realSixStarRecords.value) {
+  for (const r of [...characterRecords.value, ...weaponRecords.value]) {
     if (!map[r.poolName]) {
       map[r.poolName] = { count: 0, ratio: 0 };
     }
-    map[r.poolName]!.count += r.count;
-  }
-
-  // 2. 新增：统计“已垫”的抽数
-  const paddedRecords = sixStarRecordsWithCount.value.filter((r) => r.character === '已垫');
-  for (const r of paddedRecords) {
-    if (!map[r.poolName]) {
-      map[r.poolName] = { count: 0, ratio: 0 };
-    }
-    map[r.poolName]!.count += r.count;
+    map[r.poolName]!.count++;
   }
 
   // 3. 计算总抽数（包含已垫）和占比
@@ -1408,7 +1432,9 @@ const allCharFrequency = computed(() => {
 
 // 计算每个卡池的总抽数
 function getPoolTotalPulls(records: SixStarEntry[]): number {
-  return records.reduce((sum, r) => sum + (r.count || 0), 0);
+  const poolId = records[0]?.poolId;
+  return [...characterRecords.value, ...weaponRecords.value].filter((r) => r.poolId === poolId)
+    .length;
 }
 
 // ========== 特色抽卡 Tag 计算逻辑 ==========
@@ -1438,11 +1464,13 @@ const gachaTags = computed(() => {
   }
 
   // 1. 统计十连内多金标签（十连双金/三金）
-  const sortedByTime = [...realSixStars].toSorted((a, b) => {
-    const tsA = safeTimestamp(a.timestamp);
-    const tsB = safeTimestamp(b.timestamp);
-    return tsA - tsB;
-  });
+  const sortedByTime = realSixStars
+    .filter((r) => !r.isFree)
+    .toSorted((a, b) => {
+      const tsA = safeTimestamp(a.timestamp);
+      const tsB = safeTimestamp(b.timestamp);
+      return tsA - tsB;
+    });
 
   for (let i = 0; i < sortedByTime.length; i++) {
     const current = sortedByTime[i];
@@ -1489,7 +1517,10 @@ const gachaTags = computed(() => {
   }
 
   // 3. 单抽出金
-  if (realSixStars.some((r) => r.count === 1) && !tags.some((t) => t.name === '单抽出金')) {
+  if (
+    realSixStars.some((r) => !r.isFree && r.count === 1) &&
+    !tags.some((t) => t.name === '单抽出金')
+  ) {
     tags.push({ name: '单抽出金', type: 'lucky' });
   }
 
@@ -1511,26 +1542,38 @@ const gachaTags = computed(() => {
   return tags;
 });
 
-// 缓存：预排序每个卡池的记录，避免 getProbabilityInfo 中重复排序
-const sortedRecordsByPoolId = computed(() => {
-  const map = new Map<string, SixStarEntry[]>();
-  for (const group of groupedByPool.value) {
-    const sorted = [...group.records].toSorted(
-      (a, b) => Number.parseInt(a.seqId) - Number.parseInt(b.seqId),
-    );
-    map.set(group.poolId, sorted);
+// 只有角色记录从序号 1 连续完整时，才能确认每个卡池的首次付费 UP。
+const bigPityRecords = computed(() => {
+  const result = new Set<string>();
+  const states = new Map<string, { paidCount: number; paidUp: boolean }>();
+  const records = characterRecords.value.toSorted(
+    (a, b) => parseSeqId(a.seqId) - parseSeqId(b.seqId),
+  );
+
+  for (const [index, record] of records.entries()) {
+    if (record.seqId !== String(index + 1)) break;
+    if (getPoolType(record.poolId) !== 'limited' || record.isFree) continue;
+
+    const upChar = getUpChar(record);
+    if (!upChar) continue;
+    const state = states.get(record.poolId) || { paidCount: 0, paidUp: false };
+    state.paidCount++;
+    if (record.rarity === 6 && record.charName === upChar) {
+      if (!state.paidUp && state.paidCount === 120) result.add(record.seqId);
+      state.paidUp = true;
+    }
+    states.set(record.poolId, state);
   }
-  return map;
+  return result;
 });
 
-// 判断是否为120抽大保底
 // 1. 判断虚拟记录的辅助函数
 const isVirtualRecord = (name: string) => name === '已垫' || name === '赠送十连';
 /**
  * 核心逻辑：获取显示所需的“恰好在这一抽才出金”的全局概率
  */
 function getProbabilityInfo(current: SixStarEntry, _allInGroup: SixStarEntry[]) {
-  if (isVirtualRecord(current.character)) return null;
+  if (isVirtualRecord(current.character) || current.isFree) return null;
 
   const pullCount = current.count; // 当前出金时显示的垫抽数 (1-80)
 
@@ -1539,7 +1582,9 @@ function getProbabilityInfo(current: SixStarEntry, _allInGroup: SixStarEntry[]) 
 
   for (let i = 1; i < pullCount; i++) {
     let rateAtI = 0.008; // 基础 0.8%
-    if (i > 65) {
+    if (i >= 80) {
+      rateAtI = 1;
+    } else if (i > 65) {
       rateAtI = 0.008 + (i - 65) * 0.05;
     }
     probabilityOfNotPullingBefore *= 1 - Math.min(rateAtI, 1);
@@ -1547,7 +1592,9 @@ function getProbabilityInfo(current: SixStarEntry, _allInGroup: SixStarEntry[]) 
 
   // --- 第二步：计算“第 N 抽刚好出金”的即时概率 ---
   let rateAtCurrent = 0.008;
-  if (pullCount > 65) {
+  if (pullCount >= 80) {
+    rateAtCurrent = 1;
+  } else if (pullCount > 65) {
     rateAtCurrent = 0.008 + (pullCount - 65) * 0.05;
   }
   rateAtCurrent = Math.min(rateAtCurrent, 1);
@@ -1556,43 +1603,14 @@ function getProbabilityInfo(current: SixStarEntry, _allInGroup: SixStarEntry[]) 
   // P = (前N-1抽没出) * (这一抽中了) * (50% 歪或不歪)
   const chanceOfExactPull = probabilityOfNotPullingBefore * rateAtCurrent * 0.5;
 
-  // --- 额外逻辑：大保底判断 ---
-  let isBigPity = false;
-  let debugPulls = 0;
-
-  const sortedRecords = sortedRecordsByPoolId.value.get(current.poolId) || [];
-  const currentIndex = sortedRecords.findIndex((r) => r.seqId === current.seqId);
-
-  if (currentIndex !== -1) {
-    for (let i = currentIndex; i >= 0; i--) {
-      const r = sortedRecords[i];
-      if (i !== currentIndex && isOnBanner(r!)) {
-        break;
-      }
-      if (r!.character !== '赠送十连') {
-        debugPulls += r!.count;
-      }
-    }
-    if (isOnBanner(current) && debugPulls >= 120) {
-      isBigPity = true;
-    }
-  }
-
-  // --- 返回显示对象 ---
-  if (isBigPity) {
+  if (bigPityRecords.value.has(current.seqId)) {
     return { label: '大保底', subLabel: '', isBig: true };
-  }
-
-  let prob = 0.8;
-  if (current.count > 65) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    prob = 0.8 + (current.count - 65) * 5;
   }
 
   return {
     // 转换为百分比并保留两位小数，例如 "1.49%"
     label: `${numberRound(chanceOfExactPull * 100, 2)}%`,
-    subLabel: `事件概率`,
+    subLabel: '事件概率',
     isBig: false,
   };
 }
@@ -1605,7 +1623,7 @@ function getBarWidth(count: number) {
 
 // 返回用于样式的状态标识
 function getBarType(record: SixStarEntry): string {
-  const upChar = upCharMap.get(record.poolId);
+  const upChar = getUpChar(record);
   const isOnBanner = !!upChar && record.character === upChar;
   const isOffPool = !!upChar && record.character !== upChar;
 
@@ -1633,7 +1651,7 @@ function getBarType(record: SixStarEntry): string {
 }
 
 function isOnBanner(record: SixStarEntry): boolean {
-  const upChar = upCharMap.get(record.poolId);
+  const upChar = getUpChar(record);
   return !!upChar && record.character === upChar;
 }
 
