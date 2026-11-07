@@ -131,6 +131,16 @@ const gachaPools: GachaPool[] = [
     poolName: '篆玉申领',
     upCharName: '玉中身',
   },
+  {
+    poolId: 'special_1_6_2',
+    poolName: '烟火邀星河',
+    upCharName: '明河',
+  },
+  {
+    poolId: 'weponbox_1_6_2',
+    poolName: '月映申领',
+    upCharName: '唤月',
+  },
 ];
 // 卡池命名逻辑 special_「大版本号」_「小版本号」_「第n个卡池」
 export { gachaPools };
