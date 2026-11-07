@@ -42,6 +42,11 @@
             点击此处获取查询链接（需登陆鹰角通行证）
           </a>
         </p>
+        <p class="help-text">
+          <a href="https://user.hypergryph.com/" rel="noopener noreferrer" target="_blank">
+            前往鹰角网络通行证登录
+          </a>
+        </p>
       </div>
 
       <div v-show="importMethod === 'local'" class="form-group file-upload-area">
