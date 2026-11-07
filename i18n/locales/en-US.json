@@ -326,6 +326,10 @@
           "code": "Email Code",
           "register": "Register"
         },
+        "notice": {
+          "title": "Account shared with Arknights Yituliu",
+          "description": "Both sites share one account. If you already registered on Arknights Yituliu, sign in directly — no need to register again."
+        },
         "fields": {
           "account": "Email or username",
           "email": "Email",
