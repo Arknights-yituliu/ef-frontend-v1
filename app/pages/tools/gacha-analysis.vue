@@ -1566,11 +1566,11 @@ function getProbabilityInfo(current: SixStarEntry, _allInGroup: SixStarEntry[]) 
   if (currentIndex !== -1) {
     for (let i = currentIndex; i >= 0; i--) {
       const r = sortedRecords[i];
-      if (r!.character !== '赠送十连') {
-        debugPulls += r!.count;
-      }
       if (i !== currentIndex && isOnBanner(r!)) {
         break;
+      }
+      if (r!.character !== '赠送十连') {
+        debugPulls += r!.count;
       }
     }
     if (isOnBanner(current) && debugPulls >= 120) {
