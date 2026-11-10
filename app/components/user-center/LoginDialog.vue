@@ -455,7 +455,7 @@ async function submitRegister(): Promise<void> {
         userName: registerForm.userName.trim(),
         nickname: registerForm.nickname.trim() || undefined,
         email: registerForm.email.trim(),
-        code: registerForm.code.trim(),
+        verificationCode: registerForm.code.trim(),
         password: registerForm.password,
       }).then(() => undefined),
     finishLogin,
