@@ -766,14 +766,29 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 20px;
+  padding: 4px 0 16px;
+  border-bottom: 1px solid var(--theme-border-secondary);
 }
 
 .analysis-toolbar-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #f1c40f;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: var(--theme-text-primary);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.analysis-toolbar-title::before {
+  content: '';
+  width: 5px;
+  height: 24px;
+  background: #e5b924;
+  transform: skew(-12deg);
 }
 
 .analysis-toolbar-actions {
@@ -784,17 +799,82 @@
 }
 
 .analysis-toolbar-actions .btn {
+  --toolbar-accent: #c99e15;
+  position: relative;
+  min-height: 40px;
   padding: 8px 16px;
+  border: 1px solid transparent;
+  border-top-color: var(--toolbar-accent);
+  border-left-color: var(--toolbar-accent);
   border-radius: 8px;
+  background: var(--toolbar-bg);
+  color: var(--toolbar-text);
   font-size: 14px;
   font-weight: 500;
+  letter-spacing: 0.04em;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
-/* 危险操作使用描边样式，避免与主操作抢视觉 */
+.analysis-toolbar-actions .btn:hover,
+.analysis-toolbar-actions .btn:focus-visible {
+  box-shadow: 0 3px 10px var(--theme-shadow-base);
+  opacity: 1;
+}
+
+.analysis-toolbar-actions .btn:hover {
+  transform: translateY(-3px);
+}
+
+.analysis-toolbar-actions .btn:focus-visible {
+  outline: 2px solid var(--toolbar-accent);
+  outline-offset: 3px;
+}
+
+.analysis-toolbar-actions .update-btn {
+  --toolbar-accent: #3f76a8;
+  --toolbar-bg: #e1effb;
+  --toolbar-text: #24547e;
+}
+
+.analysis-toolbar-actions .export-btn {
+  --toolbar-accent: #438773;
+  --toolbar-bg: #dff3e9;
+  --toolbar-text: #22614e;
+}
+
 .analysis-toolbar-actions .clear-btn {
-  border: 1px solid #ef4444;
-  background: transparent;
-  color: #ef4444;
+  --toolbar-accent: #b95b58;
+  --toolbar-bg: #fae5df;
+  --toolbar-text: #963f3b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .analysis-toolbar-actions .btn {
+    transition: none;
+  }
+
+  .analysis-toolbar-actions .btn:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .analysis-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .analysis-toolbar-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .analysis-toolbar-actions .btn {
+    padding: 8px 4px;
+  }
 }
 
 .btn {

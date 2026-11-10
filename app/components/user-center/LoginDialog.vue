@@ -13,6 +13,15 @@
       </v-tabs>
 
       <v-card-text>
+        <!-- 账号通用说明：明日方舟一图流与本站为同一账号，老用户可直接登录 -->
+        <div v-if="activeTab !== 'reset'" class="login-account-note">
+          <v-icon class="note-icon" icon="mdi-information-outline" size="18" />
+          <div class="note-content">
+            <div class="note-title">{{ t('component.userCenter.login.notice.title') }}</div>
+            <div class="note-text">{{ t('component.userCenter.login.notice.description') }}</div>
+          </div>
+        </div>
+
         <v-alert v-if="errorMessage" class="mb-4" density="compact" type="error" variant="tonal">
           {{ errorMessage }}
         </v-alert>
@@ -446,7 +455,7 @@ async function submitRegister(): Promise<void> {
         userName: registerForm.userName.trim(),
         nickname: registerForm.nickname.trim() || undefined,
         email: registerForm.email.trim(),
-        code: registerForm.code.trim(),
+        verificationCode: registerForm.code.trim(),
         password: registerForm.password,
       }).then(() => undefined),
     finishLogin,
@@ -515,6 +524,43 @@ onBeforeUnmount(() => {
 
 .login-tabs {
   border-bottom: 1px solid var(--theme-border);
+}
+
+/* 账号通用说明：低调的提示条，深浅色主题下均跟随主题变量 */
+.login-account-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--theme-border);
+  border-left: 3px solid var(--theme-accent-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--theme-bg-tertiary);
+}
+
+.note-icon {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  color: var(--theme-text-secondary);
+}
+
+.note-content {
+  min-width: 0;
+}
+
+.note-title {
+  color: var(--theme-text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.note-text {
+  margin-top: 0.125rem;
+  color: var(--theme-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.6;
 }
 
 .code-field {
