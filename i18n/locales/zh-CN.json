@@ -96,6 +96,8 @@
         "link": "新窗口",
         "copyLink": "复制链接",
         "website": "官网",
+        "goVersionBriefing": "前往阅览",
+        "goVersionBriefingInt": "国际服",
         "news": "新闻公告",
         "chargeReward": "充值返还查询",
         "factory4Graduate": "谷地一键毕业",
@@ -143,6 +145,11 @@
           "title": "可用兑换码",
           "tag": "官方",
           "description": "于“设置-平台与账户-礼包兑换”处兑换；需要开启【邮箱】功能"
+        },
+        "versionBriefing": {
+          "title": "新版本导览",
+          "tag": "官方",
+          "description": "《明日方舟：终末地》官方新版本导览页。浏览可得嵌晶玉×1000，每次版本节目首播时更新奖励次数。"
         },
         "officialWebsite": {
           "title": "《明日方舟：终末地》官网",

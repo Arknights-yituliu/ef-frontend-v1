@@ -137,6 +137,32 @@ export const homeCards: CardData[] = [
     ],
   },
   {
+    i18nKey: 'versionBriefing',
+    icon: '/images/icon/hg.png',
+    image: 'https://cos.yituliu.cn/endfield/home/gift-background.png',
+    descriptionKey: 'description',
+    tagTypes: [CardTagType.Official],
+    buttons: [
+      {
+        i18nKey: 'buttons.goVersionBriefing',
+        buttonType: ButtonType.Main,
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.hypergryph.com/version_briefing/latest',
+        target: true,
+        icon: 'mdi-web',
+        color: 'primary',
+      },
+      {
+        i18nKey: 'buttons.goVersionBriefingInt',
+        buttonType: ButtonType.Link,
+        action: ButtonActionType.Link,
+        actionData: 'https://endfield.gryphline.com/version_briefing/latest',
+        target: true,
+        icon: 'mdi-open-in-new',
+      },
+    ],
+  },
+  {
     i18nKey: 'officialWebsite',
     icon: '/images/icon/hg.png',
     image: 'https://cos.yituliu.cn/endfield/home/endfieldofficial.jpg',
