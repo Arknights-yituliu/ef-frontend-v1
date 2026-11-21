@@ -57,12 +57,19 @@ const versionTable: VersionTableItem[] = [
   },
   {
     start: new Date('2026/10/15 12:00:00'),
-    end: new Date('2026/11/26 12:00:00'),
+    end: new Date('2026/11/25 12:00:00'),
     // TODO: 待补充「丹青渡」官方主题色，当前暂用默认配色占位
     primaryColor: 'rgba(232, 216, 168, 1)',
     colorOpacity: 'rgba(232, 216, 168, 0.3)',
-
     version: '丹青渡',
+  },
+  {
+    start: new Date('2026/11/25 12:00:00'),
+    end: new Date('2027/01/07 12:00:00'),
+    // TODO: 待补充「丹青渡」官方主题色，当前暂用默认配色占位
+    primaryColor: 'rgba(247, 240, 221, 1)',
+    colorOpacity: 'rgba(247, 240, 221, 0.3)',
+    version: '穿越甚大蘑境与你相逢',
   },
 ];
 

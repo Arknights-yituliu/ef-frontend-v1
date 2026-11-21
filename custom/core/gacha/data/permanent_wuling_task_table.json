@@ -1,5 +1,26 @@
 [
   {
+    "id": "前缘再续",
+    "name": {
+      "zh": "前缘再续",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "支线任务",
+    "active": true,
+    "regional": "武陵",
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "入丹青",
     "name": {
       "zh": "入丹青",

@@ -198,7 +198,7 @@
     "poolName": "明河",
     "character": "明河",
     "poolStart": "2026/11/06 12:00:00",
-    "poolEnd": "2026/11/26 12:00:00",
+    "poolEnd": "2026/11/25 12:00:00",
     "poolDateStr": "1106-1126",
     "versionStart": "2026/09/02 12:00:00",
     "versionEnd": "2026/10/15 12:00:00",
@@ -213,7 +213,7 @@
     "poolName": "祀+明河",
     "character": "祀+明河",
     "poolStart": "2026/10/15 12:00:00",
-    "poolEnd": "2026/11/26 12:00:00",
+    "poolEnd": "2026/11/25 12:00:00",
     "poolDateStr": "1015-1126",
     "versionStart": "2026/09/02 12:00:00",
     "versionEnd": "2026/10/15 12:00:00",
@@ -223,5 +223,20 @@
     "narrative": false,
     "poolMembers": ["祀", "明河"],
     "skipReward": true
+  },
+  {
+    "poolName": "小刻",
+    "character": "小刻",
+    "poolStart": "2026/11/25 12:00:00",
+    "poolEnd": "2026/12/23 12:00:00",
+    "poolDateStr": "1126-1223",
+    "versionStart": "2026/11/25 12:00:00",
+    "versionEnd": "2027/01/07 12:00:00",
+    "version": "穿越甚大蘑境与你相逢",
+    "poolPackId": "",
+    "combatDrills": true,
+    "narrative": true,
+    "poolMembers": ["小刻"],
+    "skipReward": false
   }
 ]
