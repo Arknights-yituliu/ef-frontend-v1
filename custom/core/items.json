@@ -28151,6 +28151,24 @@
     "rarity": 6,
     "iconId": "wpn_lance_0016"
   },
+  "wpn_lance_0017": {
+    "id": "wpn_lance_0017",
+    "name": {
+      "zh-CN": "甜美交易",
+      "en-US": "Sweet Deal"
+    },
+    "rarity": 6,
+    "iconId": "wpn_lance_0017"
+  },
+  "wpn_lance_0018": {
+    "id": "wpn_lance_0018",
+    "name": {
+      "zh-CN": "突击流星",
+      "en-US": "Raid Comet"
+    },
+    "rarity": 6,
+    "iconId": "wpn_lance_0018"
+  },
   "wpn_pistol_0001": {
     "id": "wpn_pistol_0001",
     "name": {
@@ -28258,6 +28276,15 @@
     },
     "rarity": 5,
     "iconId": "wpn_pistol_0012"
+  },
+  "wpn_pistol_0013": {
+    "id": "wpn_pistol_0013",
+    "name": {
+      "zh-CN": "明日之星",
+      "en-US": "Star of Tomorrow"
+    },
+    "rarity": 5,
+    "iconId": "wpn_pistol_0013"
   },
   "wpn_sword_0003": {
     "id": "wpn_sword_0003",

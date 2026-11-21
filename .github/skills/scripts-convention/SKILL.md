@@ -19,6 +19,7 @@ user-invocable: false
 
 ```
 scripts/
+├── fetchGameData.ts   # 按 manifest 最新版本下载解包 JSON 到本地缓存
 ├── gameData.ts        # 加载所有解包 JSON 文件，原样导出数据表
 ├── makeAllData.ts     # 统一入口脚本，依次运行所有 make* 任务并写入 JSON
 ├── tsconfig.json      # TypeScript 配置（extends .nuxt/tsconfig.node.json）
@@ -31,7 +32,7 @@ scripts/
 ├── tasks/             # 数据处理任务
 │   └── make*.ts       # 每个任务尽可能独立，减少耦合
 └── utils/             # 公共工具函数（不加载解包数据表）
-    ├── env.ts         # 读取 ENDFIELD_DATA_DIR 环境变量
+    ├── env.ts         # 版本清单地址、缓存目录、本地数据目录覆盖（ENDFIELD_DATA_MANIFEST_URL / ENDFIELD_LOCAL_DATA_DIR）
     ├── json.ts        # readJSONWithBigInt / parseJSONWithBigInt
     ├── i18n.ts        # 语言常量与类型、I18nTextTable 路径
     └── translation.ts # getTranslation / getLocalizedValue（读取 gameData 的 i18nTextTables）
@@ -80,6 +81,7 @@ export type { TranslationKey } from './common';
 ### 数据加载 (`scripts/gameData.ts`)
 
 - **所有解包数据表必须从 `gameData.ts` 加载**，task 文件不得直接读取 JSON 文件。
+- 数据源为线上 `manifest.json` 指向的最新版本（见 `scripts/utils/env.ts`），由 `fetchGameData.ts` 按版本号缓存到 `.cache/endfield-data/<版本>/TableCfg/` 后，再由 `gameData.ts` 同步读取。
 - 使用 `scripts/utils/json.ts` 提供的 `readJSONWithBigInt(relativePath)` 读取 JSON，自动处理大整数精度问题。
 - 加载后的数据作为带类型标注的 `export const` 导出：
 
@@ -103,12 +105,12 @@ export const itemTable: ItemTable = readJSONWithBigInt('TableCfg/ItemTable.json'
 
 ### 工具函数 (`scripts/utils/` 提供)
 
-| 文件             | 主要导出                                                          | 用途                                    |
-| ---------------- | ----------------------------------------------------------------- | --------------------------------------- |
-| `env.ts`         | `endfieldDataDir`                                                 | 解包数据根目录                          |
-| `json.ts`        | `readJSONWithBigInt`、`parseJSONWithBigInt`                       | 读取/解析 JSON，处理大整数精度          |
-| `i18n.ts`        | `i18nLanguages`、`I18nLanguage`、`Locale`、`getI18nTextTablePath` | 语言常量/类型与文本表路径（不读取数据） |
-| `translation.ts` | `getTranslation`、`getLocalizedValue`                             | 多语言文本处理（读取 `i18nTextTables`） |
+| 文件             | 主要导出                                                                                    | 用途                                    |
+| ---------------- | ------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `env.ts`         | `manifestUrl`、`cachedDataRoot`、`currentVersionFile`、`localDataDir`、`getEndfieldDataDir` | 版本清单地址、按版本缓存的数据目录      |
+| `json.ts`        | `readJSONWithBigInt`、`parseJSONWithBigInt`                                                 | 读取/解析 JSON，处理大整数精度          |
+| `i18n.ts`        | `i18nLanguages`、`I18nLanguage`、`Locale`、`getI18nTextTablePath`                           | 语言常量/类型与文本表路径（不读取数据） |
+| `translation.ts` | `getTranslation`、`getLocalizedValue`                                                       | 多语言文本处理（读取 `i18nTextTables`） |
 
 - **不要**为 `scripts/utils/` 建立 `index.ts` 之类的重导出（桶文件），使用方直接从具体文件导入，例如：
   `import { getLocalizedValue } from '../utils/translation';`
@@ -132,7 +134,8 @@ export function makePackShops(packs: Record<string, Pack>): Record<string, PackS
 
 - 导入所有 task 的 `make*()` 函数。
 - 依次调用每个 task，将结果写入 `custom/core/` 下的 JSON 文件。
-- 执行方式：`yarn makedata`（在 `package.json` 中定义）。
+- 执行方式：`yarn makedata`（在 `package.json` 中定义，会先运行 `fetchGameData.ts` 下载线上数据）。
+- 新增解包数据表时，需要同时在 `fetchGameData.ts` 的 `tableFiles` 中登记文件名。
 - 每个写入操作后打印确认日志。
 
 ### 输出规范
