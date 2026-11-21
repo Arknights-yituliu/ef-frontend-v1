@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { endfieldDataDir } from './env';
+import { getEndfieldDataDir } from './env';
 
 export const i18nLanguages = [
   'CN',
@@ -42,6 +42,6 @@ export const usedLanguages = ['CN', 'EN'] as const;
 
 /** 获取指定语言的国际化文本表路径 */
 export function getI18nTextTablePath(language: I18nLanguage): string {
-  const i18nDir = path.join(endfieldDataDir, 'TableCfg');
+  const i18nDir = path.join(getEndfieldDataDir(), 'TableCfg');
   return path.join(i18nDir, `I18nTextTable_${language}.json`);
 }
