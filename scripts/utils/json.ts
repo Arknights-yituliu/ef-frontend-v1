@@ -1,6 +1,6 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import { endfieldDataDir } from './env';
+import { getEndfieldDataDir } from './env';
 
 /** 解析带有大整数的 JSON 的辅助函数 */
 export function parseJSONWithBigInt(text: string): any {
@@ -12,7 +12,7 @@ export function parseJSONWithBigInt(text: string): any {
 
 /** 读取解包目录下指定相对路径的 JSON 文件，并自动处理大整数精度问题 */
 export function readJSONWithBigInt(relativePath: string): any {
-  const fullPath = path.join(endfieldDataDir, relativePath);
+  const fullPath = path.join(getEndfieldDataDir(), relativePath);
   const text = fs.readFileSync(fullPath, 'utf8');
   return parseJSONWithBigInt(text);
 }

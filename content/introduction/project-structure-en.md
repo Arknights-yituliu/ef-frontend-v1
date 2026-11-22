@@ -182,6 +182,7 @@ ef-frontend-v1/
 │       ├── trialOfSwordmancyDeck.ts # Trial of Swordmancy deck persistence
 │       └── trialOfSwordmancyPageState.ts # Trial of Swordmancy page state
 ├── scripts/                      # Data processing scripts
+│   ├── fetchGameData.ts          # Download the latest unpacked data (per manifest) to local cache
 │   ├── gameData.ts               # Game data entry
 │   ├── makeAllData.ts            # Full data generation script
 │   ├── derived/                  # Derived collections/indexes from unpacked tables

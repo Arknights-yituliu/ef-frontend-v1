@@ -2381,7 +2381,7 @@ function shouldDisplayAndCount(reward: Reward): boolean {
 const oneTimeRewardNotice = {
   name: '烟火生缘·网页奖励',
   start: new Date('2026/10/15 07:00:00'),
-  end: new Date('2026/11/26 06:00:00'),
+  end: new Date('2026/11/25 06:00:00'),
   link: 'https://endfield.hypergryph.com/version_briefing/latest?source_from=yituliu',
   resource: '嵌晶玉',
   resourceAmount: 1000,

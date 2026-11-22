@@ -95,6 +95,8 @@
         "main": "Visit",
         "link": "New Window",
         "copyLink": "Copy Link",
+        "goVersionBriefing": "Visit",
+        "goVersionBriefingInt": "Gryphline Site",
         "website": "Website",
         "news": "News",
         "chargeReward": "Charge Reward Query",
@@ -143,6 +145,11 @@
           "title": "Available Redemption Codes",
           "tag": "Official",
           "description": "Redeem at \"Settings - Platform & Account - Gift Code Redemption\"; Require [Mail] feature unlocked."
+        },
+        "versionBriefing": {
+          "title": "New Version Guide",
+          "tag": "Official",
+          "description": "Official new version guide page of Arknights: Endfield. Visit to claim Oroberyl x1000. Updated at next Version Preview with rewards."
         },
         "officialWebsite": {
           "title": "Official Website",

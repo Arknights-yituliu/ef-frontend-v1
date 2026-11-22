@@ -14,7 +14,8 @@
     "format": "prettier --write \"**/*.{vue,ts,js,json}\"",
     "format:check": "prettier --check \"**/*.{vue,ts,js,json}\"",
     "lint:format": "eslint . --fix && prettier --write \"**/*.{vue,ts,js,json}\"",
-    "makedata": "jiti scripts/makeAllData.ts"
+    "fetch-data": "jiti scripts/fetchGameData.ts",
+    "makedata": "jiti scripts/fetchGameData.ts && jiti scripts/makeAllData.ts"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",

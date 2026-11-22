@@ -38,7 +38,7 @@ import type {
 } from './models';
 import type { I18nLanguage } from './utils/i18n';
 import * as fs from 'node:fs';
-import { getI18nTextTablePath, i18nLanguages } from './utils/i18n';
+import { getI18nTextTablePath, usedLanguages } from './utils/i18n';
 import { readJSONWithBigInt } from './utils/json';
 
 // 读取文件
@@ -126,7 +126,7 @@ export const worldEnergyPointTable: WorldEnergyPointTable = readJSONWithBigInt(
 
 /** 所有语言的国际化文本表，key 为语言，value 为「文本 ID → 翻译」的映射 */
 export const i18nTextTables: Map<I18nLanguage, I18nTextTable> = new Map(
-  i18nLanguages.map((lang) => [
+  usedLanguages.map((lang) => [
     lang,
     JSON.parse(fs.readFileSync(getI18nTextTablePath(lang), 'utf8')),
   ]),

@@ -15,8 +15,6 @@ export interface VersionTableItem {
   primaryColor: string;
   /** 主题色半透明版（rgba 格式，用于渐变等场景） */
   colorOpacity: string;
-  /** 重颜色（rgba 格式，比主题色更深的版本） */
-  heavyColor: string;
   /** 版本名称 */
   version: string;
 }

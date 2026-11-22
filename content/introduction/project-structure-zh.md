@@ -186,6 +186,7 @@ ef-frontend-v1/
 │       ├── trialOfSwordmancyDeck.ts # 选剑演武牌库持久化
 │       └── trialOfSwordmancyPageState.ts # 选剑演武页面状态
 ├── scripts/                      # 数据处理脚本
+│   ├── fetchGameData.ts          # 按 manifest 最新版本下载解包数据到本地缓存
 │   ├── gameData.ts               # 游戏数据入口
 │   ├── makeAllData.ts            # 全量数据生成脚本
 │   ├── derived/                  # 由解包表派生的集合/索引

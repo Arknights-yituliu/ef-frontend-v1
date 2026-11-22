@@ -41,6 +41,7 @@ function handleVersionChange(versionName: string) {
 const rewardItemGroupHeightMin = 800;
 const rewardItemGroupHeightMax = 2600;
 const rewardItemGroupHeightStep = 20;
+const rewardItemGroupAutoHeightPadding = 100;
 
 /** 单个奖励项 / 模块标题的基础间距：内容 64px + 下间距 12px，与 CSS 保持一致 */
 const rewardItemGroupBlockPitch = 76;
@@ -54,7 +55,7 @@ const rewardItemGroupColumnCount = 2;
 /**
  * 计算奖励项区域的“自动高度”
  * 该区域是固定高度的双栏（columns）布局且 column-fill: auto，内容会先填满第一栏再流入第二栏，
- * 因此自动高度应取“内容总高 / 列数”，否则高度偏大时底部会残留空白，偏小时内容会溢出到第三栏被裁切。
+ * 按“内容总高 / 列数”估算基础高度，再为自动布局预留额外空间。
  * @returns 自动高度（px），对齐到步进值并限制在 min/max 之间
  */
 function getDefaultRewardItemGroupHeight() {
@@ -66,7 +67,8 @@ function getDefaultRewardItemGroupHeight() {
   const columnHeight = Math.ceil(totalHeight / rewardItemGroupColumnCount);
   const steppedHeight =
     Math.ceil(columnHeight / rewardItemGroupHeightStep) * rewardItemGroupHeightStep;
-  return Math.min(rewardItemGroupHeightMax, Math.max(rewardItemGroupHeightMin, steppedHeight));
+  const baseHeight = Math.max(rewardItemGroupHeightMin, steppedHeight);
+  return Math.min(rewardItemGroupHeightMax, baseHeight + rewardItemGroupAutoHeightPadding);
 }
 
 /**

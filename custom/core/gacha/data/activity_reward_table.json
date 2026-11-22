@@ -1,5 +1,165 @@
 [
   {
+    "id": "战争回想更新",
+    "name": {
+      "zh": "战争回想更新",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 800,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "密境行者特别篇·菌类秘事",
+    "name": {
+      "zh": "密境行者特别篇·菌类秘事",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "丰碑揭示·暴虐",
+    "name": {
+      "zh": "丰碑揭示·暴虐",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "幸运萝卜的妙趣游乐",
+    "name": {
+      "zh": "幸运萝卜的妙趣游乐",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "阵列建设·旧伤弥合",
+    "name": {
+      "zh": "阵列建设·旧伤弥合",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1500,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "重建禁区",
+    "name": {
+      "zh": "重建禁区",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 2000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "引入活动·蘑菇！蕈类！真菌",
+    "name": {
+      "zh": "引入活动·蘑菇！蕈类！真菌",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/14 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1200,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "蕈属集群签到",
+    "name": {
+      "zh": "蕈属集群签到",
+      "en": ""
+    },
+    "start": "2026/11/21 12:00:00",
+    "end": "2026/11/25 12:00:00",
+    "type": "通用",
+    "module": "活动",
+    "active": true,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 2,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "密境行者",
     "name": {
       "zh": "密境行者",
@@ -46,7 +206,7 @@
       "en": ""
     },
     "start": "2026/10/15 12:00:00",
-    "end": "2026/11/26 12:00:00",
+    "end": "2026/11/25 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,
@@ -126,7 +286,7 @@
       "en": ""
     },
     "start": "2026/11/05 12:00:00",
-    "end": "2026/11/26 12:00:00",
+    "end": "2026/11/25 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,
@@ -166,7 +326,7 @@
       "en": ""
     },
     "start": "2026/10/15 12:00:00",
-    "end": "2026/11/26 12:00:00",
+    "end": "2026/11/25 12:00:00",
     "type": "通用",
     "module": "活动",
     "active": true,

@@ -538,6 +538,28 @@
     },
     "isForesight": false
   },
+  "wpn_lance_0017": {
+    "weaponId": "wpn_lance_0017",
+    "weaponType": "weapon.type.wpn_lance",
+    "rarity": 6,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_naturaldam",
+      "skill": "weapon.stat.gst_passive_tacafter"
+    },
+    "isForesight": true
+  },
+  "wpn_lance_0018": {
+    "weaponId": "wpn_lance_0018",
+    "weaponType": "weapon.type.wpn_lance",
+    "rarity": 6,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_burst"
+    },
+    "isForesight": true
+  },
   "wpn_pistol_0001": {
     "weaponId": "wpn_pistol_0001",
     "weaponType": "weapon.type.wpn_pistol",
@@ -669,6 +691,17 @@
       "skill": "weapon.stat.gst_passive_burst"
     },
     "isForesight": false
+  },
+  "wpn_pistol_0013": {
+    "weaponId": "wpn_pistol_0013",
+    "weaponType": "weapon.type.wpn_pistol",
+    "rarity": 5,
+    "stats": {
+      "attribute": "weapon.stat.gat_passive_attr_str",
+      "secondary": "weapon.stat.gat_passive_attr_usp",
+      "skill": "weapon.stat.gst_passive_force"
+    },
+    "isForesight": true
   },
   "wpn_sword_0003": {
     "weaponId": "wpn_sword_0003",

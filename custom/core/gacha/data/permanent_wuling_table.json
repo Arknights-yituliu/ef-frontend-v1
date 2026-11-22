@@ -121,26 +121,6 @@
     }
   },
   {
-    "id": "wuling_regional_stock_bill_store_reward_20261015",
-    "name": {
-      "zh": "武陵·调度券商店",
-      "en": ""
-    },
-    "start": "2026/10/15 12:00:00",
-    "end": "2099/12/31 12:00:00",
-    "type": "通用",
-    "module": "地区探索与建设",
-    "active": false,
-    "version": "丹青渡",
-    "content": {
-      "originiumRecharge": 0,
-      "diamond": 0,
-      "ticketgachaStandardSingle": 2,
-      "ticketgachaSpecialSingle": 0,
-      "ticketgachaLimitedSingle": 0
-    }
-  },
-  {
     "id": "武陵城地图",
     "name": {
       "zh": "武陵城地图",
@@ -372,9 +352,9 @@
     "tips": ["包含：储藏箱、机器人、处理险情、浮空回收"]
   },
   {
-    "id": "祀的画",
+    "id": "祀的画地图",
     "name": {
-      "zh": "祀的画",
+      "zh": "祀的画地图",
       "en": ""
     },
     "start": "2026/10/15 12:00:00",
@@ -386,6 +366,27 @@
     "content": {
       "originiumRecharge": 3,
       "diamond": 3935,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    },
+    "tips": ["包含：储藏箱、机器人、处理险情、浮空回收"]
+  },
+  {
+    "id": "旧水坝地图",
+    "name": {
+      "zh": "旧水坝地图",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 2,
+      "diamond": 1500,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,
       "ticketgachaLimitedSingle": 0
@@ -553,6 +554,26 @@
     }
   },
   {
+    "id": "武陵·地区建设等级31-33",
+    "name": {
+      "zh": "武陵·地区建设等级31-33",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 600,
+      "ticketgachaStandardSingle": 3,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
     "id": "武陵·醚质阶段1-8",
     "name": {
       "zh": "武陵·醚质阶段1-8",
@@ -706,6 +727,26 @@
     "version": "丹青渡",
     "content": {
       "originiumRecharge": 9,
+      "diamond": 0,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "武陵·醚质阶段22-23",
+    "name": {
+      "zh": "武陵·醚质阶段22-23",
+      "en": ""
+    },
+    "start": "2026/10/15 12:00:00",
+    "end": "2099/12/31 12:00:00",
+    "type": "通用",
+    "module": "地区探索与建设",
+    "active": false,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 3,
       "diamond": 0,
       "ticketgachaStandardSingle": 0,
       "ticketgachaSpecialSingle": 0,

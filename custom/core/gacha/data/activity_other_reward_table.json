@@ -5,8 +5,108 @@
       "zh": "杂项（副本首通等）",
       "en": ""
     },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/05 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 500,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "玩家调研问卷",
+    "name": {
+      "zh": "玩家调研问卷",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/05 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 300,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "更新补偿",
+    "name": {
+      "zh": "更新补偿",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/05 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 400,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "更新补偿",
+    "name": {
+      "zh": "更新补偿",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/05 12:00:00",
+    "type": "通用",
+    "module": "维护",
+    "active": false,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1800,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "版本前瞻奖励",
+    "name": {
+      "zh": "版本前瞻奖励",
+      "en": ""
+    },
+    "start": "2026/11/25 12:00:00",
+    "end": "2026/12/05 12:00:00",
+    "type": "通用",
+    "module": "其他",
+    "active": false,
+    "version": "穿越甚大蘑境与你相逢",
+    "content": {
+      "originiumRecharge": 0,
+      "diamond": 1000,
+      "ticketgachaStandardSingle": 0,
+      "ticketgachaSpecialSingle": 0,
+      "ticketgachaLimitedSingle": 0
+    }
+  },
+  {
+    "id": "杂项",
+    "name": {
+      "zh": "杂项（副本首通等）",
+      "en": ""
+    },
     "start": "2026/10/15 12:00:00",
-    "end": "2026/11/26 12:00:00",
+    "end": "2026/11/25 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -26,7 +126,7 @@
       "en": ""
     },
     "start": "2026/11/20 12:00:00",
-    "end": "2026/11/26 12:00:00",
+    "end": "2026/11/25 12:00:00",
     "type": "通用",
     "module": "其他",
     "active": false,
@@ -46,7 +146,7 @@
       "en": ""
     },
     "start": "2026/10/29 12:00:00",
-    "end": "2026/11/26 12:00:00",
+    "end": "2026/11/25 12:00:00",
     "type": "通用",
     "module": "维护",
     "active": false,
