@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Reward, VersionTableItem } from '#shared/types/gacha-calculator';
+import type { Reward } from '#shared/types/gacha-calculator';
 import { dateFormat } from '#shared/utils/dateUtil';
 
 import { numberFloor, numberRound } from '#shared/utils/numberUtil';
@@ -17,7 +17,7 @@ usePageSeo({
   description: '自定义版本资源统计图内容、KV 与展示文案，导出《明日方舟：终末地》版本奖励汇总图。',
 });
 
-const currentVersion = ref<VersionTableItem>(versionTable[6] as VersionTableItem);
+const currentVersion = ref(versionTable.at(-1)!);
 getVersionReward(currentVersion.value);
 
 /** 控制台版本下拉框当前选中的版本名称 */
@@ -41,7 +41,7 @@ function handleVersionChange(versionName: string) {
 const rewardItemGroupHeightMin = 800;
 const rewardItemGroupHeightMax = 2600;
 const rewardItemGroupHeightStep = 20;
-const rewardItemGroupAutoHeightPadding = 100;
+const rewardItemGroupAutoHeightPadding = 50;
 
 /** 单个奖励项 / 模块标题的基础间距：内容 64px + 下间距 12px，与 CSS 保持一致 */
 const rewardItemGroupBlockPitch = 76;
@@ -259,14 +259,6 @@ onMounted(() => {
         console.log('读取到其他说明:', savedOtherInfo);
         controlPanel.value.otherInfo = savedOtherInfo;
       }
-
-      const savedRewardItemGroupHeight = Number(
-        localStorage.getItem('version-reward-item-group-height'),
-      );
-      if (Number.isFinite(savedRewardItemGroupHeight) && savedRewardItemGroupHeight > 0) {
-        console.log('读取到奖励项区域高度:', savedRewardItemGroupHeight);
-        controlPanel.value.rewardItemGroupHeight = savedRewardItemGroupHeight;
-      }
     } catch (error) {
       console.error('从localStorage读取数据失败:', error);
     }
@@ -301,20 +293,6 @@ watch(
         console.log('✓ 其他说明已保存到localStorage');
       } catch (error) {
         console.error('✗ 保存其他说明到localStorage失败:', error);
-      }
-    }
-  },
-);
-
-watch(
-  () => controlPanel.value.rewardItemGroupHeight,
-  (newValue) => {
-    if (typeof localStorage !== 'undefined') {
-      try {
-        localStorage.setItem('version-reward-item-group-height', String(newValue));
-        console.log('✓ 奖励项区域高度已保存到localStorage');
-      } catch (error) {
-        console.error('✗ 保存奖励项区域高度到localStorage失败:', error);
       }
     }
   },
