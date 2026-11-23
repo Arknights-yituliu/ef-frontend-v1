@@ -137,6 +137,8 @@ export type PoolOption = {
   name: string;
   start: Date;
   end: Date;
+  /** 卡池按钮隐藏时间；未配置时回退到结束时间 */
+  hideAt?: Date;
   dateText: string;
   type: string;
   poolMembers: PoolMember[];
@@ -156,6 +158,8 @@ export type PoolSchedule = {
   poolStart: string;
   /** 卡池结束时间 */
   poolEnd: string;
+  /** 卡池按钮隐藏时间；未配置时回退到 poolEnd */
+  hideAt?: string;
   /** 卡池日期字符串 */
   poolDateStr: string;
   /** 所属版本开始时间 */

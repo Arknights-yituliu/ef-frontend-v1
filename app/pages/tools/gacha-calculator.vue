@@ -107,11 +107,23 @@ function createPoolOption(schedule: PoolSchedule): PoolOption {
     // 起止时间直接读取记录自身的字段（合池记录的 poolStart / poolEnd 已填为组内并集）
     start: new Date(schedule.poolStart),
     end: new Date(schedule.poolEnd),
+    hideAt: schedule.hideAt ? new Date(schedule.hideAt) : undefined,
     dateText: schedule.poolDateStr,
     type: schedule.poolName,
     poolMembers,
     disabled: false,
   };
+}
+
+/**
+ * 判断卡池按钮在指定时间是否应该显示。
+ * hideAt 只控制卡池选项的显示，不参与资源奖励的结束时间计算。
+ */
+function isPoolVisibleAt(option: Pick<PoolOption, 'end' | 'hideAt'>, timestamp = Date.now()) {
+  const hideAtTimestamp = option.hideAt?.getTime();
+  const displayUntil = Number.isFinite(hideAtTimestamp) ? hideAtTimestamp : option.end.getTime();
+
+  return displayUntil > timestamp;
 }
 
 /**
@@ -122,7 +134,7 @@ function initPoolOptions() {
   for (const pool of poolSchedules) {
     const poolOption = createPoolOption(pool);
     poolOptions.value.push(poolOption);
-    if (poolOption.end.getTime() > Date.now()) {
+    if (isPoolVisibleAt(poolOption)) {
       displayPoolOptions.value.push(poolOption.name);
     }
   }
@@ -621,11 +633,13 @@ function selectDefaultPool(useStoredPool = true): void {
   const storedPool = useStoredPool
     ? poolOptions.value.find(
         (option) =>
-          option.name === gachaCalculatorUserConfig.value.currentPoolName && !option.disabled,
+          option.name === gachaCalculatorUserConfig.value.currentPoolName &&
+          !option.disabled &&
+          isPoolVisibleAt(option),
       )
     : undefined;
   const defaultPool =
-    storedPool ?? poolOptions.value.find((option) => !option.disabled && option.end > new Date());
+    storedPool ?? poolOptions.value.find((option) => !option.disabled && isPoolVisibleAt(option));
   if (defaultPool) {
     selectedPool(defaultPool);
   }
@@ -1689,7 +1703,10 @@ function loadingUserConfig() {
       }
       const displayPoolOptionsState = normalizePanelState(localConfig.displayPoolOptions);
       if (displayPoolOptionsState) {
-        displayPoolOptions.value = displayPoolOptionsState;
+        displayPoolOptions.value = displayPoolOptionsState.filter((poolName) => {
+          const option = poolOptions.value.find((poolOption) => poolOption.name === poolName);
+          return option !== undefined && isPoolVisibleAt(option);
+        });
       }
 
       // 恢复氪金资源配置（含卡池专属礼包），逐字段规整后回填
@@ -2458,7 +2475,7 @@ async function resetGachaCalculator(): Promise<void> {
 
   // 恢复默认显示的卡池，并清除旧配置中残留的计算状态
   displayPoolOptions.value = poolOptions.value
-    .filter((option) => !option.disabled && option.end.getTime() > Date.now())
+    .filter((option) => !option.disabled && isPoolVisibleAt(option))
     .map((option) => option.name);
   gachaCalculatorUserConfig.value.existingResource = {
     originiumRecharge: 0,
@@ -2625,7 +2642,10 @@ function toggleStringInArray(str: string, arr: string[]): string[] {
             <div class="gacha-calculator-pool-selector">
               <v-btn
                 v-for="option in poolOptions"
-                v-show="displayPoolOptions.includes(option.name)"
+                v-show="
+                  displayPoolOptions.includes(option.name) &&
+                  (currentMode === 'dev' || isPoolVisibleAt(option))
+                "
                 :key="option.name"
                 class="gacha-calculator-pool-btn"
                 :class="{ 'gacha-calculator-pool-btn-active': currentPool.name === option.name }"
