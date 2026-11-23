@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CardButton, CardData, CardTagType } from '@/custom/core/homeCards';
-import type { HomeCardPreviewContent } from '@/shared/types/homeCardEditor';
+import type { HomeCardAssetTransform, HomeCardPreviewContent } from '@/shared/types/homeCardEditor';
 import { useClipboard } from '@vueuse/core';
 import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
@@ -32,7 +32,7 @@ const cardData = computed(() => {
 
   const tags =
     props.card.tagTypes?.map((tagType) => ({
-      text: getTagText(tagType),
+      text: props.previewContent?.tagLabels?.[tagType] ?? getTagText(tagType),
       color: getTagColor(tagType),
     })) || [];
 
@@ -53,7 +53,9 @@ const cardData = computed(() => {
     tags,
     primaryTagColor,
     icon: props.card.icon,
+    iconTransform: props.previewContent?.iconTransform,
     image: props.card.image,
+    imageTransform: props.previewContent?.imageTransform,
     description: props.previewContent
       ? props.previewContent.description
       : props.card.descriptionKey
@@ -66,6 +68,12 @@ const cardData = computed(() => {
     isFavorited,
   };
 });
+
+function getAssetTransformStyle(transform?: HomeCardAssetTransform): Record<string, string> {
+  return {
+    transform: `translate(${transform?.x ?? 0}px, ${transform?.y ?? 0}px) scale(${(transform?.scale ?? 100) / 100})`,
+  };
+}
 
 /**
  * 根据标签类型获取对应的颜色
@@ -154,7 +162,14 @@ function toggleFavorite() {
 <template>
   <v-card class="home-card">
     <div class="home-card-header">
-      <img v-if="cardData.icon" :alt="cardData.title" class="home-card-logo" :src="cardData.icon" />
+      <div v-if="cardData.icon" class="home-card-logo-frame">
+        <img
+          :alt="cardData.title"
+          class="home-card-logo"
+          :src="cardData.icon"
+          :style="getAssetTransformStyle(cardData.iconTransform)"
+        />
+      </div>
       <div class="home-card-title">
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-card-tags">
@@ -182,7 +197,12 @@ function toggleFavorite() {
     </div>
     <div class="home-card-content">
       <div v-if="cardData.image" class="home-card-image-wrapper">
-        <img :alt="cardData.title" class="home-card-image" :src="cardData.image" />
+        <img
+          :alt="cardData.title"
+          class="home-card-image"
+          :src="cardData.image"
+          :style="getAssetTransformStyle(cardData.imageTransform)"
+        />
         <div v-if="cardData.description" class="home-card-overlay">
           <p class="home-card-description">{{ cardData.description }}</p>
         </div>
@@ -314,11 +334,19 @@ function toggleFavorite() {
 }
 
 /* 卡片logo：左侧独立显示 */
+.home-card-logo-frame {
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
 .home-card-logo {
   width: 48px;
   height: 48px;
   object-fit: contain;
   flex-shrink: 0;
+  transform-origin: center;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
 }
 
@@ -377,6 +405,7 @@ function toggleFavorite() {
   height: auto;
   display: block;
   object-fit: contain;
+  transform-origin: center;
 }
 
 /* 灰色透明字纱覆盖层 */

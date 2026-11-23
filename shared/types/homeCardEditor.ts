@@ -1,10 +1,21 @@
 import { ButtonActionType, ButtonType, CardTagType } from '@/custom/core/homeCards';
 
+export type HomeCardPreviewLocale = 'zh-CN' | 'en-US';
+
+export interface HomeCardAssetTransform {
+  scale: number;
+  x: number;
+  y: number;
+}
+
 export interface HomeCardPreviewContent {
   title: string;
   description?: string;
+  tagLabels?: Partial<Record<CardTagType, string>>;
   buttonLabels: Record<string, string>;
   buttonPopupTexts?: Record<string, string>;
+  iconTransform?: HomeCardAssetTransform;
+  imageTransform?: HomeCardAssetTransform;
 }
 
 export interface HomeCardEditorButton {

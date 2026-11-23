@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CardButton, CardData, CardTagType } from '@/custom/core/homeCards';
+import type { HomeCardAssetTransform, HomeCardPreviewContent } from '@/shared/types/homeCardEditor';
 import { useClipboard } from '@vueuse/core';
 import { ButtonActionType, ButtonType } from '@/custom/core/homeCards';
 
@@ -10,6 +11,7 @@ const isExpanded = ref(false);
 
 interface Props {
   card: CardData;
+  previewContent?: HomeCardPreviewContent;
 }
 
 const props = defineProps<Props>();
@@ -24,7 +26,7 @@ const cardData = computed(() => {
 
   const tags =
     props.card.tagTypes?.map((tagType) => ({
-      text: getTagText(tagType),
+      text: props.previewContent?.tagLabels?.[tagType] ?? getTagText(tagType),
       color: getTagColor(tagType),
     })) || [];
 
@@ -42,15 +44,22 @@ const cardData = computed(() => {
   const actionButton = mainButtons.length > 0 ? mainButtons[0] : buttons[0];
 
   return {
-    title: t(`${baseKey}.title`),
+    title: props.previewContent ? props.previewContent.title : t(`${baseKey}.title`),
     tags,
     primaryTagColor,
     icon: props.card.icon,
+    iconTransform: props.previewContent?.iconTransform,
     actionButton,
     pageButtons,
     hasMultiplePages: pageButtons.length > 1,
   };
 });
+
+function getAssetTransformStyle(transform?: HomeCardAssetTransform): Record<string, string> {
+  return {
+    transform: `translate(${transform?.x ?? 0}px, ${transform?.y ?? 0}px) scale(${(transform?.scale ?? 100) / 100})`,
+  };
+}
 
 /**
  * 根据标签类型获取对应的颜色
@@ -109,6 +118,21 @@ function handleButtonAction(button: CardButton): void {
   }
 }
 
+function getButtonText(button: CardButton): string {
+  return (
+    props.previewContent?.buttonLabels[button.i18nKey] ?? t('component.home.' + button.i18nKey)
+  );
+}
+
+function getButtonPopupText(button: CardButton): string | undefined {
+  const previewPopupText = props.previewContent?.buttonPopupTexts?.[button.i18nKey];
+  if (previewPopupText) {
+    return previewPopupText;
+  }
+
+  return button.popupText ? t(button.popupText) : undefined;
+}
+
 function closeLinkPicker(): void {
   isExpanded.value = false;
 }
@@ -140,12 +164,14 @@ async function copyToClipboard(text: string, successMessage: string) {
       type="button"
       @click="handleCardClick"
     >
-      <img
-        v-if="cardData.icon"
-        :alt="cardData.title"
-        class="home-small-card-logo"
-        :src="cardData.icon"
-      />
+      <span v-if="cardData.icon" class="home-small-card-logo-frame">
+        <img
+          :alt="cardData.title"
+          class="home-small-card-logo"
+          :src="cardData.icon"
+          :style="getAssetTransformStyle(cardData.iconTransform)"
+        />
+      </span>
       <div class="home-small-card-title">
         <b>{{ cardData.title }}</b>
         <div v-if="cardData.tags.length > 0" class="home-small-card-tags">
@@ -176,13 +202,13 @@ async function copyToClipboard(text: string, successMessage: string) {
           type="button"
           @click="handlePageButtonClick(button)"
         >
-          <span class="home-small-card-page-icon">
-            <v-icon :icon="button.icon || 'mdi-link-variant'" size="18" />
+          <span v-if="button.icon" class="home-small-card-page-icon">
+            <v-icon :icon="button.icon" size="18" />
           </span>
           <span class="home-small-card-page-label">
-            {{ t(`component.home.${button.i18nKey}`) }}
-            <span v-if="button.popupText" style="white-space: normal; font-size: 0.7rem">
-              <br />({{ t(button.popupText || '') }})
+            {{ getButtonText(button) }}
+            <span v-if="getButtonPopupText(button)" style="white-space: normal; font-size: 0.7rem">
+              <br />({{ getButtonPopupText(button) }})
             </span>
           </span>
           <v-icon
@@ -284,7 +310,10 @@ async function copyToClipboard(text: string, successMessage: string) {
 }
 
 /* 卡片logo：左侧独立显示 */
-.home-small-card-logo {
+.home-small-card-logo-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 34px;
   height: 34px;
   padding: 4px;
@@ -293,6 +322,14 @@ async function copyToClipboard(text: string, successMessage: string) {
   border-radius: 6px;
   box-sizing: border-box;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.home-small-card-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center;
 }
 
 /* 卡片标题：单行显示，超长时显示省略号 */

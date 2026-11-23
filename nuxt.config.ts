@@ -408,7 +408,7 @@ export default defineNuxtConfig({
      */
     disallow: [
       '/others/test',
-      '/others/home-card-editor',
+      '/tools/homecard-diy',
       '/blueprint/resource-library',
       '/user/center',
     ],
@@ -419,6 +419,6 @@ export default defineNuxtConfig({
    * 隐藏的内部页面可直链访问，但不应出现在站点地图中。
    */
   sitemap: {
-    exclude: ['/others/home-card-editor', '/blueprint/resource-library', '/user/center'],
+    exclude: ['/tools/homecard-diy', '/blueprint/resource-library', '/user/center'],
   },
 });
