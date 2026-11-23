@@ -117,6 +117,8 @@ export interface GachaCalculatorUserConfig {
   versionVisible?: {
     [key: string]: boolean;
   };
+  /** 已完成版本配置迁移的最新版本 */
+  lastProcessedVersion?: string;
   arsenalExistingQuota?: number;
   arsenalOriginiumAllocation?: number;
   originiumReserveForGacha?: number;

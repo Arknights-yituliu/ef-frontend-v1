@@ -361,6 +361,27 @@ function copyVueScopeAttributes(source: Element | null, target: Element) {
   }
 }
 
+function copyCanvasContents(source: Element, target: Element): void {
+  const sourceCanvases = source.querySelectorAll<HTMLCanvasElement>('canvas');
+  const targetCanvases = target.querySelectorAll<HTMLCanvasElement>('canvas');
+
+  for (const [index, sourceCanvas] of sourceCanvases.entries()) {
+    const targetCanvas = targetCanvases[index];
+    if (!targetCanvas || sourceCanvas.width === 0 || sourceCanvas.height === 0) {
+      continue;
+    }
+
+    targetCanvas.width = sourceCanvas.width;
+    targetCanvas.height = sourceCanvas.height;
+    const context = targetCanvas.getContext('2d');
+    if (!context) {
+      continue;
+    }
+
+    context.drawImage(sourceCanvas, 0, 0);
+  }
+}
+
 function createGachaScreenshotStage(sourceElement: HTMLElement) {
   const sourceRect = sourceElement.getBoundingClientRect();
   const sourceWidth = Math.ceil(sourceRect.width || sourceElement.offsetWidth);
@@ -483,6 +504,7 @@ function createGachaScreenshotStage(sourceElement: HTMLElement) {
 
   stage.append(style, rightColumn);
   document.body.append(stage);
+  copyCanvasContents(sourceElement, target);
 
   return {
     captureElement: rightColumn,
@@ -675,6 +697,7 @@ const gachaCalculatorUserConfig = ref<GachaCalculatorUserConfig>({
   rangeSlider: {},
   slider: {},
   versionVisible: {},
+  lastProcessedVersion: undefined,
   arsenalExistingQuota: 0,
   arsenalOriginiumAllocation: 0,
   originiumReserveForGacha: 0,
@@ -1803,6 +1826,10 @@ function loadingUserConfig() {
         };
       }
 
+      if (migrateVersionSelection(localConfig)) {
+        shouldPersistUserConfig = true;
+      }
+
       if (localConfig.arsenalExistingQuota !== undefined) {
         const existingQuota = normalizeArsenalExistingQuota(localConfig.arsenalExistingQuota);
         arsenalExistingQuota.value = existingQuota;
@@ -1898,6 +1925,91 @@ function loadingUserConfig() {
       }
     }
   }
+}
+
+function inferLastProcessedVersion(localConfig: {
+  versionVisible?: Record<string, boolean>;
+  buttonGroupActive?: Record<string, boolean>;
+}): string | undefined {
+  const configuredKeys = [
+    ...Object.keys(localConfig.versionVisible ?? {}),
+    ...Object.keys(localConfig.buttonGroupActive ?? {}),
+  ];
+  let lastProcessedIndex = -1;
+
+  for (const [index, version] of versionOptions.value.entries()) {
+    if (configuredKeys.some((key) => key === version || key.includes(version))) {
+      lastProcessedIndex = index;
+    }
+  }
+
+  return versionOptions.value[lastProcessedIndex];
+}
+
+function persistVersionRewardSelection(version: string): void {
+  const normalizedVersion = normalizeVersionName(version);
+  const buttonGroupActive = gachaCalculatorUserConfig.value.buttonGroupActive ?? {};
+  const rewards = [
+    ...dailyAllRewardTable.value,
+    ...activityReward.value,
+    ...permanentRewardTable.value,
+  ];
+
+  for (const reward of rewards) {
+    if (normalizeVersionName(reward.version) === normalizedVersion) {
+      buttonGroupActive[reward.id] = reward.active;
+    }
+  }
+
+  gachaCalculatorUserConfig.value.buttonGroupActive = buttonGroupActive;
+}
+
+const LEGACY_DEFAULT_PROCESSED_VERSION = '丹青渡';
+
+function migrateVersionSelection(localConfig: {
+  lastProcessedVersion?: string;
+  versionVisible?: Record<string, boolean>;
+  buttonGroupActive?: Record<string, boolean>;
+}): boolean {
+  const latestVersion = versionOptions.value.at(-1);
+  if (!latestVersion) {
+    return false;
+  }
+
+  const storedVersion =
+    typeof localConfig.lastProcessedVersion === 'string'
+      ? localConfig.lastProcessedVersion
+      : undefined;
+  if (storedVersion !== undefined) {
+    gachaCalculatorUserConfig.value.lastProcessedVersion = storedVersion;
+  }
+
+  const storedVersionIndex = storedVersion ? versionOptions.value.indexOf(storedVersion) : -1;
+  const inferredVersion =
+    storedVersionIndex >= 0 ? storedVersion : inferLastProcessedVersion(localConfig);
+  const baselineVersion = inferredVersion ?? LEGACY_DEFAULT_PROCESSED_VERSION;
+  const baselineIndex = baselineVersion ? versionOptions.value.indexOf(baselineVersion) : -1;
+  const newVersions = versionOptions.value.slice(baselineIndex + 1);
+  let migrated = false;
+
+  for (const version of newVersions) {
+    versionVisibleMap.value[version] = true;
+    if (!gachaCalculatorUserConfig.value.versionVisible) {
+      gachaCalculatorUserConfig.value.versionVisible = {};
+    }
+    gachaCalculatorUserConfig.value.versionVisible[version] = true;
+
+    setVersionRewardsActive(version, true);
+    persistVersionRewardSelection(version);
+    migrated = true;
+  }
+
+  if (gachaCalculatorUserConfig.value.lastProcessedVersion !== latestVersion) {
+    gachaCalculatorUserConfig.value.lastProcessedVersion = latestVersion;
+    migrated = true;
+  }
+
+  return migrated;
 }
 
 let summaryPanelResizeObserver: ResizeObserver | null = null;
@@ -2435,7 +2547,10 @@ function initializeDefaultVersionSelection(): void {
     setVersionRewardsActive(version, active);
   }
 
+  gachaCalculatorUserConfig.value.lastProcessedVersion = lastVersion;
+
   calc();
+  saveGachaCalculatorUserConfig();
 }
 
 /**
