@@ -19,6 +19,11 @@ yarn generate
 yarn makedata
 ```
 
+## GitHub Network Retry
+
+- If a direct GitHub fetch or push fails because the connection is reset or unavailable, retry with the per-command proxy `http://192.168.2.3:7890` for both `http.proxy` and `https.proxy`.
+- Do not change global Git configuration for this retry. After a successful push, verify the remote branch with `git ls-remote`.
+
 ## Important Requirements
 
 - **Keep project structure in sync**: If you add, remove, or restructure directories/files, update the `├──` tree in `content/introduction/project-structure-zh.md` and `content/introduction/project-structure-en.md` accordingly.
