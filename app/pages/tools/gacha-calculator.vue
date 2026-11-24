@@ -121,7 +121,10 @@ function createPoolOption(schedule: PoolSchedule): PoolOption {
  */
 function isPoolVisibleAt(option: Pick<PoolOption, 'end' | 'hideAt'>, timestamp = Date.now()) {
   const hideAtTimestamp = option.hideAt?.getTime();
-  const displayUntil = Number.isFinite(hideAtTimestamp) ? hideAtTimestamp : option.end.getTime();
+  const displayUntil =
+    hideAtTimestamp !== undefined && Number.isFinite(hideAtTimestamp)
+      ? hideAtTimestamp
+      : option.end.getTime();
 
   return displayUntil > timestamp;
 }
