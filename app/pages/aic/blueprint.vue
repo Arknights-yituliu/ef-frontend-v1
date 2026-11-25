@@ -116,6 +116,8 @@ interface BlueprintItem {
 
 const blueprints: BlueprintItem[] = [
   { label: '1.7 一阶段', code: 'EF01u28U5eA6A078AoOU' },
+  { label: '1.7 二阶段', code: 'EF0170i86I3E35o4O0Ai' },
+  { label: '1.7 一二阶段合订本', code: 'EF013Eo74iU9UaO10579' },
   { label: '1.4武陵城1', code: 'EF015i2179aoauU8eIoe' },
   { label: '1.4武陵城2', code: 'EF018OIe2A7071IeUI73' },
   { label: '1.4武陵城3', code: 'EF01u28U5eA6A0i6AoOU' },
@@ -134,10 +136,18 @@ const blueprints: BlueprintItem[] = [
 ];
 
 // 亚服蓝图码
-const asiaBlueprints: BlueprintItem[] = [{ label: '1.7 一阶段', code: 'EFO01194u678O9U134O7' }];
+const asiaBlueprints: BlueprintItem[] = [
+  { label: '1.7 一阶段', code: 'EFO01194u678O9U134O7' },
+  { label: '1.7 二阶段', code: 'EFO019aE80iI4ae75uI2' },
+  { label: '1.7 一二阶段合订本', code: 'EFO01a65I1U3E6AAoe5e' },
+];
 
 // 欧美服蓝图码
-const euUsBlueprints: BlueprintItem[] = [{ label: '1.7 一阶段', code: 'EFO01IaoOoe8aO9a5o08' }];
+const euUsBlueprints: BlueprintItem[] = [
+  { label: '1.7 一阶段', code: 'EFO01IaoOoe8aO9a5o08' },
+  { label: '1.7 二阶段', code: 'EFO01IaoOoe8aO965o08' },
+  { label: '1.7 一二阶段合订本', code: 'EFO011ea8aO0e8Ue34O7' },
+];
 
 interface BlueprintRegion {
   key: 'cn' | 'asia' | 'eu-us';
