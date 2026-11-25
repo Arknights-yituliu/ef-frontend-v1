@@ -14,12 +14,6 @@
             src="https://cos.yituliu.cn/endfield/oea/assets/oea-image-2.webp"
           />
         </v-slide-group-item>
-        <v-slide-group-item>
-          <v-img
-            :min-width="500"
-            src="https://cos.yituliu.cn/endfield/oea/assets/oea-image-4.png"
-          />
-        </v-slide-group-item>
       </v-slide-group>
     </v-sheet>
     <v-container class="page-container">
@@ -75,18 +69,11 @@
       </div>
 
       <!-- 简介 -->
-      <p>
-        OEA 是开源免费的终末地小助手，支持<strong class="text-primary">档案查漏补缺</strong
-        >和<strong class="text-primary">百趣演武自动抽</strong>。
-      </p>
+      <p>OEA 是开源免费的终末地小助手，支持<strong class="text-primary">档案查漏补缺</strong>。</p>
       <ul>
         <li>
           <strong class="text-primary">档案查漏补缺</strong>：一键识别终末地档案库，并同步到
           OEM（终末地地图集），助力每一个全收集梦想！
-        </li>
-        <li>
-          <strong class="rainbow-text">百趣演武自动抽</strong
-          >：抽到想要的牌型为止，解放双手，摆完挂机！
         </li>
       </ul>
 
@@ -128,18 +115,6 @@
         理论上支持从协议终端、大世界和任意档案库界面开始扫描。为了稳定性，建议始终从<strong>档案库主界面</strong>开始扫描。
       </p>
 
-      <!-- 百趣演武自动抽 -->
-      <h2 class="rainbow-text rainbow-block">百趣演武自动抽</h2>
-      <ol>
-        <li>终末地打开<strong class="text-primary">百趣演武的抽牌界面</strong>。</li>
-        <li>选择<strong class="text-primary">牌型目标</strong>。</li>
-        <li>
-          点击<strong class="text-primary">开始抽卡</strong>，或按
-          <v-hotkey inline keys=";" variant="flat" />（分号键）。
-        </li>
-        <li>满足<strong class="text-primary">任意一个</strong>目标后会自动停止抽卡。</li>
-      </ol>
-
       <!-- 快捷键 -->
       <h2>快捷键</h2>
       <ul>
@@ -150,14 +125,6 @@
             keys="'"
             variant="flat"
           />（引号键）开始扫描档案库，扫描过程中再次按下可停止。
-        </li>
-        <li>
-          按
-          <v-hotkey
-            inline
-            keys=";"
-            variant="flat"
-          />（分号键）开始百趣演武自动抽牌，再次按下可停止。
         </li>
         <li>
           按 <v-hotkey display-mode="text" inline keys="Alt+DELETE" variant="flat" /> 退出程序。
@@ -358,7 +325,7 @@ const { t } = useI18n();
 usePageSeo({
   title: () => `${t('menu.oea')} - ${t('layout.siteName')}`,
   description: () =>
-    'OEA 是开源免费的终末地小助手，支持档案查漏补缺和百趣演武自动抽。支持 Windows 10 / 11，下载解压即用。',
+    'OEA 是开源免费的终末地小助手，支持档案查漏补缺。支持 Windows 10 / 11，下载解压即用。',
 });
 
 /** GitHub 仓库（Logical-Byte/open-endfield-assistant）。 */
@@ -486,35 +453,5 @@ ul > li {
 ul > li::marker,
 ol > li::marker {
   font-family: 'Jetbrains Mono', 'Google Sans Code', 'Consolas', 'Courier New', monospace;
-}
-
-/* 炫彩文字：渐变横向流动，可按需用在行内或块级元素上 */
-/* background-repeat 需显式 repeat：全局 reset 把它设为 no-repeat，动画中途渐变移出盒子会让文字整体消失 */
-.rainbow-text {
-  background-image: linear-gradient(90deg, #ef4444, #eab308, #22c55e, #06b6d4, #3b82f6, #d946ef);
-  background-size: 200% 100%;
-  background-repeat: repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 900;
-  animation: rainbow-title-flow 3s linear infinite;
-}
-
-/* 块级元素需让渐变盒贴合文字宽度，否则整行宽的渐变只覆盖文字所在的一小段，看起来是单色 */
-.rainbow-block {
-  width: fit-content;
-}
-
-@keyframes rainbow-title-flow {
-  to {
-    background-position: -200% 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .rainbow-text {
-    animation: none;
-  }
 }
 </style>
