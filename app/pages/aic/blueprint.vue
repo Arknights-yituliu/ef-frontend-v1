@@ -2,7 +2,7 @@
   <v-container class="page-container" fluid>
     <!-- 页面标题 -->
     <div class="page-header mb-6">
-      <h1 class="page-title">「丹青渡」毕业蓝图</h1>
+      <h1 class="page-title">「穿越甚大蘑境与你相逢」毕业蓝图</h1>
     </div>
 
     <!-- 教学视频 -->
@@ -14,51 +14,51 @@
         <v-card-title class="text-h6 font-weight-bold">教学视频</v-card-title>
       </v-card-item>
       <v-card-text>
-        <p class="mb-3">
-          <a
-            class="video-link text-body-1"
-            href="https://www.bilibili.com/video/BV1K6Jy6pE5M"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
-            https://www.bilibili.com/video/BV1K6Jy6pE5M
-          </a>
-        </p>
+        <a
+          class="video-link text-body-1"
+          href="https://www.bilibili.com/video/BV1JzyBzKENg"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <v-icon class="mr-1" icon="mdi-open-in-new" size="20" />
+          https://www.bilibili.com/video/BV1JzyBzKENg
+        </a>
       </v-card-text>
     </v-card>
 
     <!-- 蓝图码 -->
-    <v-card class="mb-6">
-      <v-card-item>
-        <template #prepend>
-          <v-icon color="success" icon="mdi-qrcode" size="32" />
-        </template>
-        <v-card-title class="text-h6 font-weight-bold">蓝图码</v-card-title>
-      </v-card-item>
-      <v-divider />
-      <v-list>
-        <v-list-item
-          v-for="({ label, code, copy, copied }, index) in blueprintsWithClipboard"
-          :key="index"
-          class="blueprint-item"
-        >
-          <v-list-item-title>
-            <v-chip class="font-weight-bold" color="primary" label variant="flat">
-              {{ label }}
-            </v-chip>
-            <span class="mx-2">{{ code }}</span>
-            <v-btn
-              :color="copied ? 'success' : undefined"
-              :icon="copied ? 'mdi-check' : 'mdi-content-copy'"
-              size="small"
-              variant="text"
-              @click="copy(code)"
-            />
-          </v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-card>
+    <v-expansion-panels v-model="openedPanels" class="mb-6" multiple variant="accordion">
+      <v-expansion-panel v-for="region in blueprintRegions" :key="region.key" :value="region.key">
+        <v-expansion-panel-title>
+          <v-icon class="mr-2" color="success" icon="mdi-qrcode" />
+          {{ region.title }}
+          <v-chip class="ml-2" size="small" variant="tonal">{{ region.items.length }}</v-chip>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <v-list density="compact">
+            <v-list-item
+              v-for="({ label, code, copy, copied }, index) in region.items"
+              :key="index"
+              class="blueprint-item"
+            >
+              <v-list-item-title class="d-flex flex-wrap align-center ga-2">
+                <v-chip class="font-weight-bold" color="primary" label variant="flat">
+                  {{ label }}
+                </v-chip>
+                <span class="blueprint-code">{{ code }}</span>
+                <v-btn
+                  :color="copied ? 'success' : undefined"
+                  :icon="copied ? 'mdi-check' : 'mdi-content-copy'"
+                  size="small"
+                  variant="text"
+                  @click="copy(code)"
+                />
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </v-expansion-panels>
 
     <!-- 基地一图流 -->
     <v-card class="mb-6">
@@ -92,9 +92,6 @@ usePageSeo({
 // 基地一图流图片
 const images = [
   {
-    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-10-15/幻灯片1.JPG',
-  },
-  {
     url: 'https://cos.yituliu.cn/endfield/blueprints/2026-07-18/幻灯片1.webp',
   },
   {
@@ -106,6 +103,9 @@ const images = [
   {
     url: 'https://cos.yituliu.cn/endfield/blueprints/2026-09-02/幻灯片4.JPG',
   },
+  {
+    url: 'https://cos.yituliu.cn/endfield/blueprints/2026-10-15/幻灯片1.JPG',
+  },
 ];
 
 // 蓝图码列表
@@ -115,10 +115,7 @@ interface BlueprintItem {
 }
 
 const blueprints: BlueprintItem[] = [
-  { label: '（多合一）1.6集成蓝图', code: 'EF01081Ou4E7Ei90E179' },
-  { label: '（模块化）1.6打粉模块', code: 'EF01ao6532OeOAOioe5e' },
-  { label: '（模块化）1.6灌装模块', code: 'EF015i2179aoauiEeIoe' },
-  { label: '（模块化）1.6反应模块', code: 'EF018OIe2A7071a9UI73' },
+  { label: '1.7 一阶段', code: 'EF01u28U5eA6A078AoOU' },
   { label: '1.4武陵城1', code: 'EF015i2179aoauU8eIoe' },
   { label: '1.4武陵城2', code: 'EF018OIe2A7071IeUI73' },
   { label: '1.4武陵城3', code: 'EF01u28U5eA6A0i6AoOU' },
@@ -126,14 +123,41 @@ const blueprints: BlueprintItem[] = [
   { label: '1.4景玉谷2', code: 'EF01ao6532OeOA71oe5e' },
   { label: '1.5应龙关1', code: 'EF01E750A1939ouE3uIa' },
   { label: '1.5应龙关2', code: 'EF01A67ua8I4IEai9ieO' },
+  { label: '（多合一）1.6集成蓝图', code: 'EF01081Ou4E7Ei90E179' },
+  { label: '（模块化）1.6打粉模块', code: 'EF01ao6532OeOAOioe5e' },
+  { label: '（模块化）1.6灌装模块', code: 'EF015i2179aoauiEeIoe' },
+  { label: '（模块化）1.6反应模块', code: 'EF018OIe2A7071a9UI73' },
   { label: '赫铜零件模块', code: 'EF01E750A1939oI43uIa' },
   { label: '赤铜零件模块', code: 'EF0170i86I3E35I7O0Ai' },
   { label: '赤铜耐压罐模块', code: 'EF01A67ua8I4IE539ieO' },
   { label: '瓶装液化重息壤', code: 'EF018OIe2A7071o2UI73' },
 ];
 
-const blueprintsWithClipboard = ref(
-  blueprints.map((blueprint) => ({ ...blueprint, ...useClipboard() })),
+// 亚服蓝图码
+const asiaBlueprints: BlueprintItem[] = [{ label: '1.7 一阶段', code: 'EFO01194u678O9U134O7' }];
+
+// 欧美服蓝图码
+const euUsBlueprints: BlueprintItem[] = [{ label: '1.7 一阶段', code: 'EFO01IaoOoe8aO9a5o08' }];
+
+interface BlueprintRegion {
+  key: 'cn' | 'asia' | 'eu-us';
+  title: string;
+  blueprints: BlueprintItem[];
+}
+
+const openedPanels = ref<string[]>(['cn']);
+
+const blueprintRegions = ref(
+  (
+    [
+      { key: 'cn', title: '国服蓝图码', blueprints },
+      { key: 'asia', title: '亚服蓝图码', blueprints: asiaBlueprints },
+      { key: 'eu-us', title: '欧美服蓝图码', blueprints: euUsBlueprints },
+    ] as BlueprintRegion[]
+  ).map((region) => ({
+    ...region,
+    items: region.blueprints.map((blueprint) => ({ ...blueprint, ...useClipboard() })),
+  })),
 );
 </script>
 
@@ -146,6 +170,11 @@ const blueprintsWithClipboard = ref(
 
 .video-link:hover {
   text-decoration: underline;
+}
+
+.blueprint-code {
+  font-family: var(--font-mono, monospace);
+  word-break: break-all;
 }
 
 .blueprint-item:hover {
