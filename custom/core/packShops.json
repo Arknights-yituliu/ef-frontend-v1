@@ -79,7 +79,12 @@
       "zh-CN": "限时组合包",
       "en-US": "Limited Bundle"
     },
-    "goodsIds": ["giftpack_lt_decorate_1_6", "seasonal_giftpack", "seasonal_giftpack_combine"]
+    "goodsIds": [
+      "giftpack_lt_concert_01",
+      "giftpack_lt_decorate_1_6",
+      "seasonal_giftpack",
+      "seasonal_giftpack_combine"
+    ]
   },
   "SP_weapon_supply": {
     "shopId": "SP_weapon_supply",

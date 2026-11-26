@@ -89,6 +89,11 @@
     "id": "item_birthday_ap_supply_2026",
     "itemName": "第一年的生日蛋糕"
   },
+  "item_birthday_ap_supply_2027": {
+    "apRecoverValue": 40,
+    "id": "item_birthday_ap_supply_2027",
+    "itemName": "第二年的生日蛋糕"
+  },
   "item_char_ap_supply_aglina": {
     "apRecoverValue": 40,
     "id": "item_char_ap_supply_aglina",
@@ -128,6 +133,11 @@
     "apRecoverValue": 40,
     "id": "item_char_ap_supply_minghe",
     "itemName": "怒骊糕"
+  },
+  "item_char_ap_supply_sweetpie": {
+    "apRecoverValue": 40,
+    "id": "item_char_ap_supply_sweetpie",
+    "itemName": "蜜饼山"
   },
   "item_char_ap_supply_tangtang": {
     "apRecoverValue": 40,

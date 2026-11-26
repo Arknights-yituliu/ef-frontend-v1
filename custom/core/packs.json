@@ -371,8 +371,8 @@
         "quantity": 15000
       },
       {
-        "itemId": "item_shot_sticker_bp_7",
-        "itemName": "贴纸·线形墨魉",
+        "itemId": "item_shot_sticker_bp_8",
+        "itemName": "贴纸·黏腻与甜香",
         "quantity": 1
       },
       {
@@ -446,8 +446,8 @@
         "quantity": 20000
       },
       {
-        "itemId": "item_shot_filter_sp_7",
-        "itemName": "滤镜·武陵印象",
+        "itemId": "item_shot_filter_sp_8",
+        "itemName": "滤镜·金色黄昏",
         "quantity": 1
       },
       {
@@ -521,8 +521,8 @@
         "quantity": 40000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_7",
-        "itemName": "武器补给·墨卷",
+        "itemId": "item_case_wpn_selfselect_bp_8",
+        "itemName": "武器补给·蘑境",
         "quantity": 1
       },
       {
@@ -648,8 +648,8 @@
         "quantity": 12500
       },
       {
-        "itemId": "item_char_ap_supply_jsspsi",
-        "itemName": "松烟墨条",
+        "itemId": "item_char_ap_supply_sweetpie",
+        "itemName": "蜜饼山",
         "quantity": 1
       },
       {
@@ -693,8 +693,8 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_bp_1_6",
-        "itemName": "龙的简约线条",
+        "itemId": "item_user_avatar_bp_1_7",
+        "itemName": "蕈类住民",
         "quantity": 1
       },
       {
@@ -718,8 +718,8 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_user_avatar_frame_bp_1_6",
-        "itemName": "墨峦",
+        "itemId": "item_user_avatar_frame_bp_1_7",
+        "itemName": "食用后的色彩",
         "quantity": 1
       },
       {
@@ -743,8 +743,8 @@
         "quantity": 30000
       },
       {
-        "itemId": "item_case_wpn_selfselect_bp_7",
-        "itemName": "武器补给·墨卷",
+        "itemId": "item_case_wpn_selfselect_bp_8",
+        "itemName": "武器补给·蘑境",
         "quantity": 1
       },
       {
@@ -773,9 +773,9 @@
         "quantity": 800
       },
       {
-        "itemId": "item_char_ap_supply_minghe",
-        "itemName": "怒骊糕",
-        "quantity": 1
+        "itemId": "ap_supply_lt_n",
+        "itemName": "应急理智加强剂",
+        "quantity": 2
       },
       {
         "itemId": "item_expcard_stage2_high",
@@ -818,8 +818,8 @@
         "quantity": 65000
       },
       {
-        "itemId": "business_card_topic_bp_1_6",
-        "itemName": "自有意气向云流",
+        "itemId": "business_card_topic_bp_1_7",
+        "itemName": "蜜境蘑城",
         "quantity": 1
       },
       {
@@ -1048,6 +1048,44 @@
         "itemId": "item_originium_recharge",
         "itemName": "衍质源石",
         "quantity": 560
+      }
+    ]
+  },
+  "giftpack_lt_concert_01": {
+    "packId": "giftpack_lt_concert_01",
+    "displayName": {
+      "zh-CN": "协议回音收藏包",
+      "en-US": "Echoes of Protocol Collection Pack"
+    },
+    "category": "Seasonal_Rec_pack",
+    "price": 45,
+    "imageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_concert_01_smallicon.png",
+    "backgroundImageUrl": "https://data.akedata.wiki/public/images/assets/beyond/dynamicassets/gameplay/ui/sprites/shop/shopgroupbag/giftpack_lt_concert_01_smallbg.png",
+    "contents": [
+      {
+        "itemId": "business_card_topic_channel_1_7",
+        "itemName": "回音回环",
+        "quantity": 1
+      },
+      {
+        "itemId": "item_user_avatar_frame_channel_v1d7_1",
+        "itemName": "复古舞台",
+        "quantity": 1
+      },
+      {
+        "itemId": "item_shot_sticker_channel_v1d7_3",
+        "itemName": "贴纸·留声图样",
+        "quantity": 1
+      },
+      {
+        "itemId": "item_shot_sticker_channel_v1d7_4",
+        "itemName": "贴纸·源石支持",
+        "quantity": 1
+      },
+      {
+        "itemId": "item_shot_sticker_channel_v1d7_5",
+        "itemName": "贴纸·铁痕的王冠",
+        "quantity": 1
       }
     ]
   },

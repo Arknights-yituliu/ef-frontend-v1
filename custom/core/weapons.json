@@ -547,7 +547,7 @@
       "secondary": "weapon.stat.gat_passive_attr_naturaldam",
       "skill": "weapon.stat.gst_passive_tacafter"
     },
-    "isForesight": true
+    "isForesight": false
   },
   "wpn_lance_0018": {
     "weaponId": "wpn_lance_0018",
@@ -558,7 +558,7 @@
       "secondary": "weapon.stat.gat_passive_attr_usp",
       "skill": "weapon.stat.gst_passive_burst"
     },
-    "isForesight": true
+    "isForesight": false
   },
   "wpn_pistol_0001": {
     "weaponId": "wpn_pistol_0001",

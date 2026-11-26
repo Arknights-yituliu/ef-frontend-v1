@@ -197,6 +197,15 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_adv_wuling_box_5_1": {
+    "id": "achv_adv_wuling_box_5_1",
+    "name": {
+      "zh-CN": "蘑境储藏家奖章",
+      "en-US": "Shroom World Crate Master"
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_adv_wuling_bugball_2": {
     "id": "achv_adv_wuling_bugball_2",
     "name": {
@@ -238,6 +247,15 @@
     "name": {
       "zh-CN": "锚定武陵奖章·Ⅳ",
       "en-US": "Anchored to Wuling Ⅳ"
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_campfire_5_1": {
+    "id": "achv_adv_wuling_campfire_5_1",
+    "name": {
+      "zh-CN": "锚定武陵奖章·Ⅴ",
+      "en-US": "Anchored to Wuling Ⅴ"
     },
     "rarity": 1,
     "iconId": "item_achievement_icon"
@@ -301,6 +319,15 @@
     "name": {
       "zh-CN": "“碎片的重聚”·Ⅳ",
       "en-US": "\"Re-Congregated Fragments\" Ⅳ"
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_ether_5_1": {
+    "id": "achv_adv_wuling_ether_5_1",
+    "name": {
+      "zh-CN": "“碎片的重聚”·Ⅴ",
+      "en-US": "\"Re-Congregated Fragments\" Ⅴ"
     },
     "rarity": 1,
     "iconId": "item_achievement_icon"
@@ -382,6 +409,15 @@
     "name": {
       "zh-CN": "“妙笔连珠”",
       "en-US": "\"Brilliant Dabs and Strokes\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_adv_wuling_sweetpie_1": {
+    "id": "achv_adv_wuling_sweetpie_1",
+    "name": {
+      "zh-CN": "水坝行者奖章",
+      "en-US": "Dam Treader"
     },
     "rarity": 1,
     "iconId": "item_achievement_icon"
@@ -872,6 +908,24 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_bat_hard_9_2": {
+    "id": "achv_bat_hard_9_2",
+    "name": {
+      "zh-CN": "“残暴者的凶行”",
+      "en-US": "\"Despotic Brutality\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_hard_9_2_plate": {
+    "id": "achv_bat_hard_9_2_plate",
+    "name": {
+      "zh-CN": "“残暴者的凶行”",
+      "en-US": "\"Despotic Brutality\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_bat_jsspsi_reverse_color_2": {
     "id": "achv_bat_jsspsi_reverse_color_2",
     "name": {
@@ -904,6 +958,15 @@
     "name": {
       "zh-CN": "劲力展露奖章",
       "en-US": "Superb Physicals"
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_bat_mushro_blowoff_2": {
+    "id": "achv_bat_mushro_blowoff_2",
+    "name": {
+      "zh-CN": "“蘑菇的弹性”",
+      "en-US": "\"Fungal Bounciness\""
     },
     "rarity": 1,
     "iconId": "item_achievement_icon"
@@ -953,6 +1016,24 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_event_blackjack_1_2": {
+    "id": "achv_event_blackjack_1_2",
+    "name": {
+      "zh-CN": "“巫术21”",
+      "en-US": "\"Witchcraft 21\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_blackjack_1_2_plate": {
+    "id": "achv_event_blackjack_1_2_plate",
+    "name": {
+      "zh-CN": "“巫术21”",
+      "en-US": "\"Witchcraft 21\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_event_clean_2": {
     "id": "achv_event_clean_2",
     "name": {
@@ -994,6 +1075,24 @@
     "name": {
       "zh-CN": "“洗尽浊蓝”",
       "en-US": "\"Indigo Cleansed\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_doudizhu_1_2": {
+    "id": "achv_event_doudizhu_1_2",
+    "name": {
+      "zh-CN": "“JOKER的军权”",
+      "en-US": "\"Joker's Warlord Power\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_doudizhu_1_2_plate": {
+    "id": "achv_event_doudizhu_1_2_plate",
+    "name": {
+      "zh-CN": "“JOKER的军权”",
+      "en-US": "\"Joker's Warlord Power\""
     },
     "rarity": 1,
     "iconId": "item_achievement_icon"
@@ -1106,6 +1205,24 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_event_takestwo_2_2": {
+    "id": "achv_event_takestwo_2_2",
+    "name": {
+      "zh-CN": "“塔卫二第一竞技会”",
+      "en-US": "\"BEST! ARENA OF TALOS-II!\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_takestwo_2_2_plate": {
+    "id": "achv_event_takestwo_2_2_plate",
+    "name": {
+      "zh-CN": "“塔卫二第一竞技会”",
+      "en-US": "\"BEST! ARENA OF TALOS-II!\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_event_tundra_challenge_dung_2": {
     "id": "achv_event_tundra_challenge_dung_2",
     "name": {
@@ -1156,6 +1273,24 @@
     "name": {
       "zh-CN": "“画外遗光”",
       "en-US": "\"Fade Beyond the Painting\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_wuling_challenge_dung_04_2": {
+    "id": "achv_event_wuling_challenge_dung_04_2",
+    "name": {
+      "zh-CN": "“蕈城”",
+      "en-US": "\"Shroom City\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_event_wuling_challenge_dung_04_2_plate": {
+    "id": "achv_event_wuling_challenge_dung_04_2_plate",
+    "name": {
+      "zh-CN": "“蕈城”",
+      "en-US": "\"Shroom City\""
     },
     "rarity": 1,
     "iconId": "item_achievement_icon"
@@ -1556,6 +1691,15 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_fac_techtree_jinlong_5_1": {
+    "id": "achv_fac_techtree_jinlong_5_1",
+    "name": {
+      "zh-CN": "武陵工业先驱奖章·Ⅴ",
+      "en-US": "Wuling Factory Pioneer Ⅴ"
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_fac_techtree_tundra_3": {
     "id": "achv_fac_techtree_tundra_3",
     "name": {
@@ -1579,6 +1723,24 @@
     "name": {
       "zh-CN": "“心生弓矢”",
       "en-US": "\"Archer's Epiphany\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_wonder_build_2": {
+    "id": "achv_fac_wonder_build_2",
+    "name": {
+      "zh-CN": "“重塑我们的生活”",
+      "en-US": "\"Our Lives Rebuilt\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_fac_wonder_build_2_plate": {
+    "id": "achv_fac_wonder_build_2_plate",
+    "name": {
+      "zh-CN": "“重塑我们的生活”",
+      "en-US": "\"Our Lives Rebuilt\""
     },
     "rarity": 1,
     "iconId": "item_achievement_icon"
@@ -1835,6 +1997,15 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_hide_mushbug_attract_2": {
+    "id": "achv_hide_mushbug_attract_2",
+    "name": {
+      "zh-CN": "“来吧，从管道出来”",
+      "en-US": "\"Come, Slither Out of the Pipes\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_hide_no_parry_3": {
     "id": "achv_hide_no_parry_3",
     "name": {
@@ -1885,6 +2056,15 @@
     "name": {
       "zh-CN": "“死域游身”",
       "en-US": "\"Traveler of the Deathly Realms\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_hide_secretbase_v1d7_1": {
+    "id": "achv_hide_secretbase_v1d7_1",
+    "name": {
+      "zh-CN": "“专业安全屋”",
+      "en-US": "\"Professional Safe House\""
     },
     "rarity": 1,
     "iconId": "item_achievement_icon"
@@ -2195,6 +2375,24 @@
     "rarity": 1,
     "iconId": "item_achievement_icon"
   },
+  "achv_quest_sm2l11m1_2": {
+    "id": "achv_quest_sm2l11m1_2",
+    "name": {
+      "zh-CN": "“醉后方知好姻缘”",
+      "en-US": "\"A Good Marriage Needs Good Kohl\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
+  "achv_quest_sweetpie_2": {
+    "id": "achv_quest_sweetpie_2",
+    "name": {
+      "zh-CN": "“蜜饼是我的祈愿”",
+      "en-US": "\"I Dream of Honey Waffles\""
+    },
+    "rarity": 1,
+    "iconId": "item_achievement_icon"
+  },
   "achv_quest_typhoea_2": {
     "id": "achv_quest_typhoea_2",
     "name": {
@@ -2429,6 +2627,24 @@
     "rarity": 6,
     "iconId": "item_topic_bp_1_6"
   },
+  "business_card_topic_bp_1_7": {
+    "id": "business_card_topic_bp_1_7",
+    "name": {
+      "zh-CN": "蜜境蘑城",
+      "en-US": "City of Shrooms and Honey"
+    },
+    "rarity": 6,
+    "iconId": "item_topic_bp_1_7"
+  },
+  "business_card_topic_channel_1_7": {
+    "id": "business_card_topic_channel_1_7",
+    "name": {
+      "zh-CN": "回音回环",
+      "en-US": "Echoing Loop"
+    },
+    "rarity": 6,
+    "iconId": "item_topic_channel_1_7"
+  },
   "business_card_topic_chr_0009_azrila": {
     "id": "business_card_topic_chr_0009_azrila",
     "name": {
@@ -2590,6 +2806,15 @@
     },
     "rarity": 6,
     "iconId": "item_topic_chr_0037_minghe"
+  },
+  "business_card_topic_chr_0040_sweetpie": {
+    "id": "business_card_topic_chr_0040_sweetpie",
+    "name": {
+      "zh-CN": "秘密基地",
+      "en-US": "Secret Base"
+    },
+    "rarity": 6,
+    "iconId": "item_topic_chr_0040_sweetpie"
   },
   "business_card_topic_normal_1": {
     "id": "business_card_topic_normal_1",
@@ -2941,6 +3166,15 @@
     },
     "rarity": 5,
     "iconId": "item_chr_0038_purrche"
+  },
+  "chr_0040_sweetpie": {
+    "id": "chr_0040_sweetpie",
+    "name": {
+      "zh-CN": "小刻",
+      "en-US": "Kay"
+    },
+    "rarity": 6,
+    "iconId": "item_chr_0040_sweetpie"
   },
   "common_2x3_l": {
     "id": "common_2x3_l",
@@ -3851,6 +4085,42 @@
     "rarity": 5,
     "iconId": "item_gem_rarity_5"
   },
+  "gem_lance_0017_442": {
+    "id": "gem_lance_0017_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_lance_0017_663": {
+    "id": "gem_lance_0017_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_lance_0018_442": {
+    "id": "gem_lance_0018_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_lance_0018_663": {
+    "id": "gem_lance_0018_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "iconId": "item_gem_rarity_5"
+  },
   "gem_pistol_0001_42": {
     "id": "gem_pistol_0001_42",
     "name": {
@@ -4060,6 +4330,24 @@
   },
   "gem_pistol_0012_663": {
     "id": "gem_pistol_0012_663",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_pistol_0013_442": {
+    "id": "gem_pistol_0013_442",
+    "name": {
+      "zh-CN": "无瑕基质",
+      "en-US": "Flawless Essence"
+    },
+    "rarity": 5,
+    "iconId": "item_gem_rarity_5"
+  },
+  "gem_pistol_0013_663": {
+    "id": "gem_pistol_0013_663",
     "name": {
       "zh-CN": "无瑕基质",
       "en-US": "Flawless Essence"
@@ -5201,6 +5489,15 @@
     "rarity": 5,
     "iconId": "item_birthday_ap_supply_2026"
   },
+  "item_birthday_ap_supply_2027": {
+    "id": "item_birthday_ap_supply_2027",
+    "name": {
+      "zh-CN": "第二年的生日蛋糕",
+      "en-US": "Year 2 Birthday Cake"
+    },
+    "rarity": 5,
+    "iconId": "item_birthday_ap_supply_2027"
+  },
   "item_book_002_01": {
     "id": "item_book_002_01",
     "name": {
@@ -5762,8 +6059,8 @@
   "item_bp_liquid_cleaner_1": {
     "id": "item_bp_liquid_cleaner_1",
     "name": {
-      "zh-CN": "废水处理机模板",
-      "en-US": "Water Treatment Unit Template"
+      "zh-CN": "废料处理机模板",
+      "en-US": "Waste Treatment Unit Template"
     },
     "rarity": 3,
     "iconId": "item_port_liquid_cleaner_1"
@@ -5830,6 +6127,60 @@
     },
     "rarity": 4,
     "iconId": "item_port_log_hongs_bus_source"
+  },
+  "item_bp_magic_balancer_1": {
+    "id": "item_bp_magic_balancer_1",
+    "name": {
+      "zh-CN": "平衡炉模板",
+      "en-US": "Forge of Equilibrium Template"
+    },
+    "rarity": 3,
+    "iconId": "item_port_magic_balancer_1"
+  },
+  "item_bp_magic_spawner_1": {
+    "id": "item_bp_magic_spawner_1",
+    "name": {
+      "zh-CN": "明晦炉模板",
+      "en-US": "Forge of Luminance Template"
+    },
+    "rarity": 3,
+    "iconId": "item_port_magic_spawner_1"
+  },
+  "item_bp_magic_spawner_2": {
+    "id": "item_bp_magic_spawner_2",
+    "name": {
+      "zh-CN": "分影明晦炉模板",
+      "en-US": "Bipolar Forge of Luminance Template"
+    },
+    "rarity": 3,
+    "iconId": "item_port_magic_spawner_2"
+  },
+  "item_bp_magic_spawner_heng": {
+    "id": "item_bp_magic_spawner_heng",
+    "name": {
+      "zh-CN": "阵列·衡模板",
+      "en-US": "E-Array Template"
+    },
+    "rarity": 3,
+    "iconId": "item_bp_magic_spawner_heng"
+  },
+  "item_bp_magic_spawner_hui": {
+    "id": "item_bp_magic_spawner_hui",
+    "name": {
+      "zh-CN": "阵列·晦模板",
+      "en-US": "T-Array Template"
+    },
+    "rarity": 3,
+    "iconId": "item_bp_magic_spawner_hui"
+  },
+  "item_bp_magic_spawner_ming": {
+    "id": "item_bp_magic_spawner_ming",
+    "name": {
+      "zh-CN": "阵列·明模板",
+      "en-US": "L-Array Template"
+    },
+    "rarity": 3,
+    "iconId": "item_bp_magic_spawner_ming"
   },
   "item_bp_marker_1": {
     "id": "item_bp_marker_1",
@@ -6146,6 +6497,15 @@
     "rarity": 1,
     "iconId": "item_port_winder_1"
   },
+  "item_bp_wonder_supply_port_1": {
+    "id": "item_bp_wonder_supply_port_1",
+    "name": {
+      "zh-CN": "重建供应端口模板",
+      "en-US": "Rebuilding Supply Port Template"
+    },
+    "rarity": 3,
+    "iconId": "item_port_wonder_supply_port_1"
+  },
   "item_bp_xiranite_oven_1": {
     "id": "item_bp_xiranite_oven_1",
     "name": {
@@ -6452,6 +6812,15 @@
     "rarity": 6,
     "iconId": "item_case_wpn_selfselect_bp_7"
   },
+  "item_case_wpn_selfselect_bp_8": {
+    "id": "item_case_wpn_selfselect_bp_8",
+    "name": {
+      "zh-CN": "武器补给·蘑境",
+      "en-US": "Weapon Supply: Shroom World"
+    },
+    "rarity": 6,
+    "iconId": "item_case_wpn_selfselect_bp_8"
+  },
   "item_case_wpn_selfselect_common_advlevel": {
     "id": "item_case_wpn_selfselect_common_advlevel",
     "name": {
@@ -6605,6 +6974,24 @@
     "rarity": 6,
     "iconId": "item_case_wpn_selfselect_gahca_1_6_2"
   },
+  "item_case_wpn_selfselect_gahca_1_7_1": {
+    "id": "item_case_wpn_selfselect_gahca_1_7_1",
+    "name": {
+      "zh-CN": "补充武库箱·恣游",
+      "en-US": "Arms OC: Casual Roamer"
+    },
+    "rarity": 6,
+    "iconId": "item_case_wpn_selfselect_gahca_1_7_1"
+  },
+  "item_case_wpn_selfselect_gahca_aglina": {
+    "id": "item_case_wpn_selfselect_gahca_aglina",
+    "name": {
+      "zh-CN": "补充武库箱·飘行",
+      "en-US": "Arms OC: Floaty Traveler"
+    },
+    "rarity": 6,
+    "iconId": "item_case_wpn_selfselect_gahca_0_3"
+  },
   "item_case_wpn_selfselect_gahca_c_1": {
     "id": "item_case_wpn_selfselect_gahca_c_1",
     "name": {
@@ -6658,6 +7045,15 @@
     },
     "rarity": 6,
     "iconId": "item_case_wpn_selfselect_gahca_1_1"
+  },
+  "item_case_wpn_selfselect_gahca_wulfa": {
+    "id": "item_case_wpn_selfselect_gahca_wulfa",
+    "name": {
+      "zh-CN": "补充武库箱·赤獠",
+      "en-US": "Arms OC: Scarlet Claws"
+    },
+    "rarity": 6,
+    "iconId": "item_case_wpn_selfselect_gahca_1_2"
   },
   "item_case_wpn_selfselect_gahca_yvonne": {
     "id": "item_case_wpn_selfselect_gahca_yvonne",
@@ -6767,6 +7163,15 @@
     "rarity": 5,
     "iconId": "item_char_ap_supply_minghe"
   },
+  "item_char_ap_supply_sweetpie": {
+    "id": "item_char_ap_supply_sweetpie",
+    "name": {
+      "zh-CN": "蜜饼山",
+      "en-US": "Mound of Waffles"
+    },
+    "rarity": 5,
+    "iconId": "item_char_ap_supply_sweetpie"
+  },
   "item_char_ap_supply_tangtang": {
     "id": "item_char_ap_supply_tangtang",
     "name": {
@@ -6871,6 +7276,15 @@
     "name": {
       "zh-CN": "武库防具箱α·天河",
       "en-US": "Arsenal Defense Crate α: Star River"
+    },
+    "rarity": 5,
+    "iconId": "item_char_equip_supply_1"
+  },
+  "item_char_equip_supply_sweetpie": {
+    "id": "item_char_equip_supply_sweetpie",
+    "name": {
+      "zh-CN": "武库防具箱α·漫野",
+      "en-US": "Arsenal Defense Crate α: Wild Roamer"
     },
     "rarity": 5,
     "iconId": "item_char_equip_supply_1"
@@ -7289,6 +7703,15 @@
     "rarity": 5,
     "iconId": "item_charpotentialup_chr_0038_purrche"
   },
+  "item_charpotentialup_chr_0040_sweetpie": {
+    "id": "item_charpotentialup_chr_0040_sweetpie",
+    "name": {
+      "zh-CN": "小刻的信物",
+      "en-US": "Kay's Token"
+    },
+    "rarity": 6,
+    "iconId": "item_charpotentialup_chr_0040_sweetpie"
+  },
   "item_charpotentialup_chr_9000_endmin": {
     "id": "item_charpotentialup_chr_9000_endmin",
     "name": {
@@ -7334,6 +7757,15 @@
     "rarity": 5,
     "iconId": "item_colllection_instance"
   },
+  "item_collection_sweetpie_mushroom": {
+    "id": "item_collection_sweetpie_mushroom",
+    "name": {
+      "zh-CN": "浪漫的蘑菇",
+      "en-US": "Romantic Mushroom"
+    },
+    "rarity": 5,
+    "iconId": "item_collection_sweetpie_mushroom"
+  },
   "item_collection_trstar": {
     "id": "item_collection_trstar",
     "name": {
@@ -7351,6 +7783,33 @@
     },
     "rarity": 3,
     "iconId": "item_copper_bottle"
+  },
+  "item_copper_bright": {
+    "id": "item_copper_bright",
+    "name": {
+      "zh-CN": "辉铜",
+      "en-US": "Lucidolite"
+    },
+    "rarity": 4,
+    "iconId": "item_copper_bright"
+  },
+  "item_copper_bright_cmpt": {
+    "id": "item_copper_bright_cmpt",
+    "name": {
+      "zh-CN": "辉铜零件",
+      "en-US": "Lucidolite Part"
+    },
+    "rarity": 4,
+    "iconId": "item_copper_bright_cmpt"
+  },
+  "item_copper_bright_cube": {
+    "id": "item_copper_bright_cube",
+    "name": {
+      "zh-CN": "辉铜能量块",
+      "en-US": "Lucidolite Energy Brick"
+    },
+    "rarity": 4,
+    "iconId": "item_copper_bright_cube"
   },
   "item_copper_cmpt": {
     "id": "item_copper_cmpt",
@@ -7406,6 +7865,33 @@
     "rarity": 4,
     "iconId": "item_copper_enr_cmpt"
   },
+  "item_copper_enr_heng": {
+    "id": "item_copper_enr_heng",
+    "name": {
+      "zh-CN": "衡铜",
+      "en-US": "Equprium"
+    },
+    "rarity": 3,
+    "iconId": "item_copper_enr_heng"
+  },
+  "item_copper_hui": {
+    "id": "item_copper_hui",
+    "name": {
+      "zh-CN": "晦状赤铜",
+      "en-US": "T-Cuprium"
+    },
+    "rarity": 3,
+    "iconId": "item_copper_hui"
+  },
+  "item_copper_hui_cmpt": {
+    "id": "item_copper_hui_cmpt",
+    "name": {
+      "zh-CN": "晦状赤铜零件",
+      "en-US": "T-Cuprium Part"
+    },
+    "rarity": 4,
+    "iconId": "item_copper_hui_cmpt"
+  },
   "item_copper_jar": {
     "id": "item_copper_jar",
     "name": {
@@ -7414,6 +7900,24 @@
     },
     "rarity": 3,
     "iconId": "item_copper_jar"
+  },
+  "item_copper_ming": {
+    "id": "item_copper_ming",
+    "name": {
+      "zh-CN": "明状赤铜",
+      "en-US": "L-Cuprium"
+    },
+    "rarity": 3,
+    "iconId": "item_copper_ming"
+  },
+  "item_copper_ming_cmpt": {
+    "id": "item_copper_ming_cmpt",
+    "name": {
+      "zh-CN": "明状赤铜零件",
+      "en-US": "L-Cuprium Part"
+    },
+    "rarity": 4,
+    "iconId": "item_copper_ming_cmpt"
   },
   "item_copper_nugget": {
     "id": "item_copper_nugget",
@@ -7441,6 +7945,24 @@
     },
     "rarity": 2,
     "iconId": "item_copper_powder"
+  },
+  "item_copper_xiranite_hui": {
+    "id": "item_copper_xiranite_hui",
+    "name": {
+      "zh-CN": "铜封重装组件",
+      "en-US": "CuPKG Heavy IC"
+    },
+    "rarity": 4,
+    "iconId": "item_copper_xiranite_hui"
+  },
+  "item_copper_xiranite_ming": {
+    "id": "item_copper_xiranite_ming",
+    "name": {
+      "zh-CN": "铜封明壤元件",
+      "en-US": "CuPKG Luminarite Component"
+    },
+    "rarity": 4,
+    "iconId": "item_copper_xiranite_ming"
   },
   "item_corp1_animal_1": {
     "id": "item_corp1_animal_1",
@@ -7846,6 +8368,33 @@
     },
     "rarity": 5,
     "iconId": "item_device_buff_ink_3"
+  },
+  "item_device_buff_mushroom_1": {
+    "id": "item_device_buff_mushroom_1",
+    "name": {
+      "zh-CN": "暗恼的蘑菇",
+      "en-US": "Brooding Mushroom"
+    },
+    "rarity": 3,
+    "iconId": "item_device_buff_mushroom_1"
+  },
+  "item_device_buff_mushroom_2": {
+    "id": "item_device_buff_mushroom_2",
+    "name": {
+      "zh-CN": "愤怒的蘑菇",
+      "en-US": "Angry Mushroom"
+    },
+    "rarity": 4,
+    "iconId": "item_device_buff_mushroom_2"
+  },
+  "item_device_buff_mushroom_3": {
+    "id": "item_device_buff_mushroom_3",
+    "name": {
+      "zh-CN": "暴怒的蘑菇",
+      "en-US": "Furious Mushroom"
+    },
+    "rarity": 5,
+    "iconId": "item_device_buff_mushroom_3"
   },
   "item_device_buff_snow_1": {
     "id": "item_device_buff_snow_1",
@@ -8504,6 +9053,24 @@
     "rarity": 2,
     "iconId": "item_drop_mimicw_1"
   },
+  "item_drop_mushbug_1": {
+    "id": "item_drop_mushbug_1",
+    "name": {
+      "zh-CN": "菌王之尘",
+      "en-US": "Fungal King's Dust"
+    },
+    "rarity": 4,
+    "iconId": "item_drop_mushbug_1"
+  },
+  "item_drop_mushro_1": {
+    "id": "item_drop_mushro_1",
+    "name": {
+      "zh-CN": "异彩菌块",
+      "en-US": "Shiny Mycelial Mass"
+    },
+    "rarity": 4,
+    "iconId": "item_drop_mushro_1"
+  },
   "item_drop_sandb_1": {
     "id": "item_drop_sandb_1",
     "name": {
@@ -8611,6 +9178,15 @@
     },
     "rarity": 5,
     "iconId": "item_equip_enhance_wuling"
+  },
+  "item_equip_prime_enhance_wuling": {
+    "id": "item_equip_prime_enhance_wuling",
+    "name": {
+      "zh-CN": "起源锻造液·Ⅰ型",
+      "en-US": "Origo-Artificing Fluid Mk Ⅰ"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_prime_enhance_wuling"
   },
   "item_equip_script_1": {
     "id": "item_equip_script_1",
@@ -9602,6 +10178,24 @@
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling00_body_06"
   },
+  "item_equip_t4_parts_wuling00_body_07": {
+    "id": "item_equip_t4_parts_wuling00_body_07",
+    "name": {
+      "zh-CN": "集成实训重械护甲",
+      "en-US": "AIC Fieldwork Mecha-Armor"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_body_07"
+  },
+  "item_equip_t4_parts_wuling00_body_07_preset_333": {
+    "id": "item_equip_t4_parts_wuling00_body_07_preset_333",
+    "name": {
+      "zh-CN": "集成实训重械护甲",
+      "en-US": "AIC Fieldwork Mecha-Armor"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_body_07"
+  },
   "item_equip_t4_parts_wuling00_edc_01": {
     "id": "item_equip_t4_parts_wuling00_edc_01",
     "name": {
@@ -9709,6 +10303,24 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling00_edc_06"
+  },
+  "item_equip_t4_parts_wuling00_edc_07": {
+    "id": "item_equip_t4_parts_wuling00_edc_07",
+    "name": {
+      "zh-CN": "集成实训重械钢板",
+      "en-US": "AIC Fieldwork Mecha-Slab"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_edc_07"
+  },
+  "item_equip_t4_parts_wuling00_edc_07_preset_333": {
+    "id": "item_equip_t4_parts_wuling00_edc_07_preset_333",
+    "name": {
+      "zh-CN": "集成实训重械钢板",
+      "en-US": "AIC Fieldwork Mecha-Slab"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_edc_07"
   },
   "item_equip_t4_parts_wuling00_hand_01": {
     "id": "item_equip_t4_parts_wuling00_hand_01",
@@ -9818,6 +10430,24 @@
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling00_hand_06"
   },
+  "item_equip_t4_parts_wuling00_hand_07": {
+    "id": "item_equip_t4_parts_wuling00_hand_07",
+    "name": {
+      "zh-CN": "集成实训重械护手",
+      "en-US": "AIC Fieldwork Mecha-Gloves"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_hand_07"
+  },
+  "item_equip_t4_parts_wuling00_hand_07_preset_333": {
+    "id": "item_equip_t4_parts_wuling00_hand_07_preset_333",
+    "name": {
+      "zh-CN": "集成实训重械护手",
+      "en-US": "AIC Fieldwork Mecha-Gloves"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_hand_07"
+  },
   "item_equip_t4_parts_wuling01_body_01": {
     "id": "item_equip_t4_parts_wuling01_body_01",
     "name": {
@@ -9926,6 +10556,24 @@
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling02_body_04"
   },
+  "item_equip_t4_parts_wuling02_body_05": {
+    "id": "item_equip_t4_parts_wuling02_body_05",
+    "name": {
+      "zh-CN": "涉渊重钢甲",
+      "en-US": "Rift Trekker HVY Plate"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_body_05"
+  },
+  "item_equip_t4_parts_wuling02_body_06": {
+    "id": "item_equip_t4_parts_wuling02_body_06",
+    "name": {
+      "zh-CN": "涉渊轻护甲",
+      "en-US": "Rift Trekker LITE Armor"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_body_06"
+  },
   "item_equip_t4_parts_wuling02_edc_01": {
     "id": "item_equip_t4_parts_wuling02_edc_01",
     "name": {
@@ -9943,6 +10591,15 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling02_edc_02"
+  },
+  "item_equip_t4_parts_wuling02_edc_03": {
+    "id": "item_equip_t4_parts_wuling02_edc_03",
+    "name": {
+      "zh-CN": "涉渊破岩锥",
+      "en-US": "Rift Trekker Rock Pick"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_edc_03"
   },
   "item_equip_t4_parts_wuling02_hand_01": {
     "id": "item_equip_t4_parts_wuling02_hand_01",
@@ -9979,6 +10636,24 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling02_hand_04"
+  },
+  "item_equip_t4_parts_wuling02_hand_05": {
+    "id": "item_equip_t4_parts_wuling02_hand_05",
+    "name": {
+      "zh-CN": "涉渊轻裹手",
+      "en-US": "Rift Trekker LITE Wraps"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_hand_05"
+  },
+  "item_equip_t4_parts_wuling02_hand_06": {
+    "id": "item_equip_t4_parts_wuling02_hand_06",
+    "name": {
+      "zh-CN": "涉渊重手甲",
+      "en-US": "Rift Trekker HVY Gauntlets"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_hand_06"
   },
   "item_equip_t4_suit_atb01_body_01": {
     "id": "item_equip_t4_suit_atb01_body_01",
@@ -10024,6 +10699,24 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_suit_atb01_body_05"
+  },
+  "item_equip_t4_suit_atb01_body_06": {
+    "id": "item_equip_t4_suit_atb01_body_06",
+    "name": {
+      "zh-CN": "拓荒增重钢甲",
+      "en-US": "Frontiers HVY Steel Plate"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_body_06"
+  },
+  "item_equip_t4_suit_atb01_body_07": {
+    "id": "item_equip_t4_suit_atb01_body_07",
+    "name": {
+      "zh-CN": "拓荒减重护甲",
+      "en-US": "Frontiers LITE Armor"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_body_07"
   },
   "item_equip_t4_suit_atb01_edc_01": {
     "id": "item_equip_t4_suit_atb01_edc_01",
@@ -10079,6 +10772,24 @@
     "rarity": 5,
     "iconId": "item_equip_t4_suit_atb01_edc_06"
   },
+  "item_equip_t4_suit_atb01_edc_07": {
+    "id": "item_equip_t4_suit_atb01_edc_07",
+    "name": {
+      "zh-CN": "拓荒多层钢板",
+      "en-US": "Frontiers Composite RHA"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_edc_07"
+  },
+  "item_equip_t4_suit_atb01_edc_08": {
+    "id": "item_equip_t4_suit_atb01_edc_08",
+    "name": {
+      "zh-CN": "拓荒压合板",
+      "en-US": "Frontiers Compressed Slab"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_edc_08"
+  },
   "item_equip_t4_suit_atb01_hand_01": {
     "id": "item_equip_t4_suit_atb01_hand_01",
     "name": {
@@ -10105,6 +10816,24 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_suit_atb01_hand_03"
+  },
+  "item_equip_t4_suit_atb01_hand_04": {
+    "id": "item_equip_t4_suit_atb01_hand_04",
+    "name": {
+      "zh-CN": "拓荒增重手甲",
+      "en-US": "Frontiers HVY Gauntlets"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_hand_04"
+  },
+  "item_equip_t4_suit_atb01_hand_05": {
+    "id": "item_equip_t4_suit_atb01_hand_05",
+    "name": {
+      "zh-CN": "拓荒减重护手",
+      "en-US": "Frontiers LITE Gloves"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_hand_05"
   },
   "item_equip_t4_suit_atk02_body_01": {
     "id": "item_equip_t4_suit_atk02_body_01",
@@ -11321,6 +12050,15 @@
     "rarity": 5,
     "iconId": "item_equip_t4_suit_usp02_hand_05"
   },
+  "item_equip_t4_suit_usp02_hand_06": {
+    "id": "item_equip_t4_suit_usp02_hand_06",
+    "name": {
+      "zh-CN": "长息重手甲",
+      "en-US": "Eternal Xiranite HVY Gauntlets"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_usp02_hand_06"
+  },
   "item_erhound_1_agmelee_1_moss_1_1": {
     "id": "item_erhound_1_agmelee_1_moss_1_1",
     "name": {
@@ -11563,6 +12301,15 @@
     },
     "rarity": 3,
     "iconId": "item_factech_wuling_oven_amount_4"
+  },
+  "item_factech_wuling_oven_amount_5": {
+    "id": "item_factech_wuling_oven_amount_5",
+    "name": {
+      "zh-CN": "洪炉扩容V",
+      "en-US": "Forge Expansion V"
+    },
+    "rarity": 3,
+    "iconId": "item_factech_wuling_oven_amount_5"
   },
   "item_factech_wuling_xiranite_enr_formula": {
     "id": "item_factech_wuling_xiranite_enr_formula",
@@ -13085,6 +13832,15 @@
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling00_body_06"
   },
+  "item_formu_t4_parts_wuling00_body_07": {
+    "id": "item_formu_t4_parts_wuling00_body_07",
+    "name": {
+      "zh-CN": "集成实训重械护甲",
+      "en-US": "AIC Fieldwork Mecha-Armor"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_body_07"
+  },
   "item_formu_t4_parts_wuling00_edc_01": {
     "id": "item_formu_t4_parts_wuling00_edc_01",
     "name": {
@@ -13139,6 +13895,15 @@
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling00_edc_06"
   },
+  "item_formu_t4_parts_wuling00_edc_07": {
+    "id": "item_formu_t4_parts_wuling00_edc_07",
+    "name": {
+      "zh-CN": "集成实训重械钢板",
+      "en-US": "AIC Fieldwork Mecha-Slab"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_edc_07"
+  },
   "item_formu_t4_parts_wuling00_hand_01": {
     "id": "item_formu_t4_parts_wuling00_hand_01",
     "name": {
@@ -13192,6 +13957,15 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling00_hand_06"
+  },
+  "item_formu_t4_parts_wuling00_hand_07": {
+    "id": "item_formu_t4_parts_wuling00_hand_07",
+    "name": {
+      "zh-CN": "集成实训重械护手",
+      "en-US": "AIC Fieldwork Mecha-Gloves"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling00_hand_07"
   },
   "item_formu_t4_parts_wuling01_body_01": {
     "id": "item_formu_t4_parts_wuling01_body_01",
@@ -13301,6 +14075,24 @@
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling02_body_04"
   },
+  "item_formu_t4_parts_wuling02_body_05": {
+    "id": "item_formu_t4_parts_wuling02_body_05",
+    "name": {
+      "zh-CN": "涉渊重钢甲",
+      "en-US": "Rift Trekker HVY Plate"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_body_05"
+  },
+  "item_formu_t4_parts_wuling02_body_06": {
+    "id": "item_formu_t4_parts_wuling02_body_06",
+    "name": {
+      "zh-CN": "涉渊轻护甲",
+      "en-US": "Rift Trekker LITE Armor"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_body_06"
+  },
   "item_formu_t4_parts_wuling02_edc_01": {
     "id": "item_formu_t4_parts_wuling02_edc_01",
     "name": {
@@ -13318,6 +14110,15 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling02_edc_02"
+  },
+  "item_formu_t4_parts_wuling02_edc_03": {
+    "id": "item_formu_t4_parts_wuling02_edc_03",
+    "name": {
+      "zh-CN": "涉渊破岩锥",
+      "en-US": "Rift Trekker Rock Pick"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_edc_03"
   },
   "item_formu_t4_parts_wuling02_hand_01": {
     "id": "item_formu_t4_parts_wuling02_hand_01",
@@ -13354,6 +14155,24 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_parts_wuling02_hand_04"
+  },
+  "item_formu_t4_parts_wuling02_hand_05": {
+    "id": "item_formu_t4_parts_wuling02_hand_05",
+    "name": {
+      "zh-CN": "涉渊轻裹手",
+      "en-US": "Rift Trekker LITE Wraps"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_hand_05"
+  },
+  "item_formu_t4_parts_wuling02_hand_06": {
+    "id": "item_formu_t4_parts_wuling02_hand_06",
+    "name": {
+      "zh-CN": "涉渊重手甲",
+      "en-US": "Rift Trekker HVY Gauntlets"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_parts_wuling02_hand_06"
   },
   "item_formu_t4_suit_atb01_body_01": {
     "id": "item_formu_t4_suit_atb01_body_01",
@@ -13399,6 +14218,24 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_suit_atb01_body_05"
+  },
+  "item_formu_t4_suit_atb01_body_06": {
+    "id": "item_formu_t4_suit_atb01_body_06",
+    "name": {
+      "zh-CN": "拓荒增重钢甲",
+      "en-US": "Frontiers HVY Steel Plate"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_body_06"
+  },
+  "item_formu_t4_suit_atb01_body_07": {
+    "id": "item_formu_t4_suit_atb01_body_07",
+    "name": {
+      "zh-CN": "拓荒减重护甲",
+      "en-US": "Frontiers LITE Armor"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_body_07"
   },
   "item_formu_t4_suit_atb01_edc_01": {
     "id": "item_formu_t4_suit_atb01_edc_01",
@@ -13454,6 +14291,24 @@
     "rarity": 5,
     "iconId": "item_equip_t4_suit_atb01_edc_06"
   },
+  "item_formu_t4_suit_atb01_edc_07": {
+    "id": "item_formu_t4_suit_atb01_edc_07",
+    "name": {
+      "zh-CN": "拓荒多层钢板",
+      "en-US": "Frontiers Composite RHA"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_edc_07"
+  },
+  "item_formu_t4_suit_atb01_edc_08": {
+    "id": "item_formu_t4_suit_atb01_edc_08",
+    "name": {
+      "zh-CN": "拓荒压合板",
+      "en-US": "Frontiers Compressed Slab"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_edc_08"
+  },
   "item_formu_t4_suit_atb01_hand_01": {
     "id": "item_formu_t4_suit_atb01_hand_01",
     "name": {
@@ -13480,6 +14335,24 @@
     },
     "rarity": 5,
     "iconId": "item_equip_t4_suit_atb01_hand_03"
+  },
+  "item_formu_t4_suit_atb01_hand_04": {
+    "id": "item_formu_t4_suit_atb01_hand_04",
+    "name": {
+      "zh-CN": "拓荒增重手甲",
+      "en-US": "Frontiers HVY Gauntlets"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_hand_04"
+  },
+  "item_formu_t4_suit_atb01_hand_05": {
+    "id": "item_formu_t4_suit_atb01_hand_05",
+    "name": {
+      "zh-CN": "拓荒减重护手",
+      "en-US": "Frontiers LITE Gloves"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_atb01_hand_05"
   },
   "item_formu_t4_suit_atk02_body_01": {
     "id": "item_formu_t4_suit_atk02_body_01",
@@ -14696,6 +15569,15 @@
     "rarity": 5,
     "iconId": "item_equip_t4_suit_usp02_hand_05"
   },
+  "item_formu_t4_suit_usp02_hand_06": {
+    "id": "item_formu_t4_suit_usp02_hand_06",
+    "name": {
+      "zh-CN": "长息重手甲",
+      "en-US": "Eternal Xiranite HVY Gauntlets"
+    },
+    "rarity": 5,
+    "iconId": "item_equip_t4_suit_usp02_hand_06"
+  },
   "item_formula_agfly_1_agmelee_1_moss_2_1": {
     "id": "item_formula_agfly_1_agmelee_1_moss_2_1",
     "name": {
@@ -15566,7 +16448,7 @@
       "zh-CN": "草本清凉饮配方",
       "en-US": "Formula: Herbal Tisane"
     },
-    "rarity": 3,
+    "rarity": 5,
     "iconId": "item_inkbiter_1_wgshoal_1_1"
   },
   "item_formula_inkkirin_1_hscrane_1_1": {
@@ -15622,6 +16504,15 @@
     },
     "rarity": 4,
     "iconId": "item_jzmonk_1_hsmob_1_1"
+  },
+  "item_formula_jzmonk_1_mushbug_spmushroom1_1": {
+    "id": "item_formula_jzmonk_1_mushbug_spmushroom1_1",
+    "name": {
+      "zh-CN": "僭越的蜜饼配方",
+      "en-US": "Formula: Usurper's Waffle"
+    },
+    "rarity": 4,
+    "iconId": "item_jzmonk_1_mushbug_spmushroom1_1"
   },
   "item_formula_klbuds_1_hsfly_1_1": {
     "id": "item_formula_klbuds_1_hsfly_1_1",
@@ -15866,6 +16757,15 @@
     "rarity": 4,
     "iconId": "item_wgthorns_1_hshog_1_hsmob_1_1"
   },
+  "item_formula_wgthorns_1_mushbug_spmushroom1_1": {
+    "id": "item_formula_wgthorns_1_mushbug_spmushroom1_1",
+    "name": {
+      "zh-CN": "菌王之血配方",
+      "en-US": "Formula: Fungal King's Blood"
+    },
+    "rarity": 4,
+    "iconId": "item_wgthorns_1_mushbug_spmushroom1_1"
+  },
   "item_formula_xiranite_nexus_2": {
     "id": "item_formula_xiranite_nexus_2",
     "name": {
@@ -16010,6 +16910,15 @@
     "rarity": 6,
     "iconId": "item_gacha_introletter"
   },
+  "item_gacha_introletter_1_7_1": {
+    "id": "item_gacha_introletter_1_7_1",
+    "name": {
+      "zh-CN": "寻访情报书",
+      "en-US": "Headhunting Dossier"
+    },
+    "rarity": 6,
+    "iconId": "item_gacha_introletter"
+  },
   "item_gachabyproducts_charticket": {
     "id": "item_gachabyproducts_charticket",
     "name": {
@@ -16073,6 +16982,24 @@
     "rarity": 3,
     "iconId": "item_gas_copper"
   },
+  "item_gas_copper_bright_clear": {
+    "id": "item_gas_copper_bright_clear",
+    "name": {
+      "zh-CN": "清型辉铜气",
+      "en-US": "Clean Lucidolite Gas"
+    },
+    "rarity": 4,
+    "iconId": "item_gas_copper_bright_clear"
+  },
+  "item_gas_copper_bright_turbid": {
+    "id": "item_gas_copper_bright_turbid",
+    "name": {
+      "zh-CN": "浊型辉铜气",
+      "en-US": "Turbid Lucidolite Gas"
+    },
+    "rarity": 4,
+    "iconId": "item_gas_copper_bright_turbid"
+  },
   "item_gas_copper_enr": {
     "id": "item_gas_copper_enr",
     "name": {
@@ -16090,6 +17017,15 @@
     },
     "rarity": 4,
     "iconId": "item_gas_copper_enr2"
+  },
+  "item_gas_copper_enr_heng": {
+    "id": "item_gas_copper_enr_heng",
+    "name": {
+      "zh-CN": "气态衡铜",
+      "en-US": "Equprium Gas"
+    },
+    "rarity": 4,
+    "iconId": "item_gas_copper_enr_heng"
   },
   "item_gas_inert": {
     "id": "item_gas_inert",
@@ -16127,6 +17063,15 @@
     "rarity": 3,
     "iconId": "item_gas_xiranite_enr"
   },
+  "item_gas_xiranite_enr_heng": {
+    "id": "item_gas_xiranite_enr_heng",
+    "name": {
+      "zh-CN": "气态衡息壤",
+      "en-US": "Equiragen"
+    },
+    "rarity": 4,
+    "iconId": "item_gas_xiranite_enr_heng"
+  },
   "item_gasjar_copper_gas_acid": {
     "id": "item_gasjar_copper_gas_acid",
     "name": {
@@ -16145,6 +17090,24 @@
     "rarity": 3,
     "iconId": "item_copper_jar_gas"
   },
+  "item_gasjar_copper_gas_copper_bright_clear": {
+    "id": "item_gasjar_copper_gas_copper_bright_clear",
+    "name": {
+      "zh-CN": "赤铜耐压罐",
+      "en-US": "Cuprium Canister"
+    },
+    "rarity": 3,
+    "iconId": "item_copper_jar_gas"
+  },
+  "item_gasjar_copper_gas_copper_bright_turbid": {
+    "id": "item_gasjar_copper_gas_copper_bright_turbid",
+    "name": {
+      "zh-CN": "赤铜耐压罐",
+      "en-US": "Cuprium Canister"
+    },
+    "rarity": 3,
+    "iconId": "item_copper_jar_gas"
+  },
   "item_gasjar_copper_gas_copper_enr": {
     "id": "item_gasjar_copper_gas_copper_enr",
     "name": {
@@ -16156,6 +17119,15 @@
   },
   "item_gasjar_copper_gas_copper_enr2": {
     "id": "item_gasjar_copper_gas_copper_enr2",
+    "name": {
+      "zh-CN": "赤铜耐压罐",
+      "en-US": "Cuprium Canister"
+    },
+    "rarity": 3,
+    "iconId": "item_copper_jar_gas"
+  },
+  "item_gasjar_copper_gas_copper_enr_heng": {
+    "id": "item_gasjar_copper_gas_copper_enr_heng",
     "name": {
       "zh-CN": "赤铜耐压罐",
       "en-US": "Cuprium Canister"
@@ -16192,6 +17164,15 @@
   },
   "item_gasjar_copper_gas_xiranite_enr": {
     "id": "item_gasjar_copper_gas_xiranite_enr",
+    "name": {
+      "zh-CN": "赤铜耐压罐",
+      "en-US": "Cuprium Canister"
+    },
+    "rarity": 3,
+    "iconId": "item_copper_jar_gas"
+  },
+  "item_gasjar_copper_gas_xiranite_enr_heng": {
+    "id": "item_gasjar_copper_gas_xiranite_enr_heng",
     "name": {
       "zh-CN": "赤铜耐压罐",
       "en-US": "Cuprium Canister"
@@ -16391,8 +17372,8 @@
   "item_gemcustomization_wuling_4": {
     "id": "item_gemcustomization_wuling_4",
     "name": {
-      "zh-CN": "",
-      "en-US": ""
+      "zh-CN": "武陵多痕刻写箱",
+      "en-US": "Wuling Multi-Line Engraving Kit"
     },
     "rarity": 5,
     "iconId": "item_gemcustomization_wuling_4"
@@ -16441,6 +17422,24 @@
     },
     "rarity": 5,
     "iconId": "item_gift_jinlong_13"
+  },
+  "item_gift_jinlong_14": {
+    "id": "item_gift_jinlong_14",
+    "name": {
+      "zh-CN": "风味蜜饼·联名款",
+      "en-US": "WOW-FFLE: Fusion Event"
+    },
+    "rarity": 5,
+    "iconId": "item_gift_jinlong_14"
+  },
+  "item_gift_jinlong_15": {
+    "id": "item_gift_jinlong_15",
+    "name": {
+      "zh-CN": "《团结号》",
+      "en-US": "The Unicity"
+    },
+    "rarity": 5,
+    "iconId": "item_gift_jinlong_15"
   },
   "item_gift_jinlong_2": {
     "id": "item_gift_jinlong_2",
@@ -16700,7 +17699,7 @@
       "zh-CN": "草本清凉饮",
       "en-US": "Herbal Tisane"
     },
-    "rarity": 4,
+    "rarity": 5,
     "iconId": "item_inkbiter_1_wgshoal_1_1"
   },
   "item_inkkirin_1_hscrane_1_1": {
@@ -17701,6 +18700,15 @@
     },
     "rarity": 4,
     "iconId": "item_jzmonk_1_hsmob_1_1"
+  },
+  "item_jzmonk_1_mushbug_spmushroom1_1": {
+    "id": "item_jzmonk_1_mushbug_spmushroom1_1",
+    "name": {
+      "zh-CN": "僭越的蜜饼",
+      "en-US": "Usurper's Waffle"
+    },
+    "rarity": 4,
+    "iconId": "item_jzmonk_1_mushbug_spmushroom1_1"
   },
   "item_klbuds_1_hsfly_1_1": {
     "id": "item_klbuds_1_hsfly_1_1",
@@ -18908,6 +19916,15 @@
     "rarity": 5,
     "iconId": "item_mission_gm02m27_switch"
   },
+  "item_mission_gm02m28_sample": {
+    "id": "item_mission_gm02m28_sample",
+    "name": {
+      "zh-CN": "试验肥料的样本",
+      "en-US": "Test Fertilizer Sample"
+    },
+    "rarity": 5,
+    "iconId": "item_mission_gm02m28_yangben"
+  },
   "item_mission_sm1l2m2_key": {
     "id": "item_mission_sm1l2m2_key",
     "name": {
@@ -19138,6 +20155,24 @@
     "name": {
       "zh-CN": "行渡",
       "en-US": "To Walk, To Cross"
+    },
+    "rarity": 5,
+    "iconId": "item_spaceship_music"
+  },
+  "item_music_exp_wuling_10": {
+    "id": "item_music_exp_wuling_10",
+    "name": {
+      "zh-CN": "去处，归时",
+      "en-US": "Where We Go, When We Return"
+    },
+    "rarity": 5,
+    "iconId": "item_spaceship_music"
+  },
+  "item_music_exp_wuling_11": {
+    "id": "item_music_exp_wuling_11",
+    "name": {
+      "zh-CN": "浮舟",
+      "en-US": "Drifting Raft"
     },
     "rarity": 5,
     "iconId": "item_spaceship_music"
@@ -19628,6 +20663,15 @@
     "rarity": 5,
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_1_chr_0040_sweetpie": {
+    "id": "item_pic_1_chr_0040_sweetpie",
+    "name": {
+      "zh-CN": "惊喜？",
+      "en-US": "Surprised?"
+    },
+    "rarity": 5,
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_1_chr_9000_endmin": {
     "id": "item_pic_1_chr_9000_endmin",
     "name": {
@@ -19961,6 +21005,15 @@
     "rarity": 5,
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_3_chr_0040_sweetpie": {
+    "id": "item_pic_3_chr_0040_sweetpie",
+    "name": {
+      "zh-CN": "入职快照",
+      "en-US": "Onboarding Snapshot"
+    },
+    "rarity": 5,
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_3_chr_9000_endmin": {
     "id": "item_pic_3_chr_9000_endmin",
     "name": {
@@ -20285,6 +21338,15 @@
     "rarity": 5,
     "iconId": "item_potential_normal_photo"
   },
+  "item_pic_5_chr_0040_sweetpie": {
+    "id": "item_pic_5_chr_0040_sweetpie",
+    "name": {
+      "zh-CN": "秘密基地",
+      "en-US": "Secret Base"
+    },
+    "rarity": 5,
+    "iconId": "item_potential_normal_photo"
+  },
   "item_pic_5_chr_9000_endmin": {
     "id": "item_pic_5_chr_9000_endmin",
     "name": {
@@ -20518,6 +21580,15 @@
     },
     "rarity": 3,
     "iconId": "item_plant_grass_spc_powder_2"
+  },
+  "item_plant_grass_spmushroom_1": {
+    "id": "item_plant_grass_spmushroom_1",
+    "name": {
+      "zh-CN": "健谈的蘑菇",
+      "en-US": "Loquacious Shroom"
+    },
+    "rarity": 1,
+    "iconId": "item_plant_grass_spmushroom_1"
   },
   "item_plant_moss_1": {
     "id": "item_plant_moss_1",
@@ -21005,6 +22076,15 @@
     "rarity": 1,
     "iconId": "item_plant_tundra_wood"
   },
+  "item_plantpoint_chalk_1": {
+    "id": "item_plantpoint_chalk_1",
+    "name": {
+      "zh-CN": "千眼兰区块",
+      "en-US": "Ocellate Orchid Patch"
+    },
+    "rarity": 1,
+    "iconId": "item_plantpoint_chalk_1"
+  },
   "item_port_air_dancer_1": {
     "id": "item_port_air_dancer_1",
     "name": {
@@ -21185,6 +22265,15 @@
     "rarity": 5,
     "iconId": "item_port_battle_turret_3"
   },
+  "item_port_biscuitmountain_1": {
+    "id": "item_port_biscuitmountain_1",
+    "name": {
+      "zh-CN": "甜美祈愿",
+      "en-US": "Sweet Prayer"
+    },
+    "rarity": 5,
+    "iconId": "item_port_biscuitmountain_1"
+  },
   "item_port_burger_1": {
     "id": "item_port_burger_1",
     "name": {
@@ -21247,6 +22336,15 @@
     },
     "rarity": 5,
     "iconId": "item_port_crystal_ball_1"
+  },
+  "item_port_dg017oven_1": {
+    "id": "item_port_dg017oven_1",
+    "name": {
+      "zh-CN": "“甜有蜜炉”",
+      "en-US": "\"Forge of Sweetness\""
+    },
+    "rarity": 5,
+    "iconId": "item_port_dg017oven_1"
   },
   "item_port_dismantler_1": {
     "id": "item_port_dismantler_1",
@@ -21386,8 +22484,8 @@
   "item_port_liquid_cleaner_1": {
     "id": "item_port_liquid_cleaner_1",
     "name": {
-      "zh-CN": "废水处理机",
-      "en-US": "Water Treatment Unit"
+      "zh-CN": "废料处理机",
+      "en-US": "Waste Treatment Unit"
     },
     "rarity": 3,
     "iconId": "item_port_liquid_cleaner_1"
@@ -21445,6 +22543,33 @@
     },
     "rarity": 4,
     "iconId": "item_port_log_hongs_bus_source"
+  },
+  "item_port_magic_balancer_1": {
+    "id": "item_port_magic_balancer_1",
+    "name": {
+      "zh-CN": "平衡炉",
+      "en-US": "Forge of Equilibrium"
+    },
+    "rarity": 4,
+    "iconId": "item_port_magic_balancer_1"
+  },
+  "item_port_magic_spawner_1": {
+    "id": "item_port_magic_spawner_1",
+    "name": {
+      "zh-CN": "明晦炉",
+      "en-US": "Forge of Luminance"
+    },
+    "rarity": 4,
+    "iconId": "item_port_magic_spawner_1"
+  },
+  "item_port_magic_spawner_2": {
+    "id": "item_port_magic_spawner_2",
+    "name": {
+      "zh-CN": "分影明晦炉",
+      "en-US": "Bipolar Forge of Luminance"
+    },
+    "rarity": 4,
+    "iconId": "item_port_magic_spawner_2"
   },
   "item_port_marker_1": {
     "id": "item_port_marker_1",
@@ -21517,6 +22642,15 @@
     },
     "rarity": 3,
     "iconId": "item_port_mix_pool_2"
+  },
+  "item_port_mushman_1": {
+    "id": "item_port_mushman_1",
+    "name": {
+      "zh-CN": "“真核之子”",
+      "en-US": "\"Eukaryotic Prince\""
+    },
+    "rarity": 5,
+    "iconId": "item_port_mushman_1"
   },
   "item_port_pear_blossom_bonsai_1": {
     "id": "item_port_pear_blossom_bonsai_1",
@@ -22112,6 +23246,15 @@
     "rarity": 1,
     "iconId": "item_port_winder_1"
   },
+  "item_port_wonder_supply_port_1": {
+    "id": "item_port_wonder_supply_port_1",
+    "name": {
+      "zh-CN": "重建供应端口",
+      "en-US": "Rebuilding Supply Port"
+    },
+    "rarity": 4,
+    "iconId": "item_port_wonder_supply_port_1"
+  },
   "item_port_xiranite_oven_1": {
     "id": "item_port_xiranite_oven_1",
     "name": {
@@ -22345,6 +23488,15 @@
     },
     "rarity": 4,
     "iconId": "item_proc_battery_5"
+  },
+  "item_proc_battery_6": {
+    "id": "item_proc_battery_6",
+    "name": {
+      "zh-CN": "高容武陵电池",
+      "en-US": "HC Wuling Battery"
+    },
+    "rarity": 4,
+    "iconId": "item_proc_battery_6"
   },
   "item_proc_bomb_1": {
     "id": "item_proc_bomb_1",
@@ -23183,6 +24335,15 @@
     "rarity": 5,
     "iconId": "item_shot_anim_si_m_1"
   },
+  "item_shot_anim_sweetpie_m_1": {
+    "id": "item_shot_anim_sweetpie_m_1",
+    "name": {
+      "zh-CN": "失落思索",
+      "en-US": "Thinking in Lost"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_anim_sweetpie_m_1"
+  },
   "item_shot_anim_tangtang_m_1": {
     "id": "item_shot_anim_tangtang_m_1",
     "name": {
@@ -23201,6 +24362,24 @@
     "rarity": 5,
     "iconId": "item_shot_anim_typhoea_m_1"
   },
+  "item_shot_anim_whiten_s_1": {
+    "id": "item_shot_anim_whiten_s_1",
+    "name": {
+      "zh-CN": "一键静音",
+      "en-US": "Shush Please"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_anim_whiten_s_1"
+  },
+  "item_shot_anim_wulfa_m_1": {
+    "id": "item_shot_anim_wulfa_m_1",
+    "name": {
+      "zh-CN": "好胜的丈量",
+      "en-US": "Competitive Measuring"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_anim_wulfa_m_1"
+  },
   "item_shot_anim_yvonne_m_1": {
     "id": "item_shot_anim_yvonne_m_1",
     "name": {
@@ -23209,6 +24388,15 @@
     },
     "rarity": 5,
     "iconId": "item_shot_anim_yvonne_m_1"
+  },
+  "item_shot_anim_zhuangfy_m_1": {
+    "id": "item_shot_anim_zhuangfy_m_1",
+    "name": {
+      "zh-CN": "由此观",
+      "en-US": "As We Can See"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_anim_zhuangfy_m_1"
   },
   "item_shot_filter_nm_1": {
     "id": "item_shot_filter_nm_1",
@@ -23344,6 +24532,15 @@
     },
     "rarity": 5,
     "iconId": "item_shot_filter_sp_7"
+  },
+  "item_shot_filter_sp_8": {
+    "id": "item_shot_filter_sp_8",
+    "name": {
+      "zh-CN": "滤镜·金色黄昏",
+      "en-US": "Filter: Golden Sunset"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_filter_sp_8"
   },
   "item_shot_sticker_1": {
     "id": "item_shot_sticker_1",
@@ -23498,6 +24695,15 @@
     "rarity": 5,
     "iconId": "item_shot_sticker_birthday_2026"
   },
+  "item_shot_sticker_birthday_2027": {
+    "id": "item_shot_sticker_birthday_2027",
+    "name": {
+      "zh-CN": "贴纸·第二年的生日",
+      "en-US": "Sticker: Year 2 Birthday"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_sticker_birthday_2027"
+  },
   "item_shot_sticker_bp_1": {
     "id": "item_shot_sticker_bp_1",
     "name": {
@@ -23561,6 +24767,15 @@
     "rarity": 5,
     "iconId": "item_shot_sticker_bp_7"
   },
+  "item_shot_sticker_bp_8": {
+    "id": "item_shot_sticker_bp_8",
+    "name": {
+      "zh-CN": "贴纸·黏腻与甜香",
+      "en-US": "Sticker: Clingy & Sweet"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_sticker_bp_8"
+  },
   "item_shot_sticker_channel_v1d3d6_1": {
     "id": "item_shot_sticker_channel_v1d3d6_1",
     "name": {
@@ -23578,6 +24793,51 @@
     },
     "rarity": 5,
     "iconId": "item_shot_sticker_channel_v1d6_1"
+  },
+  "item_shot_sticker_channel_v1d7_1": {
+    "id": "item_shot_sticker_channel_v1d7_1",
+    "name": {
+      "zh-CN": "贴纸·布丁头套",
+      "en-US": "Sticker: Pudding Hood"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_sticker_channel_v1d7_1"
+  },
+  "item_shot_sticker_channel_v1d7_2": {
+    "id": "item_shot_sticker_channel_v1d7_2",
+    "name": {
+      "zh-CN": "贴纸·PIZZA-LA",
+      "en-US": "Sticker: PIZZA-LA"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_sticker_channel_v1d7_2"
+  },
+  "item_shot_sticker_channel_v1d7_3": {
+    "id": "item_shot_sticker_channel_v1d7_3",
+    "name": {
+      "zh-CN": "贴纸·留声图样",
+      "en-US": "Sticker: Pattern of the Echoes"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_sticker_channel_v1d7_3"
+  },
+  "item_shot_sticker_channel_v1d7_4": {
+    "id": "item_shot_sticker_channel_v1d7_4",
+    "name": {
+      "zh-CN": "贴纸·源石支持",
+      "en-US": "Sticker: OriGO-GO Stick"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_sticker_channel_v1d7_4"
+  },
+  "item_shot_sticker_channel_v1d7_5": {
+    "id": "item_shot_sticker_channel_v1d7_5",
+    "name": {
+      "zh-CN": "贴纸·铁痕的王冠",
+      "en-US": "Sticker: Scarred Crown of Metal"
+    },
+    "rarity": 5,
+    "iconId": "item_shot_sticker_channel_v1d7_5"
   },
   "item_shot_sticker_giftpack_1": {
     "id": "item_shot_sticker_giftpack_1",
@@ -23867,6 +25127,15 @@
     "rarity": 5,
     "iconId": "item_spaceship_exhibits_jinlong_5"
   },
+  "item_spaceship_exhibits_mushroom": {
+    "id": "item_spaceship_exhibits_mushroom",
+    "name": {
+      "zh-CN": "华丽蘑菇吉祥物",
+      "en-US": "Luxurious Mushroom Mascot"
+    },
+    "rarity": 5,
+    "iconId": "item_spaceship_exhibits_mushroom"
+  },
   "item_spaceship_exhibits_shanshantu": {
     "id": "item_spaceship_exhibits_shanshantu",
     "name": {
@@ -24136,6 +25405,15 @@
     },
     "rarity": 6,
     "iconId": "item_ticketgacha_special_single_lt_1_6_2"
+  },
+  "item_ticketgacha_special_single_lt_1_7_1": {
+    "id": "item_ticketgacha_special_single_lt_1_7_1",
+    "name": {
+      "zh-CN": "漫野探奇寻访凭证",
+      "en-US": "Roaming Wilderpaw HH Permit"
+    },
+    "rarity": 6,
+    "iconId": "item_ticketgacha_special_single_lt_1_7_1"
   },
   "item_ticketgacha_special_ten": {
     "id": "item_ticketgacha_special_ten",
@@ -24479,6 +25757,15 @@
     "rarity": 6,
     "iconId": "item_user_avatar_bp_1_6"
   },
+  "item_user_avatar_bp_1_7": {
+    "id": "item_user_avatar_bp_1_7",
+    "name": {
+      "zh-CN": "蕈类住民",
+      "en-US": "Homely Shrooms"
+    },
+    "rarity": 6,
+    "iconId": "item_user_avatar_bp_1_7"
+  },
   "item_user_avatar_chr_0002_endminm": {
     "id": "item_user_avatar_chr_0002_endminm",
     "name": {
@@ -24794,6 +26081,15 @@
     "rarity": 5,
     "iconId": "item_chr_0038_purrche"
   },
+  "item_user_avatar_chr_0040_sweetpie": {
+    "id": "item_user_avatar_chr_0040_sweetpie",
+    "name": {
+      "zh-CN": "小刻",
+      "en-US": "Kay"
+    },
+    "rarity": 5,
+    "iconId": "item_chr_0040_sweetpie"
+  },
   "item_user_avatar_frame_activity_1": {
     "id": "item_user_avatar_frame_activity_1",
     "name": {
@@ -24875,6 +26171,15 @@
     "rarity": 6,
     "iconId": "item_user_avatar_frame_activity_9"
   },
+  "item_user_avatar_frame_activity_takestwo_2": {
+    "id": "item_user_avatar_frame_activity_takestwo_2",
+    "name": {
+      "zh-CN": "摘冠者的耀星",
+      "en-US": "Crown-Snatcher's Bright Star"
+    },
+    "rarity": 6,
+    "iconId": "item_user_avatar_frame_activity_takestwo_2"
+  },
   "item_user_avatar_frame_bp_1_0": {
     "id": "item_user_avatar_frame_bp_1_0",
     "name": {
@@ -24937,6 +26242,15 @@
     },
     "rarity": 6,
     "iconId": "item_user_avatar_frame_bp_1_6"
+  },
+  "item_user_avatar_frame_bp_1_7": {
+    "id": "item_user_avatar_frame_bp_1_7",
+    "name": {
+      "zh-CN": "食用后的色彩",
+      "en-US": "Colors After a Bite"
+    },
+    "rarity": 6,
+    "iconId": "item_user_avatar_frame_bp_1_7"
   },
   "item_user_avatar_frame_channel_1": {
     "id": "item_user_avatar_frame_channel_1",
@@ -25054,6 +26368,15 @@
     },
     "rarity": 6,
     "iconId": "item_user_avatar_frame_channel_v1d5_3"
+  },
+  "item_user_avatar_frame_channel_v1d7_1": {
+    "id": "item_user_avatar_frame_channel_v1d7_1",
+    "name": {
+      "zh-CN": "复古舞台",
+      "en-US": "Retro-Metal Stage"
+    },
+    "rarity": 6,
+    "iconId": "item_user_avatar_frame_channel_v1d7_1"
   },
   "item_user_avatar_frame_endfield_1": {
     "id": "item_user_avatar_frame_endfield_1",
@@ -26729,6 +28052,15 @@
     "rarity": 4,
     "iconId": "item_wgthorns_1_hshog_1_hsmob_1_1"
   },
+  "item_wgthorns_1_mushbug_spmushroom1_1": {
+    "id": "item_wgthorns_1_mushbug_spmushroom1_1",
+    "name": {
+      "zh-CN": "菌王之血",
+      "en-US": "Fungal King's Blood"
+    },
+    "rarity": 4,
+    "iconId": "item_wgthorns_1_mushbug_spmushroom1_1"
+  },
   "item_wpngem_enhance_dust": {
     "id": "item_wpngem_enhance_dust",
     "name": {
@@ -26792,6 +28124,15 @@
     "rarity": 3,
     "iconId": "item_wuling_xiranite_enr_unlock"
   },
+  "item_xiranite_enr_heng": {
+    "id": "item_xiranite_enr_heng",
+    "name": {
+      "zh-CN": "衡息壤",
+      "en-US": "Equiranite"
+    },
+    "rarity": 3,
+    "iconId": "item_xiranite_enr_heng"
+  },
   "item_xiranite_enr_powder": {
     "id": "item_xiranite_enr_powder",
     "name": {
@@ -26801,6 +28142,15 @@
     "rarity": 3,
     "iconId": "item_xiranite_enr_powder"
   },
+  "item_xiranite_hui": {
+    "id": "item_xiranite_hui",
+    "name": {
+      "zh-CN": "晦状息壤",
+      "en-US": "Turbidarite"
+    },
+    "rarity": 3,
+    "iconId": "item_xiranite_hui"
+  },
   "item_xiranite_lowpoly": {
     "id": "item_xiranite_lowpoly",
     "name": {
@@ -26809,6 +28159,15 @@
     },
     "rarity": 3,
     "iconId": "item_xiranite_lowpoly"
+  },
+  "item_xiranite_ming": {
+    "id": "item_xiranite_ming",
+    "name": {
+      "zh-CN": "明状息壤",
+      "en-US": "Luminarite"
+    },
+    "rarity": 3,
+    "iconId": "item_xiranite_ming"
   },
   "item_xiranite_poly": {
     "id": "item_xiranite_poly",
@@ -27251,6 +28610,24 @@
     "rarity": 2,
     "iconId": "item_copper_bottle"
   },
+  "sysbp_wuling_copper_bright_cube_01": {
+    "id": "sysbp_wuling_copper_bright_cube_01",
+    "name": {
+      "zh-CN": "辉铜能量块",
+      "en-US": "Lucidolite Energy Brick"
+    },
+    "rarity": 2,
+    "iconId": "item_copper_bright_cube"
+  },
+  "sysbp_wuling_copper_bright_cube_02": {
+    "id": "sysbp_wuling_copper_bright_cube_02",
+    "name": {
+      "zh-CN": "高效辉铜",
+      "en-US": "Efficient Lucidolite"
+    },
+    "rarity": 2,
+    "iconId": "item_copper_bright"
+  },
   "sysbp_wuling_copper_cmpt_1": {
     "id": "sysbp_wuling_copper_cmpt_1",
     "name": {
@@ -27268,6 +28645,24 @@
     },
     "rarity": 2,
     "iconId": "item_copper_enr_cmpt"
+  },
+  "sysbp_wuling_copper_xiranite_hui_01": {
+    "id": "sysbp_wuling_copper_xiranite_hui_01",
+    "name": {
+      "zh-CN": "铜封重装组件",
+      "en-US": "CuPKG Heavy IC"
+    },
+    "rarity": 2,
+    "iconId": "item_copper_xiranite_hui"
+  },
+  "sysbp_wuling_copper_xiranite_ming_01": {
+    "id": "sysbp_wuling_copper_xiranite_ming_01",
+    "name": {
+      "zh-CN": "铜封明壤元件",
+      "en-US": "CuPKG Luminarite Component"
+    },
+    "rarity": 2,
+    "iconId": "item_copper_xiranite_ming"
   },
   "sysbp_wuling_copperjar_01": {
     "id": "sysbp_wuling_copperjar_01",
@@ -27386,6 +28781,15 @@
     "rarity": 2,
     "iconId": "item_liquid_plant_grass_2"
   },
+  "sysbp_wuling_magic_spawner_1_heng_01": {
+    "id": "sysbp_wuling_magic_spawner_1_heng_01",
+    "name": {
+      "zh-CN": "“衡”特性产物",
+      "en-US": "\"E\" Products"
+    },
+    "rarity": 2,
+    "iconId": "item_port_magic_spawner_1"
+  },
   "sysbp_wuling_proc_battery_4_1": {
     "id": "sysbp_wuling_proc_battery_4_1",
     "name": {
@@ -27439,6 +28843,24 @@
     },
     "rarity": 2,
     "iconId": "item_xiranite_powder"
+  },
+  "sysbp_wuling_xiranite_enr_easy_01": {
+    "id": "sysbp_wuling_xiranite_enr_easy_01",
+    "name": {
+      "zh-CN": "平衡炉重息壤",
+      "en-US": "Forge of Equilibrium: Heavy Xiranite"
+    },
+    "rarity": 2,
+    "iconId": "item_xiranite_enr_powder"
+  },
+  "sysbp_wuling_xiranite_enr_easy_02": {
+    "id": "sysbp_wuling_xiranite_enr_easy_02",
+    "name": {
+      "zh-CN": "高效重息壤",
+      "en-US": "Efficient Heavy Xiranite"
+    },
+    "rarity": 2,
+    "iconId": "item_xiranite_enr_powder"
   },
   "sysbp_wuling_xiranite_enr_powder_1": {
     "id": "sysbp_wuling_xiranite_enr_powder_1",
@@ -27601,6 +29023,15 @@
     },
     "rarity": 6,
     "iconId": "item_ticketgacha_special_single_lt_1_6_2"
+  },
+  "ticketgacha_special_single_lt_1_7_1": {
+    "id": "ticketgacha_special_single_lt_1_7_1",
+    "name": {
+      "zh-CN": "漫野探奇寻访凭证",
+      "en-US": "Roaming Wilderpaw HH Permit"
+    },
+    "rarity": 6,
+    "iconId": "item_ticketgacha_special_single_lt_1_7_1"
   },
   "ticketgacha_special_ten_lt_1_0_1": {
     "id": "ticketgacha_special_ten_lt_1_0_1",
