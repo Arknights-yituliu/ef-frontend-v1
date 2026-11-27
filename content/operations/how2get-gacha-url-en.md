@@ -1,9 +1,9 @@
 ---
-title: 如何获取抽卡记录URL
-description: 学习如何获取抽卡记录URL
+title: How to Get Gacha Data URL
+description: Learn how to get the gacha data URL from the game log
 ---
 
-# 如何获取抽卡记录URL
+# How to Get Gacha Data URL
 
-1. 点击一次卡池详情
-2. 在 `C:\Users\Administrator\<UserName>\LocalLow\HyperGryph\Endfield\sdklogs\HGWebview.log`文件中，会出现带有查询抽卡记录的URL
+1. Open the banner details once in the game.
+2. Check `C:\Users\Administrator\<UserName>\LocalLow\HyperGryph\Endfield\sdklogs\HGWebview.log`. A URL for querying gacha data will appear in this file.
