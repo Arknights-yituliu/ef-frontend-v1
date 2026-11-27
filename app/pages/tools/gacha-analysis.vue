@@ -650,6 +650,17 @@ const freqMode = ref<'all' | 'sixStar'>('all');
 const characterRecords = ref<GachaRecord[]>([]);
 const weaponRecords = ref<GachaRecord[]>([]);
 
+function isAnalysisRecord(record: GachaRecord) {
+  return record.rarity !== 0 && !!record.charName?.trim() && record.charName !== '寻访情报书';
+}
+
+const analysisCharacterRecords = computed(() =>
+  characterRecords.value.filter((record) => isAnalysisRecord(record)),
+);
+const analysisWeaponRecords = computed(() =>
+  weaponRecords.value.filter((record) => isAnalysisRecord(record)),
+);
+
 const characterSixStarResults = ref<SixStarEntry[]>([]);
 const weaponSixStarResults = ref<SixStarEntry[]>([]);
 
